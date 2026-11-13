@@ -12,6 +12,9 @@ import { parseChecklist } from '../src/js/lib/markdown.js';
 import {
   beforeAmazingSpiderManSupplementManifest, beforeAmazingSpiderManSupplementOrders,
 } from './helpers/amazing-spider-man-history.mjs';
+import {
+  beforeWolverineCorrectionManifest, beforeWolverineCorrectionOrders,
+} from './helpers/wolverine-correction-history.mjs';
 
 // #898. Reading Lists for younger readers: seven from Comic Book Herald's kids guide and eight from
 // the owner's picks in Marvel's young readers guide. The accepted vectors were taken from the
@@ -152,8 +155,10 @@ test('the Comic Book Herald inventory, packets and relationship approvals stay c
     'captain-america-2025-dooms-shadow', 'captain-america-2025-hells-angel'];
   const reviewedDigest = libraryDigestExcludingOrders({
     ...library,
-    manifest: descriptionRevisions.undoManifest(beforeAmazingSpiderManSupplementManifest(library.manifest)),
-    orderIssueIds: beforeAmazingSpiderManSupplementOrders(library.orderIssueIds),
+    manifest: descriptionRevisions.undoManifest(
+      beforeWolverineCorrectionManifest(beforeAmazingSpiderManSupplementManifest(library.manifest)),
+    ),
+    orderIssueIds: beforeWolverineCorrectionOrders(beforeAmazingSpiderManSupplementOrders(library.orderIssueIds)),
   }, [...cbhIds, ...ownerIds, ...later, ...laterModernTimelineIds]);
   const mappings = Object.fromEntries(await Promise.all(cbhIds.map(async (id) => [id,
     await readJson(`scripts/data/cbh-mappings/${id}.json`)])));

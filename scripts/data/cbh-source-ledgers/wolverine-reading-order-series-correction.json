@@ -1,0 +1,1718 @@
+{
+  "schemaVersion": 1,
+  "id": "wolverine-reading-order",
+  "correctionIssue": "https://github.com/raymond-nassar/recap-page/issues/1078",
+  "priorPublication": {
+    "commit": "1a5e2c35e6a98ea3c3e9c2edb402dad4b3de1e56",
+    "files": {
+      "packet": "scripts/data/cbh-packets/wolverine-reading-order.json",
+      "mapping": "scripts/data/cbh-mappings/wolverine-reading-order.json",
+      "report": "scripts/data/cbh-overlaps/wolverine-reading-order.json",
+      "payload": "src/data/wolverine_reading_order.json"
+    },
+    "packetDigest": "18ed5e17e5c91c2ca2e4c127a38f140b4395f0c354e1cec93128fdb260d4941d",
+    "mappingDigest": "6aecf023efcc7c2ef686d316a44e0e797901a9f10049f52dc0cf74009d443f91",
+    "reportDigest": "eb5b48178a8e1e2ed3e5127fd23b0e7df21416b654d91697954427772d046b6c",
+    "approvalDigest": "febef74d77e574a05450673e1f6c9e4c9eb2858eb06915eb17fa49445f51f3ff",
+    "payloadSha256": "ff26fb61ecf53c8b71c2fea553effcbf9859d35d785ee08a0a531cefa882c9a5",
+    "sourceCounts": {
+      "sourceOccurrenceCount": 1328,
+      "sourceIdentityCount": 1207,
+      "includedIssueCount": 451,
+      "sourceGapCount": 756,
+      "repeatedSourceReferenceCount": 71,
+      "excludedSourceRowCount": 50
+    }
+  },
+  "correctionReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "Copilot series-volume reviewer for issue #1078",
+    "reviewedAt": "2026-11-12T23:28:00.1032220-08:00",
+    "rationale": "The source guide names the 1988 series for the first ongoing Wolverine run and the 2003, 2010, 2013 and 2014 series for later runs, but authoring resolved several references to the wrong volume and then folded the displaced references into them as repeats or exclusions. Each listed position now carries the volume its own source line names, or for source line 388 the Jason Aaron run that line's collection names, with its issue id read from the live metadata service. No other position, gap, placeholder, section or order changed. Saved reading lists are snapshots of issue ids and read marks are keyed by issue id, so lists readers saved before this correction keep their rows and progress.",
+    "corrections": [
+      {
+        "sourcePosition": 37,
+        "sourceLine": 130,
+        "sourceText": "Wolverine #1 to #16 (series beginning 1988), Marvel Comics Presents #1-10, Marvel Age Annual #4",
+        "before": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2010) #1",
+          "seriesYear": 2010,
+          "issueId": 30224
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (1988) #1",
+          "seriesYear": 1988,
+          "issueId": 14036
+        }
+      },
+      {
+        "sourcePosition": 38,
+        "sourceLine": 130,
+        "sourceText": "Wolverine #1 to #16 (series beginning 1988), Marvel Comics Presents #1-10, Marvel Age Annual #4",
+        "before": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2010) #2",
+          "seriesYear": 2010,
+          "issueId": 30228
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (1988) #2",
+          "seriesYear": 1988,
+          "issueId": 14137
+        }
+      },
+      {
+        "sourcePosition": 39,
+        "sourceLine": 130,
+        "sourceText": "Wolverine #1 to #16 (series beginning 1988), Marvel Comics Presents #1-10, Marvel Age Annual #4",
+        "before": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2010) #3",
+          "seriesYear": 2010,
+          "issueId": 30229
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (1988) #3",
+          "seriesYear": 1988,
+          "issueId": 14148
+        }
+      },
+      {
+        "sourcePosition": 40,
+        "sourceLine": 130,
+        "sourceText": "Wolverine #1 to #16 (series beginning 1988), Marvel Comics Presents #1-10, Marvel Age Annual #4",
+        "before": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2010) #4",
+          "seriesYear": 2010,
+          "issueId": 30230
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (1988) #4",
+          "seriesYear": 1988,
+          "issueId": 14159
+        }
+      },
+      {
+        "sourcePosition": 41,
+        "sourceLine": 130,
+        "sourceText": "Wolverine #1 to #16 (series beginning 1988), Marvel Comics Presents #1-10, Marvel Age Annual #4",
+        "before": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2010) #5",
+          "seriesYear": 2010,
+          "issueId": 30231
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (1988) #5",
+          "seriesYear": 1988,
+          "issueId": 14170
+        }
+      },
+      {
+        "sourcePosition": 42,
+        "sourceLine": 130,
+        "sourceText": "Wolverine #1 to #16 (series beginning 1988), Marvel Comics Presents #1-10, Marvel Age Annual #4",
+        "before": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2010) #6",
+          "seriesYear": 2010,
+          "issueId": 30232
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (1988) #6",
+          "seriesYear": 1988,
+          "issueId": 14181
+        }
+      },
+      {
+        "sourcePosition": 43,
+        "sourceLine": 130,
+        "sourceText": "Wolverine #1 to #16 (series beginning 1988), Marvel Comics Presents #1-10, Marvel Age Annual #4",
+        "before": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2010) #7",
+          "seriesYear": 2010,
+          "issueId": 30233
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (1988) #7",
+          "seriesYear": 1988,
+          "issueId": 14192
+        }
+      },
+      {
+        "sourcePosition": 44,
+        "sourceLine": 130,
+        "sourceText": "Wolverine #1 to #16 (series beginning 1988), Marvel Comics Presents #1-10, Marvel Age Annual #4",
+        "before": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2010) #8",
+          "seriesYear": 2010,
+          "issueId": 30234
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (1988) #8",
+          "seriesYear": 1988,
+          "issueId": 14203
+        }
+      },
+      {
+        "sourcePosition": 71,
+        "sourceLine": 143,
+        "sourceText": "Vol. 2: Wolverine (1988) 17-30, Wolverine/Nick Fury: The Scorpio Connection Graphic Novel, Wolverine: The Jungle Adventure",
+        "before": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2010) #17",
+          "seriesYear": 2010,
+          "issueId": 36469
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (1988) #17",
+          "seriesYear": 1988,
+          "issueId": 14114
+        }
+      },
+      {
+        "sourcePosition": 72,
+        "sourceLine": 143,
+        "sourceText": "Vol. 2: Wolverine (1988) 17-30, Wolverine/Nick Fury: The Scorpio Connection Graphic Novel, Wolverine: The Jungle Adventure",
+        "before": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2010) #18",
+          "seriesYear": 2010,
+          "issueId": 36466
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (1988) #18",
+          "seriesYear": 1988,
+          "issueId": 14125
+        }
+      },
+      {
+        "sourcePosition": 73,
+        "sourceLine": 143,
+        "sourceText": "Vol. 2: Wolverine (1988) 17-30, Wolverine/Nick Fury: The Scorpio Connection Graphic Novel, Wolverine: The Jungle Adventure",
+        "before": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2010) #19",
+          "seriesYear": 2010,
+          "issueId": 38839
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (1988) #19",
+          "seriesYear": 1988,
+          "issueId": 14136
+        }
+      },
+      {
+        "sourcePosition": 74,
+        "sourceLine": 143,
+        "sourceText": "Vol. 2: Wolverine (1988) 17-30, Wolverine/Nick Fury: The Scorpio Connection Graphic Novel, Wolverine: The Jungle Adventure",
+        "before": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #20",
+          "seriesYear": 2003,
+          "issueId": 860
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (1988) #20",
+          "seriesYear": 1988,
+          "issueId": 14138
+        }
+      },
+      {
+        "sourcePosition": 75,
+        "sourceLine": 143,
+        "sourceText": "Vol. 2: Wolverine (1988) 17-30, Wolverine/Nick Fury: The Scorpio Connection Graphic Novel, Wolverine: The Jungle Adventure",
+        "before": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #21",
+          "seriesYear": 2003,
+          "issueId": 897
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (1988) #21",
+          "seriesYear": 1988,
+          "issueId": 14139
+        }
+      },
+      {
+        "sourcePosition": 76,
+        "sourceLine": 143,
+        "sourceText": "Vol. 2: Wolverine (1988) 17-30, Wolverine/Nick Fury: The Scorpio Connection Graphic Novel, Wolverine: The Jungle Adventure",
+        "before": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #22",
+          "seriesYear": 2003,
+          "issueId": 16
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (1988) #22",
+          "seriesYear": 1988,
+          "issueId": 14140
+        }
+      },
+      {
+        "sourcePosition": 77,
+        "sourceLine": 143,
+        "sourceText": "Vol. 2: Wolverine (1988) 17-30, Wolverine/Nick Fury: The Scorpio Connection Graphic Novel, Wolverine: The Jungle Adventure",
+        "before": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #23",
+          "seriesYear": 2003,
+          "issueId": 1419
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (1988) #23",
+          "seriesYear": 1988,
+          "issueId": 14141
+        }
+      },
+      {
+        "sourcePosition": 78,
+        "sourceLine": 143,
+        "sourceText": "Vol. 2: Wolverine (1988) 17-30, Wolverine/Nick Fury: The Scorpio Connection Graphic Novel, Wolverine: The Jungle Adventure",
+        "before": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #24",
+          "seriesYear": 2003,
+          "issueId": 1517
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (1988) #24",
+          "seriesYear": 1988,
+          "issueId": 14142
+        }
+      },
+      {
+        "sourcePosition": 79,
+        "sourceLine": 143,
+        "sourceText": "Vol. 2: Wolverine (1988) 17-30, Wolverine/Nick Fury: The Scorpio Connection Graphic Novel, Wolverine: The Jungle Adventure",
+        "before": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #25",
+          "seriesYear": 2003,
+          "issueId": 1617
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (1988) #25",
+          "seriesYear": 1988,
+          "issueId": 14143
+        }
+      },
+      {
+        "sourcePosition": 80,
+        "sourceLine": 143,
+        "sourceText": "Vol. 2: Wolverine (1988) 17-30, Wolverine/Nick Fury: The Scorpio Connection Graphic Novel, Wolverine: The Jungle Adventure",
+        "before": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #26",
+          "seriesYear": 2003,
+          "issueId": 1712
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (1988) #26",
+          "seriesYear": 1988,
+          "issueId": 14144
+        }
+      },
+      {
+        "sourcePosition": 81,
+        "sourceLine": 143,
+        "sourceText": "Vol. 2: Wolverine (1988) 17-30, Wolverine/Nick Fury: The Scorpio Connection Graphic Novel, Wolverine: The Jungle Adventure",
+        "before": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #27",
+          "seriesYear": 2003,
+          "issueId": 1822
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (1988) #27",
+          "seriesYear": 1988,
+          "issueId": 14145
+        }
+      },
+      {
+        "sourcePosition": 82,
+        "sourceLine": 143,
+        "sourceText": "Vol. 2: Wolverine (1988) 17-30, Wolverine/Nick Fury: The Scorpio Connection Graphic Novel, Wolverine: The Jungle Adventure",
+        "before": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #28",
+          "seriesYear": 2003,
+          "issueId": 1963
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (1988) #28",
+          "seriesYear": 1988,
+          "issueId": 14146
+        }
+      },
+      {
+        "sourcePosition": 83,
+        "sourceLine": 143,
+        "sourceText": "Vol. 2: Wolverine (1988) 17-30, Wolverine/Nick Fury: The Scorpio Connection Graphic Novel, Wolverine: The Jungle Adventure",
+        "before": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #29",
+          "seriesYear": 2003,
+          "issueId": 2066
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (1988) #29",
+          "seriesYear": 1988,
+          "issueId": 14147
+        }
+      },
+      {
+        "sourcePosition": 84,
+        "sourceLine": 143,
+        "sourceText": "Vol. 2: Wolverine (1988) 17-30, Wolverine/Nick Fury: The Scorpio Connection Graphic Novel, Wolverine: The Jungle Adventure",
+        "before": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #30",
+          "seriesYear": 2003,
+          "issueId": 2173
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (1988) #30",
+          "seriesYear": 1988,
+          "issueId": 14149
+        }
+      },
+      {
+        "sourcePosition": 87,
+        "sourceLine": 146,
+        "sourceText": ": Wolverine (vol. 2) #31-44, Wolverine: Bloodlust, Wolverine: Bloody Choices",
+        "before": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #31",
+          "seriesYear": 2003,
+          "issueId": 2297
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (1988) #31",
+          "seriesYear": 1988,
+          "issueId": 14150
+        }
+      },
+      {
+        "sourcePosition": 88,
+        "sourceLine": 146,
+        "sourceText": ": Wolverine (vol. 2) #31-44, Wolverine: Bloodlust, Wolverine: Bloody Choices",
+        "before": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #32",
+          "seriesYear": 2003,
+          "issueId": 2519
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (1988) #32",
+          "seriesYear": 1988,
+          "issueId": 14151
+        }
+      },
+      {
+        "sourcePosition": 125,
+        "sourceLine": 152,
+        "sourceText": ": Wolverine (1988) #51-68, Ghost Rider/Wolverine/Punisher: Hearts of Darkness, Material from Marvel Holiday Special (1991) #2",
+        "before": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #62",
+          "seriesYear": 2003,
+          "issueId": 20642
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (1988) #62",
+          "seriesYear": 1988,
+          "issueId": 14184
+        }
+      },
+      {
+        "sourcePosition": 126,
+        "sourceLine": 152,
+        "sourceText": ": Wolverine (1988) #51-68, Ghost Rider/Wolverine/Punisher: Hearts of Darkness, Material from Marvel Holiday Special (1991) #2",
+        "before": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #63",
+          "seriesYear": 2003,
+          "issueId": 20833
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (1988) #63",
+          "seriesYear": 1988,
+          "issueId": 14185
+        }
+      },
+      {
+        "sourcePosition": 127,
+        "sourceLine": 152,
+        "sourceText": ": Wolverine (1988) #51-68, Ghost Rider/Wolverine/Punisher: Hearts of Darkness, Material from Marvel Holiday Special (1991) #2",
+        "before": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #64",
+          "seriesYear": 2003,
+          "issueId": 20971
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (1988) #64",
+          "seriesYear": 1988,
+          "issueId": 14186
+        }
+      },
+      {
+        "sourcePosition": 128,
+        "sourceLine": 152,
+        "sourceText": ": Wolverine (1988) #51-68, Ghost Rider/Wolverine/Punisher: Hearts of Darkness, Material from Marvel Holiday Special (1991) #2",
+        "before": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #65",
+          "seriesYear": 2003,
+          "issueId": 21180
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (1988) #65",
+          "seriesYear": 1988,
+          "issueId": 14187
+        }
+      },
+      {
+        "sourcePosition": 134,
+        "sourceLine": 158,
+        "sourceText": "Wolverine (2003) 32; Logan: Path Of The Warlord, Shadow Society; Wolverine: Agent Of Atlas 1-3; First X-Men 1-5; Wolverine: Hunger; Wolverine (1988) -1; Before The Fantastic Four: Ben Grimm & Logan 1-3; Wolverine/Cable; Material From Marvel Comics Presents (1988) 93-98, Wolverine: The Amazing Immortal Man & Other Bloody Tales, Wolverine (2010) 1000",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2003) #32",
+          "seriesYear": 2003,
+          "issueId": 2519,
+          "canonicalSourcePosition": 88
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #32",
+          "seriesYear": 2003,
+          "issueId": 2519
+        }
+      },
+      {
+        "sourcePosition": 422,
+        "sourceLine": 274,
+        "sourceText": "Wolverine (2003) #1-19",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #1",
+          "seriesYear": 2010,
+          "issueId": 30224,
+          "canonicalSourcePosition": 37
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #1",
+          "seriesYear": 2003,
+          "issueId": 14225
+        }
+      },
+      {
+        "sourcePosition": 423,
+        "sourceLine": 274,
+        "sourceText": "Wolverine (2003) #1-19",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #2",
+          "seriesYear": 2010,
+          "issueId": 30228,
+          "canonicalSourcePosition": 38
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #2",
+          "seriesYear": 2003,
+          "issueId": 14236
+        }
+      },
+      {
+        "sourcePosition": 424,
+        "sourceLine": 274,
+        "sourceText": "Wolverine (2003) #1-19",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #3",
+          "seriesYear": 2010,
+          "issueId": 30229,
+          "canonicalSourcePosition": 39
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #3",
+          "seriesYear": 2003,
+          "issueId": 14247
+        }
+      },
+      {
+        "sourcePosition": 425,
+        "sourceLine": 274,
+        "sourceText": "Wolverine (2003) #1-19",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #4",
+          "seriesYear": 2010,
+          "issueId": 30230,
+          "canonicalSourcePosition": 40
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #4",
+          "seriesYear": 2003,
+          "issueId": 14259
+        }
+      },
+      {
+        "sourcePosition": 426,
+        "sourceLine": 274,
+        "sourceText": "Wolverine (2003) #1-19",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #5",
+          "seriesYear": 2010,
+          "issueId": 30231,
+          "canonicalSourcePosition": 41
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #5",
+          "seriesYear": 2003,
+          "issueId": 14264
+        }
+      },
+      {
+        "sourcePosition": 427,
+        "sourceLine": 274,
+        "sourceText": "Wolverine (2003) #1-19",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #6",
+          "seriesYear": 2010,
+          "issueId": 30232,
+          "canonicalSourcePosition": 42
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #6",
+          "seriesYear": 2003,
+          "issueId": 234
+        }
+      },
+      {
+        "sourcePosition": 428,
+        "sourceLine": 274,
+        "sourceText": "Wolverine (2003) #1-19",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #7",
+          "seriesYear": 2010,
+          "issueId": 30233,
+          "canonicalSourcePosition": 43
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #7",
+          "seriesYear": 2003,
+          "issueId": 233
+        }
+      },
+      {
+        "sourcePosition": 429,
+        "sourceLine": 274,
+        "sourceText": "Wolverine (2003) #1-19",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #8",
+          "seriesYear": 2010,
+          "issueId": 30234,
+          "canonicalSourcePosition": 44
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #8",
+          "seriesYear": 2003,
+          "issueId": 268
+        }
+      },
+      {
+        "sourcePosition": 431,
+        "sourceLine": 274,
+        "sourceText": "Wolverine (2003) #1-19",
+        "before": {
+          "representation": "exclusion",
+          "sourceIssueReference": "Wolverine #10",
+          "seriesYear": null,
+          "issueId": null
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #10",
+          "seriesYear": 2003,
+          "issueId": 237
+        }
+      },
+      {
+        "sourcePosition": 432,
+        "sourceLine": 274,
+        "sourceText": "Wolverine (2003) #1-19",
+        "before": {
+          "representation": "exclusion",
+          "sourceIssueReference": "Wolverine #11",
+          "seriesYear": null,
+          "issueId": null
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #11",
+          "seriesYear": 2003,
+          "issueId": 236
+        }
+      },
+      {
+        "sourcePosition": 433,
+        "sourceLine": 274,
+        "sourceText": "Wolverine (2003) #1-19",
+        "before": {
+          "representation": "exclusion",
+          "sourceIssueReference": "Wolverine #12",
+          "seriesYear": null,
+          "issueId": null
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #12",
+          "seriesYear": 2003,
+          "issueId": 427
+        }
+      },
+      {
+        "sourcePosition": 435,
+        "sourceLine": 274,
+        "sourceText": "Wolverine (2003) #1-19",
+        "before": {
+          "representation": "exclusion",
+          "sourceIssueReference": "Wolverine #14",
+          "seriesYear": null,
+          "issueId": null
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #14",
+          "seriesYear": 2003,
+          "issueId": 490
+        }
+      },
+      {
+        "sourcePosition": 436,
+        "sourceLine": 274,
+        "sourceText": "Wolverine (2003) #1-19",
+        "before": {
+          "representation": "exclusion",
+          "sourceIssueReference": "Wolverine #15",
+          "seriesYear": null,
+          "issueId": null
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #15",
+          "seriesYear": 2003,
+          "issueId": 658
+        }
+      },
+      {
+        "sourcePosition": 437,
+        "sourceLine": 274,
+        "sourceText": "Wolverine (2003) #1-19",
+        "before": {
+          "representation": "exclusion",
+          "sourceIssueReference": "Wolverine #16",
+          "seriesYear": null,
+          "issueId": null
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #16",
+          "seriesYear": 2003,
+          "issueId": 718
+        }
+      },
+      {
+        "sourcePosition": 438,
+        "sourceLine": 274,
+        "sourceText": "Wolverine (2003) #1-19",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #17",
+          "seriesYear": 2010,
+          "issueId": 36469,
+          "canonicalSourcePosition": 71
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #17",
+          "seriesYear": 2003,
+          "issueId": 527
+        }
+      },
+      {
+        "sourcePosition": 439,
+        "sourceLine": 274,
+        "sourceText": "Wolverine (2003) #1-19",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #18",
+          "seriesYear": 2010,
+          "issueId": 36466,
+          "canonicalSourcePosition": 72
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #18",
+          "seriesYear": 2003,
+          "issueId": 760
+        }
+      },
+      {
+        "sourcePosition": 440,
+        "sourceLine": 274,
+        "sourceText": "Wolverine (2003) #1-19",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #19",
+          "seriesYear": 2010,
+          "issueId": 38839,
+          "canonicalSourcePosition": 73
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #19",
+          "seriesYear": 2003,
+          "issueId": 828
+        }
+      },
+      {
+        "sourcePosition": 516,
+        "sourceLine": 297,
+        "sourceText": ": Wolverine (2003) #20 to #32",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2003) #20",
+          "seriesYear": 2003,
+          "issueId": 860,
+          "canonicalSourcePosition": 74
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #20",
+          "seriesYear": 2003,
+          "issueId": 860
+        }
+      },
+      {
+        "sourcePosition": 517,
+        "sourceLine": 297,
+        "sourceText": ": Wolverine (2003) #20 to #32",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2003) #21",
+          "seriesYear": 2003,
+          "issueId": 897,
+          "canonicalSourcePosition": 75
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #21",
+          "seriesYear": 2003,
+          "issueId": 897
+        }
+      },
+      {
+        "sourcePosition": 518,
+        "sourceLine": 297,
+        "sourceText": ": Wolverine (2003) #20 to #32",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2003) #22",
+          "seriesYear": 2003,
+          "issueId": 16,
+          "canonicalSourcePosition": 76
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #22",
+          "seriesYear": 2003,
+          "issueId": 16
+        }
+      },
+      {
+        "sourcePosition": 519,
+        "sourceLine": 297,
+        "sourceText": ": Wolverine (2003) #20 to #32",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2003) #23",
+          "seriesYear": 2003,
+          "issueId": 1419,
+          "canonicalSourcePosition": 77
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #23",
+          "seriesYear": 2003,
+          "issueId": 1419
+        }
+      },
+      {
+        "sourcePosition": 520,
+        "sourceLine": 297,
+        "sourceText": ": Wolverine (2003) #20 to #32",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2003) #24",
+          "seriesYear": 2003,
+          "issueId": 1517,
+          "canonicalSourcePosition": 78
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #24",
+          "seriesYear": 2003,
+          "issueId": 1517
+        }
+      },
+      {
+        "sourcePosition": 521,
+        "sourceLine": 297,
+        "sourceText": ": Wolverine (2003) #20 to #32",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2003) #25",
+          "seriesYear": 2003,
+          "issueId": 1617,
+          "canonicalSourcePosition": 79
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #25",
+          "seriesYear": 2003,
+          "issueId": 1617
+        }
+      },
+      {
+        "sourcePosition": 522,
+        "sourceLine": 297,
+        "sourceText": ": Wolverine (2003) #20 to #32",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2003) #26",
+          "seriesYear": 2003,
+          "issueId": 1712,
+          "canonicalSourcePosition": 80
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #26",
+          "seriesYear": 2003,
+          "issueId": 1712
+        }
+      },
+      {
+        "sourcePosition": 523,
+        "sourceLine": 297,
+        "sourceText": ": Wolverine (2003) #20 to #32",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2003) #27",
+          "seriesYear": 2003,
+          "issueId": 1822,
+          "canonicalSourcePosition": 81
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #27",
+          "seriesYear": 2003,
+          "issueId": 1822
+        }
+      },
+      {
+        "sourcePosition": 524,
+        "sourceLine": 297,
+        "sourceText": ": Wolverine (2003) #20 to #32",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2003) #28",
+          "seriesYear": 2003,
+          "issueId": 1963,
+          "canonicalSourcePosition": 82
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #28",
+          "seriesYear": 2003,
+          "issueId": 1963
+        }
+      },
+      {
+        "sourcePosition": 525,
+        "sourceLine": 297,
+        "sourceText": ": Wolverine (2003) #20 to #32",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2003) #29",
+          "seriesYear": 2003,
+          "issueId": 2066,
+          "canonicalSourcePosition": 83
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #29",
+          "seriesYear": 2003,
+          "issueId": 2066
+        }
+      },
+      {
+        "sourcePosition": 526,
+        "sourceLine": 297,
+        "sourceText": ": Wolverine (2003) #20 to #32",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2003) #30",
+          "seriesYear": 2003,
+          "issueId": 2173,
+          "canonicalSourcePosition": 84
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #30",
+          "seriesYear": 2003,
+          "issueId": 2173
+        }
+      },
+      {
+        "sourcePosition": 527,
+        "sourceLine": 297,
+        "sourceText": ": Wolverine (2003) #20 to #32",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2003) #31",
+          "seriesYear": 2003,
+          "issueId": 2297,
+          "canonicalSourcePosition": 87
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2003) #31",
+          "seriesYear": 2003,
+          "issueId": 2297
+        }
+      },
+      {
+        "sourcePosition": 754,
+        "sourceLine": 388,
+        "sourceText": "Astonishing Spider-Man & Wolverine 1-6, Wolverine 1-9, 5.1; Wolverine: Road To Hell 1",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #1",
+          "seriesYear": 2010,
+          "issueId": 30224,
+          "canonicalSourcePosition": 37
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2010) #1",
+          "seriesYear": 2010,
+          "issueId": 30224
+        }
+      },
+      {
+        "sourcePosition": 755,
+        "sourceLine": 388,
+        "sourceText": "Astonishing Spider-Man & Wolverine 1-6, Wolverine 1-9, 5.1; Wolverine: Road To Hell 1",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #2",
+          "seriesYear": 2010,
+          "issueId": 30228,
+          "canonicalSourcePosition": 38
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2010) #2",
+          "seriesYear": 2010,
+          "issueId": 30228
+        }
+      },
+      {
+        "sourcePosition": 756,
+        "sourceLine": 388,
+        "sourceText": "Astonishing Spider-Man & Wolverine 1-6, Wolverine 1-9, 5.1; Wolverine: Road To Hell 1",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #3",
+          "seriesYear": 2010,
+          "issueId": 30229,
+          "canonicalSourcePosition": 39
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2010) #3",
+          "seriesYear": 2010,
+          "issueId": 30229
+        }
+      },
+      {
+        "sourcePosition": 757,
+        "sourceLine": 388,
+        "sourceText": "Astonishing Spider-Man & Wolverine 1-6, Wolverine 1-9, 5.1; Wolverine: Road To Hell 1",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #4",
+          "seriesYear": 2010,
+          "issueId": 30230,
+          "canonicalSourcePosition": 40
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2010) #4",
+          "seriesYear": 2010,
+          "issueId": 30230
+        }
+      },
+      {
+        "sourcePosition": 758,
+        "sourceLine": 388,
+        "sourceText": "Astonishing Spider-Man & Wolverine 1-6, Wolverine 1-9, 5.1; Wolverine: Road To Hell 1",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #5",
+          "seriesYear": 2010,
+          "issueId": 30231,
+          "canonicalSourcePosition": 41
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2010) #5",
+          "seriesYear": 2010,
+          "issueId": 30231
+        }
+      },
+      {
+        "sourcePosition": 759,
+        "sourceLine": 388,
+        "sourceText": "Astonishing Spider-Man & Wolverine 1-6, Wolverine 1-9, 5.1; Wolverine: Road To Hell 1",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #6",
+          "seriesYear": 2010,
+          "issueId": 30232,
+          "canonicalSourcePosition": 42
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2010) #6",
+          "seriesYear": 2010,
+          "issueId": 30232
+        }
+      },
+      {
+        "sourcePosition": 760,
+        "sourceLine": 388,
+        "sourceText": "Astonishing Spider-Man & Wolverine 1-6, Wolverine 1-9, 5.1; Wolverine: Road To Hell 1",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #7",
+          "seriesYear": 2010,
+          "issueId": 30233,
+          "canonicalSourcePosition": 43
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2010) #7",
+          "seriesYear": 2010,
+          "issueId": 30233
+        }
+      },
+      {
+        "sourcePosition": 761,
+        "sourceLine": 388,
+        "sourceText": "Astonishing Spider-Man & Wolverine 1-6, Wolverine 1-9, 5.1; Wolverine: Road To Hell 1",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #8",
+          "seriesYear": 2010,
+          "issueId": 30234,
+          "canonicalSourcePosition": 44
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2010) #8",
+          "seriesYear": 2010,
+          "issueId": 30234
+        }
+      },
+      {
+        "sourcePosition": 785,
+        "sourceLine": 407,
+        "sourceText": "Wolverine 10-20, 300-304",
+        "before": {
+          "representation": "exclusion",
+          "sourceIssueReference": "Wolverine #10",
+          "seriesYear": null,
+          "issueId": null
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2010) #10",
+          "seriesYear": 2010,
+          "issueId": 30225
+        }
+      },
+      {
+        "sourcePosition": 786,
+        "sourceLine": 407,
+        "sourceText": "Wolverine 10-20, 300-304",
+        "before": {
+          "representation": "exclusion",
+          "sourceIssueReference": "Wolverine #11",
+          "seriesYear": null,
+          "issueId": null
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2010) #11",
+          "seriesYear": 2010,
+          "issueId": 30226
+        }
+      },
+      {
+        "sourcePosition": 787,
+        "sourceLine": 407,
+        "sourceText": "Wolverine 10-20, 300-304",
+        "before": {
+          "representation": "exclusion",
+          "sourceIssueReference": "Wolverine #12",
+          "seriesYear": null,
+          "issueId": null
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2010) #12",
+          "seriesYear": 2010,
+          "issueId": 30227
+        }
+      },
+      {
+        "sourcePosition": 788,
+        "sourceLine": 407,
+        "sourceText": "Wolverine 10-20, 300-304",
+        "before": {
+          "representation": "exclusion",
+          "sourceIssueReference": "Wolverine #13",
+          "seriesYear": null,
+          "issueId": null
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2010) #13",
+          "seriesYear": 2010,
+          "issueId": 36468
+        }
+      },
+      {
+        "sourcePosition": 789,
+        "sourceLine": 407,
+        "sourceText": "Wolverine 10-20, 300-304",
+        "before": {
+          "representation": "exclusion",
+          "sourceIssueReference": "Wolverine #14",
+          "seriesYear": null,
+          "issueId": null
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2010) #14",
+          "seriesYear": 2010,
+          "issueId": 36470
+        }
+      },
+      {
+        "sourcePosition": 790,
+        "sourceLine": 407,
+        "sourceText": "Wolverine 10-20, 300-304",
+        "before": {
+          "representation": "exclusion",
+          "sourceIssueReference": "Wolverine #15",
+          "seriesYear": null,
+          "issueId": null
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2010) #15",
+          "seriesYear": 2010,
+          "issueId": 36471
+        }
+      },
+      {
+        "sourcePosition": 791,
+        "sourceLine": 407,
+        "sourceText": "Wolverine 10-20, 300-304",
+        "before": {
+          "representation": "exclusion",
+          "sourceIssueReference": "Wolverine #16",
+          "seriesYear": null,
+          "issueId": null
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2010) #16",
+          "seriesYear": 2010,
+          "issueId": 36467
+        }
+      },
+      {
+        "sourcePosition": 792,
+        "sourceLine": 407,
+        "sourceText": "Wolverine 10-20, 300-304",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #17",
+          "seriesYear": 2010,
+          "issueId": 36469,
+          "canonicalSourcePosition": 71
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2010) #17",
+          "seriesYear": 2010,
+          "issueId": 36469
+        }
+      },
+      {
+        "sourcePosition": 793,
+        "sourceLine": 407,
+        "sourceText": "Wolverine 10-20, 300-304",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #18",
+          "seriesYear": 2010,
+          "issueId": 36466,
+          "canonicalSourcePosition": 72
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2010) #18",
+          "seriesYear": 2010,
+          "issueId": 36466
+        }
+      },
+      {
+        "sourcePosition": 794,
+        "sourceLine": 407,
+        "sourceText": "Wolverine 10-20, 300-304",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #19",
+          "seriesYear": 2010,
+          "issueId": 38839,
+          "canonicalSourcePosition": 73
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2010) #19",
+          "seriesYear": 2010,
+          "issueId": 38839
+        }
+      },
+      {
+        "sourcePosition": 795,
+        "sourceLine": 407,
+        "sourceText": "Wolverine 10-20, 300-304",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2003) #20",
+          "seriesYear": 2003,
+          "issueId": 860,
+          "canonicalSourcePosition": 74
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2010) #20",
+          "seriesYear": 2010,
+          "issueId": 40621
+        }
+      },
+      {
+        "sourcePosition": 997,
+        "sourceLine": 479,
+        "sourceText": ": Wolverine (vol. 5) #1-6",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #1",
+          "seriesYear": 2010,
+          "issueId": 30224,
+          "canonicalSourcePosition": 37
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2013) #1",
+          "seriesYear": 2013,
+          "issueId": 46713
+        }
+      },
+      {
+        "sourcePosition": 998,
+        "sourceLine": 479,
+        "sourceText": ": Wolverine (vol. 5) #1-6",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #2",
+          "seriesYear": 2010,
+          "issueId": 30228,
+          "canonicalSourcePosition": 38
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2013) #2",
+          "seriesYear": 2013,
+          "issueId": 46717
+        }
+      },
+      {
+        "sourcePosition": 999,
+        "sourceLine": 479,
+        "sourceText": ": Wolverine (vol. 5) #1-6",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #3",
+          "seriesYear": 2010,
+          "issueId": 30229,
+          "canonicalSourcePosition": 39
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2013) #3",
+          "seriesYear": 2013,
+          "issueId": 46719
+        }
+      },
+      {
+        "sourcePosition": 1000,
+        "sourceLine": 479,
+        "sourceText": ": Wolverine (vol. 5) #1-6",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #4",
+          "seriesYear": 2010,
+          "issueId": 30230,
+          "canonicalSourcePosition": 40
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2013) #4",
+          "seriesYear": 2013,
+          "issueId": 46721
+        }
+      },
+      {
+        "sourcePosition": 1001,
+        "sourceLine": 479,
+        "sourceText": ": Wolverine (vol. 5) #1-6",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #5",
+          "seriesYear": 2010,
+          "issueId": 30231,
+          "canonicalSourcePosition": 41
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2013) #5",
+          "seriesYear": 2013,
+          "issueId": 46723
+        }
+      },
+      {
+        "sourcePosition": 1002,
+        "sourceLine": 479,
+        "sourceText": ": Wolverine (vol. 5) #1-6",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #6",
+          "seriesYear": 2010,
+          "issueId": 30232,
+          "canonicalSourcePosition": 42
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2013) #6",
+          "seriesYear": 2013,
+          "issueId": 46725
+        }
+      },
+      {
+        "sourcePosition": 1034,
+        "sourceLine": 494,
+        "sourceText": ": Wolverine (vol. 5) #6-13",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #7",
+          "seriesYear": 2010,
+          "issueId": 30233,
+          "canonicalSourcePosition": 43
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2013) #7",
+          "seriesYear": 2013,
+          "issueId": 46726
+        }
+      },
+      {
+        "sourcePosition": 1035,
+        "sourceLine": 494,
+        "sourceText": ": Wolverine (vol. 5) #6-13",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #8",
+          "seriesYear": 2010,
+          "issueId": 30234,
+          "canonicalSourcePosition": 44
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2013) #8",
+          "seriesYear": 2013,
+          "issueId": 46727
+        }
+      },
+      {
+        "sourcePosition": 1059,
+        "sourceLine": 507,
+        "sourceText": ": Wolverine (vol. 6) #1-12, Wolverine Annual #1",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #1",
+          "seriesYear": 2010,
+          "issueId": 30224,
+          "canonicalSourcePosition": 37
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2014) #1",
+          "seriesYear": 2014,
+          "issueId": 49235
+        }
+      },
+      {
+        "sourcePosition": 1060,
+        "sourceLine": 507,
+        "sourceText": ": Wolverine (vol. 6) #1-12, Wolverine Annual #1",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #2",
+          "seriesYear": 2010,
+          "issueId": 30228,
+          "canonicalSourcePosition": 38
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2014) #2",
+          "seriesYear": 2014,
+          "issueId": 49237
+        }
+      },
+      {
+        "sourcePosition": 1061,
+        "sourceLine": 507,
+        "sourceText": ": Wolverine (vol. 6) #1-12, Wolverine Annual #1",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #3",
+          "seriesYear": 2010,
+          "issueId": 30229,
+          "canonicalSourcePosition": 39
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2014) #3",
+          "seriesYear": 2014,
+          "issueId": 49239
+        }
+      },
+      {
+        "sourcePosition": 1062,
+        "sourceLine": 507,
+        "sourceText": ": Wolverine (vol. 6) #1-12, Wolverine Annual #1",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #4",
+          "seriesYear": 2010,
+          "issueId": 30230,
+          "canonicalSourcePosition": 40
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2014) #4",
+          "seriesYear": 2014,
+          "issueId": 49240
+        }
+      },
+      {
+        "sourcePosition": 1063,
+        "sourceLine": 507,
+        "sourceText": ": Wolverine (vol. 6) #1-12, Wolverine Annual #1",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #5",
+          "seriesYear": 2010,
+          "issueId": 30231,
+          "canonicalSourcePosition": 41
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2014) #5",
+          "seriesYear": 2014,
+          "issueId": 49241
+        }
+      },
+      {
+        "sourcePosition": 1064,
+        "sourceLine": 507,
+        "sourceText": ": Wolverine (vol. 6) #1-12, Wolverine Annual #1",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #6",
+          "seriesYear": 2010,
+          "issueId": 30232,
+          "canonicalSourcePosition": 42
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2014) #6",
+          "seriesYear": 2014,
+          "issueId": 49242
+        }
+      },
+      {
+        "sourcePosition": 1065,
+        "sourceLine": 507,
+        "sourceText": ": Wolverine (vol. 6) #1-12, Wolverine Annual #1",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #7",
+          "seriesYear": 2010,
+          "issueId": 30233,
+          "canonicalSourcePosition": 43
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2014) #7",
+          "seriesYear": 2014,
+          "issueId": 49243
+        }
+      },
+      {
+        "sourcePosition": 1066,
+        "sourceLine": 507,
+        "sourceText": ": Wolverine (vol. 6) #1-12, Wolverine Annual #1",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #8",
+          "seriesYear": 2010,
+          "issueId": 30234,
+          "canonicalSourcePosition": 44
+        },
+        "after": {
+          "representation": "row",
+          "sourceIssueReference": "Wolverine (2014) #8",
+          "seriesYear": 2014,
+          "issueId": 49244
+        }
+      },
+      {
+        "sourcePosition": 528,
+        "sourceLine": 297,
+        "sourceText": ": Wolverine (2003) #20 to #32",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2003) #32",
+          "seriesYear": 2003,
+          "issueId": 2519,
+          "canonicalSourcePosition": 88
+        },
+        "after": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2003) #32",
+          "seriesYear": 2003,
+          "issueId": 2519,
+          "canonicalSourcePosition": 134
+        }
+      },
+      {
+        "sourcePosition": 1033,
+        "sourceLine": 494,
+        "sourceText": ": Wolverine (vol. 5) #6-13",
+        "before": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2010) #6",
+          "seriesYear": 2010,
+          "issueId": 30232,
+          "canonicalSourcePosition": 42
+        },
+        "after": {
+          "representation": "repeat",
+          "sourceIssueReference": "Wolverine (2013) #6",
+          "seriesYear": 2013,
+          "issueId": 46725,
+          "canonicalSourcePosition": 1002
+        }
+      }
+    ],
+    "sourceCounts": {
+      "sourceOccurrenceCount": 1328,
+      "sourceIdentityCount": 1272,
+      "includedIssueCount": 516,
+      "sourceGapCount": 756,
+      "repeatedSourceReferenceCount": 19,
+      "excludedSourceRowCount": 37
+    },
+    "packetDigest": "00e47fc9b54b7ac2a094510a8f5941cef722cce548dbb74913dfdd33ebd1d06a",
+    "mappingDigest": "7ed2c42ad06d16aeccbded4377c449294379002a79c6fa577c778fc5945d2ff1",
+    "reportDigest": "51af7a75b0dd78ef6b77518164ad307e6743ab3a2e958ec73a0054ee6b89e9f2",
+    "approvalDigest": "fdbe9bb69c9de6aaeb8dfc2bf2157a159adeebdbcfc3477991983070bef7141c"
+  }
+}

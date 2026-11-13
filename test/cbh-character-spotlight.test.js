@@ -3431,15 +3431,15 @@ test('Wolverine settles every reviewed gap without substitution or boundary wide
   }));
 
   assert.equal(record.deliveryStatus, 'shipped');
-  assert.match(record.reason, /451 exact rows/i);
-  assert.equal(manifestEntry.expect, 1207);
-  assert.equal(catalogEntry.count, 1207);
+  assert.match(record.reason, /516 exact rows/i);
+  assert.equal(manifestEntry.expect, 1272);
+  assert.equal(catalogEntry.count, 1272);
   assert.equal(catalogEntry.placeholderCount, 756);
-  assert.equal(generated.count, 1207);
-  assert.equal(generated.items.length, 1207);
+  assert.equal(generated.count, 1272);
+  assert.equal(generated.items.length, 1272);
   assert.equal(generated.placeholders, 756);
   assert.equal(generated.unresolved.length, 756);
-  assert.equal(parsed.entries.length, 451);
+  assert.equal(parsed.entries.length, 516);
   assert.equal(parsed.unresolved.length, 756);
   const retainedPlaceholderIds = packet.sourceGaps
     .slice()
