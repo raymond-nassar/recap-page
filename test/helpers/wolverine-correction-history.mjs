@@ -14,28 +14,36 @@ const prior = ledger.priorPublication;
 const show = (file) => execFileSync('git', ['show', `${prior.commit}:${file}`], {
   cwd: root, encoding: 'utf8', maxBuffer: 64 << 20,
 });
-const originalText = show(prior.files.payload).replace(/\r\n/g, '\n');
-assert.equal(createHash('sha256').update(originalText).digest('hex'), prior.payloadSha256);
-const original = JSON.parse(originalText);
-const originalIds = original.items.map(({ issueId }) => String(issueId));
-const packet = read(prior.files.packet);
-const positions = sourcePositionsForPacket(packet);
-const rows = packet.rows.map((row, index) => ({
-  position: positions[index], id: String(row.candidateIssueId),
-}));
-const placeholders = original.items.filter((item) => item.placeholder);
-const gaps = [...packet.sourceGaps].sort((a, b) => a.sourcePosition - b.sourcePosition);
-assert.equal(gaps.length, placeholders.length);
-const currentIds = [...rows, ...gaps.map((gap, index) => ({
-  position: gap.sourcePosition, id: String(placeholders[index].issueId),
-}))].sort((a, b) => a.position - b.position).map(({ id }) => id);
-assert.equal(currentIds.length, ledger.correctionReview.sourceCounts.sourceIdentityCount);
 export const wolverineCorrectionItemDelta = ledger.correctionReview.corrections
   .filter(({ before, after }) => before.representation !== 'row' && after.representation === 'row').length;
-assert.equal(currentIds.length - originalIds.length, wolverineCorrectionItemDelta);
+
+let history;
+function correctionHistory() {
+  if (history) return history;
+  const originalText = show(prior.files.payload).replace(/\r\n/g, '\n');
+  assert.equal(createHash('sha256').update(originalText).digest('hex'), prior.payloadSha256);
+  const original = JSON.parse(originalText);
+  const originalIds = original.items.map(({ issueId }) => String(issueId));
+  const packet = read(prior.files.packet);
+  const positions = sourcePositionsForPacket(packet);
+  const rows = packet.rows.map((row, index) => ({
+    position: positions[index], id: String(row.candidateIssueId),
+  }));
+  const placeholders = original.items.filter((item) => item.placeholder);
+  const gaps = [...packet.sourceGaps].sort((a, b) => a.sourcePosition - b.sourcePosition);
+  assert.equal(gaps.length, placeholders.length);
+  const currentIds = [...rows, ...gaps.map((gap, index) => ({
+    position: gap.sourcePosition, id: String(placeholders[index].issueId),
+  }))].sort((a, b) => a.position - b.position).map(({ id }) => id);
+  assert.equal(currentIds.length, ledger.correctionReview.sourceCounts.sourceIdentityCount);
+  assert.equal(currentIds.length - originalIds.length, wolverineCorrectionItemDelta);
+  history = { originalText, originalIds, currentIds };
+  return history;
+}
 
 export function beforeWolverineCorrectionEntry(entry) {
   if (entry.id !== ledger.id) return entry;
+  const { originalIds, currentIds } = correctionHistory();
   assert.ok([originalIds.length, currentIds.length].includes(entry.expect));
   return { ...entry, expect: originalIds.length };
 }
@@ -45,6 +53,7 @@ export function beforeWolverineCorrectionManifest(manifest) {
 }
 
 export function beforeWolverineCorrectionIssueIds(ids) {
+  const { originalIds, currentIds } = correctionHistory();
   const actual = ids.map(String);
   assert.ok(JSON.stringify(actual) === JSON.stringify(originalIds)
     || JSON.stringify(actual) === JSON.stringify(currentIds),
@@ -73,11 +82,12 @@ export function wolverineLibraryAtReview(manifest, orders, expectedDigest) {
 export function beforeWolverineCorrectionPayloadText(file, text) {
   if (path.basename(file) !== path.basename(prior.files.payload)) return text;
   beforeWolverineCorrectionIssueIds(JSON.parse(text).items.map(({ issueId }) => issueId));
-  return originalText;
+  return correctionHistory().originalText;
 }
 
 export function beforeWolverineCorrectionCatalogEntry(entry) {
   if (entry.id !== ledger.id) return entry;
+  const { originalIds, currentIds } = correctionHistory();
   const catalog = JSON.parse(show('src/data/catalog.json'));
   const baseline = catalog.lists.find(({ id }) => id === ledger.id);
   assert.ok([originalIds.length, currentIds.length].includes(entry.count));
@@ -85,6 +95,7 @@ export function beforeWolverineCorrectionCatalogEntry(entry) {
 }
 
 export function beforeWolverineCorrectionChapterOverlaps(report) {
+  const { currentIds } = correctionHistory();
   const baseline = JSON.parse(show('scripts/data/marvel-knights-to-planet-x-overlaps.json'));
   const knownIds = new Set(currentIds);
   const catalog = read('src/data/catalog.json');

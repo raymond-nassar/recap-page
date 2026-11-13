@@ -62,6 +62,21 @@ function occurrences(source) {
 const corrections = ledger.correctionReview.corrections;
 const corrected = new Set(corrections.map((entry) => entry.sourcePosition));
 
+test('current reading census imports without Git history and replay reads it lazily', () => {
+  const censusUrl = new URL('./helpers/current-reading-library.mjs', import.meta.url).href;
+  const replayUrl = new URL('./helpers/wolverine-correction-history.mjs', import.meta.url).href;
+  execFileSync(process.execPath, ['--input-type=module', '-e', `
+    import assert from 'node:assert/strict';
+    import childProcess from 'node:child_process';
+    import { syncBuiltinESMExports } from 'node:module';
+    childProcess.execFileSync = () => { throw new Error('Historical Git read requested'); };
+    syncBuiltinESMExports();
+    await import(${JSON.stringify(censusUrl)});
+    const { beforeWolverineCorrectionIssueIds } = await import(${JSON.stringify(replayUrl)});
+    assert.throws(() => beforeWolverineCorrectionIssueIds([]), /Historical Git read requested/);
+  `], { encoding: 'utf8' });
+});
+
 test('the Wolverine series correction ledger names the publication it replaced', () => {
   assert.equal(ledger.correctionIssue, 'https://github.com/raymond-nassar/recap-page/issues/1078');
   assert.equal(priorPacket.packetDigest, prior.packetDigest);
