@@ -712,8 +712,8 @@ canonical issues. Its settled metadata ledger records the nine historical failed
 from all thirteen owner-supplied identities. Crimson Dynamo #5-6 ids 309 and 293 are verified
 provenance outside the accepted source boundary and are not added to the guide.
 
-Wolverine preserves all 1,328 frozen source occurrences as 451 exact rows, 71 later occurrences of
-an earlier exact identity, 50 explicit exclusions, and 756 provider-unavailable source identities
+Wolverine preserves all 1,328 frozen source occurrences as 516 exact rows, 19 later occurrences of
+an earlier exact identity, 37 explicit exclusions, and 756 provider-unavailable source identities
 that remain visible provenance. The 60-row owner settlement records 15 exact identities, 3
 source-level repeats, 27 availability-only rows, 10 source-semantic rows, and 5 later-source rows
 outside the frozen boundary. The availability result does not authorize a substitute: only the two

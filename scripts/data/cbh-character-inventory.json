@@ -4342,7 +4342,7 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "new-order",
-    "reason": "The settled 1,328-occurrence Wolverine ledger publishes 451 exact rows, records 71 full-identity repeats and 50 explicit exclusions, and keeps 756 provider-unavailable source identities as visible provenance. Owner searches authorize no substitution or boundary widening.",
+    "reason": "The settled 1,328-occurrence Wolverine ledger publishes 516 exact rows, records 19 full-identity repeats and 37 explicit exclusions, and keeps 756 provider-unavailable source identities as visible provenance. Owner searches authorize no substitution or boundary widening.",
     "sourceRetrievedAt": "2026-08-26",
     "overlapIds": [],
     "catalogIds": [
