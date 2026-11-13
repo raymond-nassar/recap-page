@@ -32,6 +32,7 @@ import { parseManifest } from '../src/js/lib/curated.js';
 import { parseIssueNumber, reconcileIssueTitleNumber } from './lib/issue-number.mjs';
 import { RateLimiter } from '../src/js/lib/limiter.js';
 import { placeholderId } from './lib/placeholder-id.mjs';
+import { repairWolverineTitles } from './lib/wolverine-title-repairs.mjs';
 import { countOrderGaps } from '../src/js/lib/model.js';
 import { OWNER_EXTERNAL_SUPPLEMENT_KIND, supplementItemFields } from './lib/owner-external-supplement.mjs';
 import {
@@ -666,7 +667,7 @@ async function main() {
       console.warn(`  ! ${order.id}: ${dupes.size} duplicate issue id(s) in the order; importing will collapse them: ${[...dupes].join(', ')}`);
     }
 
-    const payload = sourceCreditRevisions.apply({
+    const payload = repairWolverineTitles(sourceCreditRevisions.apply({
       id: order.id,
       name: order.name,
       description: order.description,
@@ -682,7 +683,7 @@ async function main() {
       placeholders: placeholderItems.length,
       unresolved,
       items,
-    }, order.out);
+    }, order.out));
 
     outputs.push({
       path: join(DATA_DIR, order.out),

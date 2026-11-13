@@ -1,0 +1,179 @@
+{
+  "issue": 1256,
+  "orderId": "wolverine-reading-order",
+  "baselineCommit": "60da49596ed1a0bed8b27ec566c25f838d13af8a",
+  "source": {
+    "url": "https://www.comicbookherald.com/wolverine-reading-order/",
+    "retrieved": "2026-11-12",
+    "retainedTextSha256": "fddeea7b4c00fc5d9604ca0475b8d8db00cc99f540a0c7ffd1cc79041485b1d2",
+    "verificationAttempt": {
+      "date": "2026-11-13",
+      "status": 403
+    },
+    "punctuation": "Straight apostrophes and spaced hyphens; source spelling and issue expansions unchanged.",
+    "excerpts": [
+      "Web Of Venom: Ve\u2019Nam (2018) #1",
+      "Annual \u201999",
+      "Weapon X: The Draft \u2013 Sauron",
+      "Material From Wolverine Annual \u201995",
+      "Wolverine: Dead Man\u2019s Hand",
+      "Dark Reign: The List \u2013 Wolverine",
+      "X-Men: Future History \u2013 The Messiah War Sourcebook",
+      "Wolverine: Japan\u2019s Most Wanted #1-13",
+      "Wolverine: Old Man Logan Vol. 1: Berzerker",
+      "Where\u2019s Wolverine pages and Material from Marvel Legacay (2017) #1"
+    ]
+  },
+  "entries": [
+    {
+      "position": 70,
+      "issueId": -445254259,
+      "legacyTitle": "Web Of Venom: Ve\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a2Nam (2018) #1",
+      "title": "Web Of Venom: Ve'Nam (2018) #1"
+    },
+    {
+      "position": 300,
+      "issueId": -863799981,
+      "legacyTitle": "Annual \u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a299",
+      "title": "Annual '99"
+    },
+    {
+      "position": 336,
+      "issueId": -1847083785,
+      "legacyTitle": "Weapon X: The Draft \u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u20ac\u0153 Sauron",
+      "title": "Weapon X: The Draft - Sauron"
+    },
+    {
+      "position": 582,
+      "issueId": -1342830685,
+      "legacyTitle": "Material From Wolverine Annual \u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a295",
+      "title": "Material From Wolverine Annual '95"
+    },
+    {
+      "position": 614,
+      "issueId": -544206677,
+      "legacyTitle": "Wolverine: Dead Man\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a2s Hand",
+      "title": "Wolverine: Dead Man's Hand"
+    },
+    {
+      "position": 626,
+      "issueId": -1845477302,
+      "legacyTitle": "Dark Reign: The List \u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u20ac\u0153 Wolverine #1",
+      "title": "Dark Reign: The List - Wolverine #1"
+    },
+    {
+      "position": 662,
+      "issueId": -1168628992,
+      "legacyTitle": "X-Men: Future History \u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u20ac\u0153 The Messiah War Sourcebook",
+      "title": "X-Men: Future History - The Messiah War Sourcebook"
+    },
+    {
+      "position": 983,
+      "issueId": -1424852274,
+      "legacyTitle": "Wolverine: Japan\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a2s Most Wanted #1",
+      "title": "Wolverine: Japan's Most Wanted #1"
+    },
+    {
+      "position": 984,
+      "issueId": -1441629893,
+      "legacyTitle": "Wolverine: Japan\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a2s Most Wanted #2",
+      "title": "Wolverine: Japan's Most Wanted #2"
+    },
+    {
+      "position": 985,
+      "issueId": -1458407512,
+      "legacyTitle": "Wolverine: Japan\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a2s Most Wanted #3",
+      "title": "Wolverine: Japan's Most Wanted #3"
+    },
+    {
+      "position": 986,
+      "issueId": -1340964179,
+      "legacyTitle": "Wolverine: Japan\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a2s Most Wanted #4",
+      "title": "Wolverine: Japan's Most Wanted #4"
+    },
+    {
+      "position": 987,
+      "issueId": -1357741798,
+      "legacyTitle": "Wolverine: Japan\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a2s Most Wanted #5",
+      "title": "Wolverine: Japan's Most Wanted #5"
+    },
+    {
+      "position": 988,
+      "issueId": -1374519417,
+      "legacyTitle": "Wolverine: Japan\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a2s Most Wanted #6",
+      "title": "Wolverine: Japan's Most Wanted #6"
+    },
+    {
+      "position": 989,
+      "issueId": -1391297036,
+      "legacyTitle": "Wolverine: Japan\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a2s Most Wanted #7",
+      "title": "Wolverine: Japan's Most Wanted #7"
+    },
+    {
+      "position": 990,
+      "issueId": -1542295607,
+      "legacyTitle": "Wolverine: Japan\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a2s Most Wanted #8",
+      "title": "Wolverine: Japan's Most Wanted #8"
+    },
+    {
+      "position": 991,
+      "issueId": -1559073226,
+      "legacyTitle": "Wolverine: Japan\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a2s Most Wanted #9",
+      "title": "Wolverine: Japan's Most Wanted #9"
+    },
+    {
+      "position": 992,
+      "issueId": -1357418446,
+      "legacyTitle": "Wolverine: Japan\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a2s Most Wanted #10",
+      "title": "Wolverine: Japan's Most Wanted #10"
+    },
+    {
+      "position": 993,
+      "issueId": -1340640827,
+      "legacyTitle": "Wolverine: Japan\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a2s Most Wanted #11",
+      "title": "Wolverine: Japan's Most Wanted #11"
+    },
+    {
+      "position": 994,
+      "issueId": -1323863208,
+      "legacyTitle": "Wolverine: Japan\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a2s Most Wanted #12",
+      "title": "Wolverine: Japan's Most Wanted #12"
+    },
+    {
+      "position": 995,
+      "issueId": -1307085589,
+      "legacyTitle": "Wolverine: Japan\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a2s Most Wanted #13",
+      "title": "Wolverine: Japan's Most Wanted #13"
+    },
+    {
+      "position": 1092,
+      "issueId": -1974225058,
+      "legacyTitle": "Wolverine: Old Man Logan Vol. 1: Berzerker \u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u20ac\u0153 Old Man Logan #1",
+      "title": "Wolverine: Old Man Logan Vol. 1: Berzerker - Old Man Logan #1"
+    },
+    {
+      "position": 1093,
+      "issueId": -1991002677,
+      "legacyTitle": "Wolverine: Old Man Logan Vol. 1: Berzerker \u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u20ac\u0153 Old Man Logan #2",
+      "title": "Wolverine: Old Man Logan Vol. 1: Berzerker - Old Man Logan #2"
+    },
+    {
+      "position": 1094,
+      "issueId": -2007780296,
+      "legacyTitle": "Wolverine: Old Man Logan Vol. 1: Berzerker \u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u20ac\u0153 Old Man Logan #3",
+      "title": "Wolverine: Old Man Logan Vol. 1: Berzerker - Old Man Logan #3"
+    },
+    {
+      "position": 1095,
+      "issueId": -1890336963,
+      "legacyTitle": "Wolverine: Old Man Logan Vol. 1: Berzerker \u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u20ac\u0153 Old Man Logan #4",
+      "title": "Wolverine: Old Man Logan Vol. 1: Berzerker - Old Man Logan #4"
+    },
+    {
+      "position": 1246,
+      "issueId": -298012689,
+      "legacyTitle": "Where\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a2s Wolverine pages and Material from Marvel Legacay (2017) #1",
+      "title": "Where's Wolverine pages and Material from Marvel Legacay (2017) #1"
+    }
+  ]
+}

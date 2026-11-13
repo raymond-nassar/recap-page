@@ -726,7 +726,7 @@ The [series-volume correction ledger](../scripts/data/cbh-source-ledgers/wolveri
 records the prior publication and all 95 corrected source positions, including 65 distinct issues
 previously collapsed into repeats or exclusions. The earlier settlement counts remain historical.
 Existing saved lists keep their issue identities and progress; newly added lists use the correction.
-Title repairs and additional gap resolutions are tracked separately in #1256 and #1257.
+App title repairs use the separate ledger for #1256; checklist repairs remain in #1264 and gaps in #1257.
 
 Star-Lord's Complete guide preserves all 99 issues in displayed source order. Its 25 shared issues
 with each of Rocket Raccoon and Groot, 7 with War of Kings, and 1 with Infinity Countdown and
