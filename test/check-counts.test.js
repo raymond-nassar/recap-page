@@ -30,7 +30,7 @@ import {
 } from '../scripts/check-counts.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-const REAL = readFileSync(join(ROOT, 'PRODUCT_BACKLOG.md'), 'utf8');
+const REAL = readFileSync(join(ROOT, 'docs/archive/PRODUCT_BACKLOG.md'), 'utf8');
 
 // Read the line ending rather than assuming one. A Windows checkout converts to CRLF and
 // CI does not, so a hardcoded "\r\n" in a mutation target matches nothing on CI and the
@@ -448,7 +448,7 @@ test('the document as committed contains no repeat', () => {
 // them through the tree would pass on a tree that simply contains no counter-example, and
 // the population has grown from seven documents to eighteen in five days.
 test('the prose population is decided by rules about the path', () => {
-  assert.equal(proseDoc('PRODUCT_BACKLOG.md'), true);
+  assert.equal(proseDoc('docs/archive/PRODUCT_BACKLOG.md'), true);
   assert.equal(proseDoc('docs/ARCHITECTURE.md'), true);
   assert.equal(proseDoc('.github/copilot-instructions.md'), true);
 
@@ -469,7 +469,7 @@ test('the prose population is decided by rules about the path', () => {
 // seven read as nine four days later.
 test('the population is derived, so documents added later are in it', () => {
   const { docs } = checkProse(ROOT);
-  for (const f of ['PRODUCT_BACKLOG.md', 'README.md', 'SECURITY.md', 'docs/DATA_PROVENANCE.md']) {
+  for (const f of ['docs/archive/PRODUCT_BACKLOG.md', 'README.md', 'SECURITY.md', 'docs/DATA_PROVENANCE.md']) {
     assert.ok(docs.includes(f), `${f} is not in the population`);
   }
   assert.ok(!docs.some((f) => f.startsWith('src/data/')), 'a data file is being read as prose');

@@ -164,7 +164,7 @@ test('the tracking artifacts are out of scope', () => {
 test('generated data is not read as prose', () => {
   assert.equal(scanned('docs/anchors.lock.json'), false);
   assert.equal(scanned('package.json'), false);
-  assert.equal(scanned('PRODUCT_BACKLOG.md'), true);
+  assert.equal(scanned('docs/archive/PRODUCT_BACKLOG.md'), true);
 
   const raw = readFileSync(join(ROOT, 'docs/anchors.lock.json'), 'utf8');
   const echoed = [...raw.matchAll(/\b(?:is|of|was)\s+([\d][\d,]*)\s+lines\b/g)];

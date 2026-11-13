@@ -18,7 +18,7 @@ active or completed. The Project tracks readiness, priority, work type, epic and
 Its built-in status is a planning view, not a second completion record.
 
 Rank uses WSJF: value, time criticality, and risk or opportunity scores, summed and divided by size.
-The frozen [historical backlog](PRODUCT_BACKLOG.md) preserves the original rationale, delivered
+The frozen [historical backlog](docs/archive/PRODUCT_BACKLOG.md) preserves the original rationale, delivered
 items, and declined ideas. It is not an active work list.
 
 - **Large ideas may wait.** Smaller items can rank higher even when the larger work is valuable.

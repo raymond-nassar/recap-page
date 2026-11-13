@@ -23,8 +23,18 @@ their authority, not their age: a recent citation repair does not make an old st
 | [First-list journey](ux/landing-page-journey.md) | Historical target journey, not a report of a reader observed using the current build. | Current Home direction, running guide and observed journey evidence. |
 | [Sidebar flow](ux/sidebar-flow.md) | Historical navigation design rationale. Some patterns remain useful, but this is not a separate source of current requirements. | Contribution interface contract, current architecture and navigation tests. |
 | [Android beta checklist](ANDROID_BETA.md) | Historical sideloaded-prototype checks, including the retired Marvel-app handoff. Not a checklist for the Google Play app. | [Android guide](ANDROID.md) and current release checks in Maintaining. |
-| [Frozen backlog](../PRODUCT_BACKLOG.md) | Already-frozen scope, rationale and delivery snapshot. Do not edit or reprioritize it. | Repository Issues, planning Project and Governance. |
 | Committed `.copilot-tracking/` records | Historical research, plans and review evidence. Not current agent instructions or an active backlog. Leave committed records unchanged. | Current repository instructions, the implementation Issue and its delivery PR. |
+
+## Archived in docs/archive
+
+These files moved with their bytes unchanged under the owner-approved scope of
+[Issue #1235](https://github.com/raymond-nassar/recap-page/issues/1235).
+The citation migration preserves the original evidence rather than updating the frozen text.
+
+| Record | Status and reason | Use instead for current work |
+|---|---|---|
+| [Frozen backlog](archive/PRODUCT_BACKLOG.md) | Already-frozen scope, rationale and delivery snapshot. Do not edit or reprioritize it. Its original relative links remain historical, not current navigation. | Repository Issues, planning Project and Governance. |
+| [Design mockups](archive/mockups/index.html) | Five early design directions, their contact sheet and generated data. Not current interface requirements. | Contribution interface contract, current implementation and its tests. |
 
 ## Historical sections inside maintained guides
 
