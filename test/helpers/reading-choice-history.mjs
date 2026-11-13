@@ -22,6 +22,11 @@ import {
   beforeAmazingSpiderManSupplementEntry, beforeAmazingSpiderManSupplementIssueIds,
   beforeAmazingSpiderManSupplementManifest, beforeAmazingSpiderManSupplementPayloadText,
 } from './amazing-spider-man-history.mjs';
+import {
+  beforeWolverineCorrectionCatalogEntry, beforeWolverineCorrectionEntry,
+  beforeWolverineCorrectionIssueIds, beforeWolverineCorrectionManifest,
+  beforeWolverineCorrectionOrders, beforeWolverineCorrectionPayloadText,
+} from './wolverine-correction-history.mjs';
 
 const root = fileURLToPath(new URL('../..', import.meta.url));
 const curatedGuideRegistry = JSON.parse(readFileSync(
@@ -135,7 +140,8 @@ export function pathsWithinLists(paths, lists, presentIds = []) {
 // Source approvals bind the original names and vectors, not the later catalog's renamed choices.
 export function historicalReadingChoiceManifest(manifest) {
   const beforeSupplement = {
-    ...manifest, lists: manifest.lists.map(beforeAmazingSpiderManSupplementEntry),
+    ...manifest, lists: manifest.lists.map((entry) =>
+      beforeWolverineCorrectionEntry(beforeAmazingSpiderManSupplementEntry(entry))),
   };
   const lists = historicalMcuDescriptionManifest(beforeSupplement).lists
     .filter(({ id }) => id !== 'avengers-doomsday-secret-wars'
@@ -160,6 +166,7 @@ export function historicalReadingChoiceManifest(manifest) {
 }
 
 export function historicalReadingChoiceIssueIds(id, currentIds) {
+  if (id === 'wolverine-reading-order') return beforeWolverineCorrectionIssueIds(currentIds);
   if (id === amazingSpiderManGuideId) return beforeAmazingSpiderManSupplementIssueIds(currentIds);
   if (id === spiderRevision.manifestEntry.id) {
     const ids = currentIds.map(String);
@@ -175,6 +182,8 @@ export function historicalReadingChoiceIssueIds(id, currentIds) {
 }
 
 export function historicalSpiderManSelectionLibraryDigest(manifest, orders, { presentIds = [] } = {}) {
+  manifest = beforeWolverineCorrectionManifest(manifest);
+  orders = beforeWolverineCorrectionOrders(orders);
   manifest = {
     ...manifest,
     lists: manifest.lists.map((entry) => beforeIdentityEntry(beforeAmazingSpiderManSupplementEntry(entry))),
@@ -272,6 +281,7 @@ export function capturedReviewLibraryDigest(orders, expectedDigest) {
 }
 
 export function historicalReadingChoiceCatalogEntry(entry) {
+  entry = beforeWolverineCorrectionCatalogEntry(entry);
   entry = beforeIdentityCatalogEntry(beforeAmazingSpiderManSupplementCatalogEntry(entry));
   if (entry.id === spiderRevision.manifestEntry.id) {
     if (entry.name !== spiderRevision.currentManifestEntry.name
@@ -305,6 +315,7 @@ export async function historicalReadingChoicePayloadText(file) {
     throw new Error('The rewritten fast-track payload requires its original metadata, not only its historical vector.');
   }
   let text = await readFile(sourcePath, 'utf8');
+  text = beforeWolverineCorrectionPayloadText(payloadFile, text);
   if (payloadFile === 'amazing_spider_man_reading_order_modern_marvel_era.json') {
     text = beforeAmazingSpiderManSupplementPayloadText(text);
   }
@@ -345,7 +356,7 @@ export async function loadHistoricalReadingChoiceLibrary(options = {}) {
 }
 
 export async function loadBeforeAmazingSpiderManSupplementLibrary(currentManifest) {
-  const manifest = beforeAmazingSpiderManSupplementManifest(currentManifest);
+  const manifest = beforeWolverineCorrectionManifest(beforeAmazingSpiderManSupplementManifest(currentManifest));
   const dir = await mkdtemp(path.join(os.tmpdir(), 'amazing-spider-man-history-'));
   tempDirs.add(dir);
   const payloadDir = path.join(dir, 'payloads');
@@ -355,7 +366,8 @@ export async function loadBeforeAmazingSpiderManSupplementLibrary(currentManifes
     if (path.basename(file) !== file) throw new Error(`Unsafe historical payload filename: ${file}`);
     const payload = JSON.parse(await readFile(path.join(root, 'src', 'data', file), 'utf8'));
     const ids = issueIdsFromValue(payload);
-    const issueIds = entry.id === amazingSpiderManGuideId ? beforeAmazingSpiderManSupplementIssueIds(ids) : ids;
+    const issueIds = entry.id === amazingSpiderManGuideId ? beforeAmazingSpiderManSupplementIssueIds(ids)
+      : entry.id === 'wolverine-reading-order' ? beforeWolverineCorrectionIssueIds(ids) : ids;
     await writeFile(path.join(payloadDir, file), `${JSON.stringify({ issueIds })}\n`);
   }));
   return { ...await loadLibrarySnapshot({ manifest, payloadDir }), payloadDir };

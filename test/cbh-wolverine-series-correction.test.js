@@ -40,6 +40,7 @@ function occurrences(source) {
     byPosition.set(repeat.sourcePosition, {
       representation: 'repeat', sourceIssueReference: repeat.sourceIssueReference,
       seriesYear: repeat.seriesYear, issueId: source.rows[repeat.canonicalRow - 1].candidateIssueId,
+      canonicalSourcePosition: positions[repeat.canonicalRow - 1],
     });
   }
   for (const excluded of source.excludedSourceRows) {
@@ -83,15 +84,10 @@ test('each corrected position records its prior and current form exactly', () =>
     const key = `${entry.before.representation}->${entry.after.representation}`;
     tally[key] = (tally[key] ?? 0) + 1;
     const was = before.get(entry.sourcePosition);
-    assert.equal(was.representation, entry.before.representation, String(entry.sourcePosition));
-    assert.equal(was.sourceIssueReference, entry.before.sourceIssueReference);
-    if (was.representation === 'row') assert.equal(was.issueId, entry.before.issueId);
+    assert.deepEqual(was, entry.before, String(entry.sourcePosition));
     const now = after.get(entry.sourcePosition);
-    assert.equal(now.representation, entry.after.representation, String(entry.sourcePosition));
-    assert.equal(now.sourceIssueReference, entry.after.sourceIssueReference);
-    assert.equal(now.seriesYear, entry.after.seriesYear);
-    assert.equal(now.issueId, entry.after.issueId);
-    assert.notEqual(entry.before.sourceIssueReference, entry.after.sourceIssueReference);
+    assert.deepEqual(now, entry.after, String(entry.sourcePosition));
+    assert.notDeepEqual(was, now);
     assert.match(entry.after.sourceIssueReference, new RegExp(`^Wolverine \\(${entry.after.seriesYear}\\) #\\d+$`));
     assert.match(entry.sourceText, /Wolverine/);
   }

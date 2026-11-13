@@ -15585,11 +15585,11 @@
       },
       "structuralCounts": {
         "sourceOccurrenceCount": 1328,
-        "canonicalRowCount": 516,
-        "repeatedSourceReferenceCount": 19,
-        "excludedSourceRowCount": 37,
+        "canonicalRowCount": 451,
+        "repeatedSourceReferenceCount": 71,
+        "excludedSourceRowCount": 50,
         "retainedGapCount": 756,
-        "publishedItemCount": 1272
+        "publishedItemCount": 1207
       },
       "retainedAvailabilityProvenanceCount": 25,
       "explicitInfiniteExclusionCount": 2,
@@ -21655,7 +21655,7 @@
       "selectionNote": null
     }
   ],
-  "packetDigest": "306e2836bbf6862bd3ae8ea918a0278b9d0b048f0be964de21b01f46ab02dc7c",
+  "packetDigest": "00e47fc9b54b7ac2a094510a8f5941cef722cce548dbb74913dfdd33ebd1d06a",
   "sourceGapResolutions": [
     {
       "sourcePosition": 132,
