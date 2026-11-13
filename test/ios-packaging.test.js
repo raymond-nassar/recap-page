@@ -1,6 +1,6 @@
 import test, { after, before } from 'node:test';
 import assert from 'node:assert/strict';
-import { createHash } from 'node:crypto';
+import { createHash, webcrypto } from 'node:crypto';
 import { mkdtemp, readFile, readdir, rm, writeFile, mkdir } from 'node:fs/promises';
 import { readFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -2250,6 +2250,208 @@ test('the restore target probe lives where the UI test that runs it looks', () =
   assert.match(probe, /localStorage\.setItem\(storage\.KEY, raw\)/);
   assert.match(testSource, /XCTAssertEqual\(cases\.count, 6\)/);
   assert.match(testSource, /priorSaved: prior != "empty"/);
+});
+
+test('the restore target probe names why a journal check failed and waits for IndexedDB first (#1249)', async () => {
+  const restoreEngine = await import('../src/js/lib/completeRestore.js');
+  const window = {};
+  runInNewContext(read('packaging/ios/probes/restore-target.js'), {
+    window, location: { href: 'file:///probe/' }, URL, performance, crypto: webcrypto, setTimeout, clearTimeout,
+  });
+  const { observedJournal, journalReady } = window.recapRestoreTargetJournal;
+  class FakeRequest extends EventTarget {
+    fire(type) {
+      this.dispatchEvent(new Event(type));
+      this[`on${type}`]?.({});
+    }
+  }
+  const database = (outcome) => ({
+    objectStoreNames: { contains: () => true },
+    close() {},
+    transaction() {
+      if (outcome === 'read-error') throw new Error('transaction unavailable');
+      const gets = [];
+      const tx = {
+        objectStore: () => ({ get: () => { const get = { result: undefined }; gets.push(get); return get; } }),
+      };
+      setTimeout(() => {
+        if (outcome === 'aborted-read') { tx.onabort(); return; }
+        gets.at(-1).onsuccess?.();
+        tx.oncomplete();
+      }, 1);
+      return tx;
+    },
+  });
+  const factory = (outcome) => ({
+    open() {
+      if (outcome === 'throw-open') throw new Error('open failed');
+      const request = new FakeRequest();
+      queueMicrotask(() => {
+        if (outcome === 'blocked-open') request.fire('blocked');
+        else if (outcome === 'open-error') {
+          request.error = { name: 'UnknownError' };
+          request.fire('error');
+        } else if (outcome === 'late-error') {
+          setTimeout(() => {
+            request.error = { name: 'UnknownError' };
+            request.fire('error');
+          }, 60);
+        } else {
+          request.result = database(outcome);
+          // A deadline leaves the open to succeed after the app has given up on it.
+          if (outcome === 'deadline') setTimeout(() => request.fire('success'), 60);
+          else request.fire('success');
+        }
+      });
+      return request;
+    },
+    deleteDatabase() {
+      const request = new FakeRequest();
+      queueMicrotask(() => request.fire('success'));
+      return request;
+    },
+  });
+  for (const outcome of [null, 'open-error', 'blocked-open', 'deadline', 'late-error', 'throw-open', 'aborted-read', 'read-error']) {
+    const { journal, check } = observedJournal(restoreEngine, factory(outcome), { timeoutMs: 20 });
+    if (outcome) await assert.rejects(journal.read());
+    else assert.equal(await journal.read(), null);
+    const observed = check();
+    const expected = outcome === 'throw-open' ? 'open-error' : outcome === 'late-error' ? 'deadline' : outcome;
+    assert.equal(observed.failure, expected, `${outcome ?? 'a readable journal'} is named`);
+    assert.equal(observed.reads.length, 1);
+    assert.equal(observed.reads[0].ok, outcome === null);
+    if (outcome === 'open-error') assert.equal(observed.opens[0].error, 'UnknownError');
+    if (outcome === 'deadline') {
+      await new Promise((resolve) => setTimeout(resolve, 80));
+      assert.equal(check().opens[0].events.map(({ type }) => type).join(), 'success', 'the late open is still recorded');
+    }
+    if (outcome === 'late-error') {
+      await new Promise((resolve) => setTimeout(resolve, 80));
+      assert.equal(check().failure, 'deadline', 'a late open error does not change the recorded cause');
+      assert.equal(check().opens[0].error, 'UnknownError');
+    }
+    await journal.close();
+  }
+  const ready = await journalReady(factory(null));
+  assert.equal(ready.ok, true);
+  assert.equal(typeof ready.ms, 'number');
+  const never = { open: () => new FakeRequest() };
+  assert.deepEqual({ ...await journalReady(never, { limitMs: 20 }), ms: 0 }, { ms: 0, ok: false, reason: 'limit' });
+  assert.equal((await journalReady(factory('blocked-open'))).reason, 'blocked');
+  const blockedRemoval = {
+    ...factory(null),
+    deleteDatabase() {
+      const request = new FakeRequest();
+      queueMicrotask(() => request.fire('blocked'));
+      return request;
+    },
+  };
+  const notCleaned = await journalReady(blockedRemoval);
+  assert.equal(notCleaned.ok, false);
+  assert.equal(notCleaned.reason, 'cleanup-blocked');
+  const timedWindow = {};
+  let now = 0;
+  runInNewContext(read('packaging/ios/probes/restore-target.js'), {
+    window: timedWindow, location: { href: 'file:///probe/' }, URL,
+    performance: { now: () => now }, crypto: webcrypto, setTimeout, clearTimeout,
+  });
+  const timed = await timedWindow.recapRestoreTargetJournal.journalReady({
+    open() {
+      const request = new FakeRequest();
+      request.result = database(null);
+      queueMicrotask(() => { now = 15; request.fire('success'); });
+      return request;
+    },
+    deleteDatabase() {
+      const request = new FakeRequest();
+      queueMicrotask(() => { now = 115; request.fire('success'); });
+      return request;
+    },
+  });
+  assert.equal(timed.openMs, 15, 'database opening excludes the cleanup time');
+  assert.equal(timed.ms, 115, 'the total wait includes cleanup');
+  const probe = read('packaging/ios/probes/restore-target.js');
+  assert.match(probe, /const journalReadiness = await journalReady\(indexedDB\);\r?\n {6}const relaunched/);
+  assert.match(probe, /const journalReadiness = await journalReady\(indexedDB\);\r?\n {4}const cases = \[\];/);
+  assert.match(probe, /journalCheck: check\(\),/);
+  const testSource = read('packaging/ios/RecapPageUITests/LaunchUITests.swift');
+  assert.match(testSource, /\(journal failure: \\\(check\)\)/);
+});
+
+test('a stuck probe cleanup does not hide a journal open deadline (#1249)', async () => {
+  const restoreEngine = await import('../src/js/lib/completeRestore.js');
+  const window = {};
+  const data = new Map();
+  const localStorage = {
+    getItem: (key) => data.get(key) ?? null,
+    setItem: (key, value) => data.set(key, value),
+    removeItem: (key) => data.delete(key),
+    clear: () => data.clear(),
+  };
+  let cleanupMode = 'deadline';
+  let restoreSucceeds = false;
+  const indexedDB = {
+    open: () => new EventTarget(),
+    deleteDatabase() {
+      const request = new EventTarget();
+      if (cleanupMode === 'blocked') queueMicrotask(() => request.onblocked());
+      if (cleanupMode === 'success') queueMicrotask(() => request.onsuccess());
+      return request;
+    },
+  };
+  runInNewContext(read('packaging/ios/probes/restore-target.js'), {
+    window, location: { href: 'file:///probe/' }, URL, performance, crypto: webcrypto,
+    setTimeout: (callback, ms) => setTimeout(callback, ms === 5000 ? 20 : ms),
+    clearTimeout, localStorage, indexedDB, TextEncoder,
+  });
+  const model = {
+    createEmptyState: () => ({ issues: {}, notes: {}, lists: [] }),
+    exportBackup: (state) => ({ lists: state.lists }),
+  };
+  const complete = {
+    captureCompleteBackup: async () => ({ text: 'backup', backup: { components: { reader: { lists: [] } } } }),
+  };
+  const engine = {
+    RESTORE_MESSAGES: restoreEngine.RESTORE_MESSAGES,
+    createRestoreJournal: (factory) => restoreEngine.createRestoreJournal(factory, { timeoutMs: 20 }),
+    CompleteRestore: class {
+      constructor({ journal }) { this.journal = journal; }
+      async start() {}
+      async restore() {
+        if (restoreSucceeds) return { ok: true };
+        try { await this.journal.read(); return { ok: true }; }
+        catch { return { ok: false, error: 'could not check for a recovery copy' }; }
+      }
+      async releaseShared() {}
+    },
+  };
+  const run = async () => {
+    let timer;
+    return Promise.race([
+      window.recapRestoreTargetJournal.completeRestore(
+        [{ KEY: 'reader', PRERESTORE_KEY: 'undo' }, model, complete, engine],
+        { targetChars: 0, cjk: false },
+      ),
+      new Promise((_, reject) => {
+        timer = setTimeout(() => reject(new Error('the probe did not report its journal failure')), 10_000);
+      }),
+    ]).finally(() => clearTimeout(timer));
+  };
+  const result = await run();
+  assert.equal(result.ok, false);
+  assert.equal(result.journalCheck.failure, 'deadline');
+  assert.equal(result.journalCleanup.ok, false);
+  assert.equal(result.journalCleanup.reason, 'deadline');
+  cleanupMode = 'blocked';
+  restoreSucceeds = true;
+  const blocked = await run();
+  assert.equal(blocked.ok, false, 'a successful restore does not hide a cleanup failure');
+  assert.equal(blocked.journalCleanup.reason, 'blocked');
+  assert.match(blocked.error, /journal could not be removed \(blocked\)/);
+  cleanupMode = 'success';
+  const success = await run();
+  assert.equal(success.ok, true);
+  assert.equal(success.journalCleanup.ok, true);
 });
 
 test('iOS export validation mirrors Android for bounded text files and basenames', () => {
