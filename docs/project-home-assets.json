@@ -49,11 +49,23 @@
         "file": "pages/assets/android-reading-preview.png",
         "captureFile": "02-reading-preview.png",
         "route": "#/read/play-lantern",
-        "scrollTarget": "#hero",
+        "scrollTarget": "#hero plus 240 CSS pixels, with About this list closed",
         "width": 1080,
         "height": 1920,
-        "bytes": 182054,
-        "sha256": "5578a4ec4b34017443fd07fd9ed43250a2b001a07abd95b6bf05f1a471daa712"
+        "bytes": 124670,
+        "sha256": "7ce31ac8ae269eb2363e9c79d2a4a5812f88d24e319ea8810412e3ca67c9c016",
+        "capture": {
+          "method": "Project-home adaptation of scripts/capture-play-assets.mjs; the screenshot was taken after closing About this list and scrolling 240 CSS pixels past the hero.",
+          "sourceRevision": "42aa9ee5d165607736c082fed5b65fb570498b27",
+          "sourceTree": "f39dcfcffeaea6bc3995fb071b17d8d474152c42",
+          "sourceDirty": false,
+          "androidManifestSha256": "d248536e4e09564ac21ee5302ab3553458117cb16787e74516bc544f9adca4a6",
+          "viewport": {
+            "width": 405,
+            "height": 720,
+            "deviceScaleFactor": 2.6666666666666665
+          }
+        }
       }
     ]
   }
