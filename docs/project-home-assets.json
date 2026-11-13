@@ -11,10 +11,10 @@
   },
   "androidPreviews": {
     "command": "npm run play:assets",
-    "sourceRevision": "74cbe876e4d54f935ad2114d2fcc92a0e9a898bd",
-    "sourceTree": "387c1056b17b98a089d5467a9b4e75f2e961d332",
+    "sourceRevision": "c230498b259c422bfe1e6e9204896a313ecdb24c",
+    "sourceTree": "4e48b1b97739af0f21e761d4a71b4400642cd5c4",
     "sourceDirty": false,
-    "androidManifestSha256": "b6c39d2359782b9fbfb7842e984e188e1b1f40c4be0d2607207236fc92ff1551",
+    "androidManifestSha256": "59aa608a0441e788045923648f9e69fc955f932fceb7818a7ef79bbdca9fa948",
     "renderer": {
       "name": "Microsoft Edge",
       "version": "Edg/157.0.4341.46",
@@ -52,8 +52,8 @@
         "scrollTarget": "#hero",
         "width": 1080,
         "height": 1920,
-        "bytes": 178201,
-        "sha256": "c93321d0ec248c3673b0d3e3ed0a0a66e30428e84f1ad3f9f37aa99e2770a339"
+        "bytes": 182054,
+        "sha256": "5578a4ec4b34017443fd07fd9ed43250a2b001a07abd95b6bf05f1a471daa712"
       }
     ]
   }
