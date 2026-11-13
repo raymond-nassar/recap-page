@@ -3666,3 +3666,19 @@ form per service; anything else is refused at build time and dropped by the app.
 for this book on Hoopla" or "in Libby", never that borrowing is possible, and opens outside the app
 with referrer isolation. No live provider lookup, availability, account, credential, cover image,
 description or affiliate/store destination is added.
+
+The selected Modern Timeline books extend the display without inventing collection headings. The
+[licensed check inputs](../scripts/data/collected-editions/gcd-check-inputs.json) identify the
+selected lists, source-series mappings and supporting records; the
+[checked evidence](../scripts/data/collected-editions/gcd-editions.json) retains their dates and
+results. The original pilot's 23 relations remain unchanged, and nine selected books add 64
+relations across eleven lists, intersected with each list's exact comics. Book names stay in the
+separate curated lane. For books without an exact indexer-note range, numbered interior-cover text
+and creator credits or matching original issue stories provide the check; no image bytes are used.
+
+For Imperial, the [original New X-Men #123](https://www.comics.org/issue/98072/) and
+[trade](https://www.comics.org/issue/774091/) index "Testament" at 22 pages, while the
+[numbered hardcover](https://www.comics.org/issue/774084/) indexes 23, read 2026-11-12 Pacific.
+The trade's title and credits match the original; its relations use the original's page count.
+The hardcover remains held independently. The unresolved X-Corps annual and collection parsing
+conflicts are not projected.

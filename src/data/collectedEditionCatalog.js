@@ -31,6 +31,42 @@ export const editionCatalog = {
     "asgardians-v2-war-of-the-realms": {
       "title": "Asgardians of the Galaxy Vol. 2: War of the Realms",
       "destinations": []
+    },
+    "daredevil-visionaries-kevin-smith": {
+      "title": "Daredevil Visionaries: Kevin Smith",
+      "destinations": []
+    },
+    "xtreme-xmen-v1-destiny": {
+      "title": "X-Treme X-Men Vol. 1: Destiny",
+      "destinations": []
+    },
+    "exiles-v1-down-the-rabbit-hole": {
+      "title": "Exiles Vol. 1: Down the Rabbit Hole",
+      "destinations": []
+    },
+    "xtreme-xmen-savage-land": {
+      "title": "X-Treme X-Men: Savage Land",
+      "destinations": []
+    },
+    "new-xmen-v2-imperial": {
+      "title": "New X-Men Vol. 2: Imperial",
+      "destinations": []
+    },
+    "exiles-v2-a-world-apart": {
+      "title": "Exiles Vol. 2: A World Apart",
+      "destinations": []
+    },
+    "daredevil-v4-underboss": {
+      "title": "Daredevil Vol. 4: Underboss",
+      "destinations": []
+    },
+    "xtreme-xmen-v2-invasion": {
+      "title": "X-Treme X-Men Vol. 2: Invasion",
+      "destinations": []
+    },
+    "exiles-v3-out-of-time": {
+      "title": "Exiles Vol. 3: Out of Time",
+      "destinations": []
     }
   }
 };

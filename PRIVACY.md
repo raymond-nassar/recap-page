@@ -1,6 +1,6 @@
 # Recap Page privacy policy
 
-Last updated: 2026-11-07
+Last updated: 2026-11-12
 
 Recap Page keeps your reading lists, progress, notes and settings on your device. It sends only the
 requests described below, plus a backup to your own OneDrive, or on iPhone and iPad to your own iCloud or
@@ -113,6 +113,7 @@ progress or backups.
 - Cover images load from Marvel's image servers. You can turn covers off.
 - The optional hand-entry lookup sends your title to the Marvel Fandom wiki, only when you press
   its button.
+- **Look for this book** opens that book's page on Hoopla or in Libby, in your browser or that service's app, only when you choose it.
 - Before December 7, 2026, **Read** opens the Marvel Unlimited web reader when a link is known,
   and may look up a missing link first. Otherwise it opens the comic's details page. From
   December 7, 2026, by your device's clock, **Read** opens the Marvel Comics website instead. On

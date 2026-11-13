@@ -5,7 +5,8 @@ import os from 'node:os';
 import path from 'node:path';
 
 import {
-  DATA_DIR, build, checkEdition, databaseLeaks, fetchLive, loadInputs, minimiseGcdIssue, notesStateRange, render, run, validate,
+  DATA_DIR, build, checkEdition, databaseLeaks, fetchLive, loadInputs, minimiseGcdIssue, notesStateRange, render, run,
+  validate, validateSeriesCrosswalk,
 } from '../scripts/collected-editions.mjs';
 
 const clone = (value) => JSON.parse(JSON.stringify(value));
@@ -246,6 +247,197 @@ test('indexer notes verify full ranges and flag partial material', () => {
   assert.ok(year.conflicts.some((conflict) => conflict.kind === 'series-year'));
 });
 
+function crosswalkFixture(id, series, number, name = 'The Example Heroes (2010 series)') {
+  const url = `https://www.comics.org/api/issue/${id}/?format=json`;
+  return { ...fixtureWith([], { api_url: url, series, series_name: name, number }), url };
+}
+
+function crosswalkExample() {
+  const url = 'https://www.comics.org/api/series/90000001/?format=json';
+  return {
+    entry: {
+      appSeriesId: 7, from: 100, to: 600,
+      gcdSeries: 'The Example Heroes (Marvel, 2010 series)',
+      gcdAliases: ['Example Heroes (Marvel, 2010 series)'],
+      gcdSeriesUrl: url,
+      gcdSeriesPage: 'https://www.comics.org/series/90000001/',
+      sourceIssues: [{
+        gcdIssueId: 90000002, gcdIssuePage: 'https://www.comics.org/issue/90000002/', appNumber: 100, gcdNumber: '100',
+      }],
+    },
+    fixtures: { 90000002: crosswalkFixture(90000002, url, '100') },
+  };
+}
+
+function crosswalkCheck(from, to, entries, fixtures, series = 'Example Heroes (Marvel, 2010 series)',
+  listSeries = 'Example Heroes (2001)') {
+  const span = from === to ? `#${from}` : `#${from}-${to}`;
+  const edition = editionWith({ tier: 'gcd-notes', gcdSeries: series },
+    [{ seriesId: 7, from, to, assertedBy: 'gcd-notes', basis: 'x' }]);
+  return checkEdition(edition, fixtureWith([], { notes: `Collects ${series} ${span}.` }),
+    { 7: listSeries }, { crosswalk: entries, fixtures });
+}
+
+test('crosswalk uses the mapped series year without relaxing an unmapped year', () => {
+  const { entry, fixtures } = crosswalkExample();
+  const mapped = crosswalkCheck(394, 395, [entry], fixtures);
+  assert.equal(mapped.status, 'verified');
+  assert.deepEqual([...mapped.verified], ['7:394', '7:395']);
+  const unmapped = crosswalkCheck(394, 395, [], fixtures);
+  assert.ok(unmapped.conflicts.some((conflict) => conflict.kind === 'series-year'));
+  assert.notEqual(unmapped.status, 'verified');
+});
+
+test('crosswalk rejects overlapping entries even when one covers the range', () => {
+  const { entry, fixtures } = crosswalkExample();
+  const result = crosswalkCheck(394, 395, [entry, clone(entry)], fixtures);
+  assert.equal(result.verified.size, 0);
+  assert.ok(result.conflicts.some((conflict) => conflict.kind === 'series-crosswalk-overlap'));
+  assert.ok(validateSeriesCrosswalk([entry, clone(entry)], fixtures).some((error) => error.includes('overlap')));
+});
+
+test('crosswalk rejects partial coverage of a claimed range', () => {
+  const { entry, fixtures } = crosswalkExample();
+  const result = crosswalkCheck(99, 100, [entry], fixtures);
+  assert.equal(result.verified.size, 0);
+  assert.ok(result.conflicts.some((conflict) => conflict.kind === 'series-crosswalk-range'));
+});
+
+test('crosswalk rejects a different source series even when its year matches', () => {
+  const { entry, fixtures } = crosswalkExample();
+  const result = crosswalkCheck(394, 395, [entry], fixtures, 'Other Heroes (Marvel, 2010 series)');
+  assert.equal(result.verified.size, 0);
+  assert.ok(result.conflicts.some((conflict) => conflict.kind === 'series-crosswalk-identity'));
+});
+
+test('crosswalk rejects an alias that names a different series', () => {
+  const { entry, fixtures } = crosswalkExample();
+  entry.gcdAliases.push('Other Heroes (Marvel, 2010 series)');
+  const result = crosswalkCheck(394, 395, [entry], fixtures, 'Other Heroes (Marvel, 2010 series)');
+  assert.equal(result.verified.size, 0);
+  assert.ok(result.conflicts.some((conflict) => conflict.kind === 'series-crosswalk-evidence'));
+});
+
+test('crosswalk checks every fetched source issue against the mapped series URL', () => {
+  const { entry, fixtures } = crosswalkExample();
+  entry.sourceIssues.push({
+    gcdIssueId: 90000003, gcdIssuePage: 'https://www.comics.org/issue/90000003/', appNumber: 101, gcdNumber: '101',
+  });
+  fixtures[90000003] = crosswalkFixture(90000003, 'https://www.comics.org/api/series/90000004/?format=json', '101');
+  const result = crosswalkCheck(394, 395, [entry], fixtures);
+  assert.equal(result.verified.size, 0);
+  assert.ok(result.conflicts.some((conflict) => conflict.kind === 'series-crosswalk-evidence'));
+});
+
+test('crosswalk rejects a wrong series URL even when the page and name agree with the entry', () => {
+  const { entry, fixtures } = crosswalkExample();
+  entry.gcdSeriesUrl = 'https://www.comics.org/api/series/90000004/?format=json';
+  entry.gcdSeriesPage = 'https://www.comics.org/series/90000004/';
+  const result = crosswalkCheck(394, 395, [entry], fixtures);
+  assert.equal(result.verified.size, 0);
+  assert.ok(result.conflicts.some((conflict) => conflict.kind === 'series-crosswalk-evidence'));
+});
+
+test('crosswalk fails closed when a source issue fixture is missing or names the wrong issue', () => {
+  const { entry } = crosswalkExample();
+  for (const bad of [{}, { 90000002: crosswalkFixture(90000002, entry.gcdSeriesUrl, '99') }]) {
+    const result = crosswalkCheck(394, 395, [entry], bad);
+    assert.equal(result.verified.size, 0);
+    assert.ok(result.conflicts.some((conflict) => conflict.kind === 'series-crosswalk-evidence'));
+  }
+});
+
+test('crosswalk guards story-title checks as well as indexer notes', () => {
+  const { entry, fixtures } = crosswalkExample();
+  fixtures[90000002].issue.series = 'https://www.comics.org/api/series/90000004/?format=json';
+  const edition = editionWith({ tier: 'gcd-story-titles', gcdSeries: 'Example Heroes (Marvel, 2010 series)', storyTitles: { 394: 'A' } },
+    [{ seriesId: 7, from: 394, to: 394, assertedBy: 'owner-curated', basis: 'x' }]);
+  const result = checkEdition(edition, fixtureWith([{ type: 'comic story', title: 'A', sequence_number: 1 }]),
+    { 7: 'Example Heroes (2001)' }, { crosswalk: [entry], fixtures });
+  assert.equal(result.verified.size, 0);
+  assert.ok(result.conflicts.some((conflict) => conflict.kind === 'series-crosswalk-evidence'));
+});
+
+test('invalid crosswalk entries and database-only fields fail validation', () => {
+  const { entry, fixtures } = crosswalkExample();
+  assert.deepEqual(validateSeriesCrosswalk([entry], fixtures), []);
+  const wrongPage = clone(entry);
+  wrongPage.gcdSeriesPage = 'https://www.comics.org/series/90000004/';
+  assert.ok(validateSeriesCrosswalk([wrongPage], fixtures).length);
+  const noEvidence = clone(entry);
+  noEvidence.sourceIssues = [];
+  assert.ok(validateSeriesCrosswalk([noEvidence], fixtures).length);
+  assert.ok(validateSeriesCrosswalk('not an array', fixtures).length);
+  assert.ok(databaseLeaks({ seriesCrosswalk: [entry] }, 'pilot.json').length);
+});
+
+test('a valid crosswalk permits story-title verification', () => {
+  const { entry, fixtures } = crosswalkExample();
+  const edition = editionWith({ tier: 'gcd-story-titles', gcdSeries: 'Example Heroes (Marvel, 2010 series)', storyTitles: { 394: 'A' } },
+    [{ seriesId: 7, from: 394, to: 394, assertedBy: 'owner-curated', basis: 'x' }]);
+  const result = checkEdition(edition, fixtureWith([{ type: 'comic story', title: 'A', sequence_number: 1 }]),
+    { 7: 'Example Heroes (2001)' }, { crosswalk: [entry], fixtures });
+  assert.equal(result.status, 'verified');
+  assert.deepEqual([...result.verified], ['7:394']);
+});
+
+test('crosswalk rejects zero coverage for a listed series even when the year agrees', () => {
+  const { entry, fixtures } = crosswalkExample();
+  const result = crosswalkCheck(601, 602, [entry], fixtures,
+    'Example Heroes (Marvel, 2010 series)', 'Example Heroes (2010)');
+  assert.equal(result.verified.size, 0);
+  assert.ok(result.conflicts.some((conflict) => conflict.kind === 'series-crosswalk-range'));
+});
+
+test('crosswalk binds numeric source issues while allowing an evidenced unnumbered annual', () => {
+  const { entry, fixtures } = crosswalkExample();
+  entry.sourceIssues[0].appNumber = 101;
+  assert.ok(validateSeriesCrosswalk([entry], fixtures).length);
+  assert.equal(crosswalkCheck(394, 395, [entry], fixtures).verified.size, 0);
+
+  const annual = clone(entry);
+  annual.from = 1;
+  annual.to = 1;
+  annual.sourceIssues[0] = {
+    gcdIssueId: 90000002, gcdIssuePage: 'https://www.comics.org/issue/90000002/', appNumber: 1, gcdNumber: '[nn]',
+  };
+  fixtures[90000002].issue.number = '[nn]';
+  fixtures[90000002].issue.notes = 'Example Heroes Annual.';
+  assert.deepEqual(validateSeriesCrosswalk([annual], fixtures), []);
+  fixtures[90000002].issue.notes = '';
+  assert.ok(validateSeriesCrosswalk([annual], fixtures).length);
+});
+
+test('crosswalk rejects altered source issue URLs and series names', () => {
+  const { entry, fixtures } = crosswalkExample();
+  for (const mutate of [
+    (fixture) => { fixture.url = 'https://www.comics.org/api/issue/90000009/?format=json'; },
+    (fixture) => { fixture.issue.api_url = 'https://www.comics.org/api/issue/90000009/?format=json'; },
+    (fixture) => { fixture.issue.series_name = 'Other Heroes (2010 series)'; },
+  ]) {
+    const bad = clone(fixtures);
+    mutate(bad[90000002]);
+    const result = crosswalkCheck(394, 395, [entry], bad);
+    assert.equal(result.verified.size, 0);
+    assert.ok(result.conflicts.some((conflict) => conflict.kind === 'series-crosswalk-evidence'));
+  }
+  const wrongPage = clone(entry);
+  wrongPage.sourceIssues[0].gcdIssuePage = 'https://www.comics.org/issue/90000009/';
+  const result = crosswalkCheck(394, 395, [wrongPage], fixtures);
+  assert.equal(result.verified.size, 0);
+  assert.ok(result.conflicts.some((conflict) => conflict.kind === 'series-crosswalk-evidence'));
+});
+
+test('approved crosswalk data cannot silently lose a required entry', () => {
+  const data = inputs();
+  assert.equal(data.gcdInputs.expectedCrosswalkEntries, 7);
+  assert.equal(data.gcdInputs.seriesCrosswalk.length, data.gcdInputs.expectedCrosswalkEntries);
+  assert.deepEqual(validateSeriesCrosswalk(data.gcdInputs.seriesCrosswalk, data.fixtures), []);
+  const missing = clone(data);
+  missing.gcdInputs.seriesCrosswalk.pop();
+  assert.ok(validate(missing, build(missing)).some((error) => error.includes('required crosswalk entries')));
+});
+
 test('pilot coverage records the hard cases', () => {
   const lists = Object.fromEntries(build(inputs())['gcd-editions.json'].coverage.map((list) => [list.listId, list]));
   const kinds = (id) => lists[id].findings.map((finding) => finding.kind);
@@ -306,5 +498,145 @@ test('the live lookup refuses to exceed its hourly budget', async () => {
     await assert.rejects(fetchLive('../x', { fetchImpl, ledgerFile }), /numeric/);
   } finally {
     rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+function originalSeriesExample() {
+  const gcdSeriesUrl = 'https://www.comics.org/api/series/90000001/?format=json';
+  return {
+    gcdSeriesUrl,
+    seriesEvidence: {
+      90000001: {
+        url: 'https://www.comics.org/api/series/name/Example/year/2010/?format=json',
+        retrievedAt: '2026-11-12T00:00:00.000Z',
+        series: {
+          api_url: gcdSeriesUrl, name: 'Example', year_began: 2010,
+          publisher: 'https://www.comics.org/api/publisher/78/?format=json',
+          country: 'us', language: 'en', issue_descriptors: ['1 [Direct Edition]', '2'],
+        },
+      },
+    },
+  };
+}
+
+test('numbered covers verify complete stories only with an exact source series', () => {
+  const { gcdSeriesUrl, seriesEvidence } = originalSeriesExample();
+  const edition = editionWith({
+    tier: 'gcd-numbered-covers', gcdSeries: 'Example (Marvel, 2010 series)',
+    gcdSeriesUrl, sourceSeriesId: 90000001, coverPrefix: '[Example] #',
+    expectedScript: 'Writer', expectedPencils: 'Artist',
+  }, [{ seriesId: 7, from: 1, to: 2, assertedBy: 'gcd-stories', basis: 'x' }]);
+  const fixture = fixtureWith([
+    { type: 'cover reprint (on interior page)', title: '[Example] #1', sequence_number: 1 },
+    { type: 'comic story', title: 'One', sequence_number: 2, page_count: '22.000', script: 'Writer', pencils: 'Artist' },
+    { type: 'cover reprint (on interior page)', title: '[Example] #2', sequence_number: 3 },
+    { type: 'comic story', title: 'Two', sequence_number: 4, page_count: '23.000', script: 'Writer', pencils: 'Artist' },
+  ], { api_url: 'https://www.comics.org/api/issue/1/?format=json' });
+  const check = (book = edition, source = fixture, series = seriesEvidence, names = { 7: 'Example (2010 - 2015)' }) =>
+    checkEdition(book, source, names, { seriesEvidence: series });
+  assert.deepEqual([...check().verified], ['7:1', '7:2']);
+  const variants = [
+    (book, source) => { source.issue.story_set[2].title = '[Example] #9'; },
+    (book, source) => { source.issue.story_set[3].type = 'illustration'; },
+    (book, source) => { source.issue.story_set[3].script = 'Wrong'; },
+    (book, source) => { source.issue.story_set.splice(3, 0, { type: 'illustration', title: 'extra', sequence_number: 9 }); },
+    (book, source) => { source.issue.api_url = 'https://www.comics.org/api/issue/9/?format=json'; },
+    (book, source, series) => { series[90000001].series.api_url = 'https://www.comics.org/api/series/9/?format=json'; },
+    (book, source, series) => { series[90000001].series.issue_descriptors = ['1 [Direct Edition]']; },
+    (book, source, series) => { series[90000001].series.country = 'es'; },
+    (book) => { book.gcdCheck.coverPrefix = '[Other] #'; },
+  ];
+  for (const mutate of variants) {
+    const book = clone(edition);
+    const source = clone(fixture);
+    const series = clone(seriesEvidence);
+    mutate(book, source, series);
+    assert.notEqual(check(book, source, series).status, 'verified');
+  }
+  assert.notEqual(check(edition, fixture, seriesEvidence, { 7: 'Example (2011)' }).status, 'verified');
+  assert.notEqual(check(edition, fixture, seriesEvidence, { 7: 'Different (2010)' }).status, 'verified');
+});
+
+test('original issue stories verify only exact series, identity, title, pages and credits', () => {
+  const { gcdSeriesUrl } = originalSeriesExample();
+  const edition = editionWith({
+    tier: 'gcd-original-stories', gcdSeries: 'Example (Marvel, 2010 series)', gcdSeriesUrl,
+    originalIssues: [
+      { appNumber: 1, gcdIssueId: 10, collectionSequence: 1 },
+      { appNumber: 2, gcdIssueId: 11, collectionSequence: 2 },
+    ],
+  }, [{ seriesId: 7, from: 1, to: 2, assertedBy: 'gcd-stories', basis: 'x' }]);
+  const stories = [
+    { type: 'comic story', title: 'One', sequence_number: 1, page_count: '22.000', script: 'Writer (credited)', pencils: 'Artist (credited)' },
+    { type: 'comic story', title: 'Two', sequence_number: 2, page_count: '23.000', script: 'Writer (credited)', pencils: 'Artist (credited)' },
+  ];
+  const book = fixtureWith(stories, { api_url: 'https://www.comics.org/api/issue/1/?format=json' });
+  const original = (id, number, story) => {
+    const url = `https://www.comics.org/api/issue/${id}/?format=json`;
+    return { ...fixtureWith([{ ...story, sequence_number: 1, script: 'Writer', pencils: 'Artist' }], {
+      api_url: url, number: String(number), series: gcdSeriesUrl, series_name: 'Example (2010 series)',
+    }), url };
+  };
+  const fixtures = { 10: original(10, 1, stories[0]), 11: original(11, 2, stories[1]) };
+  const check = (value = edition, source = book, originals = fixtures, names = { 7: 'Example (2010 - 2015)' }) =>
+    checkEdition(value, source, names, { fixtures: originals });
+  assert.deepEqual([...check().verified], ['7:1', '7:2']);
+  for (const mutate of [
+    (a) => { a.issue.series = 'https://www.comics.org/api/series/9/?format=json'; },
+    (a) => { a.issue.number = '9'; },
+    (a) => { a.issue.api_url = 'https://www.comics.org/api/issue/9/?format=json'; },
+    (a) => { a.issue.story_set[0].title = 'Wrong'; },
+    (a) => { a.issue.story_set[0].page_count = '24.000'; },
+    (a) => { a.issue.story_set[0].script = 'Wrong'; },
+    (a) => { a.issue.story_set[0].pencils = null; },
+  ]) {
+    const originals = clone(fixtures);
+    mutate(originals[11]);
+    assert.notEqual(check(edition, book, originals).status, 'verified');
+  }
+  const duplicates = clone(edition);
+  duplicates.gcdCheck.originalIssues[1].collectionSequence = 1;
+  assert.notEqual(check(duplicates).status, 'verified');
+  assert.notEqual(check(edition, book, fixtures, { 7: 'Example (2011)' }).status, 'verified');
+});
+
+test('a numbered comparison requires the original to settle a page-count discrepancy', () => {
+  const { gcdSeriesUrl } = originalSeriesExample();
+  const edition = editionWith({
+    tier: 'gcd-numbered-comparison', gcdSeries: 'Example (Marvel, 2010 series)', gcdSeriesUrl,
+    comparisonIssueId: 20, comparisonCoverPrefix: 'Issue ',
+    originalIssues: [{ appNumber: 2, gcdIssueId: 11, collectionSequence: 2 }],
+  }, [{ seriesId: 7, from: 1, to: 2, assertedBy: 'gcd-stories', basis: 'x' }]);
+  const stories = [
+    { type: 'comic story', title: 'One', sequence_number: 1, page_count: '22.000', script: 'Writer', pencils: 'Artist' },
+    { type: 'comic story', title: 'Two', sequence_number: 2, page_count: '22.000', script: 'Writer', pencils: 'Artist' },
+  ];
+  const book = fixtureWith(stories, { api_url: 'https://www.comics.org/api/issue/1/?format=json' });
+  const comparisonUrl = 'https://www.comics.org/api/issue/20/?format=json';
+  const comparison = { ...fixtureWith([
+    { type: 'cover reprint (on interior page)', title: 'Issue 1', sequence_number: 1 },
+    { ...stories[0], sequence_number: 2 },
+    { type: 'cover reprint (on interior page)', title: 'Issue 2', sequence_number: 3 },
+    { ...stories[1], sequence_number: 4, page_count: '23.000' },
+  ], { api_url: comparisonUrl }), url: comparisonUrl };
+  const originalUrl = 'https://www.comics.org/api/issue/11/?format=json';
+  const original = { ...fixtureWith([{ ...stories[1], sequence_number: 1 }], {
+    api_url: originalUrl, number: '2', series: gcdSeriesUrl, series_name: 'Example (2010 series)',
+  }), url: originalUrl };
+  const fixtures = { 11: original, 20: comparison };
+  const check = (bookFixture = book, source = fixtures) =>
+    checkEdition(edition, bookFixture, { 7: 'Example (2010 - 2015)' }, { fixtures: source });
+  assert.deepEqual([...check().verified], ['7:1', '7:2']);
+  for (const mutate of [
+    (source) => { delete source[11]; },
+    (source) => { source[11].issue.story_set[0].page_count = '23.000'; },
+    (source) => { source[11].issue.series = 'https://www.comics.org/api/series/9/?format=json'; },
+    (source) => { source[20].issue.story_set[2].title = 'Issue 9'; },
+    (source) => { source[20].issue.story_set[3].title = 'Different'; },
+    (source) => { source[20].issue.story_set[3].page_count = '22.000'; },
+  ]) {
+    const changed = clone(fixtures);
+    mutate(changed);
+    assert.notEqual(check(book, changed).status, 'verified');
   }
 });

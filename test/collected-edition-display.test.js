@@ -155,16 +155,37 @@ test('row renderer uses text, hedged link wording, and only accepted links add r
   assert.match(credit.children.join(' '), /not that it can be borrowed/);
 });
 
-test('the bundled projection has exactly 23 verified relations, licensed separately, and no provider metadata', () => {
+test('the bundled projection preserves pilot relations and matches selected Modern Timeline issues', () => {
   assert.equal(editionEvidence.license, 'CC BY-SA 4.0');
   assert.match(editionEvidence.attribution, /Grand Comics Database/);
   assert.ok(editionEvidence.modification);
-  assert.equal(editionEvidence.relations.length, 23);
   const groups = {};
   for (const entry of editionEvidence.relations) (groups[entry.catalogId] ||= []).push(entry);
   assert.equal(groups['civil-war-avengers'].length, 13);
   assert.equal(groups['nebula-reading-order'].length, 10);
-  assert.equal(Object.keys(groups).length, 2);
+  const expected = {
+    'marvel-knights-to-planet-x-01': ['daredevil-visionaries-kevin-smith', 449, 1, 8],
+    'marvel-knights-to-planet-x-04': ['xtreme-xmen-v1-destiny', 646, 1, 4],
+    'marvel-knights-to-planet-x-09': ['exiles-v1-down-the-rabbit-hole', 479, 1, 4],
+    'marvel-knights-to-planet-x-11': ['xtreme-xmen-savage-land', 2107, 1, 4],
+    'marvel-knights-to-planet-x-12': ['new-xmen-v2-imperial', 2281, 118, 122],
+    'marvel-knights-to-planet-x-14': ['xtreme-xmen-v1-destiny', 646, 5, 9],
+    'marvel-knights-to-planet-x-15': ['new-xmen-v2-imperial', 2281, 123, 126],
+    'marvel-knights-to-planet-x-18': ['exiles-v2-a-world-apart', 479, 5, 11],
+    'marvel-knights-to-planet-x-20': ['daredevil-v4-underboss', 449, 26, 31],
+    'marvel-knights-to-planet-x-23': ['xtreme-xmen-v2-invasion', 646, 10, 18],
+    'marvel-knights-to-planet-x-27': ['exiles-v3-out-of-time', 479, 12, 19],
+  };
+  const lists = loadInputs().lists;
+  assert.deepEqual(Object.keys(groups).sort(), ['civil-war-avengers', 'nebula-reading-order', ...Object.keys(expected)].sort());
+  for (const [listId, [book, series, first, last]] of Object.entries(expected)) {
+    const items = lists[listId].items.filter((entry) => entry.seriesId === series
+      && Number(entry.number) >= first && Number(entry.number) <= last);
+    assert.equal(items.length, last - first + 1, listId);
+    assert.deepEqual(groups[listId].map((entry) => [entry.editionId, entry.issueId, entry.seriesId, entry.number]),
+      items.map((entry) => [book, entry.issueId, entry.seriesId, String(entry.number)]), listId);
+  }
+  assert.ok(!editionEvidence.relations.some((entry) => /x-corps|hardcover/.test(entry.editionId)));
   assert.deepEqual(databaseLeaks(editionCatalog, 'runtime MIT names'), []);
   assert.deepEqual(editionCatalog.providers, approved().providers);
   for (const book of Object.values(editionCatalog.editions)) {
@@ -189,4 +210,60 @@ test('runtime generation excludes conflicts and never changes the curated names 
   assert.match(after['collectedEditionEvidence.js'], /"relations": \[\]/);
   assert.match(after['collectedEditionCatalog.js'], /"editions": \{\}/);
   assert.ok(before['collectedEditionEvidence.js'].includes('CC-BY-SA-4.0'));
+});
+
+test('heading-free selections project only exact verified comics from the chosen list', () => {
+  const inputs = loadInputs();
+  const source = inputs.lists.civil_war_avengers.items.filter((row) => row.seriesId === 1067);
+  assert.ok(source.length > 1);
+  inputs.catalog.lists.push({ id: 'selection-test', file: 'selection_test.json' });
+  inputs.lists['selection-test'] = {
+    id: 'selection-test',
+    items: [
+      { ...source[0], collectedIn: undefined },
+      { ...source[1], collectedIn: undefined },
+      { ...source[0], issueId: 900001, number: '99', collectedIn: undefined },
+      { ...source[0], issueId: 900002, seriesId: 900, collectedIn: undefined },
+    ],
+  };
+  inputs.gcdInputs.listSelections = [
+    { listId: 'selection-test', file: 'src/data/selection_test.json', editions: ['civil-war-2007-tpb'] },
+  ];
+  const outputs = build(inputs);
+  const project = () => {
+    const text = buildAppData(inputs, outputs)['collectedEditionEvidence.js'];
+    return JSON.parse(text.slice(text.indexOf(' = ') + 3, text.lastIndexOf(';'))).relations
+      .filter((entry) => entry.catalogId === 'selection-test');
+  };
+  assert.deepEqual(project().map((entry) => entry.issueId), source.slice(0, 2).map((entry) => entry.issueId));
+  const check = outputs['gcd-editions.json'].editions.find((entry) => entry.edition === 'civil-war-2007-tpb').check;
+  const excluded = [];
+  for (const change of [{ status: 'consistent' }, { status: 'verified-with-conflicts' }, { conflicts: [{ kind: 'test' }] }]) {
+    const saved = clone(check);
+    Object.assign(check, change);
+    excluded.push(project());
+    Object.assign(check, saved);
+  }
+  assert.deepEqual(excluded, [[], [], []]);
+  inputs.gcdInputs.listSelections = [];
+  assert.deepEqual(project(), []);
+});
+
+test('heading-free selection rejects unknown, duplicate and mismatched references', () => {
+  const inputs = loadInputs();
+  const source = inputs.lists.civil_war_avengers;
+  inputs.catalog.lists.push({ id: 'selection-test', file: 'selection_test.json' });
+  inputs.lists['selection-test'] = { ...clone(source), id: 'selection-test' };
+  const valid = { listId: 'selection-test', file: 'src/data/selection_test.json', editions: ['civil-war-2007-tpb'] };
+  for (const selection of [
+    { ...valid, editions: ['missing'] },
+    { ...valid, editions: ['civil-war-2007-tpb', 'civil-war-2007-tpb'] },
+    { ...valid, file: 'src/data/another_list.json' },
+    { ...valid, listId: 'missing' },
+  ]) {
+    inputs.gcdInputs.listSelections = [selection];
+    assert.throws(() => buildAppData(inputs, build(inputs)), /selection/i, JSON.stringify(selection));
+  }
+  inputs.gcdInputs.listSelections = [valid, clone(valid)];
+  assert.throws(() => buildAppData(inputs, build(inputs)), /selection/i);
 });

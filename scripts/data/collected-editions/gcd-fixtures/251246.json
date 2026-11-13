@@ -1,0 +1,175 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/251246/?format=json",
+  "retrievedAt": "2026-11-13T02:11:27.723Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/251246/?format=json",
+    "series_name": "Daredevil (2002 series)",
+    "descriptor": "[4] - Underboss",
+    "number": "[4]",
+    "volume": "4",
+    "variant_name": "",
+    "title": "Underboss",
+    "publication_date": "August 2002",
+    "key_date": "2002-08-00",
+    "page_count": "148.000",
+    "isbn": "0-7851-1024-0",
+    "notes": "TPB collects Daredevil Vol. 2 #26-31.",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/14558/?format=json",
+    "story_set": [
+      {
+        "type": "credits, title page",
+        "title": "Title and Credits",
+        "feature": "",
+        "sequence_number": 1,
+        "page_count": "3.000",
+        "notes": "",
+        "script": "",
+        "pencils": "Alex Maleev"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "[Daredevil] #26",
+        "feature": "Daredevil",
+        "sequence_number": 2,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Alex Maleev"
+      },
+      {
+        "type": "comic story",
+        "title": "Underboss [Part 1]",
+        "feature": "Daredevil",
+        "sequence_number": 3,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Brian Michael Bendis",
+        "pencils": "Alex Maleev"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "[Daredevil] #27",
+        "feature": "Daredevil",
+        "sequence_number": 4,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Alex Maleev"
+      },
+      {
+        "type": "comic story",
+        "title": "Underboss [Part 2]",
+        "feature": "Daredevil",
+        "sequence_number": 5,
+        "page_count": "21.000",
+        "notes": "",
+        "script": "Brian Michael Bendis",
+        "pencils": "Alex Maleev"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "[Daredevil] #28",
+        "feature": "Daredevil",
+        "sequence_number": 6,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Alex Maleev"
+      },
+      {
+        "type": "comic story",
+        "title": "Underboss [Part 3]",
+        "feature": "Daredevil",
+        "sequence_number": 7,
+        "page_count": "21.000",
+        "notes": "Nuff Said Issue (No Text)",
+        "script": "Brian Michael Bendis",
+        "pencils": "Alex Maleev"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "[Daredevil] #29",
+        "feature": "Daredevil",
+        "sequence_number": 8,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Alex Maleev"
+      },
+      {
+        "type": "comic story",
+        "title": "Underboss [Part 4]",
+        "feature": "Daredevil",
+        "sequence_number": 9,
+        "page_count": "21.000",
+        "notes": "",
+        "script": "Brian Michael Bendis",
+        "pencils": "Alex Maleev"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "[Daredevil] #30",
+        "feature": "Daredevil",
+        "sequence_number": 10,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Alex Maleev"
+      },
+      {
+        "type": "comic story",
+        "title": "Underboss [Part 5]",
+        "feature": "Daredevil",
+        "sequence_number": 11,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Brian Michael Bendis",
+        "pencils": "Alex Maleev"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "[Daredevil] #31",
+        "feature": "Daredevil",
+        "sequence_number": 12,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Alex Maleev"
+      },
+      {
+        "type": "comic story",
+        "title": "Underboss [Part 6]",
+        "feature": "Daredevil",
+        "sequence_number": 13,
+        "page_count": "23.000",
+        "notes": "",
+        "script": "Brian Michael Bendis",
+        "pencils": "Alex Maleev"
+      },
+      {
+        "type": "illustration",
+        "title": "Alex Maleev Sketchbook: Daredevil #31",
+        "feature": "Daredevil",
+        "sequence_number": 14,
+        "page_count": "4.000",
+        "notes": "",
+        "script": "Brian Michael Bendis",
+        "pencils": "Alex Maleev"
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "Back Cover",
+        "feature": "Daredevil",
+        "sequence_number": 15,
+        "page_count": "1.000",
+        "notes": "Image from Daredevil (Marvel, 1998 series) #26 [interior panel art]",
+        "script": "?",
+        "pencils": "Alex Maleev"
+      }
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/63820/?format=json",
+  "retrievedAt": "2026-11-13T02:07:25.076Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/63820/?format=json",
+    "series_name": "Incredible Hulk (2000 series)",
+    "number": "12",
+    "series": "https://www.comics.org/api/series/7053/?format=json"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/787874/?format=json",
+  "retrievedAt": "2026-11-13T01:07:20.951Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/787874/?format=json",
+    "series_name": "Exiles (2002 series)",
+    "descriptor": "2 - A World Apart",
+    "number": "2",
+    "volume": "2",
+    "variant_name": "",
+    "title": "A World Apart",
+    "publication_date": "July 2002",
+    "key_date": "2002-07-00",
+    "page_count": "164.000",
+    "isbn": "0-7851-1021-6",
+    "notes": "collects Exiles (Marvel, 2001 series) #5-11",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/53302/?format=json",
+    "story_set": []
+  }
+}

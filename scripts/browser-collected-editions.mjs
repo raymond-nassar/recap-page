@@ -3,9 +3,10 @@ import { createEmptyState, createList, addIssuesToList, exportBackup } from '../
 import { editionEvidence } from '../src/js/lib/collectedEditions.js';
 
 const catalog = JSON.parse(readFileSync(new URL('../src/data/catalog.json', import.meta.url), 'utf8'));
-const ids = ['civil-war-avengers', 'nebula-reading-order', 'avengers-doomsday-secret-wars', 'realm-of-kings', 'the-unbeatable-squirrel-girl'];
+const ids = ['civil-war-avengers', 'nebula-reading-order', 'avengers-doomsday-secret-wars', 'realm-of-kings',
+  'the-unbeatable-squirrel-girl', 'marvel-knights-to-planet-x-04', 'marvel-knights-to-planet-x-15'];
 const lists = catalog.lists.filter((list) => ids.includes(list.id));
-if (lists.length !== 5) throw new Error('Collected-edition browser fixtures require all five pilot lists');
+if (lists.length !== ids.length) throw new Error('Collected-edition browser fixtures require the chosen pilot and timeline lists');
 const orders = Object.fromEntries(lists.map((list) => [list.file,
   JSON.parse(readFileSync(new URL(`../src/data/${list.file}`, import.meta.url), 'utf8'))]));
 let state = createEmptyState();
@@ -18,7 +19,7 @@ const click = (page, selector) => page.$eval(selector, (node) => node.click());
 
 export const collectedEditions = {
   id: 'collected-editions',
-  title: 'verified issue labels and permission-gated book destinations in Preview and saved lists',
+  title: 'verified issue labels and approval-gated book destinations in Preview and saved lists',
   async run(page, t) {
     const external = [];
     page.on('request', (request) => {
@@ -46,6 +47,12 @@ export const collectedEditions = {
       const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
       t.check(`${list.id}: Preview labels exactly the eligible issue count`,
         await page.$$eval('#preview .collected-edition', (nodes) => nodes.length) === expected.length);
+      if (list.id === 'marvel-knights-to-planet-x-04' || list.id === 'marvel-knights-to-planet-x-15') {
+        const title = list.id.endsWith('-04') ? 'X-Treme X-Men Vol. 1: Destiny' : 'New X-Men Vol. 2: Imperial';
+        t.check(`${list.id}: heading-free Preview names the selected book on four issues`,
+          await page.$$eval('#preview .collected-edition', (nodes, title) =>
+            nodes.length === 4 && nodes.every((node) => node.textContent.includes(`Collected in ${title}`)), title));
+      }
       t.check(`${list.id}: Preview shows credit exactly when relations are displayed`,
         await page.$$eval('#preview .edition-credit', (nodes) => nodes.length) === (expected.length ? 1 : 0));
       await page.keyboard.press('Escape');
