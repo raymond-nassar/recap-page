@@ -685,9 +685,10 @@ export function createReadingView({
     // #1061: a loaded summary shows in full, with nothing to reveal first.
     $('#hero-desc').hidden = false;
     $('#hero-desc').textContent = presentation.description;
-    $('#hero-facts').replaceChildren(...presentation.facts.filter((item) => !item.detailsOnly).map((item) => (
-      fact(item.key, item.value, item.className, item.hint)
-    )));
+    const cardFacts = presentation.facts.filter((item) => !item.detailsOnly);
+    $('#hero-facts').replaceChildren(...cardFacts.map((item) => fact(item.key, item.value, item.className, item.hint)));
+    // #1241: an empty list kept its margins, leaving a blank band on comics with no credits, pages or date.
+    $('#hero-facts').hidden = !cardFacts.length;
     const info = $('#btn-hero-info');
     const infoHref = presentation.detailUrl;
     info.hidden = !infoHref;

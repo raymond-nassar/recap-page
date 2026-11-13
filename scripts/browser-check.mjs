@@ -24095,6 +24095,7 @@ const readingCard = await import('./browser-reading-card.mjs');
 SCENARIOS.push(readingCard.readingCardFocus);
 SCENARIOS.push(readingCard.readingCardPhoneOverview);
 SCENARIOS.push(readingCard.readingCardPoster);
+SCENARIOS.push(readingCard.readingCardNoFacts);
 SCENARIOS.push(readingCard.readingCardUndo);
 SCENARIOS.push(readingCard.readingCardUndoStill);
 MUTATIONS.push(...readingCard.readingCardMutations);
