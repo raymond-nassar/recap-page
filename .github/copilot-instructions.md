@@ -146,7 +146,7 @@ release.
 ## The evidence anchors gate, and how to not corrupt it
 
 The gate covers every tracked file. Do not narrow it to a filename list:
-`scripts/check-anchors.mjs:518-523` explains why an enumeration is a list someone has to keep
+`scripts/check-anchors.mjs:544-549` explains why an enumeration is a list someone has to keep
 complete.
 
 Follow the [maintained citation workflow](../docs/MAINTAINING.md#relocate-citations-and-resolve-renumber-only-conflicts)
@@ -174,7 +174,7 @@ by a review on 2026-08-17, after it had already survived a full anchors cycle:
   12 of the workflow file", never in the citation form.
 - **The `absent:` exemption reaches past its own clause, and what it swallows is dropped in
   silence.** A backticked `absent:` token exempts only itself, but an unbackticked table cell
-  beginning with the marker exempts the **whole cell**, at `scripts/check-anchors.mjs:771`. So a
+  beginning with the marker exempts the **whole cell**, at `scripts/check-anchors.mjs:798`. So a
   live citation written after an absence clause in the same cell is not drifted and not lost. It is
   never enrolled at all, and the run reports 0 drifted, 0 new and 0 removed while the claim is
   watched by nothing. BL-145's evidence row was written that way and passed a complete cycle before
@@ -183,7 +183,7 @@ by a review on 2026-08-17, after it had already survived a full anchors cycle:
   claim standing **beside** it. Inside the clause it must stay exempt, since BL-040 cites the
   scripts block as evidence that no lint script existed and that block now defines one, so enrolling
   it would demand a true historical record be falsified. Beside the clause it must be backticked as
-  its     own token, the form used at `PRODUCT_BACKLOG.md:6454`. The tell is the exempt count the gate
+  its     own token, the form used at `docs/archive/PRODUCT_BACKLOG.md:6454`. The tell is the exempt count the gate
   prints on every run: a swallowed citation is counted rather than dropped from the tally, so that
   number moves while everything else stays green. It moves for a correct exemption too, so treat it
   as a prompt to look rather than a verdict, and know it is the only figure in the report that
@@ -296,7 +296,7 @@ capability, then run the repository gates on the resulting merge commit.
 The anchors gate protects `path:line` citations. It does not protect anything else you assert, and
 prose in this repository asserts a lot: counts of items, counts of tests, counts of anything.
 
-Two real examples. `PRODUCT_BACKLOG.md` claimed "two of the four new tests" when there were six. Its
+Two real examples. `docs/archive/PRODUCT_BACKLOG.md` claimed "two of the four new tests" when there were six. Its
 introduction said nine items were `Shipped` and listed nine by id, while the table said thirteen.
 Both survived every automated gate.
 
@@ -450,7 +450,7 @@ later. Refusals are a backstop, not a design.
 - Follow [release bookkeeping](../GOVERNANCE.md#release-bookkeeping): feature PRs retain proposed
   release notes and saved-data compatibility; final version release PRs own the changelog and
   coordinated application version bumps. Keep required feature integration and evidence timely.
-- Do not edit `PRODUCT_BACKLOG.md`; it is a frozen historical snapshot. Active scope, acceptance
+- Do not edit `docs/archive/PRODUCT_BACKLOG.md`; it is a frozen historical snapshot. Active scope, acceptance
   criteria, readiness, priority and delivery state belong in the repository Issue, planning Project
   and linked pull request, as `GOVERNANCE.md` defines.
 - Agent and contributor instructions change how work is done, not the product. They need neither a
@@ -478,7 +478,7 @@ later. Refusals are a backstop, not a design.
 Plain English means a specific thing here, not a shortened copy of the technical summary:
 
 - **Name no file, no identifier, no command and no backlog id.** If a file matters, say what it
-  does: `PRODUCT_BACKLOG.md` becomes "the project's list of planned improvements". A reader who has
+  does: `docs/archive/PRODUCT_BACKLOG.md` becomes "the project's list of planned improvements". A reader who has
   to look something up to follow the paragraph has been failed by it.
 - **Say what a person using the app would notice, and say so plainly when the answer is nothing.**
   Most work in this repository changes documents rather than screens, and "nothing you have saved is

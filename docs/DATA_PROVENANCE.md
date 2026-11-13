@@ -602,8 +602,8 @@ exact page or section; an owner compilation does not acquire a third-party sourc
 
 ### Design mockups
 
-[`design/mockups/`](../design/mockups) holds five static HTML mockups and one data file,
-[`design/mockups/mock-data.js`](../design/mockups/mock-data.js), which its own first line describes
+[`docs/archive/mockups/`](archive/mockups) holds five design directions, an HTML contact sheet and
+one data file, [`docs/archive/mockups/mock-data.js`](archive/mockups/mock-data.js), whose first line describes it
 as generated from one of the reading orders. It is the only vendored Marvel data in the repository
 outside `src/data/`, and until 2026-08-15 it was the only one this document did not name. It holds
 41 issue records with the same copied fields as an order, and it carried 41 descriptions, 7,193

@@ -9,7 +9,8 @@ No automatic device sync or offline comic reading.
 Recap Page for Android is on
 [Google Play](https://play.google.com/store/apps/details?id=io.github.raymondnassar.recappage).
 No computer needed. [Android's Read](docs/ANDROID.md) uses an installed browser, not the
-Marvel Unlimited app. In App Store review for iPhone and iPad.
+Marvel Unlimited app. Recap Page for iPhone and iPad is on the
+[App Store](https://apps.apple.com/us/app/recap-page/id6828494712).
 
 Marvel Unlimited reading ends December 7, 2026. Until that date, Read uses its web reader when a link
 is recorded. From December 7, Read opens the Marvel Comics website, not a single-comic link.
@@ -32,8 +33,9 @@ An example with made-up progress:
 An issue marked read stays read across lists. Each list keeps its own order.
 The screenshots show a different list, with cover art off.
 
-![Recap Page Home with the Start with Modern Timeline and Search buttons and six reading-list
-categories from Modern Timeline to Young readers, with cover art off](docs/screenshots/home-960.png)
+![Recap Page Home with Modern Timeline recommended as the place to start, a New to Marvel Comics?
+link, and six reading-list categories from Modern Timeline to Young readers, with cover art
+off](docs/screenshots/home-960.png)
 
 ![Avengers Disassembled showing the next issue, Read and Done buttons, and reading progress,
 with cover art off](docs/screenshots/avengers-disassembled-reading-960.png)

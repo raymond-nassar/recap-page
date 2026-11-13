@@ -81,7 +81,7 @@ export default [
       // Generated from src/data/hickman_full.json and consumed only by the static design
       // mockups. It is embedded JSON, so normalising its quotes would be undone the next
       // time it is regenerated.
-      'design/mockups/mock-data.js',
+      'docs/archive/mockups/mock-data.js',
     ],
   },
   js.configs.recommended,
@@ -120,7 +120,7 @@ export default [
     languageOptions: { globals: globals.node },
   },
   {
-    files: ['design/**/*.js'],
+    files: ['docs/archive/mockups/**/*.js'],
     languageOptions: { globals: { ...globals.browser, ...globals.node } },
   },
   {

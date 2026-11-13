@@ -15842,6 +15842,7 @@ const SCENARIOS = [
       const { buildPages } = await import('./build-pages.mjs');
       const temporary = await mkdtemp(join(tmpdir(), 'recap-page-pages-browser-'));
       const playListing = 'https://play.google.com/store/apps/details?id=io.github.raymondnassar.recappage';
+      const appStoreListing = 'https://apps.apple.com/us/app/recap-page/id6828494712';
       const platformCards = ['Windows', 'Android', 'Windows download', 'Run from source', 'iPhone and iPad'];
       const platformGrid = () => page.$eval('#getting-started .platform-grid', (grid) => ({
         width: innerWidth,
@@ -15877,8 +15878,9 @@ const SCENARIOS = [
           && windows.link?.button === true && windows.link.height >= 44
           && android.link?.name === 'Open Google Play' && android.link.href === playListing
           && android.link.button && android.link.height >= 44
-          && iPhone.link === null
-          && iPhone.copy === 'In App Store review. Not available yet.'
+          && iPhone.link?.name === 'Open the App Store' && iPhone.link.href === appStoreListing
+          && iPhone.link.button && iPhone.link.height >= 44
+          && iPhone.copy === 'Install and update through the App Store.'
           && iPhone.left === windows.left
           && (columns === 1
             ? grid.cards.every((card, index) => index === 0 || card.top > grid.cards[index - 1].top)
@@ -16044,12 +16046,12 @@ const SCENARIOS = [
             href: link.getAttribute('href'),
           })),
         }));
-        t.check('the overview names where the app is available and that iPhone and iPad is in App Store review',
+        t.check('the overview names every platform the app is available on',
           JSON.stringify(overview.navigation)
             === JSON.stringify([
               'Android', 'Features', 'Get started', 'Guides', 'Feedback', 'Support', 'Privacy', 'Data sources',
             ])
-          && overview.status === 'Available for Windows and Android. In App Store review for iPhone and iPad.'
+          && overview.status === 'Available for Windows, Android, iPhone, and iPad.'
           && JSON.stringify(overview.actions) === JSON.stringify([
             { name: 'Get started', href: '#getting-started' },
             { name: 'See the Android app', href: '#android' },

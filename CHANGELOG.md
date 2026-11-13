@@ -6370,7 +6370,7 @@ link to the wrong page.
   it is a property of the change and does not when it is a property of the tree, because only the
   second kind moves without anyone editing the record. The audited values stay, since they are the
   measurement being described. The current values are gone, and the entry points at
-  [`PRODUCT_BACKLOG.md`](PRODUCT_BACKLOG.md) instead, which already carries both live and is marked
+  [`docs/archive/PRODUCT_BACKLOG.md`](docs/archive/PRODUCT_BACKLOG.md) instead, which already carries both live and is marked
   as needing re-derivation. A third figure of the same kind was found in the same entry and dropped:
   it put a modularity gap at a thousand lines, which the planned split of that file would have
   inverted outright. Three more elsewhere in this file are now tied to the moment of the change they

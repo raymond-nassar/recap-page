@@ -199,6 +199,8 @@ let options = { mode: 'check', ref: null };
 let bless = false;
 let ref = null;
 let ACTIVE_SOURCE = null;
+let DOCUMENT_MOVES = [];
+let DOCUMENT_MOVES_READY = false;
 const EXPLICIT_SOURCE_TOKEN = '<!-- anchors:source';
 const EXPLICIT_SOURCE_LINE = /^<!-- anchors:source=([0-9a-f]{40}) -->$/;
 
@@ -299,11 +301,12 @@ function orderedUnique(values, label) {
 function canonicalRegistry(value) {
   exactKeys(
     value,
-    ['version', 'migrationBaseline', 'corpusSha256', 'sealedTargets', 'expectedCount', 'entries'],
+    ['version', 'migrationBaseline', 'corpusSha256', 'sealedTargets', 'expectedCount', 'entries',
+      ...(value?.version === 2 ? ['documentMoves'] : [])],
     'historical registry',
   );
-  if (value.version !== 1 || !Number.isSafeInteger(value.version)) {
-    throw new Error('historical registry version must be the safe integer 1');
+  if (![1, 2].includes(value.version)) {
+    throw new Error('historical registry version must be 1 or 2');
   }
   if (!COMMIT.test(value.migrationBaseline)) throw new Error('migrationBaseline must be 40 lowercase hex');
   if (!HASH.test(value.corpusSha256)) throw new Error('corpusSha256 must be 64 lowercase hex');
@@ -327,13 +330,36 @@ function canonicalRegistry(value) {
     }
   }
   return {
-    version: 1,
+    version: value.version,
     migrationBaseline: value.migrationBaseline,
     corpusSha256: value.corpusSha256,
     sealedTargets,
     expectedCount: entries.length,
     entries,
+    ...(value.version === 2 ? { documentMoves: canonicalDocumentMoves(value.documentMoves) } : {}),
   };
+}
+
+function canonicalDocumentMoves(moves) {
+  if (!Array.isArray(moves) || moves.length === 0) {
+    throw new Error('documentMoves must be a nonempty array');
+  }
+  const paths = new Set();
+  const result = moves.map((move) => {
+    exactKeys(move, ['from', 'to', 'baseline', 'blobSha256'], 'document move');
+    normalizedPath(move.from, 'document move source');
+    normalizedPath(move.to, 'document move destination');
+    if (!COMMIT.test(move.baseline) || !HASH.test(move.blobSha256)) {
+      throw new Error('document move baseline or blob SHA-256 is invalid');
+    }
+    for (const path of [move.from, move.to]) {
+      if (paths.has(path)) throw new Error('document move paths must be disjoint');
+      paths.add(path);
+    }
+    return { from: move.from, to: move.to, baseline: move.baseline, blobSha256: move.blobSha256 };
+  });
+  orderedUnique(result.map((move) => move.to), 'document move destinations');
+  return result;
 }
 
 function canonicalCandidate(value) {
@@ -681,7 +707,8 @@ function validatedExplicitSource(doc, text) {
   );
   if (ancestor.status === 1) throw new Error(`${doc} document source ${source} is not reachable from ${selectedTree}`);
   if (ancestor.status !== 0) throw new Error(`cannot compare ${doc} document source ${source} with ${selectedTree}`);
-  if (!sourceFiles(source).has(doc)) throw new Error(`${doc} is missing from document source ${source}`);
+  const original = DOCUMENT_MOVES.find((move) => move.to === doc)?.from ?? doc;
+  if (!sourceFiles(source).has(original)) throw new Error(`${doc} is missing from document source ${source}`);
 
   explicitSourceCache.set(key, source);
   return source;
@@ -1185,6 +1212,9 @@ export function claimBefore(lines, i, at, syntax = PROSE) {
 // shape the walker misreads still gets collected, it just gets an uglier key. That
 // inversion is what stops a new row shape from silently leaving anchors uncovered.
 export function collect() {
+  if (!DOCUMENT_MOVES_READY) {
+    installDocumentMoves(parseCanonicalFile(HISTORY, canonicalRegistry, 'historical registry', true));
+  }
   const found = [];
   const localOnly = [];
   const coverage = [];
@@ -1317,6 +1347,43 @@ function validateRegistryAuthority(registry) {
   if (ref === null) requireAncestor(registry.migrationBaseline, 'HEAD', 'migration baseline');
 }
 
+function installDocumentMoves(registry) {
+  DOCUMENT_MOVES = registry?.value.documentMoves ?? [];
+  for (const move of DOCUMENT_MOVES) {
+    requireCommit(move.baseline, 'document move baseline');
+    requireAncestor(move.baseline, 'HEAD', 'document move baseline');
+    const original = execFileSync('git', ['show', `${move.baseline}:${move.from}`], {
+      env: GIT_ENV, maxBuffer: 64 * 1024 * 1024, stdio: ['ignore', 'pipe', 'pipe'],
+    });
+    if (sha256(original) !== move.blobSha256) throw new Error('document move baseline blob does not match');
+    if (ref !== null && !sourceFiles(ref).has(move.to)) continue;
+    if (sourceFiles(ACTIVE_SOURCE).has(move.from)) throw new Error('document move source still exists');
+    if (ref !== null) requireAncestor(move.baseline, ref, 'document move baseline');
+    if (ref === null && (!lstatSync(move.to).isFile() || lstatSync(move.to).isSymbolicLink())) {
+      throw new Error('document move destination must be a regular file');
+    }
+    const destination = ref === null ? readFileSync(move.to) : execFileSync(
+      'git', ['show', `${ref}:${move.to}`], { env: GIT_ENV, maxBuffer: 64 * 1024 * 1024 },
+    );
+    if (!original.equals(destination)) throw new Error('document move destination blob does not match');
+  }
+  DOCUMENT_MOVES_READY = true;
+}
+
+// Preview callers provide candidate authority in memory; normal check/bless only install the registry.
+// Each snapshot runs in a fresh process, keeping selected-tree caches isolated.
+export function snapshotAnchors({ reference = null, registry }) {
+  ref = reference;
+  ACTIVE_SOURCE = reference;
+  const value = canonicalRegistry(registry);
+  const loaded = { value };
+  validateRegistryAuthority(value);
+  installDocumentMoves(loaded);
+  const result = collect();
+  applyHistoryRegistry(result, loaded);
+  return result;
+}
+
 function immutableFingerprint(entry, occurrence, selectedTree) {
   const target = parseHistoricalToken(entry.historical);
   if (
@@ -1425,7 +1492,7 @@ function outsideWorktree(path, label) {
   return destination;
 }
 
-function corpusSha256() {
+export function corpusSha256() {
   const entries = execFileSync('git', ['ls-files', '-s', '-z'], {
     encoding: 'utf8',
     maxBuffer: 64 * 1024 * 1024,
@@ -1562,12 +1629,13 @@ function registryFromCandidate(candidate, existing) {
     claimSha256: entry.claimSha256,
   }));
   return canonicalRegistry({
-    version: 1,
+    version: existing?.value.version ?? 1,
     migrationBaseline: candidate.migrationBaseline,
     corpusSha256: candidate.corpusSha256,
     sealedTargets,
     expectedCount: entries.length,
     entries,
+    ...(existing?.value.documentMoves ? { documentMoves: existing.value.documentMoves } : {}),
   });
 }
 
@@ -2032,6 +2100,7 @@ function main() {
 
   const malformed = [];
   try {
+    installDocumentMoves(registry);
     for (const doc of docs()) {
       const raw = read(doc);
       if (raw === null) continue;

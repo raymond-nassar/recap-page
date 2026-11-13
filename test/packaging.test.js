@@ -104,7 +104,7 @@ test('the archive holds what the app runs and the licences, derived from git rat
       `${unwanted} is in the archive, which is the project's working papers rather than the app`,
     );
   }
-  assert.ok(!files.includes('PRODUCT_BACKLOG.md'), 'the backlog is in the archive');
+  assert.ok(!files.includes('docs/archive/PRODUCT_BACKLOG.md'), 'the backlog is in the archive');
 });
 
 // The read-me's privacy sentence is true of the build it ships in, as the app's own is (#810, P02-T06): an

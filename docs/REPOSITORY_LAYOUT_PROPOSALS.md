@@ -37,7 +37,7 @@ scripts/
 pages/                       Public information site, unchanged
 test/                        Existing test root, unchanged
 docs/                        Guides and detailed references
-design/                      Studies and mockups
+docs/archive/mockups/        Archived studies and mockups
 .github/                     GitHub workflows, templates and agent instructions
 server.mjs                   Existing desktop entry, unchanged
 ```
@@ -62,7 +62,7 @@ for every old internal path indefinitely.
 
 ## Option 2: Preserve folders, add navigation
 
-Keep `src`, `host`, `packaging`, `scripts`, `pages`, `test`, `docs` and `design` where they are.
+Keep `src`, `host`, `packaging`, `scripts`, `pages`, `test` and `docs` where they are.
 Use the [architecture map](ARCHITECTURE.md#find-the-part-you-need) as the entry point. If an Issue
 needs more local navigation, add a short folder guide naming its entry commands, owners and tests.
 Link to the detailed source of truth rather than copying its rules.
