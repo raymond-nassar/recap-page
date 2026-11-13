@@ -2322,7 +2322,7 @@ final class PresentationUITests: XCTestCase {
                     "the DOM probe records \(name)")
                 if name == "home" {
                     let hiddenActions = try XCTUnwrap(screen["hiddenContinueActions"] as? [[String: Any]])
-                    XCTAssertEqual(hiddenActions.count, 4)
+                    XCTAssertEqual(hiddenActions.count, 3)
                     for action in hiddenActions {
                         XCTAssertEqual(action["hidden"] as? Bool, true)
                         XCTAssertEqual(action["ariaHidden"] as? String, "true")

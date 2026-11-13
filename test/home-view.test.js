@@ -112,7 +112,6 @@ function harness({
     continueRead: node({ text: 'Read' }),
     continueDone: node({ text: 'Done' }),
     continueOpen: node({ text: 'Open Reading List' }),
-    continueReview: node(),
     continueDeferred: node(),
     yoursSection: node(),
     yoursList: node(),
@@ -184,7 +183,6 @@ function harness({
     onNavigateCategory: (category) => calls.navigate.push(category.route),
     onNavigateHub: (viewName) => calls.navigate.push(viewName),
     onOpen: () => { calls.open += 1; },
-    onReview: () => calls.navigate.push('review'),
     onReviewDeferred: () => calls.navigate.push('deferred'),
     onRead: (...args) => calls.read.push(args),
     readerPresentation,
@@ -452,23 +450,6 @@ test('Home view completion state removes the read action without inventing a nex
   assert.equal(h.calls.coverFallbacks.length, 1);
 });
 
-test('Home Review is withdrawn only when the active saved list has no issues', () => {
-  const progress = { read: 0, total: 0 };
-  const h = harness({ populated: true, nextIssue: null, progress });
-  h.state.lists.a.itemIds = [];
-  const before = structuredClone(h.state);
-  h.view.render();
-  assert.equal(h.nodes.continueReview.hidden, true);
-  assert.equal(h.nodes.continueOpen.hidden, false);
-  progress.total = 1;
-  h.view.refreshReader();
-  assert.equal(h.nodes.continueReview.hidden, false);
-  progress.total = 0;
-  h.view.render();
-  assert.equal(h.nodes.continueReview.hidden, true);
-  assert.deepEqual(h.state, before);
-});
-
 test('441 Home describes an empty saved list without claiming completion or changing its contents', () => {
   const h = harness({ populated: true, nextIssue: null, progress: { read: 0, total: 0 } });
   h.state.lists.a.itemIds = [];
@@ -485,7 +466,6 @@ test('441 Home describes an empty saved list without claiming completion or chan
   assert.equal(h.nodes.continueFill.style['--glance-share'], '0%');
   assert.equal(h.nodes.continueBar.hidden, true);
   assert.equal(h.nodes.continueOpen.attributes['aria-label'], 'Open Reading List: Alpha order');
-  assert.equal(h.nodes.continueReview.hidden, true);
   h.nodes.continueRead.listeners.click({});
   h.nodes.continueOpen.listeners.click();
   assert.equal(h.calls.read.length, 0);

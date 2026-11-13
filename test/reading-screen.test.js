@@ -60,17 +60,17 @@ test('native Reading List options start closed and retain completion and pending
   assert.doesNotMatch(reading, /details\.open = !narrow/);
 });
 
-test('Reading List options follow the Read and Done row', () => {
-  const primary = html.indexOf('id="hero-primary-actions"');
+test('Reading List options sit between the reading card and Coming up', () => {
+  const heroEnd = html.indexOf('<div id="reading-overview">');
   const options = html.indexOf('<details id="list-actions"');
-  const following = html.indexOf('id="hero-reader-temporary"');
-  assert.ok(primary >= 0 && primary < options && options < following,
-    'list options should follow the primary actions inside the reading card');
+  const shelf = html.indexOf('id="shelf-sec"');
+  assert.ok(heroEnd >= 0 && heroEnd < options && options < shelf,
+    'list options should follow the reading card and precede Coming up');
 });
 
 test('Reading List options have a quieter group with a larger spacing token than the action row', () => {
   const row = css.match(/\.hero \.cta \{([^}]*)\}/)?.[1] ?? '';
-  const group = css.match(/#hero #reading-list-options \{([^}]*)\}/)?.[1] ?? '';
+  const group = css.match(/#reading-list-options:has\(\+ #shelf-sec\) \{([^}]*)\}/)?.[1] ?? '';
   const trigger = css.match(/#reading-list-options :is\(#android-list-options, #list-actions > summary\) \{([^}]*)\}/)?.[1] ?? '';
   const tokens = rootTokens(css);
   const rowGap = row.match(/gap: var\((--space-\d+)\)/)?.[1];

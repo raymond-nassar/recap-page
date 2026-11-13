@@ -231,7 +231,7 @@ export const phoneContinue = {
           primary: !!primary && getComputedStyle(primary).display === 'flex'
             && primary.contains(document.querySelector('#btn-chero-read'))
             && primary.contains(document.querySelector('#btn-chero-done')),
-          quiet: ['open', 'review', 'deferred'].every((id) => {
+          quiet: ['open', 'deferred'].every((id) => {
             const node = document.querySelector(`#btn-chero-${id}`);
             const style = getComputedStyle(node);
             return !node.hidden && style.backgroundColor === 'rgba(0, 0, 0, 0)' && style.textDecorationLine === 'underline'
@@ -240,16 +240,12 @@ export const phoneContinue = {
           overflow: document.documentElement.scrollWidth > innerWidth,
         };
       }, profile.platform === 'android' ? 48 : 44);
-      if (profile.width <= 620) checked(t, `${label}: centered cover, paired primary actions and three quiet actions`,
+      if (profile.width <= 620) checked(t, `${label}: centered cover, paired primary actions and two quiet actions`,
         card.center <= 1 && card.primary && card.quiet && !card.overflow, card);
       await capture(page, profile, theme, 'continue');
       await click(page, '#btn-chero-deferred');
       await page.waitForSelector('#view-read:not([hidden]) #full[open]');
       checked(t, `${label}: Review deferred still opens the list`, await page.$eval('input[name="filter"][value="deferred"]', (node) => node.checked));
-      await open(page, 'home');
-      await click(page, '#btn-chero-review');
-      await page.waitForSelector('#view-read:not([hidden]) #review-earlier:not([hidden])');
-      checked(t, `${label}: Review earlier remains reachable`, true);
       await open(page, 'home');
       await click(page, '#btn-chero-done');
       await page.waitForFunction(() => !!JSON.parse(localStorage.getItem('mrt.state.v2')).read[900002]);
@@ -1002,7 +998,7 @@ async function applyReferenceCard(page, ref) {
     ios: referenceFile(ref, 'packaging/ios/web/ios.css'),
   };
   const html = referenceFile(ref, 'src/index.html');
-  const classes = Object.fromEntries(['read', 'done', 'open', 'review', 'deferred'].map((id) => {
+  const classes = Object.fromEntries(['read', 'done', 'open', 'deferred'].map((id) => {
     const match = html.match(new RegExp(`class="([^"]+)" id="btn-chero-${id}"`));
     if (!match) throw new Error(`${ref} has no class for btn-chero-${id}`);
     return [id, match[1]];
