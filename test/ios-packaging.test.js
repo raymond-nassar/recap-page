@@ -1137,9 +1137,9 @@ test('iOS Dynamic Type scales only the shared text tokens and survives a WebKit 
     .map(([, token, size]) => [token, Number(size)]);
   assert.deepEqual(scaledTypes, sharedTypes, 'every shared type token is scaled from its unchanged default size');
   assert.match(css, /--ios-text-scale:\s*1\s*;/);
-  const withoutSearchFloor = css.replace(/:root #search-q\s*\{\s*font-size:\s*max\(16px,\s*var\(--t-body\)\);?\s*\}/, '');
-  assert.doesNotMatch(withoutSearchFloor, /\b(?:font-size|zoom)\s*:/,
-    'only Search has a field-size floor; root rem dimensions and page zoom stay unchanged');
+  const fieldFloor = /:root :is\(input:not\([^)]*\),\s*textarea\)\s*\{\s*font-size:\s*max\(16px,\s*var\(--t-body\)\);?\s*\}/;
+  assert.doesNotMatch(css.replace(fieldFloor, ''), /\b(?:font-size|zoom)\s*:/,
+    'only text fields have a size floor; root rem dimensions and page zoom stay unchanged');
   const controller = appSource('WebViewController');
   assert.match(controller, /UIFont\.preferredFont\(forTextStyle:\s*\.body,\s*compatibleWith:\s*traits\)\.pointSize/);
   assert.match(controller, /registerForTraitChanges\(\[UITraitPreferredContentSizeCategory\.self\]/);
@@ -2061,11 +2061,16 @@ test('iOS Search reuses the named label target and retains its visible field des
   }
 });
 
-test('iOS Search prevents focus zoom without shrinking larger text or changing shared fields', () => {
-  const css = read('packaging/ios/web/ios.css');
-  assert.match(css, /:root #search-q\s*\{\s*font-size:\s*max\(16px,\s*var\(--t-body\)\);?\s*\}/);
+test('iOS text fields prevent focus zoom without shrinking larger text or changing shared fields', () => {
+  const css = read('packaging/ios/web/ios.css').replace(/\/\*[\s\S]*?\*\//g, '');
+  const rule = css.match(/:root :is\(input:not\(([^)]*)\),\s*textarea\)\s*\{\s*font-size:\s*max\(16px,\s*var\(--t-body\)\);?\s*\}/);
+  assert.ok(rule, 'every typed field and every textarea has the 16px floor');
+  const excluded = [...rule[1].matchAll(/\[type="(\w+)"\]/g)].map(([, type]) => type);
+  for (const typed of ['text', 'search', 'url', 'number', 'email', 'tel', 'password']) {
+    assert.ok(!excluded.includes(typed), `${typed} fields keep the floor`);
+  }
   for (const path of ['src/styles.css', 'packaging/android/web/mobile.css']) {
-    assert.doesNotMatch(read(path), /#search-q\s*\{[^}]*font-size:\s*max\(16px,/s);
+    assert.doesNotMatch(read(path), /font-size:\s*max\(16px,/);
   }
 });
 

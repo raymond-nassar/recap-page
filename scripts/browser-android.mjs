@@ -3093,22 +3093,40 @@ async function mobileLayout(page, label, narrow) {
     const rowBox = row?.getBoundingClientRect();
     const heading = row?.querySelector('#home-cat-h');
     const headingBox = heading?.getBoundingClientRect();
+    const lines = (node) => {
+      const range = document.createRange();
+      range.selectNodeContents(node);
+      return new Set([...range.getClientRects()].filter((r) => r.width > 0).map((r) => Math.round(r.top))).size;
+    };
+    // The owner chose the pill's natural one-line width over a half-row cap, which split its
+    // label on a 393 px iPhone (91edc66f). It sits beside Explore only when both fit.
+    const saved = link.getAttribute('style');
+    link.style.whiteSpace = 'nowrap'; link.style.maxWidth = 'none';
+    const natural = link.getBoundingClientRect().width;
+    if (saved === null) link.removeAttribute('style'); else link.setAttribute('style', saved);
+    const gap = row ? parseFloat(getComputedStyle(row).columnGap) || 0 : 0;
     return { text: link.textContent.trim(), visible: link.checkVisibility(),
-      width: box.width, height: box.height, rowWidth: rowBox?.width ?? 0,
+      width: box.width, height: box.height, rowWidth: rowBox?.width ?? 0, natural,
       heading: heading?.textContent.trim() ?? null,
       headingVisible: Boolean(heading?.checkVisibility() && !heading.closest('.visually-hidden')
         && headingBox && headingBox.width > 1 && headingBox.height > 1),
+      headingWhole: Boolean(heading && lines(heading) === 1 && heading.scrollWidth <= heading.clientWidth + 1),
+      besideFits: Boolean(headingBox && rowBox && headingBox.width + gap + natural <= rowBox.width + 0.5),
       beside: Boolean(headingBox && headingBox.right <= box.left + 1
         && headingBox.bottom > box.top && box.bottom > headingBox.top),
+      below: Boolean(headingBox && box.top >= headingBox.bottom - 1),
+      pillLines: lines(link),
       left: box.left, right: box.right,
       viewportWidth: innerWidth,
       overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth };
   });
   const guideUsable = guideEntry?.visible && guideEntry.text === 'New to Marvel Comics?'
-    && guideEntry.heading === 'Explore' && guideEntry.headingVisible && guideEntry.beside
-    && guideEntry.width > 0 && guideEntry.width < guideEntry.rowWidth / 2 && guideEntry.height >= 44
+    && guideEntry.heading === 'Explore' && guideEntry.headingVisible && guideEntry.headingWhole
+    && (guideEntry.besideFits ? guideEntry.beside : guideEntry.below)
+    && (guideEntry.natural > guideEntry.rowWidth + 0.5 || guideEntry.pillLines === 1)
+    && guideEntry.width > 0 && guideEntry.height >= 44
     && guideEntry.left >= 0 && guideEntry.right <= guideEntry.viewportWidth && !guideEntry.overflow;
-  check(guideUsable, `${label}: compact inline guide link is present beside Explore and usable ${JSON.stringify(guideEntry)}`);
+  check(guideUsable, `${label}: guide link stays whole beside Explore when both fit, else on its own line, and is usable ${JSON.stringify(guideEntry)}`);
   if (guideUsable) {
     await click(page, '#home-categories a[href="#/new-to-comics"]');
     await page.waitForSelector('#view-new-to-comics:not([hidden])');

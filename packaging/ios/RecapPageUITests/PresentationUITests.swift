@@ -160,6 +160,29 @@ final class PresentationUITests: XCTestCase {
             const fixtureMode = '\(route)';
             \(Self.passiveGuardFixtures)
             """
+        } else if route.hasPrefix("field-") {
+            // One editable field per launch for the #1244 focus zoom proof. The question dialog is
+            // modal, which makes the rest of the page inert and hides the monitor from the native
+            // tree, so the monitor moves into the dialog while it is open.
+            routeScript = """
+            const fieldRoute = '\(route)';
+            await openRoute(fieldRoute === 'field-manual'
+              ? { name: 'manual', id: 'view-add-manual', hash: '#/add-manual' }
+              : fieldRoute === 'field-import'
+                ? { name: 'import', id: 'view-add-import', hash: '#/add-import' }
+                : routes[0]);
+            if (fieldRoute === 'field-manual') document.getElementById('manual-url').closest('details').open = true;
+            if (fieldRoute === 'field-name' || fieldRoute === 'field-note') {
+              const ask = await import(new URL('js/ask.js', document.baseURI).href);
+              if (fieldRoute === 'field-name') ask.askText({ title: 'Name this list', label: 'List name' });
+              else ask.askNote({ title: 'Add a note', label: 'Note' });
+              const dialog = await waitFor(() => document.querySelector('#ask[open]'), 'text question');
+              dialog.append(monitor);
+            }
+            await nextFrame();
+            screens.push(snapshot(fieldRoute));
+            window.setInterval(refreshMonitor, 100);
+            """
         } else if route == "search" {
             routeScript = """
             // The passive guard requires Home's lazily rendered reviewed nodes even on Search.
@@ -256,6 +279,7 @@ final class PresentationUITests: XCTestCase {
           historyPops,
           initialEntry,
           modalOpen: Boolean(document.querySelector('dialog[open]')),
+          visualScale: window.visualViewport?.scale ?? null,
           scrollX, scrollY,
           readingPosition: history.state?.readingPosition,
           documentToken: window.__recapProbeDocument,
@@ -2762,6 +2786,58 @@ final class PresentationUITests: XCTestCase {
                 "audit": "passed", "reviewedPassiveCases": acceptedTexts.map(\.label),
             ])
             capture(app, named: "t03-search-scopes-\(category.rawValue)")
+            app.terminate()
+        }
+    }
+
+    func testEditableFieldsLeaveNoFocusZoomAfterTypingAndDismissal() throws {
+        // At 14px, iPhone WebKit zoomed the page to 16/14 on focus and kept it after the keyboard
+        // closed (#1240, #1244). One launch per field, covering a textarea, a url field and both
+        // fields of the shared question dialog.
+        let fieldTypes = [XCUIElement.ElementType.textField, .textView, .searchField, .secureTextField].map(\.rawValue)
+        let cases = [
+            ("field-import", "Reading List"),
+            ("field-manual", "marvel.com comic details address"),
+            ("field-name", "List name"),
+            ("field-note", "Note"),
+        ]
+        for (route, label) in cases {
+            let app = launch(route: route)
+            _ = try probeResult(of: app)
+            let field = app.webViews.firstMatch.descendants(matching: .any).matching(NSPredicate(
+                format: "label == %@ AND elementType IN %@", label, fieldTypes)).firstMatch
+            XCTAssertTrue(field.waitForExistence(timeout: 30), "\(route) has an editable field labeled \(label)")
+            revealNativeTarget(field, in: app)
+            field.tap()
+            field.typeText("Secret")
+            let done = app.toolbars.buttons["Done"].firstMatch
+            let hide = app.keyboards.buttons["Hide keyboard"].firstMatch
+            // iPhone's input accessory offers Done and iPad's keyboard has its own hide key; a
+            // simulator using a hardware keyboard shows neither and has nothing to dismiss.
+            if done.waitForExistence(timeout: 3) {
+                done.tap()
+            } else if hide.exists {
+                hide.tap()
+            }
+            let keyboardHidden = XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "exists == false"), object: app.keyboards.firstMatch)
+            XCTAssertEqual(XCTWaiter.wait(for: [keyboardHidden], timeout: 15), .completed, "\(route) dismisses the keyboard")
+            // The monitor refreshes every 100 ms on these routes, so a zoom that outlives the
+            // keyboard stays visible to this wait rather than depending on a resize event.
+            let monitor = layoutMonitor(of: app)
+            let unzoomed = XCTNSPredicateExpectation(predicate: NSPredicate { object, _ in
+                guard let monitor = object as? XCUIElement,
+                      let state = layoutMetrics(from: monitor.label),
+                      let scale = (state["visualScale"] as? NSNumber)?.doubleValue else { return false }
+                return abs(scale - 1) < 0.001
+            }, object: monitor)
+            let settled = XCTWaiter.wait(for: [unzoomed], timeout: 15)
+            let metrics = try XCTUnwrap(layoutMetrics(from: monitor.label))
+            let scale = try XCTUnwrap((metrics["visualScale"] as? NSNumber)?.doubleValue)
+            XCTAssertEqual(settled, .completed, "\(route) waited for an unzoomed sample")
+            XCTAssertEqual(scale, 1, accuracy: 0.001,
+                           "\(route) does not leave the page zoomed after typing and dismissing the keyboard")
+            try record("t03-field-zoom-\(route)", ["metrics": metrics])
             app.terminate()
         }
     }

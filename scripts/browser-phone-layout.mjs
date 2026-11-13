@@ -1210,7 +1210,44 @@ export const guideLinkPill = {
   },
 };
 
-export const phoneLayoutScenarios = [phoneBack, phoneContinue, continueWideMatchesMain, guideLinkPill, phoneNotices, phoneLongNotice, phoneSearchReflow, phoneSearchRowsFit, phoneCatalogReflow];
+// iPhone WebKit zooms the page when a field under 16px takes focus and leaves it zoomed after the
+// keyboard closes (#1240, #1244). Computed size is read from every field in the document, hidden
+// ones included, after visiting the screens that build fields of their own.
+const fieldRoutes = ['add-search', 'add-series', 'add-creator', 'add-import', 'add-manual', 'catalog', 'marvel-on-screen'];
+const notTyped = ['checkbox', 'radio', 'file', 'range', 'color', 'button', 'submit', 'reset', 'image', 'hidden'];
+
+export const phoneFieldZoom = {
+  id: 'phone-field-zoom',
+  title: 'every iPhone text field is at least 16px so focus never zooms the page',
+  async run(page, t, selected) {
+    const chosen = (selected ?? profiles).filter((profile) => profile.platform === 'ios');
+    await forProfiles(page, t, async (profile, theme) => {
+      for (const size of ['ordinary', 'largest']) {
+        if (size === 'largest') await largeText(page, profile);
+        const fields = new Map();
+        for (const route of fieldRoutes) {
+          await open(page, route);
+          const found = await page.evaluate((skip) => {
+            const probe = document.body.appendChild(document.createElement('span'));
+            probe.style.fontSize = 'var(--t-body)';
+            const body = parseFloat(getComputedStyle(probe).fontSize);
+            probe.remove();
+            return [...document.querySelectorAll('input, textarea')]
+              .filter((node) => node.tagName === 'TEXTAREA' || !skip.includes(node.type))
+              .map((node) => ({ id: node.id || node.name || node.outerHTML.slice(0, 60),
+                px: parseFloat(getComputedStyle(node).fontSize), body }));
+          }, notTyped);
+          for (const field of found) fields.set(field.id, field);
+        }
+        const small = [...fields.values()].filter((field) => !(field.px >= 16 - 0.01 && field.px >= field.body - 0.01));
+        checked(t, `${profile.platform} ${profile.width} ${theme} ${size}: every text field is at least 16px and never below body text`,
+          fields.size >= 16 && small.length === 0, { fields: fields.size, small });
+      }
+    }, chosen);
+  },
+};
+
+export const phoneLayoutScenarios = [phoneFieldZoom, phoneBack, phoneContinue, continueWideMatchesMain, guideLinkPill, phoneNotices, phoneLongNotice, phoneSearchReflow, phoneSearchRowsFit, phoneCatalogReflow];
 export const phoneLayoutMutations = [
   {
     id: 'phone-back-on-roots', breaks: 'phone-back', why: 'restoring Back on every history entry puts it on tab roots',
