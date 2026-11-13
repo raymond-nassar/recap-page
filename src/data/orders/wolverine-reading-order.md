@@ -2,7 +2,7 @@
 
 Generated for this project by scripts/author-cbh-packet.mjs from the reviewed and frozen wolverine-reading-order issue mapping.
 The mapping transcribes only issue-bearing references from Comic Book Herald's exact guide, expands its ranges, and preserves its source order.
-The frozen source records 1328 issue occurrences, including 71 intentional repeats; this checklist lists each distinct comic once at its first source occurrence.
+The frozen source records 1328 issue occurrences, including 19 intentional repeats; this checklist lists each distinct comic once at its first source occurrence.
 No source commentary or images are copied. Issue identities, titles, and exact links come from Marvel metadata or reviewed official Marvel issue pages after the packet resolution and overlap gates passed.
 See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permission boundary and review method.
 
@@ -42,14 +42,14 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Kitty Pryde and Wolverine (1984) #4 <!-- mrt:source-occurrence=34 -->](https://www.marvel.com/comics/issue/21648/kitty_pryde_and_wolverine_1984_4)
 - [ ] [Kitty Pryde and Wolverine (1984) #5 <!-- mrt:source-occurrence=35 -->](https://www.marvel.com/comics/issue/21649/kitty_pryde_and_wolverine_1984_5)
 - [ ] [Kitty Pryde and Wolverine (1984) #6 <!-- mrt:source-occurrence=36 -->](https://www.marvel.com/comics/issue/21650/kitty_pryde_and_wolverine_1984_6)
-- [ ] [Wolverine (2010) #1 <!-- mrt:source-occurrence=37 -->](https://www.marvel.com/comics/issue/30224/wolverine_2010_1)
-- [ ] [Wolverine (2010) #2 <!-- mrt:source-occurrence=38 -->](https://www.marvel.com/comics/issue/30228/wolverine_2010_2)
-- [ ] [Wolverine (2010) #3 <!-- mrt:source-occurrence=39 -->](https://www.marvel.com/comics/issue/30229/wolverine_2010_3)
-- [ ] [Wolverine (2010) #4 <!-- mrt:source-occurrence=40 -->](https://www.marvel.com/comics/issue/30230/wolverine_2010_4)
-- [ ] [Wolverine (2010) #5 <!-- mrt:source-occurrence=41 -->](https://www.marvel.com/comics/issue/30231/wolverine_2010_5)
-- [ ] [Wolverine (2010) #6 <!-- mrt:source-occurrence=42 -->](https://www.marvel.com/comics/issue/30232/wolverine_2010_6)
-- [ ] [Wolverine (2010) #7 <!-- mrt:source-occurrence=43 -->](https://www.marvel.com/comics/issue/30233/wolverine_2010_7)
-- [ ] [Wolverine (2010) #8 <!-- mrt:source-occurrence=44 -->](https://www.marvel.com/comics/issue/30234/wolverine_2010_8)
+- [ ] [Wolverine (1988) #1 <!-- mrt:source-occurrence=37 -->](https://www.marvel.com/comics/issue/14036/wolverine_1988_1)
+- [ ] [Wolverine (1988) #2 <!-- mrt:source-occurrence=38 -->](https://www.marvel.com/comics/issue/14137/wolverine_1988_2)
+- [ ] [Wolverine (1988) #3 <!-- mrt:source-occurrence=39 -->](https://www.marvel.com/comics/issue/14148/wolverine_1988_3)
+- [ ] [Wolverine (1988) #4 <!-- mrt:source-occurrence=40 -->](https://www.marvel.com/comics/issue/14159/wolverine_1988_4)
+- [ ] [Wolverine (1988) #5 <!-- mrt:source-occurrence=41 -->](https://www.marvel.com/comics/issue/14170/wolverine_1988_5)
+- [ ] [Wolverine (1988) #6 <!-- mrt:source-occurrence=42 -->](https://www.marvel.com/comics/issue/14181/wolverine_1988_6)
+- [ ] [Wolverine (1988) #7 <!-- mrt:source-occurrence=43 -->](https://www.marvel.com/comics/issue/14192/wolverine_1988_7)
+- [ ] [Wolverine (1988) #8 <!-- mrt:source-occurrence=44 -->](https://www.marvel.com/comics/issue/14203/wolverine_1988_8)
 - [ ] [Wolverine (1988) #9 <!-- mrt:source-occurrence=45 -->](https://www.marvel.com/comics/issue/14214/wolverine_1988_9)
 - [ ] Wolverine #10
 - [ ] Wolverine #11
@@ -76,24 +76,24 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Uncanny X-Men (1963) #246 <!-- mrt:source-occurrence=68 -->](https://www.marvel.com/comics/issue/13787/uncanny_x-men_1963_246)
 - [ ] [Uncanny X-Men (1963) #251 <!-- mrt:source-occurrence=69 -->](https://www.marvel.com/comics/issue/13792/uncanny_x-men_1963_251)
 - [ ] Web Of Venom: VeÃ¢â‚¬â„¢Nam (2018) #1
-- [ ] [Wolverine (2010) #17 <!-- mrt:source-occurrence=71 -->](https://www.marvel.com/comics/issue/36469/wolverine_2010_17)
-- [ ] [Wolverine (2010) #18 <!-- mrt:source-occurrence=72 -->](https://www.marvel.com/comics/issue/36466/wolverine_2010_18)
-- [ ] [Wolverine (2010) #19 <!-- mrt:source-occurrence=73 -->](https://www.marvel.com/comics/issue/38839/wolverine_2010_19)
-- [ ] [Wolverine (2003) #20 <!-- mrt:source-occurrence=74 -->](https://www.marvel.com/comics/issue/860/wolverine_2003_20)
-- [ ] [Wolverine (2003) #21 <!-- mrt:source-occurrence=75 -->](https://www.marvel.com/comics/issue/897/wolverine_2003_21)
-- [ ] [Wolverine (2003) #22 <!-- mrt:source-occurrence=76 -->](https://www.marvel.com/comics/issue/16/wolverine_2003_22)
-- [ ] [Wolverine (2003) #23 <!-- mrt:source-occurrence=77 -->](https://www.marvel.com/comics/issue/1419/wolverine_2003_23)
-- [ ] [Wolverine (2003) #24 <!-- mrt:source-occurrence=78 -->](https://www.marvel.com/comics/issue/1517/wolverine_2003_24)
-- [ ] [Wolverine (2003) #25 <!-- mrt:source-occurrence=79 -->](https://www.marvel.com/comics/issue/1617/wolverine_2003_25)
-- [ ] [Wolverine (2003) #26 <!-- mrt:source-occurrence=80 -->](https://www.marvel.com/comics/issue/1712/wolverine_2003_26)
-- [ ] [Wolverine (2003) #27 <!-- mrt:source-occurrence=81 -->](https://www.marvel.com/comics/issue/1822/wolverine_2003_27)
-- [ ] [Wolverine (2003) #28 <!-- mrt:source-occurrence=82 -->](https://www.marvel.com/comics/issue/1963/wolverine_2003_28)
-- [ ] [Wolverine (2003) #29 <!-- mrt:source-occurrence=83 -->](https://www.marvel.com/comics/issue/2066/wolverine_2003_29)
-- [ ] [Wolverine (2003) #30 <!-- mrt:source-occurrence=84 -->](https://www.marvel.com/comics/issue/2173/wolverine_2003_30)
+- [ ] [Wolverine (1988) #17 <!-- mrt:source-occurrence=71 -->](https://www.marvel.com/comics/issue/14114/wolverine_1988_17)
+- [ ] [Wolverine (1988) #18 <!-- mrt:source-occurrence=72 -->](https://www.marvel.com/comics/issue/14125/wolverine_1988_18)
+- [ ] [Wolverine (1988) #19 <!-- mrt:source-occurrence=73 -->](https://www.marvel.com/comics/issue/14136/wolverine_1988_19)
+- [ ] [Wolverine (1988) #20 <!-- mrt:source-occurrence=74 -->](https://www.marvel.com/comics/issue/14138/wolverine_1988_20)
+- [ ] [Wolverine (1988) #21 <!-- mrt:source-occurrence=75 -->](https://www.marvel.com/comics/issue/14139/wolverine_1988_21)
+- [ ] [Wolverine (1988) #22 <!-- mrt:source-occurrence=76 -->](https://www.marvel.com/comics/issue/14140/wolverine_1988_22)
+- [ ] [Wolverine (1988) #23 <!-- mrt:source-occurrence=77 -->](https://www.marvel.com/comics/issue/14141/wolverine_1988_23)
+- [ ] [Wolverine (1988) #24 <!-- mrt:source-occurrence=78 -->](https://www.marvel.com/comics/issue/14142/wolverine_1988_24)
+- [ ] [Wolverine (1988) #25 <!-- mrt:source-occurrence=79 -->](https://www.marvel.com/comics/issue/14143/wolverine_1988_25)
+- [ ] [Wolverine (1988) #26 <!-- mrt:source-occurrence=80 -->](https://www.marvel.com/comics/issue/14144/wolverine_1988_26)
+- [ ] [Wolverine (1988) #27 <!-- mrt:source-occurrence=81 -->](https://www.marvel.com/comics/issue/14145/wolverine_1988_27)
+- [ ] [Wolverine (1988) #28 <!-- mrt:source-occurrence=82 -->](https://www.marvel.com/comics/issue/14146/wolverine_1988_28)
+- [ ] [Wolverine (1988) #29 <!-- mrt:source-occurrence=83 -->](https://www.marvel.com/comics/issue/14147/wolverine_1988_29)
+- [ ] [Wolverine (1988) #30 <!-- mrt:source-occurrence=84 -->](https://www.marvel.com/comics/issue/14149/wolverine_1988_30)
 - [ ] Wolverine/Nick Fury: The Scorpio Connection Graphic Novel
 - [ ] Wolverine: The Jungle Adventure
-- [ ] [Wolverine (2003) #31 <!-- mrt:source-occurrence=87 -->](https://www.marvel.com/comics/issue/2297/wolverine_2003_31)
-- [ ] [Wolverine (2003) #32 <!-- mrt:source-occurrence=88 -->](https://www.marvel.com/comics/issue/2519/wolverine_2003_32)
+- [ ] [Wolverine (1988) #31 <!-- mrt:source-occurrence=87 -->](https://www.marvel.com/comics/issue/14150/wolverine_1988_31)
+- [ ] [Wolverine (1988) #32 <!-- mrt:source-occurrence=88 -->](https://www.marvel.com/comics/issue/14151/wolverine_1988_32)
 - [ ] [Wolverine (1988) #33 <!-- mrt:source-occurrence=89 -->](https://www.marvel.com/comics/issue/14152/wolverine_1988_33)
 - [ ] Wolverine (vol. 2) #34
 - [ ] Wolverine (vol. 2) #35
@@ -124,15 +124,16 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] Wolverine #59
 - [ ] Wolverine #60
 - [ ] Wolverine #61
-- [ ] [Wolverine (2003) #62 <!-- mrt:source-occurrence=125 -->](https://www.marvel.com/comics/issue/20642/wolverine_2003_62)
-- [ ] [Wolverine (2003) #63 <!-- mrt:source-occurrence=126 -->](https://www.marvel.com/comics/issue/20833/wolverine_2003_63)
-- [ ] [Wolverine (2003) #64 <!-- mrt:source-occurrence=127 -->](https://www.marvel.com/comics/issue/20971/wolverine_2003_64)
-- [ ] [Wolverine (2003) #65 <!-- mrt:source-occurrence=128 -->](https://www.marvel.com/comics/issue/21180/wolverine_2003_65)
+- [ ] [Wolverine (1988) #62 <!-- mrt:source-occurrence=125 -->](https://www.marvel.com/comics/issue/14184/wolverine_1988_62)
+- [ ] [Wolverine (1988) #63 <!-- mrt:source-occurrence=126 -->](https://www.marvel.com/comics/issue/14185/wolverine_1988_63)
+- [ ] [Wolverine (1988) #64 <!-- mrt:source-occurrence=127 -->](https://www.marvel.com/comics/issue/14186/wolverine_1988_64)
+- [ ] [Wolverine (1988) #65 <!-- mrt:source-occurrence=128 -->](https://www.marvel.com/comics/issue/14187/wolverine_1988_65)
 - [ ] Wolverine #66
 - [ ] Wolverine #67
 - [ ] Wolverine #68
 - [ ] [Ghost Rider/Wolverine/Punisher: Hearts of Darkness (1991) #1 <!-- mrt:source-occurrence=132 -->](https://www.marvel.com/comics/issue/108820/ghost_riderwolverinepunisher_hearts_of_darkness_1_1991_1)
 - [ ] Material from Marvel Holiday Special (1991) #2
+- [ ] [Wolverine (2003) #32 <!-- mrt:source-occurrence=134 -->](https://www.marvel.com/comics/issue/2519/wolverine_2003_32)
 - [ ] Logan: Path Of The Warlord
 - [ ] [Logan: Shadow Society (1997) #1 <!-- mrt:source-occurrence=136 -->](https://www.marvel.com/comics/issue/62695/)
 - [ ] Wolverine: Agent Of Atlas #1
@@ -403,8 +404,25 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] Astonishing Tales: Wolverine/Punisher #4
 - [ ] Astonishing Tales: Wolverine/Punisher #5
 - [ ] Astonishing Tales: Wolverine/Punisher #6
+- [ ] [Wolverine (2003) #1 <!-- mrt:source-occurrence=422 -->](https://www.marvel.com/comics/issue/14225/wolverine_2003_1)
+- [ ] [Wolverine (2003) #2 <!-- mrt:source-occurrence=423 -->](https://www.marvel.com/comics/issue/14236/wolverine_2003_2)
+- [ ] [Wolverine (2003) #3 <!-- mrt:source-occurrence=424 -->](https://www.marvel.com/comics/issue/14247/wolverine_2003_3)
+- [ ] [Wolverine (2003) #4 <!-- mrt:source-occurrence=425 -->](https://www.marvel.com/comics/issue/14259/wolverine_2003_4)
+- [ ] [Wolverine (2003) #5 <!-- mrt:source-occurrence=426 -->](https://www.marvel.com/comics/issue/14264/wolverine_2003_5)
+- [ ] [Wolverine (2003) #6 <!-- mrt:source-occurrence=427 -->](https://www.marvel.com/comics/issue/234/wolverine_2003_6)
+- [ ] [Wolverine (2003) #7 <!-- mrt:source-occurrence=428 -->](https://www.marvel.com/comics/issue/233/wolverine_2003_7)
+- [ ] [Wolverine (2003) #8 <!-- mrt:source-occurrence=429 -->](https://www.marvel.com/comics/issue/268/wolverine_2003_8)
 - [ ] [Wolverine (2003) #9 <!-- mrt:source-occurrence=430 -->](https://www.marvel.com/comics/issue/231/wolverine_2003_9)
+- [ ] [Wolverine (2003) #10 <!-- mrt:source-occurrence=431 -->](https://www.marvel.com/comics/issue/237/wolverine_2003_10)
+- [ ] [Wolverine (2003) #11 <!-- mrt:source-occurrence=432 -->](https://www.marvel.com/comics/issue/236/wolverine_2003_11)
+- [ ] [Wolverine (2003) #12 <!-- mrt:source-occurrence=433 -->](https://www.marvel.com/comics/issue/427/wolverine_2003_12)
 - [ ] [Wolverine (2003) #13 <!-- mrt:source-occurrence=434 -->](https://www.marvel.com/comics/issue/464/wolverine_2003_13)
+- [ ] [Wolverine (2003) #14 <!-- mrt:source-occurrence=435 -->](https://www.marvel.com/comics/issue/490/wolverine_2003_14)
+- [ ] [Wolverine (2003) #15 <!-- mrt:source-occurrence=436 -->](https://www.marvel.com/comics/issue/658/wolverine_2003_15)
+- [ ] [Wolverine (2003) #16 <!-- mrt:source-occurrence=437 -->](https://www.marvel.com/comics/issue/718/wolverine_2003_16)
+- [ ] [Wolverine (2003) #17 <!-- mrt:source-occurrence=438 -->](https://www.marvel.com/comics/issue/527/wolverine_2003_17)
+- [ ] [Wolverine (2003) #18 <!-- mrt:source-occurrence=439 -->](https://www.marvel.com/comics/issue/760/wolverine_2003_18)
+- [ ] [Wolverine (2003) #19 <!-- mrt:source-occurrence=440 -->](https://www.marvel.com/comics/issue/828/wolverine_2003_19)
 - [ ] [New X-Men (2001) #114 <!-- mrt:source-occurrence=441 -->](https://www.marvel.com/comics/issue/14933/new_x-men_2001_114)
 - [ ] [New X-Men (2001) #115 <!-- mrt:source-occurrence=442 -->](https://www.marvel.com/comics/issue/14934/new_x-men_2001_115)
 - [ ] [New X-Men (2001) #116 <!-- mrt:source-occurrence=443 -->](https://www.marvel.com/comics/issue/14935/new_x-men_2001_116)
@@ -480,6 +498,18 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [New Avengers (2004) #4 <!-- mrt:source-occurrence=513 -->](https://www.marvel.com/comics/issue/1628/new_avengers_2004_4)
 - [ ] [New Avengers (2004) #5 <!-- mrt:source-occurrence=514 -->](https://www.marvel.com/comics/issue/1720/new_avengers_2004_5)
 - [ ] [New Avengers (2004) #6 <!-- mrt:source-occurrence=515 -->](https://www.marvel.com/comics/issue/1829/new_avengers_2004_6)
+- [ ] [Wolverine (2003) #20 <!-- mrt:source-occurrence=516 -->](https://www.marvel.com/comics/issue/860/wolverine_2003_20)
+- [ ] [Wolverine (2003) #21 <!-- mrt:source-occurrence=517 -->](https://www.marvel.com/comics/issue/897/wolverine_2003_21)
+- [ ] [Wolverine (2003) #22 <!-- mrt:source-occurrence=518 -->](https://www.marvel.com/comics/issue/16/wolverine_2003_22)
+- [ ] [Wolverine (2003) #23 <!-- mrt:source-occurrence=519 -->](https://www.marvel.com/comics/issue/1419/wolverine_2003_23)
+- [ ] [Wolverine (2003) #24 <!-- mrt:source-occurrence=520 -->](https://www.marvel.com/comics/issue/1517/wolverine_2003_24)
+- [ ] [Wolverine (2003) #25 <!-- mrt:source-occurrence=521 -->](https://www.marvel.com/comics/issue/1617/wolverine_2003_25)
+- [ ] [Wolverine (2003) #26 <!-- mrt:source-occurrence=522 -->](https://www.marvel.com/comics/issue/1712/wolverine_2003_26)
+- [ ] [Wolverine (2003) #27 <!-- mrt:source-occurrence=523 -->](https://www.marvel.com/comics/issue/1822/wolverine_2003_27)
+- [ ] [Wolverine (2003) #28 <!-- mrt:source-occurrence=524 -->](https://www.marvel.com/comics/issue/1963/wolverine_2003_28)
+- [ ] [Wolverine (2003) #29 <!-- mrt:source-occurrence=525 -->](https://www.marvel.com/comics/issue/2066/wolverine_2003_29)
+- [ ] [Wolverine (2003) #30 <!-- mrt:source-occurrence=526 -->](https://www.marvel.com/comics/issue/2173/wolverine_2003_30)
+- [ ] [Wolverine (2003) #31 <!-- mrt:source-occurrence=527 -->](https://www.marvel.com/comics/issue/2297/wolverine_2003_31)
 - [ ] Wolverine: Soultaker #1
 - [ ] Wolverine: Soultaker #2
 - [ ] Wolverine: Soultaker #3
@@ -696,6 +726,14 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] Astonishing Spider-Man & Wolverine #4
 - [ ] [Astonishing Spider-Man & Wolverine (2010) #5 <!-- mrt:source-occurrence=752 -->](https://www.marvel.com/comics/issue/31224/astonishing_spider-man_wolverine_2010_5)
 - [ ] Astonishing Spider-Man & Wolverine #6
+- [ ] [Wolverine (2010) #1 <!-- mrt:source-occurrence=754 -->](https://www.marvel.com/comics/issue/30224/wolverine_2010_1)
+- [ ] [Wolverine (2010) #2 <!-- mrt:source-occurrence=755 -->](https://www.marvel.com/comics/issue/30228/wolverine_2010_2)
+- [ ] [Wolverine (2010) #3 <!-- mrt:source-occurrence=756 -->](https://www.marvel.com/comics/issue/30229/wolverine_2010_3)
+- [ ] [Wolverine (2010) #4 <!-- mrt:source-occurrence=757 -->](https://www.marvel.com/comics/issue/30230/wolverine_2010_4)
+- [ ] [Wolverine (2010) #5 <!-- mrt:source-occurrence=758 -->](https://www.marvel.com/comics/issue/30231/wolverine_2010_5)
+- [ ] [Wolverine (2010) #6 <!-- mrt:source-occurrence=759 -->](https://www.marvel.com/comics/issue/30232/wolverine_2010_6)
+- [ ] [Wolverine (2010) #7 <!-- mrt:source-occurrence=760 -->](https://www.marvel.com/comics/issue/30233/wolverine_2010_7)
+- [ ] [Wolverine (2010) #8 <!-- mrt:source-occurrence=761 -->](https://www.marvel.com/comics/issue/30234/wolverine_2010_8)
 - [ ] Wolverine #9
 - [ ] [Wolverine (2010) #5.1 <!-- mrt:source-occurrence=763 -->](https://www.marvel.com/comics/issue/39288/wolverine_2010_5.1)
 - [ ] Wolverine: Road To Hell 1
@@ -719,6 +757,17 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [New Mutants (1983) #30 <!-- mrt:source-occurrence=782 -->](https://www.marvel.com/comics/issue/10367/new_mutants_1983_30)
 - [ ] [New Mutants (1983) #31 <!-- mrt:source-occurrence=783 -->](https://www.marvel.com/comics/issue/10368/new_mutants_1983_31)
 - [ ] [New Mutants (1983) #32 <!-- mrt:source-occurrence=784 -->](https://www.marvel.com/comics/issue/10369/new_mutants_1983_32)
+- [ ] [Wolverine (2010) #10 <!-- mrt:source-occurrence=785 -->](https://www.marvel.com/comics/issue/30225/wolverine_2010_10)
+- [ ] [Wolverine (2010) #11 <!-- mrt:source-occurrence=786 -->](https://www.marvel.com/comics/issue/30226/wolverine_2010_11)
+- [ ] [Wolverine (2010) #12 <!-- mrt:source-occurrence=787 -->](https://www.marvel.com/comics/issue/30227/wolverine_2010_12)
+- [ ] [Wolverine (2010) #13 <!-- mrt:source-occurrence=788 -->](https://www.marvel.com/comics/issue/36468/wolverine_2010_13)
+- [ ] [Wolverine (2010) #14 <!-- mrt:source-occurrence=789 -->](https://www.marvel.com/comics/issue/36470/wolverine_2010_14)
+- [ ] [Wolverine (2010) #15 <!-- mrt:source-occurrence=790 -->](https://www.marvel.com/comics/issue/36471/wolverine_2010_15)
+- [ ] [Wolverine (2010) #16 <!-- mrt:source-occurrence=791 -->](https://www.marvel.com/comics/issue/36467/wolverine_2010_16)
+- [ ] [Wolverine (2010) #17 <!-- mrt:source-occurrence=792 -->](https://www.marvel.com/comics/issue/36469/wolverine_2010_17)
+- [ ] [Wolverine (2010) #18 <!-- mrt:source-occurrence=793 -->](https://www.marvel.com/comics/issue/36466/wolverine_2010_18)
+- [ ] [Wolverine (2010) #19 <!-- mrt:source-occurrence=794 -->](https://www.marvel.com/comics/issue/38839/wolverine_2010_19)
+- [ ] [Wolverine (2010) #20 <!-- mrt:source-occurrence=795 -->](https://www.marvel.com/comics/issue/40621/wolverine_2010_20)
 - [ ] 300-304
 - [ ] Schism #1
 - [ ] Schism #2
@@ -916,6 +965,12 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] Wolverine and the X-Men (vol. 1) #27
 - [ ] Wolverine and the X-Men (vol. 1) #28
 - [ ] Wolverine and the X-Men (vol. 1) #29
+- [ ] [Wolverine (2013) #1 <!-- mrt:source-occurrence=997 -->](https://www.marvel.com/comics/issue/46713/wolverine_2013_1)
+- [ ] [Wolverine (2013) #2 <!-- mrt:source-occurrence=998 -->](https://www.marvel.com/comics/issue/46717/wolverine_2013_2)
+- [ ] [Wolverine (2013) #3 <!-- mrt:source-occurrence=999 -->](https://www.marvel.com/comics/issue/46719/wolverine_2013_3)
+- [ ] [Wolverine (2013) #4 <!-- mrt:source-occurrence=1000 -->](https://www.marvel.com/comics/issue/46721/wolverine_2013_4)
+- [ ] [Wolverine (2013) #5 <!-- mrt:source-occurrence=1001 -->](https://www.marvel.com/comics/issue/46723/wolverine_2013_5)
+- [ ] [Wolverine (2013) #6 <!-- mrt:source-occurrence=1002 -->](https://www.marvel.com/comics/issue/46725/wolverine_2013_6)
 - [ ] [Avengers (2010) #12.1 <!-- mrt:source-occurrence=1003 -->](https://www.marvel.com/comics/issue/39852/avengers_2010_12.1)
 - [ ] [Age of Ultron (2013) #1 <!-- mrt:source-occurrence=1004 -->](https://www.marvel.com/comics/issue/47001/age_of_ultron_2013_1)
 - [ ] [Age of Ultron (2013) #2 <!-- mrt:source-occurrence=1005 -->](https://www.marvel.com/comics/issue/47003/age_of_ultron_2013_2)
@@ -946,6 +1001,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #11
 - [ ] Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #12
 - [ ] Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #13
+- [ ] [Wolverine (2013) #7 <!-- mrt:source-occurrence=1034 -->](https://www.marvel.com/comics/issue/46726/wolverine_2013_7)
+- [ ] [Wolverine (2013) #8 <!-- mrt:source-occurrence=1035 -->](https://www.marvel.com/comics/issue/46727/wolverine_2013_8)
 - [ ] Wolverine (vol. 5) #9
 - [ ] [Wolverine (2013) #10 <!-- mrt:source-occurrence=1037 -->](https://www.marvel.com/comics/issue/46729/wolverine_2013_10)
 - [ ] Wolverine (vol. 5) #11
@@ -969,6 +1026,14 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] Savage Wolverine #15
 - [ ] [Savage Wolverine (2013) #16 <!-- mrt:source-occurrence=1057 -->](https://www.marvel.com/comics/issue/48806/savage_wolverine_2013_16)
 - [ ] Savage Wolverine #17
+- [ ] [Wolverine (2014) #1 <!-- mrt:source-occurrence=1059 -->](https://www.marvel.com/comics/issue/49235/wolverine_2014_1)
+- [ ] [Wolverine (2014) #2 <!-- mrt:source-occurrence=1060 -->](https://www.marvel.com/comics/issue/49237/wolverine_2014_2)
+- [ ] [Wolverine (2014) #3 <!-- mrt:source-occurrence=1061 -->](https://www.marvel.com/comics/issue/49239/wolverine_2014_3)
+- [ ] [Wolverine (2014) #4 <!-- mrt:source-occurrence=1062 -->](https://www.marvel.com/comics/issue/49240/wolverine_2014_4)
+- [ ] [Wolverine (2014) #5 <!-- mrt:source-occurrence=1063 -->](https://www.marvel.com/comics/issue/49241/wolverine_2014_5)
+- [ ] [Wolverine (2014) #6 <!-- mrt:source-occurrence=1064 -->](https://www.marvel.com/comics/issue/49242/wolverine_2014_6)
+- [ ] [Wolverine (2014) #7 <!-- mrt:source-occurrence=1065 -->](https://www.marvel.com/comics/issue/49243/wolverine_2014_7)
+- [ ] [Wolverine (2014) #8 <!-- mrt:source-occurrence=1066 -->](https://www.marvel.com/comics/issue/49244/wolverine_2014_8)
 - [ ] Wolverine (vol. 6) #9
 - [ ] Wolverine (vol. 6) #10
 - [ ] Wolverine (vol. 6) #11

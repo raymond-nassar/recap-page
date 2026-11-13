@@ -29,7 +29,7 @@ const originalApprovedOverlaps = [
   ['marvels-best-phoenix-comics', 9],
   ['spider-man-best-of', 6],
   ['spider-man-no-way-home', 3],
-  ['wolverine-reading-order', 42],
+  ['wolverine-reading-order', 52],
 ];
 const currentOverlaps = [
   ...originalApprovedOverlaps.filter(([id]) => (

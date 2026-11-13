@@ -10,9 +10,13 @@ import {
 } from '../scripts/lib/cbh-inventory.mjs';
 import { loadCurrentOwnerLibrary } from '../scripts/lib/owner-current-library.mjs';
 import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
-import { buildReportForMapping, loadLibrarySnapshot } from '../scripts/report-order-overlap.mjs';
+import { buildReportForMapping } from '../scripts/report-order-overlap.mjs';
 import { firstSentence, modernTimelineLists, parseCatalog } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
+import {
+  beforeWolverineCorrectionManifest, beforeWolverineCorrectionOrders,
+} from './helpers/wolverine-correction-history.mjs';
+import { loadBeforeWolverineCorrectionLibrary } from './helpers/reading-choice-history.mjs';
 
 const readJson = async (file) => JSON.parse(await readFile(new URL(`../${file}`, import.meta.url), 'utf8'));
 const contract = await readJson('test/fixtures/cbh-modern-event-review.json');
@@ -73,17 +77,19 @@ test('the signed comparisons cover the complete reviewed library and both mapped
   const library = await loadCurrentOwnerLibrary(ids[0]);
   const reviewedIds = new Set(contract.orderIds);
   assert.equal(reviewedIds.size, 341);
-  const orders = library.orders.filter((order) => reviewedIds.has(order.orderId));
+  const orders = beforeWolverineCorrectionOrders(
+    library.orders.filter((order) => reviewedIds.has(order.orderId)),
+  );
   assert.deepEqual(orders.map((order) => order.orderId), contract.orderIds);
-  const manifest = {
+  const manifest = beforeWolverineCorrectionManifest({
     ...library.manifest,
     lists: library.manifest.lists.filter((entry) => reviewedIds.has(entry.id)),
     paths: library.manifest.paths.filter((entry) => reviewedPathIds.has(entry.id)),
-  };
+  });
   assert.equal(libraryDigestFor(manifest, orders.map((order) => ({
     id: order.orderId, issueIds: order.issueIds.map(String),
   }))), contract.libraryDigest);
-  const manifestLibrary = await loadLibrarySnapshot();
+  const manifestLibrary = await loadBeforeWolverineCorrectionLibrary();
   const laterOrderIds = manifestLibrary.orders
     .filter((order) => !reviewedIds.has(order.orderId) && !ids.includes(order.orderId))
     .map((order) => order.orderId);
@@ -101,7 +107,11 @@ test('the signed comparisons cover the complete reviewed library and both mapped
     const liveReport = await buildReportForMapping(
       `scripts/data/cbh-mappings/${guide.id}.json`,
       [`scripts/data/cbh-mappings/${peer.id}.json`],
-      { excludedOrderIds: laterOrderIds },
+      {
+        excludedOrderIds: laterOrderIds,
+        manifest: manifestLibrary.manifest,
+        payloadDir: manifestLibrary.payloadDir,
+      },
     );
     assert.deepEqual(liveReport, report);
     assert.equal(report.reportDigest, guide.manifestReportDigest);

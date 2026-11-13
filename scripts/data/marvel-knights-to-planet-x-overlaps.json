@@ -1,12 +1,12 @@
 {
   "parentId": "marvel-knights-to-planet-x",
-  "generatedAt": "2026-11-07T06:36:13.433Z",
-  "pairCount": 88,
-  "chapterCountWithOverlap": 51,
+  "generatedAt": "2026-11-13T07:32:25.875Z",
+  "pairCount": 89,
+  "chapterCountWithOverlap": 52,
   "existingListCount": 27,
-  "sharedOccurrenceCount": 466,
+  "sharedOccurrenceCount": 476,
   "internalChildOverlapCount": 0,
-  "matrixSha256": "f9fcd9add7a3c407fea8792715e2f73eeff0b6af8b2ebe8a4d596026d967bcae",
+  "matrixSha256": "6eaee595b7cc1fb6fca010c7136b2acf1c48f3753040003318058ea93cc49f2f",
   "existingLists": [
     {
       "id": "amazing-spider-man-reading-order-modern-marvel-era",
@@ -110,7 +110,7 @@
     },
     {
       "id": "wolverine-reading-order",
-      "sharedCount": 42
+      "sharedCount": 52
     },
     {
       "id": "young-avengers-reading-order",
@@ -894,6 +894,19 @@
       ]
     },
     {
+      "chapterId": "marvel-knights-to-planet-x-57",
+      "existingListId": "wolverine-reading-order",
+      "sharedCount": 6,
+      "sharedIssueIds": [
+        14225,
+        14236,
+        14247,
+        14259,
+        14264,
+        234
+      ]
+    },
+    {
       "chapterId": "marvel-knights-to-planet-x-58",
       "existingListId": "daredevil-reading-order",
       "sharedCount": 7,
@@ -1023,9 +1036,13 @@
     {
       "chapterId": "marvel-knights-to-planet-x-70",
       "existingListId": "wolverine-reading-order",
-      "sharedCount": 1,
+      "sharedCount": 5,
       "sharedIssueIds": [
-        231
+        233,
+        268,
+        231,
+        237,
+        236
       ]
     },
     {
