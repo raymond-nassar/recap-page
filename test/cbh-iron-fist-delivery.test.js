@@ -14,6 +14,7 @@ import {
 } from '../scripts/lib/cbh-inventory.mjs';
 import { placeholderId } from '../scripts/lib/placeholder-id.mjs';
 import { beforeIdentityCatalog, beforeIdentityChecklist, beforeIdentityPayload } from './helpers/owner-identity-history.mjs';
+import { beforeWolverineCorrectionChapterOverlaps } from './helpers/wolverine-correction-history.mjs';
 
 import { parseCatalog } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
@@ -168,7 +169,8 @@ test('Iron Fist pinned payload and catalog retain all 414 original slots, cover 
     readJson('src/data/catalog.json'),
     readFile(`src/data/orders/${id}.md`, 'utf8').then((text) => beforeIdentityChecklist(id, normalizeCrLf(text))),
     readJson('src/data/curated-lists.json'),
-    readJson('scripts/data/marvel-knights-to-planet-x-overlaps.json'),
+    readJson('scripts/data/marvel-knights-to-planet-x-overlaps.json')
+      .then(beforeWolverineCorrectionChapterOverlaps),
     readJson('test/fixtures/iron-fist-browser-vector.json'),
     readJson('scripts/data/cbh-character-inventory.json'),
     readJson(`scripts/data/cbh-overlaps/${id}.json`),

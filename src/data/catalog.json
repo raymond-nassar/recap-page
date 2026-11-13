@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-07T09:24:07.640Z",
+  "generatedAt": "2026-11-13T07:32:25.875Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -6411,9 +6411,11 @@
         "marvel-knights-to-planet-x-29",
         "marvel-knights-to-planet-x-32",
         "marvel-knights-to-planet-x-42",
+        "marvel-knights-to-planet-x-57",
+        "marvel-knights-to-planet-x-70",
         "marvel-knights-to-planet-x-73"
       ],
-      "count": 1207,
+      "count": 1272,
       "placeholderCount": 756,
       "emptyRecordCount": 0,
       "collections": 0,
@@ -6441,7 +6443,7 @@
       "source": "https://www.comicbookherald.com/wolverine-reading-order/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-09-07T08:41:05.684Z"
+      "updatedAt": "2026-11-13T07:32:25.875Z"
     },
     {
       "id": "hope-summers-reading-order",

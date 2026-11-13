@@ -156,6 +156,18 @@ final class WebViewController: UIViewController, WKUIDelegate {
         #endif
     }
 
+    /// Replaces every page script with one built from the current state. The one-load restart flag is
+    /// kept while it is pending, so a text size change during a restart cannot drop the notice.
+    private func reinstallPageScripts(in webView: WKWebView) {
+        let controller = webView.configuration.userContentController
+        controller.removeAllUserScripts()
+        installPageScripts(in: controller)
+        if restartNoticePending {
+            controller.addUserScript(WKUserScript(
+                source: "window.recapIosRestarted = true;", injectionTime: .atDocumentStart, forMainFrameOnly: true))
+        }
+    }
+
     private static let accessibleTargetScript = #"""
     (() => {
       const selector = '.skip-link, #fallback, #return, .brand, #home-updates-toggle, #btn-home-browse, #btn-home-add';
@@ -252,6 +264,9 @@ final class WebViewController: UIViewController, WKUIDelegate {
 
     @objc private func preferredContentSizeCategoryDidChange() {
         guard let webView else { return }
+        // The installed script still carries the size the view loaded with, so without this every
+        // later load, such as the reload after a complete restore, put the old size back (#1030).
+        reinstallPageScripts(in: webView)
         webView.evaluateJavaScript(Self.dynamicTypeScaleScript(for: traitCollection)) { _, error in
             if let error {
                 NSLog("Could not update the page's Dynamic Type scale: %@", error.localizedDescription)
@@ -410,10 +425,7 @@ final class WebViewController: UIViewController, WKUIDelegate {
         // Set before any script of the page that loads next, which reads it when it starts. The
         // page learns it that way whenever its own module runs: an event sent once the reload had
         // finished reached the page on both Simulator runtimes and still left the notice hidden.
-        webView.configuration.userContentController.removeAllUserScripts()
-        installPageScripts(in: webView.configuration.userContentController)
-        webView.configuration.userContentController.addUserScript(WKUserScript(
-            source: "window.recapIosRestarted = true;", injectionTime: .atDocumentStart, forMainFrameOnly: true))
+        reinstallPageScripts(in: webView)
         if let current = webView.url, policy?.isAppPage(current) == true {
             // A reload keeps the reader's place: the address the ended page had, view and all, loads
             // again in a new content process.
@@ -429,8 +441,7 @@ final class WebViewController: UIViewController, WKUIDelegate {
             // Remove the one-load restart flag without losing scripts that restore page state,
             // apply Dynamic Type, and support the Debug-only Simulator probes.
             restartNoticePending = false
-            webView.configuration.userContentController.removeAllUserScripts()
-            installPageScripts(in: webView.configuration.userContentController)
+            reinstallPageScripts(in: webView)
         }
         #if DEBUG
         DebugSupport.runProbeIfRequested(in: webView, over: view)
