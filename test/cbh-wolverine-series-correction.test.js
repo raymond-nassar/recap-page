@@ -8,6 +8,7 @@ import {
   approvalDigestFor, mappingDigestFor, packetDigestFor, sourceCountsForPacket,
   sourcePositionsForPacket,
 } from '../scripts/lib/cbh-inventory.mjs';
+import { beforeWolverineCorrectionIssueIds } from './helpers/wolverine-correction-history.mjs';
 
 const id = 'wolverine-reading-order';
 const readJson = async (file) => JSON.parse(await readFile(file, 'utf8'));
@@ -135,4 +136,15 @@ test('the correction review approves the current Wolverine publication', () => {
     packet, mapping, report, currentLibraryDigest: report.libraryDigest,
     expectedOrderIds: report.comparisons.map((comparison) => comparison.orderId),
   }));
+});
+
+test('historical replay rejects issue vectors outside the reviewed correction', () => {
+  const currentIds = payload.items.map(({ issueId }) => issueId);
+  const priorIds = JSON.parse(priorPayloadText).items.map(({ issueId }) => String(issueId));
+  assert.deepEqual(beforeWolverineCorrectionIssueIds(currentIds), priorIds);
+  assert.deepEqual(beforeWolverineCorrectionIssueIds(priorIds), priorIds);
+  const changed = [...currentIds];
+  changed[0] = 1;
+  assert.throws(() => beforeWolverineCorrectionIssueIds(changed), /exact reviewed correction/);
+  assert.throws(() => beforeWolverineCorrectionIssueIds(currentIds.slice(1)), /exact reviewed correction/);
 });
