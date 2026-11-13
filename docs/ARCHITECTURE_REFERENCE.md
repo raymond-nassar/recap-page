@@ -9,7 +9,7 @@ source can be reviewed alongside the prose.
 ## The three entry points
 
 The desktop source has three pages at one origin, each loading one module: the tracker at
-`src/index.html:1569`, the reader launch tab at `src/open.html:24`, and the development-only fault
+`src/index.html:1570`, the reader launch tab at `src/open.html:24`, and the development-only fault
 harness at `src/dev-faults.html:137`.
 
 The tracker entry calls `boot()`, then wires optional installation and registers the offline worker,
@@ -107,7 +107,7 @@ SynopsisRunner at `src/js/main.js:2468-2482`. In-flight synopsis work is cancele
 cleared. The Store stays in place, as does the rate limiter: its budget belongs to the reader's
 connection, not the configured service.
 
-**The app supplies one limiter and cache.** `MarvelApi` can construct its own at `src/js/api.js:68-69`,
+**The app supplies one limiter and cache.** `MarvelApi` can construct its own at `src/js/api.js:69-70`,
 but that fallback is for tests and other callers. The app supplies them to keep one request budget.
 
 **Synopsis state is intentionally separate from saved metadata.** `SessionSynopsis` is a tab-memory
@@ -209,7 +209,7 @@ at `scripts/vendor-orders.mjs:702-795`. Runtime loads and parses that same-origi
 Series and creator names are searched in vendored indexes. Browsing a matching name pages its comics
 from the API into a read-only preview. Issue, series, and creator results share an in-memory selection;
 only an explicit save creates or fills the chosen Reading List. API responses use `no-store`, and
-cache writes remove synopsis prose before IndexedDB sees them, at `src/js/api.js:81-120`. Hydration
+cache writes remove synopsis prose before IndexedDB sees them, at `src/js/api.js:82-121`. Hydration
 sends normalized factual metadata through the same Store boundary as a reader edit; synopsis requests
 instead end in the tab-memory map and disappear when the tab closes.
 
@@ -321,7 +321,7 @@ overwrite, as explained at `src/js/storage.js:1132-1140`. A guard inside `update
 replacement paths.
 
 **Comic searches preview first and save once.** The API delivers each normalized page before it
-requests the next one, at `src/js/api.js:193-230`. Each search owns a read-only run that accumulates
+requests the next one, at `src/js/api.js:197-234`. Each search owns a read-only run that accumulates
 comics in memory, rejects invalid issue identities, and reports incomplete loads against the API's
 total, at `src/js/views/add.js:95-187`. Cancellation retires the run before aborting its request;
 late responses cannot replace a newer preview. Received partial results remain selectable, with
@@ -1025,8 +1025,8 @@ Modern Timeline follows a path rather than a page of its own, since #897 retired
 page. Its follow control lists the resolved paths; choosing one narrows the Timeline to that path's
 stops in the path's own order, each led by the reading the path names, at
 `src/js/views/catalog.js:98-110`. The controller gives the catalog view the control's elements and
-its history effects rather than those concrete owners, at `src/js/main.js:4034-4040` and
-`src/js/main.js:4060-4061`. The followed id lives only in the validated `path` query of the
+its history effects rather than those concrete owners, at `src/js/main.js:4035-4041` and
+`src/js/main.js:4061-4062`. The followed id lives only in the validated `path` query of the
 Timeline's hash route, not in saved reader state, at `src/js/lib/route.js:311-313`. The retired
 page's addresses parse to the Timeline following the path they name, with the first path as the
 page's own fallback, at `src/js/lib/route.js:358-364`.
@@ -1059,7 +1059,7 @@ Catalog shelves, Preview and generated publishing pages share one constructed pr
 contract for individually titled cards, exact-list inspection and source attribution.
 That internal module imports neither the controller nor another concrete view; the controller injects
 navigation, imports, Store effects and publishing-page orchestration at
-`src/js/main.js:3912-4148`.
+`src/js/main.js:3912-4149`.
 
 Closing an unchanged Preview leaves its source cards and focus intact. A changed library refreshes
 the source, including an Add that finishes after dismissal. Each refresh belongs to its specific
@@ -1086,7 +1086,7 @@ The shared presentation contract removes the previous positional state and paint
 current label, hidden message, completion state or unavailable message at
 `src/js/views/shared/catalog-presentation.js:169-220`. Only the visible current list receives
 `aria-current="step"`. The controller injects live state and current-view knowledge at
-`src/js/main.js:4020-4062`, while the existing Store-driven render path calls the position-only
+`src/js/main.js:4021-4063`, while the existing Store-driven render path calls the position-only
 refresh at `src/js/main.js:3177-3203`. That refresh leaves cards, controls, focus and scroll
 intact across same-tab and cross-tab state changes.
 
