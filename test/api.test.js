@@ -70,6 +70,30 @@ test('series and creators load separately, and each index loads only once', asyn
   assert.deepEqual(loadIndex.calls, ['series', 'creators']);
 });
 
+test('opt-in spelling suggestions reuse local indexes without changing exact matches or ordinary envelopes', async () => {
+  const loadIndex = stubLoader(() => INDEX);
+  const api = new MarvelApi({ loadIndex });
+  api.get = () => { throw new Error('suggestions must not use the metadata service'); };
+  const typo = await api.searchSeries('civl war', { suggest: true });
+  assert.equal(typo.matched, 0);
+  assert.deepEqual(typo.items, []);
+  assert.deepEqual(typo.suggestions, ['Civil War', 'Civil War: Front Line']);
+  assert.deepEqual((await api.searchSeries('civil', { suggest: true })).suggestions, []);
+  assert.equal(Object.hasOwn(await api.searchSeries('civl war'), 'suggestions'), false);
+  assert.deepEqual(loadIndex.calls, ['series']);
+});
+
+test('spelling suggestions never turn an index load failure into an empty success', async () => {
+  const loadIndex = stubLoader((kind, call) => {
+    if (call === 1) throw new Error('index unavailable');
+    return { items: [[1, 'Jonathan Hickman', 395]] };
+  });
+  const api = new MarvelApi({ loadIndex });
+  await assert.rejects(api.searchCreators('hickamn', { suggest: true }), /index unavailable/);
+  assert.deepEqual((await api.searchCreators('hickamn', { suggest: true })).suggestions, ['Jonathan Hickman']);
+  assert.deepEqual(loadIndex.calls, ['creators', 'creators']);
+});
+
 // Opening the card starts the download and the reader types while it is in flight, so the two
 // can easily overlap. One file, one request.
 test('searches started before the index arrives share the one load', async () => {

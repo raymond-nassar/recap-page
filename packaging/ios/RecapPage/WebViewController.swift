@@ -161,7 +161,7 @@ final class WebViewController: UIViewController, WKUIDelegate {
       const selector = '.skip-link, #fallback, #return, .brand, #home-updates-toggle, #btn-home-browse, #btn-home-add';
       const additionalTargets = '#sidebar-nav a.ri[data-view="library"], #sidebar-nav a.ri[data-view="add"], '
         + '#sidebar-nav a.ri[data-view="data"], #sidebar-nav a.ri[data-view="about"], '
-        + '.app-back, #btn-chero-read, #btn-chero-done, #btn-chero-open, #btn-chero-review, #btn-chero-deferred, '
+        + '.app-back, #btn-chero-read, #btn-chero-done, #btn-chero-open, #btn-chero-deferred, '
         + '#preview-secondary button, #preview-secondary a, '
         + '.app-footer > a[data-view="about"], '
         + '.breadcrumb a, #library-rated-shelf .btn, #view-library .search-hub-card, '
@@ -170,7 +170,7 @@ final class WebViewController: UIViewController, WKUIDelegate {
         + '.mobile-link[data-view="add"], .home-guide-link, #reader-closure-faq';
       const applyAccessibleTargets = () => {
         for (const control of document.querySelectorAll(
-          '#btn-chero-read, #btn-chero-done, #btn-chero-open, #btn-chero-review, #btn-chero-deferred, '
+          '#btn-chero-read, #btn-chero-done, #btn-chero-open, #btn-chero-deferred, '
             + '#preview-secondary button, #preview-secondary a')) {
           if (control.hidden) control.setAttribute('aria-hidden', 'true');
           else control.removeAttribute('aria-hidden');

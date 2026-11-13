@@ -1606,6 +1606,9 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
 .search-hub-card .gi { color: var(--dim); font-size: 1.35rem; }
 .search-hub-card:hover { border-color: var(--accent-text); background: var(--card-2); }
 .library-tools { margin-top: var(--space-9); }
+.search-suggestions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); margin-bottom: var(--space-5); }
+.search-suggestions[hidden] { display: none; }
+.search-suggestions .btn { max-width: 100%; white-space: normal; overflow-wrap: anywhere; text-align: left; }
 #search-browse { margin-top: var(--space-6); }
 @media (max-width: 560px) {
   .search-hub-grid { grid-template-columns: 1fr; }
@@ -2548,7 +2551,8 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
    job. The Unlimited button grows, `Done, next` stays a ghost because it is an action, and the
    issue page becomes a link because that is what it is: a way out of the app. */
 .hero .cta { gap: var(--space-5); align-items: center; }
-#hero #reading-list-options { margin-top: var(--space-6); }
+/* Below the comic up next, the options keep a clear gap from the card they used to sit inside (#1243). */
+#reading-list-options:has(+ #shelf-sec) { margin-top: var(--space-6); }
 #reading-list-options > .list-tools, #reading-list-options > .list-tools > .list-actions { width: 100%; }
 #reading-list-options :is(#android-list-options, #list-actions > summary) {
   box-sizing: border-box; width: 100%; min-height: var(--target-touch); justify-content: space-between;
@@ -2928,20 +2932,6 @@ body.nocovers :is(.fallback, .tf, .of).cover-fallback, :is(.fallback, .tf, .of).
 }
 select, input[type="search"], input[type="text"], input[type="url"] {
   min-height: var(--target); font: inherit; font-size: var(--t-body); border-radius: var(--radius-md);
-}
-/* Optional review stays in normal reading flow, with no separate prose surface. */
-.review-earlier {
-  margin-block: var(--space-6); padding: var(--space-6);
-  border: var(--stroke-1) solid var(--line); border-radius: var(--radius-card);
-  background: var(--card); overflow-wrap: anywhere;
-}
-.review-earlier .cta { flex-wrap: wrap; margin-top: var(--space-4); }
-.review-earlier .btn { white-space: normal; max-width: 100%; }
-.review-earlier [aria-disabled="true"] { color: var(--muted); cursor: default; }
-#btn-review-earlier { margin-bottom: var(--space-6); }
-@media (forced-colors: active) {
-  .review-earlier { border-color: CanvasText; background: Canvas; }
-  .review-earlier [aria-disabled="true"] { color: GrayText; }
 }
 /* Done's result follows the command group of the Done that was pressed, the hero's or Continue
    reading's on Home, so it keeps the group's own gap above it and pushes down only what is below the

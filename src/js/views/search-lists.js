@@ -1,4 +1,6 @@
 import { listSearchTerms, rankLists } from '../lib/listSearch.js';
+import { foldName } from '../lib/nameIndex.js';
+import { suggestNames } from '../lib/searchSpelling.js';
 
 export const SCOPES = ['top', 'lists', 'series', 'creators', 'comics'];
 export const TOP_PER_GROUP = 3;
@@ -73,6 +75,9 @@ export function createSearchListsView({
   let query = '';
   let scope = 'top';
   let timer = null;
+  let settled = false;
+  let suggested = { lists: [], series: [], creators: [] };
+  let renderedSuggestions = '';
   let limits = { series: NAME_PAGE, creators: NAME_PAGE };
   const found = {
     lists: [], series: null, creators: null, error: {},
@@ -125,11 +130,52 @@ export function createSearchListsView({
     return lineFor(scope);
   }
 
+  function suggestions() {
+    if (!settled || !terms() || scope === 'comics') return [];
+    // Comics found for the typed title show the spelling was a real one, so Top stops doubting it.
+    if (scope === 'top' && comicsHere() && comic.phase === 'complete' && comic.count > 0) return [];
+    const kinds = scope === 'top' ? ['lists', 'series', 'creators'] : [scope];
+    if (kinds.some((kind) => found.error[kind] || total(kind) > 0)) return [];
+    const unique = new Map();
+    for (const kind of kinds) {
+      for (const name of suggested[kind]) if (!unique.has(foldName(name))) unique.set(foldName(name), name);
+    }
+    const names = [...unique.values()];
+    if (scope === 'top') names.sort((a, b) => a.length - b.length || a.localeCompare(b));
+    return names.slice(0, 3);
+  }
+
   function announcement() {
-    if (!terms() || scope !== 'top') return countText();
-    const parts = ['lists', 'series', 'creators'].map(lineFor);
-    if (comicsHere() && comic.phase === 'complete') parts.push(comicShort(comic.count));
-    return `${countText()}. ${parts.join(', ')}.`;
+    let message = countText();
+    if (terms() && scope === 'top') {
+      const parts = ['lists', 'series', 'creators'].map(lineFor);
+      if (comicsHere() && comic.phase === 'complete') parts.push(comicShort(comic.count));
+      message = `${message}. ${parts.join(', ')}.`;
+    }
+    const names = suggestions();
+    return names.length ? `${message.replace(/\.$/, '')}. Did you mean ${names.join(', ')}?` : message;
+  }
+
+  function chooseSuggestion(name) {
+    const input = elements().input;
+    input.value = name;
+    input.focus({ preventScroll: true });
+    return update(name);
+  }
+
+  function renderSuggestions(nodes) {
+    const names = suggestions();
+    nodes.suggestions.hidden = !names.length;
+    const key = names.join('\0');
+    if (key === renderedSuggestions) return;
+    renderedSuggestions = key;
+    nodes.suggestions.replaceChildren(...(names.length ? [
+      el('span', { text: 'Did you mean' }),
+      ...names.map((name) => el('button', {
+        type: 'button', class: 'btn btn-g', 'aria-label': `Search for ${name}`,
+        onclick: () => chooseSuggestion(name),
+      }, name)),
+    ] : []));
   }
 
   function nameRow(kind, item) {
@@ -185,6 +231,7 @@ export function createSearchListsView({
     }
     nodes.count.hidden = nodes.scopes.hidden;
     nodes.count.textContent = countText();
+    renderSuggestions(nodes);
     nodes.panes.hidden = !active;
     for (const kind of ['lists', 'series', 'creators']) renderGroup(kind, nodes, rebuild);
     const comicsShown = active && comicsHere() && (scope === 'top' ? comic.phase !== 'cancelled' : scope === 'comics');
@@ -196,6 +243,10 @@ export function createSearchListsView({
   }
 
   async function update(next) {
+    quiet();
+    settled = false;
+    suggested = { lists: [], series: [], creators: [] };
+    renderSuggestions(elements());
     if (next !== query) limits = { series: NAME_PAGE, creators: NAME_PAGE };
     query = next;
     const mine = ++generation;
@@ -204,6 +255,7 @@ export function createSearchListsView({
       found.series = null;
       found.creators = null;
       found.error = {};
+      settled = true;
       quiet();
       render();
       return;
@@ -212,8 +264,8 @@ export function createSearchListsView({
     const [catalog, guides, series, creators] = await Promise.all([
       settle(loadCatalog()),
       settle(loadGuides()),
-      settle(searchNames('series', query, { limit: limits.series })),
-      settle(searchNames('creators', query, { limit: limits.creators })),
+      settle(searchNames('series', query, { limit: limits.series, suggest: true })),
+      settle(searchNames('creators', query, { limit: limits.creators, suggest: true })),
     ]);
     if (mine !== generation) return;
     found.error = {};
@@ -227,6 +279,12 @@ export function createSearchListsView({
     if (series.error) found.error.series = `Series could not be loaded: ${series.error.message}.`;
     found.creators = creators.value ?? null;
     if (creators.error) found.error.creators = `Creators could not be loaded: ${creators.error.message}.`;
+    suggested = {
+      lists: !catalog.error && !found.lists.length ? suggestNames(catalog.value.lists, query) : [],
+      series: series.value?.suggestions ?? [],
+      creators: creators.value?.suggestions ?? [],
+    };
+    settled = true;
     render();
     say(announcement());
   }
@@ -246,7 +304,7 @@ export function createSearchListsView({
     }
     quiet();
     // A lookup this switch started speaks its own busy notice, so the count line would say it twice.
-    if (terms() && !started) announce(announcement());
+    if (terms() && !started && settled) announce(announcement());
   }
 
   // Enter in the box. Offline sends nothing and says so; the local groups are already showing.

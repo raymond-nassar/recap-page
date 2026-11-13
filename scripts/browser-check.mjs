@@ -551,15 +551,6 @@ const MUTATIONS = [
     ),
   },
   {
-    id: 'reorientation-return-lost-445',
-    breaks: 'reorientation-445',
-    why: 'Back loses the exact earlier-issue picker link and focuses the view heading instead',
-    rewriteMain: (source) => source.replace(
-      "opener.surface === 'reorientation' && !readingView.restoreReview(opener)",
-      "opener.surface === 'reorientation'",
-    ),
-  },
-  {
     id: 'cache-deleted-means-unreachable',
     breaks: 'cache-generations',
     why: 'a successful legacy delete hides an active-cache clear failure during automatic cleanup',
@@ -2683,15 +2674,15 @@ const SCENARIOS = [
     run: (page, t) => retiredReaderHelp(page, t, { seedFixtureState, click, openFullOrder, order: ORDER }),
   },
   {
-    id: 'reorientation-445',
-    title: '445 earlier-issue review and loaded summaries preserve identity and saved data',
+    id: 'loaded-summaries-1061',
+    title: '#1061 loaded summaries show in full and preserve identity and saved data',
     async run(page, t) {
       const errors = [];
       page.on('pageerror', (error) => errors.push(error.message));
       await page.evaluateOnNewDocument(() => {
         const original = window.fetch;
-        window.__review445 = { requests: [], opens: [] };
-        window.open = (...args) => { window.__review445.opens.push(args); return {}; };
+        window.__summaries1061 = { requests: [], opens: [] };
+        window.open = (...args) => { window.__summaries1061.opens.push(args); return {}; };
         window.fetch = (input, init) => {
           const url = new URL(typeof input === 'string' ? input : input.url, location.href);
           if (url.origin === location.origin) return original(input, init);
@@ -2699,7 +2690,7 @@ const SCENARIOS = [
           const match = /\/issues\/(\d+)$/.exec(url.pathname);
           if (!match) return original(input, init);
           const id = Number(match[1]);
-          window.__review445.requests.push({ id, cache: init?.cache });
+          window.__summaries1061.requests.push({ id, cache: init?.cache });
           return Promise.resolve(new Response(JSON.stringify({
             id, title: `Synthetic ${id}`, description: `Synthetic narrative 445 for ${id}.`,
           }), { headers: { 'content-type': 'application/json' } }));
@@ -2721,12 +2712,8 @@ const SCENARIOS = [
       };
       const reading = () => go(`#/read/${encodeURIComponent(listId)}`, '#view-read:not([hidden])');
       const settings = () => go('#/data', '#view-data:not([hidden])');
-      const candidate = () => page.$eval('#review-candidate a', (node) => Number(node.dataset.issueId));
-      const inspect = async () => {
-        await page.focus('#review-candidate a');
-        await page.keyboard.press('Enter');
-        await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
-      };
+      const details = (id) => go(`#/issue/${id}?list=${encodeURIComponent(listId)}`,
+        '#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
       const fetchOne = async () => {
         await click(page, '#btn-issue-synopsis');
         await page.waitForSelector('#ask[open]');
@@ -2734,32 +2721,18 @@ const SCENARIOS = [
         await page.waitForFunction(() => !document.querySelector('#issue-focus-desc').hidden
           && document.querySelector('#issue-focus-desc').textContent.startsWith('Synthetic narrative 445'));
       };
-      await go('#/home', '#view-home:not([hidden])');
-      await click(page, '#btn-chero-review');
-      t.check('Home opens the exact current-order predecessor without fetching or revealing', await candidate() === ids[1]
-        && await page.evaluate(() => window.__review445.requests.length === 0
-          && document.activeElement.id === 'review-h'));
-      await click(page, '#review-earlier-button');
-      t.check('Earlier moves to the prior identity', await candidate() === ids[0]);
-      await click(page, '#review-later-button');
-      await inspect();
+      await details(ids[1]);
+      t.check('Details of an earlier comic opens without fetching', await page.evaluate(() => window.__summaries1061.requests.length === 0));
       await fetchOne();
-      await page.goBack();
-      await page.waitForSelector('#view-read:not([hidden])');
-      await frames();
-      t.check('Back restores the exact earlier comic link and its visible keyboard focus', await page.$eval('#review-candidate a', (node, id) => {
-        const box = node.getBoundingClientRect();
-        return Number(node.dataset.issueId) === id && document.activeElement === node
-          && box.top >= 0 && box.bottom <= innerHeight;
-      }, ids[1]));
-      await inspect();
+      await reading();
+      await details(ids[1]);
       t.check('#1061 the same issue shows its loaded summary in full, with no reveal control, without another request',
         await page.evaluate(() => {
           const desc = document.querySelector('#issue-focus-desc');
           return !desc.hidden && desc.textContent.startsWith('Synthetic narrative 445')
-            && !document.querySelector('#btn-issue-description') && window.__review445.requests.length === 1;
+            && !document.querySelector('#btn-issue-description') && window.__summaries1061.requests.length === 1;
         }));
-      await go(`#/issue/${ids[2]}?list=${encodeURIComponent(listId)}`, '#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+      await details(ids[2]);
       await fetchOne();
       await reading();
       t.check('#1061 Reading shows the loaded summary of the current next issue in full, with no reveal control',
@@ -2769,10 +2742,10 @@ const SCENARIOS = [
             && !document.querySelector('#btn-hero-description');
         }, ids[2]));
       t.check('only deliberately requested exact IDs used no-store', await page.evaluate((expected) => (
-        window.__review445.requests.length === 2
-        && window.__review445.requests.every((r, i) => r.id === expected[i] && r.cache === 'no-store')
+        window.__summaries1061.requests.length === 2
+        && window.__summaries1061.requests.every((r, i) => r.id === expected[i] && r.cache === 'no-store')
       ), [ids[1], ids[2]]));
-      t.check('picker, Details, fetching and settings preserve saved progress and notes bytes',
+      t.check('Details, fetching and settings preserve saved progress and notes bytes',
         await page.evaluate((before) => localStorage.getItem('mrt.state.v2') === before, saved));
       await settings();
       t.check('#1061 Settings no longer offers to hide story summaries, nor lists that choice among those a backup holds',
@@ -2815,100 +2788,10 @@ const SCENARIOS = [
       });
       await page.reload({ waitUntil: 'networkidle0' });
       await reading();
-      await click(page, '#btn-review-earlier');
-      for (const theme of ['dark', 'light']) {
-        await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
-        await page.setViewport({ width: 620, height: 900 });
-        await page.focus('#review-candidate a');
-        t.check(`${theme} constrained review stays readable with visible focus`, await page.$eval('#review-candidate a', (node) => (
-          getComputedStyle(node).outlineStyle !== 'none'
-          && document.documentElement.scrollWidth <= innerWidth
-        )));
-      }
-      await page.evaluate(() => { document.documentElement.style.fontSize = '200%'; });
-      t.check('enlarged text does not overflow review', await page.$eval('#review-earlier',
-        (node) => node.scrollWidth <= node.clientWidth));
-      await page.evaluate(() => { document.documentElement.style.fontSize = ''; });
-      await page.setViewport({ width: 1280, height: 900 });
       await click(page, '#btn-hero-read');
       t.check('ordinary Continue still opens a separate reader without marking progress',
-        await page.evaluate((before) => window.__review445.opens.length === 1
+        await page.evaluate((before) => window.__summaries1061.opens.length === 1
           && localStorage.getItem('mrt.state.v2') === before, saved));
-      const visibleFocus = (selector) => page.$eval(selector, (node) => {
-        const box = node.getBoundingClientRect();
-        return node === document.activeElement && box.top >= 0 && box.bottom <= innerHeight
-          && getComputedStyle(node).outlineStyle !== 'none';
-      });
-      await page.focus('#review-candidate a');
-      const renamed = await page.evaluate(() => {
-        const oldValue = localStorage.getItem('mrt.state.v2');
-        const state = JSON.parse(oldValue);
-        state.lists[state.active].name = 'Repainted storyline 445';
-        delete state.writeToken;
-        const newValue = JSON.stringify(state);
-        localStorage.setItem('mrt.state.v2', newValue);
-        dispatchEvent(new StorageEvent('storage', { key: 'mrt.state.v2', oldValue, newValue, storageArea: localStorage }));
-        return { saved: newValue, requests: window.__review445.requests.length };
-      });
-      await page.waitForFunction(() => document.querySelector('#review-context').textContent.includes('Repainted storyline 445'));
-      t.check('valid Store repaint retains visible focus on the exact picker candidate',
-        await visibleFocus('#review-candidate a') && await candidate() === ids[1]);
-      t.check('valid repaint adds no requests or writes beyond the explicit fixture rename',
-        await page.evaluate((before) => localStorage.getItem('mrt.state.v2') === before.saved
-          && window.__review445.requests.length === before.requests, renamed));
-      await page.focus('#review-candidate a');
-      await page.evaluate(() => {
-        const oldValue = localStorage.getItem('mrt.state.v2');
-        const state = JSON.parse(oldValue);
-        delete state.read[state.lists[state.active].itemIds[0]];
-        delete state.writeToken;
-        const newValue = JSON.stringify(state);
-        localStorage.setItem('mrt.state.v2', newValue);
-        dispatchEvent(new StorageEvent('storage', { key: 'mrt.state.v2', oldValue, newValue, storageArea: localStorage }));
-      });
-      await page.waitForFunction((title) => document.querySelector('#hero-title').textContent === title, {}, ORDER.items[0].title);
-      t.check('an earlier unread hole withdraws the stale candidate instead of switching issues',
-        await page.$eval('#review-position', (node) => /no longer valid/.test(node.textContent)));
-      t.check('withdrawn focused candidate moves visible focus to the review heading',
-        await visibleFocus('#review-h'));
-      await click(page, '#btn-review-earlier');
-      t.check('first-position next unread has an honest no-earlier state',
-        await page.$eval('#review-position', (node) => /no comics before/.test(node.textContent)));
-      await click(page, '#review-full-order');
-      t.check('full-order escape keeps its existing focus destination',
-        await page.$eval('#full > summary', (node) => node === document.activeElement));
-      await page.evaluate(() => {
-        const oldValue = localStorage.getItem('mrt.state.v2');
-        const state = JSON.parse(oldValue);
-        const list = state.lists[state.active];
-        for (const id of list.itemIds) state.read[id] = 1;
-        delete state.issues[list.itemIds.at(-1)];
-        delete state.writeToken;
-        const newValue = JSON.stringify(state);
-        localStorage.setItem('mrt.state.v2', newValue);
-        dispatchEvent(new StorageEvent('storage', { key: 'mrt.state.v2', oldValue, newValue, storageArea: localStorage }));
-      });
-      await page.waitForSelector('#list-wrap-up:not([hidden])');
-      await click(page, '#btn-review-earlier');
-      t.check('completed list starts at its final comic even without metadata', await candidate() === ids[2]
-        && await page.$eval('#review-candidate', (node) => node.textContent.includes('Issue 900003')));
-      await page.evaluate(() => {
-        const oldValue = localStorage.getItem('mrt.state.v2');
-        const state = JSON.parse(oldValue);
-        state.lists['other-445'] = { id: 'other-445', name: 'Other storyline 445', itemIds: [], note: '' };
-        state.listOrder.push('other-445');
-        state.active = 'other-445';
-        delete state.writeToken;
-        const newValue = JSON.stringify(state);
-        localStorage.setItem('mrt.state.v2', newValue);
-        dispatchEvent(new StorageEvent('storage', { key: 'mrt.state.v2', oldValue, newValue, storageArea: localStorage }));
-      });
-      await page.waitForFunction(() => document.querySelector('#order-name').textContent === 'Other storyline 445');
-      t.check('switching current list withdraws the earlier picker', await page.$eval('#review-earlier', (node) => node.hidden));
-      t.check('empty list withdraws review and offers Search instead',
-        await page.$eval('#btn-review-earlier', (node) => node.hidden)
-        && await page.$eval('#review-earlier', (node) => node.hidden)
-        && await page.$eval('#btn-empty-add', (node) => node.checkVisibility()));
       t.check('no page errors', errors.length === 0, errors.join('\n'));
     },
   },
@@ -11344,6 +11227,82 @@ const SCENARIOS = [
             && source.hiddenChildren && source.prefix === 'Source: '),
           JSON.stringify(sources));
       }
+
+      await page.evaluate(() => {
+        document.documentElement.style.setProperty('--ios-text-scale', '1');
+        window.__mrtAnnounced = [];
+      });
+      await click(page, '#search-scopes [data-scope="top"]');
+      const beforeSpelling = await comicRequests();
+      const selectedBefore = await page.$eval('#search-selection-form .comic-selection-count', (node) => node.textContent);
+      await type('Fixture Evnet');
+      await page.waitForFunction(() => !document.querySelector('#search-suggestions').hidden);
+      await new Promise((resolve) => setTimeout(resolve, 650));
+      const spelling = await page.evaluate(() => ({
+        names: [...document.querySelectorAll('#search-suggestions button')].map((node) => node.textContent),
+        speech: window.__mrtAnnounced,
+        live: document.querySelector('#search-suggestions').hasAttribute('aria-live'),
+      }));
+      t.check('an empty local query offers three bundled names through the same single paused announcement',
+        spelling.names.length === 3 && spelling.names.every((name) => name.startsWith('Fixture Event'))
+          && spelling.speech.filter((text) => text.includes('Did you mean')).length === 1 && !spelling.live,
+        JSON.stringify(spelling));
+      for (const theme of ['light', 'dark']) {
+        await page.evaluate((value) => document.documentElement.setAttribute('data-theme', value), theme);
+        for (const width of [390, 1280]) {
+          await page.setViewport({ width, height: width === 390 ? 844 : 900 });
+          await page.focus('#search-q');
+          await page.keyboard.press('Tab');
+          const fit = await page.$eval('#search-suggestions', (node) => {
+            const box = node.getBoundingClientRect();
+            return {
+              overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+              buttons: [...node.querySelectorAll('button')].map((button) => {
+                const rect = button.getBoundingClientRect();
+                return rect.width >= 44 && rect.height >= 44 && rect.left >= box.left - 1 && rect.right <= box.right + 1;
+              }),
+            };
+          });
+          t.check(`${theme} spelling suggestions fit ${width}px with shared phone CSS and 44px targets`,
+            !fit.overflow && fit.buttons.length === 3 && fit.buttons.every(Boolean), JSON.stringify(fit));
+        }
+      }
+      await page.focus('#search-suggestions button');
+      const suggestion = await page.$('#search-suggestions button');
+      const suggestionAX = await page.accessibility.snapshot({ root: suggestion });
+      await suggestion.dispose();
+      t.check('the optional suggestion is a named native button, not a tab or forced correction',
+        suggestionAX?.role === 'button' && suggestionAX.name === `Search for ${spelling.names[0]}`, JSON.stringify(suggestionAX));
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => document.querySelector('#search-suggestions').hidden);
+      t.check('keyboard choice keeps Top, focuses the filled box, preserves comic picks and makes no lookup',
+        await page.evaluate((name) => document.activeElement?.id === 'search-q'
+          && document.querySelector('#search-q').value === name
+          && document.querySelector('#search-scopes [data-scope="top"]').getAttribute('aria-pressed') === 'true',
+        spelling.names[0]) && await comicRequests() === beforeSpelling
+          && await page.$eval('#search-selection-form .comic-selection-count', (node) => node.textContent) === selectedBefore);
+
+      await page.evaluate(() => Object.defineProperty(navigator, 'onLine', { configurable: true, value: false }));
+      await click(page, '#search-scopes [data-scope="creators"]');
+      await type('hickamn');
+      await page.waitForFunction(() => !document.querySelector('#search-suggestions').hidden);
+      await page.emulateMediaFeatures([
+        { name: 'forced-colors', value: 'active' }, { name: 'prefers-reduced-motion', value: 'reduce' },
+      ]);
+      await page.focus('#search-suggestions button');
+      const forced = await page.$eval('#search-suggestions button', (button) => ({
+        visible: button.checkVisibility(), focus: button.matches(':focus-visible'),
+        outline: getComputedStyle(button).outlineStyle,
+      }));
+      t.check('offline creator suggestions remain visible and keyboard-focused in forced colors and reduced motion',
+        forced.visible && forced.focus && forced.outline !== 'none', JSON.stringify(forced));
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => document.querySelectorAll('#search-creators-results article').length > 0);
+      t.check('offline choice shows the creator in its retained scope without a comic request',
+        await page.$eval('#search-scopes [data-scope="creators"]', (button) => button.getAttribute('aria-pressed') === 'true')
+          && await comicRequests() === beforeSpelling);
+      await type('');
+      t.check('clearing the query withdraws suggestions', await page.$eval('#search-suggestions', (node) => node.hidden));
     },
   },
   {
@@ -12867,7 +12826,6 @@ const SCENARIOS = [
         ring: document.querySelector('#ring-sub').textContent,
         count: document.querySelector('#full-count').textContent,
         focused: document.activeElement?.id,
-        reviewHidden: document.querySelector('#btn-review-earlier').hidden,
         fullHidden: document.querySelector('#full').hidden,
         filtersHidden: document.querySelector('#reading-filters').hidden,
         noMatch: document.querySelector('#rows').textContent.includes('Nothing matches'),
@@ -12878,8 +12836,8 @@ const SCENARIOS = [
         && !initial.completed && !initial.hero
         && initial.ring === 'Nothing in this list' && initial.count === 'No comics yet'
         && initial.focused === 'order-name', JSON.stringify(initial));
-      t.check('an empty list offers Search without review, filters or no-match controls',
-        initial.reviewHidden && initial.fullHidden && initial.filtersHidden && !initial.noMatch
+      t.check('an empty list offers Search without filters or no-match controls',
+        initial.fullHidden && initial.filtersHidden && !initial.noMatch
         && await page.$eval('#btn-empty-add', (button) => button.checkVisibility()
           && button.textContent.trim() === 'Search' && !button.hasAttribute('aria-label')), JSON.stringify(initial));
 
@@ -12889,13 +12847,11 @@ const SCENARIOS = [
         next: document.querySelector('#chero-next').textContent,
         count: document.querySelector('#chero-count').textContent,
         readHidden: document.querySelector('#btn-chero-read').hidden,
-        reviewHidden: document.querySelector('#btn-chero-review').hidden,
       }));
       t.check('Home keeps the saved empty list visible without saying it is read',
         homeEmpty.visible
         && homeEmpty.next === 'No comics in this Reading List yet. Open it to add comics.'
-        && homeEmpty.count === '0 of 0 comics read' && homeEmpty.readHidden
-        && homeEmpty.reviewHidden, JSON.stringify(homeEmpty));
+        && homeEmpty.count === '0 of 0 comics read' && homeEmpty.readHidden, JSON.stringify(homeEmpty));
       await click(page, '#btn-chero-open');
       await page.reload({ waitUntil: 'load' });
       const unchanged = await readState(page);
@@ -12945,8 +12901,7 @@ const SCENARIOS = [
       t.check('Home partial progress retains its next-issue action',
         await page.$eval('#chero-count', (node) => node.textContent === '1 of 2 comics read')
         && await page.$eval('#chero-next', (node) => node.textContent === 'Next: Second manual issue 441')
-        && await page.$eval('#btn-chero-read', (node) => !node.hidden)
-        && await page.$eval('#btn-chero-review', (node) => !node.hidden));
+        && await page.$eval('#btn-chero-read', (node) => !node.hidden));
       await click(page, '#btn-chero-open');
       await click(page, '#btn-hero-done');
       const completed = await readingStatus();
@@ -12962,8 +12917,7 @@ const SCENARIOS = [
       t.check('Home completion remains accurate for a nonempty list',
         await page.$eval('#chero-count', (node) => node.textContent === '2 of 2 comics read')
         && await page.$eval('#chero-next', (node) => node.textContent === 'You have read every comic in this Reading List.')
-        && await page.$eval('#btn-chero-read', (node) => node.hidden)
-        && await page.$eval('#btn-chero-review', (node) => !node.hidden));
+        && await page.$eval('#btn-chero-read', (node) => node.hidden));
       await click(page, '#btn-chero-open');
       await openFullOrder(page);
       for (const id of ids) {
@@ -23967,16 +23921,14 @@ SCENARIOS.push({
     }, longHint);
     await page.focus('#btn-hero-done');
     await settle();
-    const blocked = await tooltipVisual449(page, '#btn-hero-done', 'action-tip');
-    const options = await page.evaluate(() => {
-      const wrapper = document.querySelector('#reading-list-options');
-      const summary = document.querySelector('#list-actions > summary');
-      const box = summary.getBoundingClientRect();
-      const hit = document.elementFromPoint((box.left + box.right) / 2, (box.top + box.bottom) / 2);
-      return { protected: wrapper.hasAttribute('data-keep-uncovered'), hit: summary.contains(hit) };
-    });
-    t.check('320px: Done hint yields to Reading List options without moving focus',
-      !blocked.visible && blocked.focus && options.hit, JSON.stringify({ blocked, options }));
+    const shown = await tooltipVisual449(page, '#btn-hero-done', 'action-tip');
+    // #1243: Reading List options moved below the card, so nothing beside Done asks its hint to yield.
+    const options = await page.evaluate(() => ({
+      protected: document.querySelector('#reading-list-options').hasAttribute('data-keep-uncovered'),
+      inCard: document.querySelector('#hero').contains(document.querySelector('#reading-list-options')),
+    }));
+    t.check('320px: the long Done hint shows without moving focus, with Reading List options outside the card',
+      shown.visible && shown.focus && !options.protected && !options.inCard, JSON.stringify({ shown, options }));
 
     const client = await page.createCDPSession();
     for (const { name, selector, tipId } of families) {
@@ -24110,21 +24062,6 @@ MUTATIONS.push({
   rewriteMain: (source) => source.replace(
     "if (action) return { trigger: action, tip: $('#action-tip'), text: action.dataset.tooltip };",
     "if (action) { action.setAttribute('aria-describedby', ((action.getAttribute('aria-describedby') || '') + ' action-tip').trim()); return { trigger: action, tip: $('#action-tip'), text: action.dataset.tooltip }; }",
-  ),
-});
-
-MUTATIONS.push({
-  id: 'tooltip-options-unprotected-1061',
-  breaks: 'tooltip-lifecycle-449',
-  why: 'without options protection the long Done hint covers Reading List options',
-  script: () => {
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelector('#reading-list-options').removeAttribute('data-keep-uncovered');
-    });
-  },
-  rewriteReading: (source) => source.replace(
-    "    options.toggleAttribute('data-keep-uncovered', $('#hero').contains(options));",
-    "    options.removeAttribute('data-keep-uncovered');",
   ),
 });
 
