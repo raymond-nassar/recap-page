@@ -28,6 +28,7 @@ import {
   beforeWolverineCorrectionOrders, beforeWolverineCorrectionPayloadText,
 } from './wolverine-correction-history.mjs';
 import { beforeUltimateSelectionIssueIds } from './ultimate-spider-man-selection-history.mjs';
+import { beforeIronManCoverCatalogEntry, beforeIronManCoverPayloadText } from './iron-man-cover-history.mjs';
 
 const root = fileURLToPath(new URL('../..', import.meta.url));
 const curatedGuideRegistry = JSON.parse(readFileSync(
@@ -283,7 +284,7 @@ export function capturedReviewLibraryDigest(orders, expectedDigest) {
 }
 
 export function historicalReadingChoiceCatalogEntry(entry) {
-  entry = beforeWolverineCorrectionCatalogEntry(entry);
+  entry = beforeIronManCoverCatalogEntry(beforeWolverineCorrectionCatalogEntry(entry));
   entry = beforeIdentityCatalogEntry(beforeAmazingSpiderManSupplementCatalogEntry(entry));
   if (entry.id === spiderRevision.manifestEntry.id) {
     if (entry.name !== spiderRevision.currentManifestEntry.name
@@ -317,7 +318,7 @@ export async function historicalReadingChoicePayloadText(file) {
     throw new Error('The rewritten fast-track payload requires its original metadata, not only its historical vector.');
   }
   let text = await readFile(sourcePath, 'utf8');
-  text = beforeWolverineCorrectionPayloadText(payloadFile, text);
+  text = beforeIronManCoverPayloadText(payloadFile, beforeWolverineCorrectionPayloadText(payloadFile, text));
   if (payloadFile === 'amazing_spider_man_reading_order_modern_marvel_era.json') {
     text = beforeAmazingSpiderManSupplementPayloadText(text);
   }

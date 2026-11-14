@@ -1824,8 +1824,8 @@
     "fp": "2e19500d63dda59d",
     "head": "this.store.update((s) => upsertIssue(s, { ...full, hydrated: true }));"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/lib/model.js:738-740|0": {
-    "anchor": "src/js/lib/model.js:738-740",
+  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/lib/model.js:761-763|0": {
+    "anchor": "src/js/lib/model.js:761-763",
     "fp": "d3c89ab1f16d81ee",
     "head": "export function toggleRead(state, issueId) {"
   },
@@ -1949,13 +1949,13 @@
     "fp": "ffcf7e8ddf1cdadb",
     "head": "return {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:1637-1690|0": {
-    "anchor": "src/js/lib/catalog.js:1637-1690",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:1636-1689|0": {
+    "anchor": "src/js/lib/catalog.js:1636-1689",
     "fp": "2993ccc8e75ae0bb",
     "head": "// The shelf placement map deliberately keeps only the first path that reaches a story. This model"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:773-791|0": {
-    "anchor": "src/js/lib/catalog.js:773-791",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:772-790|0": {
+    "anchor": "src/js/lib/catalog.js:772-790",
     "fp": "c223b522bd950f07",
     "head": "stops.forEach((stop, i) => {"
   },
@@ -5749,8 +5749,8 @@
     "fp": "3a6bffed9d7bfbb0",
     "head": "export function sortCatalog(lists) {"
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-modern-timeline-placement-before-authoring|src/js/lib/catalog.js:977-1000|0": {
-    "anchor": "src/js/lib/catalog.js:977-1000",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-modern-timeline-placement-before-authoring|src/js/lib/catalog.js:976-999|0": {
+    "anchor": "src/js/lib/catalog.js:976-999",
     "fp": "b5355ce4144b6df6",
     "head": "export const MODERN_TIMELINE_CHAPTER_COUNT = 78;"
   },
@@ -6019,8 +6019,8 @@
     "fp": "55a4cabc45fcfd0d",
     "head": "webView.reload()"
   },
-  "docs/UX_FEEDBACK.md|feedback-signals#mcu-prep-labels|src/js/lib/catalog.js:1352|0": {
-    "anchor": "src/js/lib/catalog.js:1352",
+  "docs/UX_FEEDBACK.md|feedback-signals#mcu-prep-labels|src/js/lib/catalog.js:1351|0": {
+    "anchor": "src/js/lib/catalog.js:1351",
     "fp": "93b977ad490359f7",
     "head": "highlights: ['Movie companions', 'Streaming companions', 'Multiverse picks'],"
   },
@@ -6054,8 +6054,8 @@
     "fp": "55a4cabc45fcfd0d",
     "head": "webView.reload()"
   },
-  "docs/UX_IMPROVEMENT_PLAN.md|7-mcu-prep-labels|src/js/lib/catalog.js:1352|0": {
-    "anchor": "src/js/lib/catalog.js:1352",
+  "docs/UX_IMPROVEMENT_PLAN.md|7-mcu-prep-labels|src/js/lib/catalog.js:1351|0": {
+    "anchor": "src/js/lib/catalog.js:1351",
     "fp": "93b977ad490359f7",
     "head": "highlights: ['Movie companions', 'Streaming companions', 'Multiverse picks'],"
   },
@@ -6124,8 +6124,8 @@
     "fp": "2318f8472fc086b9",
     "head": "<fieldset class=\"filters\" id=\"progress-scope\" aria-describedby=\"progress-subject\">"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/lib/model.js:1165-1196|0": {
-    "anchor": "src/js/lib/model.js:1165-1196",
+  "docs/UX_STUDY.md|job-stories|src/js/lib/model.js:1188-1219|0": {
+    "anchor": "src/js/lib/model.js:1188-1219",
     "fp": "ec402d5548694459",
     "head": "export function validateBackup(raw) {"
   },
@@ -6189,8 +6189,8 @@
     "fp": "e4a8a4c444dd83ef",
     "head": "<!-- Shown only when saved data could not be read. Saving stays paused until the"
   },
-  "docs/UX_STUDY.md|step-1-heuristic-evaluation#5|src/js/lib/model.js:989-1068|0": {
-    "anchor": "src/js/lib/model.js:989-1068",
+  "docs/UX_STUDY.md|step-1-heuristic-evaluation#5|src/js/lib/model.js:1012-1091|0": {
+    "anchor": "src/js/lib/model.js:1012-1091",
     "fp": "7462a630913f868e",
     "head": "const version = Number(raw.schemaVersion ?? 1);"
   },

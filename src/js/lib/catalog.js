@@ -6,7 +6,7 @@
 // here, so an entry that is missing what a reader needs to choose safely (a name, a file to
 // import, or a truthful issue count) is rejected rather than rendered half-blank.
 
-import { normalizeCover } from './model.js';
+import { coverAddress, normalizeCover } from './model.js';
 
 export const LIST_TYPES = ['event', 'character-run', 'creator-run', 'era', 'screen-companion'];
 export const READING_DEPTHS = ['essential', 'complete', 'partial', 'tie-ins', 'selected'];
@@ -561,8 +561,7 @@ export function facetLabel(lists, key) {
 // entry has no representative issue, so the card falls back to a typographic tile rather
 // than requesting a broken image.
 export function catalogCoverUrl(list, variant = 'portrait_incredible') {
-  const c = normalizeCover(list?.cover);
-  return c ? `${c.path}/${variant}.${c.ext}` : null;
+  return coverAddress(list?.cover, variant);
 }
 
 // Roughly how much reading an order is. Twenty minutes an issue is an assumption, so every

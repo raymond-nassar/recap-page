@@ -309,6 +309,29 @@ test('every catalog cover resolves to a variant URL the browser can request', as
   }
 });
 
+// #1289: the cover builders append `/{variant}.{ext}`, so a stored base must stop at the image's
+// directory. The variant-URL test above reads through normalizeCover and cannot see the raw value.
+test('no bundled catalog or order cover base already names an image file', async () => {
+  const fileTail = /\/[^/]+\.(jpe?g|png|gif|webp)$/i;
+  const raw = JSON.parse(await readFile(new URL('../src/data/catalog.json', import.meta.url), 'utf8'));
+  const bad = [];
+  let checked = 0;
+  for (const entry of raw.lists) {
+    if (typeof entry.cover?.path === 'string') {
+      checked += 1;
+      if (fileTail.test(entry.cover.path)) bad.push(`catalog ${entry.id}: ${entry.cover.path}`);
+    }
+    const order = JSON.parse(await readFile(new URL(`../src/data/${entry.file}`, import.meta.url), 'utf8'));
+    for (const item of order.items ?? order.issues ?? []) {
+      if (typeof item?.cover?.path !== 'string') continue;
+      checked += 1;
+      if (fileTail.test(item.cover.path)) bad.push(`${entry.file} ${item.issueId ?? item.id}: ${item.cover.path}`);
+    }
+  }
+  assert.ok(checked > 1000, `only ${checked} cover bases were found to check`);
+  assert.deepEqual(bad, []);
+});
+
 test('a cover issue id has to be a positive whole number, matching the manifest rule', () => {
   const { lists } = parseCatalog({
     lists: [-1, 0, 4216, 1.5, '4216', null].map((v, i) => (
