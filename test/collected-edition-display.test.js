@@ -6,6 +6,7 @@ import {
 } from '../src/js/lib/collectedEditions.js';
 import { collectedEditionCredit, collectedEditionLabels } from '../src/js/views/shared/collected-editions.js';
 import { build, buildAppData, databaseLeaks, loadInputs, validateDestinations } from '../scripts/collected-editions.mjs';
+import { providerRequestsBlocked } from '../scripts/browser-collected-editions.mjs';
 import { serializeChecklist } from '../src/js/lib/markdown.js';
 
 const clone = (value) => structuredClone(value);
@@ -113,6 +114,27 @@ test('provider addresses reject empty query and fragment markers', () => {
   assert.deepEqual(cases.filter((entry) => providerLinks({ destinations: [entry] }, approved()).length !== 1), []);
   const rejected = cases.flatMap((entry) => ['?', '#'].map((suffix) => ({ ...entry, url: entry.url + suffix })));
   assert.deepEqual(rejected.filter((entry) => providerLinks({ destinations: [entry] }, approved()).length), []);
+});
+
+test('provider network proof counts blocked requests rather than failure events', () => {
+  const attempts = [
+    { target: 'source', id: 'one', url: 'https://www.hoopladigital.com/title/123456789', received: false },
+    { target: 'tab-one', id: 'two', url: 'https://www.hoopladigital.com/title/123456789', received: false },
+    { target: 'tab-two', id: 'three', url: 'https://share.libbyapp.com/title/123456', received: false },
+  ];
+  const failures = attempts.flatMap(({ target, id }) => [
+    { target, id, error: 'net::ERR_BLOCKED_BY_CLIENT' },
+    ...(target === 'source' ? [] : [{ target, id, error: 'net::ERR_ABORTED' }]),
+  ]);
+  const monitor = { attempts, failures, completed: [], errors: [] };
+  assert.equal(providerRequestsBlocked(monitor), true);
+  assert.equal(providerRequestsBlocked({ ...monitor, completed: [{ target: 'tab-one', id: 'two' }] }), false);
+  assert.equal(providerRequestsBlocked({ ...monitor, attempts: attempts.map((entry, index) =>
+    index === 1 ? { ...entry, received: true } : entry) }), false);
+  assert.equal(providerRequestsBlocked({ ...monitor, failures: failures.filter((entry) => entry.id !== 'two'
+    || entry.error !== 'net::ERR_BLOCKED_BY_CLIENT') }), false);
+  assert.equal(providerRequestsBlocked({ ...monitor, attempts: attempts.slice(0, 2) }), false);
+  assert.equal(providerRequestsBlocked({ ...monitor, errors: ['monitor error'] }), false);
 });
 
 test('the build refuses any destination the display gate would drop', () => {

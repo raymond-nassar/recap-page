@@ -23,6 +23,18 @@ const destinations = [
   'https://share.libbyapp.com/title/123456',
 ];
 
+export function providerRequestsBlocked({ attempts, failures, completed, errors }) {
+  const source = attempts.filter((request) => request.target === 'source');
+  const tabs = attempts.filter((request) => request.target !== 'source');
+  return attempts.length === destinations.length + 1
+    && source.length === 1 && source[0].url === destinations[0]
+    && tabs.length === destinations.length && new Set(tabs.map((request) => request.target)).size === destinations.length
+    && destinations.every((url) => tabs.filter((request) => request.url === url).length === 1)
+    && attempts.every((request) => !request.received && failures.some((failure) =>
+      failure.target === request.target && failure.id === request.id && failure.error === 'net::ERR_BLOCKED_BY_CLIENT'))
+    && completed.length === 0 && errors.length === 0;
+}
+
 const isProviderRequest = (url) => {
   const host = new URL(url).hostname;
   return ['hoopladigital.com', 'libbyapp.com'].some((domain) => host === domain || host.endsWith(`.${domain}`));
@@ -78,18 +90,28 @@ async function monitorProviderRequests(page) {
   const failures = [];
   const errors = [];
   const tabs = new Map();
+  const sourceRequests = new Map();
   const noteSourceRequest = (request) => {
-    if (isProviderRequest(request.url())) attempts.push({ target: 'source', url: request.url() });
-  };
-  const noteSourceFinish = (request) => {
-    if (isProviderRequest(request.url())) completed.push({ target: 'source', url: request.url() });
-  };
-  const noteSourceFailure = (request) => {
     if (isProviderRequest(request.url())) {
-      failures.push({ target: 'source', url: request.url(), error: request.failure()?.errorText });
+      const observed = { target: 'source', id: `source-${sourceRequests.size}`, url: request.url(), received: false };
+      sourceRequests.set(request, observed);
+      attempts.push(observed);
     }
   };
+  const noteSourceResponse = (response) => {
+    const observed = sourceRequests.get(response.request());
+    if (observed) observed.received = true;
+  };
+  const noteSourceFinish = (request) => {
+    const observed = sourceRequests.get(request);
+    if (observed) completed.push({ target: 'source', id: observed.id, url: observed.url });
+  };
+  const noteSourceFailure = (request) => {
+    const observed = sourceRequests.get(request);
+    if (observed) failures.push({ target: 'source', id: observed.id, url: observed.url, error: request.failure()?.errorText });
+  };
   page.on('request', noteSourceRequest);
+  page.on('response', noteSourceResponse);
   page.on('requestfinished', noteSourceFinish);
   page.on('requestfailed', noteSourceFailure);
   cdp.on('Target.attachedToTarget', ({ sessionId, targetInfo }) => {
@@ -103,20 +125,20 @@ async function monitorProviderRequests(page) {
     session.on('Network.requestWillBeSent', ({ requestId, request }) => {
       if (!isProviderRequest(request.url)) return;
       const referer = Object.entries(request.headers).find(([name]) => name.toLowerCase() === 'referer')?.[1] || '';
-      const observed = { target: targetInfo.targetId, url: request.url, referer,
+      const observed = { target: targetInfo.targetId, id: requestId, url: request.url, referer,
         referrerPolicy: request.referrerPolicy, received: false, failed: false };
       tab.requests.set(requestId, observed);
       attempts.push(observed);
     });
-    session.on('Network.responseReceived', ({ requestId, response }) => {
+    session.on('Network.responseReceived', ({ requestId }) => {
       const observed = tab.requests.get(requestId);
-      if (observed && isProviderRequest(response.url)) observed.received = true;
+      if (observed) observed.received = true;
     });
     session.on('Network.loadingFailed', ({ requestId, errorText }) => {
       const observed = tab.requests.get(requestId);
       if (observed) {
         observed.failed = true;
-        failures.push({ target: targetInfo.targetId, url: observed.url, error: errorText });
+        failures.push({ target: targetInfo.targetId, id: requestId, url: observed.url, error: errorText });
       }
     });
     // Chromium can finish its internal error page after a failed request using the same request ID.
@@ -148,6 +170,7 @@ async function monitorProviderRequests(page) {
       await cdp.send('Target.setAutoAttach', { autoAttach: false, waitForDebuggerOnStart: false, flatten: true });
       await cdp.detach();
       page.off('request', noteSourceRequest);
+      page.off('response', noteSourceResponse);
       page.off('requestfinished', noteSourceFinish);
       page.off('requestfailed', noteSourceFailure);
     },
@@ -161,7 +184,7 @@ async function proveSameTabBlock(page, t, monitor) {
   await page.keyboard.press('Enter');
   const failure = await waitForValue(() => monitor.failures.find((entry) => entry.target === 'source'));
   const attempts = monitor.attempts.filter((entry) => entry.target === 'source');
-  const blocked = failure?.url === destinations[0] && failure.error === 'net::ERR_FAILED'
+  const blocked = failure?.url === destinations[0] && failure.error === 'net::ERR_BLOCKED_BY_CLIENT'
     && attempts.length === 1 && attempts[0].url === destinations[0] && monitor.completed.length === 0;
   t.check('same-tab provider navigation is counted and blocked before a response', blocked,
     JSON.stringify({ attempts, failure, completed: monitor.completed }));
@@ -221,8 +244,7 @@ export const collectedEditions = {
     } finally {
       await monitor.close();
       t.check('no Hoopla or Libby request completed in the source page or any new tab',
-        monitor.attempts.length === destinations.length + 1 && monitor.failures.length === destinations.length + 1
-        && monitor.completed.length === 0 && monitor.errors.length === 0,
+        providerRequestsBlocked(monitor),
         JSON.stringify({ attempts: monitor.attempts, failures: monitor.failures,
           completed: monitor.completed, errors: monitor.errors }));
     }
