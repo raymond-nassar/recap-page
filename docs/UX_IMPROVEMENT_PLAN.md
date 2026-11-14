@@ -52,11 +52,11 @@ This plan is linked to the separate [colleague feedback record](UX_FEEDBACK.md) 
 
 ## 7. MCU Prep labels
 
-**Outcome:** Keep the labels as labels unless evidence and an owner decision establish that they should filter. The received "Multiverse Packs" wording differs from the current "Multiverse picks" label (`src/js/lib/catalog.js:1351`), and the current page renders its highlights as a list rather than controls (`src/js/main.js:2956-2957`).
+**Outcome:** Resolved by owner decision in [#1297](https://github.com/raymond-nassar/recap-page/issues/1297). The labels did not filter and the owner did not want them to; they looked selectable and were removed from every generated browse page. Each page now carries one short description line instead, MCU Prep's from its category definition (`src/js/lib/catalog.js:1351`), rendered beneath the heading (`src/js/main.js:2945`).
 
-**Dependencies:** Verify the exact text and screen in the tested build; ask whether the colleague expected labels to be selectable or only descriptive.
+**Dependencies:** None remaining.
 
-**Evidence before implementation:** Observe the current flow and test the label wording with the owner before changing navigation, filtering, or category selection behavior.
+**Evidence before implementation:** The owner's screenshot of the MCU Prep header and the request to replace the labels with a short line describing the page, recorded in #1297.
 
 ## 8. Reading-list completion and next reads
 
@@ -70,4 +70,4 @@ This plan is linked to the separate [colleague feedback record](UX_FEEDBACK.md) 
 
 ## Delivery boundary
 
-The original documentation delivery contained only the feedback record and plans. The combined implementation is scoped and ranked in [#1126](https://github.com/raymond-nassar/recap-page/issues/1126); its pull request owns delivery evidence, proposed release notes and saved-data compatibility. No saved-data schema, provider identity, cover-storage policy or native architecture change is authorized by this scope. Native feel, restart reassurance, title/splash and MCU Prep labels remain separate evidence-dependent work.
+The original documentation delivery contained only the feedback record and plans. The combined implementation is scoped and ranked in [#1126](https://github.com/raymond-nassar/recap-page/issues/1126); its pull request owns delivery evidence, proposed release notes and saved-data compatibility. No saved-data schema, provider identity, cover-storage policy or native architecture change is authorized by this scope. Native feel, restart reassurance and title/splash remain separate evidence-dependent work; MCU Prep labels were resolved separately by [#1297](https://github.com/raymond-nassar/recap-page/issues/1297).
