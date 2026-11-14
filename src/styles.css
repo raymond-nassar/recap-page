@@ -3214,3 +3214,6 @@ select, input[type="search"], input[type="text"], input[type="url"] {
 @media (max-width: 620px) {
   #home-secondary-paths { grid-template-columns: 1fr; }
 }
+@media (max-width: 700px) {
+  .search-scope { min-width: var(--target); padding-inline: var(--space-4); }
+}
