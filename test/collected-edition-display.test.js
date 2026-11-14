@@ -164,17 +164,19 @@ test('the bundled projection preserves pilot relations and matches selected Mode
   assert.equal(groups['civil-war-avengers'].length, 13);
   assert.equal(groups['nebula-reading-order'].length, 10);
   const expected = {
-    'marvel-knights-to-planet-x-01': ['daredevil-visionaries-kevin-smith', 449, 1, 8],
+    'marvel-knights-to-planet-x-01': ['daredevil-visionaries-kevin-smith', 449, 1, 6],
     'marvel-knights-to-planet-x-04': ['xtreme-xmen-v1-destiny', 646, 1, 4],
     'marvel-knights-to-planet-x-09': ['exiles-v1-down-the-rabbit-hole', 479, 1, 4],
     'marvel-knights-to-planet-x-11': ['xtreme-xmen-savage-land', 2107, 1, 4],
     'marvel-knights-to-planet-x-12': ['new-xmen-v2-imperial', 2281, 118, 122],
     'marvel-knights-to-planet-x-14': ['xtreme-xmen-v1-destiny', 646, 5, 9],
-    'marvel-knights-to-planet-x-15': ['new-xmen-v2-imperial', 2281, 123, 126],
+    'marvel-knights-to-planet-x-15': ['new-xmen-v2-imperial', 2281, 123, 125],
     'marvel-knights-to-planet-x-18': ['exiles-v2-a-world-apart', 479, 5, 11],
     'marvel-knights-to-planet-x-20': ['daredevil-v4-underboss', 449, 26, 31],
     'marvel-knights-to-planet-x-23': ['xtreme-xmen-v2-invasion', 646, 10, 18],
     'marvel-knights-to-planet-x-27': ['exiles-v3-out-of-time', 479, 12, 19],
+    'marvel-knights-to-planet-x-42': ['new-xmen-v4-riot-at-xaviers', 2281, 134, 138],
+    'marvel-knights-to-planet-x-69': ['daredevil-v8-echo-vision-quest', 449, 51, 55],
   };
   const lists = loadInputs().lists;
   assert.deepEqual(Object.keys(groups).sort(), ['civil-war-avengers', 'nebula-reading-order', ...Object.keys(expected)].sort());
@@ -185,6 +187,10 @@ test('the bundled projection preserves pilot relations and matches selected Mode
     assert.deepEqual(groups[listId].map((entry) => [entry.editionId, entry.issueId, entry.seriesId, entry.number]),
       items.map((entry) => [book, entry.issueId, entry.seriesId, String(entry.number)]), listId);
   }
+  assert.ok(!editionEvidence.relations.some((entry) =>
+    entry.editionId === 'new-xmen-v2-imperial' && entry.seriesId === 2281 && entry.number === '126'));
+  assert.ok(!editionEvidence.relations.some((entry) =>
+    entry.editionId === 'daredevil-visionaries-kevin-smith' && ['7', '8'].includes(entry.number)));
   assert.ok(!editionEvidence.relations.some((entry) => /x-corps|hardcover/.test(entry.editionId)));
   assert.deepEqual(databaseLeaks(editionCatalog, 'runtime MIT names'), []);
   assert.deepEqual(editionCatalog.providers, approved().providers);
@@ -210,6 +216,47 @@ test('runtime generation excludes conflicts and never changes the curated names 
   assert.match(after['collectedEditionEvidence.js'], /"relations": \[\]/);
   assert.match(after['collectedEditionCatalog.js'], /"editions": \{\}/);
   assert.ok(before['collectedEditionEvidence.js'].includes('CC-BY-SA-4.0'));
+});
+
+test('owner-confirmed destinations are limited to released editions', () => {
+  const inputs = loadInputs();
+  const destinations = inputs.destinations.destinations;
+  const actual = Object.fromEntries(Object.entries(destinations).map(([editionId, entries]) => [
+    editionId, entries.map(({ provider, url }) => [provider, url]),
+  ]));
+  assert.deepEqual(actual, {
+    'xtreme-xmen-v1-destiny': [['libby', 'https://share.libbyapp.com/title/13812993']],
+    'civil-war-2007-tpb': [
+      ['hoopla', 'https://www.hoopladigital.com/title/12003677'],
+      ['libby', 'https://share.libbyapp.com/title/4455520'],
+    ],
+    'asgardians-v1-the-infinity-armada': [
+      ['hoopla', 'https://www.hoopladigital.com/title/12917385'],
+      ['libby', 'https://share.libbyapp.com/title/5832334'],
+    ],
+    'asgardians-v2-war-of-the-realms': [
+      ['hoopla', 'https://www.hoopladigital.com/title/12917346'],
+      ['libby', 'https://share.libbyapp.com/title/8114341'],
+    ],
+    'new-xmen-v2-imperial': [
+      ['hoopla', 'https://www.hoopladigital.com/title/12650921'],
+      ['libby', 'https://share.libbyapp.com/title/5408074'],
+    ],
+    'new-xmen-v4-riot-at-xaviers': [
+      ['hoopla', 'https://www.hoopladigital.com/title/12650794'],
+      ['libby', 'https://share.libbyapp.com/title/5408076'],
+    ],
+    'daredevil-v8-echo-vision-quest': [
+      ['hoopla', 'https://www.hoopladigital.com/title/14762070'],
+      ['libby', 'https://share.libbyapp.com/title/8364770'],
+    ],
+  });
+  assert.equal(Object.keys(editionCatalog.editions).length, 15);
+  for (const entries of Object.values(destinations).flat()) {
+    assert.equal(entries.checkedAt, '2026-11-13');
+    assert.equal(entries.confirmedBy, 'owner');
+    assert.match(entries.source, /0b85d0cc1942a6600d3ba08731759475294f2977576889a439f78f212990b17d/);
+  }
 });
 
 test('heading-free selections project only exact verified comics from the chosen list', () => {

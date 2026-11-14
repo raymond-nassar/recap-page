@@ -65,6 +65,10 @@ missing, stale or mismatched resolution fails closed. These checks normalize the
 editorial "(credited)" annotations, not the names. The comparison does not verify the other
 edition as a whole.
 
+The numbered-cover tier may leave explicitly identified comic-story sequences uncounted with a
+reason when a full issue is held. Excluded sequences cannot verify a claimed issue; the fixture
+still retains them.
+
 The source-series crosswalk records explicit app series and issue ranges for cases where the
 database splits or renames a series. Each entry names and links the database series and refers to
 one or more original-comic fixtures. A mapped check requires one entry to cover the whole claimed

@@ -18,7 +18,20 @@ export const editionCatalog = {
   "editions": {
     "civil-war-2007-tpb": {
       "title": "Civil War",
-      "destinations": []
+      "destinations": [
+        {
+          "provider": "hoopla",
+          "url": "https://www.hoopladigital.com/title/12003677",
+          "checkedAt": "2026-11-13",
+          "confirmedBy": "owner"
+        },
+        {
+          "provider": "libby",
+          "url": "https://share.libbyapp.com/title/4455520",
+          "checkedAt": "2026-11-13",
+          "confirmedBy": "owner"
+        }
+      ]
     },
     "thunderbolts-ellis-v1-faith-in-monsters": {
       "title": "Thunderbolts Vol. 1: Faith in Monsters",
@@ -26,11 +39,37 @@ export const editionCatalog = {
     },
     "asgardians-v1-the-infinity-armada": {
       "title": "Asgardians of the Galaxy Vol. 1: The Infinity Armada",
-      "destinations": []
+      "destinations": [
+        {
+          "provider": "hoopla",
+          "url": "https://www.hoopladigital.com/title/12917385",
+          "checkedAt": "2026-11-13",
+          "confirmedBy": "owner"
+        },
+        {
+          "provider": "libby",
+          "url": "https://share.libbyapp.com/title/5832334",
+          "checkedAt": "2026-11-13",
+          "confirmedBy": "owner"
+        }
+      ]
     },
     "asgardians-v2-war-of-the-realms": {
       "title": "Asgardians of the Galaxy Vol. 2: War of the Realms",
-      "destinations": []
+      "destinations": [
+        {
+          "provider": "hoopla",
+          "url": "https://www.hoopladigital.com/title/12917346",
+          "checkedAt": "2026-11-13",
+          "confirmedBy": "owner"
+        },
+        {
+          "provider": "libby",
+          "url": "https://share.libbyapp.com/title/8114341",
+          "checkedAt": "2026-11-13",
+          "confirmedBy": "owner"
+        }
+      ]
     },
     "daredevil-visionaries-kevin-smith": {
       "title": "Daredevil Visionaries: Kevin Smith",
@@ -38,7 +77,14 @@ export const editionCatalog = {
     },
     "xtreme-xmen-v1-destiny": {
       "title": "X-Treme X-Men Vol. 1: Destiny",
-      "destinations": []
+      "destinations": [
+        {
+          "provider": "libby",
+          "url": "https://share.libbyapp.com/title/13812993",
+          "checkedAt": "2026-11-13",
+          "confirmedBy": "owner"
+        }
+      ]
     },
     "exiles-v1-down-the-rabbit-hole": {
       "title": "Exiles Vol. 1: Down the Rabbit Hole",
@@ -50,7 +96,20 @@ export const editionCatalog = {
     },
     "new-xmen-v2-imperial": {
       "title": "New X-Men Vol. 2: Imperial",
-      "destinations": []
+      "destinations": [
+        {
+          "provider": "hoopla",
+          "url": "https://www.hoopladigital.com/title/12650921",
+          "checkedAt": "2026-11-13",
+          "confirmedBy": "owner"
+        },
+        {
+          "provider": "libby",
+          "url": "https://share.libbyapp.com/title/5408074",
+          "checkedAt": "2026-11-13",
+          "confirmedBy": "owner"
+        }
+      ]
     },
     "exiles-v2-a-world-apart": {
       "title": "Exiles Vol. 2: A World Apart",
@@ -67,6 +126,40 @@ export const editionCatalog = {
     "exiles-v3-out-of-time": {
       "title": "Exiles Vol. 3: Out of Time",
       "destinations": []
+    },
+    "new-xmen-v4-riot-at-xaviers": {
+      "title": "New X-Men Vol. 4: Riot at Xavier's",
+      "destinations": [
+        {
+          "provider": "hoopla",
+          "url": "https://www.hoopladigital.com/title/12650794",
+          "checkedAt": "2026-11-13",
+          "confirmedBy": "owner"
+        },
+        {
+          "provider": "libby",
+          "url": "https://share.libbyapp.com/title/5408076",
+          "checkedAt": "2026-11-13",
+          "confirmedBy": "owner"
+        }
+      ]
+    },
+    "daredevil-v8-echo-vision-quest": {
+      "title": "Daredevil Vol. 8: Echo - Vision Quest",
+      "destinations": [
+        {
+          "provider": "hoopla",
+          "url": "https://www.hoopladigital.com/title/14762070",
+          "checkedAt": "2026-11-13",
+          "confirmedBy": "owner"
+        },
+        {
+          "provider": "libby",
+          "url": "https://share.libbyapp.com/title/8364770",
+          "checkedAt": "2026-11-13",
+          "confirmedBy": "owner"
+        }
+      ]
     }
   }
 };

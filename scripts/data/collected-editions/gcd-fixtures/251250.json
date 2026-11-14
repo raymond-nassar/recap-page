@@ -1,0 +1,145 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/251250/?format=json",
+  "retrievedAt": "2026-11-13T09:27:29.966Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/251250/?format=json",
+    "series_name": "Daredevil (2002 series)",
+    "descriptor": "8 - Echo - Vision Quest",
+    "number": "8",
+    "volume": "8",
+    "variant_name": "",
+    "title": "Echo - Vision Quest",
+    "publication_date": "2004",
+    "key_date": "2004-03-17",
+    "page_count": "124.000",
+    "isbn": "078512324",
+    "notes": "Collects Daredevil (Marvel, 1998 series) #51-55.",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/14558/?format=json",
+    "story_set": [
+      {
+        "type": "credits, title page",
+        "title": "Credits and Recap",
+        "feature": "",
+        "sequence_number": 1,
+        "page_count": "3.000",
+        "notes": "Includes title page, credits page and recap page.",
+        "script": "?",
+        "pencils": "David Mack"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "[Daredevil] #51",
+        "feature": "Daredevil",
+        "sequence_number": 2,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "David Mack (painting)"
+      },
+      {
+        "type": "comic story",
+        "title": "Echo - Vision Quest [Part 1]",
+        "feature": "Daredevil",
+        "sequence_number": 3,
+        "page_count": "22.000",
+        "notes": "Entire story in this TPB is done in pencils, inks and paints; Story arc is an interlude between DD #50 and 56 and is narrated by Echo.",
+        "script": "David Mack",
+        "pencils": "David Mack"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "[Daredevil] #52",
+        "feature": "Daredevil",
+        "sequence_number": 4,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "David Mack (painting)"
+      },
+      {
+        "type": "comic story",
+        "title": "Echo - Vision Quest [Part 2]",
+        "feature": "Daredevil",
+        "sequence_number": 5,
+        "page_count": "23.000",
+        "notes": "",
+        "script": "David Mack",
+        "pencils": "David Mack"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "[Daredevil] #53",
+        "feature": "Daredevil",
+        "sequence_number": 6,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "David Mack (painting)"
+      },
+      {
+        "type": "comic story",
+        "title": "Echo - Vision Quest [Part 3]",
+        "feature": "Daredevil",
+        "sequence_number": 7,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "David Mack",
+        "pencils": "David Mack"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "[Daredevil] #54",
+        "feature": "Daredevil",
+        "sequence_number": 8,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "David Mack (painting)"
+      },
+      {
+        "type": "comic story",
+        "title": "Echo - Vision Quest [Part 4]",
+        "feature": "Daredevil",
+        "sequence_number": 9,
+        "page_count": "21.000",
+        "notes": "Daredevil appears in exactly one panel of the story.",
+        "script": "David Mack",
+        "pencils": "David Mack"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "[Daredevil] #55",
+        "feature": "Daredevil",
+        "sequence_number": 10,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "David Mack (painting)"
+      },
+      {
+        "type": "comic story",
+        "title": "Echo - Vision Quest [Part 5]",
+        "feature": "Daredevil",
+        "sequence_number": 11,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "David Mack",
+        "pencils": "David Mack"
+      },
+      {
+        "type": "illustration",
+        "title": "The Power of Silence",
+        "feature": "Daredevil",
+        "sequence_number": 12,
+        "page_count": "1.000",
+        "notes": "Back cover.",
+        "script": "?",
+        "pencils": "David Mack (painting)"
+      }
+    ]
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/127871/?format=json",
+  "retrievedAt": "2026-11-13T03:50:45.656Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/127871/?format=json",
+    "series_name": "New X-Men (2001 series)",
+    "descriptor": "135 [Direct Edition]",
+    "number": "135",
+    "volume": "1",
+    "variant_name": "Direct Edition",
+    "title": "",
+    "publication_date": "February 2003",
+    "key_date": "2003-02-00",
+    "page_count": "36.000",
+    "isbn": "",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/9855/?format=json",
+    "story_set": [
+      {
+        "type": "comic story",
+        "title": "teaching children about fractals",
+        "feature": "X-Men",
+        "sequence_number": 1,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Grant Morrison (credited)",
+        "pencils": "Frank Quitely (credited)"
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "The Ultinates vs. Ultimate X-Men",
+        "feature": "Ultimate War",
+        "sequence_number": 2,
+        "page_count": "0.750",
+        "notes": "house ad for Ultimate War (Marvel, 2003 series)",
+        "script": "None",
+        "pencils": "Chris Bachalo"
+      },
+      {
+        "type": "statement of ownership",
+        "title": "",
+        "feature": "",
+        "sequence_number": 3,
+        "page_count": "0.250",
+        "notes": "Statement of October 1, 2002 Average number of copies sold during preceding 12 months (total paid circulation): 184,226 Actual number sold of issue nearest filing date (total paid circulation): 131,543 Owner: Marvel Enterprises, Inc. 10 East 40th Street, New York, NY 10016",
+        "script": "None",
+        "pencils": "None"
+      }
+    ]
+  }
+}

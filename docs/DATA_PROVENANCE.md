@@ -3671,7 +3671,7 @@ The selected Modern Timeline books extend the display without inventing collecti
 [licensed check inputs](../scripts/data/collected-editions/gcd-check-inputs.json) identify the
 selected lists, source-series mappings and supporting records; the
 [checked evidence](../scripts/data/collected-editions/gcd-editions.json) retains their dates and
-results. The original pilot's 23 relations remain unchanged, and nine selected books add 64
+results. The original pilot's 23 relations remain unchanged, and nine selected books add 63
 relations across eleven lists, intersected with each list's exact comics. Book names stay in the
 separate curated lane. For books without an exact indexer-note range, numbered interior-cover text
 and creator credits or matching original issue stories provide the check; no image bytes are used.
@@ -3679,6 +3679,10 @@ and creator credits or matching original issue stories provide the check; no ima
 For Imperial, the [original New X-Men #123](https://www.comics.org/issue/98072/) and
 [trade](https://www.comics.org/issue/774091/) index "Testament" at 22 pages, while the
 [numbered hardcover](https://www.comics.org/issue/774084/) indexes 23, read 2026-11-12 Pacific.
-The trade's title and credits match the original; its relations use the original's page count.
-The hardcover remains held independently. The unresolved X-Corps annual and collection parsing
-conflicts are not projected.
+The trade stories for #118-125 match their original issues by series, number, title, pages and
+credits. Their retained issue fixtures are independently checked against each named trade sequence;
+the title tier alone does not establish series identity. The [original #126](https://www.comics.org/issue/98075/),
+read 2026-11-13, also indexes a five-page Spider-Man story that the trade does not index. That is
+not proof the physical book omits it, but full coverage of #126 is unconfirmed and its relation is
+held. The hardcover remains held independently. The unresolved X-Corps annual and collection
+parsing conflicts are not projected.

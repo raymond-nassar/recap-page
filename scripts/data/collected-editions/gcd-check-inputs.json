@@ -15,7 +15,9 @@
     { "listId": "marvel-knights-to-planet-x-18", "file": "src/data/marvel_knights_to_planet_x_18.json", "editions": ["exiles-v2-a-world-apart"] },
     { "listId": "marvel-knights-to-planet-x-20", "file": "src/data/marvel_knights_to_planet_x_20.json", "editions": ["daredevil-v4-underboss"] },
     { "listId": "marvel-knights-to-planet-x-23", "file": "src/data/marvel_knights_to_planet_x_23.json", "editions": ["xtreme-xmen-v2-invasion"] },
-    { "listId": "marvel-knights-to-planet-x-27", "file": "src/data/marvel_knights_to_planet_x_27.json", "editions": ["exiles-v3-out-of-time"] }
+    { "listId": "marvel-knights-to-planet-x-27", "file": "src/data/marvel_knights_to_planet_x_27.json", "editions": ["exiles-v3-out-of-time"] },
+    { "listId": "marvel-knights-to-planet-x-42", "file": "src/data/marvel_knights_to_planet_x_42.json", "editions": ["new-xmen-v4-riot-at-xaviers"] },
+    { "listId": "marvel-knights-to-planet-x-69", "file": "src/data/marvel_knights_to_planet_x_69.json", "editions": ["daredevil-v8-echo-vision-quest"] }
   ],
   "seriesEvidence": {
     "6026": {
@@ -106,6 +108,22 @@
     }
   ],
   "editions": {
+    "new-xmen-v4-riot-at-xaviers": {
+      "gcdSeries": "New X-Men (Marvel, 2001 series)",
+      "gcdSeriesUrl": "https://www.comics.org/api/series/9855/?format=json",
+      "originalIssues": [
+        { "appNumber": 134, "gcdIssueId": 127870, "collectionSequence": 2 },
+        { "appNumber": 135, "gcdIssueId": 127871, "collectionSequence": 4 },
+        { "appNumber": 136, "gcdIssueId": 127872, "collectionSequence": 6 },
+        { "appNumber": 137, "gcdIssueId": 127873, "collectionSequence": 8 },
+        { "appNumber": 138, "gcdIssueId": 127874, "collectionSequence": 10 }
+      ],
+      "contents": [{ "seriesId": 2281, "from": 134, "to": 138, "assertedBy": "gcd-stories", "basis": "Each book story matches its original issue's title, pages and credited creators." }]
+    },
+    "daredevil-v8-echo-vision-quest": {
+      "gcdSeries": "Daredevil (Marvel, 1998 series)",
+      "contents": [{ "seriesId": 449, "from": 51, "to": 55, "assertedBy": "gcd-notes", "basis": "The indexer notes list Daredevil #51-55." }]
+    },
     "daredevil-visionaries-kevin-smith": {
       "gcdSeries": "Daredevil (Marvel, 1998 series)",
       "gcdSeriesUrl": "https://www.comics.org/api/series/6026/?format=json",
@@ -113,7 +131,11 @@
       "coverPrefix": "",
       "expectedScript": "Kevin Smith",
       "expectedPencils": "Joe Quesada",
-      "contents": [{ "seriesId": 449, "from": 1, "to": 8, "assertedBy": "gcd-stories", "basis": "The book numbers the interior covers immediately before its eight comic stories; the source series lists those issues." }]
+      "uncountedSequences": {
+        "17": "Original issue #7 indexes an additional short comic story not established in the book; the full issue remains held.",
+        "19": "Original issue #8 indexes an additional short comic story not established in the book; the full issue remains held."
+      },
+      "contents": [{ "seriesId": 449, "from": 1, "to": 6, "assertedBy": "gcd-stories", "basis": "The book numbers the interior covers immediately before these six comic stories; the source series lists those issues." }]
     },
     "xtreme-xmen-v1-destiny": {
       "gcdSeries": "X-Treme X-Men (Marvel, 2001 series)",
@@ -136,11 +158,38 @@
     },
     "new-xmen-v2-imperial": {
       "gcdSeries": "New X-Men (Marvel, 2001 series)",
+      "partialSeries": "New X-Men (Marvel, 2001 series)",
       "gcdSeriesUrl": "https://www.comics.org/api/series/9855/?format=json",
       "comparisonIssueId": 774084,
       "comparisonCoverPrefix": "Issue ",
-      "originalIssues": [{ "appNumber": 123, "gcdIssueId": 98072, "collectionSequence": 12 }],
-      "contents": [{ "seriesId": 2281, "from": 118, "to": 126, "assertedBy": "gcd-stories", "basis": "The trade's stories match the hardcover's numbered stories. For #123 the original issue supports the trade's 22 pages, not the hardcover's 23." }]
+      "originalIssues": [
+        { "appNumber": 118, "gcdIssueId": 98067, "collectionSequence": 1 },
+        { "appNumber": 119, "gcdIssueId": 98068, "collectionSequence": 4 },
+        { "appNumber": 120, "gcdIssueId": 98069, "collectionSequence": 6 },
+        { "appNumber": 121, "gcdIssueId": 98070, "collectionSequence": 8 },
+        { "appNumber": 122, "gcdIssueId": 98071, "collectionSequence": 10 },
+        { "appNumber": 123, "gcdIssueId": 98072, "collectionSequence": 12 },
+        { "appNumber": 124, "gcdIssueId": 98073, "collectionSequence": 14 },
+        { "appNumber": 125, "gcdIssueId": 98074, "collectionSequence": 17 },
+        { "appNumber": 126, "gcdIssueId": 98075, "collectionSequence": 18 }
+      ],
+      "storyTitles": {
+        "118": "Germ Free Generation: One of Three",
+        "119": "Germ Free Generation: Two of Three",
+        "120": "Germ Free Generation: Three of Three",
+        "121": "Silence: Psychic Rescue In Progress",
+        "122": "Imperial",
+        "123": "Testament",
+        "124": "Superdestroyer",
+        "125": "Losers"
+      },
+      "uncountedSequences": {
+        "18": "The trade indexes the main story from #126, but the original indexes another comic story not indexed by the trade. Full issue coverage remains unconfirmed."
+      },
+      "contents": [
+        { "seriesId": 2281, "from": 118, "to": 125, "assertedBy": "gcd-stories", "basis": "Each trade story matches the corresponding original issue's indexed story, pages and credits." },
+        { "seriesId": 2281, "from": 126, "to": 126, "portion": "partial", "assertedBy": "gcd-stories", "basis": "The original indexes an additional five-page comic story not indexed by the trade. Its physical absence is not established." }
+      ]
     },
     "exiles-v2-a-world-apart": {
       "gcdSeries": "Exiles (Marvel, 2001 series)",

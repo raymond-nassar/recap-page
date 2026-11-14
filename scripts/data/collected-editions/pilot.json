@@ -339,7 +339,7 @@
       "format": "trade paperback",
       "medium": "print",
       "gcdIssueId": 774091,
-      "gcdCheck": { "tier": "gcd-numbered-comparison" }
+      "gcdCheck": { "tier": "gcd-story-titles" }
     },
     {
       "id": "exiles-v2-a-world-apart",
@@ -371,6 +371,22 @@
       "format": "trade paperback",
       "medium": "print",
       "gcdIssueId": 787875,
+      "gcdCheck": { "tier": "gcd-notes" }
+    },
+    {
+      "id": "new-xmen-v4-riot-at-xaviers",
+      "title": "New X-Men Vol. 4: Riot at Xavier's",
+      "format": "trade paperback",
+      "medium": "print",
+      "gcdIssueId": 774093,
+      "gcdCheck": { "tier": "gcd-original-stories" }
+    },
+    {
+      "id": "daredevil-v8-echo-vision-quest",
+      "title": "Daredevil Vol. 8: Echo - Vision Quest",
+      "format": "trade paperback",
+      "medium": "print",
+      "gcdIssueId": 251250,
       "gcdCheck": { "tier": "gcd-notes" }
     }
   ]

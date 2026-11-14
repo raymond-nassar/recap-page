@@ -84,6 +84,70 @@ test('a printing link and notes ranges come only from the share-alike inputs', (
   assert.ok(merged['secret-wars-2015-hc'].contents.every((range) => range.assertedBy === 'gcd-notes'));
 });
 
+test('Imperial keeps matched full originals while holding the additional story in issue 126', () => {
+  const data = inputs();
+  const edition = data.pilot.editions.find((entry) => entry.id === 'new-xmen-v2-imperial');
+  const book = data.fixtures[edition.gcdIssueId].issue;
+  const originals = edition.gcdCheck.originalIssues;
+  assert.deepEqual(originals.map((entry) => entry.appNumber), [118, 119, 120, 121, 122, 123, 124, 125, 126]);
+  assert.equal(new Set(Object.values(edition.gcdCheck.storyTitles)).size, 8);
+  const normalize = (value) => (value || '').replace(/\s+/g, ' ').trim().toLowerCase();
+  const credit = (value) => normalize((value || '').replace(/\s*\(credited(?: as [^)]*)?\)/gi, ''));
+  for (const reference of originals) {
+    const source = data.fixtures[reference.gcdIssueId];
+    const original = source.issue;
+    const stories = original.story_set.filter((entry) => entry.type === 'comic story');
+    const story = book.story_set.find((entry) => entry.sequence_number === reference.collectionSequence);
+    const main = stories.find((entry) => normalize(entry.title) === normalize(story.title));
+    const list = data.lists[`marvel-knights-to-planet-x-${reference.appNumber <= 122 ? '12' : '15'}`];
+    const app = list.items.filter((entry) => entry.seriesId === 2281 && entry.number === String(reference.appNumber));
+    assert.equal(app.length, 1);
+    assert.equal(app[0].seriesName, 'New X-Men (2001 - 2004)');
+    assert.equal(source.url, `https://www.comics.org/api/issue/${reference.gcdIssueId}/?format=json`);
+    assert.equal(original.api_url, source.url);
+    assert.equal(original.series, 'https://www.comics.org/api/series/9855/?format=json');
+    assert.equal(original.series_name, 'New X-Men (2001 series)');
+    assert.equal(original.number, String(reference.appNumber));
+    assert.equal(original.variant_of, null);
+    assert.equal(stories.length, reference.appNumber === 126 ? 2 : 1);
+    assert.ok(main, `original #${reference.appNumber} has the indexed trade story`);
+    for (const field of ['title', 'script', 'pencils']) {
+      const clean = field === 'title' ? normalize : credit;
+      assert.ok(clean(main[field]), `original #${reference.appNumber} has ${field}`);
+      assert.equal(clean(main[field]), clean(story[field]), `original #${reference.appNumber} ${field}`);
+    }
+    assert.ok(Number(main.page_count) > 0);
+    assert.equal(Number(main.page_count), Number(story.page_count), `original #${reference.appNumber} pages`);
+    if (reference.appNumber === 126) {
+      const additional = stories.find((entry) => entry !== main);
+      assert.equal(additional.feature, 'Spider-Man');
+      assert.equal(additional.title, 'Jay Leno & Spider-Man: One Night Only! (Don\'t Forget to Tip Your Waitress) Part Three');
+      assert.equal(Number(additional.page_count), 5);
+      assert.ok(!book.story_set.some((entry) => entry.type === 'comic story'
+        && normalize(entry.title) === normalize(additional.title)));
+    }
+  }
+  const comparison = data.fixtures[edition.gcdCheck.comparisonIssueId].issue.story_set;
+  const covers = comparison.flatMap((entry, index) =>
+    entry.type === 'cover reprint (on interior page)' && entry.title === 'Issue 123' ? [index] : []);
+  assert.equal(covers.length, 1);
+  const hardcoverStory = comparison[covers[0] + 1];
+  const tradeStory = book.story_set.find((entry) => entry.sequence_number === 12);
+  assert.equal(hardcoverStory.type, 'comic story');
+  assert.equal(hardcoverStory.sequence_number, comparison[covers[0]].sequence_number + 1);
+  for (const field of ['title', 'script', 'pencils']) {
+    const clean = field === 'title' ? normalize : credit;
+    assert.equal(clean(hardcoverStory[field]), clean(tradeStory[field]));
+  }
+  assert.equal(Number(hardcoverStory.page_count), 23);
+  assert.equal(Number(tradeStory.page_count), 22);
+  const checked = build(data)['gcd-editions.json'].editions.find((entry) => entry.edition === edition.id);
+  assert.equal(checked.check.status, 'verified');
+  assert.deepEqual(checked.check.verifiedComics, Array.from({ length: 8 }, (_, i) => `2281:${118 + i}`));
+  assert.ok(checked.assertedContents.some((range) => range.from === 126 && range.to === 126 && range.portion === 'partial'));
+  assert.ok(checked.check.excludedSequences.some((entry) => entry.sequence === 18 && entry.reason));
+});
+
 test('minimising a database record drops covers and keeps credit', () => {
   const fixture = minimiseGcdIssue({
     url: 'u',
@@ -555,6 +619,37 @@ test('numbered covers verify complete stories only with an exact source series',
   }
   assert.notEqual(check(edition, fixture, seriesEvidence, { 7: 'Example (2011)' }).status, 'verified');
   assert.notEqual(check(edition, fixture, seriesEvidence, { 7: 'Different (2010)' }).status, 'verified');
+});
+
+test('numbered covers cannot verify an explicitly excluded story', () => {
+  const { gcdSeriesUrl, seriesEvidence } = originalSeriesExample();
+  const edition = editionWith({
+    tier: 'gcd-numbered-covers', gcdSeries: 'Example (Marvel, 2010 series)',
+    gcdSeriesUrl, sourceSeriesId: 90000001, coverPrefix: '[Example] #',
+    expectedScript: 'Writer', expectedPencils: 'Artist', uncountedSequences: { 4: 'Held for review.' },
+  }, [{ seriesId: 7, from: 1, to: 1, assertedBy: 'gcd-stories', basis: 'x' }]);
+  const fixture = fixtureWith([
+    { type: 'cover reprint (on interior page)', title: '[Example] #1', sequence_number: 1 },
+    { type: 'comic story', title: 'One', sequence_number: 2, page_count: '22', script: 'Writer', pencils: 'Artist' },
+    { type: 'cover reprint (on interior page)', title: '[Example] #2', sequence_number: 3 },
+    { type: 'comic story', title: 'Two', sequence_number: 4, page_count: '22', script: 'Writer', pencils: 'Artist' },
+  ], { api_url: 'https://www.comics.org/api/issue/1/?format=json' });
+  const check = (book) => checkEdition(book, fixture, { 7: 'Example (2010)' }, { seriesEvidence });
+  assert.deepEqual([...check(edition).verified], ['7:1']);
+  const excludedClaim = clone(edition);
+  excludedClaim.gcdCheck.uncountedSequences = { 2: 'Held for review.' };
+  assert.equal(check(excludedClaim).verified.size, 0);
+  assert.notEqual(check(excludedClaim).status, 'verified');
+  for (const excluded of [{ 4: '' }, { 99: 'Missing story.' }]) {
+    const bad = clone(edition);
+    bad.gcdCheck.uncountedSequences = excluded;
+    assert.notEqual(check(bad).status, 'verified');
+  }
+  for (const excluded of [['invalid'], 'invalid', null]) {
+    const bad = clone(edition);
+    bad.gcdCheck.uncountedSequences = excluded;
+    assert.throws(() => check(bad), /Uncounted sequences must be an object/);
+  }
 });
 
 test('original issue stories verify only exact series, identity, title, pages and credits', () => {

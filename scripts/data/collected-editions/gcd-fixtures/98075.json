@@ -1,0 +1,55 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/98075/?format=json",
+  "retrievedAt": "2026-11-13T16:51:00.849Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/98075/?format=json",
+    "series_name": "New X-Men (2001 series)",
+    "descriptor": "126 [Direct Edition]",
+    "number": "126",
+    "volume": "1",
+    "variant_name": "Direct Edition",
+    "title": "",
+    "publication_date": "July 2002",
+    "key_date": "2002-07-00",
+    "page_count": "52.000",
+    "isbn": "",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/9855/?format=json",
+    "story_set": [
+      {
+        "type": "comic story",
+        "title": "All Hell",
+        "feature": "X-Men",
+        "sequence_number": 1,
+        "page_count": "32.000",
+        "notes": "",
+        "script": "Grant Morrison",
+        "pencils": "Frank Quitely"
+      },
+      {
+        "type": "letters page",
+        "title": "",
+        "feature": "X-Pressions",
+        "sequence_number": 2,
+        "page_count": "1.000",
+        "notes": "Letters from readers: Jared Moraitis, Dr. Chris Mushan, Thomas Hall, Azamodeen Khan, Dave Helfrey",
+        "script": "?",
+        "pencils": "None"
+      },
+      {
+        "type": "comic story",
+        "title": "Jay Leno & Spider-Man: One Night Only! (Don't Forget to Tip Your Waitress) Part Three",
+        "feature": "Spider-Man",
+        "sequence_number": 3,
+        "page_count": "5.000",
+        "notes": "",
+        "script": "Ron Zimmerman",
+        "pencils": "Greg Capullo"
+      }
+    ]
+  }
+}

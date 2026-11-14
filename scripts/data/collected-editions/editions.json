@@ -334,6 +334,26 @@
         "gcdIssueId": 787875
       },
       "contents": []
+    },
+    {
+      "id": "new-xmen-v4-riot-at-xaviers",
+      "title": "New X-Men Vol. 4: Riot at Xavier's",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 774093
+      },
+      "contents": []
+    },
+    {
+      "id": "daredevil-v8-echo-vision-quest",
+      "title": "Daredevil Vol. 8: Echo - Vision Quest",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 251250
+      },
+      "contents": []
     }
   ],
   "lists": [

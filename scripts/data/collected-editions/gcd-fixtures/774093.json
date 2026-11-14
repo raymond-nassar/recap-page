@@ -1,0 +1,125 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/774093/?format=json",
+  "retrievedAt": "2026-11-13T03:13:26.397Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/774093/?format=json",
+    "series_name": "New X-Men (2001 series)",
+    "descriptor": "4 - Riot at Xavier's",
+    "number": "4",
+    "volume": "4",
+    "variant_name": "",
+    "title": "Riot at Xavier's",
+    "publication_date": "[May] 2003",
+    "key_date": "2003-05-00",
+    "page_count": "132.000",
+    "isbn": "0-7851-1067-4",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/52094/?format=json",
+    "story_set": [
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "X-Men",
+        "sequence_number": 1,
+        "page_count": "1.000",
+        "notes": "Ethan van Sciver and Tim Townsend signed the original art for the cover. The art was cropped and flipped for use, so their signature did not show.",
+        "script": "None",
+        "pencils": "Ethan Van Sciver"
+      },
+      {
+        "type": "comic story",
+        "title": "Kid Omega",
+        "feature": "X-Men",
+        "sequence_number": 2,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Grant Morrison",
+        "pencils": "Keron Grant"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "X-Men",
+        "sequence_number": 3,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Frank Quitely"
+      },
+      {
+        "type": "comic story",
+        "title": "Teaching Children About Fractals",
+        "feature": "X-Men",
+        "sequence_number": 4,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Grant Morrison",
+        "pencils": "Frank Quitely"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "X-Men",
+        "sequence_number": 5,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Frank Quitely"
+      },
+      {
+        "type": "comic story",
+        "title": "When X Is Not X",
+        "feature": "X-Men",
+        "sequence_number": 6,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Grant Morrison",
+        "pencils": "Frank Quitely"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "X-Men",
+        "sequence_number": 7,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Frank Quitely (signed)"
+      },
+      {
+        "type": "comic story",
+        "title": "Riot at Xavier's [Part 3]",
+        "feature": "X-Men",
+        "sequence_number": 8,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Grant Morrison",
+        "pencils": "Frank Quitely"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "X-Men",
+        "sequence_number": 9,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Frank Quitely (signed)"
+      },
+      {
+        "type": "comic story",
+        "title": "The Prime of Miss Emma Frost",
+        "feature": "X-Men",
+        "sequence_number": 10,
+        "page_count": "23.000",
+        "notes": "",
+        "script": "Grant Morrison",
+        "pencils": "Frank Quitely"
+      }
+    ]
+  }
+}

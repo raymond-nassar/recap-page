@@ -356,30 +356,6 @@ export const editionEvidence = {
       "checkedAt": "2026-11-13T01:07:20.700Z"
     },
     {
-      "catalogId": "marvel-knights-to-planet-x-01",
-      "editionId": "daredevil-visionaries-kevin-smith",
-      "issueId": 15675,
-      "seriesId": 449,
-      "number": "7",
-      "status": "verified",
-      "portion": "full",
-      "conflicts": [],
-      "source": "https://www.comics.org/api/issue/1094159/?format=json",
-      "checkedAt": "2026-11-13T01:07:20.700Z"
-    },
-    {
-      "catalogId": "marvel-knights-to-planet-x-01",
-      "editionId": "daredevil-visionaries-kevin-smith",
-      "issueId": 15686,
-      "seriesId": 449,
-      "number": "8",
-      "status": "verified",
-      "portion": "full",
-      "conflicts": [],
-      "source": "https://www.comics.org/api/issue/1094159/?format=json",
-      "checkedAt": "2026-11-13T01:07:20.700Z"
-    },
-    {
       "catalogId": "marvel-knights-to-planet-x-04",
       "editionId": "xtreme-xmen-v1-destiny",
       "issueId": 15011,
@@ -673,18 +649,6 @@ export const editionEvidence = {
       "issueId": 14944,
       "seriesId": 2281,
       "number": "125",
-      "status": "verified",
-      "portion": "full",
-      "conflicts": [],
-      "source": "https://www.comics.org/api/issue/774091/?format=json",
-      "checkedAt": "2026-11-13T01:11:33.169Z"
-    },
-    {
-      "catalogId": "marvel-knights-to-planet-x-15",
-      "editionId": "new-xmen-v2-imperial",
-      "issueId": 14945,
-      "seriesId": 2281,
-      "number": "126",
       "status": "verified",
       "portion": "full",
       "conflicts": [],
@@ -1050,6 +1014,126 @@ export const editionEvidence = {
       "conflicts": [],
       "source": "https://www.comics.org/api/issue/787875/?format=json",
       "checkedAt": "2026-11-13T01:07:14.120Z"
+    },
+    {
+      "catalogId": "marvel-knights-to-planet-x-42",
+      "editionId": "new-xmen-v4-riot-at-xaviers",
+      "issueId": 14953,
+      "seriesId": 2281,
+      "number": "134",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/774093/?format=json",
+      "checkedAt": "2026-11-13T03:13:26.397Z"
+    },
+    {
+      "catalogId": "marvel-knights-to-planet-x-42",
+      "editionId": "new-xmen-v4-riot-at-xaviers",
+      "issueId": 14954,
+      "seriesId": 2281,
+      "number": "135",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/774093/?format=json",
+      "checkedAt": "2026-11-13T03:13:26.397Z"
+    },
+    {
+      "catalogId": "marvel-knights-to-planet-x-42",
+      "editionId": "new-xmen-v4-riot-at-xaviers",
+      "issueId": 14955,
+      "seriesId": 2281,
+      "number": "136",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/774093/?format=json",
+      "checkedAt": "2026-11-13T03:13:26.397Z"
+    },
+    {
+      "catalogId": "marvel-knights-to-planet-x-42",
+      "editionId": "new-xmen-v4-riot-at-xaviers",
+      "issueId": 14956,
+      "seriesId": 2281,
+      "number": "137",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/774093/?format=json",
+      "checkedAt": "2026-11-13T03:13:26.397Z"
+    },
+    {
+      "catalogId": "marvel-knights-to-planet-x-42",
+      "editionId": "new-xmen-v4-riot-at-xaviers",
+      "issueId": 14957,
+      "seriesId": 2281,
+      "number": "138",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/774093/?format=json",
+      "checkedAt": "2026-11-13T03:13:26.397Z"
+    },
+    {
+      "catalogId": "marvel-knights-to-planet-x-69",
+      "editionId": "daredevil-v8-echo-vision-quest",
+      "issueId": 15655,
+      "seriesId": 449,
+      "number": "51",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/251250/?format=json",
+      "checkedAt": "2026-11-13T09:27:29.966Z"
+    },
+    {
+      "catalogId": "marvel-knights-to-planet-x-69",
+      "editionId": "daredevil-v8-echo-vision-quest",
+      "issueId": 15656,
+      "seriesId": 449,
+      "number": "52",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/251250/?format=json",
+      "checkedAt": "2026-11-13T09:27:29.966Z"
+    },
+    {
+      "catalogId": "marvel-knights-to-planet-x-69",
+      "editionId": "daredevil-v8-echo-vision-quest",
+      "issueId": 326,
+      "seriesId": 449,
+      "number": "53",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/251250/?format=json",
+      "checkedAt": "2026-11-13T09:27:29.966Z"
+    },
+    {
+      "catalogId": "marvel-knights-to-planet-x-69",
+      "editionId": "daredevil-v8-echo-vision-quest",
+      "issueId": 358,
+      "seriesId": 449,
+      "number": "54",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/251250/?format=json",
+      "checkedAt": "2026-11-13T09:27:29.966Z"
+    },
+    {
+      "catalogId": "marvel-knights-to-planet-x-69",
+      "editionId": "daredevil-v8-echo-vision-quest",
+      "issueId": 327,
+      "seriesId": 449,
+      "number": "55",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/251250/?format=json",
+      "checkedAt": "2026-11-13T09:27:29.966Z"
     }
   ]
 };

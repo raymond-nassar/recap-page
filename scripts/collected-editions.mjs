@@ -332,6 +332,11 @@ function crosswalkMatch(range, series, crosswalk, fixtures) {
 // each exclusion with its reason, so a count that differs from the record is always explained.
 // Cover sequences never reach a fixture (constraint 1), so they are not listed here.
 function comicStories(fixture, edition) {
+  if (edition.gcdCheck.uncountedSequences !== undefined
+    && (!edition.gcdCheck.uncountedSequences || typeof edition.gcdCheck.uncountedSequences !== 'object'
+      || Array.isArray(edition.gcdCheck.uncountedSequences))) {
+    throw new TypeError('Uncounted sequences must be an object with a reason for each sequence.');
+  }
   const uncounted = edition.gcdCheck.uncountedSequences || {};
   const stories = [];
   const excluded = [];
@@ -405,9 +410,18 @@ function sourceStoryEvidence(edition, fixture, seriesNames, mappings, fixtures, 
   }
   const url = `https://www.comics.org/api/issue/${edition.gcdIssueId}/?format=json`;
   if (fixture.url !== url || fixture.issue.api_url !== url) return { error: 'The book fixture does not identify this edition.' };
-  const stories = fixture.issue.story_set.filter((story) => story.type === 'comic story');
+  const excluded = edition.gcdCheck.uncountedSequences;
+  if (excluded !== undefined && (check.tier !== 'gcd-numbered-covers'
+    || !excluded || typeof excluded !== 'object' || Array.isArray(excluded)
+    || Object.entries(excluded).some(([sequence, reason]) =>
+      typeof reason !== 'string' || !reason.trim()
+      || fixture.issue.story_set.filter((story) =>
+        story.type === 'comic story' && String(story.sequence_number) === sequence).length !== 1))) {
+    return { error: 'The book must have exactly one indexed comic story for each issue.' };
+  }
+  const { stories, missing } = comicStories(fixture, edition);
   const expected = range.to - range.from + 1;
-  if (stories.length !== expected || edition.gcdCheck.uncountedSequences) {
+  if (stories.length !== expected || missing.length) {
     return { error: 'The book must have exactly one indexed comic story for each issue.' };
   }
   const matched = new Set();
@@ -433,7 +447,7 @@ function sourceStoryEvidence(edition, fixture, seriesNames, mappings, fixtures, 
       if (indices.length !== 1) return { error: `The book does not identify exactly one interior cover for #${number}.` };
       const cover = entries[indices[0]];
       const story = entries[indices[0] + 1];
-      if (story?.type !== 'comic story' || story.sequence_number !== cover.sequence_number + 1
+      if (story?.type !== 'comic story' || !stories.includes(story) || story.sequence_number !== cover.sequence_number + 1
         || matched.has(story.sequence_number) || !normalStoryText(story.title)
         || !normalStoryText(check.expectedScript) || normalStoryText(story.script) !== normalStoryText(check.expectedScript)
         || !normalStoryText(check.expectedPencils) || normalStoryText(story.pencils) !== normalStoryText(check.expectedPencils)

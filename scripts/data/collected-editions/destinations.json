@@ -15,5 +15,111 @@
       "providerPermission": "not-requested"
     }
   },
-  "destinations": {}
+  "destinations": {
+    "xtreme-xmen-v1-destiny": [
+      {
+        "provider": "libby",
+        "url": "https://share.libbyapp.com/title/13812993",
+        "checkedAt": "2026-11-13",
+        "confirmedBy": "owner",
+        "source": "Owner-confirmed Cowork return; SHA-256 0b85d0cc1942a6600d3ba08731759475294f2977576889a439f78f212990b17d"
+      }
+    ],
+    "civil-war-2007-tpb": [
+      {
+        "provider": "hoopla",
+        "url": "https://www.hoopladigital.com/title/12003677",
+        "checkedAt": "2026-11-13",
+        "confirmedBy": "owner",
+        "source": "Owner-confirmed Cowork return; SHA-256 0b85d0cc1942a6600d3ba08731759475294f2977576889a439f78f212990b17d"
+      },
+      {
+        "provider": "libby",
+        "url": "https://share.libbyapp.com/title/4455520",
+        "checkedAt": "2026-11-13",
+        "confirmedBy": "owner",
+        "source": "Owner-confirmed Cowork return; SHA-256 0b85d0cc1942a6600d3ba08731759475294f2977576889a439f78f212990b17d"
+      }
+    ],
+    "asgardians-v1-the-infinity-armada": [
+      {
+        "provider": "hoopla",
+        "url": "https://www.hoopladigital.com/title/12917385",
+        "checkedAt": "2026-11-13",
+        "confirmedBy": "owner",
+        "source": "Owner-confirmed Cowork return; SHA-256 0b85d0cc1942a6600d3ba08731759475294f2977576889a439f78f212990b17d"
+      },
+      {
+        "provider": "libby",
+        "url": "https://share.libbyapp.com/title/5832334",
+        "checkedAt": "2026-11-13",
+        "confirmedBy": "owner",
+        "source": "Owner-confirmed Cowork return; SHA-256 0b85d0cc1942a6600d3ba08731759475294f2977576889a439f78f212990b17d"
+      }
+    ],
+    "asgardians-v2-war-of-the-realms": [
+      {
+        "provider": "hoopla",
+        "url": "https://www.hoopladigital.com/title/12917346",
+        "checkedAt": "2026-11-13",
+        "confirmedBy": "owner",
+        "source": "Owner-confirmed Cowork return; SHA-256 0b85d0cc1942a6600d3ba08731759475294f2977576889a439f78f212990b17d"
+      },
+      {
+        "provider": "libby",
+        "url": "https://share.libbyapp.com/title/8114341",
+        "checkedAt": "2026-11-13",
+        "confirmedBy": "owner",
+        "source": "Owner-confirmed Cowork return; SHA-256 0b85d0cc1942a6600d3ba08731759475294f2977576889a439f78f212990b17d"
+      }
+    ],
+    "new-xmen-v4-riot-at-xaviers": [
+      {
+        "provider": "hoopla",
+        "url": "https://www.hoopladigital.com/title/12650794",
+        "checkedAt": "2026-11-13",
+        "confirmedBy": "owner",
+        "source": "Owner-confirmed Cowork return; SHA-256 0b85d0cc1942a6600d3ba08731759475294f2977576889a439f78f212990b17d"
+      },
+      {
+        "provider": "libby",
+        "url": "https://share.libbyapp.com/title/5408076",
+        "checkedAt": "2026-11-13",
+        "confirmedBy": "owner",
+        "source": "Owner-confirmed Cowork return; SHA-256 0b85d0cc1942a6600d3ba08731759475294f2977576889a439f78f212990b17d"
+      }
+    ],
+    "daredevil-v8-echo-vision-quest": [
+      {
+        "provider": "hoopla",
+        "url": "https://www.hoopladigital.com/title/14762070",
+        "checkedAt": "2026-11-13",
+        "confirmedBy": "owner",
+        "source": "Owner-confirmed Cowork return; SHA-256 0b85d0cc1942a6600d3ba08731759475294f2977576889a439f78f212990b17d"
+      },
+      {
+        "provider": "libby",
+        "url": "https://share.libbyapp.com/title/8364770",
+        "checkedAt": "2026-11-13",
+        "confirmedBy": "owner",
+        "source": "Owner-confirmed Cowork return; SHA-256 0b85d0cc1942a6600d3ba08731759475294f2977576889a439f78f212990b17d"
+      }
+    ],
+    "new-xmen-v2-imperial": [
+      {
+        "provider": "hoopla",
+        "url": "https://www.hoopladigital.com/title/12650921",
+        "checkedAt": "2026-11-13",
+        "confirmedBy": "owner",
+        "source": "Owner-confirmed Cowork return; SHA-256 0b85d0cc1942a6600d3ba08731759475294f2977576889a439f78f212990b17d"
+      },
+      {
+        "provider": "libby",
+        "url": "https://share.libbyapp.com/title/5408074",
+        "checkedAt": "2026-11-13",
+        "confirmedBy": "owner",
+        "source": "Owner-confirmed Cowork return; SHA-256 0b85d0cc1942a6600d3ba08731759475294f2977576889a439f78f212990b17d"
+      }
+    ]
+  }
 }

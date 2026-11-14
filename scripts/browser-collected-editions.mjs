@@ -4,7 +4,8 @@ import { editionEvidence } from '../src/js/lib/collectedEditions.js';
 
 const catalog = JSON.parse(readFileSync(new URL('../src/data/catalog.json', import.meta.url), 'utf8'));
 const ids = ['civil-war-avengers', 'nebula-reading-order', 'avengers-doomsday-secret-wars', 'realm-of-kings',
-  'the-unbeatable-squirrel-girl', 'marvel-knights-to-planet-x-04', 'marvel-knights-to-planet-x-15'];
+  'the-unbeatable-squirrel-girl', 'marvel-knights-to-planet-x-04', 'marvel-knights-to-planet-x-15',
+  'marvel-knights-to-planet-x-42', 'marvel-knights-to-planet-x-69'];
 const lists = catalog.lists.filter((list) => ids.includes(list.id));
 if (lists.length !== ids.length) throw new Error('Collected-edition browser fixtures require the chosen pilot and timeline lists');
 const orders = Object.fromEntries(lists.map((list) => [list.file,
@@ -253,11 +254,26 @@ export const collectedEditions = {
       const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
       t.check(`${list.id}: Preview labels exactly the eligible issue count`,
         await page.$$eval('#preview .collected-edition', (nodes) => nodes.length) === expected.length);
+      if (list.id === 'marvel-knights-to-planet-x-42' || list.id === 'marvel-knights-to-planet-x-69') {
+        const title = list.id.endsWith('-42') ? "New X-Men Vol. 4: Riot at Xavier's" : 'Daredevil Vol. 8: Echo - Vision Quest';
+        t.check(`${list.id}: Preview names the confirmed book and both providers on all five issues`,
+          await page.$$eval('#preview .collected-edition', (nodes, title) =>
+            nodes.length === 5 && nodes.every((node) => node.textContent.includes(`Collected in ${title}`)
+              && node.querySelectorAll('a').length === 2), title));
+      }
       if (list.id === 'marvel-knights-to-planet-x-04' || list.id === 'marvel-knights-to-planet-x-15') {
         const title = list.id.endsWith('-04') ? 'X-Treme X-Men Vol. 1: Destiny' : 'New X-Men Vol. 2: Imperial';
-        t.check(`${list.id}: heading-free Preview names the selected book on four issues`,
-          await page.$$eval('#preview .collected-edition', (nodes, title) =>
-            nodes.length === 4 && nodes.every((node) => node.textContent.includes(`Collected in ${title}`)), title));
+        const count = list.id.endsWith('-04') ? 4 : 3;
+        t.check(`${list.id}: heading-free Preview names the selected book on eligible issues`,
+          await page.$$eval('#preview .collected-edition', (nodes, title, count) =>
+            nodes.length === count && nodes.every((node) => node.textContent.includes(`Collected in ${title}`)), title, count));
+      }
+      if (list.id === 'marvel-knights-to-planet-x-15') {
+        t.check(`${list.id}: Preview leaves the held issue 126 without a book label`,
+          await page.$$eval('#preview .preview-list li', (nodes) => {
+            const row = nodes.find((node) => node.querySelector('.preview-issue-link')?.textContent === 'New X-Men (2001) #126');
+            return !!row && !row.querySelector('.collected-edition');
+          }));
       }
       t.check(`${list.id}: Preview shows credit exactly when relations are displayed`,
         await page.$$eval('#preview .edition-credit', (nodes) => nodes.length) === (expected.length ? 1 : 0));
@@ -268,6 +284,13 @@ export const collectedEditions = {
       await page.waitForSelector('#rows .row');
       t.check(`${list.id}: saved list labels match Preview`,
         await page.$$eval('#rows .collected-edition', (nodes) => nodes.length) === expected.length);
+      if (list.id === 'marvel-knights-to-planet-x-15') {
+        t.check(`${list.id}: saved list leaves the held issue 126 without a book label`,
+          await page.$$eval('#rows .row', (nodes) => {
+            const row = nodes.find((node) => node.querySelector('.row-focus-title')?.textContent === 'New X-Men (2001) #126');
+            return !!row && !row.querySelector('.collected-edition');
+          }));
+      }
       t.check(`${list.id}: saved list has one shared credit, not a row of repeated links`,
         await page.$$eval('#rows .edition-credit', (nodes) => nodes.length) === (expected.length ? 1 : 0));
       if (expected.length) {
@@ -325,15 +348,20 @@ export const collectedEditions = {
               const rect = node.getBoundingClientRect();
               return rect.left >= 0 && rect.right <= innerWidth && node.scrollWidth <= node.clientWidth + 1;
             }),
-            rowStops: labels.some((node) => node.querySelector('a,button,[tabindex]')),
+            links: labels.flatMap((node) => [...node.querySelectorAll('a')].map((link) => link.href)),
+            unexpectedStops: labels.some((node) => node.querySelector('button,[tabindex]')),
             issue: labels.every((node) => node.closest('li')?.querySelector('[data-issue-id]')),
             credit: container.querySelectorAll('.edition-credit a').length,
             bodyOverflow: document.documentElement.scrollWidth > innerWidth,
           };
         });
         const name = `${surface} ${profile.width}px forced=${profile.forced} large=${profile.large}`;
-        t.check(`${name}: all 13 labels wrap with their issues and no row tab stop`,
-          result.count === 13 && result.fits && !result.rowStops && result.issue && !result.bodyOverflow, JSON.stringify(result));
+        t.check(`${name}: all 13 labels wrap with their issues and only confirmed Civil War links`,
+          result.count === 13 && result.fits && !result.unexpectedStops && result.issue && !result.bodyOverflow
+          && result.links.length === 14
+          && result.links.filter((link) => link === 'https://www.hoopladigital.com/title/12003677').length === 7
+          && result.links.filter((link) => link === 'https://share.libbyapp.com/title/4455520').length === 7,
+          JSON.stringify(result));
         t.check(`${name}: required credit retains both licence/source links`, result.credit === 2);
         const ax = await cdp.send('Accessibility.getFullAXTree');
         t.check(`${name}: label text is exposed in the accessibility tree`,

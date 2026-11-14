@@ -1691,9 +1691,9 @@
         {
           "seriesId": 449,
           "from": 1,
-          "to": 8,
+          "to": 6,
           "assertedBy": "gcd-stories",
-          "basis": "The book numbers the interior covers immediately before its eight comic stories; the source series lists those issues."
+          "basis": "The book numbers the interior covers immediately before these six comic stories; the source series lists those issues."
         }
       ],
       "check": {
@@ -1705,9 +1705,7 @@
           "449:3",
           "449:4",
           "449:5",
-          "449:6",
-          "449:7",
-          "449:8"
+          "449:6"
         ],
         "excludedSequences": [
           {
@@ -1761,9 +1759,19 @@
             "reason": "Not a comic story: cover reprint (on interior page)."
           },
           {
+            "sequence": 17,
+            "title": "Guardian Devil Part Seven: The Devil's Demon",
+            "reason": "Original issue #7 indexes an additional short comic story not established in the book; the full issue remains held."
+          },
+          {
             "sequence": 18,
             "title": "8",
             "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 19,
+            "title": "Guardian Devil Part Eight: The Devil's Deliverance",
+            "reason": "Original issue #8 indexes an additional short comic story not established in the book; the full issue remains held."
           },
           {
             "sequence": 20,
@@ -1962,8 +1970,40 @@
       "notes": null,
       "supportingSources": [
         {
+          "url": "https://www.comics.org/api/issue/98067/?format=json",
+          "retrievedAt": "2026-11-13T16:24:17.019Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/98068/?format=json",
+          "retrievedAt": "2026-11-13T16:24:19.715Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/98069/?format=json",
+          "retrievedAt": "2026-11-13T16:24:23.077Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/98070/?format=json",
+          "retrievedAt": "2026-11-13T16:25:45.169Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/98071/?format=json",
+          "retrievedAt": "2026-11-13T16:27:36.762Z"
+        },
+        {
           "url": "https://www.comics.org/api/issue/98072/?format=json",
           "retrievedAt": "2026-11-13T03:07:24.125Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/98073/?format=json",
+          "retrievedAt": "2026-11-13T16:27:39.903Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/98074/?format=json",
+          "retrievedAt": "2026-11-13T16:27:42.866Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/98075/?format=json",
+          "retrievedAt": "2026-11-13T16:51:00.849Z"
         },
         {
           "url": "https://www.comics.org/api/issue/774084/?format=json",
@@ -2021,13 +2061,21 @@
         {
           "seriesId": 2281,
           "from": 118,
-          "to": 126,
+          "to": 125,
           "assertedBy": "gcd-stories",
-          "basis": "The trade's stories match the hardcover's numbered stories. For #123 the original issue supports the trade's 22 pages, not the hardcover's 23."
+          "basis": "Each trade story matches the corresponding original issue's indexed story, pages and credits."
+        },
+        {
+          "seriesId": 2281,
+          "from": 126,
+          "to": 126,
+          "portion": "partial",
+          "assertedBy": "gcd-stories",
+          "basis": "The original indexes an additional five-page comic story not indexed by the trade. Its physical absence is not established."
         }
       ],
       "check": {
-        "tier": "gcd-numbered-comparison",
+        "tier": "gcd-story-titles",
         "status": "verified",
         "verifiedComics": [
           "2281:118",
@@ -2037,8 +2085,7 @@
           "2281:122",
           "2281:123",
           "2281:124",
-          "2281:125",
-          "2281:126"
+          "2281:125"
         ],
         "excludedSequences": [
           {
@@ -2085,6 +2132,11 @@
             "sequence": 16,
             "title": null,
             "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 18,
+            "title": "All Hell",
+            "reason": "The trade indexes the main story from #126, but the original indexes another comic story not indexed by the trade. Full issue coverage remains unconfirmed."
           }
         ],
         "conflicts": []
@@ -2418,6 +2470,216 @@
             "sequence": 17,
             "title": "Issue #19 Cover",
             "reason": "Not a comic story: cover reprint (on interior page)."
+          }
+        ],
+        "conflicts": []
+      }
+    },
+    {
+      "edition": "new-xmen-v4-riot-at-xaviers",
+      "gcdIssueId": 774093,
+      "url": "https://www.comics.org/api/issue/774093/?format=json",
+      "retrievedAt": "2026-11-13T03:13:26.397Z",
+      "seriesName": "New X-Men (2001 series)",
+      "number": "4",
+      "descriptor": "4 - Riot at Xavier's",
+      "isbn": "0-7851-1067-4",
+      "publicationDate": "[May] 2003",
+      "pageCount": "132.000",
+      "variantOf": null,
+      "notes": null,
+      "supportingSources": [
+        {
+          "url": "https://www.comics.org/api/issue/127870/?format=json",
+          "retrievedAt": "2026-11-13T03:50:43.174Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/127871/?format=json",
+          "retrievedAt": "2026-11-13T03:50:45.656Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/127872/?format=json",
+          "retrievedAt": "2026-11-13T03:50:48.684Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/127873/?format=json",
+          "retrievedAt": "2026-11-13T03:50:51.725Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/127874/?format=json",
+          "retrievedAt": "2026-11-13T04:07:24.183Z"
+        }
+      ],
+      "comicStories": [
+        {
+          "sequence": 2,
+          "title": "Kid Omega",
+          "pages": "22.000"
+        },
+        {
+          "sequence": 4,
+          "title": "Teaching Children About Fractals",
+          "pages": "22.000"
+        },
+        {
+          "sequence": 6,
+          "title": "When X Is Not X",
+          "pages": "22.000"
+        },
+        {
+          "sequence": 8,
+          "title": "Riot at Xavier's [Part 3]",
+          "pages": "22.000"
+        },
+        {
+          "sequence": 10,
+          "title": "The Prime of Miss Emma Frost",
+          "pages": "23.000"
+        }
+      ],
+      "assertedContents": [
+        {
+          "seriesId": 2281,
+          "from": 134,
+          "to": 138,
+          "assertedBy": "gcd-stories",
+          "basis": "Each book story matches its original issue's title, pages and credited creators."
+        }
+      ],
+      "check": {
+        "tier": "gcd-original-stories",
+        "status": "verified",
+        "verifiedComics": [
+          "2281:134",
+          "2281:135",
+          "2281:136",
+          "2281:137",
+          "2281:138"
+        ],
+        "excludedSequences": [
+          {
+            "sequence": 1,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 3,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 5,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 7,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 9,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          }
+        ],
+        "conflicts": []
+      }
+    },
+    {
+      "edition": "daredevil-v8-echo-vision-quest",
+      "gcdIssueId": 251250,
+      "url": "https://www.comics.org/api/issue/251250/?format=json",
+      "retrievedAt": "2026-11-13T09:27:29.966Z",
+      "seriesName": "Daredevil (2002 series)",
+      "number": "8",
+      "descriptor": "8 - Echo - Vision Quest",
+      "isbn": "078512324",
+      "publicationDate": "2004",
+      "pageCount": "124.000",
+      "variantOf": null,
+      "notes": "Collects Daredevil (Marvel, 1998 series) #51-55.",
+      "comicStories": [
+        {
+          "sequence": 3,
+          "title": "Echo - Vision Quest [Part 1]",
+          "pages": "22.000"
+        },
+        {
+          "sequence": 5,
+          "title": "Echo - Vision Quest [Part 2]",
+          "pages": "23.000"
+        },
+        {
+          "sequence": 7,
+          "title": "Echo - Vision Quest [Part 3]",
+          "pages": "22.000"
+        },
+        {
+          "sequence": 9,
+          "title": "Echo - Vision Quest [Part 4]",
+          "pages": "21.000"
+        },
+        {
+          "sequence": 11,
+          "title": "Echo - Vision Quest [Part 5]",
+          "pages": "22.000"
+        }
+      ],
+      "assertedContents": [
+        {
+          "seriesId": 449,
+          "from": 51,
+          "to": 55,
+          "assertedBy": "gcd-notes",
+          "basis": "The indexer notes list Daredevil #51-55."
+        }
+      ],
+      "check": {
+        "tier": "gcd-notes",
+        "status": "verified",
+        "verifiedComics": [
+          "449:51",
+          "449:52",
+          "449:53",
+          "449:54",
+          "449:55"
+        ],
+        "excludedSequences": [
+          {
+            "sequence": 1,
+            "title": "Credits and Recap",
+            "reason": "Not a comic story: credits, title page."
+          },
+          {
+            "sequence": 2,
+            "title": "[Daredevil] #51",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 4,
+            "title": "[Daredevil] #52",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 6,
+            "title": "[Daredevil] #53",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 8,
+            "title": "[Daredevil] #54",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 10,
+            "title": "[Daredevil] #55",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 12,
+            "title": "The Power of Silence",
+            "reason": "Not a comic story: illustration."
           }
         ],
         "conflicts": []
