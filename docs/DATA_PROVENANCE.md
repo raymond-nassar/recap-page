@@ -726,7 +726,7 @@ The [series-volume correction ledger](../scripts/data/cbh-source-ledgers/wolveri
 records the prior publication and all 95 corrected source positions, including 65 distinct issues
 previously collapsed into repeats or exclusions. The earlier settlement counts remain historical.
 Existing saved lists keep their issue identities and progress; newly added lists use the correction.
-Title repairs and additional gap resolutions are tracked separately in #1256 and #1257.
+App title repairs use the separate ledger for #1256; checklist repairs remain in #1264 and gaps in #1257.
 
 Star-Lord's Complete guide preserves all 99 issues in displayed source order. Its 25 shared issues
 with each of Rocket Raccoon and Groot, 7 with War of Kings, and 1 with Infinity Countdown and
@@ -3016,7 +3016,7 @@ Issue #6 is the same identity One World Under Doom already confirms, so the two 
 The owner-guide contract requires a positive ID, exact matching owner-supplied Marvel URL, named
 confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:849-871`).
 The vendor excludes these entries from metadata lookup and creates no provider projection
-(`scripts/vendor-orders.mjs:496-500`, `scripts/vendor-orders.mjs:566-567`, `scripts/vendor-orders.mjs:611-612`).
+(`scripts/vendor-orders.mjs:497-501`, `scripts/vendor-orders.mjs:567-568`, `scripts/vendor-orders.mjs:612-613`).
 Unless a row carries the external supplement described below, the published rows carry only their
 confirmed identity, issue ID, URL and refusal state; optional provider details and covers remain
 empty. The ten One World Under Doom rows are of that kind. No comic image bytes are stored and no

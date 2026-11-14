@@ -9,6 +9,7 @@ import {
   sourcePositionsForPacket,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { beforeWolverineCorrectionIssueIds } from './helpers/wolverine-correction-history.mjs';
+import { repairWolverineTitles, wolverineTitleRepairs } from '../scripts/lib/wolverine-title-repairs.mjs';
 
 const id = 'wolverine-reading-order';
 const readJson = async (file) => JSON.parse(await readFile(file, 'utf8'));
@@ -61,6 +62,32 @@ function occurrences(source) {
 
 const corrections = ledger.correctionReview.corrections;
 const corrected = new Set(corrections.map((entry) => entry.sourcePosition));
+
+test('Wolverine display repairs preserve every published identity and all non-title data', () => {
+  const baseline = JSON.parse(execFileSync('git', [
+    'show', `${wolverineTitleRepairs.baselineCommit}:src/data/wolverine_reading_order.json`,
+  ], { encoding: 'utf8', maxBuffer: 64 << 20 }));
+  assert.equal(wolverineTitleRepairs.entries.length, 25);
+  assert.deepEqual(repairWolverineTitles(baseline), payload);
+  assert.deepEqual(repairWolverineTitles(payload, { undo: true }), baseline);
+  assert.deepEqual(payload.items.map((item) => item.issueId), baseline.items.map((item) => item.issueId));
+  assert.equal(payload.items.filter((item, index) => item.title !== baseline.items[index].title).length, 25);
+  assert.ok([...payload.items, ...payload.unresolved].every(({ title }) =>
+    !/[\u00c3\u2013\u2014]/u.test(title)));
+});
+
+test('Wolverine title overlay is repeatable and rejects unknown text or identity', () => {
+  assert.deepEqual(repairWolverineTitles(payload), payload);
+  const unrelated = { id: 'unrelated' };
+  assert.equal(repairWolverineTitles(unrelated), unrelated);
+  for (const field of ['title', 'issueId', 'placeholder']) {
+    const invalid = structuredClone(payload);
+    invalid.items[wolverineTitleRepairs.entries[0].position - 1][field] = 'unexpected';
+    assert.throws(() => repairWolverineTitles(invalid));
+  }
+  const missing = { ...payload, unresolved: [] };
+  assert.throws(() => repairWolverineTitles(missing), /one unresolved label/);
+});
 
 test('current reading census imports without Git history and replay reads it lazily', () => {
   const censusUrl = new URL('./helpers/current-reading-library.mjs', import.meta.url).href;
@@ -136,7 +163,8 @@ test('the corrected rows reach the published payload in source order', () => {
   assert.equal(payload.items.length, ledger.correctionReview.sourceCounts.sourceIdentityCount);
   assert.equal(payload.count, payload.items.length);
   const priorPlaceholders = JSON.parse(priorPayloadText).items.filter((item) => item.placeholder);
-  assert.deepEqual(payload.items.filter((item) => item.placeholder), priorPlaceholders);
+  assert.deepEqual(repairWolverineTitles(payload, { undo: true }).items
+    .filter((item) => item.placeholder), priorPlaceholders);
 });
 
 test('the correction review approves the current Wolverine publication', () => {

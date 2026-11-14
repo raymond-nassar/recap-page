@@ -14,8 +14,35 @@ import { buildMarkdown } from '../scripts/author-cbh-packet.mjs';
 import { digestCanonicalJson, packetDigestFor, validateFrozenPacket } from '../scripts/lib/cbh-inventory.mjs';
 import { writeOutputsAtomically } from '../scripts/vendor-orders.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
+import { placeholderId } from '../scripts/lib/placeholder-id.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+
+test('vendoring repairs placeholder display text only after hashing its legacy title', (t) => {
+  const fixture = mkdtempSync(path.join(os.tmpdir(), 'wolverine-title-vendor-'));
+  t.after(() => rmSync(fixture, { recursive: true, force: true }));
+  writeFixture(fixture);
+  const manifestPath = path.join(fixture, 'src', 'data', 'curated-lists.json');
+  const manifest = JSON.parse(readFileSync(manifestPath));
+  delete manifest.lists[0].coverIssueId;
+  writeFileSync(manifestPath, JSON.stringify(manifest));
+  const ledger = JSON.parse(readFileSync(path.join(root, 'scripts', 'data', 'wolverine-title-repairs.json')));
+  const entry = { ...ledger.entries[0], position: 1 };
+  entry.issueId = placeholderId('atomic-order', entry.legacyTitle);
+  writeFileSync(path.join(fixture, 'scripts', 'data', 'wolverine-title-repairs.json'),
+    JSON.stringify({ ...ledger, orderId: 'atomic-order', entries: [entry] }));
+  writeFileSync(path.join(fixture, 'src', 'data', 'orders', 'atomic-order.md'),
+    `- [ ] ${entry.legacyTitle}\n`);
+  const result = spawnSync(process.execPath, ['scripts/vendor-orders.mjs', '--only=atomic-order'], {
+    cwd: fixture, encoding: 'utf8',
+  });
+  assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
+  const payload = JSON.parse(readFileSync(path.join(fixture, 'src', 'data', 'atomic_order.json')));
+  assert.equal(payload.items[0].issueId, entry.issueId);
+  assert.equal(payload.items[0].title, entry.title);
+  assert.equal(payload.items[0].placeholder, true);
+  assert.equal(payload.unresolved[0].title, entry.title);
+});
 
 function writeFixture(rootPath) {
   cpSync(path.join(root, 'scripts'), path.join(rootPath, 'scripts'), { recursive: true });

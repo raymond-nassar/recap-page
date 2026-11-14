@@ -20,6 +20,7 @@ import {
 } from '../scripts/lib/cbh-inventory.mjs';
 import { issueIdsFromValue } from '../scripts/lib/cbh-overlap.mjs';
 import { placeholderId } from '../scripts/lib/placeholder-id.mjs';
+import { repairWolverineTitles } from '../scripts/lib/wolverine-title-repairs.mjs';
 import { assertApprovedRelationshipReview, buildMarkdown } from '../scripts/author-cbh-packet.mjs';
 
 import { CBH_LATER_ORDER_IDS } from '../scripts/lib/cbro-evidence.mjs';
@@ -3462,7 +3463,7 @@ test('Wolverine settles every reviewed gap without substitution or boundary wide
     Array.from({ length: 756 }, () => null),
   );
   assert.deepEqual(
-    generated.items
+    repairWolverineTitles(generated, { undo: true }).items
       .filter((item) => item.placeholder)
       .map((item) => [item.title, item.issueId]),
     retainedPlaceholderIds,
