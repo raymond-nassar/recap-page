@@ -714,12 +714,18 @@ export function createAddView({
     if (kind === 'series') onSeriesSearch();
     showView(kind === 'series' ? 'add-series' : 'add-creator', { push: true });
     $(config.input).value = item.name;
+    if (kind === 'series') seriesFieldWritten = item.name;
     beginSearch(config);
     config.focusResults = true;
     void config.runner.start(item);
   }
 
-  async function openSeriesById(id, { isCurrent, focus = true }) {
+  // The last value the app itself put in the series field, or one the reader sent. Back and
+  // Forward reopen a series address, and a field holding anything else is an unsent draft that
+  // the series name must not replace. A link the reader just followed is fresh and does replace it.
+  let seriesFieldWritten = '';
+
+  async function openSeriesById(id, { isCurrent, focus = true, fresh = false }) {
     const config = searches.find((candidate) => candidate.kind === 'series');
     const epoch = beginSearch(config);
     const current = () => config.epoch === epoch && isCurrent();
@@ -731,7 +737,7 @@ export function createAddView({
       index = await search.nameIndex('series');
     } catch (error) {
       if (!current()) return;
-      const retry = () => openSeriesById(id, { isCurrent, focus });
+      const retry = () => openSeriesById(id, { isCurrent, focus, fresh });
       const failure = `Series details could not be loaded (${error?.message ?? String(error)}). Try again.`;
       await reportBundledLoadFailure({
         report: config.results,
@@ -750,7 +756,10 @@ export function createAddView({
       notify(config.results, 'This series is not in the local index. Search for another series.', 'warn');
       return;
     }
-    if ($(config.input).value === initialQuery) $(config.input).value = item.name;
+    if ($(config.input).value === initialQuery && (fresh || initialQuery === seriesFieldWritten)) {
+      $(config.input).value = item.name;
+      seriesFieldWritten = item.name;
+    }
     config.focusResults = focus && document.activeElement === heldFocus;
     config.routeFocus = heldFocus;
     await config.runner.start(item);
@@ -773,7 +782,10 @@ export function createAddView({
       event.preventDefault();
       const query = $(input).value.trim();
       if (!query) return;
-      if (kind === 'series') onSeriesSearch();
+      if (kind === 'series') {
+        onSeriesSearch();
+        seriesFieldWritten = $(input).value;
+      }
       const epoch = beginSearch(config);
       notify(results, 'Searching…', 'busy');
       try {

@@ -7972,7 +7972,7 @@ const SCENARIOS = [
       })));
       const alpha = links.find((row) => row.name === 'Alpha');
       t.check('Progress marks only reviewed series links as selected appearances',
-        alpha?.universes.map((link) => link.id).join('|') === 'days-of-future-past|earth-616'
+        alpha?.universes.map((link) => link.id).join('|') === 'days-of-future-past'
         && alpha.universes.every((link) => link.text.includes('Selected comics in:'))
         && links.filter((row) => row.name !== 'Alpha').every((row) => row.universes.length === 0),
         JSON.stringify(links));
@@ -27302,6 +27302,8 @@ SCENARIOS.push({
   id: 'universes-discovery',
   title: 'Universe discovery preserves navigation, Search and saved progress',
   async run(page, t) {
+    const height = (node) => Math.round(node.getBoundingClientRect().height);
+    const targetHeights = {};
     let saved = createList(createEmptyState(), { id: 'fixture', name: 'Saved fixture', note: 'A reader note' });
     saved = addIssuesToList(saved, 'fixture', ORDER.items).state;
     const firstIssue = ORDER.items[0].issueId;
@@ -27602,6 +27604,7 @@ SCENARIOS.push({
       searchLayouts.every((layout) => layout.document <= layout.viewport && layout.row > 0 && layout.query > 0),
       JSON.stringify(searchLayouts));
     await page.setViewport({ width: 1280, height: 900 });
+    targetHeights.search = await page.$eval('#search-universes-results [data-universe-id="ultimate-marvel"]', height);
     await page.focus('#search-universes-results [data-universe-id="ultimate-marvel"]');
     await page.keyboard.press('Enter');
     await page.waitForSelector('#view-universe:not([hidden])');
@@ -27696,6 +27699,7 @@ SCENARIOS.push({
       await listPage.waitForSelector('#search-lists-results [data-key="list:marvel-zombies-reading-order"][data-act="preview"]');
       await click(listPage, '#search-lists-results [data-key="list:marvel-zombies-reading-order"][data-act="preview"]');
       await listPage.waitForSelector('#preview[open] #preview-source [data-universe-id="marvel-zombies"]');
+      targetHeights.preview = await listPage.$eval('#preview-source [data-universe-id="marvel-zombies"]', height);
       await listPage.focus('#preview-source [data-universe-id="marvel-zombies"]');
       await listPage.keyboard.press('Enter');
       await listPage.waitForSelector('#view-universe:not([hidden])');
@@ -27707,6 +27711,17 @@ SCENARIOS.push({
           && document.querySelector('#preview-h').textContent.includes('Marvel Zombies')));
       await listPage.keyboard.press('Escape');
       await listPage.waitForFunction(() => !document.querySelector('#preview').open);
+      await click(listPage, '.ri[data-view="library"]');
+      await listPage.waitForSelector('#view-library:not([hidden])');
+      await listPage.goBack();
+      await listPage.waitForSelector('#view-add:not([hidden])');
+      await listPage.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+      const laterReturn = await listPage.evaluate(() => ({
+        preview: document.querySelector('#preview').open,
+        opener: history.state?.universeOpener ?? null,
+      }));
+      t.check('a later Back to Search does not reopen a Preview the reader already closed',
+        !laterReturn.preview && laterReturn.opener === null, JSON.stringify(laterReturn));
 
       await listPage.evaluateOnNewDocument(() => {
         const originalFetch = window.fetch;
@@ -27822,6 +27837,9 @@ SCENARIOS.push({
     t.check('Universe details show exact comics and scoped series with native modified navigation',
       reciprocalStart.series.includes('Selected comics') && reciprocalStart.comic === '#/issue/13683' && nativeSeries,
       JSON.stringify(reciprocalStart));
+    targetHeights.series = await reciprocal.$eval('#universe-series-results [data-series-id="2258"]', height);
+    targetHeights.comic = await reciprocal.$eval('#universe-comics-results [data-issue-id="13683"]', height);
+    targetHeights.debut = await reciprocal.$eval('#universe-debut a', height);
     await reciprocal.focus('#universe-series-results [data-series-id="2258"]');
     await reciprocal.keyboard.press('Enter');
     await reciprocal.waitForSelector('#series-results [data-universe-id="days-of-future-past"]');
@@ -27868,6 +27886,47 @@ SCENARIOS.push({
       && document.querySelector('#series-results').textContent.includes('House of M'));
     t.check('searching for another series retires the old series address',
       await reciprocal.evaluate(() => !location.hash.includes('/series/2258')));
+
+    await open(reciprocal, '/?catalog=actual&local-health=ready&fixture-case=later-return#/universe/days-of-future-past');
+    await reciprocal.waitForSelector('#universe-series-results [data-series-id="2258"]');
+    await click(reciprocal, '#universe-series-results [data-series-id="2258"]');
+    await reciprocal.waitForSelector('#series-results [data-universe-id="days-of-future-past"]');
+    await reciprocal.goBack();
+    await reciprocal.waitForFunction(() => document.activeElement?.dataset.seriesId === '2258');
+    await click(reciprocal, '.brand[data-view="home"]');
+    await reciprocal.waitForSelector('#view-home:not([hidden])');
+    await reciprocal.goBack();
+    await reciprocal.waitForSelector('#view-universe:not([hidden]) #universe-series-results [data-series-id="2258"]');
+    // The defect replays focus after the series section settles, so give it the chance to.
+    await reciprocal.waitForFunction(() => document.activeElement?.dataset.seriesId === '2258', { timeout: 1500 })
+      .catch(() => {});
+    const laterSeriesReturn = await reciprocal.evaluate(() => ({
+      opener: history.state?.seriesOpener ?? null,
+      focus: document.activeElement?.dataset.seriesId ?? document.activeElement?.id ?? null,
+    }));
+    t.check('a later Back to a Universe does not replay a series return already used',
+      laterSeriesReturn.opener === null && laterSeriesReturn.focus !== '2258', JSON.stringify(laterSeriesReturn));
+
+    await open(reciprocal, '/?catalog=actual&local-health=ready&fixture-case=draft#/series/2258');
+    await reciprocal.waitForSelector('#series-results [data-universe-id="days-of-future-past"]');
+    await reciprocal.$eval('#series-q', (input) => {
+      input.value = 'an unsent draft';
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+    await click(reciprocal, '.brand[data-view="home"]');
+    await reciprocal.waitForSelector('#view-home:not([hidden])');
+    await reciprocal.goBack();
+    await reciprocal.waitForSelector('#view-add-series:not([hidden]) #series-results [data-universe-id="days-of-future-past"]');
+    // The defect overwrites the field once the series index answers, so give it the chance to.
+    await reciprocal.waitForFunction(() => document.querySelector('#series-q').value !== 'an unsent draft', { timeout: 1500 })
+      .catch(() => {});
+    const returnedDraft = await reciprocal.$eval('#series-q', (input) => input.value);
+    t.check('Back into a series keeps a series search the reader typed but did not send',
+      returnedDraft === 'an unsent draft', returnedDraft);
+
+    const shortTargets = Object.entries(targetHeights).filter(([, value]) => !(value >= 44));
+    t.check('Universe, series and comic links meet the 44 pixel minimum target',
+      Object.keys(targetHeights).length === 5 && shortTargets.length === 0, JSON.stringify(targetHeights));
 
     await open(reciprocal, '/?catalog=actual&local-health=ready&series-fixture=down#/series/2258');
     await reciprocal.waitForSelector('#series-results .notice-act button');

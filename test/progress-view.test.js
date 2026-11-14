@@ -121,10 +121,10 @@ test('Progress labels only reviewed series appearances as selected comics', () =
   const known = rows.find((row) => row.children[0].children[0].children[0].props.text === 'Uncanny X-Men');
   const other = rows.find((row) => row.children[0].children[0].children[0].props.text === 'Other series');
   const lines = known.children[0].children.slice(2);
-  assert.equal(lines.length, 2);
+  assert.equal(lines.length, 1);
   assert.ok(lines.every((line) => line.children[0].props.text === 'Selected comics in: '));
   assert.deepEqual(lines.map((line) => line.children[1].props.href),
-    ['#/universe/days-of-future-past', '#/universe/earth-616']);
+    ['#/universe/days-of-future-past']);
   assert.equal(other.children[0].children.length, 2);
 });
 

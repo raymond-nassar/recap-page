@@ -1,6 +1,6 @@
 import { labelledName, shownName } from '../../lib/accname.js';
 import { formatRoute, isPlainNavigation } from '../../lib/route.js';
-import { universeResolver } from '../../lib/universes.js';
+import { BROWSE_ONLY_UNIVERSE_ID, universeResolver } from '../../lib/universes.js';
 import {
   catalogCoverUrl,
   catalogGapLabels,
@@ -68,6 +68,7 @@ export function createCatalogPresentation({
 
   function universeLink(universe, focusKey) {
     return el('a', {
+      class: 'universe-target',
       href: formatRoute({ view: 'universe', universeId: universe.id }),
       dataset: { universeId: universe.id, act: 'universe', key: focusKey ?? universe.id },
       onclick: (event) => {
@@ -105,13 +106,15 @@ export function createCatalogPresentation({
     if (typeof raw !== 'string' || !/^[1-9]\d*$/.test(raw)) return [];
     const id = Number(raw);
     if (!Number.isSafeInteger(id) || String(id) !== raw) return [];
-    return resolver.getSeriesUniverseRelations(id).map(({ universe, scope }) => universeRelationLine(
-      { universe },
-      {
-        prefix: scope === 'selected-issues' ? 'Selected comics in: ' : 'Universe: ',
-        focusKey: `series:${id}:${universe.id}`,
-      },
-    ));
+    return resolver.getSeriesUniverseRelations(id)
+      .filter(({ universe }) => universe.id !== BROWSE_ONLY_UNIVERSE_ID)
+      .map(({ universe, scope }) => universeRelationLine(
+        { universe },
+        {
+          prefix: scope === 'selected-issues' ? 'Selected comics in: ' : 'Universe: ',
+          focusKey: `series:${id}:${universe.id}`,
+        },
+      ));
   }
 
   // The linked source stays compact on cards; additions selected elsewhere need separate credit.

@@ -1,4 +1,4 @@
-import { DEFAULT_UNIVERSE_SORT, UNIVERSE_SORTS } from '../lib/universes.js';
+import { BROWSE_ONLY_UNIVERSE_ID, DEFAULT_UNIVERSE_SORT, UNIVERSE_SORTS } from '../lib/universes.js';
 import { formatRoute, isPlainNavigation } from '../lib/route.js';
 
 export function createUniversesView({
@@ -71,7 +71,7 @@ export function createUniversesView({
     const meta = [universe.earth, String(universe.firstPublished)].filter(Boolean).join(' · ');
     return el('article', { class: 'result search-row' }, [
       el('div', { class: 'result-main' }, [
-        el('h3', { class: 'result-title' }, universeLink(universe, 'result-title-link')),
+        el('h3', { class: 'result-title' }, universeLink(universe, 'result-title-link universe-target')),
         el('p', { class: 'result-meta', text: meta }),
       ]),
     ]);
@@ -92,7 +92,7 @@ export function createUniversesView({
         return [el('div', { class: 'result' }, [
           el('div', { class: 'result-main' }, [
             el('a', {
-              class: 'result-title result-title-link',
+              class: 'result-title result-title-link universe-target',
               href: formatRoute({ view: 'add-series', seriesId }),
               dataset: { seriesId },
               onclick: (event) => {
@@ -115,18 +115,22 @@ export function createUniversesView({
         : '';
     } catch (error) {
       if (!current()) return;
-      nodes.seriesStatus.textContent = `Series details could not be loaded: ${error.message}. Try again when the local app connection is available.`;
+      nodes.seriesStatus.textContent = `Series details could not be loaded (${error.message}). Use Retry series when the local app connection is available.`;
       nodes.seriesRetry.hidden = false;
     }
   }
 
-  function renderComics(nodes, universe) {
+  function renderDebut(nodes, universe) {
     const debut = universe.debutIssue;
     nodes.debut.replaceChildren(debut.issueId
       ? issueFocusAnchor(debut, {
-        surface: 'universe-debut', children: debut.title,
+        surface: 'universe-debut', className: 'universe-target', children: debut.title,
       })
       : debut.title);
+  }
+
+  function renderComics(nodes, universe) {
+    const debut = universe.debutIssue;
     const ids = resolver.getUniverseIssueIds(universe.id).filter((id) => id !== debut.issueId);
     nodes.comics.hidden = ids.length === 0;
     nodes.comicsResults.replaceChildren(...ids.map((issueId) => {
@@ -135,7 +139,7 @@ export function createUniversesView({
         el('div', { class: 'result-main' }, [
           issueFocusAnchor(issue, {
             surface: 'universe-comic',
-            className: 'result-title result-title-link',
+            className: 'result-title result-title-link universe-target',
             children: issue.title || `Comic details (ID ${issueId})`,
           }),
         ]),
@@ -152,8 +156,9 @@ export function createUniversesView({
     nodes.heading.textContent = universe?.name ?? 'Universe not found';
     nodes.missing.hidden = Boolean(universe);
     nodes.body.hidden = !universe;
-    nodes.browse.hidden = id !== 'earth-616';
-    nodes.listsSection.hidden = id === 'earth-616';
+    const browseOnly = id === BROWSE_ONLY_UNIVERSE_ID;
+    nodes.browse.hidden = !browseOnly;
+    nodes.listsSection.hidden = browseOnly;
     nodes.results.replaceChildren();
     nodes.retry.hidden = true;
     nodes.emptyLink.hidden = true;
@@ -164,14 +169,17 @@ export function createUniversesView({
 
     nodes.earth.textContent = universe.earth ?? 'Named reality';
     nodes.year.textContent = String(universe.firstPublished);
-    renderComics(nodes, universe);
+    renderDebut(nodes, universe);
     nodes.description.textContent = universe.description;
-    const series = renderSeries(nodes, resolver.getUniverseSeries(id), current);
-    seriesReady = series;
-    if (id === 'earth-616') {
-      await series;
+    if (browseOnly) {
+      nodes.seriesResults.replaceChildren();
+      nodes.comicsResults.replaceChildren();
+      seriesReady = Promise.resolve();
       return;
     }
+    renderComics(nodes, universe);
+    const series = renderSeries(nodes, resolver.getUniverseSeries(id), current);
+    seriesReady = series;
     nodes.status.textContent = 'Loading Reading Lists...';
 
     try {

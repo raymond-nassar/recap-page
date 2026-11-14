@@ -278,7 +278,14 @@ test('the index searches and sorts locally, keeping native detail links', () => 
 
 test('Marvel Universe offers static browsing rather than individual lists, without loading the catalog', async () => {
   let loads = 0;
-  const h = universeViewHarness({ loadCatalog: async () => { loads += 1; return { lists: [] }; } });
+  let seriesLoads = 0;
+  const h = universeViewHarness({
+    loadCatalog: async () => { loads += 1; return { lists: [] }; },
+    loadSeriesIndex: async () => {
+      seriesLoads += 1;
+      return { entries: [{ id: 2258, name: 'Uncanny X-Men (1963 - 2011)' }] };
+    },
+  });
   h.setCurrent('universe');
   h.view.setDetail('earth-616');
   await h.view.renderDetail();
@@ -286,6 +293,13 @@ test('Marvel Universe offers static browsing rather than individual lists, witho
   assert.equal(h.nodes.detail.browse.hidden, false);
   assert.equal(h.nodes.detail.listsSection.hidden, true);
   assert.equal(loads, 0, 'the two browsing routes do not need catalog results');
+  // Reviewed fragments such as two Days of Future Past comics would misrepresent the main universe.
+  assert.equal(h.nodes.detail.series.hidden, true);
+  assert.deepEqual(h.nodes.detail.seriesResults.children, []);
+  assert.equal(h.nodes.detail.comics.hidden, true);
+  assert.deepEqual(h.nodes.detail.comicsResults.children, []);
+  assert.equal(seriesLoads, 0, 'the Marvel Universe page does not load series details');
+  assert.equal(h.nodes.detail.debut.children[0].href, '#/issue/10008', 'the sourced debut stays linked');
   h.view.setDetail('ultimate-marvel');
   await h.view.renderDetail();
   assert.equal(h.nodes.detail.browse.hidden, true);

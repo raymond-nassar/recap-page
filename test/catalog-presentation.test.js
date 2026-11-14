@@ -80,10 +80,11 @@ test('P04 issue and series links use reviewed identities and identify selected a
     ['#/universe/days-of-future-past', '#/universe/earth-616']);
   assert.deepEqual(shared.issueUniverseLines({ issueId: 12459, seriesId: 2258 }), []);
   const selected = shared.seriesUniverseLines('2258');
-  assert.equal(selected.length, 2);
+  assert.equal(selected.length, 1);
   assert.ok(selected.every((line) => /Selected comics/.test(text(line))));
+  // The main universe is browsed through the timelines, so a series never lists it as a home.
   assert.deepEqual(selected.flatMap(descendants).filter((node) => node.tag === 'a').map((node) => node.dataset.key),
-    ['series:2258:days-of-future-past', 'series:2258:earth-616']);
+    ['series:2258:days-of-future-past']);
   assert.deepEqual(shared.seriesUniverseLines('2258x'), []);
 });
 

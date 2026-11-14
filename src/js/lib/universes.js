@@ -118,3 +118,8 @@ export function createUniverseResolver({
 }
 
 export const universeResolver = createUniverseResolver();
+
+// The owner chose to present the main Marvel universe through the Modern Timeline and Marvel Ages
+// rather than a page of individual lists, series or comics, since nearly everything belongs to it.
+// Exact issue-level links to it stay, because those name one comic rather than a body of work.
+export const BROWSE_ONLY_UNIVERSE_ID = 'earth-616';

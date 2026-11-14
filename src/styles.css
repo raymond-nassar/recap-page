@@ -1867,6 +1867,9 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
 .universe-facts dt { color: var(--muted); font-size: var(--t-caption); font-weight: 600; }
 .universe-facts dd { margin: var(--space-1) 0 0; overflow-wrap: anywhere; }
 .universe-list-note { margin: var(--space-2) var(--space-1) 0; }
+/* These links sit in running text, where an inline box is only one line tall; the same target
+   rule as collected editions keeps each one tappable on a phone. */
+.universe-target { display: inline-flex; align-items: center; min-height: var(--target); }
 /* One action, sized to its words: Add as a secondary button, or a saved list's primary Open. */
 .catalog-card-actions {
   display: flex; gap: var(--space-4);

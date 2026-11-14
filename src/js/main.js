@@ -1312,7 +1312,12 @@ function navigateToUniverse(id, opener = null) {
   const key = opener?.dataset?.key ?? null;
   history.replaceState({ ...current, universeOpener: { view, id, previewId, key } }, '', location.href);
   universeView.setDetail(id);
-  showView('universe', { push: true, capturePosition: false });
+  keptOpener = 'universeOpener';
+  try {
+    showView('universe', { push: true, capturePosition: false });
+  } finally {
+    keptOpener = null;
+  }
 }
 
 async function restoreUniverseOpener(destination) {
@@ -1378,7 +1383,12 @@ function navigateToSeries(seriesId) {
   delete current.pathStopOpener;
   delete current.universeOpener;
   history.replaceState({ ...current, seriesOpener: { view, seriesId } }, '', location.href);
-  openRoutedSeries(route, { focus: true, push: true });
+  keptOpener = 'seriesOpener';
+  try {
+    openRoutedSeries(route, { focus: true, push: true, fresh: true });
+  } finally {
+    keptOpener = null;
+  }
 }
 
 async function restoreSeriesOpener(destination) {
@@ -1404,6 +1414,8 @@ function navigateToGuidePreview(previewId) {
   if (location.hash !== href) {
     const current = history.state && typeof history.state === 'object' ? { ...history.state } : {};
     delete current.issueFocusOpener;
+    delete current.universeOpener;
+    delete current.seriesOpener;
     history.replaceState({ ...current, guidePreviewOpener: previewId }, '', location.href);
     navigationPosition.push(href);
     history.replaceState({ ...history.state, guidePreviewParent: previewId }, '', location.href);
@@ -1529,6 +1541,8 @@ async function newEmptyList() {
 let routeReady = false;
 let applyingRoute = false;
 let acknowledgedHash = null;
+// The one return target a push is writing for its own entry, so syncHash keeps it.
+let keptOpener = null;
 let navigationPosition;
 let routedPreviewId = null;
 let routedPreviewToken = null;
@@ -1548,7 +1562,7 @@ function clearRoutedSeries() {
   addView.cancelRoutedSeries();
 }
 
-function openRoutedSeries(route, { focus, push = false }) {
+function openRoutedSeries(route, { focus, push = false, fresh = false }) {
   clearRoutedSeries();
   routedSeriesRoute = route;
   const token = {};
@@ -1559,6 +1573,7 @@ function openRoutedSeries(route, { focus, push = false }) {
   const restoringIssue = focus && opener?.view === 'add-series' && opener.surface === 'search';
   routedSeriesReady = addView.openSeriesById(route.seriesId, {
     focus: focus && !restoringIssue,
+    fresh,
     isCurrent: () => routedSeriesToken === token && view === 'add-series' && location.hash === href,
   });
 }
@@ -1620,8 +1635,12 @@ function syncHash({ push = false } = {}) {
 
   if (push) {
     const current = history.state && typeof history.state === 'object' ? { ...history.state } : {};
-    if (Object.hasOwn(current, 'issueFocusOpener')) {
-      delete current.issueFocusOpener;
+    // A return target belongs to the one entry it was written for. Left behind, it would replay
+    // on every later Back to that entry, reopening a Preview the reader had already closed.
+    const stale = ['issueFocusOpener', 'universeOpener', 'seriesOpener']
+      .filter((key) => key !== keptOpener && Object.hasOwn(current, key));
+    if (stale.length) {
+      stale.forEach((key) => delete current[key]);
       history.replaceState(Object.keys(current).length ? current : null, '', location.href);
     }
     navigationPosition.push(next);
