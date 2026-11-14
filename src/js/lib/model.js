@@ -302,8 +302,31 @@ function clampScalar(v) {
 // Builds a displayable cover URL. Returns null when there is no cover, so callers
 // fall back to the typographic tile rather than requesting a broken image.
 export function coverUrl(issue, variant = 'portrait_uncanny') {
-  const c = normalizeCover(issue?.cover);
-  return c ? `${c.path}/${variant}.${c.ext}` : null;
+  return coverAddress(issue?.cover, variant);
+}
+
+// The one place a cover request is composed, shared by coverUrl and catalogCoverUrl. Appending
+// `/{variant}.{ext}` to a base that already names its file asks for a file inside a file: Iron
+// Man's cover shipped as `.../58dd080719806/clean.jpg`, and the CDN answered the built
+// `.../clean.jpg/portrait_incredible.jpg` with 404 text/html while
+// `.../58dd080719806/portrait_incredible.jpg` returned 200 image/jpeg (#1289).
+//
+// The tail is dropped here, when a request is built, and never in normalizeCover, because what
+// normalizeCover returns is what gets stored, exported and hashed. A complete or cloud backup made
+// before this fix holds the old address under a digest of it, and the restore check refuses a file
+// whose reading data does not come back byte for byte. Only an exact `/clean.jpg` path ending with
+// no query or fragment is read as its directory, after the host pin has admitted the address.
+export function coverAddress(cover, variant) {
+  const c = normalizeCover(cover);
+  return c ? `${coverBase(c.path)}/${variant}.${c.ext}` : null;
+}
+
+const CLEAN_FILE = '/clean.jpg';
+
+function coverBase(path) {
+  if (!path.endsWith(CLEAN_FILE)) return path;
+  const url = new URL(path);
+  return url.search || url.hash || !url.pathname.endsWith(CLEAN_FILE) ? path : path.slice(0, -CLEAN_FILE.length);
 }
 
 export function mergeIssueMetadata(previous, issue) {
