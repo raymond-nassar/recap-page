@@ -18,6 +18,7 @@ import { homeUpdatesContent } from '../src/js/lib/homeUpdatesContent.js';
 import { HOME_UPDATES_SEEN_KEY } from '../src/js/lib/homeUpdatesSeen.js';
 import { availableHomeCategories, catalogEntries, groupCatalog, HOME_CATEGORIES, publishingAgeGroups } from '../src/js/lib/catalog.js';
 import { parseRoute } from '../src/js/lib/route.js';
+import { universeDefinitions } from '../src/data/universeCatalog.js';
 import { catalogCardProfiles, catalogCardReadability } from './browser-android-catalog-cards.mjs';
 import { POSTER_COVER_SVG, issuePosterCheck, issuePosterFixtures, issuePosterProfiles } from './browser-android-issue-poster.mjs';
 import { ERA_TILES, ratio } from './check-palette.mjs';
@@ -38,7 +39,7 @@ const allowedModes = new Set([
   'done-hint', 'completion-focus', 'long-list-name', 'selection-bar', 'milestones', 'save-notice', 'home-continue',
   'progress-glance',
   'confirmations', 'issue-poster',
-  'story-types', 'touch-feedback', 'phone-layout',
+  'story-types', 'touch-feedback', 'phone-layout', 'universes',
 ]);
 if (onlyArgs.length > 1 || (onlyArgs.length && !allowedModes.has(onlyArgs[0].slice('--only='.length)))) {
   throw new Error('Choose one exact supported Android --only selector; comma selections are not supported');
@@ -62,6 +63,7 @@ const launcherOnly = process.argv.includes('--only=launcher');
 const seriesReadability = process.argv.includes('--only=series-readability');
 const noteReadability = process.argv.includes('--only=note-readability');
 const categoryReadability = process.argv.includes('--only=category-readability');
+const universesOnly = process.argv.includes('--only=universes');
 const storyTypesOnly = process.argv.includes('--only=story-types');
 const marvelAgesTarget = process.argv.includes('--only=marvel-ages-target');
 const doneHint = process.argv.includes('--only=done-hint');
@@ -260,6 +262,68 @@ async function route(page, name) {
   await page.evaluate((view) => { location.hash = `#/${view}`; }, name);
   // #831: Browse's address opens Home at its category cards.
   await page.waitForSelector(`#view-${name === 'browse' ? 'home' : name}:not([hidden])`);
+}
+async function universesCheck(page, label) {
+  const saved = () => page.evaluate(() => Object.fromEntries(Object.keys(localStorage).sort()
+    .map((key) => [key, localStorage.getItem(key)])));
+  const before = await saved();
+  const fit = async (view) => {
+    const result = await page.$eval(`#view-${view}`, (node) => ({
+      overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
+      links: [...node.querySelectorAll('a.universe-target, .universe-card .catalog-card-preview, #universe-browse a')].filter((link) => link.getClientRects().length
+        && !link.closest('[hidden]')).map((link) => {
+        const rect = link.getBoundingClientRect();
+        return { text: link.textContent.trim(), width: rect.width, height: rect.height,
+          left: rect.left, right: rect.right };
+      }),
+    }));
+    check(!result.overflow, `${label} ${view}: no horizontal overflow`);
+    check(result.links.length > 0 && result.links.every((link) => link.width >= 24 && link.height >= 48),
+      `${label} ${view}: every visible destination retains a touch target ${JSON.stringify(result.links)}`);
+    check(result.links.every((link) => link.left >= -1 && link.right <= page.viewport().width + 1),
+      `${label} ${view}: destination labels stay within the viewport`);
+  };
+  await route(page, 'universes');
+  await page.waitForFunction((count) => document.querySelectorAll('#universes-results .universe-card').length === count,
+    {}, universeDefinitions.length);
+  check(await page.$eval('#universes-count', (node) => !node.hasAttribute('role') && !node.hasAttribute('aria-live')),
+    `${label}: typing does not rewrite a live count region`);
+  await fit('universes');
+  await page.$eval('#universes-q', (node) => {
+    node.value = 'Earth1610';
+    node.dispatchEvent(new Event('input', { bubbles: true }));
+  });
+  await page.waitForFunction(() => document.querySelectorAll('#universes-results .universe-card').length === 1);
+  check(await page.$eval('#universes-results a', (node) => node.getAttribute('href') === '#/universe/ultimate-marvel'),
+    `${label}: squeezed Earth designation finds the original Ultimate reality`);
+  await click(page, '#universes-results a');
+  await page.waitForSelector('#view-universe:not([hidden])');
+  await page.waitForFunction(() => !document.querySelector('#universe-lists-status').textContent.startsWith('Loading'));
+  check(await page.$eval('#universe-lists', (node) => node.textContent.includes('Ultimate Spider-Man')),
+    `${label}: Ultimate Spider-Man belongs on Earth-1610`);
+  await fit('universe');
+  await page.goBack({ waitUntil: 'networkidle0' });
+  await page.waitForSelector('#view-universes:not([hidden])');
+  check(await page.$eval('#universes-q', (node) => node.value === 'Earth1610'),
+    `${label}: Back retains the Universe query`);
+  await page.$eval('#universes-q', (node) => {
+    node.value = 'not-a-real-reality';
+    node.dispatchEvent(new Event('input', { bubbles: true }));
+  });
+  check(await page.$eval('#universes-count', (node) => node.textContent.startsWith('No universes match')),
+    `${label}: no matches offer a clear next step`);
+  await page.evaluate(() => { location.hash = '#/universe/earth-616'; });
+  await page.waitForFunction(() => document.querySelector('#universe-h').textContent === 'Marvel Universe');
+  const primary = await page.evaluate(() => ({
+    links: [...document.querySelectorAll('#universe-browse a')].map((node) => node.getAttribute('href')),
+    sections: ['universe-reading-lists', 'universe-series', 'universe-comics']
+      .every((id) => document.getElementById(id).hidden),
+  }));
+  check(JSON.stringify(primary.links) === JSON.stringify(['#/catalog', '#/marvel-ages']) && primary.sections,
+    `${label}: Marvel Universe contains the two approved browsing destinations, not fragments`);
+  await fit('universe');
+  check(JSON.stringify(await saved()) === JSON.stringify(before),
+    `${label}: Universe discovery leaves every saved-data byte unchanged`);
 }
 async function backDialog(page) {
   await page.evaluate(() => new Promise((resolve, reject) => {
@@ -1727,7 +1791,7 @@ async function categoryLabelReadability(page, label, viewport) {
       };
     }, view);
     check(result.androidStyle === !viewport.desktop, `${label} ${view}: correct platform stylesheet`);
-    check(result.root === 16 && result.body === (viewport.desktop ? 14 : 16 * scale),
+    check(result.root === 16 && result.body === (viewport.desktop ? 14 : 16) * scale,
       `${label} ${view}: text-only scaling leaves root spacing unchanged`);
     check(!result.overflow, `${label} ${view}: no horizontal page overflow`);
     for (const [index, card] of result.cards.entries()) {
@@ -1767,10 +1831,16 @@ async function categoryLabelReadability(page, label, viewport) {
     }
     check(new Set(result.cards.map((card) => card.symbol)).size === result.cards.length,
       `${label} ${view}: the ${result.cards.length} categories draw ${result.cards.length} different glyphs ${JSON.stringify(result.cards.map((card) => card.symbol))}`);
-    if (viewport.width === 800) {
-      // Discover More keeps its row of three at normal text and widens to two columns at 200% (#873).
-      const rows = new Set(result.cards.slice(3).map((card) => Math.round(card.box.top))).size;
-      check(rows === (scale === 1 ? 1 : 2), `${label} ${view}: Discover More takes ${rows} rows`);
+    if ([800, 1280].includes(viewport.width)) {
+      const rows = new Map();
+      for (const card of result.cards.slice(3)) {
+        const top = Math.round(card.box.top);
+        rows.set(top, (rows.get(top) ?? 0) + 1);
+      }
+      const counts = [...rows.values()];
+      check(counts.length <= 2 && new Set(counts).size === 1,
+        `${label} ${view}: Discover More has equally populated rows ${JSON.stringify(counts)}`);
+      console.log(`HOME_ROWS ${label}: ${JSON.stringify(counts)}`);
     }
     await page.$eval(`#view-${view} [data-category="marvel-ages"]`, (node) => node.scrollIntoView());
     await screenshot(page, label, `${view}-categories`);
@@ -2859,6 +2929,7 @@ async function barLabelsCheck(page, label, viewport) {
       }
       return {
         rows: rows.length,
+        cardsPerRow: rows.map((row) => row.items.length),
         twoRows: header.classList.contains('bar-two-rows'),
         height: Math.round(bar.height),
         overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
@@ -2869,7 +2940,8 @@ async function barLabelsCheck(page, label, viewport) {
       && JSON.stringify(fit.items.map(({ glyph }) => glyph)) === JSON.stringify(['mark', 'books', 'search', 'menu'])
       && fit.items.every((item) => item.onBar && item.w >= 44 && item.h >= 44
         && item.text === item.name && item.lines === 1 && item.inside)
-      && fit.rows === (fit.twoRows ? 2 : 1) && (scale === 2 || !fit.twoRows) && !fit.overflow,
+      && fit.rows === (fit.twoRows ? 2 : 1) && new Set(fit.cardsPerRow).size === 1
+      && (scale === 2 || !fit.twoRows) && !fit.overflow,
     `${label} at ${scale * 100}% text: the bar reads Home, Library, Search and More, each label one whole line, in ${fit.rows} ${fit.rows === 1 ? 'row' : 'rows'} ${JSON.stringify(fit)}`);
     console.log(`CHECKED ${label} at ${scale * 100}% text: bar in ${fit.rows} ${fit.rows === 1 ? 'row' : 'rows'}, ${fit.height}px tall, items ${fit.items.map((item) => `${item.text ?? `${item.name} glyph`} ${item.w}px`).join(', ')}`);
     if (scale !== own) await screenshot(page, label, `bar-${scale * 100}`);
@@ -5421,6 +5493,13 @@ try {
     { width: 800, height: 360 },
     { width: 800, height: 360, textScale: 2 },
     { width: 1280, height: 900, desktop: true },
+    { width: 1280, height: 900, desktop: true, textScale: 2 },
+  ];
+  if (universesOnly) viewports = [
+    { width: 320, height: 740, textScale: 2, theme: 'dark' },
+    { width: 360, height: 800, theme: 'light' },
+    { width: 390, height: 844, theme: 'dark' },
+    { width: 800, height: 360, theme: 'light' },
   ];
   if (marvelAgesTarget) viewports = [
     { width: 320, height: 740 }, { width: 360, height: 800 }, { width: 412, height: 915 },
@@ -5602,6 +5681,12 @@ try {
         });
       }
       if (homeUpdates && new URL(request.url()).origin !== origin) return request.abort();
+      if (universesOnly && request.url() === 'https://marvel.emreparker.com/v1/health') {
+        return request.respond({
+          status: 200, contentType: 'application/json',
+          headers: { 'access-control-allow-origin': '*' }, body: JSON.stringify({ status: 'ok' }),
+        });
+      }
       // Every request is counted, not deduplicated, so a second fetch of one cover shows.
       if (issuePoster && new URL(request.url()).host === 'i.annihil.us') {
         imageRequests.push(request.url());
@@ -5615,7 +5700,7 @@ try {
           body: '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="300"><rect width="200" height="300" fill="#73579b"/><path d="M0 300L200 0" stroke="#fff" stroke-width="8"/></svg>',
         });
       }
-      if ((seriesReadability || noteReadability || categoryReadability || marvelAgesTarget || catalogReadability || readingComposition || spotlightControls || alignment || selectionBar || saveNotice || homeContinue || progressGlance || issuePoster || storyTypesOnly) && new URL(request.url()).origin !== origin) {
+      if ((seriesReadability || noteReadability || categoryReadability || universesOnly || marvelAgesTarget || catalogReadability || readingComposition || spotlightControls || alignment || selectionBar || saveNotice || homeContinue || progressGlance || issuePoster || storyTypesOnly) && new URL(request.url()).origin !== origin) {
         failures.push(`Unexpected external request: ${request.url()}`);
         return request.abort();
       }
@@ -5637,7 +5722,7 @@ try {
           });
         }
         if (request.url().endsWith('/data/catalog.json')) {
-          return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify(mobileUi || phoneHeader || homeUpdates || categoryReadability || marvelAgesTarget || catalogReadability || spotlightControls || alignment || issuePoster || storyTypesOnly || viewport.nearEnd ? catalog : { ...catalog, lists: [orderEntry] }) });
+          return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify(mobileUi || phoneHeader || homeUpdates || categoryReadability || universesOnly || marvelAgesTarget || catalogReadability || spotlightControls || alignment || issuePoster || storyTypesOnly || viewport.nearEnd ? catalog : { ...catalog, lists: [orderEntry] }) });
         }
         return request.continue();
       }
@@ -5836,6 +5921,13 @@ try {
       check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
       console.log(`CHECKED ${label}${viewport.desktop ? ' desktop' : ''}: phone header and Home branding`);
       await context.close();
+      continue;
+    }
+    if (universesOnly) {
+      await universesCheck(page, label);
+      check(errors.length === 0, `${label}: Universe page errors ${errors.join('; ')}`);
+      await context.close();
+      if (failures.length > failuresBefore) break;
       continue;
     }
     if (alignment) {

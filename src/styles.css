@@ -3202,3 +3202,15 @@ select, input[type="search"], input[type="text"], input[type="url"] {
   #list-wrap-up:has(#list-wrap-up-cheer:not([hidden])):not(:has(#list-completion-status:not([hidden])))::before { background: CanvasText; }
   .about-wm { display: none !important; }
 }
+
+#home-more-paths { container: home-discovery / inline-size; }
+#home-secondary-paths { grid-template-columns: 1fr; }
+@container home-discovery (min-width: max(29rem, calc(40ch + 1rem))) {
+  #home-secondary-paths { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@container home-discovery (min-width: max(59rem, calc(80ch + 3rem))) {
+  #home-secondary-paths { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (max-width: 620px) {
+  #home-secondary-paths { grid-template-columns: 1fr; }
+}
