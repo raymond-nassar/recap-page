@@ -1458,7 +1458,15 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
   padding: var(--space-3) var(--space-9) var(--space-3) var(--space-5); font: inherit; font-size: var(--t-body); min-height: var(--target);
   cursor: pointer; width: 100%;
 }
-#view-data select:hover, .setting select:hover, .timeline-follow select:hover, .collection-navigation select:hover, .rated-controls select:hover, .story-type-choices select:hover { color: var(--text); background-color: rgb(var(--tint-base) / 5.098%); }
+#view-data select:hover, .setting select:hover, .timeline-follow select:hover, .collection-navigation select:hover, .rated-controls select:hover, .story-type-choices select:hover { color: var(--text); background-color: color-mix(in srgb, rgb(var(--tint-base)) 5.098%, var(--card-2)); }
+/* The open list of a select is drawn by the platform, not the page, and Edge paints it from the
+   select's background and each option's colours (#1298). A select is pressed while the pointer is on
+   it, so a translucent hover tint above was composited onto the list's white canvas while the
+   options kept the dark theme's light text: measured in Edge, 13 of 255 alpha behind text at
+   #f2f2f8. So the hover tint is mixed to an opaque colour, and every option carries its own pair.
+   Forced colors still replace both with the system pair, and iOS draws its own picker. */
+select option, select optgroup { background-color: var(--card-2); color: var(--text); }
+select option:disabled { color: var(--muted); }
 input[type="file"]::file-selector-button {
   background: none; color: var(--muted); border: var(--stroke-1) solid var(--line-2);
   border-radius: var(--radius-md); padding: var(--space-3) var(--space-5); font: inherit; font-size: var(--t-body);
