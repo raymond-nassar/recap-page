@@ -57,11 +57,10 @@ export function searchThumb(el, url) {
 
 // Search design B (#1204). Reading Lists, universes, series and creators are matched on the device as the
 // reader types, from the bundled catalog and name indexes, so they work offline and are never
-// recorded. Comics need the metadata service, so they are looked up once per query on Enter or
-// when opening the Comics scope.
-// A scope switch only hides and shows groups that are already
+// recorded. Comics need the metadata service, so they are looked up once per query, on Enter or
+// on first opening the Comics scope. A scope switch only hides and shows groups that are already
 // built: the comic rows and their checkboxes are never rebuilt, so picks survive, and a switch
-// sends nothing unless Comics has not yet been looked up for this query.
+// sends nothing.
 export function createSearchListsView({
   el,
   elements,
@@ -315,6 +314,7 @@ export function createSearchListsView({
     say(announcement());
   }
 
+  // The one request a scope can send: opening Comics for a query that has not been looked up.
   function setScope(next, { focus = true } = {}) {
     if (!SCOPES.includes(next)) return;
     scope = next;

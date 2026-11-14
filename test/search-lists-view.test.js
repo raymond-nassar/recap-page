@@ -299,11 +299,12 @@ test('a comic lookup settling leaves the local rows standing, so a reader workin
   assert.ok(after.length === rows.length && after.every((row, i) => row === rows[i]), 'the same row nodes, not rebuilt copies');
 });
 
-test('opening Comics looks up a new query once, and Enter can retry a failed lookup', async () => {
+test('Comics is looked up once per query: on first opening the scope or on Enter, never on a switch', async () => {
   const h = harness();
   await h.view.update('spider ');
   h.view.setScope('comics');
   assert.deepEqual(h.lookups, [{ query: 'spider' }]);
+  assert.deepEqual(h.announced, [], 'the lookup speaks its own busy notice, so the switch says nothing over it');
   h.comicStatus('running', 'spider');
   assert.equal(h.nodes.count.textContent, 'Looking up comics…');
   h.comicStatus('complete', 'spider', 50);

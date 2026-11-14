@@ -10800,7 +10800,7 @@ const SCENARIOS = [
   },
   {
     id: 'search-reading-lists',
-    title: 'Search design B scopes local results and comics without rebuilding picks or repeating a lookup (#1204)',
+    title: 'Search design B scopes local results and comics without rebuilding picks or sending a request on a switch (#1204)',
     async run(page, t) {
       await page.evaluateOnNewDocument(() => {
         window.__mrtComicSearch = true;
@@ -10971,7 +10971,10 @@ const SCENARIOS = [
       const requestsNewQuery = await comicRequests();
       await click(page, '#search-scopes [data-scope="comics"]');
       await page.waitForFunction(() => /comics? shown|No comics match/.test(document.querySelector('#search-count').textContent));
-      t.check('opening Comics looks up the new query once without requiring Enter',
+      await page.focus('#search-q');
+      await page.keyboard.press('Enter');
+      await new Promise((resolve) => setTimeout(resolve, 300));
+      t.check('opening Comics for a new query looks it up once, and Enter afterwards does not repeat it',
         await comicRequests() === requestsNewQuery + 1, String(await comicRequests() - requestsNewQuery));
 
       await click(page, '#search-scopes [data-scope="top"]');
