@@ -118,6 +118,11 @@ export function narrowCopy(text) {
   });
 }
 
+function sameReaderCopy(left, right) {
+  return left === right || (isIosApp() && typeof left === 'string' && typeof right === 'string'
+    && narrowCopy(left) === narrowCopy(right));
+}
+
 export class ImportDraftStore {
   constructor({ reader, storage = reader.storage, locks = globalThis.navigator?.locks, onChange = () => {} }) {
     this.reader = reader;
@@ -919,7 +924,7 @@ export class Store {
     return true;
   }
 
-  // Validate, stage, snapshot, swap, clean up. A malformed backup mutates nothing.
+  // Validate, snapshot, swap, clean up; non-iOS restores also stage. A malformed backup mutates nothing.
   //
   // Only the first three of those five stages can fail without the saved data changing, and the
   // shipped code reported all five alike: one catch, one sentence, "Nothing was changed". A
@@ -971,7 +976,7 @@ export class Store {
     const undo = !this.blocked && this.undoSnapshot === snapshot;
     return {
       ...captured, available: true, kind: undo ? 'undo' : 'copy',
-      edited: undo && main !== this.undoMain, identical: main === snapshot,
+      edited: undo && main !== this.undoMain, identical: sameReaderCopy(main, snapshot),
       summary: this.snapshotSummary.text,
     };
   }
@@ -1014,15 +1019,20 @@ export class Store {
     // this can be called what it is. Without it the mismatch branch said "Nothing was changed"
     // for every non-match, which is a claim about a value it had thrown away.
     let priorMain;
+    let writtenSnapshot;
     try {
-      this.storage?.setItem(TEMP_KEY, serialized);
+      if (isIosApp()) {
+        this.storage?.removeItem(TEMP_KEY);
+        if (this.storage?.getItem(TEMP_KEY) != null) throw new Error('The temporary reading-data copy could not be removed');
+      } else this.storage?.setItem(TEMP_KEY, serialized);
       priorMain = this.storage?.getItem(KEY) ?? '';
       if (expected && (priorMain !== expected.main || (this.storage?.getItem(PRERESTORE_KEY) ?? null) !== expected.snapshot)) {
         throw new Error('Reading data or the saved copy changed before replacement. Review and try again');
       }
       preservationReached = true;
-      this.storage?.setItem(PRERESTORE_KEY, priorMain);
-      if (this.storage && this.storage.getItem(PRERESTORE_KEY) !== priorMain) {
+      writtenSnapshot = narrowCopy(priorMain);
+      this.storage?.setItem(PRERESTORE_KEY, writtenSnapshot);
+      if (this.storage && this.storage.getItem(PRERESTORE_KEY) !== writtenSnapshot) {
         throw new Error('The previous reading data could not be preserved. Export a reading-data backup before trying again');
       }
       swapReached = true;
@@ -1051,7 +1061,7 @@ export class Store {
           errors: [`Could not write the restored data: ${err.message}. Reading data was not replaced.${copyStatus}`],
         };
       }
-      return this.settleAfterSwap({ serialized, state, heldSnapshot, priorMain, err, recovering });
+      return this.settleAfterSwap({ serialized, state, heldSnapshot, priorMain, writtenSnapshot, err, recovering });
     }
 
     // A swap that did not throw is not a swap that landed. setItem can report a success it did not
@@ -1059,7 +1069,7 @@ export class Store {
     // reads its own removal back. Taking the absence of a throw as proof is the inference this whole
     // path exists to remove, so the ordinary outcome is reconciled through the same read-back as the
     // failing one rather than being the one place that still assumes.
-    return this.settleAfterSwap({ serialized, state, heldSnapshot, priorMain, err: null, recovering });
+    return this.settleAfterSwap({ serialized, state, heldSnapshot, priorMain, writtenSnapshot, err: null, recovering });
   }
 
   // What the saved data actually holds, once a write has been attempted.
@@ -1068,7 +1078,7 @@ export class Store {
   // the outcomes that reach here are indistinguishable from the outside: a swap that threw, a
   // cleanup that threw after the swap landed, and a swap that reported success without storing all
   // arrive looking alike. Storage has the answer, so it is asked.
-  settleAfterSwap({ serialized, state, heldSnapshot, priorMain, err, recovering }) {
+  settleAfterSwap({ serialized, state, heldSnapshot, priorMain, writtenSnapshot, err, recovering }) {
     // With no storage at all every write above was a no-op through optional chaining, so there is
     // nothing to read back and nothing this could reconcile against. The app always constructs the
     // store with localStorage; this is the shape a test double takes.
@@ -1105,7 +1115,7 @@ export class Store {
       // The token that is now on disk, taken from what was read back rather than from what was
       // written, because this branch exists precisely because the two can differ.
       this.seenToken = tokenOf(durable);
-      this.undoSnapshot = recovering ? null : priorMain || null;
+      this.undoSnapshot = recovering ? null : writtenSnapshot || null;
       this.undoMain = recovering ? null : durable;
       return this.adoptRestored(state);
     }
@@ -1190,7 +1200,7 @@ export class Store {
     // A snapshot identical to what is already saved undoes nothing, so reporting it as undone would
     // be the same false success this path exists to remove. It is the shape rewindSnapshot() leaves
     // behind when even its withdrawal is refused.
-    if (prev === live) {
+    if (sameReaderCopy(prev, live)) {
       return { ok: false, changed: false, errors: ['There is nothing to undo: the snapshot matches your saved data.'] };
     }
     return this.restore(prev, { expected, recovering: true });
@@ -1266,8 +1276,8 @@ export class Store {
 // because a complete restore writes them too. main.js reads and writes them under these names.
 export const SETTINGS_KEY = 'mrt.settings';
 export const SIDEBAR_KEY = 'sidebar.collapsed';
-// Absent, or "active:", "cleaning:" or "done:" and the restore id. Read synchronously at startup, so a
-// start with nothing pending never waits for the journal, which lives in IndexedDB under the name below.
+// Absent, or active/cleaning/done with the restore id, or discarding with an invalid record's hash.
+// Read synchronously so a start with nothing pending never waits for the IndexedDB journal.
 export const RESTORE_MARKER_KEY = 'mrt.complete-restore.v1';
 export const RESTORE_LOCK = 'mrt.complete-restore.lock.v1';
 export const RESTORE_DATABASE = 'mrt-complete-restore-v1';

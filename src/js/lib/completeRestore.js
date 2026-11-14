@@ -39,7 +39,7 @@ import { isIosApp } from './platform.js';
 const JOURNAL_STORE = 'journal';
 const PLAN_SLOT = 'plan';
 const PROGRESS_SLOT = 'progress';
-const MARKER = /^(active|cleaning|done):([a-f0-9]{64})$/;
+const MARKER = /^(active|cleaning|discarding|done):([a-f0-9]{64})$/;
 const HEX = /^[a-f0-9]{64}$/;
 const NO_ID = '0'.repeat(64);
 export const PRIOR_COPY_FORMAT = 'recap-page-complete-restore-prior';
@@ -154,6 +154,37 @@ const RECOVERY_TEXT = recoveryTextForPlatform();
 
 function object(value) { return value !== null && typeof value === 'object' && !Array.isArray(value); }
 
+// Invalid IndexedDB records can hold structured-clone values, not just JSON. Canonicalizing a Map
+// as {} or a sparse array as [] would let a different copy inherit permission to discard this one.
+function fingerprintable(value, depth = 0) {
+  if (depth > 64) return false;
+  if (value === null || typeof value === 'string' || typeof value === 'boolean') return true;
+  if (typeof value === 'number') return Number.isFinite(value) && !Object.is(value, -0);
+  if (Array.isArray(value)) {
+    return Reflect.ownKeys(value).length === value.length + 1
+      && Array.from({ length: value.length }, (_, index) =>
+        Object.hasOwn(value, index) && fingerprintable(value[index], depth + 1)).every(Boolean);
+  }
+  if (!object(value) || ![Object.prototype, null].includes(Object.getPrototypeOf(value))) return false;
+  return Reflect.ownKeys(value).every((key) => {
+    const descriptor = Object.getOwnPropertyDescriptor(value, key);
+    return typeof key === 'string' && descriptor.enumerable && Object.hasOwn(descriptor, 'value')
+      && fingerprintable(descriptor.value, depth + 1);
+  });
+}
+
+async function invalidFingerprint(value, cryptoProvider) {
+  try {
+    if (!fingerprintable(value)) return null;
+    const hash = await cryptoProvider.subtle.digest('SHA-256', new TextEncoder().encode(canonical(value)));
+    if (!(hash instanceof ArrayBuffer) || hash.byteLength !== 32) return null;
+    return [...new Uint8Array(hash)].map((n) => n.toString(16).padStart(2, '0')).join('');
+  } catch {
+    // Without an identity the conservative, visibly re-offered recovery remains in force.
+    return null;
+  }
+}
+
 export function readMarker(storage) {
   let raw;
   try { raw = storage?.getItem(RESTORE_MARKER_KEY) ?? null; }
@@ -164,13 +195,16 @@ export function readMarker(storage) {
 }
 
 function writeMarker(storage, value) {
+  let failure;
   try {
     if (value === null) storage.removeItem(RESTORE_MARKER_KEY);
     else storage.setItem(RESTORE_MARKER_KEY, value);
-  } catch { /* the read below decides */ }
+  } catch (error) { failure = error; }
   let held;
   try { held = storage.getItem(RESTORE_MARKER_KEY) ?? null; } catch { held = undefined; }
-  if (held !== value) throw new Error('The restore marker could not be saved. Nothing further was changed.');
+  if (held !== value) throw Object.assign(new Error('The restore marker could not be saved. Nothing further was changed.'), {
+    quotaRefused: failure?.name === 'QuotaExceededError' && held !== undefined,
+  });
 }
 
 // ------------------------------------------------------------------ journal
@@ -333,6 +367,7 @@ function recoveryOf(kind, journal, { canFinish = false, canRestorePrior = false,
     recovery: {
       kind, id: journal.kind === 'valid' ? journal.record.id : null, message: RECOVERY_TEXT[kind],
       canFinish, canRestorePrior, canKeep, download,
+      ...(journal.kind === 'invalid' && journal.fingerprint ? { fingerprint: journal.fingerprint } : {}),
     },
   };
 }
@@ -369,11 +404,16 @@ export function decideRestoreState(marker, journal, storage, now) {
     // A done: or cleaning: marker follows data the reader already accepted, so it waits, as no marker
     // does, for a start that can read the journal and apply its rows. Pausing on one would ask the
     // same question at every start for as long as IndexedDB failed.
-    return ['absent', 'done', 'cleaning'].includes(marker.state)
+    return ['absent', 'done', 'cleaning', 'discarding'].includes(marker.state)
       ? { kind: 'none', unavailable: true }
       : { ...recoveryOf('unchecked', journal), unavailable: true };
   }
   switch (marker.state) {
+    case 'discarding':
+      if (journal.kind === 'invalid' && journal.fingerprint === marker.id) {
+        return { kind: 'cleanup', id: marker.id, fingerprint: marker.id, wait: true };
+      }
+      return { kind: 'clear-marker', id: marker.id, wait: true, then: absentRows() };
     case 'active':
       return valid && journal.record.id === marker.id ? recoveryFor(journal, storage, { marked: true }) : recoveryOf('missing', journal);
     case 'cleaning':
@@ -525,7 +565,7 @@ export class CompleteRestore {
     this.started = true;
     const marker = readMarker(this.raw);
     this.markerSeen = marker.raw;
-    if (['active', 'cleaning', 'invalid', 'unreadable'].includes(marker.state)) this.checking = true;
+    if (['active', 'cleaning', 'discarding', 'invalid', 'unreadable'].includes(marker.state)) this.checking = true;
     this.refresh();
     this.settled = this.acquireShared();
     this.events?.addEventListener?.('pagehide', () => {
@@ -602,7 +642,7 @@ export class CompleteRestore {
     catch { return { kind: 'unreadable' }; }
     if (record === null || record === undefined) return { kind: 'absent' };
     try { return await checkRecord(record, this.cryptoProvider); }
-    catch { return { kind: 'invalid', raw: record }; }
+    catch { return { kind: 'invalid', raw: record, fingerprint: await invalidFingerprint(record, this.cryptoProvider) }; }
   }
 
   // The deferred read. Runs after the first render and never blocks it.
@@ -643,7 +683,7 @@ export class CompleteRestore {
       const fresh = decideRestoreState(readMarker(this.raw), await this.readJournal(), this.raw, this.clock());
       if (fresh.kind !== decision.kind || fresh.id !== decision.id) return this.act(fresh, { inside: true });
       if (fresh.kind === 'discard') await this.removeJournal();
-      else if (fresh.kind === 'cleanup') await this.cleanUp(fresh.id);
+      else if (fresh.kind === 'cleanup') await this.cleanUp(fresh.id, { fingerprint: fresh.fingerprint });
       else if (fresh.kind === 'clear-marker') {
         this.markOwn(null);
         return this.act(fresh.then, { inside: true });
@@ -673,16 +713,16 @@ export class CompleteRestore {
   // Keeping and erase end the pause even when the copy cannot be removed yet: the cleaning: marker
   // already written stays with it, so a later start finishes the cleanup, and complete restore is off
   // until then. Nothing else is left half done, because the person's choice was made before the cleanup.
-  // A copy that fails its checks is offered again by the next start instead, which is what it says.
+  // An invalid copy without a safe fingerprint is still offered again by the next start.
   leaveCopyForLater(offered = false) {
     this.recovery = null;
     this.copyStuck = offered ? 'offered' : true;
   }
 
-  // Cleanup order: the marker says cleaning, the journal goes and is checked gone, then the marker
-  // goes. A marker never outlives its journal except as "cleaning", which the next start finishes.
-  async cleanUp(id, { journal = true, offered = false } = {}) {
-    this.markOwn(`cleaning:${id ?? NO_ID}`);
+  // Cleanup order: mark cleaning (or fingerprint-bound discarding), verify the journal gone, then
+  // clear the marker. A surviving cleanup marker is finished by the next start.
+  async cleanUp(id, { journal = true, offered = false, fingerprint = null } = {}) {
+    this.markOwn(fingerprint ? `discarding:${fingerprint}` : `cleaning:${id ?? NO_ID}`);
     if (journal) await this.removeJournal({ offered });
     this.markOwn(null);
   }
@@ -769,11 +809,13 @@ export class CompleteRestore {
     const held = imageOf(this.raw, component.keys);
     if (same(held, target)) return true;
     if (same(held, source)) {
-      throw new Error(failure?.name === 'QuotaExceededError'
+      throw Object.assign(new Error(failure?.name === 'QuotaExceededError'
         ? isIosApp()
           ? 'App storage is full, so the restore stopped before replacing everything. Recovery is available.'
           : 'Browser storage is full, so the restore stopped before replacing everything. Recovery is available.'
-        : 'A write was refused, so the restore stopped before replacing everything. Recovery is available.');
+        : 'A write was refused, so the restore stopped before replacing everything. Recovery is available.'), {
+        quotaRefused: failure?.name === 'QuotaExceededError',
+      });
     }
     throw new Error('Saved data does not match the restore, so it stopped. Recovery is available.');
   }
@@ -824,6 +866,22 @@ export class CompleteRestore {
     assertApplied();
     this.markOwn(`done:${current.id}`);
     return current;
+  }
+
+  async rollBackQuota(assertReady) {
+    assertReady();
+    const expected = this.verified;
+    this.assertRunning(expected);
+    const found = await this.readJournal();
+    assertReady();
+    this.assertRunning(expected);
+    if (found.kind !== 'valid' || canonical(found.record) !== canonical(expected) || classify(this.raw, found).foreign) {
+      throw new Error('The recovery copy or saved data changed, so automatic rollback could not continue.');
+    }
+    const record = await this.checkpoint({ ...found.record, direction: 'prior', phase: 'applying', finishedAt: null });
+    assertReady();
+    await this.apply(found, record, 'prior', null, assertReady);
+    this.recovery = null;
   }
 
   // Leaves storage exactly as it was found, or with a recovery the next start offers. Never both
@@ -903,7 +961,7 @@ export class CompleteRestore {
         throw new Error(RESTORE_MESSAGES.recovery);
       }
       if (before.kind === 'discard') await this.removeJournal();
-      else if (before.kind === 'cleanup') await this.cleanUp(before.id);
+      else if (before.kind === 'cleanup') await this.cleanUp(before.id, { fingerprint: before.fingerprint });
       else if (marker.state === 'done') await this.cleanUp(marker.id);
       assertCurrent();
       const prepared = prepareCompleteRestore({
@@ -946,9 +1004,21 @@ export class CompleteRestore {
         onApplyStart?.();
         await this.apply(found, record, 'forward', null, guarded ? assertReady : null);
       } catch (error) {
+        let failure = error;
+        if (error.quotaRefused || error.name === 'QuotaExceededError') {
+          try {
+            await this.rollBackQuota(assertReady);
+            return {
+              ok: false, changed: false, rolledBack: true,
+              error: `${isIosApp() ? 'App' : 'Browser'} storage is full, so the backup was not restored. The earlier data was put back and saving has started again.`,
+            };
+          } catch (rollbackError) {
+            failure = new Error(`${error.message} Automatic rollback could not finish (${rollbackError.message}). Recovery is available.`);
+          }
+        }
         await this.settleFailure();
-        error.changed = null;
-        throw error;
+        failure.changed = null;
+        throw failure;
       }
       return { ok: true, changed: true };
     });
@@ -1042,7 +1112,7 @@ export class CompleteRestore {
         return { ok: true, changed: false };
       }
       const offer = fresh.recovery;
-      if (!shown || offer.id !== shown.id || offer.download !== shown.download) {
+      if (!shown || offer.id !== shown.id || offer.download !== shown.download || offer.fingerprint !== shown.fingerprint) {
         this.recovery = offer;
         throw new Error(offer.download === 'prior' && shown?.download !== 'prior' ? RESTORE_MESSAGES.copyReadable : RESTORE_MESSAGES.copyChanged);
       }
@@ -1051,11 +1121,15 @@ export class CompleteRestore {
         throw new Error(RESTORE_MESSAGES.keepNotOffered);
       }
       // A journal IndexedDB cannot read is left for a later start rather than guessed at, and so is one
-      // it can read but not remove, once its cleaning: marker says so. One that fails its checks and
-      // cannot be removed is offered again by the next start, which clears that marker (#954).
+      // it can read but not remove. An invalid copy needs its whole fingerprint, never its raw id,
+      // before a later start may remove it without asking again.
       if (journal.kind === 'unreadable') this.clearOverUnchecked();
       else {
-        try { await this.cleanUp(offer.id ?? readMarker(this.raw).id ?? NO_ID, { offered: journal.kind === 'invalid' }); }
+        try {
+          await this.cleanUp(offer.id ?? readMarker(this.raw).id ?? NO_ID, {
+            offered: journal.kind === 'invalid' && !journal.fingerprint, fingerprint: journal.fingerprint,
+          });
+        }
         catch (error) {
           if (!error?.copyKept) throw error;
           this.leaveCopyForLater(error.offered);
@@ -1092,7 +1166,7 @@ export class CompleteRestore {
     if (this.busy) return { ok: false, erased: false, error: RESTORE_MESSAGES.busy };
     if (this.stale) return { ok: false, erased: false, error: RESTORE_MESSAGES.reloading };
     const marker = readMarker(this.raw);
-    const pending = Boolean(this.recovery) || ['active', 'cleaning', 'invalid', 'unreadable'].includes(marker.state);
+    const pending = Boolean(this.recovery) || ['active', 'cleaning', 'discarding', 'invalid', 'unreadable'].includes(marker.state);
     if (this.otherTab) return { ok: false, erased: false, error: RESTORE_MESSAGES.otherTab };
     const run = async () => {
       this.writeScope += 1;
@@ -1113,7 +1187,9 @@ export class CompleteRestore {
       try {
         const present = found.kind === 'valid' || found.kind === 'invalid';
         const id = found.kind === 'valid' ? found.record.id : held.id ?? NO_ID;
-        await this.cleanUp(id, { journal: present, offered: found.kind === 'invalid' });
+        await this.cleanUp(id, {
+          journal: present, offered: found.kind === 'invalid' && !found.fingerprint, fingerprint: found.fingerprint,
+        });
         this.recovery = null;
         return { ok: true, erased: true, copyRemoved: present };
       } catch (error) {
