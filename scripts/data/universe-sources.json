@@ -7,7 +7,7 @@
     "preview": "Promotional and preview comics are alternatives but are excluded from the selected debut.",
     "primaryContinuity": "Marvel Comics #1 (1939) is provisional; the 1961 and 1936 alternatives are retained.",
     "descriptions": "The thirty owner descriptions are reproduced verbatim; source prose is not copied.",
-    "evidenceGaps": "Independent bibliography and the Wizard special classification remain unverified; its on-sale date is unknown."
+    "evidenceGaps": "Independent bibliography and the Wizard special classification remain unverified; its on-sale date is unknown. Five provider on-sale dates differ from the pinned issue pages, although their years agree; each provider date is the first day of the cover month."
   },
   "sources": {
     "owner": {
@@ -26,31 +26,31 @@
       "url": "https://marvel.emreparker.com/v1/issues/23254",
       "retrieved": "2026-11-13",
       "credit": "Configured metadata provider",
-      "kind": "issue-id-cross-check"
+      "kind": "issue-id-and-on-sale-date-cross-check"
     },
     "provider-74437": {
       "url": "https://marvel.emreparker.com/v1/issues/74437",
       "retrieved": "2026-11-13",
       "credit": "Configured metadata provider",
-      "kind": "issue-id-cross-check"
+      "kind": "issue-id-and-on-sale-date-cross-check"
     },
     "provider-72852": {
       "url": "https://marvel.emreparker.com/v1/issues/72852",
       "retrieved": "2026-11-13",
       "credit": "Configured metadata provider",
-      "kind": "issue-id-cross-check"
+      "kind": "issue-id-and-on-sale-date-cross-check"
     },
     "provider-8546": {
       "url": "https://marvel.emreparker.com/v1/issues/8546",
       "retrieved": "2026-11-13",
       "credit": "Configured metadata provider",
-      "kind": "issue-id-cross-check"
+      "kind": "issue-id-and-on-sale-date-cross-check"
     },
     "provider-10193": {
       "url": "https://marvel.emreparker.com/v1/issues/10193",
       "retrieved": "2026-11-13",
       "credit": "Configured metadata provider",
-      "kind": "issue-id-cross-check"
+      "kind": "issue-id-and-on-sale-date-cross-check"
     },
     "provider-1784": {
       "url": "https://marvel.emreparker.com/v1/issues/1784",
@@ -715,7 +715,18 @@
           ]
         }
       ],
-      "conflicts": [],
+      "conflicts": [
+        {
+          "field": "namedLine.onSale",
+          "referenceValue": "February 20, 1973",
+          "providerValue": "1973-05-01",
+          "status": "independent-bibliography-needed",
+          "sources": [
+            "issue-10634874",
+            "provider-23254"
+          ]
+        }
+      ],
       "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
     },
     {
@@ -855,7 +866,18 @@
         ]
       },
       "alternatives": [],
-      "conflicts": [],
+      "conflicts": [
+        {
+          "field": "namedLine.onSale",
+          "referenceValue": "August 9, 1983",
+          "providerValue": "1983-11-01",
+          "status": "independent-bibliography-needed",
+          "sources": [
+            "issue-10804956",
+            "provider-74437"
+          ]
+        }
+      ],
       "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
     },
     {
@@ -1422,7 +1444,18 @@
         ]
       },
       "alternatives": [],
-      "conflicts": [],
+      "conflicts": [
+        {
+          "field": "namedLine.onSale",
+          "referenceValue": "August 12, 1998",
+          "providerValue": "1998-10-01",
+          "status": "independent-bibliography-needed",
+          "sources": [
+            "issue-11230206",
+            "provider-72852"
+          ]
+        }
+      ],
       "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
     },
     {
@@ -1503,7 +1536,18 @@
           ]
         }
       ],
-      "conflicts": [],
+      "conflicts": [
+        {
+          "field": "namedLine.onSale",
+          "referenceValue": "January 27, 1999",
+          "providerValue": "1999-03-01",
+          "status": "independent-bibliography-needed",
+          "sources": [
+            "issue-11260393",
+            "provider-8546"
+          ]
+        }
+      ],
       "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
     },
     {
@@ -1727,7 +1771,18 @@
           ]
         }
       ],
-      "conflicts": [],
+      "conflicts": [
+        {
+          "field": "namedLine.onSale",
+          "referenceValue": "January 16, 2002",
+          "providerValue": "2002-03-01",
+          "status": "independent-bibliography-needed",
+          "sources": [
+            "issue-11009196",
+            "provider-10193"
+          ]
+        }
+      ],
       "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
     },
     {
