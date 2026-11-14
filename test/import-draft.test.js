@@ -55,6 +55,16 @@ test('historical annotated checklist drafts retain their source and selections',
   const altered = structuredClone(draft);
   altered.occurrences[0].title += ' changed';
   assert.throws(() => validateImportDraft(JSON.stringify(altered)), /source was changed/);
+
+  const formatted = sample('- [ ] Repaired <!-- mrt:legacy-identity-**key=Old%20Title** -->');
+  formatted.occurrences[0].title = `Repaired ${annotation}`;
+  assert.deepEqual(validateImportDraft(JSON.stringify(formatted)), formatted);
+
+  const annotationOnly = sample(`- [ ] ${annotation}`);
+  annotationOnly.occurrences = [{
+    title: annotation, url: null, read: false, index: 0, section: null, line: 1, choice: null, applied: false,
+  }];
+  assert.deepEqual(validateImportDraft(JSON.stringify(annotationOnly)), annotationOnly);
 });
 
 test('pending outcome requires unchanged before token and never replays a completed marker after deliberate unread', () => {

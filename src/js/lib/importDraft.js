@@ -20,7 +20,7 @@ export function sourceOccurrences(rawText, options) {
   const lines = rawText.split(/\r?\n/);
   const positions = [];
   lines.forEach((line, index) => {
-    const row = parseChecklist(line);
+    const row = parseChecklist(line, options);
     if (row.entries.length || row.unresolved.length) positions.push(index + 1);
   });
   return entries.map((entry, index) => ({
@@ -29,12 +29,11 @@ export function sourceOccurrences(rawText, options) {
 }
 
 // Drafts saved by an older app may contain an annotation in the literal title.
-export function sourceOccurrencesForValidation(rawText) {
-  const options = [{}, { legacyReaderLinks: true }];
-  if (typeof rawText === 'string' && rawText.includes('mrt:legacy-identity-key=')) {
-    options.push({ preserveLegacyIdentityAnnotations: true }, { legacyReaderLinks: true, preserveLegacyIdentityAnnotations: true });
-  }
-  return options.map((option) => sourceOccurrences(rawText, option));
+export function sourceOccurrencesForValidation(rawText, { preserveLegacyIdentityAnnotations = false } = {}) {
+  return [
+    sourceOccurrences(rawText, { preserveLegacyIdentityAnnotations }),
+    sourceOccurrences(rawText, { legacyReaderLinks: true, preserveLegacyIdentityAnnotations }),
+  ];
 }
 
 export function occurrenceIssue(entry) {
@@ -55,11 +54,20 @@ export function validateImportDraft(text) {
   if (draft?.format !== DRAFT_FORMAT || draft.version !== DRAFT_VERSION) throw new Error('This is not a supported import draft file.');
   if (typeof draft.rawText !== 'string' || !Array.isArray(draft.occurrences)
     || draft.occurrences.length > MAX_ISSUES) throw new Error('The import draft source is invalid.');
-  const sources = sourceOccurrencesForValidation(draft.rawText);
-  const source = sources[0];
-  if (!source.length || source.length !== draft.occurrences.length) throw new Error('The import draft source positions do not match.');
-  source.forEach((entry, index) => {
-    const held = draft.occurrences[index];
+  const source = sourceOccurrencesForValidation(draft.rawText)
+    .filter((entries) => entries.length === draft.occurrences.length);
+  let olderSource = null;
+  const older = () => {
+    if (!olderSource) {
+      olderSource = sourceOccurrencesForValidation(draft.rawText, { preserveLegacyIdentityAnnotations: true })
+        .filter((entries) => entries.length === draft.occurrences.length);
+    }
+    return olderSource;
+  };
+  if (!draft.occurrences.length || (!source.length && !older().length)) {
+    throw new Error('The import draft source positions do not match.');
+  }
+  draft.occurrences.forEach((held, index) => {
     const { choice, applied, ...original } = held;
     const matchesSource = (candidate) => {
       const expected = { ...candidate };
@@ -67,7 +75,8 @@ export function validateImportDraft(text) {
       delete expected.applied;
       return JSON.stringify(original) === JSON.stringify(expected);
     };
-    const originalEntry = matchesSource(entry) ? entry : sources.slice(1).map((candidate) => candidate[index]).find(matchesSource);
+    const originalEntry = source.map((candidate) => candidate[index]).find(matchesSource)
+      ?? older().map((candidate) => candidate[index]).find(matchesSource);
     if (!originalEntry
       || typeof applied !== 'boolean') throw new Error('The import draft source was changed.');
     if (choice !== null) {
@@ -96,7 +105,7 @@ export function validateImportDraft(text) {
       || !(pending.beforeToken === null || typeof pending.beforeToken === 'string')
       || typeof pending.before !== 'string' || typeof pending.after !== 'string'
       || !Array.isArray(pending.indices) || pending.indices.some((i) => !Number.isInteger(i)
-        || i < 0 || i >= source.length || !occurrenceIssue(draft.occurrences[i]))
+        || i < 0 || i >= draft.occurrences.length || !occurrenceIssue(draft.occurrences[i]))
       || !Number.isSafeInteger(pending.at)) throw new Error('The import draft pending outcome is invalid.');
   }
   return draft;

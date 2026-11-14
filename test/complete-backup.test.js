@@ -128,7 +128,7 @@ function completeFixture({ created } = {}) {
 test('historical annotated checklist drafts survive complete backup and restore', async () => {
   const f = completeFixture();
   const annotation = '<!-- mrt:legacy-identity-key=Old%20Title -->';
-  f.draft.rawText = `- [ ] Repaired ${annotation}\n- [x] [Reader](https://read.marvel.com/#/book/129648)`;
+  f.draft.rawText = '- [ ] Repaired <!-- mrt:legacy-identity-**key=Old%20Title** -->\n- [x] [Reader](https://read.marvel.com/#/book/129648)';
   f.draft.occurrences = sourceOccurrences(f.draft.rawText, { legacyReaderLinks: true });
   f.draft.occurrences[0].title = `Repaired ${annotation}`;
   f.draft.occurrences[0].choice = normalizeIssue({ issueId: 7, title: 'Chosen' });
