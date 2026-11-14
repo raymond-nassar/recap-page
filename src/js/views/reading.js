@@ -131,6 +131,7 @@ export function createReadingView({
   launch: launchSaved,
   loadCatalog = null,
   listAttribution = () => null,
+  listUniverseLines,
   noSynopsisMarker,
   notify,
   onCancelHydrate,
@@ -210,7 +211,9 @@ export function createReadingView({
     const request = { pending: false };
     aboutRequest = request;
     const status = el('p', { class: 'rail-hint', role: 'status' });
-    const retry = el('button', { type: 'button', class: 'btn btn-g', onclick: () => { void load(); } }, 'Retry source credit');
+    const retry = el('button', {
+      type: 'button', class: 'btn btn-g', onclick: () => { request.ready = load(); },
+    }, 'Retry source credit');
     source.replaceChildren(status);
     aboutHasSource = true;
     disclosure.hidden = false;
@@ -236,7 +239,11 @@ export function createReadingView({
       request.pending = false;
       const held = document.activeElement === retry;
       const entry = catalog.lists.find((candidate) => candidate.id === list.catalogId);
-      const content = entry ? [listAttribution(entry), sourceButton(el, entry)].filter(Boolean) : [];
+      const content = entry ? [
+        listAttribution(entry),
+        sourceButton(el, entry),
+        ...(entry.universeIds?.length ? listUniverseLines(entry) : []),
+      ].filter(Boolean) : [];
       source.replaceChildren(...content);
       aboutHasSource = content.length > 0;
       disclosure.hidden = !getState().lists[list.id]?.description && !aboutHasSource;
@@ -245,7 +252,7 @@ export function createReadingView({
         else (source.querySelector('.list-source-link') ?? source.querySelector('a') ?? disclosure.querySelector('summary')).focus();
       }
     }
-    void load();
+    request.ready = load();
   }
 
   // #1243: with a comic up next the options sit just above Coming up rather than inside the card,
@@ -1685,6 +1692,7 @@ export function createReadingView({
     // position the entry restores was measured with About at that height.
     restoreAbout: (open) => renderAbout({ open }),
     aboutOpen: () => $('#order-desc').open,
+    aboutReady: () => aboutRequest?.ready,
     retireDoneResult,
     markReadFromHome: () => markCurrentRead('home'),
     toggleSavedRead,

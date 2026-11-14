@@ -527,6 +527,7 @@
                   <p class="byline" id="issue-focus-by"></p>
                   <p class="desc" id="issue-focus-desc"></p>
                   <dl class="facts" id="issue-focus-facts"></dl>
+                  <div id="issue-focus-universes" hidden></div>
                   <p class="issue-focus-note" id="issue-focus-note" hidden></p>
                   <p class="rail-hint" id="issue-synopsis-status" role="status" hidden></p>
                   <div class="cta">
@@ -681,6 +682,76 @@
             <div class="results" id="library-rated-results"></div>
           </section>
 
+          <!-- ---------------------------------------- universes -->
+          <section id="view-universes" class="view view-wide" hidden aria-labelledby="universes-h">
+            <div class="head"><div class="head-left"><h1 id="universes-h">Universes</h1></div></div>
+            <p class="rail-hint">Explore Marvel's realities and the Reading Lists connected to them.</p>
+            <form class="rated-controls" id="universes-form" role="search">
+              <div class="rated-field">
+                <label for="universes-q">Search universes</label>
+                <input type="search" id="universes-q" maxlength="200" autocomplete="off" />
+              </div>
+              <div class="rated-field">
+                <label for="universes-sort">Sort</label>
+                <select id="universes-sort">
+                  <option value="publication-history">Publication history</option>
+                  <option value="alphabetical">Alphabetical</option>
+                  <option value="recently-added">Recently added</option>
+                </select>
+              </div>
+            </form>
+            <p id="universes-count" class="rated-count"></p>
+            <div id="universes-results" class="catalog-grid universe-grid"></div>
+          </section>
+
+          <section id="view-universe" class="view view-wide" hidden aria-labelledby="universe-h">
+            <div class="head"><div class="head-left"><h1 id="universe-h">Universe</h1></div></div>
+            <div id="universe-missing" hidden>
+              <p class="rail-hint">This universe is not in this copy of Recap Page.</p>
+              <a href="#/universes" class="btn btn-g" data-view="universes">Browse universes</a>
+            </div>
+            <div id="universe-body" hidden>
+              <section class="card card-static universe-overview" aria-labelledby="universe-overview-h">
+                <h2 id="universe-overview-h">Overview</h2>
+                <p id="universe-description"></p>
+                <dl class="universe-facts">
+                  <div><dt>Reality</dt><dd id="universe-earth"></dd></div>
+                  <div><dt>First published</dt><dd id="universe-year"></dd></div>
+                  <div><dt>Debut</dt><dd id="universe-debut"></dd></div>
+                </dl>
+              </section>
+              <section id="universe-browse" class="search-hub" aria-labelledby="universe-browse-h" hidden>
+                <h2 id="universe-browse-h">Explore</h2>
+                <div class="search-hub-grid">
+                  <a href="#/catalog" class="search-hub-card" data-view="catalog">
+                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#timeline"/></svg><span>Modern Timeline</span>
+                  </a>
+                  <a href="#/marvel-ages" class="search-hub-card" data-view="marvel-ages">
+                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#ages"/></svg><span>Marvel Ages</span>
+                  </a>
+                </div>
+              </section>
+              <section id="universe-reading-lists" aria-labelledby="universe-lists-h">
+                <div class="sec-h"><h2 id="universe-lists-h">Reading Lists</h2></div>
+                <div id="universe-report" class="report"></div>
+                <p id="universe-lists-status" class="rail-hint" role="status">Loading Reading Lists...</p>
+                <button type="button" class="btn btn-g" id="universe-retry" hidden>Retry Reading Lists</button>
+                <a href="#/catalog" class="btn btn-g" id="universe-empty-action" data-view="catalog" hidden>Browse Reading Lists</a>
+                <div id="universe-lists" class="results"></div>
+              </section>
+              <section id="universe-series" aria-labelledby="universe-series-h" hidden>
+                <div class="sec-h"><h2 id="universe-series-h">Series</h2></div>
+                <p id="universe-series-status" class="rail-hint" role="status"></p>
+                <button type="button" class="btn btn-g" id="universe-series-retry" hidden>Retry series</button>
+                <div id="universe-series-results" class="results"></div>
+              </section>
+              <section id="universe-comics" aria-labelledby="universe-comics-h" hidden>
+                <div class="sec-h"><h2 id="universe-comics-h">Comics</h2></div>
+                <div id="universe-comics-results" class="results"></div>
+              </section>
+            </div>
+          </section>
+
           <!-- ---------------------------------------- catalog view -->
           <section id="view-catalog" class="view" hidden aria-labelledby="catalog-h">
             <div class="head"><div class="head-left"><h1 id="catalog-h">Modern Timeline</h1></div></div>
@@ -778,12 +849,12 @@
             <section class="card card-static addpri add-page search-page" data-scope="top">
               <p id="search-help" class="visually-hidden">Select comics, then create a Reading List or choose one to add to. Searching changes no saved lists.</p>
               <form id="form-search" class="stack">
-                <label for="search-q">Search Reading Lists, series, creators and comics</label>
+                <label for="search-q">Search Reading Lists, universes, series, creators and comics</label>
                 <div class="field-row">
                   <input type="search" id="search-q" name="issue-query" placeholder="e.g. Avengers…" autocomplete="off" aria-describedby="search-hint search-help" />
                   <button type="submit" class="btn btn-g btn-icon has-tooltip" data-tooltip="Select comics, then create a Reading List or choose one to add to. Searching changes no saved lists." aria-label="Look up comics" aria-describedby="search-help"><svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#search"/></svg></button>
                 </div>
-                <p id="search-hint" class="rail-hint">Lists, series and creators match as you type. Press Enter to look up comics online.</p>
+                <p id="search-hint" class="rail-hint">Lists, universes, series and creators match as you type. Press Enter to look up comics online.</p>
               </form>
               <!--
                 Pressed-state buttons rather than tabs (#1204): each scope shows or hides result
@@ -794,6 +865,7 @@
               <div id="search-scopes" class="search-scopes" role="group" aria-label="Show results for" hidden>
                 <button type="button" class="search-scope" data-scope="top" aria-pressed="true">Top</button>
                 <button type="button" class="search-scope" data-scope="lists" aria-pressed="false">Reading Lists</button>
+                <button type="button" class="search-scope" data-scope="universes" aria-pressed="false">Universes</button>
                 <button type="button" class="search-scope" data-scope="series" aria-pressed="false">Series</button>
                 <button type="button" class="search-scope" data-scope="creators" aria-pressed="false">Creators</button>
                 <button type="button" class="search-scope" data-scope="comics" aria-pressed="false">Comics</button>
@@ -814,6 +886,11 @@
                     <div id="search-lists-results" class="results"></div>
                     <button type="button" id="search-lists-more" class="btn btn-g search-more" hidden>Show all Reading Lists</button>
                   </section>
+                  <section id="search-universes" class="search-group" aria-labelledby="search-universes-h" hidden>
+                    <h2 id="search-universes-h">Universes</h2>
+                    <div id="search-universes-results" class="results"></div>
+                    <button type="button" id="search-universes-more" class="btn btn-g search-more" hidden>Show all universes</button>
+                  </section>
                   <section id="search-series" class="search-group" aria-labelledby="search-series-h" hidden>
                     <h2 id="search-series-h">Series</h2>
                     <div id="search-series-results" class="results"></div>
@@ -824,6 +901,7 @@
                     <div id="search-creators-results" class="results"></div>
                     <button type="button" id="search-creators-more" class="btn btn-g search-more" hidden>Show more creators</button>
                   </section>
+                  <p id="search-empty" class="rail-hint" hidden></p>
                 </div>
                 <section id="search-comics" class="search-group search-comics" aria-label="Comics" hidden>
                   <div id="search-results" class="results"></div>
@@ -851,6 +929,9 @@
                   </a>
                   <a href="#/marvel-ages" class="search-hub-card" data-view="marvel-ages">
                     <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#ages"/></svg><span>Marvel Ages</span>
+                  </a>
+                  <a href="#/universes" class="search-hub-card" data-view="universes">
+                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#universes"/></svg><span>Universes</span>
                   </a>
                 </div>
                 <p class="search-quiet-links"><a href="#/add-import" data-view="add-import">Paste a Reading List</a><a href="#/add-manual" data-view="add-manual">Add a comic by hand</a></p>

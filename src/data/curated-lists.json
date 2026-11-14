@@ -37,7 +37,10 @@
       ],
       "expect": 11,
       "timeline": 2011,
-      "coverIssueId": 37996
+      "coverIssueId": 37996,
+      "universeIds": [
+        "age-of-x"
+      ]
     },
     {
       "id": "x-men-schism",
@@ -309,7 +312,10 @@
       ],
       "expect": 8,
       "timeline": 2013,
-      "coverIssueId": 47142
+      "coverIssueId": 47142,
+      "universeIds": [
+        "age-of-apocalypse"
+      ]
     },
     {
       "id": "avengers-enemy-within",
@@ -1024,7 +1030,10 @@
       ],
       "expect": 18,
       "timeline": 2021,
-      "coverIssueId": 92793
+      "coverIssueId": 92793,
+      "universeIds": [
+        "heroes-reborn-2021"
+      ]
     },
     {
       "id": "infinite-destinies",
@@ -1259,7 +1268,10 @@
       "groupName": "The New Ultimate Universe",
       "variant": "Every issue, in publication order",
       "expect": 138,
-      "timeline": 2023
+      "timeline": 2023,
+      "universeIds": [
+        "ultimate-universe"
+      ]
     },
     {
       "id": "new-ultimate-universe-trades",
@@ -1302,7 +1314,10 @@
       "groupName": "The New Ultimate Universe",
       "variant": "By collected edition",
       "expect": 132,
-      "timeline": 2023
+      "timeline": 2023,
+      "universeIds": [
+        "ultimate-universe"
+      ]
     },
     {
       "id": "setup-to-modern-timeline",
@@ -1830,7 +1845,16 @@
       ],
       "timeline": null,
       "coverIssueId": 3220,
-      "expect": 94
+      "expect": 94,
+      "universeIds": [
+        "marvel-zombies"
+      ],
+      "universeScopes": {
+        "marvel-zombies": {
+          "kind": "related-realities",
+          "note": "Includes the original Marvel Zombies and stories set in other realities."
+        }
+      }
     },
     {
       "id": "house-of-m",
@@ -1878,7 +1902,10 @@
         "2005 event"
       ],
       "expect": 20,
-      "timeline": 2005
+      "timeline": 2005,
+      "universeIds": [
+        "house-of-m"
+      ]
     },
     {
       "id": "house-of-m-essential",
@@ -1926,7 +1953,10 @@
         "main series only"
       ],
       "expect": 8,
-      "timeline": 2005
+      "timeline": 2005,
+      "universeIds": [
+        "house-of-m"
+      ]
     },
     {
       "id": "planet-hulk",
@@ -2055,7 +2085,10 @@
         "2006 event"
       ],
       "expect": 31,
-      "timeline": 2006
+      "timeline": 2006,
+      "universeIds": [
+        "earth-616"
+      ]
     },
     {
       "id": "civil-war-essential",
@@ -4385,7 +4418,10 @@
       ],
       "expect": 170,
       "timeline": null,
-      "coverIssueId": 10865
+      "coverIssueId": 10865,
+      "universeIds": [
+        "marvel-2099"
+      ]
     },
     {
       "id": "silver-surfer-reading-order",
@@ -4730,7 +4766,10 @@
       ],
       "expect": 127,
       "timeline": null,
-      "coverIssueId": 50955
+      "coverIssueId": 50955,
+      "universeIds": [
+        "spider-gwen"
+      ]
     },
     {
       "id": "star-lord-reading-order",
@@ -5272,7 +5311,10 @@
         "Comic Book Herald"
       ],
       "expect": 316,
-      "coverIssueId": 4372
+      "coverIssueId": 4372,
+      "universeIds": [
+        "ultimate-marvel"
+      ]
     },
     {
       "id": "venom-reading-order",
@@ -5624,7 +5666,10 @@
         "Comic Book Herald"
       ],
       "expect": 262,
-      "coverIssueId": 12386
+      "coverIssueId": 12386,
+      "universeIds": [
+        "age-of-apocalypse"
+      ]
     },
     {
       "id": "xmen-claremont",
@@ -6850,7 +6895,11 @@
       ],
       "expect": 2,
       "timeline": 1981,
-      "coverIssueId": 12460
+      "coverIssueId": 12460,
+      "universeIds": [
+        "days-of-future-past",
+        "earth-616"
+      ]
     },
     {
       "id": "contest-of-champions",
@@ -8671,7 +8720,10 @@
       ],
       "expect": 121,
       "timeline": 2000,
-      "coverIssueId": 4372
+      "coverIssueId": 4372,
+      "universeIds": [
+        "ultimate-marvel"
+      ]
     },
     {
       "id": "marvel-2099",
@@ -8709,7 +8761,10 @@
       ],
       "expect": 172,
       "timeline": 1992,
-      "coverIssueId": 10865
+      "coverIssueId": 10865,
+      "universeIds": [
+        "marvel-2099"
+      ]
     },
     {
       "id": "maximum-security",
@@ -9534,7 +9589,10 @@
       ],
       "expect": 8,
       "timeline": 2010,
-      "coverIssueId": 32983
+      "coverIssueId": 32983,
+      "universeIds": [
+        "cancerverse"
+      ]
     },
     {
       "id": "heroic-age-avengers",
@@ -10382,7 +10440,10 @@
       ],
       "expect": 39,
       "timeline": null,
-      "coverIssueId": 4236
+      "coverIssueId": 4236,
+      "universeIds": [
+        "marvel-adventures"
+      ]
     },
     {
       "id": "spidey",
@@ -10619,7 +10680,10 @@
       ],
       "expect": 207,
       "timeline": null,
-      "coverIssueId": 18301
+      "coverIssueId": 18301,
+      "universeIds": [
+        "mc2"
+      ]
     },
     {
       "id": "second-clone-saga",
@@ -10694,7 +10758,10 @@
       "expect": 23,
       "timeline": 2003,
       "coverIssueId": 20630,
-      "storylines": true
+      "storylines": true,
+      "universeIds": [
+        "marvel-1602"
+      ]
     },
     {
       "id": "blood-and-thunder",

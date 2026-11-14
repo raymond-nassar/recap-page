@@ -1,0 +1,3335 @@
+{
+  "schemaVersion": 1,
+  "status": "provisional-not-approved-for-release",
+  "policy": {
+    "firstPublished": "Named-line cover year, pending owner decision.",
+    "realityFirst": "Reference reality page First field, retained separately from the named line.",
+    "preview": "Promotional and preview comics are alternatives but are excluded from the selected debut.",
+    "primaryContinuity": "Marvel Comics #1 (1939) is provisional; the 1961 and 1936 alternatives are retained.",
+    "descriptions": "The thirty owner descriptions are reproduced verbatim; source prose is not copied.",
+    "evidenceGaps": "Independent bibliography and the Wizard special classification remain unverified; its on-sale date is unknown. Five provider on-sale dates differ from the pinned issue pages, although their years agree; each provider date is the first day of the cover month."
+  },
+  "sources": {
+    "owner-ultimate-list-placement": {
+      "url": "https://github.com/raymond-nassar/recap-page/issues/1291#issuecomment-6874126236",
+      "retrieved": "2026-11-13",
+      "credit": "Owner decision: Ultimate Spider-Man is listed under Earth-1610, not Earth-6160.",
+      "kind": "owner-association-decision"
+    },
+    "owner": {
+      "url": "https://github.com/raymond-nassar/recap-page/issues/1291",
+      "retrieved": "2026-11-13",
+      "credit": "Owner-provided Universes specification",
+      "kind": "owner-scope"
+    },
+    "catalog": {
+      "path": "src/data/catalog.json",
+      "retrieved": "2026-11-13",
+      "credit": "Existing project Reading List descriptions and payloads",
+      "kind": "project-data"
+    },
+    "provider-23254": {
+      "url": "https://marvel.emreparker.com/v1/issues/23254",
+      "retrieved": "2026-11-13",
+      "credit": "Configured metadata provider",
+      "kind": "issue-id-and-on-sale-date-cross-check"
+    },
+    "provider-74437": {
+      "url": "https://marvel.emreparker.com/v1/issues/74437",
+      "retrieved": "2026-11-13",
+      "credit": "Configured metadata provider",
+      "kind": "issue-id-and-on-sale-date-cross-check"
+    },
+    "provider-72852": {
+      "url": "https://marvel.emreparker.com/v1/issues/72852",
+      "retrieved": "2026-11-13",
+      "credit": "Configured metadata provider",
+      "kind": "issue-id-and-on-sale-date-cross-check"
+    },
+    "provider-8546": {
+      "url": "https://marvel.emreparker.com/v1/issues/8546",
+      "retrieved": "2026-11-13",
+      "credit": "Configured metadata provider",
+      "kind": "issue-id-and-on-sale-date-cross-check"
+    },
+    "provider-10193": {
+      "url": "https://marvel.emreparker.com/v1/issues/10193",
+      "retrieved": "2026-11-13",
+      "credit": "Configured metadata provider",
+      "kind": "issue-id-and-on-sale-date-cross-check"
+    },
+    "provider-1784": {
+      "url": "https://marvel.emreparker.com/v1/issues/1784",
+      "retrieved": "2026-11-13",
+      "credit": "Configured metadata provider",
+      "kind": "issue-id-cross-check"
+    },
+    "provider-5500": {
+      "url": "https://marvel.emreparker.com/v1/issues/5500",
+      "retrieved": "2026-11-13",
+      "credit": "Configured metadata provider",
+      "kind": "issue-id-cross-check"
+    },
+    "provider-22941": {
+      "url": "https://marvel.emreparker.com/v1/issues/22941",
+      "retrieved": "2026-11-13",
+      "credit": "Configured metadata provider",
+      "kind": "issue-id-cross-check"
+    },
+    "provider-10008": {
+      "url": "https://marvel.emreparker.com/v1/issues/10008",
+      "retrieved": "2026-11-13",
+      "credit": "Configured metadata provider",
+      "kind": "issue-id-cross-check"
+    },
+    "issue-10669458": {
+      "url": "https://marvel.fandom.com/wiki/Avengers_Vol_1_85?oldid=10669458",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "F712": {
+      "url": "https://marvel.fandom.com/wiki/Earth-712?oldid=10965746",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-reality-reference"
+    },
+    "issue-10634874": {
+      "url": "https://marvel.fandom.com/wiki/Amazing_Adventures_Vol_2_18?oldid=10634874",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "issue-10773750": {
+      "url": "https://marvel.fandom.com/wiki/Marvel_Super-Heroes_Vol_1_18?oldid=10773750",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "F691": {
+      "url": "https://marvel.fandom.com/wiki/Earth-691?oldid=11153015",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-reality-reference"
+    },
+    "issue-11166925": {
+      "url": "https://marvel.fandom.com/wiki/X-Men_Vol_1_141?oldid=11166925",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "F811": {
+      "url": "https://marvel.fandom.com/wiki/Earth-811?oldid=11277178",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-reality-reference"
+    },
+    "issue-10804956": {
+      "url": "https://marvel.fandom.com/wiki/Marvel_Tails_Starring_Peter_Porker_the_Spectacular_Spider-Ham_Vol_1_1?oldid=10804956",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "F8311": {
+      "url": "https://marvel.fandom.com/wiki/Earth-8311?oldid=11195232",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-reality-reference"
+    },
+    "issue-11011416": {
+      "url": "https://marvel.fandom.com/wiki/Spitfire_and_the_Troubleshooters_Vol_1_1?oldid=11011416",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "F148611": {
+      "url": "https://marvel.fandom.com/wiki/Earth-148611?oldid=10718345",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-reality-reference"
+    },
+    "issue-11011437": {
+      "url": "https://marvel.fandom.com/wiki/Star_Brand_Vol_1_1?oldid=11011437",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "issue-11064465": {
+      "url": "https://marvel.fandom.com/wiki/Spider-Man_2099_Vol_1_1?oldid=11064465",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "F928": {
+      "url": "https://marvel.fandom.com/wiki/Earth-928?oldid=11188823",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-reality-reference"
+    },
+    "issue-11169647": {
+      "url": "https://marvel.fandom.com/wiki/Amazing_Spider-Man_Vol_1_365?oldid=11169647",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "issue-10998084": {
+      "url": "https://marvel.fandom.com/wiki/X-Men%3A_Alpha_Vol_1_1?oldid=10998084",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "issue-10527826": {
+      "url": "https://marvel.fandom.com/wiki/X-Men_Vol_2_40?oldid=10527826",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "F295": {
+      "url": "https://marvel.fandom.com/wiki/Earth-295?oldid=11078900",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-reality-reference"
+    },
+    "issue-11083473": {
+      "url": "https://marvel.fandom.com/wiki/Marvel_Versus_DC_Vol_1_3?oldid=11083473",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "F9602": {
+      "url": "https://marvel.fandom.com/wiki/Earth-9602?oldid=11162043",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-reality-reference"
+    },
+    "issue-11006917": {
+      "url": "https://marvel.fandom.com/wiki/Fantastic_Four_Vol_2_1?oldid=11006917",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "issue-10377532": {
+      "url": "https://marvel.fandom.com/wiki/Heroes_Reborn_Vol_1_%C2%BD?oldid=10377532",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "FHR": {
+      "url": "https://marvel.fandom.com/wiki/Counter-Earth_(Heroes_Reborn)?oldid=11223120",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-reality-reference"
+    },
+    "issue-11078690": {
+      "url": "https://marvel.fandom.com/wiki/Captain_America_Vol_2_1?oldid=11078690",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "issue-11008444": {
+      "url": "https://marvel.fandom.com/wiki/Iron_Man_Vol_2_1?oldid=11008444",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "issue-11005049": {
+      "url": "https://marvel.fandom.com/wiki/Avengers_Vol_2_1?oldid=11005049",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "issue-10650048": {
+      "url": "https://marvel.fandom.com/wiki/What_If...%3F_Vol_1_105?oldid=10650048",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "F982": {
+      "url": "https://marvel.fandom.com/wiki/Earth-982?oldid=11002049",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-reality-reference"
+    },
+    "issue-11230206": {
+      "url": "https://marvel.fandom.com/wiki/Mutant_X_Vol_1_1?oldid=11230206",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "F1298": {
+      "url": "https://marvel.fandom.com/wiki/Earth-1298?oldid=10726229",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-reality-reference"
+    },
+    "issue-11260393": {
+      "url": "https://marvel.fandom.com/wiki/Earth_X_Vol_1_0?oldid=11260393",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "F9997": {
+      "url": "https://marvel.fandom.com/wiki/Earth-9997?oldid=10601092",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-reality-reference"
+    },
+    "issue-11013661": {
+      "url": "https://marvel.fandom.com/wiki/Earth_X_Vol_1_1?oldid=11013661",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "issue-11171867": {
+      "url": "https://marvel.fandom.com/wiki/Ultimate_Spider-Man_Vol_1_1?oldid=11171867",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "F1610": {
+      "url": "https://marvel.fandom.com/wiki/Earth-1610?oldid=10996589",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-reality-reference"
+    },
+    "issue-11019865": {
+      "url": "https://marvel.fandom.com/wiki/Fury_Vol_2_1?oldid=11019865",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "F200111": {
+      "url": "https://marvel.fandom.com/wiki/Earth-200111?oldid=11115642",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-reality-reference"
+    },
+    "issue-11009196": {
+      "url": "https://marvel.fandom.com/wiki/Marvel_Mangaverse%3A_New_Dawn_Vol_1_1?oldid=11009196",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "F2301": {
+      "url": "https://marvel.fandom.com/wiki/Earth-2301?oldid=10726274",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-reality-reference"
+    },
+    "issue-10668051": {
+      "url": "https://marvel.fandom.com/wiki/Marvel_Mangaverse_Vol_1_1?oldid=10668051",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "issue-10885405": {
+      "url": "https://marvel.fandom.com/wiki/Marvel_1602_Vol_1_1?oldid=10885405",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "F311": {
+      "url": "https://marvel.fandom.com/wiki/Earth-311?oldid=10885399",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-reality-reference"
+    },
+    "issue-10987270": {
+      "url": "https://marvel.fandom.com/wiki/Supreme_Power_Vol_1_1?oldid=10987270",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "F31916": {
+      "url": "https://marvel.fandom.com/wiki/Earth-31916?oldid=10728851",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-reality-reference"
+    },
+    "issue-11049348": {
+      "url": "https://marvel.fandom.com/wiki/Marvel_Adventures_Spider-Man_Vol_1_1?oldid=11049348",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "F20051": {
+      "url": "https://marvel.fandom.com/wiki/Earth-20051?oldid=10728221",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-reality-reference"
+    },
+    "issue-11068459": {
+      "url": "https://marvel.fandom.com/wiki/House_of_M_Vol_1_1?oldid=11068459",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "F58163": {
+      "url": "https://marvel.fandom.com/wiki/Earth-58163?oldid=10143515",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-reality-reference"
+    },
+    "issue-11182580": {
+      "url": "https://marvel.fandom.com/wiki/Marvel_Zombies_Vol_1_1?oldid=11182580",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "issue-11261352": {
+      "url": "https://marvel.fandom.com/wiki/Ultimate_Fantastic_Four_Vol_1_21?oldid=11261352",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "F2149": {
+      "url": "https://marvel.fandom.com/wiki/Earth-2149?oldid=11119276",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-reality-reference"
+    },
+    "issue-10801189": {
+      "url": "https://marvel.fandom.com/wiki/Bullet_Points_Vol_1_1?oldid=10801189",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "F70105": {
+      "url": "https://marvel.fandom.com/wiki/Earth-70105?oldid=11164843",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-reality-reference"
+    },
+    "issue-11080099": {
+      "url": "https://marvel.fandom.com/wiki/Wolverine_Vol_3_66?oldid=11080099",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "F807128": {
+      "url": "https://marvel.fandom.com/wiki/Earth-807128?oldid=11082097",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-reality-reference"
+    },
+    "issue-10331408": {
+      "url": "https://marvel.fandom.com/wiki/X-Men_Noir_Vol_1_1?oldid=10331408",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "F90214": {
+      "url": "https://marvel.fandom.com/wiki/Earth-90214?oldid=11215567",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-reality-reference"
+    },
+    "issue-10331181": {
+      "url": "https://marvel.fandom.com/wiki/Spider-Man_Noir_Vol_1_1?oldid=10331181",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "issue-11163363": {
+      "url": "https://marvel.fandom.com/wiki/Realm_of_Kings_Vol_1_1?oldid=11163363",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "F10011": {
+      "url": "https://marvel.fandom.com/wiki/Earth-10011?oldid=11200175",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-reality-reference"
+    },
+    "issue-10865510": {
+      "url": "https://marvel.fandom.com/wiki/Age_of_X%3A_Alpha_Vol_1_1?oldid=10865510",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "F11326": {
+      "url": "https://marvel.fandom.com/wiki/Earth-11326?oldid=11070165",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-reality-reference"
+    },
+    "issue-11154429": {
+      "url": "https://marvel.fandom.com/wiki/X-Men%3A_Legacy_Vol_1_245?oldid=11154429",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "issue-11006722": {
+      "url": "https://marvel.fandom.com/wiki/Edge_of_Spider-Verse_Vol_1_2?oldid=11006722",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "F65": {
+      "url": "https://marvel.fandom.com/wiki/Earth-65?oldid=11147087",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-reality-reference"
+    },
+    "issue-10338342": {
+      "url": "https://marvel.fandom.com/wiki/Amazing_Spider-Man%3A_Renew_Your_Vows_Vol_1_1?oldid=10338342",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "issue-10338344": {
+      "url": "https://marvel.fandom.com/wiki/Amazing_Spider-Man%3A_Renew_Your_Vows_Vol_1_3?oldid=10338344",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "F18119": {
+      "url": "https://marvel.fandom.com/wiki/Earth-18119?oldid=10728147",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-reality-reference"
+    },
+    "issue-11055039": {
+      "url": "https://marvel.fandom.com/wiki/Amazing_Spider-Man%3A_Renew_Your_Vows_Vol_2_1?oldid=11055039",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "issue-10843387": {
+      "url": "https://marvel.fandom.com/wiki/Spider-Man%3A_Life_Story_Vol_1_1?oldid=10843387",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "F19529": {
+      "url": "https://marvel.fandom.com/wiki/Earth-19529?oldid=11214167",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-reality-reference"
+    },
+    "issue-10667610": {
+      "url": "https://marvel.fandom.com/wiki/Heroes_Reborn_Vol_2_1?oldid=10667610",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "F21798": {
+      "url": "https://marvel.fandom.com/wiki/Earth-21798?oldid=10746838",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-reality-reference"
+    },
+    "issue-11080003": {
+      "url": "https://marvel.fandom.com/wiki/Ultimate_Invasion_Vol_1_1?oldid=11080003",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "F6160": {
+      "url": "https://marvel.fandom.com/wiki/Earth-6160?oldid=11190704",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-reality-reference"
+    },
+    "issue-11217309": {
+      "url": "https://marvel.fandom.com/wiki/Marvel_Comics_Vol_1_1?oldid=11217309",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "issue-11210838": {
+      "url": "https://marvel.fandom.com/wiki/Ka-Zar_(Manvis)_Vol_1_1?oldid=11210838",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "F616": {
+      "url": "https://marvel.fandom.com/wiki/Earth-616?oldid=11234157",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-reality-reference"
+    },
+    "issue-10810399": {
+      "url": "https://marvel.fandom.com/wiki/Fantastic_Four_Vol_1_1?oldid=10810399",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "issue-11217300": {
+      "url": "https://marvel.fandom.com/wiki/Motion_Picture_Funnies_Weekly_Vol_1_1?oldid=11217300",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    },
+    "issue-11193659": {
+      "url": "https://marvel.fandom.com/wiki/Uncanny_X-Men_Vol_1_142?oldid=11193659",
+      "retrieved": "2026-11-13",
+      "credit": "Marvel Database contributors",
+      "kind": "pinned-issue-reference"
+    }
+  },
+  "universes": [
+    {
+      "id": "squadron-supreme",
+      "ownerInput": {
+        "name": "Squadron Supreme",
+        "earth": "Earth-712",
+        "year": 1971,
+        "description": "The original alternate Earth of the Squadron Supreme and one of Marvel's earliest recurring alternate superhero realities."
+      },
+      "selected": {
+        "id": "squadron-supreme",
+        "name": "Squadron Supreme",
+        "earth": "Earth-712",
+        "firstPublished": 1971,
+        "debutIssue": {
+          "title": "Avengers #85",
+          "issueId": 7338
+        },
+        "description": "The original alternate Earth of the Squadron Supreme and one of Marvel's earliest recurring alternate superhero realities.",
+        "aliases": [
+          "Earth-S"
+        ],
+        "addedAt": "2026-11-13"
+      },
+      "evidence": {
+        "name": [
+          "owner",
+          "F712"
+        ],
+        "earth": [
+          "owner",
+          "F712"
+        ],
+        "firstPublished": [
+          "issue-10669458"
+        ],
+        "debutIssue": [
+          "F712",
+          "issue-10669458"
+        ],
+        "description": [
+          "owner",
+          "F712"
+        ]
+      },
+      "namedLine": {
+        "relation": "named-line",
+        "title": "Avengers Vol 1 85",
+        "coverMonth": "February",
+        "coverYear": 1971,
+        "onSale": "December 8, 1970",
+        "issueId": 7338,
+        "sources": [
+          "issue-10669458"
+        ]
+      },
+      "referenceRealityFirst": {
+        "relation": "reference-reality-first",
+        "title": "Avengers Vol 1 85",
+        "coverMonth": "February",
+        "coverYear": 1971,
+        "onSale": "December 8, 1970",
+        "issueId": 7338,
+        "sources": [
+          "issue-10669458"
+        ]
+      },
+      "alternatives": [],
+      "conflicts": [],
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+    },
+    {
+      "id": "killraven",
+      "ownerInput": {
+        "name": "Killraven / War of the Worlds",
+        "earth": "Earth-691",
+        "year": 1973,
+        "description": "A future Marvel reality in which Martians conquered Earth and Killraven leads a resistance movement."
+      },
+      "selected": {
+        "id": "killraven",
+        "name": "Killraven / War of the Worlds",
+        "earth": "Earth-691",
+        "firstPublished": 1973,
+        "debutIssue": {
+          "title": "Amazing Adventures #18",
+          "issueId": 23254
+        },
+        "description": "A future Marvel reality in which Martians conquered Earth and Killraven leads a resistance movement.",
+        "aliases": [
+          "Killraven",
+          "War of the Worlds"
+        ],
+        "addedAt": "2026-11-13"
+      },
+      "evidence": {
+        "name": [
+          "owner",
+          "F691"
+        ],
+        "earth": [
+          "owner",
+          "F691"
+        ],
+        "firstPublished": [
+          "issue-10634874"
+        ],
+        "debutIssue": [
+          "F691",
+          "issue-10634874",
+          "provider-23254"
+        ],
+        "description": [
+          "owner",
+          "F691"
+        ]
+      },
+      "namedLine": {
+        "relation": "named-line",
+        "title": "Amazing Adventures Vol 2 18",
+        "coverMonth": "May",
+        "coverYear": 1973,
+        "onSale": "February 20, 1973",
+        "issueId": 23254,
+        "sources": [
+          "issue-10634874"
+        ]
+      },
+      "referenceRealityFirst": {
+        "relation": "reference-reality-first",
+        "title": "Marvel Super-Heroes Vol 1 18",
+        "coverMonth": "January",
+        "coverYear": 1969,
+        "onSale": "October 15, 1968",
+        "issueId": 15429,
+        "sources": [
+          "issue-10773750"
+        ]
+      },
+      "alternatives": [
+        {
+          "relation": "reference-reality-first",
+          "title": "Marvel Super-Heroes Vol 1 18",
+          "coverMonth": "January",
+          "coverYear": 1969,
+          "onSale": "October 15, 1968",
+          "issueId": 15429,
+          "sources": [
+            "issue-10773750"
+          ]
+        }
+      ],
+      "conflicts": [
+        {
+          "field": "namedLine.onSale",
+          "referenceValue": "February 20, 1973",
+          "providerValue": "1973-05-01",
+          "status": "independent-bibliography-needed",
+          "sources": [
+            "issue-10634874",
+            "provider-23254"
+          ]
+        }
+      ],
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+    },
+    {
+      "id": "days-of-future-past",
+      "ownerInput": {
+        "name": "Days of Future Past",
+        "earth": "Earth-811",
+        "year": 1981,
+        "description": "The dystopian X-Men future where Sentinels control North America and hunt mutants and other superhumans."
+      },
+      "selected": {
+        "id": "days-of-future-past",
+        "name": "Days of Future Past",
+        "earth": "Earth-811",
+        "firstPublished": 1981,
+        "debutIssue": {
+          "title": "X-Men #141",
+          "issueId": 12460
+        },
+        "description": "The dystopian X-Men future where Sentinels control North America and hunt mutants and other superhumans.",
+        "aliases": [],
+        "addedAt": "2026-11-13"
+      },
+      "evidence": {
+        "name": [
+          "owner",
+          "F811"
+        ],
+        "earth": [
+          "owner",
+          "F811"
+        ],
+        "firstPublished": [
+          "issue-11166925"
+        ],
+        "debutIssue": [
+          "F811",
+          "issue-11166925"
+        ],
+        "description": [
+          "owner",
+          "F811"
+        ]
+      },
+      "namedLine": {
+        "relation": "named-line",
+        "title": "X-Men Vol 1 141",
+        "coverMonth": "January",
+        "coverYear": 1981,
+        "onSale": "October 21, 1980",
+        "issueId": 12460,
+        "sources": [
+          "issue-11166925"
+        ]
+      },
+      "referenceRealityFirst": {
+        "relation": "reference-reality-first",
+        "title": "X-Men Vol 1 141",
+        "coverMonth": "January",
+        "coverYear": 1981,
+        "onSale": "October 21, 1980",
+        "issueId": 12460,
+        "sources": [
+          "issue-11166925"
+        ]
+      },
+      "alternatives": [],
+      "conflicts": [],
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+    },
+    {
+      "id": "spider-ham",
+      "ownerInput": {
+        "name": "Spider-Ham / Larval Earth",
+        "earth": "Earth-8311",
+        "year": 1983,
+        "description": "An anthropomorphic animal universe and the home of Spider-Ham and numerous animal counterparts of Marvel characters."
+      },
+      "selected": {
+        "id": "spider-ham",
+        "name": "Spider-Ham / Larval Earth",
+        "earth": "Earth-8311",
+        "firstPublished": 1983,
+        "debutIssue": {
+          "title": "Marvel Tails Starring Peter Porker the Spectacular Spider-Ham #1",
+          "issueId": 74437
+        },
+        "description": "An anthropomorphic animal universe and the home of Spider-Ham and numerous animal counterparts of Marvel characters.",
+        "aliases": [
+          "Spider-Ham",
+          "Larval Earth"
+        ],
+        "addedAt": "2026-11-13"
+      },
+      "evidence": {
+        "name": [
+          "owner",
+          "F8311"
+        ],
+        "earth": [
+          "owner",
+          "F8311"
+        ],
+        "firstPublished": [
+          "issue-10804956"
+        ],
+        "debutIssue": [
+          "F8311",
+          "issue-10804956",
+          "provider-74437"
+        ],
+        "description": [
+          "owner",
+          "F8311"
+        ]
+      },
+      "namedLine": {
+        "relation": "named-line",
+        "title": "Marvel Tails Starring Peter Porker the Spectacular Spider-Ham Vol 1 1",
+        "coverMonth": "November",
+        "coverYear": 1983,
+        "onSale": "August 9, 1983",
+        "issueId": 74437,
+        "sources": [
+          "issue-10804956"
+        ]
+      },
+      "referenceRealityFirst": {
+        "relation": "reference-reality-first",
+        "title": "Marvel Tails Starring Peter Porker the Spectacular Spider-Ham Vol 1 1",
+        "coverMonth": "November",
+        "coverYear": 1983,
+        "onSale": "August 9, 1983",
+        "issueId": 74437,
+        "sources": [
+          "issue-10804956"
+        ]
+      },
+      "alternatives": [],
+      "conflicts": [
+        {
+          "field": "namedLine.onSale",
+          "referenceValue": "August 9, 1983",
+          "providerValue": "1983-11-01",
+          "status": "independent-bibliography-needed",
+          "sources": [
+            "issue-10804956",
+            "provider-74437"
+          ]
+        }
+      ],
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+    },
+    {
+      "id": "new-universe",
+      "ownerInput": {
+        "name": "New Universe",
+        "earth": "Earth-148611",
+        "year": 1986,
+        "description": "A more grounded Marvel reality transformed by the White Event and the sudden appearance of paranormal abilities."
+      },
+      "selected": {
+        "id": "new-universe",
+        "name": "New Universe",
+        "earth": "Earth-148611",
+        "firstPublished": 1986,
+        "debutIssue": {
+          "title": "Spitfire and the Troubleshooters #1",
+          "issueId": null
+        },
+        "description": "A more grounded Marvel reality transformed by the White Event and the sudden appearance of paranormal abilities.",
+        "aliases": [],
+        "addedAt": "2026-11-13"
+      },
+      "evidence": {
+        "name": [
+          "owner",
+          "F148611"
+        ],
+        "earth": [
+          "owner",
+          "F148611"
+        ],
+        "firstPublished": [
+          "issue-11011416"
+        ],
+        "debutIssue": [
+          "F148611",
+          "issue-11011416"
+        ],
+        "description": [
+          "owner",
+          "F148611"
+        ]
+      },
+      "namedLine": {
+        "relation": "named-line",
+        "title": "Spitfire and the Troubleshooters Vol 1 1",
+        "coverMonth": "October",
+        "coverYear": 1986,
+        "onSale": "July 15, 1986",
+        "issueId": null,
+        "sources": [
+          "issue-11011416"
+        ]
+      },
+      "referenceRealityFirst": {
+        "relation": "reference-reality-first",
+        "title": "Spitfire and the Troubleshooters Vol 1 1",
+        "coverMonth": "October",
+        "coverYear": 1986,
+        "onSale": "July 15, 1986",
+        "issueId": null,
+        "sources": [
+          "issue-11011416"
+        ]
+      },
+      "alternatives": [
+        {
+          "relation": "alternative",
+          "title": "Star Brand Vol 1 1",
+          "coverMonth": "October",
+          "coverYear": 1986,
+          "onSale": "July 15, 1986",
+          "issueId": 10997,
+          "sources": [
+            "issue-11011437"
+          ]
+        }
+      ],
+      "conflicts": [],
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+    },
+    {
+      "id": "marvel-2099",
+      "ownerInput": {
+        "name": "Marvel 2099",
+        "earth": "Earth-928",
+        "year": 1992,
+        "description": "A cyberpunk future dominated by megacorporations and home to Spider-Man 2099, Doom 2099, and other future Marvel heroes."
+      },
+      "selected": {
+        "id": "marvel-2099",
+        "name": "Marvel 2099",
+        "earth": "Earth-928",
+        "firstPublished": 1992,
+        "debutIssue": {
+          "title": "Spider-Man 2099 #1",
+          "issueId": 10865
+        },
+        "description": "A cyberpunk future dominated by megacorporations and home to Spider-Man 2099, Doom 2099, and other future Marvel heroes.",
+        "aliases": [
+          "2099"
+        ],
+        "addedAt": "2026-11-13"
+      },
+      "evidence": {
+        "name": [
+          "owner",
+          "F928"
+        ],
+        "earth": [
+          "owner",
+          "F928"
+        ],
+        "firstPublished": [
+          "issue-11064465"
+        ],
+        "debutIssue": [
+          "F928",
+          "issue-11064465"
+        ],
+        "description": [
+          "owner",
+          "F928"
+        ]
+      },
+      "namedLine": {
+        "relation": "named-line",
+        "title": "Spider-Man 2099 Vol 1 1",
+        "coverMonth": "November",
+        "coverYear": 1992,
+        "onSale": "September 1, 1992",
+        "issueId": 10865,
+        "sources": [
+          "issue-11064465"
+        ]
+      },
+      "referenceRealityFirst": {
+        "relation": "reference-reality-first",
+        "title": "Spider-Man 2099 Vol 1 1",
+        "coverMonth": "November",
+        "coverYear": 1992,
+        "onSale": "September 1, 1992",
+        "issueId": 10865,
+        "sources": [
+          "issue-11064465"
+        ]
+      },
+      "alternatives": [
+        {
+          "relation": "alternative",
+          "title": "Amazing Spider-Man Vol 1 365",
+          "coverMonth": "August",
+          "coverYear": 1992,
+          "onSale": "June 9, 1992",
+          "issueId": 6777,
+          "sources": [
+            "issue-11169647"
+          ]
+        }
+      ],
+      "conflicts": [],
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+    },
+    {
+      "id": "age-of-apocalypse",
+      "ownerInput": {
+        "name": "Age of Apocalypse",
+        "earth": "Earth-295",
+        "year": 1995,
+        "description": "A timeline where Xavier died before founding the X-Men, allowing Apocalypse to conquer much of the world."
+      },
+      "selected": {
+        "id": "age-of-apocalypse",
+        "name": "Age of Apocalypse",
+        "earth": "Earth-295",
+        "firstPublished": 1995,
+        "debutIssue": {
+          "title": "X-Men: Alpha #1",
+          "issueId": 12386
+        },
+        "description": "A timeline where Xavier died before founding the X-Men, allowing Apocalypse to conquer much of the world.",
+        "aliases": [],
+        "addedAt": "2026-11-13"
+      },
+      "evidence": {
+        "name": [
+          "owner",
+          "F295"
+        ],
+        "earth": [
+          "owner",
+          "F295"
+        ],
+        "firstPublished": [
+          "issue-10998084"
+        ],
+        "debutIssue": [
+          "F295",
+          "issue-10998084"
+        ],
+        "description": [
+          "owner",
+          "F295"
+        ]
+      },
+      "namedLine": {
+        "relation": "named-line",
+        "title": "X-Men: Alpha Vol 1 1",
+        "coverMonth": "February",
+        "coverYear": 1995,
+        "onSale": "December 27, 1994",
+        "issueId": 12386,
+        "sources": [
+          "issue-10998084"
+        ]
+      },
+      "referenceRealityFirst": {
+        "relation": "reference-reality-first",
+        "title": "X-Men Vol 2 40",
+        "coverMonth": "January",
+        "coverYear": 1995,
+        "onSale": "November 15, 1994",
+        "issueId": 14329,
+        "sources": [
+          "issue-10527826"
+        ]
+      },
+      "alternatives": [
+        {
+          "relation": "reference-reality-first",
+          "title": "X-Men Vol 2 40",
+          "coverMonth": "January",
+          "coverYear": 1995,
+          "onSale": "November 15, 1994",
+          "issueId": 14329,
+          "sources": [
+            "issue-10527826"
+          ]
+        }
+      ],
+      "conflicts": [],
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+    },
+    {
+      "id": "amalgam-universe",
+      "ownerInput": {
+        "name": "Amalgam Universe",
+        "earth": "Earth-9602",
+        "year": 1996,
+        "description": "The Marvel/DC crossover reality containing fused characters such as Dark Claw, Super-Soldier, and Iron Lantern."
+      },
+      "selected": {
+        "id": "amalgam-universe",
+        "name": "Amalgam Universe",
+        "earth": "Earth-9602",
+        "firstPublished": 1996,
+        "debutIssue": {
+          "title": "Marvel Versus DC #3",
+          "issueId": null
+        },
+        "description": "The Marvel/DC crossover reality containing fused characters such as Dark Claw, Super-Soldier, and Iron Lantern.",
+        "aliases": [
+          "Amalgam"
+        ],
+        "addedAt": "2026-11-13"
+      },
+      "evidence": {
+        "name": [
+          "owner",
+          "F9602"
+        ],
+        "earth": [
+          "owner",
+          "F9602"
+        ],
+        "firstPublished": [
+          "issue-11083473"
+        ],
+        "debutIssue": [
+          "F9602",
+          "issue-11083473"
+        ],
+        "description": [
+          "owner",
+          "F9602"
+        ]
+      },
+      "namedLine": {
+        "relation": "named-line",
+        "title": "Marvel Versus DC Vol 1 3",
+        "coverMonth": "April",
+        "coverYear": 1996,
+        "onSale": "February 22, 1996",
+        "issueId": null,
+        "sources": [
+          "issue-11083473"
+        ]
+      },
+      "referenceRealityFirst": {
+        "relation": "reference-reality-first",
+        "title": "Marvel Versus DC Vol 1 3",
+        "coverMonth": "April",
+        "coverYear": 1996,
+        "onSale": "February 22, 1996",
+        "issueId": null,
+        "sources": [
+          "issue-11083473"
+        ]
+      },
+      "alternatives": [],
+      "conflicts": [],
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+    },
+    {
+      "id": "heroes-reborn-1996",
+      "ownerInput": {
+        "name": "Heroes Reborn",
+        "earth": "Counter-Earth",
+        "year": 1996,
+        "description": "Franklin Richards' pocket reality where the Avengers and Fantastic Four were reborn with revised histories following Onslaught."
+      },
+      "selected": {
+        "id": "heroes-reborn-1996",
+        "name": "Heroes Reborn (1996)",
+        "earth": "Counter-Earth",
+        "firstPublished": 1996,
+        "debutIssue": {
+          "title": "Fantastic Four #1",
+          "issueId": 13310
+        },
+        "description": "Franklin Richards' pocket reality where the Avengers and Fantastic Four were reborn with revised histories following Onslaught.",
+        "aliases": [
+          "Heroes Reborn",
+          "Heroes Reborn 1996"
+        ],
+        "addedAt": "2026-11-13"
+      },
+      "evidence": {
+        "name": [
+          "owner",
+          "FHR"
+        ],
+        "earth": [
+          "owner",
+          "FHR"
+        ],
+        "firstPublished": [
+          "issue-11006917"
+        ],
+        "debutIssue": [
+          "FHR",
+          "issue-11006917"
+        ],
+        "description": [
+          "owner",
+          "FHR"
+        ]
+      },
+      "namedLine": {
+        "relation": "named-line",
+        "title": "Fantastic Four Vol 2 1",
+        "coverMonth": "November",
+        "coverYear": 1996,
+        "onSale": "September 4, 1996",
+        "issueId": 13310,
+        "sources": [
+          "issue-11006917"
+        ]
+      },
+      "referenceRealityFirst": {
+        "relation": "reference-reality-first",
+        "title": "Heroes Reborn Vol 1 ½",
+        "coverMonth": "September",
+        "coverYear": 1996,
+        "onSale": null,
+        "issueId": null,
+        "sources": [
+          "issue-10377532"
+        ]
+      },
+      "alternatives": [
+        {
+          "relation": "reference-reality-first",
+          "title": "Heroes Reborn Vol 1 ½",
+          "coverMonth": "September",
+          "coverYear": 1996,
+          "onSale": null,
+          "issueId": null,
+          "sources": [
+            "issue-10377532"
+          ]
+        },
+        {
+          "relation": "alternative",
+          "title": "Captain America Vol 2 1",
+          "coverMonth": "November",
+          "coverYear": 1996,
+          "onSale": "September 11, 1996",
+          "issueId": null,
+          "sources": [
+            "issue-11078690"
+          ]
+        },
+        {
+          "relation": "alternative",
+          "title": "Iron Man Vol 2 1",
+          "coverMonth": "November",
+          "coverYear": 1996,
+          "onSale": "September 18, 1996",
+          "issueId": null,
+          "sources": [
+            "issue-11008444"
+          ]
+        },
+        {
+          "relation": "alternative",
+          "title": "Avengers Vol 2 1",
+          "coverMonth": "November",
+          "coverYear": 1996,
+          "onSale": "September 25, 1996",
+          "issueId": 17751,
+          "sources": [
+            "issue-11005049"
+          ]
+        }
+      ],
+      "conflicts": [],
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+    },
+    {
+      "id": "mc2",
+      "ownerInput": {
+        "name": "MC2",
+        "earth": "Earth-982",
+        "year": 1998,
+        "description": "A future Marvel universe led by Mayday Parker as Spider-Girl alongside A-Next and other next-generation heroes."
+      },
+      "selected": {
+        "id": "mc2",
+        "name": "MC2",
+        "earth": "Earth-982",
+        "firstPublished": 1998,
+        "debutIssue": {
+          "title": "What If...? #105",
+          "issueId": 18301
+        },
+        "description": "A future Marvel universe led by Mayday Parker as Spider-Girl alongside A-Next and other next-generation heroes.",
+        "aliases": [
+          "Marvel Comics 2"
+        ],
+        "addedAt": "2026-11-13"
+      },
+      "evidence": {
+        "name": [
+          "owner",
+          "F982"
+        ],
+        "earth": [
+          "owner",
+          "F982"
+        ],
+        "firstPublished": [
+          "issue-10650048"
+        ],
+        "debutIssue": [
+          "F982",
+          "issue-10650048"
+        ],
+        "description": [
+          "owner",
+          "F982"
+        ]
+      },
+      "namedLine": {
+        "relation": "named-line",
+        "title": "What If...? Vol 1 105",
+        "coverMonth": "February",
+        "coverYear": 1998,
+        "onSale": "December 17, 1997",
+        "issueId": 18301,
+        "sources": [
+          "issue-10650048"
+        ]
+      },
+      "referenceRealityFirst": {
+        "relation": "reference-reality-first",
+        "title": "What If...? Vol 1 105",
+        "coverMonth": "February",
+        "coverYear": 1998,
+        "onSale": "December 17, 1997",
+        "issueId": 18301,
+        "sources": [
+          "issue-10650048"
+        ]
+      },
+      "alternatives": [],
+      "conflicts": [],
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+    },
+    {
+      "id": "mutant-x",
+      "ownerInput": {
+        "name": "Mutant X",
+        "earth": "Earth-1298",
+        "year": 1998,
+        "description": "An alternate Marvel reality populated by dramatically different versions of the X-Men and other familiar characters."
+      },
+      "selected": {
+        "id": "mutant-x",
+        "name": "Mutant X",
+        "earth": "Earth-1298",
+        "firstPublished": 1998,
+        "debutIssue": {
+          "title": "Mutant X #1",
+          "issueId": 72852
+        },
+        "description": "An alternate Marvel reality populated by dramatically different versions of the X-Men and other familiar characters.",
+        "aliases": [],
+        "addedAt": "2026-11-13"
+      },
+      "evidence": {
+        "name": [
+          "owner",
+          "F1298"
+        ],
+        "earth": [
+          "owner",
+          "F1298"
+        ],
+        "firstPublished": [
+          "issue-11230206"
+        ],
+        "debutIssue": [
+          "F1298",
+          "issue-11230206",
+          "provider-72852"
+        ],
+        "description": [
+          "owner",
+          "F1298"
+        ]
+      },
+      "namedLine": {
+        "relation": "named-line",
+        "title": "Mutant X Vol 1 1",
+        "coverMonth": "October",
+        "coverYear": 1998,
+        "onSale": "August 12, 1998",
+        "issueId": 72852,
+        "sources": [
+          "issue-11230206"
+        ]
+      },
+      "referenceRealityFirst": {
+        "relation": "reference-reality-first",
+        "title": "Mutant X Vol 1 1",
+        "coverMonth": "October",
+        "coverYear": 1998,
+        "onSale": "August 12, 1998",
+        "issueId": 72852,
+        "sources": [
+          "issue-11230206"
+        ]
+      },
+      "alternatives": [],
+      "conflicts": [
+        {
+          "field": "namedLine.onSale",
+          "referenceValue": "August 12, 1998",
+          "providerValue": "1998-10-01",
+          "status": "independent-bibliography-needed",
+          "sources": [
+            "issue-11230206",
+            "provider-72852"
+          ]
+        }
+      ],
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+    },
+    {
+      "id": "earth-x",
+      "ownerInput": {
+        "name": "Earth X",
+        "earth": "Earth-9997",
+        "year": 1999,
+        "description": "A future in which nearly everyone develops powers and Marvel history is radically reinterpreted around the Celestials."
+      },
+      "selected": {
+        "id": "earth-x",
+        "name": "Earth X",
+        "earth": "Earth-9997",
+        "firstPublished": 1999,
+        "debutIssue": {
+          "title": "Earth X #0",
+          "issueId": 8546
+        },
+        "description": "A future in which nearly everyone develops powers and Marvel history is radically reinterpreted around the Celestials.",
+        "aliases": [],
+        "addedAt": "2026-11-13"
+      },
+      "evidence": {
+        "name": [
+          "owner",
+          "F9997"
+        ],
+        "earth": [
+          "owner",
+          "F9997"
+        ],
+        "firstPublished": [
+          "issue-11260393"
+        ],
+        "debutIssue": [
+          "F9997",
+          "issue-11260393",
+          "provider-8546"
+        ],
+        "description": [
+          "owner",
+          "F9997"
+        ]
+      },
+      "namedLine": {
+        "relation": "named-line",
+        "title": "Earth X Vol 1 0",
+        "coverMonth": "March",
+        "coverYear": 1999,
+        "onSale": "January 27, 1999",
+        "issueId": 8546,
+        "sources": [
+          "issue-11260393"
+        ]
+      },
+      "referenceRealityFirst": {
+        "relation": "reference-reality-first",
+        "title": "Earth X Vol 1 0",
+        "coverMonth": "March",
+        "coverYear": 1999,
+        "onSale": "January 27, 1999",
+        "issueId": 8546,
+        "sources": [
+          "issue-11260393"
+        ]
+      },
+      "alternatives": [
+        {
+          "relation": "alternative",
+          "title": "Earth X Vol 1 1",
+          "coverMonth": "April",
+          "coverYear": 1999,
+          "onSale": "February 24, 1999",
+          "issueId": 8548,
+          "sources": [
+            "issue-11013661"
+          ]
+        }
+      ],
+      "conflicts": [
+        {
+          "field": "namedLine.onSale",
+          "referenceValue": "January 27, 1999",
+          "providerValue": "1999-03-01",
+          "status": "independent-bibliography-needed",
+          "sources": [
+            "issue-11260393",
+            "provider-8546"
+          ]
+        }
+      ],
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+    },
+    {
+      "id": "ultimate-marvel",
+      "ownerInput": {
+        "name": "Ultimate Marvel",
+        "earth": "Earth-1610",
+        "year": 2000,
+        "description": "The original Ultimate continuity, which modernized Marvel's major characters and later introduced Miles Morales and the Maker."
+      },
+      "selected": {
+        "id": "ultimate-marvel",
+        "name": "Ultimate Marvel",
+        "earth": "Earth-1610",
+        "firstPublished": 2000,
+        "debutIssue": {
+          "title": "Ultimate Spider-Man #1",
+          "issueId": 4372
+        },
+        "description": "The original Ultimate continuity, which modernized Marvel's major characters and later introduced Miles Morales and the Maker.",
+        "aliases": [
+          "Ultimate",
+          "Original Ultimate Universe"
+        ],
+        "addedAt": "2026-11-13"
+      },
+      "evidence": {
+        "name": [
+          "owner",
+          "F1610"
+        ],
+        "earth": [
+          "owner",
+          "F1610"
+        ],
+        "firstPublished": [
+          "issue-11171867"
+        ],
+        "debutIssue": [
+          "F1610",
+          "issue-11171867"
+        ],
+        "description": [
+          "owner",
+          "F1610"
+        ]
+      },
+      "namedLine": {
+        "relation": "named-line",
+        "title": "Ultimate Spider-Man Vol 1 1",
+        "coverMonth": "October",
+        "coverYear": 2000,
+        "onSale": "September 7, 2000",
+        "issueId": 4372,
+        "sources": [
+          "issue-11171867"
+        ]
+      },
+      "referenceRealityFirst": {
+        "relation": "reference-reality-first",
+        "title": "Ultimate Spider-Man Vol 1 1",
+        "coverMonth": "October",
+        "coverYear": 2000,
+        "onSale": "September 7, 2000",
+        "issueId": 4372,
+        "sources": [
+          "issue-11171867"
+        ]
+      },
+      "alternatives": [],
+      "conflicts": [],
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+    },
+    {
+      "id": "max-universe",
+      "ownerInput": {
+        "name": "MAX Universe",
+        "earth": "Earth-200111",
+        "year": 2001,
+        "description": "A mature, largely non-superhero continuity associated with Fury and Punisher MAX."
+      },
+      "selected": {
+        "id": "max-universe",
+        "name": "MAX Universe",
+        "earth": "Earth-200111",
+        "firstPublished": 2001,
+        "debutIssue": {
+          "title": "Fury #1",
+          "issueId": null
+        },
+        "description": "A mature, largely non-superhero continuity associated with Fury and Punisher MAX.",
+        "aliases": [
+          "MAX"
+        ],
+        "addedAt": "2026-11-13"
+      },
+      "evidence": {
+        "name": [
+          "owner",
+          "F200111"
+        ],
+        "earth": [
+          "owner",
+          "F200111"
+        ],
+        "firstPublished": [
+          "issue-11019865"
+        ],
+        "debutIssue": [
+          "F200111",
+          "issue-11019865"
+        ],
+        "description": [
+          "owner",
+          "F200111"
+        ]
+      },
+      "namedLine": {
+        "relation": "named-line",
+        "title": "Fury Vol 2 1",
+        "coverMonth": "November",
+        "coverYear": 2001,
+        "onSale": "September 12, 2001",
+        "issueId": null,
+        "sources": [
+          "issue-11019865"
+        ]
+      },
+      "referenceRealityFirst": {
+        "relation": "reference-reality-first",
+        "title": "Fury Vol 2 1",
+        "coverMonth": "November",
+        "coverYear": 2001,
+        "onSale": "September 12, 2001",
+        "issueId": null,
+        "sources": [
+          "issue-11019865"
+        ]
+      },
+      "alternatives": [],
+      "conflicts": [],
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+    },
+    {
+      "id": "marvel-mangaverse",
+      "ownerInput": {
+        "name": "Marvel Mangaverse",
+        "earth": "Earth-2301",
+        "year": 2002,
+        "description": "Manga-influenced reinterpretations of Marvel characters, teams, costumes, and mythology."
+      },
+      "selected": {
+        "id": "marvel-mangaverse",
+        "name": "Marvel Mangaverse",
+        "earth": "Earth-2301",
+        "firstPublished": 2002,
+        "debutIssue": {
+          "title": "Marvel Mangaverse: New Dawn #1",
+          "issueId": 10193
+        },
+        "description": "Manga-influenced reinterpretations of Marvel characters, teams, costumes, and mythology.",
+        "aliases": [
+          "Mangaverse"
+        ],
+        "addedAt": "2026-11-13"
+      },
+      "evidence": {
+        "name": [
+          "owner",
+          "F2301"
+        ],
+        "earth": [
+          "owner",
+          "F2301"
+        ],
+        "firstPublished": [
+          "issue-11009196"
+        ],
+        "debutIssue": [
+          "F2301",
+          "issue-11009196",
+          "provider-10193"
+        ],
+        "description": [
+          "owner",
+          "F2301"
+        ]
+      },
+      "namedLine": {
+        "relation": "named-line",
+        "title": "Marvel Mangaverse: New Dawn Vol 1 1",
+        "coverMonth": "March",
+        "coverYear": 2002,
+        "onSale": "January 16, 2002",
+        "issueId": 10193,
+        "sources": [
+          "issue-11009196"
+        ]
+      },
+      "referenceRealityFirst": {
+        "relation": "reference-reality-first",
+        "title": "Marvel Mangaverse: New Dawn Vol 1 1",
+        "coverMonth": "March",
+        "coverYear": 2002,
+        "onSale": "January 16, 2002",
+        "issueId": 10193,
+        "sources": [
+          "issue-11009196"
+        ]
+      },
+      "alternatives": [
+        {
+          "relation": "alternative",
+          "title": "Marvel Mangaverse Vol 1 1",
+          "coverMonth": "June",
+          "coverYear": 2002,
+          "onSale": "April 3, 2002",
+          "issueId": 10185,
+          "sources": [
+            "issue-10668051"
+          ]
+        }
+      ],
+      "conflicts": [
+        {
+          "field": "namedLine.onSale",
+          "referenceValue": "January 16, 2002",
+          "providerValue": "2002-03-01",
+          "status": "independent-bibliography-needed",
+          "sources": [
+            "issue-11009196",
+            "provider-10193"
+          ]
+        }
+      ],
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+    },
+    {
+      "id": "marvel-1602",
+      "ownerInput": {
+        "name": "Marvel 1602",
+        "earth": "Earth-311",
+        "year": 2003,
+        "description": "Marvel heroes and villains reimagined in the early 17th century during the Elizabethan era."
+      },
+      "selected": {
+        "id": "marvel-1602",
+        "name": "Marvel 1602",
+        "earth": "Earth-311",
+        "firstPublished": 2003,
+        "debutIssue": {
+          "title": "Marvel 1602 #1",
+          "issueId": 20630
+        },
+        "description": "Marvel heroes and villains reimagined in the early 17th century during the Elizabethan era.",
+        "aliases": [
+          "1602"
+        ],
+        "addedAt": "2026-11-13"
+      },
+      "evidence": {
+        "name": [
+          "owner",
+          "F311"
+        ],
+        "earth": [
+          "owner",
+          "F311"
+        ],
+        "firstPublished": [
+          "issue-10885405"
+        ],
+        "debutIssue": [
+          "F311",
+          "issue-10885405"
+        ],
+        "description": [
+          "owner",
+          "F311"
+        ]
+      },
+      "namedLine": {
+        "relation": "named-line",
+        "title": "Marvel 1602 Vol 1 1",
+        "coverMonth": "November",
+        "coverYear": 2003,
+        "onSale": "August 13, 2003",
+        "issueId": 20630,
+        "sources": [
+          "issue-10885405"
+        ]
+      },
+      "referenceRealityFirst": {
+        "relation": "reference-reality-first",
+        "title": "Marvel 1602 Vol 1 1",
+        "coverMonth": "November",
+        "coverYear": 2003,
+        "onSale": "August 13, 2003",
+        "issueId": 20630,
+        "sources": [
+          "issue-10885405"
+        ]
+      },
+      "alternatives": [],
+      "conflicts": [],
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+    },
+    {
+      "id": "supreme-power",
+      "ownerInput": {
+        "name": "Supreme Power",
+        "earth": "Earth-31916",
+        "year": 2003,
+        "description": "A darker and more politically grounded reinvention of the Squadron Supreme."
+      },
+      "selected": {
+        "id": "supreme-power",
+        "name": "Supreme Power",
+        "earth": "Earth-31916",
+        "firstPublished": 2003,
+        "debutIssue": {
+          "title": "Supreme Power #1",
+          "issueId": null
+        },
+        "description": "A darker and more politically grounded reinvention of the Squadron Supreme.",
+        "aliases": [
+          "Supremeverse"
+        ],
+        "addedAt": "2026-11-13"
+      },
+      "evidence": {
+        "name": [
+          "owner",
+          "F31916"
+        ],
+        "earth": [
+          "owner",
+          "F31916"
+        ],
+        "firstPublished": [
+          "issue-10987270"
+        ],
+        "debutIssue": [
+          "F31916",
+          "issue-10987270"
+        ],
+        "description": [
+          "owner",
+          "F31916"
+        ]
+      },
+      "namedLine": {
+        "relation": "named-line",
+        "title": "Supreme Power Vol 1 1",
+        "coverMonth": "October",
+        "coverYear": 2003,
+        "onSale": "August 6, 2003",
+        "issueId": null,
+        "sources": [
+          "issue-10987270"
+        ]
+      },
+      "referenceRealityFirst": {
+        "relation": "reference-reality-first",
+        "title": "Supreme Power Vol 1 1",
+        "coverMonth": "October",
+        "coverYear": 2003,
+        "onSale": "August 6, 2003",
+        "issueId": null,
+        "sources": [
+          "issue-10987270"
+        ]
+      },
+      "alternatives": [],
+      "conflicts": [],
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+    },
+    {
+      "id": "marvel-adventures",
+      "ownerInput": {
+        "name": "Marvel Adventures",
+        "earth": "Earth-20051",
+        "year": 2005,
+        "description": "A self-contained, accessible continuity featuring streamlined versions of Spider-Man, the Avengers, Fantastic Four, and other heroes."
+      },
+      "selected": {
+        "id": "marvel-adventures",
+        "name": "Marvel Adventures",
+        "earth": "Earth-20051",
+        "firstPublished": 2005,
+        "debutIssue": {
+          "title": "Marvel Adventures Spider-Man #1",
+          "issueId": 1784
+        },
+        "description": "A self-contained, accessible continuity featuring streamlined versions of Spider-Man, the Avengers, Fantastic Four, and other heroes.",
+        "aliases": [],
+        "addedAt": "2026-11-13"
+      },
+      "evidence": {
+        "name": [
+          "owner",
+          "F20051"
+        ],
+        "earth": [
+          "owner",
+          "F20051"
+        ],
+        "firstPublished": [
+          "issue-11049348"
+        ],
+        "debutIssue": [
+          "F20051",
+          "issue-11049348",
+          "provider-1784"
+        ],
+        "description": [
+          "owner",
+          "F20051"
+        ]
+      },
+      "namedLine": {
+        "relation": "named-line",
+        "title": "Marvel Adventures Spider-Man Vol 1 1",
+        "coverMonth": "May",
+        "coverYear": 2005,
+        "onSale": "March 2, 2005",
+        "issueId": 1784,
+        "sources": [
+          "issue-11049348"
+        ]
+      },
+      "referenceRealityFirst": {
+        "relation": "reference-reality-first",
+        "title": "Marvel Adventures Spider-Man Vol 1 1",
+        "coverMonth": "May",
+        "coverYear": 2005,
+        "onSale": "March 2, 2005",
+        "issueId": 1784,
+        "sources": [
+          "issue-11049348"
+        ]
+      },
+      "alternatives": [],
+      "conflicts": [],
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+    },
+    {
+      "id": "house-of-m",
+      "ownerInput": {
+        "name": "House of M",
+        "earth": "Earth-58163",
+        "year": 2005,
+        "description": "A reality centered on Wanda Maximoff where mutants are dominant and Magneto's family occupies a privileged position."
+      },
+      "selected": {
+        "id": "house-of-m",
+        "name": "House of M",
+        "earth": "Earth-58163",
+        "firstPublished": 2005,
+        "debutIssue": {
+          "title": "House of M #1",
+          "issueId": 2092
+        },
+        "description": "A reality centered on Wanda Maximoff where mutants are dominant and Magneto's family occupies a privileged position.",
+        "aliases": [],
+        "addedAt": "2026-11-13"
+      },
+      "evidence": {
+        "name": [
+          "owner",
+          "F58163"
+        ],
+        "earth": [
+          "owner",
+          "F58163"
+        ],
+        "firstPublished": [
+          "issue-11068459"
+        ],
+        "debutIssue": [
+          "F58163",
+          "issue-11068459"
+        ],
+        "description": [
+          "owner",
+          "F58163"
+        ]
+      },
+      "namedLine": {
+        "relation": "named-line",
+        "title": "House of M Vol 1 1",
+        "coverMonth": "August",
+        "coverYear": 2005,
+        "onSale": "June 2, 2005",
+        "issueId": 2092,
+        "sources": [
+          "issue-11068459"
+        ]
+      },
+      "referenceRealityFirst": {
+        "relation": "reference-reality-first",
+        "title": "House of M Vol 1 1",
+        "coverMonth": "August",
+        "coverYear": 2005,
+        "onSale": "June 2, 2005",
+        "issueId": 2092,
+        "sources": [
+          "issue-11068459"
+        ]
+      },
+      "alternatives": [],
+      "conflicts": [],
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+    },
+    {
+      "id": "marvel-zombies",
+      "ownerInput": {
+        "name": "Marvel Zombies",
+        "earth": "Earth-2149",
+        "year": 2005,
+        "description": "The original Marvel Zombies reality, where a zombie infection transforms many Marvel heroes and villains."
+      },
+      "selected": {
+        "id": "marvel-zombies",
+        "name": "Marvel Zombies",
+        "earth": "Earth-2149",
+        "firstPublished": 2006,
+        "debutIssue": {
+          "title": "Marvel Zombies #1",
+          "issueId": 3220
+        },
+        "description": "The original Marvel Zombies reality, where a zombie infection transforms many Marvel heroes and villains.",
+        "aliases": [
+          "Zombiverse"
+        ],
+        "addedAt": "2026-11-13"
+      },
+      "evidence": {
+        "name": [
+          "owner",
+          "F2149"
+        ],
+        "earth": [
+          "owner",
+          "F2149"
+        ],
+        "firstPublished": [
+          "issue-11182580"
+        ],
+        "debutIssue": [
+          "F2149",
+          "issue-11182580"
+        ],
+        "description": [
+          "owner",
+          "F2149"
+        ]
+      },
+      "namedLine": {
+        "relation": "named-line",
+        "title": "Marvel Zombies Vol 1 1",
+        "coverMonth": "February",
+        "coverYear": 2006,
+        "onSale": "December 7, 2005",
+        "issueId": 3220,
+        "sources": [
+          "issue-11182580"
+        ]
+      },
+      "referenceRealityFirst": {
+        "relation": "reference-reality-first",
+        "title": "Ultimate Fantastic Four Vol 1 21",
+        "coverMonth": "September",
+        "coverYear": 2005,
+        "onSale": "July 13, 2005",
+        "issueId": 2183,
+        "sources": [
+          "issue-11261352"
+        ]
+      },
+      "alternatives": [
+        {
+          "relation": "reference-reality-first",
+          "title": "Ultimate Fantastic Four Vol 1 21",
+          "coverMonth": "September",
+          "coverYear": 2005,
+          "onSale": "July 13, 2005",
+          "issueId": 2183,
+          "sources": [
+            "issue-11261352"
+          ]
+        }
+      ],
+      "conflicts": [
+        {
+          "field": "firstPublished",
+          "ownerValue": 2005,
+          "provisionalValue": 2006,
+          "status": "awaiting-owner",
+          "reason": "The named-line cover and owner-supplied year differ; the on-sale and earlier-reality candidates are retained."
+        }
+      ],
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+    },
+    {
+      "id": "bullet-points",
+      "ownerInput": {
+        "name": "Bullet Points",
+        "earth": "Earth-70105",
+        "year": 2006,
+        "description": "An alternate history where a chain of changed events alters the origins and identities of several major Marvel heroes."
+      },
+      "selected": {
+        "id": "bullet-points",
+        "name": "Bullet Points",
+        "earth": "Earth-70105",
+        "firstPublished": 2007,
+        "debutIssue": {
+          "title": "Bullet Points #1",
+          "issueId": 5500
+        },
+        "description": "An alternate history where a chain of changed events alters the origins and identities of several major Marvel heroes.",
+        "aliases": [],
+        "addedAt": "2026-11-13"
+      },
+      "evidence": {
+        "name": [
+          "owner",
+          "F70105"
+        ],
+        "earth": [
+          "owner",
+          "F70105"
+        ],
+        "firstPublished": [
+          "issue-10801189"
+        ],
+        "debutIssue": [
+          "F70105",
+          "issue-10801189",
+          "provider-5500"
+        ],
+        "description": [
+          "owner",
+          "F70105"
+        ]
+      },
+      "namedLine": {
+        "relation": "named-line",
+        "title": "Bullet Points Vol 1 1",
+        "coverMonth": "January",
+        "coverYear": 2007,
+        "onSale": "November 8, 2006",
+        "issueId": 5500,
+        "sources": [
+          "issue-10801189"
+        ]
+      },
+      "referenceRealityFirst": {
+        "relation": "reference-reality-first",
+        "title": "Bullet Points Vol 1 1",
+        "coverMonth": "January",
+        "coverYear": 2007,
+        "onSale": "November 8, 2006",
+        "issueId": 5500,
+        "sources": [
+          "issue-10801189"
+        ]
+      },
+      "alternatives": [],
+      "conflicts": [
+        {
+          "field": "firstPublished",
+          "ownerValue": 2006,
+          "provisionalValue": 2007,
+          "status": "awaiting-owner",
+          "reason": "The named-line cover and owner-supplied year differ; the on-sale and earlier-reality candidates are retained."
+        }
+      ],
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+    },
+    {
+      "id": "old-man-logan",
+      "ownerInput": {
+        "name": "Old Man Logan",
+        "earth": "Earth-807128",
+        "year": 2008,
+        "description": "A dystopian future where villains defeated most of Earth's heroes and divided the United States among themselves."
+      },
+      "selected": {
+        "id": "old-man-logan",
+        "name": "Old Man Logan",
+        "earth": "Earth-807128",
+        "firstPublished": 2008,
+        "debutIssue": {
+          "title": "Wolverine #66",
+          "issueId": 21330
+        },
+        "description": "A dystopian future where villains defeated most of Earth's heroes and divided the United States among themselves.",
+        "aliases": [
+          "Earth-90210"
+        ],
+        "addedAt": "2026-11-13"
+      },
+      "evidence": {
+        "name": [
+          "owner",
+          "F807128"
+        ],
+        "earth": [
+          "owner",
+          "F807128"
+        ],
+        "firstPublished": [
+          "issue-11080099"
+        ],
+        "debutIssue": [
+          "F807128",
+          "issue-11080099"
+        ],
+        "description": [
+          "owner",
+          "F807128"
+        ]
+      },
+      "namedLine": {
+        "relation": "named-line",
+        "title": "Wolverine Vol 3 66",
+        "coverMonth": "August",
+        "coverYear": 2008,
+        "onSale": "June 18, 2008",
+        "issueId": 21330,
+        "sources": [
+          "issue-11080099"
+        ]
+      },
+      "referenceRealityFirst": {
+        "relation": "reference-reality-first",
+        "title": "Wolverine Vol 3 66",
+        "coverMonth": "August",
+        "coverYear": 2008,
+        "onSale": "June 18, 2008",
+        "issueId": 21330,
+        "sources": [
+          "issue-11080099"
+        ]
+      },
+      "alternatives": [],
+      "conflicts": [],
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+    },
+    {
+      "id": "marvel-noir",
+      "ownerInput": {
+        "name": "Marvel Noir",
+        "earth": "Earth-90214",
+        "year": 2009,
+        "description": "Pulp and crime-noir reinterpretations of Marvel characters in a world resembling the 1930s."
+      },
+      "selected": {
+        "id": "marvel-noir",
+        "name": "Marvel Noir",
+        "earth": "Earth-90214",
+        "firstPublished": 2009,
+        "debutIssue": {
+          "title": "X-Men Noir #1",
+          "issueId": 22941
+        },
+        "description": "Pulp and crime-noir reinterpretations of Marvel characters in a world resembling the 1930s.",
+        "aliases": [
+          "Noir"
+        ],
+        "addedAt": "2026-11-13"
+      },
+      "evidence": {
+        "name": [
+          "owner",
+          "F90214"
+        ],
+        "earth": [
+          "owner",
+          "F90214"
+        ],
+        "firstPublished": [
+          "issue-10331408"
+        ],
+        "debutIssue": [
+          "F90214",
+          "issue-10331408",
+          "provider-22941"
+        ],
+        "description": [
+          "owner",
+          "F90214"
+        ]
+      },
+      "namedLine": {
+        "relation": "named-line",
+        "title": "X-Men Noir Vol 1 1",
+        "coverMonth": "February",
+        "coverYear": 2009,
+        "onSale": "December 3, 2008",
+        "issueId": 22941,
+        "sources": [
+          "issue-10331408"
+        ]
+      },
+      "referenceRealityFirst": {
+        "relation": "reference-reality-first",
+        "title": "X-Men Noir Vol 1 1",
+        "coverMonth": "February",
+        "coverYear": 2009,
+        "onSale": "December 3, 2008",
+        "issueId": 22941,
+        "sources": [
+          "issue-10331408"
+        ]
+      },
+      "alternatives": [
+        {
+          "relation": "alternative",
+          "title": "Spider-Man Noir Vol 1 1",
+          "coverMonth": "February",
+          "coverYear": 2009,
+          "onSale": "December 17, 2008",
+          "issueId": 22932,
+          "sources": [
+            "issue-10331181"
+          ]
+        }
+      ],
+      "conflicts": [],
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+    },
+    {
+      "id": "cancerverse",
+      "ownerInput": {
+        "name": "Cancerverse",
+        "earth": "Earth-10011",
+        "year": 2009,
+        "description": "A corrupted universe where life has defeated Death, creating an expanding reality of undying cosmic horrors."
+      },
+      "selected": {
+        "id": "cancerverse",
+        "name": "Cancerverse",
+        "earth": "Earth-10011",
+        "firstPublished": 2010,
+        "debutIssue": {
+          "title": "Realm of Kings #1",
+          "issueId": 29292
+        },
+        "description": "A corrupted universe where life has defeated Death, creating an expanding reality of undying cosmic horrors.",
+        "aliases": [],
+        "addedAt": "2026-11-13"
+      },
+      "evidence": {
+        "name": [
+          "owner",
+          "F10011"
+        ],
+        "earth": [
+          "owner",
+          "F10011"
+        ],
+        "firstPublished": [
+          "issue-11163363"
+        ],
+        "debutIssue": [
+          "F10011",
+          "issue-11163363"
+        ],
+        "description": [
+          "owner",
+          "F10011"
+        ]
+      },
+      "namedLine": {
+        "relation": "named-line",
+        "title": "Realm of Kings Vol 1 1",
+        "coverMonth": "January",
+        "coverYear": 2010,
+        "onSale": "November 18, 2009",
+        "issueId": 29292,
+        "sources": [
+          "issue-11163363"
+        ]
+      },
+      "referenceRealityFirst": {
+        "relation": "reference-reality-first",
+        "title": "Realm of Kings Vol 1 1",
+        "coverMonth": "January",
+        "coverYear": 2010,
+        "onSale": "November 18, 2009",
+        "issueId": 29292,
+        "sources": [
+          "issue-11163363"
+        ]
+      },
+      "alternatives": [],
+      "conflicts": [
+        {
+          "field": "firstPublished",
+          "ownerValue": 2009,
+          "provisionalValue": 2010,
+          "status": "awaiting-owner",
+          "reason": "The named-line cover and owner-supplied year differ; the on-sale and earlier-reality candidates are retained."
+        }
+      ],
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+    },
+    {
+      "id": "age-of-x",
+      "ownerInput": {
+        "name": "Age of X",
+        "earth": "Earth-11326",
+        "year": 2011,
+        "description": "A mutant dystopia where the surviving mutants live under constant siege inside Fortress X."
+      },
+      "selected": {
+        "id": "age-of-x",
+        "name": "Age of X",
+        "earth": "Earth-11326",
+        "firstPublished": 2011,
+        "debutIssue": {
+          "title": "Age of X: Alpha #1",
+          "issueId": 37996
+        },
+        "description": "A mutant dystopia where the surviving mutants live under constant siege inside Fortress X.",
+        "aliases": [],
+        "addedAt": "2026-11-13"
+      },
+      "evidence": {
+        "name": [
+          "owner",
+          "F11326"
+        ],
+        "earth": [
+          "owner",
+          "F11326"
+        ],
+        "firstPublished": [
+          "issue-10865510"
+        ],
+        "debutIssue": [
+          "F11326",
+          "issue-10865510"
+        ],
+        "description": [
+          "owner",
+          "F11326"
+        ]
+      },
+      "namedLine": {
+        "relation": "named-line",
+        "title": "Age of X: Alpha Vol 1 1",
+        "coverMonth": "March",
+        "coverYear": 2011,
+        "onSale": "January 26, 2011",
+        "issueId": 37996,
+        "sources": [
+          "issue-10865510"
+        ]
+      },
+      "referenceRealityFirst": {
+        "relation": "reference-reality-first",
+        "title": "Age of X: Alpha Vol 1 1",
+        "coverMonth": "March",
+        "coverYear": 2011,
+        "onSale": "January 26, 2011",
+        "issueId": 37996,
+        "sources": [
+          "issue-10865510"
+        ]
+      },
+      "alternatives": [
+        {
+          "relation": "alternative",
+          "title": "X-Men: Legacy Vol 1 245",
+          "coverMonth": "April",
+          "coverYear": 2011,
+          "onSale": "February 23, 2011",
+          "issueId": 36431,
+          "sources": [
+            "issue-11154429"
+          ]
+        }
+      ],
+      "conflicts": [],
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+    },
+    {
+      "id": "spider-gwen",
+      "ownerInput": {
+        "name": "Spider-Gwen / Ghost-Spider",
+        "earth": "Earth-65",
+        "year": 2014,
+        "description": "The universe where Gwen Stacy becomes Spider-Woman while Peter Parker follows a very different path."
+      },
+      "selected": {
+        "id": "spider-gwen",
+        "name": "Spider-Gwen / Ghost-Spider",
+        "earth": "Earth-65",
+        "firstPublished": 2014,
+        "debutIssue": {
+          "title": "Edge of Spider-Verse #2",
+          "issueId": 50955
+        },
+        "description": "The universe where Gwen Stacy becomes Spider-Woman while Peter Parker follows a very different path.",
+        "aliases": [
+          "Spider-Gwen",
+          "Ghost-Spider"
+        ],
+        "addedAt": "2026-11-13"
+      },
+      "evidence": {
+        "name": [
+          "owner",
+          "F65"
+        ],
+        "earth": [
+          "owner",
+          "F65"
+        ],
+        "firstPublished": [
+          "issue-11006722"
+        ],
+        "debutIssue": [
+          "F65",
+          "issue-11006722"
+        ],
+        "description": [
+          "owner",
+          "F65"
+        ]
+      },
+      "namedLine": {
+        "relation": "named-line",
+        "title": "Edge of Spider-Verse Vol 1 2",
+        "coverMonth": "November",
+        "coverYear": 2014,
+        "onSale": "September 17, 2014",
+        "issueId": 50955,
+        "sources": [
+          "issue-11006722"
+        ]
+      },
+      "referenceRealityFirst": {
+        "relation": "reference-reality-first",
+        "title": "Edge of Spider-Verse Vol 1 2",
+        "coverMonth": "November",
+        "coverYear": 2014,
+        "onSale": "September 17, 2014",
+        "issueId": 50955,
+        "sources": [
+          "issue-11006722"
+        ]
+      },
+      "alternatives": [],
+      "conflicts": [],
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+    },
+    {
+      "id": "renew-your-vows",
+      "ownerInput": {
+        "name": "Spider-Man: Renew Your Vows",
+        "earth": "Earth-18119",
+        "year": 2015,
+        "description": "A reality where Peter Parker and Mary Jane remain married and raise their super-powered daughter Annie May Parker."
+      },
+      "selected": {
+        "id": "renew-your-vows",
+        "name": "Spider-Man: Renew Your Vows",
+        "earth": "Earth-18119",
+        "firstPublished": 2015,
+        "debutIssue": {
+          "title": "Amazing Spider-Man: Renew Your Vows #3",
+          "issueId": 52378
+        },
+        "description": "A reality where Peter Parker and Mary Jane remain married and raise their super-powered daughter Annie May Parker.",
+        "aliases": [
+          "Renew Your Vows"
+        ],
+        "addedAt": "2026-11-13"
+      },
+      "evidence": {
+        "name": [
+          "owner",
+          "F18119"
+        ],
+        "earth": [
+          "owner",
+          "F18119"
+        ],
+        "firstPublished": [
+          "issue-10338342"
+        ],
+        "debutIssue": [
+          "F18119",
+          "issue-10338344"
+        ],
+        "description": [
+          "owner",
+          "F18119"
+        ]
+      },
+      "namedLine": {
+        "relation": "named-line",
+        "title": "Amazing Spider-Man: Renew Your Vows Vol 1 1",
+        "coverMonth": "August",
+        "coverYear": 2015,
+        "onSale": "June 3, 2015",
+        "issueId": 52375,
+        "sources": [
+          "issue-10338342"
+        ]
+      },
+      "referenceRealityFirst": {
+        "relation": "reference-reality-first",
+        "title": "Amazing Spider-Man: Renew Your Vows Vol 1 3",
+        "coverMonth": "October",
+        "coverYear": 2015,
+        "onSale": "August 5, 2015",
+        "issueId": 52378,
+        "sources": [
+          "issue-10338344"
+        ]
+      },
+      "alternatives": [
+        {
+          "relation": "alternative",
+          "title": "Amazing Spider-Man: Renew Your Vows Vol 1 1",
+          "coverMonth": "August",
+          "coverYear": 2015,
+          "onSale": "June 3, 2015",
+          "issueId": 52375,
+          "sources": [
+            "issue-10338342"
+          ]
+        },
+        {
+          "relation": "alternative",
+          "title": "Amazing Spider-Man: Renew Your Vows Vol 2 1",
+          "coverMonth": "January",
+          "coverYear": 2017,
+          "onSale": "November 9, 2016",
+          "issueId": 61350,
+          "sources": [
+            "issue-11055039"
+          ]
+        }
+      ],
+      "conflicts": [],
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+    },
+    {
+      "id": "spider-man-life-story",
+      "ownerInput": {
+        "name": "Spider-Man: Life Story",
+        "earth": "Earth-19529",
+        "year": 2019,
+        "description": "A continuity where Peter Parker and the Marvel Universe age in real time beginning in the 1960s."
+      },
+      "selected": {
+        "id": "spider-man-life-story",
+        "name": "Spider-Man: Life Story",
+        "earth": "Earth-19529",
+        "firstPublished": 2019,
+        "debutIssue": {
+          "title": "Spider-Man: Life Story #1",
+          "issueId": 74803
+        },
+        "description": "A continuity where Peter Parker and the Marvel Universe age in real time beginning in the 1960s.",
+        "aliases": [
+          "Life Story"
+        ],
+        "addedAt": "2026-11-13"
+      },
+      "evidence": {
+        "name": [
+          "owner",
+          "F19529"
+        ],
+        "earth": [
+          "owner",
+          "F19529"
+        ],
+        "firstPublished": [
+          "issue-10843387"
+        ],
+        "debutIssue": [
+          "F19529",
+          "issue-10843387"
+        ],
+        "description": [
+          "owner",
+          "F19529"
+        ]
+      },
+      "namedLine": {
+        "relation": "named-line",
+        "title": "Spider-Man: Life Story Vol 1 1",
+        "coverMonth": "May",
+        "coverYear": 2019,
+        "onSale": "March 20, 2019",
+        "issueId": 74803,
+        "sources": [
+          "issue-10843387"
+        ]
+      },
+      "referenceRealityFirst": {
+        "relation": "reference-reality-first",
+        "title": "Spider-Man: Life Story Vol 1 1",
+        "coverMonth": "May",
+        "coverYear": 2019,
+        "onSale": "March 20, 2019",
+        "issueId": 74803,
+        "sources": [
+          "issue-10843387"
+        ]
+      },
+      "alternatives": [],
+      "conflicts": [],
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+    },
+    {
+      "id": "heroes-reborn-2021",
+      "ownerInput": {
+        "name": "Heroes Reborn",
+        "earth": "Earth-21798",
+        "year": 2021,
+        "description": "A rewritten reality where the Avengers never formed and the Squadron Supreme became Earth's dominant superhero team."
+      },
+      "selected": {
+        "id": "heroes-reborn-2021",
+        "name": "Heroes Reborn (2021)",
+        "earth": "Earth-21798",
+        "firstPublished": 2021,
+        "debutIssue": {
+          "title": "Heroes Reborn #1",
+          "issueId": 92793
+        },
+        "description": "A rewritten reality where the Avengers never formed and the Squadron Supreme became Earth's dominant superhero team.",
+        "aliases": [
+          "Heroes Reborn",
+          "Heroes Reborn 2021"
+        ],
+        "addedAt": "2026-11-13"
+      },
+      "evidence": {
+        "name": [
+          "owner",
+          "F21798"
+        ],
+        "earth": [
+          "owner",
+          "F21798"
+        ],
+        "firstPublished": [
+          "issue-10667610"
+        ],
+        "debutIssue": [
+          "F21798",
+          "issue-10667610"
+        ],
+        "description": [
+          "owner",
+          "F21798"
+        ]
+      },
+      "namedLine": {
+        "relation": "named-line",
+        "title": "Heroes Reborn Vol 2 1",
+        "coverMonth": "July",
+        "coverYear": 2021,
+        "onSale": "May 5, 2021",
+        "issueId": 92793,
+        "sources": [
+          "issue-10667610"
+        ]
+      },
+      "referenceRealityFirst": {
+        "relation": "reference-reality-first",
+        "title": "Heroes Reborn Vol 2 1",
+        "coverMonth": "July",
+        "coverYear": 2021,
+        "onSale": "May 5, 2021",
+        "issueId": 92793,
+        "sources": [
+          "issue-10667610"
+        ]
+      },
+      "alternatives": [],
+      "conflicts": [],
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+    },
+    {
+      "id": "ultimate-universe",
+      "ownerInput": {
+        "name": "Ultimate Universe",
+        "earth": "Earth-6160",
+        "year": 2023,
+        "description": "The new Ultimate continuity reshaped by the Maker, who prevented many Marvel heroes from receiving their powers."
+      },
+      "selected": {
+        "id": "ultimate-universe",
+        "name": "Ultimate Universe",
+        "earth": "Earth-6160",
+        "firstPublished": 2023,
+        "debutIssue": {
+          "title": "Ultimate Invasion #1",
+          "issueId": 97145
+        },
+        "description": "The new Ultimate continuity reshaped by the Maker, who prevented many Marvel heroes from receiving their powers.",
+        "aliases": [
+          "Ultimate",
+          "New Ultimate Universe"
+        ],
+        "addedAt": "2026-11-13"
+      },
+      "evidence": {
+        "name": [
+          "owner",
+          "F6160"
+        ],
+        "earth": [
+          "owner",
+          "F6160"
+        ],
+        "firstPublished": [
+          "issue-11080003"
+        ],
+        "debutIssue": [
+          "F6160",
+          "issue-11080003"
+        ],
+        "description": [
+          "owner",
+          "F6160"
+        ]
+      },
+      "namedLine": {
+        "relation": "named-line",
+        "title": "Ultimate Invasion Vol 1 1",
+        "coverMonth": "August",
+        "coverYear": 2023,
+        "onSale": "June 21, 2023",
+        "issueId": 97145,
+        "sources": [
+          "issue-11080003"
+        ]
+      },
+      "referenceRealityFirst": {
+        "relation": "reference-reality-first",
+        "title": "Ultimate Invasion Vol 1 1",
+        "coverMonth": "August",
+        "coverYear": 2023,
+        "onSale": "June 21, 2023",
+        "issueId": 97145,
+        "sources": [
+          "issue-11080003"
+        ]
+      },
+      "alternatives": [],
+      "conflicts": [],
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+    },
+    {
+      "id": "earth-616",
+      "ownerInput": null,
+      "selected": {
+        "id": "earth-616",
+        "name": "Marvel Universe",
+        "earth": "Earth-616",
+        "firstPublished": 1939,
+        "debutIssue": {
+          "title": "Marvel Comics #1",
+          "issueId": 10008
+        },
+        "description": "The primary Marvel continuity, shared by generations of Marvel heroes.",
+        "aliases": [
+          "Earth 616",
+          "Prime Earth",
+          "Marvel Universe"
+        ],
+        "addedAt": "2026-11-13"
+      },
+      "evidence": {
+        "name": [
+          "F616"
+        ],
+        "earth": [
+          "F616"
+        ],
+        "firstPublished": [
+          "issue-11217309"
+        ],
+        "debutIssue": [
+          "F616",
+          "issue-11217309",
+          "provider-10008"
+        ],
+        "description": [
+          "F616"
+        ]
+      },
+      "namedLine": {
+        "relation": "named-line",
+        "title": "Marvel Comics Vol 1 1",
+        "coverMonth": "October",
+        "coverYear": 1939,
+        "onSale": "August 31, 1939",
+        "issueId": 10008,
+        "sources": [
+          "issue-11217309"
+        ]
+      },
+      "referenceRealityFirst": {
+        "relation": "reference-reality-first",
+        "title": "Ka-Zar (Manvis) Vol 1 1",
+        "coverMonth": "October",
+        "coverYear": 1936,
+        "onSale": "October 1, 1936",
+        "issueId": null,
+        "sources": [
+          "issue-11210838"
+        ]
+      },
+      "alternatives": [
+        {
+          "relation": "reference-reality-first",
+          "title": "Ka-Zar (Manvis) Vol 1 1",
+          "coverMonth": "October",
+          "coverYear": 1936,
+          "onSale": "October 1, 1936",
+          "issueId": null,
+          "sources": [
+            "issue-11210838"
+          ]
+        },
+        {
+          "relation": "alternative",
+          "title": "Fantastic Four Vol 1 1",
+          "coverMonth": "November",
+          "coverYear": 1961,
+          "onSale": "August 8, 1961",
+          "issueId": 12894,
+          "sources": [
+            "issue-10810399"
+          ]
+        },
+        {
+          "relation": "alternative",
+          "title": "Motion Picture Funnies Weekly Vol 1 1",
+          "coverMonth": "June",
+          "coverYear": 1939,
+          "onSale": "April 5, 1939",
+          "issueId": null,
+          "sources": [
+            "issue-11217300"
+          ]
+        }
+      ],
+      "conflicts": [],
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+    }
+  ],
+  "listAssociations": [
+    {
+      "listId": "days-of-future-past",
+      "universeIds": [
+        "days-of-future-past",
+        "earth-616"
+      ],
+      "rationale": "The two-issue guide follows the original story across its future and present.",
+      "sources": [
+        "catalog",
+        "F811",
+        "F616"
+      ]
+    },
+    {
+      "listId": "marvel-2099",
+      "universeIds": [
+        "marvel-2099"
+      ],
+      "rationale": "The guide explicitly covers the original 2099 line.",
+      "sources": [
+        "catalog",
+        "F928"
+      ]
+    },
+    {
+      "listId": "spider-man-2099-reading-order",
+      "universeIds": [
+        "marvel-2099"
+      ],
+      "rationale": "The character guide follows the original 2099 Spider-Man and later crossovers.",
+      "sources": [
+        "catalog",
+        "F928"
+      ]
+    },
+    {
+      "listId": "the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order",
+      "universeIds": [
+        "age-of-apocalypse"
+      ],
+      "rationale": "The guide explicitly follows Age of Apocalypse and its returns.",
+      "sources": [
+        "catalog",
+        "F295"
+      ]
+    },
+    {
+      "listId": "x-termination",
+      "universeIds": [
+        "age-of-apocalypse"
+      ],
+      "rationale": "The crossover includes the Age of Apocalypse alongside other realities.",
+      "sources": [
+        "catalog",
+        "F295"
+      ]
+    },
+    {
+      "listId": "mc2",
+      "universeIds": [
+        "mc2"
+      ],
+      "rationale": "The existing guide explicitly follows the MC2 generation and retains its known source gaps.",
+      "sources": [
+        "catalog",
+        "F982"
+      ]
+    },
+    {
+      "listId": "ultimate-marvel-intro",
+      "universeIds": [
+        "ultimate-marvel"
+      ],
+      "rationale": "The guide explicitly identifies Earth-1610 and the original Ultimate line.",
+      "sources": [
+        "catalog",
+        "F1610"
+      ]
+    },
+    {
+      "listId": "ultimate-spider-man-reading-order",
+      "universeIds": [
+        "ultimate-marvel"
+      ],
+      "rationale": "The owner places this guide only under Earth-1610. Since #1300 its 316 comics include none of the 2024 and 2025 Ultimate Universe comics, so it carries no Earth-6160 association. Exact series and issue facts are unchanged.",
+      "sources": [
+        "catalog",
+        "F1610",
+        "owner-ultimate-list-placement"
+      ]
+    },
+    {
+      "listId": "marvel-1602",
+      "universeIds": [
+        "marvel-1602"
+      ],
+      "rationale": "The existing guide follows the 1602 story and its sequels.",
+      "sources": [
+        "catalog",
+        "F311"
+      ]
+    },
+    {
+      "listId": "marvel-adventures-the-avengers",
+      "universeIds": [
+        "marvel-adventures"
+      ],
+      "rationale": "The guide follows the Marvel Adventures Avengers series.",
+      "sources": [
+        "catalog",
+        "F20051"
+      ]
+    },
+    {
+      "listId": "house-of-m",
+      "universeIds": [
+        "house-of-m"
+      ],
+      "rationale": "The guide follows the House of M event and branded tie-ins.",
+      "sources": [
+        "catalog",
+        "F58163"
+      ]
+    },
+    {
+      "listId": "house-of-m-essential",
+      "universeIds": [
+        "house-of-m"
+      ],
+      "rationale": "The guide contains the eight-issue House of M main series.",
+      "sources": [
+        "catalog",
+        "F58163"
+      ]
+    },
+    {
+      "listId": "marvel-zombies-reading-order",
+      "universeIds": [
+        "marvel-zombies"
+      ],
+      "universeScopes": {
+        "marvel-zombies": {
+          "kind": "related-realities",
+          "note": "Includes the original Marvel Zombies and stories set in other realities."
+        }
+      },
+      "rationale": "The guide includes original Marvel Zombies and explicitly named stories in other realities.",
+      "sources": [
+        "catalog",
+        "F2149"
+      ]
+    },
+    {
+      "listId": "thanos-imperative",
+      "universeIds": [
+        "cancerverse"
+      ],
+      "rationale": "The event is identified in the Cancerverse reality source and the existing guide.",
+      "sources": [
+        "catalog",
+        "F10011"
+      ]
+    },
+    {
+      "listId": "x-men-age-of-x",
+      "universeIds": [
+        "age-of-x"
+      ],
+      "rationale": "The guide explicitly follows Age of X and includes its aftermath.",
+      "sources": [
+        "catalog",
+        "F11326"
+      ]
+    },
+    {
+      "listId": "spider-gwen-reading-order",
+      "universeIds": [
+        "spider-gwen"
+      ],
+      "rationale": "The guide follows the Earth-65 Gwen Stacy and later crossovers.",
+      "sources": [
+        "catalog",
+        "F65"
+      ]
+    },
+    {
+      "listId": "heroes-reborn-2021",
+      "universeIds": [
+        "heroes-reborn-2021"
+      ],
+      "rationale": "The existing guide covers the 2021 Heroes Reborn event.",
+      "sources": [
+        "catalog",
+        "F21798"
+      ]
+    },
+    {
+      "listId": "new-ultimate-universe",
+      "universeIds": [
+        "ultimate-universe"
+      ],
+      "rationale": "The single-issue guide explicitly follows the rebuilt Ultimate line.",
+      "sources": [
+        "catalog",
+        "F6160"
+      ]
+    },
+    {
+      "listId": "new-ultimate-universe-trades",
+      "universeIds": [
+        "ultimate-universe"
+      ],
+      "rationale": "The collected-edition guide explicitly follows the same rebuilt Ultimate line.",
+      "sources": [
+        "catalog",
+        "F6160"
+      ]
+    },
+    {
+      "listId": "civil-war",
+      "universeIds": [
+        "earth-616"
+      ],
+      "rationale": "The guide follows the main-continuity Civil War event and its branded tie-ins.",
+      "sources": [
+        "catalog",
+        "F616"
+      ]
+    }
+  ],
+  "issueAssociations": [
+    {
+      "issueId": 12460,
+      "seriesId": 2258,
+      "universeIds": [
+        "days-of-future-past",
+        "earth-616"
+      ],
+      "sources": [
+        "issue-11166925"
+      ]
+    },
+    {
+      "issueId": 13683,
+      "seriesId": 2258,
+      "universeIds": [
+        "days-of-future-past",
+        "earth-616"
+      ],
+      "sources": [
+        "issue-11193659"
+      ]
+    },
+    {
+      "issueId": 52378,
+      "seriesId": 19632,
+      "universeIds": [
+        "renew-your-vows"
+      ],
+      "sources": [
+        "issue-10338344"
+      ]
+    },
+    {
+      "issueId": 74803,
+      "seriesId": 26911,
+      "universeIds": [
+        "spider-man-life-story"
+      ],
+      "sources": [
+        "issue-10843387"
+      ]
+    }
+  ],
+  "seriesAssociations": [
+    {
+      "seriesId": 2258,
+      "universeIds": [
+        "days-of-future-past",
+        "earth-616"
+      ],
+      "scope": "selected-issues",
+      "sources": [
+        "issue-11166925",
+        "issue-11193659"
+      ],
+      "rationale": "Known appearances in selected issues; no whole-series inheritance is asserted."
+    },
+    {
+      "seriesId": 19632,
+      "universeIds": [
+        "renew-your-vows"
+      ],
+      "scope": "selected-issues",
+      "sources": [
+        "issue-10338344"
+      ],
+      "rationale": "Known appearances in selected issues; no whole-series inheritance is asserted."
+    },
+    {
+      "seriesId": 26911,
+      "universeIds": [
+        "spider-man-life-story"
+      ],
+      "scope": "selected-issues",
+      "sources": [
+        "issue-10843387"
+      ],
+      "rationale": "Known appearances in selected issues; no whole-series inheritance is asserted."
+    }
+  ]
+}

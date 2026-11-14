@@ -17,6 +17,7 @@ import {
 } from '../src/js/lib/model.js';
 import { Store, KEY } from '../src/js/storage.js';
 import { DEFAULT_FILTER, READING_FILTERS } from '../src/js/lib/readingFilters.js';
+import { createCatalogPresentation } from '../src/js/views/shared/catalog-presentation.js';
 import {
   createReadingView,
   commitRows,
@@ -523,6 +524,7 @@ function harness(overrides = {}) {
     fact: (key, value, className) => ({ key, value, className }),
     loadCatalog: overrides.loadCatalog,
     listAttribution: overrides.listAttribution,
+    listUniverseLines: overrides.listUniverseLines ?? (() => []),
     focusCurrentView: () => { calls.focusCurrentView += 1; nodes.orderName.focus(); },
     getSettings: () => settings,
     getState: () => state,
@@ -728,6 +730,36 @@ test('About resolves exact catalog identity for source-only lists without changi
     assert.equal(h.nodes.orderSource.childNodes.length, 1, 'old source clears immediately');
     resolve({ lists: [] });
     await new Promise(setImmediate);
+    assert.equal(h.nodes.orderSource.childNodes.length, 0);
+  } finally { h.restore(); }
+});
+
+test('saved catalog lists show reviewed Universe scope while custom lists remain unclassified', async () => {
+  const state = seededState();
+  state.lists['list-b'].catalogId = null;
+  const shared = createCatalogPresentation({ el: element });
+  const h = harness({
+    state,
+    listUniverseLines: shared.listUniverseLines,
+    loadCatalog: async () => ({ lists: [{
+      id: 'cat-a', name: 'Original',
+      universeIds: ['marvel-zombies'],
+      universeScopes: {
+        'marvel-zombies': { kind: 'related-realities', note: 'Includes stories in other realities.' },
+      },
+    }] }),
+  });
+  try {
+    const before = JSON.stringify(h.state());
+    h.view.render();
+    await new Promise(setImmediate);
+    const content = h.nodes.orderSource.childNodes.map(heldText).join('');
+    assert.match(content, /Marvel Zombies/);
+    assert.match(content, /Spans related realities: Includes stories in other realities/);
+    assert.equal(h.nodes.orderSource.querySelector('a').href, '#/universe/marvel-zombies');
+    assert.equal(JSON.stringify(h.state()), before);
+    h.setActive('list-b');
+    h.view.render();
     assert.equal(h.nodes.orderSource.childNodes.length, 0);
   } finally { h.restore(); }
 });
@@ -1719,7 +1751,7 @@ test('main constructs Reading once and delegates reading-owned work through the 
     /readingView\.currentFilter\(\)/,
     /readingView\.endFilterRun\(\{ commit: false \}\)/,
     /readingView\.setFilterAddressed\(route\.filter !== null\)/,
-    /readingView\.setFilter\(route\.filter \?\? filterIfAbsent\)/,
+    /const filterFallback = view === 'universes' \|\| view === 'universe'\s*\? readingView\.currentFilter\(\) : filterIfAbsent;\s*readingView\.setFilter\(route\.filter \?\? filterFallback\)/,
     /readingView\.setFullOrderFromRoute\(openFromRoute\)/,
     /readingView\.renderHydration\(status\)/,
     /readingView\.renderSynopsis\(status\)/,

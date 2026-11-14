@@ -51,11 +51,13 @@ function harness({
     card: el('section', { dataset: { scope: 'top' } }),
     input,
     browse: el('section'),
-    scopes: el('div', { hidden: true }, ['top', 'lists', 'series', 'creators', 'comics'].map(scopeButton)),
+    scopes: el('div', { hidden: true }, ['top', 'lists', 'universes', 'series', 'creators', 'comics'].map(scopeButton)),
     count: el('p', { hidden: true }),
     suggestions: el('div', { hidden: true }),
+    empty: el('p', { hidden: true }),
     panes: el('div', { hidden: true }),
     lists: group(),
+    universes: group(),
     series: group(),
     creators: group(),
     comics: { section: el('section', { hidden: true }), more: el('button', { hidden: true }) },
@@ -79,6 +81,7 @@ function harness({
       catalogRow: (list, options) => el('article', { list, options }, [el('button')]),
     },
     thumb: () => el('span'),
+    universeRow: (universe) => el('article', { universe }),
     comics: { lookup: (query, options) => lookups.push({ query, ...options }) },
     openNamed: (kind, item) => opened.push([kind, item.name]),
     announce: (message) => announced.push(message),
@@ -132,8 +135,10 @@ test('comics found for the typed title withdraw a Top suggestion', async () => {
   const h = harness({ loadCatalog: emptyCatalog, nameResults: emptyNames });
   await h.view.update('avengres');
   assert.equal(h.nodes.suggestions.hidden, false);
+  assert.equal(h.nodes.empty.hidden, false);
   h.comicStatus('complete', 'avengres', 2);
   assert.equal(h.nodes.suggestions.hidden, true);
+  assert.equal(h.nodes.empty.hidden, true, 'comic matches replace the empty-result next step');
 });
 
 test('suggestions require zero matches in the selected scope, all local scopes for Top, and never Comics', async () => {
@@ -398,7 +403,7 @@ test('typing announces once, after the pause, for the latest query', async () =>
   assert.deepEqual(h.announced, []);
   assert.ok(h.timers.every((timer) => timer.delay === 500));
   h.flush();
-  assert.deepEqual(h.announced, [`Top results for “mcu prep”. ${LISTS} Reading Lists, 12 series, 2 creators.`]);
+  assert.deepEqual(h.announced, [`Top results for “mcu prep”. ${LISTS} Reading Lists, No universes match, 12 series, 2 creators.`]);
   await h.view.update('mcu');
   await h.view.update('');
   h.flush();
@@ -419,6 +424,20 @@ test('a slower earlier load cannot overwrite a later query', async () => {
   assert.deepEqual(h.rows('lists').map((row) => row.list.id), latest);
 });
 
+test('a late local catalog load keeps an already focused Universe result', async () => {
+  let release;
+  const gate = new Promise((resolve) => { release = resolve; });
+  const h = harness({ loadCatalog: () => gate.then(() => ({ lists: [] })) });
+  const pending = h.view.update('Earth1610');
+  const result = h.rows('universes')[0];
+  assert.equal(result.universe.id, 'ultimate-marvel');
+  result.focus();
+  release();
+  await pending;
+  assert.equal(h.rows('universes')[0], result);
+  assert.equal(h.focused(), result);
+});
+
 test('a catalog failure shows a notice in the Reading Lists scope only', async () => {
   const h = harness({ loadCatalog: async () => { throw new Error('HTTP 500'); } });
   await h.view.update('mcu prep');
@@ -426,6 +445,38 @@ test('a catalog failure shows a notice in the Reading Lists scope only', async (
   assert.equal(h.nodes.count.textContent, 'Reading Lists could not be loaded: HTTP 500.');
   h.view.setScope('series');
   assert.equal(h.nodes.count.textContent, '12 series');
+});
+
+test('Universe names, aliases and Earth forms are local search results with exact counts', async () => {
+  const h = harness({ loadCatalog: async () => { throw new Error('offline'); }, nameResults: () => ({ items: [], matched: 0 }) });
+  for (const [query, expected] of [
+    ['Earth1610', 'ultimate-marvel'], ['Ultimate Marvel', 'ultimate-marvel'], ['MC2', 'mc2'],
+    ['Marvel Comics 2', 'mc2'], ['Earth-982', 'mc2'], ['2099', 'marvel-2099'],
+    ['Earth-65', 'spider-gwen'], ['Spider-Gwen', 'spider-gwen'],
+  ]) {
+    await h.view.update(query);
+    assert.equal(h.rows('universes')[0].universe.id, expected, query);
+    h.view.setScope('universes');
+    assert.equal(h.nodes.count.textContent, '1 universe', query);
+    assert.deepEqual(h.lookups, [], query);
+    h.view.setScope('top');
+  }
+  await h.view.update('Ultimate');
+  h.view.setScope('universes');
+  assert.equal(h.nodes.count.textContent, '2 universes');
+  assert.deepEqual(h.rows('universes').map(({ universe }) => universe.id).sort(), ['ultimate-marvel', 'ultimate-universe']);
+  await h.view.update('not a known reality');
+  assert.match(h.nodes.count.textContent, /No universes match.*Try/i);
+  h.view.setScope('top');
+  assert.equal(h.nodes.empty.hidden, true, 'a catalog failure is not presented as an empty result');
+  assert.deepEqual(h.lookups, []);
+});
+
+test('an empty Top search gives a next step when all local groups were searched', async () => {
+  const h = harness({ loadCatalog: emptyCatalog, nameResults: () => ({ items: [], matched: 0 }) });
+  await h.view.update('unfindable');
+  assert.equal(h.nodes.empty.hidden, false);
+  assert.match(h.nodes.empty.textContent, /Try another/i);
 });
 
 test('typing and switching make no network request and write no storage or history entry', async () => {

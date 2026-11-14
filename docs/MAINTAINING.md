@@ -114,8 +114,8 @@ loading explicitly, without changing saved data.
 
 Issue-library relationship digests exclude exactly the list-level `storylines` and
 `storylinesChildren` selectors, the `storyTypes`, `tones` and `chapterTags` discovery tags, and
-existing classification metadata. Catalog discovery does
-not redefine approved issue-library evidence. All other manifest fields, paths, order membership
+the `universeIds` and `universeScopes` discovery fields, and existing classification metadata.
+Catalog discovery does not redefine approved issue-library evidence. All other manifest fields, paths, order membership
 and ordering, and issue vectors remain digest-bound; unknown or nested metadata is not ignored.
 
 The historical cohort contains 18 original groups and nine named generated arcs. It is a finite

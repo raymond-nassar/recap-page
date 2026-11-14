@@ -95,6 +95,34 @@ test('reading blocks are opt-in local sections, not an inferred collected-editio
   }
 });
 
+test('Universe relationships are validated without discovery tags and keep their scope', () => {
+  const universeIds = ['marvel-zombies'];
+  const universeScopes = {
+    'marvel-zombies': { kind: 'related-realities', note: 'Includes stories from other realities.' },
+  };
+  const parsed = parseManifest({ lists: [{ ...valid, universeIds, universeScopes }] });
+  assert.deepEqual(parsed.errors, []);
+  assert.deepEqual(parsed.entries[0].universeIds, universeIds);
+  assert.deepEqual(parsed.entries[0].universeScopes, universeScopes);
+  for (const metadata of [
+    { universeIds: ['not-a-universe'] },
+    { universeIds: ['marvel-zombies', 'marvel-zombies'] },
+    { universeIds: 'marvel-zombies' },
+    { universeIds, universeScopes: { 'marvel-zombies': { kind: 'related-realities' } } },
+    { universeIds, universeScopes: { 'earth-616': { kind: 'representative' } } },
+    { universeIds, universeScopes: { 'marvel-zombies': { kind: 'unknown' } } },
+  ]) {
+    const result = parseManifest({ lists: [{ ...valid, ...metadata }] });
+    assert.ok(result.errors.length, `accepted ${JSON.stringify(metadata)}`);
+    assert.equal(result.entries.length, 0);
+  }
+  const parent = {
+    ...valid, sourceUrl: undefined, sourceFile: 'civil-war.md', partitionFile: 'parts.json',
+    catalog: false, universeIds,
+  };
+  assert.match(parseManifest({ lists: [parent] }).errors.join('\n'), /partition parent/);
+});
+
 test('Storylines metadata is strict, whole-group and partition-parent-only', () => {
   for (const storylines of [null, 'true', 1, []]) {
     assert.ok(parseManifest({ lists: [{ ...valid, storylines }] }).errors.length,
