@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { serializeChecklist, readerIssueId } from '../src/js/lib/markdown.js';
+import { serializeChecklist, readerIssueId, markdownFilename } from '../src/js/lib/markdown.js';
 
 const plain = {
   includeProgress: true,
@@ -24,6 +24,20 @@ const list = {
     { issueId: -3, title: 'Amazing Spider-Man (2018) #3', read: false },
   ],
 };
+
+test('both Markdown exports fit the phone filename limit for a maximum-length list name', () => {
+  for (const orderOnly of [false, true]) {
+    const suffix = orderOnly ? '-order-only.md' : '.md';
+    const limit = 180 - suffix.length;
+    for (const length of [limit - 1, limit, limit + 1, 200]) {
+      assert.equal(markdownFilename('W'.repeat(length), orderOnly),
+        `${'w'.repeat(Math.min(length, limit))}${suffix}`);
+    }
+  }
+  assert.equal(markdownFilename('Spider-Man: A reading list'), 'spider-man-a-reading-list.md');
+  assert.equal(markdownFilename('!!!'), 'list.md');
+  assert.equal(markdownFilename('!!!', true), 'list-order-only.md');
+});
 
 test('readable default is the approved plain checklist with no private extras', () => {
   assert.equal(serializeChecklist(list, plain), [

@@ -10,7 +10,7 @@ import {
   coverUrl, listForCatalogId, SCHEMA_VERSION, MAX_BACKUP_BYTES, orderGapSentences,
 } from './lib/model.js';
 import { chooseMarkdownExport } from './views/markdown-export.js';
-import { serializeReadingOrder } from './lib/markdown.js';
+import { serializeReadingOrder, markdownFilename } from './lib/markdown.js';
 import { DEFAULT_LIST_NAME, LIBRARY_VIEWS } from './lib/library.js';
 import {
   parseCatalog, catalogEntries,
@@ -2543,7 +2543,7 @@ async function exportMarkdown() {
       items: listItems(store.state, id),
     });
     if (md === null) return;
-    const result = await saveDownload(`${slug(list.name)}.md`, md, 'text/markdown');
+    const result = await saveDownload(markdownFilename(list.name), md, 'text/markdown');
     if (!result) return;
     announce(downloadMessage(result, 'Markdown Reading List'));
   } catch (error) {
@@ -2962,10 +2962,6 @@ async function download(filename, text, type) {
     notify('#app-report', `Could not save the download: ${error.message}. Your saved data is unchanged.`, 'error');
     return false;
   }
-}
-
-function slug(s) {
-  return String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'list';
 }
 
 // ------------------------------------------------------------------ status
@@ -4520,7 +4516,7 @@ async function exportReadingOrder() {
       confirmLabel: 'Download order only',
     });
     if (!yes) return;
-    const result = await saveDownload(`${slug(list.name)}-order-only.md`, md, 'text/markdown');
+    const result = await saveDownload(markdownFilename(list.name, true), md, 'text/markdown');
     if (!result) return;
     announce(`${downloadMessage(result, 'Order-only Markdown')} Your saved reading data is unchanged.`);
   } catch (err) {

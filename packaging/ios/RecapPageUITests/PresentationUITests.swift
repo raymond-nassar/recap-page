@@ -160,6 +160,19 @@ final class PresentationUITests: XCTestCase {
             const fixtureMode = '\(route)';
             \(Self.passiveGuardFixtures)
             """
+        } else if route == "theme-select" {
+            routeScript = """
+            await openRoute(routes.find(({ name }) => name === 'data'));
+            const select = document.getElementById('opt-theme');
+            monitor.dataset.focusCount = '0';
+            select.addEventListener('focus', () => {
+              monitor.dataset.focusCount = String(Number(monitor.dataset.focusCount) + 1);
+            });
+            select.scrollIntoView({ block: 'center' });
+            await nextFrame();
+            screens.push(snapshot('theme-select'));
+            window.setInterval(refreshMonitor, 100);
+            """
         } else if route.hasPrefix("field-") {
             // One editable field per launch for the #1244 focus zoom proof. The question dialog is
             // modal, which makes the rest of the page inert and hides the monitor from the native
@@ -365,12 +378,22 @@ final class PresentationUITests: XCTestCase {
           themeSelect: (() => {
             const select = document.getElementById('opt-theme');
             const style = getComputedStyle(select);
+            const rect = select.getBoundingClientRect();
             return {
               whiteSpace: style.whiteSpace,
+              fontSize: Number.parseFloat(style.fontSize),
+              value: select.value,
+              option: select.selectedOptions[0]?.textContent,
+              rect: { x: rect.x, y: rect.y, width: rect.width, height: rect.height },
               scrollWidth: select.scrollWidth,
               clientWidth: select.clientWidth,
             };
           })(),
+          exploreCards: [...document.querySelectorAll('#home-primary-paths .home-path')].map((card) => ({
+            title: card.querySelector('.home-path-title').textContent.trim(),
+            titleSize: Number.parseFloat(getComputedStyle(card.querySelector('.home-path-title')).fontSize),
+            labelSize: Number.parseFloat(getComputedStyle(card.querySelector('.home-path-label')).fontSize),
+          })),
           dataCardDiagnostics: [...document.querySelectorAll('#view-data .setgroup > .card')].map((card) => {
             const cardRect = card.getBoundingClientRect();
             const cardStyle = getComputedStyle(card);
@@ -2853,6 +2876,91 @@ final class PresentationUITests: XCTestCase {
             XCTAssertEqual(scale, 1, accuracy: 0.001,
                            "\(route) does not leave the page zoomed after typing and dismissing the keyboard")
             try record("t03-field-zoom-\(route)", ["metrics": metrics])
+            app.terminate()
+        }
+    }
+
+    func testThemeSelectReceivesNativeFocusAndLeavesNoZoomAfterDismissal() throws {
+        let app = launch(route: "theme-select")
+        _ = try probeResult(of: app)
+        let before = try XCTUnwrap(layoutMetrics(from: layoutMonitor(of: app).label))
+        try record("t03-theme-select-before", ["metrics": before])
+        let theme = app.webViews.firstMatch.descendants(matching: .any).matching(
+            NSPredicate(format: "label == %@ OR label == %@ OR value == %@",
+                        "Colour theme", "Use system setting", "Use system setting")).firstMatch
+        let nativeLabel: String
+        if theme.waitForExistence(timeout: 30) {
+            revealNativeTarget(theme, in: app)
+            nativeLabel = theme.label
+            theme.tap()
+        } else {
+            // Both #1253 attempts failed at this lookup, so the select is tapped at its live page
+            // position instead; the focus count below proves whether that tap reached it.
+            try record("t03-theme-select-unreachable", ["tree": app.debugDescription, "metrics": before])
+            let rect = (before["themeSelect"] as? [String: Any])?["rect"] as? [String: Any]
+            let value = { (key: String) in (rect?[key] as? NSNumber).map { CGFloat($0.doubleValue) } }
+            guard let x = value("x"), let y = value("y"), let width = value("width"), let height = value("height"),
+                  width > 0, height > 0 else {
+                XCTFail("the page reports the theme select's position")
+                app.terminate()
+                return
+            }
+            nativeLabel = "page position"
+            app.webViews.firstMatch.coordinate(withNormalizedOffset: .zero)
+                .withOffset(CGVector(dx: x + width / 2, dy: y + height / 2)).tap()
+        }
+        let picker = app.pickerWheels.firstMatch
+        let light = app.descendants(matching: .any).matching(
+            NSPredicate(format: "label == %@", "Light")).firstMatch
+        // Focus zoom, if any, starts while the picker is open, so record that sample too.
+        Thread.sleep(forTimeInterval: 1)
+        try record("t03-theme-select-open", ["metrics": layoutMetrics(from: layoutMonitor(of: app).label) ?? [:]])
+        if picker.waitForExistence(timeout: 3) {
+            picker.adjust(toPickerWheelValue: "Light")
+        } else if light.waitForExistence(timeout: 3) {
+            light.tap()
+        } else {
+            try record("t03-theme-select-picker-missing", ["tree": app.debugDescription])
+            XCTFail("native focus presents a selectable theme picker")
+        }
+        let done = app.toolbars.buttons["Done"].firstMatch
+        if done.waitForExistence(timeout: 3) { done.tap() }
+        let monitor = layoutMonitor(of: app)
+        let dismissed = XCTNSPredicateExpectation(predicate: NSPredicate { object, _ in
+            guard let element = object as? XCUIElement,
+                  let state = layoutMetrics(from: element.label),
+                  let count = (state["focusCount"] as? NSNumber)?.intValue,
+                  let select = state["themeSelect"] as? [String: Any] else { return false }
+            return count > 0 && select["value"] as? String == "light"
+        }, object: monitor)
+        XCTAssertEqual(XCTWaiter.wait(for: [dismissed], timeout: 15), .completed,
+                       "the native picker changes the theme")
+        let pickerGone = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: picker)
+        XCTAssertEqual(XCTWaiter.wait(for: [pickerGone], timeout: 15), .completed, "the native picker is dismissed")
+        Thread.sleep(forTimeInterval: 1)
+        let after = try XCTUnwrap(layoutMetrics(from: monitor.label))
+        try record("t03-theme-select-after", ["metrics": after, "nativeLabel": nativeLabel])
+        let count = try XCTUnwrap((after["focusCount"] as? NSNumber)?.intValue)
+        XCTAssertGreaterThan(count, 0, "the theme select actually received native focus")
+        let scale = try XCTUnwrap((after["visualScale"] as? NSNumber)?.doubleValue)
+        XCTAssertEqual(scale, 1, accuracy: 0.001, "the theme picker does not leave the page zoomed")
+        app.terminate()
+    }
+
+    func testExploreTitlesStayLargerThanLabelsAtDefaultAndLargestTextSizes() throws {
+        for category in [UIContentSizeCategory.large, .accessibilityExtraExtraExtraLarge] {
+            let app = launch(category: category, route: "home")
+            let result = try probeResult(of: app)
+            let screens = try XCTUnwrap(result["screens"] as? [[String: Any]])
+            let screen = try XCTUnwrap(screens.first)
+            let cards = try XCTUnwrap(screen["exploreCards"] as? [[String: Any]])
+            XCTAssertFalse(cards.isEmpty, "the Home fixture contains Explore cards")
+            for card in cards {
+                let title = try XCTUnwrap((card["titleSize"] as? NSNumber)?.doubleValue)
+                let label = try XCTUnwrap((card["labelSize"] as? NSNumber)?.doubleValue)
+                XCTAssertGreaterThan(title, label, "each Explore title stays larger than its label")
+            }
+            try record("t03-explore-hierarchy-\(category.rawValue)", ["cards": cards])
             app.terminate()
         }
     }

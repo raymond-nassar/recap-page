@@ -15609,6 +15609,16 @@ const SCENARIOS = [
       await page.evaluate(() => {
         document.documentElement.removeAttribute('style');
       });
+      for (const width of [320, 360, 412, 800, 880]) {
+        await page.setViewport({ width, height: width === 800 ? 360 : 900 });
+        const weights = await page.evaluate(() => [
+          document.querySelector('.rail-toggle-label'),
+          document.querySelector('.rail-header [data-view="library"] span'),
+          document.querySelector('.rail-header [data-view="add"] span'),
+        ].map((node) => node ? getComputedStyle(node).fontWeight : null));
+        t.check(`${width}px: More, Library and Search labels have the same regular weight`,
+          weights.every((weight) => weight === '400'), JSON.stringify(weights));
+      }
       await client.detach();
     },
   },

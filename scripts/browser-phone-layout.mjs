@@ -1243,7 +1243,33 @@ export const phoneFieldZoom = {
   },
 };
 
-export const phoneLayoutScenarios = [phoneFieldZoom, phoneBack, phoneContinue, continueWideMatchesMain, guideLinkPill, phoneNotices, phoneLongNotice, phoneSearchReflow, phoneSearchRowsFit, phoneCatalogReflow];
+export const phoneExploreHierarchy = {
+  id: 'phone-explore-hierarchy',
+  title: 'Explore titles retain their hierarchy at ordinary and largest phone text',
+  async run(page, t, selected) {
+    await forProfiles(page, t, async (profile, theme) => {
+      for (const size of ['ordinary', 'largest']) {
+        if (size === 'largest') await largeText(page, profile);
+        const cards = await page.$$eval('#home-primary-paths .home-path', (nodes) => nodes.map((node) => {
+          const title = node.querySelector('.home-path-title');
+          const label = node.querySelector('.home-path-label');
+          const count = node.querySelector('.home-path-count');
+          return {
+            title: title.textContent.trim(),
+            titleSize: parseFloat(getComputedStyle(title).fontSize),
+            labelSize: parseFloat(getComputedStyle(label).fontSize),
+            fits: [title, label, count].every((text) => text.scrollWidth <= text.clientWidth + 1),
+          };
+        }));
+        checked(t, `${profile.platform} ${profile.width} ${theme} ${size}: every Explore title is larger than its label and all card text fits`,
+          cards.length > 0 && cards.every((card) => card.titleSize > card.labelSize && card.fits), cards);
+        await capture(page, profile, theme, `explore-${size}`);
+      }
+    }, selected);
+  },
+};
+
+export const phoneLayoutScenarios = [phoneFieldZoom, phoneExploreHierarchy, phoneBack, phoneContinue, continueWideMatchesMain, guideLinkPill, phoneNotices, phoneLongNotice, phoneSearchReflow, phoneSearchRowsFit, phoneCatalogReflow];
 export const phoneLayoutMutations = [
   {
     id: 'phone-back-on-roots', breaks: 'phone-back', why: 'restoring Back on every history entry puts it on tab roots',
