@@ -8,8 +8,8 @@
 // Asked only in the URL, as the driveItem reference says to, OneDrive replaced an existing file in the
 // owner's own folder on 2026-10-29 (B8 in the P02-T07 session); asked in this body, it refused a second
 // create of the same name that evening and kept the first file. The stopped session's bodies of 2026-10-22,
-// answered 400, also named the item; this one names nothing. Reading follows exactly one redirect to a
-// preauthenticated address, again without Authorization (B10 in the P02-T01 facts, retrieved 2026-10-28).
+// answered 400, also named the item; this one names nothing. Reading follows up to three checked redirects
+// without Authorization: the owner's download needed two on 2026-11-13 (#1290).
 
 import { ProviderError, capabilityUrl, discard, networkFailure, readBounded, readJson, retryAfterMs } from './cloudSignIn.mjs';
 
@@ -315,9 +315,10 @@ export function createOneDrive({ fetchImpl, accessToken, clock = Date.now, track
     async read(id) {
       const response = await call('GET', `/me/drive/items/${encodeURIComponent(id)}/content`);
       let content = response;
-      if (response.status === 302) {
-        const download = capabilityUrl(response.headers.get('location'));
-        await discard(response);
+      // Each hop keeps its own transfer timeout; the host still answers within its 595-second read deadline.
+      for (let hop = 0; content.status === 302 && hop < 3; hop += 1) {
+        const download = capabilityUrl(content.headers.get('location'));
+        await discard(content);
         if (!download) throw new ProviderError('invalid', 'OneDrive pointed the download somewhere this version does not expect.');
         try {
           content = await fetchImpl(download.href, { method: 'GET', redirect: 'manual', signal: AbortSignal.timeout(transferMs(MAX_ITEM_BYTES)) });

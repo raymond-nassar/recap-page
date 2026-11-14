@@ -64,6 +64,76 @@ private func idToken(_ claims: [String: Any]) -> String {
     return "e30.\(OneDriveRules.base64Url(payload)).signature"
 }
 
+@MainActor
+final class OneDriveStoreReadTests: XCTestCase {
+    func testReadsZeroThroughThreeRedirectsWithoutAuthorizingDownloads() async throws {
+        for hops in 0...3 {
+            let transport = FakeOneDriveTransport()
+            let store = OneDriveStore(transport: transport, now: { 0 })
+            transport.answer = { [unowned transport] request in
+                let index = transport.requests.count - 1
+                XCTAssertEqual(request.method, "GET")
+                XCTAssertNil(request.body)
+                XCTAssertEqual(request.limit, OneDriveRules.maximumBytes)
+                if index == 0 {
+                    XCTAssertEqual(request.url.absoluteString, "\(OneDriveStore.graph)/me/drive/items/ITEM1/content")
+                    XCTAssertEqual(request.headers["Authorization"], "Bearer access")
+                } else {
+                    XCTAssertEqual(request.url.absoluteString, "https://download.example.com/r\(index)")
+                    XCTAssertTrue(request.headers.isEmpty)
+                    XCTAssertEqual(request.timeout, 572)
+                }
+                return index < hops
+                    ? OneDriveResponse(status: 302, headers: ["location": "https://download.example.com/r\(index + 1)"], body: Data())
+                    : OneDriveResponse(status: 200, headers: [:], body: Data("backup bytes".utf8))
+            }
+            let bytes = try await store.read(id: "ITEM1", tokens: { _ in "access" })
+            XCTAssertEqual(bytes, Data("backup bytes".utf8))
+            XCTAssertEqual(transport.requests.count, hops + 1)
+        }
+    }
+
+    func testRefusesFourthMissingAndUnsafeRedirects() async throws {
+        let locations: [String?] = [nil, "http://download.example.com/unsafe", "file:///unsafe", "https://download.example.com/extra"]
+        for location in locations {
+            let hops = location == "https://download.example.com/extra" ? 3 : 1
+            let transport = FakeOneDriveTransport()
+            let store = OneDriveStore(transport: transport, now: { 0 })
+            transport.answer = { [unowned transport] _ in
+                let headers = transport.requests.count <= hops
+                    ? ["location": "https://download.example.com/r1"]
+                    : location.map { ["location": $0] } ?? [:]
+                return OneDriveResponse(status: 302, headers: headers, body: Data())
+            }
+            do {
+                _ = try await store.read(id: "ITEM1", tokens: { _ in "access" })
+                XCTFail("A fourth, missing or unsafe redirect must fail")
+            } catch let error as ICloudStoreError {
+                XCTAssertEqual(error.code, "invalid")
+            }
+            XCTAssertEqual(transport.requests.count, hops + 1)
+        }
+    }
+
+    func testRedirectedReadStillRequires200AndCapsTheFinalBody() async throws {
+        for status in [200, 206] {
+            let transport = FakeOneDriveTransport()
+            let store = OneDriveStore(transport: transport, now: { 0 })
+            transport.answer = { [unowned transport] _ in
+                transport.requests.count <= 2
+                    ? OneDriveResponse(status: 302, headers: ["location": "https://download.example.com/r1"], body: Data())
+                    : OneDriveResponse(status: status, headers: [:], body: nil)
+            }
+            do {
+                _ = try await store.read(id: "ITEM1", tokens: { _ in "access" })
+                XCTFail("An oversized or partial final response must fail")
+            } catch let error as ICloudStoreError {
+                XCTAssertEqual(error.code, status == 200 ? "too-large" : "invalid")
+            }
+        }
+    }
+}
+
 final class OneDriveAuthorizationTests: XCTestCase {
     private let authorization = OneDriveAuthorization { count in Data(repeating: 9, count: count) }
 
