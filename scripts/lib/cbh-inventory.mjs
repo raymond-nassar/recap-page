@@ -1402,8 +1402,8 @@ export function approvalDigestFor(relationshipReview) {
   return digestCanonicalJson(payload);
 }
 
-// Story types and tones are discovery judgments added after a list's packet was approved and
-// revised without a new relationship review, so frozen packets and digests compare without them.
+// Discovery judgments can change after a list's packet was approved without changing its
+// issue relationships, so frozen packets and digests compare without them.
 // Writers are derived for discovery at the same time, from credits the packet already reviewed,
 // and so is the list of other bundled lists each one wholly contains.
 export function withoutDiscoveryTags(entry) {
@@ -1414,6 +1414,8 @@ export function withoutDiscoveryTags(entry) {
   delete rest.chapterTags;
   delete rest.writers;
   delete rest.contains;
+  delete rest.universeIds;
+  delete rest.universeScopes;
   return rest;
 }
 
@@ -1421,7 +1423,7 @@ export function withoutDiscoveryTags(entry) {
 // published key order, so a rewrite that changes nothing else leaves the manifest byte-identical.
 export function withPublishedDiscoveryTags(next, published) {
   const tagged = { ...next };
-  for (const field of ['storyTypes', 'tones']) {
+  for (const field of ['storyTypes', 'tones', 'universeIds', 'universeScopes']) {
     if (Object.hasOwn(published ?? {}, field)) tagged[field] = published[field];
   }
   const order = Object.keys(published ?? {}).filter((key) => Object.hasOwn(tagged, key));
@@ -1443,6 +1445,8 @@ export function libraryDigestFor(manifest, orderIssueIds) {
       writers: _writers,
       contains: _contains,
       chapterTags: _chapterTags,
+      universeIds: _universeIds,
+      universeScopes: _universeScopes,
       ...entry
     }) => entry),
   };

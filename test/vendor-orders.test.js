@@ -63,6 +63,7 @@ function writeFixture(rootPath) {
   const data = path.join(rootPath, 'src', 'data');
   const orders = path.join(data, 'orders');
   mkdirSync(orders, { recursive: true });
+  cpSync(path.join(root, 'src', 'data', 'universeCatalog.js'), path.join(data, 'universeCatalog.js'));
   writeFileSync(path.join(data, 'curated-lists.json'), JSON.stringify({
     lists: [{
       id: 'atomic-order',
@@ -892,6 +893,33 @@ test('catalog-only carries both gap counts and is byte-stable on a second run', 
     readFileSync(path.join(fixture, 'src', 'data', 'rated-guide-index.json'), 'utf8'),
     firstIndex,
   );
+});
+
+test('catalog-only propagates Universe relationships without rewriting issue payloads', (t) => {
+  const fixture = mkdtempSync(path.join(os.tmpdir(), 'mrt-vendor-universes-'));
+  t.after(() => rmSync(fixture, { recursive: true, force: true }));
+  writeCatalogGapFixture(fixture);
+  const data = path.join(fixture, 'src', 'data');
+  const manifestPath = path.join(data, 'curated-lists.json');
+  const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
+  const universeIds = ['marvel-zombies'];
+  const universeScopes = {
+    'marvel-zombies': { kind: 'related-realities', note: 'Includes stories from other realities.' },
+  };
+  Object.assign(manifest.lists[0], { universeIds, universeScopes });
+  writeFileSync(manifestPath, JSON.stringify(manifest));
+  const payloadPath = path.join(data, 'atomic_order.json');
+  const before = readFileSync(payloadPath);
+  const hook = path.join(fixture, 'no-fetch.mjs');
+  writeFileSync(hook, "globalThis.fetch = () => { throw new Error('unexpected network request'); };\n");
+  const result = spawnSync(process.execPath, [
+    '--import', pathToFileURL(hook).href, 'scripts/vendor-orders.mjs', '--catalog-only',
+  ], { cwd: fixture, encoding: 'utf8' });
+  assert.equal(result.status, 0, result.stderr);
+  const card = JSON.parse(readFileSync(path.join(data, 'catalog.json'), 'utf8')).lists[0];
+  assert.deepEqual(card.universeIds, universeIds);
+  assert.deepEqual(card.universeScopes, universeScopes);
+  assert.deepEqual(readFileSync(payloadPath), before);
 });
 
 test('a generated child id is a valid --only target for its complete family', (t) => {

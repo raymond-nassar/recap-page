@@ -107,7 +107,8 @@ function contentShellPath(path) {
     || path === '/index.html'
     || path === '/styles.css'
     || (/^\/js\/.+\.js$/).test(path)
-    || (/^\/data\/collectedEdition(?:Catalog|Evidence)\.js$/).test(path);
+    || (/^\/data\/collectedEdition(?:Catalog|Evidence)\.js$/).test(path)
+    || path === '/data/universeCatalog.js';
 }
 
 function contentResourceMatches(path, resource, manifest) {

@@ -16,7 +16,7 @@ import {
   validateFrozenPacket,
   validateInventoryState,
   validateMappingDigest,
-  validateReportDigest, withoutDiscoveryTags,
+  validateReportDigest, withPublishedDiscoveryTags, withoutDiscoveryTags,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { issueIdsFromValue } from '../scripts/lib/cbh-overlap.mjs';
 import { placeholderId } from '../scripts/lib/placeholder-id.mjs';
@@ -805,6 +805,10 @@ test('spotlight taxonomy does not rewrite frozen issue-library evidence', () => 
   const baseline = libraryDigestFor(discoveryManifest, vectors);
   const selected = structuredClone(discoveryManifest);
   selected.lists[0].storylines = true;
+  selected.lists[0].universeIds = ['marvel-zombies'];
+  selected.lists[0].universeScopes = {
+    'marvel-zombies': { kind: 'related-realities', note: 'Includes related realities.' },
+  };
   selected.lists[1].storylinesChildren = ['parent-02'];
   selected.lists[1].chapterTags = { 'parent-02': { storyTypes: ['war'], tones: ['dark'] } };
   assert.equal(libraryDigestFor(selected, vectors), baseline,
@@ -813,6 +817,7 @@ test('spotlight taxonomy does not rewrite frozen issue-library evidence', () => 
     ['id', 'changed'], ['name', 'Changed'], ['sourceFile', 'changed.md'],
     ['sourceOrigin', 'Changed source'], ['out', 'changed.json'],
     ['unknownDiscoveryField', true], ['nested', { storylines: true }],
+    ['nestedUniverse', { universeIds: ['marvel-zombies'] }],
   ]) {
     const changed = structuredClone(discoveryManifest);
     changed.lists[0][field] = value;
@@ -839,6 +844,36 @@ test('spotlight taxonomy does not rewrite frozen issue-library evidence', () => 
     }, issueIds),
     libraryDigestFor(manifest, issueIds),
   );
+});
+
+test('universe discovery is excluded from frozen manifest comparisons', () => {
+  const entry = {
+    id: 'example',
+    name: 'Example',
+    universeIds: ['marvel-zombies'],
+    universeScopes: {
+      'marvel-zombies': { kind: 'related-realities', note: 'Includes related realities.' },
+    },
+  };
+
+  assert.deepEqual(withoutDiscoveryTags(entry), { id: 'example', name: 'Example' });
+});
+
+test('universe discovery survives approved guide regeneration', () => {
+  const published = {
+    id: 'example',
+    universeIds: ['marvel-zombies'],
+    universeScopes: {
+      'marvel-zombies': { kind: 'related-realities', note: 'Includes related realities.' },
+    },
+    name: 'Before',
+  };
+
+  assert.deepEqual(withPublishedDiscoveryTags({ id: 'example', name: 'After' }, published), {
+    ...published,
+    name: 'After',
+  });
+  assert.deepEqual(withPublishedDiscoveryTags({ id: 'example' }, { id: 'example' }), { id: 'example' });
 });
 
 test('Abomination preserves the unresolved Hulk annual and selects the exact 1981 Ghost Rider issue', async () => {

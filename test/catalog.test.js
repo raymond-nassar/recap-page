@@ -86,6 +86,23 @@ test('parses a well-formed catalog entry', () => {
   assert.equal(lists[0].sourceSection, 'X-Men: Divided We Stand');
 });
 
+test('catalog Universe relationships preserve scope and reject unknown metadata', () => {
+  const list = {
+    id: 'one', name: 'One', file: 'one.json', count: 1,
+    universeIds: ['marvel-zombies'],
+    universeScopes: { 'marvel-zombies': { kind: 'related-realities', note: 'Includes other realities.' } },
+  };
+  const parsed = parseCatalog({ lists: [list] }).lists[0];
+  assert.deepEqual(parsed.universeIds, list.universeIds);
+  assert.deepEqual(parsed.universeScopes, list.universeScopes);
+  assert.throws(() => parseCatalog({ lists: [{ ...list, universeIds: ['unknown'] }] }), /universe metadata/i);
+  assert.throws(() => parseCatalog({ lists: [{ ...list, universeScopes: {
+    'marvel-zombies': { kind: 'related-realities' },
+  } }] }), /nonempty note/);
+  assert.equal(Object.hasOwn(parseCatalog({ lists: [{ id: 'old', name: 'Old', file: 'old.json', count: 0 }] }).lists[0],
+    'universeIds'), false);
+});
+
 test('gap counts are required nonnegative integers', () => {
   const entry = {
     id: 'x',

@@ -203,7 +203,7 @@ flowchart TD
 
 Targeted vendoring reuses pinned payloads for skipped orders, derives the full catalog, then writes
 the complete output batch atomically, including `catalog.json` and generated overlap artifacts,
-at `scripts/vendor-orders.mjs:703-796`. Runtime loads and parses that same-origin catalog once at
+at `scripts/vendor-orders.mjs:705-798`. Runtime loads and parses that same-origin catalog once at
 `src/js/main.js:2137-2148`, independently of the metadata service.
 
 Series and creator names are searched in vendored indexes. Browsing a matching name pages its comics
@@ -481,7 +481,7 @@ older tab blocks it. IndexedDB restrictions and the separate `file://`, `localho
 including the warmed app shell and later requested bundled payloads. The worker rejects other
 origins before opening that cache, at `src/sw.js:61-74`, so Marvel covers and metadata responses
 cannot enter it. Network is always tried first, and each cacheable successful response replaces its cached
-copy; a cached URL is read only when the loopback server cannot answer, at `src/sw.js:77-169`.
+copy; a cached URL is read only when the loopback server cannot answer, at `src/sw.js:77-170`.
 Requests marked `no-store` bypass the worker, and responses marked `no-store` are not stored.
 Worker registration also opts out of HTTP caching for update checks, defensively: the default already
 does so for this import-free worker. App files remain network first:
@@ -1012,12 +1012,12 @@ architecture and must rewrite the relevant section rather than merely re-aim its
 Reading Paths add no second content or persistence model. Build-time authoring emits path
 descriptions and ordered Reading List ids into `catalog.json`; the browser treats the paths in that
 parsed generated catalog as the complete authority. `resolveReadingPaths()` resolves every path
-independently against the same catalog stories at `src/js/lib/catalog.js:1637-1690`, including paths
+independently against the same catalog stories at `src/js/lib/catalog.js:1643-1696`, including paths
 emitted from a partition ledger rather than declared in the ordinary curated manifest, at
 `scripts/lib/chapter-orders.mjs:406-416`.
 
 That aggregate model is deliberately separate from shelf orientation. Shelf badges keep the first
-path that reaches a story so one row has one stable position, at `src/js/lib/catalog.js:773-791`.
+path that reaches a story so one row has one stable position, at `src/js/lib/catalog.js:779-797`.
 The aggregate resolver keeps each path's own ordinal and neighbors, so a story shared by future
 paths remains a separate stop in each sequence.
 

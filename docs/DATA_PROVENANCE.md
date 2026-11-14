@@ -1128,10 +1128,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes four independent Reading Paths with 104 stops: three
 authored paths with 10, 12 and 4 stops from the curated manifest at
-`src/data/curated-lists.json:11188-11239`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:11256-11307`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all four at
-`src/data/catalog.json:16703-16840`.
+`src/data/catalog.json:16771-16908`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -3016,7 +3016,7 @@ Issue #6 is the same identity One World Under Doom already confirms, so the two 
 The owner-guide contract requires a positive ID, exact matching owner-supplied Marvel URL, named
 confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:849-871`).
 The vendor excludes these entries from metadata lookup and creates no provider projection
-(`scripts/vendor-orders.mjs:497-501`, `scripts/vendor-orders.mjs:567-568`, `scripts/vendor-orders.mjs:612-613`).
+(`scripts/vendor-orders.mjs:499-503`, `scripts/vendor-orders.mjs:569-570`, `scripts/vendor-orders.mjs:614-615`).
 Unless a row carries the external supplement described below, the published rows carry only their
 confirmed identity, issue ID, URL and refusal state; optional provider details and covers remain
 empty. The ten One World Under Doom rows are of that kind. No comic image bytes are stored and no
@@ -3665,3 +3665,25 @@ The provider policy ships Hoopla as pending, with no title identifier or address
 requires recorded granted permission and a verified HTTPS book destination. It says "View this
 book at Hoopla", not that borrowing is possible, and opens outside the app with referrer isolation.
 No live provider lookup, account, credential, cover image or affiliate/store destination is added.
+
+## Provisional Universes metadata
+
+[Issue #1291](https://github.com/raymond-nassar/recap-page/issues/1291) supplies the initial
+Universe names, reality designations, years and descriptions. The
+[source ledger](../scripts/data/universe-sources.json) records the selected fields, pinned
+reference revisions, retrieval dates, alternative debuts and publication dates, and the evidence
+for each Reading List, series and comic association. The owner's descriptions are retained as
+provided; the primary-continuity description is project-authored.
+
+The provisional registry uses the named line's cover year, excludes previews and promotions, and
+selects Marvel Comics #1 in 1939 for the primary continuity. The ledger preserves the on-sale and
+earliest-reality alternatives, including Fantastic Four #1 and the Ka-Zar pulp candidate. A named
+reality without a confirmed Earth number remains named rather than receiving a guessed number.
+The Marvel Zombies guide's qualification is retained because it includes other realities;
+list membership never assigns a reality to every comic in that list.
+
+These are implementation candidates, not approved publication facts. The owner has not settled
+the publication-year convention or the three conflicting supplied years. Independent bibliography
+is still unverified, as are the Heroes Reborn Wizard special's classification and on-sale date.
+The pinned issue and reality pages come from the same reference source and are not independent
+corroboration. No source narrative or comic image bytes are added, and saved data is unchanged.

@@ -7,6 +7,7 @@
 // import, or a truthful issue count) is rejected rather than rendered half-blank.
 
 import { normalizeCover } from './model.js';
+import { copyUniverseListFields, universeListProblems } from './universeSchema.js';
 
 export const LIST_TYPES = ['event', 'character-run', 'creator-run', 'era', 'screen-companion'];
 export const READING_DEPTHS = ['essential', 'complete', 'partial', 'tie-ins', 'selected'];
@@ -189,6 +190,10 @@ function normalizeEntry(raw) {
   if (Object.hasOwn(raw, 'storylines') && typeof raw.storylines !== 'boolean') {
     throw new Error(`Catalog list "${raw.id ?? '(unnamed)'}" has invalid storylines metadata`);
   }
+  const universeProblems = universeListProblems(raw);
+  if (universeProblems.length) {
+    throw new Error(`Catalog list "${raw.id ?? '(unnamed)'}" has invalid universe metadata: ${universeProblems.join('; ')}`);
+  }
   const id = str(raw.id);
   const name = str(raw.name);
   const file = safeFile(raw.file);
@@ -228,6 +233,7 @@ function normalizeEntry(raw) {
     storylines: raw.storylines === true,
     spotlightKind: SPOTLIGHT_KINDS.includes(raw.spotlightKind) ? raw.spotlightKind : null,
     audience: LIST_AUDIENCES.includes(raw.audience) ? raw.audience : null,
+    ...copyUniverseListFields(raw),
     storyTypes: knownTags(raw.storyTypes, STORY_TYPES, MAX_STORY_TYPES),
     tones: knownTags(raw.tones, STORY_TONES, MAX_STORY_TONES),
     writers: strings(raw.writers).slice(0, 3),

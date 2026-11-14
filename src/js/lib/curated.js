@@ -27,6 +27,7 @@ import {
   safeOrderFile,
   storyKey,
 } from './catalog.js';
+import { copyUniverseListFields, universeListProblems } from './universeSchema.js';
 
 const str = (v) => (typeof v === 'string' && v.trim() ? v.trim() : null);
 
@@ -161,6 +162,10 @@ function checkEntry(raw, index, seen) {
       if (problem) at(problem);
     }
   }
+  if (partitionFile && (Object.hasOwn(raw, 'universeIds') || Object.hasOwn(raw, 'universeScopes'))) {
+    at('universe metadata belongs on a listed reading, not a partition parent');
+  }
+  for (const problem of universeListProblems(raw)) at(problem);
   // A partition parent's chapters are generated, so their tags are held here keyed by exact child
   // ID, beside storylinesChildren, rather than in the chapter ledger whose boundaries the owner
   // approved. The build refuses an ID that is not one of the ledger's chapters.
@@ -247,6 +252,7 @@ function checkEntry(raw, index, seen) {
       depth: raw.depth,
       ...(raw.type === 'character-run' ? { spotlightKind: raw.spotlightKind } : {}),
       ...(Object.hasOwn(raw, 'audience') ? { audience: raw.audience } : {}),
+      ...copyUniverseListFields(raw),
       ...(Object.hasOwn(raw, 'storyTypes') ? { storyTypes: [...raw.storyTypes] } : {}),
       ...(Object.hasOwn(raw, 'tones') ? { tones: [...raw.tones] } : {}),
       characters: strings(raw.characters),

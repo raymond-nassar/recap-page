@@ -8,6 +8,9 @@
       "description": "Mutants shelter behind Fortress X's defenses as attacks threaten their last refuge. Mike Carey's Age of X: Alpha opens the crossover, followed by alternating chapters of X-Men Legacy and New Mutants, the Age of X: Universe series and the aftermath in X-Men Legacy.",
       "type": "event",
       "depth": "complete",
+      "universeIds": [
+        "age-of-x"
+      ],
       "storyTypes": [
         "science-fiction",
         "war"
@@ -356,6 +359,9 @@
       "description": "Nightcrawler's attempt to return home sets off a crisis that threatens more than one reality. Age of Apocalypse and X-Treme X-Men lead in, then X-Termination opens and closes the main story, with Astonishing X-Men and those two books between.",
       "type": "event",
       "depth": "complete",
+      "universeIds": [
+        "age-of-apocalypse"
+      ],
       "storyTypes": [
         "science-fiction"
       ],
@@ -1266,6 +1272,9 @@
       "description": "The Avengers vanish from history as the Squadron Supreme reshapes the Marvel Universe.",
       "type": "event",
       "depth": "complete",
+      "universeIds": [
+        "heroes-reborn-2021"
+      ],
       "storyTypes": [
         "science-fiction"
       ],
@@ -1554,6 +1563,9 @@
       "description": "Jonathan Hickman's rebuilt Ultimate line in publication-adjacent order, from Ultimate Invasion (2023) through Ultimate Impact: Reborn.",
       "type": "era",
       "depth": "essential",
+      "universeIds": [
+        "ultimate-universe"
+      ],
       "storyTypes": [
         "science-fiction",
         "political"
@@ -1607,6 +1619,9 @@
       "description": "The same line read the way it is collected, one section per trade paperback, for readers who buy the books rather than the single issues. Each section is a volume you can buy, and it tracks its own progress. Reading is shared with the issue-by-issue order, so an issue ticked in one is ticked in the other. The volume line-up follows Comic Book Herald's collected-edition guide and is not derived from Marvel metadata, which carries no collection records for this era. Six issues Marvel has not collected are left out: the 2024 Free Comic Book Day issue and the five-part Ultimate Impact: Reborn.",
       "type": "era",
       "depth": "essential",
+      "universeIds": [
+        "ultimate-universe"
+      ],
       "storyTypes": [
         "science-fiction",
         "political"
@@ -2286,6 +2301,15 @@
       "description": "Marvel's heroes become zombies in a dark horror saga, and Deadpool gets a zombie universe of his own. The Fantastic Four and Black Panther are caught up early: Ultimate Fantastic Four leads to Robert Kirkman's Marvel Zombies, the sequels, Battleworld and Resurrection, with alternate additions such as Red Band later. Some Marvel Zombies entries are placeholders to find elsewhere.",
       "type": "era",
       "depth": "partial",
+      "universeIds": [
+        "marvel-zombies"
+      ],
+      "universeScopes": {
+        "marvel-zombies": {
+          "kind": "related-realities",
+          "note": "Includes the original Marvel Zombies and stories set in other realities."
+        }
+      },
       "storyTypes": [
         "horror"
       ],
@@ -2334,6 +2358,9 @@
       "type": "event",
       "depth": "complete",
       "storylines": true,
+      "universeIds": [
+        "house-of-m"
+      ],
       "storyTypes": [
         "magic-supernatural",
         "political"
@@ -2398,6 +2425,9 @@
       "type": "event",
       "depth": "essential",
       "storylines": true,
+      "universeIds": [
+        "house-of-m"
+      ],
       "storyTypes": [
         "magic-supernatural",
         "political"
@@ -2562,6 +2592,9 @@
       "type": "event",
       "depth": "complete",
       "storylines": true,
+      "universeIds": [
+        "earth-616"
+      ],
       "storyTypes": [
         "political"
       ],
@@ -5572,6 +5605,9 @@
       "type": "character-run",
       "depth": "partial",
       "spotlightKind": "other",
+      "universeIds": [
+        "marvel-2099"
+      ],
       "storyTypes": [
         "science-fiction",
         "political"
@@ -6013,6 +6049,9 @@
       "type": "character-run",
       "depth": "complete",
       "spotlightKind": "complete-guide",
+      "universeIds": [
+        "spider-gwen"
+      ],
       "storyTypes": [
         "coming-of-age"
       ],
@@ -6734,6 +6773,10 @@
       "type": "character-run",
       "depth": "partial",
       "spotlightKind": "other",
+      "universeIds": [
+        "ultimate-marvel",
+        "ultimate-universe"
+      ],
       "storyTypes": [
         "coming-of-age"
       ],
@@ -7183,6 +7226,9 @@
       "type": "character-run",
       "depth": "partial",
       "spotlightKind": "other",
+      "universeIds": [
+        "age-of-apocalypse"
+      ],
       "storyTypes": [
         "science-fiction",
         "war"
@@ -8770,6 +8816,10 @@
       "type": "event",
       "depth": "complete",
       "storylines": true,
+      "universeIds": [
+        "days-of-future-past",
+        "earth-616"
+      ],
       "storyTypes": [
         "science-fiction",
         "political"
@@ -13415,6 +13465,9 @@
       "description": "Earth-1610 gives Spider-Man, the X-Men, the Ultimates and the Fantastic Four fresh starts, building toward Ultimate War. Brian Michael Bendis's Ultimate Spider-Man runs alongside Mark Millar's Ultimate X-Men and Ultimates, with Ultimate Marvel Team-Up, Daredevil and Elektra, and Ultimate Iron Man along the way. The selection is not in publication order and omits an entry marked out of continuity.",
       "type": "era",
       "depth": "complete",
+      "universeIds": [
+        "ultimate-marvel"
+      ],
       "storyTypes": [
         "science-fiction",
         "coming-of-age"
@@ -13466,6 +13519,9 @@
       "description": "An alternate universe set in the year 2099 has its own Spider-Man, Doom, X-Men and Ghost Rider, launched in the early 1990s. This selection runs from Peter David's Spider-Man 2099 to Doom 2099, weaving in Punisher 2099, Fantastic Four 2099 and X-Nation 2099. It is a selection rather than the complete order.",
       "type": "event",
       "depth": "selected",
+      "universeIds": [
+        "marvel-2099"
+      ],
       "storyTypes": [
         "science-fiction",
         "political"
@@ -14528,6 +14584,9 @@
       "description": "The eight-part cosmic finale from Ignition through the six-issue event and Devastation.",
       "type": "event",
       "depth": "complete",
+      "universeIds": [
+        "cancerverse"
+      ],
       "storyTypes": [
         "space-opera",
         "horror"
@@ -15632,6 +15691,9 @@
       "depth": "complete",
       "spotlightKind": "other",
       "audience": "young-readers",
+      "universeIds": [
+        "marvel-adventures"
+      ],
       "storyTypes": [
         "adventure",
         "comedy"
@@ -15942,6 +16004,9 @@
       "description": "Spider-Man's daughter May Parker grows into her own hero in a future shared with a new generation of Avengers. Her adventures connect with J2, A-Next, the Fantastic Five and later MC2 crossovers. 17 comics from the source order aren't in the app's comic data yet, so they don't appear among this order's issues.",
       "type": "era",
       "depth": "partial",
+      "universeIds": [
+        "mc2"
+      ],
       "storyTypes": [
         "coming-of-age",
         "science-fiction"
@@ -16032,6 +16097,9 @@
       "type": "event",
       "depth": "complete",
       "storylines": true,
+      "universeIds": [
+        "marvel-1602"
+      ],
       "storyTypes": [
         "magic-supernatural",
         "espionage"

@@ -22,6 +22,9 @@ const CATALOG = {
   }],
 };
 const ORDER = { id: LIST_ID, items: [{ issueId: 2092 }] };
+const UNIVERSE_FILES = [
+  '/data/universeCatalog.js', '/js/lib/universeSchema.js', '/js/lib/universes.js',
+];
 
 function makeResponse(url, body, contentType = 'application/json', status = 200) {
   const bytes = body instanceof Uint8Array
@@ -109,6 +112,7 @@ function makeWorld({ catalog = CATALOG, order = ORDER, caches = makeCaches() } =
     [`${ORIGIN}/js/app.js`, ['import "./main.js";', 'text/javascript']],
     [`${ORIGIN}/data/catalog.json`, [JSON.stringify(catalog), 'application/json']],
     [`${ORIGIN}/data/house_of_m.json`, [JSON.stringify(order), 'application/json']],
+    ...UNIVERSE_FILES.map((file) => [`${ORIGIN}${file}`, ['export const fixture = {};', 'text/javascript']]),
   ]);
   const scope = {
     location: { origin: ORIGIN, href: `${ORIGIN}/#/home` },
@@ -151,6 +155,66 @@ function controller(world) {
   return createOfflineContent({ scope: world.scope, caches: world.caches });
 }
 
+test('Universe modules are required, verified and served offline without admitting other data modules', async () => {
+  const world = makeWorld();
+  const offline = controller(world);
+  const prepared = await offline.prepare(LIST_ID);
+  assert.equal(prepared.ok, true, prepared.error);
+  for (const file of UNIVERSE_FILES) {
+    assert.ok(prepared.manifest.resources.some((entry) => entry.path === file && entry.kind === 'shell'), file);
+  }
+  assert.equal((await offline.readiness(LIST_ID)).state, 'ready');
+
+  const listeners = new Map();
+  runInNewContext(readFileSync(new URL('../src/sw.js', import.meta.url), 'utf8'), {
+    URL,
+    self: {
+      location: { origin: ORIGIN }, caches: world.caches,
+      addEventListener: (name, handler) => listeners.set(name, handler),
+      fetch: async () => { throw new Error('offline'); },
+    },
+  });
+  async function offlineRequest(file) {
+    let response;
+    listeners.get('fetch')({
+      request: { url: `${ORIGIN}${file}`, method: 'GET' },
+      respondWith: (promise) => { response = promise; },
+    });
+    return response;
+  }
+  for (const file of UNIVERSE_FILES) assert.equal((await offlineRequest(file)).status, 200, file);
+
+  const store = world.caches.stores.get(prepared.cacheName);
+  const disallowed = ['/data/unrelated.js', '/data/unrelated.json', '/data/cover.jpg'];
+  const manifest = { ...prepared.manifest, resources: [
+    ...prepared.manifest.resources, ...disallowed.map((path) => ({ path, kind: 'shell' })),
+  ] };
+  store.set(`${ORIGIN}${CONTENT_MANIFEST_PATH}`, makeResponse(`${ORIGIN}${CONTENT_MANIFEST_PATH}`, manifest));
+  for (const path of disallowed) {
+    store.set(`${ORIGIN}${path}`, makeResponse(`${ORIGIN}${path}`, 'unrelated'));
+    await assert.rejects(offlineRequest(path), /offline/);
+  }
+  let intercepted = false;
+  listeners.get('fetch')({
+    request: { url: 'https://example.com/cover.jpg', method: 'GET' },
+    respondWith: () => { intercepted = true; },
+  });
+  assert.equal(intercepted, false);
+  store.set(`${ORIGIN}${CONTENT_MANIFEST_PATH}`,
+    makeResponse(`${ORIGIN}${CONTENT_MANIFEST_PATH}`, prepared.manifest));
+
+  const registry = `${ORIGIN}/data/universeCatalog.js`;
+  store.set(registry, makeResponse(registry, 'tampered', 'text/javascript'));
+  assert.equal((await offline.readiness(LIST_ID)).state, 'stale');
+  store.delete(registry);
+  assert.equal((await offline.readiness(LIST_ID)).state, 'stale');
+  const missing = makeWorld();
+  missing.scope.bodies.delete(registry);
+  const failed = await controller(missing).prepare(LIST_ID);
+  assert.equal(failed.state, 'failed');
+  assert.match(failed.error, /universeCatalog\.js/);
+});
+
 test('collected-edition modules survive selected-list offline preparation and worker fallback', async () => {
   const world = makeWorld();
   const files = ['/data/collectedEditionCatalog.js', '/data/collectedEditionEvidence.js'];
@@ -188,7 +252,8 @@ test('preparation commits the selected list and actual shell only after verified
   assert.equal(result.manifest.complete, true);
   assert.deepEqual(
     result.manifest.resources.map(({ path }) => path),
-    ['/', '/data/catalog.json', '/data/house_of_m.json', '/js/app.js', '/styles.css'],
+    ['/', '/data/catalog.json', '/data/house_of_m.json', '/data/universeCatalog.js', '/js/app.js',
+      '/js/lib/universes.js', '/js/lib/universeSchema.js', '/styles.css'],
   );
   assert.ok(world.caches.calls.maxActivePuts <= 4);
   assert.ok(world.fetchConcurrency.max <= 4);

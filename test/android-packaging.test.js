@@ -516,7 +516,7 @@ test('Android Back preserves dialog and visible narrow-menu priority before sync
   assert.equal(back(), false);
 });
 
-test('Android preparation copies and evaluates the immutable highlights with exact manifest digests', async () => {
+test('Android preparation copies shared feature modules with exact manifest digests', async () => {
   const scratch = await mkdtemp(join(tmpdir(), 'recap-android-news-'));
   try {
     const { directory, manifest } = await prepareAndroid(join(scratch, 'recap'));
@@ -526,6 +526,9 @@ test('Android preparation copies and evaluates the immutable highlights with exa
       ['js', 'views', 'home-updates.js'],
       ['data', 'collectedEditionCatalog.js'],
       ['data', 'collectedEditionEvidence.js'],
+      ['data', 'universeCatalog.js'],
+      ['js', 'lib', 'universeSchema.js'],
+      ['js', 'lib', 'universes.js'],
       ['js', 'lib', 'collectedEditions.js'],
       ['js', 'views', 'shared', 'collected-editions.js'],
     ]) {
