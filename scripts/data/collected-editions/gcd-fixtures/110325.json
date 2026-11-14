@@ -1,0 +1,35 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/110325/?format=json",
+  "retrievedAt": "2026-11-13T02:07:43.282Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/110325/?format=json",
+    "series_name": "X-Treme X-Men: Savage Land (2001 series)",
+    "descriptor": "2",
+    "number": "2",
+    "volume": "1",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "December 2001",
+    "key_date": "2001-12-00",
+    "page_count": "36.000",
+    "isbn": "",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/10470/?format=json",
+    "story_set": [
+      {
+        "type": "comic story",
+        "title": "Deluge",
+        "feature": "X-Men",
+        "sequence_number": 1,
+        "page_count": "23.000",
+        "notes": "",
+        "script": "Chris Claremont",
+        "pencils": "Kevin Sharpe"
+      }
+    ]
+  }
+}

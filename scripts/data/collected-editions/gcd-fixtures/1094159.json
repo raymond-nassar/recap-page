@@ -1,0 +1,225 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/1094159/?format=json",
+  "retrievedAt": "2026-11-13T01:07:20.700Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/1094159/?format=json",
+    "series_name": "Daredevil Visionaries (1999 series)",
+    "descriptor": "",
+    "number": "[nn]",
+    "volume": "",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "August 1999",
+    "key_date": "1999-08-00",
+    "page_count": "196.000",
+    "isbn": "0-7851-0737-1",
+    "notes": "First printing",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/72765/?format=json",
+    "story_set": [
+      {
+        "type": "foreword, introduction, preface, afterword",
+        "title": "Introduction",
+        "feature": "",
+        "sequence_number": 1,
+        "page_count": "2.000",
+        "notes": "",
+        "script": "Ben Affleck",
+        "pencils": "Joe Quesada (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "1",
+        "feature": "Daredevil",
+        "sequence_number": 2,
+        "page_count": "1.000",
+        "notes": "Cover depicts Daredevil jumping upside down and throwing his billy club at the reader.",
+        "script": "None",
+        "pencils": "Joe Quesada (credited)"
+      },
+      {
+        "type": "comic story",
+        "title": "Guardian Devil Part One: \"...And a Child Shall Lead Them All\"",
+        "feature": "Daredevil",
+        "sequence_number": 3,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Kevin Smith (credited)",
+        "pencils": "Joe Quesada (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "2",
+        "feature": "Daredevil",
+        "sequence_number": 4,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "J. Scott Campbell (signed as Campbell [flourish])"
+      },
+      {
+        "type": "comic story",
+        "title": "Guardian Devil Part Two: \"The Unexamined Life\"",
+        "feature": "Daredevil",
+        "sequence_number": 5,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Kevin Smith (credited)",
+        "pencils": "Joe Quesada (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "3",
+        "feature": "Daredevil",
+        "sequence_number": 6,
+        "page_count": "1.000",
+        "notes": "Cover image was used as the establishing shot for Daredevil: The Movie (2002).",
+        "script": "None",
+        "pencils": "Joe Quesada (credited) (signed as Q UESADA)"
+      },
+      {
+        "type": "comic story",
+        "title": "Guardian Devil Part Three: Dystopia",
+        "feature": "Daredevil",
+        "sequence_number": 7,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Kevin Smith (credited)",
+        "pencils": "Joe Quesada (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Issue No. 1 Alternate Cover",
+        "feature": "Daredevil",
+        "sequence_number": 8,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Joe Quesada (credited) (signed as Q UESADA)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "4",
+        "feature": "Daredevil",
+        "sequence_number": 9,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Joe Quesada (credited) (signed as Q)"
+      },
+      {
+        "type": "comic story",
+        "title": "Guardian Devil Part Four: The Devil's Distaff",
+        "feature": "Daredevil",
+        "sequence_number": 10,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Kevin Smith (credited)",
+        "pencils": "Joe Quesada (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Trade Paperback Vol. 1 Cover",
+        "feature": "Daredevil",
+        "sequence_number": 11,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Joe Quesada (credited) (signed as Q UESADA)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "5",
+        "feature": "Daredevil",
+        "sequence_number": 12,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Joe Quesada (credited) (signed as Q UESADA)"
+      },
+      {
+        "type": "comic story",
+        "title": "Guardian Devil Part Five: Devil's Despair",
+        "feature": "Daredevil",
+        "sequence_number": 13,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Kevin Smith (credited)",
+        "pencils": "Joe Quesada (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "6",
+        "feature": "Daredevil",
+        "sequence_number": 14,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Joe Quesada (credited) (signed as Q UESADA)"
+      },
+      {
+        "type": "comic story",
+        "title": "Guardian Devil Part Six: The Devil Divested",
+        "feature": "Daredevil",
+        "sequence_number": 15,
+        "page_count": "22.000",
+        "notes": "Macabes' address is 387 Park Avenue South (The address of Marvel Comics).",
+        "script": "Kevin Smith (credited)",
+        "pencils": "Joe Quesada (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "7",
+        "feature": "Daredevil",
+        "sequence_number": 16,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Joe Quesada (credited) (signed as Q UESADA)"
+      },
+      {
+        "type": "comic story",
+        "title": "Guardian Devil Part Seven: The Devil's Demon",
+        "feature": "Daredevil",
+        "sequence_number": 17,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Kevin Smith (credited)",
+        "pencils": "Joe Quesada (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "8",
+        "feature": "Daredevil",
+        "sequence_number": 18,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Joe Quesada (credited) (signed as Q UESADA)"
+      },
+      {
+        "type": "comic story",
+        "title": "Guardian Devil Part Eight: The Devil's Deliverance",
+        "feature": "Daredevil",
+        "sequence_number": 19,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Kevin Smith (credited)",
+        "pencils": "Joe Quesada (credited)"
+      },
+      {
+        "type": "foreword, introduction, preface, afterword",
+        "title": "Afterword",
+        "feature": "",
+        "sequence_number": 20,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "Kevin Smith (credited)",
+        "pencils": "None"
+      }
+    ]
+  }
+}

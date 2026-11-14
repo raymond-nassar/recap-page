@@ -244,6 +244,116 @@
           "assertedBy": "owner-curated"
         }
       ]
+    },
+    {
+      "id": "daredevil-visionaries-kevin-smith",
+      "title": "Daredevil Visionaries: Kevin Smith",
+      "format": "softcover",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 1094159
+      },
+      "contents": []
+    },
+    {
+      "id": "xtreme-xmen-v1-destiny",
+      "title": "X-Treme X-Men Vol. 1: Destiny",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 910908
+      },
+      "contents": []
+    },
+    {
+      "id": "exiles-v1-down-the-rabbit-hole",
+      "title": "Exiles Vol. 1: Down the Rabbit Hole",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 787873
+      },
+      "contents": []
+    },
+    {
+      "id": "xtreme-xmen-savage-land",
+      "title": "X-Treme X-Men: Savage Land",
+      "format": "softcover",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 672067
+      },
+      "contents": []
+    },
+    {
+      "id": "new-xmen-v2-imperial",
+      "title": "New X-Men Vol. 2: Imperial",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 774091
+      },
+      "contents": []
+    },
+    {
+      "id": "exiles-v2-a-world-apart",
+      "title": "Exiles Vol. 2: A World Apart",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 787874
+      },
+      "contents": []
+    },
+    {
+      "id": "daredevil-v4-underboss",
+      "title": "Daredevil Vol. 4: Underboss",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 251246
+      },
+      "contents": []
+    },
+    {
+      "id": "xtreme-xmen-v2-invasion",
+      "title": "X-Treme X-Men Vol. 2: Invasion",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 910909
+      },
+      "contents": []
+    },
+    {
+      "id": "exiles-v3-out-of-time",
+      "title": "Exiles Vol. 3: Out of Time",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 787875
+      },
+      "contents": []
+    },
+    {
+      "id": "new-xmen-v4-riot-at-xaviers",
+      "title": "New X-Men Vol. 4: Riot at Xavier's",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 774093
+      },
+      "contents": []
+    },
+    {
+      "id": "daredevil-v8-echo-vision-quest",
+      "title": "Daredevil Vol. 8: Echo - Vision Quest",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 251250
+      },
+      "contents": []
     }
   ],
   "lists": [
@@ -257,6 +367,7 @@
         "cbh-ledger": 0,
         "cbh-heading": 7,
         "gcd-notes": 0,
+        "gcd-stories": 0,
         "owner-curated": 12
       },
       "findings": [
@@ -277,6 +388,7 @@
         "cbh-ledger": 20,
         "cbh-heading": 0,
         "gcd-notes": 0,
+        "gcd-stories": 0,
         "owner-curated": 0
       },
       "findings": [
@@ -298,6 +410,7 @@
         "cbh-ledger": 0,
         "cbh-heading": 10,
         "gcd-notes": 0,
+        "gcd-stories": 0,
         "owner-curated": 9
       },
       "findings": [
@@ -318,6 +431,7 @@
         "cbh-ledger": 0,
         "cbh-heading": 0,
         "gcd-notes": 0,
+        "gcd-stories": 0,
         "owner-curated": 1
       },
       "findings": [
@@ -343,6 +457,7 @@
         "cbh-ledger": 0,
         "cbh-heading": 0,
         "gcd-notes": 0,
+        "gcd-stories": 0,
         "owner-curated": 4
       },
       "findings": [

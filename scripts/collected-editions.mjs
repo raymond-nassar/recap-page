@@ -18,6 +18,8 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { DESTINATION_PROVIDERS, acceptedLink, destinationUrl, isCheckedDate, providerAccepted }
+  from '../src/js/lib/editionDestinations.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 export const DATA_DIR = path.join(root, 'scripts', 'data', 'collected-editions');
@@ -30,15 +32,18 @@ export const GCD_LICENSE = Object.freeze({
     + 'Minimised and reorganised for this project; cover images are never recorded.',
 });
 
-export const ASSERTION_SOURCES = Object.freeze(['cbh-ledger', 'cbh-heading', 'gcd-notes', 'owner-curated']);
-export const CHECK_TIERS = Object.freeze(['gcd-notes', 'gcd-story-titles', 'gcd-count-only', 'gcd-unindexed']);
+export const ASSERTION_SOURCES = Object.freeze(['cbh-ledger', 'cbh-heading', 'gcd-notes', 'gcd-stories', 'owner-curated']);
+export const CHECK_TIERS = Object.freeze([
+  'gcd-notes', 'gcd-story-titles', 'gcd-numbered-covers', 'gcd-original-stories', 'gcd-numbered-comparison',
+  'gcd-count-only', 'gcd-unindexed',
+]);
 const MEDIA = new Set(['print', 'digital']);
 
 const STORE_HOSTS = ['amazon.', 'amzn.', 'bookshop.org', 'comixology.', 'tfaw.com', 'ebay.', 'instocktrades.',
   'mycomicshop.'];
 const GCD_ISSUE_KEYS = ['api_url', 'series_name', 'descriptor', 'number', 'volume', 'variant_name', 'title',
   'publication_date', 'key_date', 'page_count', 'isbn', 'notes', 'variant_of', 'series'];
-const GCD_STORY_KEYS = ['type', 'title', 'feature', 'sequence_number', 'page_count', 'notes'];
+const GCD_STORY_KEYS = ['type', 'title', 'feature', 'sequence_number', 'page_count', 'notes', 'script', 'pencils'];
 
 const tidy = (value) => (typeof value === 'string' ? value.replace(/\s+/g, ' ').trim() : value);
 const rowKey = (seriesId, number) => `${seriesId}:${number}`;
@@ -65,8 +70,11 @@ function readJson(file) {
 // database's own series naming must never appear in an MIT-licensed file. The printing link comes
 // from the database's variant record, so it is database-only too; the record id is a reference.
 export const DATABASE_ONLY_KEYS = Object.freeze(['storyTitles', 'uncountedSequences', 'weakNumbers', 'gcdSeries',
-  'partialSeries', 'printingOf']);
-const DATABASE_SOURCE = 'gcd-notes';
+  'partialSeries', 'printingOf', 'seriesCrosswalk', 'expectedCrosswalkEntries', 'gcdAliases', 'gcdSeriesUrl',
+  'gcdSeriesPage', 'sourceIssues', 'gcdIssuePage', 'listSelections', 'seriesEvidence', 'sourceSeriesId',
+  'coverPrefix', 'originalIssues', 'collectionSequence', 'heldReason', 'comparisonIssueId', 'comparisonCoverPrefix',
+  'expectedScript', 'expectedPencils']);
+const DATABASE_SOURCES = new Set(['gcd-notes', 'gcd-stories']);
 const DATABASE_SERIES_NAME = /\([^()]*, \d{4} series\)/;
 // Which book is a printing or variant of which is read from the database, so MIT prose and ids
 // must not state it in words either.
@@ -98,7 +106,7 @@ export function databaseLeaks(value, where) {
         walk(entry, `${at}.${name}`, name);
       }
     } else if (typeof item === 'string'
-      && ((key === 'assertedBy' && item === DATABASE_SOURCE) || DATABASE_SERIES_NAME.test(item)
+      && ((key === 'assertedBy' && DATABASE_SOURCES.has(item)) || DATABASE_SERIES_NAME.test(item)
         || PRINTING_WORDING.test(item.replace(/-/g, ' ')))) {
       leaks.push(`${at}: ${item}`);
     }
@@ -111,19 +119,72 @@ export function loadInputs(dir = DATA_DIR, repoRoot = root) {
   const curated = readJson(path.join(dir, 'pilot.json'));
   const gcdInputs = readJson(path.join(dir, 'gcd-check-inputs.json'));
   const pilot = mergeGcdInputs(curated, gcdInputs);
+  const catalog = readJson(path.join(repoRoot, 'src', 'data', 'catalog.json'));
   const lists = {};
   const ledgers = {};
   for (const list of pilot.lists) {
     lists[list.listId] = readJson(path.join(repoRoot, list.file));
     if (list.ledger) ledgers[list.listId] = readJson(path.join(repoRoot, list.ledger));
   }
-  const fixtures = {};
-  for (const edition of pilot.editions) {
-    const file = path.join(dir, 'gcd-fixtures', `${edition.gcdIssueId}.json`);
-    if (fs.existsSync(file)) fixtures[edition.gcdIssueId] = readJson(file);
+  for (const selection of gcdInputs.listSelections || []) {
+    const entry = catalog.lists.find((candidate) => candidate.id === selection?.listId
+      && `src/data/${candidate.file}` === selection.file);
+    if (entry) lists[selection.listId] = readJson(path.join(repoRoot, 'src', 'data', entry.file));
   }
-  const catalog = readJson(path.join(repoRoot, 'src', 'data', 'catalog.json'));
-  return { pilot, curated, gcdInputs, lists, ledgers, fixtures, catalog };
+  const fixtures = {};
+  const fixtureIds = new Set(pilot.editions.map((edition) => edition.gcdIssueId));
+  for (const entry of Array.isArray(gcdInputs.seriesCrosswalk) ? gcdInputs.seriesCrosswalk : []) {
+    for (const issue of Array.isArray(entry?.sourceIssues) ? entry.sourceIssues : []) fixtureIds.add(issue?.gcdIssueId);
+  }
+  for (const edition of pilot.editions) {
+    for (const original of edition.gcdCheck.originalIssues || []) fixtureIds.add(original.gcdIssueId);
+    if (edition.gcdCheck.comparisonIssueId) fixtureIds.add(edition.gcdCheck.comparisonIssueId);
+  }
+  for (const id of fixtureIds) {
+    const file = path.join(dir, 'gcd-fixtures', `${id}.json`);
+    if (fs.existsSync(file)) fixtures[id] = readJson(file);
+  }
+  const destinations = readJson(path.join(dir, 'destinations.json'));
+  return { pilot, curated, gcdInputs, lists, ledgers, fixtures, catalog, destinations };
+}
+
+const PROVIDER_PERMISSIONS = new Set(['granted', 'not-received', 'not-requested']);
+
+// The owner's confirmed addresses go through the app's own gate, so the build refuses exactly what
+// the app would silently drop and a bad address is a build error rather than a missing link.
+export function validateDestinations(destinations, editionIds) {
+  const errors = [];
+  if (!destinations || destinations.schemaVersion !== 1) return ['destinations.json: schemaVersion must be 1'];
+  const providers = destinations.providers || {};
+  for (const [key, provider] of Object.entries(providers)) {
+    if (!DESTINATION_PROVIDERS.includes(key)) errors.push(`destinations.json: unknown provider ${key}`);
+    if (!providerAccepted(provider)) errors.push(`destinations.json: ${key} needs a name, a basis and the comment recording it`);
+    if (!PROVIDER_PERMISSIONS.has(provider?.providerPermission)) {
+      errors.push(`destinations.json: ${key} must record whether the provider itself gave permission`);
+    }
+  }
+  for (const [id, list] of Object.entries(destinations.destinations || {})) {
+    if (!editionIds.has(id)) errors.push(`destinations.json: unknown edition ${id}`);
+    if (!Array.isArray(list) || !list.length) {
+      errors.push(`destinations.json: ${id} needs a list of destinations`);
+      continue;
+    }
+    const seen = new Set();
+    for (const destination of list) {
+      const where = `destinations.json: ${id} ${destination?.provider}`;
+      const before = errors.length;
+      const extra = Object.keys(destination || {}).filter((key) => !['provider', 'url', 'checkedAt', 'confirmedBy', 'source'].includes(key));
+      if (extra.length) errors.push(`${where}: only an address is recorded, not ${extra.join(', ')}`);
+      if (!destinationUrl(destination?.provider, destination?.url)) errors.push(`${where}: address ${destination?.url} is not an accepted form`);
+      if (destination?.confirmedBy !== 'owner') errors.push(`${where}: the owner has not confirmed it`);
+      if (!isCheckedDate(destination?.checkedAt)) errors.push(`${where}: checkedAt must be a real date`);
+      if (typeof destination?.source !== 'string' || !destination.source) errors.push(`${where}: source is required`);
+      if (seen.has(destination?.provider)) errors.push(`${where}: one destination per provider`);
+      seen.add(destination?.provider);
+      if (errors.length === before && !acceptedLink(providers, destination)) errors.push(`${where}: refused by the display gate`);
+    }
+  }
+  return errors;
 }
 
 function editionKeys(edition) {
@@ -175,10 +236,107 @@ function seriesStartYear(text) {
   return match ? Number(match[1]) : null;
 }
 
+function crosswalkEntryErrors(entry, fixtures) {
+  const errors = [];
+  const validRange = Number.isInteger(entry.appSeriesId) && entry.appSeriesId > 0
+    && Number.isInteger(entry.from) && Number.isInteger(entry.to) && entry.from <= entry.to;
+  if (!validRange) errors.push('app series and ordered integer range are required');
+  const seriesUrl = /^https:\/\/www\.comics\.org\/api\/series\/([1-9]\d*)\/\?format=json$/.exec(entry.gcdSeriesUrl || '');
+  if (!seriesUrl || entry.gcdSeriesPage !== `https://www.comics.org/series/${seriesUrl[1]}/`) {
+    errors.push('the API series URL and series page must identify the same GCD series');
+  }
+  const year = seriesStartYear(entry.gcdSeries);
+  const withoutArticle = (name) => typeof name === 'string' ? name.replace(/^The /, '') : null;
+  if (!year || (entry.gcdAliases !== undefined && (!Array.isArray(entry.gcdAliases)
+    || entry.gcdAliases.some((alias) => seriesStartYear(alias) !== year
+      || withoutArticle(alias) !== withoutArticle(entry.gcdSeries))))) {
+    errors.push('the GCD series and its aliases must identify the same series and start year');
+  }
+  if (!Array.isArray(entry.sourceIssues) || !entry.sourceIssues.length) {
+    errors.push('at least one source-comic issue is required');
+    return errors;
+  }
+  for (const source of entry.sourceIssues) {
+    if (!source || !Number.isInteger(source.gcdIssueId) || source.gcdIssueId <= 0
+      || !Number.isInteger(source.appNumber) || source.appNumber < entry.from || source.appNumber > entry.to
+      || typeof source.gcdNumber !== 'string' || !source.gcdNumber
+      || source.gcdIssuePage !== `https://www.comics.org/issue/${source.gcdIssueId}/`) {
+      errors.push('each source-comic issue needs an id, an in-range app number and its GCD number');
+      continue;
+    }
+    const url = `https://www.comics.org/api/issue/${source.gcdIssueId}/?format=json`;
+    const fixture = fixtures[source.gcdIssueId];
+    const name = typeof entry.gcdSeries === 'string' ? entry.gcdSeries.replace(/\(Marvel, (\d{4} series)\)$/, '($1)') : null;
+    const unnumberedAnnual = source.appNumber === 1 && entry.from === 1 && entry.to === 1
+      && source.gcdNumber === '[nn]' && /\bannual\b/i.test(fixture?.issue?.notes || '');
+    if (source.gcdNumber !== String(source.appNumber) && !unnumberedAnnual) {
+      errors.push(`source-comic issue ${source.gcdIssueId} does not match the app issue number`);
+    }
+    if (!fixture || fixture.url !== url || fixture.issue?.api_url !== url
+      || fixture.issue.series !== entry.gcdSeriesUrl || fixture.issue.number !== source.gcdNumber
+      || fixture.issue.series_name !== name) {
+      errors.push(`source-comic issue ${source.gcdIssueId} does not match the mapped GCD series and issue`);
+    }
+  }
+  return errors;
+}
+
+function entriesOverlap(a, b) {
+  return a.from <= b.to && b.from <= a.to;
+}
+
+export function validateSeriesCrosswalk(crosswalk, fixtures) {
+  if (!Array.isArray(crosswalk)) return ['series crosswalk must be an array'];
+  const errors = [];
+  for (let i = 0; i < crosswalk.length; i += 1) {
+    const entry = crosswalk[i];
+    if (!entry || typeof entry !== 'object') {
+      errors.push(`series crosswalk entry ${i + 1} must be an object`);
+      continue;
+    }
+    for (const error of crosswalkEntryErrors(entry, fixtures)) errors.push(`series crosswalk entry ${i + 1}: ${error}`);
+    for (const previous of crosswalk.slice(0, i)) {
+      if (previous?.appSeriesId === entry.appSeriesId && entriesOverlap(previous, entry)) {
+        errors.push(`series crosswalk entries overlap for app series ${entry.appSeriesId}`);
+      }
+    }
+  }
+  return errors;
+}
+
+function crosswalkMatch(range, series, crosswalk, fixtures) {
+  if (!Array.isArray(crosswalk)) return { kind: 'series-crosswalk-evidence', detail: 'The series crosswalk is not an array.' };
+  const entries = crosswalk.filter((entry) => entry?.appSeriesId === range.seriesId);
+  if (entries.some((entry) => !Number.isInteger(entry.from) || !Number.isInteger(entry.to) || entry.from > entry.to)) {
+    return { kind: 'series-crosswalk-evidence', detail: 'A crosswalk range is invalid.' };
+  }
+  if (entries.some((entry, index) => entries.slice(index + 1).some((other) => entriesOverlap(entry, other)))) {
+    return { kind: 'series-crosswalk-overlap', detail: 'Crosswalk entries for this app series overlap.' };
+  }
+  const entry = entries.find((candidate) => entriesOverlap(candidate, range));
+  if (!entry) {
+    return entries.length ? { kind: 'series-crosswalk-range', detail: 'No crosswalk entry covers this app-series range.' } : null;
+  }
+  if (entry.from > range.from || entry.to < range.to) {
+    return { kind: 'series-crosswalk-range', detail: 'No single crosswalk entry covers the entire claimed range.' };
+  }
+  if (![entry.gcdSeries, ...(Array.isArray(entry.gcdAliases) ? entry.gcdAliases : [])].includes(series)) {
+    return { kind: 'series-crosswalk-identity', detail: 'The named source series is not the mapped GCD series.' };
+  }
+  const errors = crosswalkEntryErrors(entry, fixtures);
+  if (errors.length) return { kind: 'series-crosswalk-evidence', detail: errors.join('; ') };
+  return { entry };
+}
+
 // Splits the record's sequences into the comic stories a check counts and the ones it leaves out,
 // each exclusion with its reason, so a count that differs from the record is always explained.
 // Cover sequences never reach a fixture (constraint 1), so they are not listed here.
 function comicStories(fixture, edition) {
+  if (edition.gcdCheck.uncountedSequences !== undefined
+    && (!edition.gcdCheck.uncountedSequences || typeof edition.gcdCheck.uncountedSequences !== 'object'
+      || Array.isArray(edition.gcdCheck.uncountedSequences))) {
+    throw new TypeError('Uncounted sequences must be an object with a reason for each sequence.');
+  }
   const uncounted = edition.gcdCheck.uncountedSequences || {};
   const stories = [];
   const excluded = [];
@@ -211,9 +369,149 @@ export function notesStateRange(notes, series, span, partial) {
   return new RegExp(`${boundary}${material}${escapeRegExp(series)} ${escapeRegExp(span)}(?![\\w/-]|\\.\\w)`).test(notes);
 }
 
+function sourceSeriesAgrees(check, listName, mapping) {
+  const source = /^(.*?) \(Marvel, (\d{4}) series\)$/.exec(check.gcdSeries || '');
+  const app = /^(.*?) \((\d{4})(?:\s*[-)]|$)/.exec(listName || '');
+  if (!source || !/^https:\/\/www\.comics\.org\/api\/series\/[1-9]\d*\/\?format=json$/.test(check.gcdSeriesUrl || '')) return false;
+  if (mapping?.entry) return mapping.entry.gcdSeriesUrl === check.gcdSeriesUrl;
+  return Boolean(app && source[1].toLowerCase() === app[1].toLowerCase() && source[2] === app[2]);
+}
+
+function normalStoryText(value) {
+  return typeof value === 'string' ? tidy(value.replace(/\s*\(credited\)/gi, '')).toLowerCase() : '';
+}
+
+function sameStory(a, b, comparePages = true) {
+  const fields = ['title', 'script', 'pencils'];
+  return Boolean(a && b && fields.every((field) => normalStoryText(a[field])
+    && normalStoryText(a[field]) === normalStoryText(b[field]))
+    && (!comparePages || (Number.isFinite(Number(a.page_count)) && Number(a.page_count) > 0
+      && Number(a.page_count) === Number(b.page_count))));
+}
+
+function originalMatches(original, number, story, check, fixtures) {
+  const url = `https://www.comics.org/api/issue/${original?.gcdIssueId}/?format=json`;
+  const record = fixtures[original?.gcdIssueId];
+  const issue = record?.issue;
+  const sourceStories = issue?.story_set?.filter((part) => part.type === 'comic story') || [];
+  const name = check.gcdSeries.replace(/\(Marvel, (\d{4} series)\)$/, '($1)');
+  return Number.isInteger(original?.gcdIssueId) && original.collectionSequence === story?.sequence_number
+    && record?.url === url && issue?.api_url === url && issue.series === check.gcdSeriesUrl
+    && issue.series_name === name && issue.number === String(number) && !issue.variant_of
+    && sourceStories.length === 1 && sameStory(sourceStories[0], story);
+}
+
+function sourceStoryEvidence(edition, fixture, seriesNames, mappings, fixtures, seriesEvidence) {
+  const check = edition.gcdCheck;
+  const range = edition.contents.length === 1 ? edition.contents[0] : null;
+  if (!range || range.portion === 'partial' || mappings.get(range)?.kind
+    || !sourceSeriesAgrees(check, seriesNames[range.seriesId], mappings.get(range))) {
+    return { error: 'The source series or its complete issue range does not match the list.' };
+  }
+  const url = `https://www.comics.org/api/issue/${edition.gcdIssueId}/?format=json`;
+  if (fixture.url !== url || fixture.issue.api_url !== url) return { error: 'The book fixture does not identify this edition.' };
+  const excluded = edition.gcdCheck.uncountedSequences;
+  if (excluded !== undefined && (check.tier !== 'gcd-numbered-covers'
+    || !excluded || typeof excluded !== 'object' || Array.isArray(excluded)
+    || Object.entries(excluded).some(([sequence, reason]) =>
+      typeof reason !== 'string' || !reason.trim()
+      || fixture.issue.story_set.filter((story) =>
+        story.type === 'comic story' && String(story.sequence_number) === sequence).length !== 1))) {
+    return { error: 'The book must have exactly one indexed comic story for each issue.' };
+  }
+  const { stories, missing } = comicStories(fixture, edition);
+  const expected = range.to - range.from + 1;
+  if (stories.length !== expected || missing.length) {
+    return { error: 'The book must have exactly one indexed comic story for each issue.' };
+  }
+  const matched = new Set();
+  if (check.tier === 'gcd-numbered-covers') {
+    const record = seriesEvidence[check.sourceSeriesId];
+    const series = record?.series;
+    const name = check.gcdSeries.replace(/\(Marvel, (\d{4} series)\)$/, '($1)');
+    if (!record?.url || !record.retrievedAt || !series || series.api_url !== check.gcdSeriesUrl
+      || series.api_url !== `https://www.comics.org/api/series/${check.sourceSeriesId}/?format=json`
+      || `${series.name} (${series.year_began} series)` !== name
+      || series.publisher !== 'https://www.comics.org/api/publisher/78/?format=json'
+      || series.country !== 'us' || series.language !== 'en' || !Array.isArray(series.issue_descriptors)
+      || typeof check.coverPrefix !== 'string') {
+      return { error: 'The original series record does not identify the stated Marvel series.' };
+    }
+    for (let number = range.from; number <= range.to; number += 1) {
+      if (!series.issue_descriptors.some((descriptor) => new RegExp(`^${number}(?:\\s|$)`).test(descriptor))) {
+        return { error: `The original series record does not list #${number}.` };
+      }
+      const entries = fixture.issue.story_set;
+      const indices = entries.flatMap((story, index) => story.type === 'cover reprint (on interior page)'
+        && story.title === `${check.coverPrefix}${number}` ? [index] : []);
+      if (indices.length !== 1) return { error: `The book does not identify exactly one interior cover for #${number}.` };
+      const cover = entries[indices[0]];
+      const story = entries[indices[0] + 1];
+      if (story?.type !== 'comic story' || !stories.includes(story) || story.sequence_number !== cover.sequence_number + 1
+        || matched.has(story.sequence_number) || !normalStoryText(story.title)
+        || !normalStoryText(check.expectedScript) || normalStoryText(story.script) !== normalStoryText(check.expectedScript)
+        || !normalStoryText(check.expectedPencils) || normalStoryText(story.pencils) !== normalStoryText(check.expectedPencils)
+        || !Number.isFinite(Number(story.page_count)) || Number(story.page_count) <= 0) {
+        return { error: `The numbered cover for #${number} is not immediately followed by one unique comic story.` };
+      }
+      matched.add(story.sequence_number);
+    }
+  } else if (check.tier === 'gcd-original-stories') {
+    const originals = check.originalIssues;
+    if (!Array.isArray(originals) || originals.length !== expected
+      || new Set(originals.map((item) => item?.gcdIssueId)).size !== expected
+      || new Set(originals.map((item) => item?.appNumber)).size !== expected) {
+      return { error: 'One distinct original-comic record is required for every issue.' };
+    }
+    for (let number = range.from; number <= range.to; number += 1) {
+      const original = originals.find((item) => item.appNumber === number);
+      const story = stories.find((item) => item.sequence_number === original?.collectionSequence);
+      if (!story || matched.has(story.sequence_number) || !originalMatches(original, number, story, check, fixtures)) {
+        return { error: `Original #${number} does not match the book's series, story, pages and credits.` };
+      }
+      matched.add(story.sequence_number);
+    }
+  } else {
+    const url = `https://www.comics.org/api/issue/${check.comparisonIssueId}/?format=json`;
+    const comparison = fixtures[check.comparisonIssueId];
+    const originals = check.originalIssues;
+    if (!Number.isInteger(check.comparisonIssueId) || comparison?.url !== url || comparison.issue?.api_url !== url
+      || comparison.issue.variant_of || typeof check.comparisonCoverPrefix !== 'string'
+      || !Array.isArray(originals) || new Set(originals.map((item) => item?.appNumber)).size !== originals.length) {
+      return { error: 'The numbered comparison or its original-issue resolutions are invalid.' };
+    }
+    const ordered = [...stories].sort((a, b) => a.sequence_number - b.sequence_number);
+    const resolved = new Set();
+    for (let number = range.from; number <= range.to; number += 1) {
+      const entries = comparison.issue.story_set;
+      const indices = entries.flatMap((story, index) => story.type === 'cover reprint (on interior page)'
+        && story.title === `${check.comparisonCoverPrefix}${number}` ? [index] : []);
+      if (indices.length !== 1) return { error: `The comparison does not have one numbered cover for #${number}.` };
+      const cover = entries[indices[0]];
+      const other = entries[indices[0] + 1];
+      const story = ordered[number - range.from];
+      if (other?.type !== 'comic story' || other.sequence_number !== cover.sequence_number + 1
+        || !sameStory(story, other, false) || matched.has(story.sequence_number)) {
+        return { error: `The numbered comparison does not match the story and credits for #${number}.` };
+      }
+      const resolution = originals.find((item) => item.appNumber === number);
+      if (!sameStory(story, other)) {
+        if (!originalMatches(resolution, number, story, check, fixtures)) {
+          return { error: `The original #${number} does not resolve the page-count discrepancy.` };
+        }
+        resolved.add(number);
+      } else if (resolution) return { error: `The original #${number} no longer resolves a discrepancy.` };
+      matched.add(story.sequence_number);
+    }
+    if (resolved.size !== originals.length) return { error: 'A recorded original issue did not resolve a discrepancy.' };
+  }
+  if (matched.size !== expected) return { error: 'The book has an unmatched or repeated comic story.' };
+  return { keys: Array.from({ length: expected }, (_, index) => rowKey(range.seriesId, range.from + index)) };
+}
+
 // Compares one edition with its database record. Disagreement is reported as a conflict with the
 // evidence beside it and never resolved here; deciding which source is right is a person's call.
-export function checkEdition(edition, fixture, seriesNames) {
+export function checkEdition(edition, fixture, seriesNames, { crosswalk = [], fixtures = {}, seriesEvidence = {} } = {}) {
   const check = edition.gcdCheck;
   const conflicts = [];
   const verified = new Set();
@@ -222,6 +520,20 @@ export function checkEdition(edition, fixture, seriesNames) {
   const evidence = { gcdIssueId: edition.gcdIssueId, url: fixture.url };
   const { stories, excluded, missing } = comicStories(fixture, edition);
   const expected = full.size;
+  const mappings = new Map();
+  const blocked = new Set();
+  if (['gcd-notes', 'gcd-story-titles', 'gcd-numbered-covers', 'gcd-original-stories',
+    'gcd-numbered-comparison'].includes(check.tier)) {
+    for (const range of edition.contents) {
+      const series = range.portion === 'partial' ? check.partialSeries : check.gcdSeries;
+      const mapping = crosswalkMatch(range, series, crosswalk, fixtures);
+      mappings.set(range, mapping);
+      if (mapping?.kind) {
+        conflicts.push({ kind: mapping.kind, detail: mapping.detail, evidence });
+        for (let n = range.from; n <= range.to; n += 1) blocked.add(rowKey(range.seriesId, n));
+      }
+    }
+  }
 
   if (fixture.issue.variant_of) {
     conflicts.push({ kind: 'variant-printing', detail: `The database records this book as a variant of ${fixture.issue.variant_of}.`, evidence });
@@ -246,11 +558,12 @@ export function checkEdition(edition, fixture, seriesNames) {
     for (const range of edition.contents) {
       const series = range.portion === 'partial' ? check.partialSeries : check.gcdSeries;
       const span = range.from === range.to ? `#${range.from}` : `#${range.from}-${range.to}`;
+      if (mappings.get(range)?.kind) continue;
       if (!notesStateRange(notes, series, span, range.portion === 'partial')) {
         conflicts.push({ kind: 'evidence-weak', detail: `The indexer notes do not state ${series} ${span}.`, evidence: { ...evidence, notes } });
         continue;
       }
-      const ours = seriesStartYear(seriesNames[range.seriesId]);
+      const ours = seriesStartYear(mappings.get(range)?.entry?.gcdSeries || seriesNames[range.seriesId]);
       const theirs = seriesStartYear(series);
       if (ours && theirs && ours !== theirs) {
         conflicts.push({ kind: 'series-year', detail: `The list dates this series from ${ours}; the database from ${theirs}.`, evidence });
@@ -276,9 +589,13 @@ export function checkEdition(edition, fixture, seriesNames) {
       const seriesId = edition.contents[0].seriesId;
       for (const number of Object.keys(check.storyTitles)) {
         const key = number.includes(':') ? number : rowKey(seriesId, number);
-        if (!weak.has(number)) verified.add(key);
+        if (!weak.has(number) && !blocked.has(key)) verified.add(key);
       }
     }
+  } else if (['gcd-numbered-covers', 'gcd-original-stories', 'gcd-numbered-comparison'].includes(check.tier)) {
+    const result = sourceStoryEvidence(edition, fixture, seriesNames, mappings, fixtures, seriesEvidence);
+    if (result.error) conflicts.push({ kind: 'evidence-weak', detail: result.error, evidence });
+    else for (const key of result.keys) if (!blocked.has(key)) verified.add(key);
   } else if (check.tier === 'gcd-count-only') {
     // A count that happens to match is consistent, not proof of which comics a book holds, so this
     // branch never adds a verified comic.
@@ -294,6 +611,7 @@ export function checkEdition(edition, fixture, seriesNames) {
   for (const [number, reason] of Object.entries(check.weakNumbers || {})) {
     conflicts.push({ kind: 'evidence-weak', detail: `#${number}: ${reason}`, evidence });
   }
+  if (check.heldReason) conflicts.push({ kind: 'evidence-disputed', detail: check.heldReason, evidence });
   // An edition with any conflict is never labelled verified, even when some of its comics are.
   const allVerified = verified.size > 0 && [...full].every((key) => verified.has(key));
   let status = 'consistent';
@@ -415,6 +733,12 @@ export function validate(inputs, outputs) {
     if (!edition.format || !edition.title) errors.push(`${edition.id}: title and format are required`);
     if (!CHECK_TIERS.includes(edition.gcdCheck?.tier)) errors.push(`${edition.id}: unknown check tier`);
     if (!fixtures[edition.gcdIssueId]) errors.push(`${edition.id}: no fixture for database issue ${edition.gcdIssueId}`);
+    for (const original of edition.gcdCheck?.originalIssues || []) {
+      if (!fixtures[original.gcdIssueId]) errors.push(`${edition.id}: no fixture for original issue ${original.gcdIssueId}`);
+    }
+    if (edition.gcdCheck?.comparisonIssueId && !fixtures[edition.gcdCheck.comparisonIssueId]) {
+      errors.push(`${edition.id}: no fixture for comparison issue ${edition.gcdCheck.comparisonIssueId}`);
+    }
     if (!edition.contents?.length) errors.push(`${edition.id}: contents are required`);
     for (const range of edition.contents || []) {
       if (!ASSERTION_SOURCES.includes(range.assertedBy)) errors.push(`${edition.id}: unknown assertedBy ${range.assertedBy}`);
@@ -454,7 +778,20 @@ export function validate(inputs, outputs) {
   for (const [name, value] of Object.entries(outputs)) walk(value, name);
   for (const [id, fixture] of Object.entries(fixtures)) walk(fixture, `gcd-fixtures/${id}.json`);
   walk(pilot, 'pilot.json');
-  if (inputs.gcdInputs) walk(inputs.gcdInputs, 'gcd-check-inputs.json');
+  if (inputs.gcdInputs) {
+    walk(inputs.gcdInputs, 'gcd-check-inputs.json');
+    const expected = inputs.gcdInputs.expectedCrosswalkEntries;
+    if (!Number.isInteger(expected) || expected < 1 || !Array.isArray(inputs.gcdInputs.seriesCrosswalk)
+      || inputs.gcdInputs.seriesCrosswalk.length !== expected) {
+      errors.push('required crosswalk entries are missing or unexpected');
+    }
+    errors.push(...validateSeriesCrosswalk(inputs.gcdInputs.seriesCrosswalk ?? [], fixtures));
+    errors.push(...selectionErrors(inputs));
+  }
+  if (inputs.destinations) {
+    walk(inputs.destinations, 'destinations.json');
+    errors.push(...validateDestinations(inputs.destinations, ids));
+  }
   const mit = [['pilot.json', inputs.curated], ['editions.json', outputs['editions.json']],
     ['cbh-edition-facts.json', outputs['cbh-edition-facts.json']]];
   for (const [name, value] of mit) {
@@ -470,7 +807,8 @@ export function build(inputs) {
   const checks = {};
   for (const edition of pilot.editions) {
     checks[edition.id] = fixtures[edition.gcdIssueId]
-      ? checkEdition(edition, fixtures[edition.gcdIssueId], seriesNames)
+      ? checkEdition(edition, fixtures[edition.gcdIssueId], seriesNames,
+        { crosswalk: inputs.gcdInputs?.seriesCrosswalk ?? [], fixtures, seriesEvidence: inputs.gcdInputs?.seriesEvidence ?? {} })
       : { status: 'conflict', verified: new Set(), excluded: [], conflicts: [{ kind: 'unindexed', detail: 'No fixture.' }] };
   }
   const gcdEditions = {
@@ -479,6 +817,11 @@ export function build(inputs) {
     editions: pilot.editions.map((edition) => {
       const fixture = fixtures[edition.gcdIssueId];
       const issue = fixture?.issue || {};
+      const supporting = [
+        ...(edition.gcdCheck.originalIssues || []).map((original) => fixtures[original.gcdIssueId]),
+        ...(edition.gcdCheck.comparisonIssueId ? [fixtures[edition.gcdCheck.comparisonIssueId]] : []),
+        ...(edition.gcdCheck.sourceSeriesId ? [inputs.gcdInputs?.seriesEvidence?.[edition.gcdCheck.sourceSeriesId]] : []),
+      ].filter(Boolean).map(({ url, retrievedAt }) => ({ url, retrievedAt }));
       return {
         edition: edition.id,
         gcdIssueId: edition.gcdIssueId,
@@ -492,10 +835,11 @@ export function build(inputs) {
         pageCount: issue.page_count ?? null,
         variantOf: issue.variant_of ?? null,
         notes: issue.notes || null,
+        ...(supporting.length ? { supportingSources: supporting } : {}),
         comicStories: (issue.story_set || []).filter((story) => story.type === 'comic story')
           .map((story) => ({ sequence: story.sequence_number, title: story.title || null, pages: story.page_count })),
         ...(edition.printingOf ? { printingOf: edition.printingOf } : {}),
-        assertedContents: edition.contents.filter((range) => range.assertedBy === DATABASE_SOURCE),
+        assertedContents: edition.contents.filter((range) => DATABASE_SOURCES.has(range.assertedBy)),
         check: {
           tier: edition.gcdCheck.tier,
           status: checks[edition.id].status,
@@ -512,7 +856,7 @@ export function build(inputs) {
   const curated = {
     ...pilot,
     editions: pilot.editions.map((edition) => {
-      const copy = { ...edition, contents: edition.contents.filter((range) => range.assertedBy !== DATABASE_SOURCE) };
+      const copy = { ...edition, contents: edition.contents.filter((range) => !DATABASE_SOURCES.has(range.assertedBy)) };
       delete copy.printingOf;
       return copy;
     }),
@@ -551,34 +895,77 @@ export function build(inputs) {
 
 export const render = (value) => `${JSON.stringify(value, null, 2)}\n`;
 
+function projectProviders(destinations) {
+  return Object.fromEntries(Object.entries(destinations?.providers || {}).map(([key, provider]) => [key, {
+    name: provider.name, basis: provider.basis, basisEvidence: provider.basisEvidence,
+    providerPermission: provider.providerPermission,
+  }]));
+}
+
+// Only addresses the display gate accepts are bundled, so an invalid input cannot ship even when the
+// check is bypassed; the source note stays in the curated input.
+function destinationsFor(destinations, id) {
+  const providers = destinations?.providers || {};
+  return (destinations?.destinations?.[id] || []).filter((entry) => acceptedLink(providers, entry))
+    .map(({ provider, url, checkedAt, confirmedBy }) => ({ provider, url, checkedAt, confirmedBy }));
+}
+
+function selectionErrors(inputs) {
+  const errors = [];
+  const selections = inputs.gcdInputs?.listSelections ?? [];
+  if (!Array.isArray(selections)) return ['list selections must be an array'];
+  const seen = new Set();
+  const ids = new Set(inputs.curated.editions.map((edition) => edition.id));
+  for (const selection of selections) {
+    const listId = selection?.listId;
+    const catalog = inputs.catalog.lists.find((entry) => entry.id === listId);
+    if (!catalog || selection.file !== `src/data/${catalog.file}` || inputs.lists[listId]?.id !== listId
+      || !Array.isArray(inputs.lists[listId]?.items)) errors.push(`selection ${listId}: invalid list or catalog reference`);
+    if (seen.has(listId)) errors.push(`selection ${listId}: duplicate list`);
+    seen.add(listId);
+    if (!Array.isArray(selection?.editions) || !selection.editions.length
+      || new Set(selection.editions).size !== selection.editions.length
+      || selection.editions.some((id) => !ids.has(id))) errors.push(`selection ${listId}: invalid or duplicate edition`);
+  }
+  return errors;
+}
+
 export function buildAppData(inputs, outputs = build(inputs)) {
+  const errors = selectionErrors(inputs);
+  if (errors.length) throw new Error(errors.join('; '));
   const editions = {};
   const relations = [];
   const checks = new Map(outputs['gcd-editions.json'].editions.map((entry) => [entry.edition, entry]));
+  const project = (catalogId, list, ids, matches) => {
+    for (const id of ids) {
+      const evidence = checks.get(id);
+      if (!evidence || evidence.check.status !== 'verified' || evidence.check.conflicts.length) continue;
+      const curated = inputs.curated.editions.find((entry) => entry.id === id);
+      if (!curated || !evidence.url || !evidence.retrievedAt) throw new Error(`Missing display evidence for ${id}`);
+      const keys = new Set(evidence.check.verifiedComics);
+      for (const item of list.items) {
+        if (!matches(item) || !keys.has(rowKey(item.seriesId, item.number))) continue;
+        editions[id] = { title: curated.title, destinations: destinationsFor(inputs.destinations, id) };
+        relations.push({
+          catalogId, editionId: id, issueId: item.issueId,
+          seriesId: item.seriesId, number: String(item.number),
+          status: 'verified', portion: 'full', conflicts: [],
+          source: evidence.url, checkedAt: evidence.retrievedAt,
+        });
+      }
+    }
+  };
   for (const list of inputs.pilot.lists) {
     const catalogList = inputs.catalog.lists.find((entry) => `src/data/${entry.file}` === list.file);
     if (!catalogList) throw new Error(`No catalog entry for ${list.file}`);
     for (const group of list.groups) {
-      for (const id of group.editions) {
-        const evidence = checks.get(id);
-        if (evidence.check.status !== 'verified' || evidence.check.conflicts.length) continue;
-        const curated = inputs.curated.editions.find((entry) => entry.id === id);
-        if (!curated || !evidence.url || !evidence.retrievedAt) throw new Error(`Missing display evidence for ${id}`);
-        const keys = new Set(evidence.check.verifiedComics);
-        for (const item of inputs.lists[list.listId].items) {
-          if (item.collectedIn !== group.label || !keys.has(rowKey(item.seriesId, item.number))) continue;
-          editions[id] = { title: curated.title, destinations: [] };
-          relations.push({
-            catalogId: catalogList.id, editionId: id, issueId: item.issueId,
-            seriesId: item.seriesId, number: String(item.number),
-            status: 'verified', portion: 'full', conflicts: [],
-            source: evidence.url, checkedAt: evidence.retrievedAt,
-          });
-        }
-      }
+      project(catalogList.id, inputs.lists[list.listId], group.editions, (item) => item.collectedIn === group.label);
     }
   }
-  const names = { schemaVersion: 1, providers: { hoopla: { name: 'Hoopla', permission: 'pending' } }, editions };
+  for (const selection of inputs.gcdInputs?.listSelections || []) {
+    project(selection.listId, inputs.lists[selection.listId], selection.editions, () => true);
+  }
+  const names = { schemaVersion: 1, providers: projectProviders(inputs.destinations), editions };
   const evidence = {
     ...GCD_LICENSE, schemaVersion: 1,
     modification: 'Adapted into exact issue-to-edition relations for this pilot. Edition names are curated separately.',

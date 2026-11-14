@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "scope": "Bounded pilot of a provider-neutral collected-edition dataset for five Comic Book Herald reading lists. Curated input; every other file in this folder is generated from it.",
+  "scope": "Provider-neutral collected-edition records for five grouped pilot lists and selected Modern Timeline lists. Curated names and check tiers; database evidence is kept separately.",
   "lists": [
     {
       "listId": "civil_war_avengers",
@@ -300,6 +300,94 @@
         }
       ],
       "gcdCheck": { "tier": "gcd-count-only", "expectedComicStories": 4 }
+    },
+    {
+      "id": "daredevil-visionaries-kevin-smith",
+      "title": "Daredevil Visionaries: Kevin Smith",
+      "format": "softcover",
+      "medium": "print",
+      "gcdIssueId": 1094159,
+      "gcdCheck": { "tier": "gcd-numbered-covers" }
+    },
+    {
+      "id": "xtreme-xmen-v1-destiny",
+      "title": "X-Treme X-Men Vol. 1: Destiny",
+      "format": "trade paperback",
+      "medium": "print",
+      "gcdIssueId": 910908,
+      "gcdCheck": { "tier": "gcd-notes" }
+    },
+    {
+      "id": "exiles-v1-down-the-rabbit-hole",
+      "title": "Exiles Vol. 1: Down the Rabbit Hole",
+      "format": "trade paperback",
+      "medium": "print",
+      "gcdIssueId": 787873,
+      "gcdCheck": { "tier": "gcd-notes" }
+    },
+    {
+      "id": "xtreme-xmen-savage-land",
+      "title": "X-Treme X-Men: Savage Land",
+      "format": "softcover",
+      "medium": "print",
+      "gcdIssueId": 672067,
+      "gcdCheck": { "tier": "gcd-original-stories" }
+    },
+    {
+      "id": "new-xmen-v2-imperial",
+      "title": "New X-Men Vol. 2: Imperial",
+      "format": "trade paperback",
+      "medium": "print",
+      "gcdIssueId": 774091,
+      "gcdCheck": { "tier": "gcd-story-titles" }
+    },
+    {
+      "id": "exiles-v2-a-world-apart",
+      "title": "Exiles Vol. 2: A World Apart",
+      "format": "trade paperback",
+      "medium": "print",
+      "gcdIssueId": 787874,
+      "gcdCheck": { "tier": "gcd-notes" }
+    },
+    {
+      "id": "daredevil-v4-underboss",
+      "title": "Daredevil Vol. 4: Underboss",
+      "format": "trade paperback",
+      "medium": "print",
+      "gcdIssueId": 251246,
+      "gcdCheck": { "tier": "gcd-numbered-covers" }
+    },
+    {
+      "id": "xtreme-xmen-v2-invasion",
+      "title": "X-Treme X-Men Vol. 2: Invasion",
+      "format": "trade paperback",
+      "medium": "print",
+      "gcdIssueId": 910909,
+      "gcdCheck": { "tier": "gcd-notes" }
+    },
+    {
+      "id": "exiles-v3-out-of-time",
+      "title": "Exiles Vol. 3: Out of Time",
+      "format": "trade paperback",
+      "medium": "print",
+      "gcdIssueId": 787875,
+      "gcdCheck": { "tier": "gcd-notes" }
+    },
+    {
+      "id": "new-xmen-v4-riot-at-xaviers",
+      "title": "New X-Men Vol. 4: Riot at Xavier's",
+      "format": "trade paperback",
+      "medium": "print",
+      "gcdIssueId": 774093,
+      "gcdCheck": { "tier": "gcd-original-stories" }
+    },
+    {
+      "id": "daredevil-v8-echo-vision-quest",
+      "title": "Daredevil Vol. 8: Echo - Vision Quest",
+      "format": "trade paperback",
+      "medium": "print",
+      "gcdIssueId": 251250,
+      "gcdCheck": { "tier": "gcd-notes" }
     }
   ]
 }

@@ -57,11 +57,13 @@ test('approved field extraction preserves trailing whitespace and blank lines', 
 // https://github.com/raymond-nassar/recap-page/issues/1158#issuecomment-6709789692
 // The launch-check wording revised after that review was approved on #1158 too:
 // https://github.com/raymond-nassar/recap-page/issues/1158#issuecomment-6713935238
+// The collected-book link wording was approved on #1203:
+// https://github.com/raymond-nassar/recap-page/issues/1203#issuecomment-6842253465
 test('the privacy policy preserves its approved wording', () => {
   const privacy = read('PRIVACY.md');
   assert.match(privacy, /It normally backs up no more than once every five\s+minutes\./);
   assert.match(privacy, /after a progress check confirms that\s+this device's data needs backing up\./);
-  assert.equal(digest(privacy), '632c9c6b03e3c00a0c3d0ad01f10010fe21e5c8f98d33f9d6b359b354063fa86');
+  assert.equal(digest(privacy), '5e81780f729317e588726e5f360d3e052dfb6aba823b30328d95b1e0d9816d40');
 });
 
 test('the 4.3.0 Microsoft Store fields are the approved text', () => {

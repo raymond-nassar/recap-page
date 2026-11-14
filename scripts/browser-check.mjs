@@ -19116,7 +19116,7 @@ async function preparePage(page, origin, mutation, scenarioId = null) {
     }
     if (page.__denyExternal && /^https?:/.test(request.url())
       && new URL(request.url()).origin !== origin) {
-      await request.abort();
+      await request.abort(scenarioId === 'collected-editions' ? 'blockedbyclient' : 'failed');
       return;
     }
     await request.continue();
@@ -22320,7 +22320,8 @@ async function launchProfileBrowser(userDataDir) {
   const { default: puppeteer } = await import(pathToFileURL(resolveDriver()).href);
   return puppeteer.launch({
     executablePath: resolveEdge(), headless: !process.env.MRT_HEADED, userDataDir,
-    args: ['--no-first-run', '--no-default-browser-check'],
+    args: ['--no-first-run', '--no-default-browser-check', '--no-proxy-server',
+      '--host-resolver-rules=MAP * ~NOTFOUND, EXCLUDE 127.0.0.1'],
   });
 }
 
@@ -22804,6 +22805,8 @@ async function withStack(fn, { port = 0, onCleanupFailure = null } = {}) {
       args: [
         '--no-first-run',
         '--no-default-browser-check',
+        '--no-proxy-server',
+        '--host-resolver-rules=MAP * ~NOTFOUND, EXCLUDE 127.0.0.1',
         ...(process.argv.includes('--forced-colors') ? ['--force-high-contrast'] : []),
       ],
     });

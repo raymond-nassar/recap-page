@@ -1,0 +1,45 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/98071/?format=json",
+  "retrievedAt": "2026-11-13T16:27:36.762Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/98071/?format=json",
+    "series_name": "New X-Men (2001 series)",
+    "descriptor": "122 [Direct Edition]",
+    "number": "122",
+    "volume": "1",
+    "variant_name": "Direct Edition",
+    "title": "",
+    "publication_date": "March 2002",
+    "key_date": "2002-03-00",
+    "page_count": "44.000",
+    "isbn": "",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/9855/?format=json",
+    "story_set": [
+      {
+        "type": "comic story",
+        "title": "Imperial",
+        "feature": "X-Men",
+        "sequence_number": 1,
+        "page_count": "23.000",
+        "notes": "",
+        "script": "Grant Morrison",
+        "pencils": "Frank Quitely"
+      },
+      {
+        "type": "letters page",
+        "title": "",
+        "feature": "X-Pressions",
+        "sequence_number": 2,
+        "page_count": "1.000",
+        "notes": "No letters, previews of upcoming X-books.",
+        "script": "?",
+        "pencils": "None"
+      }
+    ]
+  }
+}

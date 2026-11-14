@@ -3661,7 +3661,34 @@ Each labeled sequence credits the Grand Comics Database and links its licence. O
 verified, conflict-free relations display; this is not a statement of reading availability.
 Existing collection headings remain editorial or user-customized grouping, not verification.
 
-The provider policy ships Hoopla as pending, with no title identifier or address. A future link
-requires recorded granted permission and a verified HTTPS book destination. It says "View this
-book at Hoopla", not that borrowing is possible, and opens outside the app with referrer isolation.
-No live provider lookup, account, credential, cover image or affiliate/store destination is added.
+On 2026-11-12 the owner approved linking to a book's Hoopla page as fair use, since only a link is
+offered and no Hoopla metadata is taken, in
+[the link approval](https://github.com/raymond-nassar/recap-page/issues/1203#issuecomment-6839342560).
+Hoopla's product team had not replied, so no permission from Hoopla is recorded or claimed. The owner
+added Libby on the same basis, as a link only that opens the book in the reader's own library, in
+[the follow-up answers](https://github.com/raymond-nassar/recap-page/issues/1203#issuecomment-6839422429).
+Each address is confirmed by the owner with the date it was checked, and must match one accepted
+form per service; anything else is refused at build time and dropped by the app. A link reads "Look
+for this book on Hoopla" or "in Libby", never that borrowing is possible, and opens outside the app
+with referrer isolation. No live provider lookup, availability, account, credential, cover image,
+description or affiliate/store destination is added.
+
+The selected Modern Timeline books extend the display without inventing collection headings. The
+[licensed check inputs](../scripts/data/collected-editions/gcd-check-inputs.json) identify the
+selected lists, source-series mappings and supporting records; the
+[checked evidence](../scripts/data/collected-editions/gcd-editions.json) retains their dates and
+results. The original pilot's 23 relations remain unchanged, and eleven selected books add 71
+relations across thirteen lists, intersected with each list's exact comics. Book names stay in the
+separate curated lane. For books without an exact indexer-note range, numbered interior-cover text
+and creator credits or matching original issue stories provide the check; no image bytes are used.
+
+For Imperial, the [original New X-Men #123](https://www.comics.org/issue/98072/) and
+[trade](https://www.comics.org/issue/774091/) index "Testament" at 22 pages, while the
+[numbered hardcover](https://www.comics.org/issue/774084/) indexes 23, read 2026-11-12 Pacific.
+The trade stories for #118-125 match their original issues by series, number, title, pages and
+credits. Their retained issue fixtures are independently checked against each named trade sequence;
+the title tier alone does not establish series identity. The [original #126](https://www.comics.org/issue/98075/),
+read 2026-11-13, also indexes a five-page Spider-Man story that the trade does not index. That is
+not proof the physical book omits it, but full coverage of #126 is unconfirmed and its relation is
+held. The hardcover remains held independently. The unresolved X-Corps annual and collection
+parsing conflicts are not projected.
