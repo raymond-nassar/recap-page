@@ -1090,6 +1090,20 @@ current label, hidden message, completion state or unavailable message at
 refresh at `src/js/main.js:3383-3409`. That refresh leaves cards, controls, focus and scroll
 intact across same-tab and cross-tab state changes.
 
+## Universes are a reviewed catalog projection
+
+The Universe registry, series relationships and issue overrides are bundled reviewed metadata,
+and the source ledger records their evidence. A Reading List relationship describes discovery,
+not continuity: list membership never assigns a reality to every comic in the list. Exact issue
+overrides take precedence over series relationships, an empty override records an explicit
+unknown, and selected-issue series relationships do not assign a reality to unlisted issues.
+
+Index and detail addresses keep their search, sort and selected reality separate from saved list
+and reading-filter state. The primary continuity is browse-only: it offers Modern Timeline and
+Marvel Ages rather than repeating guides, series or a selected-comic fragment there. Saved lists
+join existing catalog identities at render time, so browsing, linking and searching add no saved
+fields. Older offline copies stay usable until the replacement copy is written and verified.
+
 ## Completion is independent history, not a reader migration
 
 Issue ratings are a sparse map in the primary reader state, with one numeric value from 0.5 to

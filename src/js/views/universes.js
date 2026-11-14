@@ -113,9 +113,9 @@ export function createUniversesView({
       nodes.seriesStatus.textContent = missing
         ? `${missing} associated ${missing === 1 ? 'series is' : 'series are'} missing from the local index.`
         : '';
-    } catch (error) {
+    } catch {
       if (!current()) return;
-      nodes.seriesStatus.textContent = `Series details could not be loaded (${error.message}). Use Retry series when the local app connection is available.`;
+      nodes.seriesStatus.textContent = 'Series details could not be loaded. Use Retry series when the local app connection is available.';
       nodes.seriesRetry.hidden = false;
     }
   }

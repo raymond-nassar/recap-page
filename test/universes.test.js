@@ -385,7 +385,8 @@ test('series metadata failure remains visible and retryable; stale results canno
   h.setCurrent('universe');
   h.view.setDetail('days-of-future-past');
   await h.view.renderDetail();
-  assert.match(h.nodes.detail.seriesStatus.textContent, /could not be loaded.*offline/);
+  assert.equal(h.nodes.detail.seriesStatus.textContent,
+    'Series details could not be loaded. Use Retry series when the local app connection is available.');
   assert.equal(h.nodes.detail.seriesRetry.hidden, false);
   await h.nodes.detail.seriesRetry.listeners.click();
   assert.equal(h.nodes.detail.seriesRetry.hidden, true);

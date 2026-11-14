@@ -109,6 +109,12 @@ The current place is calculated from saved progress, not stored as a separate cu
 Filtering does not change that progress.
 See [position and refresh rules](ARCHITECTURE_REFERENCE.md#modern-timeline-position-is-a-store-projection).
 
+## Universes are a reviewed catalog projection
+
+Universes, their Reading Lists, series and individual comics come from reviewed bundled metadata.
+Pages, links and local search read that metadata without adding saved-data fields.
+See [association and navigation rules](ARCHITECTURE_REFERENCE.md#universes-are-a-reviewed-catalog-projection).
+
 ## Completion is independent history, not a reader migration
 
 List completion and enjoyment live in a companion history store. Individual comic ratings live

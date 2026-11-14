@@ -3680,7 +3680,10 @@ selects Marvel Comics #1 in 1939 for the primary continuity. The ledger preserve
 earliest-reality alternatives, including Fantastic Four #1 and the Ka-Zar pulp candidate. A named
 reality without a confirmed Earth number remains named rather than receiving a guessed number.
 The Marvel Zombies guide's qualification is retained because it includes other realities;
-list membership never assigns a reality to every comic in that list.
+list membership never assigns a reality to every comic in that list. The owner placed the Ultimate
+Spider-Man guide under Ultimate Marvel only, without changing comic or series facts. The owner also
+made the primary continuity browse-only, linking to Modern Timeline and Marvel Ages instead of
+individual guides or selected comics.
 
 These are implementation candidates, not approved publication facts. The owner has not settled
 the publication-year convention or the three conflicting supplied years. Independent bibliography
