@@ -84,6 +84,8 @@ export function createUniversesView({
     nodes.heading.textContent = universe?.name ?? 'Universe not found';
     nodes.missing.hidden = Boolean(universe);
     nodes.body.hidden = !universe;
+    nodes.browse.hidden = id !== 'earth-616';
+    nodes.listsSection.hidden = id === 'earth-616';
     nodes.results.replaceChildren();
     nodes.retry.hidden = true;
     nodes.emptyLink.hidden = true;
@@ -93,6 +95,7 @@ export function createUniversesView({
     nodes.year.textContent = String(universe.firstPublished);
     nodes.debut.textContent = universe.debutIssue.title;
     nodes.description.textContent = universe.description;
+    if (id === 'earth-616') return;
     nodes.status.textContent = 'Loading Reading Lists...';
 
     try {

@@ -4028,6 +4028,7 @@ const universeView = createUniversesView({
     },
     detail: {
       heading: $('#universe-h'), missing: $('#universe-missing'), body: $('#universe-body'),
+      browse: $('#universe-browse'), listsSection: $('#universe-reading-lists'),
       earth: $('#universe-earth'), year: $('#universe-year'), debut: $('#universe-debut'),
       description: $('#universe-description'), status: $('#universe-lists-status'),
       results: $('#universe-lists'), retry: $('#universe-retry'), emptyLink: $('#universe-empty-action'),

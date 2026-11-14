@@ -148,7 +148,7 @@ scrolled past the hero has no way to recall what is available.
 Recommendation: add a short shortcut reference to the About view, and keep it as the single place
 the list is maintained
 Backlog item: BL-026
-Resolved: BL-026 added the reference to the About view at `src/index.html:1326-1337`, covering Enter,
+Resolved: BL-026 added the reference to the About view at `src/index.html:1337-1348`, covering Enter,
 D and the sidebar toggle. The hero now reveals its shortcuts on hover or keyboard focus, so they
 stay discoverable at the point of use without permanent keycaps, while recall does not depend on
 being scrolled to it.
@@ -252,7 +252,7 @@ Notable passes, recorded because a reader would reasonably expect them to fail:
 * 3.2.2 On Input passes, overturning a tool result. HTML_CodeSniffer flagged `#form-catalog-search`
   under H32.2 for having no submit button on both scanned surfaces. The form is search-as-you-type
   and calls `preventDefault` on submit, results update in place, and no change of context occurs,
-  so the criterion is met. Evidence: `src/index.html:746-752`, `src/js/views/catalog.js:637-678`.
+  so the criterion is met. Evidence: `src/index.html:757-763`, `src/js/views/catalog.js:637-678`.
 
 #### UX-A-001: The primary call to action and the accent text fall below 4.5:1
 
@@ -391,7 +391,7 @@ Rationale: affects every notice in the product, and duplicate speech is disrupti
 blocking
 Confidence: Observed
 Evidence: `src/js/views/shared/feedback.js:206-219`, `src/js/views/shared/feedback.js:229-252`, `src/index.html:27`,
-`src/index.html:113`, `src/index.html:885`
+`src/index.html:113`, `src/index.html:896`
 Source: WCAG 2.2 Level AA sweep, criterion 4.1.3
 Impact: `notify()` writes its message into a container that already carries a live region role, and
 then also calls `announce()`, which writes the same message into the dedicated `#announcer` live

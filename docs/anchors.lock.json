@@ -1914,8 +1914,8 @@
     "fp": "22bce3df8af723ed",
     "head": "function renderAll() {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:4097-4139|0": {
-    "anchor": "src/js/main.js:4097-4139",
+  "docs/ARCHITECTURE_REFERENCE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:4098-4140|0": {
+    "anchor": "src/js/main.js:4098-4140",
     "fp": "39c31b26626f4d11",
     "head": "const catalogView = createCatalogView({"
   },
@@ -1979,18 +1979,18 @@
     "fp": "361fd1a361de6372",
     "head": "function openSavedCatalogList(list, saved, report, { fromCard = false } = {}) {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3958-4233|0": {
-    "anchor": "src/js/main.js:3958-4233",
-    "fp": "de5b344fc9123d28",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3958-4234|0": {
+    "anchor": "src/js/main.js:3958-4234",
+    "fp": "0253eb8d7eb12bea",
     "head": "const catalogPresentation = createCatalogPresentation({"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4111-4117|0": {
-    "anchor": "src/js/main.js:4111-4117",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4112-4118|0": {
+    "anchor": "src/js/main.js:4112-4118",
     "fp": "d3051bc067e4d60f",
     "head": "follow: () => ({"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4137-4138|0": {
-    "anchor": "src/js/main.js:4137-4138",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4138-4139|0": {
+    "anchor": "src/js/main.js:4138-4139",
     "fp": "2e75d57bd558e1f6",
     "head": "onFollowChange: () => syncHash({ push: true }),"
   },
@@ -2084,8 +2084,8 @@
     "fp": "0c6537943c08c527",
     "head": "<script type=\"module\" src=\"./dev-faults.js\"></script>"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|the-three-entry-points|src/index.html:1617|0": {
-    "anchor": "src/index.html:1617",
+  "docs/ARCHITECTURE_REFERENCE.md|the-three-entry-points|src/index.html:1628|0": {
+    "anchor": "src/index.html:1628",
     "fp": "9f74c3a9fa356fa2",
     "head": "<script type=\"module\" src=\"./js/app.js\"></script>"
   },
@@ -5864,8 +5864,8 @@
     "fp": "4fae061e31c80e37",
     "head": "export function synopsisFallback(issue, sessionEntry = null, noSynopsisMarker = undefined) {"
   },
-  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1309-1313|0": {
-    "anchor": "src/index.html:1309-1313",
+  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1320-1324|0": {
+    "anchor": "src/index.html:1320-1324",
     "fp": "fcca1b9ce2478dad",
     "head": "Comic, series, and creator metadata comes from the community"
   },
@@ -6199,8 +6199,8 @@
     "fp": "e4a8a4c444dd83ef",
     "head": "<!-- Shown only when saved data could not be read. Saving stays paused until the"
   },
-  "docs/UX_STUDY.md|sweep-result|src/index.html:746-752|0": {
-    "anchor": "src/index.html:746-752",
+  "docs/UX_STUDY.md|sweep-result|src/index.html:757-763|0": {
+    "anchor": "src/index.html:757-763",
     "fp": "ed4359c1c4354a5b",
     "head": "<form id=\"form-catalog-search\" class=\"stack\" role=\"search\">"
   },
@@ -6319,8 +6319,8 @@
     "fp": "59235d10bc8a1e1c",
     "head": "<div id=\"announcer\" class=\"visually-hidden\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"></di"
   },
-  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/index.html:885|0": {
-    "anchor": "src/index.html:885",
+  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/index.html:896|0": {
+    "anchor": "src/index.html:896",
     "fp": "7a1f8a1e2c6321e7",
     "head": "<div id=\"search-results\" class=\"results\"></div>"
   },
@@ -6439,8 +6439,8 @@
     "fp": "355fcaaa3ff55b6c",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:1326-1337|0": {
-    "anchor": "src/index.html:1326-1337",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:1337-1348|0": {
+    "anchor": "src/index.html:1337-1348",
     "fp": "06889f6018b854e0",
     "head": "<h3>Keyboard shortcuts</h3>"
   },

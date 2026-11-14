@@ -175,6 +175,7 @@ function universeViewHarness({ loadCatalog = async () => ({ lists: [] }) } = {})
     },
     detail: {
       heading: el('h1'), missing: el('div'), body: el('div'), earth: el('dd'),
+      browse: el('section'), listsSection: el('section'),
       year: el('dd'), debut: el('dd'), description: el('p'),
       status: el('p'), results: el('div'), retry: el('button'), emptyLink: el('a'),
     },
@@ -247,6 +248,23 @@ test('the index searches and sorts locally, keeping native detail links', () => 
   assert.match(h.nodes.index.count.textContent, /No universes match/);
   assert.deepEqual(h.view.indexState(), { universeQuery: 'no such reality', universeSort: 'alphabetical' });
   assert.equal(h.calls.changes, 1);
+});
+
+test('Marvel Universe offers static browsing rather than individual lists, without loading the catalog', async () => {
+  let loads = 0;
+  const h = universeViewHarness({ loadCatalog: async () => { loads += 1; return { lists: [] }; } });
+  h.setCurrent('universe');
+  h.view.setDetail('earth-616');
+  await h.view.renderDetail();
+  assert.equal(h.nodes.detail.heading.textContent, 'Marvel Universe');
+  assert.equal(h.nodes.detail.browse.hidden, false);
+  assert.equal(h.nodes.detail.listsSection.hidden, true);
+  assert.equal(loads, 0, 'the two browsing routes do not need catalog results');
+  h.view.setDetail('ultimate-marvel');
+  await h.view.renderDetail();
+  assert.equal(h.nodes.detail.browse.hidden, true);
+  assert.equal(h.nodes.detail.listsSection.hidden, false);
+  assert.equal(loads, 1, 'other universes still load their associated lists');
 });
 
 test('detail keeps static facts and permits retry when the catalog fails', async () => {

@@ -311,7 +311,7 @@ const CATALOG = {
   lists: [
     shelfEntry('browser-check', 'Browser Check Order', {
       timeline: 2004, beginner: true,
-      universeIds: ['earth-616'],
+      universeIds: ['ultimate-marvel'],
       placeholderCount: 1,
       source: 'https://example.com/shared-page', sourceSection: 'Fixture section',
     }),
@@ -12446,7 +12446,7 @@ const SCENARIOS = [
         JSON.stringify(previewReturn));
 
       await click(page, '#preview-close');
-      await page.evaluate(() => { location.hash = '#/universe/earth-616'; });
+      await page.evaluate(() => { location.hash = '#/universe/ultimate-marvel'; });
       await page.waitForSelector('#view-universe:not([hidden]) #universe-lists [data-act="preview"]');
       await click(page, '#universe-lists [data-act="preview"]');
       await page.waitForSelector('#preview[open] .preview-issue-link');
@@ -12466,7 +12466,7 @@ const SCENARIOS = [
         stateSame: localStorage.getItem('mrt.state.v2') === savedState,
       }), previewState);
       t.check('Back from a reloaded Universe Preview comic reopens its exact link without saving',
-        universeReturn.hash === '#/universe/earth-616' && universeReturn.open
+        universeReturn.hash === '#/universe/ultimate-marvel' && universeReturn.open
           && universeReturn.issueId === '900001' && universeReturn.stateSame,
         JSON.stringify(universeReturn));
       if (!universeReturn.open) return;
@@ -12655,7 +12655,7 @@ const SCENARIOS = [
         /^#\/home(?:\/|$)/.test(home.hash) && home.scrollY === 0 && home.heading === 'home-h'
           && home.visible && home.focusRing,
         JSON.stringify({ hash: home.hash, scrollY: home.scrollY, heading: home.heading, visible: home.visible }));
-      await page.evaluate(() => { location.hash = '#/universe/earth-616'; });
+      await page.evaluate(() => { location.hash = '#/universe/ultimate-marvel'; });
       await page.waitForSelector('#view-universe:not([hidden]) #universe-lists [data-act="preview"]');
       await click(page, '#universe-lists [data-act="preview"]');
       await page.waitForSelector('#preview[open] .preview-issue-link');
@@ -12678,7 +12678,7 @@ const SCENARIOS = [
         };
       });
       t.check('Universe Preview Back restores a visible keyboard-focused comic without changing progress',
-        universePreview.hash === '#/universe/earth-616' && universePreview.issueId === previewIssueId
+        universePreview.hash === '#/universe/ultimate-marvel' && universePreview.issueId === previewIssueId
           && universePreview.visible && universePreview.focusVisible && universePreview.saved === savedState,
         JSON.stringify({ ...universePreview, saved: universePreview.saved === savedState }));
       t.check('the return-focus journeys produce no console or page errors',
@@ -18171,7 +18171,7 @@ SCENARIOS.push({
       t.check('closing a direct preview returns to the guide without writing saved data',
         await previewPage.evaluate((state) => !document.querySelector('#view-new-to-comics').hidden
           && localStorage.getItem('mrt.state.v2') === state, before.state));
-      await previewPage.evaluate(() => { location.hash = '#/universe/earth-616'; });
+      await previewPage.evaluate(() => { location.hash = '#/universe/ultimate-marvel'; });
       await previewPage.waitForSelector('#view-universe:not([hidden]) #universe-lists [data-act="preview"]');
       await click(previewPage, '#universe-lists [data-act="preview"]');
       await previewPage.waitForSelector('#preview[open] .preview-issue-link');
@@ -18181,13 +18181,13 @@ SCENARIOS.push({
       await previewPage.waitForFunction(() => document.querySelector('#preview')?.open
         && document.activeElement?.dataset.focusSource === 'preview');
       t.check('a Universe Preview comic returns to its native source route and exact link',
-        await previewPage.evaluate((state) => location.hash === '#/universe/earth-616'
+        await previewPage.evaluate((state) => location.hash === '#/universe/ultimate-marvel'
           && document.activeElement?.getAttribute('href') === '#/issue/900001?order=browser-check'
           && localStorage.getItem('mrt.state.v2') === state, before.state));
       await click(previewPage, '#preview-close');
       await click(previewPage, '.brand[data-view="home"]');
       await previewPage.goBack();
-      await previewPage.waitForFunction(() => location.hash === '#/universe/earth-616'
+      await previewPage.waitForFunction(() => location.hash === '#/universe/ultimate-marvel'
         && document.activeElement?.id === 'universe-h');
       t.check('leaving a restored Universe consumes the old comic opener before a later Back',
         await previewPage.evaluate(() => !document.querySelector('#preview').open
@@ -27438,6 +27438,66 @@ SCENARIOS.push({
     t.check('Earth-6160 shows only its two new-Universe guides, excluding Ultimate Spider-Man',
       newUltimateLists.join('|') === 'list:new-ultimate-universe|list:new-ultimate-universe-trades',
       JSON.stringify(newUltimateLists));
+    await open(page, '/?catalog=actual&local-health=ready#/universe/earth-616');
+    await page.waitForSelector('#universe-browse:not([hidden])');
+    const marvelUniverse = await page.evaluate(() => ({
+      title: document.querySelector('#universe-h').textContent,
+      earth: document.querySelector('#universe-earth').textContent,
+      listSectionHidden: document.querySelector('#universe-reading-lists').hidden,
+      rows: document.querySelectorAll('#universe-lists .universe-list').length,
+      links: [...document.querySelectorAll('#universe-browse a')].map((link) => ({
+        text: link.textContent.trim(), href: link.getAttribute('href'),
+      })),
+    }));
+    t.check('Marvel Universe keeps its overview and replaces individual lists with two browsing destinations',
+      marvelUniverse.title === 'Marvel Universe' && marvelUniverse.earth === 'Earth-616'
+        && marvelUniverse.listSectionHidden && marvelUniverse.rows === 0
+        && JSON.stringify(marvelUniverse.links) === JSON.stringify([
+          { text: 'Modern Timeline', href: '#/catalog' },
+          { text: 'Marvel Ages', href: '#/marvel-ages' },
+        ]), JSON.stringify(marvelUniverse));
+    const browseLayouts = [];
+    for (const width of [1280, 390, 320]) {
+      await page.setViewport({ width, height: 900 });
+      browseLayouts.push(await page.evaluate(() => ({
+        width: innerWidth, document: document.documentElement.scrollWidth,
+        links: [...document.querySelectorAll('#universe-browse a')].map((node) => {
+          const rect = node.getBoundingClientRect();
+          return { width: rect.width, height: rect.height, visible: node.checkVisibility() };
+        }),
+      })));
+    }
+    console.log(`MARVEL_UNIVERSE_BROWSE_LAYOUT ${JSON.stringify(browseLayouts)}`);
+    t.check('both Marvel Universe browsing links remain usable on desktop and phone',
+      browseLayouts.every((layout) => layout.document <= layout.width
+        && layout.links.length === 2 && layout.links.every((link) => link.visible && link.width >= 24 && link.height >= 24)),
+      JSON.stringify(browseLayouts));
+    await page.setViewport({ width: 1280, height: 900 });
+    for (const destination of ['catalog', 'marvel-ages']) {
+      const selector = `#universe-browse a[href="#/${destination}"]`;
+      const native = await page.$eval(selector, (link) => {
+        let accepted = false;
+        link.addEventListener('click', (event) => {
+          accepted = !event.defaultPrevented;
+          event.preventDefault();
+        }, { once: true });
+        link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, ctrlKey: true }));
+        return accepted;
+      });
+      await page.focus(selector);
+      await page.keyboard.press('Enter');
+      await page.waitForSelector(`#view-${destination}:not([hidden])`);
+      const arrivedHash = await page.evaluate(() => location.hash);
+      t.check(`Marvel Universe opens ${destination} by keyboard and preserves modified-link activation`,
+        native && arrivedHash === `#/${destination}/fixture`,
+        JSON.stringify({ native, arrivedHash }));
+      await page.goBack();
+      await page.waitForSelector('#view-universe:not([hidden]) #universe-browse:not([hidden])');
+      t.check(`Back from ${destination} returns to Marvel Universe without exposing individual lists`,
+        await page.evaluate(() => location.hash === '#/universe/earth-616'
+          && document.querySelector('#universe-reading-lists').hidden
+          && document.activeElement?.id === 'universe-h'));
+    }
 
     await open(page, '/?catalog=actual&local-health=ready#/universe/marvel-zombies');
     await page.waitForFunction(() => document.querySelector('#universe-lists .universe-list-note'));
