@@ -1255,7 +1255,7 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // Marvel Zombies retains three unresolved 2025 originals as distinct placeholders.
   // Kamala adds five distinct original-edition gaps without guessing provider identities.
   // Nova adds two distinct published-original source positions. Ultimate Spider-Man adds one
-  // unresolved Super Special and eight known-ID detail refusals in a newly affected guide.
+  // unresolved Super Special; the eight later detail refusals leave with the owner's Earth-6160 cut.
   // Shang-Chi adds eight distinct provider-original gaps.
   // Age of Apocalypse adds sixteen qualified original-identity gaps.
   // Onslaught adds two distinct unresolved source originals.
@@ -1265,8 +1265,8 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // Spidey keeps the six Spidey: School's Out positions as distinct source-position placeholders.
   assert.equal(claimed, 1130, 'the payload placeholder total moved; re-derive the figures in the record');
   assert.equal(placeholders, 1130, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
-  assert.equal(empty, 229);
-  assert.equal(affected, 23);
+  assert.equal(empty, 221);
+  assert.equal(affected, 22);
 });
 
 // Every check above passes with the import path reverted, because they all call the counter

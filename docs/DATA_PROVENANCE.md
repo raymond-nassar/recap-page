@@ -416,16 +416,16 @@ orders: **null means nobody granted anything for this file, not that the file is
 
 ### Reading orders, pinned
 
-Two hundred and ninety-five pinned reading-order payloads remain under
-[`src/data/`](../src/data): 293 active visible catalog files, one active noncatalog partition parent,
-and the retired 18-original owner-selected No Way Home payload. The 294 active files hold
-31,185 issue records covering 19,324 distinct tracked identities. The visible files hold 30,698 of those records;
+Three hundred and forty-six pinned reading-order payloads remain under
+[`src/data/`](../src/data): 344 active visible catalog files, one active noncatalog partition parent,
+and the retired 18-original owner-selected No Way Home payload. The 345 active files hold
+32,869 issue records covering 20,170 distinct tracked identities. The visible files hold 32,382 of those records;
 the extra 487 are the retained Marvel Knights to Planet X parent whose ordinary children partition
 the same vector. Records use these fields:
 `issueId`, `title`,
 `number`, `url`, `seriesId`, `seriesName`, `onSale`, `mu`, `digitalId`, `pageCount`, a `cover`
-object of `path` and `ext`, and `creators` of `name` and `role`. Across the 294 active payloads, 26,307
-records carry a cover URL and 24,704 carry creator credits. The retired payload remains byte-exact
+object of `path` and `ext`, and `creators` of `name` and `role`. Across the 345 active payloads, 27,968
+records carry a cover URL and 26,239 carry creator credits. The retired payload remains byte-exact
 but does not contribute to active discovery or this active census.
 
 `description` was the field to look at hardest and is now empty. The others are facts about a
@@ -435,10 +435,10 @@ The key is `null` on every record, the vendoring script no longer writes it, and
 A further 41, 7,193 characters, were removed from the design mockups described below, which a
 first pass missed because it looked only at the files the catalog names.
 
-Of the visible records, 1,149 are unopenable placeholders for unresolved source positions and 229
+Of the visible records, 1,130 are unopenable placeholders for unresolved source positions and 221
 non-placeholder records carry neither a series ID nor a digital ID after an upstream refusal. Those
-1,378 gap positions affect 43 catalog entries: twenty-eight carry placeholders, twenty-three carry empty records, and
-eight carry both kinds. One legacy item retains a placeholder flag alongside real identity and launch
+1,351 gap positions affect 44 catalog entries: twenty-nine carry placeholders, twenty-two carry empty records, and
+seven carry both kinds. One legacy item retains a placeholder flag alongside real identity and launch
 metadata, so it belongs to neither gap category. Placeholder
 IDs are computed here by [`scripts/vendor-orders.mjs`](../scripts/vendor-orders.mjs) from the order
 and source identity and then negated, so none can be read as one of Marvel's. These records preserve
@@ -454,10 +454,31 @@ The Kamala Khan guide retains five unresolved original-edition positions under
 [#598](https://github.com/raymond-nassar/recap-page/issues/598); its other 187 originals
 have exact issue identities.
 The Ultimate Spider-Man guide retains one unresolved 2002 special at source position 44 under
-[#601](https://github.com/raymond-nassar/recap-page/issues/601). Its eight later originals
-retain exact issue identities despite refused optional details. Those eight also appear in
-other orders; the 229 empty records above count each visible Reading List position, not
-distinct original issue IDs.
+[#601](https://github.com/raymond-nassar/recap-page/issues/601). Owner correction
+[#1296](https://github.com/raymond-nassar/recap-page/issues/1296) removes its 36-comic new-universe
+tail, including the eight later originals whose optional details were refused. Those identities
+remain in both New Ultimate Universe guides. The current guide has 316 positions: 315 exact
+identities and the original special's gap; all 47 post-Secret-Wars Miles Morales comics and
+the earlier Earth-1610 crossovers stay. This is an owner-directed difference from
+[Comic Book Herald's guide](https://www.comicbookherald.com/ultimate-spider-man-reading-order/),
+not a claim that the source omitted those comics.
+The [owner selection](../scripts/data/ultimate-spider-man-selection.json) records every excluded
+issue ID and original position. Its three enabled blocks omit Ultimate Spider-Man (2024) #1-18
+and Free Comic Book Day 2025, Incursion #1-5, then Ultimate Spider-Man #19-24, Ultimate Endgame
+#1-5 and Ultimate Universe: Finale #1. Incursion is separately switchable: set only that block's
+`enabled` field to `false` and rerun `node scripts/correct-ultimate-spider-man.mjs` to restore
+the five at their original relative positions. Counts and historical replay derive from that choice.
+The [pinned Marvel Database revision for Incursion #1](https://marvel.fandom.com/wiki/Ultimate_Spider-Man:_Incursion_Vol_1_1?oldid=10741548),
+retrieved 2026-11-14, identifies Miles as the featured character and Billie Morales and
+Earth-6160 Peter Parker as supporting characters. It follows Miles but involves that Peter;
+the owner's all-36 removal includes this crossover.
+The correction producer selects retained metadata exactly from the pinned prior payload, authors
+the checklist through the source producer and rebuilds the catalog through the vendor without
+refetching metadata. The frozen source packet and relationship approvals remain unchanged.
+Normal future vendoring reads the corrected checklist. Existing saved copies are not rewritten:
+they retain their 352 comics and progress. Preview shows 316 comics and opens the saved copy;
+because no current comic is missing from that original saved copy, this deletion-only change
+offers neither a missing-comic notice nor an updated-copy action.
 The [Namor guide](https://www.comicbookherald.com/namor-sub-mariner-reading-order/)
 was checked on 2026-09-29 from its Golden Age selections through the late Black Panther
 #14 addition. Its 88 factual blocks select 705 occurrences across 700 original identities:

@@ -24,6 +24,14 @@ import {
   loadHistoricalReadingChoiceLibrary as loadLibrarySnapshot,
 } from './helpers/reading-choice-history.mjs';
 import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
+import { execFileSync } from 'node:child_process';
+import {
+  ultimateSelection, selectedUltimateRows, selectedUltimateEntry, selectedUltimatePayload,
+} from '../scripts/lib/ultimate-spider-man-selection.mjs';
+import {
+  ultimateSelectionHistory, beforeUltimateSelectionEntry, beforeUltimateSelectionIssueIds,
+  beforeUltimateSelectionPayloadText,
+} from './helpers/ultimate-spider-man-selection-history.mjs';
 
 const id = 'ultimate-spider-man-reading-order';
 const readJson = async (file) => JSON.parse(await readFile(file, 'utf8'));
@@ -285,7 +293,7 @@ test('Ultimate Spider-Man refuses a pending review even with unchanged rows and 
   }), /approved|review|pending/i);
 });
 
-test('Ultimate Spider-Man named checklist reproduces approved groups and 351 originals plus one gap', async () => {
+test('Ultimate Spider-Man named checklist publishes the owner-selected 315 originals plus one gap', async () => {
   const [markdown, manifest, inventory, payload, catalogRaw] = await Promise.all([
     readFile(`src/data/orders/${id}.md`, 'utf8'),
     readJson('src/data/curated-lists.json'),
@@ -299,21 +307,16 @@ test('Ultimate Spider-Man named checklist reproduces approved groups and 351 ori
   const all = [...parsed.entries, ...parsed.unresolved]
     .sort((left, right) => left.index - right.index);
   assert.deepEqual(all.map((row) => Number(row.sourceKey)),
-    Array.from({ length: 352 }, (_, index) => index + 1));
-  assert.equal(parsed.entries.length, 351);
+    Array.from({ length: 316 }, (_, index) => index + 1));
+  assert.equal(parsed.entries.length, 315);
   assert.equal(parsed.unresolved.length, 1);
   assert.equal(parsed.unresolved[0].index + 1, 44);
   assert.deepEqual(parsed.entries.map((row) => row.issueId),
-    mapping.rows.map((row) => row.selectedIssueId));
+    selectedUltimateRows(mapping).map((row) => row.selectedIssueId));
   assert.match(all[0].section, /^Peter Parker, original Ultimate universe:/);
   assert.match(all[197].section, /^Miles Morales Reading List:/);
   assert.match(all[269].section, /^All-New All-Different Miles Morales:/);
-  assert.match(all[316].section, /^The New Ultimate Spider-Man \(2024-2026\):/);
-  assert.match(all[334].section, /Ultimate Universe story only/);
-  assert.match(all[351].section, /Spider-Man story only; after Ultimate Endgame #1-5/);
-  assert.match(all[350].section, /Ultimate Endgame/);
-  assert.notEqual(all[350].section, all[351].section);
-  assert.equal(payload.items.length, 352);
+  assert.equal(payload.items.length, 316);
   const superSpecial = payload.items[43];
   assert.equal(placeholderId(id, 'Ultimate Spider-Man Super Special (2002) #1', '44'),
     superSpecialPlaceholderId);
@@ -323,33 +326,32 @@ test('Ultimate Spider-Man named checklist reproduces approved groups and 351 ori
   );
   assert.deepEqual(payload.items.filter((item) => item.placeholder).map((item) => item.issueId),
     [superSpecialPlaceholderId]);
-  const expectedBrowserIds = Array.from({ length: 352 }, (_, index) => (
+  const expectedBrowserIds = Array.from({ length: 316 }, (_, index) => (
     index === 43 ? superSpecialPlaceholderId : rowAt(index + 1)?.selectedIssueId
   ));
   assert.ok(expectedBrowserIds.every((issueId) => Number.isInteger(issueId)));
   assert.deepEqual(payload.items.map((item) => item.issueId), expectedBrowserIds);
   assert.deepEqual(payload.items.filter((item) => !item.placeholder).map((item) => item.issueId),
-    mapping.rows.map((row) => row.selectedIssueId));
+    selectedUltimateRows(mapping).map((row) => row.selectedIssueId));
   assert.deepEqual(payload.items.map((item) => item.collectedIn), all.map((row) => row.section));
   assert.deepEqual(payload.items.map((item) => item.title), all.map((row) => row.title));
   const late = payload.items.filter((item) => refusedIds.includes(item.issueId));
-  assert.deepEqual(late.map((item) => item.issueId), refusedIds);
+  assert.deepEqual(late.map((item) => item.issueId), []);
   assert.deepEqual(payload.items.filter((item) => item.detailsRefused === true)
-    .map((item) => item.issueId), refusedIds);
-  assert.ok(late.every((item) => item.detailsRefused === true && !item.placeholder
-    && item.seriesId === null
-    && item.digitalId === null && item.cover === null && item.url?.startsWith('https://www.marvel.com/comics/issue/')));
+    .map((item) => item.issueId), []);
   const card = parseCatalog(catalogRaw).lists.find((entry) => entry.id === id);
-  assert.equal(card.count, 352);
+  assert.equal(card.count, 316);
   assert.equal(card.placeholderCount, 1);
-  assert.equal(card.emptyRecordCount, 8);
-  assert.equal(card.collections, 47);
+  assert.equal(card.emptyRecordCount, 0);
+  assert.equal(card.collections, 39);
   assert.equal(card.coverIssueId, 4372);
   assert.equal(card.source, packet.sourceUrl);
   assert.equal(manifest.lists.length, currentReadingCensus.sources);
   const position = manifest.lists.findIndex((entry) => entry.id === id);
   assert.equal(manifest.lists[position + 1].id, 'venom-reading-order');
-  assert.deepEqual(withoutDiscoveryTags(descriptionRevisions.undoEntry(manifest.lists[position])), mapping.approvedManifest);
+  assert.deepEqual(withoutDiscoveryTags(descriptionRevisions.undoEntry(
+    beforeUltimateSelectionEntry(manifest.lists[position]),
+  )), mapping.approvedManifest);
   assert.doesNotThrow(() => validateInventoryState(inventory));
   const record = inventory.find((row) => row.id === id);
   assert.equal(record.position, 113);
@@ -358,6 +360,68 @@ test('Ultimate Spider-Man named checklist reproduces approved groups and 351 ori
   assert.deepEqual(record.overlapIds, report.comparisons.filter((comparison) => (
     comparison.relationship !== 'none'
   )).map((comparison) => comparison.orderId));
+});
+
+test('owner selection preserves retained metadata and restores Incursion #1-5 with one data flag', async () => {
+  const baseline = ultimateSelectionHistory();
+  const payload = await readJson(`src/data/${ultimateSelection.payloadFile}`);
+  assert.deepEqual(payload, selectedUltimatePayload(baseline.payload));
+  assert.deepEqual(payload.items, baseline.payload.items.slice(0, 316));
+  assert.deepEqual(payload.items.slice(269), baseline.payload.items.slice(269, 316),
+    'All 47 post-Secret-Wars Miles Morales comics stay in their original order.');
+  const removed = baseline.payload.items.slice(316).map(({ issueId }) => issueId);
+  for (const file of ['new_ultimate_universe.json', 'new_ultimate_universe_trades.json']) {
+    const peer = await readJson(`src/data/${file}`);
+    assert.ok(removed.every((issueId) => peer.items.some((item) => item.issueId === issueId)), file);
+  }
+  const incursion = ultimateSelection.exclusions.find((block) => block.firstSourcePosition === 336);
+  assert.equal(incursion.name, 'Ultimate Spider-Man: Incursion (2025) #1-5');
+  assert.deepEqual(incursion.issueIds, [125522, 125523, 125524, 125525, 125526]);
+  assert.match(incursion.evidence.url, /oldid=10741548$/);
+  const restored = structuredClone(ultimateSelection);
+  restored.exclusions.find((block) => block.firstSourcePosition === 336).enabled = false;
+  const restoredPayload = selectedUltimatePayload(baseline.payload, restored);
+  assert.equal(restoredPayload.count, 321);
+  assert.equal(selectedUltimateEntry(baseline.entry, restored).expect, 321);
+  assert.deepEqual(restoredPayload.items.slice(316), baseline.payload.items.slice(335, 340));
+  assert.deepEqual(selectedUltimateRows(mapping, restored).slice(-5)
+    .map((row) => row.selectedIssueId), incursion.issueIds);
+});
+
+test('historical selection replay rejects unrecorded fields, reordered rows and unknown comics', () => {
+  const baseline = ultimateSelectionHistory();
+  const ids = baseline.currentPayload.items.map(({ issueId }) => issueId);
+  assert.deepEqual(beforeUltimateSelectionIssueIds(ids),
+    baseline.payload.items.map(({ issueId }) => String(issueId)));
+  assert.deepEqual(JSON.parse(beforeUltimateSelectionPayloadText(
+    ultimateSelection.payloadFile, JSON.stringify(baseline.currentPayload),
+  )), baseline.payload);
+  const changed = structuredClone(baseline.currentPayload);
+  changed.items[0].pageCount += 1;
+  assert.throws(() => beforeUltimateSelectionPayloadText(
+    ultimateSelection.payloadFile, JSON.stringify(changed),
+  ), /exact recorded selections/);
+  assert.throws(() => beforeUltimateSelectionEntry({ ...baseline.currentEntry, surprise: true }),
+    /exact recorded selections/);
+  assert.throws(() => beforeUltimateSelectionIssueIds([ids[1], ids[0], ...ids.slice(2)]),
+    /exact recorded selections/);
+  assert.throws(() => beforeUltimateSelectionIssueIds([...ids, 123456789]),
+    /exact recorded selections/);
+});
+
+test('selection history imports without reading Git until history is requested', () => {
+  const moduleUrl = new URL('./helpers/ultimate-spider-man-selection-history.mjs', import.meta.url).href;
+  const output = execFileSync(process.execPath, ['--input-type=module', '--eval', `
+    import assert from 'node:assert/strict';
+    import childProcess from 'node:child_process';
+    import { syncBuiltinESMExports } from 'node:module';
+    childProcess.execFileSync = () => { throw new Error('Historical Git read requested'); };
+    syncBuiltinESMExports();
+    const history = await import(${JSON.stringify(moduleUrl)});
+    assert.throws(() => history.ultimateSelectionHistory(), /Historical Git read requested/);
+    console.log('lazy history verified');
+  `], { encoding: 'utf8' });
+  assert.match(output, /lazy history verified/);
 });
 
 test('Ultimate Spider-Man checkpoint gates reject an altered original, dropped gap or lost peer', () => {
