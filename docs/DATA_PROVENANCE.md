@@ -3718,3 +3718,31 @@ are not independent corroboration: the pinned issue and reality pages come from 
 reference source. Three things remain open: the preview and promotion policy, independent
 bibliography, and the Heroes Reborn Wizard special's classification and on-sale date. No source
 narrative or comic image bytes are added, and saved data is unchanged.
+
+## Thor Celestial Saga and Captain Marvel description corrections
+
+On 2026-11-14, [the Best of Thor source guide](https://www.comicbookherald.com/best-10-thor-comics-of-all-time/)
+was reread. Its first honorable mention recommends the linked *Thor and the Eternals:
+The Celestial Saga* collection; the introduction's Thor #240-245 and Annual #10 mentions
+are separate recommendations, not that collection's contents.
+[The ISBN 9781302922498 bibliography](https://www.abebooks.com/9781302922498/Thor-Eternals-Celestials-Saga-Thomas-1302922491/plp),
+retrieved the same day, independently identifies Thor (1966) #283-301 and Thor Annual (1966) #7.
+The main-series range is expanded in ascending order, followed by the annual as listed in
+the contents statement; physical contents-page order is not asserted.
+
+[The correction ledger](../scripts/data/thor-celestial-correction.json) preserves all seven
+removed source positions, twenty exact replacements, each metadata request and retrieval time,
+and both publication digests. All twenty identities were checked against the provider's series
+and issue-detail responses. No identity or metadata gap remains. The other 124 originals keep
+their order and metadata unchanged, yielding 144 comics in the same eleven sections.
+Only factual metadata and cover addresses are retained, never image bytes or narrative prose.
+The existing Comic Book Herald credit, source link and null source license remain unchanged;
+this correction conveys no new license over the metadata.
+
+[The Captain Marvel description correction](../scripts/data/captain-marvel-description-correction.json)
+records the exact payload-only copy alignment to the already published catalog and manifest.
+No comic identities, metadata, source selection or discovery placement change for that guide.
+Newly added lists save the description shown while browsing. Existing saved snapshots,
+including Thor's seven unrelated originals and their progress, are not rewritten or relabeled.
+Historical review helpers replay only the captured prior publications or these exact corrections,
+without rewriting frozen approvals.

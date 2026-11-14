@@ -5,9 +5,9 @@
   "source": "https://www.comicbookherald.com/best-10-thor-comics-of-all-time/",
   "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
   "sourceLicense": null,
-  "generatedAt": "2026-08-17T04:10:56.790Z",
+  "generatedAt": "2026-11-14T22:52:01.662Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 131,
+  "count": 144,
   "collections": 11,
   "placeholders": 0,
   "unresolved": [],
@@ -896,32 +896,516 @@
       "collectedIn": "Gerry Conway: Firelord"
     },
     {
-      "issueId": 11568,
-      "title": "Thor (1966) #240",
-      "number": "240",
-      "url": "https://www.marvel.com/comics/issue/11568/thor_1966_240",
+      "issueId": 11611,
+      "title": "Thor (1966) #283",
+      "number": "283",
+      "url": "https://www.marvel.com/comics/issue/11611/thor_1966_283",
       "seriesId": 2083,
       "seriesName": "Thor (1966 - 1996)",
-      "onSale": "1975-10-01T00:00:00+0000",
-      "mu": "1975-10-01T00:00:00+0000",
-      "digitalId": 29268,
+      "onSale": "1979-05-01T00:00:00+0000",
+      "mu": "1979-05-01T00:00:00+0000",
+      "digitalId": 1130,
       "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/59d7b13ad4e96",
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/30/4f67739a67dea",
         "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
       "creators": [
         {
-          "name": "Klaus Janson",
+          "name": "Chic Stone",
           "role": "cover artist"
         },
         {
-          "name": "Sal Buscema",
+          "name": "John Buscema",
           "role": "penciler"
         },
         {
-          "name": "Bill Mantlo",
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Roy Thomas and Mark Gruenwald: The Celestial Saga"
+    },
+    {
+      "issueId": 11612,
+      "title": "Thor (1966) #284",
+      "number": "284",
+      "url": "https://www.marvel.com/comics/issue/11612/thor_1966_284",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1979-06-01T00:00:00+0000",
+      "mu": "1979-06-01T00:00:00+0000",
+      "digitalId": 7176,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/4c35fb3c18b6f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chic Stone",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Roy Thomas and Mark Gruenwald: The Celestial Saga"
+    },
+    {
+      "issueId": 11613,
+      "title": "Thor (1966) #285",
+      "number": "285",
+      "url": "https://www.marvel.com/comics/issue/11613/thor_1966_285",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1979-07-01T00:00:00+0000",
+      "mu": "1979-07-01T00:00:00+0000",
+      "digitalId": 7177,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/c0/4c35fb315eb22",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chic Stone",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Roy Thomas and Mark Gruenwald: The Celestial Saga"
+    },
+    {
+      "issueId": 11614,
+      "title": "Thor (1966) #286",
+      "number": "286",
+      "url": "https://www.marvel.com/comics/issue/11614/thor_1966_286",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1979-08-01T00:00:00+0000",
+      "mu": "1979-08-01T00:00:00+0000",
+      "digitalId": 7178,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/a0/4c35fb2bd5caa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chic Stone",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Roy Thomas and Mark Gruenwald: The Celestial Saga"
+    },
+    {
+      "issueId": 11615,
+      "title": "Thor (1966) #287",
+      "number": "287",
+      "url": "https://www.marvel.com/comics/issue/11615/thor_1966_287",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1979-09-01T00:00:00+0000",
+      "mu": "1979-09-01T00:00:00+0000",
+      "digitalId": 7179,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/4c35fb08568ca",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chic Stone",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Roy Thomas and Mark Gruenwald: The Celestial Saga"
+    },
+    {
+      "issueId": 11616,
+      "title": "Thor (1966) #288",
+      "number": "288",
+      "url": "https://www.marvel.com/comics/issue/11616/thor_1966_288",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1979-10-01T00:00:00+0000",
+      "mu": "1979-10-01T00:00:00+0000",
+      "digitalId": 7180,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/30/4c35facce427d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chic Stone",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Roy Thomas and Mark Gruenwald: The Celestial Saga"
+    },
+    {
+      "issueId": 11617,
+      "title": "Thor (1966) #289",
+      "number": "289",
+      "url": "https://www.marvel.com/comics/issue/11617/thor_1966_289",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1979-11-01T00:00:00+0000",
+      "mu": "1979-11-01T00:00:00+0000",
+      "digitalId": 7181,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/4c35faa8a8056",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chic Stone",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Roy Thomas and Mark Gruenwald: The Celestial Saga"
+    },
+    {
+      "issueId": 11618,
+      "title": "Thor (1966) #290",
+      "number": "290",
+      "url": "https://www.marvel.com/comics/issue/11618/thor_1966_290",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1979-12-01T00:00:00+0000",
+      "mu": "1979-12-01T00:00:00+0000",
+      "digitalId": 7182,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/70/4c35faa001b75",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chic Stone",
+          "role": "cover artist"
+        },
+        {
+          "name": "Arvell Jones",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Roy Thomas and Mark Gruenwald: The Celestial Saga"
+    },
+    {
+      "issueId": 11619,
+      "title": "Thor (1966) #291",
+      "number": "291",
+      "url": "https://www.marvel.com/comics/issue/11619/thor_1966_291",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1980-01-01T00:00:00+0000",
+      "mu": "1980-01-01T00:00:00+0000",
+      "digitalId": 7183,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/50/4c35fa9398872",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chic Stone",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Roy Thomas and Mark Gruenwald: The Celestial Saga"
+    },
+    {
+      "issueId": 11620,
+      "title": "Thor (1966) #292",
+      "number": "292",
+      "url": "https://www.marvel.com/comics/issue/11620/thor_1966_292",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1980-02-01T00:00:00+0000",
+      "mu": "1980-02-01T00:00:00+0000",
+      "digitalId": 2975,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/50/4f68b8767a8da",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chic Stone",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Roy Thomas and Mark Gruenwald: The Celestial Saga"
+    },
+    {
+      "issueId": 11621,
+      "title": "Thor (1966) #293",
+      "number": "293",
+      "url": "https://www.marvel.com/comics/issue/11621/thor_1966_293",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1980-03-01T00:00:00+0000",
+      "mu": "1980-03-01T00:00:00+0000",
+      "digitalId": 7185,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/65a050724d7fb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chic Stone",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Roy Thomas and Mark Gruenwald: The Celestial Saga"
+    },
+    {
+      "issueId": 11622,
+      "title": "Thor (1966) #294",
+      "number": "294",
+      "url": "https://www.marvel.com/comics/issue/11622/thor_1966_294",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1980-04-01T00:00:00+0000",
+      "mu": "1980-04-01T00:00:00+0000",
+      "digitalId": 7186,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/4c35f90e044ca",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chic Stone",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Roy Thomas and Mark Gruenwald: The Celestial Saga"
+    },
+    {
+      "issueId": 11623,
+      "title": "Thor (1966) #295",
+      "number": "295",
+      "url": "https://www.marvel.com/comics/issue/11623/thor_1966_295",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1980-05-01T00:00:00+0000",
+      "mu": "1980-05-01T00:00:00+0000",
+      "digitalId": 7187,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/4c35f8d13e276",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chic Stone",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Roy Thomas and Mark Gruenwald: The Celestial Saga"
+    },
+    {
+      "issueId": 11624,
+      "title": "Thor (1966) #296",
+      "number": "296",
+      "url": "https://www.marvel.com/comics/issue/11624/thor_1966_296",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1980-06-01T00:00:00+0000",
+      "mu": "1980-06-01T00:00:00+0000",
+      "digitalId": 7188,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/4c35f8c8b9603",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chic Stone",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marie Severin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Roy Thomas and Mark Gruenwald: The Celestial Saga"
+    },
+    {
+      "issueId": 11625,
+      "title": "Thor (1966) #297",
+      "number": "297",
+      "url": "https://www.marvel.com/comics/issue/11625/thor_1966_297",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1980-07-01T00:00:00+0000",
+      "mu": "1980-07-01T00:00:00+0000",
+      "digitalId": 7189,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/4c35f8c3301f7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chic Stone",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Roy Thomas and Mark Gruenwald: The Celestial Saga"
+    },
+    {
+      "issueId": 11626,
+      "title": "Thor (1966) #298",
+      "number": "298",
+      "url": "https://www.marvel.com/comics/issue/11626/thor_1966_298",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1980-08-01T00:00:00+0000",
+      "mu": "1980-08-01T00:00:00+0000",
+      "digitalId": 7190,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/4c35f8bddb777",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chic Stone",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "Ralph Macchio",
           "role": "writer"
         },
         {
@@ -932,208 +1416,140 @@
       "collectedIn": "Roy Thomas and Mark Gruenwald: The Celestial Saga"
     },
     {
-      "issueId": 11569,
-      "title": "Thor (1966) #241",
-      "number": "241",
-      "url": "https://www.marvel.com/comics/issue/11569/thor_1966_241",
+      "issueId": 11627,
+      "title": "Thor (1966) #299",
+      "number": "299",
+      "url": "https://www.marvel.com/comics/issue/11627/thor_1966_299",
       "seriesId": 2083,
       "seriesName": "Thor (1966 - 1996)",
-      "onSale": "1975-11-01T00:00:00+0000",
-      "mu": "1975-11-01T00:00:00+0000",
-      "digitalId": 29158,
+      "onSale": "1980-09-01T00:00:00+0000",
+      "mu": "1980-09-01T00:00:00+0000",
+      "digitalId": 7191,
       "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/e0/513ddedead4c2",
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/30/4c35f8b8755f4",
         "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
       "creators": [
         {
-          "name": "Joe Sinnott",
+          "name": "Chic Stone",
           "role": "cover artist"
         },
         {
-          "name": "John Buscema",
+          "name": "Keith Pollard",
           "role": "penciler"
-        },
-        {
-          "name": "Bill Mantlo",
-          "role": "writer"
-        }
-      ],
-      "collectedIn": "Roy Thomas and Mark Gruenwald: The Celestial Saga"
-    },
-    {
-      "issueId": 11570,
-      "title": "Thor (1966) #242",
-      "number": "242",
-      "url": "https://www.marvel.com/comics/issue/11570/thor_1966_242",
-      "seriesId": 2083,
-      "seriesName": "Thor (1966 - 1996)",
-      "onSale": "1975-12-01T00:00:00+0000",
-      "mu": "1975-12-01T00:00:00+0000",
-      "digitalId": 23024,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/4e4532e170c45",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 0,
-      "creators": [
-        {
-          "name": "Joe Sinnott",
-          "role": "cover artist"
-        },
-        {
-          "name": "John Buscema",
-          "role": "penciler"
-        },
-        {
-          "name": "Len Wein",
-          "role": "writer"
-        }
-      ],
-      "collectedIn": "Roy Thomas and Mark Gruenwald: The Celestial Saga"
-    },
-    {
-      "issueId": 11571,
-      "title": "Thor (1966) #243",
-      "number": "243",
-      "url": "https://www.marvel.com/comics/issue/11571/thor_1966_243",
-      "seriesId": 2083,
-      "seriesName": "Thor (1966 - 1996)",
-      "onSale": "1976-01-01T00:00:00+0000",
-      "mu": "1976-01-01T00:00:00+0000",
-      "digitalId": 23030,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/4e4d5ef7c4614",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 0,
-      "creators": [
-        {
-          "name": "Joe Sinnott",
-          "role": "cover artist"
-        },
-        {
-          "name": "John Buscema",
-          "role": "penciler"
-        },
-        {
-          "name": "Len Wein",
-          "role": "writer"
-        }
-      ],
-      "collectedIn": "Roy Thomas and Mark Gruenwald: The Celestial Saga"
-    },
-    {
-      "issueId": 11572,
-      "title": "Thor (1966) #244",
-      "number": "244",
-      "url": "https://www.marvel.com/comics/issue/11572/thor_1966_244",
-      "seriesId": 2083,
-      "seriesName": "Thor (1966 - 1996)",
-      "onSale": "1976-02-01T00:00:00+0000",
-      "mu": "1976-02-01T00:00:00+0000",
-      "digitalId": 23044,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/30/4e442f02a0cab",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 0,
-      "creators": [
-        {
-          "name": "Joe Sinnott",
-          "role": "cover artist"
-        },
-        {
-          "name": "John Buscema",
-          "role": "penciler"
-        },
-        {
-          "name": "Len Wein",
-          "role": "writer"
-        }
-      ],
-      "collectedIn": "Roy Thomas and Mark Gruenwald: The Celestial Saga"
-    },
-    {
-      "issueId": 11573,
-      "title": "Thor (1966) #245",
-      "number": "245",
-      "url": "https://www.marvel.com/comics/issue/11573/thor_1966_245",
-      "seriesId": 2083,
-      "seriesName": "Thor (1966 - 1996)",
-      "onSale": "1976-03-01T00:00:00+0000",
-      "mu": "1976-03-01T00:00:00+0000",
-      "digitalId": 23047,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/03/4e44350c56727",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 0,
-      "creators": [
-        {
-          "name": "Joe Sinnott",
-          "role": "cover artist"
-        },
-        {
-          "name": "John Buscema",
-          "role": "penciler"
-        },
-        {
-          "name": "Len Wein",
-          "role": "writer"
-        }
-      ],
-      "collectedIn": "Roy Thomas and Mark Gruenwald: The Celestial Saga"
-    },
-    {
-      "issueId": 16671,
-      "title": "Thor Annual (1966) #10",
-      "number": "10",
-      "url": "https://www.marvel.com/comics/issue/16671/thor_annual_1966_10",
-      "seriesId": 2978,
-      "seriesName": "Thor Annual (1966 - 2001)",
-      "onSale": "1982-01-01T00:00:00+0000",
-      "mu": "2019-09-16T00:00:00+0000",
-      "digitalId": 51660,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/10/5d7ba82b79fe6",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 0,
-      "creators": [
-        {
-          "name": "Al Gordon",
-          "role": "cover artist"
-        },
-        {
-          "name": "Andy Mushynsky",
-          "role": "cover artist"
-        },
-        {
-          "name": "Joe Rubinstein",
-          "role": "cover artist"
-        },
-        {
-          "name": "Rick Bryant",
-          "role": "cover artist"
-        },
-        {
-          "name": "Bob Hall",
-          "role": "penciler"
-        },
-        {
-          "name": "Alan Zelenetz",
-          "role": "writer"
         },
         {
           "name": "Mark Gruenwald",
+          "role": "writer"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Roy Thomas and Mark Gruenwald: The Celestial Saga"
+    },
+    {
+      "issueId": 11628,
+      "title": "Thor (1966) #300",
+      "number": "300",
+      "url": "https://www.marvel.com/comics/issue/11628/thor_1966_300",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1980-10-01T00:00:00+0000",
+      "mu": "1980-10-01T00:00:00+0000",
+      "digitalId": 7192,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/20/4c35f8aab4bc7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Gene Day",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Gruenwald",
+          "role": "writer"
+        },
+        {
+          "name": "Ralph Macchio",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Roy Thomas and Mark Gruenwald: The Celestial Saga"
+    },
+    {
+      "issueId": 11629,
+      "title": "Thor (1966) #301",
+      "number": "301",
+      "url": "https://www.marvel.com/comics/issue/11629/thor_1966_301",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1980-11-01T00:00:00+0000",
+      "mu": "1980-11-01T00:00:00+0000",
+      "digitalId": 7193,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/4c35f8a52a04e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chic Stone",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Gruenwald",
+          "role": "writer"
+        },
+        {
+          "name": "Ralph Macchio",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Roy Thomas and Mark Gruenwald: The Celestial Saga"
+    },
+    {
+      "issueId": 16686,
+      "title": "Thor Annual (1966) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/16686/thor_annual_1966_7",
+      "seriesId": 2978,
+      "seriesName": "Thor Annual (1966 - 2001)",
+      "onSale": "1978-01-01T00:00:00+0000",
+      "mu": "1978-01-01T00:00:00+0000",
+      "digitalId": 7248,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/4bb6f5216184d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Ernie Chan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Walt Simonson",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
           "role": "writer"
         }
       ],
