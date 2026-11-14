@@ -18513,16 +18513,16 @@ SCENARIOS.push({
         reference: icon.querySelector('use')?.getAttribute('href'),
       };
     }));
-    t.check('all 21 static controls retain their meaningful names', JSON.stringify(inventory.filter((i) => !i.gateway).map((i) => i.name))
+    t.check('all 23 static controls retain their meaningful names', JSON.stringify(inventory.filter((i) => !i.gateway).map((i) => i.name))
       === JSON.stringify([
         'Collapse sidebar', 'Library', 'Search', 'Backup & settings', 'About this app',
         'Enjoyed', 'Did not enjoy',
-        'Everything read', 'Progress by series', 'Added by hand', 'Your ratings', 'Look up comics',
+        'Everything read', 'Progress by series', 'Added by hand', 'Your ratings', 'Modern Timeline', 'Marvel Ages', 'Look up comics',
         'Reading guides', 'Characters', 'Series', 'Creators', 'Genres', 'Marvel Ages', 'Universes',
         'Find a series', 'Find a creator',
       ]), JSON.stringify(inventory));
-    t.check('all 35 static and generated SVGs are decorative and cannot become keyboard stops',
-      inventory.length === 35 && inventory.every((i) => i.tag === 'svg' && i.decorative));
+    t.check('all 37 static and generated SVGs are decorative and cannot become keyboard stops',
+      inventory.length === 37 && inventory.every((i) => i.tag === 'svg' && i.decorative));
     t.check('the one gateway preserves seven labelled category destinations and their icon/arrow pairs',
       await page.evaluate(() => [...document.querySelectorAll('[data-primary-paths], [data-secondary-paths]')]
         .flatMap((root) => [...root.querySelectorAll('a.home-path')])
