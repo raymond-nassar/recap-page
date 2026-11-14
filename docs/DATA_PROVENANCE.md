@@ -416,17 +416,17 @@ orders: **null means nobody granted anything for this file, not that the file is
 
 ### Reading orders, pinned
 
-Three hundred and forty-six pinned reading-order payloads remain under
+Three hundred and forty-seven pinned reading-order payloads remain under
 [`src/data/`](../src/data): 344 active visible catalog files, one active noncatalog partition parent,
-and the retired 18-original owner-selected No Way Home payload. The 345 active files hold
+and the retired No Way Home (18 originals) and withdrawn Marvel Multiverse (2 comics) payloads. The 345 active files hold
 32,869 issue records covering 20,170 distinct tracked identities. The visible files hold 32,382 of those records;
 the extra 487 are the retained Marvel Knights to Planet X parent whose ordinary children partition
 the same vector. Records use these fields:
 `issueId`, `title`,
 `number`, `url`, `seriesId`, `seriesName`, `onSale`, `mu`, `digitalId`, `pageCount`, a `cover`
 object of `path` and `ext`, and `creators` of `name` and `role`. Across the 345 active payloads, 27,968
-records carry a cover URL and 26,239 carry creator credits. The retired payload remains byte-exact
-but does not contribute to active discovery or this active census.
+records carry a cover URL and 26,239 carry creator credits. The retired No Way Home payload remains byte-exact;
+neither retired payload contributes to active discovery or this active census.
 
 `description` was the field to look at hardest and is now empty. The others are facts about a
 publication: which issue, in which series, on what date. A description was Marvel's own prose
