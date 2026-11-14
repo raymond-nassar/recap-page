@@ -20,6 +20,134 @@ const focusHeading = (page) => page.$eval('#order-name', (element) => {
   element.focus();
 });
 
+const enjoymentControls = (page) => page.$$eval('#list-enjoyment button', (buttons) => buttons.map((button) => {
+  const label = button.querySelector('.enjoyment-label');
+  return {
+    text: button.innerText.trim(), name: button.getAttribute('aria-label'), tooltip: button.dataset.tooltip,
+    icon: Boolean(button.querySelector('svg')?.checkVisibility()), hasLabel: !!label,
+    labelVisible: !!label && label.checkVisibility({ visibilityProperty: true, opacityProperty: true }),
+    width: button.getBoundingClientRect().width, height: button.getBoundingClientRect().height,
+  };
+}));
+
+function enjoymentMatches(controls, words) {
+  return controls.length === 2 && controls.every((button) => button.text === (words ? button.name : '')
+    && button.icon && button.hasLabel && button.labelVisible === words && button.name === button.tooltip
+    && button.width >= 44 && button.height >= 44)
+    && controls[0].name === 'Enjoyed' && controls[1].name === 'Did not enjoy';
+}
+
+async function checkOppositeHover(page, t, actual) {
+  const target = actual.none ? 'hover' : 'none';
+  const probe = await page.evaluate((mode) => {
+    const entries = [];
+    const visited = new WeakSet();
+    const visitSheet = (sheet) => {
+      if (visited.has(sheet)) return;
+      visited.add(sheet);
+      const source = sheet.href ? new URL(sheet.href).pathname : '[inline]';
+      const visitRules = (rules) => {
+        for (const rule of rules) {
+          if (rule instanceof CSSMediaRule && /\b(?:any-)?hover\b/i.test(rule.conditionText)) {
+            entries.push({ source, original: rule.media.mediaText, rule });
+          }
+          if (rule.cssRules) visitRules(rule.cssRules);
+          if (rule instanceof CSSImportRule && rule.styleSheet) visitSheet(rule.styleSheet);
+        }
+      };
+      visitRules(sheet.cssRules);
+    };
+    try {
+      for (const sheet of document.styleSheets) visitSheet(sheet);
+    } catch (error) {
+      if (error.name !== 'SecurityError') throw error;
+      return { unavailable: 'stylesheet rules cannot be read (SecurityError)' };
+    }
+
+    const inventory = entries.map(({ source, original }) => ({ source, original }));
+    const expected = [{ source: '/styles.css', original: '(max-width: 880px), (hover: none)' }];
+    if (JSON.stringify(inventory) !== JSON.stringify(expected)) return { inventory, inventoryMatches: false };
+
+    const entry = entries[0];
+    const originalCount = entry.rule.cssRules.length;
+    const marker = '--completion-hover-emulation-proof';
+    const replacement = entry.original.split(',').map((part) => {
+      const query = part.trim();
+      const feature = query.match(/^\(\s*(?:any-)?hover\s*:\s*(none|hover)\s*\)$/i);
+      return feature ? (feature[1].toLowerCase() === mode ? 'all' : 'not all') : query;
+    }).join(', ');
+    let markerIndex = null;
+    let result;
+    try {
+      markerIndex = entry.rule.insertRule(`:root { ${marker}: matched; }`, originalCount);
+      const before = getComputedStyle(document.documentElement).getPropertyValue(marker).trim() === 'matched';
+      entry.rule.media.mediaText = replacement;
+      const after = getComputedStyle(document.documentElement).getPropertyValue(marker).trim() === 'matched';
+      const applied = entry.rule.media.mediaText;
+      const focused = document.activeElement;
+      let controls;
+      try {
+        controls = [...document.querySelectorAll('#list-enjoyment button')].map((button) => {
+          button.focus({ preventScroll: true });
+          const label = button.querySelector('.enjoyment-label');
+          const tip = document.querySelector('#action-tip');
+          return {
+            text: button.innerText.trim(), name: button.getAttribute('aria-label'), tooltip: button.dataset.tooltip,
+            visibleTip: tip?.checkVisibility({ visibilityProperty: true, opacityProperty: true }) ? tip.textContent.trim() : null,
+            icon: Boolean(button.querySelector('svg')?.checkVisibility()), hasLabel: !!label,
+            labelVisible: !!label && label.checkVisibility({ visibilityProperty: true, opacityProperty: true }),
+            width: button.getBoundingClientRect().width, height: button.getBoundingClientRect().height,
+          };
+        });
+      } finally {
+        document.activeElement?.blur();
+        if (focused instanceof HTMLElement && focused !== document.body) focused.focus({ preventScroll: true });
+      }
+      result = {
+        inventory, inventoryMatches: true, rewritten: [{ source: entry.source, original: entry.original, applied }],
+        effective: applied === replacement && before !== after && after === (mode === 'none'),
+        before, after, controls,
+      };
+    } catch (error) {
+      if (!['SecurityError', 'NotSupportedError', 'SyntaxError', 'HierarchyRequestError'].includes(error.name)) throw error;
+      result = { inventory, inventoryMatches: true, unavailable: `CSS media rewrite failed (${error.name})` };
+    } finally {
+      try {
+        if (markerIndex !== null) entry.rule.deleteRule(markerIndex);
+      } finally {
+        if (entry.rule.media.mediaText !== entry.original) entry.rule.media.mediaText = entry.original;
+      }
+    }
+    result.restored = entry.rule.media.mediaText === entry.original && entry.rule.cssRules.length === originalCount;
+    return result;
+  }, target);
+
+  if (probe.inventoryMatches) {
+    const restored = await enjoymentControls(page);
+    t.check('hover simulation restores the original CSS media rules and controls',
+      probe.restored === true && enjoymentMatches(restored, actual.none), JSON.stringify({ probe, restored }));
+  }
+  if (probe.unavailable) {
+    console.log('COMPLETION-HOVER-SIMULATION', JSON.stringify({ target, unavailable: probe.unavailable }));
+    return;
+  }
+  t.check('hover simulation discovers exactly the reviewed CSS media rules', probe.inventoryMatches === true, JSON.stringify(probe.inventory));
+  if (!probe.inventoryMatches) return;
+  if (!probe.effective) {
+    console.log('COMPLETION-HOVER-SIMULATION', JSON.stringify({ target, unavailable: 'CSS media rewrite had no observable effect', probe }));
+    return;
+  }
+  const expectedRewrite = [{
+    source: '/styles.css', original: '(max-width: 880px), (hover: none)',
+    applied: `(max-width: 880px), ${target === 'hover' ? 'not all' : 'all'}`,
+  }];
+  t.check('hover simulation rewrites exactly the reviewed CSS media rules',
+    JSON.stringify(probe.rewritten) === JSON.stringify(expectedRewrite), JSON.stringify(probe.rewritten));
+  t.check(`1280px simulated ${target} enjoyment actions keep visible names, icons and 44px targets`,
+    enjoymentMatches(probe.controls, target === 'none') && probe.controls.every((button) => button.visibleTip === button.name),
+    JSON.stringify(probe));
+}
+
 async function completionOperation(stage, operation) {
   console.log('COMPLETION-STEP', JSON.stringify({ stage }));
   try {
@@ -168,18 +296,17 @@ export const completionLifecycle = {
       && document.querySelector('#list-suggestions [data-recommendation]'));
     for (const width of [1280, 390]) {
       await page.setViewport({ width, height: 900 });
-      const controls = await page.$$eval('#list-enjoyment button', (buttons) => buttons.map((button) => ({
-        text: button.innerText.trim(), name: button.getAttribute('aria-label'),
-        tooltip: button.dataset.tooltip, icon: Boolean(button.querySelector('svg')?.checkVisibility()),
-        width: button.getBoundingClientRect().width, height: button.getBoundingClientRect().height,
-      })));
-      // UX-42 (#836): with a pointer at desktop width the icons stand alone, and on a narrow screen each
-      // also draws its name, which is all its tooltip ever said.
-      const words = width <= 880;
-      t.check(`${width}px enjoyment actions are named icons${words ? ' that draw their names' : ''} with at least 44px targets`,
-        controls.length === 2 && controls.every((button) => button.text === (words ? button.name : '') && button.icon
-          && button.name === button.tooltip && button.width >= 44 && button.height >= 44)
-        && controls[0].name === 'Enjoyed' && controls[1].name === 'Did not enjoy', JSON.stringify(controls));
+      const hover = await page.evaluate(() => ({
+        available: matchMedia('(hover: hover)').matches,
+        none: matchMedia('(hover: none)').matches,
+      }));
+      const controls = await enjoymentControls(page);
+      // UX-42 (#836): only wide, hover-capable screens use icons alone; narrow or no-hover screens draw their names.
+      const words = width <= 880 || hover.none;
+      const mode = hover.none ? 'hover: none' : hover.available ? 'hover: hover' : 'hover: unknown';
+      t.check(`${width}px (${mode}) enjoyment actions are named icons${words ? ' that draw their names' : ''} with at least 44px targets`,
+        hover.available !== hover.none && enjoymentMatches(controls, words), JSON.stringify({ hover, controls }));
+      if (width === 1280) await checkOppositeHover(page, t, hover);
       t.check(`${width}px compact wrap-up keeps healthy status hidden and stays inside the viewport`,
         await page.evaluate(() => document.querySelector('#list-recommendation-status').hidden
           && document.querySelector('#list-enjoyment legend').classList.contains('visually-hidden')
@@ -731,6 +858,15 @@ export const completionRatingFocus = {
 };
 
 export const completionMutations = [
+  {
+    id: 'completion-enjoyment-labels-inverted', breaks: 'completion-lifecycle',
+    why: 'wide hover labels show while narrow and no-hover labels disappear',
+    rewriteStyles: (source) => source
+      .replace('.completion-enjoyment .enjoyment-label { display: none; }',
+        '.completion-enjoyment .enjoyment-label { display: inline; }')
+      .replace('  .completion-enjoyment .enjoyment-label { display: inline; }',
+        '  .completion-enjoyment .enjoyment-label { display: none; }'),
+  },
   {
     id: 'completion-rating-disabled-while-saving', breaks: 'completion-rating-focus',
     why: 'the rating buttons are natively disabled while their save is in flight, so the focused one loses focus',
