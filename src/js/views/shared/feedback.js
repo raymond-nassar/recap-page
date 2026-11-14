@@ -79,7 +79,47 @@ export function createFeedback({
   focusViewHeading,
   getCurrentView,
 }) {
-  const announce = announceChannel(
+  const channels = new WeakMap();
+  function activeDialog() {
+    const document = getDocument();
+    return document.activeElement?.closest?.('dialog[open]')
+      ?? [...document.querySelectorAll('dialog[open]')].at(-1) ?? null;
+  }
+
+  // A modal makes the page announcer inert, so a dialog gets its own polite status inside it.
+  function dialogSurface(dialog) {
+    const node = el('span', { class: 'visually-hidden', 'data-dialog-announcer': '', role: 'status', 'aria-live': 'polite', 'aria-atomic': 'true' });
+    let generation = 0;
+    let channel;
+    // close() and showModal() can reuse the same element before a queued write runs.
+    // A removed open attribute retires that question, even when it is open again now.
+    const invalidate = (records) => {
+      if (records.some((record) => record.oldValue !== null)) {
+        generation += 1;
+        node.textContent = '';
+        channel = makeChannel();
+      }
+    };
+    const Observer = getDocument().defaultView?.MutationObserver;
+    const observer = Observer ? new Observer(invalidate) : null;
+    dialog.append(node);
+    observer?.observe(dialog, { attributes: true, attributeFilter: ['open'], attributeOldValue: true });
+    // Drain synchronously too: a new message can arrive before the observer's microtask.
+    const refresh = () => { if (observer) invalidate(observer.takeRecords()); };
+    const makeChannel = () => announceChannel(() => {
+      refresh();
+      const current = generation;
+      node.textContent = '';
+      return (msg) => {
+        refresh();
+        if (generation === current && activeDialog() === dialog) node.textContent = msg;
+      };
+    }, schedule);
+    channel = makeChannel();
+    return { channel: (msg) => channel(msg), refresh };
+  }
+
+  const pageChannel = announceChannel(
     () => {
       // Resolved once and reused, so both writes land on the same element even if the document
       // changes under us between them.
@@ -89,6 +129,17 @@ export function createFeedback({
     },
     schedule,
   );
+  function announce(msg) {
+    const dialog = activeDialog();
+    if (!dialog) return pageChannel(msg);
+    let surface = channels.get(dialog);
+    if (!surface) {
+      surface = dialogSurface(dialog);
+      channels.set(dialog, surface);
+    }
+    surface.refresh();
+    surface.channel(msg);
+  }
   const announceState = passiveAnnouncer(announce);
 
   // alert() reached the reader wherever they were; a pane fixed in one view does not. With
@@ -210,6 +261,8 @@ export function createFeedback({
   // This is decided by reading the container rather than from a list of ids kept here, so
   // marking a container as a live region later cannot quietly reintroduce the double-speak.
   function isLive(node) {
+    const dialog = activeDialog();
+    if (dialog && !dialog.contains(node)) return false;
     for (let current = node; current && current.getAttribute; current = current.parentElement) {
       const live = current.getAttribute('aria-live');
       if (live && live !== 'off') return true;

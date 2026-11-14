@@ -1332,3 +1332,9 @@ available dialog height, the title, secondary actions and offline controls join 
 scrolling content, leaving Close and the primary action held. The same nodes, accessible names, focus
 and scroll position survive the switch. A stable input signature prevents its own resized edges from
 restarting the budget calculation.
+
+Shared feedback uses a polite status inside the active modal, since the page announcer is inert
+behind it. Messages from one action stay joined on that surface. Closing a dialog clears its status
+and invalidates queued speech, including when the same dialog is reopened immediately. A visible
+live pane inside the modal keeps its own channel; live panes behind the modal use the modal fallback.
+Outside dialogs the page announcer remains the shared fallback. Saved data is unchanged.
