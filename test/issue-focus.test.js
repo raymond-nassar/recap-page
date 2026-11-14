@@ -355,7 +355,9 @@ test('same-tab focus navigation stores an ephemeral opener and pushes exactly on
   assert.match(restore, /target\.focus\(\)/);
   assert.match(restore, /focusViewHeading\(view\)/);
   const sync = main.slice(main.indexOf('function syncHash'), main.indexOf('function applyRoute'));
-  assert.match(sync, /delete current\.issueFocusOpener/);
+  assert.match(sync, /const stale = \['issueFocusOpener', 'universeOpener', 'seriesOpener'\]/);
+  assert.match(sync, /key !== keptOpener && Object\.hasOwn\(current, key\)/);
+  assert.match(sync, /stale\.forEach\(\(key\) => delete current\[key\]\)/);
   assert.match(sync, /history\.replaceState\(Object\.keys\(current\)\.length \? current : null/);
 });
 

@@ -44,10 +44,15 @@ attribution or force an ambiguous request into a route. `docs/BATCH_READING_LIST
 - Stop for a real unresolved identity, edition boundary, source authority, license decision, or
   required review decision. A metadata gap alone is not a reason to block the rest of the list.
   `docs/READING_LIST_DELIVERY.md:102-136`
+- Propose a Universe placement from the list's own source, with evidence, and ask the owner only
+  when it is unclear. An open placement question never blocks publication.
+  [Universe placement](../../../docs/MAINTAINING.md#place-a-new-reading-list-in-a-universe).
+  `docs/MAINTAINING.md:1829`
 
 ## Completion
 
 Report the selected route, accounted source inputs and positions, explicit gaps and their linked
-Issue path, required review authority, preflight status, and the next authorized action. Do not
+Issue path, the Universe placement outcome, required review authority, preflight status, and the
+next authorized action. Do not
 claim publication or delivery until the canonical route's completion conditions are actually met.
 `docs/READING_LIST_DELIVERY.md:154-161` `docs/READING_LIST_DELIVERY.md:188-190`

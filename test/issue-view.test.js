@@ -26,7 +26,7 @@ function node(textContent = '') {
 
 function harness({
   apiIssue, state, synopsis = null, loadCatalog, loadOrder,
-  onStartSynopsis,
+  onStartSynopsis, issueUniverseLines = () => [],
   readerPresentation, onReaderContext, onToggleRead, onEditNote,
 } = {}) {
   const nodes = {
@@ -50,6 +50,7 @@ function harness({
     status: node(),
     synopsis: node(),
     synopsisStatus: node(),
+    universes: node(),
     savedActions: node(),
     markRead: node(),
     editNote: node(),
@@ -100,6 +101,7 @@ function harness({
     seriesOnly: (name) => name.replace(/\s+\(.*/, ''),
     synopsisFallback: (_issue, entry) => entry ?? 'No synopsis.',
     synopsisStatusLine: (status) => status?.text ?? '',
+    issueUniverseLines,
   });
   return {
     calls,
@@ -108,6 +110,19 @@ function harness({
     view,
   };
 }
+
+test('comic details show only the resolved issue associations and clear them for another comic', async () => {
+  const h = harness({
+    apiIssue: async (id) => issue(id),
+    issueUniverseLines: (record) => record.issueId === 12460 ? [{ name: 'Days of Future Past' }] : [],
+  });
+  await h.view.render({ issueId: 12460 });
+  assert.equal(h.nodes.universes.hidden, false);
+  assert.deepEqual(h.nodes.universes.children, [{ name: 'Days of Future Past' }]);
+  await h.view.render({ issueId: 12459 });
+  assert.equal(h.nodes.universes.hidden, true);
+  assert.deepEqual(h.nodes.universes.children, []);
+});
 
 function issue(issueId = 42) {
   return {
@@ -653,7 +668,7 @@ test('Issue view cancellation suppresses a pending result and synopsis repaint s
 test('main constructs Issue Details once and delegates without moving shared policy', () => {
   const main = readFileSync(join(ROOT, 'src/js/main.js'), 'utf8');
   assert.match(main, /const issueView = createIssueView\(\{/);
-  assert.match(main, /if \(next === 'issue'\) void issueView\.render\(issueRoute\);/);
+  assert.match(main, /if \(next === 'issue'\) issueDetailReady = issueView\.render\(issueRoute\);/);
   assert.match(main, /if \(next !== 'issue' && view === 'issue'\) \{[\s\S]*?issueView\.cancel\(\);/);
   assert.match(main, /const issueResult = issueView\.result\(\);/);
   assert.match(main, /if \(view === 'issue'\) issueView\.repaintSynopsis\(status\);/);

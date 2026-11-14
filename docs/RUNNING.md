@@ -332,17 +332,17 @@ in the main view. **Trouble opening this comic?** contains the full Unlimited av
 temporary-link editor and optional correction-report tools. A temporary-link warning stays visible near Read even when help
 is closed. A reader link still does not establish availability or subscription access.
 
-Search has one box. Reading Lists, series and creators match as you type, and Enter looks up
-comics online. **Top**, **Reading Lists**, **Series**, **Creators** and **Comics** show one kind of
+Search has one box. Reading Lists, universes, series and creators match as you type, and Enter looks up
+comics online. **Top**, **Reading Lists**, **Universes**, **Series**, **Creators** and **Comics** show one kind of
 result at a time without searching again, so selected comics stay selected. **Browse by** links
-reading guides, characters, series, creators, genres and Marvel Ages, with **Paste a Reading List**
+reading guides, characters, series, creators, genres, Marvel Ages and universes, with **Paste a Reading List**
 and **Add a comic by hand** beneath it.
 
 When a local scope finds nothing, **Did you mean** can offer up to three similar bundled names.
 Choose one to search for it in the same scope. Suggestions allow one mistyped, missing, extra or
 swapped letter in a word of at least four characters; numbers and shorter words are not corrected.
 They work offline, do not record searches and never look up comics automatically. **Top** offers
-them only when all three local groups find nothing. **Comics** keeps using the title you type.
+them only when all four local groups find nothing. **Comics** keeps using the title you type.
 
 Under **Backup & settings**, **Data safety** opens with a short **Moving to another device**
 summary, then a **Complete backup** group, then gives reading data, completion history and the

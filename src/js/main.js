@@ -69,6 +69,8 @@ import { createMcuPrepView } from './views/mcu-prep.js';
 import { createStoryTypesView } from './views/story-types.js';
 import { createPreviewView } from './views/preview.js';
 import { createSearchListsView, searchThumb } from './views/search-lists.js';
+import { createUniversesView } from './views/universes.js';
+import { universeResolver } from './lib/universes.js';
 import { parseMcuPrep } from './lib/mcuPrep.js';
 import { createOfflineContent } from './lib/offlineContent.js';
 import { createCollectionNavigation } from './views/shared/collection-navigation.js';
@@ -395,7 +397,7 @@ const LOCAL_CONNECTION_STEPS = iosApp
     + 'start Recap Page from the copy you downloaded or installed from the Microsoft Store, then return here.';
 const generatedCategoryByRoute = new Map([
   ...PUBLISHING_CATEGORIES,
-  ...HOME_CATEGORIES.filter((category) => !category.shelf),
+  ...HOME_CATEGORIES.filter((category) => !category.shelf && category.kind !== 'universe-index'),
 ].map((category) => [category.route, category]));
 
 // The stored API base is checked once at boot, so the complaint about a bad one is a single
@@ -1288,7 +1290,120 @@ function wireAppTooltips() {
 function navigateTo(view, at = null) {
   // A click on the rail is the archetypal navigation, so this is the one that has to leave a
   // history entry for Back to come back to.
+  if (view === 'universes') universeView.setIndex();
   showView(view, { push: true, at });
+}
+
+function navigateToUniverse(id, opener = null) {
+  const href = formatRoute({ view: 'universe', universeId: id });
+  if (!href) return;
+  if (view === 'universe' && location.hash === href) {
+    if ($('#preview').open) $('#preview').close();
+    return;
+  }
+  const previewId = $('#preview').open && opener && $('#preview').contains(opener)
+    ? previewView.currentList()?.id ?? null : null;
+  navigationPosition.cancel();
+  navigationPosition.capture();
+  const current = history.state && typeof history.state === 'object' ? { ...history.state } : {};
+  delete current.issueFocusOpener;
+  delete current.pathStopOpener;
+  delete current.seriesOpener;
+  const key = opener?.dataset?.key ?? null;
+  history.replaceState({ ...current, universeOpener: { view, id, previewId, key } }, '', location.href);
+  universeView.setDetail(id);
+  keptOpener = 'universeOpener';
+  try {
+    showView('universe', { push: true, capturePosition: false });
+  } finally {
+    keptOpener = null;
+  }
+}
+
+async function restoreUniverseOpener(destination) {
+  const opener = history.state?.universeOpener;
+  if (!opener || opener.view !== destination) return;
+  const hash = location.hash;
+  const heldFocus = document.activeElement;
+  const current = () => view === destination && location.hash === hash
+    && history.state?.universeOpener?.id === opener.id;
+  if (opener.previewId) {
+    if (routedPreviewId === opener.previewId) {
+      await routedPreviewReady;
+      if (document.activeElement !== routedPreviewInitialFocus) return;
+    } else {
+      let catalog;
+      try {
+        catalog = await loadCatalog();
+      } catch (error) {
+        if (current()) {
+          notify('#app-report', `The Preview could not be reopened: ${error.message}. Your saved lists are unchanged.`, 'error');
+          focusViewHeading(destination);
+        }
+        return;
+      }
+      if (!current() || document.activeElement !== heldFocus) return;
+      const list = catalog.lists.find((entry) => entry.id === opener.previewId);
+      if (!list) {
+        notify('#app-report', 'That Preview is no longer in the catalog. Your saved lists are unchanged.', 'warn');
+        focusViewHeading(destination);
+        return;
+      }
+      const ready = previewView.open(list);
+      const previewFocus = document.activeElement;
+      await ready;
+      if (document.activeElement !== previewFocus) return;
+    }
+    if (!current() || !$('#preview').open) return;
+  } else if (destination === 'read') {
+    await readingView.aboutReady();
+  } else if (destination === 'issue') {
+    await issueDetailReady;
+  } else if (destination === 'universe') {
+    await universeView.seriesReady();
+  } else if (destination === 'add-series' && routedSeriesRoute) {
+    await routedSeriesReady;
+  }
+  if (!current() || (!opener.previewId && document.activeElement !== heldFocus)) return;
+  const section = opener.previewId ? $('#preview') : $(`#view-${destination}`);
+  const link = [...(section?.querySelectorAll('[data-universe-id]') ?? [])]
+    .find((candidate) => candidate.dataset.universeId === opener.id
+      && (!opener.key || candidate.dataset.key === opener.key));
+  if (link?.isConnected && link.checkVisibility()) link.focus({ preventScroll: true });
+  else focusViewHeading(destination);
+}
+
+function navigateToSeries(seriesId) {
+  const route = { view: 'add-series', seriesId };
+  if (!formatRoute(route)) return;
+  navigationPosition.cancel();
+  navigationPosition.capture();
+  const current = history.state && typeof history.state === 'object' ? { ...history.state } : {};
+  delete current.issueFocusOpener;
+  delete current.pathStopOpener;
+  delete current.universeOpener;
+  history.replaceState({ ...current, seriesOpener: { view, seriesId } }, '', location.href);
+  keptOpener = 'seriesOpener';
+  try {
+    openRoutedSeries(route, { focus: true, push: true, fresh: true });
+  } finally {
+    keptOpener = null;
+  }
+}
+
+async function restoreSeriesOpener(destination) {
+  const opener = history.state?.seriesOpener;
+  if (!opener || opener.view !== destination) return;
+  const hash = location.hash;
+  const heldFocus = document.activeElement;
+  if (destination === 'universe') await universeView.seriesReady();
+  if (view !== destination || location.hash !== hash
+    || history.state?.seriesOpener?.seriesId !== opener.seriesId || document.activeElement !== heldFocus) return;
+  const section = $(`#view-${destination}`);
+  const link = [...(section?.querySelectorAll('[data-series-id]') ?? [])]
+    .find((candidate) => Number(candidate.dataset.seriesId) === opener.seriesId);
+  if (link?.isConnected && link.checkVisibility()) link.focus({ preventScroll: true });
+  else focusViewHeading(destination);
 }
 
 function navigateToGuidePreview(previewId) {
@@ -1299,6 +1414,8 @@ function navigateToGuidePreview(previewId) {
   if (location.hash !== href) {
     const current = history.state && typeof history.state === 'object' ? { ...history.state } : {};
     delete current.issueFocusOpener;
+    delete current.universeOpener;
+    delete current.seriesOpener;
     history.replaceState({ ...current, guidePreviewOpener: previewId }, '', location.href);
     navigationPosition.push(href);
     history.replaceState({ ...history.state, guidePreviewParent: previewId }, '', location.href);
@@ -1317,7 +1434,9 @@ function openIssueFocus(issueId, context, opener) {
   if (!href) return;
   navigationPosition.cancel();
   navigationPosition.capture();
-  const current = history.state && typeof history.state === 'object' ? history.state : {};
+  const current = history.state && typeof history.state === 'object' ? { ...history.state } : {};
+  delete current.universeOpener;
+  delete current.seriesOpener;
   history.replaceState({ ...current, issueFocusOpener: opener }, '', location.href);
   issueRoute = route;
   navigationPosition.push(href);
@@ -1422,11 +1541,42 @@ async function newEmptyList() {
 let routeReady = false;
 let applyingRoute = false;
 let acknowledgedHash = null;
+// The one return target a push is writing for its own entry, so syncHash keeps it.
+let keptOpener = null;
 let navigationPosition;
 let routedPreviewId = null;
 let routedPreviewToken = null;
 let routedPreviewReady = null;
+let routedPreviewInitialFocus = null;
+let routedSeriesRoute = null;
+let routedSeriesToken = null;
+let routedSeriesReady = null;
+let issueDetailReady = null;
 const GUIDE_PREVIEW_NOTICE = 'guide-preview-load';
+
+function clearRoutedSeries() {
+  if (!routedSeriesRoute) return;
+  routedSeriesRoute = null;
+  routedSeriesToken = null;
+  routedSeriesReady = null;
+  addView.cancelRoutedSeries();
+}
+
+function openRoutedSeries(route, { focus, push = false, fresh = false }) {
+  clearRoutedSeries();
+  routedSeriesRoute = route;
+  const token = {};
+  routedSeriesToken = token;
+  showView('add-series', { focus, push, capturePosition: false });
+  const href = formatRoute(route);
+  const opener = history.state?.issueFocusOpener;
+  const restoringIssue = focus && opener?.view === 'add-series' && opener.surface === 'search';
+  routedSeriesReady = addView.openSeriesById(route.seriesId, {
+    focus: focus && !restoringIssue,
+    fresh,
+    isCurrent: () => routedSeriesToken === token && view === 'add-series' && location.hash === href,
+  });
+}
 
 // `push` separates a deliberate navigation from a passive correction, and the distinction is what
 // keeps Back usable. A reader who marks twenty issues read must not have to press Back twenty times
@@ -1459,16 +1609,22 @@ function syncHash({ push = false } = {}) {
     ? formatRoute({ view, previewId: routedPreviewId })
     : view === 'issue' && issueRoute
       ? formatRoute(issueRoute)
-      : view === 'library-rated'
-        ? formatRoute({ view, rated: ratedView.committed() })
-        : formatRoute({
-          view,
-          listId: activeListId(),
-          filter: showFilter ? shown : DEFAULT_FILTER,
-          full: view === 'read' && $('#full').open && !(showFilter && shown !== DEFAULT_FILTER),
-          sort, pathId: view === 'catalog' ? catalogView.followedPath() : null, at: homeAt,
-          ...(view === 'genres' ? storyTypesView.selection() : {}),
-        });
+      : view === 'add-series' && routedSeriesRoute
+        ? formatRoute(routedSeriesRoute)
+        : view === 'universes'
+          ? formatRoute({ view, ...universeView.indexState() })
+          : view === 'universe'
+            ? formatRoute({ view, universeId: universeView.detailId() })
+            : view === 'library-rated'
+              ? formatRoute({ view, rated: ratedView.committed() })
+              : formatRoute({
+                view,
+                listId: activeListId(),
+                filter: showFilter ? shown : DEFAULT_FILTER,
+                full: view === 'read' && $('#full').open && !(showFilter && shown !== DEFAULT_FILTER),
+                sort, pathId: view === 'catalog' ? catalogView.followedPath() : null, at: homeAt,
+                ...(view === 'genres' ? storyTypesView.selection() : {}),
+              });
   if (!next || next === location.hash) return;
 
   // A hash that is not ours is someone else's anchor, and index.html ships one: the skip link
@@ -1479,8 +1635,12 @@ function syncHash({ push = false } = {}) {
 
   if (push) {
     const current = history.state && typeof history.state === 'object' ? { ...history.state } : {};
-    if (Object.hasOwn(current, 'issueFocusOpener')) {
-      delete current.issueFocusOpener;
+    // A return target belongs to the one entry it was written for. Left behind, it would replay
+    // on every later Back to that entry, reopening a Preview the reader had already closed.
+    const stale = ['issueFocusOpener', 'universeOpener', 'seriesOpener']
+      .filter((key) => key !== keptOpener && Object.hasOwn(current, key));
+    if (stale.length) {
+      stale.forEach((key) => delete current[key]);
       history.replaceState(Object.keys(current).length ? current : null, '', location.href);
     }
     navigationPosition.push(next);
@@ -1524,6 +1684,7 @@ function applyRoute(route, { focus, filterIfAbsent, aboutTraversal = false }) {
   const departedPreviewId = routedPreviewId;
   applyingRoute = true;
   try {
+    if (route.view !== 'add-series' || !route.seriesId) clearRoutedSeries();
     if (issueSynopsisId != null && (route.view !== 'issue' || route.issueId !== issueSynopsisId)) {
       synopsisRunner.cancel();
       issueSynopsisId = null;
@@ -1532,6 +1693,7 @@ function applyRoute(route, { focus, filterIfAbsent, aboutTraversal = false }) {
       readingView.endFilterRun({ commit: false });
       issueRoute = route;
       showView('issue', { focus });
+      if (focus) void restoreUniverseOpener('issue');
       return;
     }
     issueView.cancel();
@@ -1543,6 +1705,14 @@ function applyRoute(route, { focus, filterIfAbsent, aboutTraversal = false }) {
       routedPreviewToken = {};
       routedPreviewReady = loadGuidePreview(route.previewId, routedPreviewToken);
       if (focus) void restoreIssueFocusOpener('new-to-comics');
+      if (focus) void restoreUniverseOpener('new-to-comics');
+      return;
+    }
+    if (route.view === 'add-series' && route.seriesId) {
+      readingView.endFilterRun({ commit: false });
+      openRoutedSeries(route, { focus });
+      if (focus) void restoreIssueFocusOpener('add-series');
+      if (focus) void restoreUniverseOpener('add-series');
       return;
     }
     // Ahead of the list and reading filter writes, because this address carries neither and
@@ -1552,6 +1722,16 @@ function applyRoute(route, { focus, filterIfAbsent, aboutTraversal = false }) {
       ratedView.setCommitted(route.rated);
       showView('library-rated', { focus });
       if (focus) ratedView.restoreOpener(history.state?.issueFocusOpener);
+      return;
+    }
+    if (route.view === 'universes' || route.view === 'universe') {
+      readingView.endFilterRun({ commit: false });
+      if (route.view === 'universes') universeView.setIndex(route);
+      else universeView.setDetail(route.universeId);
+      showView(route.view, { focus });
+      if (focus) void restoreUniverseOpener(route.view);
+      if (focus) void restoreSeriesOpener(route.view);
+      if (focus) void restoreIssueFocusOpener(route.view);
       return;
     }
     if (route.listId && route.listId !== activeListId() && Object.hasOwn(store.state.lists, route.listId)) {
@@ -1573,7 +1753,9 @@ function applyRoute(route, { focus, filterIfAbsent, aboutTraversal = false }) {
     // Before showView, so the passive sync at the end of showView computes the address this route
     // already describes and returns early rather than writing one and being corrected a moment later.
     readingView.setFilterAddressed(route.filter !== null);
-    readingView.setFilter(route.filter ?? filterIfAbsent);
+    const filterFallback = view === 'universes' || view === 'universe'
+      ? readingView.currentFilter() : filterIfAbsent;
+    readingView.setFilter(route.filter ?? filterFallback);
     // A traversal cannot span a navigation, and Back is a navigation. Discarded rather than committed,
     // because the address this route describes is the authoritative one and writing the traversal's
     // would fight it.
@@ -1597,7 +1779,11 @@ function applyRoute(route, { focus, filterIfAbsent, aboutTraversal = false }) {
   if (focus && route.view === 'new-to-comics' && departedPreviewId
     && history.state?.guidePreviewOpener === departedPreviewId) {
     focusGuidePreviewOpener(departedPreviewId);
-  } else if (focus) void restoreIssueFocusOpener(route.view);
+  } else if (focus) {
+    void restoreUniverseOpener(route.view);
+    void restoreSeriesOpener(route.view);
+    void restoreIssueFocusOpener(route.view);
+  }
 }
 
 // Moving focus to the new view's heading is what makes the rail usable with a keyboard or a
@@ -1609,10 +1795,12 @@ function showView(next, { focus = true, push = false, at = null, capturePosition
     if (capturePosition) navigationPosition.capture();
   }
   retireReaderHelp(); readingView.retireDoneResult();
+  if (next !== 'add-series') clearRoutedSeries();
   if (routedPreviewId) {
     routedPreviewId = null;
     routedPreviewToken = null;
     routedPreviewReady = null;
+    routedPreviewInitialFocus = null;
     $('#guide-preview-status').hidden = true;
     clearNotice(GUIDE_PREVIEW_NOTICE);
   }
@@ -1668,6 +1856,8 @@ function showView(next, { focus = true, push = false, at = null, capturePosition
   if (shelf) void catalogView.render(shelf.key);
   if (generatedCategoryByRoute.has(next)) renderPublishingCategory(next);
   if (next === 'home') homeView.render();
+  if (next === 'universes') universeView.renderIndex();
+  if (next === 'universe') void universeView.renderDetail();
   if (next === 'library') renderLibraryHub();
   if (next === 'library-rated') ratedView.renderBrowser();
   if (next === 'read') {
@@ -1681,7 +1871,7 @@ function showView(next, { focus = true, push = false, at = null, capturePosition
     } else if (arriving) readingView.enterAbout();
   }
   completionView.render();
-  if (next === 'issue') void issueView.render(issueRoute);
+  if (next === 'issue') issueDetailReady = issueView.render(issueRoute);
   // Here rather than in renderAll, because what this list reports is not part of the state every
   // render repaints: it changes when a read fails at boot, when the reader removes a copy, and in
   // another tab. Rebuilding it on arrival covers all three and leaves renderAll's fan-out alone.
@@ -1725,6 +1915,7 @@ function renderBreadcrumbs() {
   document.title = routeTitle({
     view, list: active, issueTitle: issueResult?.issue?.title
       ?? (view === 'issue' ? $('#issue-focus-h')?.textContent : null),
+    universe: view === 'universe' ? universeView.selected() : null,
   });
   const resolvedContext = issueResult?.contextStatus === 'valid'
     ? {
@@ -1737,6 +1928,7 @@ function renderBreadcrumbs() {
     list: active ? { id: active.id, name: active.name } : null,
     issueTitle: issueResult?.issue?.title ?? null,
     context: resolvedContext,
+    universe: view === 'universe' ? universeView.selected() : null,
   });
   const existing = section.querySelector('.breadcrumb');
   const isRoot = ['home', 'library', 'add'].includes(view)
@@ -1770,7 +1962,7 @@ function renderBreadcrumbs() {
 }
 
 function railParentView(next) {
-  if (next === 'home' || next === 'new-to-comics' || HOME_CATEGORIES.some(({ route }) => route === next)
+  if (next === 'home' || next === 'new-to-comics' || next === 'universe' || HOME_CATEGORIES.some(({ route }) => route === next)
     || generatedCategoryByRoute.has(next)) return 'home';
   if (next === 'add' || ADD_VIEWS.includes(next)) return 'add';
   if (next === 'library' || next === 'progress' || next === 'completed' || next === 'library-rated' || LIBRARY_VIEWS.some(({ value }) => value === next)) return 'library';
@@ -1819,6 +2011,7 @@ function leaveGuidePreview() {
   routedPreviewId = null;
   routedPreviewToken = null;
   routedPreviewReady = null;
+  routedPreviewInitialFocus = null;
   $('#guide-preview-status').hidden = true;
   clearNotice(GUIDE_PREVIEW_NOTICE);
   syncHash();
@@ -1852,12 +2045,22 @@ async function loadGuidePreview(previewId, token) {
       'warn', GUIDE_PREVIEW_NOTICE, null, { label: 'Return to guide', onClick: leaveGuidePreview });
     return;
   }
-  await previewView.open(list);
+  const ready = previewView.open(list);
+  routedPreviewInitialFocus = document.activeElement;
+  await ready;
 }
 
 async function restoreIssueFocusOpener(sourceView) {
   const opener = history.state?.issueFocusOpener;
   if (!opener || opener.view !== sourceView) return;
+  const hash = location.hash;
+  const current = () => view === sourceView && location.hash === hash
+    && history.state?.issueFocusOpener?.issueId === opener.issueId;
+  const waitingForSeries = sourceView === 'add-series' && opener.surface === 'search' && routedSeriesRoute;
+  const heldFocus = document.activeElement;
+  if (waitingForSeries) await routedSeriesReady;
+  if (waitingForSeries && document.activeElement !== heldFocus) return;
+  if (!current()) return;
   if (opener.surface === 'full-order') {
     readingView.setFullOrderFromRoute(true);
     readingView.renderRows();
@@ -1870,14 +2073,15 @@ async function restoreIssueFocusOpener(sourceView) {
       try {
         const catalog = await loadCatalog();
         const list = catalog.lists.find((entry) => entry.id === opener.contextId);
-        if (list && view === sourceView) await previewView.open(list);
+        if (list && current()) await previewView.open(list);
       } catch {
-        focusViewHeading(sourceView);
+        if (current()) focusViewHeading(sourceView);
         return;
       }
     }
   }
   await new Promise((resolve) => requestAnimationFrame(resolve));
+  if (!current() || (waitingForSeries && document.activeElement !== heldFocus)) return;
   const target = matchingIssueOpener(opener);
   if (target?.isConnected) {
     target.focus();
@@ -2132,18 +2336,25 @@ let catalogSnapshot = null;
 // Typing in the search box re-renders on every keystroke, so a slow first load could otherwise
 // start a second fetch while the first is still in flight and let the two renders finish out of
 // order. Sharing one promise keeps every render behind the same load; a failure clears it so
-// reopening the view can retry.
-function loadCatalog() {
-  catalogLoad ??= (async () => {
-    // Served from our own origin, so the catalog works with no internet connection.
-    const res = await fetch('./data/catalog.json', { cache: 'no-cache' });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    catalogSnapshot = parseCatalog(await res.json());
-    return catalogSnapshot;
-  })().catch((err) => {
-    catalogLoad = null;
-    throw err;
-  });
+// reopening the view can retry. An explicit refresh can replace a cached partial result.
+function loadCatalog({ refresh = false } = {}) {
+  if (refresh) catalogLoad = null;
+  if (!catalogLoad) {
+    const request = (async () => {
+      // Served from our own origin, so the catalog works with no internet connection.
+      const res = await fetch('./data/catalog.json', { cache: 'no-cache' });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return parseCatalog(await res.json());
+    })();
+    const pending = request.then((snapshot) => {
+      if (catalogLoad === pending) catalogSnapshot = snapshot;
+      return snapshot;
+    }, (err) => {
+      if (catalogLoad === pending) catalogLoad = null;
+      throw err;
+    });
+    catalogLoad = pending;
+  }
   return catalogLoad;
 }
 
@@ -2826,14 +3037,14 @@ async function refreshLocalConnection({ explicit = false } = {}) {
 }
 
 async function reportBundledLoadFailure({
-  report, failure, key, subject, retry, isCurrent = () => true,
+  report, failure, key, subject, retry, retryWhenReady = false, isCurrent = () => true,
 }) {
   const result = await runLocalConnectionProbe();
   if (!isCurrent()) return false;
   const retryLabel = key === CATALOG_LOAD ? 'Retry catalog' : 'Try again';
   if (!result.current || result.status === LOCAL_SERVER_STATUS.READY) {
     notify(report, failure, 'error', key,
-      key === CATALOG_LOAD ? localRecoveryAction(retryLabel, key, retry) : null);
+      key === CATALOG_LOAD || retryWhenReady ? localRecoveryAction(retryLabel, key, retry) : null);
     return false;
   }
   notify(
@@ -3246,7 +3457,9 @@ export function boot() {
   for (const tile of document.querySelectorAll('#search-browse [data-scope-tile]')) {
     tile.addEventListener('click', () => searchListsView.startScope(tile.dataset.scopeTile, $('#search-q')));
   }
+  universeView.wire();
   $('#search-lists-more').addEventListener('click', () => void searchListsView.showMore('lists'));
+  $('#search-universes-more').addEventListener('click', () => void searchListsView.showMore('universes'));
   $('#search-series-more').addEventListener('click', () => void searchListsView.showMore('series'));
   $('#search-creators-more').addEventListener('click', () => void searchListsView.showMore('creators'));
   $('#search-comics-more').addEventListener('click', () => searchListsView.setScope('comics'));
@@ -3488,6 +3701,11 @@ const addView = createAddView({
   lookupManual: lookupIssue,
   notify,
   onNonEmptyListSave: recordNonEmptyListSave,
+  onSeriesSearch: () => {
+    if (!routedSeriesRoute) return;
+    clearRoutedSeries();
+    syncHash();
+  },
   reportBundledLoadFailure,
   saveSelection: (items, destination) => persistSearchSelection(
     store,
@@ -3499,9 +3717,11 @@ const addView = createAddView({
     creatorIssues: (id, options) => api.creatorIssues(id, options),
     creators: (query, options) => api.searchCreators(query, options),
     issues: (query, options) => api.searchIssues(query, options),
+    nameIndex: (kind) => api.nameIndex(kind),
     series: (query, options) => api.searchSeries(query, options),
     seriesIssues: (id, options) => api.seriesIssues(id, options),
   },
+  seriesUniverseLines: (seriesId) => catalogPresentation.seriesUniverseLines(seriesId),
   showView,
   updateState: (updater) => {
     const state = store.update(updater);
@@ -3550,6 +3770,7 @@ const readingView = createReadingView({
   fact,
   loadCatalog,
   listAttribution: (list) => catalogPresentation.attributionLine(list),
+  listUniverseLines: (list) => catalogPresentation.listUniverseLines(list),
   focusCurrentView: () => {
     focusViewHeading(view);
     document.activeElement?.scrollIntoView({ block: 'nearest' });
@@ -3659,6 +3880,7 @@ const issueView = createIssueView({
     status: $('#issue-focus-status'),
     synopsis: $('#btn-issue-synopsis'),
     synopsisStatus: $('#issue-synopsis-status'),
+    universes: $('#issue-focus-universes'),
     savedActions: $('#issue-saved-actions'),
     markRead: $('#btn-issue-mark-read'),
     editNote: $('#btn-issue-note'),
@@ -3699,6 +3921,7 @@ const issueView = createIssueView({
   seriesOnly,
   synopsisFallback,
   synopsisStatusLine,
+  issueUniverseLines: (issue) => catalogPresentation.issueUniverseLines(issue),
 });
 
 const progressView = createProgressView({
@@ -3722,6 +3945,7 @@ const progressView = createProgressView({
     summaryBand,
   },
   preservingFocus,
+  seriesUniverseLines: (seriesId) => catalogPresentation.seriesUniverseLines(seriesId),
 });
 
 const savedLists = createSavedListsPresenter({
@@ -3779,7 +4003,7 @@ const homeView = createHomeView({
   }),
   onNavigateCategory: (category) => {
     if (category.route === 'genres') storyTypesView.set();
-    showView(category.route, { push: true });
+    navigateTo(category.route);
   },
   onNavigateHub: (destination) => showView(destination, { push: true }),
   onDone: () => { if (selectSavedList(continuingListId())) readingView.markReadFromHome(); }, onOpen: () => openSavedList(continuingListId()),
@@ -3912,6 +4136,7 @@ const catalogPresentation = createCatalogPresentation({
     rememberPathStop(list, 'preview');
     return previewView.open(list);
   },
+  onUniverse: navigateToUniverse,
   paintCoverUrl,
   shortTitle,
 });
@@ -3963,6 +4188,43 @@ function searchCover(url) {
   return searchThumb(el, settings.covers ? url : null);
 }
 
+const universeView = createUniversesView({
+  el,
+  elements: () => ({
+    index: {
+      form: $('#universes-form'), query: $('#universes-q'), sort: $('#universes-sort'),
+      count: $('#universes-count'), results: $('#universes-results'),
+    },
+    detail: {
+      heading: $('#universe-h'), missing: $('#universe-missing'), body: $('#universe-body'),
+      browse: $('#universe-browse'), listsSection: $('#universe-reading-lists'),
+      earth: $('#universe-earth'), year: $('#universe-year'), debut: $('#universe-debut'),
+      description: $('#universe-description'), status: $('#universe-lists-status'),
+      results: $('#universe-lists'), retry: $('#universe-retry'), emptyLink: $('#universe-empty-action'),
+      series: $('#universe-series'), seriesStatus: $('#universe-series-status'),
+      seriesRetry: $('#universe-series-retry'), seriesResults: $('#universe-series-results'),
+      comics: $('#universe-comics'), comicsResults: $('#universe-comics-results'),
+    },
+  }),
+  resolver: universeResolver,
+  loadCatalog,
+  isCurrent: (name) => view === name,
+  onNavigate: navigateToUniverse,
+  onIndexChange: () => syncHash(),
+  onRetry: () => {
+    if ([$('#universe-retry'), $('#universe-series-retry')].includes(document.activeElement)) {
+      focusViewHeading('universe');
+    }
+  },
+  announce,
+  issueFocusAnchor,
+  loadSeriesIndex: () => api.nameIndex('series'),
+  onSeries: navigateToSeries,
+  savedIssue: (issueId) => store.state.issues[issueId] ?? null,
+  presentation: catalogPresentation,
+  listCover: searchCover,
+});
+
 const searchListsView = createSearchListsView({
   el,
   elements: () => {
@@ -3978,8 +4240,10 @@ const searchListsView = createSearchListsView({
       scopes: $('#search-scopes'),
       count: $('#search-count'),
       suggestions: $('#search-suggestions'),
+      empty: $('#search-empty'),
       panes: $('#search-panes'),
       lists: group('lists'),
+      universes: group('universes'),
       series: group('series'),
       creators: group('creators'),
       comics: { section: $('#search-comics'), more: $('#search-comics-more') },
@@ -3992,6 +4256,7 @@ const searchListsView = createSearchListsView({
     : api.searchCreators(query, options)),
   presentation: catalogPresentation,
   thumb: searchCover,
+  universeRow: universeView.searchRow,
   comics: { lookup: (query, options) => addView.lookupComics(query, options) },
   openNamed: (kind, item) => addView.openNamed(kind, item),
   announce,
@@ -4102,6 +4367,14 @@ const previewView = createPreviewView({
       const held = captureFocus($(`#view-${view}`));
       await searchListsView.refresh();
       if (document.activeElement === document.body) restoreFocus(held, { primary: 'main' });
+      return;
+    }
+    if (closedList && changed && view === 'universe') {
+      const held = captureFocus($('#view-universe'));
+      await universeView.renderDetail();
+      if (isCurrent() && view === 'universe' && document.activeElement === document.body) {
+        restoreFocus(held, { primary: 'main' });
+      }
       return;
     }
     if (!closedList || !changed || (!CATALOG_SHELVES.some((shelf) => shelf.key === view)

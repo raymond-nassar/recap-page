@@ -32,6 +32,7 @@ body :is(input[type="text"], input[type="search"], input[type="url"], input[type
 .row-focus-title { min-height: var(--target-touch); display: flex; align-items: center; }
 .row .cb { width: var(--target-touch); height: var(--target-touch); }
 .breadcrumb a { display: inline-flex; align-items: center; min-height: var(--target-touch); }
+body .universe-target, body .universe-card .catalog-card-preview { min-height: var(--target-touch); }
 .app-back-label { display: none; }
 body .app-back.quiet { padding-inline: 0; min-width: var(--target-touch); min-height: var(--target-touch); }
 /* Android's own back arrow is full contrast at the 24dp icon size; the muted 16px glyph read as a

@@ -73,7 +73,7 @@ test('the publishing registry declares every effective non-overlapping range and
 
 test('every generated browse page has one short description and no highlight tags (#1297)', () => {
   const generated = [...PUBLISHING_CATEGORIES, ...HOME_CATEGORIES.filter((category) => !category.shelf)];
-  assert.equal(generated.length, 15);
+  assert.equal(generated.length, 16);
   for (const category of generated) {
     assert.equal(category.highlights, undefined, `${category.key} still carries highlight tags`);
     assert.equal(typeof category.description, 'string', `${category.key} has no description`);

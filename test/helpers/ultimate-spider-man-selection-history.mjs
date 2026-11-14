@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import path from 'node:path';
 import { readUltimateSelectionBaseline } from '../../scripts/correct-ultimate-spider-man.mjs';
 import { descriptionRevisions } from '../../scripts/lib/description-revisions.mjs';
+import { universeListProblems } from '../../src/js/lib/universeSchema.js';
 import {
   ultimateSelection, selectedUltimateEntry, selectedUltimatePayload,
 } from '../../scripts/lib/ultimate-spider-man-selection.mjs';
@@ -26,9 +27,16 @@ export function ultimateSelectionHistory() {
   return captured;
 }
 
+function withoutUniverseDiscovery(value) {
+  assert.deepEqual(universeListProblems(value), [], 'Universe discovery fields must be validated.');
+  return Object.fromEntries(Object.entries(value).filter(([key]) =>
+    !['universeIds', 'universeScopes'].includes(key)));
+}
+
 function assertRecorded(value, original, current, label) {
+  const project = ['manifest', 'catalog'].includes(label) ? withoutUniverseDiscovery : (entry) => entry;
   assert.ok([original, current].some((candidate) =>
-    JSON.stringify(candidate) === JSON.stringify(value)),
+    JSON.stringify(project(candidate)) === JSON.stringify(project(value))),
   `Ultimate Spider-Man ${label} differs from both exact recorded selections.`);
 }
 
@@ -39,7 +47,9 @@ export function beforeUltimateSelectionEntry(entry) {
   const adapt = (value) => Object.fromEntries(Object.entries(value).filter(([key]) =>
     !['storyTypes', 'tones'].includes(key) || Object.hasOwn(entry, key)));
   const earlier = adapt(descriptionRevisions.undoEntry(baseline.entry));
-  if (JSON.stringify(entry) === JSON.stringify(earlier)) return earlier;
+  if (JSON.stringify(withoutUniverseDiscovery(entry)) === JSON.stringify(withoutUniverseDiscovery(earlier))) {
+    return earlier;
+  }
   assertRecorded(entry, adapt(baseline.entry), adapt(baseline.currentEntry), 'manifest');
   return adapt(baseline.entry);
 }
