@@ -34,6 +34,7 @@ export function createIssueView({
   seriesOnly,
   synopsisFallback,
   synopsisStatusLine,
+  issueUniverseLines,
 }) {
   let activeLoad = null;
   let activeRoute = null;
@@ -83,6 +84,8 @@ export function createIssueView({
       nodes.card.hidden = true;
       nodes.heading.textContent = 'Comic unavailable';
       nodes.context.textContent = '';
+      nodes.universes.replaceChildren();
+      nodes.universes.hidden = true;
       nodes.status.textContent = activeRoute?.issueId < 0
         ? 'This local comic is no longer in saved data or the bundled order named by the link.'
         : result?.failure === 'not-found'
@@ -118,6 +121,9 @@ export function createIssueView({
     nodes.facts.replaceChildren(...presentation.facts.map((item) => (
       fact(item.key, item.value, item.className, item.hint)
     )));
+    const universeLines = issueUniverseLines(issue);
+    nodes.universes.replaceChildren(...universeLines);
+    nodes.universes.hidden = universeLines.length === 0;
     nodes.note.textContent = context?.note ?? '';
     nodes.note.hidden = !nodes.note.textContent;
     refreshReader();

@@ -224,9 +224,11 @@ export function createAddView({
   notify,
   noticeEl,
   onNonEmptyListSave,
+  onSeriesSearch,
   reportBundledLoadFailure,
   saveSelection,
   search,
+  seriesUniverseLines,
   showView,
   updateState,
   warmNameIndex,
@@ -487,6 +489,7 @@ export function createAddView({
       : config.kind === 'series' ? `Comics in ${status.item.name}` : `Comics matching “${status.item.name}”`;
     const resultHeading = el('h2', { class: 'comic-results-heading', text: heading, tabindex: -1 });
     box.append(resultHeading);
+    if (config.kind === 'series') box.append(...seriesUniverseLines(status.item.id));
     if (status.phase !== 'complete') {
       const partial = status.total != null
         ? `${comics(items.length)} of ${count(status.total)}`
@@ -647,6 +650,10 @@ export function createAddView({
     config.runner = new ComicSearchRunner({
       load: config.load,
       onStatus: (status) => {
+        if (config.silentCancel) return;
+        if (!status.running && config.routeFocus && document.activeElement !== config.routeFocus) {
+          config.focusResults = false;
+        }
         if (config.kind === 'issue') onComicStatus(status);
         const box = $(config.results);
         const focusedCancel = box.querySelector('.notice-act button') === document.activeElement;
@@ -663,6 +670,7 @@ export function createAddView({
           if (focusedCancel) box.querySelector('.notice-act button')?.focus({ preventScroll: true });
         } else {
           renderResults(config, status);
+          config.routeFocus = null;
           if (focusedCancel) $(config.input).focus({ preventScroll: true });
         }
       },
@@ -672,6 +680,7 @@ export function createAddView({
   function beginSearch(config) {
     clearSelectionReports();
     config.focusResults = false;
+    config.routeFocus = null;
     config.epoch += 1;
     config.runner.cancel();
     refreshBuilders();
@@ -702,11 +711,57 @@ export function createAddView({
   function openNamed(kind, item) {
     const config = searches.find((candidate) => candidate.kind === kind);
     if (!config) return;
+    if (kind === 'series') onSeriesSearch();
     showView(kind === 'series' ? 'add-series' : 'add-creator', { push: true });
     $(config.input).value = item.name;
     beginSearch(config);
     config.focusResults = true;
     void config.runner.start(item);
+  }
+
+  async function openSeriesById(id, { isCurrent, focus = true }) {
+    const config = searches.find((candidate) => candidate.kind === 'series');
+    const epoch = beginSearch(config);
+    const current = () => config.epoch === epoch && isCurrent();
+    const heldFocus = document.activeElement;
+    const initialQuery = $(config.input).value;
+    notify(config.results, 'Loading series details...', 'busy');
+    let index;
+    try {
+      index = await search.nameIndex('series');
+    } catch (error) {
+      if (!current()) return;
+      const retry = () => openSeriesById(id, { isCurrent, focus });
+      const failure = `Series details could not be loaded (${error?.message ?? String(error)}). Try again.`;
+      await reportBundledLoadFailure({
+        report: config.results,
+        failure,
+        key: 'series-index-load',
+        subject: 'series search',
+        retry,
+        retryWhenReady: true,
+        isCurrent: current,
+      });
+      return;
+    }
+    if (!current()) return;
+    const item = index.entries.find((entry) => entry.id === id);
+    if (!item) {
+      notify(config.results, 'This series is not in the local index. Search for another series.', 'warn');
+      return;
+    }
+    if ($(config.input).value === initialQuery) $(config.input).value = item.name;
+    config.focusResults = focus && document.activeElement === heldFocus;
+    config.routeFocus = heldFocus;
+    await config.runner.start(item);
+  }
+
+  function cancelRoutedSeries() {
+    const config = searches.find((candidate) => candidate.kind === 'series');
+    config.epoch += 1;
+    config.silentCancel = true;
+    config.runner.cancel();
+    config.silentCancel = false;
   }
 
   function wireNameSearch(config) {
@@ -718,6 +773,7 @@ export function createAddView({
       event.preventDefault();
       const query = $(input).value.trim();
       if (!query) return;
+      if (kind === 'series') onSeriesSearch();
       const epoch = beginSearch(config);
       notify(results, 'Searching…', 'busy');
       try {
@@ -1242,6 +1298,6 @@ export function createAddView({
   }
 
   return {
-    enter, lookupComics, openNamed, renderDestination, wire,
+    cancelRoutedSeries, enter, lookupComics, openNamed, openSeriesById, renderDestination, wire,
   };
 }

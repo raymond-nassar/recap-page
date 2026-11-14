@@ -11,6 +11,7 @@ import {
   markRead,
 } from '../src/js/lib/model.js';
 import { createProgressView } from '../src/js/views/progress.js';
+import { createCatalogPresentation } from '../src/js/views/shared/catalog-presentation.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -70,6 +71,7 @@ function fixture() {
       emptyAction: (action) => ({ kind: 'empty-action', action }),
       listUi,
       preservingFocus,
+      seriesUniverseLines: createCatalogPresentation({ el: element }).seriesUniverseLines,
     },
   };
 }
@@ -104,6 +106,26 @@ test('Progress names the actual subject visibly for list, all-list and no-list s
   state = createEmptyState();
   view.render();
   assert.equal(h.nodes.subject.textContent, 'No saved Reading Lists');
+});
+
+test('Progress labels only reviewed series appearances as selected comics', () => {
+  let state = createList(createEmptyState(), { id: 'list', name: 'List' });
+  state = addIssuesToList(state, 'list', [
+    { issueId: 12460, title: 'Known comic', seriesId: 2258, seriesName: 'Uncanny X-Men' },
+    { issueId: 1, title: 'Unknown comic', seriesId: 10, seriesName: 'Other series' },
+  ]).state;
+  const h = fixture();
+  const view = createProgressView({ ...h.viewOptions, getActiveListId: () => 'list', getState: () => state });
+  view.render();
+  const rows = h.nodes.results.children.filter((entry) => entry.kind === 'group').flatMap((entry) => entry.rows);
+  const known = rows.find((row) => row.children[0].children[0].children[0].props.text === 'Uncanny X-Men');
+  const other = rows.find((row) => row.children[0].children[0].children[0].props.text === 'Other series');
+  const lines = known.children[0].children.slice(2);
+  assert.equal(lines.length, 2);
+  assert.ok(lines.every((line) => line.children[0].props.text === 'Selected comics in: '));
+  assert.deepEqual(lines.map((line) => line.children[1].props.href),
+    ['#/universe/days-of-future-past', '#/universe/earth-616']);
+  assert.equal(other.children[0].children.length, 2);
 });
 
 test('the Progress controller owns scope changes and renders list and all-list counts', () => {

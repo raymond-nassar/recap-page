@@ -85,6 +85,19 @@ test('Universe addresses keep discovery state separate from saved list and readi
   assert.equal(formatRoute({ view: 'universe', universeId: '../other' }), '');
 });
 
+test('P04 exact series routes round trip without adopting a saved list or reading filter', () => {
+  const route = { view: 'add-series', seriesId: 2258 };
+  assert.equal(formatRoute({ ...route, listId: 'other', filter: 'unread' }), '#/series/2258');
+  assert.deepEqual(parseRoute('#/series/2258'), route);
+  for (const hash of [
+    '#/series', '#/series/0', '#/series/-1', '#/series/01', '#/series/1e3',
+    '#/series/9007199254740992', '#/series/2258/extra', '#/series/2258?filter=unread',
+  ]) assert.equal(parseRoute(hash), null, hash);
+  for (const seriesId of [0, -1, '01', '1e3', Number.MAX_SAFE_INTEGER + 1]) {
+    assert.equal(formatRoute({ view: 'add-series', seriesId }), '', String(seriesId));
+  }
+});
+
 test('Universe detail identifies the destination in its title and breadcrumb', () => {
   const universe = { name: 'Ultimate Marvel' };
   assert.equal(routeTitle({ view: 'universe', universe }), 'Ultimate Marvel | Recap Page');

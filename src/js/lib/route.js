@@ -290,7 +290,7 @@ function parseRatedRoute(search) {
 // writes the active list, so a subset would be a rule to keep in step for no gain.
 export function formatRoute({
   view, listId, filter, full = false, sort, pathId, issueId: rawIssueId, context, rated, at, storyType, tone, previewId,
-  universeId, universeQuery, universeSort,
+  universeId, universeQuery, universeSort, seriesId,
 } = {}) {
   const canonical = canonicalView(view);
   if (!VIEWS.includes(canonical)) return '';
@@ -298,6 +298,10 @@ export function formatRoute({
     return typeof previewId === 'string' && PATH_TOKEN.test(previewId) ? `${PREFIX}preview/${previewId}` : '';
   }
   if (canonical === 'library-rated') return formatRatedRoute(rated);
+  if (canonical === 'add-series' && seriesId !== undefined) {
+    const id = issueId(seriesId);
+    return id !== null && id > 0 ? `${PREFIX}series/${id}` : '';
+  }
   if (canonical === 'universe') {
     return typeof universeId === 'string' && PATH_TOKEN.test(universeId) ? `${PREFIX}universe/${universeId}` : '';
   }
@@ -373,6 +377,11 @@ export function parseRoute(hash) {
   if (view === 'preview') {
     if (parts.length !== 2 || !PATH_TOKEN.test(listId ?? '') || search) return null;
     return { view: 'new-to-comics', previewId: listId };
+  }
+  if (view === 'series') {
+    if (parts.length !== 2 || search) return null;
+    const id = issueId(listId);
+    return id !== null && id > 0 ? { view: 'add-series', seriesId: id } : null;
   }
   if (view === RETIRED_PATHS_SEGMENT) {
     const named = listId === null ? new URLSearchParams(search).getAll(PATH_KEY) : [listId];

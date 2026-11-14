@@ -7895,7 +7895,7 @@ const SCENARIOS = [
           ...item,
           issueId: item.issueId + series * 10,
           title: `${seriesName} #${item.number}`,
-          seriesId: item.seriesId + series,
+          seriesId: series === 0 ? 2258 : item.seriesId + series,
           seriesName,
           source: 'curated',
           hydrated: true,
@@ -7964,6 +7964,45 @@ const SCENARIOS = [
           text.some((value) => value.includes('Tracked means comics you added, not the size of each complete series.')),
           JSON.stringify(text));
       }
+      const links = await page.$$eval('#series-progress .result', (rows) => rows.map((row) => ({
+        name: row.querySelector('.result-title > span').textContent,
+        universes: [...row.querySelectorAll('[data-universe-id]')].map((link) => ({
+          id: link.dataset.universeId, text: link.parentElement.textContent,
+        })),
+      })));
+      const alpha = links.find((row) => row.name === 'Alpha');
+      t.check('Progress marks only reviewed series links as selected appearances',
+        alpha?.universes.map((link) => link.id).join('|') === 'days-of-future-past|earth-616'
+        && alpha.universes.every((link) => link.text.includes('Selected comics in:'))
+        && links.filter((row) => row.name !== 'Alpha').every((row) => row.universes.length === 0),
+        JSON.stringify(links));
+      const focusLink = '#series-progress [data-key="series:2258:days-of-future-past"]';
+      await page.focus(focusLink);
+      const saved = await page.evaluate(() => {
+        window.__progressFocusBeforeRender = document.activeElement;
+        const bytes = localStorage.getItem('mrt.state.v2');
+        window.dispatchEvent(new StorageEvent('storage', {
+          key: 'mrt.import.draft.v1', storageArea: localStorage,
+        }));
+        return bytes;
+      });
+      t.check('a background redraw keeps focus on the same scoped Universe link without changing saved data',
+        await page.evaluate((bytes) => document.activeElement !== window.__progressFocusBeforeRender
+          && document.activeElement?.dataset.key === 'series:2258:days-of-future-past'
+          && localStorage.getItem('mrt.state.v2') === bytes, saved));
+      await page.evaluate((selector) => {
+        const opener = document.querySelector(selector);
+        const other = opener.cloneNode(true);
+        other.dataset.key = 'series:other:days-of-future-past';
+        opener.before(other);
+      }, focusLink);
+      await page.keyboard.press('Enter');
+      await page.waitForSelector('#view-universe:not([hidden])');
+      await page.goBack();
+      await page.waitForFunction(() => document.activeElement?.dataset.key === 'series:2258:days-of-future-past');
+      t.check('Back from a Progress Universe link restores its exact series opener',
+        await page.evaluate((bytes) => !document.querySelector('#view-progress').hidden
+          && localStorage.getItem('mrt.state.v2') === bytes, saved));
     },
   },
   {
@@ -27506,7 +27545,7 @@ SCENARIOS.push({
     await page.waitForFunction(() => document.querySelector('#universe-lists .universe-list-note'));
     const qualifier = await page.$eval('#universe-lists .universe-list-note', (node) => node.textContent);
     t.check('a mixed guide is visibly qualified as covering related realities',
-      qualifier.includes('Related realities:') && qualifier.includes('other realities'), qualifier);
+      qualifier.includes('Spans related realities:') && qualifier.includes('other realities'), qualifier);
     await open(page, '/?catalog=actual&local-health=ready#/universe/squadron-supreme');
     await page.waitForFunction(() => document.querySelector('#universe-lists-status').textContent.includes('No Reading Lists'));
     t.check('a universe without an associated Reading List offers a next step',
@@ -27607,6 +27646,20 @@ SCENARIOS.push({
       await listPage.focus('#universe-lists .catalog-row [data-act="preview"]');
       await listPage.keyboard.press('Enter');
       await listPage.waitForSelector('#preview[open] #preview-add [data-act="main"]');
+      const previewScope = await listPage.$eval('#preview-source', (node) => ({
+        text: node.textContent,
+        href: node.querySelector('[data-universe-id]')?.getAttribute('href'),
+      }));
+      const beforeSameUniverse = await listPage.evaluate(() => history.length);
+      await click(listPage, '#preview-source [data-universe-id="marvel-zombies"]');
+      t.check('Preview shows the mixed scope and a link to the current Universe closes it without duplicating history',
+        previewScope.text.includes('Spans related realities:') && previewScope.text.includes('other realities')
+        && previewScope.href === '#/universe/marvel-zombies'
+        && await listPage.evaluate((length) => !document.querySelector('#preview').open
+          && location.hash === '#/universe/marvel-zombies' && history.length === length, beforeSameUniverse),
+        JSON.stringify(previewScope));
+      await click(listPage, '#universe-lists .catalog-row [data-act="preview"]');
+      await listPage.waitForSelector('#preview[open] #preview-add [data-act="main"]');
       await click(listPage, '#preview-add [data-act="main"]');
       await listPage.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')?.textContent.includes('Open'));
       await click(listPage, '#preview-close');
@@ -27622,9 +27675,271 @@ SCENARIOS.push({
       await listPage.waitForSelector('#view-read:not([hidden])');
       t.check('the saved Universe Reading List opens in the existing reading view',
         await listPage.evaluate(() => location.hash.startsWith('#/read/')));
+      await listPage.waitForSelector('#order-source [data-universe-id="marvel-zombies"]');
+      const savedScope = await listPage.$eval('#order-source', (node) => node.textContent);
+      const savedBytes = await listPage.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      await listPage.focus('#order-source [data-universe-id="marvel-zombies"]');
+      await listPage.keyboard.press('Enter');
+      await listPage.waitForSelector('#view-universe:not([hidden])');
+      await listPage.goBack();
+      await listPage.waitForFunction(() => document.activeElement?.dataset.universeId === 'marvel-zombies');
+      t.check('the saved guide keeps the mixed scope, restores its Universe link on Back and does not change saved data',
+        savedScope.includes('Spans related realities:') && savedScope.includes('other realities')
+        && await listPage.evaluate((bytes) => localStorage.getItem('mrt.state.v2') === bytes
+          && !document.querySelector('#view-read').hidden, savedBytes), savedScope);
+
+      await open(listPage, '/?catalog=actual&local-health=ready#/add');
+      await listPage.$eval('#search-q', (node) => {
+        node.value = 'Marvel Zombies';
+        node.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      await listPage.waitForSelector('#search-lists-results [data-key="list:marvel-zombies-reading-order"][data-act="preview"]');
+      await click(listPage, '#search-lists-results [data-key="list:marvel-zombies-reading-order"][data-act="preview"]');
+      await listPage.waitForSelector('#preview[open] #preview-source [data-universe-id="marvel-zombies"]');
+      await listPage.focus('#preview-source [data-universe-id="marvel-zombies"]');
+      await listPage.keyboard.press('Enter');
+      await listPage.waitForSelector('#view-universe:not([hidden])');
+      await listPage.goBack();
+      await listPage.waitForFunction(() => document.querySelector('#preview').open
+        && document.activeElement?.dataset.universeId === 'marvel-zombies');
+      t.check('Back from a Preview Universe link reopens the same Preview and restores its link',
+        await listPage.evaluate(() => !document.querySelector('#view-add').hidden
+          && document.querySelector('#preview-h').textContent.includes('Marvel Zombies')));
+      await listPage.keyboard.press('Escape');
+      await listPage.waitForFunction(() => !document.querySelector('#preview').open);
+
+      await listPage.evaluateOnNewDocument(() => {
+        const originalFetch = window.fetch;
+        window.__delayedPreview = [];
+        window.fetch = (input, init) => {
+          const url = typeof input === 'string' ? input : input instanceof URL ? input.href : input.url;
+          if (new URL(url, location.href).pathname.endsWith('/data/marvel_zombies_reading_order.json')) {
+            return new Promise((resolve) => window.__delayedPreview.push(() => resolve(
+              new Response(JSON.stringify({ items: [] }), { headers: { 'content-type': 'application/json' } }),
+            )));
+          }
+          return originalFetch(input, init);
+        };
+      });
+      for (const route of ['add', 'preview/marvel-zombies-reading-order']) {
+        await open(listPage, `/?catalog=actual&local-health=ready&preview-race=${route === 'add' ? 'search' : 'direct'}#/${route}`);
+        if (route === 'add') {
+          await listPage.$eval('#search-q', (node) => {
+            node.value = 'Marvel Zombies';
+            node.dispatchEvent(new Event('input', { bubbles: true }));
+          });
+          await listPage.waitForSelector('#search-lists-results [data-key="list:marvel-zombies-reading-order"][data-act="preview"]');
+          await click(listPage, '#search-lists-results [data-key="list:marvel-zombies-reading-order"][data-act="preview"]');
+        }
+        await listPage.waitForSelector('#preview[open] #preview-source [data-universe-id="marvel-zombies"]');
+        await click(listPage, '#preview-source [data-universe-id="marvel-zombies"]');
+        await listPage.waitForSelector('#view-universe:not([hidden])');
+        await listPage.goBack();
+        await listPage.waitForFunction(() => document.querySelector('#preview').open
+          && window.__delayedPreview.length === 2);
+        await listPage.focus('#preview-about > summary');
+        await listPage.evaluate(() => window.__delayedPreview.splice(0).forEach((settle) => settle()));
+        await listPage.waitForSelector('#preview-body .preview-list');
+        await listPage.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+        t.check(`a delayed ${route === 'add' ? 'Search' : 'direct'} Preview does not take focus back from the reader`,
+          await listPage.evaluate(() => document.activeElement === document.querySelector('#preview-about > summary')
+            && document.querySelector('#preview').open));
+      }
     } finally {
       await listContext.close();
     }
+
+    const reciprocal = await page.browserContext().newPage();
+    reciprocal.__denyExternal = true;
+    await preparePage(reciprocal, page.__origin, page.__mutation, 'universes-discovery');
+    await reciprocal.evaluateOnNewDocument(() => {
+      const originalFetch = window.fetch;
+      const json = (body) => new Response(JSON.stringify(body), { headers: { 'content-type': 'application/json' } });
+      window.__reciprocal = {
+        mode: new URL(location.href).searchParams.get('series-fixture') || 'ready',
+        pending: [],
+      };
+      const index = () => json({ items: [
+        { id: 2258, name: 'Uncanny X-Men (1963 - 2011)', issueCount: 2 },
+        { id: 855, name: 'House of M (2005)', issueCount: 1 },
+      ] });
+      const comic = (id) => ({
+        id, title: `Fixture comic ${id}`, issueNumber: String(id),
+        seriesId: 2258, seriesName: 'Uncanny X-Men (1963 - 2011)', digitalId: id + 100000,
+      });
+      window.fetch = (input, init) => {
+        const url = typeof input === 'string' ? input : input instanceof URL ? input.href : input.url;
+        const path = new URL(url, location.href).pathname;
+        if (path.endsWith('/data/series-index.json')) {
+          if (window.__reciprocal.mode === 'down') return Promise.reject(new TypeError('Fixture index unavailable'));
+          if (window.__reciprocal.mode === 'empty') return Promise.resolve(json({ items: [] }));
+          if (window.__reciprocal.mode === 'pending') {
+            return new Promise((resolve) => window.__reciprocal.pending.push(() => resolve(index())));
+          }
+          return Promise.resolve(index());
+        }
+        if (path.endsWith('/series/2258/issues')) {
+          return Promise.resolve(json({ items: [comic(12460), comic(12459)], total: 2, has_next: false }));
+        }
+        if (path.endsWith('/series/855/issues')) {
+          return Promise.resolve(json({ items: [comic(1)], total: 1, has_next: false }));
+        }
+        const issue = /\/issues\/(12460|12459|13683)$/.exec(path);
+        if (issue) return Promise.resolve(json(comic(Number(issue[1]))));
+        return originalFetch(input, init);
+      };
+    });
+    await open(reciprocal, '/?catalog=actual&local-health=ready#/universe/days-of-future-past');
+    await reciprocal.waitForSelector('#universe-series-results [data-series-id="2258"]');
+    const reciprocalStart = await reciprocal.evaluate(() => ({
+      saved: localStorage.getItem('mrt.state.v2'),
+      series: document.querySelector('#universe-series-results').textContent,
+      comic: document.querySelector('#universe-comics-results [data-issue-id="13683"]')?.getAttribute('href'),
+    }));
+    const reciprocalLayouts = [];
+    for (const width of [1280, 390, 320]) {
+      await reciprocal.setViewport({ width, height: 900 });
+      reciprocalLayouts.push(await reciprocal.evaluate(() => ({
+        width: innerWidth,
+        document: document.documentElement.scrollWidth,
+        series: Math.round(document.querySelector('#universe-series-results .result').getBoundingClientRect().width),
+        comic: Math.round(document.querySelector('#universe-comics-results .result').getBoundingClientRect().width),
+      })));
+    }
+    t.check('reviewed series and comics reflow on desktop and narrow phone widths',
+      reciprocalLayouts.every((layout) => layout.document <= layout.width && layout.series > 0 && layout.comic > 0),
+      JSON.stringify(reciprocalLayouts));
+    await reciprocal.setViewport({ width: 1280, height: 900 });
+    const nativeSeries = await reciprocal.$eval('#universe-series-results [data-series-id="2258"]', (link) => {
+      let native = false;
+      link.addEventListener('click', (event) => {
+        native = !event.defaultPrevented;
+        event.preventDefault();
+      }, { once: true });
+      link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, ctrlKey: true }));
+      return native;
+    });
+    t.check('Universe details show exact comics and scoped series with native modified navigation',
+      reciprocalStart.series.includes('Selected comics') && reciprocalStart.comic === '#/issue/13683' && nativeSeries,
+      JSON.stringify(reciprocalStart));
+    await reciprocal.focus('#universe-series-results [data-series-id="2258"]');
+    await reciprocal.keyboard.press('Enter');
+    await reciprocal.waitForSelector('#series-results [data-universe-id="days-of-future-past"]');
+    const seriesScope = await reciprocal.$eval('#series-results', (node) => node.textContent);
+    t.check('a series route opens the existing series results and labels selected appearances',
+      await reciprocal.evaluate(() => location.hash === '#/series/2258') && seriesScope.includes('Selected comics in:'),
+      seriesScope);
+    await reciprocal.goBack();
+    await reciprocal.waitForFunction(() => document.activeElement?.dataset.seriesId === '2258');
+    t.check('Back from a series returns focus to its Universe opener',
+      await reciprocal.evaluate(() => location.hash === '#/universe/days-of-future-past'));
+    await reciprocal.goForward();
+    await reciprocal.waitForSelector('#series-results [data-issue-id="12460"]');
+    await reciprocal.focus('#series-results [data-issue-id="12460"]');
+    await reciprocal.keyboard.press('Enter');
+    await reciprocal.waitForSelector('#issue-focus-universes [data-universe-id="days-of-future-past"]');
+    const knownLinks = await reciprocal.$$eval('#issue-focus-universes [data-universe-id]',
+      (nodes) => nodes.map((node) => node.dataset.universeId));
+    await reciprocal.focus('#issue-focus-universes [data-universe-id="days-of-future-past"]');
+    await reciprocal.keyboard.press('Enter');
+    await reciprocal.waitForSelector('#view-universe:not([hidden])');
+    await reciprocal.goBack();
+    await reciprocal.waitForFunction(() => document.activeElement?.dataset.universeId === 'days-of-future-past');
+    t.check('a reviewed comic links to both exact realities and Back restores its Universe opener',
+      knownLinks.join('|') === 'days-of-future-past|earth-616'
+      && await reciprocal.evaluate(() => !document.querySelector('#view-issue').hidden), JSON.stringify(knownLinks));
+    await reciprocal.goBack();
+    await reciprocal.waitForFunction(() => document.activeElement?.dataset.issueId === '12460'
+      && !document.querySelector('#view-add-series').hidden);
+    await click(reciprocal, '#series-results [data-issue-id="12459"]');
+    await reciprocal.waitForFunction(() => document.querySelector('#issue-focus-h').textContent.includes('12459'));
+    t.check('an unreviewed comic does not inherit the selected-issues series association',
+      await reciprocal.evaluate(() => document.querySelector('#issue-focus-universes').hidden));
+    await reciprocal.goBack();
+    await reciprocal.waitForSelector('#series-results [data-universe-id="days-of-future-past"]');
+    await reciprocal.reload({ waitUntil: 'load' });
+    await reciprocal.waitForSelector('#series-results [data-universe-id="days-of-future-past"]');
+    t.check('reloading a series destination preserves the route and saved reader data',
+      await reciprocal.evaluate((saved) => location.hash === '#/series/2258'
+        && localStorage.getItem('mrt.state.v2') === saved, reciprocalStart.saved));
+    await reciprocal.$eval('#series-q', (input) => { input.value = 'House of M'; });
+    await reciprocal.$eval('#form-series', (form) => form.requestSubmit());
+    await reciprocal.waitForFunction(() => location.hash.startsWith('#/add-series')
+      && document.querySelector('#series-results').textContent.includes('House of M'));
+    t.check('searching for another series retires the old series address',
+      await reciprocal.evaluate(() => !location.hash.includes('/series/2258')));
+
+    await open(reciprocal, '/?catalog=actual&local-health=ready&series-fixture=down#/series/2258');
+    await reciprocal.waitForSelector('#series-results .notice-act button');
+    const seriesFailure = await reciprocal.$eval('#series-results', (node) => node.textContent);
+    await reciprocal.evaluate(() => { window.__reciprocal.mode = 'ready'; });
+    await click(reciprocal, '#series-results .notice-act button');
+    await reciprocal.waitForSelector('#series-results [data-universe-id="days-of-future-past"]');
+    t.check('a failed series-index load explains the failure and can be retried',
+      seriesFailure.includes('could not be loaded') && seriesFailure.includes('Try again'), seriesFailure);
+
+    await open(reciprocal, '/?catalog=actual&local-health=ready&series-fixture=down&fixture-case=universe-retry#/universe/days-of-future-past');
+    await reciprocal.waitForFunction(() => !document.querySelector('#universe-series-retry').hidden);
+    await reciprocal.evaluate(() => { window.__reciprocal.mode = 'ready'; });
+    await click(reciprocal, '#universe-series-retry');
+    await reciprocal.waitForSelector('#universe-series-results [data-series-id="2258"]');
+    t.check('a Universe can retry its failed series section without losing its other details',
+      await reciprocal.evaluate(() => document.querySelector('#universe-earth').textContent === 'Earth-811'
+        && document.querySelector('#universe-series-retry').hidden));
+
+    await open(reciprocal, '/?catalog=actual&local-health=ready&series-fixture=empty#/universe/days-of-future-past');
+    await reciprocal.waitForFunction(() => document.querySelector('#universe-series-status').textContent.includes('missing'));
+    t.check('a missing index entry is reported rather than silently presented as an empty universe',
+      await reciprocal.$eval('#universe-series-status', (node) => node.textContent.includes('missing from the local index')));
+
+    await open(reciprocal, '/?catalog=actual&local-health=ready&series-fixture=pending&fixture-case=direct#/series/2258');
+    await reciprocal.waitForFunction(() => window.__reciprocal.pending.length > 0);
+    await reciprocal.focus('#series-q');
+    await reciprocal.keyboard.down('Control');
+    await reciprocal.keyboard.press('KeyA');
+    await reciprocal.keyboard.up('Control');
+    await reciprocal.type('#series-q', 'draft search');
+    await reciprocal.evaluate(() => window.__reciprocal.pending.shift()());
+    await reciprocal.waitForSelector('#series-results [data-universe-id="days-of-future-past"]');
+    t.check('a delayed series load preserves focus and a draft typed in the search field',
+      await reciprocal.evaluate(() => document.activeElement?.id === 'series-q'
+        && document.querySelector('#series-q').value === 'draft search'));
+
+    await open(reciprocal, '/?catalog=actual&local-health=ready&series-fixture=pending&fixture-case=return#/issue/12460');
+    await reciprocal.waitForSelector('#issue-focus-universes [data-universe-id="days-of-future-past"]');
+    await reciprocal.evaluate(() => {
+      history.replaceState({
+        issueFocusOpener: {
+          view: 'add-series', surface: 'search', control: 'series', issueId: 12460, contextId: null,
+        },
+      }, '', '#/series/2258');
+      history.pushState(null, '', '#/issue/12460');
+    });
+    await reciprocal.goBack();
+    await reciprocal.waitForFunction(() => window.__reciprocal.pending.length > 0
+      && !document.querySelector('#view-add-series').hidden);
+    await reciprocal.focus('#series-q');
+    await reciprocal.evaluate(() => window.__reciprocal.pending.shift()());
+    await reciprocal.waitForSelector('#series-results [data-issue-id="12460"]');
+    await reciprocal.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    t.check('returning to a delayed series does not override focus the reader already moved',
+      await reciprocal.evaluate(() => document.activeElement?.id === 'series-q'));
+
+    await open(reciprocal, '/?catalog=actual&local-health=ready&series-fixture=pending&fixture-case=depart#/series/2258');
+    await reciprocal.waitForFunction(() => window.__reciprocal.pending.length > 0);
+    await click(reciprocal, '.brand[data-view="home"]');
+    await reciprocal.waitForSelector('#view-home:not([hidden])');
+    await reciprocal.evaluate(() => window.__reciprocal.pending.shift()());
+    await reciprocal.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    const departedSeries = await reciprocal.evaluate(() => ({
+      home: !document.querySelector('#view-home').hidden,
+      hash: location.hash,
+      focus: document.activeElement?.id,
+    }));
+    t.check('a delayed series response cannot repaint or move focus after navigation',
+      departedSeries.home && departedSeries.hash.startsWith('#/home') && departedSeries.focus === 'home-h',
+      JSON.stringify(departedSeries));
+    await reciprocal.close();
 
     const failure = await page.browserContext().newPage();
     await preparePage(failure, page.__origin, page.__mutation, 'universes-discovery');

@@ -740,7 +740,7 @@ test('composition constructs one Add boundary and delegates its lifecycle', () =
   });
   assert.deepEqual(
     Object.keys(view).sort(),
-    ['enter', 'lookupComics', 'openNamed', 'renderDestination', 'wire'],
+    ['cancelRoutedSeries', 'enter', 'lookupComics', 'openNamed', 'openSeriesById', 'renderDestination', 'wire'],
   );
   view.enter('add-series');
   view.enter('add-creator');

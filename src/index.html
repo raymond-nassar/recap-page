@@ -527,6 +527,7 @@
                   <p class="byline" id="issue-focus-by"></p>
                   <p class="desc" id="issue-focus-desc"></p>
                   <dl class="facts" id="issue-focus-facts"></dl>
+                  <div id="issue-focus-universes" hidden></div>
                   <p class="issue-focus-note" id="issue-focus-note" hidden></p>
                   <p class="rail-hint" id="issue-synopsis-status" role="status" hidden></p>
                   <div class="cta">
@@ -737,6 +738,16 @@
                 <button type="button" class="btn btn-g" id="universe-retry" hidden>Retry Reading Lists</button>
                 <a href="#/catalog" class="btn btn-g" id="universe-empty-action" data-view="catalog" hidden>Browse Reading Lists</a>
                 <div id="universe-lists" class="results"></div>
+              </section>
+              <section id="universe-series" aria-labelledby="universe-series-h" hidden>
+                <div class="sec-h"><h2 id="universe-series-h">Series</h2></div>
+                <p id="universe-series-status" class="rail-hint" role="status"></p>
+                <button type="button" class="btn btn-g" id="universe-series-retry" hidden>Retry series</button>
+                <div id="universe-series-results" class="results"></div>
+              </section>
+              <section id="universe-comics" aria-labelledby="universe-comics-h" hidden>
+                <div class="sec-h"><h2 id="universe-comics-h">Comics</h2></div>
+                <div id="universe-comics-results" class="results"></div>
               </section>
             </div>
           </section>

@@ -97,6 +97,15 @@ test('known issues and mixed guides do not assign their universes to unrelated i
     .some(({ list }) => list.id === ultimate.id), 'the owner excludes this guide from Earth-6160');
 });
 
+test('P04 reverse discovery preserves exact series scope and explicit issue overrides', () => {
+  assert.deepEqual(universeResolver.getUniverseSeries('days-of-future-past'), [
+    { seriesId: 2258, scope: 'selected-issues' },
+  ]);
+  assert.deepEqual(universeResolver.getUniverseIssueIds('days-of-future-past'), [12460, 13683]);
+  assert.deepEqual(universeResolver.getUniverseIssueIds('marvel-zombies'), []);
+  assert.deepEqual(universeResolver.getUniverseSeries('unknown-reality'), []);
+});
+
 test('local Universe search shares folding and keeps similarly named realities separate', () => {
   for (const [query, expected] of [
     ['Earth-1610', 'ultimate-marvel'], ['Ultimate Marvel', 'ultimate-marvel'],
@@ -153,8 +162,12 @@ test('invalid Universe definitions and references are reported instead of silent
   }), /Duplicate issue override/);
 });
 
-function universeViewHarness({ loadCatalog = async () => ({ lists: [] }) } = {}) {
-  const calls = { navigation: [], changes: 0, rows: [], announced: [], timers: [] };
+function universeViewHarness({
+  loadCatalog = async () => ({ lists: [] }),
+  loadSeriesIndex = async () => ({ entries: [{ id: 2258, name: 'Uncanny X-Men (1963 - 2011)' }] }),
+  savedIssue = () => null,
+} = {}) {
+  const calls = { navigation: [], series: [], changes: 0, rows: [], announced: [], timers: [] };
   let current = 'universes';
   const el = (tag, props = {}, children = []) => {
     const node = {
@@ -178,6 +191,8 @@ function universeViewHarness({ loadCatalog = async () => ({ lists: [] }) } = {})
       browse: el('section'), listsSection: el('section'),
       year: el('dd'), debut: el('dd'), description: el('p'),
       status: el('p'), results: el('div'), retry: el('button'), emptyLink: el('a'),
+      series: el('section'), seriesStatus: el('p'), seriesResults: el('div'), seriesRetry: el('button'),
+      comics: el('section'), comicsResults: el('div'),
     },
   };
   const view = createUniversesView({
@@ -187,6 +202,13 @@ function universeViewHarness({ loadCatalog = async () => ({ lists: [] }) } = {})
     onIndexChange: () => { calls.changes += 1; },
     onRetry: () => {},
     announce: (message) => calls.announced.push(message),
+    issueFocusAnchor: (issue, options) => el('a', {
+      href: `#/issue/${issue.issueId}`,
+      dataset: { focusSource: options.surface, issueId: String(issue.issueId) },
+    }, options.children),
+    loadSeriesIndex,
+    savedIssue,
+    onSeries: (id) => calls.series.push(id),
     setTimer: (fn, delay) => {
       const timer = { fn, delay, live: true };
       calls.timers.push(timer);
@@ -197,6 +219,10 @@ function universeViewHarness({ loadCatalog = async () => ({ lists: [] }) } = {})
       catalogRow(list, options) {
         calls.rows.push({ list, options });
         return el('article', { list });
+      },
+      universeRelationLine(relation) {
+        return relation.kind === 'related-realities'
+          ? el('p', { text: `Spans related realities: ${relation.note}` }) : null;
       },
     },
     listCover: () => el('span'),
@@ -301,9 +327,63 @@ test('detail shows related-reality scope and warns when catalog entries were dro
   await h.view.renderDetail();
   assert.equal(h.calls.rows[0].list, list);
   assert.equal(h.calls.rows[0].options.report, '#universe-report');
-  assert.match(h.nodes.detail.results.children[0].children[1].textContent, /Related realities: Includes stories/);
+  assert.match(h.nodes.detail.results.children[0].children[1].textContent, /Spans related realities: Includes stories/);
   assert.match(h.nodes.detail.status.textContent, /incomplete/i);
   assert.equal(h.nodes.detail.retry.hidden, false);
+});
+
+test('detail links only reviewed series and exact comics, without inferring an entire series', async () => {
+  const h = universeViewHarness({
+    savedIssue: (id) => id === 13683 ? { issueId: id, title: 'Uncanny X-Men #142' } : null,
+  });
+  h.setCurrent('universe');
+  h.view.setDetail('days-of-future-past');
+  await h.view.renderDetail();
+  assert.equal(h.nodes.detail.debut.children[0].href, '#/issue/12460');
+  assert.equal(h.nodes.detail.series.hidden, false);
+  const series = h.nodes.detail.seriesResults.children[0].children[0];
+  assert.equal(series.children[0].href, '#/series/2258');
+  assert.match(series.children[1].textContent, /Selected comics/);
+  series.children[0].onclick({ button: 0, preventDefault() {} });
+  assert.deepEqual(h.calls.series, [2258]);
+  assert.equal(h.nodes.detail.comics.hidden, false);
+  const comic = h.nodes.detail.comicsResults.children[0].children[0].children[0];
+  assert.equal(comic.href, '#/issue/13683');
+  assert.equal(comic.children[0], 'Uncanny X-Men #142');
+
+  h.view.setDetail('ultimate-marvel');
+  await h.view.renderDetail();
+  assert.equal(h.nodes.detail.series.hidden, true);
+  assert.equal(h.nodes.detail.comics.hidden, true);
+});
+
+test('series metadata failure remains visible and retryable; stale results cannot repaint a new universe', async () => {
+  let release;
+  let attempt = 0;
+  const h = universeViewHarness({
+    loadSeriesIndex: () => {
+      attempt += 1;
+      if (attempt === 1) return Promise.reject(new Error('offline'));
+      if (attempt === 2) return Promise.resolve({ entries: [{ id: 2258, name: 'Uncanny X-Men' }] });
+      return new Promise((resolve) => { release = resolve; });
+    },
+  });
+  h.setCurrent('universe');
+  h.view.setDetail('days-of-future-past');
+  await h.view.renderDetail();
+  assert.match(h.nodes.detail.seriesStatus.textContent, /could not be loaded.*offline/);
+  assert.equal(h.nodes.detail.seriesRetry.hidden, false);
+  await h.nodes.detail.seriesRetry.listeners.click();
+  assert.equal(h.nodes.detail.seriesRetry.hidden, true);
+  assert.equal(h.nodes.detail.seriesResults.children.length, 1);
+
+  const pending = h.view.renderDetail();
+  h.view.setDetail('ultimate-marvel');
+  await h.view.renderDetail();
+  release({ entries: [{ id: 2258, name: 'Stale series' }] });
+  await pending;
+  assert.equal(h.nodes.detail.series.hidden, true);
+  assert.deepEqual(h.nodes.detail.seriesResults.children, []);
 });
 
 test('retry requests a fresh catalog after incomplete entries were omitted', async () => {

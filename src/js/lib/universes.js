@@ -56,6 +56,22 @@ export function createUniverseResolver({
       .map((relation) => ({ list, ...relation })));
   }
 
+  function getUniverseSeries(universeId) {
+    if (!byId.has(universeId)) return [];
+    return series.filter((entry) => entry.universeIds.includes(universeId))
+      .map(({ seriesId, scope }) => ({ seriesId, scope }));
+  }
+
+  function getUniverseIssueIds(universeId) {
+    if (!byId.has(universeId)) return [];
+    return issueOverrides.filter((entry) => entry.universeIds.includes(universeId))
+      .map(({ issueId }) => issueId);
+  }
+
+  function getDebutIssue(issueId) {
+    return definitions.find((entry) => entry.debutIssue.issueId === issueId)?.debutIssue ?? null;
+  }
+
   function searchUniverses(query) {
     const folded = foldSearchText(query);
     if (!folded) return [...definitions];
@@ -93,6 +109,9 @@ export function createUniverseResolver({
     getSeriesUniverseRelations,
     getListUniverseRelations,
     getUniverseLists,
+    getUniverseSeries,
+    getUniverseIssueIds,
+    getDebutIssue,
     searchUniverses,
     sortUniverses,
   };

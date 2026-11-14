@@ -3,13 +3,15 @@ import { formatRoute, isPlainNavigation } from '../lib/route.js';
 
 export function createUniversesView({
   el, elements, resolver, loadCatalog, isCurrent, onNavigate, onIndexChange, onRetry, presentation, listCover,
-  announce, setTimer = setTimeout, clearTimer = clearTimeout,
+  announce, issueFocusAnchor, loadSeriesIndex, onSeries, savedIssue,
+  setTimer = setTimeout, clearTimer = clearTimeout,
 }) {
   let universeQuery = '';
   let universeSort = DEFAULT_UNIVERSE_SORT;
   let universeId = null;
   let generation = 0;
   let announceTimer = null;
+  let seriesReady = null;
 
   function setIndex(route = {}) {
     universeQuery = typeof route.universeQuery === 'string' ? route.universeQuery : '';
@@ -28,7 +30,7 @@ export function createUniversesView({
       onclick: (event) => {
         if (!isPlainNavigation(event)) return;
         event.preventDefault();
-        onNavigate(universe.id);
+        onNavigate(universe.id, event.currentTarget);
       },
     }, universe.name);
   }
@@ -75,6 +77,72 @@ export function createUniversesView({
     ]);
   }
 
+  async function renderSeries(nodes, relations, current) {
+    nodes.series.hidden = relations.length === 0;
+    nodes.seriesResults.replaceChildren();
+    nodes.seriesRetry.hidden = true;
+    if (!relations.length) return;
+    nodes.seriesStatus.textContent = 'Loading series...';
+    try {
+      const index = await loadSeriesIndex();
+      if (!current()) return;
+      const rows = relations.flatMap(({ seriesId, scope }) => {
+        const entry = index.entries.find((candidate) => candidate.id === seriesId);
+        if (!entry) return [];
+        return [el('div', { class: 'result' }, [
+          el('div', { class: 'result-main' }, [
+            el('a', {
+              class: 'result-title result-title-link',
+              href: formatRoute({ view: 'add-series', seriesId }),
+              dataset: { seriesId },
+              onclick: (event) => {
+                if (!isPlainNavigation(event)) return;
+                event.preventDefault();
+                onSeries(seriesId, event.currentTarget);
+              },
+            }, entry.name),
+            el('p', {
+              class: 'result-meta',
+              text: scope === 'selected-issues' ? 'Selected comics appear in this universe.' : 'Set in this universe.',
+            }),
+          ]),
+        ])];
+      });
+      nodes.seriesResults.replaceChildren(...rows);
+      const missing = relations.length - rows.length;
+      nodes.seriesStatus.textContent = missing
+        ? `${missing} associated ${missing === 1 ? 'series is' : 'series are'} missing from the local index.`
+        : '';
+    } catch (error) {
+      if (!current()) return;
+      nodes.seriesStatus.textContent = `Series details could not be loaded: ${error.message}. Try again when the local app connection is available.`;
+      nodes.seriesRetry.hidden = false;
+    }
+  }
+
+  function renderComics(nodes, universe) {
+    const debut = universe.debutIssue;
+    nodes.debut.replaceChildren(debut.issueId
+      ? issueFocusAnchor(debut, {
+        surface: 'universe-debut', children: debut.title,
+      })
+      : debut.title);
+    const ids = resolver.getUniverseIssueIds(universe.id).filter((id) => id !== debut.issueId);
+    nodes.comics.hidden = ids.length === 0;
+    nodes.comicsResults.replaceChildren(...ids.map((issueId) => {
+      const issue = savedIssue(issueId) ?? resolver.getDebutIssue(issueId) ?? { issueId };
+      return el('div', { class: 'result' }, [
+        el('div', { class: 'result-main' }, [
+          issueFocusAnchor(issue, {
+            surface: 'universe-comic',
+            className: 'result-title result-title-link',
+            children: issue.title || `Comic details (ID ${issueId})`,
+          }),
+        ]),
+      ]);
+    }));
+  }
+
   async function renderDetail({ refresh = false } = {}) {
     const id = universeId;
     const mine = ++generation;
@@ -89,24 +157,30 @@ export function createUniversesView({
     nodes.results.replaceChildren();
     nodes.retry.hidden = true;
     nodes.emptyLink.hidden = true;
+    nodes.series.hidden = true;
+    nodes.comics.hidden = true;
+    seriesReady = null;
     if (!universe) return;
 
     nodes.earth.textContent = universe.earth ?? 'Named reality';
     nodes.year.textContent = String(universe.firstPublished);
-    nodes.debut.textContent = universe.debutIssue.title;
+    renderComics(nodes, universe);
     nodes.description.textContent = universe.description;
-    if (id === 'earth-616') return;
+    const series = renderSeries(nodes, resolver.getUniverseSeries(id), current);
+    seriesReady = series;
+    if (id === 'earth-616') {
+      await series;
+      return;
+    }
     nodes.status.textContent = 'Loading Reading Lists...';
 
     try {
       const catalog = await loadCatalog({ refresh });
       if (!current()) return;
       const relations = resolver.getUniverseLists(id, catalog.lists);
-      const rows = relations.map(({ list, kind, note }) => el('div', { class: 'universe-list' }, [
+      const rows = relations.map(({ list, ...relation }) => el('div', { class: 'universe-list' }, [
         presentation.catalogRow(list, { report: '#universe-report', level: 'h3', cover: listCover }),
-        ...(kind === 'related-realities'
-          ? [el('p', { class: 'rail-hint universe-list-note', text: `Related realities: ${note}` })]
-          : []),
+        presentation.universeRelationLine(relation, { showUniverse: false }),
       ]));
       nodes.results.replaceChildren(...rows);
       const count = relations.length
@@ -124,6 +198,7 @@ export function createUniversesView({
       nodes.status.textContent = `Reading Lists could not be loaded: ${error.message}. Your saved lists are unchanged.`;
       nodes.retry.hidden = false;
     }
+    await series;
   }
 
   function wire() {
@@ -144,12 +219,17 @@ export function createUniversesView({
       onRetry();
       return renderDetail({ refresh: true });
     });
+    nodes.detail.seriesRetry.addEventListener('click', () => {
+      onRetry();
+      return renderDetail();
+    });
   }
 
   return {
     wire, setIndex, setDetail, renderIndex, renderDetail, searchRow,
     indexState: () => ({ universeQuery, universeSort }),
     detailId: () => universeId,
+    seriesReady: () => seriesReady,
     selected: () => resolver.getUniverse(universeId),
   };
 }
