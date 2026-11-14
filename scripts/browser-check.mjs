@@ -2670,6 +2670,127 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'iron-man-spotlight-cover-1289',
+    title: '#1289 Iron Man shows its cover on the spotlight card, hero and row, from a saved list too',
+    async run(page, t) {
+      const base = 'https://i.annihil.us/u/prod/marvel/i/mg/d/03/58dd080719806';
+      const malformed = `${base}/clean.jpg`;
+      const requested = [];
+      // Measured against the live CDN: a variant asked for inside `clean.jpg/` is 404 text/html,
+      // while the same variant under the directory is 200 image/jpeg. Mirror both, or the stub's
+      // blanket 200 would decode the broken address as happily as the right one.
+      page.__cover = (url) => {
+        requested.push(url);
+        return /\.(jpe?g|png|gif)\//i.test(new URL(url).pathname)
+          ? { status: 404, contentType: 'text/html', body: 'Not found' }
+          : {};
+      };
+      const saved = {
+        schemaVersion: 2,
+        issues: {
+          11280: {
+            issueId: 11280,
+            title: 'Tales of Suspense (1959) #39',
+            number: '39',
+            seriesId: 2079,
+            seriesName: 'Tales of Suspense (1959 - 1968)',
+            onSale: '1963-03-01T00:00:00+0000',
+            cover: { path: malformed, ext: 'jpg' },
+            source: 'curated',
+          },
+        },
+        read: {},
+        overrides: {},
+        notes: {},
+        lists: {
+          ironman: {
+            id: 'ironman',
+            name: 'Iron Man',
+            description: '',
+            note: '',
+            created: 1234,
+            catalogId: 'iron-man-reading-order',
+            itemIds: [11280],
+            collectedIn: {},
+          },
+        },
+        listOrder: ['ironman'],
+        active: 'ironman',
+      };
+      const settings = (covers) => JSON.stringify({ filter: 'all', covers, theme: 'system', apiBase: '' });
+      await open(page, '/?catalog=actual');
+      await page.evaluate((state, prefs) => {
+        localStorage.setItem('mrt.state.v2', JSON.stringify(state));
+        localStorage.setItem('mrt.settings', prefs);
+      }, saved, settings(true));
+      // A goto that changes only the hash stays in the same document, so reload to read the seed.
+      await page.reload({ waitUntil: 'load' });
+      const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+
+      const shown = (selector) => page.evaluate(async (s) => {
+        const img = document.querySelector(s);
+        if (!img) return { missing: s };
+        img.scrollIntoView({ block: 'center' });
+        const end = Date.now() + 10000;
+        while (Date.now() < end && !(img.complete && img.currentSrc) && img.style.display !== 'none') {
+          await new Promise((r) => setTimeout(r, 50));
+        }
+        const fallback = img.parentElement.querySelector('.cover-fallback');
+        return {
+          src: img.currentSrc || img.src,
+          width: img.naturalWidth,
+          hidden: img.hidden || getComputedStyle(img).display === 'none',
+          fallback: fallback ? getComputedStyle(fallback).display !== 'none' : null,
+        };
+      }, selector);
+      const decoded = (r, variant) => !r.missing && r.width > 0 && !r.hidden && r.fallback !== true
+        && r.src === `${base}/${variant}.jpg`;
+
+      await open(page, '/?catalog=actual#/spotlights');
+      await page.waitForSelector('#spotlights-results .catalog-card', { timeout: 15000 });
+      await page.evaluate(() => {
+        const card = [...document.querySelectorAll('#spotlights-results .catalog-card')]
+          .find((c) => c.querySelector('.catalog-card-title')?.textContent.trim() === 'Iron Man');
+        card?.setAttribute('data-check-1289', '');
+      });
+      const card = await shown('[data-check-1289] .ocard-art img');
+      t.check('the Iron Man spotlight card decodes its cover instead of the tile',
+        decoded(card, 'portrait_incredible'), JSON.stringify(card));
+
+      await click(page, '#list-nav .ri');
+      await page.waitForSelector('#view-read:not([hidden])', { timeout: 15000 });
+      const hero = await shown('#hero-img');
+      t.check('a saved list holding the old address shows the corrected cover in the hero',
+        decoded(hero, 'detail'), JSON.stringify(hero));
+      await openFullOrder(page);
+      const row = await shown('#rows .row img');
+      t.check('the saved row for Tales of Suspense #39 shows the corrected cover',
+        decoded(row, 'portrait_incredible'), JSON.stringify(row));
+      const after = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      t.check('rendering reads the old address without rewriting saved data', after === before,
+        JSON.stringify({ same: after === before, stillMalformed: after?.includes(malformed) }));
+      t.check('no cover was ever requested as a file inside a file',
+        requested.length > 0 && requested.every((u) => !u.includes('clean.jpg/')), JSON.stringify(requested));
+
+      await page.evaluate((prefs) => localStorage.setItem('mrt.settings', prefs), settings(false));
+      // The reading view's lazy row cover can still reach the stub while the page navigates away, so
+      // settle on a new document first and count only the reload under the saved setting.
+      await open(page, '/?catalog=actual&covers=off#/spotlights');
+      await new Promise((r) => setTimeout(r, 1500));
+      requested.length = 0;
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForSelector('#spotlights-results .catalog-card', { timeout: 15000 });
+      await new Promise((r) => setTimeout(r, 500));
+      const off = await page.evaluate(() => ({
+        nocovers: document.body.classList.contains('nocovers'),
+        stored: localStorage.getItem('mrt.state.v2'),
+      }));
+      t.check('with covers off no cover is requested and saved data is untouched',
+        off.nocovers && requested.length === 0 && off.stored === before,
+        JSON.stringify({ nocovers: off.nocovers, requested, same: off.stored === before }));
+    },
+  },
+  {
     id: 'temporary-reader-link',
     title: 'retired reader help and both local-clock handoffs preserve saved facts',
     run: (page, t) => retiredReaderHelp(page, t, { seedFixtureState, click, openFullOrder, order: ORDER }),
@@ -7620,7 +7741,7 @@ const SCENARIOS = [
         return {
           visible: visible.map((panel) => panel.id),
           heading: document.querySelector('#age-golden-h')?.textContent.trim(),
-          range: document.querySelector('#view-age-golden .publishing-range')?.textContent.trim(),
+          description: document.querySelector('#view-age-golden .head .sub')?.textContent.trim(),
           count: document.querySelector('#age-golden-count')?.textContent.trim(),
           message: document.querySelector('#age-golden-results .publishing-empty')?.textContent.trim(),
           timeline: Boolean(document.querySelector('#age-golden-results .timeline-flow')),
@@ -7630,7 +7751,7 @@ const SCENARIOS = [
         JSON.stringify(empty) === JSON.stringify({
           visible: ['view-age-golden'],
           heading: 'Browse Golden Age',
-          range: '1939 to 1955',
+          description: 'Timely Comics and the first wave of heroes, from 1939 to 1955.',
           count: '0 Reading Lists',
           message: 'No Reading Lists are published for this period yet.',
           timeline: false,
@@ -7743,7 +7864,9 @@ const SCENARIOS = [
         })));
       }
       t.check('browse headings carry no sentence that repeats the screen structure',
-        browse.every((screen) => screen.subtitle === null), JSON.stringify(browse));
+        browse[0].subtitle === null && browse[2].subtitle === null
+        && browse[1].subtitle === 'Find a Reading List by the kind of story and the mood you want.',
+        JSON.stringify(browse));
       t.check('Timeline keeps era context while Genres avoids decade explanations',
         browse[0].blurbs.length > 0 && browse[0].blurbs.every((text) => text.length > 40)
         && browse[1].blurbs.length === 0,
@@ -19217,13 +19340,14 @@ async function preparePage(page, origin, mutation, scenarioId = null) {
       return;
     }
     if (new URL(request.url()).hostname === 'i.annihil.us') {
-      // A scenario can stand a cover of its own in, such as the brightest backdrop a hero can carry.
+      // A scenario can stand a cover of its own in, such as the brightest backdrop a hero can carry,
+      // or answer per address, as #1289 does to mirror the CDN's 404 for a file inside a file.
       await request.respond({
         status: 200,
         contentType: 'image/png',
         headers: { 'cache-control': 'no-store' },
         body: COVER_PIXEL,
-        ...page.__cover,
+        ...(typeof page.__cover === 'function' ? page.__cover(request.url()) : page.__cover),
       });
       return;
     }
@@ -19957,13 +20081,23 @@ SCENARIOS.push(
         JSON.stringify(golden));
       await open(page, '/?catalog=actual#/marvel-on-screen');
       await page.waitForFunction(() => document.querySelector('#marvel-on-screen-results .catalog-card'));
-      const highlights = await page.evaluate(() => [...document.querySelectorAll(
-        '#view-marvel-on-screen .publishing-highlights li',
-      )].map((node) => ({ tag: node.tagName, radius: getComputedStyle(node).borderRadius,
-        controls: node.querySelectorAll('button, input, a').length })));
-      t.check('MCU highlights look informational rather than like actionable facet pills',
-        highlights.length > 0 && highlights.every((entry) => entry.tag === 'LI'
-          && entry.radius === '0px' && entry.controls === 0), JSON.stringify(highlights));
+      const header = await page.evaluate(() => {
+        const view = document.querySelector('#view-marvel-on-screen');
+        const count = document.querySelector('#marvel-on-screen-count');
+        return {
+          lines: [...view.querySelectorAll('.head .sub')].map((node) => node.textContent.trim()),
+          tags: view.querySelectorAll('.publishing-meta, .publishing-range, .publishing-highlights, .head li').length,
+          countRole: count?.getAttribute('role') ?? null,
+          countPainted: count ? count.getBoundingClientRect().width > 1 : null,
+        };
+      });
+      t.check('MCU Prep says what it holds in one line, with no tags that look like controls (#1297)',
+        JSON.stringify(header) === JSON.stringify({
+          lines: ['Comics to read alongside the Marvel movies and streaming series.'],
+          tags: 0,
+          countRole: 'status',
+          countPainted: false,
+        }), JSON.stringify(header));
       await open(page, '/?catalog=actual#/catalog');
       await page.waitForFunction(() => document.querySelector('#catalog-results .catalog-card'));
       await page.evaluate(() => {
@@ -24230,6 +24364,9 @@ MUTATIONS.push(...categoryAccents.categoryAccentMutations);
 const themeColor = await import('./browser-theme-color.mjs');
 SCENARIOS.push(themeColor.themeColor);
 MUTATIONS.push(...themeColor.themeColorMutations);
+const selectLists = await import('./browser-select-lists.mjs');
+SCENARIOS.push(selectLists.selectLists);
+MUTATIONS.push(...selectLists.selectListsMutations);
 const progressGlance = await import('./browser-progress-glance.mjs');
 SCENARIOS.push(progressGlance.progressGlance);
 MUTATIONS.push(...progressGlance.progressGlanceMutations);

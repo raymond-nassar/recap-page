@@ -20,6 +20,7 @@ import {
 import { CBH_LATER_ORDER_IDS } from './lib/cbro-evidence.mjs';
 import { loadLibrarySnapshot } from './report-order-overlap.mjs';
 import { preflightPublicationWrites, readPublicationInputs } from './check-publication.mjs';
+import { selectedUltimateRows, ultimateSelection } from './lib/ultimate-spider-man-selection.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const MAPPINGS_DIR = path.join(ROOT, 'scripts', 'data', 'cbh-mappings');
@@ -259,7 +260,7 @@ export function buildMarkdown(mapping) {
     `${mapping.id} placeholder identity mode is invalid`,
   );
   const repeatedCount = mapping.repeatedSourceReferences?.length ?? 0;
-  const rowsBySourcePosition = new Map(mapping.rows.map((row) => [row.sourcePosition, {
+  const rowsBySourcePosition = new Map(selectedUltimateRows(mapping).map((row) => [row.sourcePosition, {
     kind: 'exact',
     value: row,
   }]));
@@ -288,6 +289,10 @@ export function buildMarkdown(mapping) {
     ]),
     'No source commentary or images are copied. Issue identities, titles, and exact links come from Marvel metadata or reviewed official Marvel issue pages after the packet resolution and overlap gates passed.',
     'See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permission boundary and review method.',
+    ...(mapping.id === ultimateSelection.id ? [
+      `Owner selection (#${ultimateSelection.issue}): ${ultimateSelection.provenance}`,
+      `Enabled exclusions: ${ultimateSelection.exclusions.filter((block) => block.enabled).map((block) => block.name).join('; ')}.`,
+    ] : []),
   ].join('\n');
   let currentGroup = null;
   const checklist = [...rowsBySourcePosition.entries()]

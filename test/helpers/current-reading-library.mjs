@@ -6,6 +6,7 @@ import { spiderManSelectionItemDelta } from './reading-choice-history.mjs';
 import { identityRevisions } from './owner-identity-history.mjs';
 import { amazingSpiderManSupplementDelta } from './amazing-spider-man-history.mjs';
 import { wolverineCorrectionItemDelta } from './wolverine-correction-history.mjs';
+import { ultimateSelectionDelta, ultimateSelectionEmptyDelta } from '../../scripts/lib/ultimate-spider-man-selection.mjs';
 
 const { captureSha256, ...baseline } = JSON.parse(readFileSync(
   new URL('../fixtures/reading-library-baseline.json', import.meta.url), 'utf8',
@@ -96,11 +97,12 @@ export const currentReadingCensus = Object.freeze({
   modernTimeline: 148 + registeredEventContracts.length + curatedEventCount,
   modernTimelineStories: 144 + registeredEventContracts.length + curatedEventCount,
   complete: baseline.payloadCounts.complete + addedRows - addedPlaceholderRows + spiderManSelectionItemDelta
-    + amazingSpiderManSupplementDelta + wolverineCorrectionItemDelta - 2
+    + amazingSpiderManSupplementDelta + wolverineCorrectionItemDelta
+    + ultimateSelectionDelta - ultimateSelectionEmptyDelta - 2
     + identityRevisions.guides.filter((entry) => entry.placeholderReplacement)
       .reduce((total, entry) => total + entry.issueIds.length, 0),
   totalItems: baseline.payloadCounts.total + addedRows + spiderManSelectionItemDelta
-    + amazingSpiderManSupplementDelta + wolverineCorrectionItemDelta - 2,
+    + amazingSpiderManSupplementDelta + wolverineCorrectionItemDelta + ultimateSelectionDelta - 2,
   itemFiles: 297 + rosterAdditionCount,
 });
 

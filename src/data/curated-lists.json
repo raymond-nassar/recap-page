@@ -5274,7 +5274,7 @@
     {
       "id": "ultimate-spider-man-reading-order",
       "name": "Ultimate Spider-Man",
-      "description": "Peter Parker and Miles Morales are Spider-Man in Marvel's Ultimate universes, the original one and a separate new one. Brian Michael Bendis's Ultimate Spider-Man opens the journey alongside Ultimate Marvel Team-Up, Ultimate Six and Ultimatum. Ultimate Comics Spider-Man and Spider-Men follow, and Jonathan Hickman's Ultimate Spider-Man leads into Ultimate Endgame.",
+      "description": "Peter Parker and Miles Morales begin in the original Ultimate universe, and Miles continues into Marvel's main universe. Brian Michael Bendis's Ultimate Spider-Man opens the journey alongside Ultimate Marvel Team-Up, Ultimate Six and Ultimatum. Ultimate Comics Spider-Man, Spider-Men, Spider-Man (2016) and Champions follow. The separate Earth-6160 Peter Parker stories are not included.",
       "type": "character-run",
       "depth": "partial",
       "storyTypes": [
@@ -5292,7 +5292,7 @@
       "sourceSection": null,
       "sourceFile": "ultimate-spider-man-reading-order.md",
       "sourcePage": "https://www.comicbookherald.com/ultimate-spider-man-reading-order/",
-      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide, with the owner's Earth-6160 exclusions",
       "sourceLicense": null,
       "out": "ultimate_spider_man_reading_order.json",
       "characters": [
@@ -5306,11 +5306,11 @@
         "Peter Parker",
         "Miles Morales",
         "Earth-1610",
-        "Earth-6160",
+        "Earth-616",
         "Ultimate Universe",
         "Comic Book Herald"
       ],
-      "expect": 352,
+      "expect": 316,
       "coverIssueId": 4372,
       "universeIds": [
         "ultimate-marvel"

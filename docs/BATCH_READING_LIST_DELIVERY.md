@@ -85,7 +85,7 @@ gap.
 
 For an ordinary addition, require genuine `event` classification and an integer `timeline` start
 year of at least 2004. Every variant in a story group must qualify. These are the current inclusion
-rules in `src/js/lib/catalog.js:984-1007`, not a classification to assign just to make a list appear.
+rules in `src/js/lib/catalog.js:983-1006`, not a classification to assign just to make a list appear.
 The fixed `marvel-knights-to-planet-x-01` through `-78` opening chapters have their own earlier
 boundary; do not reuse their IDs or the featured setup entry as exemptions.
 
@@ -132,7 +132,7 @@ a named release means that known complete set, not a new list assembled from arb
 ## Gate non-MCU regression compatibility early
 
 Before writing data, name the current roster, census and reciprocal relationship check owners in
-the actual delivery plan. `test/helpers/current-reading-library.mjs:10-105` retains the immutable
+the actual delivery plan. `test/helpers/current-reading-library.mjs:11-107` retains the immutable
 baseline, keeps owner deliveries distinct from local curated additions, and counts explicitly
 registered Modern Timeline events separately from MCU additions. Later owner-peer checks in
 `test/helpers/owner-delivery-contract.mjs:260-286` require registered contracts, current approval

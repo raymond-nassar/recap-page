@@ -316,7 +316,7 @@ test('asynchronous category results expose concise polite status updates', () =>
   assert.match(homeSource, /status\.classList\.toggle\('visually-hidden', categories\.length > 0\)/);
   assert.match(
     source,
-    /class:\s*'publishing-count'[\s\S]*role:\s*'status'[\s\S]*text:\s*'Loading Reading Lists'/,
+    /class:\s*'publishing-count[^']*'[\s\S]*role:\s*'status'[\s\S]*text:\s*'Loading Reading Lists'/,
     'publishing pages do not expose one polite loading and result status',
   );
   assert.match(source, /class:\s*'rail-hint'[\s\S]*'aria-hidden':\s*'true'[\s\S]*Loading Reading Lists/);

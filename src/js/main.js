@@ -3153,19 +3153,18 @@ function ensurePublishingViews() {
       el('div', { class: 'head' }, [
         el('div', { class: 'head-left' }, [
           el('h1', { id: `${category.route}-h`, text: `Browse ${category.heading}` }),
+          el('p', { class: 'sub publishing-description', text: category.description }),
+          // The owner read the visible range, count and highlight row as controls that did nothing
+          // (#1297), so the page says what it holds in one line. The count stays as a hidden polite
+          // status, because filtering on MCU Prep and Genres still announces its result through it.
+          el('span', {
+            id: `${category.route}-count`,
+            class: 'publishing-count visually-hidden',
+            role: 'status',
+            text: 'Loading Reading Lists',
+          }),
         ]),
       ]),
-      el('div', { class: 'publishing-meta' }, [
-        el('span', { class: 'publishing-range', text: category.label }),
-        el('span', {
-          id: `${category.route}-count`,
-          class: 'publishing-count',
-          role: 'status',
-          text: 'Loading Reading Lists',
-        }),
-      ]),
-      el('ul', { class: 'publishing-highlights', 'aria-label': `${category.heading} highlights` },
-        category.highlights.map((highlight) => el('li', { text: highlight }))),
       el('div', { id: `${category.route}-report`, class: 'report' }),
       ...(category.route === 'marvel-on-screen' ? [mcuPrepView.controls()] : []),
       ...(category.route === 'genres' ? [storyTypesView.controls()] : []),

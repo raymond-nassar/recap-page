@@ -1824,13 +1824,13 @@
     "fp": "2e19500d63dda59d",
     "head": "this.store.update((s) => upsertIssue(s, { ...full, hydrated: true }));"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/lib/model.js:738-740|0": {
-    "anchor": "src/js/lib/model.js:738-740",
+  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/lib/model.js:761-763|0": {
+    "anchor": "src/js/lib/model.js:761-763",
     "fp": "d3c89ab1f16d81ee",
     "head": "export function toggleRead(state, issueId) {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/main.js:3383-3409|0": {
-    "anchor": "src/js/main.js:3383-3409",
+  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/main.js:3382-3408|0": {
+    "anchor": "src/js/main.js:3382-3408",
     "fp": "22bce3df8af723ed",
     "head": "function renderAll() {"
   },
@@ -1909,13 +1909,13 @@
     "fp": "931bd75b9e4067fe",
     "head": "preservingFocus(rows, () => {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3383-3409|0": {
-    "anchor": "src/js/main.js:3383-3409",
+  "docs/ARCHITECTURE_REFERENCE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3382-3408|0": {
+    "anchor": "src/js/main.js:3382-3408",
     "fp": "22bce3df8af723ed",
     "head": "function renderAll() {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:4277-4319|0": {
-    "anchor": "src/js/main.js:4277-4319",
+  "docs/ARCHITECTURE_REFERENCE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:4276-4318|0": {
+    "anchor": "src/js/main.js:4276-4318",
     "fp": "39c31b26626f4d11",
     "head": "const catalogView = createCatalogView({"
   },
@@ -1954,8 +1954,8 @@
     "fp": "2993ccc8e75ae0bb",
     "head": "// The shelf placement map deliberately keeps only the first path that reaches a story. This model"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:780-798|0": {
-    "anchor": "src/js/lib/catalog.js:780-798",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:779-797|0": {
+    "anchor": "src/js/lib/catalog.js:779-797",
     "fp": "c223b522bd950f07",
     "head": "stops.forEach((stop, i) => {"
   },
@@ -1969,28 +1969,28 @@
     "fp": "8f74c324b23445e0",
     "head": "if (view === RETIRED_PATHS_SEGMENT) {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3392|0": {
-    "anchor": "src/js/main.js:3392",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3391|0": {
+    "anchor": "src/js/main.js:3391",
     "fp": "ae55a874d470b605",
     "head": "catalogView.refreshProgress();"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4106-4125|0": {
-    "anchor": "src/js/main.js:4106-4125",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4105-4124|0": {
+    "anchor": "src/js/main.js:4105-4124",
     "fp": "361fd1a361de6372",
     "head": "function openSavedCatalogList(list, saved, report, { fromCard = false } = {}) {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4127-4413|0": {
-    "anchor": "src/js/main.js:4127-4413",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4126-4412|0": {
+    "anchor": "src/js/main.js:4126-4412",
     "fp": "2b46052e862088cf",
     "head": "const catalogPresentation = createCatalogPresentation({"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4291-4297|0": {
-    "anchor": "src/js/main.js:4291-4297",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4290-4296|0": {
+    "anchor": "src/js/main.js:4290-4296",
     "fp": "d3051bc067e4d60f",
     "head": "follow: () => ({"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4317-4318|0": {
-    "anchor": "src/js/main.js:4317-4318",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4316-4317|0": {
+    "anchor": "src/js/main.js:4316-4317",
     "fp": "2e75d57bd558e1f6",
     "head": "onFollowChange: () => syncHash({ push: true }),"
   },
@@ -5749,14 +5749,14 @@
     "fp": "3a6bffed9d7bfbb0",
     "head": "export function sortCatalog(lists) {"
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-modern-timeline-placement-before-authoring|src/js/lib/catalog.js:984-1007|0": {
-    "anchor": "src/js/lib/catalog.js:984-1007",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-modern-timeline-placement-before-authoring|src/js/lib/catalog.js:983-1006|0": {
+    "anchor": "src/js/lib/catalog.js:983-1006",
     "fp": "b5355ce4144b6df6",
     "head": "export const MODERN_TIMELINE_CHAPTER_COUNT = 78;"
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/current-reading-library.mjs:10-105|0": {
-    "anchor": "test/helpers/current-reading-library.mjs:10-105",
-    "fp": "3a0decdb11c72ff9",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/current-reading-library.mjs:11-107|0": {
+    "anchor": "test/helpers/current-reading-library.mjs:11-107",
+    "fp": "e3051780b93d33ee",
     "head": "const { captureSha256, ...baseline } = JSON.parse(readFileSync("
   },
   "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:260-286|0": {
@@ -6019,15 +6019,15 @@
     "fp": "55a4cabc45fcfd0d",
     "head": "webView.reload()"
   },
-  "docs/UX_FEEDBACK.md|feedback-signals#mcu-prep-labels|src/js/lib/catalog.js:1359|0": {
-    "anchor": "src/js/lib/catalog.js:1359",
-    "fp": "93b977ad490359f7",
-    "head": "highlights: ['Movie companions', 'Streaming companions', 'Multiverse picks'],"
+  "docs/UX_FEEDBACK.md|feedback-signals#mcu-prep-labels|src/js/lib/catalog.js:1358|0": {
+    "anchor": "src/js/lib/catalog.js:1358",
+    "fp": "85dd498c3e412622",
+    "head": "description: 'Comics to read alongside the Marvel movies and streaming series.',"
   },
-  "docs/UX_FEEDBACK.md|feedback-signals#mcu-prep-labels|src/js/main.js:3167-3168|0": {
-    "anchor": "src/js/main.js:3167-3168",
-    "fp": "1fa4d3bc15041525",
-    "head": "el('ul', { class: 'publishing-highlights', 'aria-label': `${category.heading} highlights` },"
+  "docs/UX_FEEDBACK.md|feedback-signals#mcu-prep-labels|src/js/main.js:3156|0": {
+    "anchor": "src/js/main.js:3156",
+    "fp": "182990f15d2fff5a",
+    "head": "el('p', { class: 'sub publishing-description', text: category.description }),"
   },
   "docs/UX_FEEDBACK.md|owner-wording-preserved|src/index.html:57|0": {
     "anchor": "src/index.html:57",
@@ -6054,15 +6054,15 @@
     "fp": "55a4cabc45fcfd0d",
     "head": "webView.reload()"
   },
-  "docs/UX_IMPROVEMENT_PLAN.md|7-mcu-prep-labels|src/js/lib/catalog.js:1359|0": {
-    "anchor": "src/js/lib/catalog.js:1359",
-    "fp": "93b977ad490359f7",
-    "head": "highlights: ['Movie companions', 'Streaming companions', 'Multiverse picks'],"
+  "docs/UX_IMPROVEMENT_PLAN.md|7-mcu-prep-labels|src/js/lib/catalog.js:1358|0": {
+    "anchor": "src/js/lib/catalog.js:1358",
+    "fp": "85dd498c3e412622",
+    "head": "description: 'Comics to read alongside the Marvel movies and streaming series.',"
   },
-  "docs/UX_IMPROVEMENT_PLAN.md|7-mcu-prep-labels|src/js/main.js:3167-3168|0": {
-    "anchor": "src/js/main.js:3167-3168",
-    "fp": "1fa4d3bc15041525",
-    "head": "el('ul', { class: 'publishing-highlights', 'aria-label': `${category.heading} highlights` },"
+  "docs/UX_IMPROVEMENT_PLAN.md|7-mcu-prep-labels|src/js/main.js:3156|0": {
+    "anchor": "src/js/main.js:3156",
+    "fp": "182990f15d2fff5a",
+    "head": "el('p', { class: 'sub publishing-description', text: category.description }),"
   },
   "docs/UX_STUDY.md|as-is-journey-map#checking-progress|src/index.html:609-612|0": {
     "anchor": "src/index.html:609-612",
@@ -6124,8 +6124,8 @@
     "fp": "2318f8472fc086b9",
     "head": "<fieldset class=\"filters\" id=\"progress-scope\" aria-describedby=\"progress-subject\">"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/lib/model.js:1165-1196|0": {
-    "anchor": "src/js/lib/model.js:1165-1196",
+  "docs/UX_STUDY.md|job-stories|src/js/lib/model.js:1188-1219|0": {
+    "anchor": "src/js/lib/model.js:1188-1219",
     "fp": "ec402d5548694459",
     "head": "export function validateBackup(raw) {"
   },
@@ -6189,8 +6189,8 @@
     "fp": "e4a8a4c444dd83ef",
     "head": "<!-- Shown only when saved data could not be read. Saving stays paused until the"
   },
-  "docs/UX_STUDY.md|step-1-heuristic-evaluation#5|src/js/lib/model.js:989-1068|0": {
-    "anchor": "src/js/lib/model.js:989-1068",
+  "docs/UX_STUDY.md|step-1-heuristic-evaluation#5|src/js/lib/model.js:1012-1091|0": {
+    "anchor": "src/js/lib/model.js:1012-1091",
     "fp": "7462a630913f868e",
     "head": "const version = Number(raw.schemaVersion ?? 1);"
   },
@@ -6209,8 +6209,8 @@
     "fp": "6781d22a4569713e",
     "head": "function wire(key) {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:2473-2475|0": {
-    "anchor": "src/styles.css:2473-2475",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:2468-2470|0": {
+    "anchor": "src/styles.css:2468-2470",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -6234,8 +6234,8 @@
     "fp": "3cbc7d76b21e95fa",
     "head": "// Generated from src/data/hickman_full.json - real issues and real covers. The synopses this"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2473-2475|0": {
-    "anchor": "src/styles.css:2473-2475",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2468-2470|0": {
+    "anchor": "src/styles.css:2468-2470",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -6289,8 +6289,8 @@
     "fp": "67a2685668e86539",
     "head": ".cb {"
   },
-  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2932-2933|0": {
-    "anchor": "src/styles.css:2932-2933",
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2926-2927|0": {
+    "anchor": "src/styles.css:2926-2927",
     "fp": "50a15115f9d51e98",
     "head": ".row { grid-template-columns: var(--target) 44px minmax(0, 1fr) auto; }"
   },
@@ -6359,8 +6359,8 @@
     "fp": "53b9bb8e0988cf2b",
     "head": "color-scheme: dark;"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2473-2475|0": {
-    "anchor": "src/styles.css:2473-2475",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2468-2470|0": {
+    "anchor": "src/styles.css:2468-2470",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -6399,8 +6399,8 @@
     "fp": "30990219b3c5e62c",
     "head": "const store = new Store({"
   },
-  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:3383-3409|0": {
-    "anchor": "src/js/main.js:3383-3409",
+  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:3382-3408|0": {
+    "anchor": "src/js/main.js:3382-3408",
     "fp": "22bce3df8af723ed",
     "head": "function renderAll() {"
   },
@@ -6539,23 +6539,23 @@
     "fp": "955a5533014388f9",
     "head": ".btn-g { background: rgb(var(--tint-base) / 5.882%); color: var(--text); border-color: var(--line-2)"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2153-2155|0": {
-    "anchor": "src/styles.css:2153-2155",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2161-2163|0": {
+    "anchor": "src/styles.css:2161-2163",
     "fp": "bf510b9aee0c8441",
     "head": "background:"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2172-2174|0": {
-    "anchor": "src/styles.css:2172-2174",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2180-2182|0": {
+    "anchor": "src/styles.css:2180-2182",
     "fp": "5dbffdc9196107f3",
     "head": "background:"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2514|0": {
-    "anchor": "src/styles.css:2514",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2508|0": {
+    "anchor": "src/styles.css:2508",
     "fp": "3a5c838f7187d084",
     "head": "background: color-mix(in srgb, var(--warn) 12%, var(--panel));"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2538|0": {
-    "anchor": "src/styles.css:2538",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2532|0": {
+    "anchor": "src/styles.css:2532",
     "fp": "1eef54d530f1e5d5",
     "head": ".blocked .btn-g { border-color: var(--muted); }"
   },
