@@ -1,4 +1,4 @@
-// Provisional editorial facts and associations; field sources are in scripts/data/universe-sources.json.
+// Sourced editorial facts and associations; field sources and open evidence gaps are in scripts/data/universe-sources.json.
 
 export const universeDefinitions = [
   {
@@ -20,10 +20,10 @@ export const universeDefinitions = [
     "id": "killraven",
     "name": "Killraven / War of the Worlds",
     "earth": "Earth-691",
-    "firstPublished": 1973,
+    "firstPublished": 1969,
     "debutIssue": {
-      "title": "Amazing Adventures #18",
-      "issueId": 23254
+      "title": "Marvel Super-Heroes #18",
+      "issueId": 15429
     },
     "description": "A future Marvel reality in which Martians conquered Earth and Killraven leads a resistance movement.",
     "aliases": [
@@ -95,8 +95,8 @@ export const universeDefinitions = [
     "earth": "Earth-295",
     "firstPublished": 1995,
     "debutIssue": {
-      "title": "X-Men: Alpha #1",
-      "issueId": 12386
+      "title": "X-Men #40",
+      "issueId": 14329
     },
     "description": "A timeline where Xavier died before founding the X-Men, allowing Apocalypse to conquer much of the world.",
     "aliases": [],
@@ -280,10 +280,10 @@ export const universeDefinitions = [
     "id": "marvel-zombies",
     "name": "Marvel Zombies",
     "earth": "Earth-2149",
-    "firstPublished": 2006,
+    "firstPublished": 2005,
     "debutIssue": {
-      "title": "Marvel Zombies #1",
-      "issueId": 3220
+      "title": "Ultimate Fantastic Four #21",
+      "issueId": 2183
     },
     "description": "The original Marvel Zombies reality, where a zombie infection transforms many Marvel heroes and villains.",
     "aliases": [

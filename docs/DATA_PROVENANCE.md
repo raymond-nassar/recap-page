@@ -3687,7 +3687,7 @@ requires recorded granted permission and a verified HTTPS book destination. It s
 book at Hoopla", not that borrowing is possible, and opens outside the app with referrer isolation.
 No live provider lookup, account, credential, cover image or affiliate/store destination is added.
 
-## Provisional Universes metadata
+## Universes metadata
 
 [Issue #1291](https://github.com/raymond-nassar/recap-page/issues/1291) supplies the initial
 Universe names, reality designations, years and descriptions. The
@@ -3696,10 +3696,15 @@ reference revisions, retrieval dates, alternative debuts and publication dates, 
 for each Reading List, series and comic association. The owner's descriptions are retained as
 provided; the primary-continuity description is project-authored.
 
-The provisional registry uses the named line's cover year, excludes previews and promotions, and
-selects Marvel Comics #1 in 1939 for the primary continuity. The ledger preserves the on-sale and
-earliest-reality alternatives, including Fantastic Four #1 and the Ka-Zar pulp candidate. A named
-reality without a confirmed Earth number remains named rather than receiving a guessed number.
+The owner [settled three conventions](https://github.com/raymond-nassar/recap-page/issues/1291#issuecomment-6881532609)
+on 14 November 2026. A Universe's first year and debut are the earliest appearance of its reality,
+as the pinned reference reality page records it, dated by cover date. The primary continuity
+begins with Marvel Comics #1 in 1939, a deliberate exception to earliest appearance. The ledger
+keeps named-line years, on-sale dates and the other primary-continuity candidates, including
+Fantastic Four #1 and the Ka-Zar pulp, as alternatives. Previews and promotions stay excluded as
+standing practice that the owner has not ruled on, so Heroes Reborn (1996) keeps its Fantastic
+Four debut. A named reality without a confirmed Earth number remains named rather than receiving
+a guessed number.
 The Marvel Zombies guide's qualification is retained because it includes other realities;
 list membership never assigns a reality to every comic in that list. The owner placed the Ultimate
 Spider-Man guide under Ultimate Marvel only, without changing comic or series facts. The owner also
@@ -3707,8 +3712,9 @@ made the primary continuity browse-only, linking to Modern Timeline and Marvel A
 individual guides or selected comics. New lists follow the
 [Universe placement step](MAINTAINING.md#place-a-new-reading-list-in-a-universe).
 
-These are implementation candidates, not approved publication facts. The owner has not settled
-the publication-year convention or the three conflicting supplied years. Independent bibliography
-is still unverified, as are the Heroes Reborn Wizard special's classification and on-sale date.
-The pinned issue and reality pages come from the same reference source and are not independent
-corroboration. No source narrative or comic image bytes are added, and saved data is unchanged.
+The reference pages are the second opinion the owner asked for on the supplied years, and a live
+reread on 14 November 2026 found every reality and debut page still at its pinned revision. They
+are not independent corroboration: the pinned issue and reality pages come from the same
+reference source. Three things remain open: the preview and promotion policy, independent
+bibliography, and the Heroes Reborn Wizard special's classification and on-sale date. No source
+narrative or comic image bytes are added, and saved data is unchanged.

@@ -18,7 +18,11 @@ test('Universe records preserve field-level sources, owner descriptions and alte
     const row = byId.get(universe.id);
     assert.ok(row, `no source record for ${universe.id}`);
     assert.deepEqual(row.selected, universe);
-    assert.equal(universe.firstPublished, row.namedLine.coverYear);
+    const exception = { 'earth-616': 'owner-primary-continuity-exception', 'heroes-reborn-1996': 'preview-excluded' };
+    assert.equal(row.selectionBasis, exception[universe.id] ?? 'reference-reality-first', universe.id);
+    const basis = exception[universe.id] ? row.namedLine : row.referenceRealityFirst;
+    assert.equal(universe.firstPublished, basis.coverYear, universe.id);
+    assert.equal(universe.debutIssue.issueId, basis.issueId, universe.id);
     if (row.ownerInput) assert.equal(universe.description, row.ownerInput.description);
     for (const field of ['name', 'earth', 'firstPublished', 'debutIssue', 'description']) {
       assert.ok(row.evidence[field]?.length, `${universe.id} ${field} has no evidence`);
@@ -29,7 +33,7 @@ test('Universe records preserve field-level sources, owner descriptions and alte
     }
   }
   assert.ok(byId.get('earth-616').alternatives.some(({ coverYear }) => coverYear === 1936));
-  assert.ok(byId.get('killraven').alternatives.some(({ coverYear }) => coverYear === 1969));
+  assert.ok(byId.get('killraven').alternatives.some(({ coverYear }) => coverYear === 1973));
 });
 
 test('reviewed Universe associations survive the manifest and generated catalog without additions', async () => {

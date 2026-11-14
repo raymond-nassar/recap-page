@@ -1,13 +1,25 @@
 {
   "schemaVersion": 1,
-  "status": "provisional-not-approved-for-release",
+  "status": "owner-conventions-decided-evidence-gaps-open",
   "policy": {
-    "firstPublished": "Named-line cover year, pending owner decision.",
-    "realityFirst": "Reference reality page First field, retained separately from the named line.",
-    "preview": "Promotional and preview comics are alternatives but are excluded from the selected debut.",
-    "primaryContinuity": "Marvel Comics #1 (1939) is provisional; the 1961 and 1936 alternatives are retained.",
+    "firstPublished": "Earliest appearance of the reality: the pinned Marvel Database reality page's First field, dated by its cover year. The owner decided this convention and the cover-date convention on 2026-11-14. Named-line years and on-sale dates are retained as alternatives.",
+    "realityFirst": "Reference reality page First field; it is the selected debut unless the primary-continuity or preview rule below applies.",
+    "preview": "Promotional and preview comics are alternatives but are excluded from the selected debut. This is standing practice that the owner has not ruled on, so Heroes Reborn (1996) keeps Fantastic Four #1 rather than the Heroes Reborn half-issue preview.",
+    "primaryContinuity": "Earth-616 begins with Marvel Comics #1 (1939) by explicit owner decision on 2026-11-14, an exception to earliest appearance. The 1936 Ka-Zar pulp, Motion Picture Funnies Weekly #1 (1939) and Fantastic Four #1 (1961) are retained as alternatives.",
     "descriptions": "The thirty owner descriptions are reproduced verbatim; source prose is not copied.",
-    "evidenceGaps": "Independent bibliography and the Wizard special classification remain unverified; its on-sale date is unknown. Five provider on-sale dates differ from the pinned issue pages, although their years agree; each provider date is the first day of the cover month."
+    "secondOpinion": "The owner supplied the original years; this ledger checked them against the pinned Marvel Database pages, which are the second opinion the owner asked for. They are not independent of this ledger's own sources. A live reread on 2026-11-14 found all 31 reality pages and all 31 selected-issue pages at their pinned revisions, with unchanged First fields and cover dates.",
+    "settled": [
+      "Year convention: earliest appearance of the reality.",
+      "Date convention: cover date.",
+      "Primary continuity origin: Marvel Comics #1 (1939).",
+      "Merge approval for the Universes section."
+    ],
+    "open": [
+      "Preview and promotional comics: excluded as standing practice, not ruled on by the owner.",
+      "Independent bibliography for every year and debut.",
+      "The Heroes Reborn Wizard special: classification and on-sale date unverified."
+    ],
+    "evidenceGaps": "Independent bibliography remains unverified, as do the Wizard special's classification and on-sale date. Seven provider on-sale dates differ from the pinned issue pages. Six are the first day of the cover month and one is January 10, 1969; two of the seven (Marvel Super-Heroes #18 and X-Men #40) fall in a later year than the pinned on-sale date but in the cover year, so no selected year depends on them."
   },
   "sources": {
     "owner-ultimate-list-placement": {
@@ -86,13 +98,24 @@
       "url": "https://marvel.fandom.com/wiki/Avengers_Vol_1_85?oldid=10669458",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-issue-reference"
+      "kind": "pinned-issue-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 10669458,
+        "coverMonth": "February",
+        "coverYear": 1971
+      }
     },
     "F712": {
       "url": "https://marvel.fandom.com/wiki/Earth-712?oldid=10965746",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-reality-reference"
+      "kind": "pinned-reality-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 10965746,
+        "first": "Avengers Vol 1 85"
+      }
     },
     "issue-10634874": {
       "url": "https://marvel.fandom.com/wiki/Amazing_Adventures_Vol_2_18?oldid=10634874",
@@ -104,49 +127,93 @@
       "url": "https://marvel.fandom.com/wiki/Marvel_Super-Heroes_Vol_1_18?oldid=10773750",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-issue-reference"
+      "kind": "pinned-issue-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 10773750,
+        "coverMonth": "January",
+        "coverYear": 1969
+      }
     },
     "F691": {
       "url": "https://marvel.fandom.com/wiki/Earth-691?oldid=11153015",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-reality-reference"
+      "kind": "pinned-reality-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11153015,
+        "first": "Marvel Super-Heroes Vol 1 18"
+      }
     },
     "issue-11166925": {
       "url": "https://marvel.fandom.com/wiki/X-Men_Vol_1_141?oldid=11166925",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-issue-reference"
+      "kind": "pinned-issue-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11166925,
+        "coverMonth": "January",
+        "coverYear": 1981
+      }
     },
     "F811": {
       "url": "https://marvel.fandom.com/wiki/Earth-811?oldid=11277178",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-reality-reference"
+      "kind": "pinned-reality-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11277178,
+        "first": "X-Men Vol 1 141"
+      }
     },
     "issue-10804956": {
       "url": "https://marvel.fandom.com/wiki/Marvel_Tails_Starring_Peter_Porker_the_Spectacular_Spider-Ham_Vol_1_1?oldid=10804956",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-issue-reference"
+      "kind": "pinned-issue-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 10804956,
+        "coverMonth": "November",
+        "coverYear": 1983
+      }
     },
     "F8311": {
       "url": "https://marvel.fandom.com/wiki/Earth-8311?oldid=11195232",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-reality-reference"
+      "kind": "pinned-reality-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11195232,
+        "first": "Marvel Tails Starring Peter Porker the Spectacular Spider-Ham Vol 1 1"
+      }
     },
     "issue-11011416": {
       "url": "https://marvel.fandom.com/wiki/Spitfire_and_the_Troubleshooters_Vol_1_1?oldid=11011416",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-issue-reference"
+      "kind": "pinned-issue-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11011416,
+        "coverMonth": "October",
+        "coverYear": 1986
+      }
     },
     "F148611": {
       "url": "https://marvel.fandom.com/wiki/Earth-148611?oldid=10718345",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-reality-reference"
+      "kind": "pinned-reality-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 10718345,
+        "first": "Spitfire and the Troubleshooters Vol 1 1"
+      }
     },
     "issue-11011437": {
       "url": "https://marvel.fandom.com/wiki/Star_Brand_Vol_1_1?oldid=11011437",
@@ -158,13 +225,24 @@
       "url": "https://marvel.fandom.com/wiki/Spider-Man_2099_Vol_1_1?oldid=11064465",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-issue-reference"
+      "kind": "pinned-issue-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11064465,
+        "coverMonth": "November",
+        "coverYear": 1992
+      }
     },
     "F928": {
       "url": "https://marvel.fandom.com/wiki/Earth-928?oldid=11188823",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-reality-reference"
+      "kind": "pinned-reality-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11188823,
+        "first": "Spider-Man 2099 Vol 1 1"
+      }
     },
     "issue-11169647": {
       "url": "https://marvel.fandom.com/wiki/Amazing_Spider-Man_Vol_1_365?oldid=11169647",
@@ -182,31 +260,59 @@
       "url": "https://marvel.fandom.com/wiki/X-Men_Vol_2_40?oldid=10527826",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-issue-reference"
+      "kind": "pinned-issue-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 10527826,
+        "coverMonth": "January",
+        "coverYear": 1995
+      }
     },
     "F295": {
       "url": "https://marvel.fandom.com/wiki/Earth-295?oldid=11078900",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-reality-reference"
+      "kind": "pinned-reality-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11078900,
+        "first": "X-Men Vol 2 40"
+      }
     },
     "issue-11083473": {
       "url": "https://marvel.fandom.com/wiki/Marvel_Versus_DC_Vol_1_3?oldid=11083473",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-issue-reference"
+      "kind": "pinned-issue-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11083473,
+        "coverMonth": "April",
+        "coverYear": 1996
+      }
     },
     "F9602": {
       "url": "https://marvel.fandom.com/wiki/Earth-9602?oldid=11162043",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-reality-reference"
+      "kind": "pinned-reality-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11162043,
+        "first": "Marvel Versus DC Vol 1 3"
+      }
     },
     "issue-11006917": {
       "url": "https://marvel.fandom.com/wiki/Fantastic_Four_Vol_2_1?oldid=11006917",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-issue-reference"
+      "kind": "pinned-issue-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11006917,
+        "coverMonth": "November",
+        "coverYear": 1996
+      }
     },
     "issue-10377532": {
       "url": "https://marvel.fandom.com/wiki/Heroes_Reborn_Vol_1_%C2%BD?oldid=10377532",
@@ -218,7 +324,12 @@
       "url": "https://marvel.fandom.com/wiki/Counter-Earth_(Heroes_Reborn)?oldid=11223120",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-reality-reference"
+      "kind": "pinned-reality-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11223120,
+        "first": "Heroes Reborn Vol 1 ½"
+      }
     },
     "issue-11078690": {
       "url": "https://marvel.fandom.com/wiki/Captain_America_Vol_2_1?oldid=11078690",
@@ -242,37 +353,70 @@
       "url": "https://marvel.fandom.com/wiki/What_If...%3F_Vol_1_105?oldid=10650048",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-issue-reference"
+      "kind": "pinned-issue-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 10650048,
+        "coverMonth": "February",
+        "coverYear": 1998
+      }
     },
     "F982": {
       "url": "https://marvel.fandom.com/wiki/Earth-982?oldid=11002049",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-reality-reference"
+      "kind": "pinned-reality-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11002049,
+        "first": "What If...? Vol 1 105"
+      }
     },
     "issue-11230206": {
       "url": "https://marvel.fandom.com/wiki/Mutant_X_Vol_1_1?oldid=11230206",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-issue-reference"
+      "kind": "pinned-issue-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11230206,
+        "coverMonth": "October",
+        "coverYear": 1998
+      }
     },
     "F1298": {
       "url": "https://marvel.fandom.com/wiki/Earth-1298?oldid=10726229",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-reality-reference"
+      "kind": "pinned-reality-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 10726229,
+        "first": "Mutant X Vol 1 1"
+      }
     },
     "issue-11260393": {
       "url": "https://marvel.fandom.com/wiki/Earth_X_Vol_1_0?oldid=11260393",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-issue-reference"
+      "kind": "pinned-issue-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11260393,
+        "coverMonth": "March",
+        "coverYear": 1999
+      }
     },
     "F9997": {
       "url": "https://marvel.fandom.com/wiki/Earth-9997?oldid=10601092",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-reality-reference"
+      "kind": "pinned-reality-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 10601092,
+        "first": "Earth X Vol 1 0"
+      }
     },
     "issue-11013661": {
       "url": "https://marvel.fandom.com/wiki/Earth_X_Vol_1_1?oldid=11013661",
@@ -284,37 +428,70 @@
       "url": "https://marvel.fandom.com/wiki/Ultimate_Spider-Man_Vol_1_1?oldid=11171867",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-issue-reference"
+      "kind": "pinned-issue-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11171867,
+        "coverMonth": "October",
+        "coverYear": 2000
+      }
     },
     "F1610": {
       "url": "https://marvel.fandom.com/wiki/Earth-1610?oldid=10996589",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-reality-reference"
+      "kind": "pinned-reality-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 10996589,
+        "first": "Ultimate Spider-Man Vol 1 1"
+      }
     },
     "issue-11019865": {
       "url": "https://marvel.fandom.com/wiki/Fury_Vol_2_1?oldid=11019865",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-issue-reference"
+      "kind": "pinned-issue-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11019865,
+        "coverMonth": "November",
+        "coverYear": 2001
+      }
     },
     "F200111": {
       "url": "https://marvel.fandom.com/wiki/Earth-200111?oldid=11115642",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-reality-reference"
+      "kind": "pinned-reality-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11115642,
+        "first": "Fury Vol 2 1"
+      }
     },
     "issue-11009196": {
       "url": "https://marvel.fandom.com/wiki/Marvel_Mangaverse%3A_New_Dawn_Vol_1_1?oldid=11009196",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-issue-reference"
+      "kind": "pinned-issue-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11009196,
+        "coverMonth": "March",
+        "coverYear": 2002
+      }
     },
     "F2301": {
       "url": "https://marvel.fandom.com/wiki/Earth-2301?oldid=10726274",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-reality-reference"
+      "kind": "pinned-reality-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 10726274,
+        "first": "Marvel Mangaverse: New Dawn Vol 1 1"
+      }
     },
     "issue-10668051": {
       "url": "https://marvel.fandom.com/wiki/Marvel_Mangaverse_Vol_1_1?oldid=10668051",
@@ -326,49 +503,93 @@
       "url": "https://marvel.fandom.com/wiki/Marvel_1602_Vol_1_1?oldid=10885405",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-issue-reference"
+      "kind": "pinned-issue-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 10885405,
+        "coverMonth": "November",
+        "coverYear": 2003
+      }
     },
     "F311": {
       "url": "https://marvel.fandom.com/wiki/Earth-311?oldid=10885399",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-reality-reference"
+      "kind": "pinned-reality-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 10885399,
+        "first": "Marvel 1602 Vol 1 1"
+      }
     },
     "issue-10987270": {
       "url": "https://marvel.fandom.com/wiki/Supreme_Power_Vol_1_1?oldid=10987270",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-issue-reference"
+      "kind": "pinned-issue-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 10987270,
+        "coverMonth": "October",
+        "coverYear": 2003
+      }
     },
     "F31916": {
       "url": "https://marvel.fandom.com/wiki/Earth-31916?oldid=10728851",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-reality-reference"
+      "kind": "pinned-reality-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 10728851,
+        "first": "Supreme Power Vol 1 1"
+      }
     },
     "issue-11049348": {
       "url": "https://marvel.fandom.com/wiki/Marvel_Adventures_Spider-Man_Vol_1_1?oldid=11049348",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-issue-reference"
+      "kind": "pinned-issue-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11049348,
+        "coverMonth": "May",
+        "coverYear": 2005
+      }
     },
     "F20051": {
       "url": "https://marvel.fandom.com/wiki/Earth-20051?oldid=10728221",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-reality-reference"
+      "kind": "pinned-reality-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 10728221,
+        "first": "Marvel Adventures Spider-Man Vol 1 1"
+      }
     },
     "issue-11068459": {
       "url": "https://marvel.fandom.com/wiki/House_of_M_Vol_1_1?oldid=11068459",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-issue-reference"
+      "kind": "pinned-issue-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11068459,
+        "coverMonth": "August",
+        "coverYear": 2005
+      }
     },
     "F58163": {
       "url": "https://marvel.fandom.com/wiki/Earth-58163?oldid=10143515",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-reality-reference"
+      "kind": "pinned-reality-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 10143515,
+        "first": "House of M Vol 1 1"
+      }
     },
     "issue-11182580": {
       "url": "https://marvel.fandom.com/wiki/Marvel_Zombies_Vol_1_1?oldid=11182580",
@@ -380,49 +601,93 @@
       "url": "https://marvel.fandom.com/wiki/Ultimate_Fantastic_Four_Vol_1_21?oldid=11261352",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-issue-reference"
+      "kind": "pinned-issue-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11261352,
+        "coverMonth": "September",
+        "coverYear": 2005
+      }
     },
     "F2149": {
       "url": "https://marvel.fandom.com/wiki/Earth-2149?oldid=11119276",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-reality-reference"
+      "kind": "pinned-reality-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11119276,
+        "first": "Ultimate Fantastic Four Vol 1 21"
+      }
     },
     "issue-10801189": {
       "url": "https://marvel.fandom.com/wiki/Bullet_Points_Vol_1_1?oldid=10801189",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-issue-reference"
+      "kind": "pinned-issue-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 10801189,
+        "coverMonth": "January",
+        "coverYear": 2007
+      }
     },
     "F70105": {
       "url": "https://marvel.fandom.com/wiki/Earth-70105?oldid=11164843",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-reality-reference"
+      "kind": "pinned-reality-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11164843,
+        "first": "Bullet Points Vol 1 1"
+      }
     },
     "issue-11080099": {
       "url": "https://marvel.fandom.com/wiki/Wolverine_Vol_3_66?oldid=11080099",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-issue-reference"
+      "kind": "pinned-issue-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11080099,
+        "coverMonth": "August",
+        "coverYear": 2008
+      }
     },
     "F807128": {
       "url": "https://marvel.fandom.com/wiki/Earth-807128?oldid=11082097",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-reality-reference"
+      "kind": "pinned-reality-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11082097,
+        "first": "Wolverine Vol 3 66"
+      }
     },
     "issue-10331408": {
       "url": "https://marvel.fandom.com/wiki/X-Men_Noir_Vol_1_1?oldid=10331408",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-issue-reference"
+      "kind": "pinned-issue-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 10331408,
+        "coverMonth": "February",
+        "coverYear": 2009
+      }
     },
     "F90214": {
       "url": "https://marvel.fandom.com/wiki/Earth-90214?oldid=11215567",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-reality-reference"
+      "kind": "pinned-reality-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11215567,
+        "first": "X-Men Noir Vol 1 1"
+      }
     },
     "issue-10331181": {
       "url": "https://marvel.fandom.com/wiki/Spider-Man_Noir_Vol_1_1?oldid=10331181",
@@ -434,25 +699,47 @@
       "url": "https://marvel.fandom.com/wiki/Realm_of_Kings_Vol_1_1?oldid=11163363",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-issue-reference"
+      "kind": "pinned-issue-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11163363,
+        "coverMonth": "January",
+        "coverYear": 2010
+      }
     },
     "F10011": {
       "url": "https://marvel.fandom.com/wiki/Earth-10011?oldid=11200175",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-reality-reference"
+      "kind": "pinned-reality-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11200175,
+        "first": "Realm of Kings Vol 1 1"
+      }
     },
     "issue-10865510": {
       "url": "https://marvel.fandom.com/wiki/Age_of_X%3A_Alpha_Vol_1_1?oldid=10865510",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-issue-reference"
+      "kind": "pinned-issue-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 10865510,
+        "coverMonth": "March",
+        "coverYear": 2011
+      }
     },
     "F11326": {
       "url": "https://marvel.fandom.com/wiki/Earth-11326?oldid=11070165",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-reality-reference"
+      "kind": "pinned-reality-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11070165,
+        "first": "Age of X: Alpha Vol 1 1"
+      }
     },
     "issue-11154429": {
       "url": "https://marvel.fandom.com/wiki/X-Men%3A_Legacy_Vol_1_245?oldid=11154429",
@@ -464,13 +751,24 @@
       "url": "https://marvel.fandom.com/wiki/Edge_of_Spider-Verse_Vol_1_2?oldid=11006722",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-issue-reference"
+      "kind": "pinned-issue-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11006722,
+        "coverMonth": "November",
+        "coverYear": 2014
+      }
     },
     "F65": {
       "url": "https://marvel.fandom.com/wiki/Earth-65?oldid=11147087",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-reality-reference"
+      "kind": "pinned-reality-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11147087,
+        "first": "Edge of Spider-Verse Vol 1 2"
+      }
     },
     "issue-10338342": {
       "url": "https://marvel.fandom.com/wiki/Amazing_Spider-Man%3A_Renew_Your_Vows_Vol_1_1?oldid=10338342",
@@ -482,13 +780,24 @@
       "url": "https://marvel.fandom.com/wiki/Amazing_Spider-Man%3A_Renew_Your_Vows_Vol_1_3?oldid=10338344",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-issue-reference"
+      "kind": "pinned-issue-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 10338344,
+        "coverMonth": "October",
+        "coverYear": 2015
+      }
     },
     "F18119": {
       "url": "https://marvel.fandom.com/wiki/Earth-18119?oldid=10728147",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-reality-reference"
+      "kind": "pinned-reality-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 10728147,
+        "first": "Amazing Spider-Man: Renew Your Vows Vol 1 3"
+      }
     },
     "issue-11055039": {
       "url": "https://marvel.fandom.com/wiki/Amazing_Spider-Man%3A_Renew_Your_Vows_Vol_2_1?oldid=11055039",
@@ -500,43 +809,82 @@
       "url": "https://marvel.fandom.com/wiki/Spider-Man%3A_Life_Story_Vol_1_1?oldid=10843387",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-issue-reference"
+      "kind": "pinned-issue-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 10843387,
+        "coverMonth": "May",
+        "coverYear": 2019
+      }
     },
     "F19529": {
       "url": "https://marvel.fandom.com/wiki/Earth-19529?oldid=11214167",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-reality-reference"
+      "kind": "pinned-reality-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11214167,
+        "first": "Spider-Man: Life Story Vol 1 1"
+      }
     },
     "issue-10667610": {
       "url": "https://marvel.fandom.com/wiki/Heroes_Reborn_Vol_2_1?oldid=10667610",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-issue-reference"
+      "kind": "pinned-issue-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 10667610,
+        "coverMonth": "July",
+        "coverYear": 2021
+      }
     },
     "F21798": {
       "url": "https://marvel.fandom.com/wiki/Earth-21798?oldid=10746838",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-reality-reference"
+      "kind": "pinned-reality-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 10746838,
+        "first": "Heroes Reborn Vol 2 1"
+      }
     },
     "issue-11080003": {
       "url": "https://marvel.fandom.com/wiki/Ultimate_Invasion_Vol_1_1?oldid=11080003",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-issue-reference"
+      "kind": "pinned-issue-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11080003,
+        "coverMonth": "August",
+        "coverYear": 2023
+      }
     },
     "F6160": {
       "url": "https://marvel.fandom.com/wiki/Earth-6160?oldid=11190704",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-reality-reference"
+      "kind": "pinned-reality-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11190704,
+        "first": "Ultimate Invasion Vol 1 1"
+      }
     },
     "issue-11217309": {
       "url": "https://marvel.fandom.com/wiki/Marvel_Comics_Vol_1_1?oldid=11217309",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-issue-reference"
+      "kind": "pinned-issue-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11217309,
+        "coverMonth": "October",
+        "coverYear": 1939
+      }
     },
     "issue-11210838": {
       "url": "https://marvel.fandom.com/wiki/Ka-Zar_(Manvis)_Vol_1_1?oldid=11210838",
@@ -548,7 +896,12 @@
       "url": "https://marvel.fandom.com/wiki/Earth-616?oldid=11234157",
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
-      "kind": "pinned-reality-reference"
+      "kind": "pinned-reality-reference",
+      "liveRecheck": {
+        "date": "2026-11-14",
+        "revision": 11234157,
+        "first": "Ka-Zar (Manvis) Vol 1 1"
+      }
     },
     "issue-10810399": {
       "url": "https://marvel.fandom.com/wiki/Fantastic_Four_Vol_1_1?oldid=10810399",
@@ -567,6 +920,30 @@
       "retrieved": "2026-11-13",
       "credit": "Marvel Database contributors",
       "kind": "pinned-issue-reference"
+    },
+    "owner-decision-2026-11-14": {
+      "url": "https://github.com/raymond-nassar/recap-page/issues/1291#issuecomment-6881532609",
+      "retrieved": "2026-11-14",
+      "credit": "Project owner",
+      "kind": "owner-decision"
+    },
+    "provider-15429": {
+      "url": "https://marvel.emreparker.com/v1/issues/15429",
+      "retrieved": "2026-11-14",
+      "credit": "Configured metadata provider",
+      "kind": "issue-id-and-on-sale-date-cross-check"
+    },
+    "provider-14329": {
+      "url": "https://marvel.emreparker.com/v1/issues/14329",
+      "retrieved": "2026-11-14",
+      "credit": "Configured metadata provider",
+      "kind": "issue-id-and-on-sale-date-cross-check"
+    },
+    "provider-2183": {
+      "url": "https://marvel.emreparker.com/v1/issues/2183",
+      "retrieved": "2026-11-14",
+      "credit": "Configured metadata provider",
+      "kind": "issue-id-and-on-sale-date-cross-check"
     }
   },
   "universes": [
@@ -603,7 +980,8 @@
           "F712"
         ],
         "firstPublished": [
-          "issue-10669458"
+          "issue-10669458",
+          "owner-decision-2026-11-14"
         ],
         "debutIssue": [
           "F712",
@@ -638,7 +1016,8 @@
       },
       "alternatives": [],
       "conflicts": [],
-      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source.",
+      "selectionBasis": "reference-reality-first"
     },
     {
       "id": "killraven",
@@ -652,10 +1031,10 @@
         "id": "killraven",
         "name": "Killraven / War of the Worlds",
         "earth": "Earth-691",
-        "firstPublished": 1973,
+        "firstPublished": 1969,
         "debutIssue": {
-          "title": "Amazing Adventures #18",
-          "issueId": 23254
+          "title": "Marvel Super-Heroes #18",
+          "issueId": 15429
         },
         "description": "A future Marvel reality in which Martians conquered Earth and Killraven leads a resistance movement.",
         "aliases": [
@@ -674,12 +1053,13 @@
           "F691"
         ],
         "firstPublished": [
-          "issue-10634874"
+          "issue-10773750",
+          "owner-decision-2026-11-14"
         ],
         "debutIssue": [
           "F691",
-          "issue-10634874",
-          "provider-23254"
+          "issue-10773750",
+          "provider-15429"
         ],
         "description": [
           "owner",
@@ -710,14 +1090,14 @@
       },
       "alternatives": [
         {
-          "relation": "reference-reality-first",
-          "title": "Marvel Super-Heroes Vol 1 18",
-          "coverMonth": "January",
-          "coverYear": 1969,
-          "onSale": "October 15, 1968",
-          "issueId": 15429,
+          "relation": "named-line",
+          "title": "Amazing Adventures Vol 2 18",
+          "coverMonth": "May",
+          "coverYear": 1973,
+          "onSale": "February 20, 1973",
+          "issueId": 23254,
           "sources": [
-            "issue-10773750"
+            "issue-10634874"
           ]
         }
       ],
@@ -731,9 +1111,30 @@
             "issue-10634874",
             "provider-23254"
           ]
+        },
+        {
+          "field": "referenceRealityFirst.onSale",
+          "referenceValue": "October 15, 1968",
+          "providerValue": "1969-01-10",
+          "status": "independent-bibliography-needed",
+          "sources": [
+            "issue-10773750",
+            "provider-15429"
+          ]
+        },
+        {
+          "field": "firstPublished",
+          "ownerValue": 1973,
+          "selectedValue": 1969,
+          "status": "decided-by-owner-convention",
+          "reason": "The owner chose the earliest appearance of the reality by cover date; the supplied 1973 named-line year is retained as an alternative.",
+          "sources": [
+            "owner-decision-2026-11-14"
+          ]
         }
       ],
-      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source.",
+      "selectionBasis": "reference-reality-first"
     },
     {
       "id": "days-of-future-past",
@@ -766,7 +1167,8 @@
           "F811"
         ],
         "firstPublished": [
-          "issue-11166925"
+          "issue-11166925",
+          "owner-decision-2026-11-14"
         ],
         "debutIssue": [
           "F811",
@@ -801,7 +1203,8 @@
       },
       "alternatives": [],
       "conflicts": [],
-      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source.",
+      "selectionBasis": "reference-reality-first"
     },
     {
       "id": "spider-ham",
@@ -837,7 +1240,8 @@
           "F8311"
         ],
         "firstPublished": [
-          "issue-10804956"
+          "issue-10804956",
+          "owner-decision-2026-11-14"
         ],
         "debutIssue": [
           "F8311",
@@ -884,7 +1288,8 @@
           ]
         }
       ],
-      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source.",
+      "selectionBasis": "reference-reality-first"
     },
     {
       "id": "new-universe",
@@ -917,7 +1322,8 @@
           "F148611"
         ],
         "firstPublished": [
-          "issue-11011416"
+          "issue-11011416",
+          "owner-decision-2026-11-14"
         ],
         "debutIssue": [
           "F148611",
@@ -964,7 +1370,8 @@
         }
       ],
       "conflicts": [],
-      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source.",
+      "selectionBasis": "reference-reality-first"
     },
     {
       "id": "marvel-2099",
@@ -999,7 +1406,8 @@
           "F928"
         ],
         "firstPublished": [
-          "issue-11064465"
+          "issue-11064465",
+          "owner-decision-2026-11-14"
         ],
         "debutIssue": [
           "F928",
@@ -1046,7 +1454,8 @@
         }
       ],
       "conflicts": [],
-      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source.",
+      "selectionBasis": "reference-reality-first"
     },
     {
       "id": "age-of-apocalypse",
@@ -1062,8 +1471,8 @@
         "earth": "Earth-295",
         "firstPublished": 1995,
         "debutIssue": {
-          "title": "X-Men: Alpha #1",
-          "issueId": 12386
+          "title": "X-Men #40",
+          "issueId": 14329
         },
         "description": "A timeline where Xavier died before founding the X-Men, allowing Apocalypse to conquer much of the world.",
         "aliases": [],
@@ -1079,11 +1488,13 @@
           "F295"
         ],
         "firstPublished": [
-          "issue-10998084"
+          "issue-10527826",
+          "owner-decision-2026-11-14"
         ],
         "debutIssue": [
           "F295",
-          "issue-10998084"
+          "issue-10527826",
+          "provider-14329"
         ],
         "description": [
           "owner",
@@ -1114,19 +1525,31 @@
       },
       "alternatives": [
         {
-          "relation": "reference-reality-first",
-          "title": "X-Men Vol 2 40",
-          "coverMonth": "January",
+          "relation": "named-line",
+          "title": "X-Men: Alpha Vol 1 1",
+          "coverMonth": "February",
           "coverYear": 1995,
-          "onSale": "November 15, 1994",
-          "issueId": 14329,
+          "onSale": "December 27, 1994",
+          "issueId": 12386,
           "sources": [
-            "issue-10527826"
+            "issue-10998084"
           ]
         }
       ],
-      "conflicts": [],
-      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+      "conflicts": [
+        {
+          "field": "referenceRealityFirst.onSale",
+          "referenceValue": "November 15, 1994",
+          "providerValue": "1995-01-01",
+          "status": "independent-bibliography-needed",
+          "sources": [
+            "issue-10527826",
+            "provider-14329"
+          ]
+        }
+      ],
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source.",
+      "selectionBasis": "reference-reality-first"
     },
     {
       "id": "amalgam-universe",
@@ -1161,7 +1584,8 @@
           "F9602"
         ],
         "firstPublished": [
-          "issue-11083473"
+          "issue-11083473",
+          "owner-decision-2026-11-14"
         ],
         "debutIssue": [
           "F9602",
@@ -1196,7 +1620,8 @@
       },
       "alternatives": [],
       "conflicts": [],
-      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source.",
+      "selectionBasis": "reference-reality-first"
     },
     {
       "id": "heroes-reborn-1996",
@@ -1232,7 +1657,8 @@
           "FHR"
         ],
         "firstPublished": [
-          "issue-11006917"
+          "issue-11006917",
+          "owner-decision-2026-11-14"
         ],
         "debutIssue": [
           "FHR",
@@ -1312,7 +1738,8 @@
         }
       ],
       "conflicts": [],
-      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source.",
+      "selectionBasis": "preview-excluded"
     },
     {
       "id": "mc2",
@@ -1347,7 +1774,8 @@
           "F982"
         ],
         "firstPublished": [
-          "issue-10650048"
+          "issue-10650048",
+          "owner-decision-2026-11-14"
         ],
         "debutIssue": [
           "F982",
@@ -1382,7 +1810,8 @@
       },
       "alternatives": [],
       "conflicts": [],
-      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source.",
+      "selectionBasis": "reference-reality-first"
     },
     {
       "id": "mutant-x",
@@ -1415,7 +1844,8 @@
           "F1298"
         ],
         "firstPublished": [
-          "issue-11230206"
+          "issue-11230206",
+          "owner-decision-2026-11-14"
         ],
         "debutIssue": [
           "F1298",
@@ -1462,7 +1892,8 @@
           ]
         }
       ],
-      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source.",
+      "selectionBasis": "reference-reality-first"
     },
     {
       "id": "earth-x",
@@ -1495,7 +1926,8 @@
           "F9997"
         ],
         "firstPublished": [
-          "issue-11260393"
+          "issue-11260393",
+          "owner-decision-2026-11-14"
         ],
         "debutIssue": [
           "F9997",
@@ -1554,7 +1986,8 @@
           ]
         }
       ],
-      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source.",
+      "selectionBasis": "reference-reality-first"
     },
     {
       "id": "ultimate-marvel",
@@ -1590,7 +2023,8 @@
           "F1610"
         ],
         "firstPublished": [
-          "issue-11171867"
+          "issue-11171867",
+          "owner-decision-2026-11-14"
         ],
         "debutIssue": [
           "F1610",
@@ -1625,7 +2059,8 @@
       },
       "alternatives": [],
       "conflicts": [],
-      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source.",
+      "selectionBasis": "reference-reality-first"
     },
     {
       "id": "max-universe",
@@ -1660,7 +2095,8 @@
           "F200111"
         ],
         "firstPublished": [
-          "issue-11019865"
+          "issue-11019865",
+          "owner-decision-2026-11-14"
         ],
         "debutIssue": [
           "F200111",
@@ -1695,7 +2131,8 @@
       },
       "alternatives": [],
       "conflicts": [],
-      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source.",
+      "selectionBasis": "reference-reality-first"
     },
     {
       "id": "marvel-mangaverse",
@@ -1730,7 +2167,8 @@
           "F2301"
         ],
         "firstPublished": [
-          "issue-11009196"
+          "issue-11009196",
+          "owner-decision-2026-11-14"
         ],
         "debutIssue": [
           "F2301",
@@ -1789,7 +2227,8 @@
           ]
         }
       ],
-      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source.",
+      "selectionBasis": "reference-reality-first"
     },
     {
       "id": "marvel-1602",
@@ -1824,7 +2263,8 @@
           "F311"
         ],
         "firstPublished": [
-          "issue-10885405"
+          "issue-10885405",
+          "owner-decision-2026-11-14"
         ],
         "debutIssue": [
           "F311",
@@ -1859,7 +2299,8 @@
       },
       "alternatives": [],
       "conflicts": [],
-      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source.",
+      "selectionBasis": "reference-reality-first"
     },
     {
       "id": "supreme-power",
@@ -1894,7 +2335,8 @@
           "F31916"
         ],
         "firstPublished": [
-          "issue-10987270"
+          "issue-10987270",
+          "owner-decision-2026-11-14"
         ],
         "debutIssue": [
           "F31916",
@@ -1929,7 +2371,8 @@
       },
       "alternatives": [],
       "conflicts": [],
-      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source.",
+      "selectionBasis": "reference-reality-first"
     },
     {
       "id": "marvel-adventures",
@@ -1962,7 +2405,8 @@
           "F20051"
         ],
         "firstPublished": [
-          "issue-11049348"
+          "issue-11049348",
+          "owner-decision-2026-11-14"
         ],
         "debutIssue": [
           "F20051",
@@ -1998,7 +2442,8 @@
       },
       "alternatives": [],
       "conflicts": [],
-      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source.",
+      "selectionBasis": "reference-reality-first"
     },
     {
       "id": "house-of-m",
@@ -2031,7 +2476,8 @@
           "F58163"
         ],
         "firstPublished": [
-          "issue-11068459"
+          "issue-11068459",
+          "owner-decision-2026-11-14"
         ],
         "debutIssue": [
           "F58163",
@@ -2066,7 +2512,8 @@
       },
       "alternatives": [],
       "conflicts": [],
-      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source.",
+      "selectionBasis": "reference-reality-first"
     },
     {
       "id": "marvel-zombies",
@@ -2080,10 +2527,10 @@
         "id": "marvel-zombies",
         "name": "Marvel Zombies",
         "earth": "Earth-2149",
-        "firstPublished": 2006,
+        "firstPublished": 2005,
         "debutIssue": {
-          "title": "Marvel Zombies #1",
-          "issueId": 3220
+          "title": "Ultimate Fantastic Four #21",
+          "issueId": 2183
         },
         "description": "The original Marvel Zombies reality, where a zombie infection transforms many Marvel heroes and villains.",
         "aliases": [
@@ -2101,11 +2548,13 @@
           "F2149"
         ],
         "firstPublished": [
-          "issue-11182580"
+          "issue-11261352",
+          "owner-decision-2026-11-14"
         ],
         "debutIssue": [
           "F2149",
-          "issue-11182580"
+          "issue-11261352",
+          "provider-2183"
         ],
         "description": [
           "owner",
@@ -2136,14 +2585,14 @@
       },
       "alternatives": [
         {
-          "relation": "reference-reality-first",
-          "title": "Ultimate Fantastic Four Vol 1 21",
-          "coverMonth": "September",
-          "coverYear": 2005,
-          "onSale": "July 13, 2005",
-          "issueId": 2183,
+          "relation": "named-line",
+          "title": "Marvel Zombies Vol 1 1",
+          "coverMonth": "February",
+          "coverYear": 2006,
+          "onSale": "December 7, 2005",
+          "issueId": 3220,
           "sources": [
-            "issue-11261352"
+            "issue-11182580"
           ]
         }
       ],
@@ -2151,12 +2600,17 @@
         {
           "field": "firstPublished",
           "ownerValue": 2005,
-          "provisionalValue": 2006,
-          "status": "awaiting-owner",
-          "reason": "The named-line cover and owner-supplied year differ; the on-sale and earlier-reality candidates are retained."
+          "status": "resolved-by-owner-convention",
+          "reason": "The earliest appearance of the reality, Ultimate Fantastic Four #21 (September 2005 cover), matches the supplied 2005; the 2006 named-line cover year is retained as an alternative.",
+          "previousValue": 2006,
+          "selectedValue": 2005,
+          "sources": [
+            "owner-decision-2026-11-14"
+          ]
         }
       ],
-      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source.",
+      "selectionBasis": "reference-reality-first"
     },
     {
       "id": "bullet-points",
@@ -2189,7 +2643,8 @@
           "F70105"
         ],
         "firstPublished": [
-          "issue-10801189"
+          "issue-10801189",
+          "owner-decision-2026-11-14"
         ],
         "debutIssue": [
           "F70105",
@@ -2228,12 +2683,17 @@
         {
           "field": "firstPublished",
           "ownerValue": 2006,
-          "provisionalValue": 2007,
-          "status": "awaiting-owner",
-          "reason": "The named-line cover and owner-supplied year differ; the on-sale and earlier-reality candidates are retained."
+          "status": "decided-by-owner-convention",
+          "reason": "The owner chose cover dates; the supplied 2006 matches the November 2006 on-sale date, which the ledger retains.",
+          "previousValue": 2007,
+          "selectedValue": 2007,
+          "sources": [
+            "owner-decision-2026-11-14"
+          ]
         }
       ],
-      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source.",
+      "selectionBasis": "reference-reality-first"
     },
     {
       "id": "old-man-logan",
@@ -2268,7 +2728,8 @@
           "F807128"
         ],
         "firstPublished": [
-          "issue-11080099"
+          "issue-11080099",
+          "owner-decision-2026-11-14"
         ],
         "debutIssue": [
           "F807128",
@@ -2303,7 +2764,8 @@
       },
       "alternatives": [],
       "conflicts": [],
-      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source.",
+      "selectionBasis": "reference-reality-first"
     },
     {
       "id": "marvel-noir",
@@ -2338,7 +2800,8 @@
           "F90214"
         ],
         "firstPublished": [
-          "issue-10331408"
+          "issue-10331408",
+          "owner-decision-2026-11-14"
         ],
         "debutIssue": [
           "F90214",
@@ -2386,7 +2849,8 @@
         }
       ],
       "conflicts": [],
-      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source.",
+      "selectionBasis": "reference-reality-first"
     },
     {
       "id": "cancerverse",
@@ -2419,7 +2883,8 @@
           "F10011"
         ],
         "firstPublished": [
-          "issue-11163363"
+          "issue-11163363",
+          "owner-decision-2026-11-14"
         ],
         "debutIssue": [
           "F10011",
@@ -2457,12 +2922,17 @@
         {
           "field": "firstPublished",
           "ownerValue": 2009,
-          "provisionalValue": 2010,
-          "status": "awaiting-owner",
-          "reason": "The named-line cover and owner-supplied year differ; the on-sale and earlier-reality candidates are retained."
+          "status": "decided-by-owner-convention",
+          "reason": "The owner chose cover dates; the supplied 2009 matches the November 2009 on-sale date, which the ledger retains.",
+          "previousValue": 2010,
+          "selectedValue": 2010,
+          "sources": [
+            "owner-decision-2026-11-14"
+          ]
         }
       ],
-      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source.",
+      "selectionBasis": "reference-reality-first"
     },
     {
       "id": "age-of-x",
@@ -2495,7 +2965,8 @@
           "F11326"
         ],
         "firstPublished": [
-          "issue-10865510"
+          "issue-10865510",
+          "owner-decision-2026-11-14"
         ],
         "debutIssue": [
           "F11326",
@@ -2542,7 +3013,8 @@
         }
       ],
       "conflicts": [],
-      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source.",
+      "selectionBasis": "reference-reality-first"
     },
     {
       "id": "spider-gwen",
@@ -2578,7 +3050,8 @@
           "F65"
         ],
         "firstPublished": [
-          "issue-11006722"
+          "issue-11006722",
+          "owner-decision-2026-11-14"
         ],
         "debutIssue": [
           "F65",
@@ -2613,7 +3086,8 @@
       },
       "alternatives": [],
       "conflicts": [],
-      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source.",
+      "selectionBasis": "reference-reality-first"
     },
     {
       "id": "renew-your-vows",
@@ -2648,7 +3122,8 @@
           "F18119"
         ],
         "firstPublished": [
-          "issue-10338342"
+          "issue-10338342",
+          "owner-decision-2026-11-14"
         ],
         "debutIssue": [
           "F18119",
@@ -2706,7 +3181,8 @@
         }
       ],
       "conflicts": [],
-      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source.",
+      "selectionBasis": "reference-reality-first"
     },
     {
       "id": "spider-man-life-story",
@@ -2741,7 +3217,8 @@
           "F19529"
         ],
         "firstPublished": [
-          "issue-10843387"
+          "issue-10843387",
+          "owner-decision-2026-11-14"
         ],
         "debutIssue": [
           "F19529",
@@ -2776,7 +3253,8 @@
       },
       "alternatives": [],
       "conflicts": [],
-      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source.",
+      "selectionBasis": "reference-reality-first"
     },
     {
       "id": "heroes-reborn-2021",
@@ -2812,7 +3290,8 @@
           "F21798"
         ],
         "firstPublished": [
-          "issue-10667610"
+          "issue-10667610",
+          "owner-decision-2026-11-14"
         ],
         "debutIssue": [
           "F21798",
@@ -2847,7 +3326,8 @@
       },
       "alternatives": [],
       "conflicts": [],
-      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source.",
+      "selectionBasis": "reference-reality-first"
     },
     {
       "id": "ultimate-universe",
@@ -2883,7 +3363,8 @@
           "F6160"
         ],
         "firstPublished": [
-          "issue-11080003"
+          "issue-11080003",
+          "owner-decision-2026-11-14"
         ],
         "debutIssue": [
           "F6160",
@@ -2918,7 +3399,8 @@
       },
       "alternatives": [],
       "conflicts": [],
-      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source.",
+      "selectionBasis": "reference-reality-first"
     },
     {
       "id": "earth-616",
@@ -2948,7 +3430,8 @@
           "F616"
         ],
         "firstPublished": [
-          "issue-11217309"
+          "issue-11217309",
+          "owner-decision-2026-11-14"
         ],
         "debutIssue": [
           "F616",
@@ -3017,7 +3500,8 @@
         }
       ],
       "conflicts": [],
-      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source."
+      "independentBibliography": "Not independently verified; pinned issue and reality pages are the same reference source.",
+      "selectionBasis": "owner-primary-continuity-exception"
     }
   ],
   "listAssociations": [
