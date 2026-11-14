@@ -280,7 +280,7 @@ sequenceDiagram
 
 **The transform is pure; the Store writes.** The shared read action at `src/js/views/reading.js:1136-1154` passes
 a function to the Store. That transform returns new state without side effects at
-`src/js/lib/model.js:745-747`. The write, result, and notification are handled together at
+`src/js/lib/model.js:761-763`. The write, result, and notification are handled together at
 `src/js/storage.js:783-810`.
 
 **The repaint is synchronous.** Before `update` returns, its callback has repainted the result.
@@ -1012,12 +1012,12 @@ architecture and must rewrite the relevant section rather than merely re-aim its
 Reading Paths add no second content or persistence model. Build-time authoring emits path
 descriptions and ordered Reading List ids into `catalog.json`; the browser treats the paths in that
 parsed generated catalog as the complete authority. `resolveReadingPaths()` resolves every path
-independently against the same catalog stories at `src/js/lib/catalog.js:1637-1690`, including paths
+independently against the same catalog stories at `src/js/lib/catalog.js:1636-1689`, including paths
 emitted from a partition ledger rather than declared in the ordinary curated manifest, at
 `scripts/lib/chapter-orders.mjs:406-416`.
 
 That aggregate model is deliberately separate from shelf orientation. Shelf badges keep the first
-path that reaches a story so one row has one stable position, at `src/js/lib/catalog.js:773-791`.
+path that reaches a story so one row has one stable position, at `src/js/lib/catalog.js:772-790`.
 The aggregate resolver keeps each path's own ordinal and neighbors, so a story shared by future
 paths remains a separate stop in each sequence.
 

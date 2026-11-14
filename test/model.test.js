@@ -48,6 +48,7 @@ import {
   normalizeCover, coverUrl, listForCatalogId, listCollections, SCHEMA_VERSION, MAX_NAME, MAX_DESCRIPTION,
   newId, hasMetadata, countOrderGaps, orderGapSentences, markDetailsRefused, setIssueNote, setListNote,
 } from '../src/js/lib/model.js';
+import { catalogCoverUrl } from '../src/js/lib/catalog.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -162,19 +163,26 @@ test('normalizeCover refuses anything that is not an https URL', () => {
 });
 
 // #1289: Iron Man shipped a base that already named its file, so every variant asked for a file
-// inside a file and the CDN answered 404. Saved trackers still hold that address.
-test('a cover base that names its clean.jpg file is read as its directory', () => {
+// inside a file and the CDN answered 404. Saved trackers and their backups still hold that address,
+// so the stored value is kept as it is and only the built request reads it as its directory.
+test('a cover base that names its clean.jpg file is requested as its directory and stored unchanged', () => {
   const full = 'https://i.annihil.us/u/prod/marvel/i/mg/d/03/58dd080719806/clean.jpg';
   const base = 'https://i.annihil.us/u/prod/marvel/i/mg/d/03/58dd080719806';
-  assert.deepEqual(normalizeCover({ path: full, ext: 'jpg' }), { path: base, ext: 'jpg' });
-  assert.equal(normalizeCover({ path: base, ext: 'jpg' }).path, base, 'a proper base is unchanged');
+  assert.deepEqual(normalizeCover({ path: full, ext: 'jpg' }), { path: full, ext: 'jpg' },
+    'the stored address round-trips byte for byte');
   const saved = normalizeIssue({ id: 11280, cover: { path: full, ext: 'jpg' } });
+  assert.equal(saved.cover.path, full);
   assert.equal(coverUrl(saved, 'portrait_incredible'), `${base}/portrait_incredible.jpg`);
   assert.equal(coverUrl(saved, 'detail'), `${base}/detail.jpg`);
-  assert.equal(normalizeCover({ path: 'https://example.com/a/clean.jpg', ext: 'jpg' }), null,
+  assert.equal(catalogCoverUrl({ id: 'x', cover: { path: full, ext: 'jpg' } }), `${base}/portrait_incredible.jpg`);
+  assert.equal(coverUrl(normalizeIssue({ id: 1, cover: { path: base, ext: 'jpg' } }), 'detail'), `${base}/detail.jpg`,
+    'a proper base is unchanged');
+  assert.equal(coverUrl(normalizeIssue({ id: 1, cover: { path: 'https://example.com/a/clean.jpg', ext: 'jpg' } })), null,
     'the host pin still decides before the tail is read');
-  assert.equal(normalizeCover({ path: `${base}/clean.jpg?x=1`, ext: 'jpg' }).path, `${base}/clean.jpg?x=1`,
-    'only the exact terminal file name is removed');
+  for (const tail of ['/clean.jpg?x=1', '?q=/clean.jpg', '#/clean.jpg', '/notclean.jpg']) {
+    assert.equal(coverUrl(normalizeIssue({ id: 1, cover: { path: `${base}${tail}`, ext: 'jpg' } }), 'detail'),
+      `${base}${tail}/detail.jpg`, `${tail} is not an exact clean.jpg path ending`);
+  }
 });
 
 test('pageCount only survives when it is a positive number', () => {
