@@ -1837,9 +1837,13 @@ metadata provider has no reality data, so the placement comes from the list's ow
   as the existing associations do, and set the list's matching `universeIds` in
   `src/data/curated-lists.json`. Add a `universeScopes` qualifier when the list also spans other
   realities.
+- Set these fields before the route's vendor step, or afterwards run the offline catalog-only
+  rebuild with `npm run vendor -- --catalog-only` and commit `src/data/catalog.json` with the
+  manifest and ledger.
 - Never infer a placement from comic titles, characters, dates, list membership or the provider.
-- A list set only in the primary continuity gets no association, because that Universe is
-  browse-only.
+- By default, a primary-continuity list gets no association, because that Universe is browse-only
+  and lists no guides. Civil War is the one existing association and stays as it is. Ask the owner
+  before adding another Earth-616 association.
 - Ask the owner when the source does not state its reality, mixes realities ambiguously, names a
   reality missing from the registry, or would contradict an earlier owner decision. A new Universe
   needs owner approval of its fields. An open placement question never blocks publishing the list.

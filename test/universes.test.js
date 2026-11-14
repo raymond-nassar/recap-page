@@ -23,6 +23,16 @@ test('Universe records preserve field-level sources, owner descriptions and alte
     const basis = exception[universe.id] ? row.namedLine : row.referenceRealityFirst;
     assert.equal(universe.firstPublished, basis.coverYear, universe.id);
     assert.equal(universe.debutIssue.issueId, basis.issueId, universe.id);
+    assert.equal(universe.debutIssue.title, basis.title.replace(/ Vol \d+ /, ' #'), universe.id);
+    for (const field of ['firstPublished', 'debutIssue']) {
+      for (const source of basis.sources) {
+        assert.ok(row.evidence[field].includes(source), `${universe.id} ${field} missing basis source ${source}`);
+      }
+    }
+    const realitySource = row.evidence.earth.map((source) => ledger.sources[source])
+      .find((source) => source.kind === 'pinned-reality-reference');
+    assert.ok(realitySource, `${universe.id} missing reality source`);
+    assert.equal(row.referenceRealityFirst.title, realitySource.liveRecheck.first, universe.id);
     if (row.ownerInput) assert.equal(universe.description, row.ownerInput.description);
     for (const field of ['name', 'earth', 'firstPublished', 'debutIssue', 'description']) {
       assert.ok(row.evidence[field]?.length, `${universe.id} ${field} has no evidence`);
