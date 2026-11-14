@@ -98,6 +98,109 @@ window.recapRestoreTargetProbe = (() => {
     if (!store.lastUpdateOk) throw new Error(`The prior reading data was not saved: ${store.lastError}`);
   };
 
+  // The restore refuses with "could not check for a recovery copy" whenever its journal read fails, and
+  // the app says the same thing for an open error, a blocked open, its open deadline or an aborted read
+  // (#1249). The probe watches the open requests and the read beside the app's own handlers, so a
+  // refusal names which of the four it was rather than leaving it to be inferred from a phase's length.
+  const observedJournal = (restoreEngine, factory, options) => {
+    const opens = [];
+    const reads = [];
+    const journal = restoreEngine.createRestoreJournal({
+      open: (name, version) => {
+        const startedAt = performance.now();
+        const seen = { events: [] };
+        opens.push(seen);
+        let request;
+        try {
+          request = factory.open(name, version);
+        } catch (error) {
+          seen.threw = true;
+          seen.error = error?.name ?? 'unknown';
+          throw error;
+        }
+        for (const type of ['upgradeneeded', 'blocked', 'error', 'success']) {
+          request.addEventListener(type, () => {
+            seen.events.push({ type, ms: Math.round(performance.now() - startedAt) });
+            if (type === 'error') seen.error = request.error?.name ?? 'unknown';
+          });
+        }
+        return request;
+      },
+    }, options);
+    const read = async () => {
+      const startedAt = performance.now();
+      try {
+        const value = await journal.read();
+        reads.push({ ok: true, ms: Math.round(performance.now() - startedAt) });
+        return value;
+      } catch (error) {
+        const message = error?.message ?? String(error);
+        const open = opens.at(-1);
+        const types = new Set(open?.events.map((event) => event.type));
+        // The journal uses the same message for a transaction abort and a transaction error.
+        let failure = message === 'The recovery copy could not be saved or read.' ? 'aborted-read' : 'read-error';
+        if (message === restoreEngine.RESTORE_MESSAGES.noJournal) {
+          if (open?.threw || types.has('error')) failure = 'open-error';
+          else if (types.has('blocked')) failure = 'blocked-open';
+          else failure = 'deadline';
+        }
+        reads.push({ ok: false, ms: Math.round(performance.now() - startedAt), error: message, failure });
+        throw error;
+      }
+    };
+    return { journal: { ...journal, read }, check: () => ({ failure: reads.find((attempt) => !attempt.ok)?.failure ?? null, opens, reads }) };
+  };
+
+  // An open that outlives its deadline can also block deletion. Bound test-only cleanup so the
+  // probe can report the original failure rather than waiting indefinitely for the database.
+  const removeProbeJournal = (factory, name) => new Promise((resolve) => {
+    let settled = false;
+    const finish = (outcome) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      resolve(outcome);
+    };
+    const timer = setTimeout(() => finish({ ok: false, reason: 'deadline' }), 5000);
+    try {
+      const request = factory.deleteDatabase(name);
+      request.onsuccess = () => finish({ ok: true });
+      request.onerror = () => finish({ ok: false, reason: `error: ${request.error?.name ?? 'unknown'}` });
+      request.onblocked = () => finish({ ok: false, reason: 'blocked' });
+    } catch (error) {
+      finish({ ok: false, reason: `error: ${error?.name ?? String(error)}` });
+    }
+  });
+
+  // The first case is the launch's first IndexedDB open after its data was cleared, and the one failure
+  // seen spent about the app's 5000 ms open deadline longer than a passing run (#1249). That delay may
+  // be the engine starting its storage, so each launch waits here, with a far longer limit,
+  // until a database opens, and records how long that took.
+  const journalReady = (factory, { limitMs = 60_000 } = {}) => new Promise((resolve) => {
+    const startedAt = performance.now();
+    const name = `mrt-complete-restore-target-ready-${crypto.randomUUID()}`;
+    const elapsed = () => Math.round(performance.now() - startedAt);
+    let settled = false;
+    const finish = (outcome) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      resolve({ ms: elapsed(), ...outcome });
+    };
+    const timer = setTimeout(() => finish({ ok: false, reason: 'limit' }), limitMs);
+    let request;
+    try { request = factory.open(name, 1); }
+    catch (error) { finish({ ok: false, reason: `open threw: ${error?.name ?? error}` }); return; }
+    request.addEventListener('blocked', () => finish({ ok: false, reason: 'blocked' }));
+    request.addEventListener('error', () => finish({ ok: false, reason: `error: ${request.error?.name ?? 'unknown'}` }));
+    request.addEventListener('success', async () => {
+      const openMs = elapsed();
+      request.result.close();
+      const cleanup = await removeProbeJournal(factory, name);
+      finish(cleanup.ok ? { ok: true, openMs } : { ok: false, reason: `cleanup-${cleanup.reason}`, openMs });
+    });
+  });
+
   const completeRestore = async ([storage, model, complete, restoreEngine], { targetChars, cjk }) => {
     const incoming = readerOfSize(model, targetChars, { cjk, seed: 1 });
     const raw = JSON.stringify({ writeToken: 'generated', ...model.exportBackup(incoming) });
@@ -107,7 +210,7 @@ window.recapRestoreTargetProbe = (() => {
     const priorMain = localStorage.getItem(storage.KEY);
     const roomBefore = room();
     const databaseName = `mrt-complete-restore-target-${crypto.randomUUID()}`;
-    const journal = restoreEngine.createRestoreJournal({
+    const { journal, check } = observedJournal(restoreEngine, {
       open: (_name, version) => indexedDB.open(databaseName, version),
     });
     const locks = { request: async (_name, _options, callback) => callback({}) };
@@ -115,18 +218,14 @@ window.recapRestoreTargetProbe = (() => {
       storage: localStorage, locks, journal, events: null, reload: () => {},
     });
     let result;
+    let journalCleanup;
     try {
       await engine.start();
       result = await engine.restore(captured.text);
     } finally {
       await engine.releaseShared();
       await journal.close();
-      await new Promise((resolve, reject) => {
-        const request = indexedDB.deleteDatabase(databaseName);
-        request.onsuccess = resolve;
-        request.onerror = () => reject(request.error ?? new Error('The target journal could not be removed.'));
-        request.onblocked = () => reject(new Error('The target journal stayed open after the probe.'));
-      });
+      journalCleanup = await removeProbeJournal(indexedDB, databaseName);
     }
     const saved = localStorage.getItem(storage.KEY);
     const kept = localStorage.getItem(storage.PRERESTORE_KEY);
@@ -141,8 +240,10 @@ window.recapRestoreTargetProbe = (() => {
       completeBackupBytes: new TextEncoder().encode(captured.text).length,
       priorChars: priorMain?.length ?? 0,
       roomBefore,
-      ok: result?.ok === true,
-      error: result?.error ?? null,
+      ok: result?.ok === true && journalCleanup.ok,
+      error: result?.error ?? (journalCleanup.ok ? null : `The target journal could not be removed (${journalCleanup.reason}).`),
+      journalCheck: check(),
+      journalCleanup,
       restoredMatches: saved !== null && lists(saved) === canonical(captured.backup.components.reader.lists),
       undoKept: priorMain === null ? null : kept !== null && lists(kept) === lists(priorMain),
       savedChars: saved?.length ?? 0,
@@ -197,6 +298,9 @@ window.recapRestoreTargetProbe = (() => {
     };
   };
 
+  // The Node tests drive the journal and restore through a stand-in IndexedDB.
+  window.recapRestoreTargetJournal = { observedJournal, journalReady, completeRestore };
+
   return async function recapRestoreTargetProbe({
     phase = 'in-place',
     targetChars = TARGET_CHARS,
@@ -217,9 +321,13 @@ window.recapRestoreTargetProbe = (() => {
       });
     }
     if (phase === 'relaunched') {
+      const journalReadiness = await journalReady(indexedDB);
       const relaunched = await completeRestore(loaded, { targetChars, cjk });
-      return JSON.stringify({ probe: 'recap-restore-target-v1', phase, targetChars, relaunched, durationMs: Date.now() - started });
+      return JSON.stringify({
+        probe: 'recap-restore-target-v1', phase, targetChars, journalReadiness, relaunched, durationMs: Date.now() - started,
+      });
     }
+    const journalReadiness = await journalReady(indexedDB);
     const cases = [];
     for (const mix of [false, true]) {
       for (const prior of ['empty', 'saved', 'legacy-wide']) {
@@ -237,7 +345,7 @@ window.recapRestoreTargetProbe = (() => {
     const timing = [await persistTiming(loaded, { cjk: false }), await persistTiming(loaded, { cjk: true })];
     localStorage.clear();
     return JSON.stringify({
-      probe: 'recap-restore-target-v1', phase, engine: navigator.userAgent, targetChars, cases, timing,
+      probe: 'recap-restore-target-v1', phase, engine: navigator.userAgent, targetChars, journalReadiness, cases, timing,
       durationMs: Date.now() - started,
     });
   };
