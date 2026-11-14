@@ -2694,7 +2694,7 @@ final class PresentationUITests: XCTestCase {
     }
 
     func testSearchLabelAndScopesMeetTargetsAndPassAuditAtDefaultAndLargestTextSizes() throws {
-        let label = "Search Reading Lists, series, creators and comics"
+        let label = "Search Reading Lists, universes, series, creators and comics"
         let targetTypes = [XCUIElement.ElementType.button, .toggle, .switch].map(\.rawValue)
         func target(_ name: String, in app: XCUIApplication) -> XCUIElement {
             app.webViews.firstMatch.descendants(matching: .any).matching(NSPredicate(
@@ -2743,7 +2743,7 @@ final class PresentationUITests: XCTestCase {
             revealNativeTarget(labelTarget, in: app)
             XCTAssertGreaterThanOrEqual(labelTarget.frame.height, 44, "the box label is at least 44 points high")
             var frames: [String: String] = [:]
-            for scope in ["Top", "Reading Lists", "Series", "Creators", "Comics"] {
+            for scope in ["Top", "Reading Lists", "Universes", "Series", "Creators", "Comics"] {
                 let button = target(scope, in: app)
                 XCTAssertTrue(button.waitForExistence(timeout: 30), "the \(scope) scope is a native target")
                 revealNativeTarget(button, in: app)
@@ -2963,7 +2963,7 @@ final class PresentationUITests: XCTestCase {
         XCTAssertLessThanOrEqual(documentWidth, viewportWidth, "landscape has no horizontal page overflow")
         capture(app, named: "t03-landscape-search")
 
-        let searchField = app.searchFields["Search Reading Lists, series, creators and comics"].firstMatch
+        let searchField = app.searchFields["Search Reading Lists, universes, series, creators and comics"].firstMatch
         XCTAssertTrue(searchField.waitForExistence(timeout: 30), "Search has a labeled field")
         searchField.tap()
         searchField.typeText("Secret")

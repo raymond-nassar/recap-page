@@ -234,7 +234,7 @@
   --cyan-line: 91 208 233;
   --jade-line: 78 208 182;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:823`; these pairs supply saturation and lightness where that local hue is
+     `src/js/main.js:825`; these pairs supply saturation and lightness where that local hue is
      consumed. Keeping the hue reference on the cover avoids resolving it before the cover exists. */
   --fallback-a: 42% 26%;
   --fallback-b: 38% 14%;
@@ -1859,6 +1859,14 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
 .catalog-card-title .catalog-card-preview:hover { text-decoration-color: currentColor; }
 .catalog-card-desc { margin: 0 0 var(--space-3); color: var(--dim); font-size: var(--t-body); line-height: 1.45; overflow-wrap: anywhere; }
 .catalog-card-meta { margin: 0; color: var(--muted); font-size: var(--t-caption); }
+.universe-grid { margin-top: var(--space-5); }
+.universe-card .catalog-card-meta { margin-bottom: var(--space-3); }
+.universe-overview > p { max-width: 70ch; }
+.universe-facts { display: flex; flex-wrap: wrap; gap: var(--space-5) var(--space-8); margin: var(--space-6) 0 0; }
+.universe-facts div { min-width: 0; }
+.universe-facts dt { color: var(--muted); font-size: var(--t-caption); font-weight: 600; }
+.universe-facts dd { margin: var(--space-1) 0 0; overflow-wrap: anywhere; }
+.universe-list-note { margin: var(--space-2) var(--space-1) 0; }
 /* One action, sized to its words: Add as a secondary button, or a saved list's primary Open. */
 .catalog-card-actions {
   display: flex; gap: var(--space-4);
@@ -2155,6 +2163,7 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 .home-path[data-category="marvel-on-screen"] { --home-path-line: var(--azure-line); }
 .home-path[data-category="marvel-ages"] { --home-path-line: var(--magenta-line); }
 .home-path[data-category="young-readers"] { --home-path-line: var(--green-line); }
+.home-path[data-category="universes"] { --home-path-line: var(--copper-line); }
 .home-path:hover {
   transform: translateY(-2px); border-color: rgb(var(--home-path-line) / 68%);
   background:

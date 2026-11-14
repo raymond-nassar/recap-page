@@ -69,6 +69,8 @@ import { createMcuPrepView } from './views/mcu-prep.js';
 import { createStoryTypesView } from './views/story-types.js';
 import { createPreviewView } from './views/preview.js';
 import { createSearchListsView, searchThumb } from './views/search-lists.js';
+import { createUniversesView } from './views/universes.js';
+import { universeResolver } from './lib/universes.js';
 import { parseMcuPrep } from './lib/mcuPrep.js';
 import { createOfflineContent } from './lib/offlineContent.js';
 import { createCollectionNavigation } from './views/shared/collection-navigation.js';
@@ -395,7 +397,7 @@ const LOCAL_CONNECTION_STEPS = iosApp
     + 'start Recap Page from the copy you downloaded or installed from the Microsoft Store, then return here.';
 const generatedCategoryByRoute = new Map([
   ...PUBLISHING_CATEGORIES,
-  ...HOME_CATEGORIES.filter((category) => !category.shelf),
+  ...HOME_CATEGORIES.filter((category) => !category.shelf && category.kind !== 'universe-index'),
 ].map((category) => [category.route, category]));
 
 // The stored API base is checked once at boot, so the complaint about a bad one is a single
@@ -1288,7 +1290,29 @@ function wireAppTooltips() {
 function navigateTo(view, at = null) {
   // A click on the rail is the archetypal navigation, so this is the one that has to leave a
   // history entry for Back to come back to.
+  if (view === 'universes') universeView.setIndex();
   showView(view, { push: true, at });
+}
+
+function navigateToUniverse(id) {
+  if (!formatRoute({ view: 'universe', universeId: id })) return;
+  navigationPosition.cancel();
+  navigationPosition.capture();
+  const current = history.state && typeof history.state === 'object' ? { ...history.state } : {};
+  delete current.issueFocusOpener;
+  delete current.pathStopOpener;
+  history.replaceState({ ...current, universeOpener: { view, id } }, '', location.href);
+  universeView.setDetail(id);
+  showView('universe', { push: true, capturePosition: false });
+}
+
+function restoreUniverseOpener(destination) {
+  const opener = history.state?.universeOpener;
+  if (!opener || opener.view !== destination) return;
+  const section = $(`#view-${destination}`);
+  const link = [...(section?.querySelectorAll('[data-universe-id]') ?? [])]
+    .find((candidate) => candidate.dataset.universeId === opener.id);
+  link?.focus({ preventScroll: true });
 }
 
 function navigateToGuidePreview(previewId) {
@@ -1459,16 +1483,20 @@ function syncHash({ push = false } = {}) {
     ? formatRoute({ view, previewId: routedPreviewId })
     : view === 'issue' && issueRoute
       ? formatRoute(issueRoute)
-      : view === 'library-rated'
-        ? formatRoute({ view, rated: ratedView.committed() })
-        : formatRoute({
-          view,
-          listId: activeListId(),
-          filter: showFilter ? shown : DEFAULT_FILTER,
-          full: view === 'read' && $('#full').open && !(showFilter && shown !== DEFAULT_FILTER),
-          sort, pathId: view === 'catalog' ? catalogView.followedPath() : null, at: homeAt,
-          ...(view === 'genres' ? storyTypesView.selection() : {}),
-        });
+      : view === 'universes'
+        ? formatRoute({ view, ...universeView.indexState() })
+        : view === 'universe'
+          ? formatRoute({ view, universeId: universeView.detailId() })
+          : view === 'library-rated'
+            ? formatRoute({ view, rated: ratedView.committed() })
+            : formatRoute({
+              view,
+              listId: activeListId(),
+              filter: showFilter ? shown : DEFAULT_FILTER,
+              full: view === 'read' && $('#full').open && !(showFilter && shown !== DEFAULT_FILTER),
+              sort, pathId: view === 'catalog' ? catalogView.followedPath() : null, at: homeAt,
+              ...(view === 'genres' ? storyTypesView.selection() : {}),
+            });
   if (!next || next === location.hash) return;
 
   // A hash that is not ours is someone else's anchor, and index.html ships one: the skip link
@@ -1554,6 +1582,14 @@ function applyRoute(route, { focus, filterIfAbsent, aboutTraversal = false }) {
       if (focus) ratedView.restoreOpener(history.state?.issueFocusOpener);
       return;
     }
+    if (route.view === 'universes' || route.view === 'universe') {
+      readingView.endFilterRun({ commit: false });
+      if (route.view === 'universes') universeView.setIndex(route);
+      else universeView.setDetail(route.universeId);
+      showView(route.view, { focus });
+      if (focus && route.view === 'universes') restoreUniverseOpener(route.view);
+      return;
+    }
     if (route.listId && route.listId !== activeListId() && Object.hasOwn(store.state.lists, route.listId)) {
       store.update((s) => setActive(s, route.listId));
       if (!store.lastUpdateOk) {
@@ -1573,7 +1609,9 @@ function applyRoute(route, { focus, filterIfAbsent, aboutTraversal = false }) {
     // Before showView, so the passive sync at the end of showView computes the address this route
     // already describes and returns early rather than writing one and being corrected a moment later.
     readingView.setFilterAddressed(route.filter !== null);
-    readingView.setFilter(route.filter ?? filterIfAbsent);
+    const filterFallback = view === 'universes' || view === 'universe'
+      ? readingView.currentFilter() : filterIfAbsent;
+    readingView.setFilter(route.filter ?? filterFallback);
     // A traversal cannot span a navigation, and Back is a navigation. Discarded rather than committed,
     // because the address this route describes is the authoritative one and writing the traversal's
     // would fight it.
@@ -1597,7 +1635,10 @@ function applyRoute(route, { focus, filterIfAbsent, aboutTraversal = false }) {
   if (focus && route.view === 'new-to-comics' && departedPreviewId
     && history.state?.guidePreviewOpener === departedPreviewId) {
     focusGuidePreviewOpener(departedPreviewId);
-  } else if (focus) void restoreIssueFocusOpener(route.view);
+  } else if (focus) {
+    restoreUniverseOpener(route.view);
+    void restoreIssueFocusOpener(route.view);
+  }
 }
 
 // Moving focus to the new view's heading is what makes the rail usable with a keyboard or a
@@ -1668,6 +1709,8 @@ function showView(next, { focus = true, push = false, at = null, capturePosition
   if (shelf) void catalogView.render(shelf.key);
   if (generatedCategoryByRoute.has(next)) renderPublishingCategory(next);
   if (next === 'home') homeView.render();
+  if (next === 'universes') universeView.renderIndex();
+  if (next === 'universe') void universeView.renderDetail();
   if (next === 'library') renderLibraryHub();
   if (next === 'library-rated') ratedView.renderBrowser();
   if (next === 'read') {
@@ -1725,6 +1768,7 @@ function renderBreadcrumbs() {
   document.title = routeTitle({
     view, list: active, issueTitle: issueResult?.issue?.title
       ?? (view === 'issue' ? $('#issue-focus-h')?.textContent : null),
+    universe: view === 'universe' ? universeView.selected() : null,
   });
   const resolvedContext = issueResult?.contextStatus === 'valid'
     ? {
@@ -1737,6 +1781,7 @@ function renderBreadcrumbs() {
     list: active ? { id: active.id, name: active.name } : null,
     issueTitle: issueResult?.issue?.title ?? null,
     context: resolvedContext,
+    universe: view === 'universe' ? universeView.selected() : null,
   });
   const existing = section.querySelector('.breadcrumb');
   const isRoot = ['home', 'library', 'add'].includes(view)
@@ -1770,7 +1815,7 @@ function renderBreadcrumbs() {
 }
 
 function railParentView(next) {
-  if (next === 'home' || next === 'new-to-comics' || HOME_CATEGORIES.some(({ route }) => route === next)
+  if (next === 'home' || next === 'new-to-comics' || next === 'universe' || HOME_CATEGORIES.some(({ route }) => route === next)
     || generatedCategoryByRoute.has(next)) return 'home';
   if (next === 'add' || ADD_VIEWS.includes(next)) return 'add';
   if (next === 'library' || next === 'progress' || next === 'completed' || next === 'library-rated' || LIBRARY_VIEWS.some(({ value }) => value === next)) return 'library';
@@ -2132,18 +2177,25 @@ let catalogSnapshot = null;
 // Typing in the search box re-renders on every keystroke, so a slow first load could otherwise
 // start a second fetch while the first is still in flight and let the two renders finish out of
 // order. Sharing one promise keeps every render behind the same load; a failure clears it so
-// reopening the view can retry.
-function loadCatalog() {
-  catalogLoad ??= (async () => {
-    // Served from our own origin, so the catalog works with no internet connection.
-    const res = await fetch('./data/catalog.json', { cache: 'no-cache' });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    catalogSnapshot = parseCatalog(await res.json());
-    return catalogSnapshot;
-  })().catch((err) => {
-    catalogLoad = null;
-    throw err;
-  });
+// reopening the view can retry. An explicit refresh can replace a cached partial result.
+function loadCatalog({ refresh = false } = {}) {
+  if (refresh) catalogLoad = null;
+  if (!catalogLoad) {
+    const request = (async () => {
+      // Served from our own origin, so the catalog works with no internet connection.
+      const res = await fetch('./data/catalog.json', { cache: 'no-cache' });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return parseCatalog(await res.json());
+    })();
+    const pending = request.then((snapshot) => {
+      if (catalogLoad === pending) catalogSnapshot = snapshot;
+      return snapshot;
+    }, (err) => {
+      if (catalogLoad === pending) catalogLoad = null;
+      throw err;
+    });
+    catalogLoad = pending;
+  }
   return catalogLoad;
 }
 
@@ -3247,7 +3299,9 @@ export function boot() {
   for (const tile of document.querySelectorAll('#search-browse [data-scope-tile]')) {
     tile.addEventListener('click', () => searchListsView.startScope(tile.dataset.scopeTile, $('#search-q')));
   }
+  universeView.wire();
   $('#search-lists-more').addEventListener('click', () => void searchListsView.showMore('lists'));
+  $('#search-universes-more').addEventListener('click', () => void searchListsView.showMore('universes'));
   $('#search-series-more').addEventListener('click', () => void searchListsView.showMore('series'));
   $('#search-creators-more').addEventListener('click', () => void searchListsView.showMore('creators'));
   $('#search-comics-more').addEventListener('click', () => searchListsView.setScope('comics'));
@@ -3780,7 +3834,7 @@ const homeView = createHomeView({
   }),
   onNavigateCategory: (category) => {
     if (category.route === 'genres') storyTypesView.set();
-    showView(category.route, { push: true });
+    navigateTo(category.route);
   },
   onNavigateHub: (destination) => showView(destination, { push: true }),
   onDone: () => { if (selectSavedList(continuingListId())) readingView.markReadFromHome(); }, onOpen: () => openSavedList(continuingListId()),
@@ -3964,6 +4018,32 @@ function searchCover(url) {
   return searchThumb(el, settings.covers ? url : null);
 }
 
+const universeView = createUniversesView({
+  el,
+  elements: () => ({
+    index: {
+      form: $('#universes-form'), query: $('#universes-q'), sort: $('#universes-sort'),
+      count: $('#universes-count'), results: $('#universes-results'),
+    },
+    detail: {
+      heading: $('#universe-h'), missing: $('#universe-missing'), body: $('#universe-body'),
+      earth: $('#universe-earth'), year: $('#universe-year'), debut: $('#universe-debut'),
+      description: $('#universe-description'), status: $('#universe-lists-status'),
+      results: $('#universe-lists'), retry: $('#universe-retry'), emptyLink: $('#universe-empty-action'),
+    },
+  }),
+  resolver: universeResolver,
+  loadCatalog,
+  isCurrent: (name) => view === name,
+  onNavigate: navigateToUniverse,
+  onIndexChange: () => syncHash(),
+  onRetry: () => {
+    if (document.activeElement === $('#universe-retry')) focusViewHeading('universe');
+  },
+  presentation: catalogPresentation,
+  listCover: searchCover,
+});
+
 const searchListsView = createSearchListsView({
   el,
   elements: () => {
@@ -3979,8 +4059,10 @@ const searchListsView = createSearchListsView({
       scopes: $('#search-scopes'),
       count: $('#search-count'),
       suggestions: $('#search-suggestions'),
+      empty: $('#search-empty'),
       panes: $('#search-panes'),
       lists: group('lists'),
+      universes: group('universes'),
       series: group('series'),
       creators: group('creators'),
       comics: { section: $('#search-comics'), more: $('#search-comics-more') },
@@ -3993,6 +4075,7 @@ const searchListsView = createSearchListsView({
     : api.searchCreators(query, options)),
   presentation: catalogPresentation,
   thumb: searchCover,
+  universeRow: universeView.searchRow,
   comics: { lookup: (query, options) => addView.lookupComics(query, options) },
   openNamed: (kind, item) => addView.openNamed(kind, item),
   announce,
@@ -4103,6 +4186,14 @@ const previewView = createPreviewView({
       const held = captureFocus($(`#view-${view}`));
       await searchListsView.refresh();
       if (document.activeElement === document.body) restoreFocus(held, { primary: 'main' });
+      return;
+    }
+    if (closedList && changed && view === 'universe') {
+      const held = captureFocus($('#view-universe'));
+      await universeView.renderDetail();
+      if (isCurrent() && view === 'universe' && document.activeElement === document.body) {
+        restoreFocus(held, { primary: 'main' });
+      }
       return;
     }
     if (!closedList || !changed || (!CATALOG_SHELVES.some((shelf) => shelf.key === view)

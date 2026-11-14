@@ -1,8 +1,9 @@
 import { listSearchTerms, rankLists } from '../lib/listSearch.js';
 import { foldName } from '../lib/nameIndex.js';
 import { suggestNames } from '../lib/searchSpelling.js';
+import { universeResolver } from '../lib/universes.js';
 
-export const SCOPES = ['top', 'lists', 'series', 'creators', 'comics'];
+export const SCOPES = ['top', 'lists', 'universes', 'series', 'creators', 'comics'];
 export const TOP_PER_GROUP = 3;
 export const NAME_PAGE = 40;
 export const COMICS_SHOWN_CAP = 50;
@@ -13,6 +14,9 @@ const plural = (n, one, many) => `${n.toLocaleString()} ${n === 1 ? one : many}`
 
 export function listsLine(n) {
   return n ? plural(n, 'Reading List', 'Reading Lists') : 'No Reading Lists match';
+}
+export function universesLine(n) {
+  return n ? plural(n, 'universe', 'universes') : 'No universes match';
 }
 export function seriesLine(n) {
   return n ? plural(n, 'series', 'series') : 'No series match';
@@ -27,10 +31,11 @@ export function comicsLine(n) {
   return `${plural(n, 'comic', 'comics')} shown.${n >= COMICS_SHOWN_CAP ? ' Add words to narrow.' : ''}`;
 }
 const comicShort = (n) => (n ? `${plural(n, 'comic', 'comics')} shown` : 'No comics match');
-export const OFFLINE_LINE = 'Comics need a connection. Lists, series and creators still work offline.';
+export const OFFLINE_LINE = 'Comics need a connection. Lists, universes, series and creators still work offline.';
 
 const EMPTY_HINTS = {
   lists: 'Type a Reading List name to find it.',
+  universes: 'Type a universe name or Earth designation to find it.',
   series: 'Type a series name to find it.',
   creators: 'Type a creator’s name to find them.',
   comics: 'Type a comic title, then press Enter to look it up.',
@@ -50,10 +55,10 @@ export function searchThumb(el, url) {
   return box;
 }
 
-// Search design B (#1204). Reading Lists, series and creators are matched on the device as the
+// Search design B (#1204). Reading Lists, universes, series and creators are matched on the device as the
 // reader types, from the bundled catalog and name indexes, so they work offline and are never
-// recorded. Comics need the metadata service, so they are looked up once per query, on Enter or
-// on first opening the Comics scope. A scope switch only hides and shows groups that are already
+// recorded. Comics need the metadata service, so they are looked up once per query on Enter.
+// A scope switch only hides and shows groups that are already
 // built: the comic rows and their checkboxes are never rebuilt, so picks survive, and a switch
 // sends nothing.
 export function createSearchListsView({
@@ -64,6 +69,7 @@ export function createSearchListsView({
   searchNames,
   presentation,
   thumb,
+  universeRow,
   comics,
   openNamed,
   announce,
@@ -76,11 +82,11 @@ export function createSearchListsView({
   let scope = 'top';
   let timer = null;
   let settled = false;
-  let suggested = { lists: [], series: [], creators: [] };
+  let suggested = { lists: [], universes: [], series: [], creators: [] };
   let renderedSuggestions = '';
   let limits = { series: NAME_PAGE, creators: NAME_PAGE };
   const found = {
-    lists: [], series: null, creators: null, error: {},
+    lists: [], universes: [], series: null, creators: null, error: {},
   };
   // The comic lookup the results pane currently holds, as reported by the add view's runner.
   let comic = { query: null, phase: null, count: 0 };
@@ -102,7 +108,7 @@ export function createSearchListsView({
 
   const terms = () => listSearchTerms(query).length > 0;
   const comicsHere = () => comic.query === query.trim() && query.trim() !== '';
-  const total = (kind) => (kind === 'lists' ? found.lists.length : found[kind]?.matched ?? 0);
+  const total = (kind) => (kind === 'lists' || kind === 'universes' ? found[kind].length : found[kind]?.matched ?? 0);
 
   function comicsCount() {
     if (comicsHere()) {
@@ -119,6 +125,7 @@ export function createSearchListsView({
   function lineFor(kind) {
     if (found.error[kind]) return found.error[kind];
     if (kind === 'lists') return listsLine(total('lists'));
+    if (kind === 'universes') return universesLine(total('universes'));
     if (kind === 'series') return seriesLine(total('series'));
     if (kind === 'creators') return creatorsLine(total('creators'));
     return comicsCount();
@@ -127,6 +134,7 @@ export function createSearchListsView({
   function countText() {
     if (!terms()) return EMPTY_HINTS[scope] ?? '';
     if (scope === 'top') return `Top results for “${query.trim()}”`;
+    if (scope === 'universes' && !total('universes')) return 'No universes match. Try another name or Earth designation.';
     return lineFor(scope);
   }
 
@@ -134,7 +142,7 @@ export function createSearchListsView({
     if (!settled || !terms() || scope === 'comics') return [];
     // Comics found for the typed title show the spelling was a real one, so Top stops doubting it.
     if (scope === 'top' && comicsHere() && comic.phase === 'complete' && comic.count > 0) return [];
-    const kinds = scope === 'top' ? ['lists', 'series', 'creators'] : [scope];
+    const kinds = scope === 'top' ? ['lists', 'universes', 'series', 'creators'] : [scope];
     if (kinds.some((kind) => found.error[kind] || total(kind) > 0)) return [];
     const unique = new Map();
     for (const kind of kinds) {
@@ -148,7 +156,7 @@ export function createSearchListsView({
   function announcement() {
     let message = countText();
     if (terms() && scope === 'top') {
-      const parts = ['lists', 'series', 'creators'].map(lineFor);
+      const parts = ['lists', 'universes', 'series', 'creators'].map(lineFor);
       if (comicsHere() && comic.phase === 'complete') parts.push(comicShort(comic.count));
       message = `${message}. ${parts.join(', ')}.`;
     }
@@ -203,24 +211,26 @@ export function createSearchListsView({
     const show = scope === 'top' ? total(kind) > 0 : scope === kind;
     group.section.hidden = !show || !terms();
     if (group.section.hidden || !rebuild) return;
-    const all = kind === 'lists' ? found.lists : found[kind]?.items ?? [];
+    const all = kind === 'lists' || kind === 'universes' ? found[kind] : found[kind]?.items ?? [];
     const rows = scope === 'top' ? all.slice(0, TOP_PER_GROUP) : all;
-    group.grid.replaceChildren(...rows.map((item) => (kind === 'lists'
-      ? presentation.catalogRow(item, { report: '#search-lists-report', level: 'h3', cover: thumb })
-      : nameRow(kind, item))));
+    group.grid.replaceChildren(...rows.map((item) => {
+      if (kind === 'lists') return presentation.catalogRow(item, { report: '#search-lists-report', level: 'h3', cover: thumb });
+      if (kind === 'universes') return universeRow(item);
+      return nameRow(kind, item);
+    }));
     const count = total(kind);
     if (scope === 'top') {
       group.more.hidden = count <= TOP_PER_GROUP;
       group.more.textContent = `See all ${lineFor(kind)}`;
     } else {
-      group.more.hidden = kind === 'lists' || rows.length >= count;
+      group.more.hidden = kind === 'lists' || kind === 'universes' || rows.length >= count;
       group.more.textContent = kind === 'series' ? 'Show more series' : 'Show more creators';
     }
   }
 
   // A comic lookup settling changes only the comic pane and the count, so it leaves the local rows
   // standing: rebuilding them would drop the focus of a reader already working down them.
-  function render({ rebuild = true } = {}) {
+  function render({ rebuild = true, preserveUniverses = false } = {}) {
     const nodes = elements();
     const active = terms();
     nodes.card.dataset.scope = scope;
@@ -233,7 +243,13 @@ export function createSearchListsView({
     nodes.count.textContent = countText();
     renderSuggestions(nodes);
     nodes.panes.hidden = !active;
-    for (const kind of ['lists', 'series', 'creators']) renderGroup(kind, nodes, rebuild);
+    for (const kind of ['lists', 'universes', 'series', 'creators']) {
+      renderGroup(kind, nodes, rebuild && !(kind === 'universes' && preserveUniverses));
+    }
+    nodes.empty.hidden = !(active && settled && scope === 'top'
+      && ['lists', 'universes', 'series', 'creators'].every((kind) => !found.error[kind] && total(kind) === 0)
+      && !(comicsHere() && comic.phase === 'complete' && comic.count > 0));
+    nodes.empty.textContent = 'No local results match. Try another name or Earth designation.';
     const comicsShown = active && comicsHere() && (scope === 'top' ? comic.phase !== 'cancelled' : scope === 'comics');
     nodes.comics.section.hidden = !comicsShown;
     nodes.comics.more.hidden = scope !== 'top' || !(comic.phase === 'complete' && comic.count > TOP_PER_GROUP);
@@ -245,11 +261,18 @@ export function createSearchListsView({
   async function update(next) {
     quiet();
     settled = false;
-    suggested = { lists: [], series: [], creators: [] };
+    suggested = { lists: [], universes: [], series: [], creators: [] };
     renderSuggestions(elements());
-    if (next !== query) limits = { series: NAME_PAGE, creators: NAME_PAGE };
+    if (next !== query) {
+      limits = { series: NAME_PAGE, creators: NAME_PAGE };
+      found.lists = [];
+      found.series = null;
+      found.creators = null;
+      found.error = {};
+    }
     query = next;
     const mine = ++generation;
+    found.universes = terms() ? universeResolver.searchUniverses(query) : [];
     if (!terms()) {
       found.lists = [];
       found.series = null;
@@ -260,6 +283,7 @@ export function createSearchListsView({
       render();
       return;
     }
+    render();
     const settle = (promise) => promise.then((value) => ({ value }), (error) => ({ error }));
     const [catalog, guides, series, creators] = await Promise.all([
       settle(loadCatalog()),
@@ -281,20 +305,18 @@ export function createSearchListsView({
     if (creators.error) found.error.creators = `Creators could not be loaded: ${creators.error.message}.`;
     suggested = {
       lists: !catalog.error && !found.lists.length ? suggestNames(catalog.value.lists, query) : [],
+      universes: !found.universes.length ? suggestNames(universeResolver.searchUniverses(''), query) : [],
       series: series.value?.suggestions ?? [],
       creators: creators.value?.suggestions ?? [],
     };
     settled = true;
-    render();
+    render({ preserveUniverses: true });
     say(announcement());
   }
 
-  // The one request a scope can send: opening Comics for a query that has not been looked up.
   function setScope(next, { focus = true } = {}) {
     if (!SCOPES.includes(next)) return;
     scope = next;
-    const started = scope === 'comics' && terms() && !comicsHere() && isOnline();
-    if (started) comics.lookup(query.trim());
     const nodes = render();
     // Top with an empty box hides the scope buttons, so the pressed one cannot keep focus and the
     // box takes it rather than letting it fall to the page.
@@ -303,8 +325,7 @@ export function createSearchListsView({
       target?.focus({ preventScroll: true });
     }
     quiet();
-    // A lookup this switch started speaks its own busy notice, so the count line would say it twice.
-    if (terms() && !started && settled) announce(announcement());
+    if (terms() && settled) announce(announcement());
   }
 
   // Enter in the box. Offline sends nothing and says so; the local groups are already showing.

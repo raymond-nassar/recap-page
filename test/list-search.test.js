@@ -39,6 +39,15 @@ test('a screen release title finds its companion guide when release metadata is 
   assert.ok(rankLists(lists, 'mcu prep').length > 0);
 });
 
+test('Universe search terms enrich only explicitly associated Reading Lists', () => {
+  const associated = entry('associated', { name: 'A guide', universeIds: ['ultimate-marvel', 'mc2'] });
+  const unrelated = entry('unrelated', { name: 'Another guide' });
+  for (const query of ['Earth-1610', 'Earth1610', 'Ultimate Marvel', 'MC2', 'Marvel Comics 2', 'Earth-982']) {
+    assert.deepEqual(ids(rankLists([associated, unrelated], query)), ['associated'], query);
+  }
+  assert.deepEqual(ids(rankLists([unrelated], 'Earth-1610')), []);
+});
+
 test('every genre and tone label in use finds the lists that carry it', () => {
   for (const [vocabulary, field] of [[STORY_TYPES, 'storyTypes'], [STORY_TONES, 'tones']]) {
     for (const [tag, label] of Object.entries(vocabulary)) {

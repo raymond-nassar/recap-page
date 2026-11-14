@@ -17,6 +17,7 @@ import {
   parseCatalog,
 } from '../src/js/lib/catalog.js';
 import { VIEWS } from '../src/js/lib/route.js';
+import { universeDefinitions } from '../src/data/universeCatalog.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (path) => readFileSync(join(ROOT, path), 'utf8');
@@ -35,6 +36,17 @@ const presentationSource = [
 const rawCatalog = JSON.parse(read('src/data/catalog.json'));
 const catalog = parseCatalog(rawCatalog);
 const stories = catalogEntries(catalog.lists);
+
+test('the Universe gateway counts realities even when no Reading Lists are available', () => {
+  const available = availableHomeCategories([]);
+  const universes = available.find(({ key }) => key === 'universes');
+  assert.ok(universes);
+  assert.equal(universes.route, 'universes');
+  assert.equal(universes.count, universeDefinitions.length);
+  assert.equal(universes.singular, 'universe');
+  assert.equal(universes.plural, 'universes');
+  assert.ok(VIEWS.includes('universes'));
+});
 
 test('Genres gateway counts the same eligible lists as genre browsing', () => {
   const pool = HOME_CATEGORIES.find((category) => category.key === 'genres').select(stories);
@@ -75,7 +87,7 @@ test('the MCU Prep card counts every MCU Prep list', () => {
     currentReadingCensus.mcu);
 });
 
-test('the current gateway offers three primary modes and three secondary gateways', () => {
+test('the current gateway offers three primary modes and four secondary gateways', () => {
   const categories = availableHomeCategories(stories, HOME_CATEGORIES);
   assert.deepEqual(
     categories.map(({ key }) => key),
@@ -84,12 +96,12 @@ test('the current gateway offers three primary modes and three secondary gateway
       'genres',
       'character-spotlights',
       'marvel-on-screen',
-      'marvel-ages', 'young-readers',
+      'marvel-ages', 'young-readers', 'universes',
     ],
   );
   assert.deepEqual(
     categories.map(({ tier }) => tier),
-    ['primary', 'primary', 'primary', 'secondary', 'secondary', 'secondary'],
+    ['primary', 'primary', 'primary', 'secondary', 'secondary', 'secondary', 'secondary'],
   );
 
   for (const category of categories.filter(({ shelf }) => shelf)) {
@@ -159,7 +171,8 @@ test('every declared category has compact UI metadata and its own browse subpage
       `${category.key} has no browse subpage`,
     );
     assert.ok(['primary', 'secondary'].includes(category.tier), `${category.key} has no supported tier`);
-    assert.match(category.icon, /^[A-F0-9]{4,6}$/, `${category.key} has no Fluent glyph`);
+    assert.ok(/^[A-F0-9]{4,6}$/.test(category.icon)
+      || read('src/icons/ui.svg').includes(`<symbol id="${category.icon}"`), `${category.key} has no local glyph`);
     for (const field of ['heading', 'label']) {
       assert.equal(typeof category[field], 'string', `${category.key} has no ${field}`);
       assert.ok(category[field].trim(), `${category.key} has an empty ${field}`);
@@ -297,7 +310,7 @@ test('asynchronous category results expose concise polite status updates', () =>
   );
   assert.match(
     homeSource,
-    /\$\{categories\.length\} ways to read available/,
+    /\$\{categories\.length\}.*ways.*to read available/,
     'loaded gateway results do not leave a concise screen-reader status',
   );
   assert.match(homeSource, /status\.classList\.toggle\('visually-hidden', categories\.length > 0\)/);
@@ -315,7 +328,7 @@ test('rendered categories navigate explicitly instead of relying on boot-time bi
   const body = homeSource.slice(start, homeSource.indexOf('async function renderGateways', start));
   assert.match(body, /href: formatRoute\(\{ view: category\.route \}\)/);
   assert.match(body, /isPlainNavigation\(event\)[\s\S]*onNavigateCategory\(category\)/);
-  assert.match(mainSource, /onNavigateCategory: \(category\) => \{[\s\S]*showView\(category\.route, \{ push: true \}\)/);
+  assert.match(mainSource, /onNavigateCategory: \(category\) => \{[\s\S]*navigateTo\(category\.route\)/);
 });
 
 test('Preview Open closes its modal before navigating to an existing Reading List', () => {

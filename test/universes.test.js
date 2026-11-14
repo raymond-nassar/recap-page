@@ -5,6 +5,7 @@ import { universeDefinitions, universeIssueOverrides, universeSeries } from '../
 import { createUniverseResolver, universeResolver } from '../src/js/lib/universes.js';
 import { universeRegistryProblems } from '../src/js/lib/universeSchema.js';
 import { parseCatalog } from '../src/js/lib/catalog.js';
+import { createUniversesView } from '../src/js/views/universes.js';
 
 const ids = (definitions) => definitions.map(({ id }) => id);
 const definition = (id) => universeDefinitions.find((value) => value.id === id);
@@ -122,6 +123,12 @@ test('local Universe search shares folding and keeps similarly named realities s
   assert.throws(() => universeResolver.sortUniverses(sorted, 'invalid'), /sort order/);
 });
 
+test('exact Universe designations and aliases precede partial matches', () => {
+  assert.equal(universeResolver.searchUniverses('Earth-616')[0].id, 'earth-616');
+  assert.equal(universeResolver.searchUniverses('Earth1610')[0].id, 'ultimate-marvel');
+  assert.equal(universeResolver.searchUniverses('Heroes Reborn 1996')[0].id, 'heroes-reborn-1996');
+});
+
 test('invalid Universe definitions and references are reported instead of silently dropped', () => {
   const base = definition('earth-616');
   const entry = { ...base, earth: null };
@@ -142,4 +149,155 @@ test('invalid Universe definitions and references are reported instead of silent
       { issueId: 1, universeIds: [] },
     ],
   }), /Duplicate issue override/);
+});
+
+function universeViewHarness({ loadCatalog = async () => ({ lists: [] }) } = {}) {
+  const calls = { navigation: [], changes: 0, rows: [] };
+  let current = 'universes';
+  const el = (tag, props = {}, children = []) => {
+    const node = {
+      tag, children: [], hidden: false, textContent: '', dataset: {}, listeners: {},
+      append(...items) { this.children.push(...items); },
+      replaceChildren(...items) { this.children = [...items]; },
+      addEventListener(name, callback) { this.listeners[name] = callback; },
+      ...props,
+    };
+    if (props.text !== undefined) node.textContent = props.text;
+    node.append(...[].concat(children));
+    return node;
+  };
+  const nodes = {
+    index: {
+      form: el('form'), query: el('input'), sort: el('select'),
+      count: el('p'), results: el('div'),
+    },
+    detail: {
+      heading: el('h1'), missing: el('div'), body: el('div'), earth: el('dd'),
+      year: el('dd'), debut: el('dd'), description: el('p'),
+      status: el('p'), results: el('div'), retry: el('button'), emptyLink: el('a'),
+    },
+  };
+  const view = createUniversesView({
+    el, elements: () => nodes, resolver: universeResolver, loadCatalog,
+    isCurrent: (name) => current === name,
+    onNavigate: (id) => calls.navigation.push(id),
+    onIndexChange: () => { calls.changes += 1; },
+    onRetry: () => {},
+    presentation: {
+      catalogRow(list, options) {
+        calls.rows.push({ list, options });
+        return el('article', { list });
+      },
+    },
+    listCover: () => el('span'),
+  });
+  view.wire();
+  return { view, nodes, calls, setCurrent: (next) => { current = next; } };
+}
+
+test('the index searches and sorts locally, keeping native detail links', () => {
+  const h = universeViewHarness();
+  h.view.setIndex({ universeQuery: 'Earth1610', universeSort: 'alphabetical' });
+  h.view.renderIndex();
+  assert.equal(h.nodes.index.count.textContent, '1 universe');
+  const link = h.nodes.index.results.children[0].children[0].children[0].children[0].children[0];
+  assert.equal(link.href, '#/universe/ultimate-marvel');
+  let prevented = false;
+  link.onclick({ button: 0, preventDefault: () => { prevented = true; } });
+  assert.equal(prevented, true);
+  assert.deepEqual(h.calls.navigation, ['ultimate-marvel']);
+  link.onclick({ button: 0, ctrlKey: true, preventDefault: () => assert.fail('modified click intercepted') });
+  assert.deepEqual(h.calls.navigation, ['ultimate-marvel']);
+
+  h.nodes.index.query.value = 'no such reality';
+  h.nodes.index.query.listeners.input();
+  assert.match(h.nodes.index.count.textContent, /No universes match/);
+  assert.deepEqual(h.view.indexState(), { universeQuery: 'no such reality', universeSort: 'alphabetical' });
+  assert.equal(h.calls.changes, 1);
+});
+
+test('detail keeps static facts and permits retry when the catalog fails', async () => {
+  let fail = true;
+  const h = universeViewHarness({
+    loadCatalog: async () => {
+      if (fail) throw new Error('offline');
+      return { lists: [] };
+    },
+  });
+  h.setCurrent('universe');
+  h.view.setDetail('ultimate-marvel');
+  await h.view.renderDetail();
+  assert.equal(h.nodes.detail.heading.textContent, 'Ultimate Marvel');
+  assert.equal(h.nodes.detail.earth.textContent, 'Earth-1610');
+  assert.match(h.nodes.detail.status.textContent, /could not be loaded.*offline/i);
+  assert.equal(h.nodes.detail.retry.hidden, false);
+  assert.equal(h.nodes.detail.emptyLink.hidden, true, 'failure is not an empty catalog');
+  fail = false;
+  await h.nodes.detail.retry.listeners.click();
+  assert.match(h.nodes.detail.status.textContent, /No Reading Lists/);
+  assert.equal(h.nodes.detail.retry.hidden, true);
+  assert.equal(h.nodes.detail.emptyLink.hidden, false);
+});
+
+test('detail shows related-reality scope and warns when catalog entries were dropped', async () => {
+  const list = {
+    id: 'zombies', name: 'Marvel Zombies', universeIds: ['marvel-zombies'],
+    universeScopes: { 'marvel-zombies': { kind: 'related-realities', note: 'Includes stories in other realities.' } },
+  };
+  const h = universeViewHarness({ loadCatalog: async () => ({ lists: [list], dropped: 2 }) });
+  h.setCurrent('universe');
+  h.view.setDetail('marvel-zombies');
+  await h.view.renderDetail();
+  assert.equal(h.calls.rows[0].list, list);
+  assert.equal(h.calls.rows[0].options.report, '#universe-report');
+  assert.match(h.nodes.detail.results.children[0].children[1].textContent, /Related realities: Includes stories/);
+  assert.match(h.nodes.detail.status.textContent, /incomplete/i);
+  assert.equal(h.nodes.detail.retry.hidden, false);
+});
+
+test('retry requests a fresh catalog after incomplete entries were omitted', async () => {
+  const refreshes = [];
+  const h = universeViewHarness({
+    loadCatalog: async ({ refresh = false } = {}) => {
+      refreshes.push(refresh);
+      return { lists: [], dropped: refresh ? 0 : 1 };
+    },
+  });
+  h.setCurrent('universe');
+  h.view.setDetail('marvel-zombies');
+  await h.view.renderDetail();
+  await h.nodes.detail.retry.listeners.click();
+  assert.deepEqual(refreshes, [false, true]);
+  assert.equal(h.nodes.detail.retry.hidden, true);
+  assert.equal(h.nodes.detail.emptyLink.hidden, false);
+});
+
+test('an incomplete catalog does not claim that a universe has no associated lists', async () => {
+  const h = universeViewHarness({ loadCatalog: async () => ({ lists: [], dropped: 1 }) });
+  h.setCurrent('universe');
+  h.view.setDetail('marvel-zombies');
+  await h.view.renderDetail();
+  assert.match(h.nodes.detail.status.textContent, /No matching Reading Lists could be confirmed/);
+  assert.match(h.nodes.detail.status.textContent, /results may be incomplete/);
+  assert.equal(h.nodes.detail.emptyLink.hidden, true);
+});
+
+test('unknown details have a return path and a departed load cannot repaint', async () => {
+  let release;
+  const pending = new Promise((resolve) => { release = resolve; });
+  const h = universeViewHarness({ loadCatalog: () => pending });
+  h.setCurrent('universe');
+  h.view.setDetail('ultimate-marvel');
+  const loading = h.view.renderDetail();
+  h.setCurrent('universes');
+  release({ lists: [] });
+  await loading;
+  assert.match(h.nodes.detail.status.textContent, /Loading/);
+
+  h.setCurrent('universe');
+  h.view.setDetail('unknown-reality');
+  await h.view.renderDetail();
+  assert.equal(h.nodes.detail.heading.textContent, 'Universe not found');
+  assert.equal(h.nodes.detail.missing.hidden, false);
+  assert.equal(h.nodes.detail.body.hidden, true);
 });

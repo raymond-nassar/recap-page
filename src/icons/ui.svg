@@ -57,6 +57,10 @@
   <symbol id="story-types" viewBox="0 0 24 24">
     <path d="M3 3h8l10 10-8 8-10-10z"/><circle cx="7.5" cy="7.5" r="1.5"/>
   </symbol>
+  <symbol id="universes" viewBox="0 0 24 24">
+    <circle cx="9" cy="13" r="5"/><circle cx="17" cy="7" r="3"/>
+    <path d="M17 16v4m-2-2h4M5 3v3M3.5 4.5h3"/>
+  </symbol>
   <symbol id="arrow-right" viewBox="0 0 24 24">
     <path d="M4 12h16m-7-7 7 7-7 7"/>
   </symbol>

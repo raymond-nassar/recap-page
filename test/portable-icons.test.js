@@ -12,7 +12,7 @@ const sprite = read('../src/icons/ui.svg');
 const expected = [
   'menu', 'books', 'search', 'settings', 'info',
   'check', 'progress', 'edit', 'star', 'search',
-  'timeline', 'characters', 'series', 'creator', 'story-types', 'ages', 'search', 'search',
+  'timeline', 'characters', 'series', 'creator', 'story-types', 'ages', 'universes', 'search', 'search',
 ];
 
 test('all navigation/search glyphs use the selected local symbols, not font characters', () => {
@@ -20,7 +20,7 @@ test('all navigation/search glyphs use the selected local symbols, not font char
   const mobile = [...html.matchAll(/<a href="#\/(?:library|add)" class="mobile-link"[^>]*>[\s\S]*?<use href="\.\/icons\/ui\.svg#([\w-]+)"\/>/g)]
     .map(([, name]) => name);
   assert.deepEqual(mobile, ['books', 'search']);
-  assert.equal(icons.length, 20);
+  assert.equal(icons.length, 21);
   assert.deepEqual(icons.map(([, , content]) => {
     const match = /^<use href="\.\/icons\/ui\.svg#([\w-]+)"\/>$/.exec(content);
     assert.ok(match, 'each icon contains only a local symbol reference');
@@ -42,7 +42,7 @@ test('the authored symbol set has exactly the used names and no remote or active
     ...expected, 'storylines', 'screen', 'ages', 'reader', 'arrow-left', 'arrow-right', 'thumb-up', 'thumb-down', 'star',
     'story-types', 'paste', 'issue-add',
   ])].sort());
-  assert.equal(ids.length, 24);
+  assert.equal(ids.length, 25);
   assert.doesNotMatch(sprite, /<(?:script|image|foreignObject|style|text)\b|\bhref=|\bon\w+=/i);
   assert.doesNotMatch(sprite, /[\uE000-\uF8FF]/);
   assert.match(css, /\.gi \{\s*fill: none; stroke: currentColor;/);
@@ -71,7 +71,7 @@ test('generated icons use SVG namespaces and the same decorative local sprite co
   assert.deepEqual(icon.children[0].attributes, { href: './icons/ui.svg#arrow-right' });
   const home = read('../src/js/views/home.js');
   assert.doesNotMatch(home, /String\.fromCodePoint/);
-  assert.match(home, /createIcon\(CATEGORY_ICONS\[category\.icon\], 'gi home-path-icon'\)/);
+  assert.match(home, /createIcon\(CATEGORY_ICONS\[category\.icon\] \?\? category\.icon, 'gi home-path-icon'\)/);
   assert.match(home, /createIcon\('arrow-right', 'gi home-path-arrow'\)/);
   const names = [];
   const view = createHomeView({
@@ -96,7 +96,7 @@ test('sprite provenance and browser distribution preserve zero runtime dependenc
   assert.match(read('../scripts/pack-windows.mjs'), /path\.startsWith\('src\/'\)/);
 });
 
-test('the six Home category cards draw six different symbols', () => {
+test('the Home category cards draw different symbols', () => {
   // #873: Modern Timeline and Marvel Ages both drew the open book, so two of the six looked alike.
   const names = [];
   const view = createHomeView({
@@ -107,8 +107,8 @@ test('the six Home category cards draw six different symbols', () => {
     },
   });
   for (const category of HOME_CATEGORIES) view.categoryTile({ ...category, count: 1 });
-  assert.equal(names.length, 6);
-  assert.equal(new Set(names).size, 6, JSON.stringify(names));
+  assert.equal(names.length, HOME_CATEGORIES.length);
+  assert.equal(new Set(names).size, HOME_CATEGORIES.length, JSON.stringify(names));
 });
 
 test('the provenance table lists exactly the symbols the sprite draws', () => {

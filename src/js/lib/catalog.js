@@ -8,6 +8,7 @@
 
 import { normalizeCover } from './model.js';
 import { copyUniverseListFields, universeListProblems } from './universeSchema.js';
+import { universeDefinitions } from '../../data/universeCatalog.js';
 
 export const LIST_TYPES = ['event', 'character-run', 'creator-run', 'era', 'screen-companion'];
 export const READING_DEPTHS = ['essential', 'complete', 'partial', 'tie-ins', 'selected'];
@@ -1369,11 +1370,24 @@ export const HOME_CATEGORIES = [
     tier: 'secondary',
     select: shelfCategory('young-readers'),
   },
+  {
+    key: 'universes',
+    route: 'universes',
+    heading: 'Universes',
+    label: 'Browse realities',
+    icon: 'universes',
+    tier: 'secondary',
+    kind: 'universe-index',
+    count: universeDefinitions.length,
+    singular: 'universe',
+    plural: 'universes',
+  },
 ];
 
 export function availableHomeCategories(stories, definitions = HOME_CATEGORIES) {
   const all = Array.isArray(stories) ? stories : [];
   return definitions.flatMap(({ select, ...category }) => {
+    if (Number.isInteger(category.count)) return category.count > 0 ? [category] : [];
     const matches = select(all);
     const count = matches.reduce((total, story) => total + (story.lists?.length ?? 0), 0);
     return matches.length ? [{ ...category, count }] : [];

@@ -2070,7 +2070,7 @@ test('iOS Search reuses the named label target and retains its visible field des
   assert.match(controller, /for \(const id of \[[^\]]*'search-hint'[^\]]*\]\)[\s\S]*?describedBy\.split\(\/\\s\+\/\)\.includes\(id\)\) hint\.setAttribute\('aria-hidden', 'true'\)/);
   assert.match(css, /:root #form-search label\[for="search-q"\]\s*\{[^}]*min-height:\s*var\(--target\)[^}]*line-height:\s*max\(var\(--target\), 1\.5em\)/s);
   assert.match(html, /id="search-q"[^>]*aria-describedby="search-hint search-help"/);
-  assert.match(html, /<p id="search-hint" class="rail-hint">Lists, series and creators match as you type\. Press Enter to look up comics online\./);
+  assert.match(html, /<p id="search-hint" class="rail-hint">Lists, universes, series and creators match as you type\. Press Enter to look up comics online\./);
   for (const selector of ['#search-scopes .search-scope', '.search-quiet-links a']) {
     assert.ok(controller.includes(selector), `${selector} is a named iOS target`);
   }
@@ -2115,7 +2115,7 @@ test('native Search test measures the box label and every scope at 44 points and
   assert.match(searchProbe, /screens\.push\(snapshot\('view-add'\)\)/);
   assert.ok(searchProbe.includes('\\(Self.searchAuditPreparation)'), 'the Search probe installs its focus-release target');
   assert.match(body, /for category in \[UIContentSizeCategory\.large, \.accessibilityExtraExtraExtraLarge\]/);
-  assert.match(body, /for scope in \["Top", "Reading Lists", "Series", "Creators", "Comics"\]/);
+  assert.match(body, /for scope in \["Top", "Reading Lists", "Universes", "Series", "Creators", "Comics"\]/);
   assert.match(body, /XCTAssertGreaterThanOrEqual\(labelTarget\.frame\.height, 44/);
   assert.match(body, /XCTAssertGreaterThanOrEqual\(button\.frame\.width, 44/);
   assert.match(body, /XCTAssertGreaterThanOrEqual\(button\.frame\.height, 44/);

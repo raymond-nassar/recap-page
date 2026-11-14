@@ -1,6 +1,7 @@
 import {
   STORY_TONES, STORY_TYPES, depthLabel, foldSearchText, searchCatalog, squeezeSearchText, typeLabel,
 } from './catalog.js';
+import { universeResolver } from './universes.js';
 
 // Home files every screen companion under "MCU Prep", but no list carries those words. Measured on
 // the bundled catalog, a search for the shelf's own name found none of its 37 lists, and "MCU"
@@ -12,11 +13,15 @@ export function listSearchTerms(query) {
 }
 
 function enrich(list, guides) {
-  if (list.type !== 'screen-companion') return list;
-  const releases = guides?.get(list.id) ?? [];
+  const universes = universeResolver.getListUniverseRelations(list).map(({ universe }) => universe);
+  const releases = list.type === 'screen-companion' ? guides?.get(list.id) ?? [] : [];
   return {
     ...list,
-    keywords: [...(list.keywords ?? []), MCU_PREP_ALIAS, ...releases.map((release) => release.title)],
+    keywords: [
+      ...(list.keywords ?? []),
+      ...(list.type === 'screen-companion' ? [MCU_PREP_ALIAS, ...releases.map((release) => release.title)] : []),
+      ...universes.flatMap((universe) => [universe.name, universe.earth, ...universe.aliases].filter(Boolean)),
+    ],
   };
 }
 

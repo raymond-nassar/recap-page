@@ -4,6 +4,9 @@ import {
 import { foldSearchText, squeezeSearchText } from './catalog.js';
 import { universeListProblems, universeRegistryProblems } from './universeSchema.js';
 
+export const UNIVERSE_SORTS = ['publication-history', 'alphabetical', 'recently-added'];
+export const DEFAULT_UNIVERSE_SORT = UNIVERSE_SORTS[0];
+
 export function createUniverseResolver({
   definitions = universeDefinitions,
   series = universeSeries,
@@ -57,15 +60,23 @@ export function createUniverseResolver({
     const folded = foldSearchText(query);
     if (!folded) return [...definitions];
     const terms = folded.split(' ');
-    return definitions.filter((universe) => {
-      const text = foldSearchText([universe.name, universe.earth, ...universe.aliases].join(' '));
+    const squeezedQuery = squeezeSearchText(folded);
+    return definitions.map((universe) => {
+      const fields = [universe.name, universe.earth, ...universe.aliases].map(foldSearchText);
+      const text = fields.join(' ');
       const squeezed = squeezeSearchText(text);
-      return terms.every((term) => text.includes(term) || squeezed.includes(squeezeSearchText(term)));
-    });
+      return {
+        universe,
+        matches: terms.every((term) => text.includes(term) || squeezed.includes(squeezeSearchText(term))),
+        exact: fields.some((field) => field === folded || squeezeSearchText(field) === squeezedQuery),
+      };
+    }).filter(({ matches }) => matches)
+      .sort((a, b) => Number(b.exact) - Number(a.exact))
+      .map(({ universe }) => universe);
   }
 
-  function sortUniverses(items, order = 'publication-history') {
-    if (!['publication-history', 'alphabetical', 'recently-added'].includes(order)) {
+  function sortUniverses(items, order = DEFAULT_UNIVERSE_SORT) {
+    if (!UNIVERSE_SORTS.includes(order)) {
       throw new Error(`Unknown Universe sort order: ${String(order)}`);
     }
     return [...items].sort((a, b) => {

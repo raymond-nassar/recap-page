@@ -155,7 +155,7 @@ export function createHomeView({
         onNavigateCategory(category);
       },
     }, [
-      createIcon(CATEGORY_ICONS[category.icon], 'gi home-path-icon'),
+      createIcon(CATEGORY_ICONS[category.icon] ?? category.icon, 'gi home-path-icon'),
       // Each piece but the last ends in a space, which is not drawn because it ends a line, so the
       // pieces stay separate words for anything that reads the card's text rather than its boxes.
       // The axe rules pass is one: it joins sibling text as it finds it, and read this card as
@@ -169,6 +169,27 @@ export function createHomeView({
       ]),
       createIcon('arrow-right', 'gi home-path-arrow'),
     ]));
+  }
+
+  function renderCategories(nodes, categories) {
+    const primaryCategories = categories.filter(({ tier }) => tier === 'primary');
+    const secondaryCategories = categories.filter(({ tier }) => tier === 'secondary');
+    for (const gateway of nodes.gateways) {
+      const primary = gateway.querySelector('[data-primary-paths]');
+      const secondary = gateway.querySelector('[data-secondary-paths]');
+      const more = gateway.querySelector('[data-more-paths]');
+      const status = gateway.querySelector('[data-paths-status]');
+      primary.replaceChildren(...primaryCategories.map(categoryTile));
+      secondary.replaceChildren(...secondaryCategories.map(categoryTile));
+      primary.hidden = primaryCategories.length === 0;
+      more.hidden = secondaryCategories.length === 0;
+      const statusText = categories.length
+        ? `${categories.length} ${categories.length === 1 ? 'way' : 'ways'} to read available.`
+        : 'No reading paths are bundled with this build.';
+      status.classList.toggle('visually-hidden', categories.length > 0);
+      status.hidden = false;
+      if (status.textContent !== statusText) status.textContent = statusText;
+    }
   }
 
   async function renderGateways() {
@@ -186,16 +207,14 @@ export function createHomeView({
         status.textContent = 'Loading ways to read…';
       }
       try {
-        catalog = await loadCatalog();
+        const loaded = await loadCatalog();
+        if (currentGeneration !== generation) return;
+        catalog = loaded;
       } catch (error) {
-        for (const gateway of nodes.gateways) {
-          gateway.querySelector('[data-primary-paths]').hidden = true;
-          gateway.querySelector('[data-more-paths]').hidden = true;
-          gateway.querySelector('[data-paths-status]').hidden = true;
-        }
+        if (currentGeneration === generation) renderCategories(nodes, categoriesForCatalog({ lists: [] }));
         await onCatalogLoadFailure({
           error,
-          isCurrent: () => currentGeneration === generation,
+          isCurrent: () => currentGeneration === generation && !elements().home.hidden,
           retry: renderGateways,
         });
         return;
@@ -205,26 +224,7 @@ export function createHomeView({
 
     nodes = elements();
     if (catalog.dropped) onCatalogDropped(catalog.dropped);
-
-    const categories = categoriesForCatalog(catalog);
-    const primaryCategories = categories.filter(({ tier }) => tier === 'primary');
-    const secondaryCategories = categories.filter(({ tier }) => tier === 'secondary');
-    for (const gateway of nodes.gateways) {
-      const primary = gateway.querySelector('[data-primary-paths]');
-      const secondary = gateway.querySelector('[data-secondary-paths]');
-      const more = gateway.querySelector('[data-more-paths]');
-      const status = gateway.querySelector('[data-paths-status]');
-      primary.replaceChildren(...primaryCategories.map(categoryTile));
-      secondary.replaceChildren(...secondaryCategories.map(categoryTile));
-      primary.hidden = primaryCategories.length === 0;
-      more.hidden = secondaryCategories.length === 0;
-      const statusText = categories.length
-        ? `${categories.length} ways to read available.`
-        : 'No reading paths are bundled with this build.';
-      status.classList.toggle('visually-hidden', categories.length > 0);
-      status.hidden = false;
-      if (status.textContent !== statusText) status.textContent = statusText;
-    }
+    renderCategories(nodes, categoriesForCatalog(catalog));
   }
 
   return {

@@ -91,6 +91,7 @@ function harness({
   nextIssue = { issueId: 7, title: 'Next issue', seriesName: 'Series (2026)', number: '3' },
   progress = { read: 1, total: 2 },
   readerPresentation,
+  categorySelector,
 } = {}) {
   const firstGateway = gateway();
   const secondGateway = gateway();
@@ -161,7 +162,7 @@ function harness({
     paths: [],
   };
   const view = createHomeView({
-    categoriesForCatalog: () => categories,
+    categoriesForCatalog: categorySelector ?? (() => categories),
     createIcon: (name, className) => node({
       class: className, 'aria-hidden': 'true', focusable: 'false', symbol: name,
     }),
@@ -502,6 +503,23 @@ test('a newer gateway render makes an earlier catalog failure stale', async () =
   assert.equal(h.calls.failures.length, 2);
   assert.equal(h.calls.failures[0].isCurrent(), false);
   assert.equal(h.calls.failures[1].isCurrent(), true);
+});
+
+test('Home keeps the local Universe gateway when the Reading List catalog fails', async () => {
+  const h = harness({
+    catalogLoader: async () => { throw new Error('offline'); },
+    categorySelector: (catalog) => catalog.lists.length ? [] : [{
+      key: 'universes', route: 'universes', tier: 'secondary', icon: 'universes',
+      heading: 'Universes', label: 'Browse realities', count: 31, plural: 'universes',
+    }],
+  });
+  await h.view.renderGateways();
+  const gateway = h.nodes.gateways[0].nodes;
+  assert.equal(gateway.more.hidden, false);
+  const link = gateway.secondary.children[0].children[0];
+  assert.equal(link.href, '#/universes');
+  assert.match(link.attributes['aria-label'], /31 universes/);
+  assert.equal(h.calls.failures.length, 1);
 });
 
 test('main constructs Home once while the view has no controller or concrete-view dependency', () => {
