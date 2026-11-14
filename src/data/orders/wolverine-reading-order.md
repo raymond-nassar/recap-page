@@ -75,7 +75,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] Wolverine: Deep Cut #4
 - [ ] [Uncanny X-Men (1963) #246 <!-- mrt:source-occurrence=68 -->](https://www.marvel.com/comics/issue/13787/uncanny_x-men_1963_246)
 - [ ] [Uncanny X-Men (1963) #251 <!-- mrt:source-occurrence=69 -->](https://www.marvel.com/comics/issue/13792/uncanny_x-men_1963_251)
-- [ ] Web Of Venom: VeÃ¢â‚¬â„¢Nam (2018) #1
+- [ ] Web Of Venom: Ve'Nam (2018) #1 <!-- mrt:legacy-identity-key=Web%20Of%20Venom%3A%20Ve%C3%83%C2%A2%C3%A2%E2%80%9A%C2%AC%C3%A2%E2%80%9E%C2%A2Nam%20%282018%29%20%231 -->
 - [ ] [Wolverine (1988) #17 <!-- mrt:source-occurrence=71 -->](https://www.marvel.com/comics/issue/14114/wolverine_1988_17)
 - [ ] [Wolverine (1988) #18 <!-- mrt:source-occurrence=72 -->](https://www.marvel.com/comics/issue/14125/wolverine_1988_18)
 - [ ] [Wolverine (1988) #19 <!-- mrt:source-occurrence=73 -->](https://www.marvel.com/comics/issue/14136/wolverine_1988_19)
@@ -305,7 +305,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] Wolverine #156
 - [ ] Wolverine #157
 - [ ] Wolverine #158
-- [ ] Annual Ã¢â‚¬â„¢99
+- [ ] Annual '99 <!-- mrt:legacy-identity-key=Annual%20%C3%83%C2%A2%C3%A2%E2%80%9A%C2%AC%C3%A2%E2%80%9E%C2%A299 -->
 - [ ] Wolverine: The Origin #1
 - [ ] Wolverine: The Origin #2
 - [ ] Wolverine: The Origin #3
@@ -341,7 +341,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] Deadpool #60
 - [ ] Weapon X (2002) 1/2
 - [ ] 1-28
-- [ ] Weapon X: The Draft Ã¢â‚¬â€œ Sauron
+- [ ] Weapon X: The Draft - Sauron <!-- mrt:legacy-identity-key=Weapon%20X%3A%20The%20Draft%20%C3%83%C2%A2%C3%A2%E2%80%9A%C2%AC%C3%A2%E2%82%AC%C5%93%20Sauron -->
 - [ ] Wild Child
 - [ ] Kane
 - [ ] Marrow
@@ -587,7 +587,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] Wolverine: Origins #24
 - [ ] Wolverine: Origins #25
 - [ ] Wolverine/Deadpool: The Decoy 1
-- [ ] Material From Wolverine Annual Ã¢â‚¬â„¢95
+- [ ] Material From Wolverine Annual '95 <!-- mrt:legacy-identity-key=Material%20From%20Wolverine%20Annual%20%C3%83%C2%A2%C3%A2%E2%80%9A%C2%AC%C3%A2%E2%80%9E%C2%A295 -->
 - [ ] Logan #1
 - [ ] Logan #2
 - [ ] [Before the Fantastic Four: Ben Grimm & Logan (2000) #3 <!-- mrt:source-occurrence=611 -->](https://www.marvel.com/comics/issue/62693/before_the_fantastic_four_ben_grimm_logan_2000_3)
@@ -619,7 +619,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] Wolverine: Chop Shop
 - [ ] Wolverine: Switchback
 - [ ] Wolverine Holiday Special: Flies to a Spider
-- [ ] Wolverine: Dead ManÃ¢â‚¬â„¢s Hand
+- [ ] Wolverine: Dead Man's Hand <!-- mrt:legacy-identity-key=Wolverine%3A%20Dead%20Man%C3%83%C2%A2%C3%A2%E2%80%9A%C2%AC%C3%A2%E2%80%9E%C2%A2s%20Hand -->
 - [ ] [X-Force (2008) #1 <!-- mrt:source-occurrence=642 -->](https://www.marvel.com/comics/issue/20704/x-force_2008_1)
 - [ ] [X-Force (2008) #2 <!-- mrt:source-occurrence=643 -->](https://www.marvel.com/comics/issue/20895/x-force_2008_2)
 - [ ] [X-Force (2008) #3 <!-- mrt:source-occurrence=644 -->](https://www.marvel.com/comics/issue/21028/x-force_2008_3)
@@ -631,7 +631,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [X-Force (2008) #9 <!-- mrt:source-occurrence=650 -->](https://www.marvel.com/comics/issue/22521/x-force_2008_9)
 - [ ] [X-Force (2008) #10 <!-- mrt:source-occurrence=651 -->](https://www.marvel.com/comics/issue/22929/x-force_2008_10)
 - [ ] [X-Force (2008) #11 <!-- mrt:source-occurrence=652 -->](https://www.marvel.com/comics/issue/23125/x-force_2008_11)
-- [ ] Dark Reign: The List Ã¢â‚¬â€œ Wolverine #1
+- [ ] Dark Reign: The List - Wolverine #1 <!-- mrt:legacy-identity-key=Dark%20Reign%3A%20The%20List%20%C3%83%C2%A2%C3%A2%E2%80%9A%C2%AC%C3%A2%E2%82%AC%C5%93%20Wolverine%20%231 -->
 - [ ] Wolverine: Weapon X #6
 - [ ] Wolverine: Weapon X #7
 - [ ] Wolverine: Weapon X #8
@@ -667,7 +667,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [X-Force (2008) #14 <!-- mrt:source-occurrence=691 -->](https://www.marvel.com/comics/issue/23969/x-force_2008_14)
 - [ ] [X-Force (2008) #15 <!-- mrt:source-occurrence=692 -->](https://www.marvel.com/comics/issue/24170/x-force_2008_15)
 - [ ] [X-Force (2008) #16 <!-- mrt:source-occurrence=693 -->](https://www.marvel.com/comics/issue/27253/x-force_2008_16)
-- [ ] X-Men: Future History Ã¢â‚¬â€œ The Messiah War Sourcebook
+- [ ] X-Men: Future History - The Messiah War Sourcebook <!-- mrt:legacy-identity-key=X%2DMen%3A%20Future%20History%20%C3%83%C2%A2%C3%A2%E2%80%9A%C2%AC%C3%A2%E2%82%AC%C5%93%20The%20Messiah%20War%20Sourcebook -->
 - [ ] [X-Force (2008) #12 <!-- mrt:source-occurrence=695 -->](https://www.marvel.com/comics/issue/23617/x-force_2008_12)
 - [ ] [X-Force (2008) #13 <!-- mrt:source-occurrence=696 -->](https://www.marvel.com/comics/issue/23772/x-force_2008_13)
 - [ ] [X-Force (1991) #17 <!-- mrt:source-occurrence=697 -->](https://www.marvel.com/comics/issue/17980/x-force_1991_17)
@@ -988,19 +988,19 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] Wolverine and the X-Men (vol. 1) #33
 - [ ] Wolverine and the X-Men (vol. 1) #34
 - [ ] Wolverine and the X-Men (vol. 1) #35
-- [ ] Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #1
-- [ ] Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #2
-- [ ] Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #3
-- [ ] Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #4
-- [ ] Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #5
-- [ ] Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #6
-- [ ] Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #7
-- [ ] Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #8
-- [ ] Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #9
-- [ ] Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #10
-- [ ] Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #11
-- [ ] Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #12
-- [ ] Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #13
+- [ ] Wolverine: Japan's Most Wanted #1 <!-- mrt:legacy-identity-key=Wolverine%3A%20Japan%C3%83%C2%A2%C3%A2%E2%80%9A%C2%AC%C3%A2%E2%80%9E%C2%A2s%20Most%20Wanted%20%231 -->
+- [ ] Wolverine: Japan's Most Wanted #2 <!-- mrt:legacy-identity-key=Wolverine%3A%20Japan%C3%83%C2%A2%C3%A2%E2%80%9A%C2%AC%C3%A2%E2%80%9E%C2%A2s%20Most%20Wanted%20%232 -->
+- [ ] Wolverine: Japan's Most Wanted #3 <!-- mrt:legacy-identity-key=Wolverine%3A%20Japan%C3%83%C2%A2%C3%A2%E2%80%9A%C2%AC%C3%A2%E2%80%9E%C2%A2s%20Most%20Wanted%20%233 -->
+- [ ] Wolverine: Japan's Most Wanted #4 <!-- mrt:legacy-identity-key=Wolverine%3A%20Japan%C3%83%C2%A2%C3%A2%E2%80%9A%C2%AC%C3%A2%E2%80%9E%C2%A2s%20Most%20Wanted%20%234 -->
+- [ ] Wolverine: Japan's Most Wanted #5 <!-- mrt:legacy-identity-key=Wolverine%3A%20Japan%C3%83%C2%A2%C3%A2%E2%80%9A%C2%AC%C3%A2%E2%80%9E%C2%A2s%20Most%20Wanted%20%235 -->
+- [ ] Wolverine: Japan's Most Wanted #6 <!-- mrt:legacy-identity-key=Wolverine%3A%20Japan%C3%83%C2%A2%C3%A2%E2%80%9A%C2%AC%C3%A2%E2%80%9E%C2%A2s%20Most%20Wanted%20%236 -->
+- [ ] Wolverine: Japan's Most Wanted #7 <!-- mrt:legacy-identity-key=Wolverine%3A%20Japan%C3%83%C2%A2%C3%A2%E2%80%9A%C2%AC%C3%A2%E2%80%9E%C2%A2s%20Most%20Wanted%20%237 -->
+- [ ] Wolverine: Japan's Most Wanted #8 <!-- mrt:legacy-identity-key=Wolverine%3A%20Japan%C3%83%C2%A2%C3%A2%E2%80%9A%C2%AC%C3%A2%E2%80%9E%C2%A2s%20Most%20Wanted%20%238 -->
+- [ ] Wolverine: Japan's Most Wanted #9 <!-- mrt:legacy-identity-key=Wolverine%3A%20Japan%C3%83%C2%A2%C3%A2%E2%80%9A%C2%AC%C3%A2%E2%80%9E%C2%A2s%20Most%20Wanted%20%239 -->
+- [ ] Wolverine: Japan's Most Wanted #10 <!-- mrt:legacy-identity-key=Wolverine%3A%20Japan%C3%83%C2%A2%C3%A2%E2%80%9A%C2%AC%C3%A2%E2%80%9E%C2%A2s%20Most%20Wanted%20%2310 -->
+- [ ] Wolverine: Japan's Most Wanted #11 <!-- mrt:legacy-identity-key=Wolverine%3A%20Japan%C3%83%C2%A2%C3%A2%E2%80%9A%C2%AC%C3%A2%E2%80%9E%C2%A2s%20Most%20Wanted%20%2311 -->
+- [ ] Wolverine: Japan's Most Wanted #12 <!-- mrt:legacy-identity-key=Wolverine%3A%20Japan%C3%83%C2%A2%C3%A2%E2%80%9A%C2%AC%C3%A2%E2%80%9E%C2%A2s%20Most%20Wanted%20%2312 -->
+- [ ] Wolverine: Japan's Most Wanted #13 <!-- mrt:legacy-identity-key=Wolverine%3A%20Japan%C3%83%C2%A2%C3%A2%E2%80%9A%C2%AC%C3%A2%E2%80%9E%C2%A2s%20Most%20Wanted%20%2313 -->
 - [ ] [Wolverine (2013) #7 <!-- mrt:source-occurrence=1034 -->](https://www.marvel.com/comics/issue/46726/wolverine_2013_7)
 - [ ] [Wolverine (2013) #8 <!-- mrt:source-occurrence=1035 -->](https://www.marvel.com/comics/issue/46727/wolverine_2013_8)
 - [ ] Wolverine (vol. 5) #9
@@ -1097,10 +1097,10 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] Old Man Logan #3
 - [ ] Old Man Logan #4
 - [ ] [Old Man Logan (2015) #5 <!-- mrt:source-occurrence=1129 -->](https://www.marvel.com/comics/issue/52310/old_man_logan_2015_5)
-- [ ] Wolverine: Old Man Logan Vol. 1: Berzerker Ã¢â‚¬â€œ Old Man Logan #1
-- [ ] Wolverine: Old Man Logan Vol. 1: Berzerker Ã¢â‚¬â€œ Old Man Logan #2
-- [ ] Wolverine: Old Man Logan Vol. 1: Berzerker Ã¢â‚¬â€œ Old Man Logan #3
-- [ ] Wolverine: Old Man Logan Vol. 1: Berzerker Ã¢â‚¬â€œ Old Man Logan #4
+- [ ] Wolverine: Old Man Logan Vol. 1: Berzerker - Old Man Logan #1 <!-- mrt:legacy-identity-key=Wolverine%3A%20Old%20Man%20Logan%20Vol%2E%201%3A%20Berzerker%20%C3%83%C2%A2%C3%A2%E2%80%9A%C2%AC%C3%A2%E2%82%AC%C5%93%20Old%20Man%20Logan%20%231 -->
+- [ ] Wolverine: Old Man Logan Vol. 1: Berzerker - Old Man Logan #2 <!-- mrt:legacy-identity-key=Wolverine%3A%20Old%20Man%20Logan%20Vol%2E%201%3A%20Berzerker%20%C3%83%C2%A2%C3%A2%E2%80%9A%C2%AC%C3%A2%E2%82%AC%C5%93%20Old%20Man%20Logan%20%232 -->
+- [ ] Wolverine: Old Man Logan Vol. 1: Berzerker - Old Man Logan #3 <!-- mrt:legacy-identity-key=Wolverine%3A%20Old%20Man%20Logan%20Vol%2E%201%3A%20Berzerker%20%C3%83%C2%A2%C3%A2%E2%80%9A%C2%AC%C3%A2%E2%82%AC%C5%93%20Old%20Man%20Logan%20%233 -->
+- [ ] Wolverine: Old Man Logan Vol. 1: Berzerker - Old Man Logan #4 <!-- mrt:legacy-identity-key=Wolverine%3A%20Old%20Man%20Logan%20Vol%2E%201%3A%20Berzerker%20%C3%83%C2%A2%C3%A2%E2%80%9A%C2%AC%C3%A2%E2%82%AC%C5%93%20Old%20Man%20Logan%20%234 -->
 - [ ] [Extraordinary X-Men (2015) #1 <!-- mrt:source-occurrence=1134 -->](https://www.marvel.com/comics/issue/55433/extraordinary_x-men_2015_1)
 - [ ] Extraordinary X-Men #2
 - [ ] Extraordinary X-Men #3
@@ -1251,7 +1251,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Hunt for Wolverine: Mystery in Madripoor (2018) #3 <!-- mrt:source-occurrence=1298 -->](https://www.marvel.com/comics/issue/68600/hunt_for_wolverine_mystery_in_madripoor_2018_3)
 - [ ] [Hunt for Wolverine: Mystery in Madripoor (2018) #4 <!-- mrt:source-occurrence=1299 -->](https://www.marvel.com/comics/issue/68602/hunt_for_wolverine_mystery_in_madripoor_2018_4)
 - [ ] [Hunt for Wolverine: Dead Ends (2018) #1 <!-- mrt:source-occurrence=1300 -->](https://www.marvel.com/comics/issue/67583/hunt_for_wolverine_dead_ends_2018_1)
-- [ ] WhereÃ¢â‚¬â„¢s Wolverine pages and Material from Marvel Legacay (2017) #1
+- [ ] Where's Wolverine pages and Material from Marvel Legacay (2017) #1 <!-- mrt:legacy-identity-key=Where%C3%83%C2%A2%C3%A2%E2%80%9A%C2%AC%C3%A2%E2%80%9E%C2%A2s%20Wolverine%20pages%20and%20Material%20from%20Marvel%20Legacay%20%282017%29%20%231 -->
 - [ ] [Old Man Logan (2016) #36 <!-- mrt:source-occurrence=1302 -->](https://www.marvel.com/comics/issue/66505/old_man_logan_2016_36)
 - [ ] Old Man Logan #37
 - [ ] Old Man Logan #38

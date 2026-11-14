@@ -13,7 +13,7 @@ import { digestJson } from '../scripts/lib/chapter-orders.mjs';
 import { buildMarkdown } from '../scripts/author-cbh-packet.mjs';
 import { digestCanonicalJson, packetDigestFor, validateFrozenPacket } from '../scripts/lib/cbh-inventory.mjs';
 import { writeOutputsAtomically } from '../scripts/vendor-orders.mjs';
-import { parseChecklist } from '../src/js/lib/markdown.js';
+import { encodeLegacyIdentityKey, parseChecklist } from '../src/js/lib/markdown.js';
 import { placeholderId } from '../scripts/lib/placeholder-id.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -42,6 +42,40 @@ test('vendoring repairs placeholder display text only after hashing its legacy t
   assert.equal(payload.items[0].title, entry.title);
   assert.equal(payload.items[0].placeholder, true);
   assert.equal(payload.unresolved[0].title, entry.title);
+});
+
+test('a repaired checklist line keeps its legacy identity only where the repair ledger registered it', (t) => {
+  const ledger = JSON.parse(readFileSync(path.join(root, 'scripts', 'data', 'wolverine-title-repairs.json')));
+  const entry = { ...ledger.entries[0], position: 1 };
+  entry.issueId = placeholderId('atomic-order', entry.legacyTitle);
+  const annotated = (key) => `- [ ] ${entry.title} <!-- mrt:legacy-identity-key=${encodeLegacyIdentityKey(key)} -->\n`;
+  const vendor = (line) => {
+    const fixture = mkdtempSync(path.join(os.tmpdir(), 'wolverine-legacy-key-'));
+    t.after(() => rmSync(fixture, { recursive: true, force: true }));
+    writeFixture(fixture);
+    const manifestPath = path.join(fixture, 'src', 'data', 'curated-lists.json');
+    const manifest = JSON.parse(readFileSync(manifestPath));
+    delete manifest.lists[0].coverIssueId;
+    writeFileSync(manifestPath, JSON.stringify(manifest));
+    writeFileSync(path.join(fixture, 'scripts', 'data', 'wolverine-title-repairs.json'),
+      JSON.stringify({ ...ledger, orderId: 'atomic-order', entries: [entry] }));
+    writeFileSync(path.join(fixture, 'src', 'data', 'orders', 'atomic-order.md'), line);
+    const result = spawnSync(process.execPath, ['scripts/vendor-orders.mjs', '--only=atomic-order'], {
+      cwd: fixture, encoding: 'utf8',
+    });
+    return { result, payloadPath: path.join(fixture, 'src', 'data', 'atomic_order.json') };
+  };
+
+  const kept = vendor(annotated(entry.legacyTitle));
+  assert.equal(kept.result.status, 0, `${kept.result.stdout}\n${kept.result.stderr}`);
+  const payload = JSON.parse(readFileSync(kept.payloadPath));
+  assert.equal(payload.items[0].issueId, entry.issueId);
+  assert.equal(payload.items[0].title, entry.title);
+  assert.deepEqual(Object.keys(payload.unresolved[0]).sort(), ['index', 'read', 'section', 'title', 'url']);
+
+  const forged = vendor(annotated(`${entry.legacyTitle} forged`));
+  assert.notEqual(forged.result.status, 0);
+  assert.match(forged.result.stderr, /not registered in the title repair ledger/);
 });
 
 function writeFixture(rootPath) {

@@ -32,7 +32,7 @@ import { parseManifest } from '../src/js/lib/curated.js';
 import { parseIssueNumber, reconcileIssueTitleNumber } from './lib/issue-number.mjs';
 import { RateLimiter } from '../src/js/lib/limiter.js';
 import { placeholderId } from './lib/placeholder-id.mjs';
-import { repairWolverineTitles } from './lib/wolverine-title-repairs.mjs';
+import { legacyIdentityChecked, legacyIdentityKeyFor, repairWolverineTitles } from './lib/wolverine-title-repairs.mjs';
 import { countOrderGaps } from '../src/js/lib/model.js';
 import { OWNER_EXTERNAL_SUPPLEMENT_KIND, supplementItemFields } from './lib/owner-external-supplement.mjs';
 import {
@@ -490,7 +490,7 @@ async function main() {
   const parsed = [];
   for (const order of targets) {
     const md = await loadOrderText(order);
-    const parsedOrder = parseChecklist(md);
+    const parsedOrder = legacyIdentityChecked(order.id, parseChecklist(md, { legacyIdentityKeys: true }));
     const { entries, unresolved } = parsedOrder;
     console.log(`${order.id}: ${entries.length} issues, ${unresolved.length} unresolved`);
     parsed.push({ order, parsedOrder });
@@ -630,7 +630,7 @@ async function main() {
     const placeholderItems = unresolved.map((u) => ({
       at: u.index,
       item: {
-        issueId: placeholderId(order.id, u.title, u.sourceKey),
+        issueId: placeholderId(order.id, legacyIdentityKeyFor(u) ?? u.title, u.sourceKey),
         title: u.title,
         number: parseIssueNumber(u.title),
         url: u.url ?? null,

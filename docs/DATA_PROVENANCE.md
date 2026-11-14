@@ -747,7 +747,14 @@ The [series-volume correction ledger](../scripts/data/cbh-source-ledgers/wolveri
 records the prior publication and all 95 corrected source positions, including 65 distinct issues
 previously collapsed into repeats or exclusions. The earlier settlement counts remain historical.
 Existing saved lists keep their issue identities and progress; newly added lists use the correction.
-App title repairs use the separate ledger for #1256; checklist repairs remain in #1264 and gaps in #1257.
+App title repairs use the separate [title repair ledger](../scripts/data/wolverine-title-repairs.json)
+for #1256, and gaps remain in #1257. The downloadable checklist shows the same 25 repaired titles
+(#1264). Because a placeholder's identity is a hash of the title it was first published with, each
+of those 25 lines carries a `mrt:legacy-identity-key` annotation naming that original title, and
+vendoring accepts the annotation only for a pair the ledger registers. Regenerating the guide from
+the checklist therefore keeps those 25 published identities, so readers' marks, notes and
+availability overrides stay attached, and a reader who imports the downloaded file sees the
+repaired titles without the annotation.
 
 Star-Lord's Complete guide preserves all 99 issues in displayed source order. Its 25 shared issues
 with each of Rocket Raccoon and Groot, 7 with War of Kings, and 1 with Infinity Countdown and

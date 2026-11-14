@@ -1,9 +1,29 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  parseChecklist, parseTitleList, serializeChecklist, issueIdFromUrl,
+  parseChecklist, parseTitleList, serializeChecklist, issueIdFromUrl, encodeLegacyIdentityKey,
   digitalIdFromUrl, readerIssueId, isSafeMarvelUrl, normalizeTitle, resolveUniqueExact, stripInlineMarkdown,
 } from '../src/js/lib/markdown.js';
+
+test('a legacy identity key never reaches a title and is exposed only to the vendor that asks for it', () => {
+  const legacy = 'Web Of Venom: Ve\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a2Nam (2018) #1';
+  const key = encodeLegacyIdentityKey(legacy);
+  assert.match(key, /^(?:[A-Za-z0-9]|%[0-9A-F]{2})+$/);
+  const line = `- [x] Web Of Venom: Ve'Nam (2018) #1 <!-- mrt:legacy-identity-key=${key} -->`;
+  const plain = parseChecklist(line);
+  assert.deepEqual(plain.unresolved.map((row) => [row.title, row.read, 'legacyIdentityKey' in row]),
+    [["Web Of Venom: Ve'Nam (2018) #1", true, false]]);
+  const vendor = parseChecklist(line, { legacyIdentityKeys: true });
+  assert.equal(vendor.unresolved[0].legacyIdentityKey, legacy);
+  assert.equal(vendor.unresolved[0].title, plain.unresolved[0].title);
+  // A key not in canonical form is not a key: it stays visible rather than choosing an identity.
+  for (const odd of [key.replace('%C3', '%c3'), key.replace('Web', '%57eb'), `${key}%`]) {
+    const parsed = parseChecklist(`- [ ] Title <!-- mrt:legacy-identity-key=${odd} -->`, { legacyIdentityKeys: true });
+    assert.match(parsed.unresolved[0].title, /mrt:legacy-identity-key/);
+    assert.equal(parsed.unresolved[0].legacyIdentityKey, undefined);
+  }
+  assert.deepEqual(parseChecklist('- [ ] Plain (2020) #1', { legacyIdentityKeys: true }), parseChecklist('- [ ] Plain (2020) #1'));
+});
 
 test('pasted retired reader URLs remain explicit unresolved rows, preserving checklist position and read state', () => {
   const parsed = parseChecklist([
