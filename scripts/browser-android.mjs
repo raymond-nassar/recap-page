@@ -1838,8 +1838,10 @@ async function categoryLabelReadability(page, label, viewport) {
         rows.set(top, (rows.get(top) ?? 0) + 1);
       }
       const counts = [...rows.values()];
-      check(counts.length <= 2 && new Set(counts).size === 1,
-        `${label} ${view}: Discover More has equally populated rows ${JSON.stringify(counts)}`);
+      // Equal rows alone would accept a fall from four across to two by two, so pin each measured layout.
+      const expected = viewport.width === 1280 && scale === 1 ? [4] : [2, 2];
+      check(JSON.stringify(counts) === JSON.stringify(expected),
+        `${label} ${view}: Discover More rows ${JSON.stringify(counts)} match ${JSON.stringify(expected)}`);
       console.log(`HOME_ROWS ${label}: ${JSON.stringify(counts)}`);
     }
     await page.$eval(`#view-${view} [data-category="marvel-ages"]`, (node) => node.scrollIntoView());
