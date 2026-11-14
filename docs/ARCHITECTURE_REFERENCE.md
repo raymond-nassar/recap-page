@@ -280,7 +280,7 @@ sequenceDiagram
 
 **The transform is pure; the Store writes.** The shared read action at `src/js/views/reading.js:1136-1154` passes
 a function to the Store. That transform returns new state without side effects at
-`src/js/lib/model.js:738-740`. The write, result, and notification are handled together at
+`src/js/lib/model.js:745-747`. The write, result, and notification are handled together at
 `src/js/storage.js:783-810`.
 
 **The repaint is synchronous.** Before `update` returns, its callback has repainted the result.

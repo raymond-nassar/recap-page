@@ -161,6 +161,22 @@ test('normalizeCover refuses anything that is not an https URL', () => {
   assert.equal(normalizeCover({ path: 'https://i.annihil.us/u/x' }).ext, 'jpg', 'extension defaults');
 });
 
+// #1289: Iron Man shipped a base that already named its file, so every variant asked for a file
+// inside a file and the CDN answered 404. Saved trackers still hold that address.
+test('a cover base that names its clean.jpg file is read as its directory', () => {
+  const full = 'https://i.annihil.us/u/prod/marvel/i/mg/d/03/58dd080719806/clean.jpg';
+  const base = 'https://i.annihil.us/u/prod/marvel/i/mg/d/03/58dd080719806';
+  assert.deepEqual(normalizeCover({ path: full, ext: 'jpg' }), { path: base, ext: 'jpg' });
+  assert.equal(normalizeCover({ path: base, ext: 'jpg' }).path, base, 'a proper base is unchanged');
+  const saved = normalizeIssue({ id: 11280, cover: { path: full, ext: 'jpg' } });
+  assert.equal(coverUrl(saved, 'portrait_incredible'), `${base}/portrait_incredible.jpg`);
+  assert.equal(coverUrl(saved, 'detail'), `${base}/detail.jpg`);
+  assert.equal(normalizeCover({ path: 'https://example.com/a/clean.jpg', ext: 'jpg' }), null,
+    'the host pin still decides before the tail is read');
+  assert.equal(normalizeCover({ path: `${base}/clean.jpg?x=1`, ext: 'jpg' }).path, `${base}/clean.jpg?x=1`,
+    'only the exact terminal file name is removed');
+});
+
 test('pageCount only survives when it is a positive number', () => {
   assert.equal(normalizeIssue({ id: 1, pageCount: 0 }).pageCount, null);
   assert.equal(normalizeIssue({ id: 1, pageCount: 'x' }).pageCount, null);

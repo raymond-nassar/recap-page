@@ -273,8 +273,15 @@ export function normalizeCover(cover) {
   // back to the typographic tile it already draws for an issue that never had one. Keeping the
   // address instead would store a URL the app has just decided it will never request, and a
   // restored backup carrying one would put it back on every load.
-  const path = allowedCoverUrl(raw);
-  if (!path) return null;
+  const admitted = allowedCoverUrl(raw);
+  if (!admitted) return null;
+  // Every builder appends `/{variant}.{ext}`, so a base that already names a file asks for a file
+  // inside a file. Iron Man's representative cover shipped as `.../58dd080719806/clean.jpg`, and
+  // the CDN answered the built `.../clean.jpg/portrait_incredible.jpg` with 404 text/html while
+  // `.../58dd080719806/portrait_incredible.jpg` returned 200 image/jpeg (#1289). Only that exact
+  // tail is removed, after admission, so the host pin still decides, and a tracker saved with the
+  // old address reads correctly on load with no migration step.
+  const path = admitted.endsWith('/clean.jpg') ? admitted.slice(0, -'/clean.jpg'.length) : admitted;
   // Truncating a URL would produce a link to nothing, so an over-long one is refused outright the
   // same way a non-https one is. The longest real cover path across every shipped order is 58.
   if (path.length > MAX_URL) return null;

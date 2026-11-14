@@ -1824,8 +1824,8 @@
     "fp": "2e19500d63dda59d",
     "head": "this.store.update((s) => upsertIssue(s, { ...full, hydrated: true }));"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/lib/model.js:738-740|0": {
-    "anchor": "src/js/lib/model.js:738-740",
+  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/lib/model.js:745-747|0": {
+    "anchor": "src/js/lib/model.js:745-747",
     "fp": "d3c89ab1f16d81ee",
     "head": "export function toggleRead(state, issueId) {"
   },
@@ -6124,8 +6124,8 @@
     "fp": "2318f8472fc086b9",
     "head": "<fieldset class=\"filters\" id=\"progress-scope\" aria-describedby=\"progress-subject\">"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/lib/model.js:1165-1196|0": {
-    "anchor": "src/js/lib/model.js:1165-1196",
+  "docs/UX_STUDY.md|job-stories|src/js/lib/model.js:1172-1203|0": {
+    "anchor": "src/js/lib/model.js:1172-1203",
     "fp": "ec402d5548694459",
     "head": "export function validateBackup(raw) {"
   },
@@ -6189,8 +6189,8 @@
     "fp": "e4a8a4c444dd83ef",
     "head": "<!-- Shown only when saved data could not be read. Saving stays paused until the"
   },
-  "docs/UX_STUDY.md|step-1-heuristic-evaluation#5|src/js/lib/model.js:989-1068|0": {
-    "anchor": "src/js/lib/model.js:989-1068",
+  "docs/UX_STUDY.md|step-1-heuristic-evaluation#5|src/js/lib/model.js:996-1075|0": {
+    "anchor": "src/js/lib/model.js:996-1075",
     "fp": "7462a630913f868e",
     "head": "const version = Number(raw.schemaVersion ?? 1);"
   },
