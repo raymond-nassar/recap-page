@@ -969,7 +969,7 @@ body.nocovers .fallback, .fallback.show { display: flex; }
 .byline { color: var(--dim); margin: 0 0 var(--space-6); font-size: var(--t-body); }
 .desc { color: var(--dim); font-size: var(--t-body); margin: 0 0 var(--space-6); max-width: 58ch; }
 
-.facts { display: flex; gap: var(--space-8); flex-wrap: wrap; margin: 0 0 var(--space-7); }
+.facts { display: flex; gap: var(--space-8); flex-wrap: wrap; margin: 0 0 var(--space-7); } .facts[hidden] { display: none; }
 .facts > div { min-width: 0; }
 .facts dt { font-size: var(--t-caption); letter-spacing: .11em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
 /* The record's note sits inside its term so it is read with the label it qualifies, and there it
@@ -1342,7 +1342,7 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 #view-data .backup-restore-label + .rail-hint { margin: 0 0 var(--space-4); max-width: 62ch; }
 .setgroup { margin-bottom: var(--space-8); }
 #view-data .setgroup > h2 {
-  font-size: var(--t-subtitle); font-weight: 600; margin: var(--space-8) var(--space-1) var(--space-5); padding-bottom: var(--space-3);
+  font-size: var(--t-subtitle); font-weight: 600; margin: var(--space-8) var(--space-1) var(--space-5); padding-bottom: var(--space-3); overflow-wrap: anywhere; hyphens: auto;
 }
 #view-data .setgroup > .setgroup-note { margin: 0 var(--space-1) var(--space-5); max-width: 64ch; }
 .card-danger { border-color: rgb(var(--red-line) / 20%); }

@@ -1604,13 +1604,13 @@
     "fp": "a61496c78a00502b",
     "head": "| `uncertain` | A mutating request may have reached Google without a trustworthy result. Inspect Con"
   },
-  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/IOS.md:502-534|0": {
-    "anchor": "docs/IOS.md:502-534",
+  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/IOS.md:504-536|0": {
+    "anchor": "docs/IOS.md:504-536",
     "fp": "3d8eb59b07214148",
     "head": "### Each build: reserve, export, seal, upload"
   },
-  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/IOS.md:522-526|0": {
-    "anchor": "docs/IOS.md:522-526",
+  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/IOS.md:524-528|0": {
+    "anchor": "docs/IOS.md:524-528",
     "fp": "09cad2e2a247e2db",
     "head": "Never rerun either mode or dispatch it twice for the same number. Even failed or uncertain"
   },
@@ -1669,13 +1669,13 @@
     "fp": "0209fd221c84d800",
     "head": "merge; a new manual workflow cannot be dispatched until it exists on the default branch."
   },
-  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#ios-build-allocation-testflight-export-or-upload|docs/IOS.md:461-470|0": {
-    "anchor": "docs/IOS.md:461-470",
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#ios-build-allocation-testflight-export-or-upload|docs/IOS.md:463-472|0": {
+    "anchor": "docs/IOS.md:463-472",
     "fp": "fa779b8e01b8f8c9",
     "head": "## Signing and internal TestFlight"
   },
-  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#ios-build-allocation-testflight-export-or-upload|docs/IOS.md:502-534|0": {
-    "anchor": "docs/IOS.md:502-534",
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#ios-build-allocation-testflight-export-or-upload|docs/IOS.md:504-536|0": {
+    "anchor": "docs/IOS.md:504-536",
     "fp": "3d8eb59b07214148",
     "head": "### Each build: reserve, export, seal, upload"
   },
@@ -1789,8 +1789,8 @@
     "fp": "ef88d015edeffa21",
     "head": "await this.journal.begin(record);"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|how-reading-content-reaches-the-browser|scripts/vendor-orders.mjs:702-795|0": {
-    "anchor": "scripts/vendor-orders.mjs:702-795",
+  "docs/ARCHITECTURE_REFERENCE.md|how-reading-content-reaches-the-browser|scripts/vendor-orders.mjs:703-796|0": {
+    "anchor": "scripts/vendor-orders.mjs:703-796",
     "fp": "aaa2d5e8eabc1354",
     "head": "// Lists we did not rebuild still have to appear in the catalog, so their entries are derived"
   },
@@ -1889,13 +1889,13 @@
     "fp": "b2df7c6a7a91153d",
     "head": "export class ComicSearchRunner {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/views/reading.js:1135-1153|0": {
-    "anchor": "src/js/views/reading.js:1135-1153",
+  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/views/reading.js:1136-1154|0": {
+    "anchor": "src/js/views/reading.js:1136-1154",
     "fp": "836cd067a6aef5d3",
     "head": "function toggleSavedRead(item, isCurrent = () => true) {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/views/reading.js:1473-1487|0": {
-    "anchor": "src/js/views/reading.js:1473-1487",
+  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/views/reading.js:1474-1488|0": {
+    "anchor": "src/js/views/reading.js:1474-1488",
     "fp": "c25557f274159486",
     "head": "function doneContext(listId, issueId, state = getState(), surface = 'hero') {"
   },
@@ -1904,8 +1904,8 @@
     "fp": "2ce9cb5e784ef76c",
     "head": "export function commitRows(container, desired) {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/views/reading.js:788|0": {
-    "anchor": "src/js/views/reading.js:788",
+  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/views/reading.js:789|0": {
+    "anchor": "src/js/views/reading.js:789",
     "fp": "931bd75b9e4067fe",
     "head": "preservingFocus(rows, () => {"
   },
@@ -5754,18 +5754,18 @@
     "fp": "b5355ce4144b6df6",
     "head": "export const MODERN_TIMELINE_CHAPTER_COUNT = 78;"
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/current-reading-library.mjs:9-103|0": {
-    "anchor": "test/helpers/current-reading-library.mjs:9-103",
-    "fp": "87984facefd884b1",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/current-reading-library.mjs:10-105|0": {
+    "anchor": "test/helpers/current-reading-library.mjs:10-105",
+    "fp": "3a0decdb11c72ff9",
     "head": "const { captureSha256, ...baseline } = JSON.parse(readFileSync("
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:249-275|0": {
-    "anchor": "test/helpers/owner-delivery-contract.mjs:249-275",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:260-286|0": {
+    "anchor": "test/helpers/owner-delivery-contract.mjs:260-286",
     "fp": "98a73dedad194b8f",
     "head": "async function assertRegisteredLaterPeer(id, later, { contracts, json }) {"
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|integrate-serially-against-fresh-evidence|scripts/vendor-orders.mjs:462-483|0": {
-    "anchor": "scripts/vendor-orders.mjs:462-483",
+  "docs/BATCH_READING_LIST_DELIVERY.md|integrate-serially-against-fresh-evidence|scripts/vendor-orders.mjs:463-484|0": {
+    "anchor": "scripts/vendor-orders.mjs:463-484",
     "fp": "a134aada39ad4af0",
     "head": "if (metadataCacheDir && (catalogOnly || only.size === 0)) {"
   },
@@ -5794,8 +5794,8 @@
     "fp": "b98925c3837030c2",
     "head": "'owner-confirmed': {"
   },
-  "docs/DATA_PROVENANCE.md|owner-approved-external-supplement-for-owner-con|test/helpers/owner-delivery-contract.mjs:111-139|0": {
-    "anchor": "test/helpers/owner-delivery-contract.mjs:111-139",
+  "docs/DATA_PROVENANCE.md|owner-approved-external-supplement-for-owner-con|test/helpers/owner-delivery-contract.mjs:114-142|0": {
+    "anchor": "test/helpers/owner-delivery-contract.mjs:114-142",
     "fp": "43d0b140db456174",
     "head": "if (row.identityEvidenceKind === 'owner-confirmed-identity') {"
   },
@@ -5804,18 +5804,18 @@
     "fp": "ceccab946c09b48f",
     "head": "function ownerIdentityParts(identity) {"
   },
-  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:496-500|0": {
-    "anchor": "scripts/vendor-orders.mjs:496-500",
+  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:497-501|0": {
+    "anchor": "scripts/vendor-orders.mjs:497-501",
     "fp": "b5164475feb84ad2",
     "head": "const ids = [...new Set(parsed.flatMap(({ parsedOrder }) => ("
   },
-  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:566-567|0": {
-    "anchor": "scripts/vendor-orders.mjs:566-567",
+  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:567-568|0": {
+    "anchor": "scripts/vendor-orders.mjs:567-568",
     "fp": "c089d2cbfead089a",
     "head": "const ownerConfirmed = e.identityEvidenceKind === 'owner-confirmed-identity';"
   },
-  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:611-612|0": {
-    "anchor": "scripts/vendor-orders.mjs:611-612",
+  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:612-613|0": {
+    "anchor": "scripts/vendor-orders.mjs:612-613",
     "fp": "7b74eea9291f2eae",
     "head": "...(refused.has(e.issueId) || ownerConfirmed ? { detailsRefused: true } : {}),"
   },
@@ -5839,8 +5839,8 @@
     "fp": "ff9ba71742d8b8c0",
     "head": "\"chapterCount\": 78,"
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:16701-16838|0": {
-    "anchor": "src/data/catalog.json:16701-16838",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:16703-16840|0": {
+    "anchor": "src/data/catalog.json:16703-16840",
     "fp": "364a367730afd192",
     "head": "\"paths\": ["
   },
@@ -6009,13 +6009,13 @@
     "fp": "db046a4ee4a55494",
     "head": "**No real user was observed.** There is one user of this application and they were not interviewed"
   },
-  "docs/UX_FEEDBACK.md|feedback-signals#ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:406|0": {
-    "anchor": "packaging/ios/RecapPage/WebViewController.swift:406",
+  "docs/UX_FEEDBACK.md|feedback-signals#ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:421|0": {
+    "anchor": "packaging/ios/RecapPage/WebViewController.swift:421",
     "fp": "2f830e12ad5ec513",
     "head": "restartNoticePending = true"
   },
-  "docs/UX_FEEDBACK.md|feedback-signals#ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:420|0": {
-    "anchor": "packaging/ios/RecapPage/WebViewController.swift:420",
+  "docs/UX_FEEDBACK.md|feedback-signals#ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:432|0": {
+    "anchor": "packaging/ios/RecapPage/WebViewController.swift:432",
     "fp": "55a4cabc45fcfd0d",
     "head": "webView.reload()"
   },
@@ -6044,13 +6044,13 @@
     "fp": "244f4f24bf6d281b",
     "head": "[Android app](ANDROID.md), it is the existing web app inside a small native shell, so every fix to"
   },
-  "docs/UX_IMPROVEMENT_PLAN.md|5-ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:406|0": {
-    "anchor": "packaging/ios/RecapPage/WebViewController.swift:406",
+  "docs/UX_IMPROVEMENT_PLAN.md|5-ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:421|0": {
+    "anchor": "packaging/ios/RecapPage/WebViewController.swift:421",
     "fp": "2f830e12ad5ec513",
     "head": "restartNoticePending = true"
   },
-  "docs/UX_IMPROVEMENT_PLAN.md|5-ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:420|0": {
-    "anchor": "packaging/ios/RecapPage/WebViewController.swift:420",
+  "docs/UX_IMPROVEMENT_PLAN.md|5-ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:432|0": {
+    "anchor": "packaging/ios/RecapPage/WebViewController.swift:432",
     "fp": "55a4cabc45fcfd0d",
     "head": "webView.reload()"
   },
@@ -6139,8 +6139,8 @@
     "fp": "215f5b1a4ede1790",
     "head": "function render() {"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/views/reading.js:931-932|0": {
-    "anchor": "src/js/views/reading.js:931-932",
+  "docs/UX_STUDY.md|job-stories|src/js/views/reading.js:932-933|0": {
+    "anchor": "src/js/views/reading.js:932-933",
     "fp": "24b19dfd5a6977eb",
     "head": "detailsBadge(el, item),"
   },
@@ -6169,8 +6169,8 @@
     "fp": "e19583cc19f81884",
     "head": "// Contract verified 2026-08-03 (CHG-001): the live API's digitalId is authoritative; the"
   },
-  "docs/UX_STUDY.md|proto-persona#tolerance-for-missing-metadata|src/js/views/reading.js:931-932|0": {
-    "anchor": "src/js/views/reading.js:931-932",
+  "docs/UX_STUDY.md|proto-persona#tolerance-for-missing-metadata|src/js/views/reading.js:932-933|0": {
+    "anchor": "src/js/views/reading.js:932-933",
     "fp": "24b19dfd5a6977eb",
     "head": "detailsBadge(el, item),"
   },
@@ -6179,8 +6179,8 @@
     "fp": "3377f80fe0c004ac",
     "head": "<nav id=\"sidebar-nav\" aria-label=\"Main\">"
   },
-  "docs/UX_STUDY.md|step-1-heuristic-evaluation#2|src/js/views/reading.js:928-930|0": {
-    "anchor": "src/js/views/reading.js:928-930",
+  "docs/UX_STUDY.md|step-1-heuristic-evaluation#2|src/js/views/reading.js:929-931|0": {
+    "anchor": "src/js/views/reading.js:929-931",
     "fp": "74a73b23c3390a60",
     "head": "el('span', { class: `badge availability-record ${badgeClass}` }, ["
   },
@@ -6299,8 +6299,8 @@
     "fp": "c2ca4aa4ff10907b",
     "head": "--target-min: 24px;"
   },
-  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/js/views/reading.js:1000-1132|0": {
-    "anchor": "src/js/views/reading.js:1000-1132",
+  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/js/views/reading.js:1001-1133|0": {
+    "anchor": "src/js/views/reading.js:1001-1133",
     "fp": "3c66740b177d162f",
     "head": "function issueRowActions(item, listId, expanded = false) {"
   },
@@ -6364,8 +6364,8 @@
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
-  "docs/UX_STUDY.md|ux-a-009-the-full-availability-description-is-ca|src/js/views/reading.js:928-930|0": {
-    "anchor": "src/js/views/reading.js:928-930",
+  "docs/UX_STUDY.md|ux-a-009-the-full-availability-description-is-ca|src/js/views/reading.js:929-931|0": {
+    "anchor": "src/js/views/reading.js:929-931",
     "fp": "74a73b23c3390a60",
     "head": "el('span', { class: `badge availability-record ${badgeClass}` }, ["
   },
@@ -6389,8 +6389,8 @@
     "fp": "0c13bbed47c568da",
     "head": "export function isTextEntry(el) {"
   },
-  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/js/views/reading.js:1185-1205|0": {
-    "anchor": "src/js/views/reading.js:1185-1205",
+  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/js/views/reading.js:1186-1206|0": {
+    "anchor": "src/js/views/reading.js:1186-1206",
     "fp": "2ce6e2593dd4bccc",
     "head": "function wireShortcuts() {"
   },
@@ -6449,8 +6449,8 @@
     "fp": "04989906fb44dcf9",
     "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Mark as read an"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/js/views/reading.js:1185-1205|0": {
-    "anchor": "src/js/views/reading.js:1185-1205",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/js/views/reading.js:1186-1206|0": {
+    "anchor": "src/js/views/reading.js:1186-1206",
     "fp": "2ce6e2593dd4bccc",
     "head": "function wireShortcuts() {"
   },
@@ -6479,8 +6479,8 @@
     "fp": "4bf6e9f8eefa237d",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },
-  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/js/views/reading.js:932|0": {
-    "anchor": "src/js/views/reading.js:932",
+  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/js/views/reading.js:933|0": {
+    "anchor": "src/js/views/reading.js:933",
     "fp": "bd66076a7b8dce19",
     "head": "item.source === 'manual' ? el('span', { class: 'badge badge-unknown' }, 'by hand') : null,"
   },

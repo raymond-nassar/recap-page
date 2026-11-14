@@ -66,7 +66,9 @@ classification: crop `(29,766,332,10)` inside the live navigation frame `(0,753,
 three samples hitting Library navigation and none hitting the owner.
 
 The native shell maps the system text size to the six shared type tokens. It does not zoom the page
-or enlarge layout dimensions. At the largest accessibility text size, the iOS overlay gives the Home
+or enlarge layout dimensions. A text size change made while the app is open applies to the page shown
+and to every page it loads afterward, without relaunching. At the largest accessibility text size,
+the iOS overlay gives the Home
 header one column with What's new in the second row, clear of the wordmark. This adjustment is confined
 to the iOS bundle; the shared Windows and Android styles do not change. The iOS skip link uses the
 shared `--target` token for a 44-point hit region, and the standalone Read links use the shared

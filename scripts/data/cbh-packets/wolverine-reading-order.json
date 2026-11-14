@@ -13,17 +13,8 @@
   "sourceOccurrenceCount": 1328,
   "repeatedSourceReferences": [
     {
-      "sourcePosition": 134,
-      "canonicalRow": 63,
-      "sourceIssueReference": "Wolverine (2003) #32",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2003,
-      "issueNumber": "32"
-    },
-    {
       "sourcePosition": 223,
-      "canonicalRow": 86,
+      "canonicalRow": 87,
       "sourceIssueReference": "X-Men (1991) #25",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "X-Men",
@@ -32,7 +23,7 @@
     },
     {
       "sourcePosition": 224,
-      "canonicalRow": 83,
+      "canonicalRow": 84,
       "sourceIssueReference": "Wolverine (1988) #75",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
@@ -41,7 +32,7 @@
     },
     {
       "sourcePosition": 278,
-      "canonicalRow": 71,
+      "canonicalRow": 72,
       "sourceIssueReference": "Logan: Shadow Society",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Logan: Shadow Society",
@@ -49,215 +40,8 @@
       "issueNumber": "1"
     },
     {
-      "sourcePosition": 422,
-      "canonicalRow": 35,
-      "sourceIssueReference": "Wolverine (2010) #1",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "1"
-    },
-    {
-      "sourcePosition": 423,
-      "canonicalRow": 36,
-      "sourceIssueReference": "Wolverine (2010) #2",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "2"
-    },
-    {
-      "sourcePosition": 424,
-      "canonicalRow": 37,
-      "sourceIssueReference": "Wolverine (2010) #3",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "3"
-    },
-    {
-      "sourcePosition": 425,
-      "canonicalRow": 38,
-      "sourceIssueReference": "Wolverine (2010) #4",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "4"
-    },
-    {
-      "sourcePosition": 426,
-      "canonicalRow": 39,
-      "sourceIssueReference": "Wolverine (2010) #5",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "5"
-    },
-    {
-      "sourcePosition": 427,
-      "canonicalRow": 40,
-      "sourceIssueReference": "Wolverine (2010) #6",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "6"
-    },
-    {
-      "sourcePosition": 428,
-      "canonicalRow": 41,
-      "sourceIssueReference": "Wolverine (2010) #7",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "7"
-    },
-    {
-      "sourcePosition": 429,
-      "canonicalRow": 42,
-      "sourceIssueReference": "Wolverine (2010) #8",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "8"
-    },
-    {
-      "sourcePosition": 438,
-      "canonicalRow": 48,
-      "sourceIssueReference": "Wolverine (2010) #17",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "17"
-    },
-    {
-      "sourcePosition": 439,
-      "canonicalRow": 49,
-      "sourceIssueReference": "Wolverine (2010) #18",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "18"
-    },
-    {
-      "sourcePosition": 440,
-      "canonicalRow": 50,
-      "sourceIssueReference": "Wolverine (2010) #19",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "19"
-    },
-    {
-      "sourcePosition": 516,
-      "canonicalRow": 51,
-      "sourceIssueReference": "Wolverine (2003) #20",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2003,
-      "issueNumber": "20"
-    },
-    {
-      "sourcePosition": 517,
-      "canonicalRow": 52,
-      "sourceIssueReference": "Wolverine (2003) #21",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2003,
-      "issueNumber": "21"
-    },
-    {
-      "sourcePosition": 518,
-      "canonicalRow": 53,
-      "sourceIssueReference": "Wolverine (2003) #22",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2003,
-      "issueNumber": "22"
-    },
-    {
-      "sourcePosition": 519,
-      "canonicalRow": 54,
-      "sourceIssueReference": "Wolverine (2003) #23",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2003,
-      "issueNumber": "23"
-    },
-    {
-      "sourcePosition": 520,
-      "canonicalRow": 55,
-      "sourceIssueReference": "Wolverine (2003) #24",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2003,
-      "issueNumber": "24"
-    },
-    {
-      "sourcePosition": 521,
-      "canonicalRow": 56,
-      "sourceIssueReference": "Wolverine (2003) #25",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2003,
-      "issueNumber": "25"
-    },
-    {
-      "sourcePosition": 522,
-      "canonicalRow": 57,
-      "sourceIssueReference": "Wolverine (2003) #26",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2003,
-      "issueNumber": "26"
-    },
-    {
-      "sourcePosition": 523,
-      "canonicalRow": 58,
-      "sourceIssueReference": "Wolverine (2003) #27",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2003,
-      "issueNumber": "27"
-    },
-    {
-      "sourcePosition": 524,
-      "canonicalRow": 59,
-      "sourceIssueReference": "Wolverine (2003) #28",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2003,
-      "issueNumber": "28"
-    },
-    {
-      "sourcePosition": 525,
-      "canonicalRow": 60,
-      "sourceIssueReference": "Wolverine (2003) #29",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2003,
-      "issueNumber": "29"
-    },
-    {
-      "sourcePosition": 526,
-      "canonicalRow": 61,
-      "sourceIssueReference": "Wolverine (2003) #30",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2003,
-      "issueNumber": "30"
-    },
-    {
-      "sourcePosition": 527,
-      "canonicalRow": 62,
-      "sourceIssueReference": "Wolverine (2003) #31",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2003,
-      "issueNumber": "31"
-    },
-    {
       "sourcePosition": 528,
-      "canonicalRow": 63,
+      "canonicalRow": 71,
       "sourceIssueReference": "Wolverine (2003) #32",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
@@ -266,7 +50,7 @@
     },
     {
       "sourcePosition": 701,
-      "canonicalRow": 218,
+      "canonicalRow": 248,
       "sourceIssueReference": "X-Force (2008) #11",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "X-Force",
@@ -274,116 +58,8 @@
       "issueNumber": "11"
     },
     {
-      "sourcePosition": 754,
-      "canonicalRow": 35,
-      "sourceIssueReference": "Wolverine (2010) #1",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "1"
-    },
-    {
-      "sourcePosition": 755,
-      "canonicalRow": 36,
-      "sourceIssueReference": "Wolverine (2010) #2",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "2"
-    },
-    {
-      "sourcePosition": 756,
-      "canonicalRow": 37,
-      "sourceIssueReference": "Wolverine (2010) #3",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "3"
-    },
-    {
-      "sourcePosition": 757,
-      "canonicalRow": 38,
-      "sourceIssueReference": "Wolverine (2010) #4",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "4"
-    },
-    {
-      "sourcePosition": 758,
-      "canonicalRow": 39,
-      "sourceIssueReference": "Wolverine (2010) #5",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "5"
-    },
-    {
-      "sourcePosition": 759,
-      "canonicalRow": 40,
-      "sourceIssueReference": "Wolverine (2010) #6",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "6"
-    },
-    {
-      "sourcePosition": 760,
-      "canonicalRow": 41,
-      "sourceIssueReference": "Wolverine (2010) #7",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "7"
-    },
-    {
-      "sourcePosition": 761,
-      "canonicalRow": 42,
-      "sourceIssueReference": "Wolverine (2010) #8",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "8"
-    },
-    {
-      "sourcePosition": 792,
-      "canonicalRow": 48,
-      "sourceIssueReference": "Wolverine (2010) #17",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "17"
-    },
-    {
-      "sourcePosition": 793,
-      "canonicalRow": 49,
-      "sourceIssueReference": "Wolverine (2010) #18",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "18"
-    },
-    {
-      "sourcePosition": 794,
-      "canonicalRow": 50,
-      "sourceIssueReference": "Wolverine (2010) #19",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "19"
-    },
-    {
-      "sourcePosition": 795,
-      "canonicalRow": 51,
-      "sourceIssueReference": "Wolverine (2003) #20",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2003,
-      "issueNumber": "20"
-    },
-    {
       "sourcePosition": 954,
-      "canonicalRow": 286,
+      "canonicalRow": 335,
       "sourceIssueReference": "18",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine & the X-Men",
@@ -391,161 +67,17 @@
       "issueNumber": "18"
     },
     {
-      "sourcePosition": 997,
-      "canonicalRow": 35,
-      "sourceIssueReference": "Wolverine (2010) #1",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "1"
-    },
-    {
-      "sourcePosition": 998,
-      "canonicalRow": 36,
-      "sourceIssueReference": "Wolverine (2010) #2",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "2"
-    },
-    {
-      "sourcePosition": 999,
-      "canonicalRow": 37,
-      "sourceIssueReference": "Wolverine (2010) #3",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "3"
-    },
-    {
-      "sourcePosition": 1000,
-      "canonicalRow": 38,
-      "sourceIssueReference": "Wolverine (2010) #4",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "4"
-    },
-    {
-      "sourcePosition": 1001,
-      "canonicalRow": 39,
-      "sourceIssueReference": "Wolverine (2010) #5",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "5"
-    },
-    {
-      "sourcePosition": 1002,
-      "canonicalRow": 40,
-      "sourceIssueReference": "Wolverine (2010) #6",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "6"
-    },
-    {
       "sourcePosition": 1033,
-      "canonicalRow": 40,
-      "sourceIssueReference": "Wolverine (2010) #6",
+      "canonicalRow": 419,
+      "sourceIssueReference": "Wolverine (2013) #6",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
+      "seriesYear": 2013,
       "issueNumber": "6"
-    },
-    {
-      "sourcePosition": 1034,
-      "canonicalRow": 41,
-      "sourceIssueReference": "Wolverine (2010) #7",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "7"
-    },
-    {
-      "sourcePosition": 1035,
-      "canonicalRow": 42,
-      "sourceIssueReference": "Wolverine (2010) #8",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "8"
-    },
-    {
-      "sourcePosition": 1059,
-      "canonicalRow": 35,
-      "sourceIssueReference": "Wolverine (2010) #1",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "1"
-    },
-    {
-      "sourcePosition": 1060,
-      "canonicalRow": 36,
-      "sourceIssueReference": "Wolverine (2010) #2",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "2"
-    },
-    {
-      "sourcePosition": 1061,
-      "canonicalRow": 37,
-      "sourceIssueReference": "Wolverine (2010) #3",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "3"
-    },
-    {
-      "sourcePosition": 1062,
-      "canonicalRow": 38,
-      "sourceIssueReference": "Wolverine (2010) #4",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "4"
-    },
-    {
-      "sourcePosition": 1063,
-      "canonicalRow": 39,
-      "sourceIssueReference": "Wolverine (2010) #5",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "5"
-    },
-    {
-      "sourcePosition": 1064,
-      "canonicalRow": 40,
-      "sourceIssueReference": "Wolverine (2010) #6",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "6"
-    },
-    {
-      "sourcePosition": 1065,
-      "canonicalRow": 41,
-      "sourceIssueReference": "Wolverine (2010) #7",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "7"
-    },
-    {
-      "sourcePosition": 1066,
-      "canonicalRow": 42,
-      "sourceIssueReference": "Wolverine (2010) #8",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
-      "issueNumber": "8"
     },
     {
       "sourcePosition": 1241,
-      "canonicalRow": 146,
+      "canonicalRow": 164,
       "sourceIssueReference": "Astonishing X-Men (2004) #1",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Astonishing X-Men",
@@ -554,7 +86,7 @@
     },
     {
       "sourcePosition": 1242,
-      "canonicalRow": 147,
+      "canonicalRow": 165,
       "sourceIssueReference": "Astonishing X-Men (2004) #2",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Astonishing X-Men",
@@ -563,7 +95,7 @@
     },
     {
       "sourcePosition": 1243,
-      "canonicalRow": 148,
+      "canonicalRow": 166,
       "sourceIssueReference": "Astonishing X-Men (2004) #3",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Astonishing X-Men",
@@ -572,7 +104,7 @@
     },
     {
       "sourcePosition": 1244,
-      "canonicalRow": 149,
+      "canonicalRow": 167,
       "sourceIssueReference": "Astonishing X-Men (2004) #4",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Astonishing X-Men",
@@ -581,7 +113,7 @@
     },
     {
       "sourcePosition": 1245,
-      "canonicalRow": 150,
+      "canonicalRow": 168,
       "sourceIssueReference": "Astonishing X-Men (2004) #5",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Astonishing X-Men",
@@ -590,7 +122,7 @@
     },
     {
       "sourcePosition": 1246,
-      "canonicalRow": 151,
+      "canonicalRow": 169,
       "sourceIssueReference": "Astonishing X-Men (2004) #6",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Astonishing X-Men",
@@ -599,7 +131,7 @@
     },
     {
       "sourcePosition": 1247,
-      "canonicalRow": 152,
+      "canonicalRow": 170,
       "sourceIssueReference": "Astonishing X-Men (2004) #7",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Astonishing X-Men",
@@ -608,7 +140,7 @@
     },
     {
       "sourcePosition": 1248,
-      "canonicalRow": 153,
+      "canonicalRow": 171,
       "sourceIssueReference": "Astonishing X-Men (2004) #8",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Astonishing X-Men",
@@ -617,7 +149,7 @@
     },
     {
       "sourcePosition": 1249,
-      "canonicalRow": 154,
+      "canonicalRow": 172,
       "sourceIssueReference": "Astonishing X-Men (2004) #9",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Astonishing X-Men",
@@ -626,7 +158,7 @@
     },
     {
       "sourcePosition": 1250,
-      "canonicalRow": 155,
+      "canonicalRow": 173,
       "sourceIssueReference": "Astonishing X-Men (2004) #10",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Astonishing X-Men",
@@ -635,7 +167,7 @@
     },
     {
       "sourcePosition": 1251,
-      "canonicalRow": 156,
+      "canonicalRow": 174,
       "sourceIssueReference": "Astonishing X-Men (2004) #11",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Astonishing X-Men",
@@ -644,7 +176,7 @@
     },
     {
       "sourcePosition": 1252,
-      "canonicalRow": 157,
+      "canonicalRow": 175,
       "sourceIssueReference": "Astonishing X-Men (2004) #12",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Astonishing X-Men",
@@ -774,42 +306,6 @@
       "decisionScope": "wolverine-metadata-gap-repeat"
     },
     {
-      "sourcePosition": 431,
-      "sourceIssueReference": "Wolverine #10",
-      "reason": "Repeated open metadata-gap reference; the canonical provenance row is source position 46.",
-      "decisionScope": "wolverine-metadata-gap-repeat"
-    },
-    {
-      "sourcePosition": 432,
-      "sourceIssueReference": "Wolverine #11",
-      "reason": "Repeated open metadata-gap reference; the canonical provenance row is source position 47.",
-      "decisionScope": "wolverine-metadata-gap-repeat"
-    },
-    {
-      "sourcePosition": 433,
-      "sourceIssueReference": "Wolverine #12",
-      "reason": "Repeated open metadata-gap reference; the canonical provenance row is source position 48.",
-      "decisionScope": "wolverine-metadata-gap-repeat"
-    },
-    {
-      "sourcePosition": 435,
-      "sourceIssueReference": "Wolverine #14",
-      "reason": "Repeated open metadata-gap reference; the canonical provenance row is source position 50.",
-      "decisionScope": "wolverine-metadata-gap-repeat"
-    },
-    {
-      "sourcePosition": 436,
-      "sourceIssueReference": "Wolverine #15",
-      "reason": "Repeated open metadata-gap reference; the canonical provenance row is source position 51.",
-      "decisionScope": "wolverine-metadata-gap-repeat"
-    },
-    {
-      "sourcePosition": 437,
-      "sourceIssueReference": "Wolverine #16",
-      "reason": "Repeated open metadata-gap reference; the canonical provenance row is source position 52.",
-      "decisionScope": "wolverine-metadata-gap-repeat"
-    },
-    {
       "sourcePosition": 534,
       "sourceIssueReference": "Wolverine (vol. 3) #33-35 and related House of M tie-ins",
       "reason": "The source combines a numbered range with unspecified event tie-ins and cannot be represented by one comic.",
@@ -855,48 +351,6 @@
       "sourcePosition": 676,
       "sourceIssueReference": "Wolverine: Origins #25",
       "reason": "Repeated open metadata-gap reference; the canonical provenance row is source position 606.",
-      "decisionScope": "wolverine-metadata-gap-repeat"
-    },
-    {
-      "sourcePosition": 785,
-      "sourceIssueReference": "Wolverine #10",
-      "reason": "Repeated open metadata-gap reference; the canonical provenance row is source position 46.",
-      "decisionScope": "wolverine-metadata-gap-repeat"
-    },
-    {
-      "sourcePosition": 786,
-      "sourceIssueReference": "Wolverine #11",
-      "reason": "Repeated open metadata-gap reference; the canonical provenance row is source position 47.",
-      "decisionScope": "wolverine-metadata-gap-repeat"
-    },
-    {
-      "sourcePosition": 787,
-      "sourceIssueReference": "Wolverine #12",
-      "reason": "Repeated open metadata-gap reference; the canonical provenance row is source position 48.",
-      "decisionScope": "wolverine-metadata-gap-repeat"
-    },
-    {
-      "sourcePosition": 788,
-      "sourceIssueReference": "Wolverine #13",
-      "reason": "Repeated open metadata-gap reference; the canonical provenance row is source position 49.",
-      "decisionScope": "wolverine-metadata-gap-repeat"
-    },
-    {
-      "sourcePosition": 789,
-      "sourceIssueReference": "Wolverine #14",
-      "reason": "Repeated open metadata-gap reference; the canonical provenance row is source position 50.",
-      "decisionScope": "wolverine-metadata-gap-repeat"
-    },
-    {
-      "sourcePosition": 790,
-      "sourceIssueReference": "Wolverine #15",
-      "reason": "Repeated open metadata-gap reference; the canonical provenance row is source position 51.",
-      "decisionScope": "wolverine-metadata-gap-repeat"
-    },
-    {
-      "sourcePosition": 791,
-      "sourceIssueReference": "Wolverine #16",
-      "reason": "Repeated open metadata-gap reference; the canonical provenance row is source position 52.",
       "decisionScope": "wolverine-metadata-gap-repeat"
     },
     {
@@ -16076,7 +15530,7 @@
       "evidenceDigest": "e4283266022c9d74b957c4e16b89cdc015771113436f48c97c1ec1b89038b875"
     }
   ],
-  "expectedCount": 451,
+  "expectedCount": 516,
   "proposedManifest": {
     "id": "wolverine-reading-order",
     "name": "Wolverine",
@@ -16104,7 +15558,7 @@
       "Old Man Logan",
       "Comic Book Herald"
     ],
-    "expect": 1207,
+    "expect": 1272,
     "timeline": null,
     "coverIssueId": 8797
   },
@@ -16899,90 +16353,90 @@
       "selectionNote": null
     },
     {
-      "sourceIssueReference": "Wolverine (2010) #1",
+      "sourceIssueReference": "Wolverine (1988) #1",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
+      "seriesYear": 1988,
       "issueNumber": "1",
-      "seriesId": 9962,
-      "candidateIssueId": 30224,
+      "seriesId": 2262,
+      "candidateIssueId": 14036,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
     {
-      "sourceIssueReference": "Wolverine (2010) #2",
+      "sourceIssueReference": "Wolverine (1988) #2",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
+      "seriesYear": 1988,
       "issueNumber": "2",
-      "seriesId": 9962,
-      "candidateIssueId": 30228,
+      "seriesId": 2262,
+      "candidateIssueId": 14137,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
     {
-      "sourceIssueReference": "Wolverine (2010) #3",
+      "sourceIssueReference": "Wolverine (1988) #3",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
+      "seriesYear": 1988,
       "issueNumber": "3",
-      "seriesId": 9962,
-      "candidateIssueId": 30229,
+      "seriesId": 2262,
+      "candidateIssueId": 14148,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
     {
-      "sourceIssueReference": "Wolverine (2010) #4",
+      "sourceIssueReference": "Wolverine (1988) #4",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
+      "seriesYear": 1988,
       "issueNumber": "4",
-      "seriesId": 9962,
-      "candidateIssueId": 30230,
+      "seriesId": 2262,
+      "candidateIssueId": 14159,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
     {
-      "sourceIssueReference": "Wolverine (2010) #5",
+      "sourceIssueReference": "Wolverine (1988) #5",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
+      "seriesYear": 1988,
       "issueNumber": "5",
-      "seriesId": 9962,
-      "candidateIssueId": 30231,
+      "seriesId": 2262,
+      "candidateIssueId": 14170,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
     {
-      "sourceIssueReference": "Wolverine (2010) #6",
+      "sourceIssueReference": "Wolverine (1988) #6",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
+      "seriesYear": 1988,
       "issueNumber": "6",
-      "seriesId": 9962,
-      "candidateIssueId": 30232,
+      "seriesId": 2262,
+      "candidateIssueId": 14181,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
     {
-      "sourceIssueReference": "Wolverine (2010) #7",
+      "sourceIssueReference": "Wolverine (1988) #7",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
+      "seriesYear": 1988,
       "issueNumber": "7",
-      "seriesId": 9962,
-      "candidateIssueId": 30233,
+      "seriesId": 2262,
+      "candidateIssueId": 14192,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
     {
-      "sourceIssueReference": "Wolverine (2010) #8",
+      "sourceIssueReference": "Wolverine (1988) #8",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
+      "seriesYear": 1988,
       "issueNumber": "8",
-      "seriesId": 9962,
-      "candidateIssueId": 30234,
+      "seriesId": 2262,
+      "candidateIssueId": 14203,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
@@ -17042,178 +16496,178 @@
       "selectionNote": null
     },
     {
-      "sourceIssueReference": "Wolverine (2010) #17",
+      "sourceIssueReference": "Wolverine (1988) #17",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
+      "seriesYear": 1988,
       "issueNumber": "17",
-      "seriesId": 9962,
-      "candidateIssueId": 36469,
+      "seriesId": 2262,
+      "candidateIssueId": 14114,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
     {
-      "sourceIssueReference": "Wolverine (2010) #18",
+      "sourceIssueReference": "Wolverine (1988) #18",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
+      "seriesYear": 1988,
       "issueNumber": "18",
-      "seriesId": 9962,
-      "candidateIssueId": 36466,
+      "seriesId": 2262,
+      "candidateIssueId": 14125,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
     {
-      "sourceIssueReference": "Wolverine (2010) #19",
+      "sourceIssueReference": "Wolverine (1988) #19",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2010,
+      "seriesYear": 1988,
       "issueNumber": "19",
-      "seriesId": 9962,
-      "candidateIssueId": 38839,
+      "seriesId": 2262,
+      "candidateIssueId": 14136,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
     {
-      "sourceIssueReference": "Wolverine (2003) #20",
+      "sourceIssueReference": "Wolverine (1988) #20",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2003,
+      "seriesYear": 1988,
       "issueNumber": "20",
-      "seriesId": 632,
-      "candidateIssueId": 860,
+      "seriesId": 2262,
+      "candidateIssueId": 14138,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
     {
-      "sourceIssueReference": "Wolverine (2003) #21",
+      "sourceIssueReference": "Wolverine (1988) #21",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2003,
+      "seriesYear": 1988,
       "issueNumber": "21",
-      "seriesId": 632,
-      "candidateIssueId": 897,
+      "seriesId": 2262,
+      "candidateIssueId": 14139,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
     {
-      "sourceIssueReference": "Wolverine (2003) #22",
+      "sourceIssueReference": "Wolverine (1988) #22",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2003,
+      "seriesYear": 1988,
       "issueNumber": "22",
-      "seriesId": 632,
-      "candidateIssueId": 16,
+      "seriesId": 2262,
+      "candidateIssueId": 14140,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
     {
-      "sourceIssueReference": "Wolverine (2003) #23",
+      "sourceIssueReference": "Wolverine (1988) #23",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2003,
+      "seriesYear": 1988,
       "issueNumber": "23",
-      "seriesId": 632,
-      "candidateIssueId": 1419,
+      "seriesId": 2262,
+      "candidateIssueId": 14141,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
     {
-      "sourceIssueReference": "Wolverine (2003) #24",
+      "sourceIssueReference": "Wolverine (1988) #24",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2003,
+      "seriesYear": 1988,
       "issueNumber": "24",
-      "seriesId": 632,
-      "candidateIssueId": 1517,
+      "seriesId": 2262,
+      "candidateIssueId": 14142,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
     {
-      "sourceIssueReference": "Wolverine (2003) #25",
+      "sourceIssueReference": "Wolverine (1988) #25",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2003,
+      "seriesYear": 1988,
       "issueNumber": "25",
-      "seriesId": 632,
-      "candidateIssueId": 1617,
+      "seriesId": 2262,
+      "candidateIssueId": 14143,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
     {
-      "sourceIssueReference": "Wolverine (2003) #26",
+      "sourceIssueReference": "Wolverine (1988) #26",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2003,
+      "seriesYear": 1988,
       "issueNumber": "26",
-      "seriesId": 632,
-      "candidateIssueId": 1712,
+      "seriesId": 2262,
+      "candidateIssueId": 14144,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
     {
-      "sourceIssueReference": "Wolverine (2003) #27",
+      "sourceIssueReference": "Wolverine (1988) #27",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2003,
+      "seriesYear": 1988,
       "issueNumber": "27",
-      "seriesId": 632,
-      "candidateIssueId": 1822,
+      "seriesId": 2262,
+      "candidateIssueId": 14145,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
     {
-      "sourceIssueReference": "Wolverine (2003) #28",
+      "sourceIssueReference": "Wolverine (1988) #28",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2003,
+      "seriesYear": 1988,
       "issueNumber": "28",
-      "seriesId": 632,
-      "candidateIssueId": 1963,
+      "seriesId": 2262,
+      "candidateIssueId": 14146,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
     {
-      "sourceIssueReference": "Wolverine (2003) #29",
+      "sourceIssueReference": "Wolverine (1988) #29",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2003,
+      "seriesYear": 1988,
       "issueNumber": "29",
-      "seriesId": 632,
-      "candidateIssueId": 2066,
+      "seriesId": 2262,
+      "candidateIssueId": 14147,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
     {
-      "sourceIssueReference": "Wolverine (2003) #30",
+      "sourceIssueReference": "Wolverine (1988) #30",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2003,
+      "seriesYear": 1988,
       "issueNumber": "30",
-      "seriesId": 632,
-      "candidateIssueId": 2173,
+      "seriesId": 2262,
+      "candidateIssueId": 14149,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
     {
-      "sourceIssueReference": "Wolverine (2003) #31",
+      "sourceIssueReference": "Wolverine (1988) #31",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2003,
+      "seriesYear": 1988,
       "issueNumber": "31",
-      "seriesId": 632,
-      "candidateIssueId": 2297,
+      "seriesId": 2262,
+      "candidateIssueId": 14150,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
     {
-      "sourceIssueReference": "Wolverine (2003) #32",
+      "sourceIssueReference": "Wolverine (1988) #32",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2003,
+      "seriesYear": 1988,
       "issueNumber": "32",
-      "seriesId": 632,
-      "candidateIssueId": 2519,
+      "seriesId": 2262,
+      "candidateIssueId": 14151,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
@@ -17240,46 +16694,46 @@
       "selectionNote": null
     },
     {
-      "sourceIssueReference": "Wolverine (2003) #62",
+      "sourceIssueReference": "Wolverine (1988) #62",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2003,
+      "seriesYear": 1988,
       "issueNumber": "62",
-      "seriesId": 632,
-      "candidateIssueId": 20642,
+      "seriesId": 2262,
+      "candidateIssueId": 14184,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
     {
-      "sourceIssueReference": "Wolverine (2003) #63",
+      "sourceIssueReference": "Wolverine (1988) #63",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2003,
+      "seriesYear": 1988,
       "issueNumber": "63",
-      "seriesId": 632,
-      "candidateIssueId": 20833,
+      "seriesId": 2262,
+      "candidateIssueId": 14185,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
     {
-      "sourceIssueReference": "Wolverine (2003) #64",
+      "sourceIssueReference": "Wolverine (1988) #64",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2003,
+      "seriesYear": 1988,
       "issueNumber": "64",
-      "seriesId": 632,
-      "candidateIssueId": 20971,
+      "seriesId": 2262,
+      "candidateIssueId": 14186,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
     {
-      "sourceIssueReference": "Wolverine (2003) #65",
+      "sourceIssueReference": "Wolverine (1988) #65",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
-      "seriesYear": 2003,
+      "seriesYear": 1988,
       "issueNumber": "65",
-      "seriesId": 632,
-      "candidateIssueId": 21180,
+      "seriesId": 2262,
+      "candidateIssueId": 14187,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
@@ -17293,6 +16747,17 @@
       "candidateIssueId": 108820,
       "manualSeriesSelectionApproved": true,
       "selectionNote": "Issue 108820 is the reviewed exact official identity for this frozen source position."
+    },
+    {
+      "sourceIssueReference": "Wolverine (2003) #32",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "32",
+      "seriesId": 632,
+      "candidateIssueId": 2519,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
     },
     {
       "sourceIssueReference": "Shadow Society",
@@ -17647,6 +17112,94 @@
       "selectionNote": null
     },
     {
+      "sourceIssueReference": "Wolverine (2003) #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "1",
+      "seriesId": 632,
+      "candidateIssueId": 14225,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2003) #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "2",
+      "seriesId": 632,
+      "candidateIssueId": 14236,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2003) #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "3",
+      "seriesId": 632,
+      "candidateIssueId": 14247,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2003) #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "4",
+      "seriesId": 632,
+      "candidateIssueId": 14259,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2003) #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "5",
+      "seriesId": 632,
+      "candidateIssueId": 14264,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2003) #6",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "6",
+      "seriesId": 632,
+      "candidateIssueId": 234,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2003) #7",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "7",
+      "seriesId": 632,
+      "candidateIssueId": 233,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2003) #8",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "8",
+      "seriesId": 632,
+      "candidateIssueId": 268,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
       "sourceIssueReference": "Wolverine (2003) #9",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
@@ -17658,6 +17211,39 @@
       "selectionNote": null
     },
     {
+      "sourceIssueReference": "Wolverine (2003) #10",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "10",
+      "seriesId": 632,
+      "candidateIssueId": 237,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2003) #11",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "11",
+      "seriesId": 632,
+      "candidateIssueId": 236,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2003) #12",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "12",
+      "seriesId": 632,
+      "candidateIssueId": 427,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
       "sourceIssueReference": "Wolverine (2003) #13",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
@@ -17665,6 +17251,72 @@
       "issueNumber": "13",
       "seriesId": null,
       "candidateIssueId": 464,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2003) #14",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "14",
+      "seriesId": 632,
+      "candidateIssueId": 490,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2003) #15",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "15",
+      "seriesId": 632,
+      "candidateIssueId": 658,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2003) #16",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "16",
+      "seriesId": 632,
+      "candidateIssueId": 718,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2003) #17",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "17",
+      "seriesId": 632,
+      "candidateIssueId": 527,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2003) #18",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "18",
+      "seriesId": 632,
+      "candidateIssueId": 760,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2003) #19",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "19",
+      "seriesId": 632,
+      "candidateIssueId": 828,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
@@ -18446,6 +18098,138 @@
       "issueNumber": "6",
       "seriesId": 753,
       "candidateIssueId": 1829,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2003) #20",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "20",
+      "seriesId": 632,
+      "candidateIssueId": 860,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2003) #21",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "21",
+      "seriesId": 632,
+      "candidateIssueId": 897,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2003) #22",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "22",
+      "seriesId": 632,
+      "candidateIssueId": 16,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2003) #23",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "23",
+      "seriesId": 632,
+      "candidateIssueId": 1419,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2003) #24",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "24",
+      "seriesId": 632,
+      "candidateIssueId": 1517,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2003) #25",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "25",
+      "seriesId": 632,
+      "candidateIssueId": 1617,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2003) #26",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "26",
+      "seriesId": 632,
+      "candidateIssueId": 1712,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2003) #27",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "27",
+      "seriesId": 632,
+      "candidateIssueId": 1822,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2003) #28",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "28",
+      "seriesId": 632,
+      "candidateIssueId": 1963,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2003) #29",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "29",
+      "seriesId": 632,
+      "candidateIssueId": 2066,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2003) #30",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "30",
+      "seriesId": 632,
+      "candidateIssueId": 2173,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2003) #31",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "31",
+      "seriesId": 632,
+      "candidateIssueId": 2297,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
@@ -19319,6 +19103,94 @@
       "selectionNote": null
     },
     {
+      "sourceIssueReference": "Wolverine (2010) #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2010,
+      "issueNumber": "1",
+      "seriesId": 9962,
+      "candidateIssueId": 30224,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2010) #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2010,
+      "issueNumber": "2",
+      "seriesId": 9962,
+      "candidateIssueId": 30228,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2010) #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2010,
+      "issueNumber": "3",
+      "seriesId": 9962,
+      "candidateIssueId": 30229,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2010) #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2010,
+      "issueNumber": "4",
+      "seriesId": 9962,
+      "candidateIssueId": 30230,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2010) #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2010,
+      "issueNumber": "5",
+      "seriesId": 9962,
+      "candidateIssueId": 30231,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2010) #6",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2010,
+      "issueNumber": "6",
+      "seriesId": 9962,
+      "candidateIssueId": 30232,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2010) #7",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2010,
+      "issueNumber": "7",
+      "seriesId": 9962,
+      "candidateIssueId": 30233,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2010) #8",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2010,
+      "issueNumber": "8",
+      "seriesId": 9962,
+      "candidateIssueId": 30234,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
       "sourceIssueReference": "Wolverine (2010) #5.1",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
@@ -19480,6 +19352,127 @@
       "issueNumber": "32",
       "seriesId": 2055,
       "candidateIssueId": 10369,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2010) #10",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2010,
+      "issueNumber": "10",
+      "seriesId": 9962,
+      "candidateIssueId": 30225,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2010) #11",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2010,
+      "issueNumber": "11",
+      "seriesId": 9962,
+      "candidateIssueId": 30226,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2010) #12",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2010,
+      "issueNumber": "12",
+      "seriesId": 9962,
+      "candidateIssueId": 30227,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2010) #13",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2010,
+      "issueNumber": "13",
+      "seriesId": 9962,
+      "candidateIssueId": 36468,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2010) #14",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2010,
+      "issueNumber": "14",
+      "seriesId": 9962,
+      "candidateIssueId": 36470,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2010) #15",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2010,
+      "issueNumber": "15",
+      "seriesId": 9962,
+      "candidateIssueId": 36471,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2010) #16",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2010,
+      "issueNumber": "16",
+      "seriesId": 9962,
+      "candidateIssueId": 36467,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2010) #17",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2010,
+      "issueNumber": "17",
+      "seriesId": 9962,
+      "candidateIssueId": 36469,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2010) #18",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2010,
+      "issueNumber": "18",
+      "seriesId": 9962,
+      "candidateIssueId": 36466,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2010) #19",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2010,
+      "issueNumber": "19",
+      "seriesId": 9962,
+      "candidateIssueId": 38839,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2010) #20",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2010,
+      "issueNumber": "20",
+      "seriesId": 9962,
+      "candidateIssueId": 40621,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
@@ -20529,6 +20522,72 @@
       "selectionNote": null
     },
     {
+      "sourceIssueReference": "Wolverine (2013) #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2013,
+      "issueNumber": "1",
+      "seriesId": 17615,
+      "candidateIssueId": 46713,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2013) #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2013,
+      "issueNumber": "2",
+      "seriesId": 17615,
+      "candidateIssueId": 46717,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2013) #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2013,
+      "issueNumber": "3",
+      "seriesId": 17615,
+      "candidateIssueId": 46719,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2013) #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2013,
+      "issueNumber": "4",
+      "seriesId": 17615,
+      "candidateIssueId": 46721,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2013) #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2013,
+      "issueNumber": "5",
+      "seriesId": 17615,
+      "candidateIssueId": 46723,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2013) #6",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2013,
+      "issueNumber": "6",
+      "seriesId": 17615,
+      "candidateIssueId": 46725,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
       "sourceIssueReference": "Avengers (2010) #12.1",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Avengers",
@@ -20650,6 +20709,28 @@
       "selectionNote": null
     },
     {
+      "sourceIssueReference": "Wolverine (2013) #7",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2013,
+      "issueNumber": "7",
+      "seriesId": 17615,
+      "candidateIssueId": 46726,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2013) #8",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2013,
+      "issueNumber": "8",
+      "seriesId": 17615,
+      "candidateIssueId": 46727,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
       "sourceIssueReference": "Wolverine (2013) #10",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
@@ -20668,6 +20749,94 @@
       "issueNumber": "16",
       "seriesId": null,
       "candidateIssueId": 48806,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2014) #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2014,
+      "issueNumber": "1",
+      "seriesId": 18517,
+      "candidateIssueId": 49235,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2014) #2",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2014,
+      "issueNumber": "2",
+      "seriesId": 18517,
+      "candidateIssueId": 49237,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2014) #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2014,
+      "issueNumber": "3",
+      "seriesId": 18517,
+      "candidateIssueId": 49239,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2014) #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2014,
+      "issueNumber": "4",
+      "seriesId": 18517,
+      "candidateIssueId": 49240,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2014) #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2014,
+      "issueNumber": "5",
+      "seriesId": 18517,
+      "candidateIssueId": 49241,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2014) #6",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2014,
+      "issueNumber": "6",
+      "seriesId": 18517,
+      "candidateIssueId": 49242,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2014) #7",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2014,
+      "issueNumber": "7",
+      "seriesId": 18517,
+      "candidateIssueId": 49243,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine (2014) #8",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2014,
+      "issueNumber": "8",
+      "seriesId": 18517,
+      "candidateIssueId": 49244,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
@@ -21486,7 +21655,7 @@
       "selectionNote": null
     }
   ],
-  "packetDigest": "18ed5e17e5c91c2ca2e4c127a38f140b4395f0c354e1cec93128fdb260d4941d",
+  "packetDigest": "00e47fc9b54b7ac2a094510a8f5941cef722cce548dbb74913dfdd33ebd1d06a",
   "sourceGapResolutions": [
     {
       "sourcePosition": 132,
@@ -21716,7 +21885,7 @@
       "previousSeriesYear": 0,
       "previousIssueNumber": "unresolved",
       "resolutionKind": "canonical-repeat",
-      "canonicalRow": 71,
+      "canonicalRow": 72,
       "selectedIssueId": 62695,
       "resolvedNormalizedSeriesTitle": "Logan: Shadow Society",
       "resolvedSeriesYear": 1997,
@@ -21735,7 +21904,7 @@
           "retrievedAt": "2026-09-06"
         }
       ],
-      "evidenceDigest": "ec4fea83a71a3962f56c9a65cef4a41dd1b254d53e60b6e404a3941a4d5e9aa2"
+      "evidenceDigest": "fbfd1735acf93868828fa280cf59b63e266081673dad0b5d144cc1fd24df712b"
     },
     {
       "sourcePosition": 279,
@@ -22067,7 +22236,7 @@
       "previousSeriesYear": 0,
       "previousIssueNumber": "unresolved",
       "resolutionKind": "canonical-repeat",
-      "canonicalRow": 286,
+      "canonicalRow": 335,
       "selectedIssueId": 40087,
       "resolvedNormalizedSeriesTitle": "Wolverine & the X-Men",
       "resolvedSeriesYear": 2011,
@@ -22086,7 +22255,7 @@
           "retrievedAt": "2026-09-06"
         }
       ],
-      "evidenceDigest": "85fcace7e8d2e8230cd6c3a7936a90249dfc4d9d72e5ce42b660f45deb8ec618"
+      "evidenceDigest": "5f27d95ed92f5c07563cbbfed03749827744fce4cfb2ada6ba2297b22ad53c13"
     },
     {
       "sourcePosition": 1100,

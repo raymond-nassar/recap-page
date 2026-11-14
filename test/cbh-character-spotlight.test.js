@@ -20,6 +20,7 @@ import {
 } from '../scripts/lib/cbh-inventory.mjs';
 import { issueIdsFromValue } from '../scripts/lib/cbh-overlap.mjs';
 import { placeholderId } from '../scripts/lib/placeholder-id.mjs';
+import { repairWolverineTitles } from '../scripts/lib/wolverine-title-repairs.mjs';
 import { assertApprovedRelationshipReview, buildMarkdown } from '../scripts/author-cbh-packet.mjs';
 
 import { CBH_LATER_ORDER_IDS } from '../scripts/lib/cbro-evidence.mjs';
@@ -3431,15 +3432,15 @@ test('Wolverine settles every reviewed gap without substitution or boundary wide
   }));
 
   assert.equal(record.deliveryStatus, 'shipped');
-  assert.match(record.reason, /451 exact rows/i);
-  assert.equal(manifestEntry.expect, 1207);
-  assert.equal(catalogEntry.count, 1207);
+  assert.match(record.reason, /516 exact rows/i);
+  assert.equal(manifestEntry.expect, 1272);
+  assert.equal(catalogEntry.count, 1272);
   assert.equal(catalogEntry.placeholderCount, 756);
-  assert.equal(generated.count, 1207);
-  assert.equal(generated.items.length, 1207);
+  assert.equal(generated.count, 1272);
+  assert.equal(generated.items.length, 1272);
   assert.equal(generated.placeholders, 756);
   assert.equal(generated.unresolved.length, 756);
-  assert.equal(parsed.entries.length, 451);
+  assert.equal(parsed.entries.length, 516);
   assert.equal(parsed.unresolved.length, 756);
   const retainedPlaceholderIds = packet.sourceGaps
     .slice()
@@ -3462,7 +3463,7 @@ test('Wolverine settles every reviewed gap without substitution or boundary wide
     Array.from({ length: 756 }, () => null),
   );
   assert.deepEqual(
-    generated.items
+    repairWolverineTitles(generated, { undo: true }).items
       .filter((item) => item.placeholder)
       .map((item) => [item.title, item.issueId]),
     retainedPlaceholderIds,

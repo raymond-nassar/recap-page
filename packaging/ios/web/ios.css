@@ -1,5 +1,5 @@
 /* The iOS overlay, loaded after styles.css and the shared phone layer in mobile/mobile.css.
-   The native scale adjusts shared text tokens; Search alone has a minimum to avoid iPhone focus zoom. */
+   The native scale adjusts shared text tokens; text fields alone have a minimum to avoid iPhone focus zoom. */
 
 /* WebKit on iOS enlarges text on its own when an iPhone turns to landscape, so the same screen
    would read at two sizes. This keeps the size the page sets in both orientations. */
@@ -140,7 +140,9 @@
   line-height: max(var(--target), 1.5em);
 }
 
-/* At 14px, iPhone WebKit kept Search at 16/14 zoom after the keyboard closed in #1240. */
-:root #search-q {
+/* At 14px, iPhone WebKit kept Search at 16/14 zoom after the keyboard closed in #1240, and #1244
+   measured the same on every other text field, so every field that takes typing has the floor. */
+:root :is(input:not([type="checkbox"], [type="radio"], [type="file"], [type="range"], [type="color"],
+  [type="button"], [type="submit"], [type="reset"], [type="image"], [type="hidden"]), textarea) {
   font-size: max(16px, var(--t-body));
 }

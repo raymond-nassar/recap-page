@@ -1192,6 +1192,29 @@ test('#1061 hero shows each loaded summary in full and follows the next comic th
   }
 });
 
+test('#1241 the reading card hides its facts list for a comic with none and shows it for the next', () => {
+  let state = createList(createEmptyState(), { id: 'bare', name: 'Bare list' });
+  state = addIssuesToList(state, 'bare', [
+    issue(16874, 'No Facts Annual', { onSale: null }),
+    issue(16875, 'Dated Issue'),
+  ], {}).state;
+  const h = harness({ state: setActive(state, 'bare') });
+  try {
+    h.view.wire();
+    h.view.render();
+    const before = structuredClone(h.state());
+    assert.equal(h.nodes.heroFacts.childNodes.length, 0);
+    assert.equal(h.nodes.heroFacts.hidden, true, 'an empty facts list takes no space');
+    assert.deepEqual(structuredClone(h.state()), before, 'hiding changes no saved state');
+    h.nodes.btnHeroDone.fire('click');
+    h.view.renderHero();
+    assert.equal(h.nodes.heroFacts.hidden, false, 'the next comic shows its release date');
+    assert.ok(h.nodes.heroFacts.childNodes.length > 0);
+  } finally {
+    h.restore();
+  }
+});
+
 test('453 reader presentation invalidates memoized buttons without changing stored rows', () => {
   let temporary = false;
   const h = harness({ readerPresentation: () => ({ launchable: temporary, temporary }) });

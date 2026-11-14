@@ -26,13 +26,14 @@ const SCOPES = {
 };
 const words = (scope, read) => (scope === 'home' ? `${read} of ${TOTAL} comics read` : `${read} of ${TOTAL} read`);
 
-function fixture(read, mode = 'queued') {
+function fixture(read, mode = 'queued', withFacts = false) {
   let state = createList(createEmptyState(), { id: 'glance', name: 'Glance fixture' });
   if (mode !== 'empty') {
     state = addIssuesToList(state, 'glance', ids.map((issueId, index) => ({
       issueId, title: title(index + 1), number: String(index + 1), seriesName: 'Glance fixture (2026)', seriesId: 876,
       digitalId: 876201 + index, url: `https://www.marvel.com/comics/issue/${issueId}/fixture`, source: 'manual',
       cover: { path: `https://i.annihil.us/u/prod/marvel/i/mg/8/76/glance${index + 1}`, ext: 'jpg' },
+      ...(withFacts ? { onSale: '2026-01-01', pageCount: 32, creators: [{ name: 'Fixture Writer', role: 'writer' }] } : {}),
     }))).state;
   }
   for (const issueId of ids.slice(0, read)) state = markRead(state, issueId, true, 1000);
@@ -45,7 +46,7 @@ function fixture(read, mode = 'queued') {
 
 // Starts from blank each time, so one page can take every pass, and returns what undoes the pass. A
 // cover, when asked for, is one flat colour, the brightest or darkest backdrop the hero can bleed in.
-async function setup(page, { read = 3, width = 1280, theme = 'dark', route = 'read', covers = false, coverFill = null, reduce = false, forced = false, mode = 'queued' } = {}) {
+async function setup(page, { read = 3, width = 1280, theme = 'dark', route = 'read', covers = false, coverFill = null, reduce = false, forced = false, mode = 'queued', withFacts = false } = {}) {
   await page.goto('about:blank');
   await page.setViewport({ width, height: 900 });
   page.__cdp ??= await page.createCDPSession();
@@ -57,7 +58,7 @@ async function setup(page, { read = 3, width = 1280, theme = 'dark', route = 're
     contentType: 'image/svg+xml',
     body: `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="300"><rect width="200" height="300" fill="${coverFill}"/></svg>`,
   } : undefined;
-  const initial = exportBackup(fixture(read, mode));
+  const initial = exportBackup(fixture(read, mode, withFacts));
   const history = mode === 'completed' ? {
     format: LIST_HISTORY_FORMAT, version: 1,
     records: [{ listId: 'glance', created: initial.lists.glance.created, catalogId: initial.lists.glance.catalogId, completedAt: 1000, rating: null }],
@@ -213,6 +214,29 @@ function checkValues(t, label, scope, state, read) {
     state.shown && !!state.bar && near(state.share * state.bar.width, (read / TOTAL) * state.bar.width), JSON.stringify(state));
 }
 
+async function heroOrder(page) {
+  return page.evaluate(() => {
+    const at = (selector) => document.querySelector(selector)?.getBoundingClientRect() ?? { top: NaN, bottom: NaN };
+    const facts = document.querySelector('#hero-facts');
+    const box = facts?.getBoundingClientRect();
+    return {
+      done: at('#btn-hero-done').bottom, row: at('#hero-progress').top, rowBottom: at('#hero-progress').bottom,
+      facts: facts ? { top: box.top, height: box.height, visible: facts.checkVisibility(), hidden: facts.hidden, children: facts.children.length } : null,
+      heroBottom: at('#hero').bottom,
+    };
+  });
+}
+
+function checkHeroOrder(t, label, width, order, withFacts) {
+  const facts = order.facts;
+  t.check(`${label}: the visual row follows the intended card content`,
+    !!facts && order.row >= order.done
+      && (withFacts ? facts.visible && !facts.hidden && facts.children > 0
+        : facts.hidden && !facts.visible && facts.children === 0 && facts.height === 0)
+      && (width <= 700 ? order.row >= order.heroBottom : !facts.visible || facts.top >= order.rowBottom),
+    JSON.stringify(order));
+}
+
 export const progressGlance = {
   id: 'progress-glance',
   title: 'reading progress shows at a glance on Home and the reading screen, read out once and moving only the bar',
@@ -243,16 +267,15 @@ export const progressGlance = {
           t.check(`${label} reading screen: progress is read once, from the header, and the hero's row is kept from assistive technology`,
             hero.hidden && times(readTree.said, words('hero', 3)) === 1 && !readTree.roles.includes('progressbar'),
             JSON.stringify({ said: readTree.said, roles: [...new Set(readTree.roles)] }));
-          const order = await page.evaluate(() => {
-            const at = (selector) => document.querySelector(selector)?.getBoundingClientRect() ?? { top: NaN, bottom: NaN };
-            return { done: at('#btn-hero-done').bottom, row: at('#hero-progress').top,
-              facts: at('#hero-facts').top, heroBottom: at('#hero').bottom };
-          });
-          t.check(`${label} reading screen: the visual row follows the intended card content`,
-            order.row >= order.done && (width <= 700 ? order.row >= order.heroBottom : order.facts >= order.row),
-            JSON.stringify(order));
+          checkHeroOrder(t, `${label} reading screen`, width, await heroOrder(page), false);
           await done();
         }
+      }
+
+      for (const width of [1280, 390]) {
+        const done = await setup(page, { width, withFacts: true });
+        checkHeroOrder(t, `${width}px reading screen with facts`, width, await heroOrder(page), true);
+        await done();
       }
 
       for (const pass of [
@@ -478,6 +501,14 @@ export const progressGlance = {
 
 // Each breaks one promise of the change, and only the scenario above is aimed at.
 export const progressGlanceMutations = [
+  {
+    id: 'glance-facts-before-progress', breaks: 'progress-glance',
+    why: 'populated facts move above the desktop progress row',
+    rewriteReading: (source) => source.replace(
+      "$('#hero-reader-temporary').after(progress);",
+      "$('#hero-facts').after(progress);",
+    ),
+  },
   {
     id: 'glance-share-off', breaks: 'progress-glance',
     why: 'the bar is filled to a share of one more issue than the list holds, so it no longer matches the count',

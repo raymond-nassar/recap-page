@@ -302,7 +302,9 @@ final class LaunchUITests: XCTestCase {
     }
 
     private func assertRestored(_ restored: [String: Any], _ label: String, priorSaved: Bool) {
-        XCTAssertEqual(restored["ok"] as? Bool, true, "\(label): \(restored["error"] ?? "no error")")
+        // The journal check names why a "could not check for a recovery copy" refusal happened (#1249).
+        let check = (restored["journalCheck"] as? [String: Any])?["failure"] as? String ?? "none"
+        XCTAssertEqual(restored["ok"] as? Bool, true, "\(label): \(restored["error"] ?? "no error") (journal failure: \(check))")
         XCTAssertEqual(restored["restoredMatches"] as? Bool, true, "\(label): the restored lists are the backup's")
         if priorSaved {
             XCTAssertEqual(restored["undoKept"] as? Bool, true, "\(label): Undo keeps the prior data")

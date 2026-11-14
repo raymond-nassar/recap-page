@@ -16,11 +16,11 @@ const catalog = JSON.parse(readFileSync(new URL('../src/data/catalog.json', impo
 const order = JSON.parse(readFileSync(new URL(`../src/data/${catalog.lists.find((list) => list.id === 'hickman-minimal').file}`, import.meta.url), 'utf8'));
 const next = order.items[3].title;
 
-function fixture(note = '', other = false, { empty = false, single = false } = {}) {
+function fixture(note = '', other = false, { empty = false, single = false, chosen = null } = {}) {
   let state = createList(createEmptyState(), { id: 'card', name: order.name, description: order.description, catalogId: order.id, note });
-  const items = empty ? [] : single ? order.items.slice(3, 4) : order.items;
+  const items = chosen ?? (empty ? [] : single ? order.items.slice(3, 4) : order.items);
   state = addIssuesToList(state, 'card', items).state;
-  if (!single) for (const item of order.items.slice(0, empty ? 0 : 3)) state = markRead(state, item.issueId, true, 1767225600000);
+  if (!single && !chosen) for (const item of order.items.slice(0, empty ? 0 : 3)) state = markRead(state, item.issueId, true, 1767225600000);
   if (other) {
     state = createList(state, { id: 'other', name: 'Another reading list' });
     state = addIssuesToList(state, 'other', order.items.slice(3, 6)).state;
@@ -33,7 +33,7 @@ const settle = (page) => page.evaluate(() => new Promise((resolve) => {
 }));
 
 // A list under way, past the one-time save note, so the card is the first thing in the reading view.
-async function setup(page, { width, height, theme, text, note, touch = false, other = false, empty = false, single = false }) {
+async function setup(page, { width, height, theme, text, note, touch = false, other = false, empty = false, single = false, chosen = null }) {
   await page.goto('about:blank');
   await page.setViewport({ width, height, ...(touch ? { isMobile: true, hasTouch: true } : {}) });
   const { identifier } = await page.evaluateOnNewDocument((initial, key, educationKey, education, chosen) => {
@@ -48,11 +48,11 @@ async function setup(page, { width, height, theme, text, note, touch = false, ot
       return url.origin === location.origin ? real(input, init)
         : Promise.reject(new TypeError('Reading card fixture blocks external requests'));
     };
-  }, exportBackup(fixture(note, other, { empty, single })), KEY, SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE.COMPLETE, theme);
+  }, exportBackup(fixture(note, other, { empty, single, chosen })), KEY, SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE.COMPLETE, theme);
   await page.goto(`${page.__origin}/#/read/card`, { waitUntil: 'load' });
   await page.waitForFunction((name, isEmpty) => !document.querySelector('#view-read').hidden
     && (isEmpty ? !document.querySelector('#reading-empty').hidden
-      : document.querySelector('#hero-title').textContent === name), {}, next, empty);
+      : document.querySelector('#hero-title').textContent === name), {}, chosen ? chosen[0].title : next, empty);
   if (text) await page.evaluate((size) => { document.documentElement.style.fontSize = size; }, text);
   await settle(page);
   return async () => {
@@ -467,6 +467,52 @@ export const readingCardPoster = {
     t.check('Comic details shows the Unlimited record and, by the owner\'s 2026-11-02 choice, no position',
       /Marvel Unlimited record/.test(details) && !/Position|\d+ of \d+/.test(details) && !/\d+ of \d+/.test(context),
       JSON.stringify({ details, context }));
+    await page.evaluate(() => localStorage.clear());
+    t.check('the passes raise no page errors', errors.length === 0, errors.join(' / '));
+  },
+};
+
+// #1241: a comic with no credits, page count or release date left the card's empty facts list in
+// place with its margins, a blank band above About this comic. The real case is Incredible Hulk
+// Annual (1976) #17, bundled with no details at all. The separation above the comic actions must be
+// no larger than the one a facts list ends with, and a comic with facts keeps them.
+const abomination = JSON.parse(readFileSync(new URL(`../src/data/${catalog.lists.find((list) => list.id === 'abomination-reading-order').file}`, import.meta.url), 'utf8'));
+const bare = abomination.items.find((item) => item.issueId === 16874);
+const dated = abomination.items.find((item) => item.issueId === 9108);
+export const readingCardNoFacts = {
+  id: 'reading-card-no-facts',
+  title: 'the reading card leaves no blank band for a comic with no displayable facts',
+  async run(page, t) {
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    for (const [width, height] of [[360, 640], [390, 844], [1280, 900]]) {
+      const seen = {};
+      for (const [label, chosen] of [['bare', [bare, dated]], ['dated', [dated, bare]]]) {
+        const undo = await setup(page, { width, height, theme: 'dark', chosen });
+        seen[label] = await page.evaluate(() => {
+          const facts = document.querySelector('#hero-facts');
+          const actions = document.querySelector('#hero .reading-comic-actions');
+          const above = [...actions.parentElement.children].slice(0, [...actions.parentElement.children].indexOf(actions))
+            .filter((node) => node !== facts && node.checkVisibility());
+          const shown = (selector) => document.querySelector(selector).checkVisibility();
+          return {
+            facts: facts.checkVisibility(), items: facts.children.length,
+            gap: Math.round(actions.getBoundingClientRect().top - (facts.children.length
+              ? facts.getBoundingClientRect().bottom : above.at(-1).getBoundingClientRect().bottom)),
+            controls: shown('#btn-hero-read') && shown('#btn-hero-done') && shown('#btn-hero-inspect')
+              && shown('#list-actions > summary'),
+          };
+        });
+        await undo();
+      }
+      const name = `${width}x${height}`;
+      t.check(`${name}: a comic with no facts hides the empty list and keeps every control`,
+        !seen.bare.facts && seen.bare.items === 0 && seen.bare.controls, JSON.stringify(seen.bare));
+      t.check(`${name}: a comic with facts still shows them`,
+        seen.dated.facts && seen.dated.items > 0 && seen.dated.controls, JSON.stringify(seen.dated));
+      t.check(`${name}: no blank band is reserved above About this comic`,
+        seen.bare.gap <= seen.dated.gap + 1, JSON.stringify(seen));
+    }
     await page.evaluate(() => localStorage.clear());
     t.check('the passes raise no page errors', errors.length === 0, errors.join(' / '));
   },

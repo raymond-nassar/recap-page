@@ -280,9 +280,38 @@ try {
       await load('data');
       await capture('data', ['#btn-export-json', '#backup-export-options > summary', '#metadata-settings > summary']);
       if (profile.width <= 700) {
-        check(await page.$$eval('#view-data .setting-more > summary',
-          (nodes) => nodes.every((node) => node.getBoundingClientRect().height >= 48)),
-        prefix('preference-help disclosure targets are at least 48 pixels high'));
+        // The install and Cloud backup cards start hidden, so their three summaries measured 0 pixels on
+        // a 390px phone while every visible one was 48. No other check measures them once shown, so
+        // reveal each hidden or closed ancestor, measure, and restore, holding every summary to 48.
+        const summaries = await page.$$eval('#view-data .setting-more > summary', (nodes) => {
+          const view = document.querySelector('#view-data');
+          const rendered = nodes.map((node) => node.getClientRects().length > 0);
+          const hidden = new Set();
+          const closed = new Set();
+          for (const node of nodes) {
+            for (let up = node.parentElement; up && up !== view; up = up.parentElement) {
+              if (up.hidden) hidden.add(up);
+              if (up.localName === 'details' && !up.open && up !== node.parentElement) closed.add(up);
+            }
+          }
+          try {
+            for (const up of hidden) up.hidden = false;
+            for (const up of closed) up.open = true;
+            return nodes.map((node, index) => ({
+              text: node.textContent.trim(), rendered: rendered[index], height: node.getBoundingClientRect().height,
+            }));
+          } finally {
+            for (const up of hidden) up.hidden = true;
+            for (const up of closed) up.open = false;
+          }
+        });
+        const unrendered = summaries.filter(({ rendered }) => !rendered).map(({ text }) => text).sort();
+        check(JSON.stringify(unrendered) === JSON.stringify(['About cloud backup', 'Backups in this OneDrive', 'What installation changes']),
+          prefix('only the install and Cloud backup disclosures start unrendered'), unrendered);
+        check(summaries.filter(({ rendered }) => rendered).length >= 10
+          && summaries.every(({ height }) => height >= 48),
+        prefix('preference-help disclosure targets are at least 48 pixels high'),
+        summaries.filter(({ height }) => height < 48));
       }
       check(await page.evaluate(() => {
         const backup = document.querySelector('#btn-export-json');
