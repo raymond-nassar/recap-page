@@ -54,6 +54,10 @@ function sourceIdentity(title, { legacyIdentityKeys = false, preserveLegacyIdent
   };
 }
 
+export function sourceDisplayTitle(title) {
+  return sourceIdentity(title).title || title;
+}
+
 export function unescapeLinkText(s) {
   return String(s ?? '').replace(/\\(.)/g, '$1');
 }

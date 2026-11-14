@@ -1,4 +1,4 @@
-import { parseChecklist, readerIssueId } from './markdown.js';
+import { parseChecklist, readerIssueId, sourceDisplayTitle } from './markdown.js';
 import { MAX_BACKUP_BYTES, MAX_ISSUES, MAX_NAME, normalizeIssue } from './model.js';
 
 export const DRAFT_FORMAT = 'recap-import-draft';
@@ -41,7 +41,7 @@ export function occurrenceIssue(entry) {
   if (entry.issueId == null) return null;
   const readerOnly = readerIssueId(entry.digitalId) === entry.issueId;
   return {
-    issueId: entry.issueId, title: entry.title, url: readerOnly ? null : entry.url,
+    issueId: entry.issueId, title: sourceDisplayTitle(entry.title), url: readerOnly ? null : entry.url,
     digitalId: entry.digitalId ?? null, source: readerOnly ? 'manual' : 'import',
     hydrated: readerOnly, collectedIn: entry.section ?? null,
   };

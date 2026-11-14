@@ -1822,3 +1822,18 @@ test('the reading-data restore refuses a complete backup file and writes nothing
   assert.match(result.errors.join(' '), /Missing schemaVersion/);
   assert.deepEqual(storage.map, before);
 });
+
+test('new annotated checklist drafts keep the prior app source representation', async () => {
+  const { storage, reader, draft } = importFixture();
+  const raw = '- [ ] Repaired <!-- mrt:legacy-identity-key=Old%20Title -->';
+  assert.equal((await draft.start(raw)).ok, true);
+  const saved = JSON.parse(storage.getItem(IMPORT_DRAFT_KEY));
+  assert.equal(saved.rawText, raw);
+  assert.deepEqual(saved.occurrences[0], {
+    title: raw.slice('- [ ] '.length), url: null, read: false, index: 0, section: null,
+    line: 1, choice: null, applied: false,
+  });
+  const reloaded = new ImportDraftStore({ reader, locks: draftLocks });
+  assert.equal(reloaded.error, null);
+  assert.deepEqual(reloaded.draft.occurrences, saved.occurrences);
+});

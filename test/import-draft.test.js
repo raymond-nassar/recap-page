@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
   DRAFT_FORMAT, DRAFT_VERSION, sourceOccurrences, validateImportDraft,
-  importProjection, pendingOutcome, listSignature,
+  importProjection, occurrenceIssue, pendingOutcome, listSignature,
 } from '../src/js/lib/importDraft.js';
 import { createEmptyState, createList, addIssuesToList, markRead, normalizeIssue, MAX_BACKUP_BYTES } from '../src/js/lib/model.js';
 
@@ -65,6 +65,15 @@ test('historical annotated checklist drafts retain their source and selections',
     title: annotation, url: null, read: false, index: 0, section: null, line: 1, choice: null, applied: false,
   }];
   assert.deepEqual(validateImportDraft(JSON.stringify(annotationOnly)), annotationOnly);
+});
+
+test('a resolved annotated source saves a clean issue title without changing its source occurrence', () => {
+  const raw = '- [ ] [Repaired <!-- mrt:legacy-identity-key=Old%20Title -->](https://www.marvel.com/comics/issue/7/)';
+  const entry = sourceOccurrences(raw, { preserveLegacyIdentityAnnotations: true })[0];
+  assert.match(entry.title, /mrt:legacy-identity-key/);
+  const issue = occurrenceIssue(entry);
+  assert.equal(issue.issueId, 7);
+  assert.equal(issue.title, 'Repaired');
 });
 
 test('pending outcome requires unchanged before token and never replays a completed marker after deliberate unread', () => {

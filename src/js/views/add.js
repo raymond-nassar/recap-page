@@ -13,7 +13,7 @@ import {
   issueIdFromUrl,
   parseChecklist,
   readerIssueId,
-  resolveUniqueExact,
+  resolveUniqueExact, sourceDisplayTitle,
 } from '../lib/markdown.js';
 import { DEFAULT_LIST_NAME } from '../lib/library.js';
 import { compareIssues } from '../lib/sort.js';
@@ -857,25 +857,25 @@ export function createAddView({
       : `Adding to: new ${DEFAULT_LIST_NAME}`;
   }
 
-  function unresolvedRow(entry) {
+  function unresolvedRow(entry, title = sourceDisplayTitle(entry.title)) {
     const row = el('div', { class: 'result' });
     const main = el('div', { class: 'result-main' }, [
-      el('div', { class: 'result-title', text: entry.title }),
+      el('div', { class: 'result-title', text: title }),
       el('div', { class: 'result-meta', text: `Source line ${entry.line}, position ${entry.index + 1}: ${entry.reason ?? 'no issue link, search to resolve'}` }),
     ]);
     const button = el('button', {
-      type: 'button', class: 'btn btn-g', 'aria-label': labelledName('Find match', entry.title),
+      type: 'button', class: 'btn btn-g', 'aria-label': labelledName('Find match', title),
     }, 'Find match');
     button.addEventListener('click', async () => {
       const expected = importDraft.capture();
       button.disabled = true;
       try {
-        const candidates = await search.issues(entry.title, { limit: 25 });
+        const candidates = await search.issues(title, { limit: 25 });
         if (!importDraft.isCurrent(expected)) {
           showImportResult({ ok: false, error: 'The draft changed while searching. Review the current source; that result was not applied.' });
           return;
         }
-        const resolved = resolveUniqueExact(entry.title, candidates);
+        const resolved = resolveUniqueExact(title, candidates);
         if (resolved.status === 'resolved') {
           showImportResult(await importDraft.resolve(entry.index, resolved.match, expected));
           return;
@@ -885,12 +885,12 @@ export function createAddView({
         if (!matches.length) {
           row.append(el('p', {
             class: 'notice notice-warn',
-            text: `No candidates found for “${entry.title}”. This source position is still saved. Try Find match again later.`,
+            text: `No candidates found for “${title}”. This source position is still saved. Try Find match again later.`,
           }));
-          announce(`No candidates found for ${entry.title}.`);
+          announce(`No candidates found for ${title}.`);
           return;
         }
-        choices.append(el('p', { class: 'rail-hint', text: `Pick the right comic for “${entry.title}”:` }));
+        choices.append(el('p', { class: 'rail-hint', text: `Pick the right comic for “${title}”:` }));
         for (const candidate of matches) {
           choices.append(el('div', { class: 'result' }, [
             el('div', { class: 'result-main' }, [
@@ -903,7 +903,7 @@ export function createAddView({
             el('button', {
               type: 'button',
               class: 'btn btn-g',
-              'aria-label': labelledName('This one', `${candidate.title} for ${entry.title}`),
+              'aria-label': labelledName('This one', `${candidate.title} for ${title}`),
               onclick: async (event) => {
                 event.currentTarget.disabled = true;
                 showImportResult(await importDraft.resolve(entry.index, candidate, expected));
@@ -1005,7 +1005,7 @@ export function createAddView({
       if (entry.issueId == null && !entry.choice && !draft.pending && !draft.paused) box.append(unresolvedRow(entry));
       else box.append(el('p', {
         class: 'rail-hint',
-        text: `Position ${entry.index + 1} (line ${entry.line}): ${entry.title}. ${entry.applied ? 'Resolved, saved or already present.' : 'Retained; Resume reviews pending work.'}`,
+        text: `Position ${entry.index + 1} (line ${entry.line}): ${sourceDisplayTitle(entry.title)}. ${entry.applied ? 'Resolved, saved or already present.' : 'Retained; Resume reviews pending work.'}`,
       }));
     }
   }

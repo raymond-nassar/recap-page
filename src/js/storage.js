@@ -252,7 +252,7 @@ export class ImportDraftStore {
     const expected = this.capture();
     return this.locked(expected, () => {
       if (this.draft) throw new Error('A saved import draft already exists. Resume or export and discard it before starting another.');
-      const occurrences = sourceOccurrences(rawText);
+      const occurrences = sourceOccurrences(rawText, { preserveLegacyIdentityAnnotations: true });
       if (!occurrences.length) throw new Error('Could not find any comics in that text.');
       const list = listId ? this.reader.state.lists[listId] : null;
       if (listId && !list) throw new Error('That destination no longer exists. Nothing was imported.');
