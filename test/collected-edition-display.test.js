@@ -104,6 +104,17 @@ test('a link needs a recorded basis and an owner-confirmed address on a real che
   ]) assert.deepEqual(providerLinks({ destinations: [{ ...libby, url }] }, approved()), [], url);
 });
 
+test('provider addresses reject empty query and fragment markers', () => {
+  const cases = [
+    { ...destination, url: 'https://www.hoopladigital.com/title/123' },
+    { ...destination, url: 'https://www.hoopladigital.com/comic/example/123' },
+    { ...libby, url: 'https://share.libbyapp.com/title/123' },
+  ];
+  assert.deepEqual(cases.filter((entry) => providerLinks({ destinations: [entry] }, approved()).length !== 1), []);
+  const rejected = cases.flatMap((entry) => ['?', '#'].map((suffix) => ({ ...entry, url: entry.url + suffix })));
+  assert.deepEqual(rejected.filter((entry) => providerLinks({ destinations: [entry] }, approved()).length), []);
+});
+
 test('the build refuses any destination the display gate would drop', () => {
   const inputs = loadInputs();
   const ids = new Set(inputs.pilot.editions.map((edition) => edition.id));

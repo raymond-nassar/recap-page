@@ -3677,8 +3677,8 @@ The selected Modern Timeline books extend the display without inventing collecti
 [licensed check inputs](../scripts/data/collected-editions/gcd-check-inputs.json) identify the
 selected lists, source-series mappings and supporting records; the
 [checked evidence](../scripts/data/collected-editions/gcd-editions.json) retains their dates and
-results. The original pilot's 23 relations remain unchanged, and nine selected books add 63
-relations across eleven lists, intersected with each list's exact comics. Book names stay in the
+results. The original pilot's 23 relations remain unchanged, and eleven selected books add 71
+relations across thirteen lists, intersected with each list's exact comics. Book names stay in the
 separate curated lane. For books without an exact indexer-note range, numbered interior-cover text
 and creator credits or matching original issue stories provide the check; no image bytes are used.
 

@@ -24,7 +24,8 @@ export function destinationUrl(provider, value) {
   let url;
   try { url = new URL(value); } catch { return null; }
   if (url.protocol !== 'https:' || url.hostname !== rule.host || url.port || url.username || url.password
-    || url.search || url.hash || !rule.path.test(url.pathname) || url.href !== value) return null;
+    || url.search || url.hash || !rule.path.test(url.pathname)
+    || value !== `https://${rule.host}${url.pathname}`) return null;
   return url.href;
 }
 
