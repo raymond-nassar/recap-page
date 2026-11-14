@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import path from 'node:path';
 import { readUltimateSelectionBaseline } from '../../scripts/correct-ultimate-spider-man.mjs';
+import { descriptionRevisions } from '../../scripts/lib/description-revisions.mjs';
 import {
   ultimateSelection, selectedUltimateEntry, selectedUltimatePayload,
 } from '../../scripts/lib/ultimate-spider-man-selection.mjs';
@@ -37,6 +38,8 @@ export function beforeUltimateSelectionEntry(entry) {
   // Discovery tags may have been set aside by an older approval before this inverse runs.
   const adapt = (value) => Object.fromEntries(Object.entries(value).filter(([key]) =>
     !['storyTypes', 'tones'].includes(key) || Object.hasOwn(entry, key)));
+  const earlier = adapt(descriptionRevisions.undoEntry(baseline.entry));
+  if (JSON.stringify(entry) === JSON.stringify(earlier)) return earlier;
   assertRecorded(entry, adapt(baseline.entry), adapt(baseline.currentEntry), 'manifest');
   return adapt(baseline.entry);
 }
