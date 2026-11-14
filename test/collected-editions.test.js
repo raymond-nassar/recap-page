@@ -84,6 +84,80 @@ test('a printing link and notes ranges come only from the share-alike inputs', (
   assert.ok(merged['secret-wars-2015-hc'].contents.every((range) => range.assertedBy === 'gcd-notes'));
 });
 
+test('returned Secret Invasion books and Second Semester retain original-series identity', () => {
+  const data = inputs();
+  for (const [id, seriesId, seriesName, appName, gcdId, count] of [
+    ['secret-invasion-front-line', 5213, 'Secret Invasion: Front Line', 'Secret Invasion: Front Line (2008 - 2009)', 31278, 5],
+    ['secret-invasion-fantastic-four', 4886, 'Secret Invasion: Fantastic Four', 'Secret Invasion: Fantastic Four (2008)', 30803, 3],
+    ['secret-invasion-x-men', 5364, 'Secret Invasion: X-Men', 'Secret Invasion: X-Men (2008)', 31628, 4],
+  ]) {
+    const edition = data.pilot.editions.find((entry) => entry.id === id);
+    assert.ok(edition);
+    const book = data.fixtures[edition.gcdIssueId].issue;
+    for (const reference of edition.gcdCheck.originalIssues) {
+      const original = data.fixtures[reference.gcdIssueId].issue;
+      const stories = original.story_set.filter((story) => story.type === 'comic story');
+      const collected = book.story_set.find((story) => story.sequence_number === reference.collectionSequence);
+      const item = data.lists['secret-invasion'].items.find((row) =>
+        row.seriesId === seriesId && row.number === String(reference.appNumber));
+      assert.ok(item);
+      assert.equal(item.seriesName, appName);
+      assert.equal(original.series_name, `${seriesName} (2008 series)`);
+      assert.equal(original.series, `https://www.comics.org/api/series/${gcdId}/?format=json`);
+      assert.equal(original.number, String(reference.appNumber));
+      assert.equal(original.variant_of, null);
+      assert.equal(stories.length, 1);
+      for (const field of ['title', 'feature', 'page_count']) assert.equal(stories[0][field], collected[field]);
+    }
+    assert.equal(edition.gcdCheck.originalIssues.length, count);
+  }
+  const academy = data.pilot.editions.find((entry) => entry.id === 'avengers-academy-second-semester');
+  const original = data.fixtures[academy.gcdCheck.originalIssues[0].gcdIssueId].issue;
+  const item = data.lists['x-men-regenesis'].items.find((row) => row.seriesId === 9086 && row.number === '22');
+  assert.ok(item);
+  assert.equal(item.seriesName, 'Avengers Academy (2010 - 2012)');
+  assert.equal(original.series_name, 'Avengers Academy (2010 series)');
+  assert.equal(original.series, 'https://www.comics.org/api/series/49641/?format=json');
+  assert.equal(original.number, '22');
+  assert.equal(original.variant_of, null);
+});
+
+test('returned notes-tier books name the independently indexed list series', () => {
+  const data = inputs();
+  for (const [id, listId, seriesId, sourceId, sourceName, appName] of [
+    ['mighty-avengers-v1-ultron', 'civil-war-avengers', 1866, 22524, 'The Mighty Avengers', 'The Mighty Avengers (2007 - 2010)'],
+    ['siege-mighty-avengers', 'siege-dark-reign-prelude', 1866, 22524, 'The Mighty Avengers', 'The Mighty Avengers (2007 - 2010)'],
+    ['chaos-war-2011-tpb', 'chaos-war', 11854, 52641, 'Chaos War', 'Chaos War (2010 - 2011)'],
+    ['xtreme-xmen-v3-schism', 'marvel-knights-to-planet-x-37', 646, 10197, 'X-Treme X-Men', 'X-Treme X-Men (2001 - 2004)'],
+    ['exiles-v4-legacy', 'marvel-knights-to-planet-x-41', 479, 7516, 'Exiles', 'Exiles (2001 - 2008)'],
+    ['xtreme-xmen-v5-god-loves', 'marvel-knights-to-planet-x-51', 646, 10197, 'X-Treme X-Men', 'X-Treme X-Men (2001 - 2004)'],
+    ['exiles-v5-unnatural-instincts', 'marvel-knights-to-planet-x-59', 479, 7516, 'Exiles', 'Exiles (2001 - 2008)'],
+    ['spectacular-spider-man-v1-hunger', 'marvel-knights-to-planet-x-64', 556, 12001, 'Spectacular Spider-Man', 'Spectacular Spider-Man (2003 - 2005)'],
+    ['xtreme-xmen-v7-storm-arena', 'marvel-knights-to-planet-x-77', 646, 10197, 'X-Treme X-Men', 'X-Treme X-Men (2001 - 2004)'],
+    ['mighty-avengers-earths-mightiest', 'siege-dark-reign-prelude', 1866, 22524, 'The Mighty Avengers', 'The Mighty Avengers (2007 - 2010)'],
+  ]) {
+    const book = data.pilot.editions.find((entry) => entry.id === id);
+    const range = book.contents[0];
+    const series = data.gcdInputs.seriesEvidence[sourceId].series;
+    assert.equal(book.gcdCheck.sourceSeriesId, sourceId);
+    assert.equal(series.name, sourceName);
+    assert.equal(series.api_url, `https://www.comics.org/api/series/${sourceId}/?format=json`);
+    assert.equal(series.publisher, 'https://www.comics.org/api/publisher/78/?format=json');
+    assert.equal(series.country, 'us');
+    assert.equal(series.language, 'en');
+    assert.equal(book.gcdCheck.gcdSeries.replaceAll('*', ''), `${sourceName} (Marvel, ${series.year_began} series)`);
+    assert.equal(range.seriesId, seriesId);
+    const items = data.lists[listId].items.filter((item) => item.seriesId === seriesId
+      && Number(item.number) >= range.from && Number(item.number) <= range.to);
+    assert.equal(items.length, range.to - range.from + 1);
+    for (const item of items) {
+      assert.equal(item.seriesName, appName);
+      assert.ok(series.issue_descriptors.some((descriptor) => descriptor === item.number
+        || descriptor === `${item.number} [Direct Edition]`), item.title);
+    }
+  }
+});
+
 test('Imperial keeps matched full originals while holding the additional story in issue 126', () => {
   const data = inputs();
   const edition = data.pilot.editions.find((entry) => entry.id === 'new-xmen-v2-imperial');

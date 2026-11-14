@@ -1,0 +1,185 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/2069751/?format=json",
+  "retrievedAt": "2026-11-14T20:10:08.626Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/2069751/?format=json",
+    "series_name": "Iron Man 2020 (2020 series)",
+    "descriptor": "2",
+    "number": "2",
+    "volume": "",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "April 2020",
+    "key_date": "2020-04-00",
+    "page_count": "40.000",
+    "isbn": "",
+    "notes": "Issue includes a free code that can be redeemed for a digital version of the issue. Special thanks is given to Tom DeFalco, Herb Trimpe and Barry Windsor-Smith.",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/154787/?format=json",
+    "story_set": [
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "Strange Academy #1",
+        "feature": "Strange Academy",
+        "sequence_number": 1,
+        "page_count": "1.000",
+        "notes": "Interior front cover promotional for the first issue of Strange Academy (Marvel, 2020).",
+        "script": "?",
+        "pencils": "Humberto Ramos (credited)"
+      },
+      {
+        "type": "recap",
+        "title": "",
+        "feature": "",
+        "sequence_number": 2,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "?",
+        "pencils": "Pete Woods"
+      },
+      {
+        "type": "comic story",
+        "title": "",
+        "feature": "Iron Man 2020",
+        "sequence_number": 3,
+        "page_count": "20.000",
+        "notes": "Special thanks to Tom DeFalco, Herb Trimpe and Barry Windsor-Smith.",
+        "script": "Dan Slott (credited); Christos Gage (credited)",
+        "pencils": "Pete Woods (credited)"
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "Murder and Mystery in the Mighty Marvel Manner!",
+        "feature": "Spider-Man Noir",
+        "sequence_number": 4,
+        "page_count": "1.000",
+        "notes": "Promotional advertisement for Spider-Man Noir #1 (Marvel, 2020).",
+        "script": "?",
+        "pencils": "Dave Rapoza"
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "Outlawed #1",
+        "feature": "",
+        "sequence_number": 5,
+        "page_count": "1.000",
+        "notes": "Promotional advertisement for Outlawed #1 (Marvel, 2020).",
+        "script": "?",
+        "pencils": "Pepe Larraz"
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "Race Across the Galaxy!",
+        "feature": "X-Men",
+        "sequence_number": 6,
+        "page_count": "1.000",
+        "notes": "Promotional advertisement for The X-Men #9 (Marvel, 2020).",
+        "script": "?",
+        "pencils": "Leinil Francis Yu"
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "Giant-Size X-Men Magneto #1",
+        "feature": "Magneto",
+        "sequence_number": 7,
+        "page_count": "1.000",
+        "notes": "Promotional advertisement for Giant-Size X-Men: Magneto #1 (Marvel, 2020).",
+        "script": "?",
+        "pencils": "Ben Oliver"
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "Rescue 2020 #1",
+        "feature": "",
+        "sequence_number": 8,
+        "page_count": "1.000",
+        "notes": "Promotional advertisement for Rescue 2020 #1 (Marvel, 2020).",
+        "script": "?",
+        "pencils": "Paco Medina"
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "2020 Iron Age #1",
+        "feature": "",
+        "sequence_number": 9,
+        "page_count": "1.000",
+        "notes": "Promotional advertisement for 2020 Iron Age #1 (Marvel, 2020).",
+        "script": "?",
+        "pencils": "Cory Smith"
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "Cable #1",
+        "feature": "Cable",
+        "sequence_number": 10,
+        "page_count": "1.000",
+        "notes": "Promotional advertisement for Cable #1 (Marvel, 2020).",
+        "script": "?",
+        "pencils": "Phil Noto"
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "Iron Man 2020 Checklist",
+        "feature": "",
+        "sequence_number": 11,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "None"
+      },
+      {
+        "type": "illustration",
+        "title": "Iron Man 2020",
+        "feature": "Iron Man 2020",
+        "sequence_number": 12,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Pete Woods (credited)"
+      },
+      {
+        "type": "illustration",
+        "title": "Mark One",
+        "feature": "Iron Man 2020",
+        "sequence_number": 13,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Pete Woods (credited)"
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "Next",
+        "feature": "Iron Man 2020",
+        "sequence_number": 14,
+        "page_count": "1.000",
+        "notes": "Cover preview for the next issue.",
+        "script": "None",
+        "pencils": "Pete Woods"
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "Marvel #1",
+        "feature": "",
+        "sequence_number": 15,
+        "page_count": "1.000",
+        "notes": "Interior back cover promotional advertisement for Marvel #1 (Marvel, 2020).",
+        "script": "?",
+        "pencils": "Alex Ross"
+      },
+      {
+        "type": "advertisement",
+        "title": "Breaking Benjamin",
+        "feature": "Breaking Benjamin",
+        "sequence_number": 16,
+        "page_count": "1.000",
+        "notes": "Back cover advertisement for the reimagined versions of the band's biggest and popular songs.",
+        "script": "?",
+        "pencils": "? (photograph)"
+      }
+    ]
+  }
+}

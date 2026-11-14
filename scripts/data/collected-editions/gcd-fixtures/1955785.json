@@ -1,0 +1,165 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/1955785/?format=json",
+  "retrievedAt": "2026-11-14T09:19:39.549Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/1955785/?format=json",
+    "series_name": "Doctor Strange by Mark Waid (2018 series)",
+    "descriptor": "1 - Across the Universe",
+    "number": "1",
+    "volume": "1",
+    "variant_name": "",
+    "title": "Across the Universe",
+    "publication_date": "2018",
+    "key_date": "2018-12-05",
+    "page_count": "116.000",
+    "isbn": "978-1-302-91233-8",
+    "notes": "Collects Doctor Strange (Marvel, 2018 Series) #1-5.",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/144634/?format=json",
+    "story_set": [
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "1",
+        "feature": "Doctor Strange",
+        "sequence_number": 1,
+        "page_count": "1.000",
+        "notes": "The covers of issue #1 and #2 may have been swapped as they reflect the contents of each other.",
+        "script": "None",
+        "pencils": "Jesús Saiz (credited)"
+      },
+      {
+        "type": "comic story",
+        "title": "Sorcerer Supreme of the Galaxy Part One",
+        "feature": "Doctor Strange",
+        "sequence_number": 2,
+        "page_count": "20.000",
+        "notes": "Title is from the original issue and does not appear in this book.",
+        "script": "Mark Waid (credited)",
+        "pencils": "Jesús Saiz (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "2",
+        "feature": "Doctor Strange",
+        "sequence_number": 3,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Jesús Saiz (credited)"
+      },
+      {
+        "type": "comic story",
+        "title": "Sorcerer Supreme of the Galaxy Part Two",
+        "feature": "Doctor Strange",
+        "sequence_number": 4,
+        "page_count": "20.000",
+        "notes": "Title is from the original issue and does not appear in this book.",
+        "script": "Mark Waid (credited)",
+        "pencils": "Jesús Saiz (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "3",
+        "feature": "Doctor Strange",
+        "sequence_number": 5,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Jesús Saiz (credited)"
+      },
+      {
+        "type": "comic story",
+        "title": "Sorcerer Supreme of the Galaxy Part Three",
+        "feature": "Doctor Strange",
+        "sequence_number": 6,
+        "page_count": "20.000",
+        "notes": "Title is from the original issue and does not appear in this book.",
+        "script": "Mark Waid (credited)",
+        "pencils": "Jesús Saiz (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Gabriele Dell'Otto 1 Variant",
+        "feature": "Doctor Strange",
+        "sequence_number": 7,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Gabriele Dell'Otto (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "4",
+        "feature": "Doctor Strange",
+        "sequence_number": 8,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Jesús Saiz (credited)"
+      },
+      {
+        "type": "comic story",
+        "title": "Sorcerer Supreme of the Galaxy Part Four",
+        "feature": "Doctor Strange",
+        "sequence_number": 9,
+        "page_count": "20.000",
+        "notes": "Title is from the original issue and does not appear in this book.",
+        "script": "Mark Waid (credited)",
+        "pencils": "Jesús Saiz (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "5",
+        "feature": "Doctor Strange",
+        "sequence_number": 10,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Javier Garrón (credited)"
+      },
+      {
+        "type": "comic story",
+        "title": "Sorcerer Supreme of the Galaxy Part Five",
+        "feature": "Doctor Strange",
+        "sequence_number": 11,
+        "page_count": "20.000",
+        "notes": "Title is from the original issue and does not appear in this book.",
+        "script": "Mark Waid (credited)",
+        "pencils": "Jesús Saiz (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Chris Bachalo & Tim Townsend 1 Variant",
+        "feature": "Doctor Strange",
+        "sequence_number": 12,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Chris Bachalo (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Declan Shalvey & Tríona Farrell 2 Variant",
+        "feature": "Doctor Strange",
+        "sequence_number": 13,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Declan Shalvey (credited) (signed as Declan)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Julían Totíno Tedesco 5 Cosmic Ghost Rider vs. Variant",
+        "feature": "Doctor Strange",
+        "sequence_number": 14,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Julian Totino Tedesco (credited)"
+      }
+    ]
+  }
+}

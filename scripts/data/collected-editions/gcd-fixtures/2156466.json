@@ -1,0 +1,375 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/2156466/?format=json",
+  "retrievedAt": "2026-11-14T15:58:24.462Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/2156466/?format=json",
+    "series_name": "Iron Man 2020: Robot Revolution (2020 series)",
+    "descriptor": "",
+    "number": "[nn]",
+    "volume": "",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "[October] 2020",
+    "key_date": "2020-10-14",
+    "page_count": "140.000",
+    "isbn": "978-1-302-92085-2",
+    "notes": "Collects Iron Man 2020 (Marvel, 2020 series) #1-6.",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/165145/?format=json",
+    "story_set": [
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Iron Man",
+        "sequence_number": 1,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Pete Woods (credited)"
+      },
+      {
+        "type": "comic story",
+        "title": "",
+        "feature": "Iron Man",
+        "sequence_number": 2,
+        "page_count": "20.000",
+        "notes": "First appearance of The Uncanny Valley, a robot bar.",
+        "script": "Dan Slott (credited); Christos Gage (credited)",
+        "pencils": "Pete Woods (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Iron Man",
+        "sequence_number": 3,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Pete Woods (credited)"
+      },
+      {
+        "type": "comic story",
+        "title": "",
+        "feature": "Iron Man",
+        "sequence_number": 4,
+        "page_count": "20.000",
+        "notes": "",
+        "script": "Dan Slott (credited); Christos Gage (credited)",
+        "pencils": "Pete Woods (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Iron Man",
+        "sequence_number": 5,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Pete Woods (credited)"
+      },
+      {
+        "type": "comic story",
+        "title": "",
+        "feature": "Iron Man",
+        "sequence_number": 6,
+        "page_count": "20.000",
+        "notes": "",
+        "script": "Dan Slott (credited); Christos Gage (credited)",
+        "pencils": "Pete Woods (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Iron Man",
+        "sequence_number": 7,
+        "page_count": "0.250",
+        "notes": "",
+        "script": "None",
+        "pencils": "Superlog (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Iron Man",
+        "sequence_number": 8,
+        "page_count": "0.250",
+        "notes": "",
+        "script": "None",
+        "pencils": "Superlog (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Iron Man",
+        "sequence_number": 9,
+        "page_count": "0.250",
+        "notes": "",
+        "script": "None",
+        "pencils": "Superlog (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Iron Man",
+        "sequence_number": 10,
+        "page_count": "0.250",
+        "notes": "",
+        "script": "None",
+        "pencils": "Superlog (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Iron Man",
+        "sequence_number": 11,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Pete Woods (credited)"
+      },
+      {
+        "type": "comic story",
+        "title": "",
+        "feature": "Iron Man",
+        "sequence_number": 12,
+        "page_count": "20.000",
+        "notes": "",
+        "script": "Dan Slott (credited); Christos Gage (credited)",
+        "pencils": "Pete Woods (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Iron Man",
+        "sequence_number": 13,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Pete Woods (credited)"
+      },
+      {
+        "type": "comic story",
+        "title": "",
+        "feature": "Iron Man",
+        "sequence_number": 14,
+        "page_count": "20.000",
+        "notes": "",
+        "script": "Christos Gage (credited); Dan Slott (credited)",
+        "pencils": "Pete Woods (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Iron Man",
+        "sequence_number": 15,
+        "page_count": "0.250",
+        "notes": "",
+        "script": "None",
+        "pencils": "Superlog (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Iron Man",
+        "sequence_number": 16,
+        "page_count": "0.250",
+        "notes": "",
+        "script": "None",
+        "pencils": "Superlog (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Iron Man",
+        "sequence_number": 17,
+        "page_count": "0.250",
+        "notes": "",
+        "script": "None",
+        "pencils": "Ron Lim (credited, signed)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Iron Man",
+        "sequence_number": 18,
+        "page_count": "0.250",
+        "notes": "",
+        "script": "None",
+        "pencils": "Ron Lim (credited, signed)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Iron Man",
+        "sequence_number": 19,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Pete Woods (credited)"
+      },
+      {
+        "type": "comic story",
+        "title": "",
+        "feature": "Iron Man",
+        "sequence_number": 20,
+        "page_count": "20.000",
+        "notes": "",
+        "script": "Dan Slott (credited); Christos Gage (credited)",
+        "pencils": "Pete Woods (credited)"
+      },
+      {
+        "type": "text story",
+        "title": "Arno Stark Timeline",
+        "feature": "Iron Man",
+        "sequence_number": 21,
+        "page_count": "2.000",
+        "notes": "",
+        "script": "?",
+        "pencils": "None"
+      },
+      {
+        "type": "illustration",
+        "title": "Character Designs",
+        "feature": "Iron Man",
+        "sequence_number": 22,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Pete Woods (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Iron Man",
+        "sequence_number": 23,
+        "page_count": "0.250",
+        "notes": "",
+        "script": "None",
+        "pencils": "Ron Lim (credited, signed)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Iron Man",
+        "sequence_number": 24,
+        "page_count": "0.250",
+        "notes": "",
+        "script": "None",
+        "pencils": "Ron Lim (credited, signed)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Iron Man",
+        "sequence_number": 25,
+        "page_count": "0.250",
+        "notes": "",
+        "script": "None",
+        "pencils": "Ron Lim (credited, signed)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Iron Man",
+        "sequence_number": 26,
+        "page_count": "0.250",
+        "notes": "",
+        "script": "None",
+        "pencils": "Ron Lim (credited, signed)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Iron Man",
+        "sequence_number": 27,
+        "page_count": "0.110",
+        "notes": "",
+        "script": "None",
+        "pencils": "Khoi Pham (credited, signed)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Iron Man",
+        "sequence_number": 28,
+        "page_count": "0.110",
+        "notes": "",
+        "script": "None",
+        "pencils": "Nick Roche (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Iron Man",
+        "sequence_number": 29,
+        "page_count": "0.110",
+        "notes": "The art is from the last page of Machine Man (1984 series) #2",
+        "script": "None",
+        "pencils": "Herb Trimpe (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "1 Marvels X Variant",
+        "feature": "Iron Man",
+        "sequence_number": 30,
+        "page_count": "0.110",
+        "notes": "",
+        "script": "None",
+        "pencils": "Christian Ward (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Iron Man",
+        "sequence_number": 31,
+        "page_count": "0.110",
+        "notes": "",
+        "script": "None",
+        "pencils": "Mike Del Mundo (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Iron Man",
+        "sequence_number": 32,
+        "page_count": "0.110",
+        "notes": "",
+        "script": "None",
+        "pencils": "Alexander Lozano (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Iron Man",
+        "sequence_number": 33,
+        "page_count": "0.110",
+        "notes": "",
+        "script": "None",
+        "pencils": "Leinil Francis Yu (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Iron Man",
+        "sequence_number": 34,
+        "page_count": "0.110",
+        "notes": "",
+        "script": "None",
+        "pencils": "Mico Suayan (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Iron Man",
+        "sequence_number": 35,
+        "page_count": "0.120",
+        "notes": "",
+        "script": "None",
+        "pencils": "岡崎能士 (credited as Takeshi Okazaki)"
+      }
+    ]
+  }
+}

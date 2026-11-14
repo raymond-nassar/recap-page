@@ -1,0 +1,65 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/523440/?format=json",
+  "retrievedAt": "2026-11-13T19:24:50.502Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/523440/?format=json",
+    "series_name": "Young X-Men (2008 series)",
+    "descriptor": "2 [Direct Edition]",
+    "number": "2",
+    "volume": "",
+    "variant_name": "Direct Edition",
+    "title": "",
+    "publication_date": "July 2008",
+    "key_date": "2008-07-00",
+    "page_count": "36.000",
+    "isbn": "",
+    "notes": "Features the \"Divided We Stand\" logo. Indicia information: Published Monthly by MARVEL PUBLISHING, INC., a subsidiary of MARVEL ENTERTAINMENT, INC. Office of Publication: 417 5th Avenue, New York, NY 10016. Application to mail periodical postage rates is pending at New York, NY and at addtional mailing offices. © 2008 Marvel Characters, Inc. Newsstand prices: 3.99 USD; 3.99 CAD. Subscription (12 issues): U.S. 27.00 USD; Canada 37.00 USD; Foreign 39.00 USD.",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/30513/?format=json",
+    "story_set": [
+      {
+        "type": "recap",
+        "title": "Previously in Young X-Men...",
+        "feature": "Young X-Men",
+        "sequence_number": 1,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "?",
+        "pencils": "None"
+      },
+      {
+        "type": "comic story",
+        "title": "New Mutants",
+        "feature": "Young X-Men",
+        "sequence_number": 2,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Marc Guggenheim",
+        "pencils": "Yanick Paquette"
+      },
+      {
+        "type": "character profile",
+        "title": "Heroes Writer and New Ultimate X-Men Scribe, Aron Coleite",
+        "feature": "Look Who's Talking!",
+        "sequence_number": 3,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "Aron E. Coleite; ? [as Marvel]",
+        "pencils": "Gabriele Dell'Otto (painting); ? (photo)"
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "Promo of Eternals #1",
+        "feature": "The Eternals",
+        "sequence_number": 4,
+        "page_count": "5.000",
+        "notes": "",
+        "script": "Charles Knauf; Daniel Knauf",
+        "pencils": "Daniel Acuña (painting)"
+      }
+    ]
+  }
+}

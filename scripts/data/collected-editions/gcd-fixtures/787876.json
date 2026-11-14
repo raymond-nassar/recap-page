@@ -1,0 +1,145 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/787876/?format=json",
+  "retrievedAt": "2026-11-13T03:13:23.502Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/787876/?format=json",
+    "series_name": "Exiles (2002 series)",
+    "descriptor": "4 - Legacy",
+    "number": "4",
+    "volume": "4",
+    "variant_name": "",
+    "title": "Legacy",
+    "publication_date": "[June] 2003",
+    "key_date": "2003-06-11",
+    "page_count": "148.000",
+    "isbn": "0-7851-1109-3",
+    "notes": "collects Exiles (Marvel, 2001 series) #20-25",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/53302/?format=json",
+    "story_set": [
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Issue #20 Cover",
+        "feature": "Exiles",
+        "sequence_number": 1,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Dale Keown"
+      },
+      {
+        "type": "comic story",
+        "title": "Legacy Part One",
+        "feature": "Exiles",
+        "sequence_number": 2,
+        "page_count": "21.000",
+        "notes": "",
+        "script": "Judd Winick (credited)",
+        "pencils": "Jim Calafiore (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Issue #21 Cover",
+        "feature": "Exiles",
+        "sequence_number": 3,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Georges Jeanty"
+      },
+      {
+        "type": "comic story",
+        "title": "Legacy Part Two",
+        "feature": "Exiles",
+        "sequence_number": 4,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Judd Winick (credited)",
+        "pencils": "Jim Calafiore (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Issue #22 Cover",
+        "feature": "Exiles",
+        "sequence_number": 5,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Mike McKone"
+      },
+      {
+        "type": "comic story",
+        "title": "Legacy: Conclusion",
+        "feature": "Exiles",
+        "sequence_number": 6,
+        "page_count": "23.000",
+        "notes": "",
+        "script": "Judd Winick (credited)",
+        "pencils": "Jim Calafiore (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Issue #23 Cover",
+        "feature": "Exiles",
+        "sequence_number": 7,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Kevin Walker (credited as Kev Walker) (signed)"
+      },
+      {
+        "type": "comic story",
+        "title": "With an Iron Fist Part One",
+        "feature": "Exiles",
+        "sequence_number": 8,
+        "page_count": "23.000",
+        "notes": "",
+        "script": "Judd Winick (credited)",
+        "pencils": "Kevin Walker (credited as Kev Walker)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Issue #24 Cover",
+        "feature": "Exiles",
+        "sequence_number": 9,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Kevin Walker (credited as Kev Walker)"
+      },
+      {
+        "type": "comic story",
+        "title": "With an Iron Fist Part 2",
+        "feature": "Exiles",
+        "sequence_number": 10,
+        "page_count": "23.000",
+        "notes": "",
+        "script": "Judd Winick (credited)",
+        "pencils": "Kevin Walker (credited as Kev Walker)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Issue #25 Cover",
+        "feature": "Exiles",
+        "sequence_number": 11,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Kevin Walker (credited as Kev Walker)"
+      },
+      {
+        "type": "comic story",
+        "title": "With An Iron Fist Conclusion",
+        "feature": "Exiles",
+        "sequence_number": 12,
+        "page_count": "23.000",
+        "notes": "",
+        "script": "Judd Winick (credited)",
+        "pencils": "Kevin Walker (credited as Kev Walker)"
+      }
+    ]
+  }
+}

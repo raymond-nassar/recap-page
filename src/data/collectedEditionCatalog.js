@@ -160,6 +160,213 @@ export const editionCatalog = {
           "confirmedBy": "owner"
         }
       ]
+    },
+    "doomwar-2011-tpb": {
+      "title": "Doomwar",
+      "destinations": [
+        {
+          "provider": "hoopla",
+          "url": "https://www.hoopladigital.com/title/15293370",
+          "checkedAt": "2026-11-13",
+          "confirmedBy": "owner"
+        },
+        {
+          "provider": "libby",
+          "url": "https://share.libbyapp.com/title/9203113",
+          "checkedAt": "2026-11-13",
+          "confirmedBy": "owner"
+        }
+      ]
+    },
+    "avengers-academy-second-semester": {
+      "title": "Avengers Academy: Second Semester",
+      "destinations": [
+        {
+          "provider": "libby",
+          "url": "https://share.libbyapp.com/title/13637356",
+          "checkedAt": "2026-11-13",
+          "confirmedBy": "owner"
+        }
+      ]
+    },
+    "secret-invasion-front-line": {
+      "title": "Secret Invasion: Front Line",
+      "destinations": [
+        {
+          "provider": "hoopla",
+          "url": "https://www.hoopladigital.com/title/15183611",
+          "checkedAt": "2026-11-13",
+          "confirmedBy": "owner"
+        },
+        {
+          "provider": "libby",
+          "url": "https://share.libbyapp.com/title/9227009",
+          "checkedAt": "2026-11-13",
+          "confirmedBy": "owner"
+        }
+      ]
+    },
+    "secret-invasion-fantastic-four": {
+      "title": "Secret Invasion: Fantastic Four",
+      "destinations": [
+        {
+          "provider": "hoopla",
+          "url": "https://www.hoopladigital.com/title/14279808",
+          "checkedAt": "2026-11-13",
+          "confirmedBy": "owner"
+        },
+        {
+          "provider": "libby",
+          "url": "https://share.libbyapp.com/title/7785428",
+          "checkedAt": "2026-11-13",
+          "confirmedBy": "owner"
+        }
+      ]
+    },
+    "secret-invasion-x-men": {
+      "title": "Secret Invasion: X-Men",
+      "destinations": [
+        {
+          "provider": "hoopla",
+          "url": "https://www.hoopladigital.com/title/15183606",
+          "checkedAt": "2026-11-13",
+          "confirmedBy": "owner"
+        },
+        {
+          "provider": "libby",
+          "url": "https://share.libbyapp.com/title/9227013",
+          "checkedAt": "2026-11-13",
+          "confirmedBy": "owner"
+        }
+      ]
+    },
+    "mighty-avengers-v1-ultron": {
+      "title": "Mighty Avengers Vol. 1: The Ultron Initiative",
+      "destinations": [
+        {
+          "provider": "hoopla",
+          "url": "https://www.hoopladigital.com/title/15183607",
+          "checkedAt": "2026-11-13",
+          "confirmedBy": "owner"
+        },
+        {
+          "provider": "libby",
+          "url": "https://share.libbyapp.com/title/9192151",
+          "checkedAt": "2026-11-13",
+          "confirmedBy": "owner"
+        }
+      ]
+    },
+    "siege-mighty-avengers": {
+      "title": "Siege: Mighty Avengers",
+      "destinations": [
+        {
+          "provider": "libby",
+          "url": "https://share.libbyapp.com/title/9465007",
+          "checkedAt": "2026-11-13",
+          "confirmedBy": "owner"
+        }
+      ]
+    },
+    "mighty-avengers-earths-mightiest": {
+      "title": "Mighty Avengers: Earth's Mightiest",
+      "destinations": []
+    },
+    "chaos-war-2011-tpb": {
+      "title": "Chaos War",
+      "destinations": [
+        {
+          "provider": "hoopla",
+          "url": "https://www.hoopladigital.com/title/14794072",
+          "checkedAt": "2026-11-13",
+          "confirmedBy": "owner"
+        },
+        {
+          "provider": "libby",
+          "url": "https://share.libbyapp.com/title/8771019",
+          "checkedAt": "2026-11-13",
+          "confirmedBy": "owner"
+        }
+      ]
+    },
+    "xtreme-xmen-v3-schism": {
+      "title": "X-Treme X-Men Vol. 3: Schism",
+      "destinations": []
+    },
+    "exiles-v4-legacy": {
+      "title": "Exiles Vol. 4: Legacy",
+      "destinations": []
+    },
+    "xtreme-xmen-v5-god-loves": {
+      "title": "X-Treme X-Men Vol. 5: God Loves, Man Kills",
+      "destinations": []
+    },
+    "exiles-v5-unnatural-instincts": {
+      "title": "Exiles Vol. 5: Unnatural Instincts",
+      "destinations": []
+    },
+    "spectacular-spider-man-v1-hunger": {
+      "title": "Spectacular Spider-Man Vol. 1: The Hunger",
+      "destinations": []
+    },
+    "xtreme-xmen-v7-storm-arena": {
+      "title": "X-Treme X-Men Vol. 7: Storm: The Arena",
+      "destinations": []
+    },
+    "uncanny-xmen-v1-hope": {
+      "title": "Uncanny X-Men Vol. 1: Hope",
+      "destinations": []
+    },
+    "young-xmen-v1-final-genesis": {
+      "title": "Young X-Men Vol. 1: Final Genesis",
+      "destinations": []
+    },
+    "doctor-strange-waid-v1-across-the-universe": {
+      "title": "Doctor Strange by Mark Waid Vol. 1: Across the Universe",
+      "destinations": [
+        {
+          "provider": "hoopla",
+          "url": "https://www.hoopladigital.com/title/13897690",
+          "checkedAt": "2026-11-14",
+          "confirmedBy": "owner"
+        }
+      ]
+    },
+    "war-of-the-realms-journey-into-mystery": {
+      "title": "War of the Realms: Journey Into Mystery",
+      "destinations": []
+    },
+    "amazing-spider-man-edge-of-spider-verse": {
+      "title": "Amazing Spider-Man: Edge of Spider-Verse",
+      "destinations": [
+        {
+          "provider": "hoopla",
+          "url": "https://www.hoopladigital.com/title/12205516",
+          "checkedAt": "2026-11-14",
+          "confirmedBy": "owner"
+        }
+      ]
+    },
+    "loki-agent-of-asgard-v2-i-cannot-tell-a-lie": {
+      "title": "Loki: Agent of Asgard Vol. 2: I Cannot Tell a Lie",
+      "destinations": [
+        {
+          "provider": "hoopla",
+          "url": "https://www.hoopladigital.com/title/12687655",
+          "checkedAt": "2026-11-14",
+          "confirmedBy": "owner"
+        },
+        {
+          "provider": "libby",
+          "url": "https://share.libbyapp.com/title/5863852",
+          "checkedAt": "2026-11-14",
+          "confirmedBy": "owner"
+        }
+      ]
+    },
+    "iron-man-2020-robot-revolution": {
+      "title": "Iron Man 2020: Robot Revolution",
+      "destinations": []
     }
   }
 };

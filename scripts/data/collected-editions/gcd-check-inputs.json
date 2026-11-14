@@ -17,9 +17,142 @@
     { "listId": "marvel-knights-to-planet-x-23", "file": "src/data/marvel_knights_to_planet_x_23.json", "editions": ["xtreme-xmen-v2-invasion"] },
     { "listId": "marvel-knights-to-planet-x-27", "file": "src/data/marvel_knights_to_planet_x_27.json", "editions": ["exiles-v3-out-of-time"] },
     { "listId": "marvel-knights-to-planet-x-42", "file": "src/data/marvel_knights_to_planet_x_42.json", "editions": ["new-xmen-v4-riot-at-xaviers"] },
-    { "listId": "marvel-knights-to-planet-x-69", "file": "src/data/marvel_knights_to_planet_x_69.json", "editions": ["daredevil-v8-echo-vision-quest"] }
+    { "listId": "marvel-knights-to-planet-x-69", "file": "src/data/marvel_knights_to_planet_x_69.json", "editions": ["daredevil-v8-echo-vision-quest"] },
+    { "listId": "doomwar", "file": "src/data/doomwar.json", "editions": ["doomwar-2011-tpb"] },
+    { "listId": "x-men-regenesis", "file": "src/data/x_men_regenesis.json", "editions": ["avengers-academy-second-semester"] },
+    { "listId": "secret-invasion", "file": "src/data/secret_invasion.json", "editions": ["secret-invasion-front-line", "secret-invasion-fantastic-four", "secret-invasion-x-men"] },
+    { "listId": "civil-war-essential", "file": "src/data/civil_war_essential.json", "editions": ["civil-war-2007-tpb"] },
+    { "listId": "civil-war", "file": "src/data/civil_war.json", "editions": ["civil-war-2007-tpb"] },
+    { "listId": "civil-war-avengers", "file": "src/data/civil_war_avengers.json", "editions": ["mighty-avengers-v1-ultron"] },
+    { "listId": "siege-dark-reign-prelude", "file": "src/data/siege_dark_reign_prelude.json", "editions": ["siege-mighty-avengers", "mighty-avengers-earths-mightiest"] },
+    { "listId": "chaos-war", "file": "src/data/chaos_war.json", "editions": ["chaos-war-2011-tpb"] },
+    { "listId": "marvel-knights-to-planet-x-37", "file": "src/data/marvel_knights_to_planet_x_37.json", "editions": ["xtreme-xmen-v3-schism"] },
+    { "listId": "marvel-knights-to-planet-x-41", "file": "src/data/marvel_knights_to_planet_x_41.json", "editions": ["exiles-v4-legacy"] },
+    { "listId": "marvel-knights-to-planet-x-51", "file": "src/data/marvel_knights_to_planet_x_51.json", "editions": ["xtreme-xmen-v5-god-loves"] },
+    { "listId": "marvel-knights-to-planet-x-59", "file": "src/data/marvel_knights_to_planet_x_59.json", "editions": ["exiles-v5-unnatural-instincts"] },
+    { "listId": "marvel-knights-to-planet-x-64", "file": "src/data/marvel_knights_to_planet_x_64.json", "editions": ["spectacular-spider-man-v1-hunger"] },
+    { "listId": "marvel-knights-to-planet-x-77", "file": "src/data/marvel_knights_to_planet_x_77.json", "editions": ["xtreme-xmen-v7-storm-arena"] },
+    { "listId": "marvel-knights-to-planet-x-33", "file": "src/data/marvel_knights_to_planet_x_33.json", "editions": ["uncanny-xmen-v1-hope"] },
+    { "listId": "x-men-divided-we-stand", "file": "src/data/x_men_divided_we_stand.json", "editions": ["young-xmen-v1-final-genesis"] },
+    { "listId": "infinity-countdown-wars", "file": "src/data/infinity_countdown_wars.json", "editions": ["asgardians-v1-the-infinity-armada", "doctor-strange-waid-v1-across-the-universe"] },
+    { "listId": "war-of-the-realms", "file": "src/data/war_of_the_realms.json", "editions": ["asgardians-v2-war-of-the-realms", "war-of-the-realms-journey-into-mystery"] },
+    { "listId": "spider-verse", "file": "src/data/spider_verse.json", "editions": ["amazing-spider-man-edge-of-spider-verse"] },
+    { "listId": "axis", "file": "src/data/axis.json", "editions": ["loki-agent-of-asgard-v2-i-cannot-tell-a-lie"] },
+    { "listId": "iron-man-2020", "file": "src/data/iron_man_2020.json", "editions": ["iron-man-2020-robot-revolution"] }
   ],
   "seriesEvidence": {
+    "154787": {
+      "url": "https://www.comics.org/api/series/name/Iron%20Man%202020/year/2020/?format=json",
+      "retrievedAt": "2026-11-14T17:52:54.453Z",
+      "series": {
+        "api_url": "https://www.comics.org/api/series/154787/?format=json",
+        "name": "Iron Man 2020", "year_began": 2020,
+        "publisher": "https://www.comics.org/api/publisher/78/?format=json", "country": "us", "language": "en"
+      }
+    },
+    "143860": {
+      "url": "https://www.comics.org/api/series/name/War%20of%20the%20Realms%3A%20Journey%20Into%20Mystery/year/2019/?format=json",
+      "retrievedAt": "2026-11-14T16:51:15.234Z",
+      "series": {
+        "api_url": "https://www.comics.org/api/series/143860/?format=json",
+        "name": "War of the Realms: Journey into Mystery", "year_began": 2019,
+        "publisher": "https://www.comics.org/api/publisher/78/?format=json", "country": "us", "language": "en"
+      }
+    },
+    "78892": {
+      "url": "https://www.comics.org/api/series/name/Loki%3A%20Agent%20of%20Asgard/?format=json",
+      "retrievedAt": "2026-11-14T02:32:00.140Z",
+      "series": {
+        "api_url": "https://www.comics.org/api/series/78892/?format=json",
+        "name": "Loki: Agent of Asgard", "year_began": 2014,
+        "publisher": "https://www.comics.org/api/publisher/78/?format=json", "country": "us", "language": "en",
+        "issue_descriptors": ["6", "7", "8", "9", "10", "11"]
+      }
+    },
+    "125730": {
+      "url": "https://www.comics.org/api/series/name/Doctor%20Strange/year/2018/?format=json",
+      "retrievedAt": "2026-11-14T11:19:38.741Z",
+      "series": {
+        "api_url": "https://www.comics.org/api/series/125730/?format=json",
+        "name": "Doctor Strange", "year_began": 2018,
+        "publisher": "https://www.comics.org/api/publisher/78/?format=json", "country": "us", "language": "en"
+      }
+    },
+    "82728": {
+      "url": "https://www.comics.org/api/series/name/Edge%20of%20Spider-Verse/year/2014/?format=json",
+      "retrievedAt": "2026-11-14T09:51:48.773Z",
+      "series": {
+        "api_url": "https://www.comics.org/api/series/82728/?format=json",
+        "name": "Edge of Spider-Verse",
+        "year_began": 2014,
+        "publisher": "https://www.comics.org/api/publisher/78/?format=json",
+        "country": "us",
+        "language": "en",
+        "issue_descriptors": ["1", "2", "3", "4", "5"]
+      }
+    },
+    "7516": {
+      "url": "https://www.comics.org/api/series/name/Exiles/year/2001/?format=json",
+      "retrievedAt": "2026-11-13T07:50:54.989Z",
+      "series": {
+        "api_url": "https://www.comics.org/api/series/7516/?format=json",
+        "name": "Exiles", "year_began": 2001,
+        "publisher": "https://www.comics.org/api/publisher/78/?format=json", "country": "us", "language": "en",
+        "issue_descriptors": ["20 [Direct Edition]", "21 [Direct Edition]", "22 [Direct Edition]", "23 [Direct Edition]", "24 [Direct Edition]", "25 [Direct Edition]", "26 [Direct Edition]", "27 [Direct Edition]", "28 [Direct Edition]", "29 [Direct Edition]", "30 [Direct Edition]"]
+      }
+    },
+    "10197": {
+      "url": "https://www.comics.org/api/series/name/X-Treme%20X-Men/year/2001/?format=json",
+      "retrievedAt": "2026-11-13T07:50:52.023Z",
+      "series": {
+        "api_url": "https://www.comics.org/api/series/10197/?format=json",
+        "name": "X-Treme X-Men", "year_began": 2001,
+        "publisher": "https://www.comics.org/api/publisher/78/?format=json", "country": "us", "language": "en",
+        "issue_descriptors": ["19 [Direct Edition]", "20 [Direct Edition]", "21 [Direct Edition]", "22 [Direct Edition]", "23 [Direct Edition]", "25 [Direct Edition]", "26 [Direct Edition]", "27 [Direct Edition]", "28 [Direct Edition]", "29 [Direct Edition]", "30 [Direct Edition]", "36 [Direct Edition]", "37 [Direct Edition]", "38 [Direct Edition]", "39 [Direct Edition]"]
+      }
+    },
+    "12001": {
+      "url": "https://www.comics.org/api/series/name/Spectacular%20Spider-Man/?format=json",
+      "retrievedAt": "2026-11-13T09:11:25.505Z",
+      "series": {
+        "api_url": "https://www.comics.org/api/series/12001/?format=json",
+        "name": "Spectacular Spider-Man", "year_began": 2003,
+        "publisher": "https://www.comics.org/api/publisher/78/?format=json", "country": "us", "language": "en",
+        "issue_descriptors": ["1 [Direct Edition]", "2 [Direct Edition]", "3 [Direct Edition]", "4 [Direct Edition]", "5 [Direct Edition]"]
+      }
+    },
+    "22524": {
+      "url": "https://www.comics.org/api/series/name/Mighty%20Avengers/?format=json",
+      "retrievedAt": "2026-11-13T12:27:36.783Z",
+      "series": {
+        "api_url": "https://www.comics.org/api/series/22524/?format=json",
+        "name": "The Mighty Avengers",
+        "year_began": 2007,
+        "publisher": "https://www.comics.org/api/publisher/78/?format=json",
+        "country": "us",
+        "language": "en",
+        "issue_descriptors": [
+          "1 [Direct Edition]", "2 [Direct Edition]", "3 [Direct Edition]", "4 [Direct Edition]",
+          "5 [Direct Edition]", "6 [Direct Edition]", "21 [Direct Edition]", "22 [Direct Edition]",
+          "23 [Direct Edition]", "24 [Direct Edition]", "25 [Direct Edition]", "26 [Direct Edition]",
+          "32 [Direct Edition]", "33 [Direct Edition]",
+          "34 [Direct Edition]", "35 [Direct Edition]", "36 [Direct Edition]"
+        ]
+      }
+    },
+    "52641": {
+      "url": "https://www.comics.org/api/series/name/Chaos%20War/year/2010/?format=json",
+      "retrievedAt": "2026-11-14T00:58:08.285Z",
+      "series": {
+        "api_url": "https://www.comics.org/api/series/52641/?format=json",
+        "name": "Chaos War",
+        "year_began": 2010,
+        "publisher": "https://www.comics.org/api/publisher/78/?format=json",
+        "country": "us",
+        "language": "en",
+        "issue_descriptors": ["1", "2", "3", "4", "5"]
+      }
+    },
     "6026": {
       "url": "https://www.comics.org/api/series/name/Daredevil/year/1998/?format=json",
       "retrievedAt": "2026-11-13T02:11:37.408Z",
@@ -108,6 +241,182 @@
     }
   ],
   "editions": {
+    "iron-man-2020-robot-revolution": {
+      "gcdSeries": "Iron Man 2020 (Marvel, 2020 series)",
+      "sourceSeriesId": 154787,
+      "originalIssues": [
+        { "appNumber": 1, "gcdIssueId": 2056366 },
+        { "appNumber": 2, "gcdIssueId": 2069751 },
+        { "appNumber": 3, "gcdIssueId": 2079928 },
+        { "appNumber": 4, "gcdIssueId": 2123239 },
+        { "appNumber": 5, "gcdIssueId": 2131004 },
+        { "appNumber": 6, "gcdIssueId": 2139854 }
+      ],
+      "contents": [{ "seriesId": 28356, "from": 1, "to": 6, "assertedBy": "gcd-notes", "basis": "The indexer notes list Iron Man 2020 #1-6." }]
+    },
+    "war-of-the-realms-journey-into-mystery": {
+      "gcdSeries": "War of the Realms: Journey Into Mystery (Marvel, 2019 series)",
+      "sourceSeriesId": 143860,
+      "originalIssues": [
+        { "appNumber": 1, "gcdIssueId": 1947974 },
+        { "appNumber": 2, "gcdIssueId": 1961181 },
+        { "appNumber": 3, "gcdIssueId": 1966454 },
+        { "appNumber": 4, "gcdIssueId": 1974716 },
+        { "appNumber": 5, "gcdIssueId": 1978220 }
+      ],
+      "contents": [{ "seriesId": 27320, "from": 1, "to": 5, "assertedBy": "gcd-notes", "basis": "The indexer notes list Journey Into Mystery #1-5." }]
+    },
+    "loki-agent-of-asgard-v2-i-cannot-tell-a-lie": {
+      "gcdSeries": "Loki: Agent of Asgard (Marvel, 2014 series)",
+      "gcdSeriesUrl": "https://www.comics.org/api/series/78892/?format=json",
+      "sourceSeriesId": 78892,
+      "originalIssues": [
+        { "appNumber": 6, "gcdIssueId": 1256193, "collectionSequence": 2 },
+        { "appNumber": 7, "gcdIssueId": 1263506, "collectionSequence": 4 },
+        { "appNumber": 8, "gcdIssueId": 1281111, "collectionSequence": 6 },
+        { "appNumber": 9, "gcdIssueId": 1297065, "collectionSequence": 8 },
+        { "appNumber": 10, "gcdIssueId": 1309470, "collectionSequence": 10 },
+        { "appNumber": 11, "gcdIssueId": 1319464, "collectionSequence": 12 }
+      ],
+      "contents": [{ "seriesId": 18340, "from": 6, "to": 11, "assertedBy": "gcd-stories", "basis": "Each indexed trade story matches its original issue." }]
+    },
+    "doctor-strange-waid-v1-across-the-universe": {
+      "gcdSeries": "Doctor Strange (Marvel, 2018 Series)",
+      "sourceSeriesId": 125730,
+      "originalIssues": [{ "appNumber": 3, "gcdIssueId": 1822580, "collectionSequence": 6 }],
+      "contents": [{ "seriesId": 24296, "from": 1, "to": 5, "assertedBy": "gcd-notes", "basis": "The indexer notes list Doctor Strange #1-5." }]
+    },
+    "amazing-spider-man-edge-of-spider-verse": {
+      "gcdSeries": "Edge of Spider-Verse (Marvel, 2014 series)",
+      "sourceSeriesId": 82728,
+      "originalIssues": [
+        { "appNumber": 1, "gcdIssueId": 1251486, "collectionSequence": 3 },
+        { "appNumber": 2, "gcdIssueId": 1253446, "collectionSequence": 6 },
+        { "appNumber": 3, "gcdIssueId": 1256188, "collectionSequence": 9 },
+        { "appNumber": 4, "gcdIssueId": 1260224, "collectionSequence": 11 },
+        { "appNumber": 5, "gcdIssueId": 1263496, "collectionSequence": 13 }
+      ],
+      "contents": [{ "seriesId": 19075, "from": 1, "to": 5, "assertedBy": "gcd-notes", "basis": "The indexer notes list Edge of Spider-Verse #1-5." }]
+    },
+    "xtreme-xmen-v3-schism": {
+      "gcdSeries": "X-Treme X-Men (Marvel, 2001 series)", "sourceSeriesId": 10197,
+      "contents": [{ "seriesId": 646, "from": 19, "to": 23, "assertedBy": "gcd-notes", "basis": "The indexer notes list X-Treme X-Men #19-23; the separate X-Pose issues remain held." }]
+    },
+    "exiles-v4-legacy": {
+      "gcdSeries": "Exiles (Marvel, 2001 series)", "sourceSeriesId": 7516,
+      "contents": [{ "seriesId": 479, "from": 20, "to": 25, "assertedBy": "gcd-notes", "basis": "The indexer notes list Exiles #20-25." }]
+    },
+    "xtreme-xmen-v5-god-loves": {
+      "gcdSeries": "X-Treme X-Men (Marvel, 2001 series)", "sourceSeriesId": 10197,
+      "contents": [{ "seriesId": 646, "from": 25, "to": 30, "assertedBy": "gcd-notes", "basis": "The indexer notes list X-Treme X-Men #25-30." }]
+    },
+    "exiles-v5-unnatural-instincts": {
+      "gcdSeries": "Exiles (Marvel, 2001 series)", "sourceSeriesId": 7516,
+      "contents": [{ "seriesId": 479, "from": 26, "to": 30, "assertedBy": "gcd-notes", "basis": "The indexer notes list Exiles #26-30." }]
+    },
+    "spectacular-spider-man-v1-hunger": {
+      "gcdSeries": "Spectacular Spider-Man (Marvel, 2003 series)", "sourceSeriesId": 12001,
+      "contents": [{ "seriesId": 556, "from": 1, "to": 5, "assertedBy": "gcd-notes", "basis": "The indexer notes list Spectacular Spider-Man #1-5." }]
+    },
+    "xtreme-xmen-v7-storm-arena": {
+      "gcdSeries": "X-Treme X-Men (Marvel, 2001 series)", "sourceSeriesId": 10197,
+      "contents": [{ "seriesId": 646, "from": 36, "to": 39, "assertedBy": "gcd-notes", "basis": "The indexer notes list X-Treme X-Men #36-39." }]
+    },
+    "mighty-avengers-earths-mightiest": {
+      "gcdSeries": "*The Mighty Avengers* (Marvel, 2007 series)", "sourceSeriesId": 22524,
+      "contents": [{ "seriesId": 1866, "from": 21, "to": 26, "assertedBy": "gcd-notes", "basis": "The indexer notes list The Mighty Avengers #21-26." }]
+    },
+    "mighty-avengers-v1-ultron": {
+      "gcdSeries": "*The Mighty Avengers* (Marvel, 2007 series)",
+      "sourceSeriesId": 22524,
+      "contents": [{ "seriesId": 1866, "from": 1, "to": 6, "assertedBy": "gcd-notes", "basis": "The indexer notes list The Mighty Avengers #1-6." }]
+    },
+    "siege-mighty-avengers": {
+      "gcdSeries": "*The Mighty Avengers* (Marvel, 2007 series)",
+      "sourceSeriesId": 22524,
+      "contents": [{ "seriesId": 1866, "from": 32, "to": 36, "assertedBy": "gcd-notes", "basis": "The indexer notes list The Mighty Avengers #32-36." }]
+    },
+    "chaos-war-2011-tpb": {
+      "gcdSeries": "*Chaos War* (Marvel, 2010 series)",
+      "sourceSeriesId": 52641,
+      "contents": [{ "seriesId": 11854, "from": 1, "to": 5, "assertedBy": "gcd-notes", "basis": "The indexer notes list Chaos War #1-5." }]
+    },
+    "doomwar-2011-tpb": {
+      "gcdSeries": "Doomwar (Marvel, 2010 series)",
+      "gcdSeriesUrl": "https://www.comics.org/api/series/43801/?format=json",
+      "originalIssues": [
+        { "appNumber": 1, "gcdIssueId": 726991, "collectionSequence": 1 },
+        { "appNumber": 2, "gcdIssueId": 735014, "collectionSequence": 2 },
+        { "appNumber": 3, "gcdIssueId": 747721, "collectionSequence": 3 },
+        { "appNumber": 4, "gcdIssueId": 758140, "collectionSequence": 4 },
+        { "appNumber": 5, "gcdIssueId": 765447, "collectionSequence": 5 },
+        { "appNumber": 6, "gcdIssueId": 771490, "collectionSequence": 6 }
+      ],
+      "contents": [{ "seriesId": 9240, "from": 1, "to": 6, "assertedBy": "gcd-stories", "basis": "Each book story matches its original issue's title, pages and credited creators." }]
+    },
+    "avengers-academy-second-semester": {
+      "gcdSeries": "Avengers Academy (Marvel, 2010 series)",
+      "gcdSeriesUrl": "https://www.comics.org/api/series/49641/?format=json",
+      "originalIssues": [{ "appNumber": 22, "gcdIssueId": 894639 }],
+      "contents": [{ "seriesId": 9086, "from": 21, "to": 28, "assertedBy": "gcd-notes", "basis": "The indexer notes list Avengers Academy #21-28." }]
+    },
+    "secret-invasion-front-line": {
+      "gcdSeries": "Secret Invasion: Front Line (Marvel, 2008 series)",
+      "gcdSeriesUrl": "https://www.comics.org/api/series/31278/?format=json",
+      "originalIssues": [
+        { "appNumber": 1, "gcdIssueId": 534212, "collectionSequence": 2 },
+        { "appNumber": 2, "gcdIssueId": 534213, "collectionSequence": 4 },
+        { "appNumber": 3, "gcdIssueId": 534214, "collectionSequence": 6 },
+        { "appNumber": 4, "gcdIssueId": 534215, "collectionSequence": 8 },
+        { "appNumber": 5, "gcdIssueId": 534216, "collectionSequence": 10 }
+      ],
+      "storyTitles": {
+        "1": "Chapter One: The End of the World",
+        "2": "Chapter Two: Run, As Fast As You Can.",
+        "3": "Chapter Three: Escape",
+        "4": "Chapter Four: The Fall of Manhattan",
+        "5": "Chapter Five: Dark Reign"
+      },
+      "contents": [{ "seriesId": 5213, "from": 1, "to": 5, "assertedBy": "gcd-stories", "basis": "The indexed stories match the five original issues' titles, features and page counts." }]
+    },
+    "secret-invasion-fantastic-four": {
+      "gcdSeries": "Secret Invasion: Fantastic Four (Marvel, 2008 series)",
+      "gcdSeriesUrl": "https://www.comics.org/api/series/30803/?format=json",
+      "originalIssues": [
+        { "appNumber": 1, "gcdIssueId": 528226, "collectionSequence": 3 },
+        { "appNumber": 2, "gcdIssueId": 528227, "collectionSequence": 5 },
+        { "appNumber": 3, "gcdIssueId": 528228, "collectionSequence": 7 }
+      ],
+      "uncountedSequences": {
+        "10": "An additional Fantastic Four story outside the selected series.",
+        "13": "An additional Fantastic Four story outside the selected series.",
+        "15": "An additional Fantastic Four story outside the selected series."
+      },
+      "storyTitles": {
+        "1": "No One Gets Back Alive!",
+        "2": "No One Gets Back Alive! Part 2",
+        "3": "No One Gets Back Alive! Part 3"
+      },
+      "contents": [{ "seriesId": 4886, "from": 1, "to": 3, "assertedBy": "gcd-stories", "basis": "The indexed stories match the three original issues' titles, features and page counts." }]
+    },
+    "secret-invasion-x-men": {
+      "gcdSeries": "Secret Invasion: X-Men (Marvel, 2008 series)",
+      "gcdSeriesUrl": "https://www.comics.org/api/series/31628/?format=json",
+      "originalIssues": [
+        { "appNumber": 1, "gcdIssueId": 537741, "collectionSequence": 3 },
+        { "appNumber": 2, "gcdIssueId": 537742, "collectionSequence": 5 },
+        { "appNumber": 3, "gcdIssueId": 537743, "collectionSequence": 7 },
+        { "appNumber": 4, "gcdIssueId": 537744, "collectionSequence": 9 }
+      ],
+      "uncountedSequences": { "11": "An additional Fantastic Four story outside the selected series." },
+      "storyTitles": {
+        "1": "Secret Invasion, Part One",
+        "2": "Secret Invasion, Part Two",
+        "3": "Secret Invasion, Part Three",
+        "4": "Secret Invasion, Part Four"
+      },
+      "contents": [{ "seriesId": 5364, "from": 1, "to": 4, "assertedBy": "gcd-stories", "basis": "The indexed stories match the four original issues' titles, features and page counts." }]
+    },
     "new-xmen-v4-riot-at-xaviers": {
       "gcdSeries": "New X-Men (Marvel, 2001 series)",
       "gcdSeriesUrl": "https://www.comics.org/api/series/9855/?format=json",
@@ -207,6 +516,31 @@
     "xtreme-xmen-v2-invasion": {
       "gcdSeries": "X-Treme X-Men (Marvel, 2001 series)",
       "contents": [{ "seriesId": 646, "from": 10, "to": 18, "assertedBy": "gcd-notes", "basis": "The indexer notes list X-Treme X-Men #10-18." }]
+    },
+    "young-xmen-v1-final-genesis": {
+      "gcdSeries": "Young X-Men (Marvel, 2008 series)",
+      "gcdSeriesUrl": "https://www.comics.org/api/series/30513/?format=json",
+      "originalIssues": [
+        { "appNumber": 1, "gcdIssueId": 523439, "collectionSequence": 4 },
+        { "appNumber": 2, "gcdIssueId": 523440, "collectionSequence": 6 },
+        { "appNumber": 3, "gcdIssueId": 523441, "collectionSequence": 8 },
+        { "appNumber": 4, "gcdIssueId": 535065, "collectionSequence": 10 },
+        { "appNumber": 5, "gcdIssueId": 538272, "collectionSequence": 12 }
+      ],
+      "contents": [{ "seriesId": 4443, "from": 1, "to": 5, "assertedBy": "gcd-stories", "basis": "The five trade stories match their original issues by series, number, title, pages and credits." }]
+    },
+    "uncanny-xmen-v1-hope": {
+      "gcdSeries": "The Uncanny X-Men (Marvel, 1981 series)",
+      "gcdSeriesUrl": "https://www.comics.org/api/series/2605/?format=json",
+      "originalIssues": [
+        { "appNumber": 410, "gcdIssueId": 172394, "collectionSequence": 1 },
+        { "appNumber": 411, "gcdIssueId": 172395, "collectionSequence": 2 },
+        { "appNumber": 412, "gcdIssueId": 172396, "collectionSequence": 3 },
+        { "appNumber": 413, "gcdIssueId": 172397, "collectionSequence": 4 },
+        { "appNumber": 414, "gcdIssueId": 172398, "collectionSequence": 5 },
+        { "appNumber": 415, "gcdIssueId": 172399, "collectionSequence": 6 }
+      ],
+      "contents": [{ "seriesId": 2258, "from": 410, "to": 415, "assertedBy": "gcd-stories", "basis": "The six trade stories match their original issues by series, number, title, pages and credits." }]
     },
     "exiles-v3-out-of-time": {
       "gcdSeries": "Exiles (Marvel, 2001 series)",

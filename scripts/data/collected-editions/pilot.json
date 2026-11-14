@@ -388,6 +388,84 @@
       "medium": "print",
       "gcdIssueId": 251250,
       "gcdCheck": { "tier": "gcd-notes" }
-    }
+    },
+    {
+      "id": "doomwar-2011-tpb",
+      "title": "Doomwar",
+      "format": "trade paperback",
+      "medium": "print",
+      "gcdIssueId": 1618437,
+      "gcdCheck": { "tier": "gcd-original-stories" }
+    },
+    {
+      "id": "avengers-academy-second-semester",
+      "title": "Avengers Academy: Second Semester",
+      "format": "trade paperback",
+      "medium": "print",
+      "gcdIssueId": 1075935,
+      "gcdCheck": { "tier": "gcd-notes" }
+    },
+    {
+      "id": "secret-invasion-front-line",
+      "title": "Secret Invasion: Front Line",
+      "format": "trade paperback",
+      "medium": "print",
+      "gcdIssueId": 2068845,
+      "gcdCheck": { "tier": "gcd-story-titles" }
+    },
+    {
+      "id": "secret-invasion-fantastic-four",
+      "title": "Secret Invasion: Fantastic Four",
+      "format": "trade paperback",
+      "medium": "print",
+      "gcdIssueId": 759141,
+      "gcdCheck": { "tier": "gcd-story-titles" }
+    },
+    {
+      "id": "secret-invasion-x-men",
+      "title": "Secret Invasion: X-Men",
+      "format": "trade paperback",
+      "medium": "print",
+      "gcdIssueId": 2107285,
+      "gcdCheck": { "tier": "gcd-story-titles" }
+    },
+    {
+      "id": "mighty-avengers-v1-ultron",
+      "title": "Mighty Avengers Vol. 1: The Ultron Initiative",
+      "format": "trade paperback",
+      "medium": "print",
+      "gcdIssueId": 851244,
+      "gcdCheck": { "tier": "gcd-notes" }
+    },
+    {
+      "id": "siege-mighty-avengers",
+      "title": "Siege: Mighty Avengers",
+      "format": "trade paperback",
+      "medium": "print",
+      "gcdIssueId": 886235,
+      "gcdCheck": { "tier": "gcd-notes" }
+    },
+    {
+      "id": "chaos-war-2011-tpb",
+      "title": "Chaos War",
+      "format": "trade paperback",
+      "medium": "print",
+      "gcdIssueId": 1872287,
+      "gcdCheck": { "tier": "gcd-notes" }
+    },
+    { "id": "xtreme-xmen-v3-schism", "title": "X-Treme X-Men Vol. 3: Schism", "format": "trade paperback", "medium": "print", "gcdIssueId": 910910, "gcdCheck": { "tier": "gcd-notes" } },
+    { "id": "exiles-v4-legacy", "title": "Exiles Vol. 4: Legacy", "format": "trade paperback", "medium": "print", "gcdIssueId": 787876, "gcdCheck": { "tier": "gcd-notes" } },
+    { "id": "xtreme-xmen-v5-god-loves", "title": "X-Treme X-Men Vol. 5: God Loves, Man Kills", "format": "trade paperback", "medium": "print", "gcdIssueId": 910912, "gcdCheck": { "tier": "gcd-notes" } },
+    { "id": "exiles-v5-unnatural-instincts", "title": "Exiles Vol. 5: Unnatural Instincts", "format": "trade paperback", "medium": "print", "gcdIssueId": 787877, "gcdCheck": { "tier": "gcd-notes" } },
+    { "id": "spectacular-spider-man-v1-hunger", "title": "Spectacular Spider-Man Vol. 1: The Hunger", "format": "trade paperback", "medium": "print", "gcdIssueId": 928174, "gcdCheck": { "tier": "gcd-notes" } },
+    { "id": "xtreme-xmen-v7-storm-arena", "title": "X-Treme X-Men Vol. 7: Storm: The Arena", "format": "trade paperback", "medium": "print", "gcdIssueId": 910914, "gcdCheck": { "tier": "gcd-notes" } },
+    { "id": "mighty-avengers-earths-mightiest", "title": "Mighty Avengers: Earth's Mightiest", "format": "trade paperback", "medium": "print", "gcdIssueId": 783584, "gcdCheck": { "tier": "gcd-notes" } },
+    { "id": "uncanny-xmen-v1-hope", "title": "Uncanny X-Men Vol. 1: Hope", "format": "softcover", "medium": "print", "gcdIssueId": 543151, "gcdCheck": { "tier": "gcd-original-stories" } },
+    { "id": "young-xmen-v1-final-genesis", "title": "Young X-Men Vol. 1: Final Genesis", "format": "trade paperback", "medium": "print", "gcdIssueId": 911815, "gcdCheck": { "tier": "gcd-original-stories" } },
+    { "id": "amazing-spider-man-edge-of-spider-verse", "title": "Amazing Spider-Man: Edge of Spider-Verse", "format": "trade paperback", "medium": "print", "gcdIssueId": 1343400, "gcdCheck": { "tier": "gcd-notes" } },
+    { "id": "doctor-strange-waid-v1-across-the-universe", "title": "Doctor Strange by Mark Waid Vol. 1: Across the Universe", "format": "trade paperback", "medium": "print", "gcdIssueId": 1955785, "gcdCheck": { "tier": "gcd-notes" } },
+    { "id": "loki-agent-of-asgard-v2-i-cannot-tell-a-lie", "title": "Loki: Agent of Asgard Vol. 2: I Cannot Tell a Lie", "format": "trade paperback", "medium": "print", "gcdIssueId": 1342239, "gcdCheck": { "tier": "gcd-original-stories" } },
+    { "id": "war-of-the-realms-journey-into-mystery", "title": "War of the Realms: Journey Into Mystery", "format": "trade paperback", "medium": "print", "gcdIssueId": 2023510, "gcdCheck": { "tier": "gcd-notes" } },
+    { "id": "iron-man-2020-robot-revolution", "title": "Iron Man 2020: Robot Revolution", "format": "trade paperback", "medium": "print", "gcdIssueId": 2156466, "gcdCheck": { "tier": "gcd-notes" } }
   ]
 }

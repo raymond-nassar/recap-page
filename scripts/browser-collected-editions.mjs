@@ -3,7 +3,7 @@ import { createEmptyState, createList, addIssuesToList, exportBackup } from '../
 import { editionEvidence } from '../src/js/lib/collectedEditions.js';
 
 const catalog = JSON.parse(readFileSync(new URL('../src/data/catalog.json', import.meta.url), 'utf8'));
-const ids = ['civil-war-avengers', 'nebula-reading-order', 'avengers-doomsday-secret-wars', 'realm-of-kings',
+const ids = ['civil-war-essential', 'civil-war', 'civil-war-avengers', 'nebula-reading-order', 'avengers-doomsday-secret-wars', 'realm-of-kings',
   'the-unbeatable-squirrel-girl', 'marvel-knights-to-planet-x-04', 'marvel-knights-to-planet-x-15',
   'marvel-knights-to-planet-x-42', 'marvel-knights-to-planet-x-69'];
 const lists = catalog.lists.filter((list) => ids.includes(list.id));
@@ -17,6 +17,12 @@ for (const list of lists) {
 }
 const seed = exportBackup(state);
 const click = (page, selector) => page.$eval(selector, (node) => node.click());
+const civilWarLinks = (page, selector) => page.$$eval(selector, (nodes) =>
+  nodes.length === 7 && nodes.every((node) => node.textContent.includes('Collected in Civil War')
+    && JSON.stringify([...node.querySelectorAll('a')].map((link) => link.href)) === JSON.stringify([
+      'https://www.hoopladigital.com/title/12003677',
+      'https://share.libbyapp.com/title/4455520',
+    ])));
 
 const destinations = [
   'https://www.hoopladigital.com/title/123456789',
@@ -271,11 +277,16 @@ export const collectedEditions = {
 
     for (const list of lists) {
       const expected = editionEvidence.relations.filter((relation) => relation.catalogId === list.id);
+      const civilWarVariant = ['civil-war-essential', 'civil-war'].includes(list.id);
       await page.goto(`${page.__origin}/#/preview/${list.id}`, { waitUntil: 'load' });
       await page.waitForSelector('#preview[open] .preview-list li');
       const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
       t.check(`${list.id}: Preview labels exactly the eligible issue count`,
         await page.$$eval('#preview .collected-edition', (nodes) => nodes.length) === expected.length);
+      if (civilWarVariant) {
+        t.check(`${list.id}: Preview names Civil War with both confirmed links on seven issues`,
+          await civilWarLinks(page, '#preview .collected-edition'));
+      }
       if (list.id === 'marvel-knights-to-planet-x-42' || list.id === 'marvel-knights-to-planet-x-69') {
         const title = list.id.endsWith('-42') ? "New X-Men Vol. 4: Riot at Xavier's" : 'Daredevil Vol. 8: Echo - Vision Quest';
         t.check(`${list.id}: Preview names the confirmed book and both providers on all five issues`,
@@ -306,6 +317,10 @@ export const collectedEditions = {
       await page.waitForSelector('#rows .row');
       t.check(`${list.id}: saved list labels match Preview`,
         await page.$$eval('#rows .collected-edition', (nodes) => nodes.length) === expected.length);
+      if (civilWarVariant) {
+        t.check(`${list.id}: saved list names Civil War with both confirmed links on seven issues`,
+          await civilWarLinks(page, '#rows .collected-edition'));
+      }
       if (list.id === 'marvel-knights-to-planet-x-15') {
         t.check(`${list.id}: saved list leaves the held issue 126 without a book label`,
           await page.$$eval('#rows .row', (nodes) => {
@@ -378,11 +393,13 @@ export const collectedEditions = {
           };
         });
         const name = `${surface} ${profile.width}px forced=${profile.forced} large=${profile.large}`;
-        t.check(`${name}: all 13 labels wrap with their issues and only confirmed Civil War links`,
-          result.count === 13 && result.fits && !result.unexpectedStops && result.issue && !result.bodyOverflow
-          && result.links.length === 14
+        t.check(`${name}: all 19 labels wrap with their issues and only confirmed book links`,
+          result.count === 19 && result.fits && !result.unexpectedStops && result.issue && !result.bodyOverflow
+          && result.links.length === 26
           && result.links.filter((link) => link === 'https://www.hoopladigital.com/title/12003677').length === 7
-          && result.links.filter((link) => link === 'https://share.libbyapp.com/title/4455520').length === 7,
+          && result.links.filter((link) => link === 'https://share.libbyapp.com/title/4455520').length === 7
+          && result.links.filter((link) => link === 'https://www.hoopladigital.com/title/15183607').length === 6
+          && result.links.filter((link) => link === 'https://share.libbyapp.com/title/9192151').length === 6,
           JSON.stringify(result));
         t.check(`${name}: required credit retains both licence/source links`, result.credit === 2);
         const ax = await cdp.send('Accessibility.getFullAXTree');
