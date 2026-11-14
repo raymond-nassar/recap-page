@@ -6155,7 +6155,7 @@
       "timeline": null,
       "coverIssueId": 11280,
       "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/03/58dd080719806/clean.jpg",
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/03/58dd080719806",
         "ext": "jpg"
       },
       "source": "https://www.comicbookherald.com/iron-man-reading-order/",
@@ -6730,7 +6730,7 @@
       "id": "ultimate-spider-man-reading-order",
       "file": "ultimate_spider_man_reading_order.json",
       "name": "Ultimate Spider-Man",
-      "description": "Peter Parker and Miles Morales are Spider-Man in Marvel's Ultimate universes, the original one and a separate new one. Brian Michael Bendis's Ultimate Spider-Man opens the journey alongside Ultimate Marvel Team-Up, Ultimate Six and Ultimatum. Ultimate Comics Spider-Man and Spider-Men follow, and Jonathan Hickman's Ultimate Spider-Man leads into Ultimate Endgame.",
+      "description": "Peter Parker and Miles Morales begin in the original Ultimate universe, and Miles continues into Marvel's main universe. Brian Michael Bendis's Ultimate Spider-Man opens the journey alongside Ultimate Marvel Team-Up, Ultimate Six and Ultimatum. Ultimate Comics Spider-Man, Spider-Men, Spider-Man (2016) and Champions follow. The separate Earth-6160 Peter Parker stories are not included.",
       "type": "character-run",
       "depth": "partial",
       "spotlightKind": "other",
@@ -6743,10 +6743,10 @@
       "writers": [
         "Brian Michael Bendis"
       ],
-      "count": 352,
+      "count": 316,
       "placeholderCount": 1,
-      "emptyRecordCount": 8,
-      "collections": 47,
+      "emptyRecordCount": 0,
+      "collections": 39,
       "characters": [
         "Spider-Man",
         "Peter Parker",
@@ -6758,7 +6758,7 @@
         "Peter Parker",
         "Miles Morales",
         "Earth-1610",
-        "Earth-6160",
+        "Earth-616",
         "Ultimate Universe",
         "Comic Book Herald"
       ],
@@ -6773,7 +6773,7 @@
         "ext": "jpg"
       },
       "source": "https://www.comicbookherald.com/ultimate-spider-man-reading-order/",
-      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide, with the owner's Earth-6160 exclusions",
       "sourceLicense": null,
       "updatedAt": "2026-09-29T14:54:49.898Z"
     },

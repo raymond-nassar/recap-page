@@ -52,7 +52,7 @@ This plan is linked to the separate [colleague feedback record](UX_FEEDBACK.md) 
 
 ## 7. MCU Prep labels
 
-**Outcome:** Resolved by owner decision in [#1297](https://github.com/raymond-nassar/recap-page/issues/1297). The labels did not filter and the owner did not want them to; they looked selectable and were removed from every generated browse page. Each page now carries one short description line instead, MCU Prep's from its category definition (`src/js/lib/catalog.js:1352`), rendered beneath the heading (`src/js/main.js:2945`).
+**Outcome:** Resolved by owner decision in [#1297](https://github.com/raymond-nassar/recap-page/issues/1297). The labels did not filter and the owner did not want them to; they looked selectable and were removed from every generated browse page. Each page now carries one short description line instead, MCU Prep's from its category definition (`src/js/lib/catalog.js:1351`), rendered beneath the heading (`src/js/main.js:2945`).
 
 **Dependencies:** None remaining.
 

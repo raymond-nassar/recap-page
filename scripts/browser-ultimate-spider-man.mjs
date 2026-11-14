@@ -3,11 +3,14 @@ import { readFileSync } from 'node:fs';
 import { buildMarkdown, selectedIssueIds } from './author-cbh-packet.mjs';
 import { placeholderId } from './lib/placeholder-id.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
+import { addIssuesToList, createEmptyState, createList, markRead } from '../src/js/lib/model.js';
+import { selectedUltimateRows } from './lib/ultimate-spider-man-selection.mjs';
+import { readUltimateSelectionBaseline } from './correct-ultimate-spider-man.mjs';
 
 const id = 'ultimate-spider-man-reading-order';
 const name = 'Ultimate Spider-Man';
 const gapId = -363711502;
-const refusedIds = [113900, 113901, 129224, 129225, 129226, 129227, 129228, 127659];
+const refusedIds = [];
 const mapping = JSON.parse(readFileSync(
   new URL(`./data/cbh-mappings/${id}.json`, import.meta.url), 'utf8',
 ));
@@ -15,9 +18,10 @@ const markdown = readFileSync(new URL(`../src/data/orders/${id}.md`, import.meta
 assert.equal(markdown.replace(/\r\n/g, '\n'), buildMarkdown(mapping));
 const parsed = parseChecklist(markdown);
 const authored = [...parsed.entries, ...parsed.unresolved].sort((a, b) => a.index - b.index);
-const exactIds = selectedIssueIds(mapping).map(Number);
-assert.equal(authored.length, 352);
-assert.equal(parsed.entries.length, 351);
+const exactIds = selectedUltimateRows(mapping).map((row) => row.selectedIssueId);
+assert.equal(selectedIssueIds(mapping).length, 351);
+assert.equal(authored.length, 316);
+assert.equal(parsed.entries.length, 315);
 assert.deepEqual(parsed.entries.map((row) => row.issueId), exactIds);
 assert.deepEqual(parsed.unresolved.map((row) => [row.index + 1, row.title]), [
   [44, 'Ultimate Spider-Man Super Special (2002) #1'],
@@ -32,20 +36,15 @@ const expected = authored.map((row, index) => ({
   detailsRefused: row.issueId == null ? null : refusedIds.includes(row.issueId),
 }));
 assert.deepEqual(authored.map((row) => Number(row.sourceKey)), expected.map((row) => row.position));
-assert.deepEqual(expected.slice(344).map((row) => row.issueId), refusedIds);
+assert.deepEqual(expected.filter((row) => row.detailsRefused).map((row) => row.issueId), refusedIds);
 const groups = expected.filter((row, index) => index === 0 || row.section !== expected[index - 1].section)
   .map((row) => row.section);
-assert.equal(groups.length, 47);
-assert.deepEqual([0, 197, 269, 316].map((index) => expected[index].section.split(':')[0]), [
+assert.equal(groups.length, 39);
+assert.deepEqual([0, 197, 269].map((index) => expected[index].section.split(':')[0]), [
   'Peter Parker, original Ultimate universe',
   'Miles Morales Reading List',
   'All-New All-Different Miles Morales',
-  'The New Ultimate Spider-Man (2024-2026)',
 ]);
-assert.match(expected[334].section, /Ultimate Universe story only/);
-assert.match(expected[351].section, /Spider-Man story only; after Ultimate Endgame #1-5/);
-assert.match(expected[350].section, /Ultimate Endgame/);
-assert.equal(expected[351].issueId, 127659);
 assert.equal(mapping.rows.some((row) => row.seriesYear === 2009 && row.issueNumber === '15'), false);
 assert.equal(mapping.rows.some((row) => row.seriesYear === 2000
   && Number(row.issueNumber) >= 47 && Number(row.issueNumber) <= 53), false);
@@ -149,19 +148,19 @@ export const ultimateSpiderManActualData = {
       sourceHref: node.querySelector('a[href*="comicbookherald.com"]')?.href,
       addName: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
     }));
-    t.check('the credited 352-issue character guide is discoverable without selecting a different Ultimate list',
-      card.name === name && card.text.includes('352 comics')
+    t.check('the credited 316-issue character guide is discoverable without selecting a different Ultimate list',
+      card.name === name && card.text.includes('316 comics')
       && card.sourceHref === mapping.sourceUrl
       && card.addName === `Add to library: ${name}`,
       JSON.stringify(card));
 
     await page.$eval(`${cardSelector} [data-act="preview"]`, (node) => node.click());
     await page.waitForFunction(() =>
-      document.querySelectorAll('#preview[open] .preview-issue-link').length === 352);
+      document.querySelectorAll('#preview[open] .preview-issue-link').length === 316);
     const preview = await captureRows(page, '#preview-body .preview-list > li', 'preview');
     checkVector(t, 'Preview renders every approved original and the exact position-44 gap',
       preview.rows, expectedVisible);
-    t.check('Preview retains all 47 groups across four distinct eras and both story qualifications',
+    t.check('Preview retains all 39 groups across the three retained eras',
       JSON.stringify(preview.headings) === JSON.stringify(groups),
       JSON.stringify({ count: preview.headings.length, first: preview.headings[0],
         fcbd: preview.headings.find((group) => group.includes('Ultimate Universe story only')),
@@ -181,9 +180,9 @@ export const ultimateSpiderManActualData = {
     const imported = await savedRows(page);
     t.check('import creates exactly one curated Ultimate Spider-Man list', imported.matches === 1,
       JSON.stringify(imported.matches));
-    checkVector(t, 'import persists all 352 exact positions, titles, groups, gap and refusal flags',
+    checkVector(t, 'import persists all 316 exact positions, titles, groups and the original gap',
       imported.rows, expected);
-    t.check('eight positive originals remain identified despite refused optional comic details',
+    t.check('the removed eight optional-detail refusals no longer appear in a new import',
       JSON.stringify(imported.refused) === JSON.stringify(refusedIds)
       && imported.missingDetails.every((fields) => fields.every((field) => field === null)),
       JSON.stringify({ refused: imported.refused, missingDetails: imported.missingDetails }));
@@ -192,11 +191,11 @@ export const ultimateSpiderManActualData = {
     await page.waitForFunction((title) => !document.querySelector('#view-read')?.hidden
       && document.querySelector('#order-name')?.textContent.trim() === title, {}, name);
     await page.evaluate(() => { document.querySelector('#full').open = true; });
-    await page.waitForFunction(() => document.querySelectorAll('#rows .row').length === 352);
+    await page.waitForFunction(() => document.querySelectorAll('#rows .row').length === 316);
     const rendered = await captureRows(page, '#rows > li', 'reading');
     checkVector(t, 'Reading List renders every position and original in the approved order',
       rendered.rows, expectedVisible);
-    t.check('Reading List retains the four eras and the qualified FCBD and deferred Finale groups',
+    t.check('Reading List retains the three original and later Miles eras without new-universe groups',
       JSON.stringify(rendered.headings) === JSON.stringify(groups),
       JSON.stringify({ count: rendered.headings.length, fcbd: rendered.headings.find(
         (group) => group.includes('Ultimate Universe story only'),
@@ -212,28 +211,82 @@ export const ultimateSpiderManActualData = {
     await page.waitForFunction((title) =>
       document.querySelector('#order-name')?.textContent.trim() === title, {}, name);
     await page.evaluate(() => { document.querySelector('#full').open = true; });
-    await page.waitForFunction(() => document.querySelectorAll('#rows .row').length === 352);
+    await page.waitForFunction(() => document.querySelectorAll('#rows .row').length === 316);
     const reloaded = await captureRows(page, '#rows > li', 'reading');
-    checkVector(t, 'reloaded Reading List still renders all 352 positions and groups',
+    checkVector(t, 'reloaded Reading List still renders all 316 positions and groups',
       reloaded.rows, expectedVisible);
-    t.check('reload retains all 47 source-derived group headings',
+    t.check('reload retains all 39 selected source-derived group headings',
       JSON.stringify(reloaded.headings) === JSON.stringify(groups),
       JSON.stringify({ count: reloaded.headings.length, finale: reloaded.headings.at(-1) }));
     const persisted = await savedRows(page);
-    t.check('reload retains a single list and the eight known positive-ID detail refusals',
+    t.check('reload retains a single corrected list without the removed detail refusals',
       persisted.matches === 1 && JSON.stringify(persisted.refused) === JSON.stringify(refusedIds)
       && persisted.missingDetails.every((fields) => fields.every((field) => field === null)),
       JSON.stringify({ matches: persisted.matches, refused: persisted.refused }));
     checkVector(t, 'reloaded storage retains every original, section, exact gap and refusal',
       persisted.rows, expected);
-    t.check('the explicit Peter omissions stay omitted and Finale follows all five Endgame issues',
+    t.check('the explicit Peter omissions and the entire new-universe tail stay omitted',
       !persisted.rows.some((row) =>
         /^Ultimate Spider-Man \(2000\) #(47|48|49|50|51|52|53)$/.test(row.title)
         || row.title === 'Ultimate Spider-Man (2009) #15')
-      && JSON.stringify(persisted.rows.slice(346, 351).map((row) => row.issueId))
-        === JSON.stringify(refusedIds.slice(2, 7))
-      && persisted.rows[351]?.issueId === 127659,
-      JSON.stringify(persisted.rows.slice(344).map((row) => [row.position, row.issueId])));
+      && persisted.rows.length === 316
+      && persisted.rows.at(-1)?.issueId === expected.at(-1).issueId);
+
+    const prior = readUltimateSelectionBaseline().payload;
+    const legacyId = 'legacy-ultimate-spider-man';
+    const priorIds = prior.items.map((item) => item.issueId);
+    let legacy = createList(createEmptyState(), { id: legacyId, name, catalogId: id });
+    legacy = addIssuesToList(legacy, legacyId, prior.items).state;
+    legacy = markRead(legacy, priorIds[0], true, 123456);
+    legacy = markRead(legacy, priorIds.at(-1), true, 123457);
+    await page.evaluateOnNewDocument((state) => {
+      if (!sessionStorage.getItem('ultimate-legacy-seeded')) {
+        localStorage.setItem('mrt.state.v2', JSON.stringify(state));
+        sessionStorage.setItem('ultimate-legacy-seeded', 'yes');
+      }
+    }, legacy);
+    await page.goto(`${page.__origin}/?catalog=actual&legacy=1#/read/${legacyId}`, { waitUntil: 'load' });
+    await page.waitForSelector('#hero-progress-count .glance-n');
+    t.check('the saved-copy fixture opens at its own saved progress',
+      await page.$eval('#hero-progress-count', (node) => node.textContent === '2 of 352 read'));
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForSelector('#hero-progress-count .glance-n');
+    const savedLegacy = await savedRows(page);
+    t.check('an existing saved copy keeps all 352 comics after opening and reloading the update',
+      savedLegacy.matches === 1
+      && JSON.stringify(savedLegacy.rows.map((row) => row.issueId)) === JSON.stringify(priorIds));
+    const readMarkers = await page.evaluate(() => JSON.parse(localStorage.getItem('mrt.state.v2')).read);
+    t.check('saved progress includes both a retained comic and the removed Finale',
+      readMarkers[priorIds[0]] === 123456 && readMarkers[priorIds.at(-1)] === 123457);
+    t.check('the saved Reading List counts its own 352 comics, not the corrected catalog count',
+      await page.$eval('#hero-progress-count', (node) => node.textContent.includes('2 of 352 read')));
+    await page.$eval('.brand[data-view="home"]', (node) => node.click());
+    await page.waitForSelector('#view-home [data-category="character-spotlights"]');
+    await page.$eval('#view-home [data-category="character-spotlights"]', (node) => node.click());
+    await page.waitForSelector('#spotlights-q');
+    await page.$eval('#spotlights-q', (input) => {
+      input.value = 'Ultimate Spider-Man';
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+    await page.waitForSelector(cardSelector);
+    const savedCard = await page.$eval(cardSelector, (node) => node.textContent);
+    t.check('discovery distinguishes the corrected 316-comic guide from a saved 352-comic copy',
+      savedCard.includes('316 comics') && savedCard.includes('Saved copy: 352 comics'), savedCard);
+    await page.$eval(`${cardSelector} [data-act="preview"]`, (node) => node.click());
+    await page.waitForFunction(() =>
+      document.querySelectorAll('#preview[open] .preview-issue-link').length === 316);
+    const deletionNotice = await page.evaluate(() => ({
+      notice: Boolean(document.querySelector('.preview-saved-difference')),
+      copy: Boolean(document.querySelector('#preview-add [data-act="add-copy"]')),
+      main: document.querySelector('#preview-add [data-act="main"]')?.textContent,
+    }));
+    t.check('a deletion-only update offers Open without a missing-comic notice or an updated-copy action',
+      !deletionNotice.notice && !deletionNotice.copy && deletionNotice.main?.includes('Open'),
+      JSON.stringify(deletionNotice));
+    const unchangedLegacy = await savedRows(page);
+    t.check('previewing the corrected guide never shortens the existing saved copy',
+      unchangedLegacy.matches === 1
+      && JSON.stringify(unchangedLegacy.rows.map((row) => row.issueId)) === JSON.stringify(priorIds));
     t.check('the complete actual-data journey made no external request or browser error',
       externalRequests.length === 0 && errors.length === 0,
       JSON.stringify({ externalRequests: externalRequests.slice(0, 3), errors: errors.slice(0, 3) }));
