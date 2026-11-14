@@ -68,7 +68,17 @@ test('the publishing registry declares every effective non-overlapping range and
   for (const category of PUBLISHING_CATEGORIES) {
     assert.ok(category.heading.trim(), `${category.key} has no heading`);
     assert.ok(category.label.trim(), `${category.key} has no compact range label`);
-    assert.ok(category.highlights.length, `${category.key} has no compact highlights`);
+  }
+});
+
+test('every generated browse page has one short description and no highlight tags (#1297)', () => {
+  const generated = [...PUBLISHING_CATEGORIES, ...HOME_CATEGORIES.filter((category) => !category.shelf)];
+  assert.equal(generated.length, 15);
+  for (const category of generated) {
+    assert.equal(category.highlights, undefined, `${category.key} still carries highlight tags`);
+    assert.equal(typeof category.description, 'string', `${category.key} has no description`);
+    assert.match(category.description, /^[A-Z].{19,79}\.$/, `${category.key} description is not one short sentence`);
+    assert.doesNotMatch(category.description, /[\u2013\u2014]/, `${category.key} description has a dash`);
   }
 });
 

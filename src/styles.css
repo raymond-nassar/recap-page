@@ -2205,19 +2205,6 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 [data-category-gateway] .home-path-icon { grid-area: icon; justify-self: end; width: 2.75rem; height: 2.75rem; }
 [data-category-gateway] .home-path-arrow { grid-area: arrow; justify-self: end; align-self: center; }
 
-.publishing-meta {
-  display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-4);
-  margin: calc(-1 * var(--space-3)) 0 var(--space-5);
-}
-.publishing-range, .publishing-count, .publishing-highlights li {
-  border-left: var(--stroke-2) solid var(--line); padding: var(--space-1) var(--space-4);
-  color: var(--muted); font-size: var(--t-caption);
-}
-.publishing-count { color: var(--text); }
-.publishing-highlights {
-  display: flex; flex-wrap: wrap; gap: var(--space-4); list-style: none;
-  margin: 0 0 var(--space-6); padding: 0;
-}
 .publishing-periods { margin-top: var(--space-6); }
 .publishing-periods .sec-h h2 { margin: 0; font-size: var(--t-subtitle); font-weight: 600; }
 .marvel-ages-group + .marvel-ages-group { margin-top: var(--space-9); }
@@ -2488,7 +2475,6 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   .home-path, .yours a, .preview, .catalog-card { border: var(--stroke-1) solid CanvasText; }
   .home-path::before { background: Highlight; }
   .home-path-icon, .home-path-arrow { color: ButtonText; }
-  .publishing-range, .publishing-count, .publishing-highlights li { border-color: CanvasText; }
   .pbar, .ri .bar { border: var(--stroke-1) solid CanvasText; }
   .pbar i, .ri .bar i { background: Highlight; }
   .rail-tip { border: var(--stroke-1) solid CanvasText; background: Canvas; }

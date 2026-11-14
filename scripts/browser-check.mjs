@@ -7619,7 +7619,7 @@ const SCENARIOS = [
         return {
           visible: visible.map((panel) => panel.id),
           heading: document.querySelector('#age-golden-h')?.textContent.trim(),
-          range: document.querySelector('#view-age-golden .publishing-range')?.textContent.trim(),
+          description: document.querySelector('#view-age-golden .head .sub')?.textContent.trim(),
           count: document.querySelector('#age-golden-count')?.textContent.trim(),
           message: document.querySelector('#age-golden-results .publishing-empty')?.textContent.trim(),
           timeline: Boolean(document.querySelector('#age-golden-results .timeline-flow')),
@@ -7629,7 +7629,7 @@ const SCENARIOS = [
         JSON.stringify(empty) === JSON.stringify({
           visible: ['view-age-golden'],
           heading: 'Browse Golden Age',
-          range: '1939 to 1955',
+          description: 'Timely Comics and the first wave of heroes, from 1939 to 1955.',
           count: '0 Reading Lists',
           message: 'No Reading Lists are published for this period yet.',
           timeline: false,
@@ -7742,7 +7742,9 @@ const SCENARIOS = [
         })));
       }
       t.check('browse headings carry no sentence that repeats the screen structure',
-        browse.every((screen) => screen.subtitle === null), JSON.stringify(browse));
+        browse[0].subtitle === null && browse[2].subtitle === null
+        && browse[1].subtitle === 'Find a Reading List by the kind of story and the mood you want.',
+        JSON.stringify(browse));
       t.check('Timeline keeps era context while Genres avoids decade explanations',
         browse[0].blurbs.length > 0 && browse[0].blurbs.every((text) => text.length > 40)
         && browse[1].blurbs.length === 0,
@@ -19844,13 +19846,23 @@ SCENARIOS.push(
         JSON.stringify(golden));
       await open(page, '/?catalog=actual#/marvel-on-screen');
       await page.waitForFunction(() => document.querySelector('#marvel-on-screen-results .catalog-card'));
-      const highlights = await page.evaluate(() => [...document.querySelectorAll(
-        '#view-marvel-on-screen .publishing-highlights li',
-      )].map((node) => ({ tag: node.tagName, radius: getComputedStyle(node).borderRadius,
-        controls: node.querySelectorAll('button, input, a').length })));
-      t.check('MCU highlights look informational rather than like actionable facet pills',
-        highlights.length > 0 && highlights.every((entry) => entry.tag === 'LI'
-          && entry.radius === '0px' && entry.controls === 0), JSON.stringify(highlights));
+      const header = await page.evaluate(() => {
+        const view = document.querySelector('#view-marvel-on-screen');
+        const count = document.querySelector('#marvel-on-screen-count');
+        return {
+          lines: [...view.querySelectorAll('.head .sub')].map((node) => node.textContent.trim()),
+          tags: view.querySelectorAll('.publishing-meta, .publishing-range, .publishing-highlights, .head li').length,
+          countRole: count?.getAttribute('role') ?? null,
+          countPainted: count ? count.getBoundingClientRect().width > 1 : null,
+        };
+      });
+      t.check('MCU Prep says what it holds in one line, with no tags that look like controls (#1297)',
+        JSON.stringify(header) === JSON.stringify({
+          lines: ['Comics to read alongside the Marvel movies and streaming series.'],
+          tags: 0,
+          countRole: 'status',
+          countPainted: false,
+        }), JSON.stringify(header));
       await open(page, '/?catalog=actual#/catalog');
       await page.waitForFunction(() => document.querySelector('#catalog-results .catalog-card'));
       await page.evaluate(() => {

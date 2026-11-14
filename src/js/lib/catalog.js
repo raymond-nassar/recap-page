@@ -1038,7 +1038,7 @@ export const PUBLISHING_CATEGORIES = [
     from: 1939,
     to: 1955,
     icon: 'E81C',
-    highlights: ['Timely Comics', 'Human Torch', 'Namor', 'Captain America'],
+    description: 'Timely Comics and the first wave of heroes, from 1939 to 1955.',
   },
   {
     key: 'silver',
@@ -1049,7 +1049,7 @@ export const PUBLISHING_CATEGORIES = [
     from: 1956,
     to: 1969,
     icon: 'E81C',
-    highlights: ['Superhero revival', 'Fantastic Four from 1961'],
+    description: 'The superhero revival and the arrival of the Fantastic Four, from 1956 to 1969.',
   },
   {
     key: 'bronze',
@@ -1060,7 +1060,7 @@ export const PUBLISHING_CATEGORIES = [
     from: 1970,
     to: 1983,
     icon: 'E81C',
-    highlights: ['Socially conscious stories', 'X-Men expansion', 'Cosmic Marvel', 'Horror', 'Street-level heroes'],
+    description: 'Socially conscious stories and cosmic sagas, from 1970 to 1983.',
   },
   {
     key: 'copper',
@@ -1071,7 +1071,7 @@ export const PUBLISHING_CATEGORIES = [
     from: 1984,
     to: 1990,
     icon: 'E81C',
-    highlights: ['Darker storytelling', '1980s X-Men boom', 'Venom', 'Early modern Avengers', 'Creator-driven books', 'Road to 1991'],
+    description: 'Darker storytelling and the X-Men boom, from 1984 to 1990.',
   },
   {
     key: 'modern',
@@ -1082,7 +1082,7 @@ export const PUBLISHING_CATEGORIES = [
     from: 1991,
     to: null,
     icon: 'E81C',
-    highlights: ['Early Modern to current'],
+    description: 'Stories from 1991 to today, grouped by publishing period.',
   },
   {
     key: 'early-modern',
@@ -1093,7 +1093,7 @@ export const PUBLISHING_CATEGORIES = [
     from: 1991,
     to: 1997,
     icon: 'E81C',
-    highlights: ['1990s line expansion'],
+    description: 'The line expansion of the 1990s, from 1991 to 1997.',
   },
   {
     key: 'marvel-knights-heroes-return',
@@ -1104,7 +1104,7 @@ export const PUBLISHING_CATEGORIES = [
     from: 1998,
     to: 2003,
     icon: 'E81C',
-    highlights: ['Marvel Knights', 'Heroes Return'],
+    description: 'Marvel Knights and Heroes Return, from 1998 to 2003.',
   },
   {
     key: 'event-era',
@@ -1115,7 +1115,7 @@ export const PUBLISHING_CATEGORIES = [
     from: 2004,
     to: 2011,
     icon: 'E81C',
-    highlights: ['Line-wide events'],
+    description: 'Line-wide crossover events, from 2004 to 2011.',
   },
   {
     key: 'marvel-now',
@@ -1126,7 +1126,7 @@ export const PUBLISHING_CATEGORIES = [
     from: 2012,
     to: 2014,
     icon: 'E81C',
-    highlights: ['Marvel NOW!'],
+    description: 'The Marvel NOW! relaunch, from 2012 to 2014.',
   },
   {
     key: 'all-new-all-different',
@@ -1137,7 +1137,7 @@ export const PUBLISHING_CATEGORIES = [
     from: 2015,
     to: 2017,
     icon: 'E81C',
-    highlights: ['2015 relaunch'],
+    description: 'The All-New All-Different relaunch, from 2015 to 2017.',
   },
   {
     key: 'fresh-start',
@@ -1148,7 +1148,7 @@ export const PUBLISHING_CATEGORIES = [
     from: 2018,
     to: 2020,
     icon: 'E81C',
-    highlights: ['Fresh Start'],
+    description: 'The Fresh Start relaunch, from 2018 to 2020.',
   },
   {
     key: 'current',
@@ -1159,7 +1159,7 @@ export const PUBLISHING_CATEGORIES = [
     from: 2021,
     to: null,
     icon: 'E81C',
-    highlights: ['Current publishing era'],
+    description: 'The current publishing era, from 2021 to today.',
   },
 ];
 
@@ -1307,7 +1307,7 @@ export const MARVEL_AGES_CATEGORY = {
   icon: 'E81C',
   tier: 'secondary',
   kind: 'publishing-index',
-  highlights: ['Publishing periods', 'Chronological browsing'],
+  description: 'Reading Lists grouped by when their stories were published.',
   select: (stories) => publishingAgeGroups(stories).stories,
 };
 
@@ -1329,7 +1329,7 @@ export const HOME_CATEGORIES = [
     label: 'Browse by genre and tone',
     icon: 'E8EC',
     tier: 'primary',
-    highlights: ['Thrillers and espionage', 'Space opera and myth', 'Tone, from epic to lighthearted'],
+    description: 'Find a Reading List by the kind of story and the mood you want.',
     select: (stories) => storyTypeStories(stories),
   },
   {
@@ -1349,7 +1349,7 @@ export const HOME_CATEGORIES = [
     label: 'Movies and streaming',
     icon: 'E714',
     tier: 'secondary',
-    highlights: ['Movie companions', 'Streaming companions', 'Multiverse picks'],
+    description: 'Comics to read alongside the Marvel movies and streaming series.',
     select: typeCategory('screen-companion'),
   },
   MARVEL_AGES_CATEGORY,
