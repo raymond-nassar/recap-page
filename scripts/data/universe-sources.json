@@ -10,6 +10,12 @@
     "evidenceGaps": "Independent bibliography and the Wizard special classification remain unverified; its on-sale date is unknown. Five provider on-sale dates differ from the pinned issue pages, although their years agree; each provider date is the first day of the cover month."
   },
   "sources": {
+    "owner-ultimate-list-placement": {
+      "url": "https://github.com/raymond-nassar/recap-page/issues/1291#issuecomment-6874126236",
+      "retrieved": "2026-11-13",
+      "credit": "Owner decision: Ultimate Spider-Man is listed under Earth-1610, not Earth-6160.",
+      "kind": "owner-association-decision"
+    },
     "owner": {
       "url": "https://github.com/raymond-nassar/recap-page/issues/1291",
       "retrieved": "2026-11-13",
@@ -3097,14 +3103,13 @@
     {
       "listId": "ultimate-spider-man-reading-order",
       "universeIds": [
-        "ultimate-marvel",
-        "ultimate-universe"
+        "ultimate-marvel"
       ],
-      "rationale": "The guide explicitly includes the original and new Ultimate continuities.",
+      "rationale": "The owner places this guide only under Earth-1610. Although the guide contains new-continuity comics, that does not make it a representative Earth-6160 guide. Exact series and issue facts are unchanged.",
       "sources": [
         "catalog",
         "F1610",
-        "F6160"
+        "owner-ultimate-list-placement"
       ]
     },
     {

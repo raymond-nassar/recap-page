@@ -3,11 +3,13 @@ import { formatRoute, isPlainNavigation } from '../lib/route.js';
 
 export function createUniversesView({
   el, elements, resolver, loadCatalog, isCurrent, onNavigate, onIndexChange, onRetry, presentation, listCover,
+  announce, setTimer = setTimeout, clearTimer = clearTimeout,
 }) {
   let universeQuery = '';
   let universeSort = DEFAULT_UNIVERSE_SORT;
   let universeId = null;
   let generation = 0;
+  let announceTimer = null;
 
   function setIndex(route = {}) {
     universeQuery = typeof route.universeQuery === 'string' ? route.universeQuery : '';
@@ -44,7 +46,9 @@ export function createUniversesView({
     ]);
   }
 
-  function renderIndex() {
+  function renderIndex({ announceChange = false } = {}) {
+    clearTimer(announceTimer);
+    announceTimer = null;
     const nodes = elements().index;
     nodes.query.value = universeQuery;
     nodes.sort.value = universeSort;
@@ -53,6 +57,12 @@ export function createUniversesView({
       ? `${matches.length} ${matches.length === 1 ? 'universe' : 'universes'}`
       : 'No universes match. Clear or change your search.';
     nodes.results.replaceChildren(...matches.map(indexCard));
+    if (announceChange) {
+      announceTimer = setTimer(() => {
+        announceTimer = null;
+        if (isCurrent('universes')) announce(nodes.count.textContent);
+      }, 500);
+    }
   }
 
   function searchRow(universe) {
@@ -118,13 +128,13 @@ export function createUniversesView({
     nodes.index.form.addEventListener('submit', (event) => event.preventDefault());
     nodes.index.query.addEventListener('input', () => {
       universeQuery = nodes.index.query.value;
-      renderIndex();
+      renderIndex({ announceChange: true });
       onIndexChange();
     });
     nodes.index.sort.addEventListener('change', () => {
       universeSort = UNIVERSE_SORTS.includes(nodes.index.sort.value)
         ? nodes.index.sort.value : DEFAULT_UNIVERSE_SORT;
-      renderIndex();
+      renderIndex({ announceChange: true });
       onIndexChange();
     });
     nodes.detail.retry.addEventListener('click', () => {

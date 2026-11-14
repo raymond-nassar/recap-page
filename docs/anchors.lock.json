@@ -1754,8 +1754,8 @@
     "fp": "21d594471401e0e6",
     "head": "const localStorage = observeSavedWrites(completeRestore.storage ?? globalThis.localStorage, savedCha"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|cloud-backup|src/js/main.js:2677|0": {
-    "anchor": "src/js/main.js:2677",
+  "docs/ARCHITECTURE_REFERENCE.md|cloud-backup|src/js/main.js:2678|0": {
+    "anchor": "src/js/main.js:2678",
     "fp": "c915c782c5b37dad",
     "head": "transport: cloudTransport(),"
   },
@@ -1799,8 +1799,8 @@
     "fp": "552b51210b97e50b",
     "head": "async get(path, { signal, cache = true, attempt = 0 } = {}) {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|how-reading-content-reaches-the-browser|src/js/main.js:2181-2200|0": {
-    "anchor": "src/js/main.js:2181-2200",
+  "docs/ARCHITECTURE_REFERENCE.md|how-reading-content-reaches-the-browser|src/js/main.js:2182-2201|0": {
+    "anchor": "src/js/main.js:2182-2201",
     "fp": "cb1b4832836576a0",
     "head": "function loadCatalog({ refresh = false } = {}) {"
   },
@@ -1829,8 +1829,8 @@
     "fp": "d3c89ab1f16d81ee",
     "head": "export function toggleRead(state, issueId) {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/main.js:3224-3250|0": {
-    "anchor": "src/js/main.js:3224-3250",
+  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/main.js:3225-3251|0": {
+    "anchor": "src/js/main.js:3225-3251",
     "fp": "22bce3df8af723ed",
     "head": "function renderAll() {"
   },
@@ -1909,13 +1909,13 @@
     "fp": "931bd75b9e4067fe",
     "head": "preservingFocus(rows, () => {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3224-3250|0": {
-    "anchor": "src/js/main.js:3224-3250",
+  "docs/ARCHITECTURE_REFERENCE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3225-3251|0": {
+    "anchor": "src/js/main.js:3225-3251",
     "fp": "22bce3df8af723ed",
     "head": "function renderAll() {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:4095-4137|0": {
-    "anchor": "src/js/main.js:4095-4137",
+  "docs/ARCHITECTURE_REFERENCE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:4097-4139|0": {
+    "anchor": "src/js/main.js:4097-4139",
     "fp": "39c31b26626f4d11",
     "head": "const catalogView = createCatalogView({"
   },
@@ -1969,28 +1969,28 @@
     "fp": "8f74c324b23445e0",
     "head": "if (view === RETIRED_PATHS_SEGMENT) {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3233|0": {
-    "anchor": "src/js/main.js:3233",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3234|0": {
+    "anchor": "src/js/main.js:3234",
     "fp": "ae55a874d470b605",
     "head": "catalogView.refreshProgress();"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3936-3955|0": {
-    "anchor": "src/js/main.js:3936-3955",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3937-3956|0": {
+    "anchor": "src/js/main.js:3937-3956",
     "fp": "361fd1a361de6372",
     "head": "function openSavedCatalogList(list, saved, report, { fromCard = false } = {}) {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3957-4231|0": {
-    "anchor": "src/js/main.js:3957-4231",
-    "fp": "41cba15d6ea4eae5",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3958-4233|0": {
+    "anchor": "src/js/main.js:3958-4233",
+    "fp": "de5b344fc9123d28",
     "head": "const catalogPresentation = createCatalogPresentation({"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4109-4115|0": {
-    "anchor": "src/js/main.js:4109-4115",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4111-4117|0": {
+    "anchor": "src/js/main.js:4111-4117",
     "fp": "d3051bc067e4d60f",
     "head": "follow: () => ({"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4135-4136|0": {
-    "anchor": "src/js/main.js:4135-4136",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4137-4138|0": {
+    "anchor": "src/js/main.js:4137-4138",
     "fp": "2e75d57bd558e1f6",
     "head": "onFollowChange: () => syncHash({ push: true }),"
   },
@@ -2069,8 +2069,8 @@
     "fp": "4e5a5d618134e15b",
     "head": "const settings = loadSettings();"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|the-module-graph-drawn-as-ownership|src/js/main.js:2515-2529|0": {
-    "anchor": "src/js/main.js:2515-2529",
+  "docs/ARCHITECTURE_REFERENCE.md|the-module-graph-drawn-as-ownership|src/js/main.js:2516-2530|0": {
+    "anchor": "src/js/main.js:2516-2530",
     "fp": "30ee71db5582943a",
     "head": "cache = new ResponseCache({ baseUrl: value });"
   },
@@ -5839,13 +5839,13 @@
     "fp": "ff9ba71742d8b8c0",
     "head": "\"chapterCount\": 78,"
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:16771-16908|0": {
-    "anchor": "src/data/catalog.json:16771-16908",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:16770-16907|0": {
+    "anchor": "src/data/catalog.json:16770-16907",
     "fp": "364a367730afd192",
     "head": "\"paths\": ["
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:11256-11307|0": {
-    "anchor": "src/data/curated-lists.json:11256-11307",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:11255-11306|0": {
+    "anchor": "src/data/curated-lists.json:11255-11306",
     "fp": "5aace0a0508135ac",
     "head": "\"paths\": ["
   },
@@ -6024,8 +6024,8 @@
     "fp": "93b977ad490359f7",
     "head": "highlights: ['Movie companions', 'Streaming companions', 'Multiverse picks'],"
   },
-  "docs/UX_FEEDBACK.md|feedback-signals#mcu-prep-labels|src/js/main.js:3008-3009|0": {
-    "anchor": "src/js/main.js:3008-3009",
+  "docs/UX_FEEDBACK.md|feedback-signals#mcu-prep-labels|src/js/main.js:3009-3010|0": {
+    "anchor": "src/js/main.js:3009-3010",
     "fp": "1fa4d3bc15041525",
     "head": "el('ul', { class: 'publishing-highlights', 'aria-label': `${category.heading} highlights` },"
   },
@@ -6059,8 +6059,8 @@
     "fp": "93b977ad490359f7",
     "head": "highlights: ['Movie companions', 'Streaming companions', 'Multiverse picks'],"
   },
-  "docs/UX_IMPROVEMENT_PLAN.md|7-mcu-prep-labels|src/js/main.js:3008-3009|0": {
-    "anchor": "src/js/main.js:3008-3009",
+  "docs/UX_IMPROVEMENT_PLAN.md|7-mcu-prep-labels|src/js/main.js:3009-3010|0": {
+    "anchor": "src/js/main.js:3009-3010",
     "fp": "1fa4d3bc15041525",
     "head": "el('ul', { class: 'publishing-highlights', 'aria-label': `${category.heading} highlights` },"
   },
@@ -6094,8 +6094,8 @@
     "fp": "358ddebae5258eb7",
     "head": "export function breadcrumbHierarchy({"
   },
-  "docs/UX_STUDY.md|information-architecture-review|src/js/main.js:1756-1815|0": {
-    "anchor": "src/js/main.js:1756-1815",
+  "docs/UX_STUDY.md|information-architecture-review|src/js/main.js:1757-1816|0": {
+    "anchor": "src/js/main.js:1757-1816",
     "fp": "f47c5661b38e4d30",
     "head": "const section = $(`#view-${view}`);"
   },
@@ -6349,8 +6349,8 @@
     "fp": "d6bff9bff14b0b12",
     "head": "<meta name=\"color-scheme\" content=\"dark light\" />"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/js/main.js:1701-1703|0": {
-    "anchor": "src/js/main.js:1701-1703",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/js/main.js:1702-1704|0": {
+    "anchor": "src/js/main.js:1702-1704",
     "fp": "a663c64fbb9d008e",
     "head": "if (btn.dataset.view === parent) btn.setAttribute('aria-current', 'page');"
   },
@@ -6399,8 +6399,8 @@
     "fp": "30990219b3c5e62c",
     "head": "const store = new Store({"
   },
-  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:3224-3250|0": {
-    "anchor": "src/js/main.js:3224-3250",
+  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:3225-3251|0": {
+    "anchor": "src/js/main.js:3225-3251",
     "fp": "22bce3df8af723ed",
     "head": "function renderAll() {"
   },
@@ -6409,8 +6409,8 @@
     "fp": "405001e66db2a8a6",
     "head": "function open({"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:2260|0": {
-    "anchor": "src/js/main.js:2260",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:2261|0": {
+    "anchor": "src/js/main.js:2261",
     "fp": "8ab27e651ace604e",
     "head": "notify(report, `${order.name} could not be saved, so nothing was imported.`, 'error', importKey);"
   },
@@ -6454,8 +6454,8 @@
     "fp": "2ce6e2593dd4bccc",
     "head": "function wireShortcuts() {"
   },
-  "docs/UX_STUDY.md|ux-i-001-no-application-state-is-addressable|src/js/main.js:1689-1696|0": {
-    "anchor": "src/js/main.js:1689-1696",
+  "docs/UX_STUDY.md|ux-i-001-no-application-state-is-addressable|src/js/main.js:1690-1697|0": {
+    "anchor": "src/js/main.js:1690-1697",
     "fp": "00b2f3835eb6309c",
     "head": "view = next;"
   },
@@ -6524,8 +6524,8 @@
     "fp": "36abce5861d613b7",
     "head": "// A file git could not read is not a file that read clean. Read from the index enumerated by"
   },
-  "scripts/check-palette.mjs|preamble|src/js/main.js:1986|0": {
-    "anchor": "src/js/main.js:1986",
+  "scripts/check-palette.mjs|preamble|src/js/main.js:1987|0": {
+    "anchor": "src/js/main.js:1987",
     "fp": "b16e0bda4cf16693",
     "head": "el('span', { class: 'n', text: `${read} / ${total}` }),"
   },

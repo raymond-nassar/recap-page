@@ -311,6 +311,7 @@ const CATALOG = {
   lists: [
     shelfEntry('browser-check', 'Browser Check Order', {
       timeline: 2004, beginner: true,
+      universeIds: ['earth-616'],
       placeholderCount: 1,
       source: 'https://example.com/shared-page', sourceSection: 'Fixture section',
     }),
@@ -10799,7 +10800,7 @@ const SCENARIOS = [
   },
   {
     id: 'search-reading-lists',
-    title: 'Search design B scopes local results and comics without rebuilding picks or sending a request on a switch (#1204)',
+    title: 'Search design B scopes local results and comics without rebuilding picks or repeating a lookup (#1204)',
     async run(page, t) {
       await page.evaluateOnNewDocument(() => {
         window.__mrtComicSearch = true;
@@ -10968,13 +10969,10 @@ const SCENARIOS = [
       await page.evaluate(() => document.querySelector('#search-results input[type="checkbox"]').click());
       await type('Fixture Events');
       const requestsNewQuery = await comicRequests();
-      await click(page, '#search-scopes [data-scope="comics"]'); const requestsAfterSwitch = await comicRequests();
-      await page.waitForFunction(() => /Press Enter/.test(document.querySelector('#search-count').textContent));
-      await page.focus('#search-q');
-      await page.keyboard.press('Enter');
+      await click(page, '#search-scopes [data-scope="comics"]');
       await page.waitForFunction(() => /comics? shown|No comics match/.test(document.querySelector('#search-count').textContent));
-      t.check('opening Comics sends nothing, and Enter looks up the new query once',
-        requestsAfterSwitch === requestsNewQuery && await comicRequests() === requestsNewQuery + 1, String(await comicRequests() - requestsNewQuery));
+      t.check('opening Comics looks up the new query once without requiring Enter',
+        await comicRequests() === requestsNewQuery + 1, String(await comicRequests() - requestsNewQuery));
 
       await click(page, '#search-scopes [data-scope="top"]');
       await type('');
@@ -12448,6 +12446,31 @@ const SCENARIOS = [
         JSON.stringify(previewReturn));
 
       await click(page, '#preview-close');
+      await page.evaluate(() => { location.hash = '#/universe/earth-616'; });
+      await page.waitForSelector('#view-universe:not([hidden]) #universe-lists [data-act="preview"]');
+      await click(page, '#universe-lists [data-act="preview"]');
+      await page.waitForSelector('#preview[open] .preview-issue-link');
+      await page.focus('#preview .preview-issue-link');
+      await page.keyboard.press('Enter');
+      await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+      await page.goBack();
+      await page.waitForFunction(() => document.querySelector('#preview')?.open
+        && document.activeElement?.classList.contains('preview-issue-link'), { timeout: 3000 })
+        .catch(() => {});
+      const universeReturn = await page.evaluate((savedState) => ({
+        hash: location.hash,
+        open: document.querySelector('#preview').open,
+        issueId: document.activeElement?.dataset.issueId,
+        stateSame: localStorage.getItem('mrt.state.v2') === savedState,
+      }), previewState);
+      t.check('Back from a reloaded Universe Preview comic reopens its exact link without saving',
+        universeReturn.hash === '#/universe/earth-616' && universeReturn.open
+          && universeReturn.issueId === '900001' && universeReturn.stateSame,
+        JSON.stringify(universeReturn));
+      if (!universeReturn.open) return;
+      await click(page, '#preview-close');
       await page.waitForFunction(() => !document.querySelector('#preview')?.open);
       await click(page, '#list-nav .ri[data-act="open"]');
       await openFullOrder(page);
@@ -12632,6 +12655,32 @@ const SCENARIOS = [
         /^#\/home(?:\/|$)/.test(home.hash) && home.scrollY === 0 && home.heading === 'home-h'
           && home.visible && home.focusRing,
         JSON.stringify({ hash: home.hash, scrollY: home.scrollY, heading: home.heading, visible: home.visible }));
+      await page.evaluate(() => { location.hash = '#/universe/earth-616'; });
+      await page.waitForSelector('#view-universe:not([hidden]) #universe-lists [data-act="preview"]');
+      await click(page, '#universe-lists [data-act="preview"]');
+      await page.waitForSelector('#preview[open] .preview-issue-link');
+      await page.focus('#preview .preview-issue-link');
+      const previewIssueId = await page.$eval('#preview .preview-issue-link', (link) => link.dataset.issueId);
+      await page.keyboard.press('Enter');
+      await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+      await page.goBack();
+      await page.waitForFunction(() => document.querySelector('#preview').open
+        && document.activeElement?.classList.contains('preview-issue-link'));
+      const universePreview = await page.evaluate(() => {
+        const link = document.activeElement;
+        const rect = link.getBoundingClientRect();
+        const hit = document.elementFromPoint(rect.x + rect.width / 2, rect.y + rect.height / 2);
+        return {
+          hash: location.hash, issueId: link.dataset.issueId,
+          visible: rect.top >= 0 && rect.bottom <= innerHeight && (hit === link || link.contains(hit)),
+          focusVisible: link.matches(':focus-visible'),
+          saved: localStorage.getItem('mrt.state.v2'),
+        };
+      });
+      t.check('Universe Preview Back restores a visible keyboard-focused comic without changing progress',
+        universePreview.hash === '#/universe/earth-616' && universePreview.issueId === previewIssueId
+          && universePreview.visible && universePreview.focusVisible && universePreview.saved === savedState,
+        JSON.stringify({ ...universePreview, saved: universePreview.saved === savedState }));
       t.check('the return-focus journeys produce no console or page errors',
         browserErrors.length === 0, browserErrors.join(' / '));
     },
@@ -18122,6 +18171,27 @@ SCENARIOS.push({
       t.check('closing a direct preview returns to the guide without writing saved data',
         await previewPage.evaluate((state) => !document.querySelector('#view-new-to-comics').hidden
           && localStorage.getItem('mrt.state.v2') === state, before.state));
+      await previewPage.evaluate(() => { location.hash = '#/universe/earth-616'; });
+      await previewPage.waitForSelector('#view-universe:not([hidden]) #universe-lists [data-act="preview"]');
+      await click(previewPage, '#universe-lists [data-act="preview"]');
+      await previewPage.waitForSelector('#preview[open] .preview-issue-link');
+      await click(previewPage, '#preview .preview-issue-link');
+      await previewPage.waitForSelector('#view-issue:not([hidden])');
+      await previewPage.goBack();
+      await previewPage.waitForFunction(() => document.querySelector('#preview')?.open
+        && document.activeElement?.dataset.focusSource === 'preview');
+      t.check('a Universe Preview comic returns to its native source route and exact link',
+        await previewPage.evaluate((state) => location.hash === '#/universe/earth-616'
+          && document.activeElement?.getAttribute('href') === '#/issue/900001?order=browser-check'
+          && localStorage.getItem('mrt.state.v2') === state, before.state));
+      await click(previewPage, '#preview-close');
+      await click(previewPage, '.brand[data-view="home"]');
+      await previewPage.goBack();
+      await previewPage.waitForFunction(() => location.hash === '#/universe/earth-616'
+        && document.activeElement?.id === 'universe-h');
+      t.check('leaving a restored Universe consumes the old comic opener before a later Back',
+        await previewPage.evaluate(() => !document.querySelector('#preview').open
+          && history.state?.issueFocusOpener == null));
       await previewPage.evaluate(() => { location.hash = '#/preview/not-a-real-list'; });
       await previewPage.waitForFunction(() => document.querySelector('#guide-preview-report')?.textContent
         .includes('not in this catalog'));
@@ -27264,6 +27334,30 @@ SCENARIOS.push({
       node.value = text;
       node.dispatchEvent(new Event('input', { bubbles: true }));
     }, value);
+    await page.evaluate(() => {
+      window.__universeAnnouncements = [];
+      new MutationObserver(() => {
+        const text = document.querySelector('#announcer').textContent.trim();
+        if (text) window.__universeAnnouncements.push(text);
+      }).observe(document.querySelector('#announcer'), { childList: true, characterData: true, subtree: true });
+      const query = document.querySelector('#universes-q');
+      for (const value of ['E', 'Earth', 'Earth1610']) {
+        query.value = value;
+        query.dispatchEvent(new Event('input', { bubbles: true }));
+      }
+    });
+    const countSpeech = await page.$eval('#universes-count', (node) => ({
+      text: node.textContent,
+      live: node.closest('[role="status"], [role="alert"], [aria-live="polite"], [aria-live="assertive"]') !== null,
+    }));
+    await new Promise((resolve) => setTimeout(resolve, 250));
+    const earlySpeech = await page.evaluate(() => window.__universeAnnouncements);
+    await page.waitForFunction(() => window.__universeAnnouncements.length > 0);
+    const settledSpeech = await page.evaluate(() => window.__universeAnnouncements);
+    t.check('the visual Universe count is not live and only its settled input is announced',
+      countSpeech.text === '1 universe' && !countSpeech.live
+        && earlySpeech.length === 0 && settledSpeech.join('|') === '1 universe',
+      JSON.stringify({ countSpeech, earlySpeech, settledSpeech }));
     await page.select('#universes-sort', 'alphabetical');
     await input('#universes-q', 'Ultimate');
     const index = await page.evaluate(() => ({
@@ -27331,6 +27425,19 @@ SCENARIOS.push({
     t.check('Forward and refresh preserve a direct Universe route',
       await page.evaluate(() => !document.querySelector('#view-universe').hidden
         && document.querySelector('#universe-earth').textContent === 'Earth-1610'));
+    await page.waitForSelector('#universe-lists [data-act="preview"]');
+    const originalUltimateLists = await page.$$eval('#universe-lists [data-act="preview"]',
+      (nodes) => nodes.map((node) => node.dataset.key).sort());
+    t.check('Earth-1610 retains the Ultimate Spider-Man guide and its original Ultimate introduction',
+      originalUltimateLists.join('|') === 'list:ultimate-marvel-intro|list:ultimate-spider-man-reading-order',
+      JSON.stringify(originalUltimateLists));
+    await open(page, '/?catalog=actual&local-health=ready#/universe/ultimate-universe');
+    await page.waitForSelector('#universe-lists [data-act="preview"]');
+    const newUltimateLists = await page.$$eval('#universe-lists [data-act="preview"]',
+      (nodes) => nodes.map((node) => node.dataset.key).sort());
+    t.check('Earth-6160 shows only its two new-Universe guides, excluding Ultimate Spider-Man',
+      newUltimateLists.join('|') === 'list:new-ultimate-universe|list:new-ultimate-universe-trades',
+      JSON.stringify(newUltimateLists));
 
     await open(page, '/?catalog=actual&local-health=ready#/universe/marvel-zombies');
     await page.waitForFunction(() => document.querySelector('#universe-lists .universe-list-note'));

@@ -52,7 +52,7 @@ This plan is linked to the separate [colleague feedback record](UX_FEEDBACK.md) 
 
 ## 7. MCU Prep labels
 
-**Outcome:** Keep the labels as labels unless evidence and an owner decision establish that they should filter. The received "Multiverse Packs" wording differs from the current "Multiverse picks" label (`src/js/lib/catalog.js:1359`), and the current page renders its highlights as a list rather than controls (`src/js/main.js:3008-3009`).
+**Outcome:** Keep the labels as labels unless evidence and an owner decision establish that they should filter. The received "Multiverse Packs" wording differs from the current "Multiverse picks" label (`src/js/lib/catalog.js:1359`), and the current page renders its highlights as a list rather than controls (`src/js/main.js:3009-3010`).
 
 **Dependencies:** Verify the exact text and screen in the tested build; ask whether the colleague expected labels to be selectable or only descriptive.
 

@@ -92,7 +92,9 @@ test('known issues and mixed guides do not assign their universes to unrelated i
   assert.deepEqual(universeResolver.resolveIssueUniverses({ issueId: 3220, seriesId: 1 }), []);
   const ultimate = lists.find(({ id }) => id === 'ultimate-spider-man-reading-order');
   assert.deepEqual(ids(universeResolver.getListUniverseRelations(ultimate).map(({ universe }) => universe)),
-    ['ultimate-marvel', 'ultimate-universe']);
+    ['ultimate-marvel']);
+  assert.ok(!universeResolver.getUniverseLists('ultimate-universe', lists)
+    .some(({ list }) => list.id === ultimate.id), 'the owner excludes this guide from Earth-6160');
 });
 
 test('local Universe search shares folding and keeps similarly named realities separate', () => {
@@ -152,7 +154,7 @@ test('invalid Universe definitions and references are reported instead of silent
 });
 
 function universeViewHarness({ loadCatalog = async () => ({ lists: [] }) } = {}) {
-  const calls = { navigation: [], changes: 0, rows: [] };
+  const calls = { navigation: [], changes: 0, rows: [], announced: [], timers: [] };
   let current = 'universes';
   const el = (tag, props = {}, children = []) => {
     const node = {
@@ -183,6 +185,13 @@ function universeViewHarness({ loadCatalog = async () => ({ lists: [] }) } = {})
     onNavigate: (id) => calls.navigation.push(id),
     onIndexChange: () => { calls.changes += 1; },
     onRetry: () => {},
+    announce: (message) => calls.announced.push(message),
+    setTimer: (fn, delay) => {
+      const timer = { fn, delay, live: true };
+      calls.timers.push(timer);
+      return timer;
+    },
+    clearTimer: (timer) => { if (timer) timer.live = false; },
     presentation: {
       catalogRow(list, options) {
         calls.rows.push({ list, options });
@@ -194,6 +203,30 @@ function universeViewHarness({ loadCatalog = async () => ({ lists: [] }) } = {})
   view.wire();
   return { view, nodes, calls, setCurrent: (next) => { current = next; } };
 }
+
+test('Universe counts announce only the settled input after 500 ms and never after departure', async () => {
+  const h = universeViewHarness();
+  for (const value of ['E', 'Earth', 'Earth1610']) {
+    h.nodes.index.query.value = value;
+    h.nodes.index.query.listeners.input();
+  }
+  assert.equal(h.nodes.index.count.textContent, '1 universe');
+  assert.deepEqual(h.calls.announced, []);
+  const live = h.calls.timers.filter((timer) => timer.live);
+  assert.equal(live.length, 1, 'earlier keystrokes cancel their pending announcements');
+  assert.equal(live[0].delay, 500);
+  live[0].fn();
+  assert.deepEqual(h.calls.announced, ['1 universe']);
+  h.nodes.index.query.value = 'Ultimate';
+  h.nodes.index.query.listeners.input();
+  h.setCurrent('home');
+  h.calls.timers.at(-1).fn();
+  assert.deepEqual(h.calls.announced, ['1 universe'], 'a departed index must not speak');
+  const html = await readFile(new URL('../src/index.html', import.meta.url), 'utf8');
+  const count = html.match(/<p\b[^>]*id="universes-count"[^>]*>/)?.[0];
+  assert.ok(count);
+  assert.doesNotMatch(count, /role="(?:status|alert)"|aria-live="(?:polite|assertive)"/);
+});
 
 test('the index searches and sorts locally, keeping native detail links', () => {
   const h = universeViewHarness();

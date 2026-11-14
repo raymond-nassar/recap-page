@@ -1588,6 +1588,7 @@ function applyRoute(route, { focus, filterIfAbsent, aboutTraversal = false }) {
       else universeView.setDetail(route.universeId);
       showView(route.view, { focus });
       if (focus && route.view === 'universes') restoreUniverseOpener(route.view);
+      if (focus) void restoreIssueFocusOpener(route.view);
       return;
     }
     if (route.listId && route.listId !== activeListId() && Object.hasOwn(store.state.lists, route.listId)) {
@@ -4040,6 +4041,7 @@ const universeView = createUniversesView({
   onRetry: () => {
     if (document.activeElement === $('#universe-retry')) focusViewHeading('universe');
   },
+  announce,
   presentation: catalogPresentation,
   listCover: searchCover,
 });
