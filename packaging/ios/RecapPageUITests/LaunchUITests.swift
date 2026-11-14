@@ -603,23 +603,89 @@ final class LaunchUITests: XCTestCase {
     @MainActor
     func testFailedReadLookupShowsFallbackBeforeHandingItOff() throws {
         let app = launch(
-            probe: "return JSON.stringify({ origin: location.origin });",
+            probe: """
+            await document.fonts.ready;
+            await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+            const read = document.getElementById('recap-ios-failing-read-test');
+            const frame = read?.getBoundingClientRect();
+            return JSON.stringify({
+              origin: location.origin,
+              readControlReady: document.readyState === 'complete' && Boolean(frame)
+                && document.elementFromPoint(frame.x + frame.width / 2, frame.y + frame.height / 2) === read,
+            });
+            """,
             readHandoffTest: true,
             recordHandOffs: true)
+        let ready = try probeResult(of: app)
+        XCTAssertEqual(ready["origin"] as? String, "recappage://localhost")
+        XCTAssertEqual(ready["readControlReady"] as? Bool, true, "the rendered page can receive the Read tap")
+
+        let recorder = app.staticTexts["ios-handoff-recorder"]
+        func snapshot() throws -> [String: Any] {
+            let data = try XCTUnwrap(recorder.label.data(using: .utf8))
+            return try XCTUnwrap(try JSONSerialization.jsonObject(with: data) as? [String: Any])
+        }
+        func assertNotLaunched(_ value: [String: Any]) throws {
+            XCTAssertEqual(try XCTUnwrap(value["launches"] as? Int), 0)
+            XCTAssertEqual(try XCTUnwrap(value["presentations"] as? Int), 0)
+            XCTAssertEqual(try XCTUnwrap(value["handoffs"] as? [String]), [])
+            XCTAssertFalse(app.buttons["ios-read-sheet-close"].exists, "no Read sheet exists before a launch")
+        }
+        _ = try handOffRecord(of: app, launches: 0, handoffs: 0)
+        try assertNotLaunched(snapshot())
         let read = app.buttons["Open failing Read test"]
         XCTAssertTrue(read.waitForExistence(timeout: 30), "the failing-lookup test Read control appeared")
+        let hittable = NSPredicate(format: "exists == true AND hittable == true")
+        XCTAssertEqual(
+            XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: hittable, object: read)], timeout: 30),
+            .completed,
+            "the failing-lookup test Read control is hittable")
         read.tap()
+        let launched = NSPredicate { object, _ in
+            guard let element = object as? XCUIElement,
+                  let data = element.label.data(using: .utf8),
+                  let value = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+                  let count = value["launches"] as? Int else { return false }
+            return count > 0
+        }
+        let firstLaunch = XCTWaiter.wait(
+            for: [XCTNSPredicateExpectation(predicate: launched, object: recorder)], timeout: 10)
+        if firstLaunch == .timedOut {
+            // The two inspected newest-runtime failures in #1032 had zero launches after the fallback wait.
+            let unlaunched = try snapshot()
+            try record("read-failed-lookup-first-tap", unlaunched)
+            try record("read-failed-lookup-first-tap-hierarchy", ["hierarchy": app.debugDescription])
+            try assertNotLaunched(unlaunched)
+            XCTAssertEqual(
+                XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: hittable, object: read)], timeout: 30),
+                .completed,
+                "the original Read control is still hittable before the single retry")
+            try assertNotLaunched(snapshot())
+            read.tap()
+        } else {
+            XCTAssertEqual(firstLaunch, .completed, "the first launch wait completed without an interruption")
+        }
+        let opened = try handOffRecord(of: app, launches: 1, handoffs: 0)
+        XCTAssertEqual(opened["launches"] as? Int, 1, "exactly one launcher registered before waiting for fallback")
         XCTAssertTrue(app.staticTexts["Reader lookup failed"].waitForExistence(timeout: 90))
         XCTAssertTrue(app.buttons["ios-read-sheet-close"].exists, "the fallback stays in a sheet with a Close control")
         let fallback = app.links["Continue manually"]
         XCTAssertTrue(fallback.waitForExistence(timeout: 30), "the failed lookup leaves a manual fallback link")
+        let beforeHandOff = try handOffRecord(of: app, launches: 1, handoffs: 0, presentations: 1)
+        XCTAssertEqual(beforeHandOff["launches"] as? Int, 1)
+        XCTAssertEqual(beforeHandOff["presentations"] as? Int, 1)
+        XCTAssertEqual(try XCTUnwrap(beforeHandOff["handoffs"] as? [String]), [],
+                       "the fallback is shown before any hand-off")
+        try record("read-failed-lookup-before-hand-off", beforeHandOff)
         let close = app.buttons["ios-read-sheet-close"]
         let window = app.windows.element(boundBy: 0)
         print("iOS T02 fallback geometry: link=\(fallback.frame), Close=\(close.frame), window=\(window.frame)")
         let followFallback = app.buttons["ios-test-follow-fallback"]
         XCTAssertTrue(followFallback.waitForExistence(timeout: 30), "the Debug-only fallback trigger appeared")
         followFallback.tap()
-        let result = try handOffRecord(of: app, launches: 1, handoffs: 1)
+        let result = try handOffRecord(of: app, launches: 1, handoffs: 1, presentations: 1)
+        XCTAssertEqual(result["launches"] as? Int, 1, "a delayed first tap must not create a second launcher")
+        XCTAssertEqual(result["presentations"] as? Int, 1)
         let urls = try XCTUnwrap(result["handoffs"] as? [String])
         XCTAssertEqual(urls.count, 1)
         XCTAssertEqual(try XCTUnwrap(URL(string: urls[0])).scheme, "https")

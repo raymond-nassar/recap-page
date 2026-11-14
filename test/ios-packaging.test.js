@@ -2535,6 +2535,42 @@ test('the Read child is guarded before its launcher can navigate', () => {
   assert.match(sheet, /WebViewFactory\.configure\(webView\)/);
 });
 
+test('the failed Read UI test retries only an unregistered native tap', () => {
+  const source = launchTests.split('func testFailedReadLookupShowsFallbackBeforeHandingItOff() throws {')[1]
+    ?.split('func testCreditLinkLeavesTheAppAndKeepsTheAboutPageOpen()')[0];
+  assert.ok(source);
+  assert.match(source, /await document\.fonts\.ready;[\s\S]*requestAnimationFrame\(\(\) => requestAnimationFrame\(resolve\)\)/);
+  assert.match(source, /document\.readyState === 'complete'[\s\S]*document\.elementFromPoint\([\s\S]*=== read/);
+  assert.match(source, /let ready = try probeResult\(of: app\)[\s\S]*ready\["readControlReady"\] as\? Bool, true/);
+  const zeroGuard = source.split('func assertNotLaunched(')[1]?.split('_ = try handOffRecord')[0];
+  for (const field of ['launches', 'presentations']) {
+    assert.ok(zeroGuard?.includes(`XCTAssertEqual(try XCTUnwrap(value["${field}"] as? Int), 0)`), field);
+  }
+  assert.match(zeroGuard, /XCTAssertEqual\(try XCTUnwrap\(value\["handoffs"\] as\? \[String\]\), \[\]\)/);
+  assert.match(zeroGuard, /XCTAssertFalse\(app\.buttons\["ios-read-sheet-close"\]\.exists/);
+  assert.match(source, /hittable == true[\s\S]*object: read\)\], timeout: 30\)[\s\S]*read\.tap\(\)/);
+  assert.match(source, /return count > 0/);
+  assert.match(source, /let firstLaunch = XCTWaiter\.wait\([\s\S]*object: recorder\)\], timeout: 10\)/);
+  assert.match(source, /if firstLaunch == \.timedOut \{[\s\S]*try record\("read-failed-lookup-first-tap"[\s\S]*try assertNotLaunched\(unlaunched\)[\s\S]*object: read\)\], timeout: 30\)[\s\S]*try assertNotLaunched\(snapshot\(\)\)[\s\S]*read\.tap\(\);?\s*\} else \{/);
+  assert.equal(source.match(/read\.tap\(\)/g)?.length, 2, 'at most one native retry is permitted');
+  assert.doesNotMatch(source, /while |for .* in |\.click\(\)/);
+  assert.match(source, /let opened = try handOffRecord\(of: app, launches: 1, handoffs: 0\)[\s\S]*opened\["launches"\] as\? Int, 1[\s\S]*"Reader lookup failed"\]\.waitForExistence\(timeout: 90\)/);
+});
+
+test('the failed Read UI test proves fallback precedes its only hand-off', () => {
+  const source = launchTests.split('func testFailedReadLookupShowsFallbackBeforeHandingItOff() throws {')[1]
+    ?.split('func testCreditLinkLeavesTheAppAndKeepsTheAboutPageOpen()')[0];
+  assert.ok(source);
+  assert.match(source, /"Reader lookup failed"\]\.waitForExistence\(timeout: 90\)[\s\S]*"Continue manually"\][\s\S]*let beforeHandOff = try handOffRecord\(of: app, launches: 1, handoffs: 0, presentations: 1\)/);
+  for (const field of ['launches', 'presentations']) {
+    assert.ok(source.includes(`XCTAssertEqual(beforeHandOff["${field}"] as? Int, 1)`), field);
+    assert.ok(source.includes(`XCTAssertEqual(result["${field}"] as? Int, 1`), field);
+  }
+  assert.match(source, /XCTAssertEqual\(try XCTUnwrap\(beforeHandOff\["handoffs"\] as\? \[String\]\), \[\],[\s\S]*followFallback\.tap\(\)/);
+  assert.match(source, /let result = try handOffRecord\(of: app, launches: 1, handoffs: 1, presentations: 1\)/);
+  assert.match(source, /XCTAssertEqual\(urls\.count, 1\)/);
+});
+
 test('iOS cancellation, failure, malformed replies and teardown never confirm an export', async () => {
   for (const status of ['cancelled', 'failed', 'unrecognized']) {
     const reports = [];
