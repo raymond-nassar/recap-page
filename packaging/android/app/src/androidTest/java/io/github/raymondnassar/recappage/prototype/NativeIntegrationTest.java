@@ -276,6 +276,34 @@ public final class NativeIntegrationTest {
     }
 
     @Test
+    public void cloudUploadPermitsRevokeAndRegrantAfterReload() throws Exception {
+        for (String phase : new String[] { "launch", "reload" }) {
+            if (phase.equals("reload")) reload();
+            JSONObject result = (JSONObject) asyncJs(web,
+                    "const {CloudUploadPermit}=await import('/js/lib/cloudUploadPermit.js');"
+                    + "const previous=sessionStorage.getItem('recap.test.upload-permit'),state=await navigator.locks.query();"
+                    + "const fresh=![...state.held,...state.pending].some(l=>l.name===previous);"
+                    + "let lost=0,keep=false;"
+                    + "const older=new CloudUploadPermit({onLost:()=>{lost+=1;}}),checking=new CloudUploadPermit();"
+                    + "try {"
+                    + "await older.grant();const held=await older.allowed();"
+                    + "await checking.revokeAll();const revoked=!await older.allowed();"
+                    + "const deadline=Date.now()+2000;"
+                    + "while(lost===0&&Date.now()<deadline)await new Promise(r=>setTimeout(r,10));"
+                    + "const absent=!(await navigator.locks.query()).held.some(l=>l.name===older.name);"
+                    + "checking.release();await older.grant();"
+                    + "globalThis.recapPermitProbe=older;sessionStorage.setItem('recap.test.upload-permit',older.name);keep=true;"
+                    + "return {fresh,held,revoked,rejected:lost===1,absent,regranted:await older.allowed(),userAgent:navigator.userAgent};"
+                    + "}finally{if(!keep)older.release();checking.release();}");
+            measurements.put("cloudUploadPermit-" + phase, result);
+            for (String key : new String[] { "fresh", "held", "revoked", "rejected", "absent", "regranted" }) {
+                assertTrue(phase + ": " + key, result.getBoolean(key));
+            }
+            asyncJs(web, "globalThis.recapPermitProbe.release();sessionStorage.removeItem('recap.test.upload-permit');return true;");
+        }
+    }
+
+    @Test
     public void startupAndPersistence() throws Exception {
         if (!installationPhase.isEmpty()) {
             String role = installationPhase.startsWith("prototype") ? "prototype" : "official";

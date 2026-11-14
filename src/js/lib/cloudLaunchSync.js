@@ -68,7 +68,7 @@ export function createCloudSyncMarker(getStorage = () => globalThis.localStorage
 export class CloudLaunchSync {
   constructor({
     protocol, coordinator, capture, locks = globalThis.navigator?.locks, cryptoProvider = globalThis.crypto,
-    marker = createCloudSyncMarker(),
+    marker = createCloudSyncMarker(), uploadPermit = null,
     isBlocked = () => false, isOnline = () => globalThis.navigator?.onLine !== false,
     hasInteracted = () => false, connectionCurrent = async () => true, snapshotCurrent = () => true,
     restore = null, restoreReady = null,
@@ -82,7 +82,7 @@ export class CloudLaunchSync {
       throw new TypeError('Cloud sync needs its protocol, backup coordinator and saved-data owners.');
     }
     Object.assign(this, {
-      protocol, coordinator, capture, locks, cryptoProvider, marker, isBlocked, isOnline, hasInteracted,
+      protocol, coordinator, capture, locks, cryptoProvider, marker, uploadPermit, isBlocked, isOnline, hasInteracted,
       connectionCurrent, snapshotCurrent, restore, restoreReady,
       setTimer, clearTimer, onChange, announce,
     });
@@ -116,6 +116,9 @@ export class CloudLaunchSync {
     this.releaseLease = null;
     this.interacted = this.hasInteracted();
     this.state = Object.freeze({ phase: 'off', offer: null, error: null, kept: null, historyUnknown: false });
+    this.review = null;
+    this.reviewAcknowledged = false;
+    this.reviewDigest = null;
   }
 
   publish(phase, offer = null, error = null, code = null, action = null) {
@@ -124,6 +127,7 @@ export class CloudLaunchSync {
       phase, offer, error, code, action, kept: this.kept, keptUnavailable: this.keptUnavailable, historyUnknown: this.historyUnknown,
       notice: this.notice,
       canOverride: phase === 'failed',
+      review: phase === 'review' ? this.review : null,
     });
     this.onChange(this.state);
   }
@@ -175,6 +179,10 @@ export class CloudLaunchSync {
   }
 
   stop() {
+    this.uploadPermit?.release();
+    this.review = null;
+    this.reviewAcknowledged = false;
+    this.reviewDigest = null;
     this.active = false;
     this.sequence += 1;
     this.attempt += 1;
@@ -234,6 +242,8 @@ export class CloudLaunchSync {
       });
       try {
         await Promise.race([(async () => {
+          if (!current()) return;
+          await this.uploadPermit?.revokeAll(current);
           if (!current()) return;
           const gate = force ? null : await this.protocol.syncGate(context);
           if (!current()) return;
@@ -338,6 +348,7 @@ export class CloudLaunchSync {
       this.publish('checking');
       return this.begin();
     }
+
     if (this.leader) {
       if (this.holdUnconfirmed) {
         this.coordinator.holdSync('checking');
@@ -354,7 +365,13 @@ export class CloudLaunchSync {
     return this.checkFollower(sequence);
   }
 
-  async checkFollower(sequence) {
+  permitLost() {
+    if (!this.active) return;
+    this.followerEpoch = this.epoch;
+    this.publish('following');
+  }
+
+  async checkFollower(sequence, completedOnly = false) {
     if (this.followerRead) return this.followerRead.operation;
     const ticket = { sequence, phase: this.state.phase, cancel: () => {}, operation: null };
     const current = () => this.followerRead === ticket && this.active && sequence === this.sequence
@@ -388,11 +405,21 @@ export class CloudLaunchSync {
           this.kept = remembered?.kept ?? null;
           this.keptUnavailable = pending !== null;
           this.historyUnknown = history.unknown;
+          await Promise.race([this.protocol.exclusive(async () => {
+            const latest = await this.protocol.syncGate({ ...this.context });
+            if (!current() || latest?.held !== false || latest.epoch !== gate.epoch || this.marker.pending()) {
+              throw new CloudBackupError('The cloud check changed. Check again.', 'raced');
+            }
+
+            await this.uploadPermit?.grant(current);
+          }), timeout, stopped]);
+          if (!current()) return;
+          this.epoch = gate.epoch;
           this.coordinator.releaseSync();
           this.publish('clear');
           return;
         }
-        return this.begin();
+        if (!completedOnly) return this.begin();
       } catch (error) {
         if (current()) {
           this.holdUnconfirmed = true;
@@ -404,6 +431,16 @@ export class CloudLaunchSync {
       }
     })();
     return ticket.operation;
+  }
+
+  async acknowledgeReview(expected) {
+    if (!this.active || !this.leader || this.state.phase !== 'review' || this.action
+      || this.review !== expected || this.review.remaining !== 0) {
+      return { ok: false, error: 'The unchecked backup list changed. Review it again.' };
+    }
+    this.reviewAcknowledged = true;
+    await this.checkLeader(this.sequence);
+    return this.state.phase === 'failed' ? { ok: false, error: this.state.error } : { ok: true };
   }
 
   scheduleOfferWatch() {
@@ -437,7 +474,8 @@ export class CloudLaunchSync {
         const snapshot = await this.capture();
         const remembered = await this.protocol.syncState({ connection: this.context.connection });
         const pending = await this.protocol.keptPending({ connection: this.context.connection, details: true });
-        const listing = await this.protocol.syncListing(this.context);
+        const listing = this.review ? await this.protocol.syncReviewListing(this.context)
+          : await this.protocol.syncListing(this.context);
         await this.current(ticket.sequence, ticket.attempt);
         if (this.isBlocked() || snapshot.backup.digest !== offer.localContentDigest
           || !this.snapshotCurrent(snapshot.witness)
@@ -474,6 +512,11 @@ export class CloudLaunchSync {
 
   async requestCheck() {
     if (!this.active) return;
+    if (this.state.phase !== 'review') {
+      this.review = null;
+      this.reviewAcknowledged = false;
+      this.reviewDigest = null;
+    }
     if (this.action?.restoring) {
       this.queuedCheck = true;
       return;
@@ -522,7 +565,7 @@ export class CloudLaunchSync {
 
   follow() {
     if (!this.active || this.leader) return;
-    return this.checkNow();
+    return this.checkFollower(this.sequence, true);
   }
 
   async checkLeader(sequence) {
@@ -581,7 +624,33 @@ export class CloudLaunchSync {
           const declinedByStream = await this.protocol.syncDeclines(this.context);
           const history = await this.protocol.keptHistory({ connection: this.context.connection });
           const last = await this.protocol.lastUploaded({ connection: this.context.connection });
-          const remotes = await this.protocol.discoverSync(this.context);
+          let remotes;
+          if (typeof this.protocol.discoverSyncReview === 'function') {
+            if (this.reviewDigest !== snapshot.backup.digest) {
+              this.review = null;
+              this.reviewAcknowledged = false;
+            }
+            if (this.review && this.review.remaining === 0 && this.reviewAcknowledged) {
+              remotes = await this.protocol.validateSyncReview(this.context, this.review);
+            } else {
+              const prior = this.review;
+              const reviewed = await this.protocol.discoverSyncReview(this.context, prior);
+              remotes = reviewed.remotes;
+              if (prior || reviewed.remaining > 0 || reviewed.unchecked.length > 0) this.review = reviewed;
+              this.reviewDigest = snapshot.backup.digest;
+              if (this.review && (reviewed.remaining > 0 || (reviewed.unchecked.length > 0 && !this.reviewAcknowledged))) {
+                await this.current(sequence, attempt);
+                assertCurrent();
+                if (!this.snapshotCurrent(snapshot.witness) || this.isBlocked()) {
+                  throw new CloudBackupError('Saved data changed during review. Check again.', 'raced');
+                }
+                this.publish('review');
+                this.announce();
+                return;
+              }
+              if (this.review) this.reviewAcknowledged = true;
+            }
+          } else remotes = await this.protocol.discoverSync(this.context);
           await this.current(sequence, attempt);
           assertCurrent();
           const after = await this.capture();
@@ -612,7 +681,7 @@ export class CloudLaunchSync {
           this.historyUnknown = history.unknown;
           if (result.offer) {
             this.offerWatchCount = 0;
-            const listing = remotes.map(({ id, name, stream, generation, listedSize }) =>
+            const listing = this.review?.listing ?? remotes.map(({ id, name, stream, generation, listedSize }) =>
               ({ id, name, stream, generation, size: listedSize }));
             const offer = {
               kind: result.kind, quiet: this.interacted, remote: result.offer,
@@ -755,6 +824,8 @@ export class CloudLaunchSync {
               ...context, epoch, held: false, ...gateOptions, signal: release.controller.signal,
               onCommitted: () => { release.committed = true; },
             });
+            await this.uploadPermit?.grant(() => this.active && sequence === this.sequence
+              && !release.controller.signal.aborted && (!gateOptions.authorize || gateOptions.authorize()));
           })(), stopped]);
         } catch (error) {
           if (release.committed && this.active && sequence === this.sequence && epoch === this.epoch) {
@@ -832,6 +903,8 @@ export class CloudLaunchSync {
   }
 
   fail(error, action = null) {
+    this.review = null;
+    this.reviewAcknowledged = false;
     this.coordinator.holdSync('check-failed');
     const failure = this.holdUnconfirmed ? new CloudBackupError(HOLD_UNCONFIRMED, 'hold-unconfirmed') : error;
     this.publish('failed', null, failure?.message ?? 'Cloud progress could not be checked. Try again.', failure?.code ?? null, action);
@@ -870,7 +943,8 @@ export class CloudLaunchSync {
       || canonical(pending) !== canonical(action.offer.priorPending)) {
       throw new CloudBackupError('The kept cloud copy changed, so the earlier choice was withdrawn. Check again.', 'raced');
     }
-    const remotes = await this.protocol.discoverSync(this.context);
+    const remotes = this.review ? await this.protocol.validateSyncReview(this.context, this.review, action.offer.remote)
+      : await this.protocol.discoverSync(this.context);
     await this.assertAction(action);
     const after = await this.capture();
     if (after.backup.digest !== snapshot.backup.digest || !this.snapshotCurrent(after.witness) || this.isBlocked()) {
@@ -1198,7 +1272,8 @@ export class CloudLaunchSync {
           },
         });
         await this.assertAction(action);
-        const remotes = await this.protocol.discoverSync(this.context);
+        const remotes = this.review ? await this.protocol.validateSyncReview(this.context, this.review)
+          : await this.protocol.discoverSync(this.context);
         const after = await this.capture();
         const latest = await this.protocol.syncState({ connection: this.context.connection });
         const declinedByStream = await this.protocol.syncDeclines(this.context);

@@ -308,6 +308,10 @@ function fakeLocks() {
     async request(name, options, callback) {
       const lock = slot(name);
       const mode = options.mode ?? 'exclusive';
+      if (options.steal) {
+        for (const owner of lock.held) owner.stolen?.();
+        lock.held.length = 0;
+      }
       let entry;
       if (options.ifAvailable) {
         if (lock.queue.length || !fits(lock, mode)) return callback(null);
@@ -316,7 +320,14 @@ function fakeLocks() {
       } else {
         entry = await new Promise((resolve) => { lock.queue.push({ mode, resolve }); pump(lock); });
       }
-      try { return await callback({ name, mode }); }
+      const revocable = name.startsWith('mrt.cloud-backup.upload-permit.v1.');
+      const stolen = revocable ? new Promise((resolve, reject) => {
+        entry.stolen = () => reject(new DOMException('Lock stolen', 'AbortError'));
+      }) : null;
+      try {
+        const work = callback({ name, mode });
+        return await (revocable ? Promise.race([work, stolen]) : work);
+      }
       finally {
         const index = lock.held.indexOf(entry);
         if (index >= 0) lock.held.splice(index, 1);
@@ -875,6 +886,61 @@ test('sync discovery refuses a newer candidate appearing while the current candi
     env.transport.store(cloudBackupName(OTHER, 2), envelopeFile({ stream: OTHER, generation: 2, backup: saved.backup }));
   });
   await assert.rejects(protocol.discoverSync(await syncContext(protocol)), { code: 'raced' });
+});
+
+test('review batches newest streams first, retains unreadable newest identities and exposes unsupported files', async () => {
+  const env = harness();
+  const { protocol } = await consented(env, { limits: { streams: 1, readsPerStream: 4 } });
+  const saved = await device().snapshot();
+  const older = 'a'.repeat(32);
+  env.transport.store(cloudBackupName(older, 1), envelopeFile({ stream: older, generation: 1, backup: saved.backup }));
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({ stream: OTHER, generation: 1, backup: saved.backup }));
+  const broken = env.transport.store(cloudBackupName(OTHER, 2), new Uint8Array([1, 2, 3]));
+  env.transport.store('recap-page-backup-v2-unreadable.json.gz', new Uint8Array([1]));
+  const context = await syncContext(protocol);
+  const first = await protocol.discoverSyncReview(context);
+  assert.equal(first.checked, 1);
+  assert.equal(first.remaining, 1);
+  assert.equal(first.remotes.length, 0, 'an earlier valid file cannot stand in for the newest unreadable one');
+  assert.equal(env.transport.calls.filter((call) => call === 'read').length, 1, 'a batch reads at most its configured stream limit');
+  assert.deepEqual(first.unchecked.map((item) => item.reason), [
+    'Unsupported backup format or identity', 'Newest backup could not be read or validated',
+  ]);
+  assert.equal(first.unchecked[1].id, broken);
+  const complete = await protocol.discoverSyncReview(context, first);
+  assert.equal(complete.remaining, 0);
+  assert.deepEqual(complete.remotes.map((item) => item.stream), [older]);
+  assert.deepEqual(await protocol.validateSyncReview(context, complete, complete.remotes[0]), complete.remotes);
+  env.transport.store(cloudBackupName(OTHER, 3), envelopeFile({ stream: OTHER, generation: 3, backup: saved.backup }));
+  await assert.rejects(protocol.validateSyncReview(context, complete), { code: 'raced' },
+    'acknowledgment cannot survive a changed newest identity');
+});
+
+test('review exposes ambiguous newest identities without selecting either duplicate', async () => {
+  const env = harness({ transport: fakeTransport({ duplicates: true }) });
+  const { protocol } = await consented(env);
+  const saved = await device().snapshot();
+  for (let index = 0; index < 2; index += 1) {
+    env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({ stream: OTHER, generation: 1, backup: saved.backup }));
+  }
+  const result = await protocol.discoverSyncReview(await syncContext(protocol));
+  assert.equal(result.remotes.length, 0);
+  assert.equal(result.unchecked[0].reason, 'Ambiguous newest backup identity');
+  assert.equal(env.transport.calls.filter((call) => call === 'read').length, 0);
+});
+
+test('review does not replace a newest file with malformed identity metadata with its older generation', async () => {
+  const env = harness();
+  const { protocol } = await consented(env);
+  const saved = await device().snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({ stream: OTHER, generation: 1, backup: saved.backup }));
+  const list = env.transport.list;
+  env.transport.list = async (options) => [...await list(options), { name: cloudBackupName(OTHER, 2), size: 10 }];
+  const review = await protocol.discoverSyncReview(await syncContext(protocol));
+  assert.equal(review.remotes.length, 0, 'malformed metadata cannot hide the newest generation');
+  assert.equal(review.unchecked[0].name, cloudBackupName(OTHER, 2));
+  assert.equal(review.unchecked[0].reason, 'Unsupported backup format or identity');
+  assert.equal(env.transport.calls.filter((call) => call === 'read').length, 0);
 });
 
 test('the sync upload gate is durable, consent-scoped and erased with the cloud record', async () => {
@@ -1850,6 +1916,54 @@ function page({
   });
   return { env, protocol, home, time, cloud, run: (ms = 0) => time.advance(ms, [cloud]) };
 }
+
+test('a launch reviews successive batches and requires an exact unchecked-list acknowledgment before releasing uploads', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  const home = device();
+  const saved = await home.snapshot();
+  for (const stream of [OTHER, 'a'.repeat(32)]) {
+    env.transport.store(cloudBackupName(stream, 1), envelopeFile({ stream, generation: 1, backup: saved.backup }));
+  }
+  env.transport.store('recap-page-backup-v2-unreadable.json.gz', new Uint8Array([1]));
+  const tab = page({ env, home, launchSync: true });
+  tab.protocol.limits = { streams: 1, readsPerStream: 4 };
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'review', 'first bounded review batch');
+  const first = tab.cloud.model.sync.review;
+  assert.equal(first.remaining, 1);
+  assert.equal(first.remotes.length, 1);
+  assert.equal((await protocol.syncGate(await syncContext(protocol))).held, true);
+  await tab.cloud.overrideSync(first);
+  assert.equal(tab.cloud.model.sync.phase, 'review', 'unchecked later batches cannot be acknowledged away');
+  await tab.cloud.recheckSync();
+  const complete = tab.cloud.model.sync.review;
+  assert.equal(complete.remaining, 0);
+  assert.equal(complete.remotes.length, 2);
+  assert.equal(complete.unchecked.length, 1);
+  assert.equal(env.transport.created.length, 0, 'merely reviewing does not upload');
+  assert.equal((await tab.cloud.overrideSync(first)).ok, false, 'a stale confirmation cannot name the later list');
+  assert.equal((await tab.cloud.overrideSync(complete)).ok, true);
+  assert.equal(tab.cloud.model.sync.phase, 'clear');
+  assert.equal((await protocol.syncGate(await syncContext(protocol))).held, false);
+  await tab.cloud.turnOff();
+});
+
+test('changing an unchecked cloud identity withdraws its acknowledgment instead of releasing the hold', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  env.transport.store('recap-page-backup-v2-first.json.gz', new Uint8Array([1]));
+  const tab = page({ env, launchSync: true });
+  await tab.cloud.resume();
+  await until(() => tab.cloud.model.sync.phase === 'review', 'unsupported backup is visible for review');
+  const reviewed = tab.cloud.model.sync.review;
+  env.transport.store('recap-page-backup-v2-second.json.gz', new Uint8Array([1]));
+  assert.equal((await tab.cloud.overrideSync(reviewed)).ok, false);
+  assert.equal(tab.cloud.model.sync.phase, 'failed');
+  assert.equal((await protocol.syncGate(await syncContext(protocol))).held, true);
+  assert.equal(env.transport.created.length, 0);
+  await tab.cloud.turnOff();
+});
 
 test('a consented OneDrive launch checks other devices before the automatic backup can run', async () => {
   const env = harness({ transport: windowsHost(fakeTransport()) });
@@ -4298,41 +4412,48 @@ test('a follower cannot upload while the leader cannot restore an uncertain hold
   await follower.cloud.refresh();
 });
 
-test('a failed initial hold prevents an already-running tab from uploading', async () => {
-  const env = harness({ transport: windowsHost(fakeTransport()) });
-  const { protocol } = await consented(env);
-  const context = await syncContext(protocol);
-  const other = page({ env, launchSync: true });
-  await other.cloud.resume();
-  await until(() => other.cloud.model.sync.phase === 'clear', 'the first tab finishes its earlier check');
-  assert.equal((await protocol.syncGate(context)).held, false);
+for (const markerFails of [false, true]) {
+  test(`a failed initial hold ${markerFails ? 'and pending marker ' : ''}prevents an already-running tab from uploading`, async () => {
+    const env = harness({ transport: windowsHost(fakeTransport()) });
+    const { protocol } = await consented(env);
+    const context = await syncContext(protocol);
+    const other = page({ env, launchSync: true });
+    await other.cloud.resume();
+    await until(() => other.cloud.model.sync.phase === 'clear', 'the first tab finishes its earlier check');
+    assert.equal((await protocol.syncGate(context)).held, false);
 
-  const opening = page({ env, home: other.home, launchSync: true });
-  const setGate = opening.protocol.setSyncGate.bind(opening.protocol);
-  opening.protocol.setSyncGate = async (next) => {
-    if (next.held) throw new CloudBackupError('The hold cannot be written.', 'storage');
-    return setGate(next);
-  };
-  await opening.cloud.resume();
-  await until(() => opening.cloud.model.sync.phase === 'failed', 'the new check reports its unconfirmed hold');
-  assert.equal(opening.cloud.model.sync.code, 'hold-unconfirmed');
-  const before = env.transport.created.length;
-  await other.run(CLOUD_BACKUP_CADENCE.maxWaitMs);
-  assert.equal(env.transport.created.length, before, 'a failed hold must not let another tab upload');
-  env.locks.closeHolder(CLOUD_SYNC_OFFER_LOCK);
-  await other.run(CLOUD_BACKUP_CADENCE.recheckMs);
-  assert.equal(env.transport.created.length, before, 'closing the failed tab must not release an older clear gate');
-  const recovery = page({ env, home: other.home, launchSync: true });
-  await recovery.cloud.resume();
-  await until(() => recovery.cloud.model.sync.phase === 'clear', 'a new check resolves the abandoned marker');
-  assert.equal(env.syncStorage.getItem(CLOUD_SYNC_PENDING_KEY), null);
-  await other.run(CLOUD_BACKUP_CADENCE.recheckMs);
-  assert.ok(env.transport.created.length > before, 'a successful new check resumes backups');
-  await recovery.cloud.turnOff();
-  opening.protocol.setSyncGate = setGate;
-  await opening.cloud.refresh();
-  await other.cloud.refresh();
-});
+    const opening = page({ env, home: other.home, launchSync: true });
+    const setMarker = env.syncStorage.setItem;
+    if (markerFails) env.syncStorage.setItem = () => { throw new Error('Storage refused the marker.'); };
+    const setGate = opening.protocol.setSyncGate.bind(opening.protocol);
+    opening.protocol.setSyncGate = async (next) => {
+      if (next.held) throw new CloudBackupError('The hold cannot be written.', 'storage');
+      return setGate(next);
+    };
+    await opening.cloud.resume();
+    await until(() => opening.cloud.model.sync.phase === 'failed', 'the new check reports its unconfirmed hold');
+    assert.equal(opening.cloud.model.sync.code, 'hold-unconfirmed');
+    const before = env.transport.created.length;
+    await other.run(CLOUD_BACKUP_CADENCE.maxWaitMs);
+    assert.equal(env.transport.created.length, before, 'a failed hold must not let another tab upload');
+    env.locks.closeHolder(CLOUD_SYNC_OFFER_LOCK);
+    await other.run(CLOUD_BACKUP_CADENCE.recheckMs);
+    assert.equal(env.transport.created.length, before, 'closing the failed tab must not release an older clear gate');
+    env.syncStorage.setItem = setMarker;
+    const recovery = page({ env, home: other.home, launchSync: true });
+    await recovery.cloud.resume();
+    await until(() => recovery.cloud.model.sync.phase === 'clear', 'a new check resolves the abandoned marker');
+    assert.equal(env.syncStorage.getItem(CLOUD_SYNC_PENDING_KEY), null);
+    await other.run(CLOUD_BACKUP_CADENCE.recheckMs);
+    await until(() => other.cloud.model.sync.phase === 'clear', 'the older tab adopts the later completed check');
+    await other.run(0);
+    assert.ok(env.transport.created.length > before, 'a successful new check resumes backups');
+    await recovery.cloud.turnOff();
+    opening.protocol.setSyncGate = setGate;
+    await opening.cloud.refresh();
+    await other.cloud.refresh();
+  });
+}
 
 test('a refused pending marker still leaves a durable IndexedDB hold before reporting failure', async () => {
   const env = harness({ transport: windowsHost(fakeTransport()) });
