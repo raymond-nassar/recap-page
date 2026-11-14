@@ -1825,3 +1825,24 @@ The final check must retain every occurrence with zero drifted, new or removed. 
 blob hashes with the baseline and run lint, counts, sizes and the bare unit suite. The script
 binds a moved frozen document to its pre-move blob through explicit version-2 registry authority;
 it never follows historical renames or changes the literal paths inside historical targets.
+
+## Place a new reading list in a Universe
+
+Every new list, on every route, gets a Universe placement step. The owner chose this approach in
+[#1291](https://github.com/raymond-nassar/recap-page/issues/1291#issuecomment-6881393806). The
+metadata provider has no reality data, so the placement comes from the list's own source.
+
+- Propose the placement from the list's title, description or stated scope. Record the evidence
+  in the `listAssociations` of the [Universe source ledger](../scripts/data/universe-sources.json),
+  as the existing associations do, and set the list's matching `universeIds` in
+  `src/data/curated-lists.json`. Add a `universeScopes` qualifier when the list also spans other
+  realities.
+- Never infer a placement from comic titles, characters, dates, list membership or the provider.
+- A list set only in the primary continuity gets no association, because that Universe is
+  browse-only.
+- Ask the owner when the source does not state its reality, mixes realities ambiguously, names a
+  reality missing from the registry, or would contradict an earlier owner decision. A new Universe
+  needs owner approval of its fields. An open placement question never blocks publishing the list.
+
+Report the outcome in the delivery: the placement and its evidence, no association, or the open
+question for the owner.

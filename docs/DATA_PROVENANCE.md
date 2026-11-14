@@ -3704,7 +3704,8 @@ The Marvel Zombies guide's qualification is retained because it includes other r
 list membership never assigns a reality to every comic in that list. The owner placed the Ultimate
 Spider-Man guide under Ultimate Marvel only, without changing comic or series facts. The owner also
 made the primary continuity browse-only, linking to Modern Timeline and Marvel Ages instead of
-individual guides or selected comics.
+individual guides or selected comics. New lists follow the
+[Universe placement step](MAINTAINING.md#place-a-new-reading-list-in-a-universe).
 
 These are implementation candidates, not approved publication facts. The owner has not settled
 the publication-year convention or the three conflicting supplied years. Independent bibliography
