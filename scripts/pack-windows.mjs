@@ -21,6 +21,7 @@ import { fileURLToPath } from 'node:url';
 import { artifactRecord, assertSourceUnchanged, buildIdentity, writeBuildIdentity } from './lib/release-identity.mjs';
 import { cloudClientInjection } from './lib/cloud-client.mjs';
 import { APP_VERSION } from '../src/js/lib/version.js';
+import { powershell } from './lib/windows-powershell.mjs';
 
 // Pinned by the test matrix rather than by the engines floor. package.json asks for Node 20 or
 // newer, which every current line satisfies, so the floor narrows nothing. The CI matrix does: the
@@ -38,16 +39,6 @@ const base = `https://nodejs.org/dist/${NODE_VERSION}`;
 const runtimeArchiveName = (architecture = NODE_ARCH) => `node-${NODE_VERSION}-${architecture}.zip`;
 
 const say = (line) => process.stdout.write(`${line}\n`);
-
-// PowerShell rather than a zip library, because a library would be the first runtime dependency
-// this project has ever had and Constraint 4 says that number stays at zero. Compress-Archive and
-// Expand-Archive ship with Windows, and this script only runs where the archive is built.
-function powershell(script) {
-  return execFileSync('powershell', ['-NoProfile', '-NonInteractive', '-Command', script], {
-    encoding: 'utf8',
-    maxBuffer: 64e6,
-  });
-}
 
 async function download(url) {
   const response = await fetch(url);

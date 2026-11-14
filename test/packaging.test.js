@@ -1,11 +1,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
-import { readFileSync } from 'node:fs';
+import { readFileSync, mkdtempSync, mkdirSync, writeFileSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { NODE_VERSION, NODE_ARCH, PAYLOAD_NAME, appFiles, readMe, readMeFor } from '../scripts/pack-windows.mjs';
+import { powershell } from '../scripts/lib/windows-powershell.mjs';
 
 // The packaging contract, checked here because the person it is for cannot diagnose it.
 //
@@ -31,6 +33,62 @@ const codeOf = (name) => read(name)
   .split(/\r?\n/)
   .filter((line) => !/^\s*(rem\b|#|::)/i.test(line))
   .join('\n');
+
+test('Windows archive callers use the isolated PowerShell boundary', () => {
+  for (const name of [PACK, 'scripts/pack-msix.mjs']) {
+    const source = read(name);
+    assert.match(source, /import \{ powershell \} from '\.\/lib\/windows-powershell\.mjs'/, name);
+    assert.doesNotMatch(source, /function powershell\(/, name);
+    assert.match(source, /powershell\(\s*`Expand-Archive/, name);
+  }
+  const workflow = read('.github/workflows/wack.yml');
+  assert.match(workflow, /const \{ powershell \} =\s*await import\(pathToFileURL\(join\(root, 'scripts', 'lib', 'windows-powershell\.mjs'\)\)\)/);
+  assert.match(workflow, /powershell\(`Expand-Archive[\s\S]*?\{ timeout: 120000 \}\)/);
+  assert.doesNotMatch(workflow, /execFileSync\('powershell\.exe', \[[^\]]*Expand-Archive/);
+});
+
+test('Windows PowerShell errors stop before subsequent commands', { skip: process.platform !== 'win32' }, () => {
+  assert.throws(() => powershell("Write-Error 'packaging-unpack-probe'; Write-Output 'must-not-continue'",
+    { stdio: 'pipe' }), (error) => {
+    assert.notEqual(error.status, 0);
+    assert.match(error.stderr, /packaging-unpack-probe/);
+    assert.doesNotMatch(error.stdout, /must-not-continue/);
+    return true;
+  });
+});
+
+test('Windows archives roundtrip without inheriting incompatible parent modules', { skip: process.platform !== 'win32' }, () => {
+  const scratch = mkdtempSync(join(tmpdir(), 'recap-archive-'));
+  const previous = process.env.PSModulePath;
+  const literal = (value) => `'${value.replaceAll("'", "''")}'`;
+  try {
+    const moduleRoot = join(scratch, 'modules');
+    const module = join(moduleRoot, 'Microsoft.PowerShell.Archive');
+    mkdirSync(module, { recursive: true });
+    writeFileSync(join(module, 'Microsoft.PowerShell.Archive.psm1'),
+      "function Expand-Archive { throw 'incompatible-parent-archive' }\n"
+      + "function Compress-Archive { throw 'incompatible-parent-archive' }\n"
+      + 'Export-ModuleMember -Function Expand-Archive,Compress-Archive\n');
+    process.env.PSModulePath = moduleRoot;
+    assert.throws(() => execFileSync('powershell', ['-NoProfile', '-NonInteractive', '-Command',
+      "$ErrorActionPreference = 'Stop'; Expand-Archive"], { encoding: 'utf8', stdio: 'pipe' }),
+    /incompatible-parent-archive/, 'the control must load the incompatible parent module');
+
+    const payload = join(scratch, 'payload');
+    mkdirSync(payload);
+    writeFileSync(join(payload, 'node.exe'), 'runtime fixture');
+    const archive = join(scratch, 'runtime.zip');
+    const output = join(scratch, 'unpacked');
+    powershell(`Compress-Archive -LiteralPath ${literal(payload)} -DestinationPath ${literal(archive)} -Force; `
+      + `Expand-Archive -LiteralPath ${literal(archive)} -DestinationPath ${literal(output)} -Force`);
+    assert.equal(readFileSync(join(output, 'payload', 'node.exe'), 'utf8'), 'runtime fixture');
+    assert.equal(process.env.PSModulePath, moduleRoot, 'the parent module path must remain unchanged');
+  } finally {
+    if (previous === undefined) delete process.env.PSModulePath;
+    else process.env.PSModulePath = previous;
+    rmSync(scratch, { recursive: true, force: true });
+  }
+});
 
 test('the packaging script is tracked and reachable by name', () => {
   assert.ok(git(['ls-files']).split(/\r?\n/).includes(PACK), `${PACK} is not tracked`);

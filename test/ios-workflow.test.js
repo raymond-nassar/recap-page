@@ -343,8 +343,8 @@ test('the newest runtime checks the 6.9-inch iPhone while iPad presentation runs
   assert.match(ipad, /-only-testing:RecapPageUITests\/LaunchUITests\/testCompleteRestoreAtTheCapacityTargetFitsInPlaceAndAfterARelaunch \\/);
   assert.doesNotMatch(ipad, /-only-testing:RecapPageUITests\s|-only-testing:RecapPageTests|live_cors/);
   assert.match(ipad, /name: iPad presentation on the newest runtime/);
-  assert.match(ipad, /timeout-minutes: 126/);
-  assert.match(ipad, /- name: Run presentation UI tests on iPad\n {8}#[^\n]*\n {8}timeout-minutes: 60\n {8}run: \|/);
+  assert.match(ipad, /timeout-minutes: 136/);
+  assert.match(ipad, /- name: Run presentation UI tests on iPad\n {8}#[^\n]*\n {8}timeout-minutes: 70\n {8}run: \|/);
   assert.match(ipad, /- name: Measure restore capacity on iPad\n {8}timeout-minutes: 15\n {8}run: \|/);
   assert.ok(ipad.indexOf('name: Run presentation UI tests on iPad') < ipad.indexOf('name: Measure restore capacity on iPad'));
   assert.match(ipad, /ios-results-ipad-\$\{\{ github\.run_id \}\}-\$\{\{ github\.run_attempt \}\}/);
@@ -854,6 +854,73 @@ test('the separate presentation and capacity suites retry only the recognized UI
   }
 });
 
+test('a retry after a finished attempt reruns only the tests that failed (#1245)', async (t) => {
+  const caseLine = (suite, name, outcome) =>
+    `Test Case '-[RecapPageUITests.${suite} ${name}]' ${outcome} (290.187 seconds).`;
+  const finished = "Test Suite 'RecapPageUITests.xctest' failed at 2026-11-12 13:40:47.706.";
+  for (const [job, label, log, group] of [
+    ['newest', 'Run the UI tests', 'ui', 'RecapPageUITests'],
+    ['ipad', 'Run presentation UI tests on iPad', 'ui-ipad', 'RecapPageUITests/PresentationUITests'],
+    ['minimum', 'Run the UI tests', 'ui', 'RecapPageUITests/LaunchUITests'],
+    ['minimum', 'Run presentation UI tests on the minimum iPhone', 'ui-minimum-presentation',
+      'RecapPageUITests/PresentationUITests'],
+    ['minimum', 'Run presentation UI tests on iPhone SE (3rd generation)', 'ui-iphone-se',
+      'RecapPageUITests/PresentationUITests'],
+  ]) {
+    const reason = job === 'minimum' ? 'Audit failed to complete in time' : infrastructure[2];
+    const failure = (suite, name) =>
+      `/repo/${suite}.swift:1750: error: -[RecapPageUITests.${suite} ${name}] : ${reason}`;
+    const scenarios = [
+      { name: 'one failed test', expected: ['RecapPageUITests/PresentationUITests/testAudit'], scope: 'the 1 failed test(s)',
+        log: [caseLine('PresentationUITests', 'testSearch', 'passed'), failure('PresentationUITests', 'testAudit'),
+          caseLine('PresentationUITests', 'testAudit', 'failed'), caseLine('PresentationUITests', 'testRotation', 'passed'),
+          finished] },
+      { name: 'failed tests in two classes', scope: 'the 2 failed test(s)',
+        expected: ['RecapPageUITests/LaunchUITests/testRestore', 'RecapPageUITests/PresentationUITests/testAudit'],
+        log: [failure('PresentationUITests', 'testAudit'), caseLine('PresentationUITests', 'testAudit', 'failed'),
+          failure('LaunchUITests', 'testRestore'), caseLine('LaunchUITests', 'testRestore', 'failed'), finished] },
+      { name: 'an attempt that ended before reporting every test', expected: [group],
+        log: [caseLine('PresentationUITests', 'testSearch', 'passed'), failure('PresentationUITests', 'testAudit'),
+          caseLine('PresentationUITests', 'testAudit', 'failed')] },
+      { name: 'a finished attempt that names no failed test', expected: [group],
+        log: [caseLine('PresentationUITests', 'testSearch', 'passed'), reason, finished] },
+    ];
+    const script = stepScript(jobSource(job), label);
+    for (const scenario of scenarios) {
+      await t.test(`${job}: ${label}: ${scenario.name}`, async () => {
+        const root = await mkdtemp(join(tmpdir(), 'recap-ios-targeted-'));
+        try {
+          await writeFile(join(root, 'fixture-1.log'), scenario.log.join('\n') + '\n');
+          await writeFile(join(root, 'fixture-2.log'), 'passed\n');
+          const stub = `xcodebuild() {
+  printf '%s\\n' "$*" >> "$RUNNER_TEMP/calls"
+  invocation=$(wc -l < "$RUNNER_TEMP/calls" | tr -d ' ')
+  cat "$RUNNER_TEMP/fixture-$invocation.log"
+  [ "$invocation" = 1 ] && return 65
+  return 0
+}
+`;
+          const result = await runScript(root, stub + script,
+            { IPHONE_375_UDID: 'chosen-se', GITHUB_ENV: join(root, 'github-env') });
+          assert.equal(result.status, 0, result.stderr + result.stdout);
+          const calls = (await readFile(join(root, 'calls'), 'utf8')).trim().split('\n');
+          assert.equal(calls.length, 2);
+          const selected = (call) => call.split(' ').filter((arg) => arg.startsWith('-only-testing:'))
+            .map((arg) => arg.slice('-only-testing:'.length));
+          assert.deepEqual(selected(calls[0]), [group]);
+          assert.deepEqual(selected(calls[1]), scenario.expected);
+          assert.ok(calls[1].includes(`${log}-2`) || calls[1].includes('-2.xcresult'));
+          assert.equal(await readFile(join(root, `${log}-1.log`), 'utf8'), scenario.log.join('\n') + '\n');
+          if (scenario.scope) assert.ok(result.stdout.includes(`retrying ${scenario.scope} once`), result.stdout);
+          else assert.doesNotMatch(result.stdout, /failed test\(s\)/);
+        } finally {
+          await rm(root, { recursive: true, force: true });
+        }
+      });
+    }
+  }
+});
+
 test('unit failures stop each iOS job without entering the UI retry gate', async () => {
   for (const job of jobs.filter(({ name }) => ['newest', 'minimum'].includes(name))) {
     const source = jobSource(job.name);
@@ -893,9 +960,9 @@ test('each iOS job deadline stays out of the way until every step has used its o
     assert.ok(job.timeout >= declared + RUNNER_OVERHEAD_MINUTES,
       `job ${job.name} allows ${job.timeout} minutes but its steps allow ${declared}`);
     if (job.name === 'newest' || job.name === 'ipad') {
-      assert.equal(declared, job.name === 'newest' ? 152 : 123,
-        `${job.name} includes the populated Search audit budget`);
-      assert.equal(job.timeout, job.name === 'newest' ? 155 : 126);
+      assert.equal(declared, job.name === 'newest' ? 162 : 133,
+        `${job.name} includes room to retry the failed UI tests (#1245)`);
+      assert.equal(job.timeout, job.name === 'newest' ? 165 : 136);
     }
   }
 });

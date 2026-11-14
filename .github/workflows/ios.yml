@@ -69,10 +69,10 @@ jobs:
     # A screenshot capture is a separate errand; it does not need the test jobs' macOS runners.
     if: ${{ !inputs.app_store_screenshots && !inputs.minimum_only && (github.event_name != 'pull_request' || needs.docs_check.outputs.docs_only != 'true') }}
     runs-on: macos-26
-    # The backstop for time outside any step. The steps below declare 152 minutes between them, and
+    # The backstop for time outside any step. The steps below declare 162 minutes between them, and
     # as in CI the step deadline is the one that should fire, so an overrun reports failure on the
     # step that ran long rather than cancelled on the job.
-    timeout-minutes: 155
+    timeout-minutes: 165
     env:
       # Selected by path rather than by the image's default, which moves when the image does.
       DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
@@ -150,22 +150,23 @@ jobs:
             -resultBundlePath "$RUNNER_TEMP/RecapPage-newest-unit.xcresult" \
             CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/unit-test.log"
 
-      # 32 minutes on main's last run before the restore capacity test joined the suite (#960).
+      # One attempt took 43.3m at 7da04023. A retry reruns only the failed tests, and the slowest
+      # single test measured, the iOS 18 audit at 7da04023, took 16.4m, so 65m leaves room for one.
       - name: Run the UI tests
-        # The green brand run took 32.9 minutes before the populated Search proofs added 3 to 5.
-        timeout-minutes: 55
+        timeout-minutes: 65
         run: |
           set -o pipefail
           infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode|Failed to terminate io\.github\.raymondnassar\.recappage:'
           # XCTExpectFailure records each fixture's anticipated failure without ": error:"; an
           # unanticipated failure is still reported with it, so it still refuses the retry.
           expected='^XCTExpectFailure: matcher accepted |^[^ ]+\.swift:[0-9]+: Expected failure in -\['
+          only=(-only-testing:RecapPageUITests)
           for attempt in 1 2; do
             log="$RUNNER_TEMP/ui-$attempt.log"
             if xcodebuild test-without-building \
                 -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
                 -destination "$DESTINATION" -derivedDataPath "$RUNNER_TEMP/DerivedData" \
-                -only-testing:RecapPageUITests \
+                "${only[@]}" \
                 -resultBundlePath "$RUNNER_TEMP/RecapPage-newest-ui-$attempt.xcresult" \
                 CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$log"; then
               exit 0
@@ -182,7 +183,17 @@ jobs:
               exit 1
             fi
             matched=$(grep -Em1 "$infrastructure" "$log")
-            echo "::warning::XCTest UI-test infrastructure failure on attempt $attempt; retrying the complete UI suite once on the same Simulator. Matched: $matched"
+            # A finished attempt reruns only its failed tests, as a whole second one no longer fits the
+            # deadline (#1245); an attempt that ended before reporting every test reruns the group.
+            scope='the complete UI suite'
+            if grep -q "Test Suite 'RecapPageUITests.xctest' failed at " "$log"; then
+              failed=$(sed -nE "s/^Test Case '-\[RecapPageUITests\.([A-Za-z0-9_]+) ([A-Za-z0-9_]+)\]' failed .*/-only-testing:RecapPageUITests\/\1\/\2/p" "$log" | sort -u)
+              if [ -n "$failed" ]; then
+                only=($failed)
+                scope="the ${#only[@]} failed test(s)"
+              fi
+            fi
+            echo "::warning::XCTest UI-test infrastructure failure on attempt $attempt; retrying $scope once on the same Simulator. Matched: $matched"
           done
 
       - name: Prove the interrupted-restore test rejects the done row
@@ -280,8 +291,8 @@ jobs:
     needs: docs_check
     if: ${{ !inputs.app_store_screenshots && !inputs.minimum_only && (github.event_name != 'pull_request' || needs.docs_check.outputs.docs_only != 'true') }}
     runs-on: macos-26
-    # These steps declare 123 minutes; leave the deadline to the individual step that overruns.
-    timeout-minutes: 126
+    # These steps declare 133 minutes; leave the deadline to the individual step that overruns.
+    timeout-minutes: 136
     env:
       DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
       SIMULATOR_RUNTIME: latest
@@ -341,20 +352,21 @@ jobs:
           fi
 
       - name: Run presentation UI tests on iPad
-        # The green brand run took 35.4 minutes; Search added 787.9 seconds and the next test hit 45.
-        timeout-minutes: 60
+        # One attempt took 47.3m to 53.1m at 7da04023 and 9aed01c6; 70m leaves 16.9m to retry failed tests.
+        timeout-minutes: 70
         run: |
           set -o pipefail
           infrastructure='failed to initialize for UI testing|Failed to get background assertion for target app|Timed out while launching application via Xcode|Failed to terminate io\.github\.raymondnassar\.recappage:'
           # XCTExpectFailure records each fixture's anticipated failure without ": error:"; an
           # unanticipated failure is still reported with it, so it still refuses the retry.
           expected='^XCTExpectFailure: matcher accepted |^[^ ]+\.swift:[0-9]+: Expected failure in -\['
+          only=(-only-testing:RecapPageUITests/PresentationUITests)
           for attempt in 1 2; do
             log="$RUNNER_TEMP/ui-ipad-$attempt.log"
             if xcodebuild test-without-building \
                 -project packaging/ios/RecapPage.xcodeproj -scheme RecapPage \
                 -destination "$IPAD_DESTINATION" -derivedDataPath "$RUNNER_TEMP/DerivedData" \
-                -only-testing:RecapPageUITests/PresentationUITests \
+                "${only[@]}" \
                 -resultBundlePath "$RUNNER_TEMP/RecapPage-ipad-ui-$attempt.xcresult" \
                 CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$log"; then
               exit 0
@@ -370,7 +382,17 @@ jobs:
               exit 1
             fi
             matched=$(grep -Em1 "$infrastructure" "$log")
-            echo "::warning::XCTest iPad presentation infrastructure failure on attempt $attempt; retrying the presentation suite once on the same Simulator. Matched: $matched"
+            # A finished attempt reruns only its failed tests, as a whole second one no longer fits the
+            # deadline (#1245); an attempt that ended before reporting every test reruns the group.
+            scope='the presentation suite'
+            if grep -q "Test Suite 'RecapPageUITests.xctest' failed at " "$log"; then
+              failed=$(sed -nE "s/^Test Case '-\[RecapPageUITests\.([A-Za-z0-9_]+) ([A-Za-z0-9_]+)\]' failed .*/-only-testing:RecapPageUITests\/\1\/\2/p" "$log" | sort -u)
+              if [ -n "$failed" ]; then
+                only=($failed)
+                scope="the ${#only[@]} failed test(s)"
+              fi
+            fi
+            echo "::warning::XCTest iPad presentation infrastructure failure on attempt $attempt; retrying $scope once on the same Simulator. Matched: $matched"
           done
 
       # A complete restore at the capacity target, measured on iPad as well as both iPhones (#960).
@@ -543,11 +565,12 @@ jobs:
           # XCTExpectFailure records each fixture's anticipated failure without ": error:"; an
           # unanticipated failure is still reported with it, so it still refuses the retry.
           expected='^XCTExpectFailure: matcher accepted |^[^ ]+\.swift:[0-9]+: Expected failure in -\['
+          only=(-only-testing:RecapPageUITests/LaunchUITests)
           for attempt in 1 2; do
             log="$RUNNER_TEMP/ui-$attempt.log"
             if xcodebuild test-without-building \
                 -xctestrun "$XCTESTRUN" -destination "$DESTINATION" \
-                -only-testing:RecapPageUITests/LaunchUITests \
+                "${only[@]}" \
                 -resultBundlePath "$RUNNER_TEMP/RecapPage-minimum-ui-$attempt.xcresult" \
                 CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$log"; then
               exit 0
@@ -564,10 +587,21 @@ jobs:
               exit 1
             fi
             matched=$(grep -Em1 "$infrastructure" "$log")
-            echo "::warning::XCTest launch infrastructure failure on attempt $attempt; retrying the launch suite once on the same Simulator. Matched: $matched"
+            # A finished attempt reruns only its failed tests, as a whole second one no longer fits the
+            # deadline (#1245); an attempt that ended before reporting every test reruns the group.
+            scope='the launch suite'
+            if grep -q "Test Suite 'RecapPageUITests.xctest' failed at " "$log"; then
+              failed=$(sed -nE "s/^Test Case '-\[RecapPageUITests\.([A-Za-z0-9_]+) ([A-Za-z0-9_]+)\]' failed .*/-only-testing:RecapPageUITests\/\1\/\2/p" "$log" | sort -u)
+              if [ -n "$failed" ]; then
+                only=($failed)
+                scope="the ${#only[@]} failed test(s)"
+              fi
+            fi
+            echo "::warning::XCTest launch infrastructure failure on attempt $attempt; retrying $scope once on the same Simulator. Matched: $matched"
           done
 
-      # Runs 41293118124, 41295180830 and 41301233359 took 26m34s to 30m18s; 65m fits one retry.
+      # One attempt took 29.9m at 9aed01c6, and a slow runner took 1.4 times as long at 7da04023. A
+      # retry reruns only the failed tests, so 65m fits about 42m plus the 16.4m audit test there.
       - name: Run presentation UI tests on the minimum iPhone
         if: ${{ !cancelled() }}
         timeout-minutes: 65
@@ -577,11 +611,12 @@ jobs:
           # XCTExpectFailure records each fixture's anticipated failure without ": error:"; an
           # unanticipated failure is still reported with it, so it still refuses the retry.
           expected='^XCTExpectFailure: matcher accepted |^[^ ]+\.swift:[0-9]+: Expected failure in -\['
+          only=(-only-testing:RecapPageUITests/PresentationUITests)
           for attempt in 1 2; do
             log="$RUNNER_TEMP/ui-minimum-presentation-$attempt.log"
             if xcodebuild test-without-building \
                 -xctestrun "$XCTESTRUN" -destination "$DESTINATION" \
-                -only-testing:RecapPageUITests/PresentationUITests \
+                "${only[@]}" \
                 -resultBundlePath "$RUNNER_TEMP/RecapPage-minimum-presentation-$attempt.xcresult" \
                 CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$log"; then
               exit 0
@@ -597,7 +632,17 @@ jobs:
               exit 1
             fi
             matched=$(grep -Em1 "$infrastructure" "$log")
-            echo "::warning::XCTest minimum presentation infrastructure failure on attempt $attempt; retrying the presentation suite once on the same Simulator. Matched: $matched"
+            # A finished attempt reruns only its failed tests, as a whole second one no longer fits the
+            # deadline (#1245); an attempt that ended before reporting every test reruns the group.
+            scope='the presentation suite'
+            if grep -q "Test Suite 'RecapPageUITests.xctest' failed at " "$log"; then
+              failed=$(sed -nE "s/^Test Case '-\[RecapPageUITests\.([A-Za-z0-9_]+) ([A-Za-z0-9_]+)\]' failed .*/-only-testing:RecapPageUITests\/\1\/\2/p" "$log" | sort -u)
+              if [ -n "$failed" ]; then
+                only=($failed)
+                scope="the ${#only[@]} failed test(s)"
+              fi
+            fi
+            echo "::warning::XCTest minimum presentation infrastructure failure on attempt $attempt; retrying $scope once on the same Simulator. Matched: $matched"
           done
 
       - name: Shut down the minimum iPhone before starting the SE
@@ -624,7 +669,8 @@ jobs:
             exit 1
           fi
 
-      # The recent 24m54s to 27m04s runs leave 5m52s after one full retry.
+      # One attempt took 29.5m at 9aed01c6, about 41m at the slow runner's 1.4 times; a retry
+      # reruns only the failed tests, so 60m fits that plus the 16.4m audit test.
       - name: Run presentation UI tests on iPhone SE (3rd generation)
         if: ${{ !cancelled() && steps.iphone-se.outputs.available == 'true' && steps.wait-iphone-se.outcome == 'success' }}
         timeout-minutes: 60
@@ -634,11 +680,12 @@ jobs:
           # XCTExpectFailure records each fixture's anticipated failure without ": error:"; an
           # unanticipated failure is still reported with it, so it still refuses the retry.
           expected='^XCTExpectFailure: matcher accepted |^[^ ]+\.swift:[0-9]+: Expected failure in -\['
+          only=(-only-testing:RecapPageUITests/PresentationUITests)
           for attempt in 1 2; do
             log="$RUNNER_TEMP/ui-iphone-se-$attempt.log"
             if xcodebuild test-without-building \
                 -xctestrun "$XCTESTRUN" -destination "platform=iOS Simulator,id=$IPHONE_375_UDID" \
-                -only-testing:RecapPageUITests/PresentationUITests \
+                "${only[@]}" \
                 -resultBundlePath "$RUNNER_TEMP/RecapPage-minimum-iphone-se-ui-$attempt.xcresult" \
                 CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$log"; then
               echo "IPHONE_375_PRESENTATION_PASSED=true" >> "$GITHUB_ENV"
@@ -655,7 +702,17 @@ jobs:
               exit 1
             fi
             matched=$(grep -Em1 "$infrastructure" "$log")
-            echo "::warning::XCTest 375-point iPhone presentation infrastructure failure on attempt $attempt; retrying the presentation suite once on the same Simulator. Matched: $matched"
+            # A finished attempt reruns only its failed tests, as a whole second one no longer fits the
+            # deadline (#1245); an attempt that ended before reporting every test reruns the group.
+            scope='the presentation suite'
+            if grep -q "Test Suite 'RecapPageUITests.xctest' failed at " "$log"; then
+              failed=$(sed -nE "s/^Test Case '-\[RecapPageUITests\.([A-Za-z0-9_]+) ([A-Za-z0-9_]+)\]' failed .*/-only-testing:RecapPageUITests\/\1\/\2/p" "$log" | sort -u)
+              if [ -n "$failed" ]; then
+                only=($failed)
+                scope="the ${#only[@]} failed test(s)"
+              fi
+            fi
+            echo "::warning::XCTest 375-point iPhone presentation infrastructure failure on attempt $attempt; retrying $scope once on the same Simulator. Matched: $matched"
           done
 
       - name: Summarize the probe results
