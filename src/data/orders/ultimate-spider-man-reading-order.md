@@ -4,6 +4,8 @@ Generated for this project by scripts/author-cbh-packet.mjs from the reviewed an
 The mapping transcribes only issue-bearing references from Comic Book Herald's exact guide, expands its ranges, and preserves its source order.
 No source commentary or images are copied. Issue identities, titles, and exact links come from Marvel metadata or reviewed official Marvel issue pages after the packet resolution and overlap gates passed.
 See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permission boundary and review method.
+Owner selection (#1296): Owner-directed difference from Comic Book Herald: omit the enabled blocks below, keeping the original Ultimate universe, its crossovers and the later Miles Morales selections. The original source packet remains unchanged.
+Enabled exclusions: Ultimate Spider-Man (2024) #1-18 and Free Comic Book Day 2025; Ultimate Spider-Man: Incursion (2025) #1-5; Ultimate Spider-Man (2024) #19-24, Ultimate Endgame #1-5 and Ultimate Universe: Finale #1.
 
 ## Peter Parker, original Ultimate universe: Ultimate Spider-Man #1-13
 - [ ] [Ultimate Spider-Man (2000) #1 <!-- mrt:source-occurrence=1 -->](https://www.marvel.com/comics/issue/4372/ultimate_spider-man_2000_1)
@@ -360,47 +362,3 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Champions (2016) #26 <!-- mrt:source-occurrence=314 -->](https://www.marvel.com/comics/issue/73545/champions_2016_26)
 - [ ] [Champions (2016) #27 <!-- mrt:source-occurrence=315 -->](https://www.marvel.com/comics/issue/73546/champions_2016_27)
 - [ ] [Champions Annual (2018) #1 <!-- mrt:source-occurrence=316 -->](https://www.marvel.com/comics/issue/72697/champions_annual_2018_1)
-## The New Ultimate Spider-Man (2024-2026): Ultimate Spider-Man Vol. 1: Married with Children
-- [ ] [Ultimate Spider-Man (2024) #1 <!-- mrt:source-occurrence=317 -->](https://www.marvel.com/comics/issue/112985/ultimate_spider-man_2024_1)
-- [ ] [Ultimate Spider-Man (2024) #2 <!-- mrt:source-occurrence=318 -->](https://www.marvel.com/comics/issue/112987/ultimate_spider-man_2024_2)
-- [ ] [Ultimate Spider-Man (2024) #3 <!-- mrt:source-occurrence=319 -->](https://www.marvel.com/comics/issue/112988/ultimate_spider-man_2024_3)
-- [ ] [Ultimate Spider-Man (2024) #4 <!-- mrt:source-occurrence=320 -->](https://www.marvel.com/comics/issue/112989/ultimate_spider-man_2024_4)
-- [ ] [Ultimate Spider-Man (2024) #5 <!-- mrt:source-occurrence=321 -->](https://www.marvel.com/comics/issue/113882/ultimate_spider-man_2024_5)
-- [ ] [Ultimate Spider-Man (2024) #6 <!-- mrt:source-occurrence=322 -->](https://www.marvel.com/comics/issue/113883/ultimate_spider-man_2024_6)
-## The New Ultimate Spider-Man (2024-2026): Ultimate Spider-Man Vol. 2: The Paper
-- [ ] [Ultimate Spider-Man (2024) #7 <!-- mrt:source-occurrence=323 -->](https://www.marvel.com/comics/issue/113884/ultimate_spider-man_2024_7)
-- [ ] [Ultimate Spider-Man (2024) #8 <!-- mrt:source-occurrence=324 -->](https://www.marvel.com/comics/issue/113885/ultimate_spider-man_2024_8)
-- [ ] [Ultimate Spider-Man (2024) #9 <!-- mrt:source-occurrence=325 -->](https://www.marvel.com/comics/issue/113886/ultimate_spider-man_2024_9)
-- [ ] [Ultimate Spider-Man (2024) #10 <!-- mrt:source-occurrence=326 -->](https://www.marvel.com/comics/issue/113887/ultimate_spider-man_2024_10)
-- [ ] [Ultimate Spider-Man (2024) #11 <!-- mrt:source-occurrence=327 -->](https://www.marvel.com/comics/issue/113888/ultimate_spider-man_2024_11)
-- [ ] [Ultimate Spider-Man (2024) #12 <!-- mrt:source-occurrence=328 -->](https://www.marvel.com/comics/issue/113889/ultimate_spider-man_2024_12)
-## The New Ultimate Spider-Man (2024-2026): Ultimate Spider-Man Vol. 3: Family Business
-- [ ] [Ultimate Spider-Man (2024) #13 <!-- mrt:source-occurrence=329 -->](https://www.marvel.com/comics/issue/113890/ultimate_spider-man_2024_13)
-- [ ] [Ultimate Spider-Man (2024) #14 <!-- mrt:source-occurrence=330 -->](https://www.marvel.com/comics/issue/113891/ultimate_spider-man_2024_14)
-- [ ] [Ultimate Spider-Man (2024) #15 <!-- mrt:source-occurrence=331 -->](https://www.marvel.com/comics/issue/113892/ultimate_spider-man_2024_15)
-- [ ] [Ultimate Spider-Man (2024) #16 <!-- mrt:source-occurrence=332 -->](https://www.marvel.com/comics/issue/113893/ultimate_spider-man_2024_16)
-- [ ] [Ultimate Spider-Man (2024) #17 <!-- mrt:source-occurrence=333 -->](https://www.marvel.com/comics/issue/113894/ultimate_spider-man_2024_17)
-- [ ] [Ultimate Spider-Man (2024) #18 <!-- mrt:source-occurrence=334 -->](https://www.marvel.com/comics/issue/113895/ultimate_spider-man_2024_18)
-## The New Ultimate Spider-Man (2024-2026): Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (Ultimate Universe story only; before Incursion)
-- [ ] [FREE COMIC BOOK DAY 2025: AMAZING SPIDER-MAN/ULTIMATE UNIVERSE (2025) #1 <!-- mrt:source-occurrence=335 -->](https://www.marvel.com/comics/issue/125782/free_comic_book_day_2025_amazing_spider-manultimate_universe_2025_1)
-## The New Ultimate Spider-Man (2024-2026): Ultimate Spider-Man: Incursion
-- [ ] [Ultimate Spider-Man: Incursion (2025) #1 <!-- mrt:source-occurrence=336 -->](https://www.marvel.com/comics/issue/125522/ultimate_spider-man_incursion_2025_1)
-- [ ] [Ultimate Spider-Man: Incursion (2025) #2 <!-- mrt:source-occurrence=337 -->](https://www.marvel.com/comics/issue/125523/ultimate_spider-man_incursion_2025_2)
-- [ ] [Ultimate Spider-Man: Incursion (2025) #3 <!-- mrt:source-occurrence=338 -->](https://www.marvel.com/comics/issue/125524/ultimate_spider-man_incursion_2025_3)
-- [ ] [Ultimate Spider-Man: Incursion (2025) #4 <!-- mrt:source-occurrence=339 -->](https://www.marvel.com/comics/issue/125525/ultimate_spider-man_incursion_2025_4)
-- [ ] [Ultimate Spider-Man: Incursion (2025) #5 <!-- mrt:source-occurrence=340 -->](https://www.marvel.com/comics/issue/125526/ultimate_spider-man_incursion_2025_5)
-## The New Ultimate Spider-Man (2024-2026): Ultimate Spider-Man Vol. 4: One Last Day
-- [ ] [Ultimate Spider-Man (2024) #19 <!-- mrt:source-occurrence=341 -->](https://www.marvel.com/comics/issue/113896/ultimate_spider-man_2024_19)
-- [ ] [Ultimate Spider-Man (2024) #20 <!-- mrt:source-occurrence=342 -->](https://www.marvel.com/comics/issue/113897/ultimate_spider-man_2024_20)
-- [ ] [Ultimate Spider-Man (2024) #21 <!-- mrt:source-occurrence=343 -->](https://www.marvel.com/comics/issue/113898/ultimate_spider-man_2024_21)
-- [ ] [Ultimate Spider-Man (2024) #22 <!-- mrt:source-occurrence=344 -->](https://www.marvel.com/comics/issue/113899/ultimate_spider-man_2024_22)
-- [ ] [Ultimate Spider-Man #23 <!-- mrt:source-occurrence=345 -->](https://www.marvel.com/comics/issue/113900/ultimate_spider-man_2024_23)
-- [ ] [Ultimate Spider-Man #24 <!-- mrt:source-occurrence=346 -->](https://www.marvel.com/comics/issue/113901/ultimate_spider-man_2024_24)
-## The New Ultimate Spider-Man (2024-2026): Ultimate Endgame
-- [ ] [Ultimate Endgame #1 <!-- mrt:source-occurrence=347 -->](https://www.marvel.com/comics/issue/129224/ultimate_endgame_2025_1)
-- [ ] [Ultimate Endgame #2 <!-- mrt:source-occurrence=348 -->](https://www.marvel.com/comics/issue/129225/ultimate_endgame_2025_2)
-- [ ] [Ultimate Endgame #3 <!-- mrt:source-occurrence=349 -->](https://www.marvel.com/comics/issue/129226/ultimate_endgame_2025_3)
-- [ ] [Ultimate Endgame #4 <!-- mrt:source-occurrence=350 -->](https://www.marvel.com/comics/issue/129227/ultimate_endgame_2025_4)
-- [ ] [Ultimate Endgame #5 <!-- mrt:source-occurrence=351 -->](https://www.marvel.com/comics/issue/129228/ultimate_endgame_2025_5)
-## The New Ultimate Spider-Man (2024-2026): Ultimate Universe: Finale (2026) #1 (Spider-Man story only; after Ultimate Endgame #1-5; deferred from Vol. 4)
-- [ ] [Ultimate Universe: Finale #1 <!-- mrt:source-occurrence=352 -->](https://www.marvel.com/comics/issue/127659/ultimate_universe_finale_2026_1)

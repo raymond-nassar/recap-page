@@ -19,6 +19,7 @@ import { registeredOwnerIds } from './helpers/current-reading-library.mjs';
 import { recordedOwnerManifest } from './helpers/owner-delivery-contract.mjs';
 import { loadBeforeAmazingSpiderManSupplementLibrary } from './helpers/reading-choice-history.mjs';
 import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
+import { beforeUltimateSelectionManifest } from './helpers/ultimate-spider-man-selection-history.mjs';
 
 // #981. The owner's Professor X selection from Comic Book Herald's guide, verified against the page,
 // with the X-Men lists that continue his story offered as a Reading Path rather than copied inside.
@@ -43,7 +44,7 @@ const issueAt = (position) => mapping.rows.find((row) => row.sourcePosition === 
 async function reviewedLibrary() {
   // The review also predates the description revision record, so it hashed the earlier copy.
   const library = await loadBeforeAmazingSpiderManSupplementLibrary(
-    descriptionRevisions.undoManifest(await readJson('src/data/curated-lists.json')),
+    descriptionRevisions.undoManifest(beforeUltimateSelectionManifest(await readJson('src/data/curated-lists.json'))),
   );
   const reviewed = new Set(report.comparisons.map((row) => row.orderId));
   const later = library.manifest.lists.map((entry) => entry.id).filter((listId) => !reviewed.has(listId));

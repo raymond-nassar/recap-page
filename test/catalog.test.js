@@ -267,11 +267,11 @@ test('the bundled catalog is valid and its counts match the vendored orders', as
     {
       complete: currentReadingCensus.complete,
       placeholders: 1130,
-      emptyRecords: 229,
+      emptyRecords: 221,
       total: currentReadingCensus.totalItems,
       placeholderEntries: 29,
-      emptyEntries: 23,
-      bothEntries: 8,
+      emptyEntries: 22,
+      bothEntries: 7,
     },
   );
 });
