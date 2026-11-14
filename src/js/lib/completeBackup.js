@@ -22,7 +22,7 @@ import {
   createEmptyState, exportBackup, validateBackup, normalizeIssue, SCHEMA_VERSION, MAX_BACKUP_BYTES,
 } from './model.js';
 import { LIST_HISTORY_KEY, LIST_HISTORY_FORMAT, parseListHistory, prepareListHistoryRestore } from './listHistory.js';
-import { DRAFT_FORMAT, DRAFT_VERSION, sourceOccurrences, validateImportDraft } from './importDraft.js';
+import { DRAFT_FORMAT, DRAFT_VERSION, sourceOccurrencesForValidation, validateImportDraft } from './importDraft.js';
 import { DEFAULT_FILTER, readingFilter } from './readingFilters.js';
 import { THEMES, normaliseTheme } from './theme.js';
 import { isIosApp } from './platform.js';
@@ -146,7 +146,7 @@ function portableDraft(input) {
   if (!exactFields(input, PORTABLE_DRAFT_FIELDS) || input.format !== DRAFT_FORMAT || input.version !== DRAFT_VERSION
     || !Array.isArray(input.occurrences)) refuse('The import draft in this file has unsupported fields.');
   let sources;
-  try { sources = [sourceOccurrences(input.rawText), sourceOccurrences(input.rawText, { legacyReaderLinks: true })]; }
+  try { sources = sourceOccurrencesForValidation(input.rawText); }
   catch { refuse('The import draft source in this file is not usable.'); }
   if (sources.some((source) => source.length !== input.occurrences.length)) refuse('The import draft source positions in this file do not match its source.');
   const occurrences = sources[0].map((entry, index) => sources.map((source) => ({

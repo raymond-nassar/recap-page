@@ -37,11 +37,10 @@ function legacyIdentityKey(raw) {
 
 // A placeholder's saved identity is a hash of its visible label, so a checklist that corrects a
 // label must name the label the identity was minted from or every reader's marks on it disconnect.
-// The annotation is stripped from the label in every caller, and its key is reported only to the
-// vendoring script and its tests, which ask for it: the app never hashes a placeholder, so an
-// import draft keeps the occurrence shape it had before the annotation existed.
-function sourceIdentity(title, { legacyIdentityKeys = false } = {}) {
-  const legacy = LEGACY_IDENTITY_KEY_RE.exec(title);
+// The annotation is stripped from new labels, and its key is reported only to the vendoring
+// script and its tests. Older drafts can retain the literal annotation when validated.
+function sourceIdentity(title, { legacyIdentityKeys = false, preserveLegacyIdentityAnnotations = false } = {}) {
+  const legacy = preserveLegacyIdentityAnnotations ? null : LEGACY_IDENTITY_KEY_RE.exec(title);
   const legacyKey = legacy ? legacyIdentityKey(legacy[1]) : null;
   const withoutLegacy = legacyKey != null ? title.slice(0, legacy.index).trim() : title;
   const evidence = IDENTITY_EVIDENCE_RE.exec(withoutLegacy);
@@ -130,7 +129,7 @@ export function isSafeMarvelUrl(url) {
 // serializeChecklist writes the list's own name as `# name`, so treating it as a section would
 // put every issue in one section named after the list. An order with no sub-headings, which is
 // every order vendored before trade orders existed, reports `section: null` throughout.
-export function parseChecklist(text, { legacyReaderLinks = false, legacyIdentityKeys = false } = {}) {
+export function parseChecklist(text, { legacyReaderLinks = false, legacyIdentityKeys = false, preserveLegacyIdentityAnnotations = false } = {}) {
   const entries = [];
   const unresolved = [];
   const headings = [];
@@ -202,7 +201,7 @@ export function parseChecklist(text, { legacyReaderLinks = false, legacyIdentity
       }
     }
 
-    const identified = sourceIdentity(title, { legacyIdentityKeys });
+    const identified = sourceIdentity(title, { legacyIdentityKeys, preserveLegacyIdentityAnnotations });
     title = identified.title;
     if (!title) continue;
     const issueId = issueIdFromUrl(url);

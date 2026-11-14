@@ -28,6 +28,15 @@ export function sourceOccurrences(rawText, options) {
   }));
 }
 
+// Drafts saved by an older app may contain an annotation in the literal title.
+export function sourceOccurrencesForValidation(rawText) {
+  const options = [{}, { legacyReaderLinks: true }];
+  if (typeof rawText === 'string' && rawText.includes('mrt:legacy-identity-key=')) {
+    options.push({ preserveLegacyIdentityAnnotations: true }, { legacyReaderLinks: true, preserveLegacyIdentityAnnotations: true });
+  }
+  return options.map((option) => sourceOccurrences(rawText, option));
+}
+
 export function occurrenceIssue(entry) {
   if (entry.choice) return { ...entry.choice, collectedIn: entry.section ?? null };
   if (entry.issueId == null) return null;
@@ -46,8 +55,8 @@ export function validateImportDraft(text) {
   if (draft?.format !== DRAFT_FORMAT || draft.version !== DRAFT_VERSION) throw new Error('This is not a supported import draft file.');
   if (typeof draft.rawText !== 'string' || !Array.isArray(draft.occurrences)
     || draft.occurrences.length > MAX_ISSUES) throw new Error('The import draft source is invalid.');
-  const source = sourceOccurrences(draft.rawText);
-  const legacySource = sourceOccurrences(draft.rawText, { legacyReaderLinks: true });
+  const sources = sourceOccurrencesForValidation(draft.rawText);
+  const source = sources[0];
   if (!source.length || source.length !== draft.occurrences.length) throw new Error('The import draft source positions do not match.');
   source.forEach((entry, index) => {
     const held = draft.occurrences[index];
@@ -58,8 +67,8 @@ export function validateImportDraft(text) {
       delete expected.applied;
       return JSON.stringify(original) === JSON.stringify(expected);
     };
-    const originalEntry = matchesSource(entry) ? entry : legacySource[index];
-    if (!matchesSource(originalEntry)
+    const originalEntry = matchesSource(entry) ? entry : sources.slice(1).map((candidate) => candidate[index]).find(matchesSource);
+    if (!originalEntry
       || typeof applied !== 'boolean') throw new Error('The import draft source was changed.');
     if (choice !== null) {
       const normalized = normalizeIssue(choice);
