@@ -67,7 +67,7 @@ function readJson(file) {
 export const DATABASE_ONLY_KEYS = Object.freeze(['storyTitles', 'uncountedSequences', 'weakNumbers', 'gcdSeries',
   'partialSeries', 'printingOf']);
 const DATABASE_SOURCE = 'gcd-notes';
-const DATABASE_SERIES_NAME = /\([^()]*, \d{4} series\)/;
+const DATABASE_SERIES_NAME = /\([^()]*, \d{4} series\)/i;
 // Which book is a printing or variant of which is read from the database, so MIT prose and ids
 // must not state it in words either.
 const PRINTING_WORDING = /\bprintings?\b|second edition|variant of/i;
@@ -171,7 +171,7 @@ export function recoverCbhFacts({ pilot, lists, ledgers }) {
 }
 
 function seriesStartYear(text) {
-  const match = /\((?:[^()]*,\s*)?(\d{4})(?:\s*series|\s*-|\))/.exec(text || '');
+  const match = /\((?:[^()]*,\s*)?(\d{4})(?:\s*series|\s*-|\))/i.exec(text || '');
   return match ? Number(match[1]) : null;
 }
 
@@ -246,13 +246,19 @@ export function checkEdition(edition, fixture, seriesNames) {
     for (const range of edition.contents) {
       const series = range.portion === 'partial' ? check.partialSeries : check.gcdSeries;
       const span = range.from === range.to ? `#${range.from}` : `#${range.from}-${range.to}`;
-      if (!notesStateRange(notes, series, span, range.portion === 'partial')) {
-        conflicts.push({ kind: 'evidence-weak', detail: `The indexer notes do not state ${series} ${span}.`, evidence: { ...evidence, notes } });
+      if (typeof series !== 'string' || !notesStateRange(notes, series, span, range.portion === 'partial')) {
+        const detail = typeof series !== 'string' ? `No database series name is recorded for ${span}.`
+          : `The indexer notes do not state ${series} ${span}.`;
+        conflicts.push({ kind: 'evidence-weak', detail, evidence: { ...evidence, notes } });
         continue;
       }
-      const ours = seriesStartYear(seriesNames[range.seriesId]);
+      const ours = seriesStartYear(seriesNames?.[range.seriesId]);
       const theirs = seriesStartYear(series);
-      if (ours && theirs && ours !== theirs) {
+      if (!ours || !theirs) {
+        conflicts.push({ kind: 'series-year', detail: `Cannot compare series start years (list: ${ours || 'unknown'}; database: ${theirs || 'unknown'}).`, evidence });
+        continue;
+      }
+      if (ours !== theirs) {
         conflicts.push({ kind: 'series-year', detail: `The list dates this series from ${ours}; the database from ${theirs}.`, evidence });
       }
       if (range.portion === 'partial') {
