@@ -2689,10 +2689,9 @@ async function alignmentCheck(page, profile) {
     `${id}: populated reading fixture on Home`);
   } else {
     check(await page.$eval('#home-primary-paths [data-category="timeline"]', (node) => !!node.getClientRects().length), `${id}: current fresh Home recommendation`);
-    // #985: phones move the closure notice below Continue reading, which a fresh Home does not show,
-    // so here the notice stays Home's first content on every platform.
+    // An empty global notice pane has a layout box but is not visible content.
     check(await page.$eval('#view-home', (view) => [...view.children]
-      .find((node) => !node.matches('.head') && node.getClientRects().length)?.id === 'reader-closure-notice'),
+      .find((node) => !node.matches('.head, #app-report:empty') && node.getClientRects().length)?.id === 'reader-closure-notice'),
     `${id}: the closure notice stays first on a Home without Continue reading`);
   }
   const home = await record('home', ['#view-home > .head', '.home-lockup', '#home-h',
