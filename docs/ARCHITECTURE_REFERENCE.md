@@ -572,8 +572,8 @@ applies its rows.
 
 An invalid record that the reader has chosen to discard uses `discarding:` and a SHA-256 fingerprint
 of its complete canonical content instead. Only losslessly representable JSON values are eligible:
-non-plain structured-clone objects, sparse arrays, cycles and other lossy values retain the older
-conservative offer. A matching fingerprint retries removal without asking the same question every
+non-plain structured-clone objects, sparse arrays, cycles and other lossy values are left in place by
+keeping. A matching fingerprint retries removal without asking the same question every
 start; a different record never inherits that permission. The shown offer carries the fingerprint
 and keeping checks it again under the lock.
 
@@ -652,7 +652,7 @@ removed is the exception, for keeping and erase alike: the pause ends, and the c
 ends in a reload, so a pause here would come back at every start for as long as the disk stayed full.
 A copy that fails its checks has the same wait when its full content can be fingerprinted safely:
 keeping and erase leave `discarding:` with that fingerprint. A raw value that cannot be
-fingerprinted keeps the conservative behavior: a later start offers it again rather than trusting
+fingerprinted is left in place by keeping: a later start offers it again rather than trusting
 an ambiguous identity.
 A journal that cannot be read is never removed or written over: keeping leaves it for a later start to
 offer again, and a new restore refuses to begin over it. The exact prior copy can be downloaded but not restored by this version, which says

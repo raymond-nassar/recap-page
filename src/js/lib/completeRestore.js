@@ -1120,11 +1120,15 @@ export class CompleteRestore {
         this.recovery = offer;
         throw new Error(RESTORE_MESSAGES.keepNotOffered);
       }
-      // A journal IndexedDB cannot read is left for a later start rather than guessed at, and so is one
-      // it can read but not remove. An invalid copy needs its whole fingerprint, never its raw id,
-      // before a later start may remove it without asking again.
+      // An unreadable or unidentifiable journal is left for a later start rather than guessed at.
+      // An invalid copy needs its whole fingerprint, never its raw id, before it can be removed.
       if (journal.kind === 'unreadable') this.clearOverUnchecked();
-      else {
+      else if (journal.kind === 'invalid' && !journal.fingerprint) {
+        this.clearOverUnchecked();
+        this.journalUnchecked = true;
+        this.recovery = null;
+        return { ok: true, changed: false, copyKept: true, offered: true, unidentified: true };
+      } else {
         try {
           await this.cleanUp(offer.id ?? readMarker(this.raw).id ?? NO_ID, {
             offered: journal.kind === 'invalid' && !journal.fingerprint, fingerprint: journal.fingerprint,

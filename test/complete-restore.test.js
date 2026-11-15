@@ -1671,7 +1671,9 @@ test('the keep question says a recovery copy goes at once, or at a later start i
   }
   const raw = keepCurrentQuestion({ kind: 'invalid', download: 'raw' });
   assert.ok(!raw.includes(later), 'a copy that fails its checks is never removed by a later start on its own');
-  assert.ok(raw.includes('If this browser cannot remove it yet, the next start offers it again.'), raw);
+  assert.ok(raw.includes('The recovery copy cannot be identified safely, so it is left in place and the next start offers it again.'), raw);
+  assert.equal(keptNotice({ copyKept: true, offered: true, unidentified: true }),
+    'The data that was here is unchanged. The recovery copy could not be identified safely, so it is offered again.');
   assert.ok(keepCurrentQuestion({ kind: 'invalid', download: 'raw', fingerprint: 'a'.repeat(64) }).includes(later),
     'a safely identified invalid copy can wait for cleanup without another choice');
   assert.ok(!keepCurrentQuestion({ kind: 'unchecked', download: null }).includes(later), 'an unchecked copy is never deleted by keeping');
@@ -2154,7 +2156,7 @@ test('invalid-copy identity never authorizes a different or lossy raw journal', 
     const eligible = raw.damaged === 'original';
     assert.equal(Boolean(tab.state.recovery.fingerprint), eligible);
     assert.equal((await tab.keepCurrent()).ok, true);
-    assert.equal(readMarker(env.storage).state, eligible ? 'discarding' : 'cleaning');
+    assert.equal(readMarker(env.storage).state, eligible ? 'discarding' : 'absent');
     await tab.releaseShared();
     if (eligible) env.journal.plantRaw({ damaged: 'replacement' }, null);
     const later = await env.open();
@@ -2173,6 +2175,65 @@ test('invalid-copy identity never authorizes a different or lossy raw journal', 
     }
     await later.releaseShared();
   }
+});
+
+test('keeping an unidentified recovery copy never deletes a changed journal', async () => {
+  for (const marker of ['absent', 'active', 'done', 'invalid']) {
+    for (const changed of [false, true]) {
+      const env = environment();
+      env.journal.plantRaw({ damaged: new Map([['old', 1]]) }, null);
+      if (marker === 'active' || marker === 'done') {
+        env.storage.map.set(RESTORE_MARKER_KEY, `${marker}:${'a'.repeat(64)}`);
+      } else if (marker === 'invalid') env.storage.map.set(RESTORE_MARKER_KEY, 'unrecognized');
+      const tab = await env.open();
+      assert.equal(tab.state.recovery.fingerprint, undefined);
+      if (changed) env.journal.plantRaw({ damaged: new Map([['new', 2]]) }, null);
+      const retained = await env.journal.read();
+      const result = await tab.keepCurrent();
+      assert.deepEqual(result, { ok: true, changed: false, copyKept: true, offered: true, unidentified: true });
+      assert.deepEqual(await env.journal.read(), retained, `${marker}:${changed}`);
+      assert.equal(readMarker(env.storage).state, marker === 'done' ? 'done' : 'absent');
+      assert.equal(tab.state.phase, 'open');
+      assert.equal(tab.state.available, false);
+      tab.storage.setItem(SIDEBAR_KEY, 'true');
+      await tab.releaseShared();
+      const later = await env.open();
+      assert.equal(later.state.phase, 'paused');
+      assert.equal(later.state.recovery.kind, 'invalid');
+      assert.deepEqual(await env.journal.read(), retained);
+      await later.releaseShared();
+    }
+  }
+  const env = environment();
+  env.journal.plantRaw({ damaged: new Map([['old', 1]]) }, null);
+  env.storage.map.set(RESTORE_MARKER_KEY, `active:${'a'.repeat(64)}`);
+  const tab = await env.open();
+  env.storage.refuseRemoval.add(RESTORE_MARKER_KEY);
+  const result = await tab.keepCurrent();
+  assert.equal(result.ok, false);
+  assert.equal(tab.state.phase, 'paused');
+  assert.ok(await env.journal.read());
+  await tab.releaseShared();
+
+  const replacement = environment();
+  replacement.journal.plantRaw({ damaged: new Map([['old', 1]]) }, null);
+  const stale = await replacement.open();
+  const { record } = await planted(replacement, { id: 'b'.repeat(64), marker: null, writes: 2, steps: 2 });
+  const refused = await stale.keepCurrent();
+  assert.equal(refused.ok, false);
+  assert.equal(refused.error, RESTORE_MESSAGES.copyReadable);
+  assert.equal(replacement.journal.record.id, record.id);
+  assert.equal(stale.state.recovery.id, record.id);
+  await stale.releaseShared();
+
+  const missing = environment();
+  missing.journal.plantRaw({ damaged: new Map([['old', 1]]) }, null);
+  const outdated = await missing.open();
+  missing.journal.plant(null);
+  assert.deepEqual(await outdated.keepCurrent(), { ok: true, changed: false });
+  assert.equal(outdated.state.phase, 'open');
+  assert.equal(await missing.journal.read(), null);
+  await outdated.releaseShared();
 });
 
 test('quota rollback matrix restores every prior key after each refused forward effect', async () => {
