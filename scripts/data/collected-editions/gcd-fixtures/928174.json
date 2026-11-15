@@ -1,0 +1,24 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/928174/?format=json",
+  "retrievedAt": "2026-11-13T09:23:38.449Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/928174/?format=json",
+    "series_name": "Spectacular Spider-Man (2003 series)",
+    "descriptor": "1 - The Hunger",
+    "number": "1",
+    "volume": "1",
+    "variant_name": "",
+    "title": "The Hunger",
+    "publication_date": "[December] 2003",
+    "key_date": "2003-12-00",
+    "page_count": "124.000",
+    "isbn": "0-7851-1169-7",
+    "notes": "collects Spectacular Spider-Man (Marvel, 2003 series) #1-5",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/63977/?format=json",
+    "story_set": []
+  }
+}

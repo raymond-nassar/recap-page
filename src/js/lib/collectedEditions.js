@@ -1,19 +1,17 @@
 import { editionCatalog } from '../../data/collectedEditionCatalog.js';
 import { editionEvidence } from '../../data/collectedEditionEvidence.js';
+import { acceptedLink } from './editionDestinations.js';
 
 export { editionCatalog, editionEvidence };
 
+// One link per provider per book, and only through the shared gate.
 export function providerLinks(edition, catalog = editionCatalog) {
+  const seen = new Set();
   return (edition.destinations || []).flatMap((destination) => {
-    const provider = catalog.providers[destination.provider];
-    if (destination.provider !== 'hoopla' || provider?.permission !== 'granted'
-      || !provider.permissionEvidence || destination.status !== 'verified' || !destination.checkedAt) return [];
-    let url;
-    try { url = new URL(destination.url); } catch { return []; }
-    if (url.protocol !== 'https:' || url.hostname !== 'www.hoopladigital.com' || url.port
-      || url.username || url.password || url.search || url.hash
-      || !/^\/(?:comic\/[a-z0-9-]+\/|title\/)\d+$/.test(url.pathname)) return [];
-    return [{ name: provider.name, url: url.href }];
+    const link = acceptedLink(catalog.providers, destination);
+    if (!link || seen.has(link.provider)) return [];
+    seen.add(link.provider);
+    return [link];
   });
 }
 

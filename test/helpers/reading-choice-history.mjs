@@ -28,6 +28,7 @@ import {
   beforeWolverineCorrectionOrders, beforeWolverineCorrectionPayloadText,
 } from './wolverine-correction-history.mjs';
 import { beforeUltimateSelectionIssueIds } from './ultimate-spider-man-selection-history.mjs';
+import { beforeThorCorrectionIssueIds } from './reading-list-correction-history.mjs';
 import { beforeIronManCoverCatalogEntry, beforeIronManCoverPayloadText } from './iron-man-cover-history.mjs';
 
 const root = fileURLToPath(new URL('../..', import.meta.url));
@@ -168,6 +169,7 @@ export function historicalReadingChoiceManifest(manifest) {
 }
 
 export function historicalReadingChoiceIssueIds(id, currentIds) {
+  if (id === 'thor-best-of') return beforeThorCorrectionIssueIds(currentIds);
   if (id === 'ultimate-spider-man-reading-order') return beforeUltimateSelectionIssueIds(currentIds);
   if (id === 'wolverine-reading-order') return beforeWolverineCorrectionIssueIds(currentIds);
   if (id === amazingSpiderManGuideId) return beforeAmazingSpiderManSupplementIssueIds(currentIds);
@@ -371,7 +373,8 @@ export async function loadBeforeAmazingSpiderManSupplementLibrary(currentManifes
     const ids = issueIdsFromValue(payload);
     const issueIds = entry.id === 'ultimate-spider-man-reading-order' ? beforeUltimateSelectionIssueIds(ids)
       : entry.id === amazingSpiderManGuideId ? beforeAmazingSpiderManSupplementIssueIds(ids)
-        : entry.id === 'wolverine-reading-order' ? beforeWolverineCorrectionIssueIds(ids) : ids;
+        : entry.id === 'wolverine-reading-order' ? beforeWolverineCorrectionIssueIds(ids)
+          : entry.id === 'thor-best-of' ? beforeThorCorrectionIssueIds(ids) : ids;
     await writeFile(path.join(payloadDir, file), `${JSON.stringify({ issueIds })}\n`);
   }));
   return { ...await loadLibrarySnapshot({ manifest, payloadDir }), payloadDir };
@@ -390,7 +393,8 @@ export async function loadBeforeWolverineCorrectionLibrary() {
     const payload = JSON.parse(await readFile(path.join(root, 'src', 'data', file), 'utf8'));
     const ids = issueIdsFromValue(payload);
     const issueIds = entry.id === 'ultimate-spider-man-reading-order' ? beforeUltimateSelectionIssueIds(ids)
-      : entry.id === 'wolverine-reading-order' ? beforeWolverineCorrectionIssueIds(ids) : ids;
+      : entry.id === 'wolverine-reading-order' ? beforeWolverineCorrectionIssueIds(ids)
+        : entry.id === 'thor-best-of' ? beforeThorCorrectionIssueIds(ids) : ids;
     await writeFile(path.join(payloadDir, file), `${JSON.stringify({ issueIds })}\n`);
   }));
   return { ...await loadLibrarySnapshot({ manifest, payloadDir }), payloadDir };

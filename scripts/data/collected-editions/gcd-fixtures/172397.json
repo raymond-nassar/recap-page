@@ -1,0 +1,35 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/172397/?format=json",
+  "retrievedAt": "2026-11-13T04:50:49.386Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/172397/?format=json",
+    "series_name": "The Uncanny X-Men (1981 series)",
+    "descriptor": "413 [Direct Edition]",
+    "number": "413",
+    "volume": "1",
+    "variant_name": "Direct Edition",
+    "title": "",
+    "publication_date": "November 2002",
+    "key_date": "2002-11-00",
+    "page_count": "36.000",
+    "isbn": "",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/2605/?format=json",
+    "story_set": [
+      {
+        "type": "comic story",
+        "title": "Annie's Moving Story",
+        "feature": "X-Men",
+        "sequence_number": 1,
+        "page_count": "23.000",
+        "notes": "Source for Betancourt letters credit is Official Index to the Marvel Universe (Vandal et al. 2009). It is assumed that GCD’s previous credit (“Richard Starkings and Comicraft's Jimmy”) accurately transcribes the published credit, and that “Comicraft's Jimmy” refers to James Betancourt.",
+        "script": "Chuck Austen (credited)",
+        "pencils": "Sean Phillips (credited)"
+      }
+    ]
+  }
+}

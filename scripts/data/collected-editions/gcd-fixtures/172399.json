@@ -1,0 +1,35 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/172399/?format=json",
+  "retrievedAt": "2026-11-13T04:50:54.630Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/172399/?format=json",
+    "series_name": "The Uncanny X-Men (1981 series)",
+    "descriptor": "415 [Direct Edition]",
+    "number": "415",
+    "volume": "1",
+    "variant_name": "Direct Edition",
+    "title": "",
+    "publication_date": "January 2003",
+    "key_date": "2003-01-00",
+    "page_count": "44.000",
+    "isbn": "",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/2605/?format=json",
+    "story_set": [
+      {
+        "type": "comic story",
+        "title": "Secrets",
+        "feature": "X-Men",
+        "sequence_number": 1,
+        "page_count": "23.000",
+        "notes": "",
+        "script": "Chuck Austen (credited)",
+        "pencils": "Sean Phillips (credited)"
+      }
+    ]
+  }
+}

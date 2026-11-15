@@ -1,0 +1,55 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/1822580/?format=json",
+  "retrievedAt": "2026-11-14T12:51:32.504Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/1822580/?format=json",
+    "series_name": "Doctor Strange (2018 series)",
+    "descriptor": "3 [Jesús Saiz]",
+    "number": "3",
+    "volume": "",
+    "variant_name": "Jesús Saiz",
+    "title": "",
+    "publication_date": "September 2018",
+    "key_date": "2018-09-00",
+    "page_count": "32.000",
+    "isbn": "",
+    "notes": "Legacy number: 393",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/125730/?format=json",
+    "story_set": [
+      {
+        "type": "credits, title page",
+        "title": "Sorcerer Supreme of the Galaxy Part Three",
+        "feature": "",
+        "sequence_number": 1,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "Kathleen Wisneski",
+        "pencils": "Jesús Saiz"
+      },
+      {
+        "type": "comic story",
+        "title": "Sorcerer Supreme of the Galaxy Part Three",
+        "feature": "Doctor Strange",
+        "sequence_number": 2,
+        "page_count": "20.000",
+        "notes": "",
+        "script": "Mark Waid",
+        "pencils": "Jesús Saiz"
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "",
+        "feature": "Doctor Strange",
+        "sequence_number": 3,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Jesús Saiz"
+      }
+    ]
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/726991/?format=json",
+  "retrievedAt": "2026-11-14T01:27:03.317Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/726991/?format=json",
+    "series_name": "Doomwar (2010 series)",
+    "descriptor": "1 [Direct Edition]",
+    "number": "1",
+    "volume": "",
+    "variant_name": "Direct Edition",
+    "title": "",
+    "publication_date": "April 2010",
+    "key_date": "2010-04-00",
+    "page_count": "44.000",
+    "isbn": "",
+    "notes": "This follows Black Panther (Marvel, 2009 series) #12.",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/43801/?format=json",
+    "story_set": [
+      {
+        "type": "credits, title page",
+        "title": "Credits",
+        "feature": "",
+        "sequence_number": 1,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "None"
+      },
+      {
+        "type": "comic story",
+        "title": "Doomwar Part 1",
+        "feature": "Black Panther",
+        "sequence_number": 2,
+        "page_count": "34.000",
+        "notes": "",
+        "script": "Jonathan Maberry",
+        "pencils": "Scot Eaton"
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "Next Issue",
+        "feature": "Black Panther",
+        "sequence_number": 3,
+        "page_count": "1.000",
+        "notes": "Presents full page cover art for next issue.",
+        "script": "None",
+        "pencils": "John Romita Jr."
+      }
+    ]
+  }
+}

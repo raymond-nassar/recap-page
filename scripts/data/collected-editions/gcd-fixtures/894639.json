@@ -1,0 +1,65 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/894639/?format=json",
+  "retrievedAt": "2026-11-14T03:27:59.631Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/894639/?format=json",
+    "series_name": "Avengers Academy (2010 series)",
+    "descriptor": "22 [Direct Edition]",
+    "number": "22",
+    "volume": "",
+    "variant_name": "Direct Edition",
+    "title": "",
+    "publication_date": "January 2012",
+    "key_date": "2012-01-00",
+    "page_count": "36.000",
+    "isbn": "",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/49641/?format=json",
+    "story_set": [
+      {
+        "type": "recap",
+        "title": "",
+        "feature": "Avengers Academy",
+        "sequence_number": 1,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "Christos Gage ?",
+        "pencils": "? (illustrations)"
+      },
+      {
+        "type": "comic story",
+        "title": "Disappointments",
+        "feature": "Avengers Academy",
+        "sequence_number": 2,
+        "page_count": "20.000",
+        "notes": "",
+        "script": "Christos Gage",
+        "pencils": "Sean Chen"
+      },
+      {
+        "type": "letters page",
+        "title": "",
+        "feature": "After School Special",
+        "sequence_number": 3,
+        "page_count": "1.000",
+        "notes": "Letters submitted by Lars Meyer; Rob Anderson; Andy Ash",
+        "script": "Christos Gage",
+        "pencils": "Rodin Esquejo ? (illustration)"
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "Richard Castle's Deadly Storm",
+        "feature": "Derrick Storm; Castle",
+        "sequence_number": 4,
+        "page_count": "5.000",
+        "notes": "cover and four-page preview of Richard Castle's Deadly Storm (Marvel, 2011 series)",
+        "script": "Brian Michael Bendis; Kelly Sue DeConnick",
+        "pencils": "Lan Medina"
+      }
+    ]
+  }
+}

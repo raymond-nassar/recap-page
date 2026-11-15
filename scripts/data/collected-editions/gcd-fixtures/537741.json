@@ -1,0 +1,45 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/537741/?format=json",
+  "retrievedAt": "2026-11-13T22:27:52.398Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/537741/?format=json",
+    "series_name": "Secret Invasion: X-Men (2008 series)",
+    "descriptor": "1",
+    "number": "1",
+    "volume": "",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "October 2008",
+    "key_date": "2008-10-00",
+    "page_count": "36.000",
+    "isbn": "",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/31628/?format=json",
+    "story_set": [
+      {
+        "type": "comic story",
+        "title": "Secret Invasion, Part One",
+        "feature": "X-Men",
+        "sequence_number": 1,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Mike Carey",
+        "pencils": "Cary Nord"
+      },
+      {
+        "type": "text article",
+        "title": "Michael Turner, 1971-2008",
+        "feature": "",
+        "sequence_number": 2,
+        "page_count": "1.000",
+        "notes": "A one page tribute to the late Michael Turner.",
+        "script": "?",
+        "pencils": "? (photo)"
+      }
+    ]
+  }
+}
