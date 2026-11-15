@@ -29,6 +29,12 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
   change carries into later page loads. Long Data page headings wrap on small phones.
 - Corrected the Wolverine and Ultimate Spider-Man reading guides and Iron Man's cover.
   Existing saved lists and read progress are unchanged.
+- Where offered, follow a collected book's links to look for it on Hoopla or in Libby.
+  The links do not indicate whether your library can lend the book.
+- Phone cards follow your text size, More no longer looks selected, and very long list names
+  can be saved as Markdown. Home notices sit below the app name, with consistent Back controls.
+- Screen readers hear confirmations and gap notes while dialogs are open. Home's What's new
+  appears after an update until opened; the highlights remain available from About.
 - Fixed OneDrive checks and restores that failed when Microsoft forwarded downloads through
   more than one address, and improved how large complete backups fit on iPhone and iPad.
 
@@ -53,10 +59,19 @@ complete and cloud backups containing the old address still restore unchanged. O
 forwarding and iOS sign-in parsing change no token records, consent rules or backup formats, and
 do not grant consent or re-enable backups.
 
-Universes and collected-edition labels are bundled metadata, not saved-data fields. Browsing
-Universes writes nothing. Search queries, scopes and unsaved selections are not newly persisted;
-About this list's open state lives only in session history. Existing collection headings,
-exports and progress behavior remain unchanged.
+Universes, collected-edition labels and borrowing search links are bundled metadata, not saved-data
+fields. Browsing Universes writes nothing. Search queries, scopes and unsaved selections are not
+newly persisted; About this list's open state lives only in session history. Existing collection
+headings, export formats and progress behavior remain unchanged. Phone layout, announcements and
+Back controls change no saved-data format or persisted reading data.
+
+Home's What's new reuses its existing integer seen marker, now also acknowledged on a genuine
+first install. Older builds read it normally; reading backups and restores still exclude it.
+No new key or format is introduced. Failed acknowledgment keeps the offer for a later visit.
+
+Best of Thor's corrected catalog copy grows from 131 to 144 comics, and the Captain Marvel /
+Ms. Marvel description is consistent when browsing and saving a new copy. Existing saved copies
+and their progress remain unchanged.
 
 For the corrected Ultimate Spider-Man guide, a new copy has 316 comics. An existing 352-comic
 copy keeps all its comics and progress; this deletion-only change does not offer an updated copy.
@@ -95,8 +110,12 @@ separate.
 - Reading lists now open with About this list expanded and a clear link to the site that
   curated them, both in Preview and in your library. (#1221)
 - Verified collected-edition labels now appear beside supported comics in Preview and saved
-  reading lists. Links to places to read or borrow remain hidden until the provider has
-  granted permission. (#1225)
+  reading lists. (#1225)
+- Where offered, follow a link from a collected book to look for it on Hoopla or in Libby.
+  The links do not indicate whether your library can lend the book. (#1281)
+- Best of Thor's Celestial Saga section now starts with Thor Annual #7, followed by Thor #283
+  to 301. The Captain Marvel / Ms. Marvel list now saves the same description it shows while
+  browsing. (#1308)
 - Corrected Comic Book Herald source credits for One World Under Doom, Siege: Dark Reign
   Prelude, MCU Prep: Shang-Chi and the Legend of the Ten Rings, and MCU Prep: Doctor Strange
   (2016), while keeping the owner's selections and reading order unchanged. (#1228)
@@ -136,6 +155,16 @@ separate.
   Long section headings now wrap onto a second line. (#1271)
 - On Android, Read now opens your default browser directly when it is a recognized web browser,
   instead of asking you to choose one. You are asked only when no default browser is set. (#1220)
+- On phones, Explore card titles now grow with your text size, the More button no longer looks
+  selected, and reading lists with very long names can be saved as Markdown. (#1309)
+- Ordinary Home notices now appear below the app name, and directly opened phone screens use
+  a consistent Back control that returns to the same parent as before. (#1315)
+- "What's new" on Home now appears after an update until you open it, instead of staying there
+  all the time. A new install doesn't show it. You can open the highlights at any time from
+  About. (#1318)
+- Screen readers now hear confirmations and gap notes raised while a dialog such as Preview
+  is open. Pending messages follow a newly opened dialog, failed rating saves announce their
+  error once, and cancelled dialogs no longer replay queued messages. (#1310)
 
 ### Backup and restore
 
