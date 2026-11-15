@@ -281,7 +281,7 @@ sequenceDiagram
 **The transform is pure; the Store writes.** The shared read action at `src/js/views/reading.js:1143-1161` passes
 a function to the Store. That transform returns new state without side effects at
 `src/js/lib/model.js:761-763`. The write, result, and notification are handled together at
-`src/js/storage.js:788-815`.
+`src/js/storage.js:794-821`.
 
 **The repaint is synchronous.** Before `update` returns, its callback has repainted the result.
 Announcements at `src/js/main.js:358-359` depend on save success, so a screen reader does not hear
@@ -315,9 +315,9 @@ committed by moving nodes rather than replacing the container, at
 
 **Background updates use the same path.** Hydration calls `update` at `src/js/hydrate.js:59`.
 Not every state replacement goes through that method, though: boot loads state at
-`src/js/storage.js:480-512`, while restore and starting fresh replace it. Restore writes the key
-directly at `src/js/storage.js:984-1073`, bypassing the failed-read latch because it is a chosen
-overwrite, as explained at `src/js/storage.js:1142-1150`. A guard inside `update` does not cover these
+`src/js/storage.js:486-518`, while restore and starting fresh replace it. Restore writes the key
+directly at `src/js/storage.js:990-1079`, bypassing the failed-read latch because it is a chosen
+overwrite, as explained at `src/js/storage.js:1148-1156`. A guard inside `update` does not cover these
 replacement paths.
 
 **Comic searches preview first and save once.** The API delivers each normalized page before it
@@ -369,7 +369,7 @@ the page's announcer sits behind the modal; interior dialog padding is not a bac
 
 ## Where a reader's data lives
 
-Storage declares five key names at `src/js/storage.js:17-21`, and at `src/js/storage.js:1277-1286`
+Storage declares five key names at `src/js/storage.js:17-21`, and at `src/js/storage.js:1283-1292`
 the settings and sidebar names and the complete restore's own names, so a complete backup can use
 them without importing the controller. The controller still owns settings and the sidebar
 preference, and declares the cache-cleanup key at `src/js/main.js:96`; save education owns another key
@@ -424,13 +424,13 @@ Every `localStorage` name the tracker writes, and why it exists:
 
 | Key | Written by | Cleared by | Why it exists |
 |---|---|---|---|
-| `mrt.state.v2` | every saved change, at `src/js/storage.js:880`, and a complete restore | erasing everything, which writes an empty state rather than removing the key | The lists, reading progress, notes, issue ratings and availability overrides. This is the reader's data. Since 4.5.1 the iOS app stores each character above U+00FF, and each C1 control, as a JSON `\uXXXX` escape so WebKit can hold it at one byte per character, but only when that uses less storage than the plain text; text heavy in other scripts is stored as before. Other platforms keep ordinary serialization: Chromium and Firefox count UTF-16 code units regardless of string width, so escaping would use more quota there. Every reader parses either form to the same content (#960). |
+| `mrt.state.v2` | every saved change, at `src/js/storage.js:886`, and a complete restore | erasing everything, which writes an empty state rather than removing the key | The lists, reading progress, notes, issue ratings and availability overrides. This is the reader's data. Since 4.5.1 the iOS app stores each character above U+00FF, and each C1 control, as a JSON `\uXXXX` escape so WebKit can hold it at one byte per character, but only when that uses less storage than the plain text; text heavy in other scripts is stored as before. Other platforms keep ordinary serialization: Chromium and Firefox count UTF-16 code units regardless of string width, so escaping would use more quota there. Every reader parses either form to the same content (#960). |
 | `mrt.list-history.v1` | the companion history store, with read-back verified writes at `src/js/lib/listHistory.js:374-405`, and a complete restore | verified reader erase followed by checked history cleanup | Exact saved-list identities, completion dates, and optional enjoyment. It has a separate backup and no automatic expiry or orphan pruning. |
 | `mrt.import.draft.v1` | checked source, choices and checkpoints through ImportDraftStore, and a complete restore of a file holding a draft | confirmed draft discard, verified reader erase plus unchanged captured draft/reader cleanup, or a complete restore of a file holding no draft, which its question names | Exact pasted source and positions, explicit matches, pending outcome evidence and retained previous source snapshots. Separate versioned backup; no automatic expiry. Start fresh/cache cleanup preserve it. Reading restore/Undo pause rather than replay it. |
-| `mrt.state.restore.tmp` | a non-iOS reading-data file restore before the swap, at `src/js/storage.js:1024-1040`. Complete restore and iOS file restore remove any leftover stage instead of writing a third copy | the same restore, after the swap and on failure; any later restore and the reader's erase | Legacy staging, never read or offered as recovery. The main swap is reconciled by reading back the main key. A refused cleanup can leave a whole tracker here until the next restore or erase clears it. Erasing discards it because that dialog says this browser has nothing left. |
-| `mrt.state.prerestore` | the same restore, verified before reader replacement; a complete restore writes it too | the reader's erase, and `rewindSnapshot()` at `src/js/storage.js:1171-1188`, in two of its four routes | Prior reader bytes, including legacy raw copies, from a reading-data file restore. On iOS both ordinary and complete restore keep the prior data in the narrower stored form `mrt.state.v2` describes, which can differ from its exact bytes but parses to the same content. Other platforms keep the exact prior bytes. The copy outlives reload and Start fresh. A tab identifies one Undo by the exact snapshot it wrote; Undo consumes that identity without deleting recovery bytes. After Undo, reload or snapshot replacement, restoration is neutrally labeled as a saved-copy replacement. Both actions confirm replacement and reject changed captured reader/snapshot values. The replaced data becomes the next raw copy, not an automatic Redo. Download preserves the held bytes even if validation refuses them. `undoRestore()` at `src/js/storage.js:1190-1207` validates promotion and refuses an identical live copy, including equivalent narrow spellings on iOS. Failed swaps rewind the earlier snapshot when possible; existing rewind withdrawal applies when no earlier copy exists or repair fails, while an unreadable earlier slot is not guessed. Erasing is the deliberate removal route. No persistent direction metadata, combined backup envelope or new reader schema is introduced. |
+| `mrt.state.restore.tmp` | a non-iOS reading-data file restore before the swap, at `src/js/storage.js:1030-1046`. Complete restore and iOS file restore remove any leftover stage instead of writing a third copy | the same restore, after the swap and on failure; any later restore and the reader's erase | Legacy staging, never read or offered as recovery. The main swap is reconciled by reading back the main key. A refused cleanup can leave a whole tracker here until the next restore or erase clears it. Erasing discards it because that dialog says this browser has nothing left. |
+| `mrt.state.prerestore` | the same restore, verified before reader replacement; a complete restore writes it too | the reader's erase, and `rewindSnapshot()` at `src/js/storage.js:1177-1194`, in two of its four routes | Prior reader bytes, including legacy raw copies, from a reading-data file restore. On iOS both ordinary and complete restore keep the prior data in the narrower stored form `mrt.state.v2` describes, which can differ from its exact bytes but parses to the same content. Other platforms keep the exact prior bytes. The copy outlives reload and Start fresh. A tab identifies one Undo by the exact snapshot it wrote; Undo consumes that identity without deleting recovery bytes. After Undo, reload or snapshot replacement, restoration is neutrally labeled as a saved-copy replacement. Both actions confirm replacement and reject changed captured reader/snapshot values. The replaced data becomes the next raw copy, not an automatic Redo. Download preserves the held bytes even if validation refuses them. `undoRestore()` at `src/js/storage.js:1196-1213` validates promotion and refuses an identical live copy, including equivalent narrow spellings on iOS. Failed swaps rewind the earlier snapshot when possible; existing rewind withdrawal applies when no earlier copy exists or repair fails, while an unreadable earlier slot is not guessed. Erasing is the deliberate removal route. No persistent direction metadata, combined backup envelope or new reader schema is introduced. |
 | `mrt.state.salvage` | a failed read, and only when the slot is empty or already holds the same bytes | the reader, from Backup and settings | A copy of data that could not be read, kept because saving is paused and the original must not be overwritten. |
-| `mrt.state.salvage.TIMESTAMP` | a failed read when the slot already holds a different incident, at `src/js/storage.js:570-576` | the reader, from Backup and settings | So a second corruption months later cannot clobber the copy taken for the first one. A `.N` is appended when that name is taken too, which one boot can reach on its own, because starting fresh salvages before it clears. |
+| `mrt.state.salvage.TIMESTAMP` | a failed read when the slot already holds a different incident, at `src/js/storage.js:576-582` | the reader, from Backup and settings | So a second corruption months later cannot clobber the copy taken for the first one. A `.N` is appended when that name is taken too, which one boot can reach on its own, because starting fresh salvages before it clears. |
 | `mrt.settings` | the settings form, cover art, theme, D shortcut and reading filter controls, at `src/js/main.js:529-541`, and a complete restore, which replaces the portable settings and keeps every other stored field | nothing | Preferences, not data, and excluded from reading-progress backups and restores. A complete backup carries cover art, theme, reading filter, D shortcut and description hiding, never the API base, and its restore keeps the saved API base. The current interface ignores description hiding; settings saves and new backups write it as false so older versions restore the same visible summaries. Deliberately outside the state so a settings write can never fail a progress write. The D shortcut defaults on; failed saves apply to this tab with a visible reload warning. An older `cachePurge` field is read once as migration input but is no longer authoritative or written by current code. |
 | `mrt.cache-purge.v1` | successful cache cleanup, at `src/js/main.js:484-503` | nothing | A monotonic cleanup generation held apart from settings so an older tab cannot lower it by serializing the settings shape it knows. Current tabs serialize its read-max-write step through one origin-wide browser lock. |
 | `sidebar.collapsed` | deliberate desktop sidebar toggles, inside the persist guard at `src/js/main.js:1097-1103`, and a complete restore of a file that set it | a complete restore of a file made while it was unset | Whether the desktop rail is compact. Narrow open and closed state is ephemeral and never writes this key. Wrapped in its own try, because losing it is not worth an error. |
@@ -465,7 +465,7 @@ filed as `BL-113` rather than settled here, because the copies are listed on the
 erase button, each with its own remove control, and so survive in plain sight, which is a different
 thing from the undo snapshot that survived behind a button claiming it had gone.
 
-Protection compares the copy with the main storage slot at `src/js/storage.js:714-737`, not with
+Protection compares the copy with the main storage slot at `src/js/storage.js:720-743`, not with
 one tab's blocked flags. Another tab may have opened before the corruption and still consider
 itself writable; it must not be allowed to remove the copy protecting the unreadable data.
 
@@ -518,7 +518,7 @@ salvage code was written to survive.
 
 It was filed as BL-076 and fixed there rather than here, because this document changes no code. A
 salvage slot already holding these exact bytes is now adopted rather than written again, at
-`src/js/storage.js:539-549`, so the drawing above shows a branch that did not exist when it was first
+`src/js/storage.js:545-555`, so the drawing above shows a branch that did not exist when it was first
 drawn. Implementing it found two things this section had understated. The repeat was not only per
 reload, because `startFresh()` salvages before it clears, so the button the banner points at wrote
 one more inside a single boot. And the cost was not only space: near the quota the duplicates
