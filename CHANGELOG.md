@@ -13,6 +13,156 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+## 4.6.0
+
+### What's new for readers
+
+- Browse Marvel's realities in the new Universes section, with their Reading Lists, series and
+  comics, or find a Universe from Search.
+- Search Reading Lists, series, creators and comics from one box, with scopes to narrow the
+  results and offline suggestions for similar names when a local search finds no matches.
+- Reading lists now open with About this list expanded and a link to the site that curated them.
+  Reading List options sit below the comic up next, and empty details no longer leave a gap.
+- The app's theme-aware wordmark and brand accents are clearer, and browse pages use short
+  descriptions instead of labels that looked tappable.
+- On iPhone and iPad, tapping a text field no longer leaves the page zoomed, and a text size
+  change carries into later page loads. Long Data page headings wrap on small phones.
+- Corrected the Wolverine and Ultimate Spider-Man reading guides and Iron Man's cover.
+  Existing saved lists and read progress are unchanged.
+- Fixed OneDrive checks and restores that failed when Microsoft forwarded downloads through
+  more than one address, and improved how large complete backups fit on iPhone and iPad.
+
+### Saved data and upgrading
+
+Reading-data schema 4, storage keys and backup formats are unchanged. Existing saved lists are
+snapshots: catalog corrections do not silently replace their membership, titles or progress.
+Existing backups and older schema-4 builds remain readable, with the limitations below.
+No migration or additional backup step is required.
+
+On iPhone and iPad, saved JSON may use character escapes to take less storage space; earlier builds
+parse the same content unchanged. Complete restore keeps the prior data and Undo without an extra
+staged reader copy. Existing 4.5.0 journals and markers remain recoverable. A legacy journal whose
+original write plan cannot fit still offers keeping the current data or restoring the prior data,
+then trying a fresh restore. The iOS pre-restore copy may use narrower spelling rather than exact
+prior bytes; its parsed content and Undo remain, and the journal retains the exact prior bytes.
+Other platforms retain ordinary spelling. Older builds do not acquire the newer restore capacity
+or recovery behavior merely because they can read the same saved content.
+
+Iron Man's corrected cover is displayed without rewriting the stored address or its digest, so
+complete and cloud backups containing the old address still restore unchanged. OneDrive download
+forwarding and iOS sign-in parsing change no token records, consent rules or backup formats, and
+do not grant consent or re-enable backups.
+
+Universes and collected-edition labels are bundled metadata, not saved-data fields. Browsing
+Universes writes nothing. Search queries, scopes and unsaved selections are not newly persisted;
+About this list's open state lives only in session history. Existing collection headings,
+exports and progress behavior remain unchanged.
+
+For the corrected Ultimate Spider-Man guide, a new copy has 316 comics. An existing 352-comic
+copy keeps all its comics and progress; this deletion-only change does not offer an updated copy.
+Already saved Wolverine lists retain their snapshot titles, and its downloadable checklist keeps
+its original text pending separate compatibility work.
+
+For upgrades from versions before 4.0.0, schema-4 data and backups remain incompatible. Keep an
+independent backup and consult the [4.0.0 compatibility guidance](#400). The device-local cloud
+progress decisions and upload hold retain the [4.5.0 limitations](#450) for older builds.
+
+This record prepares Windows, Android and iOS source, including Windows Store version 4.6.0.0.
+It does not announce platform availability or approve publication. Android code and iOS build
+reservations, exact-artifact qualification, device acceptance and action-specific approvals remain
+separate.
+
+### Universes and Search
+
+- New Universes section. Browse Marvel's realities, from the main Marvel Universe to Ultimate
+  Marvel, the Ultimate Universe, Marvel 2099 and more, each with its reality designation where
+  one is confirmed, its first year and debut comic. A reality's page shows the Reading Lists,
+  series and individual comics reviewed as belonging to it. The main Marvel Universe links to
+  Modern Timeline and Marvel Ages. Universes are searchable from Search, and Reading Lists,
+  series and comics link back to their Universe. (#1304)
+- Search Reading Lists, series, creators and comics from one box. Browse by category before
+  typing, or use Top, Reading Lists, Series, Creators and Comics to narrow your results.
+  Reading Lists, series and creators match on your device and work offline. Comic lookups
+  happen only when requested, and selected comics stay selected when you switch results.
+  On iPhone, typing in Search keeps the page at its intended scale. (#1240)
+- Search can suggest up to three similar Reading List, series or creator names when a local
+  search finds no matches. Suggestions tolerate one typo per name in a long enough word, but
+  do not cover a wholly different spelling. They work offline and do not start a comic lookup
+  when selected. (#1248)
+
+### Reading Lists
+
+- Reading lists now open with About this list expanded and a clear link to the site that
+  curated them, both in Preview and in your library. (#1221)
+- Verified collected-edition labels now appear beside supported comics in Preview and saved
+  reading lists. Links to places to read or borrow remain hidden until the provider has
+  granted permission. (#1225)
+- Corrected Comic Book Herald source credits for One World Under Doom, Siege: Dark Reign
+  Prelude, MCU Prep: Shang-Chi and the Legend of the Ten Rings, and MCU Prep: Doctor Strange
+  (2016), while keeping the owner's selections and reading order unchanged. (#1228)
+- Corrected series links in the Wolverine reading order and restored comics incorrectly
+  treated as repeats or exclusions. Newly added copies use the corrected order; existing
+  saved lists and progress remain unchanged. (#1260)
+- Correct 25 garbled titles in the Wolverine Reading Order without changing comic identities
+  or read progress. Existing saved copies and the downloadable checklist are unchanged. (#1276)
+- Corrected the Ultimate Spider-Man reading guide to keep the separate Earth-6160 Peter Parker
+  stories out. New copies contain 316 comics; the later Miles Morales stories and original
+  Ultimate crossovers remain. Existing saved copies and reading progress are unchanged. (#1300)
+- Iron Man's Character Spotlight card, list header and first comic now show the Tales of
+  Suspense #39 cover instead of a lettered tile. (#1295)
+
+### Look and feel
+
+- The Recap Page wordmark on Home is now crisp vector artwork that follows your light or dark
+  theme on every browser, including Safari. In dark mode, the wordmark is Light Purple with
+  its pink outline. (#1223, #1229)
+- The app now uses purple for actions and progress, blue for navigation accents, and a blue,
+  purple and red band when you finish a reading list. Category page headers echo their Home
+  cards, About and the reader launcher use the original app icon, and dialogs and Android
+  sheets have a purple top edge. The light-mode All read celebration now uses the wordmark's
+  colors; dark mode keeps its previous look. (#1237)
+- Dropdown lists are now readable in dark mode on Windows and Android. The browse pages for
+  MCU Prep, Marvel Ages, Genres and each publishing age replace their rows of labels, which
+  looked tappable but were not, with one short line describing the page. (#1301)
+- Reading List options now sit below the comic up next, just above Coming up, so the card holds
+  only the comic and its actions. The Review earlier comics button has been removed. An empty
+  Coming up heading no longer reappears after the last comic in a list is read. (#1250)
+- On iPhone and iPad, tapping into a text field no longer zooms the page and leaves it zoomed.
+  On the reading screen, a comic with no credits, page count or release date no longer leaves
+  an empty gap on its card. (#1253)
+- On iPhone and iPad, a text size change made while Recap Page is open now carries into later
+  page loads, such as the reload after restoring a backup, without relaunching the app. (#1266)
+- On a small phone with the largest text size, the Data page no longer scrolls sideways.
+  Long section headings now wrap onto a second line. (#1271)
+- On Android, Read now opens your default browser directly when it is a recognized web browser,
+  instead of asking you to choose one. You are asked only when no default browser is set. (#1220)
+
+### Backup and restore
+
+- Fixed OneDrive backup checks and restores failing when Microsoft forwards a download through
+  more than one address. (#1293)
+- Restoring a complete backup on iPhone and iPad, including from OneDrive and when choosing
+  another device's progress, no longer stops partway and pauses saving once your reading data
+  grows large. Reading data now takes up to half as much room on iPhone and iPad, and never
+  more than before. (#1197)
+- The iOS OneDrive sign-in correction accepts Microsoft's slashed callback address, making
+  the previously announced iOS OneDrive connection work in the corrected build. (#1191)
+
+### Release and maintenance
+
+- The project website now follows the app's brand colors: links and keyboard focus are blue,
+  section headings carry a small blue, purple or red accent bar, and the footer has a blue
+  rule. High contrast mode uses the system's own colors throughout. (#1236)
+- Updated Android build and native test tooling, including a fix for native test startup
+  port collisions. No app behavior changes. (#1202)
+- Windows packaging isolates its PowerShell modules so archives build on the updated runner
+  image. This changes build reliability, not installed app behavior. (#1273)
+- Development tooling, test synchronization and browser-check maintenance do not change
+  released app behavior. (#1201, #1224, #1255, #1263, #1265, #1275, #1277, #1280, #1299)
+- Contributor guides, historical archive organization, source documentation, website captures
+  and iOS test-build reservations and seals need no separate reader announcement.
+  (#1192, #1193, #1198, #1199, #1200, #1226, #1246, #1247, #1251, #1254)
+
 ## 4.5.0
 
 ### What's new for readers
