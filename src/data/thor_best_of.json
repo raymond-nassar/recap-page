@@ -896,6 +896,38 @@
       "collectedIn": "Gerry Conway: Firelord"
     },
     {
+      "issueId": 16686,
+      "title": "Thor Annual (1966) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/16686/thor_annual_1966_7",
+      "seriesId": 2978,
+      "seriesName": "Thor Annual (1966 - 2001)",
+      "onSale": "1978-01-01T00:00:00+0000",
+      "mu": "1978-01-01T00:00:00+0000",
+      "digitalId": 7248,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/4bb6f5216184d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Ernie Chan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Walt Simonson",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Roy Thomas and Mark Gruenwald: The Celestial Saga"
+    },
+    {
       "issueId": 11611,
       "title": "Thor (1966) #283",
       "number": "283",
@@ -1518,38 +1550,6 @@
         },
         {
           "name": "Ralph Macchio",
-          "role": "writer"
-        }
-      ],
-      "collectedIn": "Roy Thomas and Mark Gruenwald: The Celestial Saga"
-    },
-    {
-      "issueId": 16686,
-      "title": "Thor Annual (1966) #7",
-      "number": "7",
-      "url": "https://www.marvel.com/comics/issue/16686/thor_annual_1966_7",
-      "seriesId": 2978,
-      "seriesName": "Thor Annual (1966 - 2001)",
-      "onSale": "1978-01-01T00:00:00+0000",
-      "mu": "1978-01-01T00:00:00+0000",
-      "digitalId": 7248,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/4bb6f5216184d",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 0,
-      "creators": [
-        {
-          "name": "Ernie Chan",
-          "role": "cover artist"
-        },
-        {
-          "name": "Walt Simonson",
-          "role": "penciler"
-        },
-        {
-          "name": "Roy Thomas",
           "role": "writer"
         }
       ],

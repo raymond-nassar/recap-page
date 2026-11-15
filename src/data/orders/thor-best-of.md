@@ -24,10 +24,12 @@ Stormbreaker: The Saga of Beta Ray Bill are both 2005 six-issue mini-series, and
 the 2019 six-issue main event series rather than its tie-ins.
 
 The Celestial Saga section was corrected on 2026-11-14 from the guide's named collection:
-Thor (1966) #283-301 and Thor Annual (1966) #7. Its introductory mentions of #240-245 and
+Thor Annual (1966) #7 opens the saga, followed by Thor (1966) #283-301. Its introductory mentions of #240-245 and
 Annual #10 are separate stories, not that collection's contents. The
 [correction ledger](../../../scripts/data/thor-celestial-correction.json) preserves the seven
 removed identities and all twenty exact replacements with their sources.
+The named collection's [reprint order](https://marvel.fandom.com/wiki/Thor_and_the_Eternals:_The_Celestials_Saga_TPB_Vol_1_1?oldid=9472363),
+checked on 2026-11-14, puts the annual prologue first.
 
 Because the selection cannot be verified against Marvel, the order says so on its catalog card
 rather than presenting it as Marvel's own. See
@@ -73,6 +75,7 @@ rather than presenting it as Marvel's own. See
 
 ## Roy Thomas and Mark Gruenwald: The Celestial Saga
 
+- [ ] [Thor Annual (1966) #7](https://www.marvel.com/comics/issue/16686/thor_annual_1966_7)
 - [ ] [Thor (1966) #283](https://www.marvel.com/comics/issue/11611/thor_1966_283)
 - [ ] [Thor (1966) #284](https://www.marvel.com/comics/issue/11612/thor_1966_284)
 - [ ] [Thor (1966) #285](https://www.marvel.com/comics/issue/11613/thor_1966_285)
@@ -92,7 +95,6 @@ rather than presenting it as Marvel's own. See
 - [ ] [Thor (1966) #299](https://www.marvel.com/comics/issue/11627/thor_1966_299)
 - [ ] [Thor (1966) #300](https://www.marvel.com/comics/issue/11628/thor_1966_300)
 - [ ] [Thor (1966) #301](https://www.marvel.com/comics/issue/11629/thor_1966_301)
-- [ ] [Thor Annual (1966) #7](https://www.marvel.com/comics/issue/16686/thor_annual_1966_7)
 
 ## Walt Simonson: The Surtur Saga and Beta Ray Bill
 
