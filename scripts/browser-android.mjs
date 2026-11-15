@@ -1839,7 +1839,8 @@ async function categoryLabelReadability(page, label, viewport) {
       }
       const counts = [...rows.values()];
       // Equal rows alone would accept a fall from four across to two by two, so pin each measured layout.
-      const expected = viewport.width === 1280 && scale === 1 ? [4] : [2, 2];
+      // The fifth card, Library links (#1333), starts a row of its own in both layouts.
+      const expected = viewport.width === 1280 && scale === 1 ? [4, 1] : [2, 2, 1];
       check(JSON.stringify(counts) === JSON.stringify(expected),
         `${label} ${view}: Discover More rows ${JSON.stringify(counts)} match ${JSON.stringify(expected)}`);
       console.log(`HOME_ROWS ${label}: ${JSON.stringify(counts)}`);
