@@ -148,7 +148,11 @@
       "productVersion": "4.6.0",
       "sourceRevision": "7e0385e60ce7f29484e1e20f6c28688cb05caaf8",
       "sourceTree": "477004ce0502268248f859e9923d281d08469bf4",
-      "artifact": null
+      "artifact": {
+        "name": "recap-page-android.aab",
+        "bytes": 6249074,
+        "sha256": "a1d1255cf4a6d13c78b4b3225278e49ba6d0ae83a4cfcce846781bc16127cf82"
+      }
     }
   ]
 }
