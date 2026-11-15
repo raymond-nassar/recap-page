@@ -8,6 +8,7 @@ import {
   addIssuesToList, createEmptyState, createList, markRead, setDeferred, setIssueNote,
   setIssueRating, setListNote, setOverride,
 } from '../src/js/lib/model.js';
+import { READING_ORDER_REVISIONS } from '../src/js/lib/readingOrderRevisions.js';
 import { beforeWolverineCorrectionIssueIds } from './helpers/wolverine-correction-history.mjs';
 
 test('a list update comparison preserves the identity and order of each side', () => {
@@ -134,3 +135,74 @@ test('updating the actual earlier Wolverine list retains retired comics and thei
   assert.equal(updated.overrides[retired[0]], 'unavailable');
   assert.ok(updated.lists.wolverine.deferredIssueIds.includes(retired[0]));
 });
+
+const readJson = (path) => JSON.parse(readFileSync(new URL(path, import.meta.url)));
+
+// The earlier orders are rebuilt from the ledgers each correction committed, so a registry entry
+// that drifts from what was actually published before fails here rather than offering nothing.
+const ledgerEarlierOrders = {
+  'thor-best-of': (revised) => {
+    const ledger = readJson('../scripts/data/thor-celestial-correction.json');
+    const start = ledger.replacements[0].sourcePosition - 1;
+    assert.deepEqual(revised.slice(start, start + ledger.replacements.length), ledger.replacements.map(({ issueId }) => issueId));
+    return [
+      ...revised.slice(0, start),
+      ...ledger.removed.map(({ issueId }) => issueId),
+      ...revised.slice(start + ledger.replacements.length),
+    ];
+  },
+  'xmen-claremont': (revised) => {
+    const ledger = readJson('../scripts/data/curated-source-ledgers/xmen-claremont-first-class.json');
+    assert.deepEqual(revised.slice(0, ledger.added.length), ledger.added.map(({ issueId }) => issueId));
+    const retained = revised.slice(ledger.added.length);
+    assert.equal(retained.length, ledger.retained.count);
+    assert.equal(retained[0], ledger.retained.firstIssueId);
+    return [...ledger.removed.map(({ issueId }) => issueId), ...retained];
+  },
+};
+
+test('each registered revision records the published order before it and the order published now', () => {
+  const catalog = readJson('../src/data/catalog.json');
+  assert.deepEqual(READING_ORDER_REVISIONS.map(({ catalogId }) => catalogId).sort(),
+    ['thor-best-of', 'wolverine-reading-order', 'xmen-claremont']);
+  for (const { catalogId, previousOrders, revisedOrder } of READING_ORDER_REVISIONS) {
+    const entry = (catalog.lists ?? catalog).find(({ id }) => id === catalogId);
+    const payload = readJson(`../src/data/${entry.file}`);
+    const revised = payload.items.map(({ issueId }) => issueId);
+    assert.deepEqual(revisedOrder, revised, catalogId);
+    const earlier = catalogId === 'wolverine-reading-order'
+      ? beforeWolverineCorrectionIssueIds(revised).map(Number) : ledgerEarlierOrders[catalogId](revised);
+    assert.deepEqual(previousOrders, [earlier], catalogId);
+    assert.equal(matchesEarlierPublishedOrder({ catalogId, itemIds: earlier }), true, catalogId);
+    assert.equal(matchesEarlierPublishedOrder({ catalogId, itemIds: revised }), false, catalogId);
+    assert.equal(publishedRevisionItems({ id: catalogId }, payload), payload.items, catalogId);
+  }
+});
+
+for (const [catalogId, file, removed, added, length] of [
+  ['thor-best-of', 'thor_best_of.json', 7, 20, 151],
+  ['xmen-claremont', 'xmen_claremont.json', 72, 28, 346],
+]) {
+  test(`updating the actual earlier ${catalogId} list keeps every earlier comic and its progress`, () => {
+    const payload = readJson(`../src/data/${file}`);
+    const revised = payload.items.map(({ issueId }) => issueId);
+    const saved = ledgerEarlierOrders[catalogId](revised);
+    const current = new Map(payload.items.map((item) => [item.issueId, item]));
+    const retired = saved.filter((id) => !current.has(id));
+    assert.equal(retired.length, removed);
+    assert.equal(revised.filter((id) => !saved.includes(id)).length, added);
+    let state = createList(createEmptyState(), { id: 'saved', name: 'Saved', catalogId });
+    state = addIssuesToList(state, 'saved', saved.map((issueId) => current.get(issueId) ?? { issueId })).state;
+    state = markRead(state, retired[0], true, 123);
+    state = markRead(state, revised.at(-1), true, 456);
+    state = setIssueNote(state, retired.at(-1), 'My note');
+    const updated = applyListRevision(state, 'saved', JSON.stringify(state.lists.saved), payload.items);
+    const ids = updated.lists.saved.itemIds;
+    assert.equal(ids.length, length);
+    assert.equal(new Set(ids).size, ids.length);
+    assert.deepEqual(ids.filter((id) => current.has(id)), revised);
+    assert.ok(saved.every((id) => ids.includes(id)));
+    assert.deepEqual(updated.read, { [retired[0]]: 123, [revised.at(-1)]: 456 });
+    assert.equal(updated.notes[retired.at(-1)], 'My note');
+  });
+}
