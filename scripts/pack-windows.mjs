@@ -175,7 +175,7 @@ async function main() {
     say('compressing');
     await rm(DIST, { recursive: true, force: true });
     await mkdir(DIST, { recursive: true });
-    powershell(`Compress-Archive -LiteralPath '${payload}' -DestinationPath '${ARCHIVE}' -Force`);
+    writePortableArchive(payload, ARCHIVE);
     assertSourceUnchanged(identity);
     await writeFile(join(DIST, 'windows-artifact.json'),
       `${JSON.stringify(await artifactRecord(ARCHIVE, identity), null, 2)}\n`);
@@ -190,6 +190,22 @@ async function main() {
   }
 }
 
+function writePortableArchive(payload, archive) {
+  const literal = (value) => `'${value.replaceAll("'", "''")}'`;
+  // The inbox Archive module writes backslashes on Windows PowerShell 5.1. Name each entry
+  // explicitly so the ZIP format does not depend on which module the host supplies.
+  powershell(`Add-Type -AssemblyName System.IO.Compression, System.IO.Compression.FileSystem;
+    $root = Get-Item -LiteralPath ${literal(payload)};
+    $zip = [IO.Compression.ZipFile]::Open(${literal(archive)}, [IO.Compression.ZipArchiveMode]::Create);
+    try {
+      Get-ChildItem -LiteralPath $root.FullName -Recurse -File -Force | ForEach-Object {
+        $name = $_.FullName.Substring($root.Parent.FullName.Length + 1).Replace('\\', '/');
+        [IO.Compression.ZipFileExtensions]::CreateEntryFromFile(
+          $zip, $_.FullName, $name, [IO.Compression.CompressionLevel]::Optimal) | Out-Null;
+      }
+    } finally { $zip.Dispose() }`);
+}
+
 // Only when run directly. The test imports this module for the constants and the file rule, and an
 // import that downloaded 37 MB of runtime would be a test suite nobody runs twice.
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
@@ -198,5 +214,5 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
 
 export {
   NODE_VERSION, NODE_ARCH, PAYLOAD_NAME, appFiles, ARCHIVE, readMe, readMeFor, fetchRuntime,
-  runtimeArchiveName,
+  runtimeArchiveName, writePortableArchive,
 };

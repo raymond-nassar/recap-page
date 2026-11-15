@@ -214,6 +214,27 @@ final class PresentationUITests: XCTestCase {
             screens.push(snapshot('view-add'));
             \(Self.searchAuditPreparation)
             """
+        } else if route == "explore" {
+            // Explore's cards come from the asynchronously loaded catalog, so Home being visible is not
+            // enough: with the catalog response held, a desktop run of the plain Home route measured
+            // zero cards while Home read "Loading ways to read…" (#1331). The wait is for the cards
+            // themselves rather than for the status to change, because a failed load renders Explore
+            // empty before the app has finished handling it, and in a desktop run a refused catalog
+            // request was followed by a second one that filled it. If none arrive, the failure carries
+            // what Home said instead of surfacing later as an empty list of cards.
+            routeScript = """
+            await openRoute(routes[0]);
+            const exploreCard = () => document.querySelector('#home-primary-paths .home-path');
+            try {
+              await waitFor(exploreCard, 'Explore cards');
+            } catch {
+              throw new Error('Explore showed no cards within 30 seconds. '
+                + `Status: "${document.getElementById('home-paths-status').textContent.trim()}". `
+                + `Report: "${document.getElementById('home-cat-report').textContent.trim()}"`);
+            }
+            await nextFrame();
+            screens.push(snapshot('view-home'));
+            """
         } else if route == "all" {
             routeScript = """
             for (const route of routes) {
@@ -2943,7 +2964,7 @@ final class PresentationUITests: XCTestCase {
 
     func testExploreTitlesStayLargerThanLabelsAtDefaultAndLargestTextSizes() throws {
         for category in [UIContentSizeCategory.large, .accessibilityExtraExtraExtraLarge] {
-            let app = launch(category: category, route: "home")
+            let app = launch(category: category, route: "explore")
             let result = try probeResult(of: app)
             let screens = try XCTUnwrap(result["screens"] as? [[String: Any]])
             let screen = try XCTUnwrap(screens.first)
