@@ -15,8 +15,8 @@ Delete this comment and write here.
 ## What changed
 
 <!--
-One major feature per pull request. If you found something else worth doing, add it to the
-project's list of planned improvements rather than to this branch.
+Carry the features or changes the maintainer named for this pull request. If you found something
+else worth doing, add it to the project's list of planned improvements rather than to this branch.
 
 Follow [release bookkeeping](https://github.com/raymond-nassar/recap-page/blob/main/GOVERNANCE.md#release-bookkeeping).
 For feature PRs, include complete proposed user-facing release-note text and saved-data
