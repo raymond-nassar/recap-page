@@ -150,6 +150,8 @@ separate.
 
 ### Release and maintenance
 
+- Improved checks that prevent collected editions from being linked to comics from an
+  unverified series year. Current displayed relations and saved data are unchanged. (#1307)
 - The project website now follows the app's brand colors: links and keyboard focus are blue,
   section headings carry a small blue, purple or red accent bar, and the footer has a blue
   rule. High contrast mode uses the system's own colors throughout. (#1236)
