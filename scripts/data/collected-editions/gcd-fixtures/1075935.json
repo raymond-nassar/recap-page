@@ -1,0 +1,24 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/1075935/?format=json",
+  "retrievedAt": "2026-11-14T02:34:51.525Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/1075935/?format=json",
+    "series_name": "Avengers Academy: Second Semester (2012 series)",
+    "descriptor": "",
+    "number": "[nn]",
+    "volume": "",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "2012",
+    "key_date": "2012-11-07",
+    "page_count": "180.000",
+    "isbn": "978-0-7851-5203-3",
+    "notes": "Collects Avengers Academy (Marvel, 2010 series) #21-28.",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/72002/?format=json",
+    "story_set": []
+  }
+}

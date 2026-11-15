@@ -1,0 +1,55 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/1966454/?format=json",
+  "retrievedAt": "2026-11-14T18:28:14.407Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/1966454/?format=json",
+    "series_name": "War of the Realms: Journey into Mystery (2019 series)",
+    "descriptor": "3",
+    "number": "3",
+    "volume": "",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "July 2019",
+    "key_date": "2019-07-00",
+    "page_count": "32.000",
+    "isbn": "",
+    "notes": "Legacy number: 658.",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/143860/?format=json",
+    "story_set": [
+      {
+        "type": "credits, title page",
+        "title": "Title, Credits and Indicia",
+        "feature": "",
+        "sequence_number": 1,
+        "page_count": "1.000",
+        "notes": "Title, recap, credits, and indicia.",
+        "script": "Sarah Brunstad ?",
+        "pencils": "None"
+      },
+      {
+        "type": "comic story",
+        "title": "Chapter Three: Overseers of the Community",
+        "feature": "",
+        "sequence_number": 2,
+        "page_count": "20.000",
+        "notes": "",
+        "script": "Clint McElroy (credited as The McElroys); Griffin McElroy (credited as The McElroys); Justin McElroy (credited as The McElroys); Travis McElroy (credited as The McElroys)",
+        "pencils": "André Lima Araújo (credited)"
+      },
+      {
+        "type": "in-house column",
+        "title": "Stan's Soapbox - July 1968",
+        "feature": "Stan's Soapbox",
+        "sequence_number": 3,
+        "page_count": "1.000",
+        "notes": "Reproduction of one of Stan Lee's soapbox columns, with small portrait. This is inserted between page 4 and 5 of the main story.",
+        "script": "Stan Lee (signed as Smiley)",
+        "pencils": "Phil Noto"
+      }
+    ]
+  }
+}

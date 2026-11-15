@@ -435,7 +435,7 @@ a { color: var(--blue); }
     color: var(--text);
   }
   .railed .rail-toggle { margin: 0; }
-  .rail-toggle-label { display: inline; font-size: var(--t-body); font-weight: 600; }
+  .rail-toggle-label { display: inline; font-size: var(--t-body); }
   .brand {
     margin: 0;
     flex: 1 1 auto;
@@ -677,7 +677,7 @@ a { color: var(--blue); }
     color: var(--text);
   }
   .railed .rail-toggle { margin: 0; }
-  .rail-toggle-label { display: inline; font-size: var(--t-body); font-weight: 600; }
+  .rail-toggle-label { display: inline; font-size: var(--t-body); }
   .brand {
     margin: 0;
     flex: 1 1 auto;
@@ -833,6 +833,8 @@ main { min-width: 0; }
 }
 #view-home > .head > .breadcrumb { grid-column: 1; grid-row: 1; margin: 0; align-self: center; }
 #view-home .app-back { margin-bottom: 0; }
+/* The direct-entry Back belongs to the phone layout; other surfaces keep the trail. */
+.app-back.app-direct { display: none; }
 #view-home .home-lockup { order: -1; }
 .breadcrumb ol {
   display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2) var(--space-4);
@@ -2188,7 +2190,7 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 .home-path-copy { min-width: 0; display: grid; gap: var(--space-2); align-self: end; }
 .home-path-label { margin: 0; color: var(--dim); }
 .home-path-title {
-  font-size: clamp(1.25rem, 2.4vw, 1.8rem); font-weight: 650;
+  font-size: clamp(var(--t-subtitle), 2.4vw, max(var(--t-title), 1.8rem)); font-weight: 650;
   letter-spacing: -.025em; line-height: 1.1; overflow-wrap: anywhere;
 }
 .home-path-count { color: var(--muted); font-size: var(--t-caption); }
@@ -3096,7 +3098,7 @@ select, input[type="search"], input[type="text"], input[type="url"] {
 #reader-closure-notice { position: relative; min-height: calc(var(--target-touch) + 2 * var(--space-2) + 2 * var(--stroke-1)); }
 #reader-closure-text::before { content: ""; float: right; width: var(--target); height: var(--target); }
 #reader-closure-dismiss { position: absolute; inset-block-start: var(--space-2); inset-inline-end: var(--space-2); }
-#view-home > .head, #view-home > .notice, #view-home > #home-continue { margin-bottom: var(--space-4); }
+#view-home > .head, #view-home > .notice, #view-home > #home-continue, #view-home > #app-report:not(:empty) { margin-bottom: var(--space-4); }
 
 .btn.list-source-link { border-radius: var(--radius-pill); max-width: 100%; overflow-wrap: anywhere; }
 

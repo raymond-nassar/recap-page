@@ -471,7 +471,8 @@ function diagnosticFixture(
       assert.equal(options.pipe, undefined);
       assert.equal(options.userDataDir, undefined);
       assert.equal(options.downloadBehavior, undefined);
-      assert.deepEqual(options.args, ['--no-first-run', '--no-default-browser-check']);
+      assert.deepEqual(options.args, ['--no-first-run', '--no-default-browser-check', '--no-proxy-server',
+        '--host-resolver-rules=MAP * ~NOTFOUND, EXCLUDE 127.0.0.1']);
       const child = Object.assign(new EventEmitter(), {
         exitCode: null, signalCode: null,
         spawnargs: ['PRIVATE_EXECUTABLE', '--headless=new', '--remote-debugging-port=0',
@@ -820,7 +821,7 @@ test('all ordinary native-export scenarios declare their complete context totals
     ['browser-check.mjs', 'restore-copy-workflow', 1],
     ['browser-check.mjs', 'reader-round-trip', 1],
     ['browser-check.mjs', 'reading-shortcut', 1],
-    ['browser-markdown-export.mjs', 'readable-markdown-export', 4],
+    ['browser-markdown-export.mjs', 'readable-markdown-export', 6],
     ['browser-order-export.mjs', 'order-only-export', 6],
   ]) {
     const text = readFileSync(new URL('../scripts/' + file, import.meta.url), 'utf8');

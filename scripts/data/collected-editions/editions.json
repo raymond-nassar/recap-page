@@ -244,6 +244,336 @@
           "assertedBy": "owner-curated"
         }
       ]
+    },
+    {
+      "id": "daredevil-visionaries-kevin-smith",
+      "title": "Daredevil Visionaries: Kevin Smith",
+      "format": "softcover",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 1094159
+      },
+      "contents": []
+    },
+    {
+      "id": "xtreme-xmen-v1-destiny",
+      "title": "X-Treme X-Men Vol. 1: Destiny",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 910908
+      },
+      "contents": []
+    },
+    {
+      "id": "exiles-v1-down-the-rabbit-hole",
+      "title": "Exiles Vol. 1: Down the Rabbit Hole",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 787873
+      },
+      "contents": []
+    },
+    {
+      "id": "xtreme-xmen-savage-land",
+      "title": "X-Treme X-Men: Savage Land",
+      "format": "softcover",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 672067
+      },
+      "contents": []
+    },
+    {
+      "id": "new-xmen-v2-imperial",
+      "title": "New X-Men Vol. 2: Imperial",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 774091
+      },
+      "contents": []
+    },
+    {
+      "id": "exiles-v2-a-world-apart",
+      "title": "Exiles Vol. 2: A World Apart",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 787874
+      },
+      "contents": []
+    },
+    {
+      "id": "daredevil-v4-underboss",
+      "title": "Daredevil Vol. 4: Underboss",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 251246
+      },
+      "contents": []
+    },
+    {
+      "id": "xtreme-xmen-v2-invasion",
+      "title": "X-Treme X-Men Vol. 2: Invasion",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 910909
+      },
+      "contents": []
+    },
+    {
+      "id": "exiles-v3-out-of-time",
+      "title": "Exiles Vol. 3: Out of Time",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 787875
+      },
+      "contents": []
+    },
+    {
+      "id": "new-xmen-v4-riot-at-xaviers",
+      "title": "New X-Men Vol. 4: Riot at Xavier's",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 774093
+      },
+      "contents": []
+    },
+    {
+      "id": "daredevil-v8-echo-vision-quest",
+      "title": "Daredevil Vol. 8: Echo - Vision Quest",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 251250
+      },
+      "contents": []
+    },
+    {
+      "id": "doomwar-2011-tpb",
+      "title": "Doomwar",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 1618437
+      },
+      "contents": []
+    },
+    {
+      "id": "avengers-academy-second-semester",
+      "title": "Avengers Academy: Second Semester",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 1075935
+      },
+      "contents": []
+    },
+    {
+      "id": "secret-invasion-front-line",
+      "title": "Secret Invasion: Front Line",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 2068845
+      },
+      "contents": []
+    },
+    {
+      "id": "secret-invasion-fantastic-four",
+      "title": "Secret Invasion: Fantastic Four",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 759141
+      },
+      "contents": []
+    },
+    {
+      "id": "secret-invasion-x-men",
+      "title": "Secret Invasion: X-Men",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 2107285
+      },
+      "contents": []
+    },
+    {
+      "id": "mighty-avengers-v1-ultron",
+      "title": "Mighty Avengers Vol. 1: The Ultron Initiative",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 851244
+      },
+      "contents": []
+    },
+    {
+      "id": "siege-mighty-avengers",
+      "title": "Siege: Mighty Avengers",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 886235
+      },
+      "contents": []
+    },
+    {
+      "id": "chaos-war-2011-tpb",
+      "title": "Chaos War",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 1872287
+      },
+      "contents": []
+    },
+    {
+      "id": "xtreme-xmen-v3-schism",
+      "title": "X-Treme X-Men Vol. 3: Schism",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 910910
+      },
+      "contents": []
+    },
+    {
+      "id": "exiles-v4-legacy",
+      "title": "Exiles Vol. 4: Legacy",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 787876
+      },
+      "contents": []
+    },
+    {
+      "id": "xtreme-xmen-v5-god-loves",
+      "title": "X-Treme X-Men Vol. 5: God Loves, Man Kills",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 910912
+      },
+      "contents": []
+    },
+    {
+      "id": "exiles-v5-unnatural-instincts",
+      "title": "Exiles Vol. 5: Unnatural Instincts",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 787877
+      },
+      "contents": []
+    },
+    {
+      "id": "spectacular-spider-man-v1-hunger",
+      "title": "Spectacular Spider-Man Vol. 1: The Hunger",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 928174
+      },
+      "contents": []
+    },
+    {
+      "id": "xtreme-xmen-v7-storm-arena",
+      "title": "X-Treme X-Men Vol. 7: Storm: The Arena",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 910914
+      },
+      "contents": []
+    },
+    {
+      "id": "mighty-avengers-earths-mightiest",
+      "title": "Mighty Avengers: Earth's Mightiest",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 783584
+      },
+      "contents": []
+    },
+    {
+      "id": "uncanny-xmen-v1-hope",
+      "title": "Uncanny X-Men Vol. 1: Hope",
+      "format": "softcover",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 543151
+      },
+      "contents": []
+    },
+    {
+      "id": "young-xmen-v1-final-genesis",
+      "title": "Young X-Men Vol. 1: Final Genesis",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 911815
+      },
+      "contents": []
+    },
+    {
+      "id": "amazing-spider-man-edge-of-spider-verse",
+      "title": "Amazing Spider-Man: Edge of Spider-Verse",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 1343400
+      },
+      "contents": []
+    },
+    {
+      "id": "doctor-strange-waid-v1-across-the-universe",
+      "title": "Doctor Strange by Mark Waid Vol. 1: Across the Universe",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 1955785
+      },
+      "contents": []
+    },
+    {
+      "id": "loki-agent-of-asgard-v2-i-cannot-tell-a-lie",
+      "title": "Loki: Agent of Asgard Vol. 2: I Cannot Tell a Lie",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 1342239
+      },
+      "contents": []
+    },
+    {
+      "id": "war-of-the-realms-journey-into-mystery",
+      "title": "War of the Realms: Journey Into Mystery",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 2023510
+      },
+      "contents": []
+    },
+    {
+      "id": "iron-man-2020-robot-revolution",
+      "title": "Iron Man 2020: Robot Revolution",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 2156466
+      },
+      "contents": []
     }
   ],
   "lists": [
@@ -257,6 +587,7 @@
         "cbh-ledger": 0,
         "cbh-heading": 7,
         "gcd-notes": 0,
+        "gcd-stories": 0,
         "owner-curated": 12
       },
       "findings": [
@@ -277,6 +608,7 @@
         "cbh-ledger": 20,
         "cbh-heading": 0,
         "gcd-notes": 0,
+        "gcd-stories": 0,
         "owner-curated": 0
       },
       "findings": [
@@ -298,6 +630,7 @@
         "cbh-ledger": 0,
         "cbh-heading": 10,
         "gcd-notes": 0,
+        "gcd-stories": 0,
         "owner-curated": 9
       },
       "findings": [
@@ -318,6 +651,7 @@
         "cbh-ledger": 0,
         "cbh-heading": 0,
         "gcd-notes": 0,
+        "gcd-stories": 0,
         "owner-curated": 1
       },
       "findings": [
@@ -343,6 +677,7 @@
         "cbh-ledger": 0,
         "cbh-heading": 0,
         "gcd-notes": 0,
+        "gcd-stories": 0,
         "owner-curated": 4
       },
       "findings": [

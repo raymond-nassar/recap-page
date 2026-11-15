@@ -1,0 +1,165 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/1342239/?format=json",
+  "retrievedAt": "2026-11-14T10:28:06.621Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/1342239/?format=json",
+    "series_name": "Loki: Agent of Asgard (2014 series)",
+    "descriptor": "2 - I Cannot Tell a Lie",
+    "number": "2",
+    "volume": "2",
+    "variant_name": "",
+    "title": "I Cannot Tell a Lie",
+    "publication_date": "2015",
+    "key_date": "2015-04-22",
+    "page_count": "140.000",
+    "isbn": "978-0-7851-9331-9",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/82477/?format=json",
+    "story_set": [
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Loki",
+        "sequence_number": 1,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Lee Garbett"
+      },
+      {
+        "type": "comic story",
+        "title": "Degree Absolute",
+        "feature": "Loki",
+        "sequence_number": 2,
+        "page_count": "20.000",
+        "notes": "",
+        "script": "Al Ewing",
+        "pencils": "Jorge Coelho"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Loki",
+        "sequence_number": 3,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Lee Garbett"
+      },
+      {
+        "type": "comic story",
+        "title": "Fall Out",
+        "feature": "Loki",
+        "sequence_number": 4,
+        "page_count": "20.000",
+        "notes": "",
+        "script": "Al Ewing",
+        "pencils": "Jorge Coelho"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Loki",
+        "sequence_number": 5,
+        "page_count": "1.000",
+        "notes": "Cover is an homage to the cover of [gcd_link_story](184370) and is signed, \"after [GK](https://www.comics.org/creator/4951/) [DEC](https://www.comics.org/creator/2858/).\"",
+        "script": "None",
+        "pencils": "Lee Garbett (signed)"
+      },
+      {
+        "type": "comic story",
+        "title": "I Cannot Tell a Lie!",
+        "feature": "Loki",
+        "sequence_number": 6,
+        "page_count": "20.000",
+        "notes": "Story follows events from Avengers & X-Men: Axis (Marvel,2014 series) #3 and continues in Avengers & X-Men: Axis #6.",
+        "script": "Al Ewing",
+        "pencils": "Lee Garbett"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Loki",
+        "sequence_number": 7,
+        "page_count": "1.000",
+        "notes": "Text and pictures after the cover of Journey into Mystery (Marvel, 1952 series) #85 by Jack Kirby and Dick Ayers.",
+        "script": "None",
+        "pencils": "Lee Garbett (signed)"
+      },
+      {
+        "type": "comic story",
+        "title": "Good Sons Like You...",
+        "feature": "Loki",
+        "sequence_number": 8,
+        "page_count": "20.000",
+        "notes": "",
+        "script": "Al Ewing",
+        "pencils": "Lee Garbett"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Loki",
+        "sequence_number": 9,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Lee Garbett (signed)"
+      },
+      {
+        "type": "comic story",
+        "title": "Not Forgiven",
+        "feature": "Loki",
+        "sequence_number": 10,
+        "page_count": "21.000",
+        "notes": "The recap page is an integral part of the story.",
+        "script": "Al Ewing",
+        "pencils": "Lee Garbett"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Loki",
+        "sequence_number": 11,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Lee Garbett"
+      },
+      {
+        "type": "comic story",
+        "title": "Turn Away and Slam the Door",
+        "feature": "Loki",
+        "sequence_number": 12,
+        "page_count": "20.000",
+        "notes": "",
+        "script": "Al Ewing",
+        "pencils": "Lee Garbett"
+      },
+      {
+        "type": "illustration",
+        "title": "Cover Sketches",
+        "feature": "Loki",
+        "sequence_number": 13,
+        "page_count": "3.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Lee Garbett"
+      },
+      {
+        "type": "illustration",
+        "title": "Issues 6, 7 & 9 Page Layouts",
+        "feature": "Loki",
+        "sequence_number": 14,
+        "page_count": "3.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Jorge Coelho"
+      }
+    ]
+  }
+}
