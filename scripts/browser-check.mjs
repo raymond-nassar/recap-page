@@ -15618,6 +15618,15 @@ const SCENARIOS = [
         ].map((node) => node ? getComputedStyle(node).fontWeight : null));
         t.check(`${width}px: More, Library and Search labels have the same regular weight`,
           weights.every((weight) => weight === '400'), JSON.stringify(weights));
+        await openNavigation();
+        const openWeight = await page.evaluate(() => ({
+          expanded: document.querySelector('#btn-rail-toggle').getAttribute('aria-expanded'),
+          weight: getComputedStyle(document.querySelector('.rail-toggle-label')).fontWeight,
+        }));
+        t.check(`${width}px: an open More sheet emphasizes its label`,
+          openWeight.expanded === 'true' && openWeight.weight === '700', JSON.stringify(openWeight));
+        await page.keyboard.press('Escape');
+        await page.waitForFunction(() => !document.querySelector('#more-sheet').open);
       }
       await client.detach();
     },
