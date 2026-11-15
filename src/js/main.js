@@ -1934,13 +1934,16 @@ function renderBreadcrumbs() {
   const isRoot = ['home', 'library', 'add'].includes(view)
     || (!isNarrow && ['data', 'about'].includes(view));
   const backAvailable = navigationPosition.canGoBack && !isRoot;
+  // A directly opened secondary screen has no app history; phone Back replaces it with its parent.
+  const parent = !backAvailable && isNarrow && !isRoot ? trail.at(-2) : null;
+  const directBack = parent?.href ?? null;
   // On a phone the bottom bar already names the tab roots, and the trail's lone "Home" link is drawn
   // like Back at the top left, which the owner ruled out for tab roots (#1175).
   if ((!trail.length && !backAvailable) || (isRoot && isNarrow)) {
     existing?.remove();
     return;
   }
-  const trailKey = JSON.stringify({ trail, backAvailable });
+  const trailKey = JSON.stringify({ trail, backAvailable, directBack });
   if (existing?.dataset.trail === trailKey) return;
 
   const list = el('ol', {}, trail.map((item) => el('li', {}, item.href
@@ -1949,15 +1952,18 @@ function renderBreadcrumbs() {
   const breadcrumb = existing || el('nav', { class: 'breadcrumb', 'aria-label': 'Breadcrumb' });
   breadcrumb.dataset.trail = trailKey;
   const back = el('button', {
-    type: 'button', class: 'quiet app-back', 'aria-label': 'Back',
+    type: 'button', class: `quiet app-back${backAvailable ? '' : ' app-direct'}`, 'aria-label': 'Back',
     onclick: () => {
-      if (!navigationPosition.canGoBack) return;
+      if (!navigationPosition.canGoBack) {
+        if (directBack) location.replace(directBack);
+        return;
+      }
       navigationPosition.cancel();
       navigationPosition.capture();
       history.back();
     },
   }, [uiIcon('arrow-left', 'gi'), el('span', { class: 'app-back-label', text: 'Back' })]);
-  breadcrumb.replaceChildren(...(backAvailable ? [back] : []), ...(trail.length ? [list] : []));
+  breadcrumb.replaceChildren(...(backAvailable || directBack ? [back] : []), ...(trail.length ? [list] : []));
   if (!existing) head.before(breadcrumb);
 }
 
@@ -2907,12 +2913,12 @@ const cloudBackupView = createCloudBackupView({
 
 const COMPLETE_RESTORE_NOTICE = 'complete-restore';
 
-// Said in the pane that follows the reader between views, because a pause stops saving everywhere.
+// A pause stops saving everywhere, so it shares the fixed, assertive save-failure pane.
 function renderCompleteRestore(state) {
   completeBackupView.render(state);
   bulkReadView.render();
   if (state.phase === 'paused' && state.message && state.message !== RESTORE_MESSAGES.working) {
-    notify('#app-report', state.message, 'warn', COMPLETE_RESTORE_NOTICE);
+    notify('#save-report', state.message, 'warn', COMPLETE_RESTORE_NOTICE);
   } else clearNotice(COMPLETE_RESTORE_NOTICE);
   // Background fetches save as they go, and every one of those saves would be refused while paused.
   if (state.phase === 'paused') {
