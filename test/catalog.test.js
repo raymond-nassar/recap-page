@@ -15,6 +15,14 @@ import {
 } from '../src/js/lib/catalog.js';
 import { countOrderGaps } from '../src/js/lib/model.js';
 
+test('every catalog description matches the payload saved when adding its list', async () => {
+  const catalog = JSON.parse(await readFile(new URL('../src/data/catalog.json', import.meta.url), 'utf8'));
+  for (const entry of catalog.lists) {
+    const payload = JSON.parse(await readFile(new URL(`../src/data/${entry.file}`, import.meta.url), 'utf8'));
+    assert.equal(payload.description, entry.description, `${entry.id}: browsing and saved descriptions differ`);
+  }
+});
+
 // Most fixtures predate catalog gap disclosure and are about an unrelated field. Keep their setup
 // small while the raw parser tests below remain responsible for requiring the generated counts.
 function parseCatalog(raw) {

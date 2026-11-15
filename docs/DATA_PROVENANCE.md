@@ -419,13 +419,13 @@ orders: **null means nobody granted anything for this file, not that the file is
 Three hundred and forty-seven pinned reading-order payloads remain under
 [`src/data/`](../src/data): 344 active visible catalog files, one active noncatalog partition parent,
 and the retired No Way Home (18 originals) and withdrawn Marvel Multiverse (2 comics) payloads. The 345 active files hold
-32,869 issue records covering 20,170 distinct tracked identities. The visible files hold 32,382 of those records;
+32,882 issue records covering 20,183 distinct tracked identities. The visible files hold 32,395 of those records;
 the extra 487 are the retained Marvel Knights to Planet X parent whose ordinary children partition
 the same vector. Records use these fields:
 `issueId`, `title`,
 `number`, `url`, `seriesId`, `seriesName`, `onSale`, `mu`, `digitalId`, `pageCount`, a `cover`
-object of `path` and `ext`, and `creators` of `name` and `role`. Across the 345 active payloads, 27,968
-records carry a cover URL and 26,239 carry creator credits. The retired No Way Home payload remains byte-exact;
+object of `path` and `ext`, and `creators` of `name` and `role`. Across the 345 active payloads, 27,981
+records carry a cover URL and 26,252 carry creator credits. The retired No Way Home payload remains byte-exact;
 neither retired payload contributes to active discovery or this active census.
 
 `description` was the field to look at hardest and is now empty. The others are facts about a
@@ -3718,3 +3718,33 @@ are not independent corroboration: the pinned issue and reality pages come from 
 reference source. Three things remain open: the preview and promotion policy, independent
 bibliography, and the Heroes Reborn Wizard special's classification and on-sale date. No source
 narrative or comic image bytes are added, and saved data is unchanged.
+
+## Thor Celestial Saga and Captain Marvel description corrections
+
+On 2026-11-14, [the Best of Thor source guide](https://www.comicbookherald.com/best-10-thor-comics-of-all-time/)
+was reread. Its first honorable mention recommends the linked *Thor and the Eternals:
+The Celestial Saga* collection; the introduction's Thor #240-245 and Annual #10 mentions
+are separate recommendations, not that collection's contents.
+[The ISBN 9781302922498 bibliography](https://www.abebooks.com/9781302922498/Thor-Eternals-Celestials-Saga-Thomas-1302922491/plp),
+retrieved the same day, independently identifies Thor (1966) #283-301 and Thor Annual (1966) #7.
+The annual prologue comes first, followed by the main-series range in ascending order.
+The named collection's [Marvel Database reprint order](https://marvel.fandom.com/wiki/Thor_and_the_Eternals:_The_Celestials_Saga_TPB_Vol_1_1?oldid=9472363)
+and the [2006 first volume's reprint order](https://marvel.fandom.com/wiki/Thor:_The_Eternals_Saga_TPB_Vol_1_1?oldid=9687668),
+retrieved through the wiki API on the same day, both put Annual #7 before #283.
+
+[The correction ledger](../scripts/data/thor-celestial-correction.json) preserves all seven
+removed source positions, twenty exact replacements, each metadata request and retrieval time,
+and both publication digests. All twenty identities were checked against the provider's series
+and issue-detail responses. No identity or metadata gap remains. The other 124 originals keep
+their order and metadata unchanged, yielding 144 comics in the same eleven sections.
+Only factual metadata and cover addresses are retained, never image bytes or narrative prose.
+The existing Comic Book Herald credit, source link and null source license remain unchanged;
+this correction conveys no new license over the metadata.
+
+[The Captain Marvel description correction](../scripts/data/captain-marvel-description-correction.json)
+records the exact payload-only copy alignment to the already published catalog and manifest.
+No comic identities, metadata, source selection or discovery placement change for that guide.
+Newly added lists save the description shown while browsing. Existing saved snapshots,
+including Thor's seven unrelated originals and their progress, are not rewritten or relabeled.
+Historical review helpers replay only the captured prior publications or these exact corrections,
+without rewriting frozen approvals.
