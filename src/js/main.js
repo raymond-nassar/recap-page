@@ -18,9 +18,9 @@ import {
   availablePublishingCategories, isPublishingCategoryLeaf, publishingAgeGroups, publishingCategoryStories,
   timelineYears,
   catalogListBrowseRoute, CATALOG_SHELVES, PUBLISHING_CATEGORIES,
-  modernTimelineFeaturedCard,
+  modernTimelineFeaturedCard, storyKey, LIBRARY_LINKS_ROUTE,
 } from './lib/catalog.js';
-import { Store, ImportDraftStore, IMPORT_DRAFT_KEY, PRERESTORE_KEY, KEY as STATE_KEY, SETTINGS_KEY, SIDEBAR_KEY, RESTORE_NOTICE_KEY } from './storage.js';
+import { Store, ImportDraftStore, IMPORT_DRAFT_KEY, PRERESTORE_KEY, KEY as STATE_KEY, SETTINGS_KEY, SIDEBAR_KEY, RESTORE_NOTICE_KEY, LIBRARY_LINKS_KEY } from './storage.js';
 import { LIST_HISTORY_KEY, ListHistoryStore, eraseReaderAndHistory } from './lib/listHistory.js';
 import { createListRecommendationResolver } from './lib/listRecommendations.js';
 import { createCompletionView } from './views/completion.js';
@@ -65,6 +65,7 @@ import { createNoticeDismissal } from './lib/noticeDismissal.js';
 import { createHomeUpdatesView } from './views/home-updates.js';
 import { createCatalogPresentation } from './views/shared/catalog-presentation.js';
 import { createCatalogView } from './views/catalog.js';
+import { createLibraryLinkFilter, linkNarrower } from './views/shared/library-link-filter.js';
 import { createMcuPrepView } from './views/mcu-prep.js';
 import { createStoryTypesView } from './views/story-types.js';
 import { createPreviewView } from './views/preview.js';
@@ -3191,9 +3192,16 @@ function ensurePublishingViews() {
         el('div', { class: 'sec-h' }, el('h2', { id: `${category.route}-categories-h`, text: 'Choose a Period' })),
         el('ul', { id: `${category.route}-category-list`, class: 'home-paths home-paths-secondary' }),
       ])]),
+      el('div', { id: `${category.route}-links`, class: 'link-filter', hidden: true }),
       el('div', { id: `${category.route}-navigation` }),
       el('div', { id: `${category.route}-results`, class: 'results' }),
     ]), $('.app-footer'));
+    if (category.kind !== 'publishing-index') {
+      libraryLinkFilter.mount(category.route, $(`#${category.route}-links`), {
+        always: category.route === LIBRARY_LINKS_ROUTE,
+        onChange: () => void renderPublishingCategory(category.route),
+      });
+    }
   }
 }
 
@@ -3289,6 +3297,13 @@ async function renderPublishingCategory(route, { isCurrent = () => view === rout
   }
 
   if (!current()) return;
+  const linksBox = $(`#${route}-links`);
+  const showLinks = (shown) => {
+    if (!linksBox) return;
+    linksBox.hidden = !shown;
+    if (shown) libraryLinkFilter.paint(route);
+  };
+  showLinks(route === 'marvel-on-screen' || route === 'genres');
   if (route === 'marvel-on-screen') {
     await mcuPrepView.render(catalog, { isCurrent: current });
     return;
@@ -3298,6 +3313,7 @@ async function renderPublishingCategory(route, { isCurrent = () => view === rout
     return;
   }
   const allStories = catalogEntries(catalog.lists);
+  if (category.kind === 'publishing-index') showLinks(false);
   if (category.kind === 'publishing-index') {
     renderPublishingIndex(category, allStories);
     return;
@@ -3310,17 +3326,24 @@ async function renderPublishingCategory(route, { isCurrent = () => view === rout
     for (const old of [...box.parentElement.querySelectorAll('.publishing-scope')].slice(0, -1)) old.remove();
   }
   catalogPresentation.ensureSetupGuideFeature(catalog.lists, route, modernTimelineFeaturedCard);
-  const stories = typeof category.select === 'function'
+  const inCategory = typeof category.select === 'function'
     ? category.select(allStories)
     : publishingCategoryStories(allStories, category.key);
+  const narrower = linkNarrower(
+    libraryLinkFilter.current(route),
+    inCategory.flatMap((story) => story.lists),
+    storyKey,
+  );
+  const stories = inCategory.filter(narrower.keep);
   const count = stories.reduce((total, story) => total + story.lists.length, 0);
-  $(`#${route}-count`).textContent = `${count} ${count === 1 ? 'Reading List' : 'Reading Lists'}`;
+  $(`#${route}-count`).textContent = `${count} ${count === 1 ? 'Reading List' : 'Reading Lists'}${narrower.narrowing}`;
 
   const children = availablePublishingCategories(allStories, category.key);
   const isPublishingCategory = PUBLISHING_CATEGORIES.some(
     (candidate) => candidate.key === category.key && candidate.route === category.route,
   );
   if (isPublishingCategory && !isPublishingCategoryLeaf(category)) {
+    showLinks(false);
     box.replaceChildren(el('p', {
       class: 'rail-hint',
       text: 'Choose a period within Modern Age. For a guided starting route, browse the Modern Timeline.',
@@ -3334,7 +3357,15 @@ async function renderPublishingCategory(route, { isCurrent = () => view === rout
   }
 
   box.replaceChildren();
+  showLinks(inCategory.length > 0);
   if (!stories.length) {
+    if (narrower.linking && inCategory.length) {
+      box.append(el('p', {
+        class: 'rail-hint publishing-empty',
+        text: `No Reading Lists in ${category.heading}${narrower.narrowing}.`,
+      }));
+      return;
+    }
     box.append(el('p', {
       class: 'rail-hint publishing-empty',
       text: 'No Reading Lists are published for this period yet.',
@@ -3357,10 +3388,11 @@ async function renderPublishingCategory(route, { isCurrent = () => view === rout
     catalogPresentation.renderTimelineSections(box, [{
       ...category, stories, from: years[0].year, to: years[years.length - 1].year,
     }], {
-      idPrefix: route, showEmptyYears: true, sectionBlurb: false,
+      idPrefix: route, showEmptyYears: !narrower.linking, sectionBlurb: false,
       cardOptions: {
         surface: route,
         report: `#${route}-report`,
+        linkText: narrower.linkText,
       },
     });
     const cards = [...box.querySelectorAll('.catalog-card')];
@@ -3385,7 +3417,7 @@ async function renderPublishingCategory(route, { isCurrent = () => view === rout
   const grid = el('div', { class: 'catalog-grid publishing-grid' });
   for (const story of stories) {
     grid.append(catalogPresentation.catalogCard(story, {
-      surface: route, report: `#${route}-report`, level: 'h2',
+      surface: route, report: `#${route}-report`, level: 'h2', linkText: narrower.linkText,
     }));
   }
   box.append(grid);
@@ -4162,6 +4194,10 @@ const catalogPresentation = createCatalogPresentation({
   shortTitle,
 });
 
+// One device-local browsing choice shared by every shelf that offers it (decision 13). It lives
+// outside saved reading data, so backup and restore never carry it.
+const libraryLinkFilter = createLibraryLinkFilter({ el, storage: localStorage, key: LIBRARY_LINKS_KEY });
+
 const mcuPrepView = createMcuPrepView({
   el,
   elements: () => ({
@@ -4175,6 +4211,7 @@ const mcuPrepView = createMcuPrepView({
     return response.json();
   },
   presentation: catalogPresentation,
+  linkChoice: () => libraryLinkFilter.current('marvel-on-screen'),
   clearLoadNotice: () => clearNotice('mcu-release-load'),
   onLoadFailure: ({ error, isCurrent }) => reportBundledLoadFailure({
     report: '#marvel-on-screen-report',
@@ -4291,6 +4328,7 @@ const storyTypesView = createStoryTypesView({
   }),
   isCurrent: () => view === 'genres',
   presentation: catalogPresentation,
+  linkChoice: () => libraryLinkFilter.current('genres'),
   onNavigate: ({ push }) => syncHash({ push }),
 });
 
@@ -4302,6 +4340,7 @@ const catalogView = createCatalogView({
     shelf: (key) => ({
       clear: $(`#${key}-clear`),
       filters: $(`#${key}-filters`),
+      links: $(`#${key}-links`),
       query: $(`#${key}-q`),
       results: $(`#${key}-results`),
       search: $(`#form-${key}-search`),
@@ -4319,6 +4358,7 @@ const catalogView = createCatalogView({
   getState: () => store.state,
   isCurrent: (key) => view === key,
   isCompleted: (state, id) => listHistory.isCompleted(state, id),
+  linkFilter: libraryLinkFilter,
   loadCatalog,
   notifyDropped: (key, count) => notify(
     `#${key}-report`,

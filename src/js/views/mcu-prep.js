@@ -1,10 +1,11 @@
-import { catalogEntries } from '../lib/catalog.js';
+import { catalogEntries, storyKey } from '../lib/catalog.js';
 import { mcuPrepSections, parseMcuPrep, releaseDateLabel } from '../lib/mcuPrep.js';
+import { linkNarrower } from './shared/library-link-filter.js';
 
 const ROUTE = 'marvel-on-screen';
 
 export function createMcuPrepView({
-  el, elements, isCurrent, loadMetadata, presentation, clearLoadNotice, onLoadFailure,
+  el, elements, isCurrent, loadMetadata, presentation, clearLoadNotice, onLoadFailure, linkChoice = () => null,
 }) {
   let catalog = null;
   let metadata = null;
@@ -82,18 +83,29 @@ export function createMcuPrepView({
   function paint() {
     if (!ready || !isCurrent() || !requestIsCurrent()) return;
     const nodes = elements();
-    const sections = mcuPrepSections(catalog.lists, metadata, { query, sort });
-    const total = catalog.lists.filter((list) => list.type === 'screen-companion').length;
+    const companions = catalog.lists.filter((list) => list.type === 'screen-companion');
+    const narrower = linkNarrower(linkChoice(), companions, storyKey);
+    const sections = mcuPrepSections(catalog.lists, metadata, { query, sort })
+      .map((section) => ({
+        ...section,
+        entries: section.entries
+          .map((entry) => ({ ...entry, story: catalogEntries([entry.list])[0] }))
+          .filter((entry) => narrower.keep(entry.story)),
+      }))
+      .filter((section) => section.entries.length);
+    const total = companions.length;
     const count = sections.reduce((sum, section) => sum + section.entries.length, 0);
-    const countText = query
-      ? `${count} of ${total} Reading Lists`
+    const countText = query || narrower.linking
+      ? `${count} of ${total} Reading Lists${narrower.narrowing}`
       : `${count} ${count === 1 ? 'Reading List' : 'Reading Lists'}`;
     if (nodes.count.textContent !== countText) nodes.count.textContent = countText;
     nodes.results.replaceChildren();
     if (!count) {
       nodes.results.append(el('p', {
         class: 'rail-hint publishing-empty',
-        text: query ? `No Reading Lists match "${query}".` : 'No MCU Prep Reading Lists are published yet.',
+        text: query || narrower.linking
+          ? `No Reading Lists${query ? ` match "${query}"` : ''}${narrower.narrowing}.`
+          : 'No MCU Prep Reading Lists are published yet.',
       }));
       return;
     }
@@ -101,9 +113,8 @@ export function createMcuPrepView({
       const headingId = `${ROUTE}-${section.key}-h`;
       const grid = el('div', { class: 'catalog-grid publishing-grid' });
       for (const entry of section.entries) {
-        const [story] = catalogEntries([entry.list]);
-        const card = presentation.catalogCard(story, {
-          surface: ROUTE, report: `#${ROUTE}-report`, level: 'h3',
+        const card = presentation.catalogCard(entry.story, {
+          surface: ROUTE, report: `#${ROUTE}-report`, level: 'h3', linkText: narrower.linkText,
         });
         if (entry.releases.length) {
           card.querySelector('.catalog-card-title').after(el('ul', { class: 'mcu-prep-releases' },

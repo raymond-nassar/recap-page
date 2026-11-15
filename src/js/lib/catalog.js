@@ -9,6 +9,7 @@
 import { coverAddress, normalizeCover } from './model.js';
 import { copyUniverseListFields, universeListProblems } from './universeSchema.js';
 import { universeDefinitions } from '../../data/universeCatalog.js';
+import { filterStoriesByLinks } from './libraryLinks.js';
 
 export const LIST_TYPES = ['event', 'character-run', 'creator-run', 'era', 'screen-companion'];
 export const READING_DEPTHS = ['essential', 'complete', 'partial', 'tie-ins', 'selected'];
@@ -1236,6 +1237,7 @@ const typeCategory = (type) => (stories) => (Array.isArray(stories) ? stories : 
 // film a reader is about to watch, and listing them beside the runs would crowd every genre
 // with entries that answer a different question.
 export const STORY_TYPES_ROUTE = 'genres';
+export const LIBRARY_LINKS_ROUTE = 'library-links';
 
 function discoverableList(list) {
   return list?.type !== 'screen-companion'
@@ -1368,6 +1370,16 @@ export const HOME_CATEGORIES = [
     icon: 'E7BE',
     tier: 'secondary',
     select: shelfCategory('young-readers'),
+  },
+  {
+    key: LIBRARY_LINKS_ROUTE,
+    route: LIBRARY_LINKS_ROUTE,
+    heading: 'Library links',
+    label: 'Checked Hoopla and Libby books',
+    icon: 'library-links',
+    tier: 'secondary',
+    description: 'Reading Lists with comics that have a checked Hoopla or Libby book page.',
+    select: (stories) => filterStoriesByLinks(stories, { coverage: 'any', provider: 'either' }),
   },
   {
     key: 'universes',
