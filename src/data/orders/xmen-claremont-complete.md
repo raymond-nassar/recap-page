@@ -5,11 +5,11 @@ origins and Chris Claremont era guides, read as a reference and re-expressed her
 derived from Marvel metadata and cannot be checked against it; only the issue ids and titles
 come from Marvel, by resolving each issue the outline names.
 
-The same spine as the shorter order beside this file, carrying the same four departures from the
-outline, plus the two sections the outline marked optional: the Silver Age guest appearances
-scattered across Spider-Man, the Hulk, the Avengers, Captain America and the Defenders, and the
-modern retellings of the same years, from The Hidden Years through Grand Design, Season One and
-First Class.
+This route keeps the Silver Age origins and the four departures from the outline, plus the two
+sections the outline marked optional: the Silver Age guest appearances scattered across Spider-Man,
+the Hulk, the Avengers, Captain America and the Defenders, and the modern retellings of the same
+years, from The Hidden Years through Grand Design, Season One and First Class. The core route now
+opens with First Class instead of the original Silver Age stories.
 
 X-Men Annual #1 and #2 are listed without a link. Marvel's metadata carries that annual series
 only from #3, so there is no issue to link to, and leaving the two out would have shortened the
