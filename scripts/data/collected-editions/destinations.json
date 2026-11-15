@@ -253,6 +253,22 @@
         "source": "Owner-confirmed Cowork return; SHA-256 3848cdd6136d166a0753dbfa1eee8141b15f890cf2bdb50d954f7f26b78355da"
       }
     ],
+    "war-of-the-realms-journey-into-mystery": [
+      {
+        "provider": "hoopla",
+        "url": "https://www.hoopladigital.com/title/12917438",
+        "checkedAt": "2026-11-14",
+        "confirmedBy": "owner",
+        "source": "Owner-confirmed Cowork return; SHA-256 9b2ba6f30f7d612941c39cd65dde5807899913df0d48049bfd69a5e1d38802c7"
+      },
+      {
+        "provider": "libby",
+        "url": "https://share.libbyapp.com/title/8114272",
+        "checkedAt": "2026-11-14",
+        "confirmedBy": "owner",
+        "source": "Owner-confirmed Cowork return; SHA-256 9b2ba6f30f7d612941c39cd65dde5807899913df0d48049bfd69a5e1d38802c7"
+      }
+    ],
     "loki-agent-of-asgard-v2-i-cannot-tell-a-lie": [
       {
         "provider": "hoopla",

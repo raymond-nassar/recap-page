@@ -233,7 +233,10 @@ test('returned links follow their verified list comics', () => {
       ['hoopla', 'https://www.hoopladigital.com/title/12917346'],
       ['libby', 'https://share.libbyapp.com/title/8114341'],
     ]],
-    ['war-of-the-realms', 'war_of_the_realms.json', 'war-of-the-realms-journey-into-mystery', 27320, [1, 2, 3, 4, 5], []],
+    ['war-of-the-realms', 'war_of_the_realms.json', 'war-of-the-realms-journey-into-mystery', 27320, [1, 2, 3, 4, 5], [
+      ['hoopla', 'https://www.hoopladigital.com/title/12917438'],
+      ['libby', 'https://share.libbyapp.com/title/8114272'],
+    ]],
     ['iron-man-2020', 'iron_man_2020.json', 'iron-man-2020-robot-revolution', 28356, [1, 2, 3, 4, 5, 6], []],
     ['infinity-countdown-wars', 'infinity_countdown_wars.json', 'asgardians-v1-the-infinity-armada', 25996, [1, 2], [
       ['hoopla', 'https://www.hoopladigital.com/title/12917385'],
@@ -607,6 +610,10 @@ test('owner-confirmed destinations are limited to released editions', () => {
       ['hoopla', 'https://www.hoopladigital.com/title/14794072'],
       ['libby', 'https://share.libbyapp.com/title/8771019'],
     ],
+    'war-of-the-realms-journey-into-mystery': [
+      ['hoopla', 'https://www.hoopladigital.com/title/12917438'],
+      ['libby', 'https://share.libbyapp.com/title/8114272'],
+    ],
     'secret-invasion-fantastic-four': [
       ['hoopla', 'https://www.hoopladigital.com/title/14279808'],
       ['libby', 'https://share.libbyapp.com/title/7785428'],
@@ -618,6 +625,7 @@ test('owner-confirmed destinations are limited to released editions', () => {
   });
   assert.equal(Object.keys(editionCatalog.editions).length, 37);
   for (const [id, entries] of Object.entries(destinations)) {
+    const completeReturn = id === 'war-of-the-realms-journey-into-mystery';
     const currentReturn = [
       'amazing-spider-man-edge-of-spider-verse',
       'doctor-strange-waid-v1-across-the-universe',
@@ -628,13 +636,15 @@ test('owner-confirmed destinations are limited to released editions', () => {
       'asgardians-v2-war-of-the-realms', 'new-xmen-v2-imperial', 'new-xmen-v4-riot-at-xaviers',
       'daredevil-v8-echo-vision-quest',
     ].includes(id);
-    const sourceHash = currentReturn
-      ? '3848cdd6136d166a0753dbfa1eee8141b15f890cf2bdb50d954f7f26b78355da'
-      : previousReturn
-        ? '0b85d0cc1942a6600d3ba08731759475294f2977576889a439f78f212990b17d'
-        : '94a88e797a37042c857ec66c04b75ec471ce9b8ef706634529ecfba665cc6275';
+    const sourceHash = completeReturn
+      ? '9b2ba6f30f7d612941c39cd65dde5807899913df0d48049bfd69a5e1d38802c7'
+      : currentReturn
+        ? '3848cdd6136d166a0753dbfa1eee8141b15f890cf2bdb50d954f7f26b78355da'
+        : previousReturn
+          ? '0b85d0cc1942a6600d3ba08731759475294f2977576889a439f78f212990b17d'
+          : '94a88e797a37042c857ec66c04b75ec471ce9b8ef706634529ecfba665cc6275';
     for (const entry of entries) {
-      assert.equal(entry.checkedAt, currentReturn ? '2026-11-14' : '2026-11-13');
+      assert.equal(entry.checkedAt, completeReturn || currentReturn ? '2026-11-14' : '2026-11-13');
       assert.equal(entry.confirmedBy, 'owner');
       assert.ok(entry.source.includes(sourceHash), id);
     }
