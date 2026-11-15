@@ -2071,7 +2071,7 @@
   },
   "docs/ARCHITECTURE_REFERENCE.md|the-module-graph-drawn-as-ownership|src/js/main.js:113-165|0": {
     "anchor": "src/js/main.js:113-165",
-    "fp": "0ac6f2d0fa6c65bf",
+    "fp": "a6d13754beb9ce85",
     "head": "const settings = loadSettings();"
   },
   "docs/ARCHITECTURE_REFERENCE.md|the-module-graph-drawn-as-ownership|src/js/main.js:2686-2700|0": {

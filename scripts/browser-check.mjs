@@ -1831,7 +1831,12 @@ async function checkOfflineHomeUpdates(browser, origin, t) {
     t.check('fresh offline arrival is a worker-served document with a quiet closed entry',
       responses.get('/') === true && currentDocument.id !== documentId && currentDocument.closed,
       JSON.stringify({ currentDocument, prior: documentId, responses: [...responses] }));
-    await openAllHomeUpdates(page, t, 'offline real content');
+    if (homeUpdatesContent.batch) await openAllHomeUpdates(page, t, 'offline real content');
+    else {
+      t.check('an offline build without highlights keeps both entries hidden and does not record an opening',
+        await page.evaluate((key) => document.querySelector('#home-updates').hidden
+          && document.querySelector('#about-whats-new').hidden && localStorage.getItem(key) === null, HOME_UPDATES_SEEN_KEY));
+    }
     t.check('offline content and guide labels came from worker responses, not HTTP or fixture fetch',
       required.every((path) => responses.get(path) === true), JSON.stringify([...responses]));
     t.check('offline opening preserves reading, recovery, preferences and save feedback',
@@ -2371,172 +2376,203 @@ const SCENARIOS = [
           && (batch ? await page.waitForFunction((key, id) => localStorage.getItem(key) === String(id),
             { timeout: 5000 }, HOME_UPDATES_SEEN_KEY, batch.id).then(() => true, () => false) : fresh.value === null),
         JSON.stringify(fresh));
-      if (!batch) return;
-      // An update: the record holds an earlier batch, so this one is offered until it is opened.
-      const offerUpdate = async () => {
-        await page.evaluate((key, id) => localStorage.setItem(key, String(id)), HOME_UPDATES_SEEN_KEY, batch.id - 1);
-        await page.reload({ waitUntil: 'load' });
-        await page.waitForSelector('#home-updates:not([hidden])');
-      };
-      await offerUpdate();
-      await page.waitForSelector('#home-primary-paths [data-category="timeline"]');
-      const initial = await page.evaluate(() => ({
-        open: document.querySelector('#home-updates').open,
-        new: !document.querySelector('#home-updates-new').hidden,
-      }));
-      t.check('an update offers closed news with New and no boot acknowledgment',
-        !initial.open && initial.new && await page.evaluate((key, id) => localStorage.getItem(key) === String(id - 1),
-          HOME_UPDATES_SEEN_KEY, batch.id), JSON.stringify(initial));
-      const before = await homeUpdatesSnapshot(page);
-      const route = await page.evaluate(() => ({ hash: location.hash, history: history.length }));
-      await page.focus('#home-updates-toggle');
-      await page.keyboard.press('Tab');
-      await page.keyboard.down('Shift');
-      await page.keyboard.press('Tab');
-      await page.keyboard.up('Shift');
-      t.check('the summary is keyboard reachable with visible focus', await page.$eval('#home-updates-toggle', (node) => (
-        document.activeElement === node && node.matches(':focus-visible')
-        && getComputedStyle(node).outlineStyle !== 'none' && parseFloat(getComputedStyle(node).outlineWidth) > 0
-      )));
-      await page.keyboard.press('Enter');
-      await page.waitForFunction(() => document.querySelector('#home-updates').open);
-      t.check('keyboard opening adds no route or history', JSON.stringify(await page.evaluate(() => ({
-        hash: location.hash, history: history.length,
-      }))) === JSON.stringify(route));
-      await page.keyboard.press('Escape');
-      t.check('Escape closes and restores the summary', await page.evaluate(() => !document.querySelector('#home-updates').open
-        && document.activeElement.id === 'home-updates-toggle'));
-      t.check('first keyboard viewing preserves every other storage value and save feedback',
-        JSON.stringify(await homeUpdatesSnapshot(page)) === JSON.stringify(before));
-
-      for (const populated of [false, true]) {
-        if (populated) {
-          const created = createList(createEmptyState(), { name: 'Existing Reading List', id: 'news-fixture' });
-          const saved = addIssuesToList(created, 'news-fixture', ORDER.items).state;
-          await page.evaluate((state) => localStorage.setItem('mrt.state.v2', JSON.stringify(state)), saved);
-          await offerUpdate();
-          await page.waitForSelector('#home-continue:not([hidden])');
-        }
-        for (const [width, theme] of [[1280, 'light'], [1280, 'dark'], [390, 'light'], [390, 'dark']]) {
-          await page.setViewport({ width, height: width === 1280 ? 900 : 844 });
-          await page.evaluate((value) => document.documentElement.setAttribute('data-theme', value), theme);
-          const baseline = await homeUpdatesSnapshot(page);
-          const label = `${populated ? 'populated' : 'first-visit'} ${width}px ${theme}`;
-          t.check(`${label}: closed entry leaves the primary actions reachable`, await page.evaluate((hasLists) => {
-            const node = document.querySelector(hasLists ? '#home-continue' : '#home-primary-paths');
-            return !document.querySelector('#home-updates').open && !node.hidden
-              && (hasLists
-                ? [...node.querySelectorAll('button')].some((button) => button.getClientRects().length)
-                : ['[data-category="timeline"]'].every((selector) => {
-                  const target = node.querySelector(selector);
-                  return target?.matches('a[href]') && target.getClientRects().length;
-                }));
-          }, populated));
-          await openAllHomeUpdates(page, t, label);
-          const layout = await page.evaluate(() => {
-            const panel = document.querySelector('#home-updates-panel');
-            const box = panel.getBoundingClientRect();
-            const targets = [...document.querySelectorAll('#home-updates button, #home-updates summary')]
-              .filter((node) => node.getClientRects().length).map((node) => {
-                const bounds = node.getBoundingClientRect();
-                return { width: bounds.width, height: bounds.height };
-              });
-            return {
-              fits: box.left >= 0 && box.right <= innerWidth + 1 && box.height <= innerHeight * .7 + 1,
-              scroll: panel.scrollHeight > panel.clientHeight,
-              overflow: document.documentElement.scrollWidth > innerWidth + 1,
-              targets,
-            };
-          });
-          const size = (homeUpdatesContent.batch?.features.length ?? 0) + (homeUpdatesContent.batch?.listIds.length ?? 0);
-          t.check(`${label}: panel fits, scrolls when large and retains 44px controls`,
-            layout.fits && !layout.overflow && (size < 10 || layout.scroll)
-              && layout.targets.every((target) => target.width >= 44 && target.height >= 44), JSON.stringify(layout));
-          await click(page, '#home-updates-close');
-          t.check(`${label}: Close restores the summary without reading writes`,
-            await page.evaluate(() => document.activeElement.id === 'home-updates-toggle')
-              && JSON.stringify(await homeUpdatesSnapshot(page)) === JSON.stringify(baseline));
-        }
-      }
-      await page.setViewport({ width: 1280, height: 900 });
-      await openAllHomeUpdates(page, t, 'Preview reachability');
-      const last = homeUpdatesContent.batch?.listIds.at(-1);
-      if (last) {
-        const baseline = await homeUpdatesSnapshot(page);
-        await page.$eval(`[data-home-updates-list="${last}"]`, (node) => {
-          node.scrollIntoView({ block: 'nearest' });
-          node.click();
-        });
-        await page.waitForSelector('#preview[open]');
-        t.check('the final guide uses existing Preview and closes the nonmodal panel',
-          await page.$eval('#preview-h', (node) => node.textContent) === ACTUAL_CATALOG.lists.find((entry) => entry.id === last).name
-            && await page.$eval('#home-updates', (node) => !node.open));
+      if (batch) {
+        // An update: the record holds an earlier batch, so this one is offered until it is opened.
+        const offerUpdate = async () => {
+          await page.evaluate((key, id) => localStorage.setItem(key, String(id)), HOME_UPDATES_SEEN_KEY, batch.id - 1);
+          await page.reload({ waitUntil: 'load' });
+          await page.waitForSelector('#home-updates:not([hidden])');
+        };
+        await offerUpdate();
+        await page.waitForSelector('#home-primary-paths [data-category="timeline"]');
+        const initial = await page.evaluate(() => ({
+          open: document.querySelector('#home-updates').open,
+          new: !document.querySelector('#home-updates-new').hidden,
+        }));
+        t.check('an update offers closed news with New and no boot acknowledgment',
+          !initial.open && initial.new && await page.evaluate((key, id) => localStorage.getItem(key) === String(id - 1),
+            HOME_UPDATES_SEEN_KEY, batch.id), JSON.stringify(initial));
+        const before = await homeUpdatesSnapshot(page);
+        const route = await page.evaluate(() => ({ hash: location.hash, history: history.length }));
+        await page.focus('#home-updates-toggle');
+        await page.keyboard.press('Tab');
+        await page.keyboard.down('Shift');
+        await page.keyboard.press('Tab');
+        await page.keyboard.up('Shift');
+        t.check('the summary is keyboard reachable with visible focus', await page.$eval('#home-updates-toggle', (node) => (
+          document.activeElement === node && node.matches(':focus-visible')
+          && getComputedStyle(node).outlineStyle !== 'none' && parseFloat(getComputedStyle(node).outlineWidth) > 0
+        )));
+        await page.keyboard.press('Enter');
+        await page.waitForFunction(() => document.querySelector('#home-updates').open);
+        t.check('keyboard opening adds no route or history', JSON.stringify(await page.evaluate(() => ({
+          hash: location.hash, history: history.length,
+        }))) === JSON.stringify(route));
         await page.keyboard.press('Escape');
-        await page.waitForFunction(() => !document.querySelector('#preview').open);
-        t.check('Preview returns to a visible summary without adding or changing progress',
-          await page.$eval('#home-updates-toggle', (node) => {
-            const box = node.getBoundingClientRect();
-            return document.activeElement === node && box.top >= 0 && box.bottom <= innerHeight;
-          }) && JSON.stringify(await homeUpdatesSnapshot(page)) === JSON.stringify(baseline));
-      } else await click(page, '#home-updates-close');
-      await click(page, '#home-updates-toggle');
-      await page.focus('#btn-chero-open');
-      await page.$eval('#btn-chero-open', (node) => node.dispatchEvent(new PointerEvent('pointerdown', { bubbles: true })));
-      t.check('an outside pointer closes without stealing target focus',
-        await page.evaluate(() => !document.querySelector('#home-updates').open && document.activeElement.id === 'btn-chero-open'));
-      await click(page, '#home-updates-toggle');
-      await click(page, '.ri[data-view="library"]');
-      await page.waitForSelector('#view-library:not([hidden])');
-      t.check('leaving Home closes without pulling focus back into hidden Home',
-        await page.evaluate(() => !document.querySelector('#home-updates').open
-          && !document.querySelector('#view-home').contains(document.activeElement)));
-      await click(page, '.brand[data-view="home"]');
-      await page.waitForSelector('#view-home:not([hidden])');
-      t.check('returning Home after a remembered opening no longer offers the button',
-        await page.$eval('#home-updates', (node) => !node.open && node.hidden && !node.checkVisibility()));
-      await page.reload({ waitUntil: 'load' });
-      await page.waitForSelector('#home-continue:not([hidden])');
-      t.check('the opened highlights stay off Home after a reload',
-        await page.$eval('#home-updates', (node) => node.hidden));
-      await click(page, '.ri[data-view="about"]');
-      await page.waitForSelector('#view-about:not([hidden])');
-      const aboutEntry = await page.$eval('#about-whats-new', (node) => {
-        const box = node.getBoundingClientRect();
-        return { visible: node.checkVisibility(), text: node.textContent, type: node.type, width: box.width, height: box.height };
-      });
-      t.check('About keeps a What\'s new button with a 44px target',
-        aboutEntry.visible && aboutEntry.text === "What's new" && aboutEntry.type === 'button'
-          && aboutEntry.width >= 44 && aboutEntry.height >= 44, JSON.stringify(aboutEntry));
-      const aboutBefore = await homeUpdatesSnapshot(page);
-      await click(page, '#about-whats-new');
-      await page.waitForFunction(() => document.querySelector('#home-updates').open);
-      const aboutOpened = await page.evaluate(() => ({
-        hash: location.hash,
-        home: !document.querySelector('#view-home').hidden,
-        focus: document.activeElement.id || document.activeElement.tagName,
-        panel: document.querySelector('#home-updates-panel').checkVisibility(),
-      }));
-      t.check('About opens the same highlights on Home with focus on their toggle',
-        /^#\/home(\/|$)/.test(aboutOpened.hash) && aboutOpened.home && aboutOpened.focus === 'home-updates-toggle' && aboutOpened.panel,
-        JSON.stringify(aboutOpened));
-      t.check('About\'s highlights hold every guide in this batch',
-        await page.waitForFunction((count) => document.querySelectorAll('[data-home-updates-list]').length === count,
-          { timeout: 5000 }, batch.listIds.length).then(() => true, () => false));
-      await page.focus('#home-updates-toggle');
-      await page.keyboard.press('Escape');
-      t.check('Escape from About\'s highlights restores the visible toggle without reading writes',
-        await page.evaluate(() => !document.querySelector('#home-updates').open
-          && document.activeElement.id === 'home-updates-toggle'
-          && document.querySelector('#home-updates-toggle').checkVisibility())
-          && JSON.stringify(await homeUpdatesSnapshot(page)) === JSON.stringify(aboutBefore));
-      await click(page, '.ri[data-view="library"]');
-      await page.waitForSelector('#view-library:not([hidden])');
-      await click(page, '.brand[data-view="home"]');
-      await page.waitForSelector('#view-home:not([hidden])');
-      t.check('leaving Home after About\'s visit takes the button away again',
-        await page.$eval('#home-updates', (node) => node.hidden));
+        t.check('Escape closes and restores the summary', await page.evaluate(() => !document.querySelector('#home-updates').open
+          && document.activeElement.id === 'home-updates-toggle'));
+        t.check('first keyboard viewing preserves every other storage value and save feedback',
+          JSON.stringify(await homeUpdatesSnapshot(page)) === JSON.stringify(before));
+
+        for (const populated of [false, true]) {
+          if (populated) {
+            const created = createList(createEmptyState(), { name: 'Existing Reading List', id: 'news-fixture' });
+            const saved = addIssuesToList(created, 'news-fixture', ORDER.items).state;
+            await page.evaluate((state) => localStorage.setItem('mrt.state.v2', JSON.stringify(state)), saved);
+            await offerUpdate();
+            await page.waitForSelector('#home-continue:not([hidden])');
+          }
+          for (const [width, theme] of [[1280, 'light'], [1280, 'dark'], [390, 'light'], [390, 'dark']]) {
+            await page.setViewport({ width, height: width === 1280 ? 900 : 844 });
+            await page.evaluate((value) => document.documentElement.setAttribute('data-theme', value), theme);
+            const baseline = await homeUpdatesSnapshot(page);
+            const label = `${populated ? 'populated' : 'first-visit'} ${width}px ${theme}`;
+            t.check(`${label}: closed entry leaves the primary actions reachable`, await page.evaluate((hasLists) => {
+              const node = document.querySelector(hasLists ? '#home-continue' : '#home-primary-paths');
+              return !document.querySelector('#home-updates').open && !node.hidden
+                && (hasLists
+                  ? [...node.querySelectorAll('button')].some((button) => button.getClientRects().length)
+                  : ['[data-category="timeline"]'].every((selector) => {
+                    const target = node.querySelector(selector);
+                    return target?.matches('a[href]') && target.getClientRects().length;
+                  }));
+            }, populated));
+            await openAllHomeUpdates(page, t, label);
+            const layout = await page.evaluate(() => {
+              const panel = document.querySelector('#home-updates-panel');
+              const box = panel.getBoundingClientRect();
+              const targets = [...document.querySelectorAll('#home-updates button, #home-updates summary')]
+                .filter((node) => node.getClientRects().length).map((node) => {
+                  const bounds = node.getBoundingClientRect();
+                  return { width: bounds.width, height: bounds.height };
+                });
+              return {
+                fits: box.left >= 0 && box.right <= innerWidth + 1 && box.height <= innerHeight * .7 + 1,
+                scroll: panel.scrollHeight > panel.clientHeight,
+                overflow: document.documentElement.scrollWidth > innerWidth + 1,
+                targets,
+              };
+            });
+            const size = (homeUpdatesContent.batch?.features.length ?? 0) + (homeUpdatesContent.batch?.listIds.length ?? 0);
+            t.check(`${label}: panel fits, scrolls when large and retains 44px controls`,
+              layout.fits && !layout.overflow && (size < 10 || layout.scroll)
+                && layout.targets.every((target) => target.width >= 44 && target.height >= 44), JSON.stringify(layout));
+            await click(page, '#home-updates-close');
+            t.check(`${label}: Close restores the summary without reading writes`,
+              await page.evaluate(() => document.activeElement.id === 'home-updates-toggle')
+                && JSON.stringify(await homeUpdatesSnapshot(page)) === JSON.stringify(baseline));
+          }
+        }
+        await page.setViewport({ width: 1280, height: 900 });
+        await openAllHomeUpdates(page, t, 'Preview reachability');
+        const last = homeUpdatesContent.batch?.listIds.at(-1);
+        if (last) {
+          const baseline = await homeUpdatesSnapshot(page);
+          await page.$eval(`[data-home-updates-list="${last}"]`, (node) => {
+            node.scrollIntoView({ block: 'nearest' });
+            node.click();
+          });
+          await page.waitForSelector('#preview[open]');
+          t.check('the final guide uses existing Preview and closes the nonmodal panel',
+            await page.$eval('#preview-h', (node) => node.textContent) === ACTUAL_CATALOG.lists.find((entry) => entry.id === last).name
+              && await page.$eval('#home-updates', (node) => !node.open));
+          await page.keyboard.press('Escape');
+          await page.waitForFunction(() => !document.querySelector('#preview').open);
+          t.check('Preview returns to a visible summary without adding or changing progress',
+            await page.$eval('#home-updates-toggle', (node) => {
+              const box = node.getBoundingClientRect();
+              return document.activeElement === node && box.top >= 0 && box.bottom <= innerHeight;
+            }) && JSON.stringify(await homeUpdatesSnapshot(page)) === JSON.stringify(baseline));
+        } else await click(page, '#home-updates-close');
+        await click(page, '#home-updates-toggle');
+        await page.focus('#btn-chero-open');
+        await page.$eval('#btn-chero-open', (node) => node.dispatchEvent(new PointerEvent('pointerdown', { bubbles: true })));
+        t.check('an outside pointer closes without stealing target focus',
+          await page.evaluate(() => !document.querySelector('#home-updates').open && document.activeElement.id === 'btn-chero-open'));
+        await click(page, '#home-updates-toggle');
+        await click(page, '.ri[data-view="library"]');
+        await page.waitForSelector('#view-library:not([hidden])');
+        t.check('leaving Home closes without pulling focus back into hidden Home',
+          await page.evaluate(() => !document.querySelector('#home-updates').open
+            && !document.querySelector('#view-home').contains(document.activeElement)));
+        await click(page, '.brand[data-view="home"]');
+        await page.waitForSelector('#view-home:not([hidden])');
+        t.check('returning Home after a remembered opening no longer offers the button',
+          await page.$eval('#home-updates', (node) => !node.open && node.hidden && !node.checkVisibility()));
+        await page.reload({ waitUntil: 'load' });
+        await page.waitForSelector('#home-continue:not([hidden])');
+        t.check('the opened highlights stay off Home after a reload',
+          await page.$eval('#home-updates', (node) => node.hidden));
+        await click(page, '.ri[data-view="about"]');
+        await page.waitForSelector('#view-about:not([hidden])');
+        const aboutEntry = await page.$eval('#about-whats-new', (node) => {
+          const box = node.getBoundingClientRect();
+          return { visible: node.checkVisibility(), text: node.textContent, type: node.type, width: box.width, height: box.height };
+        });
+        t.check('About keeps a What\'s new button with a 44px target',
+          aboutEntry.visible && aboutEntry.text === "What's new" && aboutEntry.type === 'button'
+            && aboutEntry.width >= 44 && aboutEntry.height >= 44, JSON.stringify(aboutEntry));
+        const aboutBefore = await homeUpdatesSnapshot(page);
+        await click(page, '#about-whats-new');
+        await page.waitForFunction(() => document.querySelector('#home-updates').open);
+        const aboutOpened = await page.evaluate(() => ({
+          hash: location.hash,
+          home: !document.querySelector('#view-home').hidden,
+          focus: document.activeElement.id || document.activeElement.tagName,
+          panel: document.querySelector('#home-updates-panel').checkVisibility(),
+        }));
+        t.check('About opens the same highlights on Home with focus on their toggle',
+          /^#\/home(\/|$)/.test(aboutOpened.hash) && aboutOpened.home && aboutOpened.focus === 'home-updates-toggle' && aboutOpened.panel,
+          JSON.stringify(aboutOpened));
+        t.check('About\'s highlights hold every guide in this batch',
+          await page.waitForFunction((count) => document.querySelectorAll('[data-home-updates-list]').length === count,
+            { timeout: 5000 }, batch.listIds.length).then(() => true, () => false));
+        await page.focus('#home-updates-toggle');
+        await page.keyboard.press('Escape');
+        t.check('Escape from About\'s highlights restores the visible toggle without reading writes',
+          await page.evaluate(() => !document.querySelector('#home-updates').open
+            && document.activeElement.id === 'home-updates-toggle'
+            && document.querySelector('#home-updates-toggle').checkVisibility())
+            && JSON.stringify(await homeUpdatesSnapshot(page)) === JSON.stringify(aboutBefore));
+        await click(page, '.ri[data-view="library"]');
+        await page.waitForSelector('#view-library:not([hidden])');
+        await click(page, '.brand[data-view="home"]');
+        await page.waitForSelector('#view-home:not([hidden])');
+        t.check('leaving Home after About\'s visit takes the button away again',
+          await page.$eval('#home-updates', (node) => node.hidden));
+      }
       t.check('Home news interaction has no script errors', errors.length === 0, JSON.stringify(errors));
       await checkOfflineHomeUpdates(page.browser(), page.__origin, t);
+    },
+  },
+  {
+    id: 'home-updates-empty-reader',
+    title: 'An earlier launch without saved reading data still offers updated highlights',
+    async run(page, t) {
+      if (!homeUpdatesContent.batch) return;
+      for (const legacy of [false, true]) {
+        const preload = await page.evaluateOnNewDocument((key, useLegacy) => {
+          localStorage.removeItem('mrt.state.v2');
+          localStorage.removeItem(key);
+          localStorage.removeItem('mrt.cache-purge.v1');
+          localStorage.removeItem('mrt.settings');
+          if (useLegacy) localStorage.setItem('mrt.settings', JSON.stringify({ cachePurge: 1 }));
+          else localStorage.setItem('mrt.cache-purge.v1', '1');
+          window.__mrtBlockExternal = true;
+        }, HOME_UPDATES_SEEN_KEY, legacy);
+        await open(page, '/?catalog=actual#/home');
+        await page.waitForSelector('#home-primary-paths [data-category="timeline"]');
+        await page.evaluate((key) => navigator.locks.request(key, () => {}), HOME_UPDATES_SEEN_KEY);
+        const result = await page.evaluate((key) => ({
+          offered: !document.querySelector('#home-updates').hidden,
+          fresh: !document.querySelector('#home-updates-new').hidden,
+          reading: localStorage.getItem('mrt.state.v2'),
+          seen: localStorage.getItem(key),
+        }), HOME_UPDATES_SEEN_KEY);
+        t.check(`${legacy ? 'legacy settings' : 'dedicated mark'}: an earlier launch offers highlights without saving an opening`,
+          result.offered && result.fresh && result.reading === null && result.seen === null, JSON.stringify(result));
+        await page.removeScriptToEvaluateOnNewDocument(preload.identifier);
+      }
     },
   },
   {

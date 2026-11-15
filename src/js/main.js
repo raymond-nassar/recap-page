@@ -148,11 +148,11 @@ const listHistory = new ListHistoryStore({
 // The browser's own object, not the guard: Home updates ignores a storage event whose area is not the
 // storage it was given, and its key is not one a complete restore replaces.
 const homeUpdatesSeen = createHomeUpdatesSeen({ storage: globalThis.localStorage, locks: globalThis.navigator?.locks });
-// Read before boot can write anything. No viewing record and no reading data means nothing was
-// installed before this copy; a reader who kept lists but never opened What's new is an update.
+// Read before boot writes its launch mark. Browsing without saving still leaves that mark, in its
+// dedicated key or legacy settings; neither the viewing record nor reading data alone proves a first launch.
 const homeUpdatesFirstLaunch = (() => {
   try {
-    return homeUpdatesSeen.status().reason === 'missing' && globalThis.localStorage.getItem(STATE_KEY) === null;
+    return homeUpdatesSeen.status().reason === 'missing' && globalThis.localStorage.getItem(STATE_KEY) === null && cachePurgeMark(globalThis.localStorage) === 0;
   } catch {
     return false;
   }
