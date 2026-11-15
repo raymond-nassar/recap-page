@@ -3222,7 +3222,7 @@ test('staged recovery revision: switching the active list still promotes the res
   await restore.releaseShared();
 });
 
-test('staged recovery revision: equal personal digests do not guess an ambiguous outcome', async () => {
+for (const reviewRequired of [false, true]) test(`staged recovery revision: equal personal digests do not guess an ambiguous outcome, review: ${reviewRequired}`, async () => {
   const env = harness({ transport: windowsHost(fakeTransport()) });
   const { protocol } = await consented(env);
   const home = device();
@@ -3247,7 +3247,12 @@ test('staged recovery revision: equal personal digests do not guess an ambiguous
   assert.notEqual(current.backup.digest, target.backup.digest);
   assert.equal(current.personalDigest, prior.personalDigest);
   const tab = page({ env, home, launchSync: true });
+  if (reviewRequired) env.transport.store('recap-page-backup-v2-unsupported.json.gz', new Uint8Array([1]));
   await tab.cloud.resume();
+  if (reviewRequired) {
+    await until(() => tab.cloud.model.sync.phase === 'review', 'the unsupported file requires review');
+    assert.equal((await tab.cloud.overrideSync(tab.cloud.model.sync.review)).ok, true);
+  }
   await until(() => ['clear', 'failed'].includes(tab.cloud.model.sync.phase), 'the unchanged personal progress is checked');
   assert.equal(tab.cloud.model.sync.phase, 'clear', tab.cloud.model.sync.error);
   assert.equal(tab.cloud.model.sync.keptUnavailable, true, 'neither direction is guessed');
@@ -4198,6 +4203,70 @@ test('a disconnect during restore still activates the already verified prior clo
   await restore.releaseShared();
 });
 
+for (const overlappingPoll of [false, true]) test(`a revoked tab takes over an abandoned cloud choice on its normal retry, overlapping poll: ${overlappingPoll}`, async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  await consented(env);
+  const home = device();
+  const channel = { postMessage() {} };
+  const first = page({ env, home, launchSync: true, channel });
+  await first.cloud.resume();
+  await until(() => first.cloud.model.sync.phase === 'clear', 'the original tab is checked');
+  const remote = await device({ 1: 333 }).snapshot();
+  env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+    stream: OTHER, generation: 1, backup: remote.backup,
+  }));
+  const second = page({ env, home, launchSync: true });
+  await second.cloud.resume();
+  await until(() => second.cloud.model.sync.phase === 'offer', 'the second tab holds a choice');
+  assert.equal(first.cloud.model.sync.phase, 'following');
+  env.locks.closeHolder(CLOUD_SYNC_OFFER_LOCK);
+  let releasePoll;
+  if (overlappingPoll) {
+    const gate = first.protocol.syncGate.bind(first.protocol);
+    const waiting = new Promise((resolve) => { releasePoll = resolve; });
+    let reading = false;
+    first.protocol.syncGate = async (...args) => {
+      if (!reading) {
+        reading = true;
+        await waiting;
+      }
+      return gate(...args);
+    };
+    channel.onmessage();
+    await until(() => reading, 'the upload poll is reading the gate');
+  }
+  await first.run(5_000);
+  releasePoll?.();
+  await until(() => first.cloud.model.sync.phase === 'offer', 'the surviving tab must take over the abandoned choice');
+  assert.equal(first.cloud.model.sync.phase, 'offer', 'the surviving tab must elect itself without an upload poll');
+  await first.cloud.turnOff();
+  await second.cloud.turnOff();
+});
+
+test('a follower adopts the same held review epoch after confirmation without revoking the leader', async () => {
+  const env = harness({ transport: windowsHost(fakeTransport()) });
+  const { protocol } = await consented(env);
+  env.transport.store('recap-page-backup-v2-unsupported.json.gz', new Uint8Array([1]));
+  const home = device();
+  const first = page({ env, home, launchSync: true });
+  await first.cloud.resume();
+  await until(() => first.cloud.model.sync.phase === 'review', 'the first tab reviews');
+  const second = page({ env, home, launchSync: true });
+  await second.cloud.resume();
+  await until(() => second.cloud.model.sync.phase === 'following', 'the second tab follows');
+  await second.cloud.checkSync();
+  const epoch = (await protocol.syncGate(await syncContext(protocol))).epoch;
+  assert.equal((await first.cloud.overrideSync(first.cloud.model.sync.review)).ok, true);
+  await second.run(15_000);
+  await until(() => second.cloud.model.sync.phase !== 'following', 'the follower observes the completed check');
+  await second.run(6 * 60_000);
+  assert.equal(first.cloud.model.sync.phase, 'clear', 'confirmation must not be revoked by a background follower');
+  assert.equal(second.cloud.model.sync.phase, 'clear', 'the follower adopts the completed review');
+  assert.equal((await protocol.syncGate(await syncContext(protocol))).epoch, epoch);
+  await second.cloud.turnOff();
+  await first.cloud.turnOff();
+});
+
 test('a follower cannot release a stale clear gate when no check leader existed', async () => {
   const env = harness({ transport: windowsHost(fakeTransport()) });
   const { protocol } = await consented(env);
@@ -4473,11 +4542,12 @@ test('a refused pending marker still leaves a durable IndexedDB hold before repo
   const before = env.transport.created.length;
   await other.run(CLOUD_BACKUP_CADENCE.maxWaitMs);
   assert.equal(env.transport.created.length, before, 'a failed marker write cannot enable an older tab');
+  await until(() => other.cloud.model.sync.phase === 'failed', 'the surviving checker also reports the refused marker');
+  assert.equal((await protocol.syncGate(context)).held, true, 'takeover cannot clear an unconfirmed hold');
   env.syncStorage.setItem = write;
-  const recovery = page({ env, home: other.home, launchSync: true });
-  await recovery.cloud.resume();
-  await until(() => recovery.cloud.model.sync.phase === 'clear', 'the marker can be repaired');
-  await recovery.cloud.turnOff();
+  await other.cloud.checkSync();
+  await until(() => other.cloud.model.sync.phase === 'clear', 'the surviving checker repairs the marker');
+  await other.cloud.turnOff();
   await opening.cloud.refresh();
   await other.cloud.refresh();
 });
@@ -4500,7 +4570,7 @@ test('a removed pending marker cannot authorize an old Keep choice', async () =>
   await tab.cloud.turnOff();
 });
 
-test('Go back protects the current data before loading the exact prior kept copy', async () => {
+for (const reviewRequired of [false, true]) test(`Go back protects the current data before loading the exact prior kept copy, review: ${reviewRequired}`, async () => {
   const env = harness({ transport: windowsHost(fakeTransport()) });
   const { protocol } = await consented(env);
   const context = await syncContext(protocol);
@@ -4531,7 +4601,12 @@ test('Go back protects the current data before loading the exact prior kept copy
       return restore.restore(text, { ...options, importDraft: draft, draftRecovery: draft.recovery.slice() });
     } },
   });
+  if (reviewRequired) env.transport.store('recap-page-backup-v2-unsupported.json.gz', new Uint8Array([1]));
   await tab.cloud.resume();
+  if (reviewRequired) {
+    await until(() => tab.cloud.model.sync.phase === 'review', 'the unsupported file requires review');
+    assert.equal((await tab.cloud.overrideSync(tab.cloud.model.sync.review)).ok, true);
+  }
   await until(() => tab.cloud.model.sync.phase === 'clear', 'the current cloud progress is checked');
   assert.equal(tab.cloud.model.sync.kept.id, originalKept.id);
   const result = await tab.cloud.goBackSync();

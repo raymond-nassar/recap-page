@@ -369,10 +369,16 @@ export class CloudLaunchSync {
     if (!this.active) return;
     this.followerEpoch = this.epoch;
     this.publish('following');
+    if (!this.leader) this.scheduleRetry();
   }
 
   async checkFollower(sequence, completedOnly = false) {
-    if (this.followerRead) return this.followerRead.operation;
+    if (this.followerRead) {
+      await this.followerRead.operation;
+      if (!completedOnly && this.active && sequence === this.sequence && !this.leader
+        && this.state.phase === 'following') return this.checkFollower(sequence);
+      return;
+    }
     const ticket = { sequence, phase: this.state.phase, cancel: () => {}, operation: null };
     const current = () => this.followerRead === ticket && this.active && sequence === this.sequence
       && !this.leader && this.state.phase === ticket.phase;
@@ -389,8 +395,8 @@ export class CloudLaunchSync {
         });
         const gate = await Promise.race([this.protocol.syncGate({ ...this.context }), timeout, stopped]);
         if (!current()) return;
-        if (this.followerEpoch === undefined) this.followerEpoch = gate?.epoch ?? null;
-        else if (gate && !gate.held && gate.epoch !== this.followerEpoch && !this.marker.pending()) {
+        if (this.followerEpoch === undefined) this.followerEpoch = gate?.held ? null : gate?.epoch ?? null;
+        if (gate && !gate.held && gate.epoch !== this.followerEpoch && !this.marker.pending()) {
           const [remembered, pending, history] = await Promise.race([
             Promise.all([
               this.protocol.syncState({ connection: this.context.connection }),
@@ -415,6 +421,7 @@ export class CloudLaunchSync {
           }), timeout, stopped]);
           if (!current()) return;
           this.epoch = gate.epoch;
+          this.cancelTimer();
           this.coordinator.releaseSync();
           this.publish('clear');
           return;
@@ -512,7 +519,7 @@ export class CloudLaunchSync {
 
   async requestCheck() {
     if (!this.active) return;
-    if (this.state.phase !== 'review') {
+    if (this.state.phase !== 'review' && !(this.reserving && this.reviewAcknowledged)) {
       this.review = null;
       this.reviewAcknowledged = false;
       this.reviewDigest = null;
