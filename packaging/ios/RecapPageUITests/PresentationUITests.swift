@@ -160,6 +160,19 @@ final class PresentationUITests: XCTestCase {
             const fixtureMode = '\(route)';
             \(Self.passiveGuardFixtures)
             """
+        } else if route == "theme-select" {
+            routeScript = """
+            await openRoute(routes.find(({ name }) => name === 'data'));
+            const select = document.getElementById('opt-theme');
+            monitor.dataset.focusCount = '0';
+            select.addEventListener('focus', () => {
+              monitor.dataset.focusCount = String(Number(monitor.dataset.focusCount) + 1);
+            });
+            select.scrollIntoView({ block: 'center' });
+            await nextFrame();
+            screens.push(snapshot('theme-select'));
+            window.setInterval(refreshMonitor, 100);
+            """
         } else if route.hasPrefix("field-") {
             // One editable field per launch for the #1244 focus zoom proof. The question dialog is
             // modal, which makes the rest of the page inert and hides the monitor from the native
@@ -200,6 +213,27 @@ final class PresentationUITests: XCTestCase {
             await openRoute(routes.find(({ name }) => name === 'search'));
             screens.push(snapshot('view-add'));
             \(Self.searchAuditPreparation)
+            """
+        } else if route == "explore" {
+            // Explore's cards come from the asynchronously loaded catalog, so Home being visible is not
+            // enough: with the catalog response held, a desktop run of the plain Home route measured
+            // zero cards while Home read "Loading ways to read…" (#1331). The wait is for the cards
+            // themselves rather than for the status to change, because a failed load renders Explore
+            // empty before the app has finished handling it, and in a desktop run a refused catalog
+            // request was followed by a second one that filled it. If none arrive, the failure carries
+            // what Home said instead of surfacing later as an empty list of cards.
+            routeScript = """
+            await openRoute(routes[0]);
+            const exploreCard = () => document.querySelector('#home-primary-paths .home-path');
+            try {
+              await waitFor(exploreCard, 'Explore cards');
+            } catch {
+              throw new Error('Explore showed no cards within 30 seconds. '
+                + `Status: "${document.getElementById('home-paths-status').textContent.trim()}". `
+                + `Report: "${document.getElementById('home-cat-report').textContent.trim()}"`);
+            }
+            await nextFrame();
+            screens.push(snapshot('view-home'));
             """
         } else if route == "all" {
             routeScript = """
@@ -365,12 +399,22 @@ final class PresentationUITests: XCTestCase {
           themeSelect: (() => {
             const select = document.getElementById('opt-theme');
             const style = getComputedStyle(select);
+            const rect = select.getBoundingClientRect();
             return {
               whiteSpace: style.whiteSpace,
+              fontSize: Number.parseFloat(style.fontSize),
+              value: select.value,
+              option: select.selectedOptions[0]?.textContent,
+              rect: { x: rect.x, y: rect.y, width: rect.width, height: rect.height },
               scrollWidth: select.scrollWidth,
               clientWidth: select.clientWidth,
             };
           })(),
+          exploreCards: [...document.querySelectorAll('#home-primary-paths .home-path')].map((card) => ({
+            title: card.querySelector('.home-path-title').textContent.trim(),
+            titleSize: Number.parseFloat(getComputedStyle(card.querySelector('.home-path-title')).fontSize),
+            labelSize: Number.parseFloat(getComputedStyle(card.querySelector('.home-path-label')).fontSize),
+          })),
           dataCardDiagnostics: [...document.querySelectorAll('#view-data .setgroup > .card')].map((card) => {
             const cardRect = card.getBoundingClientRect();
             const cardStyle = getComputedStyle(card);
@@ -2853,6 +2897,85 @@ final class PresentationUITests: XCTestCase {
             XCTAssertEqual(scale, 1, accuracy: 0.001,
                            "\(route) does not leave the page zoomed after typing and dismissing the keyboard")
             try record("t03-field-zoom-\(route)", ["metrics": metrics])
+            app.terminate()
+        }
+    }
+
+    func testThemeSelectReceivesNativeFocusAndLeavesNoZoomAfterDismissal() throws {
+        let app = launch(route: "theme-select")
+        _ = try probeResult(of: app)
+        let monitor = layoutMonitor(of: app)
+        let before = try XCTUnwrap(layoutMetrics(from: monitor.label))
+        try record("t03-theme-select-before", ["metrics": before])
+        let initialScale = try XCTUnwrap((before["visualScale"] as? NSNumber)?.doubleValue)
+        XCTAssertEqual(initialScale, 1, accuracy: 0.001, "page coordinates match the native web view")
+        let select = try XCTUnwrap(before["themeSelect"] as? [String: Any])
+        let rect = try XCTUnwrap(select["rect"] as? [String: Any])
+        let x = CGFloat(try XCTUnwrap((rect["x"] as? NSNumber)?.doubleValue))
+        let y = CGFloat(try XCTUnwrap((rect["y"] as? NSNumber)?.doubleValue))
+        let width = CGFloat(try XCTUnwrap((rect["width"] as? NSNumber)?.doubleValue))
+        let height = CGFloat(try XCTUnwrap((rect["height"] as? NSNumber)?.doubleValue))
+        let webView = app.webViews.firstMatch
+        let point = CGPoint(x: x + width / 2, y: y + height / 2)
+        XCTAssertGreaterThan(width, 0)
+        XCTAssertGreaterThan(height, 0)
+        XCTAssertTrue(CGRect(origin: .zero, size: webView.frame.size).contains(point),
+                      "the theme select is inside the web view")
+        // The native label lookup failed hittability on both iPhone and iPad; the focus counter
+        // below proves whether a tap at the select's live page position reached it.
+        webView.coordinate(withNormalizedOffset: .zero)
+            .withOffset(CGVector(dx: point.x, dy: point.y)).tap()
+        let picker = app.pickerWheels.firstMatch
+        let light = app.descendants(matching: .any).matching(
+            NSPredicate(format: "label == %@", "Light")).firstMatch
+        // Focus zoom, if any, starts while the picker is open, so record that sample too.
+        Thread.sleep(forTimeInterval: 1)
+        try record("t03-theme-select-open", ["metrics": layoutMetrics(from: layoutMonitor(of: app).label) ?? [:]])
+        if picker.waitForExistence(timeout: 3) {
+            picker.adjust(toPickerWheelValue: "Light")
+        } else if light.waitForExistence(timeout: 3) {
+            light.tap()
+        } else {
+            try record("t03-theme-select-picker-missing", ["tree": app.debugDescription])
+            XCTFail("native focus presents a selectable theme picker")
+        }
+        let done = app.toolbars.buttons["Done"].firstMatch
+        if done.waitForExistence(timeout: 3) { done.tap() }
+        let dismissed = XCTNSPredicateExpectation(predicate: NSPredicate { object, _ in
+            guard let element = object as? XCUIElement,
+                  let state = layoutMetrics(from: element.label),
+                  let count = (state["focusCount"] as? NSNumber)?.intValue,
+                  let select = state["themeSelect"] as? [String: Any] else { return false }
+            return count > 0 && select["value"] as? String == "light"
+        }, object: monitor)
+        XCTAssertEqual(XCTWaiter.wait(for: [dismissed], timeout: 15), .completed,
+                       "the native picker changes the theme")
+        let pickerGone = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: picker)
+        XCTAssertEqual(XCTWaiter.wait(for: [pickerGone], timeout: 15), .completed, "the native picker is dismissed")
+        Thread.sleep(forTimeInterval: 1)
+        let after = try XCTUnwrap(layoutMetrics(from: monitor.label))
+        try record("t03-theme-select-after", ["metrics": after, "nativeLabel": "page position"])
+        let count = try XCTUnwrap((after["focusCount"] as? NSNumber)?.intValue)
+        XCTAssertGreaterThan(count, 0, "the theme select actually received native focus")
+        let scale = try XCTUnwrap((after["visualScale"] as? NSNumber)?.doubleValue)
+        XCTAssertEqual(scale, 1, accuracy: 0.001, "the theme picker does not leave the page zoomed")
+        app.terminate()
+    }
+
+    func testExploreTitlesStayLargerThanLabelsAtDefaultAndLargestTextSizes() throws {
+        for category in [UIContentSizeCategory.large, .accessibilityExtraExtraExtraLarge] {
+            let app = launch(category: category, route: "explore")
+            let result = try probeResult(of: app)
+            let screens = try XCTUnwrap(result["screens"] as? [[String: Any]])
+            let screen = try XCTUnwrap(screens.first)
+            let cards = try XCTUnwrap(screen["exploreCards"] as? [[String: Any]])
+            XCTAssertFalse(cards.isEmpty, "the Home fixture contains Explore cards")
+            for card in cards {
+                let title = try XCTUnwrap((card["titleSize"] as? NSNumber)?.doubleValue)
+                let label = try XCTUnwrap((card["labelSize"] as? NSNumber)?.doubleValue)
+                XCTAssertGreaterThan(title, label, "each Explore title stays larger than its label")
+            }
+            try record("t03-explore-hierarchy-\(category.rawValue)", ["cards": cards])
             app.terminate()
         }
     }

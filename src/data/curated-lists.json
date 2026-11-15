@@ -5674,7 +5674,7 @@
     {
       "id": "xmen-claremont",
       "name": "X-Men Core Reading Order: Silver Age to Claremont",
-      "description": "Before Fall of the Mutants and Inferno, the X-Men grow from the first class into Chris Claremont's sprawling cast. Giant-Size X-Men, the Claremont years, Phoenix, Dark Phoenix, the Brood, Days of Future Past, God Loves Man Kills, New Mutants and Louise Simonson's X-Factor follow. X-Men #67 to 93 are skipped as reprints, and the Mutant Massacre is read interleaved.",
+      "description": "X-Men: First Class revisits the original team's beginnings before Giant-Size X-Men brings a new team together. Chris Claremont's years follow through Phoenix, Dark Phoenix, the Brood, Days of Future Past, God Loves Man Kills, New Mutants, X-Factor and the interleaved Mutant Massacre. The order ends before Fall of the Mutants and Inferno.",
       "type": "character-run",
       "spotlightKind": "other",
       "depth": "essential",
@@ -5688,8 +5688,8 @@
       "beginner": true,
       "group": "xmen-claremont",
       "groupName": "X-Men: Silver Age to Claremont",
-      "variant": "The spine, without the optional reading",
-      "coverIssueId": 12413,
+      "variant": "First Class origins, then Claremont",
+      "coverIssueId": 5144,
       "sourceFile": "xmen-claremont.md",
       "sourceOrigin": "Compiled for this project",
       "sourceLicense": null,
@@ -5720,13 +5720,13 @@
         "Silver Age",
         "Comic Book Herald"
       ],
-      "expect": 318,
+      "expect": 274,
       "timeline": null
     },
     {
       "id": "xmen-claremont-complete",
       "name": "X-Men Expanded Reading Order: Silver Age to Claremont",
-      "description": "The expanded Silver Age-to-Claremont route adds the two sections the outline marked optional to the core reading order. Compiled by hand from the same reader's outline of Comic Book Herald's guides. The Silver Age add-ons are the guest appearances that carried the X-Men through the years their own title was running reprints, scattered across Amazing Adventures, Spider-Man, the Hulk, the Avengers, Captain America, the Defenders and Giant-Size Fantastic Four. The modern retellings revisit the same years from the outside: The Hidden Years, Grand Design, Season One and the whole of First Class. X-Men Annual #1 and #2 are listed without a link, because Marvel's metadata carries that series only from #3.",
+      "description": "The X-Men's original Silver Age stories lead into the Claremont years, with guest appearances and modern retellings added. Compiled by hand from a reader's outline of Comic Book Herald's guides, the route includes Amazing Adventures, Spider-Man, the Hulk, the Avengers, Captain America, the Defenders and Giant-Size Fantastic Four. The Hidden Years, Grand Design, Season One and the whole of First Class revisit the early years. X-Men Annual #1 and #2 are listed without a link, because Marvel's metadata carries that series only from #3.",
       "type": "character-run",
       "spotlightKind": "other",
       "depth": "complete",
@@ -6166,7 +6166,7 @@
         "Jason Aaron",
         "Comic Book Herald"
       ],
-      "expect": 131,
+      "expect": 144,
       "timeline": null
     },
     {

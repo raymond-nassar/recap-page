@@ -1,0 +1,24 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/910908/?format=json",
+  "retrievedAt": "2026-11-13T01:07:04.306Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/910908/?format=json",
+    "series_name": "X-Treme X-Men (2002 series)",
+    "descriptor": "1 - Destiny",
+    "number": "1",
+    "volume": "1",
+    "variant_name": "",
+    "title": "Destiny",
+    "publication_date": "[March] 2002",
+    "key_date": "2002-03-00",
+    "page_count": "196.000",
+    "isbn": "0-7851-0841-6",
+    "notes": "collects X-Treme X-Men (Marvel, 2001 series) #1-9",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/63032/?format=json",
+    "story_set": []
+  }
+}

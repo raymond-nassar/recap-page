@@ -29,10 +29,15 @@ const IOS_VIEWING_FAILURES = {
 
 export function createHomeUpdatesView({
   content, seen, el, elements, events, isCurrent, isCovered = () => false, loadCatalog, onPreview, isIos = false,
+  firstLaunch = false,
 }) {
   const batch = content.batch;
   let wired = false;
   let expanded = false;
+  // Home offers the button after an update until the reader has opened these highlights once
+  // (#1317). About can reveal it on demand, and that lasts until the reader leaves Home.
+  let offered = false;
+  let revealed = false;
   let action = 0;
   let disclosure = 0;
   let catalog = null;
@@ -42,6 +47,10 @@ export function createHomeUpdatesView({
 
   const visible = () => isCurrent() && !elements().home.hidden;
   const active = (token) => token === action && visible() && elements().details.open;
+
+  function paintPresence() {
+    elements().details.hidden = !(offered || revealed);
+  }
 
   function paintMarker() {
     const nodes = elements();
@@ -207,6 +216,12 @@ export function createHomeUpdatesView({
     const nodes = elements();
     wired = true;
     nodes.details.open = false;
+    // A fresh install has nothing it was updated from, so it records this batch quietly and offers
+    // the button only once a later update brings one the reader has not opened. Storage that cannot
+    // be read leaves recorded() at 0, so an unreadable record offers the button rather than losing it.
+    offered = Boolean(batch) && !firstLaunch && seen.recorded() < batch.id;
+    if (batch && firstLaunch && seen.current() < batch.id) void seen.acknowledge(batch.id);
+    paintPresence();
     paintContent();
     paintMarker();
     nodes.details.addEventListener('toggle', toggle);
@@ -231,5 +246,27 @@ export function createHomeUpdatesView({
     });
   }
 
-  return { wire, close };
+  // Called as the reader leaves Home, never while Home shows, so an open or just-closed disclosure
+  // keeps the toggle that Close and Escape return focus to. Only a verified record hides it, so a
+  // refused write leaves the button for the next visit to try again.
+  function leaveHome() {
+    if (!wired) return;
+    revealed = false;
+    if (offered && seen.recorded() >= batch.id) offered = false;
+    paintPresence();
+  }
+
+  // About's entry: the same disclosure, on Home, whatever the record says.
+  function open() {
+    if (!wired || !batch || !visible()) return false;
+    const nodes = elements();
+    revealed = true;
+    paintPresence();
+    nodes.details.open = true;
+    nodes.toggle.focus({ preventScroll: true });
+    nodes.toggle.scrollIntoView?.({ block: 'nearest' });
+    return true;
+  }
+
+  return { wire, close, leaveHome, open, available: () => Boolean(batch) };
 }

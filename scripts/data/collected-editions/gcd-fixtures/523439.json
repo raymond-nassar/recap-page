@@ -1,0 +1,55 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/523439/?format=json",
+  "retrievedAt": "2026-11-13T19:24:47.618Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/523439/?format=json",
+    "series_name": "Young X-Men (2008 series)",
+    "descriptor": "1 [Direct Edition]",
+    "number": "1",
+    "volume": "1",
+    "variant_name": "Direct Edition",
+    "title": "",
+    "publication_date": "May 2008 [June 2008]",
+    "key_date": "2008-05-00",
+    "page_count": "36.000",
+    "isbn": "",
+    "notes": "The indicia of this issue is actually the indicia for X-Men: Legacy (2008 series) #209, giving that title, issue number and the corresponding May 2008 cover date. The correct cover date for this issue is June 2008 (it shipped a month later than X-Men: Legacy #209). Cover features the \"Divided We Stand\" logo.",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/30513/?format=json",
+    "story_set": [
+      {
+        "type": "recap",
+        "title": "Previously...",
+        "feature": "Young X-Men",
+        "sequence_number": 1,
+        "page_count": "1.000",
+        "notes": "Along with the recap, credits and (incorrect) indicia, this page lists the \"Final Genesis\" title, which is properly the title for the story sequence.",
+        "script": "?",
+        "pencils": "None"
+      },
+      {
+        "type": "comic story",
+        "title": "Final Genesis",
+        "feature": "Young X-Men",
+        "sequence_number": 2,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Marc Guggenheim",
+        "pencils": "Yanick Paquette"
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "Eisner-Nominated Comic Scribe, Jason Aaron",
+        "feature": "Look Who's Talking!",
+        "sequence_number": 3,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "Jason Aaron; ? [as Marvel]",
+        "pencils": "Ron Garney; ? (photo)"
+      }
+    ]
+  }
+}

@@ -16,6 +16,13 @@ const SOURCE_OCCURRENCE_RE = /\s*<!--\s*mrt:source-occurrence=((?:source-positio
 const IDENTITY_EVIDENCE_RE = /\s*<!--\s*mrt:identity-evidence=(owner-confirmed-identity)\s*-->\s*$/;
 const LEGACY_IDENTITY_KEY_RE = /\s*<!--\s*mrt:legacy-identity-key=((?:[A-Za-z0-9]|%[0-9A-F]{2})+)\s*-->\s*$/;
 
+export function markdownFilename(name, orderOnly = false) {
+  const suffix = orderOnly ? '-order-only.md' : '.md';
+  const slug = String(name).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'list';
+  // Both phone save bridges accept at most 180 characters, including the export suffix.
+  return `${slug.slice(0, 180 - suffix.length)}${suffix}`;
+}
+
 // The one way to write a legacy key: every UTF-8 byte outside ASCII letters and digits is
 // percent-encoded in upper case. Only that spelling is accepted, so one key has one line and the
 // line the checklist ships can be compared byte for byte with the one this function writes.
