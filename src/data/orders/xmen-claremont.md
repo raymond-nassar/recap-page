@@ -5,104 +5,52 @@ origins and Chris Claremont era guides, read as a reference and re-expressed her
 derived from Marvel metadata and cannot be checked against it; only the issue ids and titles
 come from Marvel, by resolving each issue the outline names.
 
-This is the spine: the X-Men from their 1963 debut, through Claremont and Cockrum's relaunch,
-the Dark Phoenix and Brood sagas, the arrival of the New Mutants and X-Factor, and the Mutant
-Massacre crossover. The outline it follows ended partway through X-Factor's second year, so this
-order ends at X-Factor #23 and reaches neither Fall of the Mutants nor Inferno.
+This project originally compiled a spine from the 1963 debut through the Mutant Massacre.
+The owner chose to replace its first 72 entries with the three modern X-Men: First Class series,
+then continue at Giant-Size X-Men #1. The original source positions and this editorial decision
+are recorded in the source ledger. The remaining order ends at X-Factor #23, before Fall of the
+Mutants and Inferno.
 
-Four departures from the outline, all deliberate. The Mutant Massacre chapters are read in the
-crossover's own interleaved order, so the Uncanny and X-Factor runs before it stop at #209 and #8
-rather than repeating those issues. Uncanny #214-220 and New Mutants #45 are included, which the
-outline skipped, so both runs are unbroken. Giant-Size X-Men #1 opens the Claremont run: the
-outline starts at Uncanny #94, which would have introduced Storm, Nightcrawler and Colossus by
-having them already on the team.
+The original outline was adapted by interleaving the Mutant Massacre chapters and adding
+Uncanny #214-220, New Mutants #45 and Giant-Size X-Men #1.
 
-X-Men #67-93 are not here. All 27 are reprints of #1-66, which this order already carries in
-full, and Marvel's metadata holds no record of the reprint years at all, so they could only have
-appeared as rows with nothing behind them.
-
-Power Pack #27-28 are listed without a link, because Marvel's metadata is missing them and they
-are chapters of the Mutant Massacre rather than reprints: dropping them would have moved the
-issues around them out of the order the crossover is meant to be read in.
+Power Pack #27-28 remain in their original positions as placeholders because the provider
+does not identify them. Their follow-up is [Issue #1312](https://github.com/raymond-nassar/recap-page/issues/1312).
 
 Because the sequence cannot be verified against Marvel, the order says so on its catalog card
 rather than presenting it as Marvel's own. See
 [the data provenance record](../../../docs/DATA_PROVENANCE.md) for what that means for reuse.
 
-**0. Silver Age Origins**
+**0. First Class**
 
-- [ ] [Uncanny X-Men (1963) #1](https://www.marvel.com/comics/issue/12413/uncanny_x-men_1963_1)
-- [ ] [Uncanny X-Men (1963) #2](https://www.marvel.com/comics/issue/12466/uncanny_x-men_1963_2)
-- [ ] [Uncanny X-Men (1963) #3](https://www.marvel.com/comics/issue/12477/uncanny_x-men_1963_3)
-- [ ] [Uncanny X-Men (1963) #4](https://www.marvel.com/comics/issue/12488/uncanny_x-men_1963_4)
-- [ ] [Uncanny X-Men (1963) #5](https://www.marvel.com/comics/issue/12499/uncanny_x-men_1963_5)
-- [ ] [Uncanny X-Men (1963) #6](https://www.marvel.com/comics/issue/12510/uncanny_x-men_1963_6)
-- [ ] [Uncanny X-Men (1963) #7](https://www.marvel.com/comics/issue/12521/uncanny_x-men_1963_7)
-- [ ] [Uncanny X-Men (1963) #8](https://www.marvel.com/comics/issue/12532/uncanny_x-men_1963_8)
-- [ ] [Uncanny X-Men (1963) #9](https://www.marvel.com/comics/issue/12543/uncanny_x-men_1963_9)
-- [ ] [Uncanny X-Men (1963) #10](https://www.marvel.com/comics/issue/12414/uncanny_x-men_1963_10)
-- [ ] [Uncanny X-Men (1963) #11](https://www.marvel.com/comics/issue/12425/uncanny_x-men_1963_11)
-- [ ] [Uncanny X-Men (1963) #12](https://www.marvel.com/comics/issue/12436/uncanny_x-men_1963_12)
-- [ ] [Uncanny X-Men (1963) #13](https://www.marvel.com/comics/issue/12447/uncanny_x-men_1963_13)
-- [ ] [Uncanny X-Men (1963) #14](https://www.marvel.com/comics/issue/12458/uncanny_x-men_1963_14)
-- [ ] [Uncanny X-Men (1963) #15](https://www.marvel.com/comics/issue/12461/uncanny_x-men_1963_15)
-- [ ] [Uncanny X-Men (1963) #16](https://www.marvel.com/comics/issue/12462/uncanny_x-men_1963_16)
-- [ ] [Uncanny X-Men (1963) #17](https://www.marvel.com/comics/issue/12463/uncanny_x-men_1963_17)
-- [ ] [Uncanny X-Men (1963) #18](https://www.marvel.com/comics/issue/12464/uncanny_x-men_1963_18)
-- [ ] [Uncanny X-Men (1963) #19](https://www.marvel.com/comics/issue/12465/uncanny_x-men_1963_19)
-- [ ] [Uncanny X-Men (1963) #20](https://www.marvel.com/comics/issue/12467/uncanny_x-men_1963_20)
-- [ ] [Uncanny X-Men (1963) #21](https://www.marvel.com/comics/issue/12468/uncanny_x-men_1963_21)
-- [ ] [Uncanny X-Men (1963) #22](https://www.marvel.com/comics/issue/12469/uncanny_x-men_1963_22)
-- [ ] [Uncanny X-Men (1963) #23](https://www.marvel.com/comics/issue/12470/uncanny_x-men_1963_23)
-- [ ] [Uncanny X-Men (1963) #24](https://www.marvel.com/comics/issue/12471/uncanny_x-men_1963_24)
-- [ ] [Uncanny X-Men (1963) #25](https://www.marvel.com/comics/issue/12472/uncanny_x-men_1963_25)
-- [ ] [Uncanny X-Men (1963) #26](https://www.marvel.com/comics/issue/12473/uncanny_x-men_1963_26)
-- [ ] [Uncanny X-Men (1963) #27](https://www.marvel.com/comics/issue/12474/uncanny_x-men_1963_27)
-- [ ] [Uncanny X-Men (1963) #28](https://www.marvel.com/comics/issue/12475/uncanny_x-men_1963_28)
-- [ ] [Uncanny X-Men (1963) #29](https://www.marvel.com/comics/issue/12476/uncanny_x-men_1963_29)
-- [ ] [Uncanny X-Men (1963) #30](https://www.marvel.com/comics/issue/12478/uncanny_x-men_1963_30)
-- [ ] [Uncanny X-Men (1963) #31](https://www.marvel.com/comics/issue/12479/uncanny_x-men_1963_31)
-- [ ] [Uncanny X-Men (1963) #32](https://www.marvel.com/comics/issue/12480/uncanny_x-men_1963_32)
-- [ ] [Uncanny X-Men (1963) #33](https://www.marvel.com/comics/issue/12481/uncanny_x-men_1963_33)
-- [ ] [Uncanny X-Men (1963) #34](https://www.marvel.com/comics/issue/12482/uncanny_x-men_1963_34)
-- [ ] [Uncanny X-Men (1963) #35](https://www.marvel.com/comics/issue/12483/uncanny_x-men_1963_35)
-- [ ] [Uncanny X-Men (1963) #36](https://www.marvel.com/comics/issue/12484/uncanny_x-men_1963_36)
-- [ ] [Uncanny X-Men (1963) #37](https://www.marvel.com/comics/issue/12485/uncanny_x-men_1963_37)
-- [ ] [Uncanny X-Men (1963) #38](https://www.marvel.com/comics/issue/12486/uncanny_x-men_1963_38)
-- [ ] [Uncanny X-Men (1963) #39](https://www.marvel.com/comics/issue/12487/uncanny_x-men_1963_39)
-- [ ] [Uncanny X-Men (1963) #40](https://www.marvel.com/comics/issue/12489/uncanny_x-men_1963_40)
-- [ ] [Uncanny X-Men (1963) #41](https://www.marvel.com/comics/issue/12490/uncanny_x-men_1963_41)
-- [ ] [Uncanny X-Men (1963) #42](https://www.marvel.com/comics/issue/12491/uncanny_x-men_1963_42)
-- [ ] [Uncanny X-Men (1963) #43](https://www.marvel.com/comics/issue/12492/uncanny_x-men_1963_43)
-- [ ] [Uncanny X-Men (1963) #44](https://www.marvel.com/comics/issue/12493/uncanny_x-men_1963_44)
-- [ ] [Uncanny X-Men (1963) #45](https://www.marvel.com/comics/issue/12494/uncanny_x-men_1963_45)
-- [ ] [Avengers (1963) #53](https://www.marvel.com/comics/issue/7303/avengers_1963_53)
-- [ ] [Not Brand Echh (1967) #4](https://www.marvel.com/comics/issue/65346/not_brand_echh_1967_4)
-- [ ] [Not Brand Echh (1967) #8](https://www.marvel.com/comics/issue/65350/not_brand_echh_1967_8)
-- [ ] [Uncanny X-Men (1963) #46](https://www.marvel.com/comics/issue/12495/uncanny_x-men_1963_46)
-- [ ] [Uncanny X-Men (1963) #47](https://www.marvel.com/comics/issue/12496/uncanny_x-men_1963_47)
-- [ ] [Uncanny X-Men (1963) #48](https://www.marvel.com/comics/issue/12497/uncanny_x-men_1963_48)
-- [ ] [Uncanny X-Men (1963) #49](https://www.marvel.com/comics/issue/12498/uncanny_x-men_1963_49)
-- [ ] [Uncanny X-Men (1963) #50](https://www.marvel.com/comics/issue/12500/uncanny_x-men_1963_50)
-- [ ] [Uncanny X-Men (1963) #51](https://www.marvel.com/comics/issue/12501/uncanny_x-men_1963_51)
-- [ ] [Uncanny X-Men (1963) #52](https://www.marvel.com/comics/issue/12502/uncanny_x-men_1963_52)
-- [ ] [Uncanny X-Men (1963) #53](https://www.marvel.com/comics/issue/12503/uncanny_x-men_1963_53)
-- [ ] [Uncanny X-Men (1963) #54](https://www.marvel.com/comics/issue/12504/uncanny_x-men_1963_54)
-- [ ] [Uncanny X-Men (1963) #55](https://www.marvel.com/comics/issue/12505/uncanny_x-men_1963_55)
-- [ ] [Uncanny X-Men (1963) #56](https://www.marvel.com/comics/issue/12506/uncanny_x-men_1963_56)
-- [ ] [Uncanny X-Men (1963) #57](https://www.marvel.com/comics/issue/12507/uncanny_x-men_1963_57)
-- [ ] [Uncanny X-Men (1963) #58](https://www.marvel.com/comics/issue/12508/uncanny_x-men_1963_58)
-- [ ] [Uncanny X-Men (1963) #59](https://www.marvel.com/comics/issue/12509/uncanny_x-men_1963_59)
-- [ ] [Uncanny X-Men (1963) #60](https://www.marvel.com/comics/issue/12511/uncanny_x-men_1963_60)
-- [ ] [Uncanny X-Men (1963) #61](https://www.marvel.com/comics/issue/12512/uncanny_x-men_1963_61)
-- [ ] [Uncanny X-Men (1963) #62](https://www.marvel.com/comics/issue/12513/uncanny_x-men_1963_62)
-- [ ] [Uncanny X-Men (1963) #63](https://www.marvel.com/comics/issue/12514/uncanny_x-men_1963_63)
-- [ ] [Uncanny X-Men (1963) #64](https://www.marvel.com/comics/issue/12515/uncanny_x-men_1963_64)
-- [ ] [Uncanny X-Men (1963) #65](https://www.marvel.com/comics/issue/12516/uncanny_x-men_1963_65)
-- [ ] [Uncanny X-Men (1963) #66](https://www.marvel.com/comics/issue/12517/uncanny_x-men_1963_66)
-- [ ] [Ka-Zar (1970) #2](https://www.marvel.com/comics/issue/50919/ka-zar_1970_2)
-- [ ] [Ka-Zar (1970) #3](https://www.marvel.com/comics/issue/50920/ka-zar_1970_3)
-- [ ] [Marvel Tales (1966) #30](https://www.marvel.com/comics/issue/50921/marvel_tales_1966_30)
+- [ ] [X-Men: First Class (2006) #1](https://www.marvel.com/comics/issue/5144/x-men_first_class_2006_1)
+- [ ] [X-Men: First Class (2006) #2](https://www.marvel.com/comics/issue/5296/x-men_first_class_2006_2)
+- [ ] [X-Men: First Class (2006) #3](https://www.marvel.com/comics/issue/5606/x-men_first_class_2006_3)
+- [ ] [X-Men: First Class (2006) #4](https://www.marvel.com/comics/issue/5722/x-men_first_class_2006_4)
+- [ ] [X-Men: First Class (2006) #5](https://www.marvel.com/comics/issue/5862/x-men_first_class_2006_5)
+- [ ] [X-Men: First Class (2006) #6](https://www.marvel.com/comics/issue/6012/x-men_first_class_2006_6)
+- [ ] [X-Men: First Class (2006) #7](https://www.marvel.com/comics/issue/6151/x-men_first_class_2006_7)
+- [ ] [X-Men: First Class (2006) #8](https://www.marvel.com/comics/issue/6299/x-men_first_class_2006_8)
+- [ ] [X-Men: First Class (2007) #1](https://www.marvel.com/comics/issue/13500/x-men_first_class_2007_1)
+- [ ] [X-Men: First Class (2007) #2](https://www.marvel.com/comics/issue/15998/x-men_first_class_2007_2)
+- [ ] [X-Men: First Class (2007) #3](https://www.marvel.com/comics/issue/16182/x-men_first_class_2007_3)
+- [ ] [X-Men: First Class (2007) #4](https://www.marvel.com/comics/issue/16583/x-men_first_class_2007_4)
+- [ ] [X-Men: First Class (2007) #5](https://www.marvel.com/comics/issue/16584/x-men_first_class_2007_5)
+- [ ] [X-Men: First Class (2007) #6](https://www.marvel.com/comics/issue/17280/x-men_first_class_2007_6)
+- [ ] [X-Men: First Class (2007) #7](https://www.marvel.com/comics/issue/17413/x-men_first_class_2007_7)
+- [ ] [X-Men: First Class (2007) #8](https://www.marvel.com/comics/issue/17650/x-men_first_class_2007_8)
+- [ ] [X-Men: First Class (2007) #9](https://www.marvel.com/comics/issue/20694/x-men_first_class_2007_9)
+- [ ] [X-Men: First Class (2007) #10](https://www.marvel.com/comics/issue/20888/x-men_first_class_2007_10)
+- [ ] [X-Men: First Class (2007) #11](https://www.marvel.com/comics/issue/21019/x-men_first_class_2007_11)
+- [ ] [X-Men: First Class (2007) #12](https://www.marvel.com/comics/issue/21233/x-men_first_class_2007_12)
+- [ ] [X-Men: First Class (2007) #13](https://www.marvel.com/comics/issue/21376/x-men_first_class_2007_13)
+- [ ] [X-Men: First Class (2007) #14](https://www.marvel.com/comics/issue/21552/x-men_first_class_2007_14)
+- [ ] [X-Men: First Class (2007) #15](https://www.marvel.com/comics/issue/21747/x-men_first_class_2007_15)
+- [ ] [X-Men: First Class (2007) #16](https://www.marvel.com/comics/issue/21981/x-men_first_class_2007_16)
+- [ ] [X-Men: First Class Finals (2008) #1](https://www.marvel.com/comics/issue/23651/x-men_first_class_finals_2008_1)
+- [ ] [X-Men: First Class Finals (2008) #2](https://www.marvel.com/comics/issue/23817/x-men_first_class_finals_2008_2)
+- [ ] [X-Men: First Class Finals (2008) #3](https://www.marvel.com/comics/issue/24009/x-men_first_class_finals_2008_3)
+- [ ] [X-Men: First Class Finals (2008) #4](https://www.marvel.com/comics/issue/24214/x-men_first_class_finals_2008_4)
 
 **I. Phoenix and Dark Phoenix**
 
