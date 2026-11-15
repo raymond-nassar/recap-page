@@ -833,6 +833,8 @@ main { min-width: 0; }
 }
 #view-home > .head > .breadcrumb { grid-column: 1; grid-row: 1; margin: 0; align-self: center; }
 #view-home .app-back { margin-bottom: 0; }
+/* The direct-entry Back belongs to the phone layout; other surfaces keep the trail. */
+.app-back.app-direct { display: none; }
 #view-home .home-lockup { order: -1; }
 .breadcrumb ol {
   display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2) var(--space-4);
@@ -3096,7 +3098,7 @@ select, input[type="search"], input[type="text"], input[type="url"] {
 #reader-closure-notice { position: relative; min-height: calc(var(--target-touch) + 2 * var(--space-2) + 2 * var(--stroke-1)); }
 #reader-closure-text::before { content: ""; float: right; width: var(--target); height: var(--target); }
 #reader-closure-dismiss { position: absolute; inset-block-start: var(--space-2); inset-inline-end: var(--space-2); }
-#view-home > .head, #view-home > .notice, #view-home > #home-continue { margin-bottom: var(--space-4); }
+#view-home > .head, #view-home > .notice, #view-home > #home-continue, #view-home > #app-report:not(:empty) { margin-bottom: var(--space-4); }
 
 .btn.list-source-link { border-radius: var(--radius-pill); max-width: 100%; overflow-wrap: anywhere; }
 

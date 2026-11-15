@@ -194,6 +194,7 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
   .android-mobile-ui .list-tools { display: none; }
   .breadcrumb li:not(:nth-last-child(2)) { display: none; }
   .breadcrumb:has(.app-back) ol { display: none; }
+  .breadcrumb .app-back.app-direct { display: inline-flex; }
   .breadcrumb li + li::before { content: none; }
   .breadcrumb a { gap: var(--space-4); text-decoration: none; font-weight: 600; }
   .breadcrumb a::before {

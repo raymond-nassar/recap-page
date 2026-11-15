@@ -111,11 +111,24 @@ export function createFeedback({
     query(sel)?.replaceChildren(...(note ? [noticeEl(note)] : []));
   }
 
-  // #app-report is above every view, so it is the only pane always available to a message whose own
-  // pane the reader cannot see. Seven of the nine views carry no pane of their own.
+  // #app-report follows the reader, so it is available when a message's own pane cannot be seen.
   function overflowPane() {
     const box = query('#app-report');
     return box?.offsetParent ? box : null;
+  }
+
+  function placeOverflowPane() {
+    const box = query('#app-report');
+    const save = query('#save-report');
+    const home = query('#view-home');
+    const head = home?.querySelector(':scope > .head');
+    if (!box || !save || !head) return;
+    const cloud = query('#cloud-sync-notice');
+    const anchor = getCurrentView() === 'home' && !home.hidden
+      ? cloud?.parentElement === home ? cloud : head
+      : save;
+    if (anchor.nextElementSibling === box) return;
+    anchor.after(box);
   }
 
   // A notice with an action is a paragraph with a button in it rather than a message and a separate
@@ -160,6 +173,7 @@ export function createFeedback({
 
   function placeNotices() {
     const document = getDocument();
+    placeOverflowPane();
     const overflow = overflowPane();
     // Every dialog here is opened with showModal(), so an open one is the top layer and anything
     // behind it is inert and dimmed regardless of where it sits on the page.
