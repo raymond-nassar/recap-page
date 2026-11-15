@@ -2360,13 +2360,33 @@ const SCENARIOS = [
       await open(page, '/?catalog=actual#/home');
       await page.waitForSelector('#home-primary-paths [data-category="timeline"]');
       await page.waitForFunction(() => Number(localStorage.getItem('mrt.cache-purge.v1')) > 0);
-      const initial = await page.evaluate((key) => ({
-        open: document.querySelector('#home-updates').open,
-        new: !document.querySelector('#home-updates-new').hidden,
+      const batch = homeUpdatesContent.batch;
+      const fresh = await page.evaluate((key) => ({
+        hidden: document.querySelector('#home-updates').hidden,
+        about: document.querySelector('#about-whats-new').hidden,
         value: localStorage.getItem(key),
       }), HOME_UPDATES_SEEN_KEY);
-      t.check('first-visit news is closed without a boot acknowledgment',
-        !initial.open && initial.new === Boolean(homeUpdatesContent.batch) && initial.value === null, JSON.stringify(initial));
+      t.check('a fresh install keeps What\'s new off Home and quietly records this batch (#1317)',
+        fresh.hidden && fresh.about === !batch
+          && (batch ? await page.waitForFunction((key, id) => localStorage.getItem(key) === String(id),
+            { timeout: 5000 }, HOME_UPDATES_SEEN_KEY, batch.id).then(() => true, () => false) : fresh.value === null),
+        JSON.stringify(fresh));
+      if (!batch) return;
+      // An update: the record holds an earlier batch, so this one is offered until it is opened.
+      const offerUpdate = async () => {
+        await page.evaluate((key, id) => localStorage.setItem(key, String(id)), HOME_UPDATES_SEEN_KEY, batch.id - 1);
+        await page.reload({ waitUntil: 'load' });
+        await page.waitForSelector('#home-updates:not([hidden])');
+      };
+      await offerUpdate();
+      await page.waitForSelector('#home-primary-paths [data-category="timeline"]');
+      const initial = await page.evaluate(() => ({
+        open: document.querySelector('#home-updates').open,
+        new: !document.querySelector('#home-updates-new').hidden,
+      }));
+      t.check('an update offers closed news with New and no boot acknowledgment',
+        !initial.open && initial.new && await page.evaluate((key, id) => localStorage.getItem(key) === String(id - 1),
+          HOME_UPDATES_SEEN_KEY, batch.id), JSON.stringify(initial));
       const before = await homeUpdatesSnapshot(page);
       const route = await page.evaluate(() => ({ hash: location.hash, history: history.length }));
       await page.focus('#home-updates-toggle');
@@ -2394,7 +2414,7 @@ const SCENARIOS = [
           const created = createList(createEmptyState(), { name: 'Existing Reading List', id: 'news-fixture' });
           const saved = addIssuesToList(created, 'news-fixture', ORDER.items).state;
           await page.evaluate((state) => localStorage.setItem('mrt.state.v2', JSON.stringify(state)), saved);
-          await page.reload({ waitUntil: 'load' });
+          await offerUpdate();
           await page.waitForSelector('#home-continue:not([hidden])');
         }
         for (const [width, theme] of [[1280, 'light'], [1280, 'dark'], [390, 'light'], [390, 'dark']]) {
@@ -2472,7 +2492,49 @@ const SCENARIOS = [
           && !document.querySelector('#view-home').contains(document.activeElement)));
       await click(page, '.brand[data-view="home"]');
       await page.waitForSelector('#view-home:not([hidden])');
-      t.check('returning Home stays closed', await page.$eval('#home-updates', (node) => !node.open));
+      t.check('returning Home after a remembered opening no longer offers the button',
+        await page.$eval('#home-updates', (node) => !node.open && node.hidden && !node.checkVisibility()));
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForSelector('#home-continue:not([hidden])');
+      t.check('the opened highlights stay off Home after a reload',
+        await page.$eval('#home-updates', (node) => node.hidden));
+      await click(page, '.ri[data-view="about"]');
+      await page.waitForSelector('#view-about:not([hidden])');
+      const aboutEntry = await page.$eval('#about-whats-new', (node) => {
+        const box = node.getBoundingClientRect();
+        return { visible: node.checkVisibility(), text: node.textContent, type: node.type, width: box.width, height: box.height };
+      });
+      t.check('About keeps a What\'s new button with a 44px target',
+        aboutEntry.visible && aboutEntry.text === "What's new" && aboutEntry.type === 'button'
+          && aboutEntry.width >= 44 && aboutEntry.height >= 44, JSON.stringify(aboutEntry));
+      const aboutBefore = await homeUpdatesSnapshot(page);
+      await click(page, '#about-whats-new');
+      await page.waitForFunction(() => document.querySelector('#home-updates').open);
+      const aboutOpened = await page.evaluate(() => ({
+        hash: location.hash,
+        home: !document.querySelector('#view-home').hidden,
+        focus: document.activeElement.id || document.activeElement.tagName,
+        panel: document.querySelector('#home-updates-panel').checkVisibility(),
+      }));
+      t.check('About opens the same highlights on Home with focus on their toggle',
+        /^#\/home(\/|$)/.test(aboutOpened.hash) && aboutOpened.home && aboutOpened.focus === 'home-updates-toggle' && aboutOpened.panel,
+        JSON.stringify(aboutOpened));
+      t.check('About\'s highlights hold every guide in this batch',
+        await page.waitForFunction((count) => document.querySelectorAll('[data-home-updates-list]').length === count,
+          { timeout: 5000 }, batch.listIds.length).then(() => true, () => false));
+      await page.focus('#home-updates-toggle');
+      await page.keyboard.press('Escape');
+      t.check('Escape from About\'s highlights restores the visible toggle without reading writes',
+        await page.evaluate(() => !document.querySelector('#home-updates').open
+          && document.activeElement.id === 'home-updates-toggle'
+          && document.querySelector('#home-updates-toggle').checkVisibility())
+          && JSON.stringify(await homeUpdatesSnapshot(page)) === JSON.stringify(aboutBefore));
+      await click(page, '.ri[data-view="library"]');
+      await page.waitForSelector('#view-library:not([hidden])');
+      await click(page, '.brand[data-view="home"]');
+      await page.waitForSelector('#view-home:not([hidden])');
+      t.check('leaving Home after About\'s visit takes the button away again',
+        await page.$eval('#home-updates', (node) => node.hidden));
       t.check('Home news interaction has no script errors', errors.length === 0, JSON.stringify(errors));
       await checkOfflineHomeUpdates(page.browser(), page.__origin, t);
     },
@@ -2496,13 +2558,15 @@ const SCENARIOS = [
       }
       const created = createList(createEmptyState(), { name: 'Existing reading data', id: 'news-state-fixture' });
       const saved = addIssuesToList(created, 'news-state-fixture', ORDER.items).state;
-      await page.evaluate((state) => {
+      await page.evaluate((state, key, id) => {
         const raw = JSON.stringify({ ...state, writeToken: 'news-state-proof' });
         localStorage.setItem('mrt.state.v2', raw);
         localStorage.setItem('mrt.state.prerestore', raw);
         localStorage.setItem('mrt.state.restore.tmp', raw);
         localStorage.setItem('mrt.state.salvage', 'existing recovery proof bytes');
-      }, saved);
+        // The first load was a fresh install, which recorded this batch; an update starts earlier.
+        localStorage.setItem(key, String(id - 1));
+      }, saved, HOME_UPDATES_SEEN_KEY, batch.id);
       await page.reload({ waitUntil: 'load' });
       await page.waitForSelector('#home-continue:not([hidden])');
       t.check('the state fixture starts with valid populated reading data and its write token',
@@ -2529,10 +2593,13 @@ const SCENARIOS = [
         await t.step('primary-activate', () => page.bringToFront());
         await click(page, '#home-updates-close');
         await page.reload({ waitUntil: 'load' });
-        t.check('viewing survives reload while the entry stays available and closed',
-          await page.evaluate(() => !document.querySelector('#home-updates').open && document.querySelector('#home-updates-new').hidden));
+        t.check('viewing survives reload, where Home no longer offers the opened highlights',
+          await page.evaluate(() => !document.querySelector('#home-updates').open && document.querySelector('#home-updates').hidden
+            && document.querySelector('#home-updates-new').hidden));
         await other.evaluate((key, value) => localStorage.setItem(key, String(value)), HOME_UPDATES_SEEN_KEY, batch.id + 10);
-        await click(page, '#home-updates-toggle');
+        await click(page, '.ri[data-view="about"]');
+        await page.waitForSelector('#view-about:not([hidden])');
+        await click(page, '#about-whats-new');
         await page.waitForFunction(() => document.querySelector('#home-updates').open);
         await page.evaluate((key) => navigator.locks.request(key, () => {}), HOME_UPDATES_SEEN_KEY);
         t.check('an older running batch cannot lower a newer tab record',
@@ -19151,7 +19218,7 @@ function fixtureReadingState() {
 
 async function seedFixtureState(page, { sidebarCollapsed = null, openRead = false } = {}) {
   await open(page, '/?catalog=browser-check');
-  await page.evaluate((saved, collapsed) => {
+  await page.evaluate((saved, collapsed, key) => {
     localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
     localStorage.setItem('mrt.settings', JSON.stringify({
       filter: 'all',
@@ -19161,7 +19228,10 @@ async function seedFixtureState(page, { sidebarCollapsed = null, openRead = fals
     }));
     if (collapsed === null) localStorage.removeItem('sidebar.collapsed');
     else localStorage.setItem('sidebar.collapsed', String(collapsed));
-  }, fixtureReadingState(), sidebarCollapsed);
+    // #1317: the empty first load above was a fresh install, which records this batch's highlights
+    // as seen. A fixture is an existing reader after an update, who has not opened them.
+    localStorage.removeItem(key);
+  }, fixtureReadingState(), sidebarCollapsed, HOME_UPDATES_SEEN_KEY);
   await page.reload({ waitUntil: 'load' });
   if (openRead) {
     await click(page, '#list-nav .ri');
@@ -20793,6 +20863,10 @@ SCENARIOS.push({
   id: 'touch-feedback',
   title: 'held input adds shared feedback without losing focus, selection or disabled states',
   async run(page, t) {
+    // #1317: an updated install, so Home still offers What's new to press.
+    await page.evaluateOnNewDocument((key, id) => {
+      if (id !== null && localStorage.getItem(key) === null) localStorage.setItem(key, String(id - 1));
+    }, HOME_UPDATES_SEEN_KEY, homeUpdatesContent.batch?.id ?? null);
     await open(page, '/');
     await touchFeedbackCheck(page, (pass, message) => t.check(message, pass), 'desktop');
   },

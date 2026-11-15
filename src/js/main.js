@@ -148,6 +148,15 @@ const listHistory = new ListHistoryStore({
 // The browser's own object, not the guard: Home updates ignores a storage event whose area is not the
 // storage it was given, and its key is not one a complete restore replaces.
 const homeUpdatesSeen = createHomeUpdatesSeen({ storage: globalThis.localStorage, locks: globalThis.navigator?.locks });
+// Read before boot can write anything. No viewing record and no reading data means nothing was
+// installed before this copy; a reader who kept lists but never opened What's new is an update.
+const homeUpdatesFirstLaunch = (() => {
+  try {
+    return homeUpdatesSeen.status().reason === 'missing' && globalThis.localStorage.getItem(STATE_KEY) === null;
+  } catch {
+    return false;
+  }
+})();
 const hydrator = new Hydrator({ api, store, onProgress: onHydrationStatus });
 // One store for the tab, deliberately module-level and deliberately not persisted. It is passed to
 // the runner rather than owned by it so the view can read a fetched synopsis without importing the
@@ -1831,7 +1840,10 @@ function showView(next, { focus = true, push = false, at = null, capturePosition
   }
   setNarrowOpen(false, { rescueFocus: !focus });
 
-  if (next !== 'home') homeUpdatesView.close({ restoreFocus: false });
+  if (next !== 'home') {
+    homeUpdatesView.close({ restoreFocus: false });
+    homeUpdatesView.leaveHome();
+  }
   homeAt = next === 'home' && at === HOME_CARDS ? at : null;
   view = next;
   addView.enter(next);
@@ -3499,6 +3511,12 @@ export function boot() {
   globalThis.addEventListener('focus', refreshReaderDestinations);
   refreshReaderDestinations();
   homeUpdatesView.wire();
+  const aboutWhatsNew = $('#about-whats-new');
+  aboutWhatsNew.hidden = !homeUpdatesView.available();
+  aboutWhatsNew.addEventListener('click', () => {
+    navigateTo('home');
+    homeUpdatesView.open();
+  });
   previewView.wire();
   wireAsk();
   cloudSyncPrompt.wire();
@@ -4025,6 +4043,7 @@ const homeUpdatesView = createHomeUpdatesView({
   content: homeUpdatesContent,
   isIos: iosApp,
   seen: homeUpdatesSeen,
+  firstLaunch: homeUpdatesFirstLaunch,
   el,
   elements: () => ({
     home: $('#view-home'),

@@ -550,6 +550,9 @@ enum DebugSupport {
       },
       listOrder: ['ios-presentation'], active: 'ios-presentation'
     }));
+    // #1317: Home offers What's new only after an update the reader has not opened. An earlier
+    // launch on the same simulator may have recorded it, so each audit starts as that update.
+    localStorage.removeItem('mrt.homeUpdates.seen.v1');
     """
 
     static let restoreTestSeedScript = """

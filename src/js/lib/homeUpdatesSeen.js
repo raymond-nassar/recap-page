@@ -11,6 +11,9 @@ function parse(raw) {
 
 export function createHomeUpdatesSeen({ storage, locks } = {}) {
   let memory = 0;
+  // What storage was last seen to hold, unlike memory, which an acknowledgment raises before its
+  // write is attempted. Home hides its button on this one, so a refused write cannot hide it.
+  let durable = 0;
   let epoch = 0;
   let absent = null;
   let status = { remembered: false, canceled: false, reason: 'missing', error: null };
@@ -25,6 +28,7 @@ export function createHomeUpdatesSeen({ storage, locks } = {}) {
   }
 
   function observe(value, reset = false) {
+    if (value.reason !== 'unreadable') durable = value.value;
     if (value.reason === 'missing') {
       if (reset || absent === false) {
         epoch += 1;
@@ -94,5 +98,5 @@ export function createHomeUpdatesSeen({ storage, locks } = {}) {
     return true;
   }
 
-  return { current: () => memory, status: () => status, acknowledge, handleStorageEvent };
+  return { current: () => memory, recorded: () => durable, status: () => status, acknowledge, handleStorageEvent };
 }
