@@ -9,6 +9,38 @@ const end = source.indexOf('\nasync function seedRemovalFixture(', start);
 const entry = source.lastIndexOf('\nmain().catch(');
 assert.ok(start > 0 && end > start && entry > end, 'browser runner boundaries exist');
 
+test('Home highlights checks script errors and calls the real-worker owner even without a batch', async () => {
+  const normalized = source.replace(/\r\n/g, '\n');
+  const id = normalized.indexOf("    id: 'home-updates',");
+  const following = normalized.indexOf('\n  {\n    id: ', id + 1);
+  assert.ok(id >= 0 && following > id);
+  const scenario = normalized.slice(normalized.lastIndexOf('\n  {', id), following).trim().replace(/,$/, '');
+  const checks = [];
+  let offlineCalls = 0;
+  const page = {
+    on: (_name, callback) => callback(new Error('fixture script error')),
+    evaluateOnNewDocument: async () => {},
+    waitForSelector: async () => {},
+    waitForFunction: async () => {},
+    evaluate: async () => ({ hidden: true, about: true, value: null }),
+    browser: () => 'fixture browser',
+    __origin: 'fixture origin',
+  };
+  const owner = new Function('homeUpdatesContent', 'HOME_UPDATES_SEEN_KEY', 'open', 'checkOfflineHomeUpdates',
+    `return (${scenario});`)(
+    { batch: null }, 'fixture seen key', async () => {},
+    async (browser, origin) => {
+      assert.equal(browser, 'fixture browser');
+      assert.equal(origin, 'fixture origin');
+      offlineCalls++;
+    },
+  );
+  await owner.run(page, { check: (name, passed) => checks.push({ name, passed }) });
+  assert.deepEqual(checks.find(({ name }) => name === 'Home news interaction has no script errors'),
+    { name: 'Home news interaction has no script errors', passed: false });
+  assert.equal(offlineCalls, 1, 'a null batch still invokes the real-worker offline owner');
+});
+
 function fixture(failAt, fault = '') {
   // Run the actual lifecycle and command entry, not a second implementation of its reporter.
   const script = `

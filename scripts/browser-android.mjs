@@ -165,7 +165,7 @@ async function homeUpdatesCheck(page, label) {
   await click(page, '#home-updates-toggle');
   await page.waitForFunction(() => document.querySelector('#home-updates').open);
   if (batch) {
-    await page.waitForFunction((key) => localStorage.getItem(key) !== null, {}, HOME_UPDATES_SEEN_KEY);
+    await page.waitForFunction((key, id) => localStorage.getItem(key) === String(id), {}, HOME_UPDATES_SEEN_KEY, batch.id);
     await page.waitForFunction(() => [...document.querySelectorAll('[data-home-updates-list]')].every((node) => !node.disabled));
     for (const summary of await page.$$('#home-updates .home-updates-more > summary')) {
       await summary.evaluate((node) => node.click());
@@ -5762,6 +5762,11 @@ try {
         body: JSON.stringify({ status: 'ok', ...order.items[0], items: [], data: [] }),
       });
     });
+    await page.evaluateOnNewDocument((key, id) => {
+      // #1317: Home offers What's new only after an update, so every profile starts as an updated
+      // install that has not opened this batch. A fresh install keeps it off Home.
+      if (id !== null && localStorage.getItem(key) === null) localStorage.setItem(key, String(id - 1));
+    }, HOME_UPDATES_SEEN_KEY, homeUpdatesContent.batch?.id ?? null);
     await page.evaluateOnNewDocument((reading, spotlight, nearEnd) => {
       if (!spotlight) localStorage.setItem('mrt.settings', JSON.stringify(reading ? { covers: nearEnd, theme: 'light' } : { covers: false }));
       window.addEventListener('load', () => {
