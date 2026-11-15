@@ -119,8 +119,14 @@ export function narrowCopy(text) {
 }
 
 function sameReaderCopy(left, right) {
-  return left === right || (isIosApp() && typeof left === 'string' && typeof right === 'string'
-    && narrowCopy(left) === narrowCopy(right));
+  if (left === right) return true;
+  if (!isIosApp() || typeof left !== 'string' || typeof right !== 'string') return false;
+  const leftToken = tokenOf(left), rightToken = tokenOf(right);
+  // Repaints check the Undo copy too. Narrowing cannot change differing ASCII tokens, so those
+  // bounded prefixes prove inequality without scanning both libraries after every saved edit.
+  if (leftToken !== null && rightToken !== null && leftToken !== rightToken
+    && /^[\x20-\x7e]*$/.test(leftToken) && /^[\x20-\x7e]*$/.test(rightToken)) return false;
+  return narrowCopy(left) === narrowCopy(right);
 }
 
 export class ImportDraftStore {

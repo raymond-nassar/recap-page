@@ -1240,6 +1240,46 @@ test('iOS refuses no-op Undo when failed repair leaves a narrowed copy of the li
   }
 });
 
+test('iOS restore offers do not scan whole copies when ASCII write tokens differ', (t) => {
+  const previous = globalThis.document;
+  globalThis.document = { documentElement: { dataset: { platform: 'ios' } } };
+  try {
+    const snapshot = JSON.stringify({ writeToken: 'prior-token', ...JSON.parse(goodBackup()),
+      legacySpelling: `\u6f22${'a'.repeat(10000)}` });
+    const main = snapshot.replace('prior-token', 'current-token');
+    const storage = fakeStorage({ [KEY]: main, [PRERESTORE_KEY]: snapshot });
+    const store = new Store({ storage });
+    store.load();
+    assert.equal(store.restoreOffer().identical, false);
+    const charCodeAt = t.mock.method(String.prototype, 'charCodeAt');
+    for (let repaint = 0; repaint < 3; repaint += 1) {
+      assert.equal(store.restoreOffer().identical, false);
+    }
+    assert.equal(charCodeAt.mock.callCount(), 0, 'repaints must not scan either stored copy');
+  } finally {
+    if (previous === undefined) delete globalThis.document;
+    else globalThis.document = previous;
+  }
+});
+
+test('iOS restore offers preserve equivalent Unicode write-token spellings', () => {
+  const previous = globalThis.document;
+  globalThis.document = { documentElement: { dataset: { platform: 'ios' } } };
+  try {
+    for (const token of ['same-token', '\u6f22-token']) {
+      const main = JSON.stringify({ writeToken: token, ...JSON.parse(goodBackup()), legacySpelling: '\u6f22' });
+      const snapshot = main.replace(/\u6f22/g, '\\u6f22');
+      const store = new Store({ storage: fakeStorage({ [KEY]: main, [PRERESTORE_KEY]: snapshot }) });
+      store.load();
+      assert.equal(store.restoreOffer().identical, true, token);
+      assert.equal(store.undoRestore().ok, false, 'equivalent copies cannot offer a no-op Undo');
+    }
+  } finally {
+    if (previous === undefined) delete globalThis.document;
+    else globalThis.document = previous;
+  }
+});
+
 test('a browser that will not say what it holds latches the store instead of guessing', () => {
   const storage = fakeStorage({ [KEY]: goodBackup() });
   const store = new Store({ storage });
