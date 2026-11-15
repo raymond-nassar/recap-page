@@ -112,7 +112,12 @@ export function createFeedback({
       node.textContent = '';
       return (msg) => {
         refresh();
-        if (generation === current && activeDialog() === dialog) node.textContent = msg;
+        if (generation !== current || activeDialog() !== dialog) return;
+        // A failed save can fill the dialog's own error region before this queued fallback lands.
+        const alreadyLive = [...dialog.querySelectorAll('[role="status"], [role="alert"], [aria-live]')]
+          .some((other) => other !== node && isLive(other) && !other.closest('[hidden], [inert]')
+            && other.textContent.trim() === msg.trim());
+        if (!alreadyLive) node.textContent = msg;
       };
     }, schedule);
     channel = makeChannel();
@@ -125,7 +130,10 @@ export function createFeedback({
       // changes under us between them.
       const node = query('#announcer');
       node.textContent = '';
-      return (msg) => { node.textContent = msg; };
+      return (msg) => {
+        if (activeDialog()) announce(msg);
+        else node.textContent = msg;
+      };
     },
     schedule,
   );

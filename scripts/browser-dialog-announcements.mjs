@@ -63,5 +63,19 @@ export const dialogAnnouncements = {
     const tree = await page.accessibility.snapshot({ root: pageRegion, interestingOnly: false });
     t.check('closing restores the page channel in the accessibility tree',
       tree?.role === 'status' && JSON.stringify(tree).includes('Back on the page.'), JSON.stringify(tree));
+    await page.evaluate(async () => {
+      const { notify } = await import('/js/main.js');
+      notify('#app-report', 'Cloud backups could not all be deleted.', 'warn', 'modal-proof');
+      document.getElementById('ask').showModal();
+    });
+    await new Promise((resolve) => setTimeout(resolve, 100));
+    const redirected = await page.evaluate(() => ({
+      dialog: document.querySelector('#ask [data-dialog-announcer]')?.textContent,
+      page: document.getElementById('announcer').textContent,
+    }));
+    t.check('opening a modal before queued page speech lands redirects the complete message',
+      redirected.dialog === 'Cloud backups could not all be deleted.' && redirected.page === '',
+      JSON.stringify(redirected));
+    await page.evaluate(() => document.getElementById('ask').close());
   },
 };

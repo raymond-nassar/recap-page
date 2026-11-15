@@ -1337,4 +1337,6 @@ Shared feedback uses a polite status inside the active modal, since the page ann
 behind it. Messages from one action stay joined on that surface. Closing a dialog clears its status
 and invalidates queued speech, including when the same dialog is reopened immediately. A visible
 live pane inside the modal keeps its own channel; live panes behind the modal use the modal fallback.
-Outside dialogs the page announcer remains the shared fallback. Saved data is unchanged.
+Outside dialogs the page announcer remains the shared fallback, but a modal opened before a queued
+write receives that message instead. An identical error already in a live region inside the modal
+does not also fill its fallback status. Saved data is unchanged.

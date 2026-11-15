@@ -87,7 +87,7 @@ Rationale: affects several primary flows, is permanent rather than transient, an
 product's voice in two at exactly the moments a reader is deciding something
 Confidence: Observed
 Evidence: `src/js/main.js:2419`, `src/js/views/reading.js:426-434`, `src/js/views/reading.js:451-465`, against
-`src/js/views/shared/feedback.js:282-305`
+`src/js/views/shared/feedback.js:290-313`
 Source: heuristic 4 sweep, code-only framing
 Impact: the application has a careful in-page notice system with live regions, and then reports
 curated import failures through `alert()`, asks for a list name through `prompt()`, and confirms
@@ -390,7 +390,7 @@ Severity: 2, single-rater estimate
 Rationale: affects every notice in the product, and duplicate speech is disruptive rather than
 blocking
 Confidence: Observed
-Evidence: `src/js/views/shared/feedback.js:257-272`, `src/js/views/shared/feedback.js:282-305`, `src/index.html:27`,
+Evidence: `src/js/views/shared/feedback.js:265-280`, `src/js/views/shared/feedback.js:290-313`, `src/index.html:27`,
 `src/index.html:113`, `src/index.html:907`
 Source: WCAG 2.2 Level AA sweep, criterion 4.1.3
 Impact: `notify()` writes its message into a container that already carries a live region role, and
@@ -400,7 +400,7 @@ nothing is missed, is right, but the effect is that every confirmation is spoken
 Recommendation: pick one channel per message, keeping `announce()` for events with no visible
 surface and letting the visible live region speak for itself everywhere else
 Backlog item: BL-027
-Resolved: which channel a message uses is now read off the container at `src/js/views/shared/feedback.js:263-272`
+Resolved: which channel a message uses is now read off the container at `src/js/views/shared/feedback.js:271-280`
 rather than decided by a list of ids, and the six result panes stopped being live regions. The
 Impact above describes the pre-fix behaviour and is kept as the record of why the item was
 raised. Measured on a first run with storage cleared, the surfaces that speak went from 9 to 3.

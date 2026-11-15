@@ -74,6 +74,7 @@ function fixture({ live = false } = {}) {
       modal = dialog ?? {
         children: [],
         append(node) { this.children.push(node); },
+        querySelectorAll() { return this.children; },
         contains(node) { return node.parentElement === this; },
       };
       return modal;
@@ -146,6 +147,16 @@ test('a closed modal never redirects its queued speech to the page', () => {
   h.flush();
   assert.equal(dialog.children[0].textContent, '');
   assert.equal(h.announcer.textContent, '');
+});
+
+test('a modal opened before a page announcement lands receives its queued speech', () => {
+  const h = fixture();
+  h.feedback.announce('Cloud backups could not all be deleted.');
+  const dialog = h.open();
+  h.flush();
+  h.flush();
+  assert.equal(h.announcer.textContent, '');
+  assert.equal(dialog.children[0]?.textContent, 'Cloud backups could not all be deleted.');
 });
 
 test('a modal notice already in a live pane stays in its own channel', () => {
