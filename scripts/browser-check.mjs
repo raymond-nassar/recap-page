@@ -17735,8 +17735,10 @@ SCENARIOS.push({
       saved.ratings = { [id]: 3.5 };
       localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
     }, first.issueId);
+    // As with Coming up (#987), a pending startup address rewrite can make Edge reload the old
+    // entry after a fragment navigation. Open the intended route as a fresh document instead.
+    await page.goto('about:blank');
     await open(page, `/?catalog=browser-check#/issue/${first.issueId}?list=fixture`);
-    await page.reload({ waitUntil: 'load' });
     await page.waitForFunction(() => document.querySelector('#issue-rating-label')?.textContent.includes('3.5/5'), { timeout: 15000 });
     await page.focus('#issue-rating-trigger');
     await page.keyboard.press('Enter');
