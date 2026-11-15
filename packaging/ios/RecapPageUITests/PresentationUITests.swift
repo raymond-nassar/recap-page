@@ -2883,32 +2883,27 @@ final class PresentationUITests: XCTestCase {
     func testThemeSelectReceivesNativeFocusAndLeavesNoZoomAfterDismissal() throws {
         let app = launch(route: "theme-select")
         _ = try probeResult(of: app)
-        let before = try XCTUnwrap(layoutMetrics(from: layoutMonitor(of: app).label))
+        let monitor = layoutMonitor(of: app)
+        let before = try XCTUnwrap(layoutMetrics(from: monitor.label))
         try record("t03-theme-select-before", ["metrics": before])
-        let theme = app.webViews.firstMatch.descendants(matching: .any).matching(
-            NSPredicate(format: "label == %@ OR label == %@ OR value == %@",
-                        "Colour theme", "Use system setting", "Use system setting")).firstMatch
-        let nativeLabel: String
-        if theme.waitForExistence(timeout: 30) {
-            revealNativeTarget(theme, in: app)
-            nativeLabel = theme.label
-            theme.tap()
-        } else {
-            // Both #1253 attempts failed at this lookup, so the select is tapped at its live page
-            // position instead; the focus count below proves whether that tap reached it.
-            try record("t03-theme-select-unreachable", ["tree": app.debugDescription, "metrics": before])
-            let rect = (before["themeSelect"] as? [String: Any])?["rect"] as? [String: Any]
-            let value = { (key: String) in (rect?[key] as? NSNumber).map { CGFloat($0.doubleValue) } }
-            guard let x = value("x"), let y = value("y"), let width = value("width"), let height = value("height"),
-                  width > 0, height > 0 else {
-                XCTFail("the page reports the theme select's position")
-                app.terminate()
-                return
-            }
-            nativeLabel = "page position"
-            app.webViews.firstMatch.coordinate(withNormalizedOffset: .zero)
-                .withOffset(CGVector(dx: x + width / 2, dy: y + height / 2)).tap()
-        }
+        let initialScale = try XCTUnwrap((before["visualScale"] as? NSNumber)?.doubleValue)
+        XCTAssertEqual(initialScale, 1, accuracy: 0.001, "page coordinates match the native web view")
+        let select = try XCTUnwrap(before["themeSelect"] as? [String: Any])
+        let rect = try XCTUnwrap(select["rect"] as? [String: Any])
+        let x = CGFloat(try XCTUnwrap((rect["x"] as? NSNumber)?.doubleValue))
+        let y = CGFloat(try XCTUnwrap((rect["y"] as? NSNumber)?.doubleValue))
+        let width = CGFloat(try XCTUnwrap((rect["width"] as? NSNumber)?.doubleValue))
+        let height = CGFloat(try XCTUnwrap((rect["height"] as? NSNumber)?.doubleValue))
+        let webView = app.webViews.firstMatch
+        let point = CGPoint(x: x + width / 2, y: y + height / 2)
+        XCTAssertGreaterThan(width, 0)
+        XCTAssertGreaterThan(height, 0)
+        XCTAssertTrue(CGRect(origin: .zero, size: webView.frame.size).contains(point),
+                      "the theme select is inside the web view")
+        // The native label lookup failed hittability on both iPhone and iPad; the focus counter
+        // below proves whether a tap at the select's live page position reached it.
+        webView.coordinate(withNormalizedOffset: .zero)
+            .withOffset(CGVector(dx: point.x, dy: point.y)).tap()
         let picker = app.pickerWheels.firstMatch
         let light = app.descendants(matching: .any).matching(
             NSPredicate(format: "label == %@", "Light")).firstMatch
@@ -2925,7 +2920,6 @@ final class PresentationUITests: XCTestCase {
         }
         let done = app.toolbars.buttons["Done"].firstMatch
         if done.waitForExistence(timeout: 3) { done.tap() }
-        let monitor = layoutMonitor(of: app)
         let dismissed = XCTNSPredicateExpectation(predicate: NSPredicate { object, _ in
             guard let element = object as? XCUIElement,
                   let state = layoutMetrics(from: element.label),
@@ -2939,7 +2933,7 @@ final class PresentationUITests: XCTestCase {
         XCTAssertEqual(XCTWaiter.wait(for: [pickerGone], timeout: 15), .completed, "the native picker is dismissed")
         Thread.sleep(forTimeInterval: 1)
         let after = try XCTUnwrap(layoutMetrics(from: monitor.label))
-        try record("t03-theme-select-after", ["metrics": after, "nativeLabel": nativeLabel])
+        try record("t03-theme-select-after", ["metrics": after, "nativeLabel": "page position"])
         let count = try XCTUnwrap((after["focusCount"] as? NSNumber)?.intValue)
         XCTAssertGreaterThan(count, 0, "the theme select actually received native focus")
         let scale = try XCTUnwrap((after["visualScale"] as? NSNumber)?.doubleValue)
