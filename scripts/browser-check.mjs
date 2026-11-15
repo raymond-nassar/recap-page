@@ -15585,7 +15585,8 @@ const SCENARIOS = [
       await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
       const doubled = await page.evaluate(() => {
         const clipped = [...document.querySelectorAll('#more-sheet *, .rail-header *')]
-          .filter((node) => node.getClientRects().length && node.scrollWidth - node.clientWidth > 1)
+          .filter((node) => !node.matches('[data-dialog-announcer].visually-hidden')
+            && node.getClientRects().length && node.scrollWidth - node.clientWidth > 1)
           .map((node) => node.className || node.id || node.tagName);
         const bar = document.querySelector('.rail-header').getBoundingClientRect();
         const sheet = document.querySelector('#more-sheet').getBoundingClientRect();
@@ -24312,6 +24313,7 @@ MUTATIONS.push({
   ),
 });
 
+SCENARIOS.push((await import('./browser-dialog-announcements.mjs')).dialogAnnouncements);
 SCENARIOS.push((await import('./browser-preview-scroll-452.mjs')).previewScroll452);
 SCENARIOS.push((await import('./browser-source-credits.mjs')).sourceCredits);
 SCENARIOS.push((await import('./browser-collected-editions.mjs')).collectedEditions);
