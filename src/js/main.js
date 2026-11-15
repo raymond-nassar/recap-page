@@ -57,6 +57,8 @@ import { createSavedListsPresenter } from './views/shared/saved-lists.js';
 import { createFeedback, watchNoticeOverflow } from './views/shared/feedback.js';
 import { createIssueView } from './views/issue.js';
 import { createReadingView, synopsisFallback } from './views/reading.js';
+import { createListRevisions } from './views/list-revisions.js';
+import { isListRevisionVerificationPaused, saveListRevision } from './lib/listRevisionSave.js';
 import { createBulkReadView } from './views/bulk-read.js';
 import { createHomeView } from './views/home.js';
 import { homeUpdatesContent } from './lib/homeUpdatesContent.js';
@@ -1834,6 +1836,7 @@ function showView(next, { focus = true, push = false, at = null, capturePosition
   if (next !== 'home') homeUpdatesView.close({ restoreFocus: false });
   homeAt = next === 'home' && at === HOME_CARDS ? at : null;
   view = next;
+  listRevisions.render();
   addView.enter(next);
   if (next === 'add' || next === 'add-search') void searchListsView.update($('#search-q')?.value ?? '');
   for (const name of VIEWS) {
@@ -2563,7 +2566,7 @@ const recoveryView = createRecoveryView({
     verifySalvage: $('#verify-salvage'),
     salvageList: $('#salvage-list'),
   }),
-  isBlocked: () => store.blocked,
+  isBlocked: () => store.blocked && !isListRevisionVerificationPaused(store),
   blockedReason: () => store.blockedReason,
   hasPreRestoreSnapshot: () => store.hasPreRestoreSnapshot(),
   clearRecoveryNotice: () => clearNotice('recovery-copy'),
@@ -3382,6 +3385,7 @@ async function renderPublishingCategory(route, { isCurrent = () => view === rout
 function renderAll() {
   renderRail();
   readingView.render();
+  listRevisions.render();
   completionView.render();
   homeView.render();
   renderLibraryHub();
@@ -3397,6 +3401,7 @@ function renderAll() {
   // Kept in renderAll so the banner cannot go stale. In particular a successful restore
   // clears the block, and leaving the banner up would push the user toward "Start fresh",
   // which would then wipe the backup they had just restored.
+  $('#list-revision-uncertain-banner').hidden = !isListRevisionVerificationPaused(store);
   recoveryView.render();
   dataView.renderRestoreOffer();
   renderBreadcrumbs();
@@ -3470,6 +3475,7 @@ export function boot() {
   renderCompleteRestore(completeRestore.state);
   recoveryView.wire();
   readingView.wire();
+  listRevisions.wire();
   $('#order-desc').addEventListener('toggle', rememberAbout);
   for (const shelf of CATALOG_SHELVES) {
     if (VIEWS.includes(shelf.key)) catalogView.wire(shelf.key);
@@ -3753,6 +3759,12 @@ const bulkReadView = createBulkReadView({
     if (retry) retry.focus();
     else focusViewHeading(view);
   },
+});
+
+const listRevisions = createListRevisions({
+  $, el, getState: () => store.state, activeListId, isCurrent: () => view === 'read',
+  loadCatalog, loadOrder: loadBundledOrder, askConfirm,
+  saveRevision: (id, signature, items) => saveListRevision(store, id, signature, items),
 });
 
 const readingView = createReadingView({

@@ -26,6 +26,7 @@ import { TILE_PARTS, decodePng, tileContrast } from './lib/painted-contrast.mjs'
 import { escapeShellDialog, measureShellDialog, shellVerdicts } from './lib/dialog-shell.mjs';
 import { touchFeedbackCheck } from './lib/touch-feedback.mjs';
 import { androidPhoneProfiles, phoneLayoutScenarios } from './browser-phone-layout.mjs';
+import { listRevisions } from './browser-list-revisions.mjs';
 import {
   catalogFacets, defaultPath, filterByFacet, filterBySpotlightKind,
   parseCatalog, searchCatalog, shelfLists, sortSpotlightStories,
@@ -39,7 +40,7 @@ const allowedModes = new Set([
   'done-hint', 'completion-focus', 'long-list-name', 'selection-bar', 'milestones', 'save-notice', 'home-continue',
   'progress-glance',
   'confirmations', 'issue-poster',
-  'story-types', 'touch-feedback', 'phone-layout', 'universes',
+  'story-types', 'touch-feedback', 'phone-layout', 'universes', 'list-revisions',
 ]);
 if (onlyArgs.length > 1 || (onlyArgs.length && !allowedModes.has(onlyArgs[0].slice('--only='.length)))) {
   throw new Error('Choose one exact supported Android --only selector; comma selections are not supported');
@@ -5454,7 +5455,13 @@ try {
       await scenario.run(page, { check: (name, ok, detail) => check(ok, `${name} ${detail ?? ''}`) }, androidPhoneProfiles);
     }
   }
-  let viewports = onlyArgs[0] === '--only=phone-layout' ? []
+  if (onlyArgs[0] === '--only=list-revisions') {
+    const page = await browser.newPage();
+    page.__origin = origin;
+    page.__revisionViewport = { width: 360, height: 800, isMobile: true, hasTouch: true, deviceScaleFactor: 1 };
+    await listRevisions.run(page, { check: (name, ok, detail) => check(ok, `${name} ${detail ?? ''}`) });
+  }
+  let viewports = ['--only=phone-layout', '--only=list-revisions'].includes(onlyArgs[0]) ? []
     : [{ width: 360, height: 800 }, { width: 412, height: 915 }, { width: 800, height: 360 }];
   if (mobileUi) viewports.push({ width: 360, height: 800, textScale: 1.3 }, { width: 1280, height: 900 });
   if (phoneHeader) viewports = [

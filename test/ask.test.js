@@ -691,3 +691,24 @@ test('a question that needs a choice backs out where it cannot be asked, and wed
     clearDom();
   }
 });
+
+test('withdrawing a stale confirmation does not close a later question', async () => {
+  try {
+    const { askConfirm, dlg } = await wired();
+    const controller = new AbortController();
+    const first = askConfirm({ title: 'Review update', signal: controller.signal });
+    controller.abort();
+    assert.equal(await within(first, 'withdrawn update'), false);
+    const second = askConfirm({ title: 'Another question' });
+    controller.abort();
+    assert.equal(dlg.isOpen, true);
+    dlg.close('ok');
+    assert.equal(await within(second, 'later question'), true);
+    const alreadyAborted = new AbortController();
+    alreadyAborted.abort();
+    assert.equal(await askConfirm({ title: 'Stale update', signal: alreadyAborted.signal }), false);
+    assert.equal(dlg.isOpen, false);
+  } finally {
+    clearDom();
+  }
+});

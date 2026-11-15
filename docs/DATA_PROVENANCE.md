@@ -746,7 +746,8 @@ notes, or availability overrides.
 The [series-volume correction ledger](../scripts/data/cbh-source-ledgers/wolverine-reading-order-series-correction.json)
 records the prior publication and all 95 corrected source positions, including 65 distinct issues
 previously collapsed into repeats or exclusions. The earlier settlement counts remain historical.
-Existing saved lists keep their issue identities and progress; newly added lists use the correction.
+Existing saved lists are not updated automatically. A reader can choose to update one while
+retaining its saved comics and their progress. Newly added lists use the correction.
 App title repairs use the separate [title repair ledger](../scripts/data/wolverine-title-repairs.json)
 for #1256, and gaps remain in #1257. The downloadable checklist shows the same 25 repaired titles
 (#1264). Because a placeholder's identity is a hash of the title it was first published with, each
