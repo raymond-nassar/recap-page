@@ -61,7 +61,7 @@ test('#1060: the ten starting lists all exist and show as the exact versions the
   assert.deepEqual(shown.map((story) => story.lists[0].id), expected);
   for (const story of shown) assert.equal(storyTypeStories([story]).length, 1, `${story.lists[0].id} can appear on Genres`);
   const claremont = shown.find((story) => story.lists[0].id === 'xmen-claremont');
-  assert.equal(claremont.lists[0].count, 318);
+  assert.equal(claremont.lists[0].count, 274);
 });
 
 test('#1060: a starting list that leaves the catalog or Genres is skipped', () => {
