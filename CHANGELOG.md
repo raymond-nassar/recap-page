@@ -18,7 +18,7 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 ### What's new for readers
 
 - Browse Marvel's realities in the new Universes section, with their Reading Lists, series and
-  comics, or find a Universe from Search.
+  comics, or find a Universe from Search. Universes is still under construction.
 - Search Reading Lists, series, creators and comics from one box, with scopes to narrow the
   results and offline suggestions for similar names when a local search finds no matches.
 - Reading lists now open with About this list expanded and a link to the site that curated them.
@@ -89,8 +89,9 @@ separate.
 
 ### Universes and Search
 
-- New Universes section. Browse Marvel's realities, from the main Marvel Universe to Ultimate
-  Marvel, the Ultimate Universe, Marvel 2099 and more, each with its reality designation where
+- New Universes section, still under construction. Browse Marvel's realities, from the main
+  Marvel Universe to Ultimate Marvel, the Ultimate Universe, Marvel 2099 and more, each with its
+  reality designation where
   one is confirmed, its first year and debut comic. A reality's page shows the Reading Lists,
   series and individual comics reviewed as belonging to it. The main Marvel Universe links to
   Modern Timeline and Marvel Ages. Universes are searchable from Search, and Reading Lists,

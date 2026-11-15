@@ -77,6 +77,7 @@ test('iOS projects platform-specific highlights without changing the generated s
   assert.equal(walk(features).filter((item) => item.tag === 'li').length, sourceFeatures.length,
     'every real feature needs reviewed iOS copy, not omission');
   assert.match(text, /Browse Marvel's realities in the new Universes section/);
+  assert.match(text, /Universes is still under construction/);
   assert.match(text, /Search Reading Lists, series, creators and comics from one box/);
   assert.match(text, /Fixed OneDrive checks and restores/);
   assert.match(text, /On iPhone and iPad, tapping a text field no longer leaves the page zoomed/);
@@ -85,6 +86,7 @@ test('iOS projects platform-specific highlights without changing the generated s
   const web = harness({ content: homeUpdatesContent });
   web.view.wire();
   const webText = walk(web.nodes.content).map((item) => item.textContent).join(' ');
+  assert.match(webText, /Universes is still under construction/);
   assert.match(webText, /On iPhone and iPad, tapping a text field no longer leaves the page zoomed/,
     'other platforms see the text-field fix named as the iPhone and iPad feature it is');
 });
