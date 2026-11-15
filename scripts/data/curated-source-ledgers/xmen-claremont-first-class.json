@@ -1,0 +1,611 @@
+{
+  "schemaVersion": 1,
+  "id": "xmen-claremont",
+  "baselineCommit": "52a3fdec519973c761e8b1ec2816b8daa85bbf4c",
+  "baselinePayloadSha256": "3070c6faa145e5d65c9f32ae0d69d09cbcbec5f1c80849d349b3368c65bd1b27",
+  "baselineChecklistSha256": "7dd12e2569e0224dbe1280d819e85276fa9bbd7ad017521a05b34b12e1cebec3",
+  "expandedPayloadSha256": "5c305b9c9560c8c1040f9777d4e2cc9bb4f6b74cd08aa22fc7e0ca7ccbcfee1c",
+  "decisionDate": "2026-11-14",
+  "ownerDecision": "Remove everything before Giant-Size X-Men #1 (1975); the list becomes 274 comics.",
+  "expandedDecision": "Keep the expanded list comics and only correct explanatory copy that claims it matches the core.",
+  "sourceSeries": [
+    {
+      "seriesId": 1132,
+      "name": "X-Men: First Class (2006 - 2007)",
+      "ownerSuppliedUrl": "https://www.marvel.com/comics/series/1132/xmen_first_class_2006_2007"
+    },
+    {
+      "seriesId": 2432,
+      "name": "X-Men: First Class (2007 - 2008)",
+      "ownerSuppliedUrl": "https://www.marvel.com/comics/series/2432/xmen_first_class_2007_2008"
+    },
+    {
+      "seriesId": 6799,
+      "name": "X-Men: First Class Finals (2008 - 2009)",
+      "ownerSuppliedUrl": "https://www.marvel.com/comics/series/6799/xmen_first_class_finals_2008_2009"
+    }
+  ],
+  "sourceNote": "The series links were supplied by the owner and were not fetched. Exact issue identities and metadata are reused from the expanded list at the baseline commit. The two specials are outside the three named series.",
+  "removed": [
+    {
+      "sourcePosition": 1,
+      "issueId": 12413,
+      "title": "Uncanny X-Men (1963) #1"
+    },
+    {
+      "sourcePosition": 2,
+      "issueId": 12466,
+      "title": "Uncanny X-Men (1963) #2"
+    },
+    {
+      "sourcePosition": 3,
+      "issueId": 12477,
+      "title": "Uncanny X-Men (1963) #3"
+    },
+    {
+      "sourcePosition": 4,
+      "issueId": 12488,
+      "title": "Uncanny X-Men (1963) #4"
+    },
+    {
+      "sourcePosition": 5,
+      "issueId": 12499,
+      "title": "Uncanny X-Men (1963) #5"
+    },
+    {
+      "sourcePosition": 6,
+      "issueId": 12510,
+      "title": "Uncanny X-Men (1963) #6"
+    },
+    {
+      "sourcePosition": 7,
+      "issueId": 12521,
+      "title": "Uncanny X-Men (1963) #7"
+    },
+    {
+      "sourcePosition": 8,
+      "issueId": 12532,
+      "title": "Uncanny X-Men (1963) #8"
+    },
+    {
+      "sourcePosition": 9,
+      "issueId": 12543,
+      "title": "Uncanny X-Men (1963) #9"
+    },
+    {
+      "sourcePosition": 10,
+      "issueId": 12414,
+      "title": "Uncanny X-Men (1963) #10"
+    },
+    {
+      "sourcePosition": 11,
+      "issueId": 12425,
+      "title": "Uncanny X-Men (1963) #11"
+    },
+    {
+      "sourcePosition": 12,
+      "issueId": 12436,
+      "title": "Uncanny X-Men (1963) #12"
+    },
+    {
+      "sourcePosition": 13,
+      "issueId": 12447,
+      "title": "Uncanny X-Men (1963) #13"
+    },
+    {
+      "sourcePosition": 14,
+      "issueId": 12458,
+      "title": "Uncanny X-Men (1963) #14"
+    },
+    {
+      "sourcePosition": 15,
+      "issueId": 12461,
+      "title": "Uncanny X-Men (1963) #15"
+    },
+    {
+      "sourcePosition": 16,
+      "issueId": 12462,
+      "title": "Uncanny X-Men (1963) #16"
+    },
+    {
+      "sourcePosition": 17,
+      "issueId": 12463,
+      "title": "Uncanny X-Men (1963) #17"
+    },
+    {
+      "sourcePosition": 18,
+      "issueId": 12464,
+      "title": "Uncanny X-Men (1963) #18"
+    },
+    {
+      "sourcePosition": 19,
+      "issueId": 12465,
+      "title": "Uncanny X-Men (1963) #19"
+    },
+    {
+      "sourcePosition": 20,
+      "issueId": 12467,
+      "title": "Uncanny X-Men (1963) #20"
+    },
+    {
+      "sourcePosition": 21,
+      "issueId": 12468,
+      "title": "Uncanny X-Men (1963) #21"
+    },
+    {
+      "sourcePosition": 22,
+      "issueId": 12469,
+      "title": "Uncanny X-Men (1963) #22"
+    },
+    {
+      "sourcePosition": 23,
+      "issueId": 12470,
+      "title": "Uncanny X-Men (1963) #23"
+    },
+    {
+      "sourcePosition": 24,
+      "issueId": 12471,
+      "title": "Uncanny X-Men (1963) #24"
+    },
+    {
+      "sourcePosition": 25,
+      "issueId": 12472,
+      "title": "Uncanny X-Men (1963) #25"
+    },
+    {
+      "sourcePosition": 26,
+      "issueId": 12473,
+      "title": "Uncanny X-Men (1963) #26"
+    },
+    {
+      "sourcePosition": 27,
+      "issueId": 12474,
+      "title": "Uncanny X-Men (1963) #27"
+    },
+    {
+      "sourcePosition": 28,
+      "issueId": 12475,
+      "title": "Uncanny X-Men (1963) #28"
+    },
+    {
+      "sourcePosition": 29,
+      "issueId": 12476,
+      "title": "Uncanny X-Men (1963) #29"
+    },
+    {
+      "sourcePosition": 30,
+      "issueId": 12478,
+      "title": "Uncanny X-Men (1963) #30"
+    },
+    {
+      "sourcePosition": 31,
+      "issueId": 12479,
+      "title": "Uncanny X-Men (1963) #31"
+    },
+    {
+      "sourcePosition": 32,
+      "issueId": 12480,
+      "title": "Uncanny X-Men (1963) #32"
+    },
+    {
+      "sourcePosition": 33,
+      "issueId": 12481,
+      "title": "Uncanny X-Men (1963) #33"
+    },
+    {
+      "sourcePosition": 34,
+      "issueId": 12482,
+      "title": "Uncanny X-Men (1963) #34"
+    },
+    {
+      "sourcePosition": 35,
+      "issueId": 12483,
+      "title": "Uncanny X-Men (1963) #35"
+    },
+    {
+      "sourcePosition": 36,
+      "issueId": 12484,
+      "title": "Uncanny X-Men (1963) #36"
+    },
+    {
+      "sourcePosition": 37,
+      "issueId": 12485,
+      "title": "Uncanny X-Men (1963) #37"
+    },
+    {
+      "sourcePosition": 38,
+      "issueId": 12486,
+      "title": "Uncanny X-Men (1963) #38"
+    },
+    {
+      "sourcePosition": 39,
+      "issueId": 12487,
+      "title": "Uncanny X-Men (1963) #39"
+    },
+    {
+      "sourcePosition": 40,
+      "issueId": 12489,
+      "title": "Uncanny X-Men (1963) #40"
+    },
+    {
+      "sourcePosition": 41,
+      "issueId": 12490,
+      "title": "Uncanny X-Men (1963) #41"
+    },
+    {
+      "sourcePosition": 42,
+      "issueId": 12491,
+      "title": "Uncanny X-Men (1963) #42"
+    },
+    {
+      "sourcePosition": 43,
+      "issueId": 12492,
+      "title": "Uncanny X-Men (1963) #43"
+    },
+    {
+      "sourcePosition": 44,
+      "issueId": 12493,
+      "title": "Uncanny X-Men (1963) #44"
+    },
+    {
+      "sourcePosition": 45,
+      "issueId": 12494,
+      "title": "Uncanny X-Men (1963) #45"
+    },
+    {
+      "sourcePosition": 46,
+      "issueId": 7303,
+      "title": "Avengers (1963) #53"
+    },
+    {
+      "sourcePosition": 47,
+      "issueId": 65346,
+      "title": "Not Brand Echh (1967) #4"
+    },
+    {
+      "sourcePosition": 48,
+      "issueId": 65350,
+      "title": "Not Brand Echh (1967) #8"
+    },
+    {
+      "sourcePosition": 49,
+      "issueId": 12495,
+      "title": "Uncanny X-Men (1963) #46"
+    },
+    {
+      "sourcePosition": 50,
+      "issueId": 12496,
+      "title": "Uncanny X-Men (1963) #47"
+    },
+    {
+      "sourcePosition": 51,
+      "issueId": 12497,
+      "title": "Uncanny X-Men (1963) #48"
+    },
+    {
+      "sourcePosition": 52,
+      "issueId": 12498,
+      "title": "Uncanny X-Men (1963) #49"
+    },
+    {
+      "sourcePosition": 53,
+      "issueId": 12500,
+      "title": "Uncanny X-Men (1963) #50"
+    },
+    {
+      "sourcePosition": 54,
+      "issueId": 12501,
+      "title": "Uncanny X-Men (1963) #51"
+    },
+    {
+      "sourcePosition": 55,
+      "issueId": 12502,
+      "title": "Uncanny X-Men (1963) #52"
+    },
+    {
+      "sourcePosition": 56,
+      "issueId": 12503,
+      "title": "Uncanny X-Men (1963) #53"
+    },
+    {
+      "sourcePosition": 57,
+      "issueId": 12504,
+      "title": "Uncanny X-Men (1963) #54"
+    },
+    {
+      "sourcePosition": 58,
+      "issueId": 12505,
+      "title": "Uncanny X-Men (1963) #55"
+    },
+    {
+      "sourcePosition": 59,
+      "issueId": 12506,
+      "title": "Uncanny X-Men (1963) #56"
+    },
+    {
+      "sourcePosition": 60,
+      "issueId": 12507,
+      "title": "Uncanny X-Men (1963) #57"
+    },
+    {
+      "sourcePosition": 61,
+      "issueId": 12508,
+      "title": "Uncanny X-Men (1963) #58"
+    },
+    {
+      "sourcePosition": 62,
+      "issueId": 12509,
+      "title": "Uncanny X-Men (1963) #59"
+    },
+    {
+      "sourcePosition": 63,
+      "issueId": 12511,
+      "title": "Uncanny X-Men (1963) #60"
+    },
+    {
+      "sourcePosition": 64,
+      "issueId": 12512,
+      "title": "Uncanny X-Men (1963) #61"
+    },
+    {
+      "sourcePosition": 65,
+      "issueId": 12513,
+      "title": "Uncanny X-Men (1963) #62"
+    },
+    {
+      "sourcePosition": 66,
+      "issueId": 12514,
+      "title": "Uncanny X-Men (1963) #63"
+    },
+    {
+      "sourcePosition": 67,
+      "issueId": 12515,
+      "title": "Uncanny X-Men (1963) #64"
+    },
+    {
+      "sourcePosition": 68,
+      "issueId": 12516,
+      "title": "Uncanny X-Men (1963) #65"
+    },
+    {
+      "sourcePosition": 69,
+      "issueId": 12517,
+      "title": "Uncanny X-Men (1963) #66"
+    },
+    {
+      "sourcePosition": 70,
+      "issueId": 50919,
+      "title": "Ka-Zar (1970) #2"
+    },
+    {
+      "sourcePosition": 71,
+      "issueId": 50920,
+      "title": "Ka-Zar (1970) #3"
+    },
+    {
+      "sourcePosition": 72,
+      "issueId": 50921,
+      "title": "Marvel Tales (1966) #30"
+    }
+  ],
+  "added": [
+    {
+      "position": 1,
+      "issueId": 5144,
+      "seriesId": 1132,
+      "number": "1",
+      "title": "X-Men: First Class (2006) #1"
+    },
+    {
+      "position": 2,
+      "issueId": 5296,
+      "seriesId": 1132,
+      "number": "2",
+      "title": "X-Men: First Class (2006) #2"
+    },
+    {
+      "position": 3,
+      "issueId": 5606,
+      "seriesId": 1132,
+      "number": "3",
+      "title": "X-Men: First Class (2006) #3"
+    },
+    {
+      "position": 4,
+      "issueId": 5722,
+      "seriesId": 1132,
+      "number": "4",
+      "title": "X-Men: First Class (2006) #4"
+    },
+    {
+      "position": 5,
+      "issueId": 5862,
+      "seriesId": 1132,
+      "number": "5",
+      "title": "X-Men: First Class (2006) #5"
+    },
+    {
+      "position": 6,
+      "issueId": 6012,
+      "seriesId": 1132,
+      "number": "6",
+      "title": "X-Men: First Class (2006) #6"
+    },
+    {
+      "position": 7,
+      "issueId": 6151,
+      "seriesId": 1132,
+      "number": "7",
+      "title": "X-Men: First Class (2006) #7"
+    },
+    {
+      "position": 8,
+      "issueId": 6299,
+      "seriesId": 1132,
+      "number": "8",
+      "title": "X-Men: First Class (2006) #8"
+    },
+    {
+      "position": 9,
+      "issueId": 13500,
+      "seriesId": 2432,
+      "number": "1",
+      "title": "X-Men: First Class (2007) #1"
+    },
+    {
+      "position": 10,
+      "issueId": 15998,
+      "seriesId": 2432,
+      "number": "2",
+      "title": "X-Men: First Class (2007) #2"
+    },
+    {
+      "position": 11,
+      "issueId": 16182,
+      "seriesId": 2432,
+      "number": "3",
+      "title": "X-Men: First Class (2007) #3"
+    },
+    {
+      "position": 12,
+      "issueId": 16583,
+      "seriesId": 2432,
+      "number": "4",
+      "title": "X-Men: First Class (2007) #4"
+    },
+    {
+      "position": 13,
+      "issueId": 16584,
+      "seriesId": 2432,
+      "number": "5",
+      "title": "X-Men: First Class (2007) #5"
+    },
+    {
+      "position": 14,
+      "issueId": 17280,
+      "seriesId": 2432,
+      "number": "6",
+      "title": "X-Men: First Class (2007) #6"
+    },
+    {
+      "position": 15,
+      "issueId": 17413,
+      "seriesId": 2432,
+      "number": "7",
+      "title": "X-Men: First Class (2007) #7"
+    },
+    {
+      "position": 16,
+      "issueId": 17650,
+      "seriesId": 2432,
+      "number": "8",
+      "title": "X-Men: First Class (2007) #8"
+    },
+    {
+      "position": 17,
+      "issueId": 20694,
+      "seriesId": 2432,
+      "number": "9",
+      "title": "X-Men: First Class (2007) #9"
+    },
+    {
+      "position": 18,
+      "issueId": 20888,
+      "seriesId": 2432,
+      "number": "10",
+      "title": "X-Men: First Class (2007) #10"
+    },
+    {
+      "position": 19,
+      "issueId": 21019,
+      "seriesId": 2432,
+      "number": "11",
+      "title": "X-Men: First Class (2007) #11"
+    },
+    {
+      "position": 20,
+      "issueId": 21233,
+      "seriesId": 2432,
+      "number": "12",
+      "title": "X-Men: First Class (2007) #12"
+    },
+    {
+      "position": 21,
+      "issueId": 21376,
+      "seriesId": 2432,
+      "number": "13",
+      "title": "X-Men: First Class (2007) #13"
+    },
+    {
+      "position": 22,
+      "issueId": 21552,
+      "seriesId": 2432,
+      "number": "14",
+      "title": "X-Men: First Class (2007) #14"
+    },
+    {
+      "position": 23,
+      "issueId": 21747,
+      "seriesId": 2432,
+      "number": "15",
+      "title": "X-Men: First Class (2007) #15"
+    },
+    {
+      "position": 24,
+      "issueId": 21981,
+      "seriesId": 2432,
+      "number": "16",
+      "title": "X-Men: First Class (2007) #16"
+    },
+    {
+      "position": 25,
+      "issueId": 23651,
+      "seriesId": 6799,
+      "number": "1",
+      "title": "X-Men: First Class Finals (2008) #1"
+    },
+    {
+      "position": 26,
+      "issueId": 23817,
+      "seriesId": 6799,
+      "number": "2",
+      "title": "X-Men: First Class Finals (2008) #2"
+    },
+    {
+      "position": 27,
+      "issueId": 24009,
+      "seriesId": 6799,
+      "number": "3",
+      "title": "X-Men: First Class Finals (2008) #3"
+    },
+    {
+      "position": 28,
+      "issueId": 24214,
+      "seriesId": 6799,
+      "number": "4",
+      "title": "X-Men: First Class Finals (2008) #4"
+    }
+  ],
+  "retained": {
+    "fromSourcePosition": 73,
+    "count": 246,
+    "firstIssueId": 8797
+  },
+  "placeholders": {
+    "titles": [
+      "Power Pack (1984) #27",
+      "Power Pack (1984) #28"
+    ],
+    "followUp": "https://github.com/raymond-nassar/recap-page/issues/1312"
+  },
+  "descriptions": {
+    "core": {
+      "before": "Before Fall of the Mutants and Inferno, the X-Men grow from the first class into Chris Claremont's sprawling cast. Giant-Size X-Men, the Claremont years, Phoenix, Dark Phoenix, the Brood, Days of Future Past, God Loves Man Kills, New Mutants and Louise Simonson's X-Factor follow. X-Men #67 to 93 are skipped as reprints, and the Mutant Massacre is read interleaved.",
+      "after": "X-Men: First Class revisits the original team's beginnings before Giant-Size X-Men brings a new team together. Chris Claremont's years follow through Phoenix, Dark Phoenix, the Brood, Days of Future Past, God Loves Man Kills, New Mutants, X-Factor and the interleaved Mutant Massacre. The order ends before Fall of the Mutants and Inferno."
+    },
+    "expanded": {
+      "before": "The expanded Silver Age-to-Claremont route adds the two sections the outline marked optional to the core reading order. Compiled by hand from the same reader's outline of Comic Book Herald's guides. The Silver Age add-ons are the guest appearances that carried the X-Men through the years their own title was running reprints, scattered across Amazing Adventures, Spider-Man, the Hulk, the Avengers, Captain America, the Defenders and Giant-Size Fantastic Four. The modern retellings revisit the same years from the outside: The Hidden Years, Grand Design, Season One and the whole of First Class. X-Men Annual #1 and #2 are listed without a link, because Marvel's metadata carries that series only from #3.",
+      "after": "The X-Men's original Silver Age stories lead into the Claremont years, with guest appearances and modern retellings added. Compiled by hand from a reader's outline of Comic Book Herald's guides, the route includes Amazing Adventures, Spider-Man, the Hulk, the Avengers, Captain America, the Defenders and Giant-Size Fantastic Four. The Hidden Years, Grand Design, Season One and the whole of First Class revisit the early years. X-Men Annual #1 and #2 are listed without a link, because Marvel's metadata carries that series only from #3."
+    }
+  }
+}

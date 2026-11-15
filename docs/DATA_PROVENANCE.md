@@ -3718,3 +3718,19 @@ are not independent corroboration: the pinned issue and reality pages come from 
 reference source. Three things remain open: the preview and promotion policy, independent
 bibliography, and the Heroes Reborn Wizard special's classification and on-sale date. No source
 narrative or comic image bytes are added, and saved data is unchanged.
+
+## X-Men core First Class opening
+
+On 14 November 2026 the owner chose to replace the core X-Men list's 72 entries before
+Giant-Size X-Men #1 with the 28 issues in the three named X-Men: First Class series. The
+[source ledger](../scripts/data/curated-source-ledgers/xmen-claremont-first-class.json) records
+the owner's supplied series addresses, the removed source positions, the exact new identities
+and the earlier published snapshot. The First Class identities and metadata were reused from the
+expanded list; the supplied Marvel pages were not fetched. The two First Class specials are not
+among the named series. The remaining 246 positions stay in their prior order.
+
+Power Pack (1984) #27 and #28 remain as existing placeholders, with their provider lookup and
+follow-up in [Issue #1312](https://github.com/raymond-nassar/recap-page/issues/1312). The expanded
+list keeps all 404 comics; its copy no longer claims the two lists share the same spine. The
+core list has no Universe association because its source does not establish one. Existing saved
+lists are snapshots and retain their previous contents and progress.
