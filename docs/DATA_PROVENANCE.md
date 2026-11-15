@@ -3682,11 +3682,53 @@ Each labeled sequence credits the Grand Comics Database and links its licence. O
 verified, conflict-free relations display; this is not a statement of reading availability.
 Existing collection headings remain editorial or user-customized grouping, not verification.
 
-The provider policy ships Hoopla as pending, with no title identifier or address. A future link
-requires recorded granted permission and a verified HTTPS book destination. It says "View this
-book at Hoopla", not that borrowing is possible, and opens outside the app with referrer isolation.
-No live provider lookup, account, credential, cover image or affiliate/store destination is added.
+On 2026-11-12 the owner approved linking to a book's Hoopla page as fair use, since only a link is
+offered and no Hoopla metadata is taken, in
+[the link approval](https://github.com/raymond-nassar/recap-page/issues/1203#issuecomment-6839342560).
+Hoopla's product team had not replied, so no permission from Hoopla is recorded or claimed. The owner
+added Libby on the same basis, as a link only that opens the book in the reader's own library, in
+[the follow-up answers](https://github.com/raymond-nassar/recap-page/issues/1203#issuecomment-6839422429).
+Each address is confirmed by the owner with the date it was checked, and must match one accepted
+form per service; anything else is refused at build time and dropped by the app. A link reads "Look
+for this book on Hoopla" or "in Libby", never that borrowing is possible, and opens outside the app
+with referrer isolation. No live provider lookup, availability, account, credential, cover image,
+description or affiliate/store destination is added.
 
+The selected Modern Timeline books extend the display without inventing collection headings. The
+[licensed check inputs](../scripts/data/collected-editions/gcd-check-inputs.json) identify the
+selected lists, source-series mappings and supporting records; the
+[checked evidence](../scripts/data/collected-editions/gcd-editions.json) retains their dates and
+results. The original pilot's 23 relations remain unchanged, and 36 selected books add 194
+relations across 34 lists, intersected with each list's exact comics. Book names stay in the
+separate curated lane. For books without an exact indexer-note range, numbered interior-cover text
+and creator credits or matching original issue stories provide the check; no image bytes are used.
+
+For Doctor Strange by Mark Waid Vol. 1, the 2018 original series and issue #3 are independently
+matched to the list and the trade story. The year guard compares the capitalized source label
+"Doctor Strange (Marvel, 2018 Series)" with the list's "Doctor Strange (2018 - 2019)" and matches
+2018; [#1307](https://github.com/raymond-nassar/recap-page/pull/1307) fixed [#1305](https://github.com/raymond-nassar/recap-page/issues/1305). Loki: Agent of Asgard Vol. 2 is checked against all six original stories,
+including #10-11 outside the selected Axis list.
+
+For War of the Realms: Journey Into Mystery, the dated paperback note names #1-5. The 2019
+original series and all five original issues independently match the list identities and dates.
+The Iron Man 2020: Robot Revolution paperback note names #1-6; all six originals independently
+match the selected list's series name, issue numbers and 2020 on-sale year.
+
+For the three selected Secret Invasion books, retained original issues independently identify the
+series and issue numbers and match the selected trade stories' titles, features and pages. Extra
+indexed stories outside those selected series are recorded as exclusions from the title count,
+not as claims about the contents of the corresponding list issues.
+
+For Imperial, the [original New X-Men #123](https://www.comics.org/issue/98072/) and
+[trade](https://www.comics.org/issue/774091/) index "Testament" at 22 pages, while the
+[numbered hardcover](https://www.comics.org/issue/774084/) indexes 23, read 2026-11-12 Pacific.
+The trade stories for #118-125 match their original issues by series, number, title, pages and
+credits. Their retained issue fixtures are independently checked against each named trade sequence;
+the title tier alone does not establish series identity. The [original #126](https://www.comics.org/issue/98075/),
+read 2026-11-13, also indexes a five-page Spider-Man story that the trade does not index. That is
+not proof the physical book omits it, but full coverage of #126 is unconfirmed and its relation is
+held. The hardcover remains held independently. The unresolved X-Corps annual and collection
+parsing conflicts are not projected.
 ## Universes metadata
 
 [Issue #1291](https://github.com/raymond-nassar/recap-page/issues/1291) supplies the initial

@@ -1,0 +1,24 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/851244/?format=json",
+  "retrievedAt": "2026-11-13T14:16:44.328Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/851244/?format=json",
+    "series_name": "Mighty Avengers (2007 series)",
+    "descriptor": "1 - The Ultron Initiative",
+    "number": "1",
+    "volume": "1",
+    "variant_name": "",
+    "title": "The Ultron Initiative",
+    "publication_date": "2007",
+    "key_date": "2007-13-00",
+    "page_count": "148.000",
+    "isbn": "978-0-7851-2368-2",
+    "notes": "Collects *The Mighty Avengers* (Marvel, 2007 series) #1-6.",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/59488/?format=json",
+    "story_set": []
+  }
+}

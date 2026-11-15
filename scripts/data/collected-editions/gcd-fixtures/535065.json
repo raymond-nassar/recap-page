@@ -1,0 +1,45 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/535065/?format=json",
+  "retrievedAt": "2026-11-13T19:24:56.480Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/535065/?format=json",
+    "series_name": "Young X-Men (2008 series)",
+    "descriptor": "4",
+    "number": "4",
+    "volume": "",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "September 2008",
+    "key_date": "2008-09-00",
+    "page_count": "36.000",
+    "isbn": "",
+    "notes": "Features \"Divided We Stand\" logo. Indicia information: \"Published Monthly by MARVEL PUBLISHING, INC., a subsidiary of MARVEL ENTERTAINMENT, INC. Office of Publication: 417 5th Avenue, New York, NY 10016. Application to mail periodical postage rates is pending at New York, NY and at addtional mailing offices. © 2008 Marvel Characters, Inc. Newsstand prices: 3.99 USD; 3.99 CAD. Subscription (12 issues): U.S. 27.00 USD; Canada 37.00 USD; Foreign 39.00 USD.\"",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/30513/?format=json",
+    "story_set": [
+      {
+        "type": "recap",
+        "title": "Previously in Young X-Men...",
+        "feature": "Young X-Men",
+        "sequence_number": 1,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "?",
+        "pencils": "None"
+      },
+      {
+        "type": "comic story",
+        "title": "Extinction Agenda",
+        "feature": "Young X-Men",
+        "sequence_number": 2,
+        "page_count": "22.000",
+        "notes": "Colorist credit written as \"Rob Schwager with Protobunker\".",
+        "script": "Marc Guggenheim",
+        "pencils": "Yanick Paquette"
+      }
+    ]
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/1947974/?format=json",
+  "retrievedAt": "2026-11-14T18:22:20.811Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/1947974/?format=json",
+    "series_name": "War of the Realms: Journey into Mystery (2019 series)",
+    "descriptor": "1 [Valerio Schiti Cover]",
+    "number": "1",
+    "volume": "",
+    "variant_name": "Valerio Schiti Cover",
+    "title": "",
+    "publication_date": "June 2019",
+    "key_date": "2019-06-00",
+    "page_count": "40.000",
+    "isbn": "",
+    "notes": "Legacy Number: 656.",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/143860/?format=json",
+    "story_set": [
+      {
+        "type": "recap",
+        "title": "Title, Recap, Credits, and Indicia",
+        "feature": "",
+        "sequence_number": 1,
+        "page_count": "1.000",
+        "notes": "Title, recap, credits, and indicia.",
+        "script": "Sarah Brunstad ?",
+        "pencils": "None"
+      },
+      {
+        "type": "comic story",
+        "title": "Journey into Mystery Chapter One: With the Will to Protect",
+        "feature": "",
+        "sequence_number": 2,
+        "page_count": "21.000",
+        "notes": "Special thanks to Travis Lanham.",
+        "script": "Clint McElroy (credited as The McElroys); Griffin McElroy (credited as The McElroys); Justin McElroy (credited as The McElroys); Travis McElroy (credited as The McElroys)",
+        "pencils": "André Lima Araújo (credited) (signed as ALA)"
+      },
+      {
+        "type": "in-house column",
+        "title": "Stan's Soapbox - October 1967",
+        "feature": "Stan's Soapbox",
+        "sequence_number": 3,
+        "page_count": "1.000",
+        "notes": "Reprints the Stan's Soapbox from October 1967 with Lee's illustration.",
+        "script": "Stan Lee (credited)",
+        "pencils": "Phil Noto (illustration)"
+      },
+      {
+        "type": "preview (from the publisher)",
+        "title": "Next Month: \"They Who Became Powerful\"",
+        "feature": "",
+        "sequence_number": 4,
+        "page_count": "1.000",
+        "notes": "Preview with next issue's cover.",
+        "script": "?",
+        "pencils": "Valerio Schiti (credited, signed)"
+      }
+    ]
+  }
+}

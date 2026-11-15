@@ -1,0 +1,13 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/86108/?format=json",
+  "retrievedAt": "2026-11-13T02:07:34.128Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/86108/?format=json",
+    "series_name": "New X-Men (2001 series)",
+    "number": "114",
+    "series": "https://www.comics.org/api/series/9855/?format=json"
+  }
+}
