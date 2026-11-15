@@ -23,6 +23,14 @@ Three rows carry no issue numbers and are resolved to the runs they name: Thor: 
 Stormbreaker: The Saga of Beta Ray Bill are both 2005 six-issue mini-series, and War of the Realms is
 the 2019 six-issue main event series rather than its tie-ins.
 
+The Celestial Saga section was corrected on 2026-11-14 from the guide's named collection:
+Thor Annual (1966) #7 opens the saga, followed by Thor (1966) #283-301. Its introductory mentions of #240-245 and
+Annual #10 are separate stories, not that collection's contents. The
+[correction ledger](../../../scripts/data/thor-celestial-correction.json) preserves the seven
+removed identities and all twenty exact replacements with their sources.
+The named collection's [reprint order](https://marvel.fandom.com/wiki/Thor_and_the_Eternals:_The_Celestials_Saga_TPB_Vol_1_1?oldid=9472363),
+checked on 2026-11-14, puts the annual prologue first.
+
 Because the selection cannot be verified against Marvel, the order says so on its catalog card
 rather than presenting it as Marvel's own. See
 [the data provenance record](../../../docs/DATA_PROVENANCE.md) for what that means for reuse.
@@ -67,13 +75,26 @@ rather than presenting it as Marvel's own. See
 
 ## Roy Thomas and Mark Gruenwald: The Celestial Saga
 
-- [ ] [Thor (1966) #240](https://www.marvel.com/comics/issue/11568/thor_1966_240)
-- [ ] [Thor (1966) #241](https://www.marvel.com/comics/issue/11569/thor_1966_241)
-- [ ] [Thor (1966) #242](https://www.marvel.com/comics/issue/11570/thor_1966_242)
-- [ ] [Thor (1966) #243](https://www.marvel.com/comics/issue/11571/thor_1966_243)
-- [ ] [Thor (1966) #244](https://www.marvel.com/comics/issue/11572/thor_1966_244)
-- [ ] [Thor (1966) #245](https://www.marvel.com/comics/issue/11573/thor_1966_245)
-- [ ] [Thor Annual (1966) #10](https://www.marvel.com/comics/issue/16671/thor_annual_1966_10)
+- [ ] [Thor Annual (1966) #7](https://www.marvel.com/comics/issue/16686/thor_annual_1966_7)
+- [ ] [Thor (1966) #283](https://www.marvel.com/comics/issue/11611/thor_1966_283)
+- [ ] [Thor (1966) #284](https://www.marvel.com/comics/issue/11612/thor_1966_284)
+- [ ] [Thor (1966) #285](https://www.marvel.com/comics/issue/11613/thor_1966_285)
+- [ ] [Thor (1966) #286](https://www.marvel.com/comics/issue/11614/thor_1966_286)
+- [ ] [Thor (1966) #287](https://www.marvel.com/comics/issue/11615/thor_1966_287)
+- [ ] [Thor (1966) #288](https://www.marvel.com/comics/issue/11616/thor_1966_288)
+- [ ] [Thor (1966) #289](https://www.marvel.com/comics/issue/11617/thor_1966_289)
+- [ ] [Thor (1966) #290](https://www.marvel.com/comics/issue/11618/thor_1966_290)
+- [ ] [Thor (1966) #291](https://www.marvel.com/comics/issue/11619/thor_1966_291)
+- [ ] [Thor (1966) #292](https://www.marvel.com/comics/issue/11620/thor_1966_292)
+- [ ] [Thor (1966) #293](https://www.marvel.com/comics/issue/11621/thor_1966_293)
+- [ ] [Thor (1966) #294](https://www.marvel.com/comics/issue/11622/thor_1966_294)
+- [ ] [Thor (1966) #295](https://www.marvel.com/comics/issue/11623/thor_1966_295)
+- [ ] [Thor (1966) #296](https://www.marvel.com/comics/issue/11624/thor_1966_296)
+- [ ] [Thor (1966) #297](https://www.marvel.com/comics/issue/11625/thor_1966_297)
+- [ ] [Thor (1966) #298](https://www.marvel.com/comics/issue/11626/thor_1966_298)
+- [ ] [Thor (1966) #299](https://www.marvel.com/comics/issue/11627/thor_1966_299)
+- [ ] [Thor (1966) #300](https://www.marvel.com/comics/issue/11628/thor_1966_300)
+- [ ] [Thor (1966) #301](https://www.marvel.com/comics/issue/11629/thor_1966_301)
 
 ## Walt Simonson: The Surtur Saga and Beta Ray Bill
 

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "issue": 1076,
+  "id": "captain-marvel-ms-marvel-reading-order",
+  "file": "captain_marvel_ms_marvel_reading_order.json",
+  "priorCommit": "52a3fdec519973c761e8b1ec2816b8daa85bbf4c",
+  "before": "A source-defined Captain Marvel / Ms. Marvel guide with exact issue links from Mar-Vell through Carol Danvers and Monica Rambeau.",
+  "after": "A source-defined Captain Marvel / Ms. Marvel guide with exact issue links from Mar-Vell through Carol Danvers, Monica Rambeau, and the modern Captain Marvel runs.",
+  "priorPayloadSha256": "cc62873a59f58943bf5bcdf11efd42284bd56ebac91f113c4dc096bdbe5343e5",
+  "correctedPayloadSha256": "b483a89065d92cb3def23a7b0bbff18f451d4239e6ab9e8ffb6147aabfe3da3a"
+}
