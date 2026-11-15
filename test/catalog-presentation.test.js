@@ -43,6 +43,51 @@ const list = {
 const controls = (card) => descendants(card)
   .filter((node) => node.tag === 'button' || (node.tag === 'a' && node.href));
 
+test('P04 list links carry the same visible related-realities qualifier and preserve native navigation', () => {
+  const navigated = [];
+  const shared = createCatalogPresentation({
+    el, hueOf: () => 0, isInLibrary: () => false, paintCoverUrl: () => {},
+    shortTitle: (title) => title, onUniverse: (id) => navigated.push(id),
+  });
+  const mixed = {
+    ...list,
+    universeIds: ['marvel-zombies'],
+    universeScopes: {
+      'marvel-zombies': { kind: 'related-realities', note: 'Includes stories in other realities.' },
+    },
+  };
+  const [line] = shared.listUniverseLines(mixed);
+  assert.match(text(line), /Marvel Zombies/);
+  assert.match(text(line), /Spans related realities: Includes stories in other realities\./);
+  const link = descendants(line).find((node) => node.tag === 'a');
+  assert.equal(link.href, '#/universe/marvel-zombies');
+  link.onclick({ button: 0, ctrlKey: true, preventDefault: () => assert.fail('modified activation intercepted') });
+  assert.deepEqual(navigated, []);
+  link.onclick({ button: 0, preventDefault() {} });
+  assert.deepEqual(navigated, ['marvel-zombies']);
+  const [relation] = shared.resolver.getListUniverseRelations(mixed);
+  assert.match(text(shared.universeRelationLine(relation, { showUniverse: false })),
+    /Spans related realities: Includes stories in other realities\./);
+  assert.deepEqual(shared.listUniverseLines({ ...list }), []);
+});
+
+test('P04 issue and series links use reviewed identities and identify selected appearances', () => {
+  const shared = createCatalogPresentation({
+    el, hueOf: () => 0, isInLibrary: () => false, paintCoverUrl: () => {}, shortTitle: (title) => title,
+  });
+  const known = shared.issueUniverseLines({ issueId: 12460, seriesId: 2258 });
+  assert.deepEqual(known.flatMap(descendants).filter((node) => node.tag === 'a').map((node) => node.href),
+    ['#/universe/days-of-future-past', '#/universe/earth-616']);
+  assert.deepEqual(shared.issueUniverseLines({ issueId: 12459, seriesId: 2258 }), []);
+  const selected = shared.seriesUniverseLines('2258');
+  assert.equal(selected.length, 1);
+  assert.ok(selected.every((line) => /Selected comics/.test(text(line))));
+  // The main universe is browsed through the timelines, so a series never lists it as a home.
+  assert.deepEqual(selected.flatMap(descendants).filter((node) => node.tag === 'a').map((node) => node.dataset.key),
+    ['series:2258:days-of-future-past']);
+  assert.deepEqual(shared.seriesUniverseLines('2258x'), []);
+});
+
 test('list source pills name the curator and keep the exact private new-tab destination', () => {
   for (const [source, site] of [
     [list.source, 'Comic Book Herald'],

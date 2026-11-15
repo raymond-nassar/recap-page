@@ -13,6 +13,7 @@ export function createProgressView({
   getState,
   listUi,
   preservingFocus,
+  seriesUniverseLines,
 }) {
   // Scope follows the active list on every page load. Persisting it would carry an answer about one
   // reading session into another, unlike the reading filter that a reader uses across many days.
@@ -31,6 +32,7 @@ export function createProgressView({
       el('div', { class: 'result-main' }, [
         el('div', { class: 'result-title' }, [el('span', { text: row.seriesName }), ...chip]),
         el('div', { class: 'result-meta', text: `${row.read} of ${row.tracked} tracked comics read (${pct}%)` }),
+        ...seriesUniverseLines(row.seriesId),
       ]),
       el('progress', { max: String(Math.max(1, row.tracked)), value: String(row.read), 'aria-hidden': 'true' }),
     ]);

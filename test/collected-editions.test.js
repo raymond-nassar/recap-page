@@ -64,6 +64,18 @@ test('validation rejects a database fact placed in an MIT-licensed file', () => 
   assert.equal(errors.length, 3, errors.join('\n'));
 });
 
+test('the database series-name license guard is case-insensitive', () => {
+  const data = inputs();
+  const outputs = build(data);
+  for (const marker of ['series', 'Series']) {
+    const leaky = clone(data);
+    leaky.curated.editions[0].title = `Example (Marvel, 2015 ${marker})`;
+    const errors = validate(leaky, outputs).filter((error) => error.includes('MIT-licensed'));
+    assert.equal(errors.length, 1, marker);
+  }
+  assert.deepEqual(databaseLeaks({ title: 'Example (2015)' }, 'pilot.json'), []);
+});
+
 test('MIT-licensed files never state which book is a printing of which', () => {
   const data = inputs();
   const outputs = build(data);
@@ -293,9 +305,10 @@ test('the indexer-notes match is exact, so #1-5 never matches #1-50', () => {
   assert.ok(notesStateRange(`Collects ${series} #1-5, and more.`, series, '#1-5', false));
   assert.ok(notesStateRange(`Collects ${series} #1-5`, series, '#1-5', false));
   const edition = editionWith({ tier: 'gcd-notes', gcdSeries: series }, [{ seriesId: 7, from: 1, to: 5, assertedBy: 'gcd-notes', basis: 'x' }]);
-  const result = checkEdition(edition, fixtureWith([], { notes: `Collects ${series} #1-50` }), {});
+  const result = checkEdition(edition, fixtureWith([], { notes: `Collects ${series} #1-50` }), { 7: 'X (2015)' });
   assert.equal(result.verified.size, 0);
   assert.equal(result.status, 'conflict');
+  assert.deepEqual(result.conflicts.map((conflict) => conflict.kind), ['evidence-weak']);
 });
 
 test('indexer notes do not match a longer series ending in the target name', () => {
@@ -312,10 +325,11 @@ test('indexer notes do not match a longer series ending in the target name', () 
   assert.equal(notesStateRange(`Collects X (Marvel, 2015 series) #1-2, and ${series} ${span}.`, series, span, false), true);
   const edition = editionWith({ tier: 'gcd-notes', gcdSeries: series },
     [{ seriesId: 7, from: 1, to: 5, assertedBy: 'gcd-notes', basis: 'x' }]);
-  const result = checkEdition(edition, fixtureWith([], { notes: `Collects Secret ${series} ${span}.` }), {});
+  const result = checkEdition(edition, fixtureWith([], { notes: `Collects Secret ${series} ${span}.` }), { 7: 'Avengers (2010)' });
   assert.equal(result.status, 'conflict');
   assert.equal(result.verified.size, 0);
-  const control = checkEdition(edition, fixtureWith([], { notes: `Collects ${series} ${span}.` }), {});
+  assert.deepEqual(result.conflicts.map((conflict) => conflict.kind), ['evidence-weak']);
+  const control = checkEdition(edition, fixtureWith([], { notes: `Collects ${series} ${span}.` }), { 7: 'Avengers (2010)' });
   assert.equal(control.status, 'verified');
   assert.deepEqual([...control.verified], ['7:1', '7:2', '7:3', '7:4', '7:5']);
 });
@@ -336,16 +350,17 @@ test('indexer notes distinguish partial material before the exact series', () =>
     series, span, true), true);
   const edition = editionWith({ tier: 'gcd-notes', gcdSeries: series },
     [{ seriesId: 7, from: 1, to: 5, assertedBy: 'gcd-notes', basis: 'x' }]);
-  const result = checkEdition(edition, fixtureWith([], { notes: longer }), {});
+  const result = checkEdition(edition, fixtureWith([], { notes: longer }), { 7: 'Avengers (2010)' });
   assert.equal(result.status, 'conflict');
   assert.equal(result.verified.size, 0);
+  assert.deepEqual(result.conflicts.map((conflict) => conflict.kind), ['evidence-weak']);
 });
 
 test('an edition with any conflict is never labelled verified', () => {
   const series = 'X (Marvel, 2015 series)';
   const edition = editionWith({ tier: 'gcd-notes', gcdSeries: series, weakNumbers: { 2: 'Disputed.' } },
     [{ seriesId: 7, from: 1, to: 2, assertedBy: 'gcd-notes', basis: 'x' }]);
-  const result = checkEdition(edition, fixtureWith([], { notes: `Collects ${series} #1-2` }), {});
+  const result = checkEdition(edition, fixtureWith([], { notes: `Collects ${series} #1-2` }), { 7: 'X (2015)' });
   assert.equal(result.status, 'verified-with-conflicts');
   const statuses = Object.fromEntries(build(inputs())['gcd-editions.json'].editions.map((entry) => [entry.edition, entry.check]));
   for (const check of Object.values(statuses)) if (check.conflicts.length) assert.notEqual(check.status, 'verified');
@@ -371,6 +386,102 @@ test('a count mismatch is recorded with its evidence, not resolved', () => {
   assert.deepEqual(result.conflicts[0].evidence.sequences, [1, 2, 5]);
 });
 
+test('indexer notes compare years for both series capitalizations', () => {
+  for (const marker of ['series', 'Series']) {
+    const series = `Example (Marvel, 2015 ${marker})`;
+    const edition = editionWith({ tier: 'gcd-notes', gcdSeries: series });
+    const fixture = fixtureWith([], { notes: `Collects ${series} #1-2.` });
+    for (const listYear of [2015, 2016]) {
+      const result = checkEdition(edition, fixture, { 7: `Example (${listYear})` });
+      const matching = listYear === 2015;
+      assert.equal(result.status, matching ? 'verified' : 'conflict', `${marker}, ${listYear}`);
+      assert.deepEqual(result.conflicts.map((conflict) => conflict.kind), matching ? [] : ['series-year']);
+      assert.deepEqual([...result.verified], matching ? ['7:1', '7:2'] : []);
+    }
+  }
+});
+
+test('indexer notes preserve an article alias when comparing years', () => {
+  const series = 'The Example (Marvel, 2015 Series)';
+  const edition = editionWith({ tier: 'gcd-notes', gcdSeries: series });
+  const mismatched = checkEdition(edition, fixtureWith([], { notes: `Collects ${series} #1-2.` }), { 7: 'Example (2016)' });
+  assert.equal(mismatched.status, 'conflict');
+  assert.deepEqual(mismatched.conflicts.map((conflict) => conflict.kind), ['series-year']);
+  assert.deepEqual([...mismatched.verified], []);
+  const result = checkEdition(edition, fixtureWith([], { notes: `Collects ${series} #1-2.` }), { 7: 'Example (2015)' });
+  assert.equal(result.status, 'verified');
+  assert.deepEqual([...result.verified], ['7:1', '7:2']);
+});
+
+for (const { label, source, app } of [
+  { label: 'an absent list series', source: 'Example (Marvel, 2015 series)', app: undefined },
+  { label: 'a missing list year', source: 'Example (Marvel, 2015 series)', app: 'Example' },
+  { label: 'an unparseable list year', source: 'Example (Marvel, 2015 series)', app: 'Example (201X)' },
+  { label: 'a missing source year', source: 'Example', app: 'Example (2015)' },
+  { label: 'an unparseable source year', source: 'Example (Marvel, 20XX series)', app: 'Example (2015)' },
+  { label: 'missing years on both sides', source: 'Example', app: 'Example' },
+]) {
+  test(`indexer notes reject ${label}`, () => {
+    const edition = editionWith({ tier: 'gcd-notes', gcdSeries: source });
+    const result = checkEdition(edition, fixtureWith([], { notes: `Collects ${source} #1-2.` }), { 7: app });
+    assert.equal(result.status, 'conflict', label);
+    assert.equal(result.verified.size, 0, label);
+    assert.deepEqual(result.conflicts.map((conflict) => conflict.kind), ['series-year'], label);
+  });
+}
+
+for (const year of [2003, 2004]) {
+  test(`indexer notes reject an undated source for ${year} with a reason`, () => {
+    const edition = editionWith({ tier: 'gcd-notes', gcdSeries: 'Example' });
+    const result = checkEdition(edition, fixtureWith([], { notes: 'Collects Example #1-2' }), { 7: `Example (${year})` });
+    assert.equal(result.status, 'conflict');
+    assert.deepEqual([...result.verified], []);
+    assert.equal(result.conflicts.length, 1);
+    assert.equal(result.conflicts[0].kind, 'series-year');
+    assert.match(result.conflicts[0].detail, /database.*(?:unknown|missing|unparseable)/i);
+    assert.match(result.conflicts[0].detail, new RegExp(String(year)));
+  });
+}
+
+test('indexer notes reject an absent list name map', () => {
+  const series = 'Example (Marvel, 2015 series)';
+  const edition = editionWith({ tier: 'gcd-notes', gcdSeries: series });
+  const result = checkEdition(edition, fixtureWith([], { notes: `Collects ${series} #1-2.` }));
+  assert.equal(result.status, 'conflict');
+  assert.equal(result.verified.size, 0);
+  assert.deepEqual(result.conflicts.map((conflict) => conflict.kind), ['series-year']);
+});
+
+test('indexer notes reject a missing source series without throwing', () => {
+  const edition = editionWith({ tier: 'gcd-notes' });
+  const result = checkEdition(edition, fixtureWith([], { notes: 'Collects Example #1-2.' }), { 7: 'Example (2015)' });
+  assert.equal(result.status, 'conflict');
+  assert.equal(result.verified.size, 0);
+  assert.deepEqual(result.conflicts.map((conflict) => conflict.kind), ['evidence-weak']);
+});
+
+test('indexer notes keep valid ranges when another list year is missing', () => {
+  const series = 'Example (Marvel, 2015 series)';
+  const edition = editionWith({ tier: 'gcd-notes', gcdSeries: series }, [
+    { seriesId: 7, from: 1, to: 1, assertedBy: 'gcd-notes', basis: 'x' },
+    { seriesId: 8, from: 2, to: 2, assertedBy: 'gcd-notes', basis: 'x' },
+  ]);
+  const notes = `Collects ${series} #1, and ${series} #2.`;
+  const result = checkEdition(edition, fixtureWith([], { notes }), { 7: 'Example (2015)', 8: 'Example' });
+  assert.equal(result.status, 'verified-with-conflicts');
+  assert.deepEqual([...result.verified], ['7:1']);
+  assert.deepEqual(result.conflicts.map((conflict) => conflict.kind), ['series-year']);
+});
+
+test('indexer notes report an unknown year for partial material', () => {
+  const series = 'Example (Marvel, 20XX series)';
+  const edition = editionWith({ tier: 'gcd-notes', partialSeries: series },
+    [{ seriesId: 7, from: 1, to: 1, portion: 'partial', assertedBy: 'gcd-notes', basis: 'x' }]);
+  const result = checkEdition(edition, fixtureWith([], { notes: `Collects material from ${series} #1.` }), { 7: 'Example (2015)' });
+  assert.equal(result.verified.size, 0);
+  assert.ok(result.conflicts.some((conflict) => conflict.kind === 'series-year'));
+});
+
 test('indexer notes verify full ranges and flag partial material', () => {
   const edition = editionWith({ tier: 'gcd-notes', gcdSeries: 'X (Marvel, 2015 series)', partialSeries: 'Y (Marvel, 2015 series)' }, [
     { seriesId: 7, from: 1, to: 2, assertedBy: 'gcd-notes', basis: 'x' },
@@ -378,7 +489,7 @@ test('indexer notes verify full ranges and flag partial material', () => {
   ]);
   const result = checkEdition(edition, fixtureWith([], {
     notes: 'Collects X (Marvel, 2015 series) #1-2 and material from Y (Marvel, 2015 series) #0',
-  }), { 7: 'X (2015)' });
+  }), { 7: 'X (2015)', 8: 'Y (2015)' });
   assert.deepEqual([...result.verified], ['7:1', '7:2']);
   assert.deepEqual(result.conflicts.map((conflict) => conflict.kind), ['material-from']);
   const year = checkEdition(edition, fixtureWith([], { notes: 'X (Marvel, 2015 series) #1-2' }), { 7: 'X (2016)' });

@@ -86,6 +86,23 @@ test('parses a well-formed catalog entry', () => {
   assert.equal(lists[0].sourceSection, 'X-Men: Divided We Stand');
 });
 
+test('catalog Universe relationships preserve scope and reject unknown metadata', () => {
+  const list = {
+    id: 'one', name: 'One', file: 'one.json', count: 1,
+    universeIds: ['marvel-zombies'],
+    universeScopes: { 'marvel-zombies': { kind: 'related-realities', note: 'Includes other realities.' } },
+  };
+  const parsed = parseCatalog({ lists: [list] }).lists[0];
+  assert.deepEqual(parsed.universeIds, list.universeIds);
+  assert.deepEqual(parsed.universeScopes, list.universeScopes);
+  assert.throws(() => parseCatalog({ lists: [{ ...list, universeIds: ['unknown'] }] }), /universe metadata/i);
+  assert.throws(() => parseCatalog({ lists: [{ ...list, universeScopes: {
+    'marvel-zombies': { kind: 'related-realities' },
+  } }] }), /nonempty note/);
+  assert.equal(Object.hasOwn(parseCatalog({ lists: [{ id: 'old', name: 'Old', file: 'old.json', count: 0 }] }).lists[0],
+    'universeIds'), false);
+});
+
 test('gap counts are required nonnegative integers', () => {
   const entry = {
     id: 'x',
@@ -267,11 +284,11 @@ test('the bundled catalog is valid and its counts match the vendored orders', as
     {
       complete: currentReadingCensus.complete,
       placeholders: 1130,
-      emptyRecords: 229,
+      emptyRecords: 221,
       total: currentReadingCensus.totalItems,
       placeholderEntries: 29,
-      emptyEntries: 23,
-      bothEntries: 8,
+      emptyEntries: 22,
+      bothEntries: 7,
     },
   );
 });
@@ -307,6 +324,29 @@ test('every catalog cover resolves to a variant URL the browser can request', as
       );
     }
   }
+});
+
+// #1289: the cover builders append `/{variant}.{ext}`, so a stored base must stop at the image's
+// directory. The variant-URL test above reads through normalizeCover and cannot see the raw value.
+test('no bundled catalog or order cover base already names an image file', async () => {
+  const fileTail = /\/[^/]+\.(jpe?g|png|gif|webp)$/i;
+  const raw = JSON.parse(await readFile(new URL('../src/data/catalog.json', import.meta.url), 'utf8'));
+  const bad = [];
+  let checked = 0;
+  for (const entry of raw.lists) {
+    if (typeof entry.cover?.path === 'string') {
+      checked += 1;
+      if (fileTail.test(entry.cover.path)) bad.push(`catalog ${entry.id}: ${entry.cover.path}`);
+    }
+    const order = JSON.parse(await readFile(new URL(`../src/data/${entry.file}`, import.meta.url), 'utf8'));
+    for (const item of order.items ?? order.issues ?? []) {
+      if (typeof item?.cover?.path !== 'string') continue;
+      checked += 1;
+      if (fileTail.test(item.cover.path)) bad.push(`${entry.file} ${item.issueId ?? item.id}: ${item.cover.path}`);
+    }
+  }
+  assert.ok(checked > 1000, `only ${checked} cover bases were found to check`);
+  assert.deepEqual(bad, []);
 });
 
 test('a cover issue id has to be a positive whole number, matching the manifest rule', () => {

@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 import { createPreviewView } from '../src/js/views/preview.js';
+import { createCatalogPresentation } from '../src/js/views/shared/catalog-presentation.js';
 
 function node(props = {}, children = []) {
   return {
@@ -23,6 +24,43 @@ const list = (id) => ({
   description: '',
   count: 1,
   depth: 'essential',
+});
+
+test('P04 Preview shows the mixed guide universe and its scope without changing the guide', async () => {
+  globalThis.document = { activeElement: null, body: {} };
+  try {
+    const nodes = Object.fromEntries([
+      'about', 'add', 'secondary', 'body', 'close', 'description', 'dialog', 'heading', 'meta', 'paths', 'source',
+    ].map((key) => [key, node()]));
+    const presentation = createCatalogPresentation({
+      el: element, hueOf: () => 0, isInLibrary: () => false, paintCoverUrl: () => {},
+      shortTitle: (title) => title, onUniverse: () => {},
+    });
+    const entry = {
+      ...list('mixed'),
+      universeIds: ['marvel-zombies'],
+      universeScopes: {
+        'marvel-zombies': { kind: 'related-realities', note: 'Includes stories in other realities.' },
+      },
+    };
+    const before = JSON.stringify(entry);
+    const view = createPreviewView({
+      captureFocus: () => null, el: element, elements: () => nodes,
+      getState: () => ({ lists: {}, listOrder: [] }), isInLibrary: () => null,
+      issueFocusAnchor: () => node(), loadOrder: async () => ({ items: [] }),
+      onClose: async () => {}, onIssueLoadFailure: ({ error }) => { throw error; },
+      presentation, restoreFocus: () => {},
+    });
+    await view.open(entry);
+    const flatten = (value) => typeof value === 'string' ? value
+      : value?.text ?? value?.textContent ?? value?.children?.map(flatten).join('') ?? '';
+    assert.match(nodes.source.children.map(flatten).join(''), /Marvel Zombies/);
+    assert.match(nodes.source.children.map(flatten).join(''), /Spans related realities: Includes stories/);
+    assert.equal(nodes.about.hidden, false);
+    assert.equal(JSON.stringify(entry), before);
+  } finally {
+    delete globalThis.document;
+  }
 });
 
 test('Preview rejects an older issue response after a newer selection opens', async () => {

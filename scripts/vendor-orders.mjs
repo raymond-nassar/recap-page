@@ -403,6 +403,8 @@ function catalogEntry(order, payload) {
     // Written only when a list has one, so every catalog entry that predates the field keeps
     // its exact bytes.
     ...(order.audience ? { audience: order.audience } : {}),
+    ...(Object.hasOwn(order, 'universeIds') ? { universeIds: order.universeIds } : {}),
+    ...(Object.hasOwn(order, 'universeScopes') ? { universeScopes: order.universeScopes } : {}),
     ...(order.storyTypes ? { storyTypes: order.storyTypes } : {}),
     ...(order.tones ? { tones: order.tones } : {}),
     ...(writers.length ? { writers } : {}),

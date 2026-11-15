@@ -62,6 +62,53 @@ test('destination interception leaves modifiers middle click and prevented defau
   assert.equal(formatRoute({ view: 'read', listId: 'manual/a' }), '#/read/manual%2Fa');
 });
 
+test('Universe addresses keep discovery state separate from saved list and reading filters', () => {
+  const index = {
+    view: 'universes', universeQuery: 'Earth 1610', universeSort: 'alphabetical',
+  };
+  const hash = formatRoute({ ...index, listId: 'saved-list', filter: 'unread' });
+  assert.equal(hash, '#/universes?q=Earth+1610&sort=alphabetical');
+  assert.deepEqual(parseRoute(hash), index);
+  assert.equal(formatRoute({ view: 'universes' }), '#/universes');
+  assert.deepEqual(parseRoute('#/universes?sort=bad&sort=alphabetical&q=a&q=b'), {
+    view: 'universes', universeQuery: '', universeSort: 'publication-history',
+  });
+  assert.equal(parseRoute('#/universes/list-id'), null);
+
+  const detail = { view: 'universe', universeId: 'ultimate-marvel' };
+  assert.equal(formatRoute({ ...detail, listId: 'saved-list', filter: 'unread' }), '#/universe/ultimate-marvel');
+  assert.deepEqual(parseRoute('#/universe/ultimate-marvel?filter=unread&list=other'), detail);
+  assert.deepEqual(parseRoute('#/universe/unknown-reality'), { view: 'universe', universeId: 'unknown-reality' });
+  for (const bad of ['#/universe', '#/universe/', '#/universe/Not-valid', '#/universe/a/b', '#/universe/%ZZ']) {
+    assert.equal(parseRoute(bad), null, bad);
+  }
+  assert.equal(formatRoute({ view: 'universe', universeId: '../other' }), '');
+});
+
+test('P04 exact series routes round trip without adopting a saved list or reading filter', () => {
+  const route = { view: 'add-series', seriesId: 2258 };
+  assert.equal(formatRoute({ ...route, listId: 'other', filter: 'unread' }), '#/series/2258');
+  assert.deepEqual(parseRoute('#/series/2258'), route);
+  for (const hash of [
+    '#/series', '#/series/0', '#/series/-1', '#/series/01', '#/series/1e3',
+    '#/series/9007199254740992', '#/series/2258/extra', '#/series/2258?filter=unread',
+  ]) assert.equal(parseRoute(hash), null, hash);
+  for (const seriesId of [0, -1, '01', '1e3', Number.MAX_SAFE_INTEGER + 1]) {
+    assert.equal(formatRoute({ view: 'add-series', seriesId }), '', String(seriesId));
+  }
+});
+
+test('Universe detail identifies the destination in its title and breadcrumb', () => {
+  const universe = { name: 'Ultimate Marvel' };
+  assert.equal(routeTitle({ view: 'universe', universe }), 'Ultimate Marvel | Recap Page');
+  assert.deepEqual(breadcrumbHierarchy({ view: 'universe', universe }), [
+    { label: 'Home', href: '#/browse' },
+    { label: 'Universes', href: '#/universes' },
+    { label: 'Ultimate Marvel', current: true },
+  ]);
+  assert.equal(routeTitle({ view: 'universe' }), 'Universe not found | Recap Page');
+});
+
 test('new-to-comics keeps route context and returns its Home breadcrumb to Explore', () => {
   assert.ok(VIEWS.includes('new-to-comics'), 'new-to-comics is a registered view');
   const hash = formatRoute({ view: 'new-to-comics', listId: 'list/a', filter: 'unread' });
@@ -170,8 +217,12 @@ test('completed breadcrumbs and rail selection are owned by Library', () => {
 });
 
 test('every view the rail can reach survives a round trip', () => {
-  for (const view of VIEWS.filter((name) => name !== 'issue')) {
+  for (const view of VIEWS.filter((name) => name !== 'issue' && name !== 'universe')) {
     const parsed = parseRoute(formatRoute({ view }));
+    if (view === 'universes') {
+      assert.deepEqual(parsed, { view, universeQuery: '', universeSort: 'publication-history' });
+      continue;
+    }
     assert.deepEqual(parsed, {
       view, listId: null, filter: null, full: false,
       ...(view === 'library-rated' ? {
@@ -317,6 +368,8 @@ test('every routable view has one stable hierarchy and Home has none', () => {
     ['marvel-on-screen', ['Home', 'MCU Prep']],
     ['marvel-ages', ['Home', 'Marvel Ages']],
     ['genres', ['Home', 'Genres']],
+    ['universes', ['Home', 'Universes']],
+    ['universe', ['Home', 'Universes', 'Universe not found']],
     ['issue', ['Home', 'Comic details']],
   ]);
   for (const shelf of CATALOG_SHELVES) {
@@ -781,10 +834,8 @@ test('main.js pushes with pushState rather than by assigning the hash', () => {
   lacks(main, /location\.hash = /, 'an assignment to location.hash');
 });
 
-// The two callers of applyRoute disagree about what an address with no filter means, and the
-// disagreement is the point. Back hands over an address this app wrote, and this app omits the
-// filter only when it is the default, so absent there means All. Boot may be handed a bookmark made
-// before any of this shipped, where absent means nothing at all and the stored setting stands.
+// Back normally restores All for an omitted filter; boot preserves the stored setting. Universe
+// routes carry no filter, so returning from them instead keeps the current setting.
 test('main.js reads an absent filter as All on Back but as the stored one at boot', () => {
   const main = read('src/js/main.js');
   has(main, /applyRoute\(bootRoute, \{ focus: false, filterIfAbsent: readingView\.currentFilter\(\), aboutTraversal \}\)/, 'boot falling back to the restored filter');
@@ -796,8 +847,10 @@ test('route application separates explicit disclosure intent from restored filte
   const body = main.slice(main.indexOf('function applyRoute'), main.indexOf('function showView'));
   has(body, /const openFromRoute = route\.full === true \|\| route\.filter !== null;/,
     'opening derived from explicit parsed route fields');
-  has(body, /readingView\.setFilterAddressed\(route\.filter !== null\);\s*readingView\.setFilter\(route\.filter \?\? filterIfAbsent\);/,
+  has(body, /readingView\.setFilterAddressed\(route\.filter !== null\);/,
     'route application remembering whether the effective filter was explicit');
+  has(body, /const filterFallback = view === 'universes' \|\| view === 'universe'\s*\? readingView\.currentFilter\(\) : filterIfAbsent;\s*readingView\.setFilter\(route\.filter \?\? filterFallback\);/,
+    'explicit filters taking precedence while Universe navigation preserves the existing filter');
   has(body, /if \(route\.view === 'read'\)/, 'disclosure changes restricted to the reading route');
   has(main, /if \(!routeReady \|\| applyingRoute\) return;/,
     'history synchronization suppressed during route application');

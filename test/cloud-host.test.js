@@ -627,19 +627,22 @@ test('a list waits for an upload under way, so nothing a reply said had failed c
   assert.deepEqual((await listing).map((entry) => entry.name), [NAME]);
 });
 
-test('reading follows exactly one redirect, the download carries no Authorization, and its size is capped', async () => {
+test('reading follows up to three redirects, the downloads carry no Authorization, and their size is capped', async () => {
   const content = `${GRAPH}/me/drive/items/ITEM!7/content`;
-  const { onedrive, calls } = drive([
-    { method: 'GET', url: content, reply: new Response(null, { status: 302, headers: { location: DOWNLOAD } }) },
-    { method: 'GET', url: DOWNLOAD, reply: new Response(Buffer.from('backup bytes'), { status: 200 }) },
-  ]);
-  assert.equal((await onedrive.read('ITEM!7')).toString('utf8'), 'backup bytes');
-  assert.deepEqual(calls.map((call) => [call.url, Boolean(call.authorization), call.redirect]), [
-    [content, true, 'manual'], [DOWNLOAD, false, 'manual'],
-  ]);
+  for (const hops of [0, 1, 2, 3]) {
+    const urls = [content, ...Array.from({ length: hops }, (_, i) => `${DOWNLOAD}/${i}`)];
+    const { onedrive, calls } = drive(urls.map((url, i) => ({
+      method: 'GET', url,
+      reply: i < hops
+        ? new Response(null, { status: 302, headers: { location: urls[i + 1] } })
+        : new Response(Buffer.from('backup bytes'), { status: 200 }),
+    })));
+    assert.equal((await onedrive.read('ITEM!7')).toString('utf8'), 'backup bytes');
+    assert.deepEqual(calls.map((call) => [call.url, Boolean(call.authorization), call.redirect]),
+      urls.map((url, i) => [url, i === 0, 'manual']));
+  }
   const cases = [
     [[new Response(null, { status: 302, headers: { location: 'http://public.ch.files.1drv.com/x' } })], 'invalid'],
-    [[new Response(null, { status: 302, headers: { location: DOWNLOAD } }), new Response(null, { status: 302, headers: { location: DOWNLOAD } })], 'invalid'],
     [[json(404, { error: { code: 'itemNotFound' } })], 'not-found'],
     [[new Response(null, { status: 302, headers: { location: DOWNLOAD } }), new Response('x', { status: 200, headers: { 'content-length': String(33 * 1024 * 1024) } })], 'too-large'],
   ];
@@ -668,6 +671,23 @@ test('reading follows exactly one redirect, the download carries no Authorizatio
   ]);
   await assert.rejects(streamed.onedrive.read('ITEM!7'), { code: 'too-large' });
   assert.ok(pulled <= 34 * MIB, `stopped at the cap, after ${pulled / MIB} MiB of 40`);
+});
+
+test('reading refuses a fourth redirect and validates every hop before sending another GET', async () => {
+  const content = `${GRAPH}/me/drive/items/ITEM!7/content`;
+  for (const location of [null, 'http://download.example.com/unsafe', 'file:///unsafe', DOWNLOAD]) {
+    const hops = location === DOWNLOAD ? 3 : 1;
+    const urls = [content, ...Array.from({ length: hops }, (_, i) => `${DOWNLOAD}/${i}`)];
+    const { onedrive, calls } = drive(urls.map((url, i) => ({
+      method: 'GET', url,
+      reply: new Response(null, {
+        status: 302,
+        headers: i < hops ? { location: urls[i + 1] } : location ? { location } : {},
+      }),
+    })));
+    await assert.rejects(onedrive.read('ITEM!7'), { code: 'invalid' });
+    assert.equal(calls.length, urls.length);
+  }
 });
 
 test('listing follows every page, and an app folder that does not exist yet lists as empty', async () => {

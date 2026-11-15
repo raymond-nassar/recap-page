@@ -1,5 +1,6 @@
 import { labelledName, shownName } from '../../lib/accname.js';
 import { formatRoute, isPlainNavigation } from '../../lib/route.js';
+import { BROWSE_ONLY_UNIVERSE_ID, universeResolver } from '../../lib/universes.js';
 import {
   catalogCoverUrl,
   catalogGapLabels,
@@ -20,7 +21,9 @@ export function createCatalogPresentation({
   onAdd,
   onOpen,
   onPreview,
+  onUniverse,
   paintCoverUrl,
+  resolver = universeResolver,
   shortTitle,
 }) {
   function chosenPath(story) {
@@ -61,6 +64,57 @@ export function createCatalogPresentation({
       ...(savedCount != null && savedCount !== list.count
         ? [`Saved copy: ${savedCount} comic${savedCount === 1 ? '' : 's'}`] : []),
     ].join(' · ');
+  }
+
+  function universeLink(universe, focusKey) {
+    return el('a', {
+      class: 'universe-target',
+      href: formatRoute({ view: 'universe', universeId: universe.id }),
+      dataset: { universeId: universe.id, act: 'universe', key: focusKey ?? universe.id },
+      onclick: (event) => {
+        if (!onUniverse || !isPlainNavigation(event)) return;
+        event.preventDefault();
+        onUniverse(universe.id, event.currentTarget);
+      },
+    }, universe.name);
+  }
+
+  function universeRelationLine(relation, { showUniverse = true, prefix = 'Universe: ', focusKey } = {}) {
+    const related = relation.kind === 'related-realities';
+    if (!showUniverse && !related) return null;
+    const children = showUniverse ? [
+      el('span', { text: prefix }),
+      universeLink(relation.universe, focusKey),
+    ] : [];
+    if (related) children.push(el('span', {
+      text: `${showUniverse ? '. ' : ''}Spans related realities: ${relation.note}`,
+    }));
+    return el('p', { class: 'rail-hint universe-list-note' }, children);
+  }
+
+  function listUniverseLines(list) {
+    return resolver.getListUniverseRelations(list).map((relation) => universeRelationLine(relation));
+  }
+
+  function issueUniverseLines(issue) {
+    return resolver.resolveIssueUniverses(issue)
+      .map((universe) => universeRelationLine({ universe }));
+  }
+
+  function seriesUniverseLines(seriesId) {
+    const raw = typeof seriesId === 'number' ? String(seriesId) : seriesId;
+    if (typeof raw !== 'string' || !/^[1-9]\d*$/.test(raw)) return [];
+    const id = Number(raw);
+    if (!Number.isSafeInteger(id) || String(id) !== raw) return [];
+    return resolver.getSeriesUniverseRelations(id)
+      .filter(({ universe }) => universe.id !== BROWSE_ONLY_UNIVERSE_ID)
+      .map(({ universe, scope }) => universeRelationLine(
+        { universe },
+        {
+          prefix: scope === 'selected-issues' ? 'Selected comics in: ' : 'Universe: ',
+          focusKey: `series:${id}:${universe.id}`,
+        },
+      ));
   }
 
   // The linked source stays compact on cards; additions selected elsewhere need separate credit.
@@ -390,7 +444,12 @@ export function createCatalogPresentation({
     setSetupGuideVisibility,
     paintTimelinePosition,
     renderTimelineSections,
+    resolver,
+    issueUniverseLines,
+    listUniverseLines,
+    seriesUniverseLines,
     shelfSectionHead,
+    universeRelationLine,
   };
 }
 

@@ -109,8 +109,8 @@ replace installed-device touch, system-text, Back or private-profile acceptance.
   MCU Prep companions remain on their own screen. Old Storylines addresses open Genres without a
   new history entry; the retired Storylines search box has no replacement. Saved identities remain
   unchanged.
-- Filters appear only when they narrow to a nonempty proper subset. Informational publishing
-  highlights are not styled as interactive filters.
+- Filters appear only when they narrow to a nonempty proper subset. Browse page headers carry one
+  short description line rather than label rows that could be mistaken for filters.
 - Publishing periods describe where Reading Lists begin, not where every issue falls. Empty
   Golden Age offers another age; Modern Age is a period chooser rather than the guided Timeline.
 - Library puts active reading before completed history. Known all-completed lists offer another

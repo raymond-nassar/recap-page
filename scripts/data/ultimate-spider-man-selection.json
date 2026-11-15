@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "ultimate-spider-man-reading-order",
+  "issue": 1296,
+  "decidedAt": "2026-11-14",
+  "priorCommit": "3007a60bc7a10396a2f30d1e616fcded038c5608",
+  "payloadFile": "ultimate_spider_man_reading_order.json",
+  "payloadSha256": "f1c35b27287a20e4ce83f68a95d90203b6ad7aee1b3bf5af6ac31890404f782e",
+  "sourceCount": 352,
+  "description": "Peter Parker and Miles Morales begin in the original Ultimate universe, and Miles continues into Marvel's main universe. Brian Michael Bendis's Ultimate Spider-Man opens the journey alongside Ultimate Marvel Team-Up, Ultimate Six and Ultimatum. Ultimate Comics Spider-Man, Spider-Men, Spider-Man (2016) and Champions follow. The separate Earth-6160 Peter Parker stories are not included.",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide, with the owner's Earth-6160 exclusions",
+  "keywords": [
+    "Ultimate Spider-Man",
+    "Peter Parker",
+    "Miles Morales",
+    "Earth-1610",
+    "Earth-616",
+    "Ultimate Universe",
+    "Comic Book Herald"
+  ],
+  "provenance": "Owner-directed difference from Comic Book Herald: omit the enabled blocks below, keeping the original Ultimate universe, its crossovers and the later Miles Morales selections. The original source packet remains unchanged.",
+  "exclusions": [
+    {
+      "name": "Ultimate Spider-Man (2024) #1-18 and Free Comic Book Day 2025",
+      "enabled": true,
+      "firstSourcePosition": 317,
+      "issueIds": [112985, 112987, 112988, 112989, 113882, 113883, 113884, 113885, 113886, 113887, 113888, 113889, 113890, 113891, 113892, 113893, 113894, 113895, 125782]
+    },
+    {
+      "name": "Ultimate Spider-Man: Incursion (2025) #1-5",
+      "enabled": true,
+      "firstSourcePosition": 336,
+      "issueIds": [125522, 125523, 125524, 125525, 125526],
+      "evidence": {
+        "url": "https://marvel.fandom.com/wiki/Ultimate_Spider-Man:_Incursion_Vol_1_1?oldid=10741548",
+        "retrievedAt": "2026-11-14",
+        "finding": "Miles Morales is the featured character. Billie Morales and Earth-6160 Peter Parker are supporting characters; Miles teams up with that Peter. The owner selected removal of all 36 comics, including this crossover."
+      }
+    },
+    {
+      "name": "Ultimate Spider-Man (2024) #19-24, Ultimate Endgame #1-5 and Ultimate Universe: Finale #1",
+      "enabled": true,
+      "firstSourcePosition": 341,
+      "detailsRefusedIssueIds": [113900, 113901, 129224, 129225, 129226, 129227, 129228, 127659],
+      "issueIds": [113896, 113897, 113898, 113899, 113900, 113901, 129224, 129225, 129226, 129227, 129228, 127659]
+    }
+  ]
+}

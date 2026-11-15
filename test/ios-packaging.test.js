@@ -469,7 +469,8 @@ test('the iOS manifest lists every bundled file once with its exact digest', asy
   const listed = prepared.manifest.files.map(({ path }) => path);
   assert.equal(new Set(listed).size, listed.length);
   for (const name of ['data/collectedEditionCatalog.js', 'data/collectedEditionEvidence.js',
-    'js/lib/collectedEditions.js', 'js/views/shared/collected-editions.js']) {
+    'js/lib/collectedEditions.js', 'js/views/shared/collected-editions.js',
+    'data/universeCatalog.js', 'js/lib/universeSchema.js', 'js/lib/universes.js']) {
     assert.ok(listed.includes(name), name);
     assert.deepEqual(await readFile(join(output, name)), await readFile(new URL(`../src/${name}`, import.meta.url)), name);
   }
@@ -2069,7 +2070,7 @@ test('iOS Search reuses the named label target and retains its visible field des
   assert.match(controller, /for \(const id of \[[^\]]*'search-hint'[^\]]*\]\)[\s\S]*?describedBy\.split\(\/\\s\+\/\)\.includes\(id\)\) hint\.setAttribute\('aria-hidden', 'true'\)/);
   assert.match(css, /:root #form-search label\[for="search-q"\]\s*\{[^}]*min-height:\s*var\(--target\)[^}]*line-height:\s*max\(var\(--target\), 1\.5em\)/s);
   assert.match(html, /id="search-q"[^>]*aria-describedby="search-hint search-help"/);
-  assert.match(html, /<p id="search-hint" class="rail-hint">Lists, series and creators match as you type\. Press Enter to look up comics online\./);
+  assert.match(html, /<p id="search-hint" class="rail-hint">Lists, universes, series and creators match as you type\. Press Enter to look up comics online\./);
   for (const selector of ['#search-scopes .search-scope', '.search-quiet-links a']) {
     assert.ok(controller.includes(selector), `${selector} is a named iOS target`);
   }
@@ -2114,7 +2115,7 @@ test('native Search test measures the box label and every scope at 44 points and
   assert.match(searchProbe, /screens\.push\(snapshot\('view-add'\)\)/);
   assert.ok(searchProbe.includes('\\(Self.searchAuditPreparation)'), 'the Search probe installs its focus-release target');
   assert.match(body, /for category in \[UIContentSizeCategory\.large, \.accessibilityExtraExtraExtraLarge\]/);
-  assert.match(body, /for scope in \["Top", "Reading Lists", "Series", "Creators", "Comics"\]/);
+  assert.match(body, /for scope in \["Top", "Reading Lists", "Universes", "Series", "Creators", "Comics"\]/);
   assert.match(body, /XCTAssertGreaterThanOrEqual\(labelTarget\.frame\.height, 44/);
   assert.match(body, /XCTAssertGreaterThanOrEqual\(button\.frame\.width, 44/);
   assert.match(body, /XCTAssertGreaterThanOrEqual\(button\.frame\.height, 44/);
@@ -2533,6 +2534,42 @@ test('the Read child is guarded before its launcher can navigate', () => {
   assert.match(sheet, /policy\.decideLauncher\(/);
   assert.match(sheet, /case \.openExternally:[\s\S]*return \.cancel/);
   assert.match(sheet, /WebViewFactory\.configure\(webView\)/);
+});
+
+test('the failed Read UI test retries only an unregistered native tap', () => {
+  const source = launchTests.split('func testFailedReadLookupShowsFallbackBeforeHandingItOff() throws {')[1]
+    ?.split('func testCreditLinkLeavesTheAppAndKeepsTheAboutPageOpen()')[0];
+  assert.ok(source);
+  assert.match(source, /await document\.fonts\.ready;[\s\S]*requestAnimationFrame\(\(\) => requestAnimationFrame\(resolve\)\)/);
+  assert.match(source, /document\.readyState === 'complete'[\s\S]*document\.elementFromPoint\([\s\S]*=== read/);
+  assert.match(source, /let ready = try probeResult\(of: app\)[\s\S]*ready\["readControlReady"\] as\? Bool, true/);
+  const zeroGuard = source.split('func assertNotLaunched(')[1]?.split('_ = try handOffRecord')[0];
+  for (const field of ['launches', 'presentations']) {
+    assert.ok(zeroGuard?.includes(`XCTAssertEqual(try XCTUnwrap(value["${field}"] as? Int), 0)`), field);
+  }
+  assert.match(zeroGuard, /XCTAssertEqual\(try XCTUnwrap\(value\["handoffs"\] as\? \[String\]\), \[\]\)/);
+  assert.match(zeroGuard, /XCTAssertFalse\(app\.buttons\["ios-read-sheet-close"\]\.exists/);
+  assert.match(source, /hittable == true[\s\S]*object: read\)\], timeout: 30\)[\s\S]*read\.tap\(\)/);
+  assert.match(source, /return count > 0/);
+  assert.match(source, /let firstLaunch = XCTWaiter\.wait\([\s\S]*object: recorder\)\], timeout: 10\)/);
+  assert.match(source, /if firstLaunch == \.timedOut \{[\s\S]*try record\("read-failed-lookup-first-tap"[\s\S]*try assertNotLaunched\(unlaunched\)[\s\S]*object: read\)\], timeout: 30\)[\s\S]*try assertNotLaunched\(snapshot\(\)\)[\s\S]*read\.tap\(\);?\s*\} else \{/);
+  assert.equal(source.match(/read\.tap\(\)/g)?.length, 2, 'at most one native retry is permitted');
+  assert.doesNotMatch(source, /while |for .* in |\.click\(\)/);
+  assert.match(source, /let opened = try handOffRecord\(of: app, launches: 1, handoffs: 0\)[\s\S]*opened\["launches"\] as\? Int, 1[\s\S]*"Reader lookup failed"\]\.waitForExistence\(timeout: 90\)/);
+});
+
+test('the failed Read UI test proves fallback precedes its only hand-off', () => {
+  const source = launchTests.split('func testFailedReadLookupShowsFallbackBeforeHandingItOff() throws {')[1]
+    ?.split('func testCreditLinkLeavesTheAppAndKeepsTheAboutPageOpen()')[0];
+  assert.ok(source);
+  assert.match(source, /"Reader lookup failed"\]\.waitForExistence\(timeout: 90\)[\s\S]*"Continue manually"\][\s\S]*let beforeHandOff = try handOffRecord\(of: app, launches: 1, handoffs: 0, presentations: 1\)/);
+  for (const field of ['launches', 'presentations']) {
+    assert.ok(source.includes(`XCTAssertEqual(beforeHandOff["${field}"] as? Int, 1)`), field);
+    assert.ok(source.includes(`XCTAssertEqual(result["${field}"] as? Int, 1`), field);
+  }
+  assert.match(source, /XCTAssertEqual\(try XCTUnwrap\(beforeHandOff\["handoffs"\] as\? \[String\]\), \[\],[\s\S]*followFallback\.tap\(\)/);
+  assert.match(source, /let result = try handOffRecord\(of: app, launches: 1, handoffs: 1, presentations: 1\)/);
+  assert.match(source, /XCTAssertEqual\(urls\.count, 1\)/);
 });
 
 test('iOS cancellation, failure, malformed replies and teardown never confirm an export', async () => {

@@ -234,7 +234,7 @@
   --cyan-line: 91 208 233;
   --jade-line: 78 208 182;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:823`; these pairs supply saturation and lightness where that local hue is
+     `src/js/main.js:825`; these pairs supply saturation and lightness where that local hue is
      consumed. Keeping the hue reference on the cover avoids resolving it before the cover exists. */
   --fallback-a: 42% 26%;
   --fallback-b: 38% 14%;
@@ -1458,7 +1458,15 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
   padding: var(--space-3) var(--space-9) var(--space-3) var(--space-5); font: inherit; font-size: var(--t-body); min-height: var(--target);
   cursor: pointer; width: 100%;
 }
-#view-data select:hover, .setting select:hover, .timeline-follow select:hover, .collection-navigation select:hover, .rated-controls select:hover, .story-type-choices select:hover { color: var(--text); background-color: rgb(var(--tint-base) / 5.098%); }
+#view-data select:hover, .setting select:hover, .timeline-follow select:hover, .collection-navigation select:hover, .rated-controls select:hover, .story-type-choices select:hover { color: var(--text); background-color: color-mix(in srgb, rgb(var(--tint-base)) 5.098%, var(--card-2)); }
+/* The open list of a select is drawn by the platform, not the page, and Edge paints it from the
+   select's background and each option's colours (#1298). A select is pressed while the pointer is on
+   it, so a translucent hover tint above was composited onto the list's white canvas while the
+   options kept the dark theme's light text: measured in Edge, 13 of 255 alpha behind text at
+   #f2f2f8. So the hover tint is mixed to an opaque colour, and every option carries its own pair.
+   Forced colors still replace both with the system pair, and iOS draws its own picker. */
+select option, select optgroup { background-color: var(--card-2); color: var(--text); }
+select option:disabled { color: var(--muted); }
 input[type="file"]::file-selector-button {
   background: none; color: var(--muted); border: var(--stroke-1) solid var(--line-2);
   border-radius: var(--radius-md); padding: var(--space-3) var(--space-5); font: inherit; font-size: var(--t-body);
@@ -1859,6 +1867,17 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
 .catalog-card-title .catalog-card-preview:hover { text-decoration-color: currentColor; }
 .catalog-card-desc { margin: 0 0 var(--space-3); color: var(--dim); font-size: var(--t-body); line-height: 1.45; overflow-wrap: anywhere; }
 .catalog-card-meta { margin: 0; color: var(--muted); font-size: var(--t-caption); }
+.universe-grid { margin-top: var(--space-5); }
+.universe-card .catalog-card-meta { margin-bottom: var(--space-3); }
+.universe-overview > p { max-width: 70ch; }
+.universe-facts { display: flex; flex-wrap: wrap; gap: var(--space-5) var(--space-8); margin: var(--space-6) 0 0; }
+.universe-facts div { min-width: 0; }
+.universe-facts dt { color: var(--muted); font-size: var(--t-caption); font-weight: 600; }
+.universe-facts dd { margin: var(--space-1) 0 0; overflow-wrap: anywhere; }
+.universe-list-note { margin: var(--space-2) var(--space-1) 0; }
+/* These links sit in running text, where an inline box is only one line tall; the same target
+   rule as collected editions keeps each one tappable on a phone. */
+.universe-target { display: inline-flex; align-items: center; min-height: var(--target); }
 /* One action, sized to its words: Add as a secondary button, or a saved list's primary Open. */
 .catalog-card-actions {
   display: flex; gap: var(--space-4);
@@ -2155,6 +2174,7 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 .home-path[data-category="marvel-on-screen"] { --home-path-line: var(--azure-line); }
 .home-path[data-category="marvel-ages"] { --home-path-line: var(--magenta-line); }
 .home-path[data-category="young-readers"] { --home-path-line: var(--green-line); }
+.home-path[data-category="universes"] { --home-path-line: var(--copper-line); }
 .home-path:hover {
   transform: translateY(-2px); border-color: rgb(var(--home-path-line) / 68%);
   background:
@@ -2197,19 +2217,6 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 [data-category-gateway] .home-path-icon { grid-area: icon; justify-self: end; width: 2.75rem; height: 2.75rem; }
 [data-category-gateway] .home-path-arrow { grid-area: arrow; justify-self: end; align-self: center; }
 
-.publishing-meta {
-  display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-4);
-  margin: calc(-1 * var(--space-3)) 0 var(--space-5);
-}
-.publishing-range, .publishing-count, .publishing-highlights li {
-  border-left: var(--stroke-2) solid var(--line); padding: var(--space-1) var(--space-4);
-  color: var(--muted); font-size: var(--t-caption);
-}
-.publishing-count { color: var(--text); }
-.publishing-highlights {
-  display: flex; flex-wrap: wrap; gap: var(--space-4); list-style: none;
-  margin: 0 0 var(--space-6); padding: 0;
-}
 .publishing-periods { margin-top: var(--space-6); }
 .publishing-periods .sec-h h2 { margin: 0; font-size: var(--t-subtitle); font-weight: 600; }
 .marvel-ages-group + .marvel-ages-group { margin-top: var(--space-9); }
@@ -2480,7 +2487,6 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   .home-path, .yours a, .preview, .catalog-card { border: var(--stroke-1) solid CanvasText; }
   .home-path::before { background: Highlight; }
   .home-path-icon, .home-path-arrow { color: ButtonText; }
-  .publishing-range, .publishing-count, .publishing-highlights li { border-color: CanvasText; }
   .pbar, .ri .bar { border: var(--stroke-1) solid CanvasText; }
   .pbar i, .ri .bar i { background: Highlight; }
   .rail-tip { border: var(--stroke-1) solid CanvasText; background: Canvas; }
@@ -3195,4 +3201,19 @@ select, input[type="search"], input[type="text"], input[type="url"] {
      which forced colors compute to none. */
   #list-wrap-up:has(#list-wrap-up-cheer:not([hidden])):not(:has(#list-completion-status:not([hidden])))::before { background: CanvasText; }
   .about-wm { display: none !important; }
+}
+
+#home-more-paths { container: home-discovery / inline-size; }
+#home-secondary-paths { grid-template-columns: 1fr; }
+@container home-discovery (min-width: max(29rem, calc(40ch + 1rem))) {
+  #home-secondary-paths { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@container home-discovery (min-width: max(59rem, calc(80ch + 3rem))) {
+  #home-secondary-paths { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (max-width: 620px) {
+  #home-secondary-paths { grid-template-columns: 1fr; }
+}
+@media (max-width: 700px) {
+  .search-scope { min-width: var(--target); padding-inline: var(--space-4); }
 }

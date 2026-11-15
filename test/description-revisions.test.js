@@ -10,6 +10,9 @@ import { loadLibrarySnapshot } from '../scripts/report-order-overlap.mjs';
 import { digestJson } from '../scripts/lib/chapter-orders.mjs';
 import { digestCanonicalJson } from '../scripts/lib/cbh-inventory.mjs';
 import { sourceCreditRevisions } from '../scripts/lib/source-credit-revisions.mjs';
+import {
+  beforeUltimateSelectionEntry, beforeUltimateSelectionCatalogEntry, beforeUltimateSelectionPayloadText,
+} from './helpers/ultimate-spider-man-selection-history.mjs';
 
 const json = async (file) => JSON.parse(await readFile(new URL(`../${file}`, import.meta.url), 'utf8'));
 const text = (file) => readFile(new URL(`../${file}`, import.meta.url), 'utf8');
@@ -30,9 +33,9 @@ test('the committed description revision record is sealed and matches published 
   const manifest = await json('src/data/curated-lists.json');
   const catalog = await json('src/data/catalog.json');
   for (const edit of descriptionRevisions.entries) {
-    const entry = manifest.lists.find(({ id }) => id === edit.id);
-    const payload = await json(`src/data/${edit.file}`);
-    const card = catalog.lists.find(({ id }) => id === edit.id);
+    const entry = beforeUltimateSelectionEntry(manifest.lists.find(({ id }) => id === edit.id));
+    const payload = JSON.parse(beforeUltimateSelectionPayloadText(edit.file, await text(`src/data/${edit.file}`)));
+    const card = beforeUltimateSelectionCatalogEntry(catalog.lists.find(({ id }) => id === edit.id));
     assert.equal(entry.description, edit.after, `${edit.id}: manifest copy`);
     assert.equal(payload.description, edit.after, `${edit.id}: payload copy`);
     assert.equal(card.description, edit.after, `${edit.id}: catalog copy`);

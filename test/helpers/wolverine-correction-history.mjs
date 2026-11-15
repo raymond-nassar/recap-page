@@ -6,6 +6,10 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { libraryDigestFor, sourcePositionsForPacket } from '../../scripts/lib/cbh-inventory.mjs';
 import { descriptionRevisions } from '../../scripts/lib/description-revisions.mjs';
+import {
+  beforeUltimateSelectionEntry, beforeUltimateSelectionOrders,
+  beforeUltimateSelectionPayloadText, beforeUltimateSelectionCatalogEntry,
+} from './ultimate-spider-man-selection-history.mjs';
 
 const root = fileURLToPath(new URL('../..', import.meta.url));
 const read = (file) => JSON.parse(readFileSync(path.join(root, file), 'utf8'));
@@ -42,6 +46,7 @@ function correctionHistory() {
 }
 
 export function beforeWolverineCorrectionEntry(entry) {
+  entry = beforeUltimateSelectionEntry(entry);
   if (entry.id !== ledger.id) return entry;
   const { originalIds, currentIds } = correctionHistory();
   assert.ok([originalIds.length, currentIds.length].includes(entry.expect));
@@ -62,6 +67,7 @@ export function beforeWolverineCorrectionIssueIds(ids) {
 }
 
 export function beforeWolverineCorrectionOrders(orders) {
+  orders = beforeUltimateSelectionOrders(orders);
   return orders.map((order) => (order.id ?? order.orderId) === ledger.id
     ? { ...order, issueIds: beforeWolverineCorrectionIssueIds(order.issueIds) } : order);
 }
@@ -80,12 +86,14 @@ export function wolverineLibraryAtReview(manifest, orders, expectedDigest) {
 }
 
 export function beforeWolverineCorrectionPayloadText(file, text) {
+  text = beforeUltimateSelectionPayloadText(file, text);
   if (path.basename(file) !== path.basename(prior.files.payload)) return text;
   beforeWolverineCorrectionIssueIds(JSON.parse(text).items.map(({ issueId }) => issueId));
   return correctionHistory().originalText;
 }
 
 export function beforeWolverineCorrectionCatalogEntry(entry) {
+  entry = beforeUltimateSelectionCatalogEntry(entry);
   if (entry.id !== ledger.id) return entry;
   const { originalIds, currentIds } = correctionHistory();
   const catalog = JSON.parse(show('src/data/catalog.json'));

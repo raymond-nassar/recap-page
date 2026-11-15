@@ -297,13 +297,16 @@ final class OneDriveStore {
         var content = try await call(
             "GET", "/me/drive/items/\(OneDriveRules.segment(id))/content", limit: OneDriveRules.maximumBytes, tokens: tokens
         )
-        if content.status == 302 {
+        // Each hop keeps its own transfer timeout, matching Windows and Android (#1290).
+        var hops = 0
+        while content.status == 302 && hops < 3 {
             guard let download = OneDriveRules.capabilityUrl(content.header("location")) else {
                 throw ICloudStoreError(code: "invalid", message: "OneDrive pointed the download somewhere this version does not expect.")
             }
             content = try await send(OneDriveRequest(
                 method: "GET", url: download, timeout: Self.transferSeconds(OneDriveRules.maximumBytes), limit: OneDriveRules.maximumBytes
             ))
+            hops += 1
         }
         guard content.status == 200 else { throw failure(content) }
         // Kept to the cap and no further, whatever the response declares, so an item over it is refused

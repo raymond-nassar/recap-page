@@ -1,5 +1,7 @@
 import { parseCatalog, safeFile } from './catalog.js';
 import { shellUrls } from './offline.js';
+// Load the resolver early so shell capture can observe its module graph.
+import './universes.js';
 
 export const CONTENT_CACHE_PREFIX = 'mrt-offline-content-v1-';
 export const CONTENT_MANIFEST_PATH = '/__mrt_offline_content__/manifest.json';
@@ -8,13 +10,19 @@ export const CONTENT_MAX_CONCURRENT = 4;
 const FORMAT = 'mrt-offline-content';
 const VERSION = 1;
 const CATALOG_PATH = '/data/catalog.json';
+const UNIVERSE_SHELL_PATHS = [
+  '/data/universeCatalog.js',
+  '/js/lib/universeSchema.js',
+  '/js/lib/universes.js',
+];
 
 function shellPath(path) {
   return path === '/'
     || path === '/index.html'
     || path === '/styles.css'
     || (/^\/js\/.+\.js$/).test(path)
-    || (/^\/data\/collectedEdition(?:Catalog|Evidence)\.js$/).test(path);
+    || (/^\/data\/collectedEdition(?:Catalog|Evidence)\.js$/).test(path)
+    || path === '/data/universeCatalog.js';
 }
 
 function contentTypeFor(path) {
@@ -46,6 +54,7 @@ function shellResourceUrls(scope) {
     if (url && shellPath(url.pathname)) urls.add(url.href);
   }
   if (!urls.size) throw new Error('The loaded app shell could not be identified.');
+  for (const path of UNIVERSE_SHELL_PATHS) urls.add(new URL(path, origin).href);
   return [...urls].sort();
 }
 
@@ -261,7 +270,8 @@ async function verifyBundle(cache, manifest, origin, cryptoProvider) {
     if (!await verifyCacheEntry(cache, { ...item, url: url.href }, cryptoProvider)) return false;
     resources.push(item);
   }
-  if (!shellCount || catalogCount !== 1 || selectedCount !== 1) return false;
+  if (!shellCount || catalogCount !== 1 || selectedCount !== 1
+    || UNIVERSE_SHELL_PATHS.some((path) => !paths.has(path))) return false;
   return await sourceDigest(resources, cryptoProvider) === manifest.sourceDigest
     && await digestInventory(resources, cryptoProvider) === manifest.contentDigest;
 }

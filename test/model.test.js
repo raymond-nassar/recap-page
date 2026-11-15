@@ -48,6 +48,7 @@ import {
   normalizeCover, coverUrl, listForCatalogId, listCollections, SCHEMA_VERSION, MAX_NAME, MAX_DESCRIPTION,
   newId, hasMetadata, countOrderGaps, orderGapSentences, markDetailsRefused, setIssueNote, setListNote,
 } from '../src/js/lib/model.js';
+import { catalogCoverUrl } from '../src/js/lib/catalog.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -159,6 +160,29 @@ test('normalizeCover refuses anything that is not an https URL', () => {
   assert.equal(normalizeCover({ path: 'javascript:alert(1)', extension: 'jpg' }), null);
   assert.equal(normalizeCover({ extension: 'jpg' }), null);
   assert.equal(normalizeCover({ path: 'https://i.annihil.us/u/x' }).ext, 'jpg', 'extension defaults');
+});
+
+// #1289: Iron Man shipped a base that already named its file, so every variant asked for a file
+// inside a file and the CDN answered 404. Saved trackers and their backups still hold that address,
+// so the stored value is kept as it is and only the built request reads it as its directory.
+test('a cover base that names its clean.jpg file is requested as its directory and stored unchanged', () => {
+  const full = 'https://i.annihil.us/u/prod/marvel/i/mg/d/03/58dd080719806/clean.jpg';
+  const base = 'https://i.annihil.us/u/prod/marvel/i/mg/d/03/58dd080719806';
+  assert.deepEqual(normalizeCover({ path: full, ext: 'jpg' }), { path: full, ext: 'jpg' },
+    'the stored address round-trips byte for byte');
+  const saved = normalizeIssue({ id: 11280, cover: { path: full, ext: 'jpg' } });
+  assert.equal(saved.cover.path, full);
+  assert.equal(coverUrl(saved, 'portrait_incredible'), `${base}/portrait_incredible.jpg`);
+  assert.equal(coverUrl(saved, 'detail'), `${base}/detail.jpg`);
+  assert.equal(catalogCoverUrl({ id: 'x', cover: { path: full, ext: 'jpg' } }), `${base}/portrait_incredible.jpg`);
+  assert.equal(coverUrl(normalizeIssue({ id: 1, cover: { path: base, ext: 'jpg' } }), 'detail'), `${base}/detail.jpg`,
+    'a proper base is unchanged');
+  assert.equal(coverUrl(normalizeIssue({ id: 1, cover: { path: 'https://example.com/a/clean.jpg', ext: 'jpg' } })), null,
+    'the host pin still decides before the tail is read');
+  for (const tail of ['/clean.jpg?x=1', '?q=/clean.jpg', '#/clean.jpg', '/notclean.jpg']) {
+    assert.equal(coverUrl(normalizeIssue({ id: 1, cover: { path: `${base}${tail}`, ext: 'jpg' } }), 'detail'),
+      `${base}${tail}/detail.jpg`, `${tail} is not an exact clean.jpg path ending`);
+  }
 });
 
 test('pageCount only survives when it is a positive number', () => {
@@ -1255,7 +1279,7 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // Marvel Zombies retains three unresolved 2025 originals as distinct placeholders.
   // Kamala adds five distinct original-edition gaps without guessing provider identities.
   // Nova adds two distinct published-original source positions. Ultimate Spider-Man adds one
-  // unresolved Super Special and eight known-ID detail refusals in a newly affected guide.
+  // unresolved Super Special; the eight later detail refusals leave with the owner's Earth-6160 cut.
   // Shang-Chi adds eight distinct provider-original gaps.
   // Age of Apocalypse adds sixteen qualified original-identity gaps.
   // Onslaught adds two distinct unresolved source originals.
@@ -1265,8 +1289,8 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // Spidey keeps the six Spidey: School's Out positions as distinct source-position placeholders.
   assert.equal(claimed, 1130, 'the payload placeholder total moved; re-derive the figures in the record');
   assert.equal(placeholders, 1130, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
-  assert.equal(empty, 229);
-  assert.equal(affected, 23);
+  assert.equal(empty, 221);
+  assert.equal(affected, 22);
 });
 
 // Every check above passes with the import path reverted, because they all call the counter

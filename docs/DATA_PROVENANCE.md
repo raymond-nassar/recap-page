@@ -416,17 +416,17 @@ orders: **null means nobody granted anything for this file, not that the file is
 
 ### Reading orders, pinned
 
-Two hundred and ninety-five pinned reading-order payloads remain under
-[`src/data/`](../src/data): 293 active visible catalog files, one active noncatalog partition parent,
-and the retired 18-original owner-selected No Way Home payload. The 294 active files hold
-31,185 issue records covering 19,324 distinct tracked identities. The visible files hold 30,698 of those records;
+Three hundred and forty-seven pinned reading-order payloads remain under
+[`src/data/`](../src/data): 344 active visible catalog files, one active noncatalog partition parent,
+and the retired No Way Home (18 originals) and withdrawn Marvel Multiverse (2 comics) payloads. The 345 active files hold
+32,869 issue records covering 20,170 distinct tracked identities. The visible files hold 32,382 of those records;
 the extra 487 are the retained Marvel Knights to Planet X parent whose ordinary children partition
 the same vector. Records use these fields:
 `issueId`, `title`,
 `number`, `url`, `seriesId`, `seriesName`, `onSale`, `mu`, `digitalId`, `pageCount`, a `cover`
-object of `path` and `ext`, and `creators` of `name` and `role`. Across the 294 active payloads, 26,307
-records carry a cover URL and 24,704 carry creator credits. The retired payload remains byte-exact
-but does not contribute to active discovery or this active census.
+object of `path` and `ext`, and `creators` of `name` and `role`. Across the 345 active payloads, 27,968
+records carry a cover URL and 26,239 carry creator credits. The retired No Way Home payload remains byte-exact;
+neither retired payload contributes to active discovery or this active census.
 
 `description` was the field to look at hardest and is now empty. The others are facts about a
 publication: which issue, in which series, on what date. A description was Marvel's own prose
@@ -435,10 +435,10 @@ The key is `null` on every record, the vendoring script no longer writes it, and
 A further 41, 7,193 characters, were removed from the design mockups described below, which a
 first pass missed because it looked only at the files the catalog names.
 
-Of the visible records, 1,149 are unopenable placeholders for unresolved source positions and 229
+Of the visible records, 1,130 are unopenable placeholders for unresolved source positions and 221
 non-placeholder records carry neither a series ID nor a digital ID after an upstream refusal. Those
-1,378 gap positions affect 43 catalog entries: twenty-eight carry placeholders, twenty-three carry empty records, and
-eight carry both kinds. One legacy item retains a placeholder flag alongside real identity and launch
+1,351 gap positions affect 44 catalog entries: twenty-nine carry placeholders, twenty-two carry empty records, and
+seven carry both kinds. One legacy item retains a placeholder flag alongside real identity and launch
 metadata, so it belongs to neither gap category. Placeholder
 IDs are computed here by [`scripts/vendor-orders.mjs`](../scripts/vendor-orders.mjs) from the order
 and source identity and then negated, so none can be read as one of Marvel's. These records preserve
@@ -454,10 +454,31 @@ The Kamala Khan guide retains five unresolved original-edition positions under
 [#598](https://github.com/raymond-nassar/recap-page/issues/598); its other 187 originals
 have exact issue identities.
 The Ultimate Spider-Man guide retains one unresolved 2002 special at source position 44 under
-[#601](https://github.com/raymond-nassar/recap-page/issues/601). Its eight later originals
-retain exact issue identities despite refused optional details. Those eight also appear in
-other orders; the 229 empty records above count each visible Reading List position, not
-distinct original issue IDs.
+[#601](https://github.com/raymond-nassar/recap-page/issues/601). Owner correction
+[#1296](https://github.com/raymond-nassar/recap-page/issues/1296) removes its 36-comic new-universe
+tail, including the eight later originals whose optional details were refused. Those identities
+remain in both New Ultimate Universe guides. The current guide has 316 positions: 315 exact
+identities and the original special's gap; all 47 post-Secret-Wars Miles Morales comics and
+the earlier Earth-1610 crossovers stay. This is an owner-directed difference from
+[Comic Book Herald's guide](https://www.comicbookherald.com/ultimate-spider-man-reading-order/),
+not a claim that the source omitted those comics.
+The [owner selection](../scripts/data/ultimate-spider-man-selection.json) records every excluded
+issue ID and original position. Its three enabled blocks omit Ultimate Spider-Man (2024) #1-18
+and Free Comic Book Day 2025, Incursion #1-5, then Ultimate Spider-Man #19-24, Ultimate Endgame
+#1-5 and Ultimate Universe: Finale #1. Incursion is separately switchable: set only that block's
+`enabled` field to `false` and rerun `node scripts/correct-ultimate-spider-man.mjs` to restore
+the five at their original relative positions. Counts and historical replay derive from that choice.
+The [pinned Marvel Database revision for Incursion #1](https://marvel.fandom.com/wiki/Ultimate_Spider-Man:_Incursion_Vol_1_1?oldid=10741548),
+retrieved 2026-11-14, identifies Miles as the featured character and Billie Morales and
+Earth-6160 Peter Parker as supporting characters. It follows Miles but involves that Peter;
+the owner's all-36 removal includes this crossover.
+The correction producer selects retained metadata exactly from the pinned prior payload, authors
+the checklist through the source producer and rebuilds the catalog through the vendor without
+refetching metadata. The frozen source packet and relationship approvals remain unchanged.
+Normal future vendoring reads the corrected checklist. Existing saved copies are not rewritten:
+they retain their 352 comics and progress. Preview shows 316 comics and opens the saved copy;
+because no current comic is missing from that original saved copy, this deletion-only change
+offers neither a missing-comic notice nor an updated-copy action.
 The [Namor guide](https://www.comicbookherald.com/namor-sub-mariner-reading-order/)
 was checked on 2026-09-29 from its Golden Age selections through the late Black Panther
 #14 addition. Its 88 factual blocks select 705 occurrences across 700 original identities:
@@ -957,7 +978,7 @@ The first is that displaying a description and shipping a copy of one are differ
 those terms rather than two degrees of one act. Using Content inside an App is what the licence is
 for, on a condition the attribution page states plainly: "You must attribute Marvel as the source
 of data whenever you display any results from the Marvel Comics API". The app now names both the
-Marvel origin and its actual route in About at `src/index.html:1250-1254`. Redistributing Content outside an App, and sublicensing it onward, are the
+Marvel origin and its actual route in About at `src/index.html:1331-1335`. Redistributing Content outside an App, and sublicensing it onward, are the
 two things sections 4 and 5 name. An MIT grant is a sublicence to everyone who receives a copy, and
 offers them "sublicense, and/or sell".
 
@@ -1002,8 +1023,8 @@ app encounters that state rather than hypothetically. At removal, 606 carried a 
 id and 69 held neither. Neither metadata shape proves that a synopsis request has completed.
 The interface now distinguishes a summary that has not been loaded from a completed request with
 no synopsis and from prose held only in memory after explicit consent. The shared presentation
-reaches the interface in the reading hero at `src/js/views/reading.js:665` and the issue-details view at
-`src/js/views/issue.js:102`. The function behind both already answers for the absence at
+reaches the interface in the reading hero at `src/js/views/reading.js:672` and the issue-details view at
+`src/js/views/issue.js:105`. The function behind both already answers for the absence at
 `src/js/views/reading.js:93-104`, with a test asserting the sentence it returns. It is also reversible:
 the project this repository fetched from still serves the field,
 the contract check having run on 2026-08-15 with 33 of 33 assumptions holding, so the vendoring
@@ -1128,10 +1149,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes four independent Reading Paths with 104 stops: three
 authored paths with 10, 12 and 4 stops from the curated manifest at
-`src/data/curated-lists.json:11188-11239`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:11255-11306`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all four at
-`src/data/catalog.json:16703-16840`.
+`src/data/catalog.json:16770-16907`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -3016,7 +3037,7 @@ Issue #6 is the same identity One World Under Doom already confirms, so the two 
 The owner-guide contract requires a positive ID, exact matching owner-supplied Marvel URL, named
 confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:849-871`).
 The vendor excludes these entries from metadata lookup and creates no provider projection
-(`scripts/vendor-orders.mjs:497-501`, `scripts/vendor-orders.mjs:567-568`, `scripts/vendor-orders.mjs:612-613`).
+(`scripts/vendor-orders.mjs:499-503`, `scripts/vendor-orders.mjs:569-570`, `scripts/vendor-orders.mjs:614-615`).
 Unless a row carries the external supplement described below, the published rows carry only their
 confirmed identity, issue ID, URL and refusal state; optional provider details and covers remain
 empty. The ten One World Under Doom rows are of that kind. No comic image bytes are stored and no
@@ -3708,3 +3729,34 @@ read 2026-11-13, also indexes a five-page Spider-Man story that the trade does n
 not proof the physical book omits it, but full coverage of #126 is unconfirmed and its relation is
 held. The hardcover remains held independently. The unresolved X-Corps annual and collection
 parsing conflicts are not projected.
+## Universes metadata
+
+[Issue #1291](https://github.com/raymond-nassar/recap-page/issues/1291) supplies the initial
+Universe names, reality designations, years and descriptions. The
+[source ledger](../scripts/data/universe-sources.json) records the selected fields, pinned
+reference revisions, retrieval dates, alternative debuts and publication dates, and the evidence
+for each Reading List, series and comic association. The owner's descriptions are retained as
+provided; the primary-continuity description is project-authored.
+
+The owner [settled three conventions](https://github.com/raymond-nassar/recap-page/issues/1291#issuecomment-6881532609)
+on 14 November 2026. A Universe's first year and debut are the earliest appearance of its reality,
+as the pinned reference reality page records it, dated by cover date. The primary continuity
+begins with Marvel Comics #1 in 1939, a deliberate exception to earliest appearance. The ledger
+keeps named-line years, on-sale dates and the other primary-continuity candidates, including
+Fantastic Four #1 and the Ka-Zar pulp, as alternatives. Previews and promotions stay excluded as
+standing practice that the owner has not ruled on, so Heroes Reborn (1996) keeps its Fantastic
+Four debut. A named reality without a confirmed Earth number remains named rather than receiving
+a guessed number.
+The Marvel Zombies guide's qualification is retained because it includes other realities;
+list membership never assigns a reality to every comic in that list. The owner placed the Ultimate
+Spider-Man guide under Ultimate Marvel only, without changing comic or series facts. The owner also
+made the primary continuity browse-only, linking to Modern Timeline and Marvel Ages instead of
+individual guides or selected comics. New lists follow the
+[Universe placement step](MAINTAINING.md#place-a-new-reading-list-in-a-universe).
+
+The reference pages are the second opinion the owner asked for on the supplied years, and a live
+reread on 14 November 2026 found every reality and debut page still at its pinned revision. They
+are not independent corroboration: the pinned issue and reality pages come from the same
+reference source. Three things remain open: the preview and promotion policy, independent
+bibliography, and the Heroes Reborn Wizard special's classification and on-sale date. No source
+narrative or comic image bytes are added, and saved data is unchanged.

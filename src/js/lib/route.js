@@ -12,10 +12,11 @@ import {
 } from './catalog.js';
 import { MAX_NAME } from './model.js';
 import { RATING_SORTS, DEFAULT_RATING_SORT, RATING_THRESHOLDS } from './ratedComics.js';
+import { DEFAULT_UNIVERSE_SORT, UNIVERSE_SORTS } from './universes.js';
 
 const PUBLISHING_ROUTES = new Set(PUBLISHING_CATEGORIES.map((category) => category.route));
 const CUSTOM_CATEGORY_ROUTES = HOME_CATEGORIES
-  .filter((category) => !category.shelf && !PUBLISHING_ROUTES.has(category.route))
+  .filter((category) => !category.shelf && category.kind !== 'universe-index' && !PUBLISHING_ROUTES.has(category.route))
   .map((category) => category.route);
 
 // Every section the app can reach. This lives here rather than in main.js so that one list backs
@@ -24,6 +25,7 @@ const CUSTOM_CATEGORY_ROUTES = HOME_CATEGORIES
 export const ADD_VIEWS = ['add-search', 'add-series', 'add-creator', 'add-import', 'add-manual'];
 export const VIEWS = [
   'home', 'read', 'issue', 'library', 'add', 'catalog', 'young-readers', 'spotlights', 'progress',
+  'universes', 'universe',
   ...PUBLISHING_CATEGORIES.map((category) => category.route),
   ...CUSTOM_CATEGORY_ROUTES,
   ...ADD_VIEWS,
@@ -84,16 +86,17 @@ export function isPlainNavigation(event) {
     && !event.shiftKey && !event.altKey && !event.defaultPrevented);
 }
 
-export function routeTitle({ view, list = null, issueTitle = null } = {}) {
+export function routeTitle({ view, list = null, issueTitle = null, universe = null } = {}) {
   const title = view === 'home' ? 'Home'
     : view === 'read' ? cleanLabel(list?.name, 'Reading List')
       : view === 'issue' ? cleanLabel(issueTitle, 'Comic details')
-        : breadcrumbHierarchy({ view }).at(-1)?.label ?? 'Recap Page';
+        : view === 'universe' ? cleanLabel(universe?.name, 'Universe not found')
+          : breadcrumbHierarchy({ view }).at(-1)?.label ?? 'Recap Page';
   return title === 'Recap Page' ? title : `${title} | Recap Page`;
 }
 
 export function breadcrumbHierarchy({
-  view, list = null, issueTitle = null, context = null,
+  view, list = null, issueTitle = null, context = null, universe = null,
 } = {}) {
   if (!VIEWS.includes(view) || view === 'home') return [];
   const home = linked('home', 'Home');
@@ -101,6 +104,10 @@ export function breadcrumbHierarchy({
   const cards = linked('home', 'Home', { at: HOME_CARDS });
 
   if (view === 'new-to-comics') return [cards, current(STATIC_VIEW_LABELS.get(view))];
+
+  if (view === 'universe') {
+    return [cards, linked('universes', 'Universes'), current(cleanLabel(universe?.name, 'Universe not found'))];
+  }
 
   if (view === 'read') {
     return [
@@ -283,6 +290,7 @@ function parseRatedRoute(search) {
 // writes the active list, so a subset would be a rule to keep in step for no gain.
 export function formatRoute({
   view, listId, filter, full = false, sort, pathId, issueId: rawIssueId, context, rated, at, storyType, tone, previewId,
+  universeId, universeQuery, universeSort, seriesId,
 } = {}) {
   const canonical = canonicalView(view);
   if (!VIEWS.includes(canonical)) return '';
@@ -290,6 +298,21 @@ export function formatRoute({
     return typeof previewId === 'string' && PATH_TOKEN.test(previewId) ? `${PREFIX}preview/${previewId}` : '';
   }
   if (canonical === 'library-rated') return formatRatedRoute(rated);
+  if (canonical === 'add-series' && seriesId !== undefined) {
+    const id = issueId(seriesId);
+    return id !== null && id > 0 ? `${PREFIX}series/${id}` : '';
+  }
+  if (canonical === 'universe') {
+    return typeof universeId === 'string' && PATH_TOKEN.test(universeId) ? `${PREFIX}universe/${universeId}` : '';
+  }
+  if (canonical === 'universes') {
+    const query = new URLSearchParams();
+    const text = ratedText(universeQuery);
+    if (text) query.set('q', text);
+    if (UNIVERSE_SORTS.includes(universeSort) && universeSort !== DEFAULT_UNIVERSE_SORT) query.set('sort', universeSort);
+    const search = query.toString();
+    return `${PREFIX}universes${search ? `?${search}` : ''}`;
+  }
   if (canonical === 'issue') {
     const id = issueId(rawIssueId);
     if (id == null) return '';
@@ -355,6 +378,11 @@ export function parseRoute(hash) {
     if (parts.length !== 2 || !PATH_TOKEN.test(listId ?? '') || search) return null;
     return { view: 'new-to-comics', previewId: listId };
   }
+  if (view === 'series') {
+    if (parts.length !== 2 || search) return null;
+    const id = issueId(listId);
+    return id !== null && id > 0 ? { view: 'add-series', seriesId: id } : null;
+  }
   if (view === RETIRED_PATHS_SEGMENT) {
     const named = listId === null ? new URLSearchParams(search).getAll(PATH_KEY) : [listId];
     const pathId = named.length === 1 && PATH_TOKEN.test(named[0]) ? named[0] : null;
@@ -363,6 +391,22 @@ export function parseRoute(hash) {
     };
   }
   if (!VIEWS.includes(view) || (view === 'library-rated' && listId)) return null;
+
+  if (view === 'universe') {
+    if (parts.length !== 2 || !PATH_TOKEN.test(listId ?? '')) return null;
+    return { view, universeId: listId };
+  }
+  if (view === 'universes') {
+    if (parts.length !== 1) return null;
+    const params = new URLSearchParams(search);
+    const queries = params.getAll('q');
+    const sorts = params.getAll('sort');
+    return {
+      view,
+      universeQuery: queries.length === 1 ? ratedText(queries[0]) : '',
+      universeSort: sorts.length === 1 && UNIVERSE_SORTS.includes(sorts[0]) ? sorts[0] : DEFAULT_UNIVERSE_SORT,
+    };
+  }
 
   if (view === 'library-rated') {
     return { view, listId: null, filter: null, full: false, rated: parseRatedRoute(search) };

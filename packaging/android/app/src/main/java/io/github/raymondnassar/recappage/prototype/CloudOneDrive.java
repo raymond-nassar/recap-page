@@ -335,7 +335,8 @@ final class CloudOneDrive implements CloudProvider.Drive {
     @Override
     public byte[] read(String id) throws CloudError {
         CloudHttp.Response content = call("GET", "/me/drive/items/" + segment(id) + "/content", CloudRules.MAX_ITEM_BYTES);
-        if (content.status == 302) {
+        // Each hop keeps its own transfer timeout, matching Windows and iOS (#1290).
+        for (int hop = 0; content.status == 302 && hop < 3; hop++) {
             String download = CloudRules.capabilityUrl(content.header("location"));
             if (download == null) throw new CloudError("invalid", "OneDrive pointed the download somewhere this version does not expect.");
             try {

@@ -357,6 +357,7 @@ export function createPreviewView({
     const source = [
       presentation.attributionLine(list),
       sourceButton(el, list),
+      ...(list.universeIds?.length ? presentation.listUniverseLines(list) : []),
     ].filter(Boolean);
     nodes.source.replaceChildren(...source);
     if (nodes.about) nodes.about.hidden = !list.description && !source.length;
@@ -480,6 +481,7 @@ export function createPreviewView({
   return {
     invalidate,
     open,
+    currentList: () => previewList,
     syncAdd,
     wire,
   };

@@ -26,7 +26,8 @@ licence and keeps this credit. The three MIT files hold no database facts: an ed
 `editions.json` names its database record by id only, and the check fails if a database-only field,
 a contents range asserted by the indexer notes, a series named in the database's own form, or wording
 matching `printing` or `printings` as whole words, or containing `second edition` or `variant of`,
-appears in any of them. The wording check is case-insensitive and treats hyphens as spaces.
+appears in any of them. The series-name and wording checks are case-insensitive; the wording check
+treats hyphens as spaces.
 
 ## Model
 
@@ -48,6 +49,8 @@ Each edition is checked against its database record at one of seven tiers. For `
 notes must state the series and the exact issue span,
 so `#1-5` never matches `#1-50`. A series must follow the start of the notes, "Collects", or a
 separator after a previous issue range; ambiguous wording is a conflict, not a verification.
+The list and database series start years must both be parseable, regardless of capitalization.
+A missing, unparseable, or different year blocks the range with a conflict.
 `gcd-count-only` can show a book is consistent, never which comics it holds, and `gcd-unindexed`
 records that the database has not indexed the contents. Every
 database sequence left out of a count is listed in `check.excludedSequences` with its reason; a

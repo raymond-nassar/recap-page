@@ -474,13 +474,33 @@ public final class CloudTest {
         Harness h = connected();
         String connection = h.connection();
         String body = "{\"connection\":\"" + connection + "\",\"id\":\"R1\"}";
-        h.http.then(request -> json(302, "", "Location", "https://download.example.com/r1"))
-                .then(request -> {
-                    check(!authorized(request) && request.maxBytes == CloudRules.MAX_ITEM_BYTES, "The download carries no token and a cap");
-                    return json(200, "hello");
+        for (int hops = 0; hops <= 3; hops++) {
+            final int count = hops;
+            h.http.then(request -> count == 0 ? json(200, "hello")
+                    : json(302, "", "Location", "https://download.example.com/r0"));
+            for (int hop = 0; hop < hops; hop++) {
+                final int current = hop;
+                h.http.then(request -> {
+                    check(request.url.equals("https://download.example.com/r" + current), "Each redirect target is followed");
+                    check("GET".equals(request.method) && request.body == null, "Each download is a GET");
+                    check(!authorized(request) && request.maxBytes == CloudRules.MAX_ITEM_BYTES, "Each download carries no token and a cap");
+                    check(request.timeoutMs == 572_000, "Each hop keeps its transfer timeout");
+                    return current + 1 == count ? json(200, "hello")
+                            : json(302, "", "Location", "https://download.example.com/r" + (current + 1));
                 });
-        Map<String, Object> read = h.call("read", body);
-        check("aGVsbG8=".equals(read.get("bytes")), "A read answers the bytes in base64");
+            }
+            Map<String, Object> read = h.call("read", body);
+            check("aGVsbG8=".equals(read.get("bytes")), "Zero through three hops answer the bytes");
+        }
+        for (String location : new String[] { null, "http://download.example.com/unsafe", "file:///unsafe",
+                "https://download.example.com/extra" }) {
+            int hops = "https://download.example.com/extra".equals(location) ? 3 : 1;
+            for (int hop = 0; hop < hops; hop++) {
+                h.http.then(request -> json(302, "", "Location", "https://download.example.com/r1"));
+            }
+            h.http.then(request -> location == null ? json(302, "") : json(302, "", "Location", location));
+            check("invalid".equals(error(h.call("read", body))), "A fourth, missing or unsafe redirect is refused");
+        }
         h.http.then(request -> json(302, "", "Location", "https://download.example.com/r1"))
                 .then(request -> new CloudHttp.Response(200, Collections.emptyMap(), null, true, false));
         check("too-large".equals(error(h.call("read", body))), "An item over the cap is too large");

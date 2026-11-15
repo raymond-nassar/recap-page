@@ -6,7 +6,9 @@
 // here, so an entry that is missing what a reader needs to choose safely (a name, a file to
 // import, or a truthful issue count) is rejected rather than rendered half-blank.
 
-import { normalizeCover } from './model.js';
+import { coverAddress, normalizeCover } from './model.js';
+import { copyUniverseListFields, universeListProblems } from './universeSchema.js';
+import { universeDefinitions } from '../../data/universeCatalog.js';
 
 export const LIST_TYPES = ['event', 'character-run', 'creator-run', 'era', 'screen-companion'];
 export const READING_DEPTHS = ['essential', 'complete', 'partial', 'tie-ins', 'selected'];
@@ -189,6 +191,10 @@ function normalizeEntry(raw) {
   if (Object.hasOwn(raw, 'storylines') && typeof raw.storylines !== 'boolean') {
     throw new Error(`Catalog list "${raw.id ?? '(unnamed)'}" has invalid storylines metadata`);
   }
+  const universeProblems = universeListProblems(raw);
+  if (universeProblems.length) {
+    throw new Error(`Catalog list "${raw.id ?? '(unnamed)'}" has invalid universe metadata: ${universeProblems.join('; ')}`);
+  }
   const id = str(raw.id);
   const name = str(raw.name);
   const file = safeFile(raw.file);
@@ -228,6 +234,7 @@ function normalizeEntry(raw) {
     storylines: raw.storylines === true,
     spotlightKind: SPOTLIGHT_KINDS.includes(raw.spotlightKind) ? raw.spotlightKind : null,
     audience: LIST_AUDIENCES.includes(raw.audience) ? raw.audience : null,
+    ...copyUniverseListFields(raw),
     storyTypes: knownTags(raw.storyTypes, STORY_TYPES, MAX_STORY_TYPES),
     tones: knownTags(raw.tones, STORY_TONES, MAX_STORY_TONES),
     writers: strings(raw.writers).slice(0, 3),
@@ -561,8 +568,7 @@ export function facetLabel(lists, key) {
 // entry has no representative issue, so the card falls back to a typographic tile rather
 // than requesting a broken image.
 export function catalogCoverUrl(list, variant = 'portrait_incredible') {
-  const c = normalizeCover(list?.cover);
-  return c ? `${c.path}/${variant}.${c.ext}` : null;
+  return coverAddress(list?.cover, variant);
 }
 
 // Roughly how much reading an order is. Twenty minutes an issue is an assumption, so every
@@ -1038,7 +1044,7 @@ export const PUBLISHING_CATEGORIES = [
     from: 1939,
     to: 1955,
     icon: 'E81C',
-    highlights: ['Timely Comics', 'Human Torch', 'Namor', 'Captain America'],
+    description: 'Timely Comics and the first wave of heroes, from 1939 to 1955.',
   },
   {
     key: 'silver',
@@ -1049,7 +1055,7 @@ export const PUBLISHING_CATEGORIES = [
     from: 1956,
     to: 1969,
     icon: 'E81C',
-    highlights: ['Superhero revival', 'Fantastic Four from 1961'],
+    description: 'The superhero revival and the arrival of the Fantastic Four, from 1956 to 1969.',
   },
   {
     key: 'bronze',
@@ -1060,7 +1066,7 @@ export const PUBLISHING_CATEGORIES = [
     from: 1970,
     to: 1983,
     icon: 'E81C',
-    highlights: ['Socially conscious stories', 'X-Men expansion', 'Cosmic Marvel', 'Horror', 'Street-level heroes'],
+    description: 'Socially conscious stories and cosmic sagas, from 1970 to 1983.',
   },
   {
     key: 'copper',
@@ -1071,7 +1077,7 @@ export const PUBLISHING_CATEGORIES = [
     from: 1984,
     to: 1990,
     icon: 'E81C',
-    highlights: ['Darker storytelling', '1980s X-Men boom', 'Venom', 'Early modern Avengers', 'Creator-driven books', 'Road to 1991'],
+    description: 'Darker storytelling and the X-Men boom, from 1984 to 1990.',
   },
   {
     key: 'modern',
@@ -1082,7 +1088,7 @@ export const PUBLISHING_CATEGORIES = [
     from: 1991,
     to: null,
     icon: 'E81C',
-    highlights: ['Early Modern to current'],
+    description: 'Stories from 1991 to today, grouped by publishing period.',
   },
   {
     key: 'early-modern',
@@ -1093,7 +1099,7 @@ export const PUBLISHING_CATEGORIES = [
     from: 1991,
     to: 1997,
     icon: 'E81C',
-    highlights: ['1990s line expansion'],
+    description: 'The line expansion of the 1990s, from 1991 to 1997.',
   },
   {
     key: 'marvel-knights-heroes-return',
@@ -1104,7 +1110,7 @@ export const PUBLISHING_CATEGORIES = [
     from: 1998,
     to: 2003,
     icon: 'E81C',
-    highlights: ['Marvel Knights', 'Heroes Return'],
+    description: 'Marvel Knights and Heroes Return, from 1998 to 2003.',
   },
   {
     key: 'event-era',
@@ -1115,7 +1121,7 @@ export const PUBLISHING_CATEGORIES = [
     from: 2004,
     to: 2011,
     icon: 'E81C',
-    highlights: ['Line-wide events'],
+    description: 'Line-wide crossover events, from 2004 to 2011.',
   },
   {
     key: 'marvel-now',
@@ -1126,7 +1132,7 @@ export const PUBLISHING_CATEGORIES = [
     from: 2012,
     to: 2014,
     icon: 'E81C',
-    highlights: ['Marvel NOW!'],
+    description: 'The Marvel NOW! relaunch, from 2012 to 2014.',
   },
   {
     key: 'all-new-all-different',
@@ -1137,7 +1143,7 @@ export const PUBLISHING_CATEGORIES = [
     from: 2015,
     to: 2017,
     icon: 'E81C',
-    highlights: ['2015 relaunch'],
+    description: 'The All-New All-Different relaunch, from 2015 to 2017.',
   },
   {
     key: 'fresh-start',
@@ -1148,7 +1154,7 @@ export const PUBLISHING_CATEGORIES = [
     from: 2018,
     to: 2020,
     icon: 'E81C',
-    highlights: ['Fresh Start'],
+    description: 'The Fresh Start relaunch, from 2018 to 2020.',
   },
   {
     key: 'current',
@@ -1159,7 +1165,7 @@ export const PUBLISHING_CATEGORIES = [
     from: 2021,
     to: null,
     icon: 'E81C',
-    highlights: ['Current publishing era'],
+    description: 'The current publishing era, from 2021 to today.',
   },
 ];
 
@@ -1307,7 +1313,7 @@ export const MARVEL_AGES_CATEGORY = {
   icon: 'E81C',
   tier: 'secondary',
   kind: 'publishing-index',
-  highlights: ['Publishing periods', 'Chronological browsing'],
+  description: 'Reading Lists grouped by when their stories were published.',
   select: (stories) => publishingAgeGroups(stories).stories,
 };
 
@@ -1329,7 +1335,7 @@ export const HOME_CATEGORIES = [
     label: 'Browse by genre and tone',
     icon: 'E8EC',
     tier: 'primary',
-    highlights: ['Thrillers and espionage', 'Space opera and myth', 'Tone, from epic to lighthearted'],
+    description: 'Find a Reading List by the kind of story and the mood you want.',
     select: (stories) => storyTypeStories(stories),
   },
   {
@@ -1349,7 +1355,7 @@ export const HOME_CATEGORIES = [
     label: 'Movies and streaming',
     icon: 'E714',
     tier: 'secondary',
-    highlights: ['Movie companions', 'Streaming companions', 'Multiverse picks'],
+    description: 'Comics to read alongside the Marvel movies and streaming series.',
     select: typeCategory('screen-companion'),
   },
   MARVEL_AGES_CATEGORY,
@@ -1363,11 +1369,25 @@ export const HOME_CATEGORIES = [
     tier: 'secondary',
     select: shelfCategory('young-readers'),
   },
+  {
+    key: 'universes',
+    route: 'universes',
+    heading: 'Universes',
+    label: 'Browse realities',
+    description: 'Explore Marvel realities and their related Reading Lists.',
+    icon: 'universes',
+    tier: 'secondary',
+    kind: 'universe-index',
+    count: universeDefinitions.length,
+    singular: 'universe',
+    plural: 'universes',
+  },
 ];
 
 export function availableHomeCategories(stories, definitions = HOME_CATEGORIES) {
   const all = Array.isArray(stories) ? stories : [];
   return definitions.flatMap(({ select, ...category }) => {
+    if (Number.isInteger(category.count)) return category.count > 0 ? [category] : [];
     const matches = select(all);
     const count = matches.reduce((total, story) => total + (story.lists?.length ?? 0), 0);
     return matches.length ? [{ ...category, count }] : [];

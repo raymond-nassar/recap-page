@@ -11,7 +11,9 @@ import {
   COMPLETE_BACKUP_FORMAT, COMPLETE_BACKUP_VERSION, MAX_COMPLETE_BACKUP_BYTES, CompleteBackupError,
   captureCompleteBackup, createCompleteBackup, parseCompleteBackup, prepareCompleteRestore, restorePlan,
   completeBackupFileRefusal, completeBackupSummary, settingsFromStorage, prepareSettingsRestore, classifyComponent,
+  canonical,
 } from '../src/js/lib/completeBackup.js';
+import { personalDigest } from '../src/js/lib/cloudSync.js';
 import {
   createEmptyState, createList, addIssuesToList, exportBackup, normalizeIssue, MAX_BACKUP_BYTES,
 } from '../src/js/lib/model.js';
@@ -252,6 +254,23 @@ test('a complete backup is refused when any byte of its content differs from its
     await assert.rejects(parseCompleteBackup(JSON.stringify(altered), crypto), (error) => error.code === 'integrity');
   }
   await assert.rejects(createCompleteBackup(backup.components, { cryptoProvider: {} }), (error) => error.code === 'unsupported');
+});
+
+// #1289: trackers that imported Iron Man before the fix hold a cover address ending in /clean.jpg,
+// and their complete and cloud backups carry a digest of it. Correcting that address on read would
+// make the reader data come back different and refuse the whole file, so it must round-trip as saved.
+test('a complete backup holding a saved clean.jpg cover address still restores, digest and all', async () => {
+  const full = 'https://i.annihil.us/u/prod/marvel/i/mg/d/03/58dd080719806/clean.jpg';
+  const { backup } = await captureCompleteBackup({ storage: completeFixture().storage, ...crypto });
+  const components = structuredClone(backup.components);
+  components.reader.issues[1].cover = { path: full, ext: 'jpg' };
+  const digest = createHash('sha256').update(canonical(components)).digest('hex');
+  const text = canonical({ format: COMPLETE_BACKUP_FORMAT, version: COMPLETE_BACKUP_VERSION, digest, components });
+  const decoded = await parseCompleteBackup(text, crypto);
+  assert.deepEqual(decoded.components.reader.issues[1].cover, { path: full, ext: 'jpg' });
+  assert.equal((await createCompleteBackup(decoded.components, crypto)).text, text, 'the file round-trips byte for byte');
+  assert.equal(await personalDigest(decoded, webcrypto), await personalDigest({ components }, webcrypto),
+    'a cloud comparison against the digest recorded before the fix still matches');
 });
 
 test('single-kind backups and other files are refused by name, so the reader knows where each belongs', async () => {
