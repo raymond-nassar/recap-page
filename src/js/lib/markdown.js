@@ -15,6 +15,13 @@ const BULLET_LINK_RE = new RegExp(`^\\s*[-*]\\s*\\[${LINK_TEXT}\\]\\(([^)\\s]+)(
 const SOURCE_OCCURRENCE_RE = /\s*<!--\s*mrt:source-occurrence=((?:source-position:)?[1-9]\d*)\s*-->\s*$/;
 const IDENTITY_EVIDENCE_RE = /\s*<!--\s*mrt:identity-evidence=(owner-confirmed-identity)\s*-->\s*$/;
 
+export function markdownFilename(name, orderOnly = false) {
+  const suffix = orderOnly ? '-order-only.md' : '.md';
+  const slug = String(name).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'list';
+  // Both phone save bridges accept at most 180 characters, including the export suffix.
+  return `${slug.slice(0, 180 - suffix.length)}${suffix}`;
+}
+
 function sourceIdentity(title) {
   const evidence = IDENTITY_EVIDENCE_RE.exec(title);
   const withoutEvidence = evidence ? title.slice(0, evidence.index).trim() : title;

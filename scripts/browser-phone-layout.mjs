@@ -1243,7 +1243,51 @@ export const phoneFieldZoom = {
   },
 };
 
-export const phoneLayoutScenarios = [phoneFieldZoom, phoneBack, phoneContinue, continueWideMatchesMain, guideLinkPill, phoneNotices, phoneLongNotice, phoneSearchReflow, phoneSearchRowsFit, phoneCatalogReflow];
+export const phoneExploreHierarchy = {
+  id: 'phone-explore-hierarchy',
+  title: 'Explore titles retain their hierarchy at ordinary and largest phone text',
+  async run(page, t, selected) {
+    const spotlight = actualCatalog.lists.find((list) => list.id === 'the-vision-reading-order');
+    if (!spotlight) throw new Error('The Explore spotlight fixture is missing.');
+    const exploreCatalog = { ...catalog, lists: [...catalog.lists, spotlight] };
+    await forProfiles(page, t, async (profile, theme) => {
+      for (const size of ['ordinary', 'largest']) {
+        if (size === 'largest') await largeText(page, profile);
+        const cards = await page.$$eval('#home-primary-paths .home-path', (nodes) => nodes.map((node) => {
+          const title = node.querySelector('.home-path-title');
+          const label = node.querySelector('.home-path-label');
+          const count = node.querySelector('.home-path-count');
+          return {
+            title: title.textContent.trim(),
+            titleSize: parseFloat(getComputedStyle(title).fontSize),
+            labelSize: parseFloat(getComputedStyle(label).fontSize),
+            titleWidth: title.clientWidth,
+            titleScrollWidth: title.scrollWidth,
+            labelWidth: label.clientWidth,
+            labelScrollWidth: label.scrollWidth,
+            countWidth: count.clientWidth,
+            countScrollWidth: count.scrollWidth,
+            fits: [title, label, count].every((text) => text.scrollWidth <= text.clientWidth + 1),
+          };
+        }));
+        checked(t, `${profile.platform} ${profile.width} ${theme} ${size}: every Explore title is larger than its label and all card text fits`,
+          cards.some((card) => card.title === 'Character spotlights')
+            && cards.every((card) => card.titleSize > card.labelSize && card.fits), cards);
+        if (profile.platform === 'desktop' && profile.width === 1280 && size === 'ordinary') {
+          checked(t, `desktop ${theme}: Explore titles retain their original maximum size`,
+            cards.length > 0 && cards.every((card) => Math.abs(card.titleSize - 28.8) < 0.02), cards);
+        }
+        await capture(page, profile, theme, `explore-${size}`);
+      }
+    }, selected ?? [
+      ...profiles,
+      { width: 320, height: 568, platform: 'ios' },
+      { width: 350, height: 740, platform: 'ios' },
+    ], exploreCatalog);
+  },
+};
+
+export const phoneLayoutScenarios = [phoneFieldZoom, phoneExploreHierarchy, phoneBack, phoneContinue, continueWideMatchesMain, guideLinkPill, phoneNotices, phoneLongNotice, phoneSearchReflow, phoneSearchRowsFit, phoneCatalogReflow];
 export const phoneLayoutMutations = [
   {
     id: 'phone-back-on-roots', breaks: 'phone-back', why: 'restoring Back on every history entry puts it on tab roots',

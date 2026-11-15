@@ -789,7 +789,7 @@ test('all ordinary native-export scenarios declare their complete context totals
     ['browser-check.mjs', 'restore-copy-workflow', 1],
     ['browser-check.mjs', 'reader-round-trip', 1],
     ['browser-check.mjs', 'reading-shortcut', 1],
-    ['browser-markdown-export.mjs', 'readable-markdown-export', 4],
+    ['browser-markdown-export.mjs', 'readable-markdown-export', 6],
     ['browser-order-export.mjs', 'order-only-export', 6],
   ]) {
     const text = readFileSync(new URL('../scripts/' + file, import.meta.url), 'utf8');

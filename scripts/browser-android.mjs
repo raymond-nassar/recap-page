@@ -5802,6 +5802,15 @@ try {
     // sidebar toggle is its icon and name on both.
     check(navigationToggle.labelVisible === (viewport.width <= 880),
       `${label}: narrow navigation shows its More label on Android and desktop alike; wide keeps its icon`);
+    if (phoneHeader && viewport.width <= 880) {
+      const weights = await page.evaluate(() => [
+        document.querySelector('.rail-toggle-label'),
+        document.querySelector('.rail-header [data-view="library"] span'),
+        document.querySelector('.rail-header [data-view="add"] span'),
+      ].map((node) => node ? getComputedStyle(node).fontWeight : null));
+      check(weights.every((weight) => weight === '400'),
+        `${label}: More, Library and Search labels have the same regular weight ${JSON.stringify(weights)}`);
+    }
     // The narrow toggle opens the bottom bar's More panel, so main.js names it More, as the
     // shared browser suite asserts. Each property is named on failure so a miss says which one.
     const navigationMisses = [
