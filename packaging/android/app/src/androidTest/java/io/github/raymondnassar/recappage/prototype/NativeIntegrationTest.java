@@ -287,7 +287,7 @@ public final class NativeIntegrationTest {
                 reload();
             }
             JSONObject result = (JSONObject) asyncJs(web,
-                    "const {CloudUploadPermit}=await import('/js/lib/cloudUploadPermit.js');"
+                    "const {CloudUploadPermit}=await import(location.origin+'/js/lib/cloudUploadPermit.js');"
                     + "const previous=sessionStorage.getItem('recap.test.upload-permit'),state=await navigator.locks.query();"
                     + "const fresh=![...state.held,...state.pending].some(l=>l.name===previous);"
                     + "let lost=0,keep=false;"
