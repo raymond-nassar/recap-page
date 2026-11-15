@@ -102,11 +102,19 @@ async function keepPaint(label, first, second) {
   return files;
 }
 
+// Puppeteer's default capture beyond the viewport drops Edge 157's emulated forced colors palette while
+// the media query keeps matching (#1209): measured locally, a pseudo-element read as CanvasText before
+// the first capture and as its authored color after it. So every later forced colors reading and
+// capture here was of unforced style, and the first variant failed only its color, hosted run
+// 43689605558 included. Capturing within the viewport keeps the palette, and every element captured
+// here lies inside the 1,280 by 900 viewport.
+const capture = (element) => element.screenshot({ captureBeyondViewport: false });
+
 async function checkPaint(page, t, selector, ruleSelector, glyph, label) {
   const element = await page.$(selector);
   const before = await measure(page, selector);
   const layouts = { original: await layout(page) };
-  const painted = await element.screenshot();
+  const painted = await capture(element);
   layouts.originalAfter = await layout(page);
   // Change only the alternative text, leaving the glyph and every other declaration alone.
   const content = await page.evaluate((selector) => {
@@ -120,7 +128,7 @@ async function checkPaint(page, t, selector, ruleSelector, glyph, label) {
   try {
     const fallback = await measure(page, selector);
     layouts.fallback = await layout(page);
-    const fallbackPaint = await element.screenshot();
+    const fallbackPaint = await capture(element);
     layouts.fallbackAfter = await layout(page);
     const samePixels = Buffer.from(painted).equals(Buffer.from(fallbackPaint));
     const detail = { before, fallback };

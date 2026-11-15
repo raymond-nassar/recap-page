@@ -17921,8 +17921,12 @@ SCENARIOS.push({
       localStorage.setItem('mrt.state.v2', JSON.stringify(model.exportBackup(state)));
       localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, filter: 'all' }));
     });
+    // A fresh document, not a fragment change on the live page plus a reload. The fixture lands
+    // while the app's startup cleanup is still pending, and that cleanup adopts it and rewrites the
+    // address to #/home/shelf. Racing a fragment navigation, that write let Edge 157 reload the
+    // replaced Home entry while the page itself showed #/read/shelf (#987, measured locally).
+    await page.goto('about:blank');
     await open(page, '/?catalog=browser-check#/read/shelf');
-    await page.reload({ waitUntil: 'load' });
     await page.waitForFunction(() => document.querySelectorAll('#shelf .tile').length === 8, { timeout: 15000 });
     await page.waitForSelector('#shelf .tile', { visible: true, timeout: 15000 });
     const results = {};
@@ -25635,6 +25639,16 @@ async function runReaderLauncherFeedback(page, t) {
     page.__ux11Step = 'synthetic-seed';
     await open(page, '/');
     await seedFixtureState(page);
+    // The app's startup cleanup rewrites saved data that still carries issue descriptions, which the
+    // fixture's do, once the tab lock answers. Every row compares the launcher's saved bytes with these,
+    // so they are read after that write. #1324: on hosted run 43689605558 they were read 7 ms before it,
+    // and 23 rows then failed only their byte comparisons.
+    await page.waitForFunction(() => {
+      const raw = localStorage.getItem('mrt.state.v2');
+      if (!raw) return false;
+      return !Object.values(JSON.parse(raw).issues ?? {})
+        .some((issue) => issue && Object.prototype.hasOwnProperty.call(issue, 'description'));
+    }, { timeout: 15000 });
     Object.assign(rawState, await page.evaluate(() => ({ raw: localStorage.getItem('mrt.state.v2'),
       selected: localStorage.getItem('mrt.selectedList') })));
     for (const f of fixtures) {
