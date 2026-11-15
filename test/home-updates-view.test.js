@@ -11,6 +11,8 @@ const walk = (root) => [root, ...root.children.flatMap(walk)];
 
 function harness({
   content = { version: '1.0.0', batch }, locks = { request: async (_key, fn) => fn() }, isIos = false,
+  firstLaunch = false, entries = [['mrt.state.v2', 'reading bytes'], ['mrt.state.salvage', 'recovery bytes']],
+  unreadable = false,
 } = {}) {
   const listeners = () => ({
     listeners: {},
@@ -40,10 +42,10 @@ function harness({
   const nodes = Object.fromEntries(['home', 'details', 'toggle', 'marker', 'content', 'close', 'status', 'retry']
     .map((name) => [name, node(name)]));
   nodes.details.children = [nodes.toggle, nodes.content, nodes.close, nodes.status, nodes.retry];
-  const map = new Map([['mrt.state.v2', 'reading bytes'], ['mrt.state.salvage', 'recovery bytes']]);
+  const map = new Map(entries);
   const storage = {
     writes: [],
-    getItem: (key) => map.get(key) ?? null,
+    getItem: (key) => { if (unreadable) throw new Error('denied'); return map.get(key) ?? null; },
     setItem(key, value) { this.writes.push(key); map.set(key, value); },
   };
   const seen = createHomeUpdatesSeen({ storage, locks });
@@ -57,6 +59,7 @@ function harness({
     loadCatalog: () => setup.loader(),
     onPreview: (entry) => calls.previews.push({ entry, opener: doc.activeElement }),
     isIos,
+    firstLaunch,
   });
   return {
     view, nodes, doc, host, calls, storage, map, setup, seen,
@@ -290,4 +293,67 @@ test('late Preview work is retired by close, navigation or another selected acti
     assert.equal(h.calls.previews.length, cancellation === 'another' ? 1 : 0);
     if (cancellation === 'another') assert.equal(h.calls.previews[0].entry.id, 'd');
   }
+});
+
+// #1317: Home offers the button after an update until the reader has opened it once.
+test('Home offers What\'s new after an update and hides it on leaving Home once opening is remembered', async () => {
+  const h = harness();
+  h.view.wire();
+  assert.equal(h.nodes.details.hidden, false);
+  await h.open();
+  await h.nodes.close.emit('click');
+  assert.equal(h.nodes.details.hidden, false, 'Close returns focus to a toggle that is still there');
+  assert.equal(h.doc.activeElement, h.nodes.toggle);
+  h.calls.current = false;
+  h.view.close({ restoreFocus: false });
+  h.view.leaveHome();
+  assert.equal(h.nodes.details.hidden, true);
+  const later = harness({ entries: [['mrt.state.v2', 'reading bytes'], [HOME_UPDATES_SEEN_KEY, '50']] });
+  later.view.wire();
+  assert.equal(later.nodes.details.hidden, true);
+  const older = harness({ entries: [['mrt.state.v2', 'reading bytes'], [HOME_UPDATES_SEEN_KEY, '49']] });
+  older.view.wire();
+  assert.equal(older.nodes.details.hidden, false);
+});
+
+test('a fresh install records the batch quietly and never offers the button', async () => {
+  const h = harness({ firstLaunch: true, entries: [] });
+  h.view.wire();
+  assert.equal(h.nodes.details.hidden, true);
+  await settle();
+  assert.equal(h.map.get(HOME_UPDATES_SEEN_KEY), '50');
+  assert.deepEqual(h.storage.writes, [HOME_UPDATES_SEEN_KEY]);
+});
+
+test('an unremembered opening or unreadable record keeps the button for the next visit', async () => {
+  const refused = harness({ locks: null });
+  refused.view.wire();
+  await refused.open();
+  refused.calls.current = false;
+  refused.view.leaveHome();
+  assert.equal(refused.nodes.details.hidden, false);
+  const unreadable = harness({ unreadable: true });
+  unreadable.view.wire();
+  assert.equal(unreadable.nodes.details.hidden, false);
+});
+
+test('About opens the same highlights on Home whatever the record says, and a null batch offers neither', async () => {
+  const h = harness({ entries: [['mrt.state.v2', 'reading bytes'], [HOME_UPDATES_SEEN_KEY, '50']] });
+  h.view.wire();
+  assert.equal(h.view.available(), true);
+  assert.equal(h.nodes.details.hidden, true);
+  assert.equal(h.view.open(), true);
+  assert.equal(h.nodes.details.hidden, false);
+  assert.equal(h.nodes.details.open, true);
+  assert.equal(h.doc.activeElement, h.nodes.toggle);
+  h.calls.current = false;
+  h.view.close({ restoreFocus: false });
+  h.view.leaveHome();
+  assert.equal(h.nodes.details.hidden, true);
+  assert.equal(h.view.open(), false, 'nothing opens while Home is not showing');
+  const empty = harness({ content: { version: '1.0.0', batch: null } });
+  empty.view.wire();
+  assert.equal(empty.nodes.details.hidden, true);
+  assert.equal(empty.view.available(), false);
+  assert.equal(empty.view.open(), false);
 });

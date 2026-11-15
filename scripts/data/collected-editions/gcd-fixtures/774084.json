@@ -1,0 +1,405 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/774084/?format=json",
+  "retrievedAt": "2026-11-13T00:09:12.673Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/774084/?format=json",
+    "series_name": "New X-Men (2002 series)",
+    "descriptor": "1",
+    "number": "1",
+    "volume": "1",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "2002",
+    "key_date": "2002-00-00",
+    "page_count": "392.000",
+    "isbn": "0-7851-0964-1",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/52092/?format=json",
+    "story_set": [
+      {
+        "type": "credits, title page",
+        "title": "",
+        "feature": "",
+        "sequence_number": 1,
+        "page_count": "3.000",
+        "notes": "",
+        "script": "?",
+        "pencils": "Frank Quitely"
+      },
+      {
+        "type": "foreword, introduction, preface, afterword",
+        "title": "Introduction",
+        "feature": "",
+        "sequence_number": 2,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "Bruce Timm",
+        "pencils": "None"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Issue 114",
+        "feature": "X-Men",
+        "sequence_number": 3,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Frank Quitely"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Variant Cover",
+        "feature": "X-Men",
+        "sequence_number": 4,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Frank Quitely"
+      },
+      {
+        "type": "comic story",
+        "title": "E is for Extinction: one of three",
+        "feature": "X-Men",
+        "sequence_number": 5,
+        "page_count": "23.000",
+        "notes": "",
+        "script": "Grant Morrison",
+        "pencils": "Frank Quitely"
+      },
+      {
+        "type": "illustration",
+        "title": "",
+        "feature": "X-Men",
+        "sequence_number": 6,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Frank Quitely"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Issue 115",
+        "feature": "X-Men",
+        "sequence_number": 7,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Frank Quitely (signed)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Variant Cover",
+        "feature": "X-Men",
+        "sequence_number": 8,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Barry Windsor-Smith (signed)"
+      },
+      {
+        "type": "comic story",
+        "title": "E Is for Extinction: Two of Three",
+        "feature": "X-Men",
+        "sequence_number": 9,
+        "page_count": "23.000",
+        "notes": "",
+        "script": "Grant Morrison",
+        "pencils": "Frank Quitely"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Issue 116",
+        "feature": "X-Men",
+        "sequence_number": 10,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Frank Quitely (signed)"
+      },
+      {
+        "type": "comic story",
+        "title": "E is for Extinction: Three of Three",
+        "feature": "X-Men",
+        "sequence_number": 11,
+        "page_count": "23.000",
+        "notes": "",
+        "script": "Grant Morrison",
+        "pencils": "Frank Quitely"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "2001 Annual",
+        "feature": "X-Men",
+        "sequence_number": 12,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Leinil Francis Yu"
+      },
+      {
+        "type": "comic story",
+        "title": "The Man from Room X",
+        "feature": "X-Men",
+        "sequence_number": 13,
+        "page_count": "41.000",
+        "notes": "Story printed sideways; some pages reformatted resulting in different page count than original.",
+        "script": "Grant Morrison",
+        "pencils": "Leinil Francis Yu"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Issue 117",
+        "feature": "X-Men",
+        "sequence_number": 14,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Frank Quitely"
+      },
+      {
+        "type": "comic story",
+        "title": "Danger Rooms",
+        "feature": "X-Men",
+        "sequence_number": 15,
+        "page_count": "23.000",
+        "notes": "",
+        "script": "Grant Morrison",
+        "pencils": "Ethan Van Sciver"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Issue 118",
+        "feature": "X-Men",
+        "sequence_number": 16,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Frank Quitely (signed)"
+      },
+      {
+        "type": "comic story",
+        "title": "Germ Free Generation: one of three",
+        "feature": "X-Men",
+        "sequence_number": 17,
+        "page_count": "23.000",
+        "notes": "",
+        "script": "Grant Morrison",
+        "pencils": "Ethan Van Sciver"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Issue 119",
+        "feature": "X-Men",
+        "sequence_number": 18,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Frank Quitely"
+      },
+      {
+        "type": "comic story",
+        "title": "Germ Free Generation: two of three",
+        "feature": "X-Men",
+        "sequence_number": 19,
+        "page_count": "23.000",
+        "notes": "",
+        "script": "Grant Morrison",
+        "pencils": "Igor Kordej"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Issue 120",
+        "feature": "X-Men",
+        "sequence_number": 20,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Frank Quitely (signed)"
+      },
+      {
+        "type": "comic story",
+        "title": "Germ Free Generation: three of three",
+        "feature": "X-Men",
+        "sequence_number": 21,
+        "page_count": "23.000",
+        "notes": "",
+        "script": "Grant Morrison",
+        "pencils": "Igor Kordej"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Issue 121",
+        "feature": "X-Men",
+        "sequence_number": 22,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Frank Quitely (signed)"
+      },
+      {
+        "type": "comic story",
+        "title": "Silence: Psychic Rescue In Progress",
+        "feature": "X-Men",
+        "sequence_number": 23,
+        "page_count": "23.000",
+        "notes": "silent issue, part of 'Nuff Said month",
+        "script": "Grant Morrison",
+        "pencils": "Frank Quitely"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Issue 122",
+        "feature": "X-Men",
+        "sequence_number": 24,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Frank Quitely"
+      },
+      {
+        "type": "comic story",
+        "title": "Imperial",
+        "feature": "X-Men",
+        "sequence_number": 25,
+        "page_count": "23.000",
+        "notes": "",
+        "script": "Grant Morrison",
+        "pencils": "Frank Quitely"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Issue 123",
+        "feature": "X-Men",
+        "sequence_number": 26,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Tony Harris (signed)"
+      },
+      {
+        "type": "comic story",
+        "title": "Testament",
+        "feature": "X-Men",
+        "sequence_number": 27,
+        "page_count": "23.000",
+        "notes": "",
+        "script": "Grant Morrison",
+        "pencils": "Ethan Van Sciver; Tom Derenick"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Issue 124",
+        "feature": "X-Men",
+        "sequence_number": 28,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Frank Quitely (signed)"
+      },
+      {
+        "type": "comic story",
+        "title": "Superdestroyer",
+        "feature": "X-Men",
+        "sequence_number": 29,
+        "page_count": "23.000",
+        "notes": "",
+        "script": "Grant Morrison",
+        "pencils": "Igor Kordej"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Issue 125",
+        "feature": "X-Men",
+        "sequence_number": 30,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Ethan Van Sciver"
+      },
+      {
+        "type": "comic story",
+        "title": "Losers",
+        "feature": "X-Men",
+        "sequence_number": 31,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Grant Morrison",
+        "pencils": "Igor Kordej"
+      },
+      {
+        "type": "illustration",
+        "title": "",
+        "feature": "",
+        "sequence_number": 32,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "?"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Issue 126",
+        "feature": "X-Men",
+        "sequence_number": 33,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Frank Quitely (signed)"
+      },
+      {
+        "type": "comic story",
+        "title": "All Hell",
+        "feature": "X-Men",
+        "sequence_number": 34,
+        "page_count": "32.000",
+        "notes": "",
+        "script": "Grant Morrison",
+        "pencils": "Frank Quitely"
+      },
+      {
+        "type": "text article",
+        "title": "Morrison Manifesto",
+        "feature": "",
+        "sequence_number": 35,
+        "page_count": "11.000",
+        "notes": "Morrison's original proposal for the series, with Mark Powers' handwritten comments and Frank Quitely's sketches.",
+        "script": "Grant Morrison; Mark Powers",
+        "pencils": "Frank Quitely"
+      },
+      {
+        "type": "illustration",
+        "title": "Frank Quitely Character Sketches",
+        "feature": "",
+        "sequence_number": 36,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "Frank Quitely",
+        "pencils": "Frank Quitely"
+      },
+      {
+        "type": "illustration",
+        "title": "Igor Kordey",
+        "feature": "",
+        "sequence_number": 37,
+        "page_count": "1.000",
+        "notes": "Igor Kordey's original pencils for page 8 of New X-Men #120, before it was expanded to a two-page spread.",
+        "script": "?",
+        "pencils": "Igor Kordej"
+      },
+      {
+        "type": "illustration",
+        "title": "Ethan Van Sciver",
+        "feature": "",
+        "sequence_number": 38,
+        "page_count": "1.000",
+        "notes": "Ethan Van Sciver's pencils for page 7 of New X-Men #119, before Igor Kordey took over on the issue.",
+        "script": "?",
+        "pencils": "Ethan Van Sciver"
+      }
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/886235/?format=json",
+  "retrievedAt": "2026-11-13T21:24:22.397Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/886235/?format=json",
+    "series_name": "Siege: Mighty Avengers (2011 series)",
+    "descriptor": "",
+    "number": "[nn]",
+    "volume": "",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "2011",
+    "key_date": "2011-01-19",
+    "page_count": "124.000",
+    "isbn": "978-0-7851-4801-2",
+    "notes": "Collects *The Mighty Avengers* (Marvel, 2007 series) #32-36.",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/61612/?format=json",
+    "story_set": []
+  }
+}

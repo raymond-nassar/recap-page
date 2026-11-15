@@ -79,16 +79,75 @@ export function createFeedback({
   focusViewHeading,
   getCurrentView,
 }) {
-  const announce = announceChannel(
+  const channels = new WeakMap();
+  function activeDialog() {
+    const document = getDocument();
+    return document.activeElement?.closest?.('dialog[open]')
+      ?? [...document.querySelectorAll('dialog[open]')].at(-1) ?? null;
+  }
+
+  // A modal makes the page announcer inert, so a dialog gets its own polite status inside it.
+  function dialogSurface(dialog) {
+    const node = el('span', { class: 'visually-hidden', 'data-dialog-announcer': '', role: 'status', 'aria-live': 'polite', 'aria-atomic': 'true' });
+    let generation = 0;
+    let channel;
+    // close() and showModal() can reuse the same element before a queued write runs.
+    // A removed open attribute retires that question, even when it is open again now.
+    const invalidate = (records) => {
+      if (records.some((record) => record.oldValue !== null)) {
+        generation += 1;
+        node.textContent = '';
+        channel = makeChannel();
+      }
+    };
+    const Observer = getDocument().defaultView?.MutationObserver;
+    const observer = Observer ? new Observer(invalidate) : null;
+    dialog.append(node);
+    observer?.observe(dialog, { attributes: true, attributeFilter: ['open'], attributeOldValue: true });
+    // Drain synchronously too: a new message can arrive before the observer's microtask.
+    const refresh = () => { if (observer) invalidate(observer.takeRecords()); };
+    const makeChannel = () => announceChannel(() => {
+      refresh();
+      const current = generation;
+      node.textContent = '';
+      return (msg) => {
+        refresh();
+        if (generation !== current || activeDialog() !== dialog) return;
+        // A failed save can fill the dialog's own error region before this queued fallback lands.
+        const alreadyLive = [...dialog.querySelectorAll('[role="status"], [role="alert"], [aria-live]')]
+          .some((other) => other !== node && isLive(other) && !other.closest('[hidden], [inert]')
+            && other.textContent.trim() === msg.trim());
+        if (!alreadyLive) node.textContent = msg;
+      };
+    }, schedule);
+    channel = makeChannel();
+    return { channel: (msg) => channel(msg), refresh };
+  }
+
+  const pageChannel = announceChannel(
     () => {
       // Resolved once and reused, so both writes land on the same element even if the document
       // changes under us between them.
       const node = query('#announcer');
       node.textContent = '';
-      return (msg) => { node.textContent = msg; };
+      return (msg) => {
+        if (activeDialog()) announce(msg);
+        else node.textContent = msg;
+      };
     },
     schedule,
   );
+  function announce(msg) {
+    const dialog = activeDialog();
+    if (!dialog) return pageChannel(msg);
+    let surface = channels.get(dialog);
+    if (!surface) {
+      surface = dialogSurface(dialog);
+      channels.set(dialog, surface);
+    }
+    surface.refresh();
+    surface.channel(msg);
+  }
   const announceState = passiveAnnouncer(announce);
 
   // alert() reached the reader wherever they were; a pane fixed in one view does not. With
@@ -111,11 +170,24 @@ export function createFeedback({
     query(sel)?.replaceChildren(...(note ? [noticeEl(note)] : []));
   }
 
-  // #app-report is above every view, so it is the only pane always available to a message whose own
-  // pane the reader cannot see. Seven of the nine views carry no pane of their own.
+  // #app-report follows the reader, so it is available when a message's own pane cannot be seen.
   function overflowPane() {
     const box = query('#app-report');
     return box?.offsetParent ? box : null;
+  }
+
+  function placeOverflowPane() {
+    const box = query('#app-report');
+    const save = query('#save-report');
+    const home = query('#view-home');
+    const head = home?.querySelector(':scope > .head');
+    if (!box || !save || !head) return;
+    const cloud = query('#cloud-sync-notice');
+    const anchor = getCurrentView() === 'home' && !home.hidden
+      ? cloud?.parentElement === home ? cloud : head
+      : save;
+    if (anchor.nextElementSibling === box) return;
+    anchor.after(box);
   }
 
   // A notice with an action is a paragraph with a button in it rather than a message and a separate
@@ -160,6 +232,7 @@ export function createFeedback({
 
   function placeNotices() {
     const document = getDocument();
+    placeOverflowPane();
     const overflow = overflowPane();
     // Every dialog here is opened with showModal(), so an open one is the top layer and anything
     // behind it is inert and dimmed regardless of where it sits on the page.
@@ -210,6 +283,8 @@ export function createFeedback({
   // This is decided by reading the container rather than from a list of ids kept here, so
   // marking a container as a live region later cannot quietly reintroduce the double-speak.
   function isLive(node) {
+    const dialog = activeDialog();
+    if (dialog && !dialog.contains(node)) return false;
     for (let current = node; current && current.getAttribute; current = current.parentElement) {
       const live = current.getAttribute('aria-live');
       if (live && live !== 'off') return true;

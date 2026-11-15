@@ -69,6 +69,16 @@ export const issueRatings = {
       && document.querySelector('#issue-rating-input').value === '5'
       && document.querySelector('#issue-rating-error').textContent.length > 0
       && JSON.parse(localStorage.getItem('mrt.state.v2')).ratings?.[1001] === 3.5));
+    await new Promise((resolve) => setTimeout(resolve, 100));
+    const failureSpeech = await page.evaluate(() => {
+      const dialog = document.querySelector('#issue-rating-dialog');
+      const message = document.querySelector('#issue-rating-error').textContent;
+      const regions = [...dialog.querySelectorAll('[role="status"], [role="alert"], [aria-live]')]
+        .filter((node) => node.textContent.trim() === message.trim());
+      return { message, regions: regions.length };
+    });
+    t.check('a real failed rating save speaks the storage error through exactly one modal status',
+      failureSpeech.message.length > 0 && failureSpeech.regions === 1, JSON.stringify(failureSpeech));
     await page.evaluate(() => window.__ratingRestoreStorage());
     await click('#issue-rating-cancel');
 
