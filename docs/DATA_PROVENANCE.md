@@ -3704,15 +3704,15 @@ separate curated lane. For books without an exact indexer-note range, numbered i
 and creator credits or matching original issue stories provide the check; no image bytes are used.
 
 For Doctor Strange by Mark Waid Vol. 1, the 2018 original series and issue #3 are independently
-matched to the list and the trade story. The exact source note uses a capitalized series label that
-the current checker does not use to compare years; [#1305](https://github.com/raymond-nassar/recap-page/issues/1305)
-tracks that defect. Loki: Agent of Asgard Vol. 2 is checked against all six original stories,
+matched to the list and the trade story. The year guard compares the capitalized source label
+"Doctor Strange (Marvel, 2018 Series)" with the list's "Doctor Strange (2018 - 2019)" and matches
+2018; [#1307](https://github.com/raymond-nassar/recap-page/pull/1307) fixed [#1305](https://github.com/raymond-nassar/recap-page/issues/1305). Loki: Agent of Asgard Vol. 2 is checked against all six original stories,
 including #10-11 outside the selected Axis list.
 
 For War of the Realms: Journey Into Mystery, the dated paperback note names #1-5. The 2019
 original series and all five original issues independently match the list identities and dates.
 The Iron Man 2020: Robot Revolution paperback note names #1-6; all six originals independently
-match the selected list identities, dates and writer attribution.
+match the selected list's series name, issue numbers and 2020 on-sale year.
 
 For the three selected Secret Invasion books, retained original issues independently identify the
 series and issue numbers and match the selected trade stories' titles, features and pages. Extra

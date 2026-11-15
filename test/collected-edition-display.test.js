@@ -338,6 +338,8 @@ test('Robot Revolution uses the 2020 originals rather than the older Iron Man 20
     const items = lists['iron-man-2020'].items.filter((entry) =>
       entry.seriesId === 28356 && entry.number === String(appNumber));
     assert.equal(items.length, 1);
+    assert.equal(items[0].seriesName, 'Iron Man 2020 (2020)');
+    assert.match(items[0].onSale, /^2020-/);
     assert.equal(original.series, series.api_url);
     assert.equal(original.number, String(appNumber));
     assert.equal(original.variant_of, null);
