@@ -1,0 +1,35 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/528227/?format=json",
+  "retrievedAt": "2026-11-13T21:26:20.077Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/528227/?format=json",
+    "series_name": "Secret Invasion: Fantastic Four (2008 series)",
+    "descriptor": "2",
+    "number": "2",
+    "volume": "",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "August 2008",
+    "key_date": "2008-08-00",
+    "page_count": "36.000",
+    "isbn": "",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/30803/?format=json",
+    "story_set": [
+      {
+        "type": "comic story",
+        "title": "No One Gets Back Alive! Part 2",
+        "feature": "Fantastic Four",
+        "sequence_number": 1,
+        "page_count": "23.000",
+        "notes": "",
+        "script": "Roberto Aguirre-Sacasa",
+        "pencils": "Barry Kitson"
+      }
+    ]
+  }
+}

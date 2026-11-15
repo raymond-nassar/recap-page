@@ -66,6 +66,18 @@ export const PLATFORM_LABELS = new Map([
     'Use an Android More button with the required larger touch target.',
     'Android only.',
   ],
+  [
+    'Search Reading Lists, series, creators and comics from one box, with scopes to narrow the results and offline suggestions for similar names when a local search finds no matches.',
+    'Every platform. Reading Lists, series, creators and spelling suggestions work offline; comic lookup is requested separately.',
+  ],
+  [
+    'On iPhone and iPad, tapping a text field no longer leaves the page zoomed, and a text size change carries into later page loads. Long Data page headings wrap on small phones.',
+    'Text-field zoom and text-size reload fixes: iPhone and iPad. Data page wrapping: small phone screens.',
+  ],
+  [
+    'Fixed OneDrive checks and restores that failed when Microsoft forwarded downloads through more than one address, and improved how large complete backups fit on iPhone and iPad.',
+    'OneDrive forwarding: Windows, Android, iPhone and iPad. Complete restore capacity: iPhone and iPad.',
+  ],
 ]);
 
 const PLATFORM_BOUND = /\b(?:Windows|Android|iPhone|iPad|iOS|macOS|Mac|Edge|Chrome|Safari|Firefox|OneDrive|Google Drive|iCloud|Microsoft|Google Play|App Store|TestFlight|offline|install\w*|cloud)\b/i;

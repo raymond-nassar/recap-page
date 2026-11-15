@@ -1,0 +1,55 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/1297065/?format=json",
+  "retrievedAt": "2026-11-14T12:19:45.861Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/1297065/?format=json",
+    "series_name": "Loki: Agent of Asgard (2014 series)",
+    "descriptor": "9",
+    "number": "9",
+    "volume": "",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "February 2015",
+    "key_date": "2015-02-00",
+    "page_count": "32.000",
+    "isbn": "",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/78892/?format=json",
+    "story_set": [
+      {
+        "type": "recap",
+        "title": "",
+        "feature": "Loki",
+        "sequence_number": 1,
+        "page_count": "1.000",
+        "notes": "page also includes indicia",
+        "script": "Al Ewing ?",
+        "pencils": "None"
+      },
+      {
+        "type": "comic story",
+        "title": "Good Sons Like You...",
+        "feature": "Loki",
+        "sequence_number": 2,
+        "page_count": "20.000",
+        "notes": "",
+        "script": "Al Ewing (credited)",
+        "pencils": "Lee Garbett (credited)"
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "Next Issue:",
+        "feature": "Loki",
+        "sequence_number": 3,
+        "page_count": "1.000",
+        "notes": "Cover art for the following issue (#10).",
+        "script": "None",
+        "pencils": "Lee Garbett"
+      }
+    ]
+  }
+}

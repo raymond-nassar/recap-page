@@ -1,0 +1,45 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/127870/?format=json",
+  "retrievedAt": "2026-11-13T03:50:43.174Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/127870/?format=json",
+    "series_name": "New X-Men (2001 series)",
+    "descriptor": "134 [Direct Edition]",
+    "number": "134",
+    "volume": "1",
+    "variant_name": "Direct Edition",
+    "title": "",
+    "publication_date": "January 2003",
+    "key_date": "2003-01-00",
+    "page_count": "44.000",
+    "isbn": "",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/9855/?format=json",
+    "story_set": [
+      {
+        "type": "comic story",
+        "title": "Kid Omega",
+        "feature": "X-Men",
+        "sequence_number": 1,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Grant Morrison (credited)",
+        "pencils": "Keron Grant (credited)"
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "",
+        "feature": "X-Men",
+        "sequence_number": 2,
+        "page_count": "3.000",
+        "notes": "Preview of Uncanny X-Men, The (Marvel, 1981 series) #416.",
+        "script": "Chuck Austen",
+        "pencils": "麻宮騎亜 (Kia Asamiya)"
+      }
+    ]
+  }
+}

@@ -10,6 +10,10 @@ import {
   beforeXmenFirstClassCatalogEntry, beforeXmenFirstClassEntry, beforeXmenFirstClassOrders,
   beforeXmenFirstClassPayloadText,
 } from './xmen-first-class-history.mjs';
+import {
+  beforeReadingListCorrectionEntry, beforeReadingListCorrectionOrders,
+  beforeReadingListCorrectionPayloadText, beforeReadingListCorrectionCatalogEntry,
+} from './reading-list-correction-history.mjs';
 
 let captured;
 export function ultimateSelectionHistory() {
@@ -46,6 +50,7 @@ function assertRecorded(value, original, current, label) {
 
 export function beforeUltimateSelectionEntry(entry) {
   entry = beforeXmenFirstClassEntry(entry);
+  entry = beforeReadingListCorrectionEntry(entry);
   if (entry.id !== ultimateSelection.id) return entry;
   const baseline = ultimateSelectionHistory();
   // Discovery tags may have been set aside by an older approval before this inverse runs.
@@ -72,12 +77,15 @@ export function beforeUltimateSelectionIssueIds(ids) {
 }
 
 export function beforeUltimateSelectionOrders(orders) {
-  return beforeXmenFirstClassOrders(orders).map((order) => (order.id ?? order.orderId) === ultimateSelection.id
+  orders = beforeXmenFirstClassOrders(orders);
+  orders = beforeReadingListCorrectionOrders(orders);
+  return orders.map((order) => (order.id ?? order.orderId) === ultimateSelection.id
     ? { ...order, issueIds: beforeUltimateSelectionIssueIds(order.issueIds) } : order);
 }
 
 export function beforeUltimateSelectionPayloadText(file, text) {
   text = beforeXmenFirstClassPayloadText(file, text);
+  text = beforeReadingListCorrectionPayloadText(file, text);
   if (path.basename(file) !== ultimateSelection.payloadFile) return text;
   const baseline = ultimateSelectionHistory();
   assertRecorded(JSON.parse(text), baseline.payload, baseline.currentPayload, 'payload');
@@ -86,6 +94,7 @@ export function beforeUltimateSelectionPayloadText(file, text) {
 
 export function beforeUltimateSelectionCatalogEntry(entry) {
   entry = beforeXmenFirstClassCatalogEntry(entry);
+  entry = beforeReadingListCorrectionCatalogEntry(entry);
   if (entry.id !== ultimateSelection.id) return entry;
   const baseline = ultimateSelectionHistory();
   const adapt = (value) => Object.hasOwn(entry, 'out') ? { ...value, out: value.file } : value;

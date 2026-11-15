@@ -419,13 +419,13 @@ orders: **null means nobody granted anything for this file, not that the file is
 Three hundred and forty-seven pinned reading-order payloads remain under
 [`src/data/`](../src/data): 344 active visible catalog files, one active noncatalog partition parent,
 and the retired No Way Home (18 originals) and withdrawn Marvel Multiverse (2 comics) payloads. The 345 active files hold
-32,869 issue records covering 20,170 distinct tracked identities. The visible files hold 32,382 of those records;
+32,838 issue records covering 20,183 distinct tracked identities. The visible files hold 32,351 of those records;
 the extra 487 are the retained Marvel Knights to Planet X parent whose ordinary children partition
 the same vector. Records use these fields:
 `issueId`, `title`,
 `number`, `url`, `seriesId`, `seriesName`, `onSale`, `mu`, `digitalId`, `pageCount`, a `cover`
-object of `path` and `ext`, and `creators` of `name` and `role`. Across the 345 active payloads, 27,968
-records carry a cover URL and 26,239 carry creator credits. The retired No Way Home payload remains byte-exact;
+object of `path` and `ext`, and `creators` of `name` and `role`. Across the 345 active payloads, 27,937
+records carry a cover URL and 26,209 carry creator credits. The retired No Way Home payload remains byte-exact;
 neither retired payload contributes to active discovery or this active census.
 
 `description` was the field to look at hardest and is now empty. The others are facts about a
@@ -3682,11 +3682,53 @@ Each labeled sequence credits the Grand Comics Database and links its licence. O
 verified, conflict-free relations display; this is not a statement of reading availability.
 Existing collection headings remain editorial or user-customized grouping, not verification.
 
-The provider policy ships Hoopla as pending, with no title identifier or address. A future link
-requires recorded granted permission and a verified HTTPS book destination. It says "View this
-book at Hoopla", not that borrowing is possible, and opens outside the app with referrer isolation.
-No live provider lookup, account, credential, cover image or affiliate/store destination is added.
+On 2026-11-12 the owner approved linking to a book's Hoopla page as fair use, since only a link is
+offered and no Hoopla metadata is taken, in
+[the link approval](https://github.com/raymond-nassar/recap-page/issues/1203#issuecomment-6839342560).
+Hoopla's product team had not replied, so no permission from Hoopla is recorded or claimed. The owner
+added Libby on the same basis, as a link only that opens the book in the reader's own library, in
+[the follow-up answers](https://github.com/raymond-nassar/recap-page/issues/1203#issuecomment-6839422429).
+Each address is confirmed by the owner with the date it was checked, and must match one accepted
+form per service; anything else is refused at build time and dropped by the app. A link reads "Look
+for this book on Hoopla" or "in Libby", never that borrowing is possible, and opens outside the app
+with referrer isolation. No live provider lookup, availability, account, credential, cover image,
+description or affiliate/store destination is added.
 
+The selected Modern Timeline books extend the display without inventing collection headings. The
+[licensed check inputs](../scripts/data/collected-editions/gcd-check-inputs.json) identify the
+selected lists, source-series mappings and supporting records; the
+[checked evidence](../scripts/data/collected-editions/gcd-editions.json) retains their dates and
+results. The original pilot's 23 relations remain unchanged, and 36 selected books add 194
+relations across 34 lists, intersected with each list's exact comics. Book names stay in the
+separate curated lane. For books without an exact indexer-note range, numbered interior-cover text
+and creator credits or matching original issue stories provide the check; no image bytes are used.
+
+For Doctor Strange by Mark Waid Vol. 1, the 2018 original series and issue #3 are independently
+matched to the list and the trade story. The year guard compares the capitalized source label
+"Doctor Strange (Marvel, 2018 Series)" with the list's "Doctor Strange (2018 - 2019)" and matches
+2018; [#1307](https://github.com/raymond-nassar/recap-page/pull/1307) fixed [#1305](https://github.com/raymond-nassar/recap-page/issues/1305). Loki: Agent of Asgard Vol. 2 is checked against all six original stories,
+including #10-11 outside the selected Axis list.
+
+For War of the Realms: Journey Into Mystery, the dated paperback note names #1-5. The 2019
+original series and all five original issues independently match the list identities and dates.
+The Iron Man 2020: Robot Revolution paperback note names #1-6; all six originals independently
+match the selected list's series name, issue numbers and 2020 on-sale year.
+
+For the three selected Secret Invasion books, retained original issues independently identify the
+series and issue numbers and match the selected trade stories' titles, features and pages. Extra
+indexed stories outside those selected series are recorded as exclusions from the title count,
+not as claims about the contents of the corresponding list issues.
+
+For Imperial, the [original New X-Men #123](https://www.comics.org/issue/98072/) and
+[trade](https://www.comics.org/issue/774091/) index "Testament" at 22 pages, while the
+[numbered hardcover](https://www.comics.org/issue/774084/) indexes 23, read 2026-11-12 Pacific.
+The trade stories for #118-125 match their original issues by series, number, title, pages and
+credits. Their retained issue fixtures are independently checked against each named trade sequence;
+the title tier alone does not establish series identity. The [original #126](https://www.comics.org/issue/98075/),
+read 2026-11-13, also indexes a five-page Spider-Man story that the trade does not index. That is
+not proof the physical book omits it, but full coverage of #126 is unconfirmed and its relation is
+held. The hardcover remains held independently. The unresolved X-Corps annual and collection
+parsing conflicts are not projected.
 ## Universes metadata
 
 [Issue #1291](https://github.com/raymond-nassar/recap-page/issues/1291) supplies the initial
@@ -3734,3 +3776,33 @@ follow-up in [Issue #1312](https://github.com/raymond-nassar/recap-page/issues/1
 list keeps all 404 comics; its copy no longer claims the two lists share the same spine. The
 core list has no Universe association because its source does not establish one. Existing saved
 lists are snapshots and retain their previous contents and progress.
+
+## Thor Celestial Saga and Captain Marvel description corrections
+
+On 2026-11-14, [the Best of Thor source guide](https://www.comicbookherald.com/best-10-thor-comics-of-all-time/)
+was reread. Its first honorable mention recommends the linked *Thor and the Eternals:
+The Celestial Saga* collection; the introduction's Thor #240-245 and Annual #10 mentions
+are separate recommendations, not that collection's contents.
+[The ISBN 9781302922498 bibliography](https://www.abebooks.com/9781302922498/Thor-Eternals-Celestials-Saga-Thomas-1302922491/plp),
+retrieved the same day, independently identifies Thor (1966) #283-301 and Thor Annual (1966) #7.
+The annual prologue comes first, followed by the main-series range in ascending order.
+The named collection's [Marvel Database reprint order](https://marvel.fandom.com/wiki/Thor_and_the_Eternals:_The_Celestials_Saga_TPB_Vol_1_1?oldid=9472363)
+and the [2006 first volume's reprint order](https://marvel.fandom.com/wiki/Thor:_The_Eternals_Saga_TPB_Vol_1_1?oldid=9687668),
+retrieved through the wiki API on the same day, both put Annual #7 before #283.
+
+[The correction ledger](../scripts/data/thor-celestial-correction.json) preserves all seven
+removed source positions, twenty exact replacements, each metadata request and retrieval time,
+and both publication digests. All twenty identities were checked against the provider's series
+and issue-detail responses. No identity or metadata gap remains. The other 124 originals keep
+their order and metadata unchanged, yielding 144 comics in the same eleven sections.
+Only factual metadata and cover addresses are retained, never image bytes or narrative prose.
+The existing Comic Book Herald credit, source link and null source license remain unchanged;
+this correction conveys no new license over the metadata.
+
+[The Captain Marvel description correction](../scripts/data/captain-marvel-description-correction.json)
+records the exact payload-only copy alignment to the already published catalog and manifest.
+No comic identities, metadata, source selection or discovery placement change for that guide.
+Newly added lists save the description shown while browsing. Existing saved snapshots,
+including Thor's seven unrelated originals and their progress, are not rewritten or relabeled.
+Historical review helpers replay only the captured prior publications or these exact corrections,
+without rewriting frozen approvals.

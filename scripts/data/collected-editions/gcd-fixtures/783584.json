@@ -1,0 +1,225 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/783584/?format=json",
+  "retrievedAt": "2026-11-13T21:19:32.663Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/783584/?format=json",
+    "series_name": "Mighty Avengers: Earth's Mightiest (2009 series)",
+    "descriptor": "",
+    "number": "[nn]",
+    "volume": "",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "2009 [January 2010]",
+    "key_date": "2009-13-00",
+    "page_count": "172.000",
+    "isbn": "978-07851-3746-7",
+    "notes": "Collects *The Mighty Avengers* (Marvel, 2007 series) #21-26.",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/53020/?format=json",
+    "story_set": [
+      {
+        "type": "illustration",
+        "title": "",
+        "feature": "",
+        "sequence_number": 1,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Khoi Pham"
+      },
+      {
+        "type": "table of contents",
+        "title": "",
+        "feature": "",
+        "sequence_number": 2,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "None"
+      },
+      {
+        "type": "illustration",
+        "title": "",
+        "feature": "",
+        "sequence_number": 3,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Khoi Pham"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "",
+        "sequence_number": 4,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Khoi Pham (signed)"
+      },
+      {
+        "type": "comic story",
+        "title": "How I'll Remember You",
+        "feature": "Hank Pym",
+        "sequence_number": 5,
+        "page_count": "8.000",
+        "notes": "",
+        "script": "Dan Slott",
+        "pencils": "Khoi Pham"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "The Avengers",
+        "sequence_number": 6,
+        "page_count": "1.000",
+        "notes": "Covers of issues #21-23 form one larger picture (cover of #23 is signed).",
+        "script": "None",
+        "pencils": "Khoi Pham"
+      },
+      {
+        "type": "comic story",
+        "title": "Earth's Mightiest Part 1 of 3: The Smartest Man in the Room",
+        "feature": "The Avengers",
+        "sequence_number": 7,
+        "page_count": "36.000",
+        "notes": "Original Avengers origin retold.",
+        "script": "Dan Slott",
+        "pencils": "Khoi Pham"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "The Avengers",
+        "sequence_number": 8,
+        "page_count": "1.000",
+        "notes": "Covers of issues #21-23 form one larger picture (cover of #23 is signed).",
+        "script": "None",
+        "pencils": "Khoi Pham"
+      },
+      {
+        "type": "comic story",
+        "title": "Earth's Mightiest Part 2 of 3: The Writing on the Wall",
+        "feature": "The Avengers",
+        "sequence_number": 9,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Dan Slott",
+        "pencils": "Khoi Pham"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "The Avengers",
+        "sequence_number": 10,
+        "page_count": "1.000",
+        "notes": "Covers of issues #21-23 form one larger picture.",
+        "script": "None",
+        "pencils": "Khoi Pham (signed)"
+      },
+      {
+        "type": "comic story",
+        "title": "Earth's Mightiest Part 3 of 3: Three Words",
+        "feature": "The Avengers",
+        "sequence_number": 11,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Dan Slott",
+        "pencils": "Khoi Pham"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "The Avengers",
+        "sequence_number": 12,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Khoi Pham (signed)"
+      },
+      {
+        "type": "comic story",
+        "title": "Chasing Ghosts",
+        "feature": "The Avengers",
+        "sequence_number": 13,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Dan Slott",
+        "pencils": "Rafa Sandoval"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "The Avengers",
+        "sequence_number": 14,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Khoi Pham (signed)"
+      },
+      {
+        "type": "comic story",
+        "title": "Mighty / Fantastic Part One: The Baxter Job",
+        "feature": "The Avengers",
+        "sequence_number": 15,
+        "page_count": "21.000",
+        "notes": "",
+        "script": "Dan Slott",
+        "pencils": "Stephen Segovia"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "The Avengers",
+        "sequence_number": 16,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Marko Djurdjević (painting)"
+      },
+      {
+        "type": "comic story",
+        "title": "Mighty / Fantastic Part Two: You Can't Get There from Here",
+        "feature": "The Avengers",
+        "sequence_number": 17,
+        "page_count": "23.000",
+        "notes": "",
+        "script": "Dan Slott",
+        "pencils": "Stephen Segovia"
+      },
+      {
+        "type": "illustration",
+        "title": "Unused Cover by Khoi Pham",
+        "feature": "The Avengers",
+        "sequence_number": 18,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Khoi Pham"
+      },
+      {
+        "type": "illustration",
+        "title": "He Lost. They Won.",
+        "feature": "Hank Pym",
+        "sequence_number": 19,
+        "page_count": "1.000",
+        "notes": "Dark Reign teaser ad",
+        "script": "?",
+        "pencils": "Daniel Acuña"
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "",
+        "feature": "The Avengers",
+        "sequence_number": 20,
+        "page_count": "1.000",
+        "notes": "Cover art from Mighty Avengers #24",
+        "script": "?",
+        "pencils": "Khoi Pham"
+      }
+    ]
+  }
+}

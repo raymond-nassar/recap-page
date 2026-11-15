@@ -30,10 +30,13 @@ the [contributing guide](CONTRIBUTING.md).
 
 ## What ships, and when
 
-Use one pull request per item unless the maintainer explicitly combines a delivery. On 2026-08-22,
-the maintainer combined the remaining UX simplification work (BL-193 through BL-198 and BL-202) with the
-owner-directed My Library and Search grouping in one delivery. That exception does not change the
-default. All gates in [the contributing guide](CONTRIBUTING.md) must pass before merging.
+The maintainer decides how many features or changes each pull request carries, and says so before
+it is created. When that has not been said, contributors and agents ask rather than assume. This
+replaced the one-pull-request-per-item default on 14 November 2026, to speed development and reduce
+the number of CI runs. Under the old default, the maintainer combined the remaining UX
+simplification work (BL-193 through BL-198 and BL-202) with the owner-directed My Library and
+Search grouping in one delivery on 2026-08-22. All gates in
+[the contributing guide](CONTRIBUTING.md) must pass before merging.
 
 Keep the implementation record on the Issue timeline and linked pull request. Follow
 [release bookkeeping](#release-bookkeeping) for release-note records and final version changes.
