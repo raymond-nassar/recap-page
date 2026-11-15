@@ -1,0 +1,35 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/172395/?format=json",
+  "retrievedAt": "2026-11-13T04:21:02.153Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/172395/?format=json",
+    "series_name": "The Uncanny X-Men (1981 series)",
+    "descriptor": "411 [Direct Edition]",
+    "number": "411",
+    "volume": "1",
+    "variant_name": "Direct Edition",
+    "title": "",
+    "publication_date": "October 2002",
+    "key_date": "2002-10-00",
+    "page_count": "36.000",
+    "isbn": "",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/2605/?format=json",
+    "story_set": [
+      {
+        "type": "comic story",
+        "title": "Hope Part 2 of 3",
+        "feature": "X-Men",
+        "sequence_number": 1,
+        "page_count": "24.000",
+        "notes": "Saul Orihuela is an employee of Hi-Fi: https://www.deviantart.com/dragondragon/art/Uncanny-Xmen-Issue-411-Page-7-477687692",
+        "script": "Chuck Austen",
+        "pencils": "Ron Garney"
+      }
+    ]
+  }
+}

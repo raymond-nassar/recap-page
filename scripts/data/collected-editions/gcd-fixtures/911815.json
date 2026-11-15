@@ -1,0 +1,165 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/911815/?format=json",
+  "retrievedAt": "2026-11-13T15:16:43.312Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/911815/?format=json",
+    "series_name": "Young X-Men (2008 series)",
+    "descriptor": "1 - Final Genesis",
+    "number": "1",
+    "volume": "1",
+    "variant_name": "",
+    "title": "Final Genesis",
+    "publication_date": "2008",
+    "key_date": "2008-11-14",
+    "page_count": "124.000",
+    "isbn": "978-0-7851-3154-0",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/63086/?format=json",
+    "story_set": [
+      {
+        "type": "credits, title page",
+        "title": "Title Page and Credits",
+        "feature": "",
+        "sequence_number": 1,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "None"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Young X-Men",
+        "sequence_number": 2,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Terry Dodson (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "1 Variant Cover",
+        "feature": "Young X-Men",
+        "sequence_number": 3,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Brandon Peterson (credited)"
+      },
+      {
+        "type": "comic story",
+        "title": "Final Genesis",
+        "feature": "Young X-Men",
+        "sequence_number": 4,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Marc Guggenheim (credited)",
+        "pencils": "Yanick Paquette (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Young X-Men",
+        "sequence_number": 5,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Terry Dodson (credited)"
+      },
+      {
+        "type": "comic story",
+        "title": "New Mutants",
+        "feature": "Young X-Men",
+        "sequence_number": 6,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Marc Guggenheim (credited)",
+        "pencils": "Yanick Paquette (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Young X-Men",
+        "sequence_number": 7,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Terry Dodson (credited)"
+      },
+      {
+        "type": "comic story",
+        "title": "LifeDeath",
+        "feature": "Young X-Men",
+        "sequence_number": 8,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Marc Guggenheim (credited)",
+        "pencils": "Yanick Paquette (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Young X-Men",
+        "sequence_number": 9,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Terry Dodson (credited)"
+      },
+      {
+        "type": "comic story",
+        "title": "Extinction Agenda",
+        "feature": "Young X-Men",
+        "sequence_number": 10,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Marc Guggenheim (credited)",
+        "pencils": "Yanick Paquette (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Young X-Men",
+        "sequence_number": 11,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Terry Dodson (credited)"
+      },
+      {
+        "type": "comic story",
+        "title": "Fall of the Mutants",
+        "feature": "Young X-Men",
+        "sequence_number": 12,
+        "page_count": "23.000",
+        "notes": "Final part of the first story arc, each instalment of which was titled after a classic X-Men storyline.",
+        "script": "Marc Guggenheim (credited)",
+        "pencils": "Yanick Paquette (credited)"
+      },
+      {
+        "type": "illustration",
+        "title": "Character & Jet Sketches with Cover Sketches",
+        "feature": "Young X-Men",
+        "sequence_number": 13,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Yanick Paquette (credited); Terry Dodson (credited)"
+      },
+      {
+        "type": "illustration",
+        "title": "Dedicated to Stéphane Péru",
+        "feature": "",
+        "sequence_number": 14,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Yanick Paquette (credited)"
+      }
+    ]
+  }
+}

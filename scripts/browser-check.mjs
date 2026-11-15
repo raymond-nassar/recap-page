@@ -15585,7 +15585,8 @@ const SCENARIOS = [
       await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
       const doubled = await page.evaluate(() => {
         const clipped = [...document.querySelectorAll('#more-sheet *, .rail-header *')]
-          .filter((node) => node.getClientRects().length && node.scrollWidth - node.clientWidth > 1)
+          .filter((node) => !node.matches('[data-dialog-announcer].visually-hidden')
+            && node.getClientRects().length && node.scrollWidth - node.clientWidth > 1)
           .map((node) => node.className || node.id || node.tagName);
         const bar = document.querySelector('.rail-header').getBoundingClientRect();
         const sheet = document.querySelector('#more-sheet').getBoundingClientRect();
@@ -15609,6 +15610,25 @@ const SCENARIOS = [
       await page.evaluate(() => {
         document.documentElement.removeAttribute('style');
       });
+      for (const width of [320, 360, 412, 800, 880]) {
+        await page.setViewport({ width, height: width === 800 ? 360 : 900 });
+        const weights = await page.evaluate(() => [
+          document.querySelector('.rail-toggle-label'),
+          document.querySelector('.rail-header [data-view="library"] span'),
+          document.querySelector('.rail-header [data-view="add"] span'),
+        ].map((node) => node ? getComputedStyle(node).fontWeight : null));
+        t.check(`${width}px: More, Library and Search labels have the same regular weight`,
+          weights.every((weight) => weight === '400'), JSON.stringify(weights));
+        await openNavigation();
+        const openWeight = await page.evaluate(() => ({
+          expanded: document.querySelector('#btn-rail-toggle').getAttribute('aria-expanded'),
+          weight: getComputedStyle(document.querySelector('.rail-toggle-label')).fontWeight,
+        }));
+        t.check(`${width}px: an open More sheet emphasizes its label`,
+          openWeight.expanded === 'true' && openWeight.weight === '700', JSON.stringify(openWeight));
+        await page.keyboard.press('Escape');
+        await page.waitForFunction(() => !document.querySelector('#more-sheet').open);
+      }
       await client.detach();
     },
   },
@@ -19353,7 +19373,7 @@ async function preparePage(page, origin, mutation, scenarioId = null) {
     }
     if (page.__denyExternal && /^https?:/.test(request.url())
       && new URL(request.url()).origin !== origin) {
-      await request.abort();
+      await request.abort(scenarioId === 'collected-editions' ? 'blockedbyclient' : 'failed');
       return;
     }
     await request.continue();
@@ -22568,7 +22588,8 @@ async function launchProfileBrowser(userDataDir) {
   const { default: puppeteer } = await import(pathToFileURL(resolveDriver()).href);
   return puppeteer.launch({
     executablePath: resolveEdge(), headless: !process.env.MRT_HEADED, userDataDir,
-    args: ['--no-first-run', '--no-default-browser-check'],
+    args: ['--no-first-run', '--no-default-browser-check', '--no-proxy-server',
+      '--host-resolver-rules=MAP * ~NOTFOUND, EXCLUDE 127.0.0.1'],
   });
 }
 
@@ -23080,6 +23101,8 @@ async function withStack(fn, { port = 0, onCleanupFailure = null } = {}) {
       args: [
         '--no-first-run',
         '--no-default-browser-check',
+        '--no-proxy-server',
+        '--host-resolver-rules=MAP * ~NOTFOUND, EXCLUDE 127.0.0.1',
         ...(process.argv.includes('--forced-colors') ? ['--force-high-contrast'] : []),
       ],
     });
@@ -24341,6 +24364,7 @@ MUTATIONS.push({
   ),
 });
 
+SCENARIOS.push((await import('./browser-dialog-announcements.mjs')).dialogAnnouncements);
 SCENARIOS.push((await import('./browser-preview-scroll-452.mjs')).previewScroll452);
 SCENARIOS.push((await import('./browser-source-credits.mjs')).sourceCredits);
 SCENARIOS.push((await import('./browser-collected-editions.mjs')).collectedEditions);

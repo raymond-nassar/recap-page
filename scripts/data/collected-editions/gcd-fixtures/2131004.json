@@ -1,0 +1,65 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/2131004/?format=json",
+  "retrievedAt": "2026-11-14T20:10:15.850Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/2131004/?format=json",
+    "series_name": "Iron Man 2020 (2020 series)",
+    "descriptor": "5",
+    "number": "5",
+    "volume": "",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "September 2020",
+    "key_date": "2020-09-00",
+    "page_count": "36.000",
+    "isbn": "",
+    "notes": "Issue includes a free code that can be redeemed for a digital version of the issue.",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/154787/?format=json",
+    "story_set": [
+      {
+        "type": "credits, title page",
+        "title": "",
+        "feature": "",
+        "sequence_number": 1,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "None"
+      },
+      {
+        "type": "comic story",
+        "title": "",
+        "feature": "Iron Man",
+        "sequence_number": 2,
+        "page_count": "20.000",
+        "notes": "",
+        "script": "Christos Gage (credited); Dan Slott (credited)",
+        "pencils": "Pete Woods (credited)"
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "Iron Man 2020 Checklist",
+        "feature": "",
+        "sequence_number": 3,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "?",
+        "pencils": "None"
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "Next",
+        "feature": "Iron Man",
+        "sequence_number": 4,
+        "page_count": "1.000",
+        "notes": "Promo for next issue.",
+        "script": "None",
+        "pencils": "Pete Woods"
+      }
+    ]
+  }
+}

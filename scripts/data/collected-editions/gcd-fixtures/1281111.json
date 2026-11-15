@@ -1,0 +1,45 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/1281111/?format=json",
+  "retrievedAt": "2026-11-14T12:19:43.117Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/1281111/?format=json",
+    "series_name": "Loki: Agent of Asgard (2014 series)",
+    "descriptor": "8",
+    "number": "8",
+    "volume": "",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "January 2015",
+    "key_date": "2015-01-00",
+    "page_count": "32.000",
+    "isbn": "",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/78892/?format=json",
+    "story_set": [
+      {
+        "type": "recap",
+        "title": "",
+        "feature": "Loki",
+        "sequence_number": 1,
+        "page_count": "1.000",
+        "notes": "Page also includes indicia.",
+        "script": "Al Ewing ?",
+        "pencils": "None"
+      },
+      {
+        "type": "comic story",
+        "title": "I Cannot Tell a Lie!",
+        "feature": "Loki",
+        "sequence_number": 2,
+        "page_count": "20.000",
+        "notes": "Story follows events from Avengers & X-Men: Axis (Marvel,2014 series) #3 and continues in Avengers & X-Men: Axis #6.",
+        "script": "Al Ewing (credited)",
+        "pencils": "Lee Garbett (credited)"
+      }
+    ]
+  }
+}

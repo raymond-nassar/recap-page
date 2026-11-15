@@ -6,6 +6,8 @@ import { createFeedback, watchNoticeOverflow } from '../src/js/views/shared/feed
 function fixture({ live = false } = {}) {
   const scheduled = [];
   const announcer = { textContent: '' };
+  let modal = null;
+  const observers = [];
   const pane = {
     classList: { contains: () => false },
     attributes: live ? { 'aria-live': 'polite' } : {},
@@ -15,6 +17,14 @@ function fixture({ live = false } = {}) {
     replaceChildren(...children) { this.children = children; },
   };
   const document = {
+    defaultView: {
+      MutationObserver: class {
+        constructor(callback) { this.callback = callback; this.records = []; observers.push(this); }
+        observe(node) { this.node = node; }
+        takeRecords() { return this.records.splice(0); }
+      },
+    },
+    activeElement: { closest: () => modal },
     createElement(tag) {
       return {
         tag,
@@ -33,7 +43,7 @@ function fixture({ live = false } = {}) {
       if (selector === '#save-report' || selector === '#report') return pane;
       return null;
     },
-    querySelectorAll: () => [],
+    querySelectorAll: (selector) => selector === 'dialog[open]' && modal ? [modal] : [],
   };
   const createElement = (tag, props = {}, children = []) => {
     const node = document.createElement(tag);
@@ -60,7 +70,26 @@ function fixture({ live = false } = {}) {
     announcer,
     feedback,
     pane,
-    flush: () => { for (const fn of scheduled.splice(0)) fn(); },
+    open(dialog = null) {
+      modal = dialog ?? {
+        children: [],
+        append(node) { this.children.push(node); },
+        querySelectorAll() { return this.children; },
+        contains(node) { return node.parentElement === this; },
+      };
+      return modal;
+    },
+    close() {
+      for (const observer of observers.filter((entry) => entry.node === modal)) observer.records.push({ oldValue: '' });
+      modal = null;
+    },
+    flush: () => {
+      for (const observer of observers) {
+        const records = observer.takeRecords();
+        if (records.length) observer.callback(records);
+      }
+      for (const fn of scheduled.splice(0)) fn();
+    },
   };
 }
 
@@ -76,6 +105,77 @@ test('feedback instances keep notice records and clearing independent', () => {
   assert.equal(second.feedback.fixedNotices.get('shared').msg, 'Second failure.');
   assert.equal(first.pane.children.length, 0);
   assert.equal(second.pane.children.length, 1);
+});
+
+test('a modal gets one local live region and joined speech, not the inert page announcer', () => {
+  const h = fixture();
+  const dialog = h.open();
+  h.feedback.announce('Gap notes.');
+  h.feedback.announce('Already-read comics stay read.');
+  h.flush();
+  assert.equal(dialog.children.length, 1);
+  const region = dialog.children[0];
+  assert.equal(region.role, 'status');
+  assert.equal(region['aria-live'], 'polite');
+  assert.equal(region.textContent, 'Gap notes. Already-read comics stay read.');
+  assert.equal(h.announcer.textContent, '');
+});
+
+test('closing and reopening the same modal discards pending speech but accepts a new utterance', () => {
+  const h = fixture();
+  const dialog = h.open();
+  h.feedback.announce('Stale save note.');
+  h.close();
+  h.open(dialog);
+  h.flush();
+  assert.equal(dialog.children[0].textContent, '');
+  h.feedback.announce('New question.');
+  h.flush();
+  assert.equal(dialog.children[0].textContent, 'New question.');
+  h.close();
+  h.feedback.announce('Back on the page.');
+  h.flush();
+  assert.equal(h.announcer.textContent, 'Back on the page.');
+  assert.equal(dialog.children[0].textContent, '');
+});
+
+test('a closed modal never redirects its queued speech to the page', () => {
+  const h = fixture();
+  const dialog = h.open();
+  h.feedback.announce('Cancelled operation.');
+  h.close();
+  h.flush();
+  assert.equal(dialog.children[0].textContent, '');
+  assert.equal(h.announcer.textContent, '');
+});
+
+test('a modal opened before a page announcement lands receives its queued speech', () => {
+  const h = fixture();
+  h.feedback.announce('Cloud backups could not all be deleted.');
+  const dialog = h.open();
+  h.flush();
+  h.flush();
+  assert.equal(h.announcer.textContent, '');
+  assert.equal(dialog.children[0]?.textContent, 'Cloud backups could not all be deleted.');
+});
+
+test('a modal notice already in a live pane stays in its own channel', () => {
+  const h = fixture({ live: true });
+  const dialog = h.open();
+  h.pane.parentElement = dialog;
+  h.feedback.notify('#report', 'Saved.', 'ok');
+  h.flush();
+  assert.equal(dialog.children.length, 0);
+  assert.equal(h.announcer.textContent, '');
+});
+
+test('a live pane behind a modal falls back to the modal channel', () => {
+  const h = fixture({ live: true });
+  const dialog = h.open();
+  h.feedback.notify('#save-report', 'Save failed.', 'error');
+  h.flush();
+  assert.equal(dialog.children[0].textContent, 'Save failed.');
+  assert.equal(h.announcer.textContent, '');
 });
 
 test('feedback speaks a non-live notice once and leaves a live notice in its own channel', () => {

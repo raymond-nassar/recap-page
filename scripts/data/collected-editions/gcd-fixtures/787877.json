@@ -1,0 +1,24 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/787877/?format=json",
+  "retrievedAt": "2026-11-13T07:22:27.840Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/787877/?format=json",
+    "series_name": "Exiles (2002 series)",
+    "descriptor": "5 - Unnatural Instincts",
+    "number": "5",
+    "volume": "5",
+    "variant_name": "",
+    "title": "Unnatural Instincts",
+    "publication_date": "[August] 2003",
+    "key_date": "2003-08-00",
+    "page_count": "148.000",
+    "isbn": "0-7851-1110-7",
+    "notes": "collects Exiles (Marvel, 2001 series) #26-30",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/53302/?format=json",
+    "story_set": []
+  }
+}

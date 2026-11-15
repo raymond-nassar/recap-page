@@ -1,0 +1,35 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/110326/?format=json",
+  "retrievedAt": "2026-11-13T02:07:46.075Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/110326/?format=json",
+    "series_name": "X-Treme X-Men: Savage Land (2001 series)",
+    "descriptor": "3",
+    "number": "3",
+    "volume": "1",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "January 2002",
+    "key_date": "2002-01-00",
+    "page_count": "36.000",
+    "isbn": "",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/10470/?format=json",
+    "story_set": [
+      {
+        "type": "comic story",
+        "title": "False Haven!",
+        "feature": "X-Men",
+        "sequence_number": 1,
+        "page_count": "24.000",
+        "notes": "[Indexer thoughts]: The pacing and art in this issue start to become very choppy making the story hard to follow culminating in next issue which is almost impossible to decipher.",
+        "script": "Chris Claremont",
+        "pencils": "Kevin Sharpe"
+      }
+    ]
+  }
+}

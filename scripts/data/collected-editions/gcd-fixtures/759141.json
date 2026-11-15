@@ -1,0 +1,215 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/759141/?format=json",
+  "retrievedAt": "2026-11-13T20:25:02.903Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/759141/?format=json",
+    "series_name": "Secret Invasion: Fantastic Four (2009 series)",
+    "descriptor": "",
+    "number": "[nn]",
+    "volume": "",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "2009",
+    "key_date": "2009-01-28",
+    "page_count": "172.000",
+    "isbn": "978-0-7851-3247-9",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/49245/?format=json",
+    "story_set": [
+      {
+        "type": "credits, title page",
+        "title": "Title page & credits",
+        "feature": "",
+        "sequence_number": 1,
+        "page_count": "3.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Barry Kitson"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Fantastic Four",
+        "sequence_number": 2,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Alan Davis"
+      },
+      {
+        "type": "comic story",
+        "title": "No One Gets Back Alive!",
+        "feature": "Fantastic Four",
+        "sequence_number": 3,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Roberto Aguirre-Sacasa",
+        "pencils": "Barry Kitson"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Fantastic Four",
+        "sequence_number": 4,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Alan Davis"
+      },
+      {
+        "type": "comic story",
+        "title": "No One Gets Back Alive! Part 2",
+        "feature": "Fantastic Four",
+        "sequence_number": 5,
+        "page_count": "23.000",
+        "notes": "",
+        "script": "Roberto Aguirre-Sacasa",
+        "pencils": "Barry Kitson"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Fantastic Four",
+        "sequence_number": 6,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Alan Davis"
+      },
+      {
+        "type": "comic story",
+        "title": "No One Gets Back Alive! Part 3",
+        "feature": "Fantastic Four",
+        "sequence_number": 7,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Roberto Aguirre-Sacasa",
+        "pencils": "Barry Kitson"
+      },
+      {
+        "type": "recap",
+        "title": "The Origin of Lyja Part I: The Human Torch in Love",
+        "feature": "Fantastic Four",
+        "sequence_number": 8,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "Michael Hoskin",
+        "pencils": "John Byrne"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Fantastic Four",
+        "sequence_number": 9,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "John Buscema"
+      },
+      {
+        "type": "comic story",
+        "title": "Dearly Beloved…",
+        "feature": "Fantastic Four",
+        "sequence_number": 10,
+        "page_count": "24.000",
+        "notes": "",
+        "script": "Roger Stern",
+        "pencils": "John Buscema"
+      },
+      {
+        "type": "recap",
+        "title": "The Origin of Lyja Part II: I Married a Skrull!",
+        "feature": "Fantastic Four",
+        "sequence_number": 11,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "Michael Hoskin",
+        "pencils": "None"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "The Monster Among Us!",
+        "feature": "Fantastic Four",
+        "sequence_number": 12,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Paul Ryan (signed)"
+      },
+      {
+        "type": "comic story",
+        "title": "The Monster Among Us!",
+        "feature": "Fantastic Four",
+        "sequence_number": 13,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Tom DeFalco",
+        "pencils": "Paul Ryan"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Fantastic Four",
+        "sequence_number": 14,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Paul Ryan (signed)"
+      },
+      {
+        "type": "comic story",
+        "title": "Whatever Happened to Alicia?!",
+        "feature": "Fantastic Four",
+        "sequence_number": 15,
+        "page_count": "40.000",
+        "notes": "",
+        "script": "Tom DeFalco",
+        "pencils": "Paul Ryan"
+      },
+      {
+        "type": "recap",
+        "title": "The Origin of Lyja Part III: Lies Upon Lies",
+        "feature": "",
+        "sequence_number": 16,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "Michael Hoskin",
+        "pencils": "None"
+      },
+      {
+        "type": "illustration",
+        "title": "Fantastic Four's Heroes & Villains",
+        "feature": "Fantastic Four",
+        "sequence_number": 17,
+        "page_count": "2.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Paul Ryan (signed)"
+      },
+      {
+        "type": "illustration",
+        "title": "Human Torch & Lyja",
+        "feature": "Fantastic Four",
+        "sequence_number": 18,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Barry Kitson"
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "Who Do You Trust?",
+        "feature": "Fantastic Four",
+        "sequence_number": 19,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "?",
+        "pencils": "Alan Davis"
+      }
+    ]
+  }
+}
