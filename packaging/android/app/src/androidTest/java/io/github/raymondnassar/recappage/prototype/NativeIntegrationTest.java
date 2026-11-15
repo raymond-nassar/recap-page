@@ -278,7 +278,12 @@ public final class NativeIntegrationTest {
     @Test
     public void cloudUploadPermitsRevokeAndRegrantAfterReload() throws Exception {
         for (String phase : new String[] { "launch", "reload" }) {
-            if (phase.equals("reload")) reload();
+            if (phase.equals("reload")) {
+                assertEquals(true, asyncJs(web, "return !!globalThis.recapPermitProbe"
+                        + " && sessionStorage.getItem('recap.test.upload-permit')===globalThis.recapPermitProbe.name"
+                        + " && await globalThis.recapPermitProbe.allowed();"));
+                reload();
+            }
             JSONObject result = (JSONObject) asyncJs(web,
                     "const {CloudUploadPermit}=await import('/js/lib/cloudUploadPermit.js');"
                     + "const previous=sessionStorage.getItem('recap.test.upload-permit'),state=await navigator.locks.query();"
@@ -293,14 +298,15 @@ public final class NativeIntegrationTest {
                     + "const absent=!(await navigator.locks.query()).held.some(l=>l.name===older.name);"
                     + "checking.release();await older.grant();"
                     + "globalThis.recapPermitProbe=older;sessionStorage.setItem('recap.test.upload-permit',older.name);keep=true;"
-                    + "return {fresh,held,revoked,rejected:lost===1,absent,regranted:await older.allowed(),userAgent:navigator.userAgent};"
+                    + "return {hadPrevious:previous!==null,fresh,held,revoked,rejected:lost===1,absent,regranted:await older.allowed(),userAgent:navigator.userAgent};"
                     + "}finally{if(!keep)older.release();checking.release();}");
             measurements.put("cloudUploadPermit-" + phase, result);
+            assertEquals(phase.equals("reload"), result.getBoolean("hadPrevious"));
             for (String key : new String[] { "fresh", "held", "revoked", "rejected", "absent", "regranted" }) {
                 assertTrue(phase + ": " + key, result.getBoolean(key));
             }
-            asyncJs(web, "globalThis.recapPermitProbe.release();sessionStorage.removeItem('recap.test.upload-permit');return true;");
         }
+        asyncJs(web, "globalThis.recapPermitProbe.release();sessionStorage.removeItem('recap.test.upload-permit');return true;");
     }
 
     @Test

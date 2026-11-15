@@ -35,6 +35,12 @@ final class CapabilityProbeTests: XCTestCase {
         defer { webView.removeFromSuperview() }
         for phase in ["launch", "reload"] {
             if phase == "reload" {
+                let held = try await WebTestSupport.evaluate(webView, """
+                    return !!globalThis.recapPermitProbe
+                      && sessionStorage.getItem('recap.test.upload-permit') === globalThis.recapPermitProbe.name
+                      && await globalThis.recapPermitProbe.allowed();
+                    """)
+                XCTAssertEqual(held as? Bool, true, "the previous document holds its permit before reload")
                 _ = try await WebTestSupport.evaluate(webView, "globalThis.recapPermitReloading = true;")
             }
             try await WebTestSupport.loadAppPage(webView, assets: assets)
@@ -45,6 +51,7 @@ final class CapabilityProbeTests: XCTestCase {
             let json = try XCTUnwrap(value as? String)
             WebTestSupport.record("cloud-upload-permit-\(phase)", json, in: self)
             let result = try WebTestSupport.object(json)
+            XCTAssertEqual(result["hadPrevious"] as? Bool, phase == "reload", "\(phase): previous permit")
             for key in ["fresh", "held", "revoked", "rejected", "absent", "regranted"] {
                 XCTAssertEqual(result[key] as? Bool, true, "\(phase): \(key)")
             }
@@ -75,7 +82,7 @@ final class CapabilityProbeTests: XCTestCase {
       globalThis.recapPermitProbe = older;
       sessionStorage.setItem('recap.test.upload-permit', older.name);
       keep = true;
-      return JSON.stringify({ fresh, held, revoked, rejected: lost === 1, absent, regranted: await older.allowed(),
+      return JSON.stringify({ hadPrevious: previous !== null, fresh, held, revoked, rejected: lost === 1, absent, regranted: await older.allowed(),
         userAgent: navigator.userAgent });
     } finally {
       if (!keep) older.release();
