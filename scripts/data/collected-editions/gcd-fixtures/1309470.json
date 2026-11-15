@@ -1,0 +1,45 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/1309470/?format=json",
+  "retrievedAt": "2026-11-14T12:58:09.757Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/1309470/?format=json",
+    "series_name": "Loki: Agent of Asgard (2014 series)",
+    "descriptor": "10",
+    "number": "10",
+    "volume": "",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "March 2015",
+    "key_date": "2015-03-00",
+    "page_count": "32.000",
+    "isbn": "",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/78892/?format=json",
+    "story_set": [
+      {
+        "type": "comic story",
+        "title": "Not Forgiven",
+        "feature": "Loki",
+        "sequence_number": 1,
+        "page_count": "21.000",
+        "notes": "The recap page is an integral part of the story.",
+        "script": "Al Ewing",
+        "pencils": "Lee Garbett"
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "Next Issue:",
+        "feature": "Loki Agent of Asgard",
+        "sequence_number": 2,
+        "page_count": "1.000",
+        "notes": "cover art for the following issue (#11)",
+        "script": "None",
+        "pencils": "Lee Garbett"
+      }
+    ]
+  }
+}

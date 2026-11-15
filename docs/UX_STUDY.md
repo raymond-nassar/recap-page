@@ -67,7 +67,7 @@ Severity: 2, single-rater estimate
 Rationale: occurs on the single most repeated action in the product, persists for the life of the
 list, and grows with list length, but degrades speed rather than blocking the task
 Confidence: Measured
-Evidence: `docs/ux-artifacts/render-cost.json`, `src/js/main.js:122-130`, `src/js/main.js:3382-3408`
+Evidence: `docs/ux-artifacts/render-cost.json`, `src/js/main.js:122-130`, `src/js/main.js:3396-3422`
 Source: live UI framing, reacted to the store wiring while reading `src/js/main.js`
 Impact: marking one issue read rebuilds the rail, all 219 rows and the progress block, which is
 4,485 DOM nodes and 1,533 row controls, at a median of 21.9 ms synchronous and 75.7 ms to paint,
@@ -86,8 +86,8 @@ Severity: 3, single-rater estimate
 Rationale: affects several primary flows, is permanent rather than transient, and splits the
 product's voice in two at exactly the moments a reader is deciding something
 Confidence: Observed
-Evidence: `src/js/main.js:2419`, `src/js/views/reading.js:426-434`, `src/js/views/reading.js:451-465`, against
-`src/js/views/shared/feedback.js:229-252`
+Evidence: `src/js/main.js:2437`, `src/js/views/reading.js:426-434`, `src/js/views/reading.js:451-465`, against
+`src/js/views/shared/feedback.js:304-327`
 Source: heuristic 4 sweep, code-only framing
 Impact: the application has a careful in-page notice system with live regions, and then reports
 curated import failures through `alert()`, asks for a list name through `prompt()`, and confirms
@@ -218,8 +218,8 @@ Not applicable, with reason:
   across src/`.
 * 1.4.2 Audio Control, not applicable, for the same reason.
 * 2.2.2 Pause, Stop, Hide, not applicable, because the only moving element is a progress ring
-  transition that already respects reduced motion. Evidence: `src/styles.css:855`,
-  `src/styles.css:2468-2470`.
+  transition that already respects reduced motion. Evidence: `src/styles.css:857`,
+  `src/styles.css:2470-2472`.
 * 3.3.8 Accessible Authentication (Minimum), not applicable, because there is no authentication of
   any kind. Evidence: `absent: password|login|signin|oauth|token, grep across src/`.
 * 3.3.7 Redundant Entry, not applicable, because no flow asks for the same information twice.
@@ -277,7 +277,7 @@ fix
 Backlog item: BL-029
 Resolved: the single accent was split into `--red` for surfaces behind white text and
 `--red-text` for red used as text, at `src/styles.css:182-188`, and the `kbd` tint was removed at
-`src/styles.css:1009`. BL-166 has since renamed both to `--accent` and `--accent-text` and repainted
+`src/styles.css:1011`. BL-166 has since renamed both to `--accent` and `--accent-text` and repainted
 them purple, so the split survives under different names. The figures in the Evidence artifacts are
 the pre-fix measurements and are kept as the record of why the item was raised.
 
@@ -303,8 +303,8 @@ mark rather than through container opacity, so the state reads without dragging 
 the contrast floor
 Backlog item: BL-030
 Resolved: the container `opacity` was replaced with a dedicated `--read-fg` foreground plus a
-strikethrough, at `src/styles.css:1179-1180`. The only opacity left on a read row is on the cover
-image at `src/styles.css:1182`, which carries no text. Re-measured with six rows actually in the
+strikethrough, at `src/styles.css:1181-1182`. The only opacity left on a read row is on the cover
+image at `src/styles.css:1184`, which carries no text. Re-measured with six rows actually in the
 read state, axe 4.13.0 reported no contrast violations on the surface.
 
 #### UX-A-003: Hero text contrast is undeterminable because it sits on a blurred cover
@@ -328,7 +328,7 @@ Recommendation: place a solid or sufficiently opaque scrim between the cover and
 computed background is fixed regardless of cover, which also makes the surface checkable
 Backlog item: BL-031
 Resolved as a side effect of BL-029: the hero scrim's top stop was raised from 60 to 88 percent
-alpha at `src/styles.css:903-910`. Sampling the rendered background across all eight catalog
+alpha at `src/styles.css:905-912`. Sampling the rendered background across all eight catalog
 series narrowed the spread from `#222325`-`#2e2d30` to `#1b1d22`-`#1e2126`, and the computed
 bound for a pure white cover is `#1f2228`, so the background is now fixed enough to check
 against whatever the reader imports rather than varying comic to comic.
@@ -357,7 +357,7 @@ Backlog item: BL-028
 Current responsive behavior: the read toggle is now 24 by 24 pixels, and 44 by 44 at the narrow
 row breakpoint, with matching allocated grid space and no overlap. The measurements above remain
 the original audit baseline, not the current target size. The current rules are
-`src/styles.css:1196-1199` and `src/styles.css:2926-2927`, sizing both from `src/styles.css:81-82`.
+`src/styles.css:1198-1201` and `src/styles.css:2928-2929`, sizing both from `src/styles.css:81-82`.
 
 #### UX-A-005: Row actions are invisible until hover, so a touch user cannot see them
 
@@ -379,7 +379,7 @@ breakpoint, keeping the hover reveal only where a fine pointer is present
 Backlog item: BL-028
 Resolved: all screen sizes now show a visible More actions control, and opening it reveals full text
 labels for every row action. Closed actions take no layout space; hover alone does not reveal them.
-The responsive presentation is defined at `src/styles.css:1254-1307`, and the disclosure preserves
+The responsive presentation is defined at `src/styles.css:1256-1309`, and the disclosure preserves
 keyboard focus and Escape handling at `src/js/views/reading.js:1008-1140`.
 
 #### UX-A-006: Status messages are announced twice
@@ -390,7 +390,7 @@ Severity: 2, single-rater estimate
 Rationale: affects every notice in the product, and duplicate speech is disruptive rather than
 blocking
 Confidence: Observed
-Evidence: `src/js/views/shared/feedback.js:206-219`, `src/js/views/shared/feedback.js:229-252`, `src/index.html:27`,
+Evidence: `src/js/views/shared/feedback.js:279-294`, `src/js/views/shared/feedback.js:304-327`, `src/index.html:27`,
 `src/index.html:113`, `src/index.html:907`
 Source: WCAG 2.2 Level AA sweep, criterion 4.1.3
 Impact: `notify()` writes its message into a container that already carries a live region role, and
@@ -400,7 +400,7 @@ nothing is missed, is right, but the effect is that every confirmation is spoken
 Recommendation: pick one channel per message, keeping `announce()` for events with no visible
 surface and letting the visible live region speak for itself everywhere else
 Backlog item: BL-027
-Resolved: which channel a message uses is now read off the container at `src/js/views/shared/feedback.js:212-219`
+Resolved: which channel a message uses is now read off the container at `src/js/views/shared/feedback.js:285-294`
 rather than decided by a list of ids, and the six result panes stopped being live regions. The
 Impact above describes the pre-fix behaviour and is kept as the record of why the item was
 raised. Measured on a first run with storage cleared, the surfaces that speak went from 9 to 3.
@@ -445,7 +445,7 @@ emulated light preference the computed body background stays `rgb(15, 17, 21)` a
 taken under light and dark preference are byte-identical, so the reader's system preference has no
 effect at all. Forced colours and reduced motion are both handled, which shows the gap is a missing
 theme rather than a general disregard for user preferences. Evidence for that contrast:
-`src/styles.css:2468-2470`.
+`src/styles.css:2470-2472`.
 Recommendation: derive the palette from tokens and add a light theme behind `prefers-color-scheme`
 with a manual override, reusing the existing forced-colors work as the model
 Backlog item: BL-032
@@ -501,7 +501,7 @@ those shots is to show what was going ungated. `docs/ux-artifacts/14-accent-surf
 `docs/ux-artifacts/14-accent-surfaces-light.png` show two of the three at once, the red brand mark
 at the top of the rail and the 3px accent bar beside the selected item. Those earlier captures
 selected a rail item first because Home did not select one at the time. Current rail and mobile
-selection is applied by `showView` at `src/js/main.js:1848-1850`, with Home brand selection immediately
+selection is applied by `showView` at `src/js/main.js:1860-1862`, with Home brand selection immediately
 afterward. These captures measure the earlier interface,
 not current navigation selection.
 `docs/ux-artifacts/14-blocked-banner-dark.png` and `docs/ux-artifacts/14-blocked-banner-light.png`
@@ -634,7 +634,7 @@ Shift and Tab. Focus order matched reading order. Every stop carried a visible f
 3 pixel solid outline. No trap was found, and the reverse walk escaped cleanly to the document
 body. Exactly one stop was not visible, a 1 by 1 pixel input at zero opacity, and that is the
 standard visually-hidden filter radio paired with a visible label, not a stray control. Evidence:
-`src/styles.css:1081`, `src/js/views/reading.js:355-358`.
+`src/styles.css:1083`, `src/js/views/reading.js:355-358`.
 
 Dialog focus return was not testable, because the application contains no dialogs at all. The
 measured DOM has zero elements with `role="dialog"`, zero `dialog` elements and zero `aria-modal`
@@ -728,7 +728,7 @@ Backlog item: BL-028
 reduce, with a screenshot captured for each. The light and dark screenshots are byte-identical,
 which is the measurement behind UX-A-008. Reduced motion is genuinely honoured: the progress ring
 transition computes to `none` under the reduce preference. Evidence:
-`docs/ux-artifacts/live-inspection.json`, `src/styles.css:855`, `src/styles.css:2468-2470`.
+`docs/ux-artifacts/live-inspection.json`, `src/styles.css:857`, `src/styles.css:2470-2472`.
 
 ## Step 5: Information architecture and generative artifacts
 
@@ -746,7 +746,7 @@ Evidence: `src/index.html:62-97`, `src/js/lib/route.js:24-33`.
 
 Every routed page except Home now states its stable hierarchy in one breadcrumb trail. Preview and
 Ask remain dialogs without breadcrumbs. Evidence: `src/js/lib/route.js:98-202`,
-`src/js/main.js:1903-1962`, `test/ux-completion.test.js:87-101`.
+`src/js/main.js:1915-1980`, `test/ux-completion.test.js:87-101`.
 
 The two missing Library sub-views recorded as UX-I-003 are now present, closing the grouping gap.
 
@@ -761,7 +761,7 @@ Rationale: affects every view for the life of the product. It cannot be worked a
 quietly removes browser behaviours the reader already expects
 Confidence: Verified absent, confirmed by measurement
 Evidence: `absent: pushState|replaceState|location.hash|hashchange|popstate|history\., grep across
-src/ returning no matches`, `src/js/main.js:1836-1843`,
+src/ returning no matches`, `src/js/main.js:1848-1855`,
 `docs/ux-artifacts/live-inspection.json`
 Source: Step 5 information architecture review, addressability
 Impact: view switching mutates a module-level variable and toggles the `hidden` attribute. No

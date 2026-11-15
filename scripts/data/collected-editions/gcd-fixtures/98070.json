@@ -1,0 +1,65 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/98070/?format=json",
+  "retrievedAt": "2026-11-13T16:25:45.169Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/98070/?format=json",
+    "series_name": "New X-Men (2001 series)",
+    "descriptor": "121 [Direct Edition]",
+    "number": "121",
+    "volume": "1",
+    "variant_name": "Direct Edition",
+    "title": "",
+    "publication_date": "February 2002",
+    "key_date": "2002-02-00",
+    "page_count": "44.000",
+    "isbn": "",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/9855/?format=json",
+    "story_set": [
+      {
+        "type": "comic story",
+        "title": "Silence: Psychic Rescue in Progress",
+        "feature": "X-Men",
+        "sequence_number": 1,
+        "page_count": "23.000",
+        "notes": "Silent issue, part of 'Nuff Said month.",
+        "script": "Grant Morrison (credited)",
+        "pencils": "Frank Quitely (credited)"
+      },
+      {
+        "type": "text story",
+        "title": "Silence: Psychic Rescue in Progress",
+        "feature": "X-Men",
+        "sequence_number": 2,
+        "page_count": "6.000",
+        "notes": "partial plot for this issue (through page 14 - remainder was available at marvel.com)",
+        "script": "Grant Morrison (credited)",
+        "pencils": "None"
+      },
+      {
+        "type": "statement of ownership",
+        "title": "Statement of Ownership",
+        "feature": "",
+        "sequence_number": 3,
+        "page_count": "0.330",
+        "notes": "Statement of October 1, 2001 Total No. Copies Printed (net press run): Average no. of copies each issue during preceding 12 months: 212,108. Single issue nearest to filing date: 224,200. Owners: Marvel Enterprises, Inc. 10 East 40th Street, New York, NY 10016",
+        "script": "None",
+        "pencils": "None"
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "",
+        "feature": "Elektra; Wolverine",
+        "sequence_number": 4,
+        "page_count": "0.670",
+        "notes": "House ad for Elektra and Wolverine: The Redeemer (Marvel, 2002 series).",
+        "script": "None",
+        "pencils": "天野喜孝 (Yoshitaka Amano) (illustration)"
+      }
+    ]
+  }
+}

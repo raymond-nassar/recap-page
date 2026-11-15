@@ -1,0 +1,65 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/672067/?format=json",
+  "retrievedAt": "2026-11-13T01:11:35.827Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/672067/?format=json",
+    "series_name": "X-Treme X-Men: Savage Land (2002 series)",
+    "descriptor": "",
+    "number": "[nn]",
+    "volume": "",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "[March] 2002",
+    "key_date": "2002-03-27",
+    "page_count": "100.000",
+    "isbn": "0-7851-0869-6",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/39038/?format=json",
+    "story_set": [
+      {
+        "type": "comic story",
+        "title": "Savage Genesis",
+        "feature": "X-Men",
+        "sequence_number": 1,
+        "page_count": "23.000",
+        "notes": "",
+        "script": "Chris Claremont (credited)",
+        "pencils": "Kevin Sharpe (credited)"
+      },
+      {
+        "type": "comic story",
+        "title": "Deluge",
+        "feature": "X-Men",
+        "sequence_number": 2,
+        "page_count": "23.000",
+        "notes": "",
+        "script": "Chris Claremont (credited)",
+        "pencils": "Kevin Sharpe (credited)"
+      },
+      {
+        "type": "comic story",
+        "title": "False Haven!",
+        "feature": "X-Men",
+        "sequence_number": 3,
+        "page_count": "24.000",
+        "notes": "",
+        "script": "Chris Claremont (credited)",
+        "pencils": "Kevin Sharpe (credited)"
+      },
+      {
+        "type": "comic story",
+        "title": "What Price, Freedom? What Price, Humanity?",
+        "feature": "X-Men",
+        "sequence_number": 4,
+        "page_count": "23.000",
+        "notes": "",
+        "script": "Chris Claremont (credited)",
+        "pencils": "Kevin Sharpe (credited)"
+      }
+    ]
+  }
+}

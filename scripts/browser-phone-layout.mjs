@@ -46,6 +46,20 @@ export const androidPhoneProfiles = [
   { width: 360, height: 800, platform: 'android' },
   { width: 412, height: 915, platform: 'android' },
 ];
+const directEntryCases = [
+  ...['read/phone-layout', 'progress', 'completed', 'library-read', 'library-manual', 'library-rated']
+    .map((route) => [route, 'library']),
+  ...['add-search', 'add-series', 'add-creator', 'add-import', 'add-manual']
+    .map((route) => [route, 'add']),
+  ...['age-golden', 'age-silver', 'age-bronze', 'age-copper', 'age-modern']
+    .map((route) => [route, 'marvel-ages']),
+  ...['age-early-modern', 'age-marvel-knights-heroes-return', 'age-event-era', 'age-marvel-now',
+    'age-all-new-all-different', 'age-fresh-start', 'age-current'].map((route) => [route, 'age-modern']),
+  ...['catalog', 'young-readers', 'spotlights', 'universes', 'genres', 'marvel-on-screen',
+    'marvel-ages', 'new-to-comics'].map((route) => [route, 'browse']),
+  ...['data', 'about'].map((route) => [route, 'home']),
+  ['universe/ultimate-marvel', 'universes'],
+];
 const click = (page, selector) => page.$eval(selector, (node) => node.click());
 const settle = (page) => page.evaluate(() => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done))));
 
@@ -195,6 +209,167 @@ export const phoneBack = {
       await open(page, 'data');
       checked(t, `${label}: desktop rail roots have no Back`, profile.platform !== 'desktop'
         || await page.$('#view-data .app-back') === null);
+      await open(page, 'home');
+      await click(page, '#btn-chero-open');
+      await page.waitForSelector('#view-read:not([hidden])');
+      await page.$eval('#full', (node) => { node.open = true; });
+      await page.waitForSelector('#rows .row-focus-title');
+      await page.focus('#rows .row-focus-title');
+      const opener = await page.$eval('#rows .row-focus-title', (node) => node.dataset.issueId);
+      await click(page, '#rows .row-focus-title');
+      await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+      await click(page, '#view-issue button.app-back');
+      await page.waitForSelector('#view-read:not([hidden])');
+      await page.waitForFunction(() => document.activeElement?.classList.contains('row-focus-title'));
+      const inApp = await page.evaluate(() => ({
+        issueId: document.activeElement?.dataset.issueId, hash: location.hash,
+      }));
+      checked(t, `${label}: in-app comic Back returns focus to its opener`,
+        inApp.issueId === opener && inApp.hash.startsWith(`#/read/${listId}`), inApp);
+      // The real iOS shell marks its document before main.js loads.
+      const marker = profile.platform === 'ios' ? await page.evaluateOnNewDocument(() => {
+        const mark = () => !!document.documentElement && !!(document.documentElement.dataset.platform = 'ios');
+        if (!mark()) new MutationObserver((_, observer) => { if (mark()) observer.disconnect(); }).observe(document, { childList: true });
+      }) : null;
+      await page.goto('about:blank');
+      await page.goto(`${page.__origin}/#/issue/900002?list=${listId}`, { waitUntil: 'load' });
+      await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-h');
+      if (profile.platform === 'ios' || (profile.platform === 'android'
+        && !await page.evaluate(() => document.documentElement.classList.contains('android-mobile-ui')))) {
+        await page.addStyleTag({ content: mobileCss });
+        if (profile.platform === 'ios') await page.addStyleTag({ content: iosCss });
+      }
+      await settle(page);
+      const direct = await page.evaluate(() => {
+        const visible = (node) => !!node && node.checkVisibility() && node.getClientRects().length > 0;
+        const crumb = document.querySelector('#view-issue .breadcrumb');
+        const back = crumb?.querySelector('.app-back');
+        const box = back?.getBoundingClientRect();
+        const probe = crumb?.appendChild(Object.assign(document.createElement('span'), { style: 'color: var(--text)' }));
+        const text = probe && getComputedStyle(probe).color;
+        probe?.remove();
+        const links = [...(crumb?.querySelectorAll('ol a') ?? [])].filter(visible);
+        return {
+          back: visible(back), tag: back?.tagName, name: back?.getAttribute('aria-label'),
+          left: box?.left, width: box?.width, height: box?.height,
+          icon: back?.querySelector('.gi')?.getBoundingClientRect().width,
+          fullContrast: !!back && getComputedStyle(back).color === text,
+          panelLeft: document.querySelector('#view-issue').getBoundingClientRect().left,
+          links: links.map((node) => ({ text: node.textContent, href: node.getAttribute('href') })),
+          context: document.querySelector('#issue-focus-context').textContent,
+          platform: document.documentElement.dataset.platform ?? null,
+          historyLength: history.length,
+        };
+      });
+      checked(t, `${label}: the list name stays beneath a directly opened comic's title`, direct.context.includes(listName), direct);
+      if (profile.platform !== 'desktop') {
+        const target = profile.platform === 'android' ? 48 : 44;
+        checked(t, `${label}: a directly opened comic shows Back at the leading edge`,
+          direct.back && direct.tag === 'BUTTON' && direct.name === 'Back'
+          && direct.left <= direct.panelLeft + 1 && direct.width >= target && direct.height >= target
+          && direct.links.length === 0 && (profile.platform !== 'ios' || direct.platform === 'ios')
+          && (profile.platform !== 'android' || (direct.icon >= 24 && direct.fullContrast)), direct);
+        await capture(page, profile, theme, 'direct-comic-up');
+        if (direct.back && direct.tag === 'BUTTON') {
+          await click(page, '#view-issue .app-back');
+          await page.waitForSelector('#view-read:not([hidden])');
+        }
+        const returned = await page.evaluate(() => ({
+          hash: location.hash, historyLength: history.length, focusInList: document.querySelector('#view-read').contains(document.activeElement),
+        }));
+        checked(t, `${label}: direct-entry Back opens the list without adding a history entry and focuses it`,
+          returned.hash === `#/read/${listId}` && returned.historyLength === direct.historyLength && returned.focusInList, returned);
+        if (returned.hash === `#/read/${listId}`) {
+          await page.goBack({ waitUntil: 'load' });
+          const previous = await page.evaluate(() => location.href);
+          checked(t, `${label}: browser Back does not reopen the direct-entry comic`, previous === 'about:blank', previous);
+          await page.goto(`${page.__origin}/#/issue/900002`, { waitUntil: 'load' });
+          await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-h');
+          if (profile.platform === 'ios' || (profile.platform === 'android'
+            && !await page.evaluate(() => document.documentElement.classList.contains('android-mobile-ui')))) {
+            await page.addStyleTag({ content: mobileCss });
+            if (profile.platform === 'ios') await page.addStyleTag({ content: iosCss });
+          }
+          await settle(page);
+          const noContextBack = await page.$('#view-issue button.app-back');
+          if (noContextBack) {
+            await noContextBack.evaluate((node) => node.click());
+            await page.waitForSelector('#view-home:not([hidden])');
+          }
+          checked(t, `${label}: direct-entry Back without list context opens Home`,
+            await page.evaluate(() => location.hash === '#/home'));
+        }
+      } else {
+        checked(t, `${label}: a directly opened comic keeps its list-name link and draws no arrow`, !direct.back
+          && direct.links.some((link) => link.text === listName && link.href === `#/read/${listId}`), direct);
+        await page.setViewport({ width: 390, height: 844 });
+        await page.goto(`${page.__origin}/#/issue/900002?list=${listId}`, { waitUntil: 'load' });
+        await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+        const narrowWeb = await page.evaluate(() => {
+          const crumb = document.querySelector('#view-issue .breadcrumb');
+          const back = crumb?.querySelector('.app-back');
+          const links = [...(crumb?.querySelectorAll('ol a') ?? [])]
+            .filter((node) => node.checkVisibility() && node.getClientRects().length > 0);
+          return {
+            back: !!back && back.checkVisibility() && back.getClientRects().length > 0,
+            links: links.map((node) => ({ text: node.textContent, href: node.getAttribute('href') })),
+          };
+        });
+        checked(t, `${label}: narrow browser keeps the list-name link`, !narrowWeb.back
+          && narrowWeb.links.some((link) => link.text === listName && link.href === `#/read/${listId}`), narrowWeb);
+      }
+      if (theme === 'light' && ((profile.platform === 'desktop' && profile.width === 1280)
+        || (profile.platform === 'ios' && profile.width === 393)
+        || (profile.platform === 'android' && profile.width === 360))) {
+        for (const [route, parent] of directEntryCases) {
+          await page.goto('about:blank');
+          await page.goto(`${page.__origin}/#/${route}`, { waitUntil: 'load' });
+          await page.waitForSelector(`#view-${route.split('/')[0]}:not([hidden])`);
+          if (profile.platform !== 'desktop') {
+            if (profile.platform === 'ios' || !await page.evaluate(() => document.documentElement.classList.contains('android-mobile-ui'))) {
+              await page.addStyleTag({ content: mobileCss });
+              if (profile.platform === 'ios') await page.addStyleTag({ content: iosCss });
+            }
+          }
+          await settle(page);
+          const entry = await page.evaluate(() => {
+            const crumb = document.querySelector('.view:not([hidden]) .breadcrumb');
+            const back = crumb?.querySelector('button.app-back');
+            const parent = crumb?.querySelector('li:nth-last-child(2) a');
+            const visible = (node) => !!node && node.checkVisibility() && node.getClientRects().length > 0;
+            const box = back?.getBoundingClientRect();
+            return {
+              back: visible(back), name: back?.getAttribute('aria-label'), width: box?.width, height: box?.height,
+              parentHref: parent?.getAttribute('href'), parentVisible: visible(parent),
+            };
+          });
+          const expected = `#/${parent}`;
+          if (profile.platform === 'desktop') {
+            checked(t, `${label}: narrow browser ${route} keeps its parent link`,
+              !entry.back && entry.parentVisible && entry.parentHref === expected, entry);
+          } else {
+            const target = profile.platform === 'android' ? 48 : 44;
+            checked(t, `${label}: direct ${route} has named Back and its original parent`,
+              entry.back && entry.name === 'Back' && entry.width >= target && entry.height >= target
+              && !entry.parentVisible && entry.parentHref === expected, entry);
+            if (entry.back) {
+              await click(page, '.view:not([hidden]) button.app-back');
+              await page.waitForFunction((hash) => location.hash === hash, {}, expected);
+              await page.waitForSelector(`#view-${parent === 'browse' ? 'home' : parent}:not([hidden])`);
+            }
+            checked(t, `${label}: direct ${route} Back opens ${parent}`,
+              await page.evaluate((hash) => location.hash === hash, expected));
+          }
+        }
+        for (const root of ['home', 'library', 'add']) {
+          await page.goto('about:blank');
+          await page.goto(`${page.__origin}/#/${root}`, { waitUntil: 'load' });
+          await page.waitForSelector(`#view-${root}:not([hidden])`);
+          checked(t, `${label}: directly opened ${root} remains a root without Back`,
+            await page.$(`#view-${root} .app-back`) === null);
+        }
+      }
+      if (marker) await page.removeScriptToEvaluateOnNewDocument(marker.identifier);
     }, selected);
   },
 };
@@ -325,7 +500,61 @@ export const phoneNotices = {
       await click(page, '#btn-delete-list');
       await page.waitForSelector('#ask[open]');
       await click(page, '#ask-ok');
-      await page.waitForSelector('.notice-act .grow');
+      await page.waitForFunction(() => !document.querySelector('#view-home').hidden
+        && document.querySelector('#app-report').textContent.includes('Removed Avengers:'));
+      const placement = async () => page.evaluate(() => {
+        const report = document.querySelector('#app-report');
+        const home = document.querySelector('#view-home');
+        const head = home.querySelector(':scope > .head').getBoundingClientRect();
+        const box = report.getBoundingClientRect();
+        const children = [...home.children];
+        const following = report.parentElement === home
+          ? children.slice(children.indexOf(report) + 1)
+            .find((node) => node.checkVisibility() && node.getBoundingClientRect().height > 0)
+          : null;
+        return {
+          parent: report.parentElement.id || report.parentElement.className,
+          visible: report.checkVisibility(),
+          afterHead: box.top >= head.bottom + 7,
+          beforeContent: following && following.getBoundingClientRect().top >= box.bottom + 7,
+          messages: [...document.querySelectorAll('.notice-act .grow')]
+            .filter((node) => node.textContent.includes('Removed Avengers:')).length,
+          undo: !![...report.querySelectorAll('button')].find((button) => button.textContent === 'Undo removal'),
+        };
+      });
+      let where = await placement();
+      checked(t, `${label}: removal notice follows the Home head exactly once`, where.parent === 'view-home'
+        && where.visible && where.afterHead && where.beforeContent && where.messages === 1 && where.undo, where);
+      await open(page, 'add-search');
+      const away = await page.evaluate(() => {
+        const report = document.querySelector('#app-report');
+        return {
+          parent: report.parentElement.className,
+          visible: report.checkVisibility(),
+          beforeView: report.getBoundingClientRect().bottom
+            <= document.querySelector('#view-add-search').getBoundingClientRect().top,
+          undo: !![...report.querySelectorAll('button')].find((button) => button.textContent === 'Undo removal'),
+        };
+      });
+      checked(t, `${label}: removal notice follows the reader above another view`,
+        away.parent === 'wrap' && away.visible && away.beforeView && away.undo, away);
+      await open(page, 'home');
+      where = await placement();
+      checked(t, `${label}: removal notice returns below the Home head`, where.parent === 'view-home'
+        && where.visible && where.afterHead && where.beforeContent && where.messages === 1 && where.undo, where);
+      await page.$eval('#cloud-sync-notice', (node) => { node.hidden = false; });
+      await settle(page);
+      const together = await page.evaluate(() => {
+        const cloud = document.querySelector('#cloud-sync-notice').getBoundingClientRect();
+        const report = document.querySelector('#app-report').getBoundingClientRect();
+        return {
+          cloudBeforeReport: report.top >= cloud.bottom + 7,
+          overflow: document.documentElement.scrollWidth > innerWidth,
+        };
+      });
+      checked(t, `${label}: cloud and removal notices keep their order and spacing`,
+        together.cloudBeforeReport && !together.overflow, together);
+      await page.$eval('#cloud-sync-notice', (node) => { node.hidden = true; });
       const notice = await page.$eval('.notice-act:has(.grow)', (node) => {
         const message = node.querySelector('.grow').getBoundingClientRect();
         const root = node.getBoundingClientRect();
@@ -360,7 +589,13 @@ export const phoneNotices = {
         if (platform === 'ios') document.documentElement.dataset.iosLargestText = 'true';
       }, scaledStyle, profile.platform);
       await settle(page);
-      await page.evaluate(() => [...document.querySelectorAll('.notice-act button')].find((node) => node.textContent === 'Undo removal').click());
+      const focusedUndo = await page.evaluate(() => {
+        const undo = [...document.querySelectorAll('#app-report button')].find((node) => node.textContent === 'Undo removal');
+        undo.focus();
+        return document.activeElement === undo;
+      });
+      checked(t, `${label}: Undo remains keyboard focusable after moving between views`, focusedUndo);
+      await page.keyboard.press('Enter');
       await page.waitForFunction(() => !!JSON.parse(localStorage.getItem('mrt.state.v2')).lists['phone-layout']);
       checked(t, `${label}: Undo restores the removed list`, true);
       await open(page, 'home');
@@ -480,6 +715,48 @@ export const phoneNotices = {
       await capture(page, profile, theme, 'preview-large-text-scrolled');
       await click(page, '#preview-close');
       await page.waitForSelector('#preview:not([open])');
+      await open(page, 'home');
+      await page.evaluate(async () => {
+        const { notify } = await import('/js/main.js');
+        notify('#search-lists-report', 'Synthetic local warning.', 'warn', 'placement-local-test');
+      });
+      const overflow = async () => page.evaluate(() => ({
+        global: document.querySelector('#app-report').textContent.includes('Synthetic local warning.'),
+        local: document.querySelector('#search-lists-report').textContent.includes('Synthetic local warning.'),
+      }));
+      let relocated = await overflow();
+      checked(t, `${label}: an off-screen view's warning appears in Home's global pane`,
+        relocated.global && !relocated.local, relocated);
+      await open(page, 'add-search');
+      relocated = await overflow();
+      checked(t, `${label}: the warning returns to its own pane without duplication`,
+        !relocated.global && relocated.local, relocated);
+      await open(page, 'home');
+      relocated = await overflow();
+      checked(t, `${label}: the warning follows the reader back to Home`,
+        relocated.global && !relocated.local, relocated);
+      await page.evaluate(async () => {
+        const { notify } = await import('/js/main.js');
+        notify('#app-report', 'Synthetic ordinary notice.', 'warn', 'placement-test');
+        notify('#save-report', 'Synthetic save failure.', 'error', 'placement-save-test');
+        document.querySelector('#blocked-banner').hidden = false;
+      });
+      const safety = await page.evaluate(() => {
+        const save = document.querySelector('#save-report');
+        const blocked = document.querySelector('#blocked-banner');
+        const head = document.querySelector('#view-home > .head');
+        return {
+          saveRole: save.getAttribute('role'),
+          saveTop: save.getBoundingClientRect().top,
+          blockedTop: blocked.getBoundingClientRect().top,
+          headTop: head.getBoundingClientRect().top,
+          saveVisible: save.checkVisibility(),
+          blockedVisible: blocked.checkVisibility(),
+        };
+      });
+      checked(t, `${label}: save and unreadable-data warnings remain above Home`,
+        safety.saveRole === 'alert' && safety.saveVisible && safety.blockedVisible
+        && safety.saveTop <= safety.blockedTop && safety.blockedTop < safety.headTop, safety);
     }, selected ?? (process.argv.includes('--prove') ? [...profiles, androidPhoneProfiles[0]] : profiles));
   },
 };
@@ -1243,7 +1520,51 @@ export const phoneFieldZoom = {
   },
 };
 
-export const phoneLayoutScenarios = [phoneFieldZoom, phoneBack, phoneContinue, continueWideMatchesMain, guideLinkPill, phoneNotices, phoneLongNotice, phoneSearchReflow, phoneSearchRowsFit, phoneCatalogReflow];
+export const phoneExploreHierarchy = {
+  id: 'phone-explore-hierarchy',
+  title: 'Explore titles retain their hierarchy at ordinary and largest phone text',
+  async run(page, t, selected) {
+    const spotlight = actualCatalog.lists.find((list) => list.id === 'the-vision-reading-order');
+    if (!spotlight) throw new Error('The Explore spotlight fixture is missing.');
+    const exploreCatalog = { ...catalog, lists: [...catalog.lists, spotlight] };
+    await forProfiles(page, t, async (profile, theme) => {
+      for (const size of ['ordinary', 'largest']) {
+        if (size === 'largest') await largeText(page, profile);
+        const cards = await page.$$eval('#home-primary-paths .home-path', (nodes) => nodes.map((node) => {
+          const title = node.querySelector('.home-path-title');
+          const label = node.querySelector('.home-path-label');
+          const count = node.querySelector('.home-path-count');
+          return {
+            title: title.textContent.trim(),
+            titleSize: parseFloat(getComputedStyle(title).fontSize),
+            labelSize: parseFloat(getComputedStyle(label).fontSize),
+            titleWidth: title.clientWidth,
+            titleScrollWidth: title.scrollWidth,
+            labelWidth: label.clientWidth,
+            labelScrollWidth: label.scrollWidth,
+            countWidth: count.clientWidth,
+            countScrollWidth: count.scrollWidth,
+            fits: [title, label, count].every((text) => text.scrollWidth <= text.clientWidth + 1),
+          };
+        }));
+        checked(t, `${profile.platform} ${profile.width} ${theme} ${size}: every Explore title is larger than its label and all card text fits`,
+          cards.some((card) => card.title === 'Character spotlights')
+            && cards.every((card) => card.titleSize > card.labelSize && card.fits), cards);
+        if (profile.platform === 'desktop' && profile.width === 1280 && size === 'ordinary') {
+          checked(t, `desktop ${theme}: Explore titles retain their original maximum size`,
+            cards.length > 0 && cards.every((card) => Math.abs(card.titleSize - 28.8) < 0.02), cards);
+        }
+        await capture(page, profile, theme, `explore-${size}`);
+      }
+    }, selected ?? [
+      ...profiles,
+      { width: 320, height: 568, platform: 'ios' },
+      { width: 350, height: 740, platform: 'ios' },
+    ], exploreCatalog);
+  },
+};
+
+export const phoneLayoutScenarios = [phoneFieldZoom, phoneExploreHierarchy, phoneBack, phoneContinue, continueWideMatchesMain, guideLinkPill, phoneNotices, phoneLongNotice, phoneSearchReflow, phoneSearchRowsFit, phoneCatalogReflow];
 export const phoneLayoutMutations = [
   {
     id: 'phone-back-on-roots', breaks: 'phone-back', why: 'restoring Back on every history entry puts it on tab roots',

@@ -9,7 +9,7 @@ const expected = [
 
 export const readableMarkdownExport = {
   id: 'readable-markdown-export',
-  nativeDownloads: 4,
+  nativeDownloads: 6,
   title: 'readable Markdown export is private by default and preserves the whole list',
   async run(page, t) {
     await page.evaluateOnNewDocument((schemaVersion) => {
@@ -39,6 +39,10 @@ export const readableMarkdownExport = {
       }));
       const fetch = window.fetch.bind(window);
       window.__exportRequests = 0;
+      window.__exportFilenames = [];
+      document.addEventListener('click', (event) => {
+        if (event.target.matches('a[download]')) window.__exportFilenames.push(event.target.download);
+      }, true);
       // Backup & settings asks the cloud backup host whether this build has it (#810). That question is
       // kept apart, so the export's own count stays exact and anything else asked of the host shows.
       window.__cloudQuestions = [];
@@ -210,5 +214,36 @@ export const readableMarkdownExport = {
         && !document.querySelector('#markdown-export') && window.__mrtDownloads.length === 4
         && localStorage.getItem('mrt.state.v2') === state, before.state));
     await page.evaluate(() => { URL.createObjectURL = window.__exportCreateUrl; });
+    await page.$eval('#list-actions', (node) => { node.open = true; });
+    await page.$eval('#btn-rename-list', (node) => node.click());
+    await page.waitForSelector('#ask[open]');
+    const longName = 'W'.repeat(200);
+    await page.$eval('#ask-input', (node, name) => { node.value = name; }, longName);
+    await page.$eval('#ask-ok', (node) => node.click());
+    await page.waitForFunction((name) => JSON.parse(localStorage.getItem('mrt.state.v2'))
+      .lists['markdown-fixture'].name === name, {}, longName);
+    const renamedState = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+    await page.$eval('#list-actions', (node) => { node.open = true; });
+    await page.$eval('#list-export', (node) => { node.open = true; });
+    await open('#btn-export-md');
+    const longReadable = await download(5);
+    const readableFilename = await page.evaluate(() => window.__exportFilenames.at(-1));
+    t.check('a maximum-length list name exports readable Markdown with a bridge-sized filename and an unchanged document title',
+      readableFilename === `${'w'.repeat(177)}.md`
+        && longReadable.text.startsWith(`# ${longName}\n`) && longReadable.type === 'text/markdown',
+      JSON.stringify({ filename: readableFilename, downloads: await page.evaluate(() => window.__mrtDownloads.length) }));
+    await page.focus('#btn-export-order');
+    await page.keyboard.press('Enter');
+    await page.waitForSelector('#ask[open]');
+    await page.focus('#ask-ok');
+    await page.keyboard.press('Enter');
+    await page.waitForFunction(() => window.__mrtDownloads.length === 6);
+    const longOrder = await page.evaluate(() => window.__mrtDownloads.at(-1));
+    const orderFilename = await page.evaluate(() => window.__exportFilenames.at(-1));
+    t.check('a maximum-length list name exports order-only Markdown within the same bridge limit without renaming saved data',
+      orderFilename === `${'w'.repeat(166)}-order-only.md`
+        && longOrder.text.startsWith(`# ${longName}\n`) && longOrder.type === 'text/markdown'
+        && await page.evaluate((raw) => localStorage.getItem('mrt.state.v2') === raw, renamedState),
+      JSON.stringify({ filename: orderFilename, downloads: await page.evaluate(() => window.__mrtDownloads.length) }));
   },
 };

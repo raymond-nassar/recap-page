@@ -118,6 +118,10 @@
   margin-left: 0;
 }
 
+:root[data-ios-largest-text="true"] #home-categories :is(.home-path-label, .home-path-title) {
+  overflow-wrap: anywhere;
+}
+
 @media (max-width: 420px) {
   :root[data-ios-largest-text="true"] #view-data #data-h {
     line-height: 1.05;

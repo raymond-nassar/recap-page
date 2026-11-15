@@ -1,0 +1,24 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/910910/?format=json",
+  "retrievedAt": "2026-11-13T03:13:20.578Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/910910/?format=json",
+    "series_name": "X-Treme X-Men (2002 series)",
+    "descriptor": "3 - Schism",
+    "number": "3",
+    "volume": "3",
+    "variant_name": "",
+    "title": "Schism",
+    "publication_date": "[May] 2003",
+    "key_date": "2003-05-00",
+    "page_count": "164.000",
+    "isbn": "0-7851-1084-4",
+    "notes": "collects X-Treme X-Men (Marvel, 2001 series) #19-23 and X-Treme X-Men: X-Pose (Marvel, 2003 series) #1-2",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/63032/?format=json",
+    "story_set": []
+  }
+}

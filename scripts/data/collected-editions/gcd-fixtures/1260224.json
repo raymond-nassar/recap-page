@@ -1,0 +1,55 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/1260224/?format=json",
+  "retrievedAt": "2026-11-14T09:52:46.550Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/1260224/?format=json",
+    "series_name": "Edge of Spider-Verse (2014 series)",
+    "descriptor": "4",
+    "number": "4",
+    "volume": "",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "December 2014",
+    "key_date": "2014-12-00",
+    "page_count": "32.000",
+    "isbn": "",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/82728/?format=json",
+    "story_set": [
+      {
+        "type": "credits, title page",
+        "title": "Recap & Credits",
+        "feature": "",
+        "sequence_number": 1,
+        "page_count": "1.000",
+        "notes": "Recap and credits with same illustration from this issue's cover.",
+        "script": "Nick Lowe",
+        "pencils": "Garry Brown"
+      },
+      {
+        "type": "comic story",
+        "title": "I Walked with a Spider",
+        "feature": "Spider-Man",
+        "sequence_number": 2,
+        "page_count": "20.000",
+        "notes": "Title of story inferred from that on cover.",
+        "script": "Clay McLeod Chapman",
+        "pencils": "Elia Bonetti"
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "Next:",
+        "feature": "Spider-Man",
+        "sequence_number": 3,
+        "page_count": "1.000",
+        "notes": "House ad for Edge of Spider-Verse #5.",
+        "script": "None",
+        "pencils": "Jake Wyatt"
+      }
+    ]
+  }
+}

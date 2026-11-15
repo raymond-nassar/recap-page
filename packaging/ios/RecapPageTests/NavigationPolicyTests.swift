@@ -56,6 +56,19 @@ final class NavigationPolicyTests: XCTestCase {
             policy.decide(url: try url("https://raymond-nassar.github.io/recap-page/privacy.html#deleting-your-data"),
                           isMainFrame: true, opensNewWindow: true, userActivated: true),
             .openExternally)
+        for address in [
+            "https://www.hoopladigital.com/title/123456789",
+            "https://www.hoopladigital.com/comic/stand-in-book/123456789",
+            "https://share.libbyapp.com/title/123456",
+        ] {
+            let provider = try url(address)
+            XCTAssertEqual(
+                policy.decide(url: provider, isMainFrame: false, opensNewWindow: true, userActivated: true),
+                .openExternally, address)
+            XCTAssertEqual(
+                policy.decide(url: provider, isMainFrame: false, opensNewWindow: true, userActivated: false),
+                .refuse, address)
+        }
         for refused in [
             "http://raymond-nassar.github.io/recap-page/privacy.html",
             "https://reader@raymond-nassar.github.io/recap-page/privacy.html",

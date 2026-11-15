@@ -53,10 +53,10 @@ a final version release PR.
 
 Three rules do most of the work.
 
-**One thing per pull request, unless the maintainer explicitly combines a delivery.** File unrelated
-work as a repository Issue, not another commit on the branch. This keeps changes independently
-revertible. The maintainer-approved combined UX delivery on 2026-08-22 is an exception, not a precedent
-contributors should infer.
+**The maintainer names each pull request's scope before it is created.** Ask how many features or
+changes it carries if that has not been said. File unrelated work as an Issue unless the owner
+includes it. This rule changed on 14 November 2026 to speed development and reduce CI checks.
+The maintainer-approved combined UX delivery on 2026-08-22 remains part of the project's history.
 
 **Claims carry evidence.** Cite the file and line for codebase claims. For external claims, give the
 URL and retrieval date. Use evidence you checked, not recollection.
