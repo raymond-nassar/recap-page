@@ -1,0 +1,145 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/2107285/?format=json",
+  "retrievedAt": "2026-11-13T20:58:03.839Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/2107285/?format=json",
+    "series_name": "Secret Invasion: X-Men (2009 series)",
+    "descriptor": "",
+    "number": "[nn]",
+    "volume": "",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "2009",
+    "key_date": "2009-03-11",
+    "page_count": "140.000",
+    "isbn": "978-0-7851-3343-8",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/159488/?format=json",
+    "story_set": [
+      {
+        "type": "credits, title page",
+        "title": "Title Page and Credits",
+        "feature": "",
+        "sequence_number": 1,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Cary Nord"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "X-Men",
+        "sequence_number": 2,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Terry Dodson (credited, signed)"
+      },
+      {
+        "type": "comic story",
+        "title": "Secret Invasion, Part One",
+        "feature": "X-Men",
+        "sequence_number": 3,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Mike Carey",
+        "pencils": "Cary Nord"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "X-Men",
+        "sequence_number": 4,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Terry Dodson (credited, signed)"
+      },
+      {
+        "type": "comic story",
+        "title": "Secret Invasion, Part Two",
+        "feature": "X-Men",
+        "sequence_number": 5,
+        "page_count": "23.000",
+        "notes": "",
+        "script": "Mike Carey (credited)",
+        "pencils": "Cary Nord (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "X-Men",
+        "sequence_number": 6,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Terry Dodson (credited, signed)"
+      },
+      {
+        "type": "comic story",
+        "title": "Secret Invasion, Part Three",
+        "feature": "X-Men",
+        "sequence_number": 7,
+        "page_count": "23.000",
+        "notes": "",
+        "script": "Mike Carey (credited)",
+        "pencils": "Miguel Ángel Sepúlveda (credited as M. A. Sepulveda)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "X-Men",
+        "sequence_number": 8,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Terry Dodson (credited, signed)"
+      },
+      {
+        "type": "comic story",
+        "title": "Secret Invasion, Part Four",
+        "feature": "X-Men",
+        "sequence_number": 9,
+        "page_count": "23.000",
+        "notes": "",
+        "script": "Mike Carey (credited)",
+        "pencils": "Cary Nord (credited); Miguel Ángel Sepúlveda (credited as M. A. Sepulveda)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "X-Factor!",
+        "feature": "Fantastic Four",
+        "sequence_number": 10,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "John Byrne"
+      },
+      {
+        "type": "comic story",
+        "title": "X-Factor",
+        "feature": "Fantastic Four",
+        "sequence_number": 11,
+        "page_count": "37.000",
+        "notes": "",
+        "script": "John Byrne (credited)",
+        "pencils": "John Byrne (credited)"
+      },
+      {
+        "type": "illustration",
+        "title": "A Marvel Masterwork Pin-Up!",
+        "feature": "Fantastic Four",
+        "sequence_number": 12,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "John Byrne"
+      }
+    ]
+  }
+}

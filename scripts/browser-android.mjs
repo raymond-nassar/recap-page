@@ -165,7 +165,7 @@ async function homeUpdatesCheck(page, label) {
   await click(page, '#home-updates-toggle');
   await page.waitForFunction(() => document.querySelector('#home-updates').open);
   if (batch) {
-    await page.waitForFunction((key) => localStorage.getItem(key) !== null, {}, HOME_UPDATES_SEEN_KEY);
+    await page.waitForFunction((key, id) => localStorage.getItem(key) === String(id), {}, HOME_UPDATES_SEEN_KEY, batch.id);
     await page.waitForFunction(() => [...document.querySelectorAll('[data-home-updates-list]')].every((node) => !node.disabled));
     for (const summary of await page.$$('#home-updates .home-updates-more > summary')) {
       await summary.evaluate((node) => node.click());
@@ -2689,10 +2689,9 @@ async function alignmentCheck(page, profile) {
     `${id}: populated reading fixture on Home`);
   } else {
     check(await page.$eval('#home-primary-paths [data-category="timeline"]', (node) => !!node.getClientRects().length), `${id}: current fresh Home recommendation`);
-    // #985: phones move the closure notice below Continue reading, which a fresh Home does not show,
-    // so here the notice stays Home's first content on every platform.
+    // An empty global notice pane has a layout box but is not visible content.
     check(await page.$eval('#view-home', (view) => [...view.children]
-      .find((node) => !node.matches('.head') && node.getClientRects().length)?.id === 'reader-closure-notice'),
+      .find((node) => !node.matches('.head, #app-report:empty') && node.getClientRects().length)?.id === 'reader-closure-notice'),
     `${id}: the closure notice stays first on a Home without Continue reading`);
   }
   const home = await record('home', ['#view-home > .head', '.home-lockup', '#home-h',
@@ -3256,10 +3255,15 @@ async function mobileLayout(page, label, narrow) {
   const navigation = await page.evaluate(() => ({
     parents: [...document.querySelectorAll('.breadcrumb a')].filter((link) => link.getClientRects().length).map((link) => link.hash),
     current: !!document.querySelector('.breadcrumb [aria-current]')?.getClientRects().length,
+    back: (() => {
+      const button = document.querySelector('.breadcrumb button.app-back');
+      return button && button.getClientRects().length && button.getAttribute('aria-label');
+    })(),
   }));
-  // #831: a category's one parent is Home, at the cards it was chosen from, wide or narrow.
-  check(navigation.parents.length === 1 && navigation.parents[0] === '#/browse' && (narrow ? !navigation.current : navigation.current),
-    `${label}: ${narrow ? 'one parent destination without duplicated title' : 'wide breadcrumb hierarchy retained'} ${JSON.stringify(navigation)}`);
+  check(narrow
+    ? navigation.back === 'Back' && navigation.parents.length === 0 && !navigation.current
+    : navigation.parents.length === 1 && navigation.parents[0] === '#/browse' && navigation.current,
+  `${label}: ${narrow ? 'direct entry shows Back without a visible trail' : 'wide breadcrumb hierarchy retained'} ${JSON.stringify(navigation)}`);
   if (narrow) {
     const filters = await page.$eval('#catalog-filters', (group) => {
       const boxes = [...group.querySelectorAll('.fp')].map((node) => node.getBoundingClientRect());
@@ -3285,8 +3289,11 @@ async function mobileLayout(page, label, narrow) {
     `${label}: existing catalog filter still affects results`);
   await click(page, '#catalog-filters input[value="all"]');
   await page.type('#catalog-q', 'Secret Wars');
-  await page.tap('.breadcrumb li:nth-last-child(2) a');
+  const historyLength = await page.evaluate(() => history.length);
+  await page.tap(narrow ? '.breadcrumb button.app-back' : '.breadcrumb li:nth-last-child(2) a');
   await page.waitForSelector('#view-home:not([hidden])');
+  if (narrow) check(await page.evaluate((length) => location.hash === '#/browse' && history.length === length, historyLength),
+    `${label}: direct Back opens the original parent without adding history`);
   check(await page.$eval('#home-cat-h', (heading) => document.activeElement === heading
     && getComputedStyle(heading).outlineStyle === 'none'),
   `${label}: touch after typing returns to Home's category cards without a heading rectangle`);
@@ -5418,11 +5425,32 @@ async function completeBackupAndroidCheck(page, label) {
     finish: !document.querySelector('#btn-complete-finish').hidden,
     prior: !document.querySelector('#btn-complete-restore-prior').hidden,
     keep: !document.querySelector('#btn-complete-keep').hidden,
-    paused: document.querySelector('#app-report').textContent.includes('did not finish'),
+    paused: document.querySelector('#save-report').textContent.includes('did not finish'),
     marker: localStorage.getItem('mrt.complete-restore.v1')?.split(':')[0] ?? null,
   }));
   check(offered.copy && offered.finish && offered.prior && !offered.keep && offered.paused && offered.marker === 'active',
     `${label}: after a reload in place of a kill, saving stays paused and recovery offers the prior copy, Finish and Restore prior data ${JSON.stringify(offered)}`);
+  await route(page, 'home');
+  await page.evaluate(async () => {
+    const { notify } = await import('./js/main.js');
+    notify('#app-report', 'Routine placement fixture.', 'warn', 'restore-placement-fixture');
+  });
+  const noticePlacement = await page.evaluate(() => {
+    const save = document.querySelector('#save-report');
+    const head = document.querySelector('#view-home > .head');
+    const routine = document.querySelector('#app-report');
+    return {
+      paused: save.textContent.includes('did not finish'), role: save.getAttribute('role'),
+      saveTop: save.getBoundingClientRect().top, headTop: head.getBoundingClientRect().top,
+      routine: routine.textContent.includes('Routine placement fixture.'),
+      routineTop: routine.getBoundingClientRect().top, headBottom: head.getBoundingClientRect().bottom,
+    };
+  });
+  check(noticePlacement.paused && noticePlacement.role === 'alert' && noticePlacement.saveTop < noticePlacement.headTop
+    && noticePlacement.routine && noticePlacement.routineTop >= noticePlacement.headBottom,
+  `${label}: restore pause stays above Home while a routine notice stays below the head ${JSON.stringify(noticePlacement)}`);
+  await route(page, 'data');
+  await page.waitForFunction(() => !document.querySelector('#complete-restore-recovery').hidden);
   const copy = await nativeSave('#btn-complete-prior-copy');
   let values = null;
   try { values = JSON.parse(copy.text).values; } catch { /* reported below */ }
@@ -5438,7 +5466,7 @@ async function completeBackupAndroidCheck(page, label) {
     sidebar: finished['sidebar.collapsed'] === 'true',
     marker: await page.evaluate(() => localStorage.getItem('mrt.complete-restore.v1')?.split(':')[0] ?? null),
     closed: await page.$eval('#complete-restore-recovery', (node) => node.hidden),
-    saving: !(await page.$eval('#app-report', (node) => node.textContent.includes('did not finish'))),
+    saving: !(await page.$eval('#save-report', (node) => node.textContent.includes('did not finish'))),
   };
   check(outcome.list && outcome.sidebar && outcome.marker === 'done' && outcome.closed && outcome.saving,
     `${label}: Finish completes the interrupted restore exactly and saving starts again ${JSON.stringify(outcome)}`);
@@ -5734,6 +5762,11 @@ try {
         body: JSON.stringify({ status: 'ok', ...order.items[0], items: [], data: [] }),
       });
     });
+    await page.evaluateOnNewDocument((key, id) => {
+      // #1317: Home offers What's new only after an update, so every profile starts as an updated
+      // install that has not opened this batch. A fresh install keeps it off Home.
+      if (id !== null && localStorage.getItem(key) === null) localStorage.setItem(key, String(id - 1));
+    }, HOME_UPDATES_SEEN_KEY, homeUpdatesContent.batch?.id ?? null);
     await page.evaluateOnNewDocument((reading, spotlight, nearEnd) => {
       if (!spotlight) localStorage.setItem('mrt.settings', JSON.stringify(reading ? { covers: nearEnd, theme: 'light' } : { covers: false }));
       window.addEventListener('load', () => {
@@ -5802,6 +5835,15 @@ try {
     // sidebar toggle is its icon and name on both.
     check(navigationToggle.labelVisible === (viewport.width <= 880),
       `${label}: narrow navigation shows its More label on Android and desktop alike; wide keeps its icon`);
+    if (phoneHeader && viewport.width <= 880) {
+      const weights = await page.evaluate(() => [
+        document.querySelector('.rail-toggle-label'),
+        document.querySelector('.rail-header [data-view="library"] span'),
+        document.querySelector('.rail-header [data-view="add"] span'),
+      ].map((node) => node ? getComputedStyle(node).fontWeight : null));
+      check(weights.every((weight) => weight === '400'),
+        `${label}: More, Library and Search labels have the same regular weight ${JSON.stringify(weights)}`);
+    }
     // The narrow toggle opens the bottom bar's More panel, so main.js names it More, as the
     // shared browser suite asserts. Each property is named on failure so a miss says which one.
     const navigationMisses = [

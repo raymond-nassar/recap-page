@@ -6,7 +6,7 @@ import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { NODE_VERSION, NODE_ARCH, PAYLOAD_NAME, appFiles, readMe, readMeFor } from '../scripts/pack-windows.mjs';
+import { NODE_VERSION, NODE_ARCH, PAYLOAD_NAME, appFiles, readMe, readMeFor, writePortableArchive } from '../scripts/pack-windows.mjs';
 import { powershell } from '../scripts/lib/windows-powershell.mjs';
 
 // The packaging contract, checked here because the person it is for cannot diagnose it.
@@ -94,6 +94,42 @@ test('the packaging script is tracked and reachable by name', () => {
   assert.ok(git(['ls-files']).split(/\r?\n/).includes(PACK), `${PACK} is not tracked`);
   const pkg = JSON.parse(read('package.json'));
   assert.equal(pkg.scripts.pack, 'node scripts/pack-windows.mjs');
+});
+
+test('portable ZIP entry names use forward slashes and preserve every file byte', { skip: process.platform !== 'win32' }, () => {
+  const scratch = mkdtempSync(join(tmpdir(), "recap-portable-'"));
+  const literal = (value) => `'${value.replaceAll("'", "''")}'`;
+  const files = new Map([
+    ['a.txt', Buffer.from('portable fixture')],
+    ["sub/[b]'s.bin", Buffer.from([0, 255, 13, 10, 128])],
+    ['sub/empty.txt', Buffer.alloc(0)],
+    ['.hidden', Buffer.from('included')],
+  ]);
+  try {
+    const payload = join(scratch, PAYLOAD_NAME);
+    for (const [name, bytes] of files) {
+      const path = join(payload, name);
+      mkdirSync(dirname(path), { recursive: true });
+      writeFileSync(path, bytes);
+    }
+    const archive = join(scratch, 'portable.zip');
+    writePortableArchive(payload, archive);
+    const names = JSON.parse(powershell(`Add-Type -AssemblyName System.IO.Compression.FileSystem;
+      $zip = [IO.Compression.ZipFile]::OpenRead(${literal(archive)});
+      try { ConvertTo-Json -InputObject @($zip.Entries | ForEach-Object { $_.FullName }) -Compress }
+      finally { $zip.Dispose() }`, { stdio: 'pipe' }));
+    for (const name of names) {
+      assert.ok(!name.includes('\\') && !name.split('/').includes('..'), `unsafe ZIP entry: ${name}`);
+    }
+    assert.deepEqual(names.sort(), [...files.keys()].map((name) => `${PAYLOAD_NAME}/${name}`).sort());
+    const output = join(scratch, 'unpacked');
+    powershell(`Expand-Archive -LiteralPath ${literal(archive)} -DestinationPath ${literal(output)} -Force`);
+    for (const [name, bytes] of files) {
+      assert.deepEqual(readFileSync(join(output, PAYLOAD_NAME, name)), bytes, name);
+    }
+  } finally {
+    rmSync(scratch, { recursive: true, force: true });
+  }
 });
 
 // The trap this repository is most exposed to, because it cannot be seen from here. This machine

@@ -276,6 +276,11 @@ export const deferPersistence = {
       }, ids[1]);
       t.check('Stale ordinary save refuses and adopts, never overwriting foreign deferral',
         !conflict.ok && conflict.intent.join() === ids.join() && await raw(page) === foreign);
+      // The foreign tab opened above took the foreground, and a reload of the hidden tab left behind
+      // never reaches its load event: on Edge 157 it stayed at readyState interactive until the
+      // navigation timed out (#1210), and with that tab shown it completed in about 200 ms. A reader
+      // reloads the tab they are looking at, so the reader's tab comes back to the front first.
+      await page.bringToFront();
       await page.goto(`${page.__origin}/#/read/defer?full=1`, { waitUntil: 'load' });
       await page.reload({ waitUntil: 'load' });
       t.check('Reload paints retained intent on read rows with an explicit Clear action',

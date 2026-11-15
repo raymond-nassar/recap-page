@@ -11,7 +11,7 @@ The repository has been public since 2026-08-16 and accepts issues and pull requ
 2. Comment `/take` by itself. A bot assigns you if the Issue is still open, labeled and unassigned.
    Check **Assignees** before starting. If someone is assigned, coordinate with them instead.
    For other Issues, discuss scope with the maintainer first. You do not need write access.
-3. Use your fork and a branch for one change. Link the Issue in your pull request.
+3. Use your fork and a branch for the maintainer-agreed scope. Link the Issue in your pull request.
    Keep progress, questions and handoffs on that Issue so others can pick up where you stop.
 4. Read the [app map](docs/ARCHITECTURE.md), then the reference for the part you will change.
    Use [the running guide](docs/RUNNING.md) for platform setup.
@@ -52,9 +52,9 @@ is a known limit, with manual entry available, not a bug.
 
 ## How a change is judged
 
-Keep one purpose per pull request. Agree on shared-file ownership when work overlaps; leave unrelated
-improvements for another Issue. Describe what changed, why, and how you checked it.
-Do not overwrite another contributor's work when resolving conflicts.
+The maintainer names how many features or changes each pull request carries before it is created;
+ask if that has not been said. Leave unrelated work for another Issue unless the owner includes it.
+Agree on shared-file ownership and preserve others' work. Describe what changed, why, and the checks.
 
 Use the [pull request template](.github/PULL_REQUEST_TEMPLATE.md). Include the Issue, exact check
 results and any missing evidence. Follow [release bookkeeping](GOVERNANCE.md#release-bookkeeping)

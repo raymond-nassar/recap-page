@@ -108,7 +108,8 @@ only to correct the record left by the one before it:
   and do not raise it as a review finding.** This does not license inventing figures: an assertion
   you choose to make must still be true. It says to make fewer of them.
 - **Do not widen active scope.** Unrelated work becomes a repository Issue, not an extra commit in
-  the current change. One major feature per pull request.
+  the current change unless the owner includes it. The owner says how many features or changes a
+  pull request carries before it is created; ask when that has not been said.
 - **Reading-list publication is gap-tolerant.** Missing Marvel Unlimited or provider metadata must
   not block publishing the whole reading list. Preserve every missing source position in explicit
   provenance, never invent, substitute, or silently delete an issue identity, and keep publishing
@@ -441,7 +442,8 @@ later. Refusals are a backstop, not a design.
 
 - Commit messages explain why the change is right, in the same register as the comments.
 - Include the trailer: `Co-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>`
-- One major feature per pull request.
+- The owner decides how many features or changes each pull request carries and says so before it
+  is created. Ask when that has not been said.
 - Record what was verified, with numbers, in the pull request body.
 - **Open every pull request body with a plain English summary, under the heading
   `## In plain English`.** It goes first, above every section written for a reader who already knows

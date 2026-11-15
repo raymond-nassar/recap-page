@@ -1,0 +1,374 @@
+{
+  "schemaVersion": 1,
+  "issue": 1080,
+  "id": "thor-best-of",
+  "priorCommit": "52a3fdec519973c761e8b1ec2816b8daa85bbf4c",
+  "source": {
+    "url": "https://www.comicbookherald.com/best-10-thor-comics-of-all-time/",
+    "retrieved": "2026-11-14",
+    "basis": "The guide recommends Thor and the Eternals: The Celestial Saga as honorable mention number one. Its introduction separately mentions Thor #240-245 and Annual #10; those are not the collection.",
+    "collectionUrl": "https://www.amazon.com/Thor-Eternals-Celestials-Saga-1966-1996-ebook/dp/B08LF2LSGN/",
+    "verificationUrl": "https://www.abebooks.com/9781302922498/Thor-Eternals-Celestials-Saga-Thomas-1302922491/plp",
+    "isbn": "9781302922498",
+    "contents": "Thor (1966) #283-301; Thor Annual (1966) #7",
+    "orderBasis": "Thor Annual #7 is the prologue, followed by Thor #283-301 in ascending issue order. The named collection reprints the annual first in Marvel Database revision 9472363, corroborated by the 2006 Thor: The Eternals Saga Volume 1 revision 9687668.",
+    "orderVerificationUrls": [
+      "https://marvel.fandom.com/wiki/Thor_and_the_Eternals:_The_Celestials_Saga_TPB_Vol_1_1?oldid=9472363",
+      "https://marvel.fandom.com/wiki/Thor:_The_Eternals_Saga_TPB_Vol_1_1?oldid=9687668"
+    ]
+  },
+  "section": "Roy Thomas and Mark Gruenwald: The Celestial Saga",
+  "priorPayloadSha256": "6ec2589f4a9d2dd77c20886965fb597c999317f9322660727e391425fe534d76",
+  "correctedPayloadSha256": "e7dee228aebcae2e3671a934b0e84b28365c26d4c2643fff7fe55ef3c02165de",
+  "priorItemsSha256": "4739567356b68601861bdefd56f983b4ec5b6c5e18a5617667c21f79b795f7f7",
+  "correctedItemsSha256": "4afa5bc8c37fe42ea706b28bf5155f25a7c2580563bdd289354bb2985a723d45",
+  "removed": [
+    {
+      "sourcePosition": 30,
+      "issueId": 11568,
+      "title": "Thor (1966) #240",
+      "reason": "Incorrect expansion of the Celestial Saga recommendation; the guide mentions this original separately in its introduction."
+    },
+    {
+      "sourcePosition": 31,
+      "issueId": 11569,
+      "title": "Thor (1966) #241",
+      "reason": "Incorrect expansion of the Celestial Saga recommendation; the guide mentions this original separately in its introduction."
+    },
+    {
+      "sourcePosition": 32,
+      "issueId": 11570,
+      "title": "Thor (1966) #242",
+      "reason": "Incorrect expansion of the Celestial Saga recommendation; the guide mentions this original separately in its introduction."
+    },
+    {
+      "sourcePosition": 33,
+      "issueId": 11571,
+      "title": "Thor (1966) #243",
+      "reason": "Incorrect expansion of the Celestial Saga recommendation; the guide mentions this original separately in its introduction."
+    },
+    {
+      "sourcePosition": 34,
+      "issueId": 11572,
+      "title": "Thor (1966) #244",
+      "reason": "Incorrect expansion of the Celestial Saga recommendation; the guide mentions this original separately in its introduction."
+    },
+    {
+      "sourcePosition": 35,
+      "issueId": 11573,
+      "title": "Thor (1966) #245",
+      "reason": "Incorrect expansion of the Celestial Saga recommendation; the guide mentions this original separately in its introduction."
+    },
+    {
+      "sourcePosition": 36,
+      "issueId": 16671,
+      "title": "Thor Annual (1966) #10",
+      "reason": "Incorrect expansion of the Celestial Saga recommendation; the guide mentions this original separately in its introduction."
+    }
+  ],
+  "replacements": [
+    {
+      "sourcePosition": 30,
+      "issueId": 16686,
+      "title": "Thor Annual (1966) #7",
+      "seriesId": 2978,
+      "number": "7",
+      "issueUrl": "https://www.marvel.com/comics/issue/16686/thor_annual_1966_7",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/16686",
+      "retrieved": "2026-11-14T22:50:46.795Z",
+      "factualResponseSha256": "3c2ac5d1c422e4675d78b52b7bcdcfa2bd7ef8f609befea9246d889adaa1c03f",
+      "sources": [
+        "https://www.comicbookherald.com/best-10-thor-comics-of-all-time/",
+        "https://www.abebooks.com/9781302922498/Thor-Eternals-Celestials-Saga-Thomas-1302922491/plp"
+      ]
+    },
+    {
+      "sourcePosition": 31,
+      "issueId": 11611,
+      "title": "Thor (1966) #283",
+      "seriesId": 2083,
+      "number": "283",
+      "issueUrl": "https://www.marvel.com/comics/issue/11611/thor_1966_283",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/11611",
+      "retrieved": "2026-11-14T22:50:36.420Z",
+      "factualResponseSha256": "53a588693ca338f0e1b9e776d4e7d91c44f2f9c8726fc23827e1d9306c06a0f8",
+      "sources": [
+        "https://www.comicbookherald.com/best-10-thor-comics-of-all-time/",
+        "https://www.abebooks.com/9781302922498/Thor-Eternals-Celestials-Saga-Thomas-1302922491/plp"
+      ]
+    },
+    {
+      "sourcePosition": 32,
+      "issueId": 11612,
+      "title": "Thor (1966) #284",
+      "seriesId": 2083,
+      "number": "284",
+      "issueUrl": "https://www.marvel.com/comics/issue/11612/thor_1966_284",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/11612",
+      "retrieved": "2026-11-14T22:50:36.958Z",
+      "factualResponseSha256": "47fa0df5865924051cb07ce5842a026951535febfbe683de9ee04f4d3b72981a",
+      "sources": [
+        "https://www.comicbookherald.com/best-10-thor-comics-of-all-time/",
+        "https://www.abebooks.com/9781302922498/Thor-Eternals-Celestials-Saga-Thomas-1302922491/plp"
+      ]
+    },
+    {
+      "sourcePosition": 33,
+      "issueId": 11613,
+      "title": "Thor (1966) #285",
+      "seriesId": 2083,
+      "number": "285",
+      "issueUrl": "https://www.marvel.com/comics/issue/11613/thor_1966_285",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/11613",
+      "retrieved": "2026-11-14T22:50:37.486Z",
+      "factualResponseSha256": "1b544dc84b5823103504e8a09debee663a9364d804464b1aed19ef5fa54411a0",
+      "sources": [
+        "https://www.comicbookherald.com/best-10-thor-comics-of-all-time/",
+        "https://www.abebooks.com/9781302922498/Thor-Eternals-Celestials-Saga-Thomas-1302922491/plp"
+      ]
+    },
+    {
+      "sourcePosition": 34,
+      "issueId": 11614,
+      "title": "Thor (1966) #286",
+      "seriesId": 2083,
+      "number": "286",
+      "issueUrl": "https://www.marvel.com/comics/issue/11614/thor_1966_286",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/11614",
+      "retrieved": "2026-11-14T22:50:38.016Z",
+      "factualResponseSha256": "3ad2c8f84765e23027419b404198453c49ce654784c286f29438538bb8ce016e",
+      "sources": [
+        "https://www.comicbookherald.com/best-10-thor-comics-of-all-time/",
+        "https://www.abebooks.com/9781302922498/Thor-Eternals-Celestials-Saga-Thomas-1302922491/plp"
+      ]
+    },
+    {
+      "sourcePosition": 35,
+      "issueId": 11615,
+      "title": "Thor (1966) #287",
+      "seriesId": 2083,
+      "number": "287",
+      "issueUrl": "https://www.marvel.com/comics/issue/11615/thor_1966_287",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/11615",
+      "retrieved": "2026-11-14T22:50:38.611Z",
+      "factualResponseSha256": "02968b019dca16e71ae06b1cf39fd9b5bd53e67f081c479d45a1c0a0e536f0d4",
+      "sources": [
+        "https://www.comicbookherald.com/best-10-thor-comics-of-all-time/",
+        "https://www.abebooks.com/9781302922498/Thor-Eternals-Celestials-Saga-Thomas-1302922491/plp"
+      ]
+    },
+    {
+      "sourcePosition": 36,
+      "issueId": 11616,
+      "title": "Thor (1966) #288",
+      "seriesId": 2083,
+      "number": "288",
+      "issueUrl": "https://www.marvel.com/comics/issue/11616/thor_1966_288",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/11616",
+      "retrieved": "2026-11-14T22:50:39.145Z",
+      "factualResponseSha256": "a3734d8ff107ba4da8291c7f8876f4d3cae7146254718d747f5b66bfa316ffd9",
+      "sources": [
+        "https://www.comicbookherald.com/best-10-thor-comics-of-all-time/",
+        "https://www.abebooks.com/9781302922498/Thor-Eternals-Celestials-Saga-Thomas-1302922491/plp"
+      ]
+    },
+    {
+      "sourcePosition": 37,
+      "issueId": 11617,
+      "title": "Thor (1966) #289",
+      "seriesId": 2083,
+      "number": "289",
+      "issueUrl": "https://www.marvel.com/comics/issue/11617/thor_1966_289",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/11617",
+      "retrieved": "2026-11-14T22:50:39.830Z",
+      "factualResponseSha256": "963a891be183c96d4eb26a431ef35cebbb2c0d5b436841b9921220fbc58faf67",
+      "sources": [
+        "https://www.comicbookherald.com/best-10-thor-comics-of-all-time/",
+        "https://www.abebooks.com/9781302922498/Thor-Eternals-Celestials-Saga-Thomas-1302922491/plp"
+      ]
+    },
+    {
+      "sourcePosition": 38,
+      "issueId": 11618,
+      "title": "Thor (1966) #290",
+      "seriesId": 2083,
+      "number": "290",
+      "issueUrl": "https://www.marvel.com/comics/issue/11618/thor_1966_290",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/11618",
+      "retrieved": "2026-11-14T22:50:40.481Z",
+      "factualResponseSha256": "4ee25967ea097fc3817f416170609e5a4fa8a5b7e291f372437cff0bf92eb31f",
+      "sources": [
+        "https://www.comicbookherald.com/best-10-thor-comics-of-all-time/",
+        "https://www.abebooks.com/9781302922498/Thor-Eternals-Celestials-Saga-Thomas-1302922491/plp"
+      ]
+    },
+    {
+      "sourcePosition": 39,
+      "issueId": 11619,
+      "title": "Thor (1966) #291",
+      "seriesId": 2083,
+      "number": "291",
+      "issueUrl": "https://www.marvel.com/comics/issue/11619/thor_1966_291",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/11619",
+      "retrieved": "2026-11-14T22:50:41.009Z",
+      "factualResponseSha256": "6b3a769a56e8c2d402a042f5526b3e9bbef45e56459bad7e36cc97d23f3e06a0",
+      "sources": [
+        "https://www.comicbookherald.com/best-10-thor-comics-of-all-time/",
+        "https://www.abebooks.com/9781302922498/Thor-Eternals-Celestials-Saga-Thomas-1302922491/plp"
+      ]
+    },
+    {
+      "sourcePosition": 40,
+      "issueId": 11620,
+      "title": "Thor (1966) #292",
+      "seriesId": 2083,
+      "number": "292",
+      "issueUrl": "https://www.marvel.com/comics/issue/11620/thor_1966_292",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/11620",
+      "retrieved": "2026-11-14T22:50:41.531Z",
+      "factualResponseSha256": "b6621c0c5a0c935bc1a941ea8d3dff4b12324f94fd784c7be612b7ca06cf2207",
+      "sources": [
+        "https://www.comicbookherald.com/best-10-thor-comics-of-all-time/",
+        "https://www.abebooks.com/9781302922498/Thor-Eternals-Celestials-Saga-Thomas-1302922491/plp"
+      ]
+    },
+    {
+      "sourcePosition": 41,
+      "issueId": 11621,
+      "title": "Thor (1966) #293",
+      "seriesId": 2083,
+      "number": "293",
+      "issueUrl": "https://www.marvel.com/comics/issue/11621/thor_1966_293",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/11621",
+      "retrieved": "2026-11-14T22:50:42.060Z",
+      "factualResponseSha256": "395bb62836f806ec1d753d46f172af2504c3aaf3e946211bf598a56d6cddfbe8",
+      "sources": [
+        "https://www.comicbookherald.com/best-10-thor-comics-of-all-time/",
+        "https://www.abebooks.com/9781302922498/Thor-Eternals-Celestials-Saga-Thomas-1302922491/plp"
+      ]
+    },
+    {
+      "sourcePosition": 42,
+      "issueId": 11622,
+      "title": "Thor (1966) #294",
+      "seriesId": 2083,
+      "number": "294",
+      "issueUrl": "https://www.marvel.com/comics/issue/11622/thor_1966_294",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/11622",
+      "retrieved": "2026-11-14T22:50:42.588Z",
+      "factualResponseSha256": "25ab83dc3f00ffbe6336954672f29c3c175651500e7b5025822bbe3f3795ee31",
+      "sources": [
+        "https://www.comicbookherald.com/best-10-thor-comics-of-all-time/",
+        "https://www.abebooks.com/9781302922498/Thor-Eternals-Celestials-Saga-Thomas-1302922491/plp"
+      ]
+    },
+    {
+      "sourcePosition": 43,
+      "issueId": 11623,
+      "title": "Thor (1966) #295",
+      "seriesId": 2083,
+      "number": "295",
+      "issueUrl": "https://www.marvel.com/comics/issue/11623/thor_1966_295",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/11623",
+      "retrieved": "2026-11-14T22:50:43.104Z",
+      "factualResponseSha256": "b927cfc7581314c56022ac8bf94961e337438bbe8b913bc38c0c2651a4e0aaf4",
+      "sources": [
+        "https://www.comicbookherald.com/best-10-thor-comics-of-all-time/",
+        "https://www.abebooks.com/9781302922498/Thor-Eternals-Celestials-Saga-Thomas-1302922491/plp"
+      ]
+    },
+    {
+      "sourcePosition": 44,
+      "issueId": 11624,
+      "title": "Thor (1966) #296",
+      "seriesId": 2083,
+      "number": "296",
+      "issueUrl": "https://www.marvel.com/comics/issue/11624/thor_1966_296",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/11624",
+      "retrieved": "2026-11-14T22:50:43.637Z",
+      "factualResponseSha256": "030f8eb62af21b384f9e557529d2e6ec8aa016edf5843016cf0363d14aa830c4",
+      "sources": [
+        "https://www.comicbookherald.com/best-10-thor-comics-of-all-time/",
+        "https://www.abebooks.com/9781302922498/Thor-Eternals-Celestials-Saga-Thomas-1302922491/plp"
+      ]
+    },
+    {
+      "sourcePosition": 45,
+      "issueId": 11625,
+      "title": "Thor (1966) #297",
+      "seriesId": 2083,
+      "number": "297",
+      "issueUrl": "https://www.marvel.com/comics/issue/11625/thor_1966_297",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/11625",
+      "retrieved": "2026-11-14T22:50:44.173Z",
+      "factualResponseSha256": "590966523dcb3cfa160a88b88691c1a2bebc2ede49900da9c796679a1b2e1a80",
+      "sources": [
+        "https://www.comicbookherald.com/best-10-thor-comics-of-all-time/",
+        "https://www.abebooks.com/9781302922498/Thor-Eternals-Celestials-Saga-Thomas-1302922491/plp"
+      ]
+    },
+    {
+      "sourcePosition": 46,
+      "issueId": 11626,
+      "title": "Thor (1966) #298",
+      "seriesId": 2083,
+      "number": "298",
+      "issueUrl": "https://www.marvel.com/comics/issue/11626/thor_1966_298",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/11626",
+      "retrieved": "2026-11-14T22:50:44.706Z",
+      "factualResponseSha256": "510bcff793d0d17eaa4c1676fee9e28d462f27a10da8c398394527504a57ab8a",
+      "sources": [
+        "https://www.comicbookherald.com/best-10-thor-comics-of-all-time/",
+        "https://www.abebooks.com/9781302922498/Thor-Eternals-Celestials-Saga-Thomas-1302922491/plp"
+      ]
+    },
+    {
+      "sourcePosition": 47,
+      "issueId": 11627,
+      "title": "Thor (1966) #299",
+      "seriesId": 2083,
+      "number": "299",
+      "issueUrl": "https://www.marvel.com/comics/issue/11627/thor_1966_299",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/11627",
+      "retrieved": "2026-11-14T22:50:45.231Z",
+      "factualResponseSha256": "cd1d2b0001d59d2556885447eaf066bfb1f845ef850d8d589c252912d9af95e3",
+      "sources": [
+        "https://www.comicbookherald.com/best-10-thor-comics-of-all-time/",
+        "https://www.abebooks.com/9781302922498/Thor-Eternals-Celestials-Saga-Thomas-1302922491/plp"
+      ]
+    },
+    {
+      "sourcePosition": 48,
+      "issueId": 11628,
+      "title": "Thor (1966) #300",
+      "seriesId": 2083,
+      "number": "300",
+      "issueUrl": "https://www.marvel.com/comics/issue/11628/thor_1966_300",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/11628",
+      "retrieved": "2026-11-14T22:50:45.735Z",
+      "factualResponseSha256": "47e19158ba7779851671fbe0f50d0150eb1937a177c77ab9f106a21d65b8a323",
+      "sources": [
+        "https://www.comicbookherald.com/best-10-thor-comics-of-all-time/",
+        "https://www.abebooks.com/9781302922498/Thor-Eternals-Celestials-Saga-Thomas-1302922491/plp"
+      ]
+    },
+    {
+      "sourcePosition": 49,
+      "issueId": 11629,
+      "title": "Thor (1966) #301",
+      "seriesId": 2083,
+      "number": "301",
+      "issueUrl": "https://www.marvel.com/comics/issue/11629/thor_1966_301",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/11629",
+      "retrieved": "2026-11-14T22:50:46.266Z",
+      "factualResponseSha256": "4c4ddfa442b46f195e73d0a69445b5ef6366e1a4a79ec26342e87438c97defb7",
+      "sources": [
+        "https://www.comicbookherald.com/best-10-thor-comics-of-all-time/",
+        "https://www.abebooks.com/9781302922498/Thor-Eternals-Celestials-Saga-Thomas-1302922491/plp"
+      ]
+    }
+  ],
+  "gaps": [],
+  "unchangedItems": 124,
+  "savedCompatibility": "Existing saved snapshots and progress remain unchanged. Newly added copies use the corrected 144-issue vector. The seven removed identities must not be relabeled as the twenty replacements."
+}

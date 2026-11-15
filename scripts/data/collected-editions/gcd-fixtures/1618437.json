@@ -1,0 +1,85 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/1618437/?format=json",
+  "retrievedAt": "2026-11-14T00:34:49.612Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/1618437/?format=json",
+    "series_name": "Doomwar (2011 series)",
+    "descriptor": "",
+    "number": "[nn]",
+    "volume": "",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "2011",
+    "key_date": "2011-04-27",
+    "page_count": "148.000",
+    "isbn": "978-0-7851-4715-2",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/105685/?format=json",
+    "story_set": [
+      {
+        "type": "comic story",
+        "title": "Doomwar Part 1",
+        "feature": "Black Panther",
+        "sequence_number": 1,
+        "page_count": "34.000",
+        "notes": "",
+        "script": "Jonathan Maberry",
+        "pencils": "Scot Eaton"
+      },
+      {
+        "type": "comic story",
+        "title": "Doomwar Part 2",
+        "feature": "Black Panther",
+        "sequence_number": 2,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Jonathan Maberry",
+        "pencils": "Scot Eaton"
+      },
+      {
+        "type": "comic story",
+        "title": "Doomwar Part 3",
+        "feature": "Black Panther",
+        "sequence_number": 3,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Jonathan Maberry",
+        "pencils": "Scot Eaton"
+      },
+      {
+        "type": "comic story",
+        "title": "Doomwar Part 4",
+        "feature": "Black Panther",
+        "sequence_number": 4,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Jonathan Maberry",
+        "pencils": "Scot Eaton"
+      },
+      {
+        "type": "comic story",
+        "title": "Doomwar Part 5",
+        "feature": "Black Panther",
+        "sequence_number": 5,
+        "page_count": "21.000",
+        "notes": "",
+        "script": "Jonathan Maberry",
+        "pencils": "Scot Eaton"
+      },
+      {
+        "type": "comic story",
+        "title": "Doomwar Part 6",
+        "feature": "Black Panther",
+        "sequence_number": 6,
+        "page_count": "22.000",
+        "notes": "",
+        "script": "Jonathan Maberry",
+        "pencils": "Scot Eaton"
+      }
+    ]
+  }
+}

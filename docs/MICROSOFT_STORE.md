@@ -549,7 +549,11 @@ stops there rather than continuing to a later missing-runtime copy.
 
 This addresses [#1272](https://github.com/raymond-nassar/recap-page/issues/1272): the updated
 Windows runner loaded PowerShell 7's Archive module in Windows PowerShell's .NET Framework host.
-The shared helper preserves the parent environment, archive commands and package layout.
+The shared helper preserves the parent environment and package layout. Portable ZIP creation uses
+the built-in .NET compression APIs with explicit forward-slash entry names, rather than
+`Compress-Archive`: Windows PowerShell's inbox Archive module writes backslash entry names that
+the release-preparation verifier rejects. Extraction still uses `Expand-Archive`, and the MSIX
+packaging path is unchanged.
 
 The other `Expand-Archive` sites do not cross that host boundary. WACK's diagnostic and two
 certification tool-install steps explicitly use `pwsh`, as does the Microsoft Store release

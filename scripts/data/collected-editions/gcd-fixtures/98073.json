@@ -1,0 +1,45 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/98073/?format=json",
+  "retrievedAt": "2026-11-13T16:27:39.903Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/98073/?format=json",
+    "series_name": "New X-Men (2001 series)",
+    "descriptor": "124 [Direct Edition]",
+    "number": "124",
+    "volume": "1",
+    "variant_name": "Direct Edition",
+    "title": "",
+    "publication_date": "May 2002",
+    "key_date": "2002-05-00",
+    "page_count": "36.000",
+    "isbn": "",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/9855/?format=json",
+    "story_set": [
+      {
+        "type": "comic story",
+        "title": "Superdestroyer",
+        "feature": "X-Men",
+        "sequence_number": 1,
+        "page_count": "23.000",
+        "notes": "",
+        "script": "Grant Morrison (credited)",
+        "pencils": "Igor Kordej (credited as Igor Kordey)"
+      },
+      {
+        "type": "letters page",
+        "title": "",
+        "feature": "X-Pressions",
+        "sequence_number": 2,
+        "page_count": "1.000",
+        "notes": "Letters from readers: Bruce Timm, DamionHellstorm@internet provider, Chris Harnick, Mark Livengood, Brad Raffa",
+        "script": "Mark Powers (credited); Pete Franco (credited)",
+        "pencils": "None"
+      }
+    ]
+  }
+}

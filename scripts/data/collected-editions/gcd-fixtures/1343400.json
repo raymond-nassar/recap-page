@@ -1,0 +1,185 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/1343400/?format=json",
+  "retrievedAt": "2026-11-14T07:33:47.912Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/1343400/?format=json",
+    "series_name": "Amazing Spider-Man: Edge of Spider-Verse (2015 series)",
+    "descriptor": "",
+    "number": "[nn]",
+    "volume": "",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "2015",
+    "key_date": "2015-04-29",
+    "page_count": "116.000",
+    "isbn": "978-0-7851-9728-7",
+    "notes": "Collects Edge of Spider-Verse (Marvel, 2014 series) #1-5.",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/88754/?format=json",
+    "story_set": [
+      {
+        "type": "credits, title page",
+        "title": "",
+        "feature": "",
+        "sequence_number": 1,
+        "page_count": "1.000",
+        "notes": "Credits and contents page. Image is taken from Edge of Spider-Verse (Marvel, 2014 series) #3, pages 8-9.",
+        "script": "?",
+        "pencils": "Dustin Weaver"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Spider-Man",
+        "sequence_number": 2,
+        "page_count": "1.000",
+        "notes": "Cover sans text and logo.",
+        "script": "None",
+        "pencils": "Richard Isanove (signed)"
+      },
+      {
+        "type": "comic story",
+        "title": "",
+        "feature": "Spider-Man",
+        "sequence_number": 3,
+        "page_count": "20.000",
+        "notes": "",
+        "script": "David Hine; Fabrice Sapolsky",
+        "pencils": "Richard Isanove"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Spider-Man",
+        "sequence_number": 4,
+        "page_count": "1.000",
+        "notes": "Cover sans text and logo.",
+        "script": "None",
+        "pencils": "Greg Land (signed)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Spider-Man",
+        "sequence_number": 5,
+        "page_count": "1.000",
+        "notes": "Cover sans text and logo.",
+        "script": "None",
+        "pencils": "Robbi Rodriguez"
+      },
+      {
+        "type": "comic story",
+        "title": "",
+        "feature": "Spider-Man",
+        "sequence_number": 6,
+        "page_count": "20.000",
+        "notes": "",
+        "script": "Jason Latour",
+        "pencils": "Robbi Rodriguez"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Spider-Man",
+        "sequence_number": 7,
+        "page_count": "1.000",
+        "notes": "Cover sans text and logo.",
+        "script": "None",
+        "pencils": "Greg Land (signed)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Spider-Man",
+        "sequence_number": 8,
+        "page_count": "1.000",
+        "notes": "Cover sans text and logo.",
+        "script": "None",
+        "pencils": "Dustin Weaver (signed)"
+      },
+      {
+        "type": "comic story",
+        "title": "",
+        "feature": "Spider-Man",
+        "sequence_number": 9,
+        "page_count": "20.000",
+        "notes": "",
+        "script": "Dustin Weaver",
+        "pencils": "Dustin Weaver"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "I Walked with a Spider",
+        "feature": "Spider-Man",
+        "sequence_number": 10,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Garry Brown (signed)"
+      },
+      {
+        "type": "comic story",
+        "title": "",
+        "feature": "Spider-Man",
+        "sequence_number": 11,
+        "page_count": "20.000",
+        "notes": "",
+        "script": "Clay McLeod Chapman",
+        "pencils": "Elia Bonetti"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "SP//dr",
+        "feature": "Spider-Man",
+        "sequence_number": 12,
+        "page_count": "1.000",
+        "notes": "Cover sans logo and main text.",
+        "script": "None",
+        "pencils": "Jake Wyatt"
+      },
+      {
+        "type": "comic story",
+        "title": "Sp//dr Is Still Intact",
+        "feature": "Spider-Man",
+        "sequence_number": 13,
+        "page_count": "21.000",
+        "notes": "",
+        "script": "Gerard Way",
+        "pencils": "Jake Wyatt"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Spider-Man",
+        "sequence_number": 14,
+        "page_count": "1.000",
+        "notes": "Cover sans text and logo.",
+        "script": "None",
+        "pencils": "Greg Land (signed)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Spider-Man",
+        "sequence_number": 15,
+        "page_count": "1.000",
+        "notes": "Cover sans text and logo.",
+        "script": "None",
+        "pencils": "Greg Land (signed)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Spider-Man",
+        "sequence_number": 16,
+        "page_count": "1.000",
+        "notes": "Cover sans text and logo.",
+        "script": "None",
+        "pencils": "Greg Land (signed)"
+      }
+    ]
+  }
+}
