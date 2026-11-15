@@ -21682,6 +21682,7 @@ async function waitForRestoreStop(edge, tab, label) {
         focus: document.hasFocus(),
         backupReport: text('#complete-backup-report'),
         appReport: text('#app-report'),
+        saveReport: text('#save-report'),
         ask: Boolean(document.querySelector('#ask[open]')),
         recoveryShown: document.querySelector('#complete-restore-recovery')?.hidden === false,
         marker: localStorage.getItem('mrt.complete-restore.v1')?.split(':')[0] ?? null,
@@ -22686,7 +22687,7 @@ SCENARIOS.push({
     late.__denyExternal = true;
     await preparePage(late, origin, page.__mutation);
     await open(late, '/#/data');
-    await late.waitForFunction(() => document.querySelector('#app-report').textContent.includes('Another Recap Page tab is restoring'));
+    await late.waitForFunction(() => document.querySelector('#save-report').textContent.includes('Another Recap Page tab is restoring'));
     await late.evaluate(() => { window.__beforeRestoreReload = true; });
     await click(late, '#opt-reading-shortcut');
     await late.waitForFunction(() => document.querySelector('#reading-shortcut-report').textContent.includes('could not be saved'));
@@ -22695,7 +22696,7 @@ SCENARIOS.push({
     await t.step('release-restore-lock', () => Promise.all([late.waitForNavigation({ waitUntil: 'load' }), page.evaluate(() => window.__releaseRestoreLock())]));
     await late.waitForSelector('#view-data:not([hidden])');
     t.check('and reloads once the restore lets go, rather than writing what it held from before',
-      await late.evaluate(() => window.__beforeRestoreReload === undefined && !document.querySelector('#app-report').textContent.includes('restoring')));
+      await late.evaluate(() => window.__beforeRestoreReload === undefined && !document.querySelector('#save-report').textContent.includes('restoring')));
     await late.close();
 
     // A real browser-process kill part way through, then a fresh start on the same profile.
@@ -22725,7 +22726,35 @@ SCENARIOS.push({
       t.check('a restore that stops part way pauses saving and offers recovery at once',
         await tab.evaluate(() => !document.querySelector('#complete-restore-recovery').hidden
           && !document.querySelector('#btn-complete-finish').hidden
-          && document.querySelector('#app-report').textContent.includes('did not finish')));
+          && document.querySelector('#save-report').textContent.includes('did not finish')));
+      await tab.setViewport({ width: 390, height: 844 });
+      await open(tab, '/#/home');
+      await tab.evaluate(async () => {
+        const { notify } = await import('./js/main.js');
+        notify('#app-report', 'Routine placement fixture.', 'warn', 'restore-placement-fixture');
+      });
+      const placement = await tab.evaluate(() => {
+        const save = document.querySelector('#save-report');
+        const home = document.querySelector('#view-home');
+        const head = home.querySelector(':scope > .head');
+        const routine = document.querySelector('#app-report');
+        return {
+          warning: save.textContent.includes('did not finish'), role: save.getAttribute('role'),
+          saveTop: save.getBoundingClientRect().top, headTop: head.getBoundingClientRect().top,
+          routine: routine.textContent.includes('Routine placement fixture.'),
+          routineTop: routine.getBoundingClientRect().top,
+          headBottom: head.getBoundingClientRect().bottom,
+        };
+      });
+      t.check('an interrupted restore stays above Home while a routine notice stays below its head',
+        placement.warning && placement.role === 'alert' && placement.saveTop < placement.headTop
+          && placement.routine && placement.routineTop >= placement.headBottom, JSON.stringify(placement));
+      await open(tab, '/#/data');
+      t.check('the interrupted restore warning remains above another view',
+        await tab.evaluate(() => document.querySelector('#save-report').textContent.includes('did not finish')
+          && document.querySelector('#save-report').getBoundingClientRect().top
+            < document.querySelector('#view-data').getBoundingClientRect().top));
+      await tab.setViewport({ width: 1280, height: 900 });
       await killBrowser(edge);
       edge = await launchProfileBrowser(profile);
       tab = await profilePage(edge, origin);
@@ -22735,7 +22764,7 @@ SCENARIOS.push({
         status: document.querySelector('#complete-restore-recovery-status').textContent,
         finish: !document.querySelector('#btn-complete-finish').hidden,
         copy: !document.querySelector('#btn-complete-prior-copy').hidden,
-        paused: document.querySelector('#app-report').textContent.includes('did not finish'),
+        paused: document.querySelector('#save-report').textContent.includes('did not finish'),
         marker: localStorage.getItem('mrt.complete-restore.v1'),
       }));
       // Evidence for the durability research: whether the kill dropped the restore's uncommitted writes.
@@ -22792,7 +22821,7 @@ SCENARIOS.push({
         keepDanger && keepBody.includes('This version cannot restore that copy: it is for recovering the earlier data by hand or with help.')
           && await tab.evaluate(() => localStorage.getItem('mrt.list-history.v1')) === foreign
           && await restoreMarker(tab) === null && await journalHeld(tab) === false
-          && !(await tab.evaluate(() => document.querySelector('#app-report').textContent.includes('did not finish'))),
+          && !(await tab.evaluate(() => document.querySelector('#save-report').textContent.includes('did not finish'))),
         keepBody);
       await edge.close();
       edge = null;

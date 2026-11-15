@@ -2913,12 +2913,12 @@ const cloudBackupView = createCloudBackupView({
 
 const COMPLETE_RESTORE_NOTICE = 'complete-restore';
 
-// Said in the pane that follows the reader between views, because a pause stops saving everywhere.
+// A pause stops saving everywhere, so it shares the fixed, assertive save-failure pane.
 function renderCompleteRestore(state) {
   completeBackupView.render(state);
   bulkReadView.render();
   if (state.phase === 'paused' && state.message && state.message !== RESTORE_MESSAGES.working) {
-    notify('#app-report', state.message, 'warn', COMPLETE_RESTORE_NOTICE);
+    notify('#save-report', state.message, 'warn', COMPLETE_RESTORE_NOTICE);
   } else clearNotice(COMPLETE_RESTORE_NOTICE);
   // Background fetches save as they go, and every one of those saves would be refused while paused.
   if (state.phase === 'paused') {
