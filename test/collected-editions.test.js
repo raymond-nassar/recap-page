@@ -166,9 +166,10 @@ test('the indexer-notes match is exact, so #1-5 never matches #1-50', () => {
   assert.ok(notesStateRange(`Collects ${series} #1-5, and more.`, series, '#1-5', false));
   assert.ok(notesStateRange(`Collects ${series} #1-5`, series, '#1-5', false));
   const edition = editionWith({ tier: 'gcd-notes', gcdSeries: series }, [{ seriesId: 7, from: 1, to: 5, assertedBy: 'gcd-notes', basis: 'x' }]);
-  const result = checkEdition(edition, fixtureWith([], { notes: `Collects ${series} #1-50` }), {});
+  const result = checkEdition(edition, fixtureWith([], { notes: `Collects ${series} #1-50` }), { 7: 'X (2015)' });
   assert.equal(result.verified.size, 0);
   assert.equal(result.status, 'conflict');
+  assert.deepEqual(result.conflicts.map((conflict) => conflict.kind), ['evidence-weak']);
 });
 
 test('indexer notes do not match a longer series ending in the target name', () => {
@@ -185,9 +186,10 @@ test('indexer notes do not match a longer series ending in the target name', () 
   assert.equal(notesStateRange(`Collects X (Marvel, 2015 series) #1-2, and ${series} ${span}.`, series, span, false), true);
   const edition = editionWith({ tier: 'gcd-notes', gcdSeries: series },
     [{ seriesId: 7, from: 1, to: 5, assertedBy: 'gcd-notes', basis: 'x' }]);
-  const result = checkEdition(edition, fixtureWith([], { notes: `Collects Secret ${series} ${span}.` }), {});
+  const result = checkEdition(edition, fixtureWith([], { notes: `Collects Secret ${series} ${span}.` }), { 7: 'Avengers (2010)' });
   assert.equal(result.status, 'conflict');
   assert.equal(result.verified.size, 0);
+  assert.deepEqual(result.conflicts.map((conflict) => conflict.kind), ['evidence-weak']);
   const control = checkEdition(edition, fixtureWith([], { notes: `Collects ${series} ${span}.` }), { 7: 'Avengers (2010)' });
   assert.equal(control.status, 'verified');
   assert.deepEqual([...control.verified], ['7:1', '7:2', '7:3', '7:4', '7:5']);
@@ -209,9 +211,10 @@ test('indexer notes distinguish partial material before the exact series', () =>
     series, span, true), true);
   const edition = editionWith({ tier: 'gcd-notes', gcdSeries: series },
     [{ seriesId: 7, from: 1, to: 5, assertedBy: 'gcd-notes', basis: 'x' }]);
-  const result = checkEdition(edition, fixtureWith([], { notes: longer }), {});
+  const result = checkEdition(edition, fixtureWith([], { notes: longer }), { 7: 'Avengers (2010)' });
   assert.equal(result.status, 'conflict');
   assert.equal(result.verified.size, 0);
+  assert.deepEqual(result.conflicts.map((conflict) => conflict.kind), ['evidence-weak']);
 });
 
 test('an edition with any conflict is never labelled verified', () => {
@@ -252,9 +255,9 @@ test('indexer notes compare years for both series capitalizations', () => {
     for (const listYear of [2015, 2016]) {
       const result = checkEdition(edition, fixture, { 7: `Example (${listYear})` });
       const matching = listYear === 2015;
-      assert.equal(result.status, matching ? 'verified' : 'verified-with-conflicts', `${marker}, ${listYear}`);
+      assert.equal(result.status, matching ? 'verified' : 'conflict', `${marker}, ${listYear}`);
       assert.deepEqual(result.conflicts.map((conflict) => conflict.kind), matching ? [] : ['series-year']);
-      assert.deepEqual([...result.verified], ['7:1', '7:2']);
+      assert.deepEqual([...result.verified], matching ? ['7:1', '7:2'] : []);
     }
   }
 });
@@ -263,8 +266,9 @@ test('indexer notes preserve an article alias when comparing years', () => {
   const series = 'The Example (Marvel, 2015 Series)';
   const edition = editionWith({ tier: 'gcd-notes', gcdSeries: series });
   const mismatched = checkEdition(edition, fixtureWith([], { notes: `Collects ${series} #1-2.` }), { 7: 'Example (2016)' });
-  assert.equal(mismatched.status, 'verified-with-conflicts');
+  assert.equal(mismatched.status, 'conflict');
   assert.deepEqual(mismatched.conflicts.map((conflict) => conflict.kind), ['series-year']);
+  assert.deepEqual([...mismatched.verified], []);
   const result = checkEdition(edition, fixtureWith([], { notes: `Collects ${series} #1-2.` }), { 7: 'Example (2015)' });
   assert.equal(result.status, 'verified');
   assert.deepEqual([...result.verified], ['7:1', '7:2']);

@@ -46,7 +46,7 @@ Each edition is checked against its database record at one of four tiers. Only `
 so `#1-5` never matches `#1-50`. A series must follow the start of the notes, "Collects", or a
 separator after a previous issue range; ambiguous wording is a conflict, not a verification.
 The list and database series start years must both be parseable, regardless of capitalization.
-A missing or unparseable year blocks the range, and different years produce a conflict.
+A missing, unparseable, or different year blocks the range with a conflict.
 `gcd-count-only` can show a book is consistent, never which comics it holds, and `gcd-unindexed`
 records that the database has not indexed the contents. Every
 database sequence left out of a count is listed in `check.excludedSequences` with its reason; a

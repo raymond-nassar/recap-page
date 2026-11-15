@@ -260,6 +260,7 @@ export function checkEdition(edition, fixture, seriesNames) {
       }
       if (ours !== theirs) {
         conflicts.push({ kind: 'series-year', detail: `The list dates this series from ${ours}; the database from ${theirs}.`, evidence });
+        continue;
       }
       if (range.portion === 'partial') {
         conflicts.push({ kind: 'material-from', detail: `Holds only material from ${series} ${span}.`, evidence });
