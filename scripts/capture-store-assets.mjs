@@ -7,7 +7,10 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 import { drawIcon, encodePng } from './build-icons.mjs';
 import { ORIGIN, FIXTURE_API, demonstrationState, previewResponse, shellPath, completedHealthProbe, sha256 } from './play-assets.mjs';
-import { framedText, installCloudFixture, prepareCloudView, dismissListingNotice, CLOUD_FIXTURE } from './listing-fixtures.mjs';
+import {
+  framedText, installCloudFixture, prepareCloudView, dismissListingNotice, CLOUD_FIXTURE,
+  FICTIONAL_SYNOPSIS, openListingScreen,
+} from './listing-fixtures.mjs';
 import { CSP } from '../server.mjs';
 import { KEY } from '../src/js/storage.js';
 import { sourceIdentity, assertSourceUnchanged } from './lib/release-identity.mjs';
@@ -55,7 +58,8 @@ export const SCREENSHOTS = [
     route: '#/read/play-lantern',
     view: 'view-read',
     wait: '#view-read:not([hidden]) #reading-body:not([hidden])',
-    text: ['Fictional: Lantern Harbor', '3 of 8 read'],
+    synopsis: { issueId: -4, text: FICTIONAL_SYNOPSIS },
+    text: ['Fictional: Lantern Harbor', '3 of 8 read', FICTIONAL_SYNOPSIS],
     state: 'demo',
   },
   {
@@ -110,7 +114,7 @@ async function installDeterministicBrowserState(page, state) {
 async function auditAndCapture(page, origin, screenshot, output) {
   const state = screenshot.state === 'demo' ? demonstrationState() : null;
   await installDeterministicBrowserState(page, state);
-  await page.goto(`${origin}/${screenshot.route}`, { waitUntil: 'networkidle0' });
+  await openListingScreen(page, origin, screenshot, { waitUntil: 'networkidle0' });
   await page.waitForSelector(`#${screenshot.view}:not([hidden])`, { timeout: 15000 });
   await page.waitForSelector(screenshot.wait, { timeout: 15000 });
   await prepareCloudView(page, screenshot.view);
@@ -230,7 +234,14 @@ async function main() {
             await request.abort('blockedbyclient');
           }
         });
-        const audit = await auditAndCapture(page, ORIGIN, screenshot, assetStaging);
+        let audit;
+        try {
+          audit = await auditAndCapture(page, ORIGIN, screenshot, assetStaging);
+        } catch (error) {
+          // A refused module leaves the view hidden, so a bare selector timeout hides the cause.
+          if (failures.length) error.message += `\nPage failures: ${failures.join('; ')}`;
+          throw error;
+        }
         if (failures.length) throw new Error(`${screenshot.file}: ${failures.join('; ')}`);
         audits.push({ file: screenshot.file, audit });
       } finally {

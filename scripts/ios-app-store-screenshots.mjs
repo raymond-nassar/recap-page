@@ -15,6 +15,7 @@ import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { deflateSync, inflateSync } from 'node:zlib';
 import { crc32 } from './build-icons.mjs';
+import { FICTIONAL_SYNOPSIS, installSynopsisFixture } from './listing-fixtures.mjs';
 import { demonstrationState, FIXTURE_API, previewResponse, sha256 } from './play-assets.mjs';
 import { DEFAULT_BASE } from '../src/js/api.js';
 import { createEmptyState } from '../src/js/lib/model.js';
@@ -37,7 +38,7 @@ export const SETS = Object.freeze([
   },
 ]);
 
-export const FICTIONAL_SYNOPSIS = 'A lighthouse keeper follows a strange signal across the harbor.';
+export { FICTIONAL_SYNOPSIS };
 
 export const SCREENS = Object.freeze([
   {
@@ -146,11 +147,7 @@ const nextFrame = () => new Promise((resolve) => requestAnimationFrame(() => req
 const shown = (element) => !!element && !element.closest('[hidden]') && element.getClientRects().length > 0;
 await waitFor(() => document.readyState === 'complete', 'the page');
 if (screen.synopsis) {
-  const { SessionSynopsis } = await import(new URL('js/synopsis.js', document.baseURI).href);
-  const originalGet = SessionSynopsis.prototype.get;
-  SessionSynopsis.prototype.get = function(issueId) {
-    return Number(issueId) === screen.synopsis.issueId ? screen.synopsis.text : originalGet.call(this, issueId);
-  };
+  await (${installSynopsisFixture.toString()})(screen.synopsis);
   if (location.hash === screen.route) {
     location.hash = '#/home';
     await waitFor(() => document.getElementById(screen.view)?.hidden === true, 'the previous view to close');
