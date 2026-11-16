@@ -10,11 +10,13 @@ import { dirname, join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { execFileSync, spawn } from 'node:child_process';
 import { createHash } from 'node:crypto';
+import { request as httpRequest } from 'node:http';
 import { createStaticServer, DEFAULT_PORT as PORT, HOST } from '../server.mjs';
 import {
   APP_ID, APP_WINDOW_URL, findInstalls, matchProxy, openAppWindow, parseShortcut, readArguments, readDefaultBrowser,
   resolveAppWindow,
 } from '../host/appWindow.mjs';
+import { STARTUP_API_HEADER, STARTUP_API_PREFIX } from '../host/startupTask.mjs';
 import { AUMID, PACKAGE_FAMILY, PACKAGE_NAME } from './pack-msix.mjs';
 
 if (process.platform !== 'win32' || process.env.GITHUB_ACTIONS !== 'true') {
@@ -506,6 +508,124 @@ async function activate(label, { warm }) {
   return record;
 }
 
+// The startup task's state as Windows keeps it, read only: 1 is disabled and 2 enabled.
+const STARTUP_TASK_KEY = 'HKCU:\\Software\\Classes\\Local Settings\\Software\\Microsoft\\Windows\\CurrentVersion\\AppModel'
+  + `\\SystemAppData\\${PACKAGE_FAMILY}\\RecapPageStartup`;
+const startupTaskRecord = () => psJson(`Get-ItemProperty -LiteralPath '${STARTUP_TASK_KEY}' -ErrorAction SilentlyContinue |
+  Select-Object State, UserEnabledStartupOnce`);
+const stopPackage = async () => {
+  for (const entry of packageProcesses()) stopProcess(entry.ProcessId);
+  await sleep(3000);
+};
+
+// A same-origin request as the app window's own fetch makes it; a header given as undefined is left out.
+function startupCall(operation, body, overrides = {}) {
+  return new Promise((resolve) => {
+    const text = JSON.stringify(body);
+    const headers = Object.fromEntries(Object.entries({
+      host: `${HOST}:${PORT}`, origin, 'sec-fetch-site': 'same-origin', [STARTUP_API_HEADER]: '1',
+      'content-type': 'application/json', 'content-length': Buffer.byteLength(text), ...overrides,
+    }).filter(([, value]) => value !== undefined));
+    const req = httpRequest({ host: HOST, port: PORT, method: 'POST', path: `${STARTUP_API_PREFIX}${operation}`, headers, timeout: 40000 },
+      (res) => {
+        let data = '';
+        res.setEncoding('utf8');
+        res.on('data', (chunk) => { data += chunk; });
+        res.on('end', () => {
+          let json = null;
+          try { json = JSON.parse(data); } catch { /* recorded as text */ }
+          resolve({ status: res.statusCode, body: json ?? data.slice(0, 400) });
+        });
+      });
+    req.on('error', (error) => resolve({ error: error.message }));
+    req.on('timeout', () => req.destroy(new Error('timeout')));
+    req.end(text);
+  });
+}
+
+const engineReady = async (ms) => (await waitFor(async () => {
+  try {
+    return (await fetch(`${origin}/`, { signal: AbortSignal.timeout(3000) })).ok;
+  } catch {
+    return false;
+  }
+}, ms)) === true;
+
+// Every process seen running from the package while it starts, with the command line Windows gave it.
+async function watchPackage(ms) {
+  const seen = new Map();
+  for (const end = Date.now() + ms; Date.now() < end;) {
+    for (const entry of packageProcesses()) seen.set(entry.ProcessId, entry);
+    await sleep(300);
+  }
+  return [...seen.values()];
+}
+
+const launcherArguments = (processes) => processes.filter((entry) => /^RecapPageLauncher\.exe$/i.test(entry.Name))
+  .map((entry) => String(entry.CommandLine ?? '').replace(/^\s*(?:"[^"]*"|\S+)\s*/, '').trim());
+
+// Start the package through a route other than its Start entry and record what ran, whether the engine
+// answered and whether any window opened: Reconnect and sign-in must start only the engine.
+async function quietActivation(label, start) {
+  await stopPackage();
+  await stopEdge();
+  const before = windowKeys();
+  let error = null;
+  try {
+    start();
+  } catch (caught) {
+    error = caught.message;
+  }
+  const processes = await watchPackage(12000);
+  const ready = await engineReady(30000);
+  await sleep(3000);
+  const windows = newWindows(before);
+  return {
+    label, error, engineReady: ready, windows, launcherArguments: launcherArguments(processes),
+    processes: processes.map(({ Name, CommandLine, packageFullName }) => ({ Name, CommandLine, packageFullName })),
+    browserWindows: windows.filter((entry) => entry.ProcessName === 'msedge').length,
+  };
+}
+
+async function mechanismsPhase() {
+  const record = {};
+  const protocol = (uri) => () => ps(`Start-Process -FilePath ${encoded(uri)}`);
+  record.reconnect = await quietActivation('reconnect', protocol('recap-page:'));
+  // Web content controls the whole address; with fixed Parameters and no %1 none of it may reach the launcher.
+  record.reconnectJunk = await quietActivation('reconnect-junk',
+    protocol('recap-page://x/--recap-startup-enable-v1 "C:\\Windows\\System32\\calc.exe" --user-data-dir=C:\\x?a=b c'));
+  record.startupBefore = startupTaskRecord();
+  record.startupRefusedWithoutSite = await startupCall('state', {}, { 'sec-fetch-site': undefined });
+  record.startupState = await startupCall('state', {});
+  const consent = record.startupState.body?.state === 'disabled' ? record.startupState.body.consent : null;
+  if (consent) {
+    record.startupEnable = await startupCall('enable', { consent });
+    record.startupReplay = await startupCall('enable', { consent });
+    record.startupAfter = await startupCall('state', {});
+  }
+  record.startupRegistry = startupTaskRecord();
+  // Sign-in cannot be repeated on a runner, so the task's own fixed parameter is given to the launcher inside the
+  // package, which is what Windows does at sign-in. The real sign-in stays the owner's manual check.
+  record.signInSimulated = await quietActivation('sign-in-simulated', () => ps(`
+    $location = (Get-AppxPackage -Name '${PACKAGE_NAME}' | Select-Object -First 1).InstallLocation;
+    Invoke-CommandInDesktopPackage -PackageFamilyName '${PACKAGE_FAMILY}' -AppId '${AUMID.split('!')[1]}' -Command (Join-Path $location 'RecapPageLauncher.exe') -Args '--recap-startup-task-v1'`));
+  await stopPackage();
+  record.verdicts = {
+    reconnectQuiet: record.reconnect.engineReady && record.reconnect.browserWindows === 0,
+    reconnectFixedToken: record.reconnect.launcherArguments.length > 0
+      && record.reconnect.launcherArguments.every((args) => args === '--recap-reconnect-v1'),
+    junkFixedToken: record.reconnectJunk.launcherArguments.length > 0
+      && record.reconnectJunk.launcherArguments.every((args) => args === '--recap-reconnect-v1'),
+    junkQuiet: record.reconnectJunk.engineReady && record.reconnectJunk.browserWindows === 0,
+    serverKeptIdentity: typeof record.startupState.body?.state === 'string' && record.startupState.body.state !== 'unavailable',
+    refusedWithoutSite: record.startupRefusedWithoutSite.status === 403,
+    enabled: record.startupEnable?.body?.state === 'enabled' && record.startupAfter?.body?.state === 'enabled',
+    consentSingleUse: record.startupReplay?.status === 403,
+    signInQuiet: record.signInSimulated.engineReady && record.signInSimulated.browserWindows === 0,
+  };
+  return record;
+}
+
 async function packagePhase(serve) {
   const since = new Date(Date.now() - 5000).toISOString();
   const record = { phase: 'package', aumid: AUMID, family: PACKAGE_FAMILY };
@@ -532,6 +652,11 @@ async function packagePhase(serve) {
       record.appCold = await activate('app-cold', { warm: false });
       record.appWarm = await activate('app-warm', { warm: true });
     }
+    try {
+      record.mechanisms = await mechanismsPhase();
+    } catch (error) {
+      record.mechanisms = { error: error.stack };
+    }
     clearPolicy();
     policySet = false;
     startEdgePlain();
@@ -557,6 +682,11 @@ async function packagePhase(serve) {
       };
       await stopEdge();
       await serve(false);
+      // The reader's own route with the stale shortcut in place: the Start entry must open today's tab, never
+      // a browser window without Recap Page in it.
+      record.staleLaunch = await activate('stale-cold', { warm: false });
+      record.staleLaunchTab = record.staleLaunch.windows.some((entry) => entry.ProcessName === 'msedge'
+        && /Recap Page/.test(entry.MainWindowTitle ?? '') && !isAppWindow(entry));
     }
   } catch (error) {
     record.error = error.stack;
