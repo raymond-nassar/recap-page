@@ -1,15 +1,21 @@
 // Hosted-runner measurement for #1412: installing a browser app creates per-user Start and
 // uninstall registrations, so this never runs on a reader's machine. It records where Edge and
 // Chrome put the installed app's shortcut, which app id they derive for the fixed origin, and
-// which launch routes open a standalone window in the same profile.
-import { mkdtemp, mkdir, rm, writeFile } from 'node:fs/promises';
+// which launch routes open a standalone window in the same profile. It also measures what a shortcut left
+// behind by an uninstalled app opens, and, with MRT_PWA_PACKAGE=installed, what the installed test package
+// opens through the runner's own Default Edge profile, where a policy install stands in for the reader's.
+import { mkdtemp, mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { execFileSync, spawn } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { createStaticServer, DEFAULT_PORT as PORT, HOST } from '../server.mjs';
-import { findInstalls, matchProxy, parseShortcut, readArguments } from '../host/appWindow.mjs';
+import {
+  APP_ID, APP_WINDOW_URL, findInstalls, matchProxy, openAppWindow, parseShortcut, readArguments, readDefaultBrowser,
+  resolveAppWindow,
+} from '../host/appWindow.mjs';
+import { AUMID, PACKAGE_FAMILY, PACKAGE_NAME } from './pack-msix.mjs';
 
 if (process.platform !== 'win32' || process.env.GITHUB_ACTIONS !== 'true') {
   console.error('windows-pwa-probe installs real apps and runs only on a hosted Windows runner.');
@@ -214,6 +220,115 @@ async function moduleView(link) {
   return { ...view, ok: problems.length === 0, problems };
 }
 
+// What the browser keeps for an installed app inside one profile, read only, so a later check can tell an
+// installed app from a shortcut that outlived it.
+async function webAppData(userData) {
+  const base = join(userData, 'Default');
+  const listing = [];
+  async function walk(dir, depth) {
+    if (depth > 4 || listing.length >= 300) return;
+    let entries;
+    try {
+      entries = await readdir(dir, { withFileTypes: true });
+    } catch (error) {
+      listing.push(`${dir.slice(base.length)} ! ${error.code}`);
+      return;
+    }
+    for (const entry of entries) {
+      if (listing.length >= 300) return;
+      const full = join(dir, entry.name);
+      listing.push(`${full.slice(base.length)}${entry.isDirectory() ? '\\' : ''}`);
+      if (entry.isDirectory()) await walk(full, depth + 1);
+    }
+  }
+  await walk(join(base, 'Web Applications'), 0);
+  const mentions = {};
+  for (const file of ['Preferences', 'Secure Preferences']) {
+    try {
+      mentions[file] = (await readFile(join(base, file), 'latin1')).includes(APP_ID);
+    } catch (error) {
+      mentions[file] = error.code;
+    }
+  }
+  return { listing, mentions };
+}
+
+const encoded = (text) => `([Text.Encoding]::UTF8.GetString([Convert]::FromBase64String('${Buffer.from(text).toString('base64')}')))`;
+
+// The package a process runs in, from GetPackageFullName: a browser started from inside the package would
+// carry it, and its writes to AppData could then land in the package's own LocalCache.
+const PACKAGE_NAME_SOURCE = `using System; using System.Runtime.InteropServices; using System.Text;
+public static class RecapProbePackage {
+  [DllImport("kernel32.dll", SetLastError = true)] static extern IntPtr OpenProcess(uint access, bool inherit, int id);
+  [DllImport("kernel32.dll")] static extern bool CloseHandle(IntPtr handle);
+  [DllImport("kernel32.dll", CharSet = CharSet.Unicode)] static extern int GetPackageFullName(IntPtr handle, ref uint length, StringBuilder name);
+  public static string Of(int id) {
+    IntPtr handle = OpenProcess(0x1000, false, id);
+    if (handle == IntPtr.Zero) return "open failed " + Marshal.GetLastWin32Error();
+    try {
+      uint length = 0;
+      int code = GetPackageFullName(handle, ref length, null);
+      if (code == 15700) return "";
+      if (code != 122) return "error " + code;
+      StringBuilder name = new StringBuilder((int)length);
+      code = GetPackageFullName(handle, ref length, name);
+      return code == 0 ? name.ToString() : "error " + code;
+    } finally { CloseHandle(handle); }
+  }
+}`;
+
+function browserProcesses(spec) {
+  const entries = imageProcesses([spec.image, spec.proxy]);
+  if (!entries.length) return [];
+  const names = psJson(`Add-Type -TypeDefinition ${encoded(PACKAGE_NAME_SOURCE)};
+    @(${entries.map((entry) => Number(entry.ProcessId)).join(',')}) | ForEach-Object {
+      [PSCustomObject]@{ id = $_; packageFullName = [RecapProbePackage]::Of($_) } }`);
+  const byId = new Map(names.map((entry) => [entry.id, entry.packageFullName]));
+  return entries.map((entry) => ({
+    id: entry.ProcessId, parent: entry.ParentProcessId, packageFullName: byId.get(entry.ProcessId) ?? null,
+    commandLine: /--type=/.test(entry.CommandLine ?? '') ? '(child)' : entry.CommandLine,
+  }));
+}
+
+const packageProcesses = () => psJson(`$location = (Get-AppxPackage -Name '${PACKAGE_NAME}' | Select-Object -First 1).InstallLocation;
+  if ($location) { Get-CimInstance Win32_Process | Where-Object { $_.ExecutablePath -and
+    $_.ExecutablePath.StartsWith($location, [StringComparison]::OrdinalIgnoreCase) } | Select-Object ProcessId, Name, CommandLine }`);
+
+const localCache = () => psJson(`$root = Join-Path $env:LOCALAPPDATA 'Packages\\${PACKAGE_FAMILY}';
+  if (Test-Path -LiteralPath $root) { Get-ChildItem -LiteralPath $root -Recurse -Depth 5 -Force -ErrorAction SilentlyContinue |
+    Select-Object -First 400 | ForEach-Object { $_.FullName.Substring($root.Length) } }`);
+
+const newWindows = (before) => allWindows().filter((entry) => !before.has(`${entry.Id}:${entry.MainWindowTitle}`));
+const windowKeys = () => new Set(allWindows().map((entry) => `${entry.Id}:${entry.MainWindowTitle}`));
+const stopImages = (images) => { for (const entry of imageProcesses(images)) stopProcess(entry.ProcessId); };
+
+// A shortcut can outlive its app: an uninstall that fails halfway, or a copy restored from a backup. Put the
+// exact shortcut back after the uninstall and start what it names cold, with only the arguments a launcher
+// would pass, to see whether the reader would get Recap Page, a plain browser window, or nothing.
+async function staleLaunch(spec, link, args) {
+  await mkdir(dirname(link.full), { recursive: true });
+  await writeFile(link.full, Buffer.from(link.bytes, 'base64'));
+  const beforeIds = new Set(imageProcesses([spec.image, spec.proxy]).map((entry) => entry.ProcessId));
+  const before = windowKeys();
+  const spawned = spawn(link.target, args, { detached: true, stdio: 'ignore' });
+  spawned.on('error', () => {});
+  spawned.unref();
+  await sleep(15000);
+  const windows = newWindows(before);
+  const started = imageProcesses([spec.image, spec.proxy]).filter((entry) => !beforeIds.has(entry.ProcessId));
+  const result = {
+    args, windows,
+    processes: started.map((entry) => entry.CommandLine).filter((line) => !/--type=/.test(line ?? '')),
+    appWindow: windows.some((entry) => entry.ProcessName === spec.image.replace(/\.exe$/, '') && entry.MainWindowTitle === 'Recap Page'),
+    otherBrowserWindow: windows.some((entry) => entry.ProcessName === spec.image.replace(/\.exe$/, '') && entry.MainWindowTitle !== 'Recap Page'),
+  };
+  for (const entry of started) stopProcess(entry.ProcessId);
+  await sleep(3000);
+  await rm(link.full, { force: true });
+  result.removed = !(await readFile(link.full).then(() => true, () => false));
+  return result;
+}
+
 async function probe(spec) {
   // The runner's tmpdir() is an 8.3 short path (RUNNER~1); RUNNER_TEMP is the long form.
   const profile = await mkdtemp(join(process.env.RUNNER_TEMP || tmpdir(), `recap-pwa-probe-${spec.name}-`));
@@ -253,14 +368,14 @@ async function probe(spec) {
     record.run = runKeys();
     record.appx = appxPackage(details?.packaged_app_family_name);
     const link = record.links.find((entry) => entry.arguments.includes(`--app-id=${record.appId}`));
+    // What a launcher would pass: only the profile and app selectors, never automation flags.
+    const parsed = link ? splitArguments(link.arguments) : [];
+    const filtered = parsed.filter((token) => /^--(user-data-dir|profile-directory|app-id)=/.test(token));
     record.module = await moduleView(link);
     const aumid = details?.edge_web_app_user_model_id || link?.aumid || record.startApps[0]?.AppID;
     record.launches = [];
     if (link) {
-      const parsed = splitArguments(link.arguments);
       record.parsedArguments = parsed;
-      // What a launcher would pass: only the profile and app selectors, never automation flags.
-      const filtered = parsed.filter((token) => /^--(user-data-dir|profile-directory|app-id)=/.test(token));
       record.launches.push(await warmLaunch(browser, spec, 'warm-shortcut-file', () => ps(`Start-Process -FilePath '${link.full.replace(/'/g, "''")}'`), tabWindowId));
       record.launches.push(await warmLaunch(browser, spec, 'warm-shortcut-target', () => spawnAndWait(link.target, parsed), tabWindowId));
       record.launches.push(await warmLaunch(browser, spec, 'warm-proxy-filtered', () => spawnAndWait(link.target, filtered), tabWindowId));
@@ -276,8 +391,6 @@ async function probe(spec) {
     for (const entry of imageProcesses([spec.image])) if ((entry.CommandLine ?? '').includes(profile)) stopProcess(entry.ProcessId);
     await sleep(2000);
     if (link) {
-      const parsed = splitArguments(link.arguments);
-      const filtered = parsed.filter((token) => /^--(user-data-dir|profile-directory|app-id)=/.test(token));
       const beforeIds = new Set(imageProcesses([spec.image, spec.proxy]).map((entry) => entry.ProcessId));
       const windowsBefore = new Set(allWindows().map((entry) => `${entry.Id}:${entry.MainWindowTitle}`));
       const spawned = spawn(link.target, filtered, { detached: true, stdio: 'ignore' });
@@ -293,10 +406,21 @@ async function probe(spec) {
       await sleep(3000);
     }
     browser = await startBrowser(spec, profile);
+    record.webAppDataInstalled = await webAppData(profile);
     await (await browser.target().createCDPSession()).send('PWA.uninstall', { manifestId });
     installed = false;
     await sleep(3000);
     record.afterUninstall = { links: links(since).filter((entry) => entry.arguments.includes(`--app-id=${record.appId}`)), startApps: startApps(), uninstall: uninstallKeys() };
+    record.webAppDataUninstalled = await webAppData(profile);
+    await browser.close();
+    browser = null;
+    await sleep(3000);
+    for (const entry of imageProcesses([spec.image])) if ((entry.CommandLine ?? '').includes(profile)) stopProcess(entry.ProcessId);
+    await sleep(2000);
+    if (link) {
+      record.stale = await staleLaunch(spec, link, filtered);
+      record.webAppDataStale = await webAppData(profile);
+    }
   } catch (error) {
     record.error = error.stack;
   } finally {
@@ -307,8 +431,157 @@ async function probe(spec) {
   return record;
 }
 
-const server = createStaticServer();
-await new Promise((resolve, reject) => { server.once('error', reject); server.listen(PORT, HOST, resolve); });
+const EDGE = browsers[0];
+const EDGE_POLICY_KEY = 'HKLM:\\SOFTWARE\\Policies\\Microsoft\\Edge';
+const FORCE_LIST = JSON.stringify([{ url: APP_WINDOW_URL, default_launch_container: 'window', create_desktop_shortcut: false }]);
+const isAppWindow = (entry) => entry.ProcessName === 'msedge' && entry.MainWindowTitle === 'Recap Page';
+const defaultLinks = (since) => links(since).filter((entry) => /Programs$/.test(entry.root)
+  && entry.arguments.includes(`--app-id=${APP_ID}`) && !entry.arguments.includes('--user-data-dir'));
+
+function startEdgePlain() {
+  // Chromium 136 and later refuse a debugging connection on the default data directory, and a reader's
+  // browser is never automated, so the Default profile is only ever started the way a reader starts it.
+  const child = spawn(EDGE.exe, ['--no-first-run', '--no-default-browser-check'], { detached: true, stdio: 'ignore' });
+  child.on('error', () => {});
+  child.unref();
+}
+
+async function stopEdge() {
+  stopImages([EDGE.image, EDGE.proxy]);
+  await sleep(3000);
+}
+
+async function waitFor(check, ms) {
+  for (let waited = 0; waited <= ms; waited += 2000) {
+    const value = await check();
+    if (value) return value;
+    await sleep(2000);
+  }
+  return null;
+}
+
+async function defaultState(since) {
+  return {
+    links: defaultLinks(since).map(({ root, relative, target, arguments: args }) => ({ root, relative, target, arguments: args })),
+    installs: await findInstalls(),
+    resolved: await resolveAppWindow(APP_WINDOW_URL), defaultBrowser: await readDefaultBrowser(),
+    data: await webAppData(join(process.env.LOCALAPPDATA, 'Microsoft', 'Edge', 'User Data')),
+  };
+}
+
+// Start the package from its Start entry, as a reader would, and record what opened, which package each
+// browser process runs in, and what landed in the package's own storage.
+async function activate(label, { warm }) {
+  await stopEdge();
+  if (warm) {
+    startEdgePlain();
+    await sleep(8000);
+  }
+  const before = windowKeys();
+  let error = null;
+  try {
+    ps(`Start-Process -FilePath 'explorer.exe' -ArgumentList 'shell:AppsFolder\\${AUMID}'`);
+  } catch (caught) {
+    error = caught.message;
+  }
+  await sleep(25000);
+  const windows = newWindows(before);
+  const edge = browserProcesses(EDGE);
+  const record = {
+    label, warm, error, windows, appWindow: windows.some(isAppWindow), edge,
+    packagedBrowserProcesses: edge.filter((entry) => entry.packageFullName).length,
+    package: packageProcesses(), localCache: localCache(),
+  };
+  for (const entry of packageProcesses()) stopProcess(entry.ProcessId);
+  await stopEdge();
+  return record;
+}
+
+async function packagePhase(serve) {
+  const since = new Date(Date.now() - 5000).toISOString();
+  const record = { phase: 'package', aumid: AUMID, family: PACKAGE_FAMILY };
+  let policySet = false;
+  let restored = null;
+  const clearPolicy = () => ps(`Remove-ItemProperty -Path '${EDGE_POLICY_KEY}' -Name 'WebAppInstallForceList' -ErrorAction SilentlyContinue`);
+  try {
+    record.appx = appxPackage(PACKAGE_FAMILY);
+    record.defaultBrowser = await readDefaultBrowser();
+    record.localCacheBefore = localCache();
+    await stopEdge();
+    ps(`New-Item -Path '${EDGE_POLICY_KEY}' -Force | Out-Null;
+      New-ItemProperty -Path '${EDGE_POLICY_KEY}' -Name 'WebAppInstallForceList' -PropertyType String -Value ${encoded(FORCE_LIST)} -Force | Out-Null`);
+    policySet = true;
+    await serve(true);
+    startEdgePlain();
+    const installed = await waitFor(() => defaultLinks(since)[0], 120000);
+    record.forceInstall = installed ? { root: installed.root, relative: installed.relative, target: installed.target, arguments: installed.arguments } : 'inconclusive: no Default shortcut within 120 s';
+    await sleep(3000);
+    record.installedState = await defaultState(since);
+    await stopEdge();
+    await serve(false);
+    if (installed) {
+      record.appCold = await activate('app-cold', { warm: false });
+      record.appWarm = await activate('app-warm', { warm: true });
+    }
+    clearPolicy();
+    policySet = false;
+    startEdgePlain();
+    record.shortcutRemovedWithPolicy = (await waitFor(() => defaultLinks(since).length === 0, 90000)) === true;
+    await sleep(3000);
+    record.removedState = await defaultState(since);
+    await stopEdge();
+    record.tabCold = await activate('tab-cold', { warm: false });
+    if (installed) {
+      await mkdir(dirname(installed.full), { recursive: true });
+      await writeFile(installed.full, Buffer.from(installed.bytes, 'base64'));
+      restored = installed.full;
+      await serve(true);
+      record.staleState = await defaultState(since);
+      const before = windowKeys();
+      const returned = await openAppWindow(APP_WINDOW_URL);
+      await sleep(15000);
+      const windows = newWindows(before);
+      record.staleOpen = {
+        returned, windows, appWindow: windows.some(isAppWindow),
+        otherBrowserWindow: windows.some((entry) => entry.ProcessName === 'msedge' && !isAppWindow(entry)),
+        edge: browserProcesses(EDGE),
+      };
+      await stopEdge();
+      await serve(false);
+    }
+  } catch (error) {
+    record.error = error.stack;
+  } finally {
+    if (restored) await rm(restored, { force: true }).catch(() => {});
+    if (policySet) {
+      try { clearPolicy(); } catch (error) { record.cleanupError = error.message; }
+    }
+    try {
+      for (const entry of packageProcesses()) stopProcess(entry.ProcessId);
+      await stopEdge();
+    } catch (error) {
+      record.cleanupError = error.message;
+    }
+    await serve(false);
+  }
+  return record;
+}
+
+let server = null;
+async function serve(on) {
+  if (on && !server) {
+    const next = createStaticServer();
+    await new Promise((resolve, reject) => { next.once('error', reject); next.listen(PORT, HOST, resolve); });
+    server = next;
+  } else if (!on && server) {
+    const current = server;
+    server = null;
+    current.closeAllConnections();
+    await new Promise((resolve) => current.close(resolve));
+  }
+}
+
+await serve(true);
 const results = [];
 try {
   for (const spec of browsers) {
@@ -317,8 +590,13 @@ try {
     await writeFile(join(evidence, `${spec.name}.json`), JSON.stringify(record, null, 2));
     console.log(JSON.stringify(record, null, 2));
   }
+  if (process.env.MRT_PWA_PACKAGE === 'installed') {
+    const record = await packagePhase(serve);
+    results.push(record);
+    await writeFile(join(evidence, 'package.json'), JSON.stringify(record, null, 2));
+    console.log(JSON.stringify(record, null, 2));
+  }
 } finally {
-  server.closeAllConnections();
-  await new Promise((resolve) => server.close(resolve));
+  await serve(false);
 }
-if (results.some((record) => record.error || record.module?.ok !== true)) process.exitCode = 1;
+if (results.some((record) => record.error || (record.phase !== 'package' && record.module?.ok !== true))) process.exitCode = 1;

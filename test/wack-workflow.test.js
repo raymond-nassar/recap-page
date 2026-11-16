@@ -200,7 +200,7 @@ test('WACK proof lanes upload no package, certificate, installer, or raw report'
   }
   assert.doesNotMatch(workflow, /cache\/save|gh release|store upload/i);
   assert.doesNotMatch(workflow, /\.pfx|winsdksetup/);
-  assert.equal((workflow.match(/Invoke-WebRequest/g) ?? []).length, 3);
+  assert.equal((workflow.match(/Invoke-WebRequest/g) ?? []).length, 4);
   assert.match(workflow, /if: always\(\)/);
   assert.match(workflow, /Get-AppxPackage -Name PanelStackLabs\.RecapPage/);
   assert.match(workflow, /Cert:\\LocalMachine\\TrustedPeople/);
@@ -237,14 +237,17 @@ test('N1 mutation resolves verifier dependencies inside the copied header tree',
 test('native producer outputs and job deadlines bind every package consumer', () => {
   assert.match(workflow, /run: \.\/scripts\/build-native-launcher\.ps1 -IncludeProofTools/);
   assert.match(workflow, /run: \.\/scripts\/native-startup-proof\.ps1 -Negatives/);
-  assert.equal((workflow.match(/^ {4}needs: native$/gm) ?? []).length, 2);
-  assert.equal((workflow.match(/MRT_NATIVE_SHA256:/g) ?? []).length, 2);
+  assert.equal((workflow.match(/^ {4}needs: native$/gm) ?? []).length, 3);
+  assert.equal((workflow.match(/MRT_NATIVE_SHA256:/g) ?? []).length, 3);
   assert.match(workflow, /MRT_NATIVE_PROOF_SHA256: \$\{\{ needs\.native\.outputs\.proof_sha256 \}\}/);
   assert.match(workflow, /native-startup-proof\.ps1 -Architecture '\$\{\{ matrix\.architecture \}\}'/);
   const jobs = workflow.slice(workflow.search(/^jobs:\r?$/m))
     .split(/(?=^ {2}[a-z][\w-]*:)/m).slice(1);
   assert.deepEqual(jobs.map((job) => /^ {2}([\w-]+):/.exec(job)?.[1]), ['native', 'certify', 'installed', 'preparation', 'browser-diagnostic', 'pwa-probe']);
   assert.doesNotMatch(jobs.at(-1), /^ {4}environment:|secrets\./m, 'the app window measurement never reaches a protected environment or a secret');
+  assert.doesNotMatch(jobs.at(-1), /release-cloud-client|release_preparation == true/, 'the measured package is never a release build');
+  assert.match(jobs.at(-1), /if: \$\{\{ always\(\) \}\}[\s\S]*Remove-ItemProperty -Path 'HKLM:\\SOFTWARE\\Policies\\Microsoft\\Edge' -Name 'WebAppInstallForceList'/,
+    'the forced browser install policy is removed even when the measurement fails');
   assert.match(workflow, /native_only:\r?\n {8}description: .+\r?\n {8}type: boolean\r?\n {8}required: false\r?\n {8}default: false/);
   assert.match(workflow, /diagnostic_only:\r?\n {8}description: .+\r?\n {8}type: boolean\r?\n {8}required: false\r?\n {8}default: false/);
   const predicate = "!(github.event_name == 'workflow_dispatch' && (inputs.native_only == true || inputs.diagnostic_only == true))";
@@ -627,8 +630,8 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
   t.diagnostic('PASS existing-helper-binding fixed-listener=1 unchanged-presentation-options=1');
   const proofJobs = workflow.split(/\r?\n {2}preparation:/)[0];
   assert.equal((proofJobs.match(/actions\/upload-artifact@[0-9a-f]{40}/g) ?? []).length, 4);
-  assert.equal((workflow.match(/actions\/download-artifact@[0-9a-f]{40}/g) ?? []).length, 3);
-  assert.equal((workflow.match(/digest-mismatch: error/g) ?? []).length, 3);
+  assert.equal((workflow.match(/actions\/download-artifact@[0-9a-f]{40}/g) ?? []).length, 4);
+  assert.equal((workflow.match(/digest-mismatch: error/g) ?? []).length, 4);
   const inputs = [...workflow.matchAll(/^ {12}(dist\/native-(?:launcher|proof)\/.+)$/gm)]
     .map((match) => match[1]);
   assert.deepEqual(inputs, [
