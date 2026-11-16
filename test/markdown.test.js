@@ -17,7 +17,8 @@ test('a legacy identity key never reaches a title and is exposed only to the ven
   assert.equal(vendor.unresolved[0].legacyIdentityKey, legacy);
   assert.equal(vendor.unresolved[0].title, plain.unresolved[0].title);
   // A key not in canonical form is not a key: it stays visible rather than choosing an identity.
-  for (const odd of [key.replace('%C3', '%c3'), key.replace('Web', '%57eb'), `${key}%`]) {
+  for (const odd of [key.replaceAll('%C3', '%c3'), key.replace('Web', '%57eb'), `${key}%`]) {
+    assert.notEqual(odd, key);
     const parsed = parseChecklist(`- [ ] Title <!-- mrt:legacy-identity-key=${odd} -->`, { legacyIdentityKeys: true });
     assert.match(parsed.unresolved[0].title, /mrt:legacy-identity-key/);
     assert.equal(parsed.unresolved[0].legacyIdentityKey, undefined);
