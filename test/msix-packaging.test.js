@@ -802,6 +802,10 @@ test('the package activates only through its startup task and fixed Reconnect pr
     assert.equal(source.split(before).length, 2, `the mutation seam ${before} is not unique`);
     assert.throws(() => activationExtensions(source.replace(before, after)), /activation extensions differ/);
   }
+  // The pin only guards a release if every inspected package's own manifest goes through it.
+  const inspectPackage = read(INSPECT).replaceAll('\r\n', '\n')
+    .match(/\nasync function inspectPackage\([\s\S]*?\n}\n/)?.[0] ?? '';
+  assert.match(inspectPackage, /readFile\(join\(unpacked, 'AppxManifest\.xml'\), 'utf8'\);[\s\S]*?\n {4}activationExtensions\(manifest\);\n/);
 });
 
 test('the packer separates the Store bundle from its proof-only update', async () => {
