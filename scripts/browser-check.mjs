@@ -23039,6 +23039,13 @@ function tally() {
   };
 }
 
+class CleanupDeadlineError extends Error {
+  constructor() {
+    super('Browser check cleanup deadline exceeded');
+    this.name = 'TimeoutError';
+  }
+}
+
 async function cleanupDeadline(action, timeoutMs = 5000) {
   let timer;
   try {
@@ -23046,7 +23053,7 @@ async function cleanupDeadline(action, timeoutMs = 5000) {
       Promise.resolve().then(action),
       new Promise((_, reject) => {
         timer = globalThis.setTimeout(() => {
-          reject(Object.assign(new Error('Browser check cleanup deadline exceeded'), { name: 'TimeoutError' }));
+          reject(new CleanupDeadlineError());
         }, timeoutMs);
       }),
     ]);
@@ -23313,16 +23320,18 @@ async function withStack(fn, { port = 0, onCleanupFailure = null } = {}) {
       await cleanupDeadline(() => close, 30000);
       console.log(`BROWSER stage=closed ms=${Math.round(performance.now() - closeStarted)}`);
     } catch (err) {
-      const slow = failureCode(err) === 'TimeoutError';
+      const slow = err instanceof CleanupDeadlineError;
       if (!slow) console.error(`FAIL stage=close-browser code=${failureCode(err)}`);
       else console.log(`TEARDOWN stage=close-browser code=TimeoutError ms=${Math.round(performance.now() - closeStarted)}`);
       // The forced kill's own exit code is not a crash; one that came before it has already counted.
       forced = true;
       console.log('BROWSER stage=abort-owned-launch cleanup=true');
       ownedBrowser.abort();
+      let disconnectFailed = false;
       try {
         await cleanupDeadline(() => browser.disconnect(), 2000);
       } catch (disconnectError) {
+        disconnectFailed = true;
         console.error(`FAIL stage=disconnect-browser code=${failureCode(disconnectError)}`);
       }
       // A slow close is forgiven only once Edge is seen to have exited and its temporary profile is
@@ -23337,8 +23346,8 @@ async function withStack(fn, { port = 0, onCleanupFailure = null } = {}) {
       }), 10000).catch(() => {}).finally(() => { polling = false; });
       const verified = slow && exited() && removed();
       console.log(`TEARDOWN stage=verify-cleanup exited=${exited()} profileRemoved=${removed()} verified=${verified}`);
-      if (!verified) {
-        if (slow) console.error('FAIL stage=close-browser code=TimeoutError');
+      if (!verified || disconnectFailed) {
+        if (slow && !verified) console.error('FAIL stage=close-browser code=TimeoutError');
         onCleanupFailure?.();
         code = 1;
         cleanupFailed = true;

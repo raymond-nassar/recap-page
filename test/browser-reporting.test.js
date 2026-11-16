@@ -97,6 +97,7 @@ function fixture(failAt, fault = '') {
         assert.equal(prepared, closed);
         console.log('FIXTURE browser-cleanup');
         if (fault.startsWith('browser-hang')) return new Promise(() => {});
+        if (fault === 'browser-timeout-verified') throw failure('TimeoutError');
         if (fault === 'browser-reject') throw failure('ProtocolError');
         if (failAt && fault !== 'native-late') throw failure('ProtocolError');
         child.exitCode = ['native-late', 'native-after-pass'].includes(fault) ? 3221225477 : 0;
@@ -106,6 +107,7 @@ function fixture(failAt, fault = '') {
     });
     browser.disconnect = async () => {
       console.log('FIXTURE disconnect');
+      if (fault === 'browser-hang-verified-disconnect-reject') throw failure('ProtocolError');
       browser.connected = false;
       browser.emit('disconnected');
     };
@@ -115,8 +117,9 @@ function fixture(failAt, fault = '') {
         assert.equal(unrelated.signal.aborted, false);
         console.log('FIXTURE owned-abort');
         // taskkill /F reports 1; only a verified forced cleanup may also remove the profile.
-        child.exitCode = fault.startsWith('browser-hang-verified') ? 1 : 0;
-        profileRemoved = fault.startsWith('browser-hang-verified');
+        const verified = fault.startsWith('browser-hang-verified') || fault === 'browser-timeout-verified';
+        child.exitCode = verified ? 1 : 0;
+        profileRemoved = verified;
         child.emit('exit', child.exitCode, null);
       });
       process.on('exit', () => {
@@ -295,6 +298,18 @@ test('a slow browser close passes only when the forced cleanup is seen to finish
   assert.equal(unverified.status, 1, unverified.output);
   assert.match(unverified.stdout, /TEARDOWN stage=verify-cleanup exited=true profileRemoved=false verified=false/);
   assert.match(unverified.stderr, /FAIL stage=close-browser code=TimeoutError/);
+});
+
+test('a close rejection still fails after verified forced cleanup', () => {
+  const closeRejected = fixture(null, 'browser-timeout-verified');
+  assert.equal(closeRejected.status, 1, closeRejected.output);
+  assert.match(closeRejected.stderr, /FAIL stage=close-browser code=TimeoutError/);
+});
+
+test('a disconnect failure still fails after verified forced cleanup', () => {
+  const disconnectRejected = fixture(null, 'browser-hang-verified-disconnect-reject');
+  assert.equal(disconnectRejected.status, 1, disconnectRejected.output);
+  assert.match(disconnectRejected.stderr, /FAIL stage=disconnect-browser code=ProtocolError/);
 });
 
 test('cleanup-only browser and server failures never qualify otherwise passing scenarios', () => {
