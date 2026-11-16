@@ -5239,6 +5239,166 @@
         "excludedSequences": [],
         "conflicts": []
       }
+    },
+    {
+      "edition": "thor-v3-wars-end",
+      "gcdIssueId": 2130031,
+      "url": "https://www.comics.org/api/issue/2130031/?format=json",
+      "retrievedAt": "2026-11-14T20:46:09.293Z",
+      "seriesName": "Thor (2018 series)",
+      "number": "3",
+      "descriptor": "3 - War's End",
+      "isbn": "978-1-302-91445-5",
+      "publicationDate": "2019",
+      "pageCount": "124.000",
+      "variantOf": null,
+      "notes": null,
+      "supportingSources": [
+        {
+          "url": "https://www.comics.org/api/issue/1950733/?format=json",
+          "retrievedAt": "2026-11-14T21:07:33.999Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/1971225/?format=json",
+          "retrievedAt": "2026-11-14T21:07:37.826Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/1980727/?format=json",
+          "retrievedAt": "2026-11-14T21:07:39.987Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/1987833/?format=json",
+          "retrievedAt": "2026-11-14T21:07:42.800Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/2012179/?format=json",
+          "retrievedAt": "2026-11-14T21:07:45.678Z"
+        },
+        {
+          "url": "https://www.comics.org/api/series/name/Thor/year/2018/?format=json",
+          "retrievedAt": "2026-11-14T20:45:40.052Z"
+        }
+      ],
+      "comicStories": [
+        {
+          "sequence": 3,
+          "title": "The War of the Lokis",
+          "pages": "20.000"
+        },
+        {
+          "sequence": 5,
+          "title": "The Ballad of Cul Borson, God of Fear",
+          "pages": "20.000"
+        },
+        {
+          "sequence": 7,
+          "title": "To Hel with Hammers",
+          "pages": "20.000"
+        },
+        {
+          "sequence": 10,
+          "title": "War's End",
+          "pages": "20.000"
+        },
+        {
+          "sequence": 13,
+          "title": "Once Upon a Time in Asgard",
+          "pages": "20.000"
+        }
+      ],
+      "assertedContents": [
+        {
+          "seriesId": 24308,
+          "from": 12,
+          "to": 16,
+          "assertedBy": "gcd-stories",
+          "basis": "Each indexed trade story matches its original issue's series, number, title, feature, pages and credits. The separately identified originals match the reading lists' on-sale dates."
+        }
+      ],
+      "check": {
+        "tier": "gcd-original-stories",
+        "status": "verified",
+        "verifiedComics": [
+          "24308:12",
+          "24308:13",
+          "24308:14",
+          "24308:15",
+          "24308:16"
+        ],
+        "excludedSequences": [
+          {
+            "sequence": 1,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 2,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 4,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 6,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 8,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 9,
+            "title": "War's End",
+            "reason": "Not a comic story: recap."
+          },
+          {
+            "sequence": 11,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 12,
+            "title": "Marvels 25th Anniversary Variant",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 14,
+            "title": null,
+            "reason": "Not a comic story: letters page."
+          },
+          {
+            "sequence": 15,
+            "title": "Marvels 25th Tribute Variant",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 16,
+            "title": "Carnage-ized Variant",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 17,
+            "title": "80th Frame Variant",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 18,
+            "title": "Bring on the Bad Guys Variant",
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 19,
+            "title": "Art Process",
+            "reason": "Not a comic story: illustration."
+          }
+        ],
+        "conflicts": []
+      }
     }
   ],
   "coverage": [

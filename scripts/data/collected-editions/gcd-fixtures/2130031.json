@@ -1,0 +1,215 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/2130031/?format=json",
+  "retrievedAt": "2026-11-14T20:46:09.293Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/2130031/?format=json",
+    "series_name": "Thor (2018 series)",
+    "descriptor": "3 - War's End",
+    "number": "3",
+    "volume": "",
+    "variant_name": "",
+    "title": "War's End",
+    "publication_date": "2019",
+    "key_date": "2019-10-30",
+    "page_count": "124.000",
+    "isbn": "978-1-302-91445-5",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/135977/?format=json",
+    "story_set": [
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Thor",
+        "sequence_number": 1,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Olivier Coipel (credited, signed)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Thor",
+        "sequence_number": 2,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Mike Del Mundo (credited)"
+      },
+      {
+        "type": "comic story",
+        "title": "The War of the Lokis",
+        "feature": "Thor",
+        "sequence_number": 3,
+        "page_count": "20.000",
+        "notes": "",
+        "script": "Jason Aaron (credited)",
+        "pencils": "Mike Del Mundo (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Thor",
+        "sequence_number": 4,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Mike Del Mundo (credited)"
+      },
+      {
+        "type": "comic story",
+        "title": "The Ballad of Cul Borson, God of Fear",
+        "feature": "Thor",
+        "sequence_number": 5,
+        "page_count": "20.000",
+        "notes": "",
+        "script": "Jason Aaron (credited)",
+        "pencils": "Mike Del Mundo (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Thor",
+        "sequence_number": 6,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Mike Del Mundo (credited)"
+      },
+      {
+        "type": "comic story",
+        "title": "To Hel with Hammers",
+        "feature": "Thor",
+        "sequence_number": 7,
+        "page_count": "20.000",
+        "notes": "",
+        "script": "Jason Aaron (credited)",
+        "pencils": "Scott Hepburn (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Thor",
+        "sequence_number": 8,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Mike Del Mundo (credited)"
+      },
+      {
+        "type": "recap",
+        "title": "War's End",
+        "feature": "Thor",
+        "sequence_number": 9,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "Sarah Brunstad",
+        "pencils": "None"
+      },
+      {
+        "type": "comic story",
+        "title": "War's End",
+        "feature": "Thor",
+        "sequence_number": 10,
+        "page_count": "20.000",
+        "notes": "",
+        "script": "Jason Aaron (credited)",
+        "pencils": "Mike Del Mundo (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Thor",
+        "sequence_number": 11,
+        "page_count": "2.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Mike Del Mundo (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Marvels 25th Anniversary Variant",
+        "feature": "Thor",
+        "sequence_number": 12,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Alex Ross (credited) (painting)"
+      },
+      {
+        "type": "comic story",
+        "title": "Once Upon a Time in Asgard",
+        "feature": "Thor",
+        "sequence_number": 13,
+        "page_count": "20.000",
+        "notes": "",
+        "script": "Jason Aaron (credited)",
+        "pencils": "Mike Del Mundo (credited)"
+      },
+      {
+        "type": "letters page",
+        "title": "",
+        "feature": "Message in a Bifrost",
+        "sequence_number": 14,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "Jason Aaron (credited); Mike Del Mundo (credited)",
+        "pencils": "None"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Marvels 25th Tribute Variant",
+        "feature": "Thor",
+        "sequence_number": 15,
+        "page_count": "0.250",
+        "notes": "",
+        "script": "None",
+        "pencils": "Yasmine Putri (credited) (painting)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Carnage-ized Variant",
+        "feature": "Thor",
+        "sequence_number": 16,
+        "page_count": "0.250",
+        "notes": "",
+        "script": "None",
+        "pencils": "Mike McKone (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "80th Frame Variant",
+        "feature": "Thor",
+        "sequence_number": 17,
+        "page_count": "0.250",
+        "notes": "",
+        "script": "None",
+        "pencils": "Mike McKone (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "Bring on the Bad Guys Variant",
+        "feature": "Thor",
+        "sequence_number": 18,
+        "page_count": "0.250",
+        "notes": "",
+        "script": "None",
+        "pencils": "Will Sliney (credited)"
+      },
+      {
+        "type": "illustration",
+        "title": "Art Process",
+        "feature": "Thor",
+        "sequence_number": 19,
+        "page_count": "6.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Mike Del Mundo (credited); Scott Hepburn (credited)"
+      }
+    ]
+  }
+}
