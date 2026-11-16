@@ -250,13 +250,23 @@ for (const transition of ['appinstalled', 'standalone']) {
   });
 }
 
-test('only Edge and Chrome on Windows are invited, and only Firefox on Windows is told why not', () => {
+test('only Edge and Chrome on Windows are invited, and only Windows browsers that name themselves otherwise are told why not', () => {
+  const OPERA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 OPR/125.0.0.0';
   for (const [navigator, kind] of [
     [{ userAgentData: EDGE }, 'installable'],
     [{ userAgentData: CHROME }, 'installable'],
     [{ userAgentData: { ...EDGE, platform: 'macOS' } }, 'other'],
-    [{ userAgentData: { platform: 'Windows', brands: [{ brand: 'Brave', version: '142' }, { brand: 'Chromium', version: '142' }] } }, 'other'],
-    [{ userAgentData: { platform: 'Windows', brands: [{ brand: 'Opera', version: '125' }, { brand: 'Chromium', version: '142' }] } }, 'other'],
+    [{ userAgentData: { platform: 'Windows', brands: [{ brand: 'Brave', version: '142' }, { brand: 'Chromium', version: '142' }] } }, 'unsupported'],
+    [{ userAgentData: { platform: 'Windows', brands: [{ brand: 'Chromium', version: '142' }] }, brave: {} }, 'unsupported'],
+    [{ userAgentData: { platform: 'macOS', brands: [{ brand: 'Brave', version: '142' }] }, brave: {} }, 'other'],
+    [{ userAgentData: { platform: 'Windows', brands: [{ brand: 'Opera', version: '125' }, { brand: 'Chromium', version: '142' }] } }, 'unsupported'],
+    [{ userAgentData: { platform: 'Windows', brands: [{ brand: 'Opera GX', version: '125' }, { brand: 'Chromium', version: '142' }] } }, 'unsupported'],
+    // An Opera that borrows Chrome's brand is still Opera by its user agent, and is never invited.
+    [{ userAgentData: CHROME, userAgent: OPERA }, 'unsupported'],
+    [{ userAgent: OPERA }, 'unsupported'],
+    // A Chromium that names nothing, Brave hiding its brand included, proves nothing either way.
+    [{ userAgentData: { platform: 'Windows', brands: [{ brand: 'Chromium', version: '142' }] } }, 'other'],
+    [{ userAgentData: { platform: 'Windows', brands: [{ brand: 'Chromium', version: '142' }] }, brave: null }, 'other'],
     [{ userAgent: FIREFOX }, 'unsupported'],
     [{ userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 15.1; rv:145.0) Gecko/20100101 Firefox/145.0' }, 'other'],
     [{}, 'other'],

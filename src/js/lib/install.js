@@ -8,16 +8,24 @@ export const APP_ORIGIN = 'http://127.0.0.1:8787';
 export const APP_WINDOW_INVITATION_KEY = 'mrt.appWindowInvitation.dismissed.v1';
 
 // #1412 decisions 3 and 4. Only Edge and Chrome on Windows install the app window the Windows
-// launcher opens, so only they are invited. Firefox is the one browser identified as unable to,
-// and is told so. Anything else, Brave and Opera included, is left exactly as before: a missing
-// install offer proves nothing about a browser, so it is never read as a reason to warn.
+// launcher opens, so only they are invited. A Windows browser that names itself as one the launcher
+// cannot open, Firefox, Brave or Opera, is told so. Anything unnamed is left exactly as before: a
+// missing install offer proves nothing about a browser, so it is never read as a reason to warn.
+// Opera is matched first by the OPR token its desktop user agent carries, because accounts differ
+// on whether its brand list names Opera or borrows Chrome's. Brave names itself in its brands and
+// as navigator.brave (github.com/brave/brave-browser/wiki/User-Agents, retrieved 2026-11-16).
 export function appWindowBrowser(navigator) {
   const data = navigator?.userAgentData;
-  if (data?.platform === 'Windows' && Array.isArray(data.brands)
-    && data.brands.some(({ brand }) => brand === 'Microsoft Edge' || brand === 'Google Chrome')) {
+  const agent = String(navigator?.userAgent ?? '');
+  const brands = Array.isArray(data?.brands) ? data.brands.map(({ brand }) => brand) : [];
+  const windows = data?.platform === 'Windows' || (!data && /\bWindows NT\b/.test(agent));
+  if (windows && (/\bOPR\/\d/.test(agent) || brands.includes('Opera') || brands.includes('Opera GX')
+    || brands.includes('Brave') || (navigator?.brave !== null && typeof navigator?.brave === 'object'))) {
+    return 'unsupported';
+  }
+  if (data?.platform === 'Windows' && brands.some((brand) => brand === 'Microsoft Edge' || brand === 'Google Chrome')) {
     return 'installable';
   }
-  const agent = String(navigator?.userAgent ?? '');
   if (/\bWindows NT\b/.test(agent) && /\bFirefox\/\d/.test(agent)) return 'unsupported';
   return 'other';
 }
