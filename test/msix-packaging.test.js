@@ -98,32 +98,45 @@ test('installed startup rejects legacy success without mandatory evidence', asyn
 test('GUI default creation contracts call the real browser adapter and default server environment', async () => {
   const production = await import('../packaging/windows/Launcher.mjs');
   const present = read(LAUNCHER).match(/^export async function presentLaunch\([\s\S]*?^\}$/m)[0].replace('export ', '');
-  let browserCall;
-  let exit;
-  const output = capturedStream();
-  await runInNewContext(`${present}\npresentLaunch({
-    args: ['--gui-startup-v1'], output, errorOutput: output, environment: {},
-    coordinate: async (options) => { await options.openBrowser(); return { status: 'opened' }; },
-    setExitCode: setExit
-  });`, {
-    selectGuiStartup: production.selectGuiStartup, coordinateLaunch: production.coordinateLaunch,
-    openDefaultBrowser: (url, options) => {
-      browserCall = { url, options };
-      const child = fakeChild();
-      queueMicrotask(() => child.emit('exit', 0));
-      return production.openDefaultBrowser(url, { ...options, spawnImpl: () => child });
-    },
-    encodeGuiResult: production.encodeGuiResult, writeGuiFrame: production.writeGuiFrame,
-    LAUNCH_RESULT: production.LAUNCH_RESULT, GUI_BROWSER_TIMEOUT_MS: production.GUI_BROWSER_TIMEOUT_MS,
-    ORIGIN: production.ORIGIN, output, setExit: (code) => { exit = code; },
-    process: { argv: [], stdout: output, stderr: output, env: {}, arch: 'x64' },
-    fail: () => { throw new Error('GUI called console failure'); },
-    Buffer,
-  });
-  assert.equal(exit, 0);
-  assert.equal(browserCall.url, 'http://127.0.0.1:8787/');
-  assert.equal(browserCall.options.timeoutMs, 30000);
-  assert.equal(output.frames.length, 1);
+  // The installed app window is tried first and the bounded tab opens only when it does not (#1412).
+  for (const [appOpens, failure] of [[false, null], [true, null], [false, new Error('no app window')]]) {
+    let appCall;
+    let browserCall;
+    let exit;
+    const output = capturedStream();
+    await runInNewContext(`${present}\npresentLaunch({
+      args: ['--gui-startup-v1'], output, errorOutput: output, environment: {},
+      coordinate: async (options) => { await options.openBrowser(); return { status: 'opened' }; },
+      setExitCode: setExit
+    });`, {
+      selectGuiStartup: production.selectGuiStartup, coordinateLaunch: production.coordinateLaunch,
+      openAppOrTab: (options) => production.openAppOrTab({ ...options, loadAppWindow: async () => {
+        if (failure) throw failure;
+        return { openAppWindow: async (url) => { appCall = url; return appOpens; } };
+      } }),
+      openDefaultBrowser: (url, options) => {
+        browserCall = { url, options };
+        const child = fakeChild();
+        queueMicrotask(() => child.emit('exit', 0));
+        return production.openDefaultBrowser(url, { ...options, spawnImpl: () => child });
+      },
+      encodeGuiResult: production.encodeGuiResult, writeGuiFrame: production.writeGuiFrame,
+      LAUNCH_RESULT: production.LAUNCH_RESULT, GUI_BROWSER_TIMEOUT_MS: production.GUI_BROWSER_TIMEOUT_MS,
+      ORIGIN: production.ORIGIN, output, setExit: (code) => { exit = code; },
+      process: { argv: [], stdout: output, stderr: output, env: {}, arch: 'x64' },
+      fail: () => { throw new Error('GUI called console failure'); },
+      Buffer,
+    });
+    assert.equal(exit, 0);
+    assert.equal(appCall, failure ? undefined : 'http://127.0.0.1:8787/');
+    if (appOpens) {
+      assert.equal(browserCall, undefined);
+    } else {
+      assert.equal(browserCall.url, 'http://127.0.0.1:8787/');
+      assert.equal(browserCall.options.timeoutMs, 30000);
+    }
+    assert.equal(output.frames.length, 1);
+  }
 });
 
 function startupLayoutFixture() {
@@ -166,7 +179,7 @@ test('startup expectations bind three package variants and reject an unlisted ex
       const variant = await populateStartupLayout(fixture, architecture, version);
       assert.equal(variant.identity.architecture, architecture);
       assert.equal(variant.identity.version, version);
-      assert.equal(variant.files.length, 17);
+      assert.equal(variant.files.length, 18);
     } finally { fixture.close(); }
   }
   const fixture = startupLayoutFixture();
@@ -203,7 +216,24 @@ test('startup expectations bind three package variants and reject an unlisted ex
       assert.throws(() => startupSourceInputs(fixture.root), /input-mismatch/);
     }
     fixture.put('server.mjs', server);
-    t.diagnostic('startup-host-imports fixtures=13 rejected=13');
+    // The app window module is named once by the launcher and once by the server, literally, and by
+    // nothing else; it imports no module of its own (#1412).
+    const launcher = read(LAUNCHER);
+    const appWindow = read(join(ROOT, 'host', 'appWindow.mjs'));
+    for (const [path, altered] of [
+      ['server.mjs', `${server}\nimport('./host/appWindow.mjs');\n`],
+      ['server.mjs', server.replace("import('./host/appWindow.mjs')", "import('./host/' + 'appWindow.mjs')")],
+      ['packaging/windows/Launcher.mjs', `${launcher}\nimport('./host/appWindow.mjs');\n`],
+      ['packaging/windows/Launcher.mjs', launcher.replace("import('./host/appWindow.mjs')", "import('./host/cloudHost.mjs')")],
+      ['host/cloudHost.mjs', `${cloudHost}\nimport('./appWindow.mjs');\n`],
+      ['host/appWindow.mjs', `${appWindow}\nimport './cloudTokens.mjs';\n`],
+    ]) {
+      fixture.put(path, altered);
+      assert.throws(() => startupSourceInputs(fixture.root), /input-mismatch/);
+      fixture.put(path, { 'server.mjs': server, 'packaging/windows/Launcher.mjs': launcher,
+        'host/cloudHost.mjs': cloudHost, 'host/appWindow.mjs': appWindow }[path]);
+    }
+    t.diagnostic('startup-host-imports fixtures=19 rejected=19');
     const localServer = read(join(ROOT, 'src', 'js', 'lib', 'localServer.js'));
     fixture.put('src/js/lib/unlisted-helper.js', "throw new Error('analyzed source must not execute');\nexport const injected = 1;\n");
     fixture.put('src/js/lib/localServer.js', `${localServer}\nexport * from './unlisted-helper.js';\n`);
@@ -233,7 +263,7 @@ export { apparentImport, apparentRequire };
       .replace(/^import /gm, '  import /* declaration */ ')
       .replace("import('node:child_process')", "import /* dynamic */ ('node:child_process')")
       + "\nexport { readFile as nativeRead } from 'node:fs/promises';\n");
-    assert.equal(startupSourceInputs(fixture.root).length, 11);
+    assert.equal(startupSourceInputs(fixture.root).length, 12);
     t.diagnostic('startup-source-syntax fixtures=8 rejected=7 allowed=1 modules-executed=0');
   } finally { fixture.close(); }
 });
@@ -243,7 +273,7 @@ test('installed startup bindings reject altered inputs activation ambiguity and 
   const fixture = startupLayoutFixture();
   try {
     const variant = await populateStartupLayout(fixture);
-    assert.equal(bindInstalledInputs(fixture.root, variant).files, 17);
+    assert.equal(bindInstalledInputs(fixture.root, variant).files, 18);
     for (const input of variant.files) {
       const file = join(fixture.root, ...input.path.split('/'));
       const bytes = readFileSync(file);

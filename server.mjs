@@ -296,13 +296,30 @@ export function browserCommand(platform, url) {
   return { command: 'xdg-open', args: [url] };
 }
 
-function openBrowser(url) {
-  import('node:child_process')
-    .then(({ spawn }) => {
-      const { command, args } = browserCommand(process.platform, url);
-      spawn(command, args, { stdio: 'ignore', detached: true }).unref();
-    })
-    .catch(() => {});
+// On Windows the installed app window comes first (#1412). Anything short of it opening, including a copy
+// of this file with no host/ folder beside it, opens the tab exactly as before. Other platforms never
+// load the module. Resolves to what was opened, and never rejects, since nothing waits on it.
+export async function openBrowser(url, {
+  platform = process.platform,
+  loadAppWindow = () => import('./host/appWindow.mjs'),
+  loadChildProcess = () => import('node:child_process'),
+} = {}) {
+  if (platform === 'win32') {
+    try {
+      const { openAppWindow } = await loadAppWindow();
+      if ((await openAppWindow(url)) === true) return 'app';
+    } catch {
+      // The tab below.
+    }
+  }
+  try {
+    const { spawn } = await loadChildProcess();
+    const { command, args } = browserCommand(platform, url);
+    spawn(command, args, { stdio: 'ignore', detached: true }).unref();
+    return 'tab';
+  } catch {
+    return 'none';
+  }
 }
 
 // The two startup failures a reader can actually hit, as data rather than as console.error calls

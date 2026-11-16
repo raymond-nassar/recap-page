@@ -945,6 +945,8 @@ startup source's imports to an exact list, Node's built-ins included, so the hos
 nothing but one another and the built-ins listed for each. A built-in that loads code from elsewhere,
 such as `node:module` for `createRequire`, cannot be added without changing that list, and the two ways
 to load code without an import, `process.getBuiltinModule` and `process.dlopen`, are refused by name.
+The same contract binds the app window module, `host/appWindow.mjs`, as a startup file, and lets the
+server and the launcher each import it exactly once, by name (#1412).
 
 **The page.** `src/js/lib/cloudBackup.js` holds the transport, the protocol and the coordinator
 together for the Cloud backup card in Backup & settings, which `src/js/views/cloud.js` draws. The card

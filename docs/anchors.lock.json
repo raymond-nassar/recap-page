@@ -1704,8 +1704,8 @@
     "fp": "8a62df7c6c617d75",
     "head": "## Independent publication gates"
   },
-  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#windows-portable-or-msix-proof|docs/MICROSOFT_STORE.md:245-304|0": {
-    "anchor": "docs/MICROSOFT_STORE.md:245-304",
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#windows-portable-or-msix-proof|docs/MICROSOFT_STORE.md:257-316|0": {
+    "anchor": "docs/MICROSOFT_STORE.md:257-316",
     "fp": "ef88d42bea1c0f8d",
     "head": "## Build controlled proof packages"
   },
@@ -1714,8 +1714,8 @@
     "fp": "f608e6624cff2139",
     "head": "## Delivered release matrix"
   },
-  "CHANGELOG.md|stop-the-startup-failure-messages-naming-a-tool-|server.mjs:322-343|0": {
-    "anchor": "server.mjs:322-343",
+  "CHANGELOG.md|stop-the-startup-failure-messages-naming-a-tool-|server.mjs:339-360|0": {
+    "anchor": "server.mjs:339-360",
     "fp": "4875091a9f41cacf",
     "head": "export function badPortMessage(raw) {"
   },

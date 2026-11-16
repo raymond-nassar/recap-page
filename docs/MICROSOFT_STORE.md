@@ -212,6 +212,18 @@ liveness backstop, not a replacement for the existing readiness checks or a star
 Cleanup targets retained helper/coordinator handles only, never a detached healthy server.
 Direct-console use of the JavaScript coordinator retains its existing diagnostics and pause.
 
+Before that browser command, the coordinator tries the reader's installed Recap Page app window (#1412),
+and the portable server does the same on Windows. It reads only the reader's own Start menu Programs
+folder, and its `Chrome Apps` subfolder, for a shortcut that Edge or Chrome made for this app's fixed
+app id and whose target is that browser's own proxy executable under Program Files. It uses one only
+when exactly one such install exists and its browser is the reader's current default browser, read from
+the http association without writing it, so the reader never changes browser or profile and progress
+stays at the same origin. The proxy is given only the validated profile directory and the fixed app id,
+never the shortcut's own arguments, and a shortcut carrying any other switch, such as a separate user
+data directory, is not used. Anything short of the proxy exiting cleanly, including a missing module,
+opens the tab exactly as before. `host/appWindow.mjs` holds the rule and `test/app-window.test.js` pins
+it, including the measured app id.
+
 The maintained JavaScript coordinator validates the packaged server and generation, starts it with
 the package root as its working directory, removes every casing of `MRT_PORT` and `MRT_NO_OPEN`, and
 gives the server independent hidden process and stream ownership. It waits for the exact-generation

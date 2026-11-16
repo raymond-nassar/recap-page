@@ -314,6 +314,23 @@ export function openDefaultBrowser(
   });
 }
 
+// The installed app window when the reader has one, otherwise today's tab (#1412). Packaging puts this
+// file beside host/, so the import resolves only in a package; anywhere else, and on any failure of the
+// app window at all, the tab opens exactly as before.
+export async function openAppOrTab({
+  loadAppWindow = () => import('./host/appWindow.mjs'),
+  openTab = () => openDefaultBrowser(),
+} = {}) {
+  let opened;
+  try {
+    const { openAppWindow } = await loadAppWindow();
+    opened = (await openAppWindow(`${ORIGIN}/`)) === true;
+  } catch {
+    opened = false;
+  }
+  if (!opened) await openTab();
+}
+
 function stopBrowserHelper(child, { setTimer, clearTimer }) {
   if (child.exitCode !== null) return Promise.resolve('');
   return new Promise((resolveStop) => {
@@ -360,7 +377,7 @@ export async function coordinateLaunch({
   generation = readPackageGeneration(root),
   probe = (expected) => probeServer(expected),
   startServer = () => spawnServer(server, { root }),
-  openBrowser = () => openDefaultBrowser(),
+  openBrowser = () => openAppOrTab(),
   portOccupied = () => isPortOccupied(),
   sleep = (ms) => new Promise((resolveSleep) => setTimeout(resolveSleep, ms)),
   now = Date.now,
@@ -618,7 +635,9 @@ export async function presentLaunch({
   architecture = process.arch,
   consoleFail = fail,
   setExitCode = (code) => { process.exitCode = code; },
-  openBrowser = () => openDefaultBrowser(`${ORIGIN}/`, { timeoutMs: GUI_BROWSER_TIMEOUT_MS }),
+  openBrowser = () => openAppOrTab({
+    openTab: () => openDefaultBrowser(`${ORIGIN}/`, { timeoutMs: GUI_BROWSER_TIMEOUT_MS }),
+  }),
 } = {}) {
   let gui;
   let requestError;
