@@ -290,9 +290,14 @@ function browserProcesses(spec) {
   }));
 }
 
-const packageProcesses = () => psJson(`$location = (Get-AppxPackage -Name '${PACKAGE_NAME}' | Select-Object -First 1).InstallLocation;
+// With the package each one runs in: the startup consent (#1412) has the server ask Windows about the
+// package's startup task through a process it starts, which only works if the server carries the identity.
+const packageProcesses = () => psJson(`Add-Type -TypeDefinition ${encoded(PACKAGE_NAME_SOURCE)};
+  $location = (Get-AppxPackage -Name '${PACKAGE_NAME}' | Select-Object -First 1).InstallLocation;
   if ($location) { Get-CimInstance Win32_Process | Where-Object { $_.ExecutablePath -and
-    $_.ExecutablePath.StartsWith($location, [StringComparison]::OrdinalIgnoreCase) } | Select-Object ProcessId, Name, CommandLine }`);
+    $_.ExecutablePath.StartsWith($location, [StringComparison]::OrdinalIgnoreCase) } | ForEach-Object {
+      [PSCustomObject]@{ ProcessId = $_.ProcessId; Name = $_.Name; CommandLine = $_.CommandLine;
+        packageFullName = [RecapProbePackage]::Of([int]$_.ProcessId) } } }`);
 
 const localCache = () => psJson(`$root = Join-Path $env:LOCALAPPDATA 'Packages\\${PACKAGE_FAMILY}';
   if (Test-Path -LiteralPath $root) { Get-ChildItem -LiteralPath $root -Recurse -Depth 5 -Force -ErrorAction SilentlyContinue |
