@@ -4,8 +4,8 @@ import { EventEmitter } from 'node:events';
 import { readFileSync } from 'node:fs';
 import { win32 } from 'node:path';
 import {
-  APP_ID, APP_WINDOW_URL, MAX_FOLDER_ENTRIES, findInstalls, launchProxy, matchProxy, openAppWindow,
-  parseDefaultBrowser, parseShortcut, readArguments, resolveAppWindow,
+  APP_ID, APP_WINDOW_URL, BROWSERS, MAX_FOLDER_ENTRIES, findInstalls, launchProxy, matchProxy, openAppWindow,
+  parseDefaultBrowser, parseShortcut, profileHoldsApp, readArguments, resolveAppWindow,
 } from '../host/appWindow.mjs';
 import { openAppOrTab } from '../packaging/windows/Launcher.mjs';
 import { openBrowser } from '../server.mjs';
@@ -14,6 +14,7 @@ const EDGE = 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge_prox
 const CHROME = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome_proxy.exe';
 const ENV = {
   APPDATA: 'C:\\Users\\reader\\AppData\\Roaming',
+  LOCALAPPDATA: 'C:\\Users\\reader\\AppData\\Local',
   SystemRoot: 'C:\\Windows',
   ProgramFiles: 'C:\\Program Files',
   'ProgramFiles(x86)': 'C:\\Program Files (x86)',
@@ -23,6 +24,8 @@ const PROGRAMS = win32.join(ENV.APPDATA, 'Microsoft', 'Windows', 'Start Menu', '
 const CHROME_APPS = win32.join(PROGRAMS, 'Chrome Apps');
 const EDGE_ARGS = ` --profile-directory=Default --app-id=${APP_ID} --app-url=${APP_WINDOW_URL}`;
 const CHROME_ARGS = ` --profile-directory=Default --app-id=${APP_ID}`;
+const held = (userData, profile) => win32.join(ENV.LOCALAPPDATA, userData, profile, 'Web Applications', 'Manifest Resources', APP_ID);
+const EDGE_HELD = held('Microsoft\\Edge\\User Data', 'Default');
 
 function u16(value) {
   const b = Buffer.alloc(2);
@@ -75,7 +78,7 @@ function shortcut({ target = EDGE, args = EDGE_ARGS, unicodeInfo = false, workin
   ]);
 }
 
-function folders(files) {
+function folders(files, dirs = [EDGE_HELD]) {
   const byDir = new Map();
   for (const [path, bytes] of Object.entries(files)) {
     const dir = win32.dirname(path);
@@ -89,9 +92,10 @@ function folders(files) {
     },
     readFile: async (path) => files[path],
     stat: async (path) => {
-      if (path === EDGE || path === CHROME) return { size: 1000, isFile: () => true };
+      if (path === EDGE || path === CHROME) return { size: 1000, isFile: () => true, isDirectory: () => false };
+      if (dirs.includes(path)) return { size: 0, isFile: () => false, isDirectory: () => true };
       if (!(path in files)) throw Object.assign(new Error('missing'), { code: 'ENOENT' });
-      return { size: files[path].length, isFile: () => true };
+      return { size: files[path].length, isFile: () => true, isDirectory: () => false };
     },
   };
 }
@@ -223,9 +227,27 @@ test('resolveAppWindow opens the window only for one install in the default brow
       [win32.join(PROGRAMS, 'Recap Page.lnk')]: shortcut(),
       [win32.join(PROGRAMS, 'Recap Page (2).lnk')]: shortcut({ args: EDGE_ARGS.replace('Default', '"Profile 1"') }),
     }) }],
+    ['stale-shortcut', APP_WINDOW_URL, { fs: folders({ [win32.join(PROGRAMS, 'Recap Page.lnk')]: shortcut() }, []) }],
   ];
   for (const [reason, url, overrides] of cases) {
     assert.deepEqual(await resolveAppWindow(url, { ...base, ...overrides }), { ok: false, reason }, reason);
+  }
+});
+
+test('profileHoldsApp trusts only the app id\'s folder in the shortcut\'s own browser and profile', async () => {
+  const [edge, chrome] = BROWSERS;
+  const fs = folders({}, [EDGE_HELD, held('Google\\Chrome\\User Data', 'Profile 2')]);
+  assert.equal(await profileHoldsApp({ browser: edge, profile: 'Default' }, { env: ENV, fs }), true);
+  assert.equal(await profileHoldsApp({ browser: chrome, profile: 'Profile 2' }, { env: ENV, fs }), true);
+  assert.equal(await profileHoldsApp({ browser: chrome, profile: 'Default' }, { env: ENV, fs }), false, 'another browser\'s data says nothing');
+  assert.equal(await profileHoldsApp({ browser: edge, profile: 'Profile 2' }, { env: ENV, fs }), false, 'another profile\'s data says nothing');
+  assert.equal(await profileHoldsApp({ browser: edge, profile: '..\\Default' }, { env: ENV, fs }), false);
+  const file = { stat: async () => ({ isDirectory: () => false }) };
+  assert.equal(await profileHoldsApp({ browser: edge, profile: 'Default' }, { env: ENV, fs: file }), false, 'a file of that name is not the folder');
+  const denied = { stat: async () => { throw Object.assign(new Error('denied'), { code: 'EACCES' }); } };
+  assert.equal(await profileHoldsApp({ browser: edge, profile: 'Default' }, { env: ENV, fs: denied }), false);
+  for (const LOCALAPPDATA of [undefined, 'AppData\\Local', 'C:\\Data\\..\\Local']) {
+    assert.equal(await profileHoldsApp({ browser: edge, profile: 'Default' }, { env: { ...ENV, LOCALAPPDATA }, fs }), false, String(LOCALAPPDATA));
   }
 });
 

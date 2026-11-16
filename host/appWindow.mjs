@@ -10,9 +10,10 @@
 // constant of this file, and the executable is one of two fixed paths under Program Files.
 //
 // Saved progress lives in one browser profile on one origin (constraint 5), so the window is used only
-// when there is exactly one installed copy and its browser is the reader's default browser, which is the
-// browser the tab would have opened in. In every other case, and on any error at all, the answer is false
-// and the caller opens today's tab. Measured on hosted runners on 2026-11-16 (#1412, probe runs 1 to 5):
+// when there is exactly one installed copy, its profile still holds the app and its browser is the
+// reader's default browser, which is the browser the tab would have opened in. In every other case, and
+// on any error at all, the answer is false and the caller opens today's tab. Measured on hosted runners on
+// 2026-11-16 (#1412, probe runs 1 to 5):
 // Edge 157 writes the shortcut to the Start menu Programs folder, Chrome 157 to its Chrome Apps subfolder
 // plus a Desktop copy, and both target the proxy with --profile-directory and --app-id.
 import { execFile, spawn } from 'node:child_process';
@@ -26,8 +27,8 @@ export const APP_WINDOW_URL = 'http://127.0.0.1:8787/';
 export const APP_ID = 'gdiemljfmnfogemddapdnihghiddfebn';
 
 export const BROWSERS = Object.freeze([
-  Object.freeze({ name: 'edge', progId: 'MSEdgeHTM', proxy: 'Microsoft\\Edge\\Application\\msedge_proxy.exe' }),
-  Object.freeze({ name: 'chrome', progId: 'ChromeHTML', proxy: 'Google\\Chrome\\Application\\chrome_proxy.exe' }),
+  Object.freeze({ name: 'edge', progId: 'MSEdgeHTM', proxy: 'Microsoft\\Edge\\Application\\msedge_proxy.exe', userData: 'Microsoft\\Edge\\User Data' }),
+  Object.freeze({ name: 'chrome', progId: 'ChromeHTML', proxy: 'Google\\Chrome\\Application\\chrome_proxy.exe', userData: 'Google\\Chrome\\User Data' }),
 ]);
 
 const PROGRAM_ROOTS = ['ProgramFiles', 'ProgramFiles(x86)', 'ProgramW6432'];
@@ -303,6 +304,23 @@ export function launchProxy(proxy, profile, { start = spawn, timeoutMs = PROXY_T
   });
 }
 
+// Whether the profile still holds this app. A shortcut outlives its app when an uninstall fails halfway or
+// the shortcut comes back from a backup, and measured on the WACK run of 2026-11-16 (#1412, run
+// 43950758373), the proxy then exits 0 and opens nothing at all in either browser, which is worse than
+// the tab. The same runs show each browser keeping a Manifest Resources folder named by the app id for
+// exactly as long as the app is installed. Only a folder that is present counts; anything else is the tab.
+export async function profileHoldsApp(install, { env = process.env, fs = { stat } } = {}) {
+  const local = env.LOCALAPPDATA;
+  if (typeof local !== 'string' || !DRIVE_ROOT.test(local) || local.split('\\').includes('..')) return false;
+  if (!PROFILE.test(install.profile)) return false;
+  const dir = win32.join(local, install.browser.userData, install.profile, 'Web Applications', 'Manifest Resources', APP_ID);
+  try {
+    return (await fs.stat(dir)).isDirectory();
+  } catch {
+    return false;
+  }
+}
+
 // What opening the app window would do, without doing it: the install to open, or the reason for the tab.
 export async function resolveAppWindow(url, { platform = process.platform, env = process.env, fs, run } = {}) {
   if (platform !== 'win32') return { ok: false, reason: 'not-windows' };
@@ -322,6 +340,7 @@ export async function resolveAppWindow(url, { platform = process.platform, env =
   } catch {
     return { ok: false, reason: 'missing-proxy' };
   }
+  if (!await profileHoldsApp(install, { env, ...(fs ? { fs } : {}) })) return { ok: false, reason: 'stale-shortcut' };
   return { ok: true, install };
 }
 

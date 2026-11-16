@@ -434,7 +434,11 @@ async function probe(spec) {
 const EDGE = browsers[0];
 const EDGE_POLICY_KEY = 'HKLM:\\SOFTWARE\\Policies\\Microsoft\\Edge';
 const FORCE_LIST = JSON.stringify([{ url: APP_WINDOW_URL, default_launch_container: 'window', create_desktop_shortcut: false }]);
-const isAppWindow = (entry) => entry.ProcessName === 'msedge' && entry.MainWindowTitle === 'Recap Page';
+// Run 43950758373's warm launch opened "Recap Page - Home | Recap Page": an app window names the app and
+// then the page, while a browser window ends in the browser's name, sometimes with a zero-width space in it.
+const isAppWindow = (entry) => entry.ProcessName === 'msedge'
+  && /^Recap Page(?: - |$)/.test(entry.MainWindowTitle ?? '')
+  && !/Microsoft\u200b? ?Edge$/.test(entry.MainWindowTitle);
 const defaultLinks = (since) => links(since).filter((entry) => /Programs$/.test(entry.root)
   && entry.arguments.includes(`--app-id=${APP_ID}`) && !entry.arguments.includes('--user-data-dir'));
 
