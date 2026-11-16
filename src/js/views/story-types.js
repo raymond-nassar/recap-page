@@ -116,7 +116,7 @@ export function createStoryTypesView({
         nodes.results.append(el('p', {
           class: 'rail-hint',
           text: narrower.linking
-            ? `No places to start${narrower.narrowing}. Choose a genre or a tone to see more Reading Lists.`
+            ? `No popular places to start${narrower.narrowing}. Choose a genre or a tone to see more Reading Lists.`
             : 'Choose a genre or a tone to see its Reading Lists.',
         }));
         return;
@@ -131,7 +131,7 @@ export function createStoryTypesView({
       nodes.results.append(el('p', {
         class: 'rail-hint publishing-empty',
         text: narrower.linking
-          ? `No Reading Lists tagged ${heading}${narrower.narrowing}. Choose another genre or tone.`
+          ? `No Reading Lists are tagged ${heading}${narrower.narrowing}. Choose another genre or tone.`
           : `No Reading Lists are tagged ${heading}. Choose another genre or tone.`,
       }));
       return;
