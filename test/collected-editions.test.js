@@ -401,6 +401,66 @@ test('indexer notes compare years for both series capitalizations', () => {
   }
 });
 
+test('indexer notes reject the same-year Mighty Avengers to Initiative substitution', () => {
+  const data = inputs();
+  const edition = clone(data.pilot.editions.find((entry) => entry.id === 'mighty-avengers-v1-ultron'));
+  const fixture = data.fixtures[edition.gcdIssueId];
+  const valid = checkEdition(edition, fixture, { 1866: 'Mighty Avengers (2007 - 2013)' });
+  assert.equal(valid.status, 'verified');
+  assert.equal(valid.verified.size, 6);
+
+  edition.contents[0].seriesId = 1945;
+  const wrong = checkEdition(edition, fixture, { 1945: 'Avengers: The Initiative (2007 - 2010)' });
+  assert.equal(wrong.status, 'conflict');
+  assert.deepEqual([...wrong.verified], []);
+  assert.deepEqual(wrong.conflicts.map((conflict) => conflict.kind), ['series-name']);
+});
+
+test('indexer notes only accept the narrow leading-article and formatting aliases', () => {
+  const series = '*The Mighty Avengers* (Marvel, 2007 series)';
+  const edition = editionWith({ tier: 'gcd-notes', gcdSeries: series });
+  const fixture = fixtureWith([], { notes: `Collects ${series} #1-2.` });
+  for (const name of ['Mighty Avengers (2007)', 'The Mighty Avengers (2007 - 2013)', 'mighty avengers (2007)']) {
+    assert.equal(checkEdition(edition, fixture, { 7: name }).status, 'verified', name);
+  }
+  for (const name of ['Avengers (2007)', 'Mighty Avengers: The Initiative (2007)', 'New Mighty Avengers (2007)']) {
+    const result = checkEdition(edition, fixture, { 7: name });
+    assert.equal(result.status, 'conflict', name);
+    assert.equal(result.verified.size, 0, name);
+    assert.deepEqual(result.conflicts.map((conflict) => conflict.kind), ['series-name'], name);
+  }
+});
+
+test('indexer notes bind each full range to its own source series', () => {
+  const force = 'Spider-Force (Marvel, 2018 series)';
+  const girls = 'Spider-Girls (Marvel, 2018 series)';
+  const edition = editionWith({ tier: 'gcd-notes' }, [
+    { seriesId: 7, from: 1, to: 3, gcdSeries: force, assertedBy: 'gcd-notes', basis: 'x' },
+    { seriesId: 8, from: 1, to: 3, gcdSeries: girls, assertedBy: 'gcd-notes', basis: 'x' },
+  ]);
+  const fixture = fixtureWith([], { notes: `Collects ${force} #1-3 and ${girls} #1-3.` });
+  const names = { 7: 'Spider-Force (2018)', 8: 'Spider-Girls (2018)' };
+  const result = checkEdition(edition, fixture, names);
+  assert.equal(result.status, 'verified');
+  assert.deepEqual([...result.verified], ['7:1', '7:2', '7:3', '8:1', '8:2', '8:3']);
+
+  const swapped = clone(edition);
+  swapped.contents[0].gcdSeries = girls;
+  swapped.contents[1].gcdSeries = force;
+  const wrong = checkEdition(swapped, fixture, names);
+  assert.equal(wrong.status, 'conflict');
+  assert.equal(wrong.verified.size, 0);
+  assert.deepEqual(wrong.conflicts.map((conflict) => conflict.kind), ['series-name', 'series-name']);
+
+  for (const missing of [undefined, null]) {
+    const incomplete = clone(edition);
+    incomplete.contents[1].gcdSeries = missing;
+    const held = checkEdition(incomplete, fixture, names);
+    assert.notEqual(held.status, 'verified');
+    assert.deepEqual([...held.verified], ['7:1', '7:2', '7:3']);
+  }
+});
+
 test('indexer notes preserve an article alias when comparing years', () => {
   const series = 'The Example (Marvel, 2015 Series)';
   const edition = editionWith({ tier: 'gcd-notes', gcdSeries: series });
@@ -535,6 +595,43 @@ test('crosswalk uses the mapped series year without relaxing an unmapped year', 
   const unmapped = crosswalkCheck(394, 395, [], fixtures);
   assert.ok(unmapped.conflicts.some((conflict) => conflict.kind === 'series-year'));
   assert.notEqual(unmapped.status, 'verified');
+});
+
+test('crosswalk binds the source series specified for an individual notes range', () => {
+  const { entry, fixtures } = crosswalkExample();
+  const series = entry.gcdAliases[0];
+  const edition = editionWith({ tier: 'gcd-notes' }, [
+    { seriesId: 7, from: 394, to: 395, gcdSeries: series, assertedBy: 'gcd-notes', basis: 'x' },
+  ]);
+  const result = checkEdition(edition, fixtureWith([], { notes: `Collects ${series} #394-395.` }),
+    { 7: 'Example Heroes (2001)' }, { crosswalk: [entry], fixtures });
+  assert.equal(result.status, 'verified');
+  assert.deepEqual([...result.verified], ['7:394', '7:395']);
+
+  const changed = clone(edition);
+  changed.contents[0].gcdSeries = 'Other Heroes (Marvel, 2010 series)';
+  const rejected = checkEdition(changed,
+    fixtureWith([], { notes: 'Collects Other Heroes (Marvel, 2010 series) #394-395.' }),
+    { 7: 'Example Heroes (2001)' }, { crosswalk: [entry], fixtures });
+  assert.equal(rejected.status, 'conflict');
+  assert.ok(rejected.conflicts.some((conflict) => conflict.kind === 'series-crosswalk-identity'));
+  assert.equal(rejected.verified.size, 0);
+});
+
+test('crosswalk accepts only formatting around the mapped notes series', () => {
+  const data = inputs();
+  const series = '*Thunderbolts* (Marvel, 2006 series)';
+  const edition = editionWith({ tier: 'gcd-notes', gcdSeries: series }, [
+    { seriesId: 18527, from: 126, to: 129, assertedBy: 'gcd-notes', basis: 'x' },
+  ]);
+  const checked = (name) => checkEdition(editionWith({ tier: 'gcd-notes', gcdSeries: name }, edition.contents),
+    fixtureWith([], { notes: `Collects ${name} #126-129.` }), { 18527: 'Thunderbolts (2006 - 2012)' },
+    { crosswalk: data.gcdInputs.seriesCrosswalk, fixtures: data.fixtures });
+  assert.equal(checked(series).status, 'verified');
+  const rejected = checked('*Other Thunderbolts* (Marvel, 2006 series)');
+  assert.equal(rejected.status, 'conflict');
+  assert.ok(rejected.conflicts.some((conflict) => conflict.kind === 'series-crosswalk-identity'));
+  assert.equal(rejected.verified.size, 0);
 });
 
 test('crosswalk rejects overlapping entries even when one covers the range', () => {
@@ -679,7 +776,7 @@ test('crosswalk rejects altered source issue URLs and series names', () => {
 
 test('approved crosswalk data cannot silently lose a required entry', () => {
   const data = inputs();
-  assert.equal(data.gcdInputs.expectedCrosswalkEntries, 7);
+  assert.equal(data.gcdInputs.expectedCrosswalkEntries, 8);
   assert.equal(data.gcdInputs.seriesCrosswalk.length, data.gcdInputs.expectedCrosswalkEntries);
   assert.deepEqual(validateSeriesCrosswalk(data.gcdInputs.seriesCrosswalk, data.fixtures), []);
   const missing = clone(data);

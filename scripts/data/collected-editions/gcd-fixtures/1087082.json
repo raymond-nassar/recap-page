@@ -1,0 +1,235 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/1087082/?format=json",
+  "retrievedAt": "2026-11-13T00:09:03.408Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/1087082/?format=json",
+    "series_name": "Wolverine: The Origin (2002 series)",
+    "descriptor": "",
+    "number": "[nn]",
+    "volume": "",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "2002",
+    "key_date": "2002-00-00",
+    "page_count": "164.000",
+    "isbn": "0-7851-0965-X",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/72280/?format=json",
+    "story_set": [
+      {
+        "type": "blank page(s)",
+        "title": "",
+        "feature": "",
+        "sequence_number": 1,
+        "page_count": "1.000",
+        "notes": "Includes direct edition barcode.",
+        "script": "None",
+        "pencils": "None"
+      },
+      {
+        "type": "credits, title page",
+        "title": "",
+        "feature": "",
+        "sequence_number": 2,
+        "page_count": "3.000",
+        "notes": "Features artwork from the interior of Wolverine: The Origin (Marvel, 2001 series) #1.",
+        "script": "?",
+        "pencils": "Andy Kubert"
+      },
+      {
+        "type": "foreword, introduction, preface, afterword",
+        "title": "Introduction",
+        "feature": "",
+        "sequence_number": 3,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "Tom DeSanto",
+        "pencils": "None"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Wolverine",
+        "sequence_number": 4,
+        "page_count": "1.000",
+        "notes": "Cover colored directly on pencil artwork. Reprinted without trade dress.",
+        "script": "None",
+        "pencils": "Joe Quesada (signed)"
+      },
+      {
+        "type": "comic story",
+        "title": "The Hill",
+        "feature": "Wolverine",
+        "sequence_number": 5,
+        "page_count": "23.000",
+        "notes": "No inks used, color applied digitally directly on pencilled artwork.",
+        "script": "Paul Jenkins (credited) (plot, script); Bill Jemas (credited) (plot); Joe Quesada (credited) (plot)",
+        "pencils": "Andy Kubert (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Wolverine",
+        "sequence_number": 6,
+        "page_count": "1.000",
+        "notes": "Cover colored directly on pencil artwork. Reprinted without trade dress.",
+        "script": "None",
+        "pencils": "Joe Quesada (signed)"
+      },
+      {
+        "type": "comic story",
+        "title": "Inner Child",
+        "feature": "Wolverine",
+        "sequence_number": 7,
+        "page_count": "22.000",
+        "notes": "No inks used, color applied digitally directly on pencilled artwork.",
+        "script": "Paul Jenkins (credited) (plot, script); Bill Jemas (credited) (plot); Joe Quesada (credited) (plot)",
+        "pencils": "Andy Kubert (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Wolverine",
+        "sequence_number": 8,
+        "page_count": "1.000",
+        "notes": "Cover colored directly on pencil artwork. Reprinted without trade dress.",
+        "script": "None",
+        "pencils": "Joe Quesada (signed)"
+      },
+      {
+        "type": "comic story",
+        "title": "The Beast Within",
+        "feature": "Wolverine",
+        "sequence_number": 9,
+        "page_count": "23.000",
+        "notes": "No inks used, color applied digitally directly on pencilled artwork.",
+        "script": "Paul Jenkins (credited) (plot, script); Bill Jemas (credited) (plot); Joe Quesada (credited) (plot)",
+        "pencils": "Andy Kubert (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Wolverine",
+        "sequence_number": 10,
+        "page_count": "1.000",
+        "notes": "Cover colored directly on pencil artwork. Reprinted without trade dress.",
+        "script": "None",
+        "pencils": "Joe Quesada (signed)"
+      },
+      {
+        "type": "comic story",
+        "title": "Heaven and Hell",
+        "feature": "Wolverine",
+        "sequence_number": 11,
+        "page_count": "28.000",
+        "notes": "No inks used, color applied digitally directly on pencilled artwork.",
+        "script": "Paul Jenkins (credited) (plot, script); Bill Jemas (credited) (plot); Joe Quesada (credited) (plot)",
+        "pencils": "Andy Kubert (credited)"
+      },
+      {
+        "type": "illustration",
+        "title": "The Feast",
+        "feature": "Wolverine",
+        "sequence_number": 12,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Richard Isanove (signed) (painting)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Wolverine",
+        "sequence_number": 13,
+        "page_count": "1.000",
+        "notes": "Cover colored directly on pencil artwork. Reprinted without trade dress.",
+        "script": "None",
+        "pencils": "Joe Quesada (signed)"
+      },
+      {
+        "type": "comic story",
+        "title": "Revelation",
+        "feature": "Wolverine",
+        "sequence_number": 14,
+        "page_count": "25.000",
+        "notes": "No inks used, color applied digitally directly on pencilled artwork.",
+        "script": "Paul Jenkins (credited) (plot, script); Bill Jemas (credited) (plot); Joe Quesada (credited) (plot)",
+        "pencils": "Andy Kubert (credited)"
+      },
+      {
+        "type": "cover reprint (on interior page)",
+        "title": "",
+        "feature": "Wolverine",
+        "sequence_number": 15,
+        "page_count": "1.000",
+        "notes": "Cover colored directly on pencil artwork. Reprinted without trade dress.",
+        "script": "None",
+        "pencils": "Joe Quesada (signed)"
+      },
+      {
+        "type": "comic story",
+        "title": "Dust to Dust",
+        "feature": "Wolverine",
+        "sequence_number": 16,
+        "page_count": "25.000",
+        "notes": "No inks used, color applied digitally directly on pencilled artwork.",
+        "script": "Paul Jenkins (credited) (plot, script); Bill Jemas (credited) (plot); Joe Quesada (credited) (plot)",
+        "pencils": "Andy Kubert (credited)"
+      },
+      {
+        "type": "text article",
+        "title": "The Beginning",
+        "feature": "",
+        "sequence_number": 17,
+        "page_count": "1.000",
+        "notes": "Bill Jemas writes about the beginning of the Wolverine origin story.",
+        "script": "Bill Jemas (credited, signed)",
+        "pencils": "None"
+      },
+      {
+        "type": "text article",
+        "title": "Confessions of an EIC",
+        "feature": "",
+        "sequence_number": 18,
+        "page_count": "1.000",
+        "notes": "Joe Quesada talks about the whole process of the origin story from idea to publishing.",
+        "script": "Joe Quesada (credited) (signed as Q)",
+        "pencils": "None"
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "Subscribe Today... Or Else",
+        "feature": "",
+        "sequence_number": 19,
+        "page_count": "1.000",
+        "notes": "Subscription order form.",
+        "script": "?",
+        "pencils": "?"
+      },
+      {
+        "type": "credits, title page",
+        "title": "",
+        "feature": "",
+        "sequence_number": 20,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "?",
+        "pencils": "None"
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "The Origin of Wolverine",
+        "feature": "Wolverine",
+        "sequence_number": 21,
+        "page_count": "1.000",
+        "notes": "Features artwork from the cover of Wolverine: The Origin (Marvel, 2001 series) #2.",
+        "script": "?",
+        "pencils": "Joe Quesada (signed as Q UESADA)"
+      }
+    ]
+  }
+}

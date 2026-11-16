@@ -452,6 +452,78 @@ export const editionEvidence = {
       "checkedAt": "2026-11-13T00:09:17.894Z"
     },
     {
+      "catalogId": "marvel-knights-to-planet-x-10",
+      "editionId": "wolverine-the-origin",
+      "issueId": 10574,
+      "seriesId": 2062,
+      "number": "1",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1087082/?format=json",
+      "checkedAt": "2026-11-13T00:09:03.408Z"
+    },
+    {
+      "catalogId": "marvel-knights-to-planet-x-10",
+      "editionId": "wolverine-the-origin",
+      "issueId": 10575,
+      "seriesId": 2062,
+      "number": "2",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1087082/?format=json",
+      "checkedAt": "2026-11-13T00:09:03.408Z"
+    },
+    {
+      "catalogId": "marvel-knights-to-planet-x-10",
+      "editionId": "wolverine-the-origin",
+      "issueId": 10576,
+      "seriesId": 2062,
+      "number": "3",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1087082/?format=json",
+      "checkedAt": "2026-11-13T00:09:03.408Z"
+    },
+    {
+      "catalogId": "marvel-knights-to-planet-x-10",
+      "editionId": "wolverine-the-origin",
+      "issueId": 10577,
+      "seriesId": 2062,
+      "number": "4",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1087082/?format=json",
+      "checkedAt": "2026-11-13T00:09:03.408Z"
+    },
+    {
+      "catalogId": "marvel-knights-to-planet-x-10",
+      "editionId": "wolverine-the-origin",
+      "issueId": 10578,
+      "seriesId": 2062,
+      "number": "5",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1087082/?format=json",
+      "checkedAt": "2026-11-13T00:09:03.408Z"
+    },
+    {
+      "catalogId": "marvel-knights-to-planet-x-10",
+      "editionId": "wolverine-the-origin",
+      "issueId": 10579,
+      "seriesId": 2062,
+      "number": "6",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1087082/?format=json",
+      "checkedAt": "2026-11-13T00:09:03.408Z"
+    },
+    {
       "catalogId": "marvel-knights-to-planet-x-11",
       "editionId": "xtreme-xmen-savage-land",
       "issueId": 12394,
@@ -1736,6 +1808,54 @@ export const editionEvidence = {
       "checkedAt": "2026-11-13T21:19:32.663Z"
     },
     {
+      "catalogId": "siege-dark-reign-prelude",
+      "editionId": "thunderbolts-burning-down-the-house",
+      "issueId": 22480,
+      "seriesId": 18527,
+      "number": "126",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1091596/?format=json",
+      "checkedAt": "2026-11-13T21:26:25.853Z"
+    },
+    {
+      "catalogId": "siege-dark-reign-prelude",
+      "editionId": "thunderbolts-burning-down-the-house",
+      "issueId": 22881,
+      "seriesId": 18527,
+      "number": "127",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1091596/?format=json",
+      "checkedAt": "2026-11-13T21:26:25.853Z"
+    },
+    {
+      "catalogId": "siege-dark-reign-prelude",
+      "editionId": "thunderbolts-burning-down-the-house",
+      "issueId": 23089,
+      "seriesId": 18527,
+      "number": "128",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1091596/?format=json",
+      "checkedAt": "2026-11-13T21:26:25.853Z"
+    },
+    {
+      "catalogId": "siege-dark-reign-prelude",
+      "editionId": "thunderbolts-burning-down-the-house",
+      "issueId": 23584,
+      "seriesId": 18527,
+      "number": "129",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1091596/?format=json",
+      "checkedAt": "2026-11-13T21:26:25.853Z"
+    },
+    {
       "catalogId": "chaos-war",
       "editionId": "chaos-war-2011-tpb",
       "issueId": 34517,
@@ -2658,6 +2778,198 @@ export const editionEvidence = {
       "conflicts": [],
       "source": "https://www.comics.org/api/issue/2156466/?format=json",
       "checkedAt": "2026-11-14T15:58:24.462Z"
+    },
+    {
+      "catalogId": "spider-geddon",
+      "editionId": "spider-geddon-covert-ops",
+      "issueId": 71847,
+      "seriesId": 26177,
+      "number": "1",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1928388/?format=json",
+      "checkedAt": "2026-11-14T09:33:49.020Z"
+    },
+    {
+      "catalogId": "spider-geddon",
+      "editionId": "spider-geddon-covert-ops",
+      "issueId": 71578,
+      "seriesId": 26087,
+      "number": "1",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1928388/?format=json",
+      "checkedAt": "2026-11-14T09:33:49.020Z"
+    },
+    {
+      "catalogId": "spider-geddon",
+      "editionId": "spider-geddon-covert-ops",
+      "issueId": 71580,
+      "seriesId": 26087,
+      "number": "2",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1928388/?format=json",
+      "checkedAt": "2026-11-14T09:33:49.020Z"
+    },
+    {
+      "catalogId": "spider-geddon",
+      "editionId": "spider-geddon-covert-ops",
+      "issueId": 71849,
+      "seriesId": 26177,
+      "number": "2",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1928388/?format=json",
+      "checkedAt": "2026-11-14T09:33:49.020Z"
+    },
+    {
+      "catalogId": "spider-geddon",
+      "editionId": "spider-geddon-covert-ops",
+      "issueId": 71581,
+      "seriesId": 26087,
+      "number": "3",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1928388/?format=json",
+      "checkedAt": "2026-11-14T09:33:49.020Z"
+    },
+    {
+      "catalogId": "spider-geddon",
+      "editionId": "spider-geddon-covert-ops",
+      "issueId": 71850,
+      "seriesId": 26177,
+      "number": "3",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1928388/?format=json",
+      "checkedAt": "2026-11-14T09:33:49.020Z"
+    },
+    {
+      "catalogId": "world-war-hulk-aftersmash",
+      "editionId": "world-war-hulk-warbound",
+      "issueId": 17361,
+      "seriesId": 3171,
+      "number": "1",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1052285/?format=json",
+      "checkedAt": "2026-11-13T14:51:02.170Z"
+    },
+    {
+      "catalogId": "world-war-hulk-aftersmash",
+      "editionId": "world-war-hulk-warbound",
+      "issueId": 23232,
+      "seriesId": 3171,
+      "number": "2",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1052285/?format=json",
+      "checkedAt": "2026-11-13T14:51:02.170Z"
+    },
+    {
+      "catalogId": "world-war-hulk-aftersmash",
+      "editionId": "world-war-hulk-warbound",
+      "issueId": 23233,
+      "seriesId": 3171,
+      "number": "3",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1052285/?format=json",
+      "checkedAt": "2026-11-13T14:51:02.170Z"
+    },
+    {
+      "catalogId": "world-war-hulk-aftersmash",
+      "editionId": "world-war-hulk-warbound",
+      "issueId": 23234,
+      "seriesId": 3171,
+      "number": "4",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1052285/?format=json",
+      "checkedAt": "2026-11-13T14:51:02.170Z"
+    },
+    {
+      "catalogId": "world-war-hulk-aftersmash",
+      "editionId": "world-war-hulk-warbound",
+      "issueId": 23235,
+      "seriesId": 3171,
+      "number": "5",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1052285/?format=json",
+      "checkedAt": "2026-11-13T14:51:02.170Z"
+    },
+    {
+      "catalogId": "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide",
+      "editionId": "world-war-hulk-warbound",
+      "issueId": 17361,
+      "seriesId": 3171,
+      "number": "1",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1052285/?format=json",
+      "checkedAt": "2026-11-13T14:51:02.170Z"
+    },
+    {
+      "catalogId": "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide",
+      "editionId": "world-war-hulk-warbound",
+      "issueId": 23232,
+      "seriesId": 3171,
+      "number": "2",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1052285/?format=json",
+      "checkedAt": "2026-11-13T14:51:02.170Z"
+    },
+    {
+      "catalogId": "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide",
+      "editionId": "world-war-hulk-warbound",
+      "issueId": 23233,
+      "seriesId": 3171,
+      "number": "3",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1052285/?format=json",
+      "checkedAt": "2026-11-13T14:51:02.170Z"
+    },
+    {
+      "catalogId": "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide",
+      "editionId": "world-war-hulk-warbound",
+      "issueId": 23234,
+      "seriesId": 3171,
+      "number": "4",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1052285/?format=json",
+      "checkedAt": "2026-11-13T14:51:02.170Z"
+    },
+    {
+      "catalogId": "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide",
+      "editionId": "world-war-hulk-warbound",
+      "issueId": 23235,
+      "seriesId": 3171,
+      "number": "5",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1052285/?format=json",
+      "checkedAt": "2026-11-13T14:51:02.170Z"
     }
   ],
   "linkCoverage": {
@@ -2709,6 +3021,12 @@ export const editionEvidence = {
       "hoopla": 0,
       "libby": 4
     },
+    "marvel-knights-to-planet-x-10": {
+      "positions": 6,
+      "either": 6,
+      "hoopla": 6,
+      "libby": 6
+    },
     "marvel-knights-to-planet-x-12": {
       "positions": 7,
       "either": 5,
@@ -2745,6 +3063,12 @@ export const editionEvidence = {
       "hoopla": 10,
       "libby": 10
     },
+    "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide": {
+      "positions": 107,
+      "either": 5,
+      "hoopla": 5,
+      "libby": 0
+    },
     "secret-invasion": {
       "positions": 36,
       "either": 12,
@@ -2753,9 +3077,15 @@ export const editionEvidence = {
     },
     "siege-dark-reign-prelude": {
       "positions": 107,
-      "either": 5,
-      "hoopla": 0,
+      "either": 9,
+      "hoopla": 4,
       "libby": 5
+    },
+    "spider-geddon": {
+      "positions": 25,
+      "either": 6,
+      "hoopla": 0,
+      "libby": 6
     },
     "spider-verse": {
       "positions": 35,
@@ -2768,6 +3098,12 @@ export const editionEvidence = {
       "either": 12,
       "hoopla": 12,
       "libby": 12
+    },
+    "world-war-hulk-aftersmash": {
+      "positions": 26,
+      "either": 5,
+      "hoopla": 5,
+      "libby": 0
     },
     "x-men-regenesis": {
       "positions": 43,
