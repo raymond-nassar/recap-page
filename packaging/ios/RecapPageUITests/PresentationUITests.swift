@@ -12,11 +12,58 @@ private func layoutMetrics(from label: String, prefix: String = "recap-layout-pr
     return try? JSONSerialization.jsonObject(with: data) as? [String: Any]
 }
 
+// A drag can leave the web view scrolling, and the phone bar slides for a moment after the page
+// hides or shows it. A frame read mid-motion and a hit test read a moment later judge two scenes,
+// so geometry is judged only once consecutive snapshots agree (#1316, #1167).
+@MainActor
+@discardableResult
+func settledFrame(of element: XCUIElement, timeout: TimeInterval = 5) -> CGRect {
+    var previous = element.frame
+    var agreeing = 0
+    let deadline = Date().addingTimeInterval(timeout)
+    while agreeing < 2 && Date() < deadline {
+        Thread.sleep(forTimeInterval: 0.15)
+        let next = element.frame
+        agreeing = next == previous ? agreeing + 1 : 0
+        previous = next
+    }
+    return previous
+}
+
+// The page hides the phone bar while the reader scrolls down and shows it again when they scroll
+// up, so a bar below the web view is intended, not lost. Newest-runtime run 43776017672 found More
+// at y 1022 under a web view ending at 956 after the audit's own drags, and judged it unreachable.
+// The bar is brought back the way a reader would: a short slow scroll up.
+func bottomBarIsTranslatedOffScreen(toggle: CGRect, webView: CGRect) -> Bool {
+    !toggle.isEmpty && toggle.maxY > webView.maxY + 0.5
+}
+
+@MainActor
+func revealBottomBar(in app: XCUIApplication) {
+    let webView = app.webViews.firstMatch
+    // These unzoomed fixtures use the page's 880px navigation boundary. Run 43808855835
+    // timed out querying the toggle on a 1032-point iPad, which has no phone bar to reveal.
+    guard webView.frame.width <= 880 else { return }
+    let toggle = app.descendants(matching: .any).matching(
+        NSPredicate(format: "label == %@ OR identifier == %@", "More", "btn-rail-toggle")).firstMatch
+    guard toggle.exists else { return }
+    for _ in 0..<3 {
+        guard bottomBarIsTranslatedOffScreen(toggle: settledFrame(of: toggle), webView: webView.frame) else { return }
+        let from = webView.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.4))
+        let to = webView.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.48))
+        from.press(forDuration: 0.1, thenDragTo: to, withVelocity: .slow, thenHoldForDuration: 0.5)
+    }
+    settledFrame(of: toggle)
+}
+
 @MainActor
 func revealNativeTarget(_ element: XCUIElement, in app: XCUIApplication, precise: Bool = false) {
     let webView = app.webViews.firstMatch
     let toggle = app.descendants(matching: .any).matching(
         NSPredicate(format: "label == %@ OR identifier == %@", "More", "btn-rail-toggle")).firstMatch
+    // A hidden bar would leave its whole height counted as usable, and a reader's next scroll up
+    // brings it back over whatever was placed there.
+    revealBottomBar(in: app)
     // The phone bar holds the Home brand, Library, Search and More, and at large text it wraps
     // into two rows with More below the links. Bounding by More alone counted the links' row as
     // usable, and on iPhone SE run 42318380637 a passive-text tap at 279,606.5 opened Search.
@@ -39,9 +86,10 @@ func revealNativeTarget(_ element: XCUIElement, in app: XCUIApplication, precise
         x: webView.frame.minX, y: webView.frame.minY,
         width: webView.frame.width, height: usableBottom - webView.frame.minY)
     for _ in 0..<8 {
-        if element.isHittable && element.frame.minY >= usableFrame.minY
-            && element.frame.maxY <= usableBottom { break }
-        let displacement = element.frame.midY - usableFrame.midY
+        let frame = settledFrame(of: element)
+        if element.isHittable && frame.minY >= usableFrame.minY
+            && frame.maxY <= usableBottom { break }
+        let displacement = frame.midY - usableFrame.midY
         let travel = min(abs(displacement), usableFrame.height / 2)
         let startY = usableFrame.midY + (displacement > 0 ? travel / 2 : -travel / 2)
         let endY = usableFrame.midY + (displacement > 0 ? -travel / 2 : travel / 2)
@@ -56,9 +104,12 @@ func revealNativeTarget(_ element: XCUIElement, in app: XCUIApplication, precise
             start.press(forDuration: 0.1, thenDragTo: end)
         }
     }
+    // Momentum from the last drag can still be moving the page, so the final judgment waits for
+    // the same still scene the loop accepted.
+    let settled = settledFrame(of: element)
     XCTAssertTrue(element.isHittable, "\(element.label) is hittable after native scrolling")
-    XCTAssertGreaterThanOrEqual(element.frame.minY, usableFrame.minY)
-    XCTAssertLessThanOrEqual(element.frame.maxY, usableBottom, "the target is above bottom navigation before tapping")
+    XCTAssertGreaterThanOrEqual(settled.minY, usableFrame.minY)
+    XCTAssertLessThanOrEqual(settled.maxY, usableBottom, "the target is above bottom navigation before tapping")
 }
 
 @MainActor
@@ -1243,18 +1294,30 @@ final class PresentationUITests: XCTestCase {
     // Narrow layouts keep some destinations in the More sheet, so a link that is not hittable in the
     // bar is reached the way a reader would reach it, with More's own target checked on the way.
     private func revealNavigationLink(_ link: XCUIElement, named linkName: String, in app: XCUIApplication) {
+        // Earlier audit drags can leave the bar hidden by the page's hide-on-scroll, which is not
+        // where a reader looking for More finds it (#1316).
+        revealBottomBar(in: app)
         if !link.isHittable {
             let toggle = moreToggle(of: app)
             let close = app.buttons.matching(NSPredicate(format: "label == %@", "Close")).firstMatch
             XCTAssertTrue(
                 toggle.waitForExistence(timeout: 30),
                 "the narrow navigation toggle is available: \(app.debugDescription)")
+            let toggleFrame = settledFrame(of: toggle)
             XCTAssertEqual(toggle.label, "More", "the type-independent query still selects More")
-            XCTAssertGreaterThanOrEqual(toggle.frame.width, 44, "More retains its native target width")
-            XCTAssertGreaterThanOrEqual(toggle.frame.height, 44, "More retains its native target height")
-            XCTAssertTrue(toggle.isHittable, "More is on screen before it is tapped: \(toggle.frame)")
+            XCTAssertGreaterThanOrEqual(toggleFrame.width, 44, "More retains its native target width")
+            XCTAssertGreaterThanOrEqual(toggleFrame.height, 44, "More retains its native target height")
+            XCTAssertTrue(toggle.isHittable, "More is on screen before it is tapped: \(toggleFrame)")
             toggle.tap()
-            let closeVisible = close.waitForExistence(timeout: 30)
+            var closeVisible = close.waitForExistence(timeout: 10)
+            // iOS 18 SE run 43776017672 tapped a fully visible More and no sheet opened in 30
+            // seconds, the native-tap shape #1032 records. One bounded repeat, as #1299 does for Read,
+            // and only while More is still the hittable target the first tap aimed at.
+            if !closeVisible && !close.exists && toggle.isHittable {
+                print("T03 More first tap left no sheet; one repeat tap (#1316/#1032):\n\(app.debugDescription)")
+                toggle.tap()
+                closeVisible = close.waitForExistence(timeout: 30)
+            }
             if !closeVisible {
                 print("T03 More hierarchy after toggle tap:\n\(app.debugDescription)")
             }
@@ -1290,7 +1353,12 @@ final class PresentationUITests: XCTestCase {
     }
 
     private func revealPassiveAuditTarget(_ element: XCUIElement, in app: XCUIApplication) throws {
+        // SE run 42410821243 alternated a 249-point message past a 522-point area until it sat at
+        // y -29 (#1167). Each reversal halves the next drag, so the text settles into the slack.
+        var gain: CGFloat = 1
+        var previousSign: CGFloat = 0
         for attempt in 0...8 {
+            settledFrame(of: element)
             let state = try freshPassiveState(of: app)
             let proof = try XCTUnwrap(state["guard"] as? [String: Any])
             let webFrame = app.webViews.firstMatch.frame
@@ -1313,7 +1381,11 @@ final class PresentationUITests: XCTestCase {
                               userInfo: [NSLocalizedDescriptionKey: "Passive text reveal did not converge"])
             }
             let displacement = targetFrame.midY - usableFrame.midY
-            let travel = min(abs(displacement), usableFrame.height / 2)
+            let sign: CGFloat = displacement > 0 ? 1 : -1
+            if previousSign != 0 && sign != previousSign { gain /= 2 }
+            previousSign = sign
+            let travel = max(min(abs(displacement), usableFrame.height / 2) * gain,
+                             min(abs(displacement), 24))
             let startY = usableFrame.midY + (displacement > 0 ? travel / 2 : -travel / 2)
             let endY = usableFrame.midY + (displacement > 0 ? -travel / 2 : travel / 2)
             let origin = app.coordinate(withNormalizedOffset: .zero)

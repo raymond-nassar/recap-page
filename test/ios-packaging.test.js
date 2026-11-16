@@ -1161,6 +1161,11 @@ test('the termination test fails visibly if the pinned WebKit hook is absent', (
   assert.doesNotMatch(terminationTests, /XCTSkip(?:Unless|If)/);
 });
 
+test('iOS 18 waits allow a slow content-process launch and a home press that reaches suspension', () => {
+  assert.match(terminationTests, /!document\.getElementById\('ios-report'\)\.hidden",\s*timeout: 90\)/);
+  assert.match(launchTests, /writer\.state == \.runningBackground\s*\|\| writer\.state == \.runningBackgroundSuspended/);
+});
+
 test('T05 pins all six termination windows and the fifth journal-put recovery state', () => {
   assert.match(launchTests, /for afterBackground in \[false, true\] \{\s*for delayMs in \[0, 250, 750\]/);
   assert.match(launchTests, /observedHash == beforeHash \|\| observedHash == afterHash/);
@@ -1356,8 +1361,11 @@ test('T03 retains ten reviewed positives and accepts only complete passive-text 
   assert.match(presentationTests, /after\["href"\] as\? String == before\["href"\] as\? String/);
   assert.match(presentationTests, /after\["view"\] as\? String == before\["view"\] as\? String/);
   assert.match(presentationTests, /afterProof\["focus"\] as\? String == proof\["focus"\]/);
-  assert.match(presentationTests, /XCTAssertGreaterThanOrEqual\(toggle\.frame\.width,\s*44/);
-  assert.match(presentationTests, /XCTAssertGreaterThanOrEqual\(toggle\.frame\.height,\s*44/);
+  assert.match(presentationTests, /XCTAssertGreaterThanOrEqual\(toggleFrame\.width,\s*44/);
+  assert.match(presentationTests, /XCTAssertGreaterThanOrEqual\(toggleFrame\.height,\s*44/);
+  assert.match(presentationTests, /let toggleFrame = settledFrame\(of: toggle\)/);
+  assert.match(presentationTests, /if !closeVisible && !close\.exists && toggle\.isHittable \{\s*print\("T03 More first tap left no sheet/);
+  assert.match(presentationTests, /XCTAssertTrue\(closeVisible, "the More sheet is presented"\)/);
 });
 
 test('T03 retries only one finding-free XCTest audit timeout after a settled-route check', () => {
@@ -1484,7 +1492,8 @@ test('T03 positions positive fixtures within the actual native navigation bounda
   assert.match(positiveReveal, /let reservedHeight = height \* webFrame\.width \/ viewport/);
   assert.match(positiveReveal, /height: webFrame\.height - reservedHeight/);
   assert.doesNotMatch(positiveReveal, /toggle|barBand|mobile-nav-hidden/);
-  assert.match(positiveReveal, /for attempt in 0\.\.\.8 \{\s*let state = try freshPassiveState\(of: app\)/);
+  assert.match(positiveReveal, /for attempt in 0\.\.\.8 \{\s*settledFrame\(of: element\)\s*let state = try freshPassiveState\(of: app\)/);
+  assert.match(positiveReveal, /if previousSign != 0 && sign != previousSign \{ gain \/= 2 \}/);
   assert.match(positiveReveal, /usableFrame\.contains\(targetFrame\)/);
   assert.match(positiveReveal, /guard attempt < 8 else \{\s*XCTFail/);
   assert.match(presentationTests, /try revealPassiveAuditTarget\(element, in: app\)/);
@@ -1500,12 +1509,19 @@ test('T03 reveals nearby passive text without an overshooting native drag', () =
   assert.match(reveal, /if abs\(displacement\) <= usableFrame\.height \/ 2 \{\s*start\.press\(forDuration: 0\.1, thenDragTo: end,\s*withVelocity: \.slow, thenHoldForDuration: 0\.2\)\s*\} else \{\s*start\.press\(forDuration: 0\.1, thenDragTo: end\)/);
 });
 
+test('phone-bar reveal avoids the added toggle query in wide native fixtures', () => {
+  const reveal = presentationTests.slice(presentationTests.indexOf('func revealBottomBar('),
+    presentationTests.indexOf('func revealNativeTarget('));
+  assert.match(reveal, /let webView = app\.webViews\.firstMatch\s*[\s\S]*?guard webView\.frame\.width <= 880 else \{ return \}\s*let toggle = app\.descendants/);
+});
+
 test('first-run tile uses a precise native reveal without changing shared helper defaults', () => {
   const reveal = presentationTests.slice(presentationTests.indexOf('func revealNativeTarget('),
     presentationTests.indexOf('final class PresentationUITests'));
   assert.match(reveal, /precise: Bool = false/);
   assert.match(reveal, /if precise && abs\(displacement\) <= usableFrame\.height \/ 2 \{\s*start\.press\(forDuration: 0\.1, thenDragTo: end,\s*withVelocity: \.slow, thenHoldForDuration: 0\.2\)\s*\} else \{\s*start\.press\(forDuration: 0\.1, thenDragTo: end\)/);
-  assert.match(reveal, /element\.isHittable && element\.frame\.minY >= usableFrame\.minY\s*&& element\.frame\.maxY <= usableBottom/);
+  assert.match(reveal, /let frame = settledFrame\(of: element\)\s*if element\.isHittable && frame\.minY >= usableFrame\.minY\s*&& frame\.maxY <= usableBottom/);
+  assert.match(reveal, /revealBottomBar\(in: app\)/);
   const firstRun = presentationTests.slice(
     presentationTests.indexOf('func testFirstRunHomeLinksHaveNativeTargetsAtDefaultAndLargestTextSizes()'),
     presentationTests.indexOf('private func assertNoSeparateTextTarget('));
@@ -2013,7 +2029,7 @@ test('iOS web controls expose one accessible target without changing visible lay
   assert.match(tests, /NSPredicate\(format: "label BEGINSWITH\[c\] %@", "What's new"\)/);
   assert.match(tests, /XCTAssertGreaterThanOrEqual\(updatesToggle\.frame\.height,\s*44/);
   assert.match(tests, /func testFirstRunHomeLinksHaveNativeTargetsAtDefaultAndLargestTextSizes/);
-  assert.match(tests, /let displacement = element\.frame\.midY - usableFrame\.midY/);
+  assert.match(tests, /let displacement = frame\.midY - usableFrame\.midY/);
   assert.match(tests, /press\(forDuration: 0\.1, thenDragTo: end\)/);
   for (const selector of ['#sidebar-nav a.ri[data-view=', '#btn-chero-open', '.app-footer > a[data-view=', '.home-guide-link', '#reader-closure-faq']) {
     assert.ok(controller.includes(selector), `reviewed parent control ${selector}`);

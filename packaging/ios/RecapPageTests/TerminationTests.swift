@@ -40,8 +40,11 @@ final class TerminationTests: XCTestCase {
         _ = webView.perform(kill)
 
         do {
+            // A new content process usually launches in 1 to 2 seconds, but iOS 18 run evidence on
+            // #1032 recorded one taking 46 seconds, and the notice cannot show before its page loads.
             try await WebTestSupport.waitFor(
-                webView, "Boolean(document.getElementById('ios-report')) && !document.getElementById('ios-report').hidden")
+                webView, "Boolean(document.getElementById('ios-report')) && !document.getElementById('ios-report').hidden",
+                timeout: 90)
         } catch {
             // What the page and the controller hold when the notice never appeared: whether a new
             // document loaded, how many did, whether the restart was consumed and the page had the flag.
