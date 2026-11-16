@@ -40,6 +40,7 @@ function harness({ source = 'saved', score = null } = {}) {
     elements: () => nodes,
     getState: () => h.state,
     isBlocked: () => h.blocked,
+    blockedMessage: () => h.pauseMessage,
     saveRating: (id, value) => {
       h.saves.push([id, value]);
       if (h.failure) return { ok: false, error: h.failure };
@@ -76,6 +77,18 @@ test('Issue rating summary stays compact and opens an initially unselected edito
   assert.equal(h.nodes.save.disabled, true);
   assert.equal(h.nodes.remove.hidden, true);
   assert.deepEqual(h.saves, []);
+});
+
+test('a verification pause shows the approved reopening guidance instead of unreadable-data recovery', () => {
+  const h = harness();
+  h.blocked = true;
+  h.pauseMessage = 'Saving is paused; reopen the app to check your list.';
+  h.view.refresh();
+  assert.equal(h.nodes.status.textContent, h.pauseMessage);
+  assert.equal(h.nodes.trigger.disabled, true);
+  h.pauseMessage = null;
+  h.view.refresh();
+  assert.match(h.nodes.status.textContent, /cannot be read/);
 });
 
 test('whole-star shortcuts plus half-step controls save only the explicit score', () => {

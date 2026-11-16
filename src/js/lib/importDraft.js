@@ -1,4 +1,4 @@
-import { parseChecklist, readerIssueId } from './markdown.js';
+import { parseChecklist, readerIssueId, sourceDisplayTitle } from './markdown.js';
 import { MAX_BACKUP_BYTES, MAX_ISSUES, MAX_NAME, normalizeIssue } from './model.js';
 
 export const DRAFT_FORMAT = 'recap-import-draft';
@@ -20,7 +20,7 @@ export function sourceOccurrences(rawText, options) {
   const lines = rawText.split(/\r?\n/);
   const positions = [];
   lines.forEach((line, index) => {
-    const row = parseChecklist(line);
+    const row = parseChecklist(line, options);
     if (row.entries.length || row.unresolved.length) positions.push(index + 1);
   });
   return entries.map((entry, index) => ({
@@ -28,12 +28,20 @@ export function sourceOccurrences(rawText, options) {
   }));
 }
 
+// Drafts saved by an older app may contain an annotation in the literal title.
+export function sourceOccurrencesForValidation(rawText, { preserveLegacyIdentityAnnotations = false } = {}) {
+  return [
+    sourceOccurrences(rawText, { preserveLegacyIdentityAnnotations }),
+    sourceOccurrences(rawText, { legacyReaderLinks: true, preserveLegacyIdentityAnnotations }),
+  ];
+}
+
 export function occurrenceIssue(entry) {
   if (entry.choice) return { ...entry.choice, collectedIn: entry.section ?? null };
   if (entry.issueId == null) return null;
   const readerOnly = readerIssueId(entry.digitalId) === entry.issueId;
   return {
-    issueId: entry.issueId, title: entry.title, url: readerOnly ? null : entry.url,
+    issueId: entry.issueId, title: sourceDisplayTitle(entry.title), url: readerOnly ? null : entry.url,
     digitalId: entry.digitalId ?? null, source: readerOnly ? 'manual' : 'import',
     hydrated: readerOnly, collectedIn: entry.section ?? null,
   };
@@ -46,11 +54,20 @@ export function validateImportDraft(text) {
   if (draft?.format !== DRAFT_FORMAT || draft.version !== DRAFT_VERSION) throw new Error('This is not a supported import draft file.');
   if (typeof draft.rawText !== 'string' || !Array.isArray(draft.occurrences)
     || draft.occurrences.length > MAX_ISSUES) throw new Error('The import draft source is invalid.');
-  const source = sourceOccurrences(draft.rawText);
-  const legacySource = sourceOccurrences(draft.rawText, { legacyReaderLinks: true });
-  if (!source.length || source.length !== draft.occurrences.length) throw new Error('The import draft source positions do not match.');
-  source.forEach((entry, index) => {
-    const held = draft.occurrences[index];
+  const source = sourceOccurrencesForValidation(draft.rawText)
+    .filter((entries) => entries.length === draft.occurrences.length);
+  let olderSource = null;
+  const older = () => {
+    if (!olderSource) {
+      olderSource = sourceOccurrencesForValidation(draft.rawText, { preserveLegacyIdentityAnnotations: true })
+        .filter((entries) => entries.length === draft.occurrences.length);
+    }
+    return olderSource;
+  };
+  if (!draft.occurrences.length || (!source.length && !older().length)) {
+    throw new Error('The import draft source positions do not match.');
+  }
+  draft.occurrences.forEach((held, index) => {
     const { choice, applied, ...original } = held;
     const matchesSource = (candidate) => {
       const expected = { ...candidate };
@@ -58,8 +75,9 @@ export function validateImportDraft(text) {
       delete expected.applied;
       return JSON.stringify(original) === JSON.stringify(expected);
     };
-    const originalEntry = matchesSource(entry) ? entry : legacySource[index];
-    if (!matchesSource(originalEntry)
+    const originalEntry = source.map((candidate) => candidate[index]).find(matchesSource)
+      ?? older().map((candidate) => candidate[index]).find(matchesSource);
+    if (!originalEntry
       || typeof applied !== 'boolean') throw new Error('The import draft source was changed.');
     if (choice !== null) {
       const normalized = normalizeIssue(choice);
@@ -87,7 +105,7 @@ export function validateImportDraft(text) {
       || !(pending.beforeToken === null || typeof pending.beforeToken === 'string')
       || typeof pending.before !== 'string' || typeof pending.after !== 'string'
       || !Array.isArray(pending.indices) || pending.indices.some((i) => !Number.isInteger(i)
-        || i < 0 || i >= source.length || !occurrenceIssue(draft.occurrences[i]))
+        || i < 0 || i >= draft.occurrences.length || !occurrenceIssue(draft.occurrences[i]))
       || !Number.isSafeInteger(pending.at)) throw new Error('The import draft pending outcome is invalid.');
   }
   return draft;

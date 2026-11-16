@@ -24522,6 +24522,7 @@ const deferral = await import('./browser-defer.mjs');
 const orderedImport = await import('./browser-ordered-import.mjs');
 SCENARIOS.push(...orderedImport.importScenarios({ preparePage }));
 MUTATIONS.push(...orderedImport.importMutations);
+SCENARIOS.push((await import('./browser-list-revisions.mjs')).listRevisions);
 SCENARIOS.push(deferral.deferNext, deferral.deferLifecycle, deferral.deferPersistence);
 const completion = await import('./browser-completion.mjs');
 SCENARIOS.push(completion.completionLifecycle, completion.completionKeyboard, completion.completionRecommendations, completion.completionPersistence, completion.completionRatingFocus, completion.completionCommandFocus, completion.completionHomes, completion.completionEnjoymentOffer, completion.completionDestinationLinks);

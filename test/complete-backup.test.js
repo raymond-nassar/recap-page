@@ -11,7 +11,7 @@ import {
   COMPLETE_BACKUP_FORMAT, COMPLETE_BACKUP_VERSION, MAX_COMPLETE_BACKUP_BYTES, CompleteBackupError,
   captureCompleteBackup, createCompleteBackup, parseCompleteBackup, prepareCompleteRestore, restorePlan,
   completeBackupFileRefusal, completeBackupSummary, settingsFromStorage, prepareSettingsRestore, classifyComponent,
-  canonical,
+  canonical, validateComponents,
 } from '../src/js/lib/completeBackup.js';
 import { personalDigest } from '../src/js/lib/cloudSync.js';
 import {
@@ -124,6 +124,37 @@ function completeFixture({ created } = {}) {
   };
   return { state, history, draft, map, storage, writes: () => writes };
 }
+
+test('historical annotated checklist drafts survive complete backup and restore', async () => {
+  const f = completeFixture();
+  const annotation = '<!-- mrt:legacy-identity-key=Old%20Title -->';
+  f.draft.rawText = '- [ ] Repaired <!-- mrt:legacy-identity-**key=Old%20Title** -->\n- [x] [Reader](https://read.marvel.com/#/book/129648)';
+  f.draft.occurrences = sourceOccurrences(f.draft.rawText, { legacyReaderLinks: true });
+  f.draft.occurrences[0].title = `Repaired ${annotation}`;
+  f.draft.occurrences[0].choice = normalizeIssue({ issueId: 7, title: 'Chosen' });
+  f.draft.occurrences[0].applied = true;
+  f.map.set(IMPORT_DRAFT_KEY, JSON.stringify(f.draft));
+  const reader = exportBackup(f.state);
+  delete reader.exportedAt;
+  const portable = {
+    format: f.draft.format, version: f.draft.version, rawText: f.draft.rawText,
+    occurrences: f.draft.occurrences, destination: f.draft.destination, previousSources: f.draft.previousSources,
+  };
+  assert.deepEqual(validateComponents({
+    reader,
+    history: { format: f.history.format, version: f.history.version, records: f.history.records },
+    settings: { covers: true, theme: 'system', filter: 'all', readingShortcut: true, hideDescriptions: false, sidebarCollapsed: null },
+    draft: portable,
+  }).draft, portable);
+  const captured = await captureCompleteBackup({ storage: f.storage, ...crypto });
+  const backup = await parseCompleteBackup(captured.text, crypto);
+  const prepared = prepareCompleteRestore({ backup, storage: f.storage, isExclusive: () => true });
+  const restored = JSON.parse(prepared.owners.at(-1).value);
+  assert.equal(restored.rawText, f.draft.rawText);
+  assert.deepEqual(restored.occurrences, f.draft.occurrences);
+  assert.equal(restored.paused, true);
+  assert.equal(f.writes(), 0);
+});
 
 test('a complete backup round-trips every component and leaves storage, tokens and the metadata service out', async () => {
   const f = completeFixture();

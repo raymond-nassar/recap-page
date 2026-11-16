@@ -126,6 +126,11 @@
             <button type="button" class="btn btn-g btn-icon notice-dismiss has-tooltip" id="btn-cloud-sync-dismiss" aria-label="Dismiss the progress notice and keep this device's progress" data-tooltip="Dismiss the progress notice and keep this device's progress"><span aria-hidden="true">&times;</span></button>
           </div>
 
+          <section id="list-revision-uncertain-banner" class="blocked" hidden role="alert">
+            <h2>Could not verify the list update</h2>
+            <p>Your list may or may not have changed. Saving is paused. Close and reopen the app to check your list.</p>
+          </section>
+
           <!-- Shown only when saved data could not be read. Saving stays paused until the
                user chooses, so the unreadable original is never overwritten. -->
           <section id="blocked-banner" class="blocked" hidden role="alert">
@@ -427,6 +432,18 @@
                    only that comic. renderHero keeps them here, below the card even when Coming up is
                    hidden, and moves them into the list context when nothing is up next (#1243). -->
               <div id="reading-list-options">
+                <div id="list-revision-offer" hidden>
+                  <p>This list matches an earlier published order. An update is available.</p>
+                  <button type="button" class="btn btn-g" id="list-revision-review">Review update</button>
+                </div>
+                <p id="list-revision-status" role="status" aria-live="polite" hidden></p>
+                <div id="list-revision-chooser" hidden>
+                  <div class="field-row">
+                    <label for="list-revision-select">Published order</label>
+                    <select id="list-revision-select"></select>
+                    <button type="button" class="btn btn-g" id="list-revision-choose">Compare</button>
+                  </div>
+                </div>
                 <div class="list-tools">
                   <details id="list-actions" class="list-actions action-disclosure">
                     <summary>Reading List options</summary>
@@ -435,6 +452,7 @@
                       <button type="button" class="quiet" id="btn-rename-list">Rename</button>
                       <button type="button" class="quiet" id="btn-list-note">Note</button>
                       <button type="button" class="quiet" id="btn-duplicate-list">Duplicate</button>
+                      <button type="button" class="quiet" id="list-revision-check">Compare with the latest published order</button>
                       <button type="button" class="quiet" id="btn-mark-all-read">Mark All Read</button>
                       <details id="list-export">
                         <summary class="quiet">Export</summary>

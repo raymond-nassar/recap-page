@@ -14,6 +14,7 @@ const CHECKBOX_PLAIN_RE = /^\s*[-*]\s*\[( |x|X)\]\s*(.+?)\s*$/;
 const BULLET_LINK_RE = new RegExp(`^\\s*[-*]\\s*\\[${LINK_TEXT}\\]\\(([^)\\s]+)(?:\\s+"[^"]*")?\\)`);
 const SOURCE_OCCURRENCE_RE = /\s*<!--\s*mrt:source-occurrence=((?:source-position:)?[1-9]\d*)\s*-->\s*$/;
 const IDENTITY_EVIDENCE_RE = /\s*<!--\s*mrt:identity-evidence=(owner-confirmed-identity)\s*-->\s*$/;
+const LEGACY_IDENTITY_KEY_RE = /\s*<!--\s*mrt:legacy-identity-key=((?:[A-Za-z0-9]|%[0-9A-F]{2})+)\s*-->\s*$/;
 
 export function markdownFilename(name, orderOnly = false) {
   const suffix = orderOnly ? '-order-only.md' : '.md';
@@ -22,15 +23,46 @@ export function markdownFilename(name, orderOnly = false) {
   return `${slug.slice(0, 180 - suffix.length)}${suffix}`;
 }
 
-function sourceIdentity(title) {
-  const evidence = IDENTITY_EVIDENCE_RE.exec(title);
-  const withoutEvidence = evidence ? title.slice(0, evidence.index).trim() : title;
+// The one way to write a legacy key: every UTF-8 byte outside ASCII letters and digits is
+// percent-encoded in upper case. Only that spelling is accepted, so one key has one line and the
+// line the checklist ships can be compared byte for byte with the one this function writes.
+export function encodeLegacyIdentityKey(key) {
+  return [...new TextEncoder().encode(String(key))].map((byte) => (
+    /[A-Za-z0-9]/.test(String.fromCharCode(byte))
+      ? String.fromCharCode(byte) : `%${byte.toString(16).toUpperCase().padStart(2, '0')}`
+  )).join('');
+}
+
+function legacyIdentityKey(raw) {
+  try {
+    const key = decodeURIComponent(raw);
+    return encodeLegacyIdentityKey(key) === raw ? key : null;
+  } catch {
+    return null;
+  }
+}
+
+// A placeholder's saved identity is a hash of its visible label, so a checklist that corrects a
+// label must name the label the identity was minted from or every reader's marks on it disconnect.
+// The annotation is stripped from new labels, and its key is reported only to the vendoring
+// script and its tests. Older drafts can retain the literal annotation when validated.
+function sourceIdentity(title, { legacyIdentityKeys = false, preserveLegacyIdentityAnnotations = false } = {}) {
+  const legacy = preserveLegacyIdentityAnnotations ? null : LEGACY_IDENTITY_KEY_RE.exec(title);
+  const legacyKey = legacy ? legacyIdentityKey(legacy[1]) : null;
+  const withoutLegacy = legacyKey != null ? title.slice(0, legacy.index).trim() : title;
+  const evidence = IDENTITY_EVIDENCE_RE.exec(withoutLegacy);
+  const withoutEvidence = evidence ? withoutLegacy.slice(0, evidence.index).trim() : withoutLegacy;
   const occurrence = SOURCE_OCCURRENCE_RE.exec(withoutEvidence);
   return {
     title: occurrence ? withoutEvidence.slice(0, occurrence.index).trim() : withoutEvidence,
     sourceKey: occurrence ? occurrence[1] : null,
     ...(evidence ? { identityEvidenceKind: evidence[1] } : {}),
+    ...(legacyKey != null && legacyIdentityKeys ? { legacyIdentityKey: legacyKey } : {}),
   };
+}
+
+export function sourceDisplayTitle(title) {
+  return sourceIdentity(title).title || title;
 }
 
 export function unescapeLinkText(s) {
@@ -108,7 +140,7 @@ export function isSafeMarvelUrl(url) {
 // serializeChecklist writes the list's own name as `# name`, so treating it as a section would
 // put every issue in one section named after the list. An order with no sub-headings, which is
 // every order vendored before trade orders existed, reports `section: null` throughout.
-export function parseChecklist(text, { legacyReaderLinks = false } = {}) {
+export function parseChecklist(text, { legacyReaderLinks = false, legacyIdentityKeys = false, preserveLegacyIdentityAnnotations = false } = {}) {
   const entries = [];
   const unresolved = [];
   const headings = [];
@@ -180,7 +212,7 @@ export function parseChecklist(text, { legacyReaderLinks = false } = {}) {
       }
     }
 
-    const identified = sourceIdentity(title);
+    const identified = sourceIdentity(title, { legacyIdentityKeys, preserveLegacyIdentityAnnotations });
     title = identified.title;
     if (!title) continue;
     const issueId = issueIdFromUrl(url);
@@ -194,11 +226,13 @@ export function parseChecklist(text, { legacyReaderLinks = false } = {}) {
         issueId, title, url: url, read, index: at, section,
         ...(identified.sourceKey ? { sourceKey: identified.sourceKey } : {}),
         ...(identified.identityEvidenceKind ? { identityEvidenceKind: identified.identityEvidenceKind } : {}),
+        ...(identified.legacyIdentityKey != null ? { legacyIdentityKey: identified.legacyIdentityKey } : {}),
       });
     } else if (digitalId != null && legacyReaderLinks) {
       entries.push({
         issueId: readerIssueId(digitalId), title, url: null, read, index: at, section, digitalId,
         ...(identified.sourceKey ? { sourceKey: identified.sourceKey } : {}),
+        ...(identified.legacyIdentityKey != null ? { legacyIdentityKey: identified.legacyIdentityKey } : {}),
       });
     } else {
       // A title we could not map to a Marvel issue id. Never silently dropped.
@@ -206,6 +240,7 @@ export function parseChecklist(text, { legacyReaderLinks = false } = {}) {
         title, url: url && isSafeMarvelUrl(url) && (legacyReaderLinks || !isReaderUrl(url)) ? url : null, read, index: at, section,
         ...(!legacyReaderLinks && isReaderUrl(url) ? { reason: 'Marvel Unlimited reader links are no longer accepted. Find the comic by title to review a match.' } : {}),
         ...(identified.sourceKey ? { sourceKey: identified.sourceKey } : {}),
+        ...(identified.legacyIdentityKey != null ? { legacyIdentityKey: identified.legacyIdentityKey } : {}),
       });
     }
   }

@@ -22,6 +22,7 @@ async function setup(page) {
       const url = new URL(typeof input === 'string' ? input : input.url, location.href);
       if (url.pathname.endsWith('/search/issues')) {
         const q = url.searchParams.get('q');
+        window.__importSearches.push(q);
         const id = q === 'Draft (2026) #4' ? 4 : q === 'Draft (2026) #5' ? 5 : 2093;
         const items = [{ id, title: q === 'Middle' ? 'Matched (2026) #2' : q, issueNumber: '2' }];
         if (q === 'Middle') items.push({ id: 22, title: 'Alternative (2026) #2', issueNumber: '2' });
@@ -30,6 +31,7 @@ async function setup(page) {
       if (url.origin === location.origin) return real(input, options);
       return Promise.reject(new TypeError('Import fixture blocks other external requests'));
     };
+    window.__importSearches = [];
     window.__importFault = null;
     const set = Storage.prototype.setItem;
     Storage.prototype.setItem = function (key, value) {
@@ -121,6 +123,19 @@ export function importScenarios({ preparePage }) {
         t.check('duplicate provenance stays complete and first edition wins only for owned membership',
           saved.draft.occurrences.length === 5 && list.collectedIn[5] === 'Early' && saved.reader.read[9] === 20);
         t.check('existing destination order is not relocated by another import', saved.reader.lists.prefix.itemIds.join() === '9,2092,2093,2198');
+        await discard(page);
+        const annotated = '- [ ] Draft (2026) #4 <!-- mrt:legacy-identity-key=Old%20Title -->';
+        await submit(page, annotated, true);
+        saved = await read(page);
+        const visible = await page.$eval('#import-report .result-title', (node) => node.textContent);
+        t.check('annotated source stays compatible with older drafts while the visible title is clean',
+          saved.draft.occurrences[0].title === annotated.slice('- [ ] '.length) && visible === 'Draft (2026) #4');
+        await click(page, '#import-report button[aria-label="Find match: Draft (2026) #4"]');
+        await page.waitForFunction((key) => JSON.parse(localStorage.getItem(key))?.occurrences[0].applied, {}, DRAFT_KEY);
+        saved = await read(page);
+        const query = await page.evaluate(() => window.__importSearches.at(-1));
+        t.check('matching uses the clean title without changing the saved source',
+          query === 'Draft (2026) #4' && saved.draft.rawText === annotated && saved.draft.occurrences[0].choice.title === query);
       },
     },
     {

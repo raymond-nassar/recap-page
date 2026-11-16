@@ -263,7 +263,7 @@ export class ImportDraftStore {
     const expected = this.capture();
     return this.locked(expected, () => {
       if (this.draft) throw new Error('A saved import draft already exists. Resume or export and discard it before starting another.');
-      const occurrences = sourceOccurrences(rawText);
+      const occurrences = sourceOccurrences(rawText, { preserveLegacyIdentityAnnotations: true });
       if (!occurrences.length) throw new Error('Could not find any comics in that text.');
       const list = listId ? this.reader.state.lists[listId] : null;
       if (listId && !list) throw new Error('That destination no longer exists. Nothing was imported.');
@@ -450,9 +450,10 @@ export class ImportDraftStore {
 }
 
 export class Store {
-  constructor({ storage = globalThis.localStorage, onChange = () => {} } = {}) {
+  constructor({ storage = globalThis.localStorage, onChange = () => {}, blockedMessage = () => null } = {}) {
     this.storage = storage;
     this.onChange = onChange;
+    this.blockedMessage = blockedMessage;
     this.state = createEmptyState();
     this.lastError = null;
     // Set when saved data exists but could not be read. While it is set the store refuses to
@@ -846,7 +847,7 @@ export class Store {
       // not, and which a refused write must no longer be able to overwrite. Saying the pause
       // ends on a choice is what this one adds and the standing copy cannot: it answers what
       // happened to the change that was just attempted.
-      this.lastError =
+      this.lastError = this.blockedMessage() ||
         'That change was not saved. Choose what to do about the data that could not be read, '
         + 'and saving will start again.';
       return false;

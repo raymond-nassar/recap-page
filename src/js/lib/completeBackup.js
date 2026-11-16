@@ -22,7 +22,7 @@ import {
   createEmptyState, exportBackup, validateBackup, normalizeIssue, SCHEMA_VERSION, MAX_BACKUP_BYTES,
 } from './model.js';
 import { LIST_HISTORY_KEY, LIST_HISTORY_FORMAT, parseListHistory, prepareListHistoryRestore } from './listHistory.js';
-import { DRAFT_FORMAT, DRAFT_VERSION, sourceOccurrences, validateImportDraft } from './importDraft.js';
+import { DRAFT_FORMAT, DRAFT_VERSION, sourceOccurrencesForValidation, validateImportDraft } from './importDraft.js';
 import { DEFAULT_FILTER, readingFilter } from './readingFilters.js';
 import { THEMES, normaliseTheme } from './theme.js';
 import { isIosApp } from './platform.js';
@@ -146,14 +146,31 @@ function portableDraft(input) {
   if (!exactFields(input, PORTABLE_DRAFT_FIELDS) || input.format !== DRAFT_FORMAT || input.version !== DRAFT_VERSION
     || !Array.isArray(input.occurrences)) refuse('The import draft in this file has unsupported fields.');
   let sources;
-  try { sources = [sourceOccurrences(input.rawText), sourceOccurrences(input.rawText, { legacyReaderLinks: true })]; }
+  try { sources = sourceOccurrencesForValidation(input.rawText).filter((source) => source.length === input.occurrences.length); }
   catch { refuse('The import draft source in this file is not usable.'); }
-  if (sources.some((source) => source.length !== input.occurrences.length)) refuse('The import draft source positions in this file do not match its source.');
-  const occurrences = sources[0].map((entry, index) => sources.map((source) => ({
-    ...source[index],
-    choice: input.occurrences[index]?.choice === null ? null : normalizeIssue(input.occurrences[index]?.choice),
-    applied: input.occurrences[index]?.applied,
-  })).find((candidate) => canonical(candidate) === canonical(input.occurrences[index])) ?? entry);
+  let olderSources = null;
+  const older = () => {
+    if (!olderSources) {
+      try {
+        olderSources = sourceOccurrencesForValidation(input.rawText, { preserveLegacyIdentityAnnotations: true })
+          .filter((source) => source.length === input.occurrences.length);
+      } catch { refuse('The import draft source in this file is not usable.'); }
+    }
+    return olderSources;
+  };
+  if (!sources.length) sources = older();
+  if (!sources.length) refuse('The import draft source positions in this file do not match its source.');
+  const occurrences = input.occurrences.map((entry, index) => {
+    const match = (source) => {
+      const candidate = {
+        ...source[index],
+        choice: entry?.choice === null ? null : normalizeIssue(entry?.choice),
+        applied: entry?.applied,
+      };
+      return canonical(candidate) === canonical(entry) ? candidate : null;
+    };
+    return sources.map(match).find(Boolean) ?? older().map(match).find(Boolean) ?? sources[0][index];
+  });
   if (canonical(occurrences) !== canonical(input.occurrences)) refuse('The import draft source or its selections were changed.');
   try { validateImportDraft(bounded(JSON.stringify(lifecycle({ ...input, occurrences })), 'The import draft')); }
   catch (error) {

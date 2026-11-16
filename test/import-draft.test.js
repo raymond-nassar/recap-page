@@ -2,9 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
   DRAFT_FORMAT, DRAFT_VERSION, sourceOccurrences, validateImportDraft,
-  importProjection, pendingOutcome, listSignature,
+  importProjection, occurrenceIssue, pendingOutcome, listSignature,
 } from '../src/js/lib/importDraft.js';
-import { createEmptyState, createList, addIssuesToList, markRead, MAX_BACKUP_BYTES } from '../src/js/lib/model.js';
+import { createEmptyState, createList, addIssuesToList, markRead, normalizeIssue, MAX_BACKUP_BYTES } from '../src/js/lib/model.js';
 
 function sample(rawText = '# Raw\r\n\r\nprose\r\n- [x] [One](https://www.marvel.com/comics/issue/1/)\r\n- [ ] Two\u00a0#2\r\n') {
   return {
@@ -41,6 +41,39 @@ test('draft validator preserves verbatim physical provenance and refuses invalid
   }
   assert.throws(() => validateImportDraft(' '.repeat(MAX_BACKUP_BYTES + 1)), /limit/);
   assert.throws(() => sourceOccurrences('- [ ] [Overflow](https://www.marvel.com/comics/issue/999999999999999999/)'), /identity/);
+});
+
+test('historical annotated checklist drafts retain their source and selections', () => {
+  const annotation = '<!-- mrt:legacy-identity-key=Old%20Title -->';
+  const draft = sample(`- [ ] Repaired ${annotation}\n- [x] [Reader](https://read.marvel.com/#/book/129648)`);
+  assert.equal(draft.occurrences[0].title, 'Repaired', 'new imports display the repaired title');
+  draft.occurrences = sourceOccurrences(draft.rawText, { legacyReaderLinks: true });
+  draft.occurrences[0].title = `Repaired ${annotation}`;
+  draft.occurrences[0].choice = normalizeIssue({ issueId: 7, title: 'Chosen' });
+  draft.occurrences[0].applied = true;
+  assert.deepEqual(validateImportDraft(JSON.stringify(draft)), draft);
+  const altered = structuredClone(draft);
+  altered.occurrences[0].title += ' changed';
+  assert.throws(() => validateImportDraft(JSON.stringify(altered)), /source was changed/);
+
+  const formatted = sample('- [ ] Repaired <!-- mrt:legacy-identity-**key=Old%20Title** -->');
+  formatted.occurrences[0].title = `Repaired ${annotation}`;
+  assert.deepEqual(validateImportDraft(JSON.stringify(formatted)), formatted);
+
+  const annotationOnly = sample(`- [ ] ${annotation}`);
+  annotationOnly.occurrences = [{
+    title: annotation, url: null, read: false, index: 0, section: null, line: 1, choice: null, applied: false,
+  }];
+  assert.deepEqual(validateImportDraft(JSON.stringify(annotationOnly)), annotationOnly);
+});
+
+test('a resolved annotated source saves a clean issue title without changing its source occurrence', () => {
+  const raw = '- [ ] [Repaired <!-- mrt:legacy-identity-key=Old%20Title -->](https://www.marvel.com/comics/issue/7/)';
+  const entry = sourceOccurrences(raw, { preserveLegacyIdentityAnnotations: true })[0];
+  assert.match(entry.title, /mrt:legacy-identity-key/);
+  const issue = occurrenceIssue(entry);
+  assert.equal(issue.issueId, 7);
+  assert.equal(issue.title, 'Repaired');
 });
 
 test('pending outcome requires unchanged before token and never replays a completed marker after deliberate unread', () => {
