@@ -471,6 +471,7 @@
     { "id": "world-war-hulk-warbound", "title": "World War Hulk: Warbound", "format": "trade paperback", "medium": "print", "gcdIssueId": 1052285, "gcdCheck": { "tier": "gcd-notes" } },
     { "id": "wolverine-the-origin", "title": "Wolverine: The Origin", "format": "trade paperback", "medium": "print", "gcdIssueId": 1087082, "gcdCheck": { "tier": "gcd-original-stories" } },
     { "id": "spider-geddon-covert-ops", "title": "Spider-Geddon: Covert Ops", "format": "trade paperback", "medium": "print", "gcdIssueId": 1928388, "gcdCheck": { "tier": "gcd-notes" } },
-    { "id": "thunderbolts-burning-down-the-house", "title": "Thunderbolts: Burning Down the House", "format": "trade paperback", "medium": "print", "gcdIssueId": 1091596, "gcdCheck": { "tier": "gcd-notes" } }
+    { "id": "thunderbolts-burning-down-the-house", "title": "Thunderbolts: Burning Down the House", "format": "trade paperback", "medium": "print", "gcdIssueId": 1091596, "gcdCheck": { "tier": "gcd-notes" } },
+    { "id": "thor-v3-wars-end", "title": "Thor Vol. 3: War's End", "format": "trade paperback", "medium": "print", "gcdIssueId": 2130031, "gcdCheck": { "tier": "gcd-original-stories" } }
   ]
 }

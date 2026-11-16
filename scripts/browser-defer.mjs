@@ -23,6 +23,8 @@ function fixture() {
 async function setup(page, state = fixture()) {
   await page.setViewport({ width: 1280, height: 900 });
   await page.evaluateOnNewDocument((initial, key) => {
+    // The about:blank document a fresh load passes through has no storage.
+    if (location.protocol === 'about:') return;
     if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(initial));
     localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, filter: 'all' }));
     const real = window.fetch.bind(window);
@@ -281,8 +283,10 @@ export const deferPersistence = {
       // navigation timed out (#1210), and with that tab shown it completed in about 200 ms. A reader
       // reloads the tab they are looking at, so the reader's tab comes back to the front first.
       await page.bringToFront();
+      // A new document, not a fragment change plus reload: Edge 157 can reload the entry the app
+      // replaced while that change was in flight instead of the one just opened (#1329).
+      await page.goto('about:blank');
       await page.goto(`${page.__origin}/#/read/defer?full=1`, { waitUntil: 'load' });
-      await page.reload({ waitUntil: 'load' });
       t.check('Reload paints retained intent on read rows with an explicit Clear action',
         await page.$eval(row(ids[0], 'defer'), (e) => e.textContent === 'Clear deferral')
         && (await saved(page)).read[ids[0]] === 510);
