@@ -3021,6 +3021,12 @@ export const editionEvidence = {
       "hoopla": 0,
       "libby": 4
     },
+    "marvel-knights-to-planet-x-10": {
+      "positions": 6,
+      "either": 6,
+      "hoopla": 6,
+      "libby": 6
+    },
     "marvel-knights-to-planet-x-12": {
       "positions": 7,
       "either": 5,
@@ -3057,6 +3063,12 @@ export const editionEvidence = {
       "hoopla": 10,
       "libby": 10
     },
+    "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide": {
+      "positions": 107,
+      "either": 5,
+      "hoopla": 5,
+      "libby": 0
+    },
     "secret-invasion": {
       "positions": 36,
       "either": 12,
@@ -3065,9 +3077,15 @@ export const editionEvidence = {
     },
     "siege-dark-reign-prelude": {
       "positions": 107,
-      "either": 5,
-      "hoopla": 0,
+      "either": 9,
+      "hoopla": 4,
       "libby": 5
+    },
+    "spider-geddon": {
+      "positions": 25,
+      "either": 6,
+      "hoopla": 0,
+      "libby": 6
     },
     "spider-verse": {
       "positions": 35,
@@ -3080,6 +3098,12 @@ export const editionEvidence = {
       "either": 12,
       "hoopla": 12,
       "libby": 12
+    },
+    "world-war-hulk-aftersmash": {
+      "positions": 26,
+      "either": 5,
+      "hoopla": 5,
+      "libby": 0
     },
     "x-men-regenesis": {
       "positions": 43,
