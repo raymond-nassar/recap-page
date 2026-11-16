@@ -1457,7 +1457,7 @@ test('T03 reveals nearby passive text without an overshooting native drag', () =
   assert.match(reveal, /if abs\(displacement\) <= usableFrame\.height \/ 2 \{\s*start\.press\(forDuration: 0\.1, thenDragTo: end,\s*withVelocity: \.slow, thenHoldForDuration: 0\.2\)\s*\} else \{\s*start\.press\(forDuration: 0\.1, thenDragTo: end\)/);
 });
 
-test('phone-bar reveal avoids an absent More query in wide native fixtures', () => {
+test('phone-bar reveal avoids the added toggle query in wide native fixtures', () => {
   const reveal = presentationTests.slice(presentationTests.indexOf('func revealBottomBar('),
     presentationTests.indexOf('func revealNativeTarget('));
   assert.match(reveal, /let webView = app\.webViews\.firstMatch\s*[\s\S]*?guard webView\.frame\.width <= 880 else \{ return \}\s*let toggle = app\.descendants/);
