@@ -679,7 +679,7 @@ test('crosswalk rejects altered source issue URLs and series names', () => {
 
 test('approved crosswalk data cannot silently lose a required entry', () => {
   const data = inputs();
-  assert.equal(data.gcdInputs.expectedCrosswalkEntries, 7);
+  assert.equal(data.gcdInputs.expectedCrosswalkEntries, 8);
   assert.equal(data.gcdInputs.seriesCrosswalk.length, data.gcdInputs.expectedCrosswalkEntries);
   assert.deepEqual(validateSeriesCrosswalk(data.gcdInputs.seriesCrosswalk, data.fixtures), []);
   const missing = clone(data);

@@ -397,6 +397,17 @@ export const editionCatalog = {
     "iron-man-2020-robot-revolution": {
       "title": "Iron Man 2020: Robot Revolution",
       "destinations": []
+    },
+    "world-war-hulk-warbound": {
+      "title": "World War Hulk: Warbound",
+      "destinations": [
+        {
+          "provider": "hoopla",
+          "url": "https://www.hoopladigital.com/title/15006597",
+          "checkedAt": "2026-11-14",
+          "confirmedBy": "owner"
+        }
+      ]
     }
   }
 };

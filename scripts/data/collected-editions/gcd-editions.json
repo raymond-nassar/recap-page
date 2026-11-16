@@ -4868,6 +4868,69 @@
         ],
         "conflicts": []
       }
+    },
+    {
+      "edition": "world-war-hulk-warbound",
+      "gcdIssueId": 1052285,
+      "url": "https://www.comics.org/api/issue/1052285/?format=json",
+      "retrievedAt": "2026-11-13T14:51:02.170Z",
+      "seriesName": "World War Hulk: Warbound (2008 series)",
+      "number": "[nn]",
+      "descriptor": "",
+      "isbn": null,
+      "publicationDate": "2008",
+      "pageCount": "124.000",
+      "variantOf": null,
+      "notes": "Collects WWH Aftersmash: Warbound (Marvel, 2008 series) #1-5.",
+      "supportingSources": [
+        {
+          "url": "https://www.comics.org/api/issue/558938/?format=json",
+          "retrievedAt": "2026-11-16T01:56:11.934Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/558939/?format=json",
+          "retrievedAt": "2026-11-16T01:56:28.081Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/558940/?format=json",
+          "retrievedAt": "2026-11-16T01:57:07.193Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/558941/?format=json",
+          "retrievedAt": "2026-11-16T01:57:50.730Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/558942/?format=json",
+          "retrievedAt": "2026-11-16T01:58:08.264Z"
+        },
+        {
+          "url": "https://www.comics.org/api/series/name/WWH%20Aftersmash%3A%20Warbound/year/2008/?format=json",
+          "retrievedAt": "2026-11-13T19:24:20.634Z"
+        }
+      ],
+      "comicStories": [],
+      "assertedContents": [
+        {
+          "seriesId": 3171,
+          "from": 1,
+          "to": 5,
+          "assertedBy": "gcd-notes",
+          "basis": "The indexer notes list WWH Aftersmash: Warbound #1-5. The first original matches the list's on-sale date and Greg Pak credit. Later dates and some creator roles differ; the provenance records both sources."
+        }
+      ],
+      "check": {
+        "tier": "gcd-notes",
+        "status": "verified",
+        "verifiedComics": [
+          "3171:1",
+          "3171:2",
+          "3171:3",
+          "3171:4",
+          "3171:5"
+        ],
+        "excludedSequences": [],
+        "conflicts": []
+      }
     }
   ],
   "coverage": [

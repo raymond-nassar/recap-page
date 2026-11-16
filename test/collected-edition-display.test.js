@@ -217,6 +217,56 @@ test('Civil War links follow the seven verified comics in each list variant', as
   }
 });
 
+test('Warbound links follow the independently identified originals in both lists', () => {
+  const inputs = loadInputs();
+  const id = 'world-war-hulk-warbound';
+  const edition = inputs.pilot.editions.find((entry) => entry.id === id);
+  assert.ok(edition, 'the selected book exists');
+  const check = inputs.gcdInputs.editions[id];
+  const source = inputs.gcdInputs.seriesEvidence[check.sourceSeriesId].series;
+  const collection = inputs.gcdInputs.seriesEvidence[check.collectionSeriesId].series;
+  const trade = inputs.fixtures[edition.gcdIssueId].issue;
+  assert.equal(collection.api_url, trade.series);
+  assert.deepEqual(collection.active_issues, [trade.api_url]);
+  assert.equal(collection.binding.toLowerCase(), edition.format);
+  assert.equal(trade.isbn, '');
+  assert.equal(trade.notes, 'Collects WWH Aftersmash: Warbound (Marvel, 2008 series) #1-5.');
+  assert.equal(source.api_url, 'https://www.comics.org/api/series/33241/?format=json');
+  assert.deepEqual(check.originalIssues.map(({ appNumber }) => appNumber), [1, 2, 3, 4, 5]);
+  const listIds = ['world-war-hulk-aftersmash', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide'];
+  for (const listId of listIds) {
+    const items = inputs.lists[listId].items.filter((entry) => entry.seriesId === 3171);
+    assert.deepEqual(items.map((entry) => Number(entry.number)), [1, 2, 3, 4, 5]);
+    for (const { appNumber, gcdIssueId, onSaleDate } of check.originalIssues) {
+      const original = inputs.fixtures[gcdIssueId].issue;
+      const item = items.find((entry) => entry.number === String(appNumber));
+      assert.equal(original.series, source.api_url);
+      assert.equal(original.number, item.number);
+      assert.equal(original.variant_of, null);
+      assert.equal(original.story_set.find((story) => story.type === 'comic story').script, 'Greg Pak');
+      if (appNumber === 1) assert.equal(item.onSale.slice(0, 10), onSaleDate);
+      else {
+        assert.notEqual(item.onSale.slice(0, 10), onSaleDate);
+        assert.equal(item.onSale.slice(0, 7), original.key_date.slice(0, 7));
+      }
+      const links = editionRelations(listId, item).find((entry) => entry.id === id)?.links;
+      assert.deepEqual(links?.map(({ provider, url }) => [provider, url]),
+        [['hoopla', 'https://www.hoopladigital.com/title/15006597']]);
+    }
+    assert.equal(editionEvidence.relations.filter((entry) =>
+      entry.catalogId === listId && entry.editionId === id).length, 5);
+  }
+  const outputs = build(inputs);
+  const result = outputs['gcd-editions.json'].editions.find((entry) => entry.edition === id).check;
+  assert.equal(result.status, 'verified');
+  assert.deepEqual(result.verifiedComics, ['3171:1', '3171:2', '3171:3', '3171:4', '3171:5']);
+  const bad = clone(inputs);
+  bad.fixtures[edition.gcdIssueId].issue.notes = trade.notes.replace('#1-5', '#1-4');
+  const rejected = build(bad);
+  assert.notEqual(rejected['gcd-editions.json'].editions.find((entry) => entry.edition === id).check.status, 'verified');
+  assert.ok(!buildAppData(bad, rejected)['collectedEditionEvidence.js'].includes(`"editionId": "${id}"`));
+});
+
 test('returned links follow their verified list comics', () => {
   const cases = [
     ['spider-verse', 'spider_verse.json', 'amazing-spider-man-edge-of-spider-verse', 19075, [1, 2, 3, 4, 5], [
@@ -240,6 +290,12 @@ test('returned links follow their verified list comics', () => {
     ['war-of-the-realms', 'war_of_the_realms.json', 'war-of-the-realms-new-agents-of-atlas', 27505, [1, 2, 3, 4], [
       ['hoopla', 'https://www.hoopladigital.com/title/12917437'],
       ['libby', 'https://share.libbyapp.com/title/5678469'],
+    ]],
+    ['world-war-hulk-aftersmash', 'world_war_hulk_aftersmash.json', 'world-war-hulk-warbound', 3171, [1, 2, 3, 4, 5], [
+      ['hoopla', 'https://www.hoopladigital.com/title/15006597'],
+    ]],
+    ['planet-hulk-reading-order-and-greg-pak-hulk-comics-guide', 'planet_hulk_reading_order_and_greg_pak_hulk_comics_guide.json', 'world-war-hulk-warbound', 3171, [1, 2, 3, 4, 5], [
+      ['hoopla', 'https://www.hoopladigital.com/title/15006597'],
     ]],
     ['iron-man-2020', 'iron_man_2020.json', 'iron-man-2020-robot-revolution', 28356, [1, 2, 3, 4, 5, 6], []],
     ['infinity-countdown-wars', 'infinity_countdown_wars.json', 'asgardians-v1-the-infinity-armada', 25996, [1, 2], [
@@ -509,7 +565,7 @@ test('Loki volume 2 contains six original stories from the identified 2014 serie
   }
 });
 
-test('the bundled projection preserves pilot relations and matches selected Modern Timeline issues', () => {
+test('the bundled projection preserves pilot relations and matches selected list issues', () => {
   assert.equal(editionEvidence.license, 'CC BY-SA 4.0');
   assert.match(editionEvidence.attribution, /Grand Comics Database/);
   assert.ok(editionEvidence.modification);
@@ -525,6 +581,8 @@ test('the bundled projection preserves pilot relations and matches selected Mode
     'war-of-the-realms': ['asgardians-v2-war-of-the-realms', 25996, 8, 10],
     'infinity-countdown-wars': ['asgardians-v1-the-infinity-armada', 25996, 1, 2],
     'x-men-divided-we-stand': ['young-xmen-v1-final-genesis', 4443, 1, 5],
+    'world-war-hulk-aftersmash': ['world-war-hulk-warbound', 3171, 1, 5],
+    'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide': ['world-war-hulk-warbound', 3171, 1, 5],
     'marvel-knights-to-planet-x-01': ['daredevil-visionaries-kevin-smith', 449, 1, 6],
     'marvel-knights-to-planet-x-04': ['xtreme-xmen-v1-destiny', 646, 1, 4],
     'marvel-knights-to-planet-x-09': ['exiles-v1-down-the-rabbit-hole', 479, 1, 4],
@@ -654,6 +712,7 @@ test('owner-confirmed destinations are limited to released editions', () => {
       ['hoopla', 'https://www.hoopladigital.com/title/14794072'],
       ['libby', 'https://share.libbyapp.com/title/8771019'],
     ],
+    'world-war-hulk-warbound': [['hoopla', 'https://www.hoopladigital.com/title/15006597']],
     'war-of-the-realms-journey-into-mystery': [
       ['hoopla', 'https://www.hoopladigital.com/title/12917438'],
       ['libby', 'https://share.libbyapp.com/title/8114272'],
@@ -671,10 +730,10 @@ test('owner-confirmed destinations are limited to released editions', () => {
       ['libby', 'https://share.libbyapp.com/title/9227013'],
     ],
   });
-  assert.equal(Object.keys(editionCatalog.editions).length, 38);
+  assert.equal(Object.keys(editionCatalog.editions).length, 39);
   for (const [id, entries] of Object.entries(destinations)) {
     const completeReturn = ['war-of-the-realms-journey-into-mystery',
-      'war-of-the-realms-new-agents-of-atlas'].includes(id);
+      'war-of-the-realms-new-agents-of-atlas', 'world-war-hulk-warbound'].includes(id);
     const currentReturn = [
       'amazing-spider-man-edge-of-spider-verse',
       'doctor-strange-waid-v1-across-the-universe',

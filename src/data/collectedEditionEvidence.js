@@ -2658,6 +2658,126 @@ export const editionEvidence = {
       "conflicts": [],
       "source": "https://www.comics.org/api/issue/2156466/?format=json",
       "checkedAt": "2026-11-14T15:58:24.462Z"
+    },
+    {
+      "catalogId": "world-war-hulk-aftersmash",
+      "editionId": "world-war-hulk-warbound",
+      "issueId": 17361,
+      "seriesId": 3171,
+      "number": "1",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1052285/?format=json",
+      "checkedAt": "2026-11-13T14:51:02.170Z"
+    },
+    {
+      "catalogId": "world-war-hulk-aftersmash",
+      "editionId": "world-war-hulk-warbound",
+      "issueId": 23232,
+      "seriesId": 3171,
+      "number": "2",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1052285/?format=json",
+      "checkedAt": "2026-11-13T14:51:02.170Z"
+    },
+    {
+      "catalogId": "world-war-hulk-aftersmash",
+      "editionId": "world-war-hulk-warbound",
+      "issueId": 23233,
+      "seriesId": 3171,
+      "number": "3",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1052285/?format=json",
+      "checkedAt": "2026-11-13T14:51:02.170Z"
+    },
+    {
+      "catalogId": "world-war-hulk-aftersmash",
+      "editionId": "world-war-hulk-warbound",
+      "issueId": 23234,
+      "seriesId": 3171,
+      "number": "4",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1052285/?format=json",
+      "checkedAt": "2026-11-13T14:51:02.170Z"
+    },
+    {
+      "catalogId": "world-war-hulk-aftersmash",
+      "editionId": "world-war-hulk-warbound",
+      "issueId": 23235,
+      "seriesId": 3171,
+      "number": "5",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1052285/?format=json",
+      "checkedAt": "2026-11-13T14:51:02.170Z"
+    },
+    {
+      "catalogId": "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide",
+      "editionId": "world-war-hulk-warbound",
+      "issueId": 17361,
+      "seriesId": 3171,
+      "number": "1",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1052285/?format=json",
+      "checkedAt": "2026-11-13T14:51:02.170Z"
+    },
+    {
+      "catalogId": "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide",
+      "editionId": "world-war-hulk-warbound",
+      "issueId": 23232,
+      "seriesId": 3171,
+      "number": "2",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1052285/?format=json",
+      "checkedAt": "2026-11-13T14:51:02.170Z"
+    },
+    {
+      "catalogId": "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide",
+      "editionId": "world-war-hulk-warbound",
+      "issueId": 23233,
+      "seriesId": 3171,
+      "number": "3",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1052285/?format=json",
+      "checkedAt": "2026-11-13T14:51:02.170Z"
+    },
+    {
+      "catalogId": "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide",
+      "editionId": "world-war-hulk-warbound",
+      "issueId": 23234,
+      "seriesId": 3171,
+      "number": "4",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1052285/?format=json",
+      "checkedAt": "2026-11-13T14:51:02.170Z"
+    },
+    {
+      "catalogId": "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide",
+      "editionId": "world-war-hulk-warbound",
+      "issueId": 23235,
+      "seriesId": 3171,
+      "number": "5",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/1052285/?format=json",
+      "checkedAt": "2026-11-13T14:51:02.170Z"
     }
   ]
 };

@@ -1,8 +1,8 @@
 # Collected-edition pilot data
 
 This folder records collected editions: which printed or digital book holds which comics. The
-pilot covers five grouped reading lists; explicit selections also cover chosen Modern Timeline
-lists without collection headings. The app does not load or package this folder. It loads small
+pilot covers five grouped reading lists; explicit selections also cover other chosen reading lists,
+including lists without collection headings. The app does not load or package this folder. It loads small
 generated name/policy and verified relation modules in `src/data/`. Nothing claims where a reader
 can buy, borrow or read a book.
 
@@ -105,7 +105,7 @@ The same build projects curated MIT names into `src/data/collectedEditionCatalog
 relations into `src/data/collectedEditionEvidence.js` under CC BY-SA 4.0. Only full, verified,
 conflict-free relations are displayed. The latter retains credit, sources, checked dates and a
 modification notice; both Preview and saved lists show a shared credit and licence link.
-The grouped pilot retains its heading-based selection. For a heading-free list, the licensed
+The grouped pilot retains its heading-based selection. For other lists, the licensed
 `listSelections` entry names its exact catalog list and selected books; the projection intersects
 that list's issue identities with each book's verified comics. Unknown or repeated selections are
 errors. Neither the reading order nor its headings are changed.

@@ -3694,12 +3694,12 @@ for this book on Hoopla" or "in Libby", never that borrowing is possible, and op
 with referrer isolation. No live provider lookup, availability, account, credential, cover image,
 description or affiliate/store destination is added.
 
-The selected Modern Timeline books extend the display without inventing collection headings. The
+The other selected books extend the display without inventing collection headings. The
 [licensed check inputs](../scripts/data/collected-editions/gcd-check-inputs.json) identify the
 selected lists, source-series mappings and supporting records; the
 [checked evidence](../scripts/data/collected-editions/gcd-editions.json) retains their dates and
-results. The original pilot's 23 relations remain unchanged, and 37 selected books add 198
-relations across 34 lists, intersected with each list's exact comics. Book names stay in the
+results. The original pilot's 23 relations remain unchanged, and 38 selected books add 208
+relations across 36 lists, intersected with each list's exact comics. Book names stay in the
 separate curated lane. For books without an exact indexer-note range, numbered interior-cover text
 and creator credits or matching original issue stories provide the check; no image bytes are used.
 
@@ -3716,6 +3716,21 @@ list's identities, dates, writers and an artist credit. Some creator roles diffe
 and database, so matching names do not establish matching roles. The Iron Man 2020: Robot
 Revolution paperback note names #1-6; all six originals independently match the selected list's
 series name, issue numbers and 2020 on-sale year.
+
+For World War Hulk: Warbound, the [paperback](https://www.comics.org/issue/1052285/) has no
+indexed ISBN; its note names WWH Aftersmash: Warbound #1-5. Its
+[collection series](https://www.comics.org/series/71229/) identifies one trade paperback. The
+[original series](https://www.comics.org/series/33241/) identifies the five separately retained
+originals. The [guide](https://www.comicbookherald.com/planet-hulk-reading-order-and-greg-pak-hulk-comics-guide/)
+names World War Hulk: Warbound #1-5 as the Aftersmash series. The list calls the series 2007
+and the database calls it 2008. The first original's on-sale date, 2007-12-19, and Greg Pak
+writing credit match the list. For #2-5, the database gives on-sale dates 2008-01-16, 2008-02-20,
+2008-03-19 and 2008-04-16; the list gives 2008-03-01, 2008-04-01, 2008-05-01 and 2008-06-16.
+Those list months match the database's cover months, not its on-sale dates. The database credits
+Leonard Kirk with the main story's pencils on #1-5 and Rafa Sandoval with the backup on #1-4.
+The list credits Sandoval as penciler on #1-3, Kirk as cover artist on #1 and penciler on #5,
+and gives no creators for #4. Matching names do not establish matching roles. The book and series
+were read on 2026-11-13 Pacific; the five originals were read on 2026-11-15 Pacific.
 
 For the three selected Secret Invasion books, retained original issues independently identify the
 series and issue numbers and match the selected trade stories' titles, features and pages. Extra
