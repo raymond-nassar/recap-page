@@ -6109,8 +6109,8 @@
     "fp": "b069a7184e014010",
     "head": "const section = $(`#view-${view}`);"
   },
-  "docs/UX_STUDY.md|information-architecture-review|test/ux-completion.test.js:87-101|0": {
-    "anchor": "test/ux-completion.test.js:87-101",
+  "docs/UX_STUDY.md|information-architecture-review|test/ux-completion.test.js:92-106|0": {
+    "anchor": "test/ux-completion.test.js:92-106",
     "fp": "badbe02e0efe6f8d",
     "head": "test('one shared renderer integrates Back with breadcrumbs without adding it to dialogs', () => {"
   },

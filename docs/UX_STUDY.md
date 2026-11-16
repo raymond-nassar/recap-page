@@ -746,7 +746,7 @@ Evidence: `src/index.html:62-97`, `src/js/lib/route.js:24-33`.
 
 Every routed page except Home now states its stable hierarchy in one breadcrumb trail. Preview and
 Ask remain dialogs without breadcrumbs. Evidence: `src/js/lib/route.js:98-202`,
-`src/js/main.js:1918-1983`, `test/ux-completion.test.js:87-101`.
+`src/js/main.js:1918-1983`, `test/ux-completion.test.js:92-106`.
 
 The two missing Library sub-views recorded as UX-I-003 are now present, closing the grouping gap.
 
