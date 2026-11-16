@@ -152,6 +152,7 @@ export const libraryLinks = {
     const stored = await page.evaluate((key) => localStorage.getItem(key), KEY);
     t.check('a coverage choice on the category is not saved for other pages',
       JSON.parse(stored ?? '{"coverage":"off"}').coverage === 'off', stored);
+    await click(page, '#library-links-links input[value="any"]');
 
     await page.goBack();
     const back = await page.waitForFunction(() => location.hash.startsWith('#/catalog')
@@ -232,6 +233,34 @@ export const libraryLinks = {
       }));
       t.check(`${id}: coming back to the list in the app shows every comic again`,
         after.sameDocument && after.rows === before && !after.checked, JSON.stringify(after));
+    }
+
+    await page.evaluate(async () => {
+      const { editionEvidence } = await import('/data/collectedEditionEvidence.js');
+      window.__linkedCoverage = editionEvidence.linkCoverage;
+      editionEvidence.linkCoverage = {};
+      location.hash = '#/catalog';
+    });
+    try {
+      await page.waitForFunction(() => !document.querySelector('#view-catalog')?.hidden);
+      await click(page, '#catalog-links .link-filter-more a');
+      await page.waitForFunction(() => !document.querySelector('#view-library-links')?.hidden);
+      const emptyCoverage = await page.evaluate(() => ({
+        cards: document.querySelectorAll('#library-links-results .catalog-card').length,
+        text: document.querySelector('#library-links-results').textContent.trim(),
+        coverageVisible: !!document.querySelector('#library-links-links input[value="any"]')?.getClientRects().length,
+        providerVisible: !!document.querySelector('#library-links-links input[value="either"]')?.getClientRects().length,
+      }));
+      t.check('with no checked links anywhere, the page keeps its filters and its headed linked empty result',
+        emptyCoverage.cards === 0
+          && emptyCoverage.text === 'No Reading Lists in Library links with at least one checked Hoopla or Libby link.'
+          && emptyCoverage.coverageVisible && emptyCoverage.providerVisible, JSON.stringify(emptyCoverage));
+    } finally {
+      await page.evaluate(async () => {
+        const { editionEvidence } = await import('/data/collectedEditionEvidence.js');
+        editionEvidence.linkCoverage = window.__linkedCoverage;
+        delete window.__linkedCoverage;
+      });
     }
   },
 };

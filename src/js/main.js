@@ -3362,9 +3362,9 @@ async function renderPublishingCategory(route, { isCurrent = () => view === rout
 
   box.replaceChildren();
   $(`#${route}-count`).textContent = countText;
-  showLinks(inCategory.length > 0);
+  showLinks(route === LIBRARY_LINKS_ROUTE || inCategory.length > 0);
   if (!stories.length) {
-    if (narrower.linking && inCategory.length) {
+    if (narrower.linking && (route === LIBRARY_LINKS_ROUTE || inCategory.length)) {
       box.append(el('p', {
         class: 'rail-hint publishing-empty',
         text: `No Reading Lists in ${category.heading}${narrower.narrowing}.`,
