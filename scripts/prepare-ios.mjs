@@ -225,6 +225,8 @@ function iosStaticCopy(html, iCloudBackup, oneDrive) {
     ['Your reading progress lives in this browser, at this exact address, and is never sent anywhere.', 'Your reading progress is saved privately in this app.'],
     ['The choice is stored in this browser', 'The choice is stored in this app'],
     ['Open Recap Page in its own window, using this browser\'s saved progress.', 'Open Recap Page in its own window, using this app\'s saved progress.'],
+    // #1412's Windows sentence describes the Windows launcher, which iOS does not have.
+    [' On Windows, starting Recap Page then opens this window instead of a tab.', ''],
     ['Close other Recap Page tabs before restoring.', 'Close other copies of Recap Page before restoring.'],
     ['Undo is offered once, until you reload; after that, download the saved copy instead.',
       'Undo is offered once, until you close and reopen the app; after that, download the saved copy instead.'],

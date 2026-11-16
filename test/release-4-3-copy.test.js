@@ -18,6 +18,9 @@ function field(document, heading) {
 
 // These hashes bind the released fields to the owner's approved r5 packet on #810.
 // Normalize line endings only; the copy, punctuation and paragraph breaks remain exact.
+// The restricted-capability explanation and the fixed certification notes were revised for the
+// Windows app window, approved on #1412:
+// https://github.com/raymond-nassar/recap-page/issues/1412#issuecomment-6931922442
 const STORE_FIELDS = [
   ['Product name', '9788b641c5da1860151ba10cca83bb529559e65b4a8c92e5ac92d0ccf7bd23c5'],
   ['Short description', 'c471d668394be0890c520c96053d33b070520e7a96f698130f5f8534b5c84093'],
@@ -26,8 +29,8 @@ const STORE_FIELDS = [
   ['Keywords', 'f5f8a40484472e0265ab86eabfae5d76841462dc3d9d80c1561f9728de009aad'],
   ['Customer-facing requirements', '85f33317a5a89642b72f3d046dbb02c284da640a41bb857e5cc6fd6eceee9fc8'],
   ['Personal-information answer and package-data declaration', 'c83391c909b2a0787fe20ef028858d25d9c2fbc3513d377a18ccba7e828be268'],
-  ['Restricted-capability explanation', '426f8a8936ae3e148b902bfae96dabab41fe825bbcec6c70e3b0df89571b8b8e'],
-  ['Notes for certification: fixed text', '1b78e284188ba0b2710513a51ea4575f5962154668777f2614fa67b8d0b3b0c4'],
+  ['Restricted-capability explanation', 'cef30f63c959c5298c1cb44dc957279697aef1d6544b09ae9975edbe6c3dbe63'],
+  ['Notes for certification: fixed text', '2a2a85b85490fac9b46c8345d20fc19c9b28ae913a60f433a8f7e78471fe5ed2'],
   ["What's new in this version: proposed exact field", '02119021374627a945544137d3478f70a01da1359d835d14b961d3f331fe1c06'],
 ];
 
