@@ -105,6 +105,21 @@ test('shipped library-link counts match the reading lists they describe', () => 
   for (const id of Object.keys(shipped)) assert.ok(named.has(id), id);
 });
 
+test("Thor War's End contributes only its selected positions to three library-link counts", () => {
+  const expected = {
+    'war-of-the-realms': { positions: 66, either: 16, hoopla: 16, libby: 16 },
+    'thor-best-of': { positions: 144, either: 5, hoopla: 5, libby: 5 },
+    'loki-reading-order': { positions: 656, either: 5, hoopla: 5, libby: 5 },
+  };
+  const lists = JSON.parse(readFileSync(new URL('../src/data/catalog.json', import.meta.url), 'utf8')).lists;
+  for (const [id, counts] of Object.entries(expected)) {
+    const list = lists.find((entry) => entry.id === id);
+    const items = JSON.parse(readFileSync(new URL(`../src/data/${list.file}`, import.meta.url), 'utf8')).items;
+    assert.deepEqual(listLinkCoverage(id, items, editionCatalog, editionEvidence), counts);
+    assert.deepEqual(editionEvidence.linkCoverage[id], counts);
+  }
+});
+
 test('each card counts the list it opens, not the other readings of its story', () => {
   const catalogLists = JSON.parse(readFileSync(new URL('../src/data/catalog.json', import.meta.url), 'utf8')).lists;
   const card = (id) => catalogEntries(catalogLists.filter((list) => list.id === id))[0];
