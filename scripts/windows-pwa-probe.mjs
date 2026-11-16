@@ -158,6 +158,22 @@ function spawnAndWait(file, args) {
   });
 }
 
+// puppeteer.launch adds --enable-automation, and run 2 measured that an automated browser
+// ignores a handed-off --app-id launch unless the same flag is present. A reader's browser
+// is never automated, so start it plainly with a debugging port and connect to that.
+async function startBrowser(spec, profile) {
+  const port = spec.name === 'edge' ? 9341 : 9342;
+  spawn(spec.exe, [`--remote-debugging-port=${port}`, `--user-data-dir=${profile}`, '--no-first-run',
+    '--no-default-browser-check', '--disable-background-networking', 'about:blank'], { detached: true, stdio: 'ignore' }).unref();
+  for (let waited = 0; waited < 30000; waited += 500) {
+    await sleep(500);
+    try {
+      return await puppeteer.connect({ browserURL: `http://127.0.0.1:${port}`, defaultViewport: { width: 1280, height: 900 } });
+    } catch { /* not listening yet */ }
+  }
+  throw new Error(`${spec.name} did not expose its debugging port`);
+}
+
 async function probe(spec) {
   // The runner's tmpdir() is an 8.3 short path (RUNNER~1); RUNNER_TEMP is the long form.
   const profile = await mkdtemp(join(process.env.RUNNER_TEMP || tmpdir(), `recap-pwa-probe-${spec.name}-`));
@@ -167,11 +183,7 @@ async function probe(spec) {
   let installed = false;
   try {
     record.version = ps(`(Get-Item -LiteralPath '${spec.exe}').VersionInfo.ProductVersion`);
-    browser = await puppeteer.launch({
-      executablePath: spec.exe, headless: false, userDataDir: profile, pipe: true,
-      args: ['--no-first-run', '--no-default-browser-check', '--disable-background-networking'],
-      defaultViewport: { width: 1280, height: 900 },
-    });
+    browser = await startBrowser(spec, profile);
     const cdp = await browser.target().createCDPSession();
     const page = await browser.newPage();
     await page.goto(manifestId, { waitUntil: 'networkidle0' });
@@ -215,6 +227,8 @@ async function probe(spec) {
     browser = null;
     await sleep(3000);
     record.lingering = imageProcesses([spec.image, spec.proxy]).map((entry) => entry.CommandLine);
+    for (const entry of imageProcesses([spec.image])) if ((entry.CommandLine ?? '').includes(profile)) stopProcess(entry.ProcessId);
+    await sleep(2000);
     if (link) {
       const parsed = splitArguments(link.arguments);
       const filtered = parsed.filter((token) => /^--(user-data-dir|profile-directory|app-id)=/.test(token));
@@ -232,10 +246,7 @@ async function probe(spec) {
       for (const entry of started) stopProcess(entry.ProcessId);
       await sleep(3000);
     }
-    browser = await puppeteer.launch({
-      executablePath: spec.exe, headless: false, userDataDir: profile, pipe: true,
-      args: ['--no-first-run', '--no-default-browser-check', '--disable-background-networking'],
-    });
+    browser = await startBrowser(spec, profile);
     await (await browser.target().createCDPSession()).send('PWA.uninstall', { manifestId });
     installed = false;
     await sleep(3000);
