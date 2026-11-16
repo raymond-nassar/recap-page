@@ -236,6 +236,18 @@ function seriesStartYear(text) {
   return match ? Number(match[1]) : null;
 }
 
+function seriesTitle(text) {
+  const match = /^(.*?)\s*\((?:[^()]*,\s*)?\d{4}(?:\s*series|\s*-|\))/i.exec(text || '');
+  if (!match) return null;
+  const title = match[1].trim().replace(/^\*([^*]+)\*$/, '$1').replace(/^the\s+/i, '');
+  return title ? tidy(title).toLowerCase() : null;
+}
+
+function seriesForRange(check, range) {
+  if (check.tier === 'gcd-notes' && Object.hasOwn(range, 'gcdSeries')) return range.gcdSeries;
+  return range.portion === 'partial' ? check.partialSeries : check.gcdSeries;
+}
+
 function crosswalkEntryErrors(entry, fixtures) {
   const errors = [];
   const validRange = Number.isInteger(entry.appSeriesId) && entry.appSeriesId > 0
@@ -525,8 +537,10 @@ export function checkEdition(edition, fixture, seriesNames, { crosswalk = [], fi
   if (['gcd-notes', 'gcd-story-titles', 'gcd-numbered-covers', 'gcd-original-stories',
     'gcd-numbered-comparison'].includes(check.tier)) {
     for (const range of edition.contents) {
-      const series = range.portion === 'partial' ? check.partialSeries : check.gcdSeries;
-      const mapping = crosswalkMatch(range, series, crosswalk, fixtures);
+      const series = seriesForRange(check, range);
+      const mappedSeries = check.tier === 'gcd-notes' && typeof series === 'string'
+        ? series.replace(/^\*([^*]+)\*(?= \()/, '$1') : series;
+      const mapping = crosswalkMatch(range, mappedSeries, crosswalk, fixtures);
       mappings.set(range, mapping);
       if (mapping?.kind) {
         conflicts.push({ kind: mapping.kind, detail: mapping.detail, evidence });
@@ -556,7 +570,7 @@ export function checkEdition(edition, fixture, seriesNames, { crosswalk = [], fi
   } else if (check.tier === 'gcd-notes') {
     const notes = fixture.issue.notes || '';
     for (const range of edition.contents) {
-      const series = range.portion === 'partial' ? check.partialSeries : check.gcdSeries;
+      const series = seriesForRange(check, range);
       const span = range.from === range.to ? `#${range.from}` : `#${range.from}-${range.to}`;
       if (mappings.get(range)?.kind) continue;
       if (typeof series !== 'string' || !notesStateRange(notes, series, span, range.portion === 'partial')) {
@@ -577,6 +591,9 @@ export function checkEdition(edition, fixture, seriesNames, { crosswalk = [], fi
       }
       if (range.portion === 'partial') {
         conflicts.push({ kind: 'material-from', detail: `Holds only material from ${series} ${span}.`, evidence });
+      } else if (!mappings.get(range)?.entry
+        && (!seriesTitle(series) || seriesTitle(series) !== seriesTitle(seriesNames?.[range.seriesId]))) {
+        conflicts.push({ kind: 'series-name', detail: `The list series does not match ${series}.`, evidence });
       } else {
         for (let n = range.from; n <= range.to; n += 1) verified.add(rowKey(range.seriesId, n));
       }

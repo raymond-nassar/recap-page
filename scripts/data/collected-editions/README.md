@@ -50,7 +50,10 @@ notes must state the series and the exact issue span,
 so `#1-5` never matches `#1-50`. A series must follow the start of the notes, "Collects", or a
 separator after a previous issue range; ambiguous wording is a conflict, not a verification.
 The list and database series start years must both be parseable, regardless of capitalization.
-A missing, unparseable, or different year blocks the range with a conflict.
+A missing, unparseable, or different year blocks the range with a conflict. Each full range
+must also name the same series as the list unless a validated crosswalk maps it. An edition
+with multiple source series can record `gcdSeries` on each range; otherwise the edition-level
+source or partial-series name is used.
 `gcd-count-only` can show a book is consistent, never which comics it holds, and `gcd-unindexed`
 records that the database has not indexed the contents. Every
 database sequence left out of a count is listed in `check.excludedSequences` with its reason; a
@@ -79,9 +82,10 @@ range, the named series to match, and every referenced original-comic fixture to
 entry's exact database series URL, issue and linked issue page. Original issue numbers must match
 the app's numbers; an evidenced unnumbered annual may map to app issue 1. Overlapping entries,
 incomplete coverage of a mapped app series, missing fixtures and mismatches fail closed. Unlisted
-app series retain the existing series-year check on indexer notes. The expected entry count in the
-licensed input also prevents an entry from being silently removed. The edition fixture's own series
-is the collection, not the source comic.
+app series compare names and years on indexer notes, ignoring capitalization, whitespace, a leading
+"The" and surrounding italic markers. The expected entry count in the licensed
+input also prevents an entry from being silently removed. The edition fixture's own series is the
+collection, not the source comic.
 The crosswalk establishes series identity only: it does not prove a book's contents or settle an
 ambiguous annual.
 

@@ -3698,8 +3698,8 @@ The other selected books extend the display without inventing collection heading
 [licensed check inputs](../scripts/data/collected-editions/gcd-check-inputs.json) identify the
 selected lists, source-series mappings and supporting records; the
 [checked evidence](../scripts/data/collected-editions/gcd-editions.json) retains their dates and
-results. The original pilot's 23 relations remain unchanged, and 38 selected books add 208
-relations across 36 lists, intersected with each list's exact comics. Book names stay in the
+results. The original pilot's 23 relations remain unchanged, and 41 selected books add 224
+relations across 38 lists, intersected with each list's exact comics. Book names stay in the
 separate curated lane. For books without an exact indexer-note range, numbered interior-cover text
 and creator credits or matching original issue stories provide the check; no image bytes are used.
 
@@ -3731,6 +3731,36 @@ Leonard Kirk with the main story's pencils on #1-5 and Rafa Sandoval with the ba
 The list credits Sandoval as penciler on #1-3, Kirk as cover artist on #1 and penciler on #5,
 and gives no creators for #4. Matching names do not establish matching roles. The book and series
 were read on 2026-11-13 Pacific; the five originals were read on 2026-11-15 Pacific.
+
+For Wolverine: The Origin, the [paperback](https://www.comics.org/issue/1087082/) has ISBN
+0-7851-0965-X and six indexed comic stories. Its
+[collection series](https://www.comics.org/series/72280/) identifies one trade paperback. The
+[original series](https://www.comics.org/series/9926/) and six retained originals identify
+#1-6; each story matches the book's title, pages and credits. The list and database agree on the
+on-sale dates for #3-6. For #1 the list gives 2001-10-01 and the database gives 2001-09-05; for
+#2 the list gives 2001-11-01 and the database gives 2010-10-03. Both returned provider pages use
+the shorter title Wolverine: Origin and describe #1-6; the Libby return identifies a 2012 ebook
+with ISBN 9780785178255, not the print ISBN. The book and collection series were read on
+2026-11-12 Pacific; the original series and six issues were read on 2026-11-15 Pacific.
+
+For Spider-Geddon: Covert Ops, the [paperback](https://www.comics.org/issue/1928388/) has ISBN
+978-1-302-91497-4. Its [collection series](https://www.comics.org/series/141117/) identifies one
+trade paperback. The book has no indexed comic stories; its note names Spider-Force #1-3 and
+Spider-Girls #1-3. The separately identified original series and six retained issues match the
+list's series, numbers, on-sale dates and writers. The returned Libby page names both ranges;
+the Hoopla return names only #1-3 without identifying both series and remains held in
+[#1346](https://github.com/raymond-nassar/recap-page/issues/1346). The collection series was read
+on 2026-11-13 Pacific; the book, original series and issues were read on 2026-11-14 Pacific.
+
+For Thunderbolts: Burning Down the House, the [paperback](https://www.comics.org/issue/1091596/)
+has ISBN 978-0-7851-3166-3, and its
+[collection series](https://www.comics.org/series/72598/) identifies one trade paperback. The
+book's note names Thunderbolts #126-129; the existing crosswalk and four retained originals
+identify the list's series and match its issue numbers, on-sale dates and Andy Diggle writing
+credit. This book was held because the note's italic markers did not match the crosswalk's
+unformatted name; the checker now accepts that formatting without changing the crosswalk.
+The book and series were read on 2026-11-13 Pacific; the originals were read on 2026-11-15
+Pacific. The owner previously confirmed the Hoopla address; neither provider was retried.
 
 For the three selected Secret Invasion books, retained original issues independently identify the
 series and issue numbers and match the selected trade stories' titles, features and pages. Extra

@@ -267,6 +267,162 @@ test('Warbound links follow the independently identified originals in both lists
   assert.ok(!buildAppData(bad, rejected)['collectedEditionEvidence.js'].includes(`"editionId": "${id}"`));
 });
 
+test('Wolverine: The Origin links follow the six independently matched originals', () => {
+  const inputs = loadInputs();
+  const id = 'wolverine-the-origin';
+  const listId = 'marvel-knights-to-planet-x-10';
+  const edition = inputs.pilot.editions.find((entry) => entry.id === id);
+  assert.ok(edition, 'the selected book exists');
+  const check = inputs.gcdInputs.editions[id];
+  const source = inputs.gcdInputs.seriesEvidence[check.sourceSeriesId].series;
+  const collection = inputs.gcdInputs.seriesEvidence[check.collectionSeriesId].series;
+  const trade = inputs.fixtures[edition.gcdIssueId].issue;
+  assert.equal(collection.api_url, trade.series);
+  assert.deepEqual(collection.active_issues, [trade.api_url]);
+  assert.equal(collection.binding.toLowerCase(), edition.format);
+  assert.equal(trade.isbn, '0-7851-0965-X');
+  assert.equal(trade.variant_of, null);
+  assert.equal(source.name, 'Wolverine: The Origin');
+  assert.equal(source.year_began, 2001);
+  assert.deepEqual(source.issue_descriptors, ['1', '2', '3', '4', '5', '6']);
+  const items = inputs.lists[listId].items.filter((entry) => entry.seriesId === 2062);
+  assert.deepEqual(items.map((entry) => Number(entry.number)), [1, 2, 3, 4, 5, 6]);
+  const stories = trade.story_set.filter((story) => story.type === 'comic story');
+  assert.equal(stories.length, 6);
+  assert.deepEqual(check.originalIssues.map(({ appNumber, gcdIssueId, collectionSequence }) =>
+    [appNumber, gcdIssueId, collectionSequence]), [
+    [1, 89711, 5], [2, 89712, 7], [3, 89713, 9],
+    [4, 89714, 11], [5, 89715, 14], [6, 89716, 16],
+  ]);
+  const clean = (value) => value.replaceAll('(credited)', '').replace(/\s+/g, ' ').trim();
+  for (const { appNumber, gcdIssueId, collectionSequence, onSaleDate } of check.originalIssues) {
+    const original = inputs.fixtures[gcdIssueId].issue;
+    const parts = original.story_set.filter((story) => story.type === 'comic story');
+    const story = stories.find((entry) => entry.sequence_number === collectionSequence);
+    const item = items.find((entry) => entry.number === String(appNumber));
+    assert.equal(original.series, source.api_url);
+    assert.equal(original.number, item.number);
+    assert.equal(original.variant_of, null);
+    assert.equal(parts.length, 1);
+    for (const field of ['title', 'feature', 'page_count', 'script', 'pencils']) {
+      assert.equal(clean(story[field]), clean(parts[0][field]), `#${appNumber} ${field}`);
+    }
+    if (appNumber <= 2) assert.notEqual(item.onSale.slice(0, 10), onSaleDate);
+    else assert.equal(item.onSale.slice(0, 10), onSaleDate);
+    assert.deepEqual(editionRelations(listId, item).find((entry) => entry.id === id)?.links
+      .map(({ provider, url }) => [provider, url]), [
+      ['hoopla', 'https://www.hoopladigital.com/title/13327312'],
+      ['libby', 'https://share.libbyapp.com/title/5225180'],
+    ]);
+  }
+  const outputs = build(inputs);
+  const result = outputs['gcd-editions.json'].editions.find((entry) => entry.edition === id).check;
+  assert.equal(result.status, 'verified');
+  assert.deepEqual(result.verifiedComics, ['2062:1', '2062:2', '2062:3', '2062:4', '2062:5', '2062:6']);
+  const bad = clone(inputs);
+  bad.fixtures[89712].issue.story_set.find((story) => story.type === 'comic story').title = 'Different story';
+  const rejected = build(bad);
+  assert.notEqual(rejected['gcd-editions.json'].editions.find((entry) => entry.edition === id).check.status, 'verified');
+  assert.ok(!buildAppData(bad, rejected)['collectedEditionEvidence.js'].includes(`"editionId": "${id}"`));
+});
+
+test('Covert Ops links only the two independently identified series', () => {
+  const inputs = loadInputs();
+  const id = 'spider-geddon-covert-ops';
+  const listId = 'spider-geddon';
+  const edition = inputs.pilot.editions.find((entry) => entry.id === id);
+  assert.ok(edition, 'the selected book exists');
+  const check = inputs.gcdInputs.editions[id];
+  const trade = inputs.fixtures[edition.gcdIssueId].issue;
+  const collection = inputs.gcdInputs.seriesEvidence[check.collectionSeriesId].series;
+  assert.equal(collection.api_url, trade.series);
+  assert.deepEqual(collection.active_issues, [trade.api_url]);
+  assert.equal(collection.binding.toLowerCase(), edition.format);
+  assert.equal(trade.isbn, '978-1-302-91497-4');
+  assert.equal(trade.variant_of, null);
+  assert.equal(trade.story_set.filter((story) => story.type === 'comic story').length, 0);
+  assert.equal(trade.notes, 'Collects Spider-Force (Marvel, 2018 series) #1-3 and Spider-Girls (Marvel, 2018 series) #1-3.');
+  assert.deepEqual(check.contents.map(({ seriesId, from, to }) => [seriesId, from, to]),
+    [[26087, 1, 3], [26177, 1, 3]]);
+  const items = inputs.lists[listId].items.filter((entry) => [26087, 26177].includes(entry.seriesId));
+  assert.equal(items.length, 6);
+  for (const { seriesId, gcdSeries, sourceSeriesId } of check.contents) {
+    const source = inputs.gcdInputs.seriesEvidence[sourceSeriesId].series;
+    const originals = check.originalIssues.filter((entry) => entry.appSeriesId === seriesId);
+    assert.deepEqual(originals.map(({ appNumber }) => appNumber), [1, 2, 3]);
+    assert.equal(gcdSeries, `${source.name} (Marvel, ${source.year_began} series)`);
+    for (const { appNumber, gcdIssueId, onSaleDate } of originals) {
+      const original = inputs.fixtures[gcdIssueId].issue;
+      const item = items.find((entry) => entry.seriesId === seriesId && entry.number === String(appNumber));
+      assert.ok(item);
+      assert.equal(original.series, source.api_url);
+      assert.equal(original.series_name, `${source.name} (${source.year_began} series)`);
+      assert.equal(original.number, item.number);
+      assert.equal(original.variant_of, null);
+      assert.ok(source.active_issues.includes(original.api_url));
+      assert.equal(item.onSale.slice(0, 10), onSaleDate);
+      const writer = item.creators.find((creator) => creator.role === 'writer').name;
+      assert.ok(original.story_set.find((story) => story.type === 'comic story').script.includes(writer));
+      assert.deepEqual(editionRelations(listId, item).find((entry) => entry.id === id)?.links
+        .map(({ provider, url }) => [provider, url]), [['libby', 'https://share.libbyapp.com/title/5832385']]);
+    }
+  }
+  assert.equal(editionEvidence.relations.filter((entry) => entry.catalogId === listId && entry.editionId === id).length, 6);
+  for (const item of inputs.lists[listId].items.filter((entry) => ![26087, 26177].includes(entry.seriesId))) {
+    assert.ok(!editionRelations(listId, item).some((entry) => entry.id === id));
+  }
+  const outputs = build(inputs);
+  assert.equal(outputs['gcd-editions.json'].editions.find((entry) => entry.edition === id).check.status, 'verified');
+  const bad = clone(inputs);
+  bad.fixtures[edition.gcdIssueId].issue.notes = trade.notes.replace('Spider-Girls (Marvel, 2018 series) #1-3', 'Spider-Girls (Marvel, 2018 series) #1-2');
+  const rejected = build(bad);
+  assert.notEqual(rejected['gcd-editions.json'].editions.find((entry) => entry.edition === id).check.status, 'verified');
+  assert.ok(!buildAppData(bad, rejected)['collectedEditionEvidence.js'].includes(`"editionId": "${id}"`));
+});
+
+test('Burning Down the House links the four independently identified Thunderbolts issues', () => {
+  const inputs = loadInputs();
+  const id = 'thunderbolts-burning-down-the-house';
+  const listId = 'siege-dark-reign-prelude';
+  const edition = inputs.pilot.editions.find((entry) => entry.id === id);
+  assert.ok(edition, 'the selected book exists');
+  const check = inputs.gcdInputs.editions[id];
+  const trade = inputs.fixtures[edition.gcdIssueId].issue;
+  const source = inputs.gcdInputs.seriesEvidence[check.sourceSeriesId].series;
+  const collection = inputs.gcdInputs.seriesEvidence[check.collectionSeriesId].series;
+  assert.equal(collection.api_url, trade.series);
+  assert.deepEqual(collection.active_issues, [trade.api_url]);
+  assert.equal(collection.binding.toLowerCase(), edition.format);
+  assert.equal(trade.isbn, '978-0-7851-3166-3');
+  assert.equal(trade.variant_of, null);
+  assert.equal(trade.notes, 'Collects *Thunderbolts* (Marvel, 2006 series) #126-129.');
+  assert.equal(source.api_url, 'https://www.comics.org/api/series/17522/?format=json');
+  const items = inputs.lists[listId].items.filter((entry) =>
+    entry.seriesId === 18527 && Number(entry.number) >= 126 && Number(entry.number) <= 129);
+  assert.deepEqual(items.map((entry) => Number(entry.number)), [126, 127, 128, 129]);
+  assert.deepEqual(check.originalIssues.map(({ appNumber }) => appNumber), [126, 127, 128, 129]);
+  for (const { appNumber, gcdIssueId, onSaleDate } of check.originalIssues) {
+    const item = items.find((entry) => entry.number === String(appNumber));
+    const original = inputs.fixtures[gcdIssueId].issue;
+    assert.equal(original.series, source.api_url);
+    assert.equal(original.number, item.number);
+    assert.equal(original.variant_of, null);
+    assert.equal(item.onSale.slice(0, 10), onSaleDate);
+    assert.ok(original.story_set.find((story) => story.type === 'comic story').script.includes('Andy Diggle'));
+    assert.ok(item.creators.some((creator) => creator.name === 'Andy Diggle' && creator.role === 'writer'));
+    assert.deepEqual(editionRelations(listId, item).find((entry) => entry.id === id)?.links
+      .map(({ provider, url }) => [provider, url]), [['hoopla', 'https://www.hoopladigital.com/title/15494434']]);
+  }
+  assert.equal(editionEvidence.relations.filter((entry) => entry.catalogId === listId && entry.editionId === id).length, 4);
+  const outputs = build(inputs);
+  assert.equal(outputs['gcd-editions.json'].editions.find((entry) => entry.edition === id).check.status, 'verified');
+  const bad = clone(inputs);
+  bad.fixtures[edition.gcdIssueId].issue.notes = trade.notes.replace('#126-129', '#126-128');
+  const rejected = build(bad);
+  assert.notEqual(rejected['gcd-editions.json'].editions.find((entry) => entry.edition === id).check.status, 'verified');
+  assert.ok(!buildAppData(bad, rejected)['collectedEditionEvidence.js'].includes(`"editionId": "${id}"`));
+});
+
 test('returned links follow their verified list comics', () => {
   const cases = [
     ['spider-verse', 'spider_verse.json', 'amazing-spider-man-edge-of-spider-verse', 19075, [1, 2, 3, 4, 5], [
@@ -296,6 +452,10 @@ test('returned links follow their verified list comics', () => {
     ]],
     ['planet-hulk-reading-order-and-greg-pak-hulk-comics-guide', 'planet_hulk_reading_order_and_greg_pak_hulk_comics_guide.json', 'world-war-hulk-warbound', 3171, [1, 2, 3, 4, 5], [
       ['hoopla', 'https://www.hoopladigital.com/title/15006597'],
+    ]],
+    ['marvel-knights-to-planet-x-10', 'marvel_knights_to_planet_x_10.json', 'wolverine-the-origin', 2062, [1, 2, 3, 4, 5, 6], [
+      ['hoopla', 'https://www.hoopladigital.com/title/13327312'],
+      ['libby', 'https://share.libbyapp.com/title/5225180'],
     ]],
     ['iron-man-2020', 'iron_man_2020.json', 'iron-man-2020-robot-revolution', 28356, [1, 2, 3, 4, 5, 6], []],
     ['infinity-countdown-wars', 'infinity_countdown_wars.json', 'asgardians-v1-the-infinity-armada', 25996, [1, 2], [
@@ -586,6 +746,7 @@ test('the bundled projection preserves pilot relations and matches selected list
     'marvel-knights-to-planet-x-01': ['daredevil-visionaries-kevin-smith', 449, 1, 6],
     'marvel-knights-to-planet-x-04': ['xtreme-xmen-v1-destiny', 646, 1, 4],
     'marvel-knights-to-planet-x-09': ['exiles-v1-down-the-rabbit-hole', 479, 1, 4],
+    'marvel-knights-to-planet-x-10': ['wolverine-the-origin', 2062, 1, 6],
     'marvel-knights-to-planet-x-11': ['xtreme-xmen-savage-land', 2107, 1, 4],
     'marvel-knights-to-planet-x-12': ['new-xmen-v2-imperial', 2281, 118, 122],
     'marvel-knights-to-planet-x-14': ['xtreme-xmen-v1-destiny', 646, 5, 9],
@@ -606,7 +767,7 @@ test('the bundled projection preserves pilot relations and matches selected list
   };
   const lists = loadInputs().lists;
   assert.deepEqual(Object.keys(groups).sort(), [
-    'civil-war-avengers', 'nebula-reading-order', 'doomwar', 'x-men-regenesis', 'secret-invasion',
+    'civil-war-avengers', 'nebula-reading-order', 'doomwar', 'x-men-regenesis', 'secret-invasion', 'spider-geddon',
     'siege-dark-reign-prelude', 'chaos-war', 'axis', 'iron-man-2020', ...Object.keys(expected),
   ].sort());
   for (const [listId, [book, series, first, last]] of Object.entries(expected)) {
@@ -713,6 +874,12 @@ test('owner-confirmed destinations are limited to released editions', () => {
       ['libby', 'https://share.libbyapp.com/title/8771019'],
     ],
     'world-war-hulk-warbound': [['hoopla', 'https://www.hoopladigital.com/title/15006597']],
+    'wolverine-the-origin': [
+      ['hoopla', 'https://www.hoopladigital.com/title/13327312'],
+      ['libby', 'https://share.libbyapp.com/title/5225180'],
+    ],
+    'spider-geddon-covert-ops': [['libby', 'https://share.libbyapp.com/title/5832385']],
+    'thunderbolts-burning-down-the-house': [['hoopla', 'https://www.hoopladigital.com/title/15494434']],
     'war-of-the-realms-journey-into-mystery': [
       ['hoopla', 'https://www.hoopladigital.com/title/12917438'],
       ['libby', 'https://share.libbyapp.com/title/8114272'],
@@ -730,10 +897,11 @@ test('owner-confirmed destinations are limited to released editions', () => {
       ['libby', 'https://share.libbyapp.com/title/9227013'],
     ],
   });
-  assert.equal(Object.keys(editionCatalog.editions).length, 39);
+  assert.equal(Object.keys(editionCatalog.editions).length, 42);
   for (const [id, entries] of Object.entries(destinations)) {
     const completeReturn = ['war-of-the-realms-journey-into-mystery',
-      'war-of-the-realms-new-agents-of-atlas', 'world-war-hulk-warbound'].includes(id);
+      'war-of-the-realms-new-agents-of-atlas', 'world-war-hulk-warbound',
+      'wolverine-the-origin', 'spider-geddon-covert-ops'].includes(id);
     const currentReturn = [
       'amazing-spider-man-edge-of-spider-verse',
       'doctor-strange-waid-v1-across-the-universe',

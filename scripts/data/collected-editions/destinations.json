@@ -253,6 +253,40 @@
         "source": "Owner-confirmed Cowork return; SHA-256 3848cdd6136d166a0753dbfa1eee8141b15f890cf2bdb50d954f7f26b78355da"
       }
     ],
+    "wolverine-the-origin": [
+      {
+        "provider": "hoopla",
+        "url": "https://www.hoopladigital.com/title/13327312",
+        "checkedAt": "2026-11-14",
+        "confirmedBy": "owner",
+        "source": "Owner-confirmed Cowork return; SHA-256 9b2ba6f30f7d612941c39cd65dde5807899913df0d48049bfd69a5e1d38802c7"
+      },
+      {
+        "provider": "libby",
+        "url": "https://share.libbyapp.com/title/5225180",
+        "checkedAt": "2026-11-14",
+        "confirmedBy": "owner",
+        "source": "Owner-confirmed Cowork return; SHA-256 9b2ba6f30f7d612941c39cd65dde5807899913df0d48049bfd69a5e1d38802c7"
+      }
+    ],
+    "thunderbolts-burning-down-the-house": [
+      {
+        "provider": "hoopla",
+        "url": "https://www.hoopladigital.com/title/15494434",
+        "checkedAt": "2026-11-13",
+        "confirmedBy": "owner",
+        "source": "Owner-confirmed Cowork return; SHA-256 94a88e797a37042c857ec66c04b75ec471ce9b8ef706634529ecfba665cc6275"
+      }
+    ],
+    "spider-geddon-covert-ops": [
+      {
+        "provider": "libby",
+        "url": "https://share.libbyapp.com/title/5832385",
+        "checkedAt": "2026-11-14",
+        "confirmedBy": "owner",
+        "source": "Owner-confirmed Cowork return; SHA-256 9b2ba6f30f7d612941c39cd65dde5807899913df0d48049bfd69a5e1d38802c7"
+      }
+    ],
     "world-war-hulk-warbound": [
       {
         "provider": "hoopla",

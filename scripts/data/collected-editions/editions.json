@@ -594,6 +594,36 @@
         "gcdIssueId": 1052285
       },
       "contents": []
+    },
+    {
+      "id": "wolverine-the-origin",
+      "title": "Wolverine: The Origin",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 1087082
+      },
+      "contents": []
+    },
+    {
+      "id": "spider-geddon-covert-ops",
+      "title": "Spider-Geddon: Covert Ops",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 1928388
+      },
+      "contents": []
+    },
+    {
+      "id": "thunderbolts-burning-down-the-house",
+      "title": "Thunderbolts: Burning Down the House",
+      "format": "trade paperback",
+      "medium": "print",
+      "identifiers": {
+        "gcdIssueId": 1091596
+      },
+      "contents": []
     }
   ],
   "lists": [

@@ -1,0 +1,45 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/1875119/?format=json",
+  "retrievedAt": "2026-11-14T12:51:54.683Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/1875119/?format=json",
+    "series_name": "Spider-Force (2018 series)",
+    "descriptor": "2",
+    "number": "2",
+    "volume": "",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "January 2019",
+    "key_date": "2019-01-00",
+    "page_count": "32.000",
+    "isbn": "",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/132588/?format=json",
+    "story_set": [
+      {
+        "type": "comic story",
+        "title": "Scream",
+        "feature": "",
+        "sequence_number": 1,
+        "page_count": "21.000",
+        "notes": "",
+        "script": "Christopher Priest",
+        "pencils": "Paulo Siqueira; Marcelo Ferreira; Szymon Kudranski"
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "Spider-Geddon Is Nigh! Keep a Watchful Eye...",
+        "feature": "",
+        "sequence_number": 2,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "?"
+      }
+    ]
+  }
+}
