@@ -824,6 +824,80 @@ async function removeCachedPaths(page, paths) {
   }, paths);
 }
 
+const STALE_OFFLINE_TEXT = 'The local app connection is not available';
+const STALE_CACHED_PATHS = Object.freeze(['/data/creators-index.json', '/data/series-index.json']);
+
+// #1303: once on x64 the stale page's creator search never showed the offline message, and the
+// timeout said nothing about why. Two explanations fit that one occurrence: the lookup was answered
+// after all, from a cache entry or a listener that came back, or it stayed pending past the wait.
+// So a timeout here records the page's own account before rethrowing, unchanged: what the results
+// pane said, whether either index is still cached, how long a fresh health probe and index fetch
+// take from inside the page, and whether anything listens on the canonical port. Every probe has
+// its own deadline, so the record cannot itself become the hang it is meant to explain.
+async function waitForStaleOffline(page, selector, label, { listener = listenerPid } = {}) {
+  try {
+    await page.waitForFunction(
+      (target, text) => document.querySelector(target)?.textContent.includes(text),
+      {},
+      selector,
+      STALE_OFFLINE_TEXT,
+    );
+  } catch (error) {
+    if (error?.name !== 'TimeoutError') throw error;
+    let state;
+    try {
+      state = await page.evaluate(staleOfflineState, selector, STALE_CACHED_PATHS);
+    } catch (cause) {
+      state = { stateError: String(cause?.message ?? cause).slice(0, 200) };
+    }
+    let listenerProcess;
+    try {
+      listenerProcess = listener();
+    } catch (cause) {
+      listenerProcess = `error: ${String(cause?.message ?? cause).slice(0, 200)}`;
+    }
+    console.log(`DIAG stale-offline-wait-timeout ${JSON.stringify({
+      label, selector, listenerPid: listenerProcess, ...state,
+    })}`);
+    throw error;
+  }
+}
+
+// Runs inside the page, so it reaches nothing from this module's scope.
+async function staleOfflineState(selector, cachedPaths) {
+  const clip = (value) => String(value ?? '').replace(/\s+/g, ' ').trim().slice(0, 300);
+  const timed = async (path, cache) => {
+    const controller = new AbortController();
+    const started = performance.now();
+    const timer = setTimeout(() => controller.abort(), 5000);
+    try {
+      const response = await fetch(path, { cache, signal: controller.signal });
+      return { status: response.status, ms: Math.round(performance.now() - started) };
+    } catch (error) {
+      return { error: clip(error?.name), ms: Math.round(performance.now() - started) };
+    } finally {
+      clearTimeout(timer);
+    }
+  };
+  const cached = {};
+  for (const path of cachedPaths) {
+    cached[path] = await Promise.race([
+      caches.match(new URL(path, location.origin).href).then((hit) => Boolean(hit), () => 'error'),
+      new Promise((resolve) => { setTimeout(() => resolve('timeout'), 2000); }),
+    ]);
+  }
+  return {
+    results: clip(document.querySelector(selector)?.textContent),
+    resultsBusy: document.querySelector(selector)?.getAttribute('aria-busy') ?? null,
+    connection: clip(document.querySelector('#local-connection-status')?.textContent),
+    appReport: clip(document.querySelector('#app-report')?.textContent),
+    controlled: Boolean(navigator.serviceWorker?.controller),
+    cached,
+    health: await timed('/__recap_page_health__', 'no-store'),
+    index: await timed(cachedPaths[0], 'no-cache'),
+  };
+}
+
 function processExists(pid) {
   return powershell(`if (Get-Process -Id ${pid} -ErrorAction SilentlyContinue) { "true" } else { "false" }`, 'process-exists-query') === 'true';
 }
@@ -987,17 +1061,11 @@ async function certificationFunctionality(architecture, source) {
       await stalePage.waitForSelector('#creator-q');
       await stalePage.$eval('#creator-q', (field) => { field.value = 'Hickman'; });
       await stalePage.$eval('#form-creator', (form) => form.requestSubmit());
-      await stalePage.waitForFunction(
-        () => document.querySelector('#creator-results')?.textContent
-          .includes('The local app connection is not available'),
-      );
+      await waitForStaleOffline(stalePage, '#creator-results', 'creator');
       await setRoute(stalePage, '#/add-series');
       await stalePage.$eval('#series-q', (field) => { field.value = 'House of M'; });
       await stalePage.$eval('#form-series', (form) => form.requestSubmit());
-      await stalePage.waitForFunction(
-        () => document.querySelector('#series-results')?.textContent
-          .includes('The local app connection is not available'),
-      );
+      await waitForStaleOffline(stalePage, '#series-results', 'series');
       await stalePage.close();
 
       const catalogPage = await browser.newPage();
@@ -1388,5 +1456,5 @@ export {
   formatProofError, listenerPid, packageInfo, packageProcesses, removePackage, retainPackageProcess,
   removeStagedLauncher, runInstalledScenario, selectListenerServer, stageInstalledLauncher,
   startInstalledLauncher, stopPids,
-  serverChildExited, waitForProcess, waitForSettledRoots,
+  serverChildExited, waitForProcess, waitForSettledRoots, waitForStaleOffline,
 };

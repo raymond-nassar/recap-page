@@ -224,6 +224,58 @@ test('iOS history refuses rewriting a reservation even when the working ledger l
   }
 });
 
+test('iOS history accepts a branch that merges main but still refuses a branch reservation that precedes its source', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'recap-ios-merge-main-'));
+  const git = (...args) => execFileSync('git', args, { cwd: root, encoding: 'utf8' }).trim();
+  const ledgerPath = join(root, 'packaging', 'ios', 'build-numbers.json');
+  const commit = (message) => {
+    git('add', '.');
+    git('-c', 'commit.gpgsign=false', 'commit', '-qm', message);
+    return git('rev-parse', 'HEAD');
+  };
+  const sourceAt = (revision) => ({ productVersion: '4.2.0', sourceRevision: revision,
+    sourceTree: git('rev-parse', `${revision}^{tree}`) });
+  try {
+    git('init', '-q', '-b', 'main');
+    git('config', 'user.name', 'Fixture');
+    git('config', 'user.email', 'fixture@example.invalid');
+    await mkdir(join(root, 'packaging', 'ios'), { recursive: true });
+    await mkdir(join(root, 'scripts', 'lib'), { recursive: true });
+    await writeFile(join(root, 'package.json'), '{"version":"4.2.0"}\n');
+    await writeFile(join(root, 'scripts', 'lib', 'release-identity.mjs'), 'process.env.RECAP_IOS_BUILD_NUMBER;\n');
+    await writeFile(ledgerPath, JSON.stringify(initialIosLedger()));
+    commit('Ledger');
+    git('checkout', '-q', '-b', 'feature');
+    await writeFile(join(root, 'feature.txt'), 'feature\n');
+    commit('Feature work');
+    // Main reserves a commit the branch does not contain, landed the way main lands one: first
+    // parent after the source.
+    git('checkout', '-q', 'main');
+    await writeFile(join(root, 'main.txt'), 'main work\n');
+    const mainWork = commit('Main work');
+    await writeFile(ledgerPath, JSON.stringify(reserveIosBuild(initialIosLedger(), sourceAt(mainWork))));
+    commit('Reserve');
+    git('update-ref', 'refs/remotes/origin/main', 'HEAD');
+    checkIosHistory({ root });
+    git('checkout', '-q', 'feature');
+    git('-c', 'commit.gpgsign=false', 'merge', '-q', '--no-ff', '-m', 'Merge main', 'main');
+    assert.doesNotThrow(() => checkIosHistory({ root }), 'merging main does not re-judge main\'s reservations');
+
+    // Main moves on; the branch, without merging that, reserves the newer main commit.
+    git('checkout', '-q', 'main');
+    await writeFile(join(root, 'later.txt'), 'later\n');
+    const later = commit('Later main');
+    git('update-ref', 'refs/remotes/origin/main', 'HEAD');
+    git('checkout', '-q', 'feature');
+    const ledger = validateIosLedger(JSON.parse(await readFile(ledgerPath, 'utf8')));
+    await writeFile(ledgerPath, JSON.stringify(reserveIosBuild(ledger, sourceAt(later))));
+    commit('Reserve ahead of the source');
+    assert.throws(() => checkIosHistory({ root }), /merge-base --is-ancestor/);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
 test('iOS reservation CLI refuses pre-tooling sources, checks main membership and preserves existing locks', async () => {
   const root = await mkdtemp(join(tmpdir(), 'recap-ios-reserve-'));
   const ledger = join(root, 'ledger.json');

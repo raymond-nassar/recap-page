@@ -1,11 +1,13 @@
 import { readFileSync } from 'node:fs';
-import { createEmptyState, createList, addIssuesToList, exportBackup } from '../src/js/lib/model.js';
+import { createEmptyState, createList, addIssuesToList, exportBackup, migrate } from '../src/js/lib/model.js';
 import { editionEvidence } from '../src/js/lib/collectedEditions.js';
 
 const catalog = JSON.parse(readFileSync(new URL('../src/data/catalog.json', import.meta.url), 'utf8'));
 const ids = ['civil-war-essential', 'civil-war', 'civil-war-avengers', 'nebula-reading-order', 'avengers-doomsday-secret-wars', 'realm-of-kings',
-  'the-unbeatable-squirrel-girl', 'marvel-knights-to-planet-x-04', 'marvel-knights-to-planet-x-15',
-  'marvel-knights-to-planet-x-42', 'marvel-knights-to-planet-x-69', 'war-of-the-realms'];
+  'the-unbeatable-squirrel-girl', 'marvel-knights-to-planet-x-04', 'marvel-knights-to-planet-x-10', 'marvel-knights-to-planet-x-15',
+  'marvel-knights-to-planet-x-42', 'marvel-knights-to-planet-x-69', 'war-of-the-realms',
+  'world-war-hulk-aftersmash', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide', 'spider-geddon',
+  'siege-dark-reign-prelude', 'thor-best-of', 'loki-reading-order'];
 const lists = catalog.lists.filter((list) => ids.includes(list.id));
 if (lists.length !== ids.length) throw new Error('Collected-edition browser fixtures require the chosen pilot and timeline lists');
 const orders = Object.fromEntries(lists.map((list) => [list.file,
@@ -15,7 +17,8 @@ for (const list of lists) {
   state = createList(state, { id: `edition-${list.id}`, name: list.name, catalogId: list.id });
   state = addIssuesToList(state, `edition-${list.id}`, orders[list.file].items).state;
 }
-const seed = exportBackup(state);
+// Normalize headings truncated on a space before comparing saved-state snapshots.
+const seed = exportBackup(migrate(exportBackup(state)));
 const click = (page, selector) => page.$eval(selector, (node) => node.click());
 const civilWarLinks = (page, selector) => page.$$eval(selector, (nodes) =>
   nodes.length === 7 && nodes.every((node) => node.textContent.includes('Collected in Civil War')
@@ -38,6 +41,81 @@ const newAgentsLinks = (page, selector, titleSelector) => page.$$eval(selector, 
       ]);
   });
 }, titleSelector);
+
+const warboundLinks = (page, selector, titleSelector) => page.$$eval(selector, (nodes, titleSelector) => {
+  const book = 'Collected in World War Hulk: Warbound';
+  const labels = nodes.flatMap((node) => [...node.querySelectorAll('.collected-edition')]
+    .filter((label) => label.textContent.includes(book)));
+  return labels.length === 5 && [1, 2, 3, 4, 5].every((number) => {
+    const matches = nodes.filter((node) => node.querySelector(titleSelector)?.textContent
+      === `World War Hulk: Warbound (2007) #${number}`);
+    const label = matches[0]?.querySelector('.collected-edition');
+    return matches.length === 1 && label?.textContent.includes(book)
+      && JSON.stringify([...label.querySelectorAll('a')].map((link) => link.href))
+        === JSON.stringify(['https://www.hoopladigital.com/title/15006597']);
+  });
+}, titleSelector);
+
+const originLinks = (page, selector, titleSelector) => page.$$eval(selector, (nodes, titleSelector) => {
+  const book = 'Collected in Wolverine: The Origin';
+  const labels = nodes.flatMap((node) => [...node.querySelectorAll('.collected-edition')]
+    .filter((label) => label.textContent.includes(book)));
+  return labels.length === 6 && [1, 2, 3, 4, 5, 6].every((number) => {
+    const matches = nodes.filter((node) => node.querySelector(titleSelector)?.textContent
+      === `Wolverine: The Origin (2001) #${number}`);
+    const label = matches[0]?.querySelector('.collected-edition');
+    return matches.length === 1 && label?.textContent.includes(book)
+      && JSON.stringify([...label.querySelectorAll('a')].map((link) => link.href)) === JSON.stringify([
+        'https://www.hoopladigital.com/title/13327312',
+        'https://share.libbyapp.com/title/5225180',
+      ]);
+  });
+}, titleSelector);
+
+const covertOpsLinks = (page, selector, titleSelector) => page.$$eval(selector, (nodes, titleSelector) => {
+  const book = 'Collected in Spider-Geddon: Covert Ops';
+  const labels = nodes.flatMap((node) => [...node.querySelectorAll('.collected-edition')]
+    .filter((label) => label.textContent.includes(book)));
+  return labels.length === 6 && ['Spider-Force', 'Spider-Girls'].every((series) =>
+    [1, 2, 3].every((number) => {
+      const matches = nodes.filter((node) => node.querySelector(titleSelector)?.textContent === `${series} (2018) #${number}`);
+      const label = matches[0]?.querySelector('.collected-edition');
+      return matches.length === 1 && label?.textContent.includes(book)
+        && JSON.stringify([...label.querySelectorAll('a')].map((link) => link.href))
+          === JSON.stringify(['https://share.libbyapp.com/title/5832385']);
+    }));
+}, titleSelector);
+
+const thunderboltsLinks = (page, selector, titleSelector) => page.$$eval(selector, (nodes, titleSelector) => {
+  const book = 'Collected in Thunderbolts: Burning Down the House';
+  const labels = nodes.flatMap((node) => [...node.querySelectorAll('.collected-edition')]
+    .filter((label) => label.textContent.includes(book)));
+  return labels.length === 4 && [126, 127, 128, 129].every((number) => {
+    const matches = nodes.filter((node) => node.querySelector(titleSelector)?.textContent
+      === `Thunderbolts (2006) #${number}`);
+    const label = [...(matches[0]?.querySelectorAll('.collected-edition') || [])]
+      .find((entry) => entry.textContent.includes(book));
+    return matches.length === 1 && !!label
+      && JSON.stringify([...label.querySelectorAll('a')].map((link) => link.href))
+        === JSON.stringify(['https://www.hoopladigital.com/title/15494434']);
+  });
+}, titleSelector);
+
+const thorLinks = (page, selector, titleSelector, last) => page.$$eval(selector, (nodes, titleSelector, last) => {
+  const book = "Collected in Thor Vol. 3: War's End";
+  const labels = nodes.flatMap((node) => [...node.querySelectorAll('.collected-edition')]
+    .filter((label) => label.textContent.includes(book)));
+  return labels.length === last - 11 && Array.from({ length: last - 11 }, (_, index) => index + 12).every((number) => {
+    const matches = nodes.filter((node) => node.querySelector(titleSelector)?.textContent === `Thor (2018) #${number}`);
+    const label = [...(matches[0]?.querySelectorAll('.collected-edition') || [])]
+      .find((entry) => entry.textContent.includes(book));
+    return matches.length === 1 && !!label
+      && JSON.stringify([...label.querySelectorAll('a')].map((link) => link.href)) === JSON.stringify([
+        'https://www.hoopladigital.com/title/13232107',
+        'https://share.libbyapp.com/title/5678436',
+      ]);
+  });
+}, titleSelector, last);
 
 const destinations = [
   'https://www.hoopladigital.com/title/123456789',
@@ -306,6 +384,26 @@ export const collectedEditions = {
         t.check(`${list.id}: Preview shows both New Agents of Atlas links only on their four issues`,
           await newAgentsLinks(page, '#preview .preview-list li', '.preview-issue-link'));
       }
+      if (['war-of-the-realms', 'thor-best-of', 'loki-reading-order'].includes(list.id)) {
+        t.check(`${list.id}: Preview shows both War's End links only on its selected Thor issues`,
+          await thorLinks(page, '#preview .preview-list li', '.preview-issue-link', list.id === 'war-of-the-realms' ? 15 : 16));
+      }
+      if (['world-war-hulk-aftersmash', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide'].includes(list.id)) {
+        t.check(`${list.id}: Preview shows the Warbound Hoopla link only on its five issues`,
+          await warboundLinks(page, '#preview .preview-list li', '.preview-issue-link'));
+      }
+      if (list.id === 'marvel-knights-to-planet-x-10') {
+        t.check(`${list.id}: Preview shows both Origin links only on its six issues`,
+          await originLinks(page, '#preview .preview-list li', '.preview-issue-link'));
+      }
+      if (list.id === 'spider-geddon') {
+        t.check(`${list.id}: Preview shows the Covert Ops Libby link only on its six issues`,
+          await covertOpsLinks(page, '#preview .preview-list li', '.preview-issue-link'));
+      }
+      if (list.id === 'siege-dark-reign-prelude') {
+        t.check(`${list.id}: Preview shows the Thunderbolts Hoopla link only on its four issues`,
+          await thunderboltsLinks(page, '#preview .preview-list li', '.preview-issue-link'));
+      }
       if (list.id === 'marvel-knights-to-planet-x-42' || list.id === 'marvel-knights-to-planet-x-69') {
         const title = list.id.endsWith('-42') ? "New X-Men Vol. 4: Riot at Xavier's" : 'Daredevil Vol. 8: Echo - Vision Quest';
         t.check(`${list.id}: Preview names the confirmed book and both providers on all five issues`,
@@ -332,8 +430,10 @@ export const collectedEditions = {
       await page.keyboard.press('Escape');
       await page.evaluate((id) => { location.hash = `#/read/edition-${id}`; }, list.id);
       await page.waitForSelector('#view-read:not([hidden])');
+      await page.waitForFunction((name) => document.querySelector('#order-name').textContent === name, {}, list.name);
       await page.evaluate(() => { document.querySelector('#full').open = true; });
-      await page.waitForSelector('#rows .row');
+      await page.waitForFunction((count) => document.querySelectorAll('#rows .row').length === count,
+        {}, state.lists[`edition-${list.id}`].itemIds.length);
       t.check(`${list.id}: saved list labels match Preview`,
         await page.$$eval('#rows .collected-edition', (nodes) => nodes.length) === expected.length);
       if (civilWarVariant) {
@@ -343,6 +443,26 @@ export const collectedEditions = {
       if (list.id === 'war-of-the-realms') {
         t.check(`${list.id}: saved list shows both New Agents of Atlas links only on their four issues`,
           await newAgentsLinks(page, '#rows .row', '.row-focus-title'));
+      }
+      if (['war-of-the-realms', 'thor-best-of', 'loki-reading-order'].includes(list.id)) {
+        t.check(`${list.id}: saved list shows both War's End links only on its selected Thor issues`,
+          await thorLinks(page, '#rows .row', '.row-focus-title', list.id === 'war-of-the-realms' ? 15 : 16));
+      }
+      if (['world-war-hulk-aftersmash', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide'].includes(list.id)) {
+        t.check(`${list.id}: saved list shows the Warbound Hoopla link only on its five issues`,
+          await warboundLinks(page, '#rows .row', '.row-focus-title'));
+      }
+      if (list.id === 'marvel-knights-to-planet-x-10') {
+        t.check(`${list.id}: saved list shows both Origin links only on its six issues`,
+          await originLinks(page, '#rows .row', '.row-focus-title'));
+      }
+      if (list.id === 'spider-geddon') {
+        t.check(`${list.id}: saved list shows the Covert Ops Libby link only on its six issues`,
+          await covertOpsLinks(page, '#rows .row', '.row-focus-title'));
+      }
+      if (list.id === 'siege-dark-reign-prelude') {
+        t.check(`${list.id}: saved list shows the Thunderbolts Hoopla link only on its four issues`,
+          await thunderboltsLinks(page, '#rows .row', '.row-focus-title'));
       }
       if (list.id === 'marvel-knights-to-planet-x-15') {
         t.check(`${list.id}: saved list leaves the held issue 126 without a book label`,

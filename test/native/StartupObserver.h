@@ -1190,6 +1190,47 @@ class Observer {
     std::map<DWORD, std::wstring> roots_;
     std::vector<Registration> registrations_;
     std::vector<RootAnchor> rootAnchors_;
+    // #1365: a root that registered no anchor leaves no trace of why. Each startup-window event for
+    // the watched image records what the anchor attempt found, so a missing root can be told apart
+    // as never seen, seen only after it exited, or seen while alive and still not bound.
+    struct RootCandidate {
+        DWORD pid = 0;
+        size_t events = 0, bound = 0;
+        uint64_t firstQpc = 0, lastQpc = 0;
+        DWORD maxLagMs = 0;
+        const char* firstOutcome = "none";
+        const char* lastOutcome = "none";
+    };
+    std::vector<RootCandidate> rootCandidates_;
+    size_t rootCandidatesDropped_ = 0;
+    void noteRootCandidate(DWORD pid, const char* outcome, const Moment& received, DWORD lagMs) {
+        auto found = std::find_if(rootCandidates_.begin(), rootCandidates_.end(), [&](const auto& item) { return item.pid == pid; });
+        if (found == rootCandidates_.end()) {
+            if (rootCandidates_.size() >= 64) { ++rootCandidatesDropped_; return; }
+            rootCandidates_.push_back({ pid, 0, 0, received.qpc, received.qpc, 0, outcome, outcome });
+            found = rootCandidates_.end() - 1;
+        }
+        ++found->events;
+        if (std::strcmp(outcome, "bound") == 0) ++found->bound;
+        found->lastQpc = received.qpc;
+        found->maxLagMs = std::max(found->maxLagMs, lagMs);
+        found->lastOutcome = outcome;
+    }
+    void reportRootCandidate(const ProcessInstance& value) {
+        const auto found = std::find_if(rootCandidates_.begin(), rootCandidates_.end(),
+            [&](const auto& item) { return item.pid == value.start.pid; });
+        *report_ << "DIAG root-anchor-missing pid=" << value.start.pid << " start_ts=" << value.start.timestamp
+                 << " ended=" << value.ended << " end_ts=" << (value.ended ? value.end.timestamp : 0)
+                 << " anchors_for_pid=" << std::count_if(rootAnchors_.begin(), rootAnchors_.end(),
+                        [&](const auto& anchor) { return anchor.pid == value.start.pid; })
+                 << " window_events=" << (found == rootCandidates_.end() ? 0 : found->events);
+        if (found != rootCandidates_.end())
+            *report_ << " bound=" << found->bound << " first_qpc=" << found->firstQpc << " last_qpc=" << found->lastQpc
+                     << " max_lag_ms=" << found->maxLagMs << " first_outcome=" << found->firstOutcome
+                     << " last_outcome=" << found->lastOutcome;
+        *report_ << " candidates=" << rootCandidates_.size() << " candidates_dropped=" << rootCandidatesDropped_ << "\n";
+        report_->flush();
+    }
     std::wstring watchedRoot_;
     std::atomic<bool>& lost_ = capture_->lost_;
     std::atomic<bool> clockValid_{ true };
@@ -1946,15 +1987,23 @@ class Observer {
             fact.generated = current_->eventTick(generated, fact.received);
             if (!current_->watchedRoot_.empty() && fact.kind == WindowKind::startup && fact.owner &&
                 (event == EVENT_OBJECT_CREATE || event == EVENT_OBJECT_SHOW)) {
+                const char* outcome = "open-failed";
                 ++current_->identityCounts_.sourceProcessOpens;
                 ObservedHandle process(*current_, OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION | SYNCHRONIZE, FALSE, fact.owner));
-                if (process && WaitForSingleObject(process.get(), 0) == WAIT_TIMEOUT &&
-                    recap::samePath(imagePath(process.get()), current_->watchedRoot_)) {
+                if (process && WaitForSingleObject(process.get(), 0) != WAIT_TIMEOUT) outcome = "exited";
+                else if (process && !recap::samePath(imagePath(process.get()), current_->watchedRoot_)) outcome = "image-differs";
+                else if (process) {
+                    outcome = "thread-unmatched";
                     ++current_->identityCounts_.reportedThreadOpens;
                     ObservedHandle primary(*current_, OpenThread(THREAD_QUERY_LIMITED_INFORMATION | SYNCHRONIZE, FALSE, fact.thread));
-                    if (primary && GetProcessIdOfThread(primary.get()) == fact.owner)
+                    if (primary && GetProcessIdOfThread(primary.get()) == fact.owner) {
                         current_->bindRoot(fact.owner, process.get(), primary.get());
+                        outcome = "bound";
+                    }
                 }
+                current_->noteRootCandidate(fact.owner, outcome, fact.received,
+                    fact.received.tick >= fact.generated
+                        ? static_cast<DWORD>(std::min<uint64_t>(fact.received.tick - fact.generated, MAXDWORD)) : 0);
             }
             check(current_->windows_.size() < 8192, "window observation bound exceeded");
             current_->windows_.push_back(fact);
@@ -2512,6 +2561,7 @@ public:
                 return anchor.pid == value.start.pid && !anchor.exactStart &&
                     graph.unique(anchor.pid, anchor.point) == graph.exact(value.start.pid, value.start.timestamp);
             });
+            if (retained == rootAnchors_.end()) reportRootCandidate(value);
             finalRequire(retained != rootAnchors_.end(), "final-root-retained-instance-missing", value.start.pid);
             captured.push_back(*retained);
             finalRequire(!value.ambiguous && value.ended && value.end.exitKnown && value.end.exitCode == exitCode,

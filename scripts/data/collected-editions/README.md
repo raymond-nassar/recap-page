@@ -1,8 +1,8 @@
 # Collected-edition pilot data
 
 This folder records collected editions: which printed or digital book holds which comics. The
-pilot covers five grouped reading lists; explicit selections also cover chosen Modern Timeline
-lists without collection headings. The app does not load or package this folder. It loads small
+pilot covers five grouped reading lists; explicit selections also cover other chosen reading lists,
+including lists without collection headings. The app does not load or package this folder. It loads small
 generated name/policy and verified relation modules in `src/data/`. Nothing claims where a reader
 can buy, borrow or read a book.
 
@@ -50,7 +50,10 @@ notes must state the series and the exact issue span,
 so `#1-5` never matches `#1-50`. A series must follow the start of the notes, "Collects", or a
 separator after a previous issue range; ambiguous wording is a conflict, not a verification.
 The list and database series start years must both be parseable, regardless of capitalization.
-A missing, unparseable, or different year blocks the range with a conflict.
+A missing, unparseable, or different year blocks the range with a conflict. Each full range
+must also name the same series as the list unless a validated crosswalk maps it. An edition
+with multiple source series can record `gcdSeries` on each range; otherwise the edition-level
+source or partial-series name is used.
 `gcd-count-only` can show a book is consistent, never which comics it holds, and `gcd-unindexed`
 records that the database has not indexed the contents. Every
 database sequence left out of a count is listed in `check.excludedSequences` with its reason; a
@@ -61,7 +64,12 @@ The other verifying tiers retain the evidence they compare. `gcd-numbered-covers
 numbered interior-cover record immediately before one story, matching creator credits, and an
 original-series index of the same name, year, publisher, country and language. This is textual
 index metadata, not an image. `gcd-original-stories` matches each book story to an original issue
-by exact series, issue number, title, pages and writer and penciller credits.
+by exact series, issue number, title, pages and writer and penciller credits. An original the
+database numbers with a legacy number, such as `12 (718)`, matches only on its first number.
+`gcd-story-titles` matches each curated title to a distinct indexed story, so a title curated
+twice needs two stories. It verifies a range only when the book's source series is the list
+series: a crosswalk entry covers it, or the edition's `gcdSeries` names the same series with the
+same start year. A missing source series, a different name or a different year is a conflict.
 `gcd-numbered-comparison` compares a book's stories with those following another edition's
 numbered interior-cover records. A differing page count needs the matching original issue; a
 missing, stale or mismatched resolution fails closed. These checks normalize the database's
@@ -79,9 +87,10 @@ range, the named series to match, and every referenced original-comic fixture to
 entry's exact database series URL, issue and linked issue page. Original issue numbers must match
 the app's numbers; an evidenced unnumbered annual may map to app issue 1. Overlapping entries,
 incomplete coverage of a mapped app series, missing fixtures and mismatches fail closed. Unlisted
-app series retain the existing series-year check on indexer notes. The expected entry count in the
-licensed input also prevents an entry from being silently removed. The edition fixture's own series
-is the collection, not the source comic.
+app series compare names and years on indexer notes, ignoring capitalization, whitespace, a leading
+"The" and surrounding italic markers. The expected entry count in the licensed
+input also prevents an entry from being silently removed. The edition fixture's own series is the
+collection, not the source comic.
 The crosswalk establishes series identity only: it does not prove a book's contents or settle an
 ambiguous annual.
 
@@ -105,7 +114,7 @@ The same build projects curated MIT names into `src/data/collectedEditionCatalog
 relations into `src/data/collectedEditionEvidence.js` under CC BY-SA 4.0. Only full, verified,
 conflict-free relations are displayed. The latter retains credit, sources, checked dates and a
 modification notice; both Preview and saved lists show a shared credit and licence link.
-The grouped pilot retains its heading-based selection. For a heading-free list, the licensed
+The grouped pilot retains its heading-based selection. For other lists, the licensed
 `listSelections` entry names its exact catalog list and selected books; the projection intersects
 that list's issue identities with each book's verified comics. Unknown or repeated selections are
 errors. Neither the reading order nor its headings are changed.

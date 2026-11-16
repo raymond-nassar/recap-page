@@ -1,0 +1,65 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/1980727/?format=json",
+  "retrievedAt": "2026-11-14T21:07:39.987Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/1980727/?format=json",
+    "series_name": "Thor (2018 series)",
+    "descriptor": "14 (720)",
+    "number": "14 (720)",
+    "volume": "",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "August 2019",
+    "key_date": "2019-08-00",
+    "page_count": "32.000",
+    "isbn": "",
+    "notes": "Legacy number: 720.",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/125894/?format=json",
+    "story_set": [
+      {
+        "type": "credits, title page",
+        "title": "To Hel With Hammers",
+        "feature": "",
+        "sequence_number": 1,
+        "page_count": "1.000",
+        "notes": "This is the title page for the story, with a recap.",
+        "script": "Sarah Brunstad",
+        "pencils": "None"
+      },
+      {
+        "type": "comic story",
+        "title": "To Hel With Hammers",
+        "feature": "Thor",
+        "sequence_number": 2,
+        "page_count": "20.000",
+        "notes": "",
+        "script": "Jason Aaron",
+        "pencils": "Scott Hepburn"
+      },
+      {
+        "type": "in-house column",
+        "title": "",
+        "feature": "Stan's Soapbox",
+        "sequence_number": 3,
+        "page_count": "1.000",
+        "notes": "Stan's Soapbox features an essay against bigotry.",
+        "script": "Stan Lee",
+        "pencils": "None"
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "",
+        "feature": "Thor",
+        "sequence_number": 4,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "Mike Del Mundo"
+      }
+    ]
+  }
+}

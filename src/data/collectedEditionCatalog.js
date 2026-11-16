@@ -90,6 +90,23 @@ export const editionCatalog = {
       "title": "Exiles Vol. 1: Down the Rabbit Hole",
       "destinations": []
     },
+    "wolverine-the-origin": {
+      "title": "Wolverine: The Origin",
+      "destinations": [
+        {
+          "provider": "hoopla",
+          "url": "https://www.hoopladigital.com/title/13327312",
+          "checkedAt": "2026-11-14",
+          "confirmedBy": "owner"
+        },
+        {
+          "provider": "libby",
+          "url": "https://share.libbyapp.com/title/5225180",
+          "checkedAt": "2026-11-14",
+          "confirmedBy": "owner"
+        }
+      ]
+    },
     "xtreme-xmen-savage-land": {
       "title": "X-Treme X-Men: Savage Land",
       "destinations": []
@@ -272,6 +289,17 @@ export const editionCatalog = {
       "title": "Mighty Avengers: Earth's Mightiest",
       "destinations": []
     },
+    "thunderbolts-burning-down-the-house": {
+      "title": "Thunderbolts: Burning Down the House",
+      "destinations": [
+        {
+          "provider": "hoopla",
+          "url": "https://www.hoopladigital.com/title/15494434",
+          "checkedAt": "2026-11-13",
+          "confirmedBy": "owner"
+        }
+      ]
+    },
     "chaos-war-2011-tpb": {
       "title": "Chaos War",
       "destinations": [
@@ -366,6 +394,23 @@ export const editionCatalog = {
         }
       ]
     },
+    "thor-v3-wars-end": {
+      "title": "Thor Vol. 3: War's End",
+      "destinations": [
+        {
+          "provider": "hoopla",
+          "url": "https://www.hoopladigital.com/title/13232107",
+          "checkedAt": "2026-11-14",
+          "confirmedBy": "owner"
+        },
+        {
+          "provider": "libby",
+          "url": "https://share.libbyapp.com/title/5678436",
+          "checkedAt": "2026-11-14",
+          "confirmedBy": "owner"
+        }
+      ]
+    },
     "amazing-spider-man-edge-of-spider-verse": {
       "title": "Amazing Spider-Man: Edge of Spider-Verse",
       "destinations": [
@@ -397,6 +442,28 @@ export const editionCatalog = {
     "iron-man-2020-robot-revolution": {
       "title": "Iron Man 2020: Robot Revolution",
       "destinations": []
+    },
+    "spider-geddon-covert-ops": {
+      "title": "Spider-Geddon: Covert Ops",
+      "destinations": [
+        {
+          "provider": "libby",
+          "url": "https://share.libbyapp.com/title/5832385",
+          "checkedAt": "2026-11-14",
+          "confirmedBy": "owner"
+        }
+      ]
+    },
+    "world-war-hulk-warbound": {
+      "title": "World War Hulk: Warbound",
+      "destinations": [
+        {
+          "provider": "hoopla",
+          "url": "https://www.hoopladigital.com/title/15006597",
+          "checkedAt": "2026-11-14",
+          "confirmedBy": "owner"
+        }
+      ]
     }
   }
 };

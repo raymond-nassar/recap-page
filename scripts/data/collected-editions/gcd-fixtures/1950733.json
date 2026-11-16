@@ -1,0 +1,55 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/1950733/?format=json",
+  "retrievedAt": "2026-11-14T21:07:33.999Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/1950733/?format=json",
+    "series_name": "Thor (2018 series)",
+    "descriptor": "12 (718) [Mike Del Mundo Cover]",
+    "number": "12 (718)",
+    "volume": "",
+    "variant_name": "Mike Del Mundo Cover",
+    "title": "",
+    "publication_date": "June 2019",
+    "key_date": "2019-06-00",
+    "page_count": "32.000",
+    "isbn": "",
+    "notes": "Legacy number: 718. Bonus digital edition.",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/125894/?format=json",
+    "story_set": [
+      {
+        "type": "credits, title page",
+        "title": "The War of the Lokis",
+        "feature": "",
+        "sequence_number": 1,
+        "page_count": "1.000",
+        "notes": "This is the title page for the story, with a recap.",
+        "script": "Sarah Brunstad",
+        "pencils": "None"
+      },
+      {
+        "type": "comic story",
+        "title": "The War of the Lokis",
+        "feature": "Thor",
+        "sequence_number": 2,
+        "page_count": "20.000",
+        "notes": "Loki the Necrogod was last seen is issue #6.",
+        "script": "Jason Aaron",
+        "pencils": "Mike Del Mundo"
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "",
+        "feature": "Thor",
+        "sequence_number": 3,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "Sarah Brunstad",
+        "pencils": "Arthur Adams"
+      }
+    ]
+  }
+}

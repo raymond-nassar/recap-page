@@ -1,0 +1,65 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/89716/?format=json",
+  "retrievedAt": "2026-11-16T02:24:57.317Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/89716/?format=json",
+    "series_name": "Wolverine: The Origin (2001 series)",
+    "descriptor": "6",
+    "number": "6",
+    "volume": "1",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "July 2002",
+    "key_date": "2002-07-00",
+    "page_count": "36.000",
+    "isbn": "",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/9926/?format=json",
+    "story_set": [
+      {
+        "type": "credits, title page",
+        "title": "",
+        "feature": "",
+        "sequence_number": 1,
+        "page_count": "1.000",
+        "notes": "Credits page with indicia on black background.",
+        "script": "None",
+        "pencils": "None"
+      },
+      {
+        "type": "comic story",
+        "title": "Dust to Dust",
+        "feature": "Wolverine",
+        "sequence_number": 2,
+        "page_count": "25.000",
+        "notes": "No inks used; color applied digitally directly on pencilled artwork.",
+        "script": "Paul Jenkins (credited) (plot, script); Bill Jemas (credited) (plot); Joe Quesada (credited) (plot)",
+        "pencils": "Andy Kubert (credited)"
+      },
+      {
+        "type": "advertisement",
+        "title": "Ads",
+        "feature": "Activision Video Games; Chef Boyardee Pasta; Kellogg's Cereals [multiple varieties]; Kellogg's Pop-Tarts / Pop Tarts; Lorillard Tobacco Youth Smoking Prevention; Mile High Comics; Willy Wonka Candy & Toys; Wrigley's Juicy Fruit Gum",
+        "sequence_number": 3,
+        "page_count": "8.000",
+        "notes": "Total of 8 one-page advertisements for: Spider-Man (game, ActiVision), Tobacco is Whacko (anti-drugs, Lorillard), Oompas (candy, Wonka), Juicy Fruit (chewing gum, Wrigley's), Kellogg's cereals (cereal, Kellogg's), Beef Ravioli (food, Chef Boyardee), Mile High Comics (website, MHC), Pop Tarts (cereal, Kellogg's).",
+        "script": "?",
+        "pencils": "?"
+      },
+      {
+        "type": "text article",
+        "title": "Back Cover",
+        "feature": "Wolverine",
+        "sequence_number": 4,
+        "page_count": "1.000",
+        "notes": "Back cover features text with Origin logo, publisher's age advisory, and barcode.",
+        "script": "?",
+        "pencils": "None"
+      }
+    ]
+  }
+}
