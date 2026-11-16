@@ -1,0 +1,24 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/1091596/?format=json",
+  "retrievedAt": "2026-11-13T21:26:25.853Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/1091596/?format=json",
+    "series_name": "Thunderbolts: Burning Down the House (2009 series)",
+    "descriptor": "",
+    "number": "[nn]",
+    "volume": "",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "2009",
+    "key_date": "2009-10-21",
+    "page_count": "124.000",
+    "isbn": "978-0-7851-3166-3",
+    "notes": "Collects *Thunderbolts* (Marvel, 2006 series) #126-129.",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/72598/?format=json",
+    "story_set": []
+  }
+}

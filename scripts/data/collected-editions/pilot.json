@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "scope": "Provider-neutral collected-edition records for five grouped pilot lists and selected Modern Timeline lists. Curated names and check tiers; database evidence is kept separately.",
+  "scope": "Provider-neutral collected-edition records for five grouped pilot lists and other selected reading lists. Curated names and check tiers; database evidence is kept separately.",
   "lists": [
     {
       "listId": "civil_war_avengers",
@@ -467,6 +467,10 @@
     { "id": "loki-agent-of-asgard-v2-i-cannot-tell-a-lie", "title": "Loki: Agent of Asgard Vol. 2: I Cannot Tell a Lie", "format": "trade paperback", "medium": "print", "gcdIssueId": 1342239, "gcdCheck": { "tier": "gcd-original-stories" } },
     { "id": "war-of-the-realms-journey-into-mystery", "title": "War of the Realms: Journey Into Mystery", "format": "trade paperback", "medium": "print", "gcdIssueId": 2023510, "gcdCheck": { "tier": "gcd-notes" } },
     { "id": "war-of-the-realms-new-agents-of-atlas", "title": "War of the Realms: New Agents of Atlas", "format": "trade paperback", "medium": "print", "gcdIssueId": 2013659, "gcdCheck": { "tier": "gcd-notes" } },
-    { "id": "iron-man-2020-robot-revolution", "title": "Iron Man 2020: Robot Revolution", "format": "trade paperback", "medium": "print", "gcdIssueId": 2156466, "gcdCheck": { "tier": "gcd-notes" } }
+    { "id": "iron-man-2020-robot-revolution", "title": "Iron Man 2020: Robot Revolution", "format": "trade paperback", "medium": "print", "gcdIssueId": 2156466, "gcdCheck": { "tier": "gcd-notes" } },
+    { "id": "world-war-hulk-warbound", "title": "World War Hulk: Warbound", "format": "trade paperback", "medium": "print", "gcdIssueId": 1052285, "gcdCheck": { "tier": "gcd-notes" } },
+    { "id": "wolverine-the-origin", "title": "Wolverine: The Origin", "format": "trade paperback", "medium": "print", "gcdIssueId": 1087082, "gcdCheck": { "tier": "gcd-original-stories" } },
+    { "id": "spider-geddon-covert-ops", "title": "Spider-Geddon: Covert Ops", "format": "trade paperback", "medium": "print", "gcdIssueId": 1928388, "gcdCheck": { "tier": "gcd-notes" } },
+    { "id": "thunderbolts-burning-down-the-house", "title": "Thunderbolts: Burning Down the House", "format": "trade paperback", "medium": "print", "gcdIssueId": 1091596, "gcdCheck": { "tier": "gcd-notes" } }
   ]
 }
