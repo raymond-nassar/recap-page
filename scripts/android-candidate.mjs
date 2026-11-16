@@ -580,10 +580,11 @@ export function verifyNativeReport(report, control) {
     && report.device.width === 1080 && report.device.height === 2400 && report.device.density === 420
     && report.device.externalNetworkBlocked === true && /^\d+(?:\.\d+){3}$/.test(report.device.webViewVersion),
   'native device/profile/firewall evidence mismatch');
-  requireValue(Array.isArray(report.executions) && report.executions.length === 12, 'native proof must contain exactly twelve executions');
+  requireValue(Array.isArray(report.executions) && report.executions.length === NATIVE_METHODS.length + 6,
+    'native proof must contain the complete suite and six lifecycle executions');
   const suite = report.executions.slice(0, NATIVE_METHODS.length);
   requireValue(suite.map((entry) => entry.method).sort().join() === [...NATIVE_METHODS].sort().join(),
-    'native suite differs from the six existing methods');
+    'native suite differs from the required methods');
   const expected = [
     ...suite.map(({ method }) => ({ phase: 'suite', method, role: 'official' })),
     ...['restart-seed', 'restart-probe', 'official-seed', 'prototype-seed', 'official-probe', 'prototype-probe']

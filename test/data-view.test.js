@@ -494,6 +494,7 @@ function cloudNodes() {
   nodes.syncDiscard.hidden = true;
   // The line under the card, which the page's notify writes into and the card withdraws from.
   nodes.report = stubNode({ children: [], replaceChildren(...parts) { this.children = parts; } });
+  nodes.syncReview = stubNode({ children: [], replaceChildren(...parts) { this.children = parts; } });
   nodes.found = stubNode({
     children: [],
     replaceChildren(...parts) { this.children = parts; },
@@ -810,6 +811,32 @@ test('a failed cloud check exposes a warned override and a current kept copy exp
   assert.equal(card.nodes.syncBack.hidden, true, 'an unconfirmed replacement withdraws the older action');
   assert.match(card.nodes.status.textContent, /Go back is unavailable/);
   assert.equal(card.nodes.status.classList.contains('notice-warn'), true);
+});
+
+test('unchecked-backup review keeps later batches mandatory and confirmation cancelable', async () => {
+  const connected = { ...CLOUD, on: true, agreed: true, backup: { phase: 'waiting' } };
+  const first = {
+    checked: 16, remaining: 1, remotes: [{ device: 'Phone', createdAt: 123, readCount: 2 }],
+    unchecked: [{ name: 'recap-page-backup-v2-unreadable.json.gz', reason: 'Unsupported backup format or identity' }],
+  };
+  const card = cloudCard({ ...connected, sync: { phase: 'review', review: first } });
+  assert.equal(card.nodes.syncCheck.hidden, false);
+  assert.equal(card.nodes.syncOverride.hidden, true, 'later batches cannot be silently skipped');
+  assert.equal(card.nodes.syncReview.hidden, false);
+  assert.equal(card.nodes.status.classList.contains('notice-warn'), true);
+  const complete = { ...first, checked: 17, remaining: 0 };
+  card.show({ ...connected, sync: { phase: 'review', review: complete } });
+  assert.equal(card.nodes.syncCheck.hidden, true);
+  assert.equal(card.nodes.syncOverride.textContent, 'Continue with unchecked backups');
+  card.state.answers.push(false);
+  card.nodes.syncOverride._fire();
+  await settled();
+  assert.deepEqual(card.state.calls, [], 'cancel cannot resume uploads');
+  assert.match(card.state.asked[0].body, /applies only to this check/);
+  card.state.answers.push(true);
+  card.nodes.syncOverride._fire();
+  await settled();
+  assert.deepEqual(card.state.calls, [['sync-override', complete]], 'confirmation names the exact reviewed list');
 });
 
 test('identical failed cloud checks are spoken once until a check succeeds', () => {

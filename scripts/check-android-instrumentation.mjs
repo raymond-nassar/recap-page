@@ -7,6 +7,7 @@ import { validateIdentity } from './lib/release-identity.mjs';
 
 export const NATIVE_CLASS = 'io.github.raymondnassar.recappage.prototype.NativeIntegrationTest';
 export const NATIVE_METHODS = [
+  'cloudUploadPermitsRevokeAndRegrantAfterReload',
   'startupAndPersistence',
   'systemPickerSaveAndCancel',
   'providerRoundTripAndWriteFailure',
