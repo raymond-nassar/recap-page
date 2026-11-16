@@ -1,0 +1,109 @@
+name: App Store review submission
+run-name: App Store ${{ inputs.mode }} version ${{ inputs.version }} build ${{ inputs.build_number }}
+
+# What's New is read only from the reviewed docs/releases/<version>-store.json at this workflow's
+# commit. No input can carry text, so nothing sent to Apple is typed at dispatch time.
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Validate without Apple access, Inspect read-only, or Submit the version for review
+        type: choice
+        options: [Validate, Inspect, Submit]
+        default: Validate
+      version:
+        description: App version x.y.z with an approved docs/releases store file
+        type: string
+        required: true
+      build_number:
+        description: The newest sealed iOS build number for that version in packaging/ios/build-numbers.json
+        type: string
+        required: true
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: app-store-release
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: Verify the sealed build and approved text without Apple credentials
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    outputs:
+      environment: ${{ steps.verify.outputs.environment }}
+      environment_id: ${{ steps.verify.outputs.environment_id }}
+      policy_sha: ${{ steps.verify.outputs.policy_sha }}
+      binding_sha: ${{ steps.verify.outputs.binding_sha }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 2
+        with:
+          ref: ${{ github.workflow_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        timeout-minutes: 4
+        with:
+          node-version: '24'
+      - name: Validate invocation, ledger, source version, approved text and protection
+        id: verify
+        timeout-minutes: 5
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/app-store-release.mjs validate
+
+  store:
+    name: Approved App Store operation
+    needs: validate
+    if: >-
+      github.event_name == 'workflow_dispatch' &&
+      github.ref == 'refs/heads/main' &&
+      inputs.mode != 'Validate' &&
+      needs.validate.outputs.environment == 'app-store-release'
+    environment: app-store-release
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 2
+        with:
+          ref: ${{ github.workflow_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        timeout-minutes: 4
+        with:
+          node-version: '24'
+      - name: Recheck the exact intent, unchanged policy and actual current-run human approval
+        timeout-minutes: 5
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          RECAP_ASC_EXPECTED_ENVIRONMENT_ID: ${{ needs.validate.outputs.environment_id }}
+          RECAP_ASC_EXPECTED_POLICY_SHA: ${{ needs.validate.outputs.policy_sha }}
+          RECAP_ASC_EXPECTED_BINDING_SHA: ${{ needs.validate.outputs.binding_sha }}
+        run: node scripts/app-store-release.mjs approved-validate
+      - name: Execute the approved operation once
+        timeout-minutes: 10
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          RECAP_ASC_EXPECTED_ENVIRONMENT_ID: ${{ needs.validate.outputs.environment_id }}
+          RECAP_ASC_EXPECTED_POLICY_SHA: ${{ needs.validate.outputs.policy_sha }}
+          RECAP_ASC_EXPECTED_BINDING_SHA: ${{ needs.validate.outputs.binding_sha }}
+          RECAP_ASC_OPERATION: ${{ inputs.mode == 'Submit' && 'submit' || 'inspect' }}
+          ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+        run: node scripts/app-store-release.mjs "$RECAP_ASC_OPERATION"
+      - name: Retain only the sanitized operation receipt
+        if: always()
+        timeout-minutes: 2
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: app-store-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 30
+          if-no-files-found: warn
+          path: ${{ runner.temp }}/recap-app-store-${{ github.run_id }}-${{ github.run_attempt }}/app-store-receipt.json

@@ -1,0 +1,116 @@
+name: Google Play production release
+run-name: Google Play production ${{ inputs.mode }} ${{ inputs.version }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Validate without Google access, inspect read-only, or promote the tested release to production
+        type: choice
+        options: [Validate, Inspect, Publish]
+        default: Validate
+      version:
+        description: Product version x.y.z; notes come only from its approved store text file
+        type: string
+        required: true
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: google-play-production-publisher
+  cancel-in-progress: false
+
+jobs:
+  preflight:
+    name: Bind the sealed code and approved notes without Google credentials
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    outputs:
+      environment: ${{ steps.verify.outputs.environment }}
+      environment_id: ${{ steps.verify.outputs.environment_id }}
+      policy_sha: ${{ steps.verify.outputs.policy_sha }}
+      binding_sha: ${{ steps.verify.outputs.binding_sha }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 2
+        with:
+          ref: ${{ github.workflow_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        timeout-minutes: 4
+        with:
+          node-version: '24'
+      - name: Validate the sealed ledger, approved text and protection
+        id: verify
+        timeout-minutes: 5
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/google-play-production.mjs preflight
+
+  production:
+    name: Approved production operation
+    needs: preflight
+    if: >-
+      github.event_name == 'workflow_dispatch' &&
+      github.ref == 'refs/heads/main' &&
+      inputs.mode != 'Validate' &&
+      needs.preflight.outputs.environment == 'google-play-production'
+    environment: ${{ needs.preflight.outputs.environment }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    permissions:
+      contents: read
+      actions: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 2
+        with:
+          ref: ${{ github.workflow_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        timeout-minutes: 4
+        with:
+          node-version: '24'
+      - name: Recheck the exact binding and actual current-run human approval
+        timeout-minutes: 5
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          RECAP_PLAY_EXPECTED_ENVIRONMENT_ID: ${{ needs.preflight.outputs.environment_id }}
+          RECAP_PLAY_EXPECTED_POLICY_SHA: ${{ needs.preflight.outputs.policy_sha }}
+          RECAP_PLAY_EXPECTED_BINDING_SHA: ${{ needs.preflight.outputs.binding_sha }}
+        run: node scripts/google-play-production.mjs approved-preflight
+      - name: Authenticate with the production-only service account
+        id: auth
+        timeout-minutes: 3
+        uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # v3.0.0
+        with:
+          workload_identity_provider: ${{ vars.GOOGLE_PLAY_PRODUCTION_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GOOGLE_PLAY_PRODUCTION_SERVICE_ACCOUNT }}
+          token_format: access_token
+          access_token_scopes: https://www.googleapis.com/auth/androidpublisher
+          access_token_lifetime: 900s
+          create_credentials_file: false
+          export_environment_variables: false
+      - name: Execute the approved operation once
+        timeout-minutes: 6
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          RECAP_PLAY_ACCESS_TOKEN: ${{ steps.auth.outputs.access_token }}
+          RECAP_PLAY_EXPECTED_ENVIRONMENT_ID: ${{ needs.preflight.outputs.environment_id }}
+          RECAP_PLAY_EXPECTED_POLICY_SHA: ${{ needs.preflight.outputs.policy_sha }}
+          RECAP_PLAY_EXPECTED_BINDING_SHA: ${{ needs.preflight.outputs.binding_sha }}
+        run: node scripts/google-play-production.mjs operate
+      - name: Retain only the sanitized operation receipt
+        if: always()
+        timeout-minutes: 2
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: google-play-production-${{ github.run_id }}
+          retention-days: 90
+          if-no-files-found: warn
+          path: ${{ runner.temp }}/recap-google-play-production-${{ github.run_id }}/google-play-production-receipt.json

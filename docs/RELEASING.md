@@ -216,12 +216,28 @@ packet after its seal is merged. Its default performs validation without Google 
 Google operation requires separate human approval. It rejects production tracks and reports
 submission separately from actual user availability.
 
-Normal Publish supplies the mode, one named Candidate run, actual testing track and plain notes.
+Normal Publish supplies the mode, one named Candidate run and actual testing track. Its notes come
+only from the approved store text, `docs/releases/<version>-store.json`; no input carries text.
 It resolves the sealed packet identity and captures a supported simple target inside the approved
 edit, so no prior Inspect is required. Signing and exact-artifact publishing still require two
 separate credential approvals, and both reviewed ledger merges remain. Promote requires an
 explicit target-state digest. No concurrent publisher or pending Console work may exist:
 Google can also submit Console changes already ready for review when the API edit commits.
+
+**Each public store action is one owner approval, and nothing in it is typed** (#1322). Each
+workflow is manual-only from `main`, defaults to a read-only `Validate`, accepts no input that can
+carry text, checks the store's own limit before any request and stops rather than truncating, and
+reads the store's actual state before and after it changes anything.
+
+| Public action | Workflow | Approval | Text it reads |
+|---|---|---|---|
+| Google Play production | [`google-play-production.yml`](GOOGLE_PLAY_PUBLISHING.md#production-promotion-workflow) | `google-play-production` | `docs/releases/<version>-store.json`, 500 characters |
+| App Store review submission | [`app-store-release.yml`](IOS.md#submit-through-the-workflow) | `app-store-release` | `docs/releases/<version>-store.json`, 4,000 characters |
+| GitHub release | [`github-release.yml`](MAINTAINING.md#4-create-the-release-from-the-merged-commit) | `github-release` | The version's reader summary in `CHANGELOG.md` and a link to the full changelog |
+
+The production Play credential is a separate service account bound only to its environment, so
+the delegated test-build approvals cannot reach production. Microsoft Store submission already
+reads the same store text and is unchanged.
 
 ## Delivered release matrix
 
