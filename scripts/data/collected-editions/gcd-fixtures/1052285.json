@@ -1,0 +1,24 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/1052285/?format=json",
+  "retrievedAt": "2026-11-13T14:51:02.170Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/1052285/?format=json",
+    "series_name": "World War Hulk: Warbound (2008 series)",
+    "descriptor": "",
+    "number": "[nn]",
+    "volume": "",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "2008",
+    "key_date": "2008-07-16",
+    "page_count": "124.000",
+    "isbn": "",
+    "notes": "Collects WWH Aftersmash: Warbound (Marvel, 2008 series) #1-5.",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/71229/?format=json",
+    "story_set": []
+  }
+}
