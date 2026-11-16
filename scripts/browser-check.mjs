@@ -16047,7 +16047,7 @@ const SCENARIOS = [
   {
     id: 'pages-home-navigation',
     title: 'the project home stays informational, keyboard complete and narrow-safe',
-    operations: ['open-android-section'],
+    operations: ['settle-returned-home', 'open-android-section'],
     async run(page, t) {
       const { mkdtemp, rm } = await import('node:fs/promises');
       const { tmpdir } = await import('node:os');
@@ -16244,6 +16244,17 @@ const SCENARIOS = [
         await page.$eval('a[href="./index.html#feedback"]', (link) => link.focus());
         await page.keyboard.press('Enter');
         await page.waitForFunction(() => location.hash === '#feedback');
+        // The hash is readable as soon as the returned document exists, but Chromium applies its
+        // #feedback fragment anchor only once the stylesheet has loaded, and since that section
+        // takes no focus, applying it clears the focused element. With the stylesheet held back
+        // 1.5 s, a link focused before that point fell back to BODY and its Enter left the hash
+        // on #feedback, the #1242 timeout. Waiting for load and then one frame lets that step run
+        // before any keyboard input.
+        await t.step('settle-returned-home', () => page.evaluate(() => new Promise((resolve) => {
+          const settle = () => requestAnimationFrame(() => resolve());
+          if (document.readyState === 'complete') settle();
+          else addEventListener('load', settle, { once: true });
+        })));
         t.check('the curated page returns to the suggestions on the home page',
           await page.$eval('#feedback', (section) => {
             const box = section.getBoundingClientRect();
@@ -16270,9 +16281,6 @@ const SCENARIOS = [
           ]),
           JSON.stringify(overview));
 
-        // This wait has timed out four times, once in a run alone at 10% CPU, and neither CPU
-        // throttling, an Enter before first paint nor another window taking focus reproduces it, so
-        // the step names the wait for the next occurrence.
         await t.step('open-android-section', async () => {
           await page.$eval('.section-nav a[href="#android"]', (link) => link.focus());
           await page.keyboard.press('Enter');
