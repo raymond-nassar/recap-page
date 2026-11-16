@@ -3786,6 +3786,105 @@ test('a refused Load never activates or prunes the earlier go-back copy', async 
   await tab.cloud.turnOff();
 });
 
+for (const outcome of ['refused', 'rolled-back', 'rollback-failed', 'fits']) {
+  test(`cloud restore limits preserve pauses and upload permits: ${outcome}`, async () => {
+    const env = harness({ transport: windowsHost(fakeTransport()) });
+    const { protocol } = await consented(env);
+    const context = await syncContext(protocol);
+    const home = device();
+    const before = await home.snapshot();
+    const remote = await device({ 1: 333 }).snapshot();
+    env.transport.store(cloudBackupName(OTHER, 1), envelopeFile({
+      stream: OTHER, generation: 1, backup: remote.backup, device: 'Phone', createdAt: 123,
+    }));
+    const journal = createRestoreJournal(env.idb);
+    const restore = new CompleteRestore({
+      storage: home.storage, locks: env.locks, journal, events: null,
+      clock: () => env.time.now, cryptoProvider: webcrypto, reload: () => {}, lockAnswerMs: 200,
+    });
+    await restore.start();
+    await restore.inspect();
+    let restored;
+    const tab = page({
+      env, home, isBlocked: () => restore.state.phase !== 'open',
+      launchSync: {
+        restoreReady: () => restore.checkAvailability(),
+        restore: async (text, options) => {
+          restored = await restore.restore(text, {
+            ...options, importDraft: { recovery: [], uncertain: false }, draftRecovery: [],
+          });
+          return restored;
+        },
+      },
+    });
+    try {
+      await tab.cloud.resume();
+      await until(() => tab.cloud.model.sync.phase === 'offer', 'the remote is offered');
+      let injected = false;
+      if (outcome === 'refused') {
+        journal.begin = async () => { injected = true; throw new Error('Integration journal refusal'); };
+      } else if (outcome === 'rolled-back') {
+        const set = home.storage.setItem.bind(home.storage);
+        home.storage.setItem = (key, value) => {
+          if (key === KEY && !injected) {
+            injected = true;
+            throw Object.assign(new Error('Integration quota refusal'), { name: 'QuotaExceededError' });
+          }
+          return set(key, value);
+        };
+      } else if (outcome === 'rollback-failed') {
+        journal.progress = async () => {
+          if (!injected) {
+            injected = true;
+            throw Object.assign(new Error('Integration quota refusal'), { name: 'QuotaExceededError' });
+          }
+          throw new Error('Integration rollback checkpoint refusal');
+        };
+      }
+      const result = await tab.cloud.loadSync();
+      assert.equal(result.ok, outcome === 'fits', result.error);
+      assert.equal(injected, outcome !== 'fits');
+      if (outcome === 'rolled-back') {
+        assert.deepEqual([restored.ok, restored.changed, restored.rolledBack], [false, false, true]);
+      }
+      if (outcome === 'refused' || outcome === 'rolled-back') {
+        assert.equal(restored.changed, false);
+        assert.equal((await home.snapshot()).backup.digest, before.backup.digest);
+        assert.equal(await protocol.keptPending(ON), null, 'unchanged data must not retain a staged recovery choice');
+        assert.equal(restore.state.phase, 'open');
+      }
+      if (outcome === 'rollback-failed') {
+        assert.equal(restored.changed, null);
+        assert.equal(restore.state.phase, 'paused');
+        assert.ok(await protocol.keptPending(ON), 'an unfinished rollback retains its recovery choice');
+      }
+      if (outcome === 'fits') {
+        assert.equal((await home.snapshot()).backup.digest, remote.backup.digest);
+        assert.equal(await protocol.keptPending(ON), null);
+        assert.equal(tab.cloud.model.sync.phase, 'loaded');
+      }
+      assert.equal((await protocol.syncGate(context)).held, true);
+      const permits = async () => (await env.locks.query()).held.filter(
+        (entry) => entry.name.startsWith('mrt.cloud-backup.upload-permit.v1.'));
+      assert.equal((await permits()).length, 0, 'an unresolved restore cannot retain an upload permit');
+      await tab.run(CLOUD_BACKUP_CADENCE.minIntervalMs);
+      assert.deepEqual(env.transport.generations(context.stream), [],
+        'neither prior nor partial data is published as an ordinary backup');
+      if (outcome === 'refused' || outcome === 'rolled-back') {
+        await tab.cloud.recheckSync();
+        await until(() => tab.cloud.model.sync.phase === 'offer', 'the reader can retry or keep local');
+        assert.equal((await tab.cloud.keepSync()).ok, true);
+        assert.equal(tab.cloud.model.sync.phase, 'clear');
+        assert.equal((await protocol.syncGate(context)).held, false);
+        assert.equal((await permits()).length, 1, 'resolving the choice grants a fresh upload permit');
+      }
+    } finally {
+      await tab.cloud.turnOff();
+      await restore.releaseShared();
+    }
+  });
+}
+
 test('a late failed download leaves the prior Go back copy active and all earlier copies intact', async () => {
   const env = harness({ transport: windowsHost(fakeTransport()) });
   const { protocol } = await consented(env);
