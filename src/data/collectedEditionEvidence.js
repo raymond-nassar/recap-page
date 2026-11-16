@@ -2432,6 +2432,54 @@ export const editionEvidence = {
       "checkedAt": "2026-11-14T14:52:03.608Z"
     },
     {
+      "catalogId": "war-of-the-realms",
+      "editionId": "war-of-the-realms-new-agents-of-atlas",
+      "issueId": 76615,
+      "seriesId": 27505,
+      "number": "1",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/2013659/?format=json",
+      "checkedAt": "2026-11-14T14:52:18.050Z"
+    },
+    {
+      "catalogId": "war-of-the-realms",
+      "editionId": "war-of-the-realms-new-agents-of-atlas",
+      "issueId": 76616,
+      "seriesId": 27505,
+      "number": "2",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/2013659/?format=json",
+      "checkedAt": "2026-11-14T14:52:18.050Z"
+    },
+    {
+      "catalogId": "war-of-the-realms",
+      "editionId": "war-of-the-realms-new-agents-of-atlas",
+      "issueId": 77259,
+      "seriesId": 27505,
+      "number": "3",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/2013659/?format=json",
+      "checkedAt": "2026-11-14T14:52:18.050Z"
+    },
+    {
+      "catalogId": "war-of-the-realms",
+      "editionId": "war-of-the-realms-new-agents-of-atlas",
+      "issueId": 77260,
+      "seriesId": 27505,
+      "number": "4",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/2013659/?format=json",
+      "checkedAt": "2026-11-14T14:52:18.050Z"
+    },
+    {
       "catalogId": "spider-verse",
       "editionId": "amazing-spider-man-edge-of-spider-verse",
       "issueId": 50954,
