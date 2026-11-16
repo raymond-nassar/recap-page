@@ -17,7 +17,11 @@ function checkedOrder(ids, label) {
 
 export function earlierPublishedOrders(list) {
   if (!list) return [];
-  checkedOrder(list.itemIds, 'saved');
+  try {
+    checkedOrder(list.itemIds, 'saved');
+  } catch {
+    return [];
+  }
   return READING_ORDER_REVISIONS.filter((record) => (!list.catalogId || record.catalogId === list.catalogId)
     && record.previousOrders.some((previous) => previous.length === list.itemIds.length
       && previous.every((id, index) => id === list.itemIds[index])));

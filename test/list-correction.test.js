@@ -9,7 +9,7 @@ import {
   setIssueRating, setListNote, setOverride,
 } from '../src/js/lib/model.js';
 import { READING_ORDER_REVISIONS } from '../src/js/lib/readingOrderRevisions.js';
-import { beforeWolverineCorrectionIssueIds } from './helpers/wolverine-correction-history.mjs';
+import { beforeWolverineCorrectionIssueIds, firstReleasedWolverineIssueOrders } from './helpers/wolverine-correction-history.mjs';
 
 test('a list update comparison preserves the identity and order of each side', () => {
   const saved = [1, 7, 2, 9];
@@ -172,10 +172,31 @@ test('each registered revision records the published order before it and the ord
     assert.deepEqual(revisedOrder, revised, catalogId);
     const earlier = catalogId === 'wolverine-reading-order'
       ? beforeWolverineCorrectionIssueIds(revised).map(Number) : ledgerEarlierOrders[catalogId](revised);
-    assert.deepEqual(previousOrders, [earlier], catalogId);
+    assert.deepEqual(previousOrders, catalogId === 'wolverine-reading-order'
+      ? [earlier, ...firstReleasedWolverineIssueOrders()] : [earlier], catalogId);
     assert.equal(matchesEarlierPublishedOrder({ catalogId, itemIds: earlier }), true, catalogId);
     assert.equal(matchesEarlierPublishedOrder({ catalogId, itemIds: revised }), false, catalogId);
     assert.equal(publishedRevisionItems({ id: catalogId }, payload), payload.items, catalogId);
+  }
+});
+
+test('updating the first released Wolverine order adds 83 comics and retains all 33 extras with progress', () => {
+  const payload = readJson('../src/data/wolverine_reading_order.json');
+  const current = new Map(payload.items.map((item) => [item.issueId, item]));
+  for (const saved of firstReleasedWolverineIssueOrders()) {
+    assert.equal(saved.length, 1222);
+    assert.equal(matchesEarlierPublishedOrder({ catalogId: payload.id, itemIds: saved }), true);
+    const difference = compareListOrders(saved, [...current.keys()]);
+    assert.equal(difference.added.length, 83);
+    assert.equal(difference.retained.length, 33);
+    let state = createList(createEmptyState(), { id: 'first', name: 'First release', catalogId: payload.id });
+    state = addIssuesToList(state, 'first', saved.map((issueId) => current.get(issueId) ?? { issueId })).state;
+    state = markRead(state, difference.retained[0], true, 123);
+    const updated = applyListRevision(state, 'first', JSON.stringify(state.lists.first), payload.items);
+    assert.equal(updated.lists.first.itemIds.length, 1305);
+    assert.ok(saved.every((id) => updated.lists.first.itemIds.includes(id)));
+    assert.deepEqual(updated.lists.first.itemIds.filter((id) => current.has(id)), [...current.keys()]);
+    assert.deepEqual(updated.read, state.read);
   }
 });
 

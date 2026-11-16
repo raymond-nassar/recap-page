@@ -25,6 +25,7 @@ export function createRatedComicsView({
   emptyAction,
   getState,
   isBlocked = () => false,
+  blockedMessage = () => null,
   issueFocusAnchor,
   listUi,
   paintCover,
@@ -110,7 +111,7 @@ export function createRatedComicsView({
     const { shelfStatus, shelfList } = elements();
     shelfList.replaceChildren();
     if (isBlocked()) {
-      shelfStatus.textContent = 'Your ratings are not shown while your saved data needs recovery.';
+      shelfStatus.textContent = blockedMessage() || 'Your ratings are not shown while your saved data needs recovery.';
       return;
     }
     const rows = ratedComics(getState());
@@ -213,12 +214,13 @@ export function createRatedComicsView({
     wire();
     const els = elements();
     if (isBlocked()) {
+      const paused = blockedMessage();
       els.count.textContent = '';
       els.notice.replaceChildren();
       els.results.replaceChildren(el('div', { class: 'empty-state' }, [
         el('div', { class: 'empty-glyph', 'aria-hidden': 'true', text: '\u2606' }),
-        el('p', { text: 'Your ratings cannot be shown until your saved data is recovered.' }),
-        emptyAction({ label: 'Backup & settings', view: 'data' }),
+        el('p', { text: paused || 'Your ratings cannot be shown until your saved data is recovered.' }),
+        ...(paused ? [] : [emptyAction({ label: 'Backup & settings', view: 'data' })]),
       ]));
       return;
     }

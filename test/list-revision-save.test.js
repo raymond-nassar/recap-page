@@ -38,7 +38,10 @@ function fixture() {
     get length() { return values.size; },
     key(index) { return [...values.keys()][index] ?? null; },
   };
-  const store = new Store({ storage });
+  const store = new Store({
+    storage,
+    blockedMessage: () => isListRevisionVerificationPaused(store) ? 'Saving is paused; reopen the app to check your list.' : null,
+  });
   store.load();
   store.update((state) => {
     const list = createList(state, { id: 'saved', name: 'Before' });
@@ -67,6 +70,7 @@ test('a thrown or silent update leaves the prior durable list and reports failur
     const result = saveListRevision(store, 'saved', expected, revised);
     assert.equal(result.ok, false, mode);
     assert.equal(result.changed, false, mode);
+    assert.equal(result.error, 'The update was not saved. Your list is unchanged.', mode);
     assert.equal(storage.getItem(KEY), before, mode);
     assert.deepEqual(store.state.lists.saved.itemIds, [1], mode);
     assert.equal(store.lastUpdateOk, false, mode);
@@ -107,6 +111,20 @@ test('an uncertain update is distinguishable from an unreadable-data recovery in
   assert.equal(isUncertain(), false);
   store.blocked = false;
   assert.equal(isUncertain(), false);
+});
+
+test('ordinary writes during a verification pause keep the approved reopening guidance', () => {
+  const { store, storage, expected } = fixture();
+  storage.mode = 'unreadable';
+  saveListRevision(store, 'saved', expected, revised);
+  storage.unreadable = false;
+  const before = storage.getItem(KEY);
+  store.update((state) => createList(state, { id: 'later', name: 'Later' }));
+  assert.equal(store.lastError, 'Saving is paused; reopen the app to check your list.');
+  assert.equal(storage.getItem(KEY), before);
+  store.blockedReason = 'Could not read your saved data.';
+  store.update((state) => createList(state, { id: 'later', name: 'Later' }));
+  assert.match(store.lastError, /Choose what to do about the data/);
 });
 
 test('a display failure after a write reports that the update was saved', () => {
@@ -203,10 +221,58 @@ test('a failed pre-update read pauses later writes until the data can be checked
   const result = saveListRevision(store, 'saved', expected, revised);
   assert.equal(result.ok, false);
   assert.equal(store.blocked, true);
+  assert.equal(isListRevisionVerificationPaused(store), true);
+  assert.equal(isListRevisionVerificationPaused(store, { uncertainOnly: true }), false);
+  assert.equal(result.changed, false);
   storage.unreadable = false;
   const before = storage.getItem(KEY);
   store.update((state) => createList(state, { id: 'later', name: 'Later' }));
   assert.equal(storage.getItem(KEY), before);
+});
+
+test('preflight validation and reconciliation pauses do not claim an attempted write', () => {
+  for (const fault of ['invalid', 'second-write']) {
+    const { store, storage, values, expected } = fixture();
+    if (fault === 'invalid') values.set(KEY, '{"lists":[]}');
+    else {
+      const foreign = JSON.parse(values.get(KEY));
+      foreign.lists.saved.name = 'Changed elsewhere';
+      foreign.writeToken = 'foreign-write';
+      values.set(KEY, JSON.stringify(foreign));
+      storage.mode = 'foreign-again';
+    }
+    const result = saveListRevision(store, 'saved', expected, revised);
+    assert.equal(store.blocked, true, fault);
+    assert.equal(result.changed, false, fault);
+    assert.equal(isListRevisionVerificationPaused(store), true, fault);
+    assert.equal(isListRevisionVerificationPaused(store, { uncertainOnly: true }), false, fault);
+  }
+  const after = fixture();
+  after.storage.mode = 'unreadable';
+  saveListRevision(after.store, 'saved', after.expected, revised);
+  assert.equal(isListRevisionVerificationPaused(after.store, { uncertainOnly: true }), true);
+});
+
+test('a conflict during persistence uses the approved comparison message and keeps the store report', () => {
+  const { store, storage, values, expected } = fixture();
+  const read = storage.getItem.bind(storage);
+  let reads = 0;
+  storage.getItem = (key) => {
+    if (key === KEY && ++reads === 2) {
+      const foreign = JSON.parse(values.get(KEY));
+      foreign.writeToken = 'racing-writer';
+      foreign.lists.saved.name = 'Racing writer';
+      values.set(KEY, JSON.stringify(foreign));
+    }
+    return read(key);
+  };
+  const reports = [];
+  store.onChange = (_state, error) => { if (error) reports.push(error); };
+  const result = saveListRevision(store, 'saved', expected, revised);
+  assert.equal(result.ok, false);
+  assert.equal(result.error, 'Saved data changed elsewhere. Compare the list again before updating.');
+  assert.ok(reports.some((message) => /newer data/.test(message)));
+  assert.equal(store.state.lists.saved.name, 'Racing writer');
 });
 
 test('a concurrent tokenless erase is adopted before an update', () => {

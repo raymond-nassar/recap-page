@@ -113,7 +113,7 @@ const RAIL_BREAKPOINT = 1000;
 const $ = (sel) => document.querySelector(sel);
 
 const settings = loadSettings();
-const temporaryReaderLinks = createTemporaryReaderLinks();
+const temporaryReaderLinks = createTemporaryReaderLinks({ blockedMessage: listRevisionPauseMessage });
 const limiter = new RateLimiter();
 let cache = new ResponseCache({ baseUrl: settings.apiBase });
 let api = new MarvelApi({ baseUrl: settings.apiBase, limiter, cache, onStatus: onApiStatus });
@@ -123,6 +123,7 @@ let api = new MarvelApi({ baseUrl: settings.apiBase, limiter, cache, onStatus: o
 // silently reverted on the next paint.
 const store = new Store({
   storage: localStorage,
+  blockedMessage: listRevisionPauseMessage,
   onChange: (_state, err) => {
     if (store.blocked) temporaryReaderLinks.reconcile(_state, { changed: null });
     renderAll();
@@ -130,6 +131,10 @@ const store = new Store({
     else clearNotice('reader-save');
   },
 });
+
+function listRevisionPauseMessage() {
+  return isListRevisionVerificationPaused(store) ? 'Saving is paused; reopen the app to check your list.' : null;
+}
 const saveEducation = createSaveEducation({ storage: globalThis.localStorage });
 const importDraft = new ImportDraftStore({
   reader: store,
@@ -3418,7 +3423,7 @@ function renderAll() {
   // Kept in renderAll so the banner cannot go stale. In particular a successful restore
   // clears the block, and leaving the banner up would push the user toward "Start fresh",
   // which would then wipe the backup they had just restored.
-  $('#list-revision-uncertain-banner').hidden = !isListRevisionVerificationPaused(store);
+  $('#list-revision-uncertain-banner').hidden = !isListRevisionVerificationPaused(store, { uncertainOnly: true });
   recoveryView.render();
   dataView.renderRestoreOffer();
   renderBreadcrumbs();
@@ -3786,6 +3791,8 @@ const bulkReadView = createBulkReadView({
 
 const listRevisions = createListRevisions({
   $, el, getState: () => store.state, activeListId, isCurrent: () => view === 'read',
+  canSave: () => completeRestore.writable() && !store.blocked && Boolean(store.storage),
+  getDatasetEpoch: () => temporaryReaderLinks.epoch,
   loadCatalog, loadOrder: loadBundledOrder, askConfirm,
   saveRevision: (id, signature, items) => saveListRevision(store, id, signature, items),
 });
@@ -3862,6 +3869,7 @@ const readerLinkView = createReaderLinkView({
   links: temporaryReaderLinks,
   announce,
   onChange: () => {
+    listRevisions.render();
     readingView.refreshReader();
     homeView.refreshReader();
     issueView.refreshReader();
@@ -3880,6 +3888,7 @@ const issueRatingView = createIssueRatingView({
   }),
   getState: () => store.state,
   isBlocked: () => store.blocked,
+  blockedMessage: listRevisionPauseMessage,
   saveRating: (issueId, value) => {
     store.update((state) => setIssueRating(state, issueId, value));
     return { ok: store.lastUpdateOk, error: store.lastError };
@@ -4126,6 +4135,7 @@ const ratedView = createRatedComicsView({
   emptyAction,
   getState: () => store.state,
   isBlocked: () => store.blocked,
+  blockedMessage: listRevisionPauseMessage,
   issueFocusAnchor,
   listUi: { cap: LIBRARY_CAP, moreButton, shownLine, summaryBand },
   paintCover,

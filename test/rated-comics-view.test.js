@@ -75,7 +75,7 @@ function deferredLoader() {
   return loader;
 }
 
-function harness({ ratings = {}, issues = {}, cap = 120, loader = null, blocked = false } = {}) {
+function harness({ ratings = {}, issues = {}, cap = 120, loader = null, blocked = false, pauseMessage = null } = {}) {
   const state = { ratings, issues };
   const els = {
     shelfStatus: { textContent: '' },
@@ -100,6 +100,7 @@ function harness({ ratings = {}, issues = {}, cap = 120, loader = null, blocked 
     emptyAction: (action) => ({ kind: 'empty-action', action, children: [] }),
     getState: () => state,
     isBlocked: () => blocked,
+    blockedMessage: () => pauseMessage,
     issueFocusAnchor: (issue, options) => ({
       kind: 'focus', issue, options, children: options.children, isConnected: true,
       focus() { log.focused.push(issue.issueId); },
@@ -324,6 +325,16 @@ test('a blocked store shows recovery guidance instead of ratings on both surface
   const action = find(h.els.results, (n) => n.kind === 'empty-action');
   assert.equal(action.action.view, 'data');
   assert.doesNotMatch(texts(h.els.results), /Your rating: /);
+});
+
+test('a verification pause uses reopening guidance on both ratings surfaces without a recovery action', () => {
+  const pauseMessage = 'Saving is paused; reopen the app to check your list.';
+  const h = harness({ blocked: true, pauseMessage });
+  h.view.renderShelf();
+  assert.equal(h.els.shelfStatus.textContent, pauseMessage);
+  h.view.renderBrowser();
+  assert.match(texts(h.els.results), /Saving is paused; reopen the app to check your list\./);
+  assert.equal(Boolean(find(h.els.results, (n) => n.kind === 'empty-action')), false);
 });
 
 test('with nothing rated yet, Browse Reading Lists opens Home at its reading-list categories', () => {

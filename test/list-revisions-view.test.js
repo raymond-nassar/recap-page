@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createListRevisions } from '../src/js/views/list-revisions.js';
 import { READING_ORDER_REVISIONS } from '../src/js/lib/readingOrderRevisions.js';
+import { firstReleasedWolverineIssueOrders } from './helpers/wolverine-correction-history.mjs';
 
 function fixture({ catalogId = null, itemIds = [1], ask = null, loadOrder = null } = {}) {
   const nodes = new Map();
@@ -27,12 +28,16 @@ function fixture({ catalogId = null, itemIds = [1], ask = null, loadOrder = null
   const entry = { id: catalogId ?? 'sample', name: 'Sample order', file: 'sample.json' };
   const order = { id: entry.id, count: 2, items: [{ issueId: 1 }, { issueId: 2 }] };
   let visible = true;
+  let writable = true;
+  let epoch = 0;
+  let catalogs = 0;
   let answer = false;
   let saves = 0;
   let question;
   const view = createListRevisions({
     $: get, el, getState: () => state, activeListId: () => 'saved', isCurrent: () => visible,
-    loadCatalog: async () => ({ lists: [entry] }), loadOrder: loadOrder ?? (async () => order),
+    canSave: () => writable, getDatasetEpoch: () => epoch,
+    loadCatalog: async () => { catalogs += 1; return { lists: [entry] }; }, loadOrder: loadOrder ?? (async () => order),
     askConfirm: async (options) => { question = options; return ask ? ask(options) : answer; },
     saveRevision: (_id, _signature, items) => {
       saves += 1;
@@ -45,12 +50,24 @@ function fixture({ catalogId = null, itemIds = [1], ask = null, loadOrder = null
   view.render();
   return {
     get, state, entry, order, view, setAnswer: (value) => { answer = value; },
-    replaceState: () => { state = { ...state }; },
+    replaceState: ({ dataset = false } = {}) => { state = { ...state }; if (dataset) epoch += 1; },
+    setWritable: (value) => { writable = value; }, getCatalogs: () => catalogs,
     setVisible: (value) => { visible = value; }, getSaves: () => saves, getQuestion: () => question,
   };
 }
 
 const settle = () => new Promise((resolve) => setImmediate(resolve));
+
+test('the first released Wolverine order has the automatic review offer', () => {
+  try {
+    for (const itemIds of firstReleasedWolverineIssueOrders()) {
+      const f = fixture({ catalogId: 'wolverine-reading-order', itemIds });
+      assert.equal(f.get('list-revision-offer').hidden, false);
+    }
+  } finally {
+    delete globalThis.document;
+  }
+});
 
 test('a reorder that adds nothing says the list takes the published order', async () => {
   try {
@@ -249,7 +266,7 @@ test('a change while a review is open withdraws it and prevents saving', async (
   }
 });
 
-test('a replaced saved state withdraws even an identical list review', async () => {
+test('a replaced data set withdraws even an identical list review', async () => {
   try {
     let aborted = false;
     const f = fixture({
@@ -260,11 +277,92 @@ test('a replaced saved state withdraws even an identical list review', async () 
     });
     f.get('list-revision-check').click();
     await settle();
-    f.replaceState();
+    f.replaceState({ dataset: true });
     f.view.render();
     await settle();
     assert.equal(aborted, true);
     assert.equal(f.getSaves(), 0);
+  } finally {
+    delete globalThis.document;
+  }
+});
+
+test('an unusable saved identity hides the offer without breaking render or the manual error', async () => {
+  try {
+    const f = fixture({ catalogId: 'linked', itemIds: [12345678901234568] });
+    assert.equal(f.get('list-revision-offer').hidden, true);
+    f.get('list-revision-check').click();
+    await settle();
+    assert.match(f.get('list-revision-status').textContent, /saved order has an invalid or duplicate comic identity/);
+    assert.equal(f.getSaves(), 0);
+  } finally {
+    delete globalThis.document;
+  }
+});
+
+test('a saving pause withdraws the offer, controls and an open review before another load', async () => {
+  try {
+    const record = READING_ORDER_REVISIONS[0];
+    let aborted = false;
+    const f = fixture({
+      catalogId: record.catalogId, itemIds: [...record.previousOrders[0]],
+      ask: ({ signal }) => new Promise((resolve) => {
+        signal.addEventListener('abort', () => { aborted = true; resolve(true); }, { once: true });
+      }),
+    });
+    f.order.id = record.catalogId;
+    f.order.items = record.revisedOrder.map((issueId) => ({ issueId }));
+    f.order.count = f.order.items.length;
+    f.get('list-revision-review').click();
+    await settle();
+    assert.ok(f.getQuestion());
+    f.setWritable(false);
+    f.view.render();
+    await settle();
+    assert.equal(aborted, true);
+    assert.equal(f.get('list-revision-offer').hidden, true);
+    for (const id of ['list-revision-review', 'list-revision-check', 'list-revision-choose']) {
+      assert.equal(f.get(id).disabled, true, id);
+      f.get(id).click();
+    }
+    await settle();
+    assert.equal(f.getCatalogs(), 1);
+    assert.equal(f.getSaves(), 0);
+    f.setWritable(true);
+    f.view.render();
+    assert.equal(f.get('list-revision-offer').hidden, false);
+    assert.equal(f.get('list-revision-check').disabled, false);
+  } finally {
+    delete globalThis.document;
+  }
+});
+
+test('background state updates keep an unchanged list review and chooser usable', async () => {
+  try {
+    let answer;
+    const f = fixture({
+      catalogId: 'linked',
+      ask: () => new Promise((resolve) => { answer = resolve; }),
+    });
+    f.get('list-revision-check').click();
+    await settle();
+    f.replaceState();
+    f.view.render();
+    assert.equal(f.getQuestion().signal.aborted, false);
+    answer(true);
+    await settle();
+    assert.equal(f.getSaves(), 1);
+
+    const chooser = fixture();
+    chooser.get('list-revision-check').click();
+    await settle();
+    chooser.replaceState();
+    chooser.view.render();
+    assert.equal(chooser.get('list-revision-chooser').hidden, false);
+    chooser.get('list-revision-select').value = 'sample';
+    chooser.get('list-revision-choose').click();
+    await settle();
+    assert.ok(chooser.getQuestion());
   } finally {
     delete globalThis.document;
   }

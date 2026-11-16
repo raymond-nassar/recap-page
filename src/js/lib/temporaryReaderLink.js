@@ -100,7 +100,7 @@ export function readerLinkReport(issue, digitalId = null) {
 
 // This factory owns document memory only. Reconciliation receives existing operation outcomes;
 // a new state object or an unrelated foreign save is not evidence of dataset replacement.
-export function createTemporaryReaderLinks() {
+export function createTemporaryReaderLinks({ blockedMessage = () => null } = {}) {
   const links = new Map();
   let known = true;
   let epoch = 0;
@@ -164,7 +164,7 @@ export function createTemporaryReaderLinks() {
     }
     if (!issue) return refusal('No comic was selected.');
     if (!known) {
-      if (source === 'saved') return refusal('Saved comic references are uncertain. Resolve saved data before opening this comic.');
+      if (source === 'saved') return refusal(blockedMessage() || 'Saved comic references are uncertain. Resolve saved data before opening this comic.');
       return { ok: true, issue, temporary: false };
     }
     const saved = savedReaderIssue(state, issue?.issueId);

@@ -30,6 +30,17 @@ function fixture() {
   };
 }
 
+test('a paused saved-comic launch asks to reopen without offering unreadable-data recovery', () => {
+  const state = fixture();
+  let message = 'Saving is paused; reopen the app to check your list.';
+  const links = createTemporaryReaderLinks({ blockedMessage: () => message });
+  links.reconcile(state, { changed: null });
+  assert.equal(links.resolve(state, state.issues[7], { source: 'saved' }).error, message);
+  assert.equal(links.resolve(state, state.issues[7], { source: 'bundled' }).ok, true);
+  message = null;
+  assert.match(links.resolve(state, state.issues[7], { source: 'saved' }).error, /Resolve saved data/);
+});
+
 function node(id, ownerDocument) {
   const handlers = new Map();
   const attributes = new Map();

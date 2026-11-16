@@ -42,6 +42,10 @@ export const listRevisions = {
       };
       Storage.prototype.getItem = function (name) {
         const stack = new Error().stack ?? '';
+        if (name === key && window.__revisionFault === 'preflight' && stack.includes('saveListRevision')) {
+          window.__revisionFault = 'observed';
+          throw new Error('test preflight read unavailable');
+        }
         if (name === key && window.__revisionFault === 'unreadable' && window.__revisionWritten
           && stack.includes('saveListRevision') && !stack.includes('Store.update')) {
           window.__revisionFault = 'observed';
@@ -129,11 +133,31 @@ export const listRevisions = {
       && document.querySelector('#list-revision-uncertain-banner').textContent.includes('may or may not have changed')
       && document.querySelector('#list-revision-uncertain-banner').textContent.includes('reopen')
     )));
+    t.check('a verification pause withdraws the offer and disables all comparison controls', await page.evaluate(() => (
+      document.querySelector('#list-revision-offer').hidden
+      && ['review', 'check', 'choose'].every((name) => document.querySelector(`#list-revision-${name}`).disabled)
+    )));
     await page.evaluate(() => { sessionStorage.setItem('revision-keep-saved', '1'); });
     await page.reload({ waitUntil: 'load' });
     const reopened = await page.evaluate((key) => JSON.parse(localStorage.getItem(key)), KEY);
     t.check('reopening shows the saved update and clears the uncertain warning',
       JSON.stringify(reopened.lists.saved.itemIds) === JSON.stringify(expected)
       && await page.$eval('#list-revision-uncertain-banner', (node) => node.hidden));
+
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForSelector('#list-revision-offer:not([hidden])');
+    const preflightBefore = await page.evaluate((key) => localStorage.getItem(key), KEY);
+    await page.evaluate(() => { window.__revisionFault = 'preflight'; });
+    await click(page, '#list-revision-review');
+    await page.waitForSelector('#ask[open]');
+    await click(page, '#ask-ok');
+    await page.waitForFunction(() => document.querySelector('#list-revision-status').textContent.includes('Could not read the saved data'));
+    t.check('a pre-write pause does not claim that a list update may have happened', await page.evaluate((key, original) => (
+      localStorage.getItem(key) === original
+      && document.querySelector('#list-revision-uncertain-banner').hidden
+      && document.querySelector('#blocked-banner').hidden
+      && document.querySelector('#list-revision-offer').hidden
+      && ['review', 'check', 'choose'].every((name) => document.querySelector(`#list-revision-${name}`).disabled)
+    ), KEY, preflightBefore));
   },
 };

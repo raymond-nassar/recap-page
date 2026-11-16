@@ -1,6 +1,6 @@
 import { compareListOrders, earlierPublishedOrders, matchesEarlierPublishedOrder, publishedRevisionItems } from '../lib/listCorrection.js';
 
-export function createListRevisions({ $, el, getState, activeListId, isCurrent, loadCatalog, loadOrder, askConfirm, saveRevision }) {
+export function createListRevisions({ $, el, getState, activeListId, isCurrent, canSave, getDatasetEpoch, loadCatalog, loadOrder, askConfirm, saveRevision }) {
   let request = null;
   let shownListId = null;
   let chooser = null;
@@ -13,13 +13,15 @@ export function createListRevisions({ $, el, getState, activeListId, isCurrent, 
     const id = activeListId();
     return Object.hasOwn(getState().lists, id ?? '') ? getState().lists[id] : null;
   };
-  const valid = (held) => request === held && isCurrent()
-    && getState() === held.state && currentList()?.id === held.id
+  const valid = (held) => request === held && isCurrent() && canSave()
+    && getDatasetEpoch() === held.epoch && currentList()?.id === held.id
     && JSON.stringify(currentList()) === held.signature;
 
   function busy(value) {
     for (const id of ['list-revision-review', 'list-revision-check', 'list-revision-choose']) {
-      $(`#${id}`).setAttribute('aria-disabled', String(value));
+      const disabled = !canSave();
+      $(`#${id}`).disabled = disabled;
+      $(`#${id}`).setAttribute('aria-disabled', String(value || disabled));
     }
   }
 
@@ -46,7 +48,7 @@ export function createListRevisions({ $, el, getState, activeListId, isCurrent, 
   }
 
   function chooserValid() {
-    return chooser && isCurrent() && getState() === chooser.state
+    return chooser && isCurrent() && canSave() && getDatasetEpoch() === chooser.epoch
       && currentList()?.id === chooser.id && JSON.stringify(currentList()) === chooser.signature;
   }
 
@@ -55,7 +57,7 @@ export function createListRevisions({ $, el, getState, activeListId, isCurrent, 
     if (request && !request.applying && !valid(request)) {
       const changedHere = isCurrent() && list?.id === request.id;
       withdraw();
-      if (changedHere) status('Your saved data changed. Compare the list again before updating.');
+      if (changedHere) status(canSave() ? 'Your saved data changed. Compare the list again before updating.' : '');
     }
     if (shownListId !== list?.id || !isCurrent()) {
       shownListId = isCurrent() ? list?.id ?? null : null;
@@ -64,14 +66,15 @@ export function createListRevisions({ $, el, getState, activeListId, isCurrent, 
     } else if (chooser && !chooserValid()) {
       closeChooser();
     }
-    $('#list-revision-offer').hidden = !isCurrent() || !list || !matchesEarlierPublishedOrder(list);
+    $('#list-revision-offer').hidden = !isCurrent() || !canSave() || !list || !matchesEarlierPublishedOrder(list);
+    busy(Boolean(request));
   }
 
   function begin() {
     const list = currentList();
-    if (request || !isCurrent() || !list) return null;
+    if (request || !isCurrent() || !canSave() || !list) return null;
     request = {
-      id: list.id, state: getState(), signature: JSON.stringify(list),
+      id: list.id, epoch: getDatasetEpoch(), signature: JSON.stringify(list),
       controller: new AbortController(), applying: false,
     };
     busy(true);
@@ -118,12 +121,12 @@ export function createListRevisions({ $, el, getState, activeListId, isCurrent, 
       } finally {
         held.applying = false;
       }
+      if ($('#list-revision-offer').hidden && restoreOfferFocus) focusOptions();
       if (!result.ok) {
         status(result.error);
         return;
       }
       status('Your list was updated. Progress stays on the same comics.');
-      if ($('#list-revision-offer').hidden && restoreOfferFocus) focusOptions();
     } catch (error) {
       if (valid(held)) status(`Could not compare the published order (${error.message}). Your list is unchanged.`);
     }
@@ -153,7 +156,7 @@ export function createListRevisions({ $, el, getState, activeListId, isCurrent, 
         select.replaceChildren(el('option', { value: '', text: 'Select a published order' }), ...entries.map((entry) => (
           el('option', { value: entry.id, text: entry.name })
         )));
-        chooser = { state: held.state, id: held.id, signature: held.signature, ids: new Set(entries.map((entry) => entry.id)) };
+        chooser = { epoch: held.epoch, id: held.id, signature: held.signature, ids: new Set(entries.map((entry) => entry.id)) };
         $('#list-revision-chooser').hidden = false;
         status(entries.length
           ? `Choose a published order to compare.${catalog.dropped ? ' Some published orders are unavailable.' : ''}`
@@ -168,6 +171,7 @@ export function createListRevisions({ $, el, getState, activeListId, isCurrent, 
   }
 
   async function choose() {
+    if (!canSave()) return;
     if (!chooserValid()) {
       closeChooser();
       status('Your saved data changed. Compare the list again before updating.');
