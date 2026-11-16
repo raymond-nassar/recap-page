@@ -9,6 +9,7 @@ import { pathToFileURL } from 'node:url';
 import { execFileSync, spawn } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { createStaticServer, DEFAULT_PORT as PORT, HOST } from '../server.mjs';
+import { findInstalls, matchProxy, parseShortcut, readArguments } from '../host/appWindow.mjs';
 
 if (process.platform !== 'win32' || process.env.GITHUB_ACTIONS !== 'true') {
   console.error('windows-pwa-probe installs real apps and runs only on a hosted Windows runner.');
@@ -184,6 +185,35 @@ async function startBrowser(spec, profile) {
   return puppeteer.connect({ transport, defaultViewport: { width: 1280, height: 900 } });
 }
 
+// The shipped reader of these shortcuts (#1412), run against what the browser really wrote. This profile is
+// a disposable --user-data-dir, which the module must refuse, so the whole-folder answer has to be that
+// refusal; with only that switch removed, the same shortcut must read as this app in a named profile
+// behind the browser's own proxy, and the module's own .lnk parse must agree with the shell's.
+async function moduleView(link) {
+  const view = { installs: await findInstalls() };
+  if (!link) return { ...view, ok: false, why: 'no shortcut for this app' };
+  const parsed = parseShortcut(Buffer.from(link.bytes, 'base64'));
+  view.parsedTarget = parsed?.target ?? null;
+  view.parsedArguments = parsed?.arguments ?? null;
+  const withoutDataDir = (parsed?.arguments ?? '').replace(/"?--user-data-dir=("[^"]*"|[^ ]*)"?\s*/, '').trim();
+  view.withoutDataDir = withoutDataDir;
+  view.readFull = readArguments(parsed?.arguments ?? '');
+  view.readWithoutDataDir = readArguments(withoutDataDir);
+  const proxy = parsed ? matchProxy(parsed.target, process.env) : null;
+  view.proxy = proxy ? { browser: proxy.browser.name, proxy: proxy.proxy } : null;
+  const problems = [];
+  if (!parsed) problems.push('shortcut did not parse');
+  else {
+    if (parsed.target.toLowerCase() !== String(link.target).toLowerCase()) problems.push('target differs from the shell');
+    if (parsed.arguments !== link.arguments) problems.push('arguments differ from the shell');
+  }
+  if (view.installs.ok !== false || view.installs.reason !== 'unexpected-arguments') problems.push('folder scan did not refuse the data directory');
+  if (view.readFull !== null) problems.push('full arguments were accepted');
+  if (!view.readWithoutDataDir) problems.push('arguments without the data directory were refused');
+  if (!view.proxy) problems.push('target is not the browser proxy');
+  return { ...view, ok: problems.length === 0, problems };
+}
+
 async function probe(spec) {
   // The runner's tmpdir() is an 8.3 short path (RUNNER~1); RUNNER_TEMP is the long form.
   const profile = await mkdtemp(join(process.env.RUNNER_TEMP || tmpdir(), `recap-pwa-probe-${spec.name}-`));
@@ -223,6 +253,7 @@ async function probe(spec) {
     record.run = runKeys();
     record.appx = appxPackage(details?.packaged_app_family_name);
     const link = record.links.find((entry) => entry.arguments.includes(`--app-id=${record.appId}`));
+    record.module = await moduleView(link);
     const aumid = details?.edge_web_app_user_model_id || link?.aumid || record.startApps[0]?.AppID;
     record.launches = [];
     if (link) {
@@ -290,4 +321,4 @@ try {
   server.closeAllConnections();
   await new Promise((resolve) => server.close(resolve));
 }
-if (results.some((record) => record.error)) process.exitCode = 1;
+if (results.some((record) => record.error || record.module?.ok !== true)) process.exitCode = 1;

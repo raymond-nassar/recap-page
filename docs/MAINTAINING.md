@@ -99,6 +99,19 @@ automatic cleanup. Check its title bar, taskbar and Alt+Tab appearance, and chec
 handoff separately with your own subscription. Do not equate programmatic standalone detection
 with those human observations.
 
+### Measure browser app shortcuts on a hosted runner
+
+The Windows launcher opens an installed app window through the browser's own Start menu shortcut
+(#1412), so the shortcut location, its arguments and the app id browsers derive are measured rather
+than assumed. Dispatch **Windows App Certification Kit** with default inputs; its `pwa-probe` job
+runs only on that manual dispatch, never on a pull request or a release preparation, and uses no
+environment and no secret. It installs the app in disposable Edge and Chrome profiles on the runner,
+records each shortcut, Start entry, registry trace and launch route, runs the shipped shortcut reader
+against the real shortcut, then uninstalls. The `pwa-probe` artifact keeps the records for seven days.
+Re-measure after any change to the manifest id or the shortcut reader, or when a browser update may
+have changed the shortcut format. Never run the probe script on your own machine: its install and
+uninstall touch the signed-in user's Start menu.
+
 ## Run the browser check
 
 Use `puppeteer-core` installed outside this repository. Never add it to `package.json`.

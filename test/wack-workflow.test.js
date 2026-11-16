@@ -244,6 +244,7 @@ test('native producer outputs and job deadlines bind every package consumer', ()
   const jobs = workflow.slice(workflow.search(/^jobs:\r?$/m))
     .split(/(?=^ {2}[a-z][\w-]*:)/m).slice(1);
   assert.deepEqual(jobs.map((job) => /^ {2}([\w-]+):/.exec(job)?.[1]), ['native', 'certify', 'installed', 'preparation', 'browser-diagnostic', 'pwa-probe']);
+  assert.doesNotMatch(jobs.at(-1), /^ {4}environment:|secrets\./m, 'the app window measurement never reaches a protected environment or a secret');
   assert.match(workflow, /native_only:\r?\n {8}description: .+\r?\n {8}type: boolean\r?\n {8}required: false\r?\n {8}default: false/);
   assert.match(workflow, /diagnostic_only:\r?\n {8}description: .+\r?\n {8}type: boolean\r?\n {8}required: false\r?\n {8}default: false/);
   const predicate = "!(github.event_name == 'workflow_dispatch' && (inputs.native_only == true || inputs.diagnostic_only == true))";

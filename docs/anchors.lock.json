@@ -1514,18 +1514,18 @@
     "fp": "8b1350d747d08b62",
     "head": "export const KEY = 'mrt.state.v2';"
   },
-  ".github/skills/new-reading-list/SKILL.md|classify-the-request-before-authoring#actual-comic-book-herald-source|docs/MAINTAINING.md:559|0": {
-    "anchor": "docs/MAINTAINING.md:559",
+  ".github/skills/new-reading-list/SKILL.md|classify-the-request-before-authoring#actual-comic-book-herald-source|docs/MAINTAINING.md:572|0": {
+    "anchor": "docs/MAINTAINING.md:572",
     "fp": "e68c1d5b4a58f20e",
     "head": "## Build a Comic Book Herald packet"
   },
-  ".github/skills/new-reading-list/SKILL.md|classify-the-request-before-authoring#actual-comic-book-reading-orders-source-within-a|docs/MAINTAINING.md:736|0": {
-    "anchor": "docs/MAINTAINING.md:736",
+  ".github/skills/new-reading-list/SKILL.md|classify-the-request-before-authoring#actual-comic-book-reading-orders-source-within-a|docs/MAINTAINING.md:749|0": {
+    "anchor": "docs/MAINTAINING.md:749",
     "fp": "d8181dc2cde63c63",
     "head": "## Build a Comic Book Reading Orders historical event packet"
   },
-  ".github/skills/new-reading-list/SKILL.md|classify-the-request-before-authoring#local-curated-source-or-another-factual-compilat|docs/MAINTAINING.md:446|0": {
-    "anchor": "docs/MAINTAINING.md:446",
+  ".github/skills/new-reading-list/SKILL.md|classify-the-request-before-authoring#local-curated-source-or-another-factual-compilat|docs/MAINTAINING.md:459|0": {
+    "anchor": "docs/MAINTAINING.md:459",
     "fp": "b704f0aa07ec6e5f",
     "head": "## Add a curated reading order"
   },
@@ -1559,8 +1559,8 @@
     "fp": "6fde7f377cd6f228",
     "head": "Finish reads GitHub; it never requests a merge. It requires an actual merge event and the published"
   },
-  ".github/skills/new-reading-list/SKILL.md|preserve-the-source-while-preparing-delivery|docs/MAINTAINING.md:1829|0": {
-    "anchor": "docs/MAINTAINING.md:1829",
+  ".github/skills/new-reading-list/SKILL.md|preserve-the-source-while-preparing-delivery|docs/MAINTAINING.md:1842|0": {
+    "anchor": "docs/MAINTAINING.md:1842",
     "fp": "bc5ae9fc4df20cc3",
     "head": "## Place a new reading list in a Universe"
   },
@@ -1594,8 +1594,8 @@
     "fp": "6fde7f377cd6f228",
     "head": "Finish reads GitHub; it never requests a merge. It requires an actual merge event and the published"
   },
-  ".github/skills/prepare-release/SKILL.md|classify-the-request|docs/MAINTAINING.md:1051-1057|0": {
-    "anchor": "docs/MAINTAINING.md:1051-1057",
+  ".github/skills/prepare-release/SKILL.md|classify-the-request|docs/MAINTAINING.md:1064-1070|0": {
+    "anchor": "docs/MAINTAINING.md:1064-1070",
     "fp": "69038f7c150c0982",
     "head": "## Cutting a release"
   },
