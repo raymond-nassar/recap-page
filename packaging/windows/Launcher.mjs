@@ -553,6 +553,8 @@ export async function coordinateLaunch({
 }
 
 export const GUI_STARTUP_ARGUMENT = '--gui-startup-v1';
+// Sign-in and Reconnect start only the engine (#1412): no browser, and the page that asked reports readiness.
+export const GUI_BACKGROUND_ARGUMENT = '--gui-startup-background-v1';
 export const GUI_BODY_LIMIT = 16384;
 export const GUI_BROWSER_TIMEOUT_MS = 30000;
 const INVALID_GUI_DETAIL = [
@@ -563,6 +565,7 @@ const INVALID_GUI_DETAIL = [
 
 export function selectGuiStartup(args) {
   if (!args.some((arg) => arg.startsWith('--gui-startup-'))) return false;
+  if (args.length === 1 && args[0] === GUI_BACKGROUND_ARGUMENT) return 'background';
   if (args.length !== 1 || args[0] !== GUI_STARTUP_ARGUMENT) {
     throw new Error('Recap Page received an unsupported startup request. Try starting the app again.');
   }
@@ -658,7 +661,7 @@ export async function presentLaunch({
   try {
     const result = requestError
       ? { status: LAUNCH_RESULT.FAILED, lines: [requestError.message] }
-      : await coordinate({ openBrowser });
+      : await coordinate({ openBrowser: gui === 'background' ? async () => {} : openBrowser });
     encoded = encodeGuiResult(result);
   } catch (error) {
     encoded = encodeGuiResult({

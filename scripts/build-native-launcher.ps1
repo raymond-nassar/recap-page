@@ -95,7 +95,7 @@ try {
       "call `"$setup`" -vcvars_ver=$toolVersion $sdk",
       "cd /d `"$source`"",
       "`"$resourceCompiler`" /nologo /fo `"$targetWork\Launcher.res`" Launcher.rc",
-      "`"$compiler`" $flags /Fo`"$targetWork\Launcher.obj`" /Fe`"$targetOut\RecapPageLauncher.exe`" Launcher.cpp `"$targetWork\Launcher.res`" /link $linkFlags /SUBSYSTEM:WINDOWS,10.00 user32.lib gdi32.lib ole32.lib windowscodecs.lib comctl32.lib msimg32.lib",
+      "`"$compiler`" $flags /Fo`"$targetWork\Launcher.obj`" /Fe`"$targetOut\RecapPageLauncher.exe`" Launcher.cpp `"$targetWork\Launcher.res`" /link $linkFlags /SUBSYSTEM:WINDOWS,10.00 user32.lib gdi32.lib ole32.lib windowscodecs.lib comctl32.lib msimg32.lib runtimeobject.lib",
       "`"$compiler`" $flags /Fo`"$targetWork\ServerVerifier.obj`" /Fe`"$targetOut\RecapPageVerifier.exe`" ServerVerifier.cpp `"$targetWork\Launcher.res`" /link $linkFlags /SUBSYSTEM:WINDOWS,10.00 iphlpapi.lib ws2_32.lib ole32.lib oleaut32.lib wbemuuid.lib shell32.lib"
     )
     if ($IncludeProofTools) {

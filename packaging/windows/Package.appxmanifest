@@ -4,7 +4,8 @@
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   xmlns:uap10="http://schemas.microsoft.com/appx/manifest/uap/windows10/10"
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
-  IgnorableNamespaces="uap uap10 rescap">
+  xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
+  IgnorableNamespaces="uap uap10 rescap desktop">
   <Identity
     Name="PanelStackLabs.RecapPage"
     Publisher="CN=F6D9045B-46F0-4EAC-9524-4BFC8A75A472"
@@ -47,6 +48,15 @@
           Wide310x150Logo="Assets\Wide310x150Logo.png"
           Square310x310Logo="Assets\Square310x310Logo.png" />
       </uap:VisualElements>
+      <Extensions>
+        <desktop:Extension
+          Category="windows.startupTask"
+          Executable="RecapPageLauncher.exe"
+          EntryPoint="Windows.FullTrustApplication"
+          uap10:Parameters="--recap-startup-task-v1">
+          <desktop:StartupTask TaskId="RecapPageStartup" Enabled="false" DisplayName="Recap Page" />
+        </desktop:Extension>
+      </Extensions>
     </Application>
   </Applications>
 

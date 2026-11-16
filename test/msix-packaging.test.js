@@ -388,6 +388,32 @@ test('GUI reserved arguments refuse coordination without changing ordinary argum
   }
 });
 
+test('GUI background startup coordinates the engine without opening any window (#1412)', async () => {
+  const { selectGuiStartup, presentLaunch, GUI_BACKGROUND_ARGUMENT } = await import('../packaging/windows/Launcher.mjs');
+  assert.equal(GUI_BACKGROUND_ARGUMENT, '--gui-startup-background-v1');
+  assert.equal(selectGuiStartup(['--gui-startup-background-v1']), 'background');
+  for (const args of [['--gui-startup-background-v2'], ['--gui-startup-background-v1', 'extra']]) {
+    assert.throws(() => selectGuiStartup(args), /unsupported startup request/);
+  }
+  for (const [args, expected] of [[['--gui-startup-background-v1'], 0], [['--gui-startup-v1'], 1]]) {
+    let opened = 0;
+    let code;
+    const output = capturedStream();
+    await presentLaunch({
+      args, output, setExitCode: (value) => { code = value; },
+      openBrowser: async () => { opened += 1; },
+      coordinate: async ({ openBrowser }) => {
+        await openBrowser();
+        return { status: 'opened' };
+      },
+    });
+    assert.equal(opened, expected);
+    assert.equal(code, 0);
+    assert.equal(output.frames.length, 1);
+    assert.equal(output.frames[0][5], 0);
+  }
+});
+
 test('GUI presentation waits for one complete backpressured write before successful exit', async () => {
   const { presentLaunch } = await import('../packaging/windows/Launcher.mjs');
   const output = capturedStream();
@@ -577,6 +603,33 @@ test('native PE policy requires complete architecture-matched GUI executable hea
   }
 });
 
+function importingImage(library) {
+  const bytes = Buffer.concat([nativeImage(), Buffer.alloc(512)]);
+  bytes.writeUInt16LE(1, 70);
+  bytes.writeUInt32LE(16, 196);
+  bytes.writeUInt32LE(0x1000, 208);
+  bytes.writeUInt32LE(0x1000, 340);
+  bytes.writeUInt32LE(0x100, 344);
+  bytes.writeUInt32LE(512, 348);
+  bytes.writeUInt32LE(0x1040, 512 + 12);
+  bytes.write(`${library}\0`, 576, 'ascii');
+  return bytes;
+}
+
+test('native PE policy admits the WinRT api-sets for the launcher alone', async () => {
+  // The launcher reads and enables the package's startup task through WinRT (#1412); the verifier never does.
+  const { nativePe, NATIVE_TARGETS } = await import('../scripts/lib/native-launcher.mjs');
+  const [target] = NATIVE_TARGETS;
+  for (const library of ['api-ms-win-core-winrt-l1-1-0.dll', 'api-ms-win-core-winrt-string-l1-1-0.dll']) {
+    assert.deepEqual(nativePe(importingImage(library), target).imports, [library]);
+    assert.throws(() => nativePe(importingImage(library), target, { verifier: true }), /unexpected runtime dependency/);
+  }
+  assert.deepEqual(nativePe(importingImage('KERNEL32.dll'), target).imports, ['kernel32.dll']);
+  for (const library of ['api-ms-win-core-winrt-error-l1-1-0.dll', 'runtimeobject.dll', 'evil.dll']) {
+    assert.throws(() => nativePe(importingImage(library), target), /unexpected runtime dependency/);
+  }
+});
+
 test('native package policy permits only the exact three executable relative paths', async () => {
   const { exactExecutablePayloads } = await import('../scripts/lib/native-launcher.mjs');
   const expected = ['RecapPageLauncher.exe', 'RecapPageVerifier.exe', 'runtime\\node.exe', 'Launcher.mjs'];
@@ -704,6 +757,28 @@ test('the package declares only runFullTrust', () => {
   assert.deepEqual(declared, ['runFullTrust']);
   assert.match(source, /xmlns:rescap="http:\/\/schemas\.microsoft\.com\/appx\/manifest\/foundation\/windows10\/restrictedcapabilities"/);
   assert.match(source, /xmlns:uap10="http:\/\/schemas\.microsoft\.com\/appx\/manifest\/uap\/windows10\/10"/);
+});
+
+test('the package activates only through its consent-first startup task (#1412)', async () => {
+  const { activationExtensions } = await import('../scripts/inspect-msix.mjs');
+  const source = read(MANIFEST);
+  assert.deepEqual(activationExtensions(source), [
+    'Category=windows.startupTask|Executable=RecapPageLauncher.exe'
+      + '|EntryPoint=Windows.FullTrustApplication|uap10:Parameters=--recap-startup-task-v1'
+      + '|desktop:StartupTask:TaskId=RecapPageStartup|Enabled=false|DisplayName=Recap Page',
+  ]);
+  for (const [before, after] of [
+    ['Enabled="false"', 'Enabled="true"'],
+    ['uap10:Parameters="--recap-startup-task-v1"', 'uap10:Parameters="--recap-startup-task-v1 %1"'],
+    ['uap10:Parameters="--recap-startup-task-v1"', 'uap11:Parameters="--recap-startup-task-v1"'],
+    ['uap10:Parameters="--recap-startup-task-v1"', ''],
+    ['Executable="RecapPageLauncher.exe"\r\n          EntryPoint', 'Executable="runtime\\node.exe"\r\n          EntryPoint'],
+    ['</Extensions>', '<uap:Extension Category="windows.fileTypeAssociation" /></Extensions>'],
+    ['<Extensions>', '<Extensions><desktop:Extension Category="windows.fullTrustProcess" Executable="RecapPageLauncher.exe" />'],
+  ]) {
+    assert.equal(source.split(before).length, 2, `the mutation seam ${before} is not unique`);
+    assert.throws(() => activationExtensions(source.replace(before, after)), /activation extensions differ/);
+  }
 });
 
 test('the packer separates the Store bundle from its proof-only update', async () => {

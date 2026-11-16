@@ -2740,6 +2740,27 @@ void preflight(const fs::path& root, const std::wstring& native) {
     try { recap::launchPaths(native, L"--unexpected"); }
     catch (const recap::WindowsFailure&) { rejected = true; }
     check(rejected, "native arguments were not rejected");
+    using Mode = recap::LaunchMode;
+    check(recap::launchMode(L"") == Mode::interactive && recap::launchMode(L" \t") == Mode::interactive &&
+          recap::launchMode(L"--recap-startup-task-v1") == Mode::background &&
+          recap::launchMode(L" --recap-reconnect-v1 ") == Mode::background &&
+          recap::launchMode(L"--recap-startup-state-v1") == Mode::startupState &&
+          recap::launchMode(L"--recap-startup-enable-v1") == Mode::startupEnable, "launch modes differ");
+    for (const auto* refused : { L"--recap-reconnect-v1 recap-page://x", L"recap-page:", L"--recap-startup-task-v2",
+                                 L"--RECAP-RECONNECT-V1", L"--recap-reconnect-v1--recap-startup-enable-v1" }) {
+        rejected = false;
+        try { recap::launchMode(refused); }
+        catch (const recap::WindowsFailure&) { rejected = true; }
+        check(rejected, "an unlisted launch argument was accepted");
+    }
+    for (const auto* stateOnly : { L"--recap-startup-state-v1", L"--recap-startup-enable-v1" }) {
+        rejected = false;
+        try { recap::launchPaths(native, stateOnly); }
+        catch (const recap::WindowsFailure&) { rejected = true; }
+        check(rejected, "a startup state token reached the coordinator");
+    }
+    check(recap::coordinatorCommand({ L"r", L"n", L"c" }, true) == L"\"n\" \"c\" --gui-startup-background-v1" &&
+          recap::coordinatorCommand({ L"r", L"n", L"c" }) == L"\"n\" \"c\" --gui-startup-v1", "coordinator arguments differ");
     check(!recap::insideRoot(L"C:\\fixture", L"C:\\fixture-escape\\node.exe"), "component prefix escaped root");
     check(recap::blockedEnvironment(L"nOdE_oPtIoNs=x") && recap::blockedEnvironment(L"node_path=x") &&
           !recap::blockedEnvironment(L"NODE_EXTRA=x"), "blocked environment names differ");
