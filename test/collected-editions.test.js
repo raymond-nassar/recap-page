@@ -251,23 +251,80 @@ test('minimising a database record drops covers and keeps credit', () => {
 });
 
 test('story titles verify only when every curated title is present', () => {
-  const check = { tier: 'gcd-story-titles', storyTitles: { 1: 'A', 2: 'B' } };
+  const check = { tier: 'gcd-story-titles', gcdSeries: 'X (Marvel, 2015 series)', storyTitles: { 1: 'A', 2: 'B' } };
+  const names = { 7: 'X (2015)' };
   const good = checkEdition(editionWith(check), fixtureWith([
     { type: 'comic story', title: 'A', sequence_number: 1 },
     { type: 'comic story', title: 'B', sequence_number: 2 },
-  ]), {});
+  ]), names);
   assert.equal(good.status, 'verified');
   assert.deepEqual([...good.verified], ['7:1', '7:2']);
-  const bad = checkEdition(editionWith(check), fixtureWith([{ type: 'comic story', title: 'A', sequence_number: 1 }]), {});
+  const bad = checkEdition(editionWith(check), fixtureWith([{ type: 'comic story', title: 'A', sequence_number: 1 }]), names);
   assert.equal(bad.status, 'conflict');
   assert.equal(bad.verified.size, 0);
   // Same count, wrong title: the count alone must not let the edition verify.
   const renamed = checkEdition(editionWith(check), fixtureWith([
     { type: 'comic story', title: 'A', sequence_number: 1 },
     { type: 'comic story', title: 'C', sequence_number: 2 },
-  ]), {});
+  ]), names);
   assert.equal(renamed.status, 'conflict');
   assert.equal(renamed.verified.size, 0);
+});
+
+test('each curated story title consumes a distinct indexed story (#1268)', () => {
+  const check = { tier: 'gcd-story-titles', gcdSeries: 'X (Marvel, 2015 series)', storyTitles: { 1: 'A', 2: 'A' } };
+  const names = { 7: 'X (2015)' };
+  const substituted = checkEdition(editionWith(check), fixtureWith([
+    { type: 'comic story', title: 'A', sequence_number: 1 },
+    { type: 'comic story', title: 'B', sequence_number: 2 },
+  ]), names);
+  assert.equal(substituted.status, 'conflict');
+  assert.equal(substituted.verified.size, 0);
+  const repeated = checkEdition(editionWith(check), fixtureWith([
+    { type: 'comic story', title: 'A', sequence_number: 1 },
+    { type: 'comic story', title: 'A', sequence_number: 2 },
+  ]), names);
+  assert.equal(repeated.status, 'verified');
+  // Real data: give #111 the title of #110 and the book's distinct #111 story must not stand in for it.
+  const data = inputs();
+  const book = data.pilot.editions.find((edition) => edition.id === 'thunderbolts-ellis-v1-faith-in-monsters');
+  book.gcdCheck.storyTitles[111] = book.gcdCheck.storyTitles[110];
+  const result = build(data)['gcd-editions.json'].editions.find((entry) => entry.edition === book.id).check;
+  assert.equal(result.status, 'conflict');
+  assert.deepEqual(result.verifiedComics, []);
+});
+
+test('story titles verify only when the source series is the list series (#1274)', () => {
+  const edition = (gcdSeries) => editionWith({ tier: 'gcd-story-titles', gcdSeries, storyTitles: { 1: 'Alpha', 2: 'Beta' } },
+    [{ seriesId: 2, from: 1, to: 2, assertedBy: 'owner-curated', basis: 'x' }]);
+  const book = fixtureWith([
+    { type: 'comic story', sequence_number: 1, title: 'Alpha' },
+    { type: 'comic story', sequence_number: 2, title: 'Beta' },
+  ]);
+  const kinds = (gcdSeries, name) => {
+    const result = checkEdition(edition(gcdSeries), book, { 2: name });
+    assert.equal(result.verified.size, 0);
+    assert.equal(result.status, 'conflict');
+    return result.conflicts.map((conflict) => conflict.kind);
+  };
+  assert.deepEqual(kinds('Example A (Marvel, 2006 series)', 'Unrelated Series (2007 - 2010)'), ['series-year']);
+  assert.deepEqual(kinds('Example A (Marvel, 2006 series)', 'Unrelated Series (2006 - 2010)'), ['series-name']);
+  assert.deepEqual(kinds(undefined, 'Example A (2006 - 2010)'), ['series-identity']);
+  assert.deepEqual(kinds('Example A (Marvel, 2006 series)', undefined), ['series-year']);
+  const control = checkEdition(edition('Example A (Marvel, 2006 series)'), book, { 2: 'Example A (2006 - 2010)' });
+  assert.equal(control.status, 'verified');
+  // Real data: the Civil War trade must not verify The Mighty Avengers (2007) #1-7 from the same titles.
+  const data = inputs();
+  const civilWar = data.pilot.editions.find((entry) => entry.id === 'civil-war-2007-tpb');
+  const moved = clone(data);
+  moved.pilot.editions.find((entry) => entry.id === civilWar.id).contents[0].seriesId = 1866;
+  const check = (value) => build(value)['gcd-editions.json'].editions.find((entry) => entry.edition === civilWar.id).check;
+  assert.equal(check(data).status, 'verified');
+  assert.deepEqual(check(moved).verifiedComics, []);
+  assert.deepEqual(check(moved).conflicts.map((conflict) => conflict.kind), ['series-year']);
+  delete civilWar.gcdCheck.gcdSeries;
+  assert.deepEqual(check(data).verifiedComics, []);
+  assert.deepEqual(check(data).conflicts.map((conflict) => conflict.kind), ['series-identity']);
 });
 
 test('a matching story count is consistent but never verified', () => {
@@ -366,12 +423,12 @@ test('an edition with any conflict is never labelled verified', () => {
   for (const check of Object.values(statuses)) if (check.conflicts.length) assert.notEqual(check.status, 'verified');
   assert.equal(statuses['secret-wars-2015-hc'].status, 'verified-with-conflicts');
   assert.equal(statuses['thunderbolts-ellis-v2-caged-angels'].status, 'verified-with-conflicts');
-  const partly = editionWith({ tier: 'gcd-story-titles', storyTitles: { 1: 'A' } },
+  const partly = editionWith({ tier: 'gcd-story-titles', gcdSeries: series, storyTitles: { 1: 'A' } },
     [{ seriesId: 7, from: 1, to: 2, assertedBy: 'owner-curated', basis: 'x' }]);
   const partlyResult = checkEdition(partly, fixtureWith([
     { type: 'comic story', sequence_number: 1, title: 'A' },
     { type: 'comic story', sequence_number: 2, title: 'B' },
-  ]), {});
+  ]), { 7: 'X (2015)' });
   assert.equal(partlyResult.conflicts.length, 0);
   assert.equal(partlyResult.status, 'partly-verified');
 });
@@ -975,6 +1032,16 @@ test('original issue stories verify only exact series, identity, title, pages an
   duplicates.gcdCheck.originalIssues[1].collectionSequence = 1;
   assert.notEqual(check(duplicates).status, 'verified');
   assert.notEqual(check(edition, book, fixtures, { 7: 'Example (2011)' }).status, 'verified');
+  // #1306: a legacy number such as "2 (718)" matches only on its own number, never on the legacy one.
+  const numbered = (number) => {
+    const originals = clone(fixtures);
+    originals[11].issue.number = number;
+    return check(edition, book, originals).status;
+  };
+  assert.equal(numbered('2 (718)'), 'verified');
+  for (const number of ['3 (718)', '718', '718 (2)', '2 (718) ', '2(718)', '02 (718)', '2 (718a)', '2 ()']) {
+    assert.notEqual(numbered(number), 'verified', number);
+  }
 });
 
 test('a numbered comparison requires the original to settle a page-count discrepancy', () => {
