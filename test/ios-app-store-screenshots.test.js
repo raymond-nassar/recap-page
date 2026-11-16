@@ -6,6 +6,7 @@ import { join } from 'node:path';
 import { runInNewContext } from 'node:vm';
 import { deflateSync } from 'node:zlib';
 import { crc32 } from '../scripts/build-icons.mjs';
+import { FICTIONAL_SYNOPSIS, installSynopsisFixture } from '../scripts/listing-fixtures.mjs';
 import { FIXTURE_API, previewResponse } from '../scripts/play-assets.mjs';
 import { DEFAULT_BASE } from '../src/js/api.js';
 import {
@@ -131,6 +132,8 @@ test('the seed is the fictional Play listing state with covers off and no notes'
   const reading = fixtures('ipad-13', 'dark').find(({ name }) => name === '03-reading-list');
   assert.match(reading.probe, /SessionSynopsis/);
   assert.match(reading.probe, /A lighthouse keeper follows a strange signal across the harbor\./);
+  assert.ok(reading.probe.includes(installSynopsisFixture.toString()));
+  assert.ok(SCREENS.find(({ name }) => name === '03-reading-list').text.includes(FICTIONAL_SYNOPSIS));
 });
 
 test('the iPad capture mixes collapsed and expanded sidebars without changing phone navigation', () => {

@@ -4,7 +4,7 @@ import { drawIcon, encodePng, crc32 } from './build-icons.mjs';
 import { createEmptyState, createList, normalizeIssue, markRead } from '../src/js/lib/model.js';
 import { HOST, DEFAULT_PORT } from '../server.mjs';
 import { LOCAL_SERVER_HEALTH_PATH, LOCAL_SERVER_HEADER_NAME, LOCAL_SERVER_HEADER_VALUE } from '../src/js/lib/localServer.js';
-import { CLOUD_FIXTURE, cloudFixtureResponse } from './listing-fixtures.mjs';
+import { CLOUD_FIXTURE, cloudFixtureResponse, FICTIONAL_SYNOPSIS } from './listing-fixtures.mjs';
 
 export const ORIGIN = `http://${HOST}:${DEFAULT_PORT}`;
 export const FIXTURE_API = `${ORIGIN}/__play_preview_api__`;
@@ -16,7 +16,8 @@ export const SCREENS = Object.freeze([
   { file: 'dark-04-reading-progress.png', route: '#/read/play-lantern', view: 'view-read', theme: 'dark', scroll: '#reading-overview', heading: '#hero-progress', text: ['3 of 8 read', 'Coming up'],
     alt: 'Dark Android reading progress for a fictional list, three of eight read, with the next issues coming up.' },
   { file: '01-library-preview.png', route: '#/library', view: 'view-library', text: ['Library', 'Fictional: Lantern Harbor', 'Fictional: Paper Moons'] },
-  { file: '02-reading-preview.png', route: '#/read/play-lantern', view: 'view-read', scroll: '#hero', heading: '#hero-title', text: ['Fictional: Lantern Harbor', 'Done'] },
+  { file: '02-reading-preview.png', route: '#/read/play-lantern', view: 'view-read', scroll: '#hero', heading: '#hero-title',
+    synopsis: { issueId: -4, text: FICTIONAL_SYNOPSIS }, text: ['Fictional: Lantern Harbor', 'Done', FICTIONAL_SYNOPSIS] },
   { file: '03-about-onedrive.png', route: '#/about', view: 'view-about', scroll: '#view-about h3:nth-of-type(5)', heading: 'h3:nth-of-type(5)', text: ['Your data', 'only to your own OneDrive'] },
   { file: '04-backup-settings.png', route: '#/data', view: 'view-data', scroll: '#cloud-backup', heading: '#cloud-backup h3', text: ['Cloud backup', 'Sign in with Microsoft', 'OneDrive'] },
 ]);

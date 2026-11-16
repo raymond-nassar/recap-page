@@ -9,11 +9,88 @@ import {
 } from '../scripts/play-assets.mjs';
 import { migrate } from '../src/js/lib/model.js';
 import { LOCAL_SERVER_HEALTH_PATH } from '../src/js/lib/localServer.js';
-import { dismissListingNotice, framedText } from '../scripts/listing-fixtures.mjs';
+import { SessionSynopsis } from '../src/js/synopsis.js';
+import {
+  dismissListingNotice, framedText, FICTIONAL_SYNOPSIS, installSynopsisFixture, openListingScreen,
+} from '../scripts/listing-fixtures.mjs';
 import { SCREENSHOTS } from '../scripts/capture-store-assets.mjs';
 
 const icon = playIcon();
 const feature = featureGraphic();
+
+test('listing synopsis fixture changes only the requested in-memory lookup', async () => {
+  const originalGet = SessionSynopsis.prototype.get;
+  const session = new SessionSynopsis();
+  session.record(-5, 'An existing session summary.');
+  const before = [...session.byId];
+  try {
+    await installSynopsisFixture(
+      { issueId: -4, text: FICTIONAL_SYNOPSIS }, new URL('../src/', import.meta.url).href,
+    );
+    assert.equal(session.get(-4), FICTIONAL_SYNOPSIS);
+    assert.equal(session.get('-4'), FICTIONAL_SYNOPSIS);
+    assert.equal(session.get(-5), 'An existing session summary.');
+    assert.equal(session.get(-6), undefined);
+    assert.equal(session.known(-4), false);
+    assert.deepEqual([...session.byId], before);
+  } finally {
+    SessionSynopsis.prototype.get = originalGet;
+  }
+});
+
+for (const [platform, screens, file] of [
+  ['desktop', SCREENSHOTS, '04-reading-progress.png'],
+  ['Play', SCREENS, '02-reading-preview.png'],
+]) {
+  test(`${platform} reading screenshot installs and frames the fictional synopsis`, async () => {
+    const screen = screens.find((entry) => entry.file === file);
+    const synopsis = { issueId: -4, text: FICTIONAL_SYNOPSIS };
+    assert.deepEqual(screens.filter((entry) => entry.synopsis).map((entry) => entry.file), [file]);
+    assert.deepEqual(screen.synopsis, synopsis);
+    assert.ok(screen.text.includes(FICTIONAL_SYNOPSIS));
+    const calls = [];
+    const location = { hash: '' };
+    const page = {
+      async goto(url, options) { calls.push(['goto', url, options]); },
+      async evaluate(fn, value) {
+        if (fn === installSynopsisFixture) calls.push(['install', value]);
+        else runInNewContext(`(${fn.toString()})(route)`, { location, route: value });
+      },
+      async waitForSelector(selector, options) { calls.push(['visible', selector, options]); },
+      async waitForFunction(fn, options) {
+        const settled = (states) => runInNewContext(`(${fn.toString()})()`, {
+          document: { getAnimations: () => states.map((playState) => ({ playState })) },
+        });
+        assert.equal(settled(['finished']), true);
+        assert.equal(settled(['running']), false);
+        calls.push(['settled', options]);
+      },
+    };
+    const options = { waitUntil: 'networkidle0' };
+    await openListingScreen(page, ORIGIN, screen, options);
+    assert.deepEqual(calls, [
+      ['goto', `${ORIGIN}/#/home`, options], ['install', synopsis],
+      ['visible', '#view-read:not([hidden])', { timeout: 15000 }],
+      ['settled', { timeout: 15000 }],
+    ]);
+    assert.equal(location.hash, screen.route);
+    calls.length = 0;
+    await openListingScreen(page, ORIGIN, screens[0], options);
+    assert.deepEqual(calls, [['goto', `${ORIGIN}/${screens[0].route}`, options]]);
+  });
+}
+
+test('Play capture accepts finished retained animations but rejects unsettled ones', () => {
+  const source = readFileSync(new URL('../scripts/capture-play-assets.mjs', import.meta.url), 'utf8');
+  const expression = source.match(/settled:\s*([^\r\n]+),/)[1];
+  for (const [states, expected] of [
+    [[], true], [['finished'], true], [['running'], false],
+    [['paused'], false], [['finished', 'running'], false],
+  ]) {
+    const document = { getAnimations: () => states.map((playState) => ({ playState })) };
+    assert.equal(runInNewContext(expression, { document }), expected, states.join(', '));
+  }
+});
 
 test('framed text never includes offscreen lines of a partly visible text node', () => {
   const text = 'Visible title\nonly to your own OneDrive';
