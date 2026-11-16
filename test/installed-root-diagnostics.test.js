@@ -150,6 +150,8 @@ test('semantic handshake reads retry only bounded transient stream failures', ()
   assert.match(reader, /retrySemanticRecordRead\(\[&\]/);
   assert.match(reader, /\[\] \{ Sleep\(20\); \}/);
   assert.match(native, /void serverVerifierCases\(\) \{\s*installedPollCases\(\);\s*semanticRecordReadCases\(\);/);
+  const verifierCases = native.match(/void serverVerifierCases\(\) \{([\s\S]*?)^\}/m)?.[1];
+  assert.match(verifierCases, /nativeVerifierDiagnosticCases\(\*liveReport\);/);
   const cases = native.match(/void semanticRecordReadCases\(\) \{([\s\S]*?)^\}/m)?.[1];
   assert.ok(cases);
   assert.match(cases, /transient semantic record read did not recover/);

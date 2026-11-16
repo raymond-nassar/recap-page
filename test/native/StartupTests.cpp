@@ -3614,9 +3614,9 @@ void nativeVerifierDiagnosticCases(std::ostream& report) {
 }
 
 void serverVerifierCases() {
-    nativeVerifierDiagnosticCases(*liveReport);
     installedPollCases();
     semanticRecordReadCases();
+    nativeVerifierDiagnosticCases(*liveReport);
     const recap::ownership::tests::FixtureFailure fixtureFailure("server-verifier/owned-fixture",
         recap::ownership::unknown(recap::ownership::Stage::wmi, recap::ownership::Reason::nativeReturn, E_ACCESSDENIED));
     std::ostringstream fixtureReport;
