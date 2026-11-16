@@ -349,6 +349,23 @@ export const editionCatalog = {
         }
       ]
     },
+    "war-of-the-realms-new-agents-of-atlas": {
+      "title": "War of the Realms: New Agents of Atlas",
+      "destinations": [
+        {
+          "provider": "hoopla",
+          "url": "https://www.hoopladigital.com/title/12917437",
+          "checkedAt": "2026-11-14",
+          "confirmedBy": "owner"
+        },
+        {
+          "provider": "libby",
+          "url": "https://share.libbyapp.com/title/5678469",
+          "checkedAt": "2026-11-14",
+          "confirmedBy": "owner"
+        }
+      ]
+    },
     "amazing-spider-man-edge-of-spider-verse": {
       "title": "Amazing Spider-Man: Edge of Spider-Verse",
       "destinations": [

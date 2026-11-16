@@ -35,12 +35,32 @@
     { "listId": "marvel-knights-to-planet-x-33", "file": "src/data/marvel_knights_to_planet_x_33.json", "editions": ["uncanny-xmen-v1-hope"] },
     { "listId": "x-men-divided-we-stand", "file": "src/data/x_men_divided_we_stand.json", "editions": ["young-xmen-v1-final-genesis"] },
     { "listId": "infinity-countdown-wars", "file": "src/data/infinity_countdown_wars.json", "editions": ["asgardians-v1-the-infinity-armada", "doctor-strange-waid-v1-across-the-universe"] },
-    { "listId": "war-of-the-realms", "file": "src/data/war_of_the_realms.json", "editions": ["asgardians-v2-war-of-the-realms", "war-of-the-realms-journey-into-mystery"] },
+    { "listId": "war-of-the-realms", "file": "src/data/war_of_the_realms.json", "editions": ["asgardians-v2-war-of-the-realms", "war-of-the-realms-journey-into-mystery", "war-of-the-realms-new-agents-of-atlas"] },
     { "listId": "spider-verse", "file": "src/data/spider_verse.json", "editions": ["amazing-spider-man-edge-of-spider-verse"] },
     { "listId": "axis", "file": "src/data/axis.json", "editions": ["loki-agent-of-asgard-v2-i-cannot-tell-a-lie"] },
     { "listId": "iron-man-2020", "file": "src/data/iron_man_2020.json", "editions": ["iron-man-2020-robot-revolution"] }
   ],
   "seriesEvidence": {
+    "145026": {
+      "url": "https://www.comics.org/api/series/name/War%20of%20the%20Realms%3A%20New%20Agents%20of%20Atlas/year/2019/?format=json",
+      "retrievedAt": "2026-11-14T16:51:37.411Z",
+      "series": {
+        "api_url": "https://www.comics.org/api/series/145026/?format=json",
+        "name": "War of the Realms: New Agents of Atlas", "year_began": 2019,
+        "publisher": "https://www.comics.org/api/publisher/78/?format=json", "country": "us", "language": "en",
+        "issue_descriptors": ["1 [Billy Tan]", "2 [Woo Dae Shim]", "3 [Woo Dae Shim]", "4 [Woo Dae Shim]"]
+      }
+    },
+    "150105": {
+      "url": "https://www.comics.org/api/series/name/War%20of%20the%20Realms%3A%20New%20Agents%20of%20Atlas/year/2019/?format=json",
+      "retrievedAt": "2026-11-14T16:51:37.411Z",
+      "series": {
+        "api_url": "https://www.comics.org/api/series/150105/?format=json",
+        "name": "War of the Realms: New Agents of Atlas", "year_began": 2019,
+        "publisher": "https://www.comics.org/api/publisher/78/?format=json", "country": "us", "language": "en",
+        "binding": "trade paperback", "active_issues": ["https://www.comics.org/api/issue/2013659/?format=json"]
+      }
+    },
     "154787": {
       "url": "https://www.comics.org/api/series/name/Iron%20Man%202020/year/2020/?format=json",
       "retrievedAt": "2026-11-14T17:52:54.453Z",
@@ -241,6 +261,18 @@
     }
   ],
   "editions": {
+    "war-of-the-realms-new-agents-of-atlas": {
+      "gcdSeries": "War of the Realms: New Agents of Atlas (Marvel, 2019 Series)",
+      "sourceSeriesId": 145026,
+      "collectionSeriesId": 150105,
+      "originalIssues": [
+        { "appNumber": 1, "gcdIssueId": 1961278, "onSaleDate": "2019-05-08" },
+        { "appNumber": 2, "gcdIssueId": 1966455, "onSaleDate": "2019-05-22" },
+        { "appNumber": 3, "gcdIssueId": 1974697, "onSaleDate": "2019-06-05" },
+        { "appNumber": 4, "gcdIssueId": 1980741, "onSaleDate": "2019-06-26" }
+      ],
+      "contents": [{ "seriesId": 27505, "from": 1, "to": 4, "assertedBy": "gcd-notes", "basis": "The indexer notes list New Agents of Atlas #1-4. The original issue identities and on-sale dates match the list; some creator roles differ between sources." }]
+    },
     "iron-man-2020-robot-revolution": {
       "gcdSeries": "Iron Man 2020 (Marvel, 2020 series)",
       "sourceSeriesId": 154787,
