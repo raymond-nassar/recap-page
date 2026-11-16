@@ -286,15 +286,17 @@ On a Mac, run `npm run ios:prepare` and open `packaging/ios/RecapPage.xcodeproj`
 WebKit gives each origin 5 MiB of storage for saved reading data, and charges a stored string by the
 form the engine holds it in: one byte per character for a string held in its one-byte form, two for one
 held in its two-byte form. On iOS the app's saved reading data was held in the two-byte form even when
-every character was Latin-1, so it cost two bytes per character either way. Restoring a reading-data
-backup briefly holds up to three copies: the saved data, the restore's staged copy and the copy kept
-for Undo.
+every character was Latin-1, so it cost two bytes per character either way. Before the restore capacity
+fixes, restoring a reading-data backup briefly held three copies: saved data, a staged copy and Undo.
 
 Since 4.5.1 (#960) the app stores reading data in a form WebKit holds at one byte per character:
 characters above Latin-1 are written as JSON escapes when that is shorter in storage, and the string
 is rebuilt so the engine keeps its one-byte form. A complete restore, which both restoring a OneDrive
 backup and choosing another device's progress use, no longer stages a third copy, because its journal
-already holds the restored value. A restore of a single reading-data file still stages one.
+already holds the restored value. An ordinary reading-data file restore on iOS now also skips the
+unused staged copy and keeps the prior data in its narrower spelling for Undo. Its synchronous
+replacement is still checked by reading back the saved value, and a refused replacement keeps the
+earlier Undo copy when storage permits. Other platforms retain the staged file-restore path.
 Checking a complete restore's journal, `verifyReader` recomputes that stored form with today's
 `isIosApp()` and `narrowed()` rule rather than reading it from the journal, so any later change to
 that rule must still verify the journals this version wrote.
@@ -332,13 +334,23 @@ complete restore through the app's own restore engine in four cases: into an emp
 of the same size saved by this version, over a two-byte prior written directly as 4.5.0 serialized it
 in the same launch, and over this version's data after the app has ended and opened again. The
 legacy-wide prior contains U+2019 and measures the first restore after upgrading; relaunching the new
-serializer's data does not make it wide. Each case must finish, leave the restored lists in place,
-and keep the earlier data for Undo. It also times an ordinary save and marking a comic Done at the
+serializer's data does not make it wide. Each case must finish, leave all restored reading data in
+place, and keep the earlier data for Undo. The same probe now also runs an ordinary file restore
+in both mixes, into an empty app, over saved data and over a legacy-wide prior. Those six file cases
+compare all validated reading content, check that no staged copy remains, and exercise Undo over
+prior data. These added file cases require a passing native run on the delivery candidate; Node's
+quota stand-in does not establish WebKit acceptance. It also times an ordinary save and marking a comic Done at the
 owner's size, before and after 4.5.1. The UI test runs in every iOS job, on both iPhones and the iPad.
 
 Escaping is limited to the iOS app. Chromium and Firefox count UTF-16 code units rather than string
 width, so other platforms retain the ordinary serializer. The Simulator capacity results and iOS
 save timings are recorded on the pull request that delivered #960.
+
+A complete restore refused for space now tries to put back the exact prior values from its journal
+before resuming saving. It checks the original journal, marker and current values under the restore
+lock, and preserves local authorization and unsaved-source guards. If any rollback write or check
+fails, saving stays paused with the existing recovery choices. The journal remains after a completed
+rollback too, so a killed app can recover writes that had not reached disk.
 
 ### Capacity sweep and interrupted writes
 

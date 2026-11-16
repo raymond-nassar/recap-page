@@ -21,6 +21,15 @@ window.recapRestoreTargetProbe = (() => {
     load('js/lib/completeBackup.js'),
     load('js/lib/completeRestore.js'),
   ]);
+  const canonical = (value) => JSON.stringify(value, (_key, item) => (item && typeof item === 'object' && !Array.isArray(item)
+    ? Object.fromEntries(Object.entries(item).sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0)))
+    : item));
+  const readerContent = (value) => {
+    const data = typeof value === 'string' ? JSON.parse(value) : { ...value };
+    delete data.writeToken;
+    delete data.exportedAt;
+    return canonical(data);
+  };
 
   const seeded = (seed) => {
     let value = seed >>> 0;
@@ -230,10 +239,6 @@ window.recapRestoreTargetProbe = (() => {
     const saved = localStorage.getItem(storage.KEY);
     const kept = localStorage.getItem(storage.PRERESTORE_KEY);
     // Key order is not part of the data: the capture writes lists in its own canonical order.
-    const canonical = (value) => JSON.stringify(value, (_key, item) => (item && typeof item === 'object' && !Array.isArray(item)
-      ? Object.fromEntries(Object.entries(item).sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0)))
-      : item));
-    const lists = (text) => canonical(JSON.parse(text).lists);
     const measured = {
       mix: cjk ? 'cjk' : 'ascii',
       readerChars: raw.length,
@@ -244,11 +249,42 @@ window.recapRestoreTargetProbe = (() => {
       error: result?.error ?? (journalCleanup.ok ? null : `The target journal could not be removed (${journalCleanup.reason}).`),
       journalCheck: check(),
       journalCleanup,
-      restoredMatches: saved !== null && lists(saved) === canonical(captured.backup.components.reader.lists),
-      undoKept: priorMain === null ? null : kept !== null && lists(kept) === lists(priorMain),
+      restoredMatches: saved !== null && readerContent(saved) === readerContent(captured.backup.components.reader),
+      undoKept: priorMain === null ? null : kept !== null && readerContent(kept) === readerContent(priorMain),
       savedChars: saved?.length ?? 0,
       roomAfter: room(),
     };
+    localStorage.clear();
+    return measured;
+  };
+
+  const fileRestore = async ([storage, model], { targetChars, cjk }) => {
+    const store = new storage.Store({ storage: localStorage });
+    store.load();
+    const raw = JSON.stringify(model.exportBackup(readerOfSize(model, targetChars, { cjk, seed: 1 })));
+    const incoming = store.inspectBackup(raw);
+    if (!incoming.ok) throw new Error(incoming.errors.join(' '));
+    const priorMain = localStorage.getItem(storage.KEY);
+    const roomBefore = room();
+    const result = store.restore(raw);
+    const saved = localStorage.getItem(storage.KEY);
+    const kept = localStorage.getItem(storage.PRERESTORE_KEY);
+    const measured = {
+      mix: cjk ? 'cjk' : 'ascii', priorChars: priorMain?.length ?? 0, roomBefore,
+      ok: result.ok, error: result.errors.join(' ') || null,
+      restoredMatches: saved !== null && readerContent(saved) === readerContent(model.exportBackup(incoming.state)),
+      undoKept: priorMain === null ? null : kept !== null && readerContent(kept) === readerContent(priorMain),
+      savedChars: saved?.length ?? 0, roomAfter: room(),
+      temporaryAbsent: localStorage.getItem(storage.READER_RESTORE_KEYS.temporary) === null,
+      undoRestored: null,
+    };
+    if (result.ok && priorMain !== null) {
+      const expected = store.inspectBackup(priorMain);
+      const undo = store.undoRestore();
+      measured.undoRestored = expected.ok && undo.ok
+        && readerContent(localStorage.getItem(storage.KEY)) === readerContent(model.exportBackup(expected.state))
+        && store.restoreOffer().kind === 'copy';
+    }
     localStorage.clear();
     return measured;
   };
@@ -329,6 +365,7 @@ window.recapRestoreTargetProbe = (() => {
     }
     const journalReadiness = await journalReady(indexedDB);
     const cases = [];
+    const fileCases = [];
     for (const mix of [false, true]) {
       for (const prior of ['empty', 'saved', 'legacy-wide']) {
         localStorage.clear();
@@ -340,12 +377,19 @@ window.recapRestoreTargetProbe = (() => {
           localStorage.setItem(storage.KEY, raw);
         }
         cases.push({ prior, ...await completeRestore(loaded, { targetChars, cjk: mix }) });
+        if (prior === 'saved') save(storage, readerOfSize(model, targetChars, { cjk: mix, seed: 2 }));
+        if (prior === 'legacy-wide') {
+          localStorage.setItem(storage.KEY, JSON.stringify({
+            writeToken: 'generated-legacy', ...model.exportBackup(readerOfSize(model, targetChars, { cjk: mix, seed: 2 })),
+          }));
+        }
+        fileCases.push({ prior, ...await fileRestore(loaded, { targetChars, cjk: mix }) });
       }
     }
     const timing = [await persistTiming(loaded, { cjk: false }), await persistTiming(loaded, { cjk: true })];
     localStorage.clear();
     return JSON.stringify({
-      probe: 'recap-restore-target-v1', phase, engine: navigator.userAgent, targetChars, journalReadiness, cases, timing,
+      probe: 'recap-restore-target-v1', phase, engine: navigator.userAgent, targetChars, journalReadiness, cases, fileCases, timing,
       durationMs: Date.now() - started,
     });
   };
