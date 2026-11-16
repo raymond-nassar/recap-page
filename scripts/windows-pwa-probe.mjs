@@ -160,18 +160,27 @@ function spawnAndWait(file, args) {
 
 // puppeteer.launch adds --enable-automation, and run 2 measured that an automated browser
 // ignores a handed-off --app-id launch unless the same flag is present. A reader's browser
-// is never automated, so start it plainly with a debugging port and connect to that.
+// is never automated, so start it plainly. Run 3 measured that the PWA domain answers only a
+// pipe client ("'PWA.install' wasn't found" over a debugging port), so keep the pipe and
+// frame its null-terminated messages here instead of letting puppeteer add its flags.
 async function startBrowser(spec, profile) {
-  const port = spec.name === 'edge' ? 9341 : 9342;
-  spawn(spec.exe, [`--remote-debugging-port=${port}`, `--user-data-dir=${profile}`, '--no-first-run',
-    '--no-default-browser-check', '--disable-background-networking', 'about:blank'], { detached: true, stdio: 'ignore' }).unref();
-  for (let waited = 0; waited < 30000; waited += 500) {
-    await sleep(500);
-    try {
-      return await puppeteer.connect({ browserURL: `http://127.0.0.1:${port}`, defaultViewport: { width: 1280, height: 900 } });
-    } catch { /* not listening yet */ }
-  }
-  throw new Error(`${spec.name} did not expose its debugging port`);
+  const child = spawn(spec.exe, ['--remote-debugging-pipe', `--user-data-dir=${profile}`, '--no-first-run',
+    '--no-default-browser-check', '--disable-background-networking', 'about:blank'], { stdio: ['ignore', 'ignore', 'ignore', 'pipe', 'pipe'] });
+  const [, , , toBrowser, fromBrowser] = child.stdio;
+  let pending = '';
+  const transport = {
+    send(message) { toBrowser.write(`${message}\0`); },
+    close() { toBrowser.end(); },
+  };
+  fromBrowser.setEncoding('utf8');
+  fromBrowser.on('data', (chunk) => {
+    const parts = (pending + chunk).split('\0');
+    pending = parts.pop();
+    for (const message of parts) transport.onmessage?.(message);
+  });
+  fromBrowser.on('close', () => transport.onclose?.());
+  toBrowser.on('error', () => {});
+  return puppeteer.connect({ transport, defaultViewport: { width: 1280, height: 900 } });
 }
 
 async function probe(spec) {
