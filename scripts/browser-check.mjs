@@ -8929,7 +8929,7 @@ const SCENARIOS = [
       t.check('Backup and settings reports the local connection separately and explains recovery',
         settings.text === 'The local app connection needs attention.'
         && settings.describedBy === 'local-connection-status local-connection-help'
-        && settings.help.includes('browser-installed app cannot start that separate copy itself'),
+        && settings.help.includes('browser-installed app cannot start the downloaded copy itself'),
         JSON.stringify(settings));
 
       await setMode(page, 'health', 'pending');

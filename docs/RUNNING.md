@@ -49,7 +49,9 @@ Store. Installation may be unavailable until the current certification is comple
 2. Unzip it.
 3. Double-click **Start on Windows.cmd**.
 
-The archive contains everything needed to run the tracker. No installer or account is needed.
+The archive contains everything needed to run the tracker. No installer or account is needed. If
+Recap Page is installed as an app in your default browser, it opens in that app window instead of a
+browser tab.
 
 ### Run from source
 
@@ -151,9 +153,10 @@ install icon in Edge or Chrome's address bar, or **Add to Dock** in Safari.
 Recap Page gets its own window and app icon without changing its storage.
 In Edge and Chrome its title bar follows the **Theme** chosen in Backup & settings.
 
-On Windows, launch it from Start like other apps. If Start shows two **Recap Page** entries, the
-Microsoft Store one starts the local app and then opens the browser, while the browser-installed one
-opens only the app window. Keep using the same Edge profile and the exact
+On Windows, launch it from Start like other apps. If Start shows two **Recap Page** entries, both
+open the same app window with the same progress: the Microsoft Store one also starts the local app
+first, while the browser-installed one opens only the app window. Keep using the same Edge profile
+and the exact
 local address. Read opens Marvel's site separately in that profile, using your existing Marvel
 Unlimited sign-in; Recap Page has no sign-in of its own.
 
@@ -170,11 +173,12 @@ shell. Refreshing replaces the earlier completed copy only after the new one is 
 that has not been prepared may be missing. Recap Page checks its local app connection and explains
 how to reconnect when an uncached Reading List needs the separate local copy.
 
-Leave the installed window open. Start Recap Page with **Start on Windows.cmd**,
-**Start on macOS.command**, or the Microsoft Store installation. Return to the window and choose
+Leave the installed window open. If you installed Recap Page from the Microsoft Store, choose
+**Reconnect** in the window's notice and allow your browser to open Recap Page. Otherwise start Recap
+Page with **Start on Windows.cmd** or **Start on macOS.command**, return to the window and choose
 **Check again** in its notice, or **Backup & settings**, **Local app connection**,
-**Check connection**. Browser security prevents the installed website from starting that separate
-local program itself.
+**Check connection**. Browser security prevents the installed website from starting the downloaded
+copy itself.
 
 ## Stop and restart
 
