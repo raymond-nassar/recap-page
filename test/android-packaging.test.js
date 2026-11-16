@@ -215,6 +215,11 @@ async function proveWrapperBootstrap(t, env) {
   const source = /'(https:\/\/raw\.githubusercontent\.com\/gradle\/gradle\/v[\d.]+\/gradle\/wrapper\/gradle-wrapper\.jar)'/.exec(shipped);
   const pin = /^\$expected = '([0-9a-f]{64})'\r?$/m.exec(shipped);
   assert.ok(source && pin, 'the bootstrap names its source and its pin');
+  // The messages name the distribution's version, read as the bootstrap pin test reads it, so a
+  // wrapper bump moves these with it instead of failing only where PowerShell is installed.
+  const properties = await readFile(new URL('../packaging/android/gradle/wrapper/gradle-wrapper.properties', import.meta.url), 'utf8');
+  const version = properties.match(/gradle-(\d+\.\d+(?:\.\d+)?)-bin\.zip/)[1].replaceAll('.', '\\.');
+  const verified = new RegExp(`^OUT Gradle ${version} wrapper verified\\.\\r?$`, 'm');
   const official = Buffer.from('the pinned wrapper JAR');
   const stale = Buffer.from("the previous version's wrapper JAR");
   const tampered = Buffer.from('a download that does not match the pin');
@@ -270,7 +275,7 @@ catch { [Console]::Out.WriteLine('REFUSED ' + $_.Exception.Message) }
   // The case #904 reports: the previous version's JAR is replaced, verified, and the build may go on.
   await writeFile(jar, stale);
   let out = await run();
-  assert.match(out, /^OUT Gradle 9\.8\.2 wrapper verified\.\r?$/m, out);
+  assert.match(out, verified, out);
   assert.deepEqual(await current(), official);
   assert.equal(requests, 1);
   assert.equal(existsSync(download), false, 'no download is left beside the JAR');
@@ -280,7 +285,7 @@ catch { [Console]::Out.WriteLine('REFUSED ' + $_.Exception.Message) }
   await writeFile(jar, stale);
   served = tampered;
   out = await run();
-  assert.match(out, /^REFUSED The downloaded Gradle wrapper does not match the official Gradle 9\.8\.2 release, so it was deleted and nothing was run\./m, out);
+  assert.match(out, new RegExp(`^REFUSED The downloaded Gradle wrapper does not match the official Gradle ${version} release, so it was deleted and nothing was run\\.`, 'm'), out);
   assert.ok(out.includes(`delete ${jar}, then run the build again`), out);
   assert.doesNotMatch(out, /^OUT /m);
   assert.deepEqual(await current(), stale);
@@ -297,11 +302,11 @@ catch { [Console]::Out.WriteLine('REFUSED ' + $_.Exception.Message) }
   // verified without asking for it again.
   served = official;
   out = await run();
-  assert.match(out, /^OUT Gradle 9\.8\.2 wrapper verified\.\r?$/m, out);
+  assert.match(out, verified, out);
   assert.deepEqual(await current(), official);
   requests = 0;
   out = await run();
-  assert.match(out, /^OUT Gradle 9\.8\.2 wrapper verified\.\r?$/m, out);
+  assert.match(out, verified, out);
   assert.equal(requests, 0, 'a matching JAR is not downloaded again');
 }
 
