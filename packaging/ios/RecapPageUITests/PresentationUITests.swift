@@ -41,6 +41,9 @@ func bottomBarIsTranslatedOffScreen(toggle: CGRect, webView: CGRect) -> Bool {
 @MainActor
 func revealBottomBar(in app: XCUIApplication) {
     let webView = app.webViews.firstMatch
+    // These unzoomed fixtures use the page's 880px navigation boundary. Run 43808855835
+    // timed out querying absent More on the 1032-point iPad; only narrow fixtures have this bar.
+    guard webView.frame.width <= 880 else { return }
     let toggle = app.descendants(matching: .any).matching(
         NSPredicate(format: "label == %@ OR identifier == %@", "More", "btn-rail-toggle")).firstMatch
     guard toggle.exists else { return }
