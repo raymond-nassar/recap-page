@@ -54,6 +54,8 @@ export const readingListChoices = {
       if (/^https?:/.test(request.url()) && !request.url().startsWith(page.__origin)) external.push(request.url());
     });
     await page.evaluateOnNewDocument((fixtureLists, fixtureOrders, paths, saved) => {
+      // The about:blank document a fresh load passes through has no storage.
+      if (location.protocol === 'about:') return;
       localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
       if (!sessionStorage.getItem('reading-list-choices-seeded')) {
         localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
@@ -165,8 +167,10 @@ export const readingListChoices = {
       && JSON.stringify(withMovie.read) === JSON.stringify(before.read));
 
     await page.evaluate(() => localStorage.removeItem('mrt.state.v2'));
+    // A new document, not a fragment change plus reload: Edge 157 can reload the entry the app
+    // replaced while that change was in flight instead of the one just opened (#1329).
+    await page.goto('about:blank');
     await page.goto(`${page.__origin}/#/genres?type=political`, { waitUntil: 'load' });
-    await page.reload({ waitUntil: 'load' });
     await page.waitForSelector(`${fastCard} [data-act="import"]`);
     await click(page, `${fastCard} [data-act="import"]`);
     await page.waitForSelector('#view-read:not([hidden])');
