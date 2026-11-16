@@ -21,6 +21,8 @@ function fixture({ catalogId = null, itemIds = [1], ask = null, loadOrder = null
       click() { this.events.click(); },
     });
   }
+  nodes.get('list-revision-offer').contains = (node) => ['review', 'check', 'choose']
+    .some((name) => nodes.get(`list-revision-${name}`) === node);
   nodes.get('android-list-sheet[open] .android-sheet-header button').boxes = [];
   globalThis.document = { activeElement: null };
   const get = (id) => nodes.get(id.replace(/^#/, ''));
@@ -262,6 +264,34 @@ test('a change while a review is open withdraws it and prevents saving', async (
     assert.equal(aborted, true);
     assert.equal(f.getSaves(), 0);
     assert.match(f.get('list-revision-status').textContent, /saved data changed/i);
+  } finally {
+    delete globalThis.document;
+  }
+});
+
+test('withdrawing a stale review restores focus before hiding its offer', async () => {
+  let f;
+  try {
+    f = fixture({
+      catalogId: 'linked',
+      ask: ({ signal }) => new Promise((resolve) => {
+        signal.addEventListener('abort', () => {
+          f.get('list-revision-review').focus();
+          resolve(false);
+        }, { once: true });
+      }),
+    });
+    f.get('list-revision-review').focus();
+    f.get('list-revision-review').click();
+    await settle();
+    assert.ok(f.getQuestion());
+
+    f.state.lists.saved.itemIds.push(7);
+    f.view.render();
+    await settle();
+
+    assert.equal(f.get('list-revision-offer').hidden, true);
+    assert.equal(globalThis.document.activeElement, f.get('list-actions > summary'));
   } finally {
     delete globalThis.document;
   }

@@ -71,7 +71,10 @@ export function createListRevisions({ $, el, getState, activeListId, isCurrent, 
       closeChooser();
     }
     busy(Boolean(request));
-    $('#list-revision-offer').hidden = !isCurrent() || !canSave() || !list || !matchesEarlierPublishedOrder(list);
+    const offer = $('#list-revision-offer');
+    const hideOffer = !isCurrent() || !canSave() || !list || !matchesEarlierPublishedOrder(list);
+    if (hideOffer && isCurrent() && offer.contains(document.activeElement)) focusOptions();
+    offer.hidden = hideOffer;
   }
 
   function begin() {
