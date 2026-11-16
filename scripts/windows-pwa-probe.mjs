@@ -26,8 +26,8 @@ const predictedAppId = [...createHash('sha256').update(manifestId).digest().suba
   .map((byte) => String.fromCharCode(97 + (byte >> 4)) + String.fromCharCode(97 + (byte & 15))).join('');
 
 const browsers = [
-  { name: 'edge', exe: 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe', internals: 'edge://web-app-internals', image: 'msedge.exe' },
-  { name: 'chrome', exe: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', internals: 'chrome://web-app-internals', image: 'chrome.exe' },
+  { name: 'edge', exe: 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe', internals: 'edge://web-app-internals', image: 'msedge.exe', proxy: 'msedge_proxy.exe' },
+  { name: 'chrome', exe: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', internals: 'chrome://web-app-internals', image: 'chrome.exe', proxy: 'chrome_proxy.exe' },
 ];
 
 const ps = (command) => execFileSync('powershell.exe', ['-NoProfile', '-NonInteractive', '-Command',
@@ -81,14 +81,31 @@ function processes(image) {
   return psJson(`Get-CimInstance Win32_Process -Filter "Name='${image}'" | Select-Object ProcessId, ParentProcessId, CommandLine`);
 }
 
-function windows(image) {
-  const base = image.replace(/\.exe$/, '');
-  return psJson(`Get-Process -Name '${base}' -ErrorAction SilentlyContinue | Where-Object { $_.MainWindowHandle -ne 0 } | Select-Object Id, MainWindowTitle`);
+// Shortcut arguments quote mid-token (--user-data-dir="C:\..."), so a token-start-only quote
+// rule passes the quotes through as part of the path. The first run did that.
+function splitArguments(text) {
+  const tokens = [];
+  let current = '';
+  let quoted = false;
+  let started = false;
+  for (const character of text) {
+    if (character === '"') { quoted = !quoted; started = true; continue; }
+    if (!quoted && /\s/.test(character)) {
+      if (started) tokens.push(current);
+      current = '';
+      started = false;
+      continue;
+    }
+    current += character;
+    started = true;
+  }
+  if (started) tokens.push(current);
+  return tokens;
 }
 
-function splitArguments(text) {
-  return [...text.matchAll(/"([^"]*)"|(\S+)/g)].map((match) => match[1] ?? match[2]);
-}
+const allWindows = () => psJson(`Get-Process | Where-Object { $_.MainWindowHandle -ne 0 } | Select-Object Id, ProcessName, MainWindowTitle`);
+const imageProcesses = (images) => images.flatMap((image) => processes(image));
+const stopProcess = (id) => { try { process.kill(id); } catch { /* already gone */ } };
 
 async function standaloneTargets(browser, before) {
   const found = [];
@@ -104,22 +121,46 @@ async function standaloneTargets(browser, before) {
   return found;
 }
 
-async function warmLaunch(browser, label, launch, tabWindowId) {
+async function warmLaunch(browser, spec, label, launch, tabWindowId) {
   const before = new Set(browser.targets());
+  const images = [spec.image, spec.proxy];
+  const processesBefore = new Set(imageProcesses(images).map((entry) => entry.ProcessId));
+  const windowsBefore = new Set(allWindows().map((entry) => `${entry.Id}:${entry.MainWindowTitle}`));
   let error = null;
-  try { await launch(); } catch (caught) { error = caught.message; }
+  let launched = null;
+  try { launched = await launch(); } catch (caught) { error = caught.message; }
   let found = [];
   for (let waited = 0; waited < 20000 && !found.length; waited += 500) {
     await sleep(500);
     found = await standaloneTargets(browser, before);
   }
-  const result = { label, error, opened: found.map(({ url, standalone, windowId }) => ({ url, standalone, separateWindow: windowId !== tabWindowId })) };
+  const newProcesses = imageProcesses(images).filter((entry) => !processesBefore.has(entry.ProcessId));
+  const newWindows = allWindows().filter((entry) => !windowsBefore.has(`${entry.Id}:${entry.MainWindowTitle}`));
+  const result = {
+    label, error, launched,
+    opened: found.map(({ url, standalone, windowId }) => ({ url, standalone, separateWindow: windowId !== tabWindowId })),
+    newProcesses: newProcesses.map((entry) => entry.CommandLine), newWindows,
+  };
   for (const { page } of found) await page.close().catch(() => {});
+  for (const entry of newProcesses) if (!/--type=/.test(entry.CommandLine ?? '')) stopProcess(entry.ProcessId);
   return result;
 }
 
+function spawnAndWait(file, args) {
+  return new Promise((resolve) => {
+    const child = spawn(file, args, { stdio: ['ignore', 'pipe', 'pipe'] });
+    let output = '';
+    child.stdout.on('data', (chunk) => { output += chunk; });
+    child.stderr.on('data', (chunk) => { output += chunk; });
+    const timer = setTimeout(() => resolve({ exit: 'still running after 10 s', args, output: output.slice(0, 2000) }), 10000);
+    child.on('error', (failure) => { clearTimeout(timer); resolve({ exit: `spawn error: ${failure.message}`, args }); });
+    child.on('exit', (code) => { clearTimeout(timer); resolve({ exit: code, args, output: output.slice(0, 2000) }); });
+  });
+}
+
 async function probe(spec) {
-  const profile = await mkdtemp(join(tmpdir(), `recap-pwa-probe-${spec.name}-`));
+  // The runner's tmpdir() is an 8.3 short path (RUNNER~1); RUNNER_TEMP is the long form.
+  const profile = await mkdtemp(join(process.env.RUNNER_TEMP || tmpdir(), `recap-pwa-probe-${spec.name}-`));
   const since = new Date(Date.now() - 5000).toISOString();
   const record = { browser: spec.name, manifestId, predictedAppId, profile };
   let browser;
@@ -158,25 +199,38 @@ async function probe(spec) {
     const aumid = details?.edge_web_app_user_model_id || link?.aumid || record.startApps[0]?.AppID;
     record.launches = [];
     if (link) {
-      record.launches.push(await warmLaunch(browser, 'warm-shortcut-file', () => ps(`Start-Process -FilePath '${link.full.replace(/'/g, "''")}'`), tabWindowId));
-      record.launches.push(await warmLaunch(browser, 'warm-shortcut-target', () => {
-        spawn(link.target, splitArguments(link.arguments), { detached: true, stdio: 'ignore' }).unref();
-      }, tabWindowId));
+      const parsed = splitArguments(link.arguments);
+      record.parsedArguments = parsed;
+      // What a launcher would pass: only the profile and app selectors, never automation flags.
+      const filtered = parsed.filter((token) => /^--(user-data-dir|profile-directory|app-id)=/.test(token));
+      record.launches.push(await warmLaunch(browser, spec, 'warm-shortcut-file', () => ps(`Start-Process -FilePath '${link.full.replace(/'/g, "''")}'`), tabWindowId));
+      record.launches.push(await warmLaunch(browser, spec, 'warm-shortcut-target', () => spawnAndWait(link.target, parsed), tabWindowId));
+      record.launches.push(await warmLaunch(browser, spec, 'warm-proxy-filtered', () => spawnAndWait(link.target, filtered), tabWindowId));
+      record.launches.push(await warmLaunch(browser, spec, 'warm-browser-filtered', () => spawnAndWait(spec.exe, filtered), tabWindowId));
     }
     if (aumid) {
-      record.launches.push(await warmLaunch(browser, 'warm-aumid', () => ps(`Start-Process -FilePath 'explorer.exe' -ArgumentList 'shell:AppsFolder\\${aumid}'`), tabWindowId));
+      record.launches.push(await warmLaunch(browser, spec, 'warm-aumid', () => ps(`Start-Process -FilePath 'explorer.exe' -ArgumentList 'shell:AppsFolder\\${aumid}'`), tabWindowId));
     }
     await browser.close();
     browser = null;
     await sleep(3000);
+    record.lingering = imageProcesses([spec.image, spec.proxy]).map((entry) => entry.CommandLine);
     if (link) {
-      const beforeIds = new Set(processes(spec.image).map((entry) => entry.ProcessId));
-      ps(`Start-Process -FilePath '${link.full.replace(/'/g, "''")}'`);
-      await sleep(10000);
-      const started = processes(spec.image).filter((entry) => !beforeIds.has(entry.ProcessId));
-      record.coldShortcut = { processes: started.map((entry) => entry.CommandLine), windows: windows(spec.image) };
-      for (const entry of started) ps(`Stop-Process -Id ${entry.ProcessId} -Force -ErrorAction SilentlyContinue`);
-      await sleep(2000);
+      const parsed = splitArguments(link.arguments);
+      const filtered = parsed.filter((token) => /^--(user-data-dir|profile-directory|app-id)=/.test(token));
+      const beforeIds = new Set(imageProcesses([spec.image, spec.proxy]).map((entry) => entry.ProcessId));
+      const windowsBefore = new Set(allWindows().map((entry) => `${entry.Id}:${entry.MainWindowTitle}`));
+      const spawned = spawn(link.target, filtered, { detached: true, stdio: 'ignore' });
+      spawned.unref();
+      await sleep(15000);
+      const started = imageProcesses([spec.image, spec.proxy]).filter((entry) => !beforeIds.has(entry.ProcessId));
+      record.coldProxyFiltered = {
+        args: filtered,
+        processes: started.map((entry) => entry.CommandLine).filter((line) => !/--type=/.test(line ?? '')),
+        windows: allWindows().filter((entry) => !windowsBefore.has(`${entry.Id}:${entry.MainWindowTitle}`)),
+      };
+      for (const entry of started) stopProcess(entry.ProcessId);
+      await sleep(3000);
     }
     browser = await puppeteer.launch({
       executablePath: spec.exe, headless: false, userDataDir: profile, pipe: true,
