@@ -4,7 +4,7 @@ import { mkdtempSync, writeFileSync, rmSync, readFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { runInNewContext } from 'node:vm';
-import { waitForSettledRoots } from '../scripts/msix-proof.mjs';
+import { waitForSettledRoots, waitForStaleOffline } from '../scripts/msix-proof.mjs';
 
 test('installed lifecycle diagnostics retain exact count acceptance and the existing deadline', async (t) => {
   const root = mkdtempSync(join(tmpdir(), 'recap-root-counts-'));
@@ -161,4 +161,49 @@ test('proof DPI context is configured before COM initialization', () => {
   const native = readFileSync(new URL('../test/native/StartupTests.cpp', import.meta.url), 'utf8');
   const startup = native.slice(native.indexOf('int wmain('));
   assert.ok(startup.indexOf('SetThreadDpiAwarenessContext') < startup.indexOf('CoInitializeEx'));
+});
+
+test('a stale offline wait timeout records the page state and rethrows the same error', async (t) => {
+  const lines = [];
+  t.mock.method(console, 'log', (line) => { lines.push(line); });
+  const timeout = Object.assign(new Error('Waiting failed: 30000ms exceeded'), { name: 'TimeoutError' });
+  const page = (failure, state) => ({
+    waitForFunction: async () => { if (failure) throw failure; },
+    evaluate: async () => {
+      if (state instanceof Error) throw state;
+      return state;
+    },
+  });
+
+  await assert.rejects(
+    waitForStaleOffline(page(timeout, { results: 'Searching…', cached: { '/data/creators-index.json': true } }),
+      '#creator-results', 'creator', { listener: () => 4242 }),
+    (error) => error === timeout,
+  );
+  assert.equal(lines.length, 1);
+  assert.match(lines[0], /^DIAG stale-offline-wait-timeout \{/);
+  const record = JSON.parse(lines[0].slice('DIAG stale-offline-wait-timeout '.length));
+  assert.equal(record.label, 'creator');
+  assert.equal(record.listenerPid, 4242);
+  assert.equal(record.results, 'Searching…');
+  assert.equal(record.cached['/data/creators-index.json'], true);
+
+  await assert.rejects(
+    waitForStaleOffline(page(timeout, new Error('page gone')), '#series-results', 'series', {
+      listener: () => { throw new Error('query failed'); },
+    }),
+    (error) => error === timeout,
+  );
+  const second = JSON.parse(lines[1].slice('DIAG stale-offline-wait-timeout '.length));
+  assert.equal(second.stateError, 'page gone');
+  assert.equal(second.listenerPid, 'error: query failed');
+
+  const other = new Error('target closed');
+  await assert.rejects(waitForStaleOffline(page(other, {}), '#creator-results', 'creator', {
+    listener: () => { throw new Error('must not be queried'); },
+  }), (error) => error === other);
+  await waitForStaleOffline(page(null, {}), '#creator-results', 'creator', {
+    listener: () => { throw new Error('must not be queried'); },
+  });
+  assert.equal(lines.length, 2);
 });

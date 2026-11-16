@@ -1545,52 +1545,6 @@ test('listener lookup treats an absent exact endpoint as a normal null result', 
   assert.equal(listenerPid(() => '41'), 41);
 });
 
-test('a stale offline wait timeout records the page state and rethrows the same error', async (t) => {
-  const { waitForStaleOffline } = await import('../scripts/msix-proof.mjs');
-  const lines = [];
-  t.mock.method(console, 'log', (line) => { lines.push(line); });
-  const timeout = Object.assign(new Error('Waiting failed: 30000ms exceeded'), { name: 'TimeoutError' });
-  const page = (failure, state) => ({
-    waitForFunction: async () => { if (failure) throw failure; },
-    evaluate: async () => {
-      if (state instanceof Error) throw state;
-      return state;
-    },
-  });
-
-  await assert.rejects(
-    waitForStaleOffline(page(timeout, { results: 'Searching…', cached: { '/data/creators-index.json': true } }),
-      '#creator-results', 'creator', { listener: () => 4242 }),
-    (error) => error === timeout,
-  );
-  assert.equal(lines.length, 1);
-  assert.match(lines[0], /^DIAG stale-offline-wait-timeout \{/);
-  const record = JSON.parse(lines[0].slice('DIAG stale-offline-wait-timeout '.length));
-  assert.equal(record.label, 'creator');
-  assert.equal(record.listenerPid, 4242);
-  assert.equal(record.results, 'Searching…');
-  assert.equal(record.cached['/data/creators-index.json'], true);
-
-  await assert.rejects(
-    waitForStaleOffline(page(timeout, new Error('page gone')), '#series-results', 'series', {
-      listener: () => { throw new Error('query failed'); },
-    }),
-    (error) => error === timeout,
-  );
-  const second = JSON.parse(lines[1].slice('DIAG stale-offline-wait-timeout '.length));
-  assert.equal(second.stateError, 'page gone');
-  assert.equal(second.listenerPid, 'error: query failed');
-
-  const other = new Error('target closed');
-  await assert.rejects(waitForStaleOffline(page(other, {}), '#creator-results', 'creator', {
-    listener: () => { throw new Error('must not be queried'); },
-  }), (error) => error === other);
-  await waitForStaleOffline(page(null, {}), '#creator-results', 'creator', {
-    listener: () => { throw new Error('must not be queried'); },
-  });
-  assert.equal(lines.length, 2);
-});
-
 test('the proof refuses a foreign package identity before invoking PowerShell', async () => {
   const { removePackage } = await import('../scripts/msix-proof.mjs');
   let calls = 0;
