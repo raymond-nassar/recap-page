@@ -5,6 +5,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { VIEWS } from '../src/js/lib/route.js';
+import { HOME_CATEGORIES, LIBRARY_LINKS_ROUTE, ROUTED_CATEGORIES } from '../src/js/lib/catalog.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (path) => readFileSync(join(ROOT, path), 'utf8');
@@ -79,7 +80,11 @@ test('the rail groups Reading and App while Library and Search own their child p
     assert.doesNotMatch(rail, new RegExp(`data-view="${child}"`), `${child} still grows the rail`);
   }
   assert.match(main, /function railParentView\(next\)/, 'child pages no longer select their rail hub');
-  assert.match(main, /HOME_CATEGORIES\.some\(\(\{ route \}\) => route === next\)/);
+  assert.match(main, /ROUTED_CATEGORIES\.some\(\(\{ route \}\) => route === next\)/);
+  assert.deepEqual(ROUTED_CATEGORIES.map(({ route }) => route), [
+    ...HOME_CATEGORIES.map(({ route }) => route),
+    LIBRARY_LINKS_ROUTE,
+  ], 'every Home category and the Library links page must select the Home hub');
   assert.match(main, /ADD_VIEWS\.includes\(next\)/);
   assert.match(main, /LIBRARY_VIEWS\.some\(\(\{ value \}\) => value === next\)/);
 });

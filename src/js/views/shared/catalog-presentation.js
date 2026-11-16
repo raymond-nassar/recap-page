@@ -156,6 +156,7 @@ export function createCatalogPresentation({
     report = null,
     level = 'h3',
     titleId = null,
+    linkText = null,
   } = {}) {
     const reportTarget = report ?? `#${surface}-report`;
     const list = story.lists[0];
@@ -188,6 +189,12 @@ export function createCatalogPresentation({
             class: 'catalog-card-meta',
             text: catalogMeta(list),
           }),
+          // Measured against the stop's full order, every reading of it, so a filter never makes a
+          // partly linked list look complete (decisions 3 and 7, P3).
+          ...(linkText ? [el('p', {
+            class: 'catalog-card-links',
+            text: linkText(story),
+          })] : []),
           el('div', { class: 'result-source' }, source ? [source] : []),
         ]),
       ]),
@@ -224,6 +231,7 @@ export function createCatalogPresentation({
     message = '',
     narrowed = false,
     progress = null,
+    showFull = null,
     visibleStoryKeys = new Set(),
   } = {}) {
     if (!root || !position) return;
@@ -244,7 +252,19 @@ export function createCatalogPresentation({
           .find((candidate) => candidate.dataset.story === position.storyKey)
         : null;
       if (!card) {
-        root.prepend(status('hidden', message));
+        const note = status('hidden', message);
+        root.prepend(note);
+        // The way back to the whole timeline sits beside the sentence that says the stop is hidden
+        // (decision 15), and carries the marker so the next paint removes it with the note.
+        if (showFull) {
+          note.after(el('button', {
+            type: 'button',
+            class: 'btn btn-g timeline-position-show-full',
+            dataset: { timelinePosition: 'show-full' },
+            text: 'Show full timeline',
+            onclick: showFull,
+          }));
+        }
         return;
       }
       card.setAttribute('aria-current', 'step');

@@ -368,6 +368,7 @@ test('every routable view has one stable hierarchy and Home has none', () => {
     ['marvel-on-screen', ['Home', 'MCU Prep']],
     ['marvel-ages', ['Home', 'Marvel Ages']],
     ['genres', ['Home', 'Genres']],
+    ['library-links', ['Home', 'Library links']],
     ['universes', ['Home', 'Universes']],
     ['universe', ['Home', 'Universes', 'Universe not found']],
     ['issue', ['Home', 'Comic details']],
