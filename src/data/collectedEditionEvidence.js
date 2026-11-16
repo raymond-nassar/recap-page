@@ -2971,5 +2971,121 @@ export const editionEvidence = {
       "source": "https://www.comics.org/api/issue/1052285/?format=json",
       "checkedAt": "2026-11-13T14:51:02.170Z"
     }
-  ]
+  ],
+  "linkCoverage": {
+    "axis": {
+      "positions": 55,
+      "either": 4,
+      "hoopla": 4,
+      "libby": 4
+    },
+    "chaos-war": {
+      "positions": 19,
+      "either": 5,
+      "hoopla": 5,
+      "libby": 5
+    },
+    "civil-war": {
+      "positions": 31,
+      "either": 7,
+      "hoopla": 7,
+      "libby": 7
+    },
+    "civil-war-avengers": {
+      "positions": 83,
+      "either": 13,
+      "hoopla": 13,
+      "libby": 13
+    },
+    "civil-war-essential": {
+      "positions": 7,
+      "either": 7,
+      "hoopla": 7,
+      "libby": 7
+    },
+    "doomwar": {
+      "positions": 6,
+      "either": 6,
+      "hoopla": 6,
+      "libby": 6
+    },
+    "infinity-countdown-wars": {
+      "positions": 46,
+      "either": 3,
+      "hoopla": 3,
+      "libby": 2
+    },
+    "marvel-knights-to-planet-x-04": {
+      "positions": 4,
+      "either": 4,
+      "hoopla": 0,
+      "libby": 4
+    },
+    "marvel-knights-to-planet-x-12": {
+      "positions": 7,
+      "either": 5,
+      "hoopla": 5,
+      "libby": 5
+    },
+    "marvel-knights-to-planet-x-14": {
+      "positions": 6,
+      "either": 5,
+      "hoopla": 0,
+      "libby": 5
+    },
+    "marvel-knights-to-planet-x-15": {
+      "positions": 4,
+      "either": 3,
+      "hoopla": 3,
+      "libby": 3
+    },
+    "marvel-knights-to-planet-x-42": {
+      "positions": 5,
+      "either": 5,
+      "hoopla": 5,
+      "libby": 5
+    },
+    "marvel-knights-to-planet-x-69": {
+      "positions": 5,
+      "either": 5,
+      "hoopla": 5,
+      "libby": 5
+    },
+    "nebula-reading-order": {
+      "positions": 69,
+      "either": 10,
+      "hoopla": 10,
+      "libby": 10
+    },
+    "secret-invasion": {
+      "positions": 36,
+      "either": 12,
+      "hoopla": 12,
+      "libby": 12
+    },
+    "siege-dark-reign-prelude": {
+      "positions": 107,
+      "either": 5,
+      "hoopla": 0,
+      "libby": 5
+    },
+    "spider-verse": {
+      "positions": 35,
+      "either": 5,
+      "hoopla": 5,
+      "libby": 0
+    },
+    "war-of-the-realms": {
+      "positions": 66,
+      "either": 12,
+      "hoopla": 12,
+      "libby": 12
+    },
+    "x-men-regenesis": {
+      "positions": 43,
+      "either": 1,
+      "hoopla": 0,
+      "libby": 1
+    }
+  }
 };

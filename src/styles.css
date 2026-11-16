@@ -234,7 +234,7 @@
   --cyan-line: 91 208 233;
   --jade-line: 78 208 182;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:834`; these pairs supply saturation and lightness where that local hue is
+     `src/js/main.js:835`; these pairs supply saturation and lightness where that local hue is
      consumed. Keeping the hue reference on the cover avoids resolving it before the cover exists. */
   --fallback-a: 42% 26%;
   --fallback-b: 38% 14%;
@@ -1080,6 +1080,7 @@ details.full > :not(summary) { margin-right: var(--space-6); margin-left: var(--
 /* display:flex would otherwise defeat the hidden attribute. */
 .filters[hidden] { display: none; }
 .fp { display: inline-flex; }
+.fp[hidden] { display: none; }
 .fp input { position: absolute; opacity: 0; width: 1px; height: 1px; }
 .fp span {
   border: var(--stroke-1) solid var(--line-2); color: var(--muted); border-radius: var(--radius-pill);
@@ -1122,6 +1123,18 @@ details.full > :not(summary) { margin-right: var(--space-6); margin-left: var(--
   min-width: 0;
 }
 .story-type-label { margin: 0; color: var(--muted); font-size: var(--t-caption); font-weight: 600; }
+/* The library-link choices stack as two short pill rows and a summary, so they sit tighter than a
+   page's single filter row would. The summary stays visible rather than in a tooltip: it carries
+   the lending caveat the owner required beside every filtered result (#1333, decision 11). */
+.link-filter .filters { margin: var(--space-3) 0; }
+.link-filter-summary {
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3);
+  margin: var(--space-3) 0 var(--space-5); color: var(--muted); font-size: var(--t-caption);
+}
+.link-filter-summary[hidden] { display: none; }
+.link-filter-summary p { margin: 0; max-width: 60rem; }
+.link-filter-more { margin: var(--space-3) 0 var(--space-5); font-size: var(--t-caption); }
+.catalog-card-links { margin: 0; color: var(--muted); font-size: var(--t-caption); }
 /* The starting lists' hint reads as a subtitle, so it shares the heading's left edge. */
 .story-type-results > .rail-hint { margin: var(--space-2) 0 var(--space-3); }
 @media (max-width: 700px) {

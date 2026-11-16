@@ -1299,6 +1299,9 @@ export const CLOUD_BACKUP_DATABASE = 'mrt-cloud-backup-v1';
 export const CLOUD_BACKUP_LOCK = 'mrt.cloud-backup.worker.v1';
 export const CLOUD_SYNC_OFFER_LOCK = 'mrt.cloud-backup.sync-offer.v1';
 export const CLOUD_SYNC_PENDING_KEY = 'mrt.cloud-backup.sync-pending.v1';
+// The library-link browsing choices (#1333). Device-local by the owner's decision: the services a
+// reader's library offers belong to this device, so no backup, restore or cloud copy names this key.
+export const LIBRARY_LINKS_KEY = 'mrt.library-links.v1';
 
 // Prior values are only kept, never parsed or restored by the single-kind paths, so they are held to
 // the complete file's ceiling rather than the 8 MiB one. A restore must never be refused because the

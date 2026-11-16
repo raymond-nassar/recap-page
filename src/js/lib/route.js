@@ -8,14 +8,14 @@
 import { LIBRARY_VIEWS } from './library.js';
 import { READING_FILTERS, DEFAULT_FILTER } from './readingFilters.js';
 import {
-  CATALOG_SHELVES, HOME_CATEGORIES, PUBLISHING_CATEGORIES, STORY_TONES, STORY_TYPES, STORY_TYPES_ROUTE,
+  CATALOG_SHELVES, PUBLISHING_CATEGORIES, ROUTED_CATEGORIES, STORY_TONES, STORY_TYPES, STORY_TYPES_ROUTE,
 } from './catalog.js';
 import { MAX_NAME } from './model.js';
 import { RATING_SORTS, DEFAULT_RATING_SORT, RATING_THRESHOLDS } from './ratedComics.js';
 import { DEFAULT_UNIVERSE_SORT, UNIVERSE_SORTS } from './universes.js';
 
 const PUBLISHING_ROUTES = new Set(PUBLISHING_CATEGORIES.map((category) => category.route));
-const CUSTOM_CATEGORY_ROUTES = HOME_CATEGORIES
+const CUSTOM_CATEGORY_ROUTES = ROUTED_CATEGORIES
   .filter((category) => !category.shelf && category.kind !== 'universe-index' && !PUBLISHING_ROUTES.has(category.route))
   .map((category) => category.route);
 
@@ -149,7 +149,7 @@ export function breadcrumbHierarchy({
       }
       // A Home category with no shelf of its own, such as MCU Prep, is still the screen its list
       // was opened from. Marvel Ages is an index of other screens rather than one, so it is not.
-      const category = HOME_CATEGORIES.find((candidate) => !candidate.shelf && !candidate.kind
+      const category = ROUTED_CATEGORIES.find((candidate) => !candidate.shelf && !candidate.kind
         && candidate.route === browseRoute);
       if (category && VIEWS.includes(category.route)) {
         return [
@@ -187,7 +187,7 @@ export function breadcrumbHierarchy({
     return [...ancestors, current(publishing.heading)];
   }
 
-  const category = HOME_CATEGORIES.find((candidate) => candidate.route === view);
+  const category = ROUTED_CATEGORIES.find((candidate) => candidate.route === view);
   if (category) {
     return [cards, current(category.heading)];
   }
