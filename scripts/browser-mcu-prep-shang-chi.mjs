@@ -82,12 +82,17 @@ export const mcuPrepShangChiActualData = {
       }
     });
     await page.evaluateOnNewDocument(() => {
+      // The about:blank document a fresh load passes through has no storage.
+      if (location.protocol === 'about:') return;
       localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
       window.__mrtBlockExternal = true;
     });
 
     for (const width of [1280, 390]) {
       await page.setViewport({ width, height: 900 });
+      // The second width would otherwise reopen the same address as a fragment change, and Edge 157
+      // can then reload an entry the app replaced during it rather than this one (#1329).
+      await page.goto('about:blank');
       await page.goto(`${page.__origin}/?catalog=actual#/home`, { waitUntil: 'load' });
       await page.evaluate(() => localStorage.removeItem('mrt.state.v2'));
       await page.reload({ waitUntil: 'load' });
