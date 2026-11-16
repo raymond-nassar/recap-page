@@ -9,11 +9,11 @@ source can be reviewed alongside the prose.
 ## The three entry points
 
 The desktop source has three pages at one origin, each loading one module: the tracker at
-`src/index.html:1675`, the reader launch tab at `src/open.html:24`, and the development-only fault
+`src/index.html:1685`, the reader launch tab at `src/open.html:24`, and the development-only fault
 harness at `src/dev-faults.html:137`.
 
-The tracker entry calls `boot()`, then wires optional installation and registers the offline worker,
-at `src/js/app.js:12-32`.
+The tracker entry calls `boot()`, then wires optional installation and the Store app's question
+about starting at sign-in, and registers the offline worker, at `src/js/app.js:12-40`.
 Separating startup lets tests import view functions without booting the app. The external module
 also satisfies `script-src 'self'`; inline startup code would require a content security policy change.
 

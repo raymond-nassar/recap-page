@@ -12,6 +12,7 @@
 import { boot, notify } from './main.js';
 import { registerOffline } from './lib/offline.js';
 import { wireInstallation } from './lib/install.js';
+import { wireStartupConsent } from './lib/startupConsent.js';
 
 boot();
 // Optional, like the worker below, so it must not be able to stop the app drawing. Nothing is lost
@@ -20,6 +21,13 @@ try {
   wireInstallation({ notify });
 } catch (error) {
   console.error('Install option is unavailable:', error);
+}
+// Optional in the same way: the question about starting at sign-in is asked only in the Store app's
+// window, and a failure here must leave the rest of the app untouched.
+try {
+  wireStartupConsent();
+} catch (error) {
+  console.error('Automatic startup question is unavailable:', error);
 }
 
 // After boot, and the order is the whole of the reasoning. Registering the offline worker is a
