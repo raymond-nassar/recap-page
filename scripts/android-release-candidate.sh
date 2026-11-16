@@ -100,7 +100,7 @@ prepare() {
   "$SDK/cmdline-tools/latest/bin/sdkmanager" --channel=0 "platforms;android-36" "build-tools;35.0.0" < /dev/null
   pwsh -NoProfile -File "$SOURCE/packaging/android/bootstrap-wrapper.ps1"
   if [[ "$MODE" == Rehearsal ]]; then node "$NODE" jdk-proof; fi
-  gradle -PrecapAndroidTestBuildType=release bundleRelease lintRelease policyTest
+  gradle -PrecapAndroidTestBuildType=release bundleRelease lintRelease policyTest cloudTest
   cp "$SOURCE/packaging/android/app/build/outputs/bundle/release/app-release.aab" "$WORK/unsigned.aab"
   cp -R "$SOURCE/packaging/android/app/build/generated/assets/recap" "$WORK/generated"
   node --input-type=module - "$SOURCE" "$WORK" <<'JS'

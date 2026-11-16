@@ -155,8 +155,12 @@ licenses using Android Studio or the SDK manager.
 From the repository root on Windows:
 
 ```powershell
-.\packaging\android\gradlew.bat -p packaging\android assembleDebug assembleDebugAndroidTest lintDebug policyTest
+.\packaging\android\gradlew.bat -p packaging\android assembleDebug assembleDebugAndroidTest lintDebug policyTest cloudTest
 ```
+
+`cloudTest` runs the OneDrive and Google Drive account rules on the desktop JVM against a scripted
+network, so it needs no device and makes no network request. The emulator check and the release
+candidate run it in the same build, under a three-minute task deadline.
 
 On first use, the Windows wrapper restores its checksum-verified Gradle launcher locally.
 After a Gradle update it replaces the previous version's launcher the same way, keeping only a

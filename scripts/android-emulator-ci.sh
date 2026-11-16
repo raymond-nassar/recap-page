@@ -60,9 +60,10 @@ cleanup() {
     rm -f "$SOURCE_BACKUP"
   fi
   if [[ -n "$EMULATOR_PID" ]]; then
+    # A lost device makes logcat print "- waiting for device -" and block, so every cleanup call is bounded.
     if [[ "$MODE" == debug ]]; then
-      adb -s "$ANDROID_SERIAL" logcat -d -v threadtime 'AndroidRuntime:V' 'chromium:W' 'TestRunner:V' '*:S' > "$EVIDENCE/logcat.txt" 2>&1 || true
-      adb -s "$ANDROID_SERIAL" pull "/sdcard/Android/data/$APP/files/native-test-evidence" "$EVIDENCE/screenshots" > "$EVIDENCE/pull.txt" 2>&1 || true
+      timeout --kill-after=5 60 adb -s "$ANDROID_SERIAL" logcat -d -v threadtime 'AndroidRuntime:V' 'chromium:W' 'TestRunner:V' '*:S' > "$EVIDENCE/logcat.txt" 2>&1 || true
+      timeout --kill-after=5 60 adb -s "$ANDROID_SERIAL" pull "/sdcard/Android/data/$APP/files/native-test-evidence" "$EVIDENCE/screenshots" > "$EVIDENCE/pull.txt" 2>&1 || true
     fi
     if [[ "$MODE" == derived && "$NATIVE_FAILURE_ACTIVE" == 1 ]]; then
       local shutdown_exit=0 term_sent=0 kill_sent=0
@@ -84,8 +85,14 @@ cleanup() {
         fi
       fi
     else
-      adb -s "$ANDROID_SERIAL" emu kill > "$EVIDENCE/shutdown.txt" 2>&1 || true
+      timeout --kill-after=5 20 adb -s "$ANDROID_SERIAL" emu kill > "$EVIDENCE/shutdown.txt" 2>&1 || true
       kill "$EMULATOR_PID" 2>/dev/null || true
+      # Run 42389772108 spent 23 silent minutes here after its device dropped; give the emulator 30 seconds.
+      for _ in $(seq 1 30); do
+        kill -0 "$EMULATOR_PID" 2>/dev/null || break
+        sleep 1
+      done
+      kill -KILL "$EMULATOR_PID" 2>/dev/null || true
       wait "$EMULATOR_PID" 2>/dev/null || true
     fi
   fi
@@ -182,9 +189,22 @@ for attempt in $(seq 1 120); do
   sleep 2
 done
 test "$booted" = true
-adb root
-timeout 30 adb wait-for-device
-test "$(adb shell id -u | tr -d '\r')" = 0
+# adbd restarts to become root and the connection can drop mid-restart, as "adb: unable to connect for root:
+# closed" in runs 42389772108 and 43623491005, so wait for the device and ask again a bounded number of times.
+root_device() {
+  local attempt uid
+  for attempt in 1 2 3; do
+    timeout --kill-after=5 30 adb root || true
+    timeout --kill-after=5 30 adb wait-for-device || true
+    uid="$(timeout --kill-after=5 15 adb shell id -u 2>/dev/null | tr -d '\r' || true)"
+    if [[ "$uid" == 0 ]]; then return 0; fi
+    printf 'adb root attempt %s left adbd without root (uid %s).\n' "$attempt" "${uid:-unavailable}" >&2
+    if [[ "$attempt" != 3 ]]; then sleep 5; fi
+  done
+  printf '%s\n' 'adb root failed after 3 attempts; the emulator did not return with adbd as root' >&2
+  return 1
+}
+root_device
 adb shell iptables -I OUTPUT 1 '!' -o lo -j REJECT
 adb shell ip6tables -I OUTPUT 1 '!' -o lo -j REJECT
 adb shell iptables -C OUTPUT '!' -o lo -j REJECT
@@ -337,7 +357,7 @@ node scripts/check-android-instrumentation.mjs "$EVIDENCE/negative.log" "$EVIDEN
 cp "$SOURCE_BACKUP" "$ACTIVITY_SOURCE"
 rm -f "$SOURCE_BACKUP"
 SOURCE_BACKUP=""
-gradle assembleDebug assembleDebugAndroidTest lintDebug policyTest
+gradle assembleDebug assembleDebugAndroidTest lintDebug policyTest cloudTest
 install_apks
 instrument suite all
 node scripts/check-android-instrumentation.mjs "$EVIDENCE/suite.log" "$EVIDENCE/suite.json"

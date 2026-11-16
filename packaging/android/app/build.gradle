@@ -187,5 +187,7 @@ tasks.register('cloudTest', JavaExec) {
     // Smaller than a phone app's heap, so a create at the size cap meets the memory limit here as it can on
     // a device, where running out of memory on an uncaught path ends the whole app.
     maxHeapSize = '128m'
+    // Measured at 0.6 seconds for 1,220 checks on a desktop JVM; the bound keeps a hang inside the build steps that run it.
+    timeout = java.time.Duration.ofMinutes(3)
 }
 tasks.named('check').configure { dependsOn 'policyTest', 'cloudTest' }
