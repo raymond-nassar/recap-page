@@ -1107,6 +1107,8 @@ final class PresentationUITests: XCTestCase {
         view: currentView,
         dataAuditPosition: dataAuditPosition && { ...dataAuditPosition, settled: dataAuditGeometry() },
         focus: active ? describe(active) : null,
+        // A first native tap focuses the web view and the app redraws on window focus (#1034).
+        documentHasFocus: document.hasFocus(),
         focusIsControl: Boolean(active?.matches(`${controlSelector},[tabindex]:not([tabindex="-1"])`)),
         searchAuditPrepared: window.__recapSearchAuditPrepared === true,
         guard: window.__recapPassiveGuard ? {
@@ -1127,9 +1129,11 @@ final class PresentationUITests: XCTestCase {
             const element = document.querySelector('#sidebar .rail-header');
             if (!element) return null;
             const style = getComputedStyle(element);
+            // The class is recorded because a tap after a drag scroll can remove mobile-nav-hidden
+            // about 1.3 s later (#1034, run 41806149661), and only the class names that cause.
             return { rect: element.getBoundingClientRect().toJSON(), position: style.position,
               display: style.display, visibility: style.visibility, opacity: style.opacity,
-              transform: style.transform };
+              transform: style.transform, className: element.className };
           })(),
           dragProbes: (() => {
             const sidebar = document.getElementById('sidebar');
@@ -1746,6 +1750,9 @@ final class PresentationUITests: XCTestCase {
                 "afterCandidates": afterMatches,
                 "afterValid": (after["guard"] as? [String: Any])?["valid"] ?? NSNull(),
                 "tapWindow": window,
+                "documentHasFocus": [before["documentHasFocus"] ?? NSNull(), after["documentHasFocus"] ?? NSNull()],
+                "navigationState": [proof["navigationState"] ?? NSNull(),
+                                    (after["guard"] as? [String: Any])?["navigationState"] ?? NSNull()],
             ], summary: [
                 "key": key, "label": nativeLabel, "nativeFrame": NSCoder.string(for: nativeFrame),
                 "domChanged": (after["guard"] as? [String: Any])?["dom"] as? String != proof["dom"] as? String,
@@ -1753,6 +1760,9 @@ final class PresentationUITests: XCTestCase {
                 "route": [before["href"] ?? NSNull(), after["href"] ?? NSNull()],
                 "tapMutations": window["count"] ?? 0, "complete": window["complete"] ?? false,
                 "sameValueRewrites": window["sameValueRewrites"] ?? 0,
+                "documentHasFocus": [before["documentHasFocus"] ?? NSNull(), after["documentHasFocus"] ?? NSNull()],
+                "navigationClass": [(proof["navigationState"] as? [String: Any])?["className"] ?? NSNull(),
+                                    ((after["guard"] as? [String: Any])?["navigationState"] as? [String: Any])?["className"] ?? NSNull()],
                 "diff": Array((window["diff"] as? [[String: Any]] ?? []).prefix(8)),
             ])
             return false
