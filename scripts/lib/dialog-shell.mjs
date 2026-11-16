@@ -170,8 +170,17 @@ export function shellFocusStep(selector, edges) {
   const field = focused.matches('textarea, input:not([type="checkbox"], [type="radio"], [type="button"], [type="submit"])');
   const line = Number.parseFloat(getComputedStyle(focused).lineHeight) || 20;
   const end = field ? rect.top + Math.min(rect.height, 2 * line) : rect.bottom;
-  const probe = field ? rect.top + Math.min(rect.height, line) / 2 : rect.top + rect.height / 2;
-  const hit = document.elementFromPoint(rect.left + rect.width / 2, probe);
+  // A link that wraps is drawn as one box per line, and the centre of the box around them can fall
+  // between its lines or past the end of a short last line, on its parent. In Preview at 360x800 a
+  // two-line title link whose lines sat inside the limits was probed at a point its parent held
+  // (#1313), so every line it draws must be hit instead.
+  const probes = field ? [[rect.left + rect.width / 2, rect.top + Math.min(rect.height, line) / 2]]
+    : [...drawn.getClientRects()].filter((box) => box.width > 0 && box.height > 0)
+      .map((box) => [box.left + box.width / 2, box.top + box.height / 2]);
+  const reached = probes.length > 0 && probes.every(([x, y]) => {
+    const hit = document.elementFromPoint(x, y);
+    return !!hit && (hit === drawn || drawn.contains(hit));
+  });
   const inEdge = !!foot?.contains(focused) || (sticky(head) && head.contains(focused));
   const path = [];
   for (let node = focused; node && node !== dialog; node = node.parentElement) {
@@ -182,7 +191,7 @@ export function shellFocusStep(selector, edges) {
     key: path.join('>'),
     name: focused.id || focused.getAttribute('aria-label') || focused.textContent.trim().slice(0, 40),
     inEdge,
-    clear: !!hit && (hit === drawn || drawn.contains(hit)) && (inEdge
+    clear: reached && (inEdge
       || (rect.top >= top - 0.5 && end <= limit + 0.5)),
     top: Math.round(rect.top),
     bottom: Math.round(rect.bottom),
