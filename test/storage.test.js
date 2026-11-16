@@ -1203,6 +1203,83 @@ test('a restore that could not be written offers no undo where there was none', 
   assert.ok(isRead(store.state, 1), 'and so is the screen');
 });
 
+test('iOS refuses no-op Undo when failed repair leaves a narrowed copy of the live data', () => {
+  const previous = globalThis.document;
+  globalThis.document = { documentElement: { dataset: { platform: 'ios' } } };
+  try {
+    for (const cut of ['swap', 'snapshot-check']) {
+      const raw = goodBackup().replace('"app":', '"legacySpelling":"\u6f22","app":');
+      const storage = fakeStorage({ [KEY]: raw, [PRERESTORE_KEY]: 'earlier copy' });
+      const store = new Store({ storage });
+      store.load();
+      const set = storage.setItem.bind(storage);
+      let snapshotWritten = false;
+      storage.setItem = (key, value) => {
+        if (key === PRERESTORE_KEY) {
+          if (snapshotWritten) throw new Error('Snapshot repair refused');
+          set(key, value);
+          snapshotWritten = true;
+          if (cut === 'snapshot-check') throw new Error('Snapshot verification interrupted');
+          return;
+        }
+        if (key === KEY) throw new Error('Swap refused');
+        set(key, value);
+      };
+      storage.failRemoveKey = PRERESTORE_KEY;
+      const result = store.restore(replacementBackup());
+      assert.deepEqual([result.ok, result.changed], [false, false], cut);
+      assert.equal(storage.getItem(KEY), raw, 'exact main bytes remain unchanged');
+      assert.notEqual(storage.getItem(PRERESTORE_KEY), raw, 'the JSON spelling actually changed');
+      assert.equal(store.restoreOffer().identical, true, cut);
+      assert.equal(store.undoRestore().ok, false, cut);
+      assert.equal(storage.getItem(KEY), raw);
+    }
+  } finally {
+    if (previous === undefined) delete globalThis.document;
+    else globalThis.document = previous;
+  }
+});
+
+test('iOS restore offers do not scan whole copies when ASCII write tokens differ', (t) => {
+  const previous = globalThis.document;
+  globalThis.document = { documentElement: { dataset: { platform: 'ios' } } };
+  try {
+    const snapshot = JSON.stringify({ writeToken: 'prior-token', ...JSON.parse(goodBackup()),
+      legacySpelling: `\u6f22${'a'.repeat(10000)}` });
+    const main = snapshot.replace('prior-token', 'current-token');
+    const storage = fakeStorage({ [KEY]: main, [PRERESTORE_KEY]: snapshot });
+    const store = new Store({ storage });
+    store.load();
+    assert.equal(store.restoreOffer().identical, false);
+    const charCodeAt = t.mock.method(String.prototype, 'charCodeAt');
+    for (let repaint = 0; repaint < 3; repaint += 1) {
+      assert.equal(store.restoreOffer().identical, false);
+    }
+    assert.equal(charCodeAt.mock.callCount(), 0, 'repaints must not scan either stored copy');
+  } finally {
+    if (previous === undefined) delete globalThis.document;
+    else globalThis.document = previous;
+  }
+});
+
+test('iOS restore offers preserve equivalent Unicode write-token spellings', () => {
+  const previous = globalThis.document;
+  globalThis.document = { documentElement: { dataset: { platform: 'ios' } } };
+  try {
+    for (const token of ['same-token', '\u6f22-token']) {
+      const main = JSON.stringify({ writeToken: token, ...JSON.parse(goodBackup()), legacySpelling: '\u6f22' });
+      const snapshot = main.replace(/\u6f22/g, '\\u6f22');
+      const store = new Store({ storage: fakeStorage({ [KEY]: main, [PRERESTORE_KEY]: snapshot }) });
+      store.load();
+      assert.equal(store.restoreOffer().identical, true, token);
+      assert.equal(store.undoRestore().ok, false, 'equivalent copies cannot offer a no-op Undo');
+    }
+  } finally {
+    if (previous === undefined) delete globalThis.document;
+    else globalThis.document = previous;
+  }
+});
+
 test('a browser that will not say what it holds latches the store instead of guessing', () => {
   const storage = fakeStorage({ [KEY]: goodBackup() });
   const store = new Store({ storage });
