@@ -1243,8 +1243,8 @@ jobs:
         run: |
           npm run msix:pack
           if ($LASTEXITCODE -ne 0) { throw 'Package build failed.' }
-      - name: Install the measured package on the disposable runner
-        timeout-minutes: 4
+      - name: Trust the measured package certificate on the disposable runner
+        timeout-minutes: 2
         shell: pwsh
         run: |
           $source = [Security.Cryptography.X509Certificates.X509Certificate2]::new(
@@ -1257,10 +1257,17 @@ jobs:
           if ($certificate.Thumbprint -ne $source.Thumbprint) {
             throw 'The trusted measurement certificate differs from the generated CER.'
           }
+      # Run 43948389662 measured the package install failing under pwsh 7 with 0x80131539, "Operation
+      # is not supported on this platform", so the package steps use Windows PowerShell as the
+      # installed job's cleanup does.
+      - name: Install the measured package on the disposable runner
+        timeout-minutes: 4
+        shell: powershell
+        run: |
           $package = node --input-type=module -e "import { packagePath } from './scripts/pack-msix.mjs'; console.log(packagePath('x64'));"
           if ($LASTEXITCODE -ne 0 -or -not (Test-Path -LiteralPath $package)) { throw 'The measured x64 package is missing.' }
           Add-AppxPackage -Path $package -ErrorAction Stop
-          "MRT_PWA_PACKAGE=installed" >> $env:GITHUB_ENV
+          [IO.File]::AppendAllText($env:GITHUB_ENV, "MRT_PWA_PACKAGE=installed`n")
       - name: Measure browser app shortcuts, ids and launch routes
         timeout-minutes: 30
         shell: pwsh
@@ -1270,7 +1277,7 @@ jobs:
       - name: Remove the measured package, certificate and browser policy
         if: ${{ always() }}
         timeout-minutes: 4
-        shell: pwsh
+        shell: powershell
         run: |
           $failures = @()
           try {

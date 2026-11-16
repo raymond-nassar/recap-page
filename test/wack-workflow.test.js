@@ -831,6 +831,16 @@ test('browser diagnostic includes release history for the ordinary Pages scenari
   assert.match(checkout, /persist-credentials: false/);
 });
 
+test('every workflow step that drives the Appx cmdlets runs in Windows PowerShell', () => {
+  // pwsh 7 on the hosted runner refuses Add-AppxPackage with 0x80131539, which ended the first #1412
+  // probe before it measured anything.
+  const steps = workflow.split(/\n(?= {6}- name: )/).filter((step) => /\b(Add|Remove|Get)-AppxPackage\b/.test(step));
+  assert.ok(steps.length >= 5, `expected the package install and cleanup steps, found ${steps.length}`);
+  for (const step of steps) {
+    assert.match(step, /\n {8}shell: powershell\r?\n/, `${/- name: (.*?)\r?$/m.exec(step)[1]} must use Windows PowerShell`);
+  }
+});
+
 test('portable preparation excludes nonmanual and incomplete proof executions', () => {
   assert.match(workflow, /release_preparation:\r?\n {8}description: .+\r?\n {8}type: boolean\r?\n {8}required: false\r?\n {8}default: false/);
   const expression = preparation.match(/^ {4}if: \$\{\{ (.+) \}\}\r?$/m)?.[1];
