@@ -239,6 +239,13 @@ function iosStaticCopy(html, iCloudBackup, oneDrive) {
   index = replaceIosPattern(index, /<p id="local-connection-help" class="rail-hint">[\s\S]*?<\/p>/g,
     '<p id="local-connection-help" class="rail-hint">Your saved data is safe. Restart the app and check again.</p>',
     'iOS local connection help changed');
+  // #1412's app window invitation, its browser notice and the startup question are Windows-only, and
+  // the iOS entry never wires them, so the iOS page carries none of them.
+  index = replaceIosPattern(index,
+    /\s*<!-- #1412: Windows readers[\s\S]*?<\/section>\s*<p id="app-window-notice"[\s\S]*?<\/p>/g,
+    '', 'iOS app window invitation changed');
+  index = replaceIosPattern(index, /\s*<!-- #1412 decision 13:[\s\S]*?<section id="startup-consent"[\s\S]*?<\/section>/g,
+    '', 'iOS startup question changed');
   return index;
 }
 
