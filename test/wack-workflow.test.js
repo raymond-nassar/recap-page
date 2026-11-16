@@ -243,7 +243,7 @@ test('native producer outputs and job deadlines bind every package consumer', ()
   assert.match(workflow, /native-startup-proof\.ps1 -Architecture '\$\{\{ matrix\.architecture \}\}'/);
   const jobs = workflow.slice(workflow.search(/^jobs:\r?$/m))
     .split(/(?=^ {2}[a-z][\w-]*:)/m).slice(1);
-  assert.deepEqual(jobs.map((job) => /^ {2}([\w-]+):/.exec(job)?.[1]), ['native', 'certify', 'installed', 'preparation', 'browser-diagnostic']);
+  assert.deepEqual(jobs.map((job) => /^ {2}([\w-]+):/.exec(job)?.[1]), ['native', 'certify', 'installed', 'preparation', 'browser-diagnostic', 'pwa-probe']);
   assert.match(workflow, /native_only:\r?\n {8}description: .+\r?\n {8}type: boolean\r?\n {8}required: false\r?\n {8}default: false/);
   assert.match(workflow, /diagnostic_only:\r?\n {8}description: .+\r?\n {8}type: boolean\r?\n {8}required: false\r?\n {8}default: false/);
   const predicate = "!(github.event_name == 'workflow_dispatch' && (inputs.native_only == true || inputs.diagnostic_only == true))";
@@ -336,7 +336,7 @@ test('native producer outputs and job deadlines bind every package consumer', ()
     ['workflow_dispatch', recoveryMode, ['browser-diagnostic']],
     ['workflow_dispatch', ratingsMode, ['browser-diagnostic']],
     ['workflow_dispatch', interactionMode, ['browser-diagnostic']],
-    ['workflow_dispatch', {}, ['native', 'certify', 'installed']],
+    ['workflow_dispatch', {}, ['native', 'certify', 'installed', 'pwa-probe']],
     ['workflow_dispatch', { release_preparation: true }, ['native', 'certify', 'installed', 'preparation']],
     ['workflow_dispatch', { diagnostic_only: true, diagnostic_target: 'handles' }, ['native']],
     ['pull_request', browserMode, ['native', 'certify', 'installed']],
@@ -804,7 +804,7 @@ test('app startup prerequisites preserve native-only and all five installed jour
     ['pull_request', {}, true],
     ['workflow_dispatch', { diagnostic_only: true }, false],
   ]) assert.equal(runInNewContext(expression, { github: { event_name: event }, inputs }), enabled);
-  assert.equal(jobs.length, 5);
+  assert.equal(jobs.length, 6);
   assert.match(workflow, /--scenario=certification-functionality/);
   assert.match(workflow, /--scenario=busy-port-refusal/);
   assert.match(workflow, /--scenario=update-state-continuity/);
@@ -814,7 +814,7 @@ test('app startup prerequisites preserve native-only and all five installed jour
   assert.match(build, /WaitForExit\(120000\)/);
 });
 
-const browserDiagnostic = workflow.slice(workflow.indexOf('\n  browser-diagnostic:'));
+const browserDiagnostic = workflow.slice(workflow.indexOf('\n  browser-diagnostic:'), workflow.indexOf('\n  pwa-probe:'));
 const preparation = workflow.slice(workflow.indexOf('\n  preparation:'), workflow.indexOf('\n  browser-diagnostic:'));
 
 test('browser diagnostic includes release history for the ordinary Pages scenario', () => {

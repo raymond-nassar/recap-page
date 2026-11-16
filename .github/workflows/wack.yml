@@ -1177,3 +1177,45 @@ jobs:
             Remove-Item -LiteralPath $root -Recurse -Force -ErrorAction Stop
           }
           if (Test-Path -LiteralPath $root) { throw 'The diagnostic driver remains.' }
+  pwa-probe:
+    name: Browser app window measurement (#1412, not release qualification)
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.release_preparation != true && inputs.native_only != true && inputs.diagnostic_only != true }}
+    runs-on: windows-2022
+    timeout-minutes: 30
+    steps:
+      - name: Check out the exact measured source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 2
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Set up the measurement driver
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        timeout-minutes: 4
+        with:
+          node-version: '24'
+      - name: Install the isolated locked browser driver
+        timeout-minutes: 4
+        shell: pwsh
+        run: |
+          $root = Join-Path $env:RUNNER_TEMP 'recap-pwa-probe-driver'
+          Copy-Item -LiteralPath ./.github/browser-proof -Destination $root -Recurse -ErrorAction Stop
+          npm ci --prefix $root --ignore-scripts
+          if ($LASTEXITCODE -ne 0) { throw 'The measurement browser driver could not be installed.' }
+          "MRT_PUPPETEER=$root" >> $env:GITHUB_ENV
+          "MRT_PWA_EVIDENCE=$(Join-Path $env:RUNNER_TEMP 'recap-pwa-probe')" >> $env:GITHUB_ENV
+      - name: Measure browser app shortcuts, ids and launch routes
+        timeout-minutes: 12
+        shell: pwsh
+        run: |
+          node scripts/windows-pwa-probe.mjs
+          if ($LASTEXITCODE -ne 0) { throw 'The browser app measurement failed.' }
+      - name: Keep the measurement
+        if: ${{ always() }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        timeout-minutes: 2
+        with:
+          name: pwa-probe
+          path: ${{ runner.temp }}/recap-pwa-probe
+          if-no-files-found: warn
+          retention-days: 7
