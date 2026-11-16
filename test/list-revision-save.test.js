@@ -78,6 +78,90 @@ test('a thrown or silent update leaves the prior durable list and reports failur
   }
 });
 
+test('a pre-write validation failure reports its own reason after a successful save', () => {
+  const { store, storage, expected } = fixture();
+  const before = storage.getItem(KEY);
+  const result = saveListRevision(store, 'saved', expected, [{ issueId: 1, title: '' }]);
+  const message = 'The published order has an invalid comic.';
+  assert.equal(result.ok, false);
+  assert.equal(result.changed, false);
+  assert.equal(result.error, message);
+  assert.equal(store.lastError, message);
+  assert.equal(store.lastUpdateOk, false);
+  assert.equal(storage.getItem(KEY), before);
+});
+
+test('a pre-write validation failure replaces a previous conflict report', () => {
+  const { store, storage, values } = fixture();
+  const foreign = JSON.parse(values.get(KEY));
+  foreign.writeToken = 'foreign-write';
+  foreign.lists.saved.name = 'Edited elsewhere';
+  values.set(KEY, JSON.stringify(foreign));
+  store.update((state) => createList(state, { id: 'refused', name: 'Refused' }));
+  assert.equal(store.conflicted, true);
+  assert.equal(store.lastUpdateOk, false);
+  const before = storage.getItem(KEY);
+  const expected = JSON.stringify(store.state.lists.saved);
+  const reports = [];
+  store.onChange = (_state, error) => { if (error) reports.push(error); };
+  const result = saveListRevision(store, 'saved', expected, [{ issueId: 1, title: '' }]);
+  const message = 'The published order has an invalid comic.';
+  assert.equal(result.ok, false);
+  assert.equal(result.changed, false);
+  assert.equal(result.error, message);
+  assert.equal(store.lastError, message);
+  assert.equal(store.lastUpdateOk, false);
+  assert.equal(reports.at(-1), message);
+  assert.equal(storage.getItem(KEY), before);
+  assert.equal(store.state.lists.saved.name, 'Edited elsewhere');
+});
+
+test('a concurrent change during a no-op does not inherit a previous conflict report', () => {
+  const { store, storage, values } = fixture();
+  const foreign = JSON.parse(values.get(KEY));
+  foreign.writeToken = 'first-writer';
+  foreign.lists.saved.name = 'Edited elsewhere';
+  values.set(KEY, JSON.stringify(foreign));
+  store.update((state) => createList(state, { id: 'refused', name: 'Refused' }));
+  assert.equal(store.conflicted, true);
+  const expected = JSON.stringify(store.state.lists.saved);
+  const read = storage.getItem.bind(storage);
+  let reads = 0;
+  storage.getItem = (key) => {
+    if (key === KEY && ++reads === 2) {
+      const later = JSON.parse(values.get(KEY));
+      later.writeToken = 'later-writer';
+      later.lists.saved.name = 'Changed again';
+      values.set(KEY, JSON.stringify(later));
+    }
+    return read(key);
+  };
+  const result = saveListRevision(store, 'saved', expected, [revised[0]]);
+  const message = 'The saved data changed while the update was being verified. Check your list before trying again.';
+  assert.equal(result.ok, false);
+  assert.equal(result.changed, false);
+  assert.equal(result.error, message);
+  assert.equal(store.lastError, message);
+  assert.equal(store.state.lists.saved.name, 'Changed again');
+});
+
+test('an unreadable readback after no update write does not claim an uncertain update', () => {
+  for (const items of [[{ issueId: 1, title: '' }], [revised[0]]]) {
+    const { store, storage, expected } = fixture();
+    const read = storage.getItem.bind(storage);
+    let reads = 0;
+    storage.getItem = (key) => {
+      if (key === KEY && ++reads === 2) throw new Error('read unavailable');
+      return read(key);
+    };
+    const result = saveListRevision(store, 'saved', expected, items);
+    assert.equal(result.ok, false);
+    assert.equal(result.changed, false);
+    assert.equal(isListRevisionVerificationPaused(store), true);
+    assert.equal(isListRevisionVerificationPaused(store, { uncertainOnly: true }), false);
+  }
+});
+
 test('an unreadable or concurrently replaced update is not reported as saved', () => {
   const unreadable = fixture();
   unreadable.storage.mode = 'unreadable';

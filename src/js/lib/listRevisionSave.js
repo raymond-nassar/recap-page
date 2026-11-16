@@ -93,20 +93,30 @@ export function saveListRevision(store, listId, expectedList, items) {
   }
   const previous = store.state;
   let state;
+  let revisionError = null;
   let updateException = null;
   try {
-    state = store.update((current) => applyListRevision(current, listId, expectedList, items));
+    state = store.update((current) => {
+      try {
+        return applyListRevision(current, listId, expectedList, items);
+      } catch (error) {
+        revisionError = error;
+        throw error;
+      }
+    });
   } catch (error) {
     updateException = error;
     state = store.state;
   }
-  const updateOk = store.lastUpdateOk;
-  const conflicted = store.conflicted;
+  // The revision check can throw before update() refreshes its write flags, and a no-op never persists.
+  const updateOk = !revisionError && store.lastUpdateOk;
+  const attemptedWrite = !revisionError && Boolean(updateException || !updateOk || state !== previous);
+  const conflicted = attemptedWrite && store.conflicted;
   let durable;
   try {
     durable = store.storage.getItem(KEY);
   } catch (error) {
-    return pauseForUnknown(store, previous, `The update could not be verified (${error.message}). Saving is paused; reopen the app to check your list.`);
+    return pauseForUnknown(store, previous, `The update could not be verified (${error.message}). Saving is paused; reopen the app to check your list.`, { attemptedWrite });
   }
   let actual = null;
   try {
@@ -131,15 +141,18 @@ export function saveListRevision(store, listId, expectedList, items) {
       return { ok: true, changed: state !== previous, state };
     }
   }
-  const changed = durable === before ? false : null;
-  const message = conflicted
-    ? 'Saved data changed elsewhere. Compare the list again before updating.'
-    : changed === false
-      ? 'The update was not saved. Your list is unchanged.'
-      : 'The saved data changed while the update was being verified. Check your list before trying again.';
-  store.lastError ||= message;
+  const changed = !attemptedWrite || durable === before ? false : null;
+  const message = revisionError
+    ? revisionError.message
+    : conflicted
+      ? 'Saved data changed elsewhere. Compare the list again before updating.'
+      : durable === before
+        ? 'The update was not saved. Your list is unchanged.'
+        : 'The saved data changed while the update was being verified. Check your list before trying again.';
+  if (attemptedWrite) store.lastError ||= message;
+  else store.lastError = message;
   store.lastUpdateOk = false;
-  const uncertain = reconcile(store, durable, previous);
+  const uncertain = reconcile(store, durable, previous, attemptedWrite);
   if (uncertain) return uncertain;
   return { ok: false, changed, error: message };
 }
