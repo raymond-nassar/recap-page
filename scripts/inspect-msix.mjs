@@ -91,12 +91,14 @@ function xmlAttribute(source, elementName, attributeName) {
 }
 
 // Every extension is an activation surface Windows will launch the packaged launcher through, so
-// the whole set is pinned: the consent-first startup task is the only one (#1412). Names are kept
+// the whole set is pinned: the consent-first startup task and the Reconnect protocol, each with one
+// fixed token and no %1, so no address a page writes reaches the launcher (#1412). Names are kept
 // with values so moving a value to a sibling attribute such as uap11:Parameters is a difference.
 const ACTIVATION_EXTENSIONS = Object.freeze([
   'Category=windows.startupTask|Executable=RecapPageLauncher.exe'
     + '|EntryPoint=Windows.FullTrustApplication|uap10:Parameters=--recap-startup-task-v1'
     + '|desktop:StartupTask:TaskId=RecapPageStartup|Enabled=false|DisplayName=Recap Page',
+  'Category=windows.protocol|uap3:Protocol:Name=recap-page|Parameters=--recap-reconnect-v1',
 ]);
 
 function xmlAttributes(element) {

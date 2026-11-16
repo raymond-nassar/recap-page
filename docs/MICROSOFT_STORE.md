@@ -237,6 +237,17 @@ from this page's own origin with the custom header and a JSON body, from the rea
 session, one at a time. Every other build answers 404 there and loads nothing. `host/startupTask.mjs`
 holds the boundary and `test/startup-task.test.js` pins it.
 
+The Store package also registers the `recap-page:` address (#1412, decision 10), so an app window
+whose engine has stopped can start it again without a terminal. The registration carries the one
+fixed parameter `--recap-reconnect-v1` and no `%1`, so nothing a page puts in the address reaches the
+launcher, which treats the token as a quiet start like the startup task's. The page offers Reconnect
+only in the installed app window at the fixed origin, and only after a health answer from a Store
+package generation recorded that this reader's engine is the Store's; the portable download and a
+browser tab keep today's notice. Choosing it hands the address to the browser, which asks the reader
+before opening the app, then waits a minute for the health answer, reports the connection ready, and
+otherwise offers Reconnect again. `src/js/lib/reconnect.js` holds the rule, `test/reconnect.test.js`
+pins it, and `scripts/inspect-msix.mjs` refuses a package whose protocol differs.
+
 The maintained JavaScript coordinator validates the packaged server and generation, starts it with
 the package root as its working directory, removes every casing of `MRT_PORT` and `MRT_NO_OPEN`, and
 gives the server independent hidden process and stream ownership. It waits for the exact-generation

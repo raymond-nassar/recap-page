@@ -774,13 +774,14 @@ test('the package declares only runFullTrust', () => {
   assert.match(source, /xmlns:uap10="http:\/\/schemas\.microsoft\.com\/appx\/manifest\/uap\/windows10\/10"/);
 });
 
-test('the package activates only through its consent-first startup task (#1412)', async () => {
+test('the package activates only through its startup task and fixed Reconnect protocol (#1412)', async () => {
   const { activationExtensions } = await import('../scripts/inspect-msix.mjs');
   const source = read(MANIFEST);
   assert.deepEqual(activationExtensions(source), [
     'Category=windows.startupTask|Executable=RecapPageLauncher.exe'
       + '|EntryPoint=Windows.FullTrustApplication|uap10:Parameters=--recap-startup-task-v1'
       + '|desktop:StartupTask:TaskId=RecapPageStartup|Enabled=false|DisplayName=Recap Page',
+    'Category=windows.protocol|uap3:Protocol:Name=recap-page|Parameters=--recap-reconnect-v1',
   ]);
   for (const [before, after] of [
     ['Enabled="false"', 'Enabled="true"'],
@@ -790,6 +791,13 @@ test('the package activates only through its consent-first startup task (#1412)'
     ['Executable="RecapPageLauncher.exe"\r\n          EntryPoint', 'Executable="runtime\\node.exe"\r\n          EntryPoint'],
     ['</Extensions>', '<uap:Extension Category="windows.fileTypeAssociation" /></Extensions>'],
     ['<Extensions>', '<Extensions><desktop:Extension Category="windows.fullTrustProcess" Executable="RecapPageLauncher.exe" />'],
+    // Windows would hand the page's whole address to the launcher through %1, so the token stays alone.
+    ['Parameters="--recap-reconnect-v1"', 'Parameters="--recap-reconnect-v1 &quot;%1&quot;"'],
+    ['Parameters="--recap-reconnect-v1"', 'Parameters="--recap-startup-enable-v1"'],
+    [' Parameters="--recap-reconnect-v1"', ''],
+    ['Name="recap-page"', 'Name="ms-settings"'],
+    ['<uap3:Extension Category="windows.protocol">',
+      '<uap3:Extension Category="windows.protocol" Executable="runtime\\node.exe" EntryPoint="Windows.FullTrustApplication">'],
   ]) {
     assert.equal(source.split(before).length, 2, `the mutation seam ${before} is not unique`);
     assert.throws(() => activationExtensions(source.replace(before, after)), /activation extensions differ/);

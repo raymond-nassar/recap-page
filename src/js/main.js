@@ -49,6 +49,8 @@ import {
   SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE, createSaveEducation,
 } from './lib/saveEducation.js';
 import { checkLocalServer, LOCAL_SERVER_STATUS } from './lib/localServer.js';
+import { launchReconnect, observeEngine, reconnectAvailable, waitForEngine } from './lib/reconnect.js';
+import { askStartupConsentAgain } from './lib/startupConsent.js';
 import { createLibraryView } from './views/library.js';
 import { createRatedComicsView } from './views/rated-comics.js';
 import { createRatedGuideIndexLoader } from './lib/ratedComics.js';
@@ -3009,7 +3011,9 @@ function paintLocalConnectionStatus(status) {
 function runLocalConnectionProbe({ fresh = false } = {}) {
   if (!fresh && localConnectionInFlight) return localConnectionInFlight;
   const generation = ++localConnectionGeneration;
-  const request = checkLocalServer()
+  // The raw storage, not the observed one: whether the engine came from the Store package is not reading
+  // progress, so recording it must not count as a saved change for backup.
+  const request = checkLocalServer({ fetchImpl: observeEngine((...args) => fetch(...args), globalThis.localStorage) })
     .then((status) => {
       const current = generation === localConnectionGeneration;
       if (current) {
@@ -3049,6 +3053,17 @@ async function refreshLocalConnection({ explicit = false } = {}) {
   if (result.status === LOCAL_SERVER_STATUS.READY) {
     clearNotice(LOCAL_CONNECTION_NOTICE);
     if (explicit) notify('#local-connection-report', 'The local app connection is ready.', 'ok');
+  } else if (reconnectAvailable(result.status)) {
+    notify('#app-report', 'Reconnect to Recap Page.', 'warn', LOCAL_CONNECTION_NOTICE, {
+      label: 'Reconnect',
+      onClick: () => {
+        // Synchronously, inside the click: the browser hands an address to Windows only while the
+        // reader's activation lasts, so nothing may be awaited before it.
+        launchReconnect();
+        clearNotice(LOCAL_CONNECTION_NOTICE);
+        void reconnectLocalConnection();
+      },
+    });
   } else {
     notify(
       '#app-report',
@@ -3063,6 +3078,31 @@ async function refreshLocalConnection({ explicit = false } = {}) {
     );
   }
   return result;
+}
+
+// Decision 10: after Reconnect, the connection is reported only when the engine itself answers ready.
+// Each check goes through the shared probe, so a check the reader starts meanwhile takes over and this
+// wait ends without a word. If the wait runs out, the notice comes back from the engine's current state.
+let reconnectAttempt = 0;
+
+async function reconnectLocalConnection() {
+  const attempt = ++reconnectAttempt;
+  let current = true;
+  paintLocalConnectionStatus('checking');
+  const ready = await waitForEngine(async () => {
+    const result = await runLocalConnectionProbe({ fresh: true });
+    current = result.current;
+    if (current && result.status !== LOCAL_SERVER_STATUS.READY) paintLocalConnectionStatus('checking');
+    return result.status;
+  }, { isCurrent: () => current && attempt === reconnectAttempt });
+  if (attempt !== reconnectAttempt || !current) return;
+  if (!ready) {
+    void refreshLocalConnection();
+    return;
+  }
+  notify('#local-connection-report', 'The local app connection is ready.', 'ok');
+  // Decision 14: using Reconnect is the one time a declined startup question is asked again.
+  void askStartupConsentAgain();
 }
 
 async function reportBundledLoadFailure({
