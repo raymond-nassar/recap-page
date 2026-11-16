@@ -25,7 +25,7 @@ if [[ "$#" != 0 ]]; then
   PROTOTYPE_APK="${paths[3]}"
   PROTOTYPE_TEST="${paths[4]}"
   IFS=',' read -r -a NATIVE_METHODS <<< "${paths[5]}"
-  [[ "${#NATIVE_METHODS[@]}" == 6 ]]
+  [[ "${#NATIVE_METHODS[@]}" == 7 ]]
 fi
 EVIDENCE="$ROOT/packaging/android/app/build/native-evidence"
 if [[ "$MODE" == derived ]]; then EVIDENCE="$WORK/native-evidence"; fi

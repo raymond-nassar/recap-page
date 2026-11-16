@@ -602,7 +602,7 @@ test('the D8 nest-access marker class is accepted only in its exact empty, owned
   }
 });
 
-test('native proof binds twelve executions to exact installed bytes and non-reseeding probes', () => {
+test('native proof binds the suite and lifecycle executions to exact installed bytes and non-reseeding probes', () => {
   const target = (packageName, uid) => ({ packageName, uid, appHashes: [hash], harnessHash: hash, signerSha256: hash });
   const control = { official: target(OFFICIAL_ID, 10001), prototype: target(PROTOTYPE_ID, 10002) };
   const phases = [...NATIVE_METHODS.map((method) => ['suite', method]),
@@ -620,9 +620,9 @@ test('native proof binds twelve executions to exact installed bytes and non-rese
   verifyNativeReport(report, control);
   for (const change of [
     (r) => { r.executions.pop(); },
-    (r) => { r.executions[10].storageCleared = true; },
-    (r) => { r.executions[10].appHashes = ['f'.repeat(64)]; },
-    (r) => { r.executions[10].phase = 'official-seed'; },
+    (r) => { r.executions.find((entry) => entry.phase === 'official-probe').storageCleared = true; },
+    (r) => { r.executions.find((entry) => entry.phase === 'official-probe').appHashes = ['f'.repeat(64)]; },
+    (r) => { r.executions.find((entry) => entry.phase === 'official-probe').phase = 'official-seed'; },
     (r) => { r.executions[0].skipped = 1; },
     (r) => { r.device.externalNetworkBlocked = false; },
   ]) {

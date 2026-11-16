@@ -2112,6 +2112,7 @@ export class CloudBackupProtocol {
     const duplicateIds = new Set();
     let unrecognized = 0;
     let unknownBackups = 0;
+    const unsupportedBackups = [];
     let malformedRetained = 0;
     for (const value of items) {
       if (typeof value?.id === 'string' && value.id.length > 0) {
@@ -2129,10 +2130,17 @@ export class CloudBackupProtocol {
       else if (typeof value?.name === 'string' && value.name.startsWith('recap-page-kept-v1-')) malformedRetained += 1;
       else {
         unrecognized += 1;
-        if (typeof value?.name === 'string' && value.name.startsWith('recap-page-backup-')) unknownBackups += 1;
+        if (typeof value?.name === 'string' && value.name.startsWith('recap-page-backup-')) {
+          unknownBackups += 1;
+          unsupportedBackups.push({
+            id: item?.id ?? null, name: value.name, size: item?.size ?? null, created: item?.created ?? null,
+            stream: backupName?.stream ?? null, generation: backupName?.generation ?? null,
+            reason: 'Unsupported backup format or identity',
+          });
+        }
       }
     }
-    return { known, retained, nameCounts, unrecognized, ids: seenIds, duplicateIds, malformedRetained, unknownBackups };
+    return { known, retained, nameCounts, unrecognized, ids: seenIds, duplicateIds, malformedRetained, unknownBackups, unsupportedBackups };
   }
 
   async discard(id, connection) {
@@ -2301,6 +2309,91 @@ export class CloudBackupProtocol {
     }
     requireSyncContext(await this.records.read(), context);
     return result;
+  }
+
+  async syncReviewListing(context) {
+    requireSyncContext(await this.records.read(), context);
+    const { known, nameCounts, duplicateIds, unsupportedBackups } = await this.listed(context.connection);
+    const groups = new Map();
+    for (const item of [...known, ...unsupportedBackups.filter((item) => item.stream !== null)]) {
+      if (item.stream === context.stream) continue;
+      const previous = groups.get(item.stream);
+      if (!previous || item.generation > previous.generation) groups.set(item.stream, item);
+    }
+    const candidates = [...groups.values()].map(({ id, name, size, created, stream, generation, reason }) => ({
+      id, name, size, created, stream, generation,
+      reason: reason ?? (nameCounts.get(name) !== 1 || duplicateIds.has(id) ? 'Ambiguous newest backup identity'
+        : size !== null && size > this.maxBytes ? 'Newest backup exceeds this device\'s limit' : null),
+    })).sort((a, b) => (b.created ?? -Infinity) - (a.created ?? -Infinity)
+      || (a.stream < b.stream ? -1 : a.stream > b.stream ? 1 : 0));
+    const unsupported = unsupportedBackups.filter((item) => item.stream === null)
+      .sort((a, b) => canonical(a).localeCompare(canonical(b)));
+    requireSyncContext(await this.records.read(), context);
+    return { candidates, unsupported };
+  }
+
+  async inspectSyncCandidate(item, context) {
+    const checked = await this.inspect(item, context.connection, { includeByteDigest: true });
+    if (!checked) return null;
+    const backup = await parseCompleteBackup(checked.text, { cryptoProvider: this.cryptoProvider });
+    const [digest, material] = await Promise.all([
+      digestPersonalBackup(backup, this.cryptoProvider), materialDigest(backup, this.cryptoProvider),
+    ]);
+    const read = Object.values(backup.components.reader.read);
+    const identity = { ...checked };
+    delete identity.text;
+    return {
+      ...identity, name: item.name, listedSize: item.size, digest, material, contentDigest: backup.digest, readCount: read.length,
+      lastReadAt: read.reduce((latest, value) => Math.max(latest, value), 0) || null,
+    };
+  }
+
+  // A batch never substitutes an older generation. Prior batches are bound to this exact listing;
+  // selected progress is downloaded again before a choice, including same-size outside edits.
+  async discoverSyncReview({ connection, stream, consentId } = {}, previous = null) {
+    const context = syncContext({ connection, stream, consentId });
+    this.supported();
+    const listing = await this.syncReviewListing(context);
+    if (previous && canonical(previous.listing) !== canonical(listing)) {
+      refuse('Cloud backups changed during review. Check again to review the current list.', 'raced');
+    }
+    const limit = this.limits.streams;
+    if (!Number.isSafeInteger(limit) || limit < 1) refuse('The cloud device check limit is invalid.', 'invalid');
+    const offset = previous?.checked ?? 0;
+    const remotes = [...(previous?.remotes ?? [])];
+    const unchecked = [...(previous?.unchecked ?? listing.unsupported)];
+    for (const item of listing.candidates.slice(offset, offset + limit)) {
+      let reason = item.reason;
+      let checked = null;
+      if (!reason) {
+        try { checked = await this.inspectSyncCandidate(item, context); }
+        catch (error) {
+          if (!['invalid', 'too-large', 'not-found'].includes(error?.code)) throw error;
+        }
+        if (!checked) reason = 'Newest backup could not be read or validated';
+      }
+      if (reason) unchecked.push({ ...item, reason });
+      else remotes.push(checked);
+    }
+    if (canonical(listing) !== canonical(await this.syncReviewListing(context))) {
+      refuse('Cloud backups changed during review. Check again to review the current list.', 'raced');
+    }
+    const checked = Math.min(offset + limit, listing.candidates.length);
+    return { listing, remotes, unchecked, checked, remaining: listing.candidates.length - checked };
+  }
+
+  async validateSyncReview(context, review, remote = null) {
+    if (review.remaining !== 0 || canonical(review.listing) !== canonical(await this.syncReviewListing(context))) {
+      refuse('Cloud backups changed during review. Check again to review the current list.', 'raced');
+    }
+    if (!remote) return review.remotes;
+    const item = review.listing.candidates.find((item) => item.stream === remote.stream);
+    const checked = item && !item.reason ? await this.inspectSyncCandidate(item, context) : null;
+    if (!checked || canonical(checked) !== canonical(remote)
+      || canonical(review.listing) !== canonical(await this.syncReviewListing(context))) {
+      refuse('The cloud backup changed, so the earlier choice was withdrawn. Check again.', 'raced');
+    }
+    return review.remotes;
   }
 
   // What is already in the account, shown before this browser's first upload and whenever asked: per

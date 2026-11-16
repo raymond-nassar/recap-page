@@ -43,9 +43,9 @@ function output(methods = NATIVE_METHODS, { code = 0, marker = '', declared = me
   ].join('\n')).join('\n') + '\nINSTRUMENTATION_CODE: -1\n';
 }
 
-test('native result verification requires the exact complete six-method suite', () => {
-  assert.equal(verifyInstrumentation(output()).length, 6);
-  assert.equal(verifyInstrumentation(output([...NATIVE_METHODS].reverse())).length, 6);
+test('native result verification requires the exact complete suite', () => {
+  assert.equal(verifyInstrumentation(output()).length, NATIVE_METHODS.length);
+  assert.equal(verifyInstrumentation(output([...NATIVE_METHODS].reverse())).length, NATIVE_METHODS.length);
   for (const invalid of [
     '',
     'INSTRUMENTATION_CODE: -1\n',
@@ -54,7 +54,7 @@ test('native result verification requires the exact complete six-method suite', 
     output().replaceAll(NATIVE_CLASS, 'some.other.Test'),
     output().replace('INSTRUMENTATION_CODE: -1', 'INSTRUMENTATION_CODE: 0'),
     output().replace('INSTRUMENTATION_CODE: -1\n', ''),
-    output(NATIVE_METHODS, { declared: 5 }),
+    output(NATIVE_METHODS, { declared: NATIVE_METHODS.length - 1 }),
     output().replace('INSTRUMENTATION_STATUS_CODE: 0', 'INSTRUMENTATION_STATUS_CODE: 1'),
   ]) assert.throws(() => verifyInstrumentation(invalid));
 });
@@ -331,7 +331,8 @@ test('derived native mode observes installed packages and probes before any ordi
   const root = '../packaging/android/app/src/androidTest/java/io/github/raymondnassar/recappage/prototype/';
   const source = readFileSync(new URL(`${root}NativeIntegrationTest.java`, import.meta.url), 'utf8');
   const runner = readFileSync(new URL('../scripts/android-emulator-ci.sh', import.meta.url), 'utf8');
-  assert.equal([...source.matchAll(/^ {4}@Test\r?$/gm)].length, 6);
+  const nativeTests = [...source.matchAll(/^ {4}@Test\r?\n {4}public void (\w+)\(/gm)].map((match) => match[1]);
+  assert.deepEqual(nativeTests.sort(), [...NATIVE_METHODS].sort());
   const tap = source.slice(source.indexOf('private void tap(WebView'), source.indexOf('private JSONObject tapGeometry('));
   const appSource = readFileSync(new URL('../packaging/android/app/src/main/java/io/github/raymondnassar/recappage/prototype/MainActivity.java', import.meta.url), 'utf8');
   assert.doesNotMatch(appSource, /setOnTouchListener/, 'The temporary observer must not replace an application touch listener');
@@ -415,7 +416,7 @@ EMULATOR_PID="$TEST_HOST_PID"
 NATIVE_FAILURE_ACTIVE=0
 INSTRUMENT_EXIT=0
 TEE_EXIT=0
-NATIVE_METHODS=(startupAndPersistence systemPickerSaveAndCancel providerRoundTripAndWriteFailure readerPopupAndExternalIntent backAndRecreation fontRotationAndKeyboard)
+NATIVE_METHODS=(${NATIVE_METHODS.join(' ')})
 trace() { printf '%s\n' "$1" >> "$EVENTS"; }
 timeout() {
   if [[ "$1" == --kill-after=1 ]]; then shift; fi

@@ -324,7 +324,7 @@ test('qualification receipt preserves actual identity, signatures, approval and 
     (v) => { v.artifactRecordSha256 = '0'.repeat(64); }, (v) => { v.workflow.runId += 1; },
     (v) => { v.approval.approved = false; }, (v) => { v.bundle.manifest = false; },
     (v) => { v.bundle.bundleSignerSha256 = '6'.repeat(64); },
-    (v) => { v.native.executions[7].stateMatched = false; },
+    (v) => { v.native.executions.find((entry) => entry.phase === 'restart-probe').stateMatched = false; },
     (v) => { v.scope = 'Physical production acceptance'; },
     (v) => { v.tools.extra = true; },
   ]) {

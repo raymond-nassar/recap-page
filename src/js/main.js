@@ -2877,7 +2877,10 @@ const cloudBackup = createCloudBackup({
 });
 
 const cloudSyncPrompt = createCloudSyncPrompt({
-  elements: () => ({ notice: $('#cloud-sync-notice'), message: $('#cloud-sync-message'), review: $('#btn-cloud-sync-review') }),
+  elements: () => ({
+    notice: $('#cloud-sync-notice'), message: $('#cloud-sync-message'), review: $('#btn-cloud-sync-review'),
+    backupReview: $('#cloud-sync-review-backups'),
+  }),
   getModel: () => cloudBackup.model,
   ask: askSyncChoice,
   withdraw: withdrawSyncChoice,
@@ -2902,7 +2905,7 @@ const cloudBackupView = createCloudBackupView({
     retry: $('#btn-cloud-retry'), auto: $('#cloud-auto'), autoInput: $('#opt-cloud-auto'), discovery: $('#cloud-discovery'),
     discoverySummary: $('#cloud-discovery-summary'), found: $('#cloud-discovery-list'), actions: $('#cloud-backup-actions'),
     remove: $('#btn-cloud-delete'), disconnect: $('#btn-cloud-disconnect'), report: $('#cloud-backup-report'),
-    syncActions: $('#cloud-sync-actions'), syncCheck: $('#btn-cloud-sync-check'),
+    syncActions: $('#cloud-sync-actions'), syncCheck: $('#btn-cloud-sync-check'), syncReview: $('#cloud-sync-review'),
     syncOverride: $('#btn-cloud-sync-override'), syncBack: $('#btn-cloud-sync-back'),
     syncDiscard: $('#btn-cloud-sync-discard'), syncAbout: $('#cloud-sync-about'),
   }),
@@ -2920,7 +2923,7 @@ const cloudBackupView = createCloudBackupView({
   onDisconnect: () => cloudBackup.disconnect(),
   onRetry: () => cloudBackup.retry(),
   onSyncCheck: () => cloudBackup.recheckSync(),
-  onSyncOverride: () => cloudBackup.overrideSync(),
+  onSyncOverride: (review) => cloudBackup.overrideSync(review),
   onSyncBack: () => cloudBackup.goBackSync(),
   onSyncDiscard: () => cloudBackup.discardPendingSync(),
   onFinished: reloadWithNotice,

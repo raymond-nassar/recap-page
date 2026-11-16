@@ -122,6 +122,7 @@
           <div id="cloud-sync-notice" class="notice notice-act" hidden>
             <span class="grow" id="cloud-sync-message">Your progress differs between devices.</span>
             <button type="button" class="btn btn-g" id="btn-cloud-sync-review">Review progress</button>
+            <a class="btn btn-g" id="cloud-sync-review-backups" href="#/data" hidden>Review backups</a>
             <button type="button" class="btn btn-g btn-icon notice-dismiss has-tooltip" id="btn-cloud-sync-dismiss" aria-label="Dismiss the progress notice and keep this device's progress" data-tooltip="Dismiss the progress notice and keep this device's progress"><span aria-hidden="true">&times;</span></button>
           </div>
 
@@ -1089,6 +1090,7 @@
                   <button type="button" id="btn-cloud-retry" class="btn btn-g" hidden>Try again now</button>
                 </div>
                 <label class="checkbox setting-ctl" id="cloud-auto" hidden><input type="checkbox" id="opt-cloud-auto" /> Back up this browser automatically</label>
+                <div id="cloud-sync-review" hidden></div>
                 <div class="field-row" id="cloud-sync-actions" hidden>
                   <button type="button" class="btn btn-g" id="btn-cloud-sync-check" hidden>Check now</button>
                   <button type="button" class="btn btn-g" id="btn-cloud-sync-override" hidden>Back up this device anyway</button>

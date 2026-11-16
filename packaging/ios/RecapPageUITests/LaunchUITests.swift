@@ -305,7 +305,7 @@ final class LaunchUITests: XCTestCase {
         // The journal check names why a "could not check for a recovery copy" refusal happened (#1249).
         let check = (restored["journalCheck"] as? [String: Any])?["failure"] as? String ?? "none"
         XCTAssertEqual(restored["ok"] as? Bool, true, "\(label): \(restored["error"] ?? "no error") (journal failure: \(check))")
-        XCTAssertEqual(restored["restoredMatches"] as? Bool, true, "\(label): the restored lists are the backup's")
+        XCTAssertEqual(restored["restoredMatches"] as? Bool, true, "\(label): all restored reading data matches the backup")
         if priorSaved {
             XCTAssertEqual(restored["undoKept"] as? Bool, true, "\(label): Undo keeps the prior data")
         } else {
@@ -337,6 +337,22 @@ final class LaunchUITests: XCTestCase {
             assertRestored(restored, "\(mix) into \(prior)", priorSaved: prior != "empty")
             if prior == "legacy-wide" {
                 XCTAssertGreaterThan(restored["priorChars"] as? Int ?? 0, 1_633_400, "\(mix): the legacy prior meets the target")
+            }
+            let fileCases = try XCTUnwrap(measured["fileCases"] as? [[String: Any]])
+            XCTAssertEqual(fileCases.count, 6)
+            for mix in ["ascii", "cjk"] {
+                let priors = fileCases.filter { $0["mix"] as? String == mix }.compactMap { $0["prior"] as? String }
+                XCTAssertEqual(priors.count, 3, "\(mix): all three file-restore cases ran")
+                XCTAssertEqual(Set(priors), Set(["empty", "saved", "legacy-wide"]))
+            }
+            for restored in fileCases {
+                let prior = try XCTUnwrap(restored["prior"] as? String)
+                let mix = try XCTUnwrap(restored["mix"] as? String)
+                assertRestored(restored, "\(mix) file into \(prior)", priorSaved: prior != "empty")
+                XCTAssertEqual(restored["temporaryAbsent"] as? Bool, true, "file restore keeps no third copy")
+                if prior != "empty" {
+                    XCTAssertEqual(restored["undoRestored"] as? Bool, true, "\(mix) into \(prior): Undo restores all prior reading data")
+                }
             }
         }
         let timing = try XCTUnwrap(measured["timing"] as? [[String: Any]])

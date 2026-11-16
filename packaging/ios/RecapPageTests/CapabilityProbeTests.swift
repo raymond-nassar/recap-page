@@ -28,6 +28,68 @@ final class CapabilityProbeTests: XCTestCase {
         XCTAssertNotNil(result["persist"])
     }
 
+    @MainActor
+    func testCloudUploadPermitsRevokeAndRegrantAfterReload() async throws {
+        let assets = try AppAssets.bundled()
+        let webView = await WebTestSupport.makeWebView(assets: assets)
+        defer { webView.removeFromSuperview() }
+        for phase in ["launch", "reload"] {
+            if phase == "reload" {
+                let held = try await WebTestSupport.evaluate(webView, """
+                    return !!globalThis.recapPermitProbe
+                      && sessionStorage.getItem('recap.test.upload-permit') === globalThis.recapPermitProbe.name
+                      && await globalThis.recapPermitProbe.allowed();
+                    """)
+                XCTAssertEqual(held as? Bool, true, "the previous document holds its permit before reload")
+                _ = try await WebTestSupport.evaluate(webView, "globalThis.recapPermitReloading = true;")
+            }
+            try await WebTestSupport.loadAppPage(webView, assets: assets)
+            try await WebTestSupport.waitFor(webView,
+                "globalThis.recapPermitReloading !== true && document.readyState === 'complete'",
+                timeout: WebTestSupport.pageLoadTimeout)
+            let value = try await WebTestSupport.evaluate(webView, Self.uploadPermitProbe)
+            let json = try XCTUnwrap(value as? String)
+            WebTestSupport.record("cloud-upload-permit-\(phase)", json, in: self)
+            let result = try WebTestSupport.object(json)
+            XCTAssertEqual(result["hadPrevious"] as? Bool, phase == "reload", "\(phase): previous permit")
+            for key in ["fresh", "held", "revoked", "rejected", "absent", "regranted"] {
+                XCTAssertEqual(result[key] as? Bool, true, "\(phase): \(key)")
+            }
+        }
+        _ = try await WebTestSupport.evaluate(webView,
+            "globalThis.recapPermitProbe.release(); sessionStorage.removeItem('recap.test.upload-permit');")
+    }
+
+    private static let uploadPermitProbe = #"""
+    const { CloudUploadPermit } = await import(new URL('./js/lib/cloudUploadPermit.js', location.href).href);
+    const previous = sessionStorage.getItem('recap.test.upload-permit');
+    const state = await navigator.locks.query();
+    const fresh = ![...state.held, ...state.pending].some(lock => lock.name === previous);
+    let lost = 0;
+    let keep = false;
+    const older = new CloudUploadPermit({ onLost: () => { lost += 1; } });
+    const checking = new CloudUploadPermit();
+    try {
+      await older.grant();
+      const held = await older.allowed();
+      await checking.revokeAll();
+      const revoked = !await older.allowed();
+      const deadline = Date.now() + 2000;
+      while (lost === 0 && Date.now() < deadline) await new Promise(resolve => setTimeout(resolve, 10));
+      const absent = !(await navigator.locks.query()).held.some(lock => lock.name === older.name);
+      checking.release();
+      await older.grant();
+      globalThis.recapPermitProbe = older;
+      sessionStorage.setItem('recap.test.upload-permit', older.name);
+      keep = true;
+      return JSON.stringify({ hadPrevious: previous !== null, fresh, held, revoked, rejected: lost === 1, absent, regranted: await older.allowed(),
+        userAgent: navigator.userAgent });
+    } finally {
+      if (!keep) older.release();
+      checking.release();
+    }
+    """#
+
     private static let probe = #"""
     const result = {
       origin: location.origin,
