@@ -98,6 +98,10 @@ function writeFixture(rootPath) {
   const orders = path.join(data, 'orders');
   mkdirSync(orders, { recursive: true });
   cpSync(path.join(root, 'src', 'data', 'universeCatalog.js'), path.join(data, 'universeCatalog.js'));
+  // The catalog's Library links category reads the build-time link coverage (#1333).
+  for (const name of ['collectedEditionCatalog.js', 'collectedEditionEvidence.js']) {
+    cpSync(path.join(root, 'src', 'data', name), path.join(data, name));
+  }
   writeFileSync(path.join(data, 'curated-lists.json'), JSON.stringify({
     lists: [{
       id: 'atomic-order',

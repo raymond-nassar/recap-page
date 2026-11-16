@@ -32,6 +32,7 @@ import { playMilestone, readMilestones, sectionHeading, sectionSentence } from '
 import { paintGlance } from '../lib/progressGlance.js';
 import { sourceButton } from './shared/catalog-presentation.js';
 import { editionRelations } from '../lib/collectedEditions.js';
+import { positionProviders } from '../lib/libraryLinks.js';
 import { collectedEditionCredit, collectedEditionLabels } from './shared/collected-editions.js';
 
 export const RING_CIRCUMFERENCE = 119.4; // 2πr for r=19, matching the SVG in index.html
@@ -178,6 +179,12 @@ export function createReadingView({
   let rowCache = new Map();
   let rowCacheListId = null;
   let rowsPending = false;
+  // Opt-in and never saved, so opening a list always shows every comic (#1333, decisions 4 and 8).
+  let linksOnly = false;
+  let linksOnlyListId = null;
+  let linksHidden = 0;
+  let linksToggle = null;
+  let linksInput = null;
   let arrowing = false;
   let phoneOverview = null;
   let aboutListId = null;
@@ -356,6 +363,21 @@ export function createReadingView({
       el('input', { type: 'radio', name: 'filter', value: option.value }),
       el('span', { text: option.label }),
     ])));
+    // A checkbox rather than a fourth radio: it narrows whichever reading filter is chosen instead
+    // of replacing it.
+    linksInput = el('input', { type: 'checkbox', name: 'library-links-only', value: 'library-links' });
+    linksToggle = el('label', { class: 'fp', hidden: true }, [
+      linksInput,
+      el('span', { text: 'Has checked library links' }),
+    ]);
+    $('#reading-filters').append(linksToggle);
+    linksInput.addEventListener('change', () => {
+      linksOnly = linksInput.checked;
+      linksHidden = 0;
+      renderRows();
+      // Rows vanish silently otherwise; the focused checkbox stays put, so only the count is spoken.
+      if (linksOnly && linksHidden) announce(hiddenSentence(linksHidden));
+    });
     $('#save-education-settings').addEventListener('click', (event) => {
       if (!isPlainNavigation(event)) return;
       event.preventDefault();
@@ -812,20 +834,41 @@ export function createReadingView({
         return;
       }
 
+      // Before the closed-order return, so a list opened with its order closed still starts unfiltered.
+      if (id !== linksOnlyListId) { linksOnlyListId = id; linksOnly = false; }
+
       // A closed 219-row order has nothing to paint. Opening the native disclosure calls this again,
       // preserving output while avoiding hidden row construction on every progress update.
       if (!$('#full').open) { rowsPending = true; return; }
-      rowsPending = false; writeOrderStrip($('#full'), all, filter);
+      rowsPending = false;
 
       const currentId = isCompleted(getState(), id) ? null : upNext(getState(), id)?.issueId ?? null;
       // Read the local day once so every row in this pass is judged against one cacheable value.
       const today = localDayString();
-      const items = all.filter((item) => matchesReadingFilter(filter, item));
+      const linked = linkedIssueIds(list, all);
+      if (!linked.size) linksOnly = false;
+      if (linksToggle) {
+        linksToggle.hidden = !linked.size;
+        linksInput.checked = linksOnly;
+      }
+      const items = all.filter((item) => matchesReadingFilter(filter, item)
+        && (!linksOnly || linked.has(item.issueId)));
+      writeOrderStrip($('#full'), all, filter, linksOnly ? items.length : null);
       if (items.some((item) => editionRelations(list.catalogId, item).length)) {
         if (!rowCache.has('edition-credit')) {
           rowCache.set('edition-credit', { node: el('li', { class: 'edition-attribution' }, [collectedEditionCredit(el)]) });
         }
         desired.push(rowCache.get('edition-credit').node);
+      }
+      const hiddenGaps = linksOnly ? all.filter((item) => !linked.has(item.issueId)).length : 0;
+      linksHidden = hiddenGaps;
+      if (hiddenGaps) {
+        // The gaps stay named while they are hidden, measured against the whole order (decision 4).
+        const hidden = hiddenGaps;
+        desired.push(el('li', {
+          class: 'rail-hint link-only-note',
+          text: hiddenSentence(hidden),
+        }));
       }
 
       // Edition progress is computed from the full list, not the filtered subset, so the same book
@@ -975,7 +1018,27 @@ export function createReadingView({
     $('#full-count').textContent = !total ? 'No comics yet' : unread ? `${unread} unread${deferred ? `. ${deferred} deferred` : ''}` : 'All read';
   }
 
-  function writeOrderStrip(details, all, activeFilter) {
+  function linkedIssueIds(list, all) {
+    return new Set(all
+      .filter((item) => positionProviders(list.catalogId, item).size)
+      .map((item) => item.issueId));
+  }
+
+  function hiddenSentence(hidden) {
+    return `${hidden} ${hidden === 1 ? 'comic' : 'comics'} without a checked library link ${hidden === 1 ? 'is' : 'are'} hidden.`;
+  }
+
+  // Leaving the list and coming back opens it unfiltered again (#1333, decision 8), even when it is
+  // the same list, which the list-id reset in renderRows cannot see.
+  function resetLinksOnly() {
+    if (!linksOnly) return;
+    linksOnly = false;
+    if (linksInput) linksInput.checked = false;
+    renderRows();
+  }
+
+  // `shown` is the count after the in-list switch, which the reading filter alone cannot know.
+  function writeOrderStrip(details, all, activeFilter, shown = null) {
     const filters = details.querySelector('#reading-filters');
     let strip = details.querySelector('.order-strip');
     if (!strip) strip = details.insertBefore(el('div', { class: 'order-strip' }), filters);
@@ -988,9 +1051,9 @@ export function createReadingView({
       el('span', { class: 'pbar', 'aria-hidden': 'true' }, el('i', { style: { width: `${pct}%` } })),
       el('span', { class: 'order-pct', text: `${pct}% read` }),
     ];
-    if (activeFilter !== DEFAULT_FILTER) {
-      const shown = all.filter((item) => matchesReadingFilter(activeFilter, item)).length;
-      children.push(el('span', { class: 'order-shown', text: `Showing ${shown} of ${total} comics.` }));
+    if (activeFilter !== DEFAULT_FILTER || shown !== null) {
+      const count = shown ?? all.filter((item) => matchesReadingFilter(activeFilter, item)).length;
+      children.push(el('span', { class: 'order-shown', text: `Showing ${count} of ${total} comics.` }));
     }
     strip.replaceChildren(...children);
   }
@@ -1711,6 +1774,7 @@ export function createReadingView({
     renderHydration,
     renderRows,
     renderSynopsis,
+    resetLinksOnly,
     resetSynopsis,
     setFilter,
     setFilterAddressed: (value) => { filterAddressed = value; },

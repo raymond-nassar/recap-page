@@ -155,6 +155,7 @@ export default [
       'scripts/browser-source-credits.mjs',
       'scripts/browser-dialog-announcements.mjs',
       'scripts/browser-collected-editions.mjs',
+      'scripts/browser-library-links.mjs',
       'scripts/browser-markdown-export.mjs',
       'scripts/browser-order-export.mjs',
       'scripts/browser-ultimate-spider-man.mjs',

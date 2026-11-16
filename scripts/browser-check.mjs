@@ -714,8 +714,8 @@ const MUTATIONS = [
     breaks: 'publishing-ages',
     why: 'an age timeline reuses the canonical id prefix after both route panels have rendered',
     rewriteMain: (source) => source.replace(
-      '    idPrefix: route, showEmptyYears: true, sectionBlurb: false,',
-      "    idPrefix: 'timeline', showEmptyYears: true, sectionBlurb: false,",
+      '    idPrefix: route, showEmptyYears: !narrower.linking, sectionBlurb: false,',
+      "    idPrefix: 'timeline', showEmptyYears: !narrower.linking, sectionBlurb: false,",
     ),
   },
   {
@@ -7103,7 +7103,10 @@ const SCENARIOS = [
           '#catalog-results .catalog-card[aria-current="step"]',
         ).length,
         positionNodes: document.querySelectorAll(
-          '#catalog-results [data-timeline-position]',
+          '#catalog-results [data-timeline-position]:not([data-timeline-position="show-full"])',
+        ).length,
+        showFull: document.querySelectorAll(
+          '#catalog-results [data-timeline-position="hidden"] + [data-timeline-position="show-full"]',
         ).length,
         status: document.querySelector(
           '#catalog-results [data-timeline-position="hidden"]',
@@ -7115,6 +7118,7 @@ const SCENARIOS = [
       t.check('narrowing names a hidden current story and never substitutes a visible card',
         hidden.currentCards === 0
           && hidden.positionNodes === 1
+          && hidden.showFull === 1
           && hidden.status.includes('Browser Check Order')
           && hidden.visibleTitle === 'Second Stop',
         JSON.stringify(hidden));
@@ -24484,6 +24488,9 @@ SCENARIOS.push((await import('./browser-dialog-announcements.mjs')).dialogAnnoun
 SCENARIOS.push((await import('./browser-preview-scroll-452.mjs')).previewScroll452);
 SCENARIOS.push((await import('./browser-source-credits.mjs')).sourceCredits);
 SCENARIOS.push((await import('./browser-collected-editions.mjs')).collectedEditions);
+const libraryLinksModule = await import('./browser-library-links.mjs');
+SCENARIOS.push(libraryLinksModule.libraryLinks);
+MUTATIONS.push(...libraryLinksModule.libraryLinksMutations);
 SCENARIOS.push((await import('./browser-markdown-export.mjs')).readableMarkdownExport);
 const deferral = await import('./browser-defer.mjs');
 const orderedImport = await import('./browser-ordered-import.mjs');

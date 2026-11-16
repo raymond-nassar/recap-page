@@ -9,6 +9,7 @@
 import { coverAddress, normalizeCover } from './model.js';
 import { copyUniverseListFields, universeListProblems } from './universeSchema.js';
 import { universeDefinitions } from '../../data/universeCatalog.js';
+import { filterStoriesByLinks } from './libraryLinks.js';
 
 export const LIST_TYPES = ['event', 'character-run', 'creator-run', 'era', 'screen-companion'];
 export const READING_DEPTHS = ['essential', 'complete', 'partial', 'tie-ins', 'selected'];
@@ -1236,6 +1237,7 @@ const typeCategory = (type) => (stories) => (Array.isArray(stories) ? stories : 
 // film a reader is about to watch, and listing them beside the runs would crowd every genre
 // with entries that answer a different question.
 export const STORY_TYPES_ROUTE = 'genres';
+export const LIBRARY_LINKS_ROUTE = 'library-links';
 
 function discoverableList(list) {
   return list?.type !== 'screen-companion'
@@ -1383,6 +1385,19 @@ export const HOME_CATEGORIES = [
     plural: 'universes',
   },
 ];
+
+// The Library links page is a browsing page without a Home card: the owner chose that readers reach it
+// only through the link inside each page's library-link filter, so Home stays as it was (#1333).
+export const LIBRARY_LINKS_CATEGORY = Object.freeze({
+  key: LIBRARY_LINKS_ROUTE,
+  route: LIBRARY_LINKS_ROUTE,
+  heading: 'Library links',
+  description: 'Reading Lists with comics that have a checked Hoopla or Libby book page.',
+  select: (stories) => filterStoriesByLinks(stories, { coverage: 'any', provider: 'either' }),
+});
+
+// Every category that owns a routable page, Home's cards and the pages reached another way.
+export const ROUTED_CATEGORIES = Object.freeze([...HOME_CATEGORIES, LIBRARY_LINKS_CATEGORY]);
 
 export function availableHomeCategories(stories, definitions = HOME_CATEGORIES) {
   const all = Array.isArray(stories) ? stories : [];

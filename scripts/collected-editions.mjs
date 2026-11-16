@@ -20,6 +20,7 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { DESTINATION_PROVIDERS, acceptedLink, destinationUrl, isCheckedDate, providerAccepted }
   from '../src/js/lib/editionDestinations.js';
+import { listLinkCoverage } from '../src/js/lib/libraryLinks.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 export const DATA_DIR = path.join(root, 'scripts', 'data', 'collected-editions');
@@ -942,8 +943,10 @@ export function buildAppData(inputs, outputs = build(inputs)) {
   if (errors.length) throw new Error(errors.join('; '));
   const editions = {};
   const relations = [];
+  const projected = new Map();
   const checks = new Map(outputs['gcd-editions.json'].editions.map((entry) => [entry.edition, entry]));
   const project = (catalogId, list, ids, matches) => {
+    projected.set(catalogId, list);
     for (const id of ids) {
       const evidence = checks.get(id);
       if (!evidence || evidence.check.status !== 'verified' || evidence.check.conflicts.length) continue;
@@ -978,6 +981,13 @@ export function buildAppData(inputs, outputs = build(inputs)) {
     modification: 'Adapted into exact issue-to-edition relations for this pilot. Edition names are curated separately.',
     relations,
   };
+  // Library-link browsing needs every list's counts offline, before any list file is fetched, so
+  // they are measured here through the app's own gate and shipped with the relations (#1333).
+  evidence.linkCoverage = {};
+  for (const catalogId of [...projected.keys()].sort()) {
+    const counts = listLinkCoverage(catalogId, projected.get(catalogId).items, names, evidence);
+    if (counts.either) evidence.linkCoverage[catalogId] = counts;
+  }
   const leaks = databaseLeaks(names, 'editionCatalog');
   if (leaks.length) throw new Error(`Database facts in MIT display data: ${leaks.join(', ')}`);
   return {

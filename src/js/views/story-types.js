@@ -2,14 +2,16 @@ import {
   STORY_TONES, STORY_TYPES, STORY_TYPES_ROUTE, catalogEntries, storyTypeFacets, storyTypeStarters,
   storyTypeStories,
 } from '../lib/catalog.js';
+import { linkNarrower } from './shared/library-link-filter.js';
 
 const ROUTE = STORY_TYPES_ROUTE;
 
 const known = (vocabulary, value) => (Object.hasOwn(vocabulary, value ?? '') ? value : null);
 
 // Choices remain in the address, so the filtered shelf can be bookmarked and restored with Back.
+// The library-link choice is the device-wide one (decision 8), read fresh on every paint.
 export function createStoryTypesView({
-  el, elements, isCurrent, presentation, onNavigate,
+  el, elements, isCurrent, presentation, onNavigate, linkChoice = () => null,
 }) {
   let type = null;
   let tone = null;
@@ -99,39 +101,49 @@ export function createStoryTypesView({
     const nodes = elements();
     const stories = catalogEntries(catalog.lists);
     paintChoices(stories);
+    const narrower = linkNarrower(linkChoice());
     const all = storyTypeStories(stories);
     nodes.results.replaceChildren();
     if (!type && !tone) {
-      nodes.count.textContent = `${all.length} ${all.length === 1 ? 'Reading List' : 'Reading Lists'}`;
-      const starters = storyTypeStarters(stories);
+      const starters = storyTypeStarters(stories).filter(narrower.keep);
+      // The count covers every genre list, as the chosen-genre count does, rather than only the
+      // starters shown below it.
+      const linked = narrower.linking ? all.filter(narrower.keep).length : all.length;
+      nodes.count.textContent = narrower.linking
+        ? `${linked} of ${all.length} Reading Lists${narrower.narrowing}`
+        : `${all.length} ${all.length === 1 ? 'Reading List' : 'Reading Lists'}`;
       if (!starters.length) {
         nodes.results.append(el('p', {
           class: 'rail-hint',
-          text: 'Choose a genre or a tone to see its Reading Lists.',
+          text: narrower.linking
+            ? `No popular places to start${narrower.narrowing}. Choose a genre or a tone to see more Reading Lists.`
+            : 'Choose a genre or a tone to see its Reading Lists.',
         }));
         return;
       }
-      nodes.results.append(results(starters, 'Popular places to start', 'Or choose a genre or tone above.'));
+      nodes.results.append(results(starters, 'Popular places to start', 'Or choose a genre or tone above.', narrower.linkText));
       return;
     }
-    const matches = storyTypeStories(stories, { type, tone });
-    nodes.count.textContent = `${matches.length} of ${all.length} Reading Lists`;
+    const matches = storyTypeStories(stories, { type, tone }).filter(narrower.keep);
+    nodes.count.textContent = `${matches.length} of ${all.length} Reading Lists${narrower.narrowing}`;
     const heading = [STORY_TYPES[type], STORY_TONES[tone]].filter(Boolean).join(', ');
     if (!matches.length) {
       nodes.results.append(el('p', {
         class: 'rail-hint publishing-empty',
-        text: `No Reading Lists are tagged ${heading}. Choose another genre or tone.`,
+        text: narrower.linking
+          ? `No Reading Lists are tagged ${heading}${narrower.narrowing}. Choose another genre or tone.`
+          : `No Reading Lists are tagged ${heading}. Choose another genre or tone.`,
       }));
       return;
     }
-    nodes.results.append(results(matches, heading));
+    nodes.results.append(results(matches, heading, null, narrower.linkText));
   }
 
-  function results(stories, heading, hint = null) {
+  function results(stories, heading, hint = null, linkText = null) {
     const grid = el('div', { class: 'catalog-grid publishing-grid' });
     for (const story of stories) {
       grid.append(presentation.catalogCard(story, {
-        surface: ROUTE, report: `#${ROUTE}-report`, level: 'h3',
+        surface: ROUTE, report: `#${ROUTE}-report`, level: 'h3', linkText,
       }));
     }
     return el('section', { class: 'story-type-results', 'aria-labelledby': `${ROUTE}-results-h` }, [
