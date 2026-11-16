@@ -4,7 +4,7 @@ import { mkdtempSync, writeFileSync, rmSync, readFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { runInNewContext } from 'node:vm';
-import { waitForSettledRoots } from '../scripts/msix-proof.mjs';
+import { waitForSettledRoots, waitForStaleOffline } from '../scripts/msix-proof.mjs';
 
 test('installed lifecycle diagnostics retain exact count acceptance and the existing deadline', async (t) => {
   const root = mkdtempSync(join(tmpdir(), 'recap-root-counts-'));
@@ -56,7 +56,20 @@ test('timeout observation uses only retained exact-image root instances and fixe
   assert.match(report, /owner == state\.pid/);
   assert.match(report, /if \(emitted\+\+ == 16\) break/);
   assert.doesNotMatch(report, /<< (?:detail|button|executable)|EnumWindows|OpenProcess/);
-  assert.match(native, /return completeInstalledWait\(waitState,[\s\S]*fs::exists\(control \/ L"finish\.txt"\)[\s\S]*fs::exists\(control \/ L"root-timeout\.txt"\)/);
+  assert.match(native, /const bool complete = completeInstalledWait\(waitState,[\s\S]*fs::exists\(control \/ L"finish\.txt"\)[\s\S]*fs::exists\(control \/ L"root-timeout\.txt"\)[\s\S]*?return complete;/);
+});
+
+test('a missing retained root reports what its window anchor attempts found before failing', () => {
+  const observer = readFileSync(new URL('../test/native/StartupObserver.h', import.meta.url), 'utf8');
+  const hook = observer.match(/fact\.kind == WindowKind::startup && fact\.owner &&[\s\S]*?noteRootCandidate\([^;]*;/)?.[0];
+  assert.ok(hook);
+  for (const outcome of ['open-failed', 'exited', 'image-differs', 'thread-unmatched', 'bound'])
+    assert.match(hook, new RegExp(`"${outcome}"`));
+  assert.match(hook, /current_->bindRoot\(fact\.owner, process\.get\(\), primary\.get\(\)\);\s*outcome = "bound";/);
+  assert.match(observer, /if \(rootCandidates_\.size\(\) >= 64\) \{ \+\+rootCandidatesDropped_; return; \}/);
+  assert.match(observer, /if \(retained == rootAnchors_\.end\(\)\) reportRootCandidate\(value\);\s*finalRequire\(retained != rootAnchors_\.end\(\), "final-root-retained-instance-missing"/);
+  const native = readFileSync(new URL('../test/native/StartupTests.cpp', import.meta.url), 'utf8');
+  assert.match(native, /if \(finished - pollBegin >= 500 && \+\+slowPolls <= 16\) \{\s*report << "DIAG installed-poll-slow /);
 });
 
 test('actual native handoff ordering observes a timeout published at the finish boundary once', () => {
@@ -148,4 +161,49 @@ test('proof DPI context is configured before COM initialization', () => {
   const native = readFileSync(new URL('../test/native/StartupTests.cpp', import.meta.url), 'utf8');
   const startup = native.slice(native.indexOf('int wmain('));
   assert.ok(startup.indexOf('SetThreadDpiAwarenessContext') < startup.indexOf('CoInitializeEx'));
+});
+
+test('a stale offline wait timeout records the page state and rethrows the same error', async (t) => {
+  const lines = [];
+  t.mock.method(console, 'log', (line) => { lines.push(line); });
+  const timeout = Object.assign(new Error('Waiting failed: 30000ms exceeded'), { name: 'TimeoutError' });
+  const page = (failure, state) => ({
+    waitForFunction: async () => { if (failure) throw failure; },
+    evaluate: async () => {
+      if (state instanceof Error) throw state;
+      return state;
+    },
+  });
+
+  await assert.rejects(
+    waitForStaleOffline(page(timeout, { results: 'Searching…', cached: { '/data/creators-index.json': true } }),
+      '#creator-results', 'creator', { listener: () => 4242 }),
+    (error) => error === timeout,
+  );
+  assert.equal(lines.length, 1);
+  assert.match(lines[0], /^DIAG stale-offline-wait-timeout \{/);
+  const record = JSON.parse(lines[0].slice('DIAG stale-offline-wait-timeout '.length));
+  assert.equal(record.label, 'creator');
+  assert.equal(record.listenerPid, 4242);
+  assert.equal(record.results, 'Searching…');
+  assert.equal(record.cached['/data/creators-index.json'], true);
+
+  await assert.rejects(
+    waitForStaleOffline(page(timeout, new Error('page gone')), '#series-results', 'series', {
+      listener: () => { throw new Error('query failed'); },
+    }),
+    (error) => error === timeout,
+  );
+  const second = JSON.parse(lines[1].slice('DIAG stale-offline-wait-timeout '.length));
+  assert.equal(second.stateError, 'page gone');
+  assert.equal(second.listenerPid, 'error: query failed');
+
+  const other = new Error('target closed');
+  await assert.rejects(waitForStaleOffline(page(other, {}), '#creator-results', 'creator', {
+    listener: () => { throw new Error('must not be queried'); },
+  }), (error) => error === other);
+  await waitForStaleOffline(page(null, {}), '#creator-results', 'creator', {
+    listener: () => { throw new Error('must not be queried'); },
+  });
+  assert.equal(lines.length, 2);
 });
