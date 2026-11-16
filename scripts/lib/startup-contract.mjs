@@ -321,10 +321,10 @@ export function creationReceipt({ tap, exitCode, nodeVersion, commit, tree, proo
     requireFact(matches.length === 1, 'creation-receipt-missing');
     return Number(matches[0][1]);
   };
-  requireFact(exitCode === 0 && count('tests') === 97 && count('pass') === 97
+  requireFact(exitCode === 0 && count('tests') === 102 && count('pass') === 102
     && ['fail', 'cancelled', 'skipped', 'todo'].every((name) => count(name) === 0), 'creation-receipt-missing');
   const receipt = {
-    schemaVersion: 1, command: 'production-creation-tests-v2', tests: 97, passed: 97, failed: 0,
+    schemaVersion: 1, command: 'production-creation-tests-v2', tests: 102, passed: 102, failed: 0,
     cancelled: 0, skipped: 0, todo: 0, exitCode, nodeVersion, commit, tree, proofInputDigest, sources,
   };
   return validateCreationReceipt(receipt, { commit, tree, proofInputDigest, sources });
@@ -333,7 +333,7 @@ export function validateCreationReceipt(value, expected) {
   exactKeys(value, ['schemaVersion', 'command', 'tests', 'passed', 'failed', 'cancelled', 'skipped', 'todo',
     'exitCode', 'nodeVersion', 'commit', 'tree', 'proofInputDigest', 'sources'], 'creation-receipt-missing');
   requireFact(value.schemaVersion === 1 && value.command === 'production-creation-tests-v2'
-    && value.tests === 97 && value.passed === 97 && value.exitCode === 0
+    && value.tests === 102 && value.passed === 102 && value.exitCode === 0
     && ['failed', 'cancelled', 'skipped', 'todo'].every((key) => value[key] === 0)
     && /^v24\.\d+\.\d+$/.test(value.nodeVersion), 'creation-receipt-missing');
   requireFact(SHA.test(value.commit) && SHA.test(value.tree) && HEX.test(value.proofInputDigest)
