@@ -2765,9 +2765,9 @@ export const editionEvidence = {
     },
     "war-of-the-realms": {
       "positions": 66,
-      "either": 8,
-      "hoopla": 8,
-      "libby": 8
+      "either": 12,
+      "hoopla": 12,
+      "libby": 12
     },
     "x-men-regenesis": {
       "positions": 43,
