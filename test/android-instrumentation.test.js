@@ -419,7 +419,7 @@ TEE_EXIT=0
 NATIVE_METHODS=(${NATIVE_METHODS.join(' ')})
 trace() { printf '%s\n' "$1" >> "$EVENTS"; }
 timeout() {
-  if [[ "$1" == --kill-after=1 ]]; then shift; fi
+  if [[ "$1" == --kill-after=* ]]; then shift; fi
   local seconds=$1
   shift
   trace "bound:$seconds"
@@ -461,6 +461,7 @@ node() {
 }
 kill() { trace "signal:$*"; return 0; }
 wait() { trace wait; return 0; }
+sleep() { return 0; }
 `;
   const bash = process.platform === 'win32' ? 'C:\\Program Files\\Git\\bin\\bash.exe' : '/bin/bash';
   const outcomes = [['exit255', 255], ['timeout', 124], ['tee', 23], ['checker', 7], ['pull', 19], ['capture', 255], ['success', 0]];
