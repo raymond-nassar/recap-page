@@ -8,6 +8,7 @@
     { "listId": "marvel-knights-to-planet-x-01", "file": "src/data/marvel_knights_to_planet_x_01.json", "editions": ["daredevil-visionaries-kevin-smith"] },
     { "listId": "marvel-knights-to-planet-x-04", "file": "src/data/marvel_knights_to_planet_x_04.json", "editions": ["xtreme-xmen-v1-destiny"] },
     { "listId": "marvel-knights-to-planet-x-09", "file": "src/data/marvel_knights_to_planet_x_09.json", "editions": ["exiles-v1-down-the-rabbit-hole"] },
+    { "listId": "marvel-knights-to-planet-x-10", "file": "src/data/marvel_knights_to_planet_x_10.json", "editions": ["wolverine-the-origin"] },
     { "listId": "marvel-knights-to-planet-x-11", "file": "src/data/marvel_knights_to_planet_x_11.json", "editions": ["xtreme-xmen-savage-land"] },
     { "listId": "marvel-knights-to-planet-x-12", "file": "src/data/marvel_knights_to_planet_x_12.json", "editions": ["new-xmen-v2-imperial"] },
     { "listId": "marvel-knights-to-planet-x-14", "file": "src/data/marvel_knights_to_planet_x_14.json", "editions": ["xtreme-xmen-v1-destiny"] },
@@ -24,7 +25,7 @@
     { "listId": "civil-war-essential", "file": "src/data/civil_war_essential.json", "editions": ["civil-war-2007-tpb"] },
     { "listId": "civil-war", "file": "src/data/civil_war.json", "editions": ["civil-war-2007-tpb"] },
     { "listId": "civil-war-avengers", "file": "src/data/civil_war_avengers.json", "editions": ["mighty-avengers-v1-ultron"] },
-    { "listId": "siege-dark-reign-prelude", "file": "src/data/siege_dark_reign_prelude.json", "editions": ["siege-mighty-avengers", "mighty-avengers-earths-mightiest"] },
+    { "listId": "siege-dark-reign-prelude", "file": "src/data/siege_dark_reign_prelude.json", "editions": ["siege-mighty-avengers", "mighty-avengers-earths-mightiest", "thunderbolts-burning-down-the-house"] },
     { "listId": "chaos-war", "file": "src/data/chaos_war.json", "editions": ["chaos-war-2011-tpb"] },
     { "listId": "marvel-knights-to-planet-x-37", "file": "src/data/marvel_knights_to_planet_x_37.json", "editions": ["xtreme-xmen-v3-schism"] },
     { "listId": "marvel-knights-to-planet-x-41", "file": "src/data/marvel_knights_to_planet_x_41.json", "editions": ["exiles-v4-legacy"] },
@@ -38,9 +39,126 @@
     { "listId": "war-of-the-realms", "file": "src/data/war_of_the_realms.json", "editions": ["asgardians-v2-war-of-the-realms", "war-of-the-realms-journey-into-mystery", "war-of-the-realms-new-agents-of-atlas"] },
     { "listId": "spider-verse", "file": "src/data/spider_verse.json", "editions": ["amazing-spider-man-edge-of-spider-verse"] },
     { "listId": "axis", "file": "src/data/axis.json", "editions": ["loki-agent-of-asgard-v2-i-cannot-tell-a-lie"] },
-    { "listId": "iron-man-2020", "file": "src/data/iron_man_2020.json", "editions": ["iron-man-2020-robot-revolution"] }
+    { "listId": "iron-man-2020", "file": "src/data/iron_man_2020.json", "editions": ["iron-man-2020-robot-revolution"] },
+    { "listId": "spider-geddon", "file": "src/data/spider_geddon.json", "editions": ["spider-geddon-covert-ops"] },
+    { "listId": "world-war-hulk-aftersmash", "file": "src/data/world_war_hulk_aftersmash.json", "editions": ["world-war-hulk-warbound"] },
+    { "listId": "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide", "file": "src/data/planet_hulk_reading_order_and_greg_pak_hulk_comics_guide.json", "editions": ["world-war-hulk-warbound"] }
   ],
   "seriesEvidence": {
+    "72598": {
+      "url": "https://www.comics.org/api/series/name/Burning%20Down%20the%20House/?format=json",
+      "retrievedAt": "2026-11-13T20:24:27.821Z",
+      "series": {
+        "api_url": "https://www.comics.org/api/series/72598/?format=json",
+        "name": "Thunderbolts: Burning Down the House", "year_began": 2009,
+        "publisher": "https://www.comics.org/api/publisher/78/?format=json", "country": "us", "language": "en",
+        "binding": "trade paperback", "active_issues": ["https://www.comics.org/api/issue/1091596/?format=json"]
+      }
+    },
+    "17522": {
+      "url": "https://www.comics.org/api/series/17522/?format=json",
+      "retrievedAt": "2026-11-13T16:07:39.261Z",
+      "series": {
+        "api_url": "https://www.comics.org/api/series/17522/?format=json",
+        "name": "Thunderbolts", "year_began": 2006,
+        "publisher": "https://www.comics.org/api/publisher/78/?format=json", "country": "us", "language": "en",
+        "issue_descriptors": ["126", "127", "128", "129"]
+      }
+    },
+    "141117": {
+      "url": "https://www.comics.org/api/series/141117/?format=json",
+      "retrievedAt": "2026-11-14T06:51:45.544Z",
+      "series": {
+        "api_url": "https://www.comics.org/api/series/141117/?format=json",
+        "name": "Spider-Geddon: Covert Ops", "year_began": 2019,
+        "publisher": "https://www.comics.org/api/publisher/78/?format=json", "country": "us", "language": "en",
+        "binding": "trade paperback", "active_issues": ["https://www.comics.org/api/issue/1928388/?format=json"]
+      }
+    },
+    "132588": {
+      "url": "https://www.comics.org/api/series/name/Spider-Force/year/2018/?format=json",
+      "retrievedAt": "2026-11-14T11:51:53.819Z",
+      "series": {
+        "api_url": "https://www.comics.org/api/series/132588/?format=json",
+        "name": "Spider-Force", "year_began": 2018,
+        "publisher": "https://www.comics.org/api/publisher/78/?format=json", "country": "us", "language": "en",
+        "issue_descriptors": ["1", "1 [Will Robson]", "2", "3"],
+        "active_issues": [
+          "https://www.comics.org/api/issue/1864025/?format=json",
+          "https://www.comics.org/api/issue/2093870/?format=json",
+          "https://www.comics.org/api/issue/1875119/?format=json",
+          "https://www.comics.org/api/issue/1880685/?format=json"
+        ]
+      }
+    },
+    "131935": {
+      "url": "https://www.comics.org/api/series/name/Spider-Girls/year/2018/?format=json",
+      "retrievedAt": "2026-11-14T11:51:56.724Z",
+      "series": {
+        "api_url": "https://www.comics.org/api/series/131935/?format=json",
+        "name": "Spider-Girls", "year_began": 2018,
+        "publisher": "https://www.comics.org/api/publisher/78/?format=json", "country": "us", "language": "en",
+        "issue_descriptors": ["1", "1 [Amy Reeder]", "1 [Jeff Dekal]", "1 [2018 SDCC Exclusive Yasmine Putri]", "2", "2 [Gang Hyuk Lim]", "3", "3 [Rian Gonzales]"],
+        "active_issues": [
+          "https://www.comics.org/api/issue/1861195/?format=json",
+          "https://www.comics.org/api/issue/1880083/?format=json",
+          "https://www.comics.org/api/issue/1879705/?format=json",
+          "https://www.comics.org/api/issue/1880084/?format=json",
+          "https://www.comics.org/api/issue/1876450/?format=json",
+          "https://www.comics.org/api/issue/1941236/?format=json",
+          "https://www.comics.org/api/issue/1880686/?format=json",
+          "https://www.comics.org/api/issue/1941235/?format=json"
+        ]
+      }
+    },
+    "9926": {
+      "url": "https://www.comics.org/api/series/name/Origin/year/2001/?format=json",
+      "retrievedAt": "2026-11-16T02:23:57.171Z",
+      "series": {
+        "api_url": "https://www.comics.org/api/series/9926/?format=json",
+        "name": "Wolverine: The Origin", "year_began": 2001,
+        "publisher": "https://www.comics.org/api/publisher/78/?format=json", "country": "us", "language": "en",
+        "issue_descriptors": ["1", "2", "3", "4", "5", "6"],
+        "active_issues": [
+          "https://www.comics.org/api/issue/89711/?format=json",
+          "https://www.comics.org/api/issue/89712/?format=json",
+          "https://www.comics.org/api/issue/89713/?format=json",
+          "https://www.comics.org/api/issue/89714/?format=json",
+          "https://www.comics.org/api/issue/89715/?format=json",
+          "https://www.comics.org/api/issue/89716/?format=json"
+        ]
+      }
+    },
+    "72280": {
+      "url": "https://www.comics.org/api/series/name/Origin/year/2002/?format=json",
+      "retrievedAt": "2026-11-13T00:07:45.099Z",
+      "series": {
+        "api_url": "https://www.comics.org/api/series/72280/?format=json",
+        "name": "Wolverine: The Origin", "year_began": 2002,
+        "publisher": "https://www.comics.org/api/publisher/78/?format=json", "country": "us", "language": "en",
+        "binding": "trade paperback", "active_issues": ["https://www.comics.org/api/issue/1087082/?format=json"]
+      }
+    },
+    "33241": {
+      "url": "https://www.comics.org/api/series/name/WWH%20Aftersmash%3A%20Warbound/year/2008/?format=json",
+      "retrievedAt": "2026-11-13T19:24:20.634Z",
+      "series": {
+        "api_url": "https://www.comics.org/api/series/33241/?format=json",
+        "name": "WWH Aftersmash: Warbound", "year_began": 2008,
+        "publisher": "https://www.comics.org/api/publisher/78/?format=json", "country": "us", "language": "en",
+        "issue_descriptors": ["1", "2", "3", "4", "5"]
+      }
+    },
+    "71229": {
+      "url": "https://www.comics.org/api/series/name/World%20War%20Hulk%3A%20Warbound/?format=json",
+      "retrievedAt": "2026-11-13T13:13:25.175Z",
+      "series": {
+        "api_url": "https://www.comics.org/api/series/71229/?format=json",
+        "name": "World War Hulk: Warbound", "year_began": 2008,
+        "publisher": "https://www.comics.org/api/publisher/78/?format=json", "country": "us", "language": "en",
+        "binding": "trade paperback", "active_issues": ["https://www.comics.org/api/issue/1052285/?format=json"]
+      }
+    },
     "145026": {
       "url": "https://www.comics.org/api/series/name/War%20of%20the%20Realms%3A%20New%20Agents%20of%20Atlas/year/2019/?format=json",
       "retrievedAt": "2026-11-14T16:51:37.411Z",
@@ -192,7 +310,7 @@
       }
     }
   },
-  "expectedCrosswalkEntries": 7,
+  "expectedCrosswalkEntries": 8,
   "seriesCrosswalk": [
     {
       "appSeriesId": 2258,
@@ -258,9 +376,79 @@
       "gcdSeriesUrl": "https://www.comics.org/api/series/16048/?format=json",
       "gcdSeriesPage": "https://www.comics.org/series/16048/",
       "sourceIssues": [{ "gcdIssueId": 266319, "gcdIssuePage": "https://www.comics.org/issue/266319/", "appNumber": 1, "gcdNumber": "[nn]" }]
+    },
+    {
+      "appSeriesId": 3171,
+      "from": 1,
+      "to": 5,
+      "gcdSeries": "WWH Aftersmash: Warbound (Marvel, 2008 series)",
+      "gcdSeriesUrl": "https://www.comics.org/api/series/33241/?format=json",
+      "gcdSeriesPage": "https://www.comics.org/series/33241/",
+      "sourceIssues": [
+        { "gcdIssueId": 558938, "gcdIssuePage": "https://www.comics.org/issue/558938/", "appNumber": 1, "gcdNumber": "1" },
+        { "gcdIssueId": 558939, "gcdIssuePage": "https://www.comics.org/issue/558939/", "appNumber": 2, "gcdNumber": "2" },
+        { "gcdIssueId": 558940, "gcdIssuePage": "https://www.comics.org/issue/558940/", "appNumber": 3, "gcdNumber": "3" },
+        { "gcdIssueId": 558941, "gcdIssuePage": "https://www.comics.org/issue/558941/", "appNumber": 4, "gcdNumber": "4" },
+        { "gcdIssueId": 558942, "gcdIssuePage": "https://www.comics.org/issue/558942/", "appNumber": 5, "gcdNumber": "5" }
+      ]
     }
   ],
   "editions": {
+    "thunderbolts-burning-down-the-house": {
+      "gcdSeries": "*Thunderbolts* (Marvel, 2006 series)",
+      "sourceSeriesId": 17522,
+      "collectionSeriesId": 72598,
+      "originalIssues": [
+        { "appNumber": 126, "gcdIssueId": 552867, "onSaleDate": "2008-11-19" },
+        { "appNumber": 127, "gcdIssueId": 558659, "onSaleDate": "2008-12-17" },
+        { "appNumber": 128, "gcdIssueId": 565808, "onSaleDate": "2009-01-21" },
+        { "appNumber": 129, "gcdIssueId": 576169, "onSaleDate": "2009-02-25" }
+      ],
+      "contents": [{ "seriesId": 18527, "from": 126, "to": 129, "assertedBy": "gcd-notes", "basis": "The indexer notes list Thunderbolts #126-129; the separately identified originals match the list's series, issue numbers, on-sale dates and writer." }]
+    },
+    "spider-geddon-covert-ops": {
+      "collectionSeriesId": 141117,
+      "originalIssues": [
+        { "appSeriesId": 26087, "appNumber": 1, "gcdIssueId": 1864025, "onSaleDate": "2018-10-31" },
+        { "appSeriesId": 26087, "appNumber": 2, "gcdIssueId": 1875119, "onSaleDate": "2018-11-21" },
+        { "appSeriesId": 26087, "appNumber": 3, "gcdIssueId": 1880685, "onSaleDate": "2018-12-12" },
+        { "appSeriesId": 26177, "appNumber": 1, "gcdIssueId": 1861195, "onSaleDate": "2018-10-24" },
+        { "appSeriesId": 26177, "appNumber": 2, "gcdIssueId": 1876450, "onSaleDate": "2018-11-28" },
+        { "appSeriesId": 26177, "appNumber": 3, "gcdIssueId": 1880686, "onSaleDate": "2018-12-12" }
+      ],
+      "contents": [
+        { "seriesId": 26087, "from": 1, "to": 3, "gcdSeries": "Spider-Force (Marvel, 2018 series)", "sourceSeriesId": 132588, "assertedBy": "gcd-notes", "basis": "The indexer notes list Spider-Force #1-3; the separately identified originals match the list's series, issue numbers and on-sale dates." },
+        { "seriesId": 26177, "from": 1, "to": 3, "gcdSeries": "Spider-Girls (Marvel, 2018 series)", "sourceSeriesId": 131935, "assertedBy": "gcd-notes", "basis": "The indexer notes list Spider-Girls #1-3; the separately identified originals match the list's series, issue numbers and on-sale dates." }
+      ]
+    },
+    "wolverine-the-origin": {
+      "gcdSeries": "Wolverine: The Origin (Marvel, 2001 series)",
+      "gcdSeriesUrl": "https://www.comics.org/api/series/9926/?format=json",
+      "sourceSeriesId": 9926,
+      "collectionSeriesId": 72280,
+      "originalIssues": [
+        { "appNumber": 1, "gcdIssueId": 89711, "collectionSequence": 5, "onSaleDate": "2001-09-05" },
+        { "appNumber": 2, "gcdIssueId": 89712, "collectionSequence": 7, "onSaleDate": "2010-10-03" },
+        { "appNumber": 3, "gcdIssueId": 89713, "collectionSequence": 9, "onSaleDate": "2001-11-14" },
+        { "appNumber": 4, "gcdIssueId": 89714, "collectionSequence": 11, "onSaleDate": "2002-01-16" },
+        { "appNumber": 5, "gcdIssueId": 89715, "collectionSequence": 14, "onSaleDate": "2002-03-13" },
+        { "appNumber": 6, "gcdIssueId": 89716, "collectionSequence": 16, "onSaleDate": "2002-05-22" }
+      ],
+      "contents": [{ "seriesId": 2062, "from": 1, "to": 6, "assertedBy": "gcd-stories", "basis": "Each indexed trade story matches its original issue's series, number, title, pages and credits. The list and database on-sale dates differ for #1 and #2." }]
+    },
+    "world-war-hulk-warbound": {
+      "gcdSeries": "WWH Aftersmash: Warbound (Marvel, 2008 series)",
+      "sourceSeriesId": 33241,
+      "collectionSeriesId": 71229,
+      "originalIssues": [
+        { "appNumber": 1, "gcdIssueId": 558938, "onSaleDate": "2007-12-19" },
+        { "appNumber": 2, "gcdIssueId": 558939, "onSaleDate": "2008-01-16" },
+        { "appNumber": 3, "gcdIssueId": 558940, "onSaleDate": "2008-02-20" },
+        { "appNumber": 4, "gcdIssueId": 558941, "onSaleDate": "2008-03-19" },
+        { "appNumber": 5, "gcdIssueId": 558942, "onSaleDate": "2008-04-16" }
+      ],
+      "contents": [{ "seriesId": 3171, "from": 1, "to": 5, "assertedBy": "gcd-notes", "basis": "The indexer notes list WWH Aftersmash: Warbound #1-5. The first original matches the list's on-sale date and Greg Pak credit. Later dates and some creator roles differ; the provenance records both sources." }]
+    },
     "war-of-the-realms-new-agents-of-atlas": {
       "gcdSeries": "War of the Realms: New Agents of Atlas (Marvel, 2019 Series)",
       "sourceSeriesId": 145026,

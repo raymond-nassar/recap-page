@@ -4868,6 +4868,377 @@
         ],
         "conflicts": []
       }
+    },
+    {
+      "edition": "world-war-hulk-warbound",
+      "gcdIssueId": 1052285,
+      "url": "https://www.comics.org/api/issue/1052285/?format=json",
+      "retrievedAt": "2026-11-13T14:51:02.170Z",
+      "seriesName": "World War Hulk: Warbound (2008 series)",
+      "number": "[nn]",
+      "descriptor": "",
+      "isbn": null,
+      "publicationDate": "2008",
+      "pageCount": "124.000",
+      "variantOf": null,
+      "notes": "Collects WWH Aftersmash: Warbound (Marvel, 2008 series) #1-5.",
+      "supportingSources": [
+        {
+          "url": "https://www.comics.org/api/issue/558938/?format=json",
+          "retrievedAt": "2026-11-16T01:56:11.934Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/558939/?format=json",
+          "retrievedAt": "2026-11-16T01:56:28.081Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/558940/?format=json",
+          "retrievedAt": "2026-11-16T01:57:07.193Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/558941/?format=json",
+          "retrievedAt": "2026-11-16T01:57:50.730Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/558942/?format=json",
+          "retrievedAt": "2026-11-16T01:58:08.264Z"
+        },
+        {
+          "url": "https://www.comics.org/api/series/name/WWH%20Aftersmash%3A%20Warbound/year/2008/?format=json",
+          "retrievedAt": "2026-11-13T19:24:20.634Z"
+        }
+      ],
+      "comicStories": [],
+      "assertedContents": [
+        {
+          "seriesId": 3171,
+          "from": 1,
+          "to": 5,
+          "assertedBy": "gcd-notes",
+          "basis": "The indexer notes list WWH Aftersmash: Warbound #1-5. The first original matches the list's on-sale date and Greg Pak credit. Later dates and some creator roles differ; the provenance records both sources."
+        }
+      ],
+      "check": {
+        "tier": "gcd-notes",
+        "status": "verified",
+        "verifiedComics": [
+          "3171:1",
+          "3171:2",
+          "3171:3",
+          "3171:4",
+          "3171:5"
+        ],
+        "excludedSequences": [],
+        "conflicts": []
+      }
+    },
+    {
+      "edition": "wolverine-the-origin",
+      "gcdIssueId": 1087082,
+      "url": "https://www.comics.org/api/issue/1087082/?format=json",
+      "retrievedAt": "2026-11-13T00:09:03.408Z",
+      "seriesName": "Wolverine: The Origin (2002 series)",
+      "number": "[nn]",
+      "descriptor": "",
+      "isbn": "0-7851-0965-X",
+      "publicationDate": "2002",
+      "pageCount": "164.000",
+      "variantOf": null,
+      "notes": null,
+      "supportingSources": [
+        {
+          "url": "https://www.comics.org/api/issue/89711/?format=json",
+          "retrievedAt": "2026-11-16T02:24:12.520Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/89712/?format=json",
+          "retrievedAt": "2026-11-16T02:24:39.066Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/89713/?format=json",
+          "retrievedAt": "2026-11-16T02:24:43.840Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/89714/?format=json",
+          "retrievedAt": "2026-11-16T02:24:48.411Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/89715/?format=json",
+          "retrievedAt": "2026-11-16T02:24:52.626Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/89716/?format=json",
+          "retrievedAt": "2026-11-16T02:24:57.317Z"
+        },
+        {
+          "url": "https://www.comics.org/api/series/name/Origin/year/2001/?format=json",
+          "retrievedAt": "2026-11-16T02:23:57.171Z"
+        }
+      ],
+      "comicStories": [
+        {
+          "sequence": 5,
+          "title": "The Hill",
+          "pages": "23.000"
+        },
+        {
+          "sequence": 7,
+          "title": "Inner Child",
+          "pages": "22.000"
+        },
+        {
+          "sequence": 9,
+          "title": "The Beast Within",
+          "pages": "23.000"
+        },
+        {
+          "sequence": 11,
+          "title": "Heaven and Hell",
+          "pages": "28.000"
+        },
+        {
+          "sequence": 14,
+          "title": "Revelation",
+          "pages": "25.000"
+        },
+        {
+          "sequence": 16,
+          "title": "Dust to Dust",
+          "pages": "25.000"
+        }
+      ],
+      "assertedContents": [
+        {
+          "seriesId": 2062,
+          "from": 1,
+          "to": 6,
+          "assertedBy": "gcd-stories",
+          "basis": "Each indexed trade story matches its original issue's series, number, title, pages and credits. The list and database on-sale dates differ for #1 and #2."
+        }
+      ],
+      "check": {
+        "tier": "gcd-original-stories",
+        "status": "verified",
+        "verifiedComics": [
+          "2062:1",
+          "2062:2",
+          "2062:3",
+          "2062:4",
+          "2062:5",
+          "2062:6"
+        ],
+        "excludedSequences": [
+          {
+            "sequence": 1,
+            "title": null,
+            "reason": "Not a comic story: blank page(s)."
+          },
+          {
+            "sequence": 2,
+            "title": null,
+            "reason": "Not a comic story: credits, title page."
+          },
+          {
+            "sequence": 3,
+            "title": "Introduction",
+            "reason": "Not a comic story: foreword, introduction, preface, afterword."
+          },
+          {
+            "sequence": 4,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 6,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 8,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 10,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 12,
+            "title": "The Feast",
+            "reason": "Not a comic story: illustration."
+          },
+          {
+            "sequence": 13,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 15,
+            "title": null,
+            "reason": "Not a comic story: cover reprint (on interior page)."
+          },
+          {
+            "sequence": 17,
+            "title": "The Beginning",
+            "reason": "Not a comic story: text article."
+          },
+          {
+            "sequence": 18,
+            "title": "Confessions of an EIC",
+            "reason": "Not a comic story: text article."
+          },
+          {
+            "sequence": 19,
+            "title": "Subscribe Today... Or Else",
+            "reason": "Not a comic story: promo (ad from the publisher)."
+          },
+          {
+            "sequence": 20,
+            "title": null,
+            "reason": "Not a comic story: credits, title page."
+          },
+          {
+            "sequence": 21,
+            "title": "The Origin of Wolverine",
+            "reason": "Not a comic story: promo (ad from the publisher)."
+          }
+        ],
+        "conflicts": []
+      }
+    },
+    {
+      "edition": "spider-geddon-covert-ops",
+      "gcdIssueId": 1928388,
+      "url": "https://www.comics.org/api/issue/1928388/?format=json",
+      "retrievedAt": "2026-11-14T09:33:49.020Z",
+      "seriesName": "Spider-Geddon: Covert Ops (2019 series)",
+      "number": "[nn]",
+      "descriptor": "",
+      "isbn": "978-1-302-91497-4",
+      "publicationDate": "2019",
+      "pageCount": "140.000",
+      "variantOf": null,
+      "notes": "Collects Spider-Force (Marvel, 2018 series) #1-3 and Spider-Girls (Marvel, 2018 series) #1-3.",
+      "supportingSources": [
+        {
+          "url": "https://www.comics.org/api/issue/1864025/?format=json",
+          "retrievedAt": "2026-11-14T12:51:51.695Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/1875119/?format=json",
+          "retrievedAt": "2026-11-14T12:51:54.683Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/1880685/?format=json",
+          "retrievedAt": "2026-11-14T12:51:57.658Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/1861195/?format=json",
+          "retrievedAt": "2026-11-14T12:52:15.754Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/1876450/?format=json",
+          "retrievedAt": "2026-11-14T12:52:49.204Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/1880686/?format=json",
+          "retrievedAt": "2026-11-14T12:52:52.130Z"
+        }
+      ],
+      "comicStories": [],
+      "assertedContents": [
+        {
+          "seriesId": 26087,
+          "from": 1,
+          "to": 3,
+          "gcdSeries": "Spider-Force (Marvel, 2018 series)",
+          "sourceSeriesId": 132588,
+          "assertedBy": "gcd-notes",
+          "basis": "The indexer notes list Spider-Force #1-3; the separately identified originals match the list's series, issue numbers and on-sale dates."
+        },
+        {
+          "seriesId": 26177,
+          "from": 1,
+          "to": 3,
+          "gcdSeries": "Spider-Girls (Marvel, 2018 series)",
+          "sourceSeriesId": 131935,
+          "assertedBy": "gcd-notes",
+          "basis": "The indexer notes list Spider-Girls #1-3; the separately identified originals match the list's series, issue numbers and on-sale dates."
+        }
+      ],
+      "check": {
+        "tier": "gcd-notes",
+        "status": "verified",
+        "verifiedComics": [
+          "26087:1",
+          "26087:2",
+          "26087:3",
+          "26177:1",
+          "26177:2",
+          "26177:3"
+        ],
+        "excludedSequences": [],
+        "conflicts": []
+      }
+    },
+    {
+      "edition": "thunderbolts-burning-down-the-house",
+      "gcdIssueId": 1091596,
+      "url": "https://www.comics.org/api/issue/1091596/?format=json",
+      "retrievedAt": "2026-11-13T21:26:25.853Z",
+      "seriesName": "Thunderbolts: Burning Down the House (2009 series)",
+      "number": "[nn]",
+      "descriptor": "",
+      "isbn": "978-0-7851-3166-3",
+      "publicationDate": "2009",
+      "pageCount": "124.000",
+      "variantOf": null,
+      "notes": "Collects *Thunderbolts* (Marvel, 2006 series) #126-129.",
+      "supportingSources": [
+        {
+          "url": "https://www.comics.org/api/issue/552867/?format=json",
+          "retrievedAt": "2026-11-16T02:38:39.386Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/558659/?format=json",
+          "retrievedAt": "2026-11-16T02:38:44.885Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/565808/?format=json",
+          "retrievedAt": "2026-11-16T02:38:50.159Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/576169/?format=json",
+          "retrievedAt": "2026-11-16T02:38:56.235Z"
+        },
+        {
+          "url": "https://www.comics.org/api/series/17522/?format=json",
+          "retrievedAt": "2026-11-13T16:07:39.261Z"
+        }
+      ],
+      "comicStories": [],
+      "assertedContents": [
+        {
+          "seriesId": 18527,
+          "from": 126,
+          "to": 129,
+          "assertedBy": "gcd-notes",
+          "basis": "The indexer notes list Thunderbolts #126-129; the separately identified originals match the list's series, issue numbers, on-sale dates and writer."
+        }
+      ],
+      "check": {
+        "tier": "gcd-notes",
+        "status": "verified",
+        "verifiedComics": [
+          "18527:126",
+          "18527:127",
+          "18527:128",
+          "18527:129"
+        ],
+        "excludedSequences": [],
+        "conflicts": []
+      }
     }
   ],
   "coverage": [
