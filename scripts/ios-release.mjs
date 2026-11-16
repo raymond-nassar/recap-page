@@ -137,21 +137,33 @@ export function assertIosCloudSource(entry, mode, { root = ROOT } = {}) {
     'source predates iOS OneDrive configuration support; reserve a later main commit');
 }
 
-export function checkIosHistory({ root = ROOT } = {}) {
+export function checkIosHistory({ root = ROOT, main = 'origin/main' } = {}) {
   const command = (...args) => execFileSync('git', args, { cwd: root, encoding: 'utf8' }).trim();
-  let previous = { schemaVersion: 1, retiredThrough: 1, reservations: [] };
-  for (const commit of command('rev-list', '--reverse', '--first-parent', 'HEAD', '--', ledgerFile).split('\n').filter(Boolean)) {
-    const next = validateIosLedger(JSON.parse(command('show', `${commit}:${ledgerFile}`)));
-    assertIosAppendOnly(previous, next);
-    for (const entry of next.reservations.slice(previous.reservations.length)) {
-      assertMainSource(entry, 'origin/main', root);
-      command('merge-base', '--is-ancestor', entry.sourceRevision, `${commit}^`);
+  const identity = (entry) => JSON.stringify([entry.buildNumber, entry.productVersion, entry.sourceRevision, entry.sourceTree]);
+  const walk = (tip, landed = new Set()) => {
+    let previous = { schemaVersion: 1, retiredThrough: 1, reservations: [] };
+    for (const commit of command('rev-list', '--reverse', '--first-parent', tip, '--', ledgerFile).split('\n').filter(Boolean)) {
+      const next = validateIosLedger(JSON.parse(command('show', `${commit}:${ledgerFile}`)));
+      assertIosAppendOnly(previous, next);
+      for (const entry of next.reservations.slice(previous.reservations.length)) {
+        assertMainSource(entry, main, root);
+        if (landed.has(identity(entry))) continue;
+        command('merge-base', '--is-ancestor', entry.sourceRevision, `${commit}^`);
+      }
+      previous = next;
     }
-    previous = next;
-  }
+    return previous;
+  };
+  // A reservation's source must already be on main when the reservation lands there, so main's own
+  // first-parent history is where that order is checked. A branch that merges main first sees main's
+  // reservations at its merge commit, whose first parent is the branch, so checking them again there
+  // failed every such branch (#976). Only the exact reservations main already landed are exempted;
+  // any other new reservation on the branch still has to follow its source.
+  const landed = new Set(walk(main).reservations.map(identity));
+  const previous = walk('HEAD', landed);
   const current = validateIosLedger(JSON.parse(readFileSync(join(root, ledgerFile), 'utf8')));
   assertIosAppendOnly(previous, current);
-  current.reservations.forEach((entry) => assertMainSource(entry, 'origin/main', root));
+  current.reservations.forEach((entry) => assertMainSource(entry, main, root));
   return current;
 }
 

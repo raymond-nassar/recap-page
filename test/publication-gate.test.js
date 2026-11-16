@@ -168,15 +168,22 @@ test('the protected tracked-path fingerprint has unambiguous canonical framing',
   );
 });
 
+// Run in a fixture rather than in this repository. Here the gate scanned every blob and commit
+// reachable from HEAD, twice, so this one test grew with the history until it was the slowest in
+// the suite: 75 s on CI's Node 20 and 95 s on Windows by 15 November 2026 (#1023). The real history
+// is the publication job's to scan. What this test owns is the boundary on a force-added path, and
+// that needs only the protected tracked corpus the baseline fingerprints, written into the index in
+// one call because creating and adding each file separately is what keeps the shallow test below slow.
 test('the production gate rejects a force-added protected path without changing real staged entries', () => {
-  const workspace = fileURLToPath(root);
   const dir = mkdtempSync(join(tmpdir(), 'mrt-publication-index-'));
-  const realIndexText = git(['rev-parse', '--git-path', 'index']).trim();
-  const realIndex = resolve(workspace, realIndexText);
-  const before = git(['ls-files', '--stage', '-z']);
-  const protectedFile = join(workspace, '.copilot-tracking', 'publication-boundary-proof.tmp');
-  const controlFile = join(workspace, 'publication-boundary-control.tmp');
-  const runWith = (file, indexName) => {
+  const workspace = join(dir, 'repo');
+  const fixtureGit = (args, input) => {
+    const out = spawnSync('git', ['-c', 'user.email=gate@example.invalid', '-c', 'user.name=gate', ...args],
+      { cwd: workspace, encoding: 'utf8', input });
+    assert.equal(out.status, 0, `git ${args.join(' ')}: ${out.stderr}`);
+    return out.stdout;
+  };
+  const runWith = (file, indexName, realIndex) => {
     const alternateIndex = join(dir, indexName);
     cpSync(realIndex, alternateIndex);
     const env = { ...process.env, GIT_INDEX_FILE: alternateIndex };
@@ -191,19 +198,30 @@ test('the production gate rejects a force-added protected path without changing 
     });
   };
   try {
-    const protectedRun = runWith(protectedFile, 'protected.index');
+    mkdirSync(join(workspace, 'scripts'), { recursive: true });
+    mkdirSync(join(workspace, '.copilot-tracking'));
+    fixtureGit(['init', '--quiet', '-b', 'main']);
+    writeFileSync(join(workspace, '.gitignore'), PROTECTED.map(([protectedRoot]) => protectedRoot).join('\n') + '\n');
+    const empty = fixtureGit(['hash-object', '-w', '--stdin'], '').trim();
+    const protectedPaths = git(['-c', 'core.quotePath=false', 'ls-files', '-z', '.copilot-tracking', '.github/prompts'])
+      .split('\u0000').filter(Boolean);
+    assert.ok(protectedPaths.length > 0, 'the protected corpus was enumerated');
+    fixtureGit(['update-index', '-z', '--index-info'], protectedPaths.map((path) => `100644 ${empty}\t${path}\u0000`).join(''));
+    fixtureGit(['add', '--', '.gitignore']);
+    fixtureGit(['commit', '--quiet', '-m', 'the protected corpus the baseline fingerprints']);
+    cpSync(fileURLToPath(new URL('../scripts/check-publication.mjs', import.meta.url)), join(workspace, 'scripts', 'check-publication.mjs'));
+    const realIndex = resolve(workspace, fixtureGit(['rev-parse', '--git-path', 'index']).trim());
+    const before = fixtureGit(['ls-files', '--stage', '-z']);
+
+    const protectedRun = runWith(join(workspace, '.copilot-tracking', 'publication-boundary-proof.tmp'), 'protected.index', realIndex);
     assert.equal(protectedRun.status, 1, `${protectedRun.stdout}${protectedRun.stderr}`);
     assert.match(protectedRun.stdout, /protected tracked-path corpus changed/);
 
-    const controlRun = runWith(controlFile, 'control.index');
-    const shallow = git(['rev-parse', '--is-shallow-repository']).trim() === 'true';
-    assert.equal(controlRun.status, shallow ? 2 : 0, `${controlRun.stdout}${controlRun.stderr}`);
+    const controlRun = runWith(join(workspace, 'publication-boundary-control.tmp'), 'control.index', realIndex);
+    assert.equal(controlRun.status, 0, `${controlRun.stdout}${controlRun.stderr}`);
     assert.doesNotMatch(controlRun.stdout, /could not read publication-boundary-control\.tmp/);
-    if (shallow) assert.match(controlRun.stdout, /history half of this gate was not answered/);
-    assert.equal(git(['ls-files', '--stage', '-z']), before, 'the real Git index entries are unchanged');
+    assert.equal(fixtureGit(['ls-files', '--stage', '-z']), before, 'the real Git index entries are unchanged');
   } finally {
-    rmSync(protectedFile, { force: true });
-    rmSync(controlFile, { force: true });
     rmSync(dir, { recursive: true, force: true });
   }
 });
