@@ -1,5 +1,5 @@
 import {
-  STORY_TONES, STORY_TYPES, STORY_TYPES_ROUTE, catalogEntries, storyKey, storyTypeFacets, storyTypeStarters,
+  STORY_TONES, STORY_TYPES, STORY_TYPES_ROUTE, catalogEntries, storyTypeFacets, storyTypeStarters,
   storyTypeStories,
 } from '../lib/catalog.js';
 import { linkNarrower } from './shared/library-link-filter.js';
@@ -101,13 +101,16 @@ export function createStoryTypesView({
     const nodes = elements();
     const stories = catalogEntries(catalog.lists);
     paintChoices(stories);
-    const narrower = linkNarrower(linkChoice(), catalog.lists, storyKey);
+    const narrower = linkNarrower(linkChoice());
     const all = storyTypeStories(stories);
     nodes.results.replaceChildren();
     if (!type && !tone) {
       const starters = storyTypeStarters(stories).filter(narrower.keep);
+      // The count covers every genre list, as the chosen-genre count does, rather than only the
+      // starters shown below it.
+      const linked = narrower.linking ? all.filter(narrower.keep).length : all.length;
       nodes.count.textContent = narrower.linking
-        ? `${starters.length} ${starters.length === 1 ? 'Reading List' : 'Reading Lists'}${narrower.narrowing}`
+        ? `${linked} of ${all.length} Reading Lists${narrower.narrowing}`
         : `${all.length} ${all.length === 1 ? 'Reading List' : 'Reading Lists'}`;
       if (!starters.length) {
         nodes.results.append(el('p', {

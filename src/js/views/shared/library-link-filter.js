@@ -1,5 +1,5 @@
 import {
-  coverageMatches, coverageText, DEFAULT_LINK_FILTER, linkFilter, providerPhrase, readingsOfStory, readLinkFilter,
+  coverageMatches, coverageText, DEFAULT_LINK_FILTER, linkFilter, providerPhrase, readLinkFilter,
   saveLinkFilter, storyCoverage,
 } from '../../lib/libraryLinks.js';
 
@@ -33,13 +33,13 @@ export function linkFilterSummary(filter, noun = 'Reading Lists') {
 }
 
 // What one page needs from the current choice: whether it narrows, which cards it keeps, and the
-// count each kept card shows. Every card is measured against all readings of its stop in the page's
-// whole pool (P3), so the other narrowing on the page never changes a card's count.
-export function linkNarrower(filter, pool, keyOf) {
+// count each kept card shows. Each card counts the list it opens, on every page, so a card's count
+// never depends on other readings of its story or on what the page's other narrowing left (owner
+// ruling on #1333, revising decision 3).
+export function linkNarrower(filter) {
   const links = linkFilter(filter);
   const linking = links.coverage !== 'off';
-  const readingsOf = readingsOfStory(pool, keyOf);
-  const count = (story) => storyCoverage(readingsOf(story.lists[0]), links.provider);
+  const count = (story) => storyCoverage(story.lists, links.provider);
   return {
     links,
     linking,
@@ -51,19 +51,27 @@ export function linkNarrower(filter, pool, keyOf) {
 
 // One remembered choice for every browsing page on this device (decision 8). It lives under its own
 // key, which no backup, restore or cloud copy names, so restoring reading data leaves it alone
-// (decision 9). The Library links category always filters, so it offers no Off and reads Off as
-// any-link without saving that reading.
+// (decision 9). The Library links category always filters, so it offers no Off. Its coverage choice
+// is held in memory only: saving it would turn filtering on for every other page, where filtering is
+// opt-in. Its provider choice is saved like any other.
 export function createLibraryLinkFilter({ el, storage, key }) {
   let filter = readLinkFilter(storage, key);
+  let alwaysCoverage = 'any';
   const mounts = new Map();
 
   function effective(id) {
     const mount = mounts.get(id);
-    return mount?.always && filter.coverage === 'off' ? { ...filter, coverage: 'any' } : { ...filter };
+    return mount?.always ? { ...filter, coverage: alwaysCoverage } : { ...filter };
   }
 
   function choose(id, next, { silent = false } = {}) {
-    filter = saveLinkFilter(storage, key, { ...filter, ...next });
+    if (mounts.get(id)?.always) {
+      const { coverage, ...saved } = next;
+      if (coverage && coverage !== 'off') alwaysCoverage = coverage;
+      if (Object.keys(saved).length) filter = saveLinkFilter(storage, key, { ...filter, ...saved });
+    } else {
+      filter = saveLinkFilter(storage, key, { ...filter, ...next });
+    }
     paint(id);
     if (!silent) mounts.get(id)?.onChange?.(effective(id));
   }

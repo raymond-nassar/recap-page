@@ -65,8 +65,8 @@ export function listCoverage(list, provider = 'either', coverage = editionEviden
   return { linked, total };
 }
 
-// A stop with several readings is counted across all of them, and matches any-link when any one of
-// them has a linked comic. It is fully linked only when every position of every reading is (P3).
+// Several lists counted together, used where a card opens more than one. Linked when any list has a
+// linked comic, and fully linked only when every position of every list is.
 export function storyCoverage(lists, provider = 'either', coverage = editionEvidence.linkCoverage) {
   let linked = 0;
   let total = 0;
@@ -89,19 +89,6 @@ export function filterStoriesByLinks(stories, filter, { listsOf = (story) => sto
   const all = Array.isArray(stories) ? stories : [];
   if (mode === 'off') return all;
   return all.filter((story) => coverageMatches(storyCoverage(listsOf(story), provider, coverage), mode));
-}
-
-// Each browsing card shows one reading, but a timeline stop is every reading of one story (P3).
-// The readings are gathered from the page's whole pool rather than what a search left, so a search
-// that matches one reading never shrinks the stop its count is measured against.
-export function readingsOfStory(pool, keyOf) {
-  const byKey = new Map();
-  for (const list of Array.isArray(pool) ? pool : []) {
-    const key = keyOf(list);
-    if (!byKey.has(key)) byKey.set(key, []);
-    byKey.get(key).push(list);
-  }
-  return (list) => byKey.get(keyOf(list)) ?? [list];
 }
 
 export function providerPhrase(provider) {

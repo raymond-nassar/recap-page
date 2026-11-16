@@ -18,7 +18,7 @@ import {
   availablePublishingCategories, isPublishingCategoryLeaf, publishingAgeGroups, publishingCategoryStories,
   timelineYears,
   catalogListBrowseRoute, CATALOG_SHELVES, PUBLISHING_CATEGORIES,
-  modernTimelineFeaturedCard, storyKey, LIBRARY_LINKS_ROUTE,
+  modernTimelineFeaturedCard, LIBRARY_LINKS_ROUTE,
 } from './lib/catalog.js';
 import { Store, ImportDraftStore, IMPORT_DRAFT_KEY, PRERESTORE_KEY, KEY as STATE_KEY, SETTINGS_KEY, SIDEBAR_KEY, RESTORE_NOTICE_KEY, LIBRARY_LINKS_KEY } from './storage.js';
 import { LIST_HISTORY_KEY, ListHistoryStore, eraseReaderAndHistory } from './lib/listHistory.js';
@@ -1824,6 +1824,8 @@ function showView(next, { focus = true, push = false, at = null, capturePosition
   if (next === 'read' && !Object.hasOwn(store.state.lists, activeListId() ?? '')) next = 'home';
   const shouldAnimateArrival = focus && next !== view;
   const arriving = next !== view && !aboutTraversal;
+  // Back and Forward count too: any return from another view opens the list unfiltered (#1333).
+  if (next === 'read' && view !== 'read') readingView.resetLinksOnly();
   if (next !== view) {
     $(`#view-${view}`)?.classList.remove('view-entering');
     retireRoutineNotices(notices);
@@ -3329,20 +3331,19 @@ async function renderPublishingCategory(route, { isCurrent = () => view === rout
   const inCategory = typeof category.select === 'function'
     ? category.select(allStories)
     : publishingCategoryStories(allStories, category.key);
-  const narrower = linkNarrower(
-    libraryLinkFilter.current(route),
-    inCategory.flatMap((story) => story.lists),
-    storyKey,
-  );
+  const narrower = linkNarrower(libraryLinkFilter.current(route));
   const stories = inCategory.filter(narrower.keep);
   const count = stories.reduce((total, story) => total + story.lists.length, 0);
-  $(`#${route}-count`).textContent = `${count} ${count === 1 ? 'Reading List' : 'Reading Lists'}${narrower.narrowing}`;
+  const countText = `${count} ${count === 1 ? 'Reading List' : 'Reading Lists'}${narrower.narrowing}`;
 
   const children = availablePublishingCategories(allStories, category.key);
   const isPublishingCategory = PUBLISHING_CATEGORIES.some(
     (candidate) => candidate.key === category.key && candidate.route === category.route,
   );
   if (isPublishingCategory && !isPublishingCategoryLeaf(category)) {
+    // The period chooser never filters its tiles, so its count stays the unnarrowed one.
+    const all = inCategory.reduce((total, story) => total + story.lists.length, 0);
+    $(`#${route}-count`).textContent = `${all} ${all === 1 ? 'Reading List' : 'Reading Lists'}`;
     showLinks(false);
     box.replaceChildren(el('p', {
       class: 'rail-hint',
@@ -3357,6 +3358,7 @@ async function renderPublishingCategory(route, { isCurrent = () => view === rout
   }
 
   box.replaceChildren();
+  $(`#${route}-count`).textContent = countText;
   showLinks(inCategory.length > 0);
   if (!stories.length) {
     if (narrower.linking && inCategory.length) {

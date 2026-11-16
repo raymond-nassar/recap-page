@@ -19,11 +19,10 @@ import {
   sortSpotlightStories,
   spotlightKindLabel,
   spotlightSortLabel,
-  storyKey,
   visibleFirstStopGuides,
 } from '../lib/catalog.js';
 import { completionState, listForCatalogId, listProgress } from '../lib/model.js';
-import { coverageMatches, coverageText, DEFAULT_LINK_FILTER, readingsOfStory, storyCoverage } from '../lib/libraryLinks.js';
+import { coverageMatches, coverageText, DEFAULT_LINK_FILTER, storyCoverage } from '../lib/libraryLinks.js';
 import { createCollectionNavigation } from './shared/collection-navigation.js';
 import { linkNarrowing } from './shared/library-link-filter.js';
 
@@ -530,13 +529,11 @@ export function createCatalogView({
     const inSpotlight = key === 'spotlights'
       ? filterBySpotlightKind(mine, state.spotlight)
       : mine;
-    // Library links narrow after the category and search, and each card is measured against every
-    // reading of its stop in the page's whole pool, never against what the other filters left
-    // (decision 7, P3).
+    // Library links narrow after the category and search. Each card counts the list it opens, so the
+    // other filters never change a card's count (owner ruling on #1333, revising decision 3).
     const links = linkFilter ? linkFilter.current(key) : { ...DEFAULT_LINK_FILTER };
     const linking = links.coverage !== 'off';
-    const readingsOf = readingsOfStory(mine, storyKey);
-    const linkCount = (list) => storyCoverage(readingsOf(list), links.provider);
+    const linkCount = (list) => storyCoverage([list], links.provider);
     const searched = searchCatalog(filterByFacet(inSpotlight, state.facet), state.query);
     const shown = linking ? searched.filter((list) => coverageMatches(linkCount(list), links.coverage)) : searched;
     const linkWhere = linkNarrowing(links);
@@ -548,7 +545,11 @@ export function createCatalogView({
     if (!shown.length) {
       const where = narrowingLabel(key, mine, state);
       const message = linking
-        ? `${followed ? `No stops on ${followed.name}` : 'No Reading Lists'}${state.query ? ` matching “${state.query}”` : ''}${where}${linkWhere}.`
+        ? followed
+          ? `No stops on ${followed.name}${state.query ? ` match “${state.query}”` : ''}${where}${linkWhere}.`
+          : state.query
+            ? `No Reading Lists match “${state.query}”${where || ` in ${shelf.heading}`}${linkWhere}.`
+            : `No Reading Lists${where || ` in ${shelf.heading}`}${linkWhere}.`
         : followed
           ? state.query
             ? `No stops on ${followed.name} match “${state.query}”${where}.`

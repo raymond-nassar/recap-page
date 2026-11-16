@@ -6,11 +6,12 @@ import { editionCatalog, editionEvidence } from '../src/js/lib/collectedEditions
 import { captureCompleteBackup } from '../src/js/lib/completeBackup.js';
 import { observeSavedWrites } from '../src/js/lib/cloudCoordinator.js';
 import { LIBRARY_LINKS_KEY } from '../src/js/storage.js';
+import { catalogEntries } from '../src/js/lib/catalog.js';
 import {
   coverageMatches, coverageText, filterStoriesByLinks, linkFilter, listCoverage, listLinkCoverage, readLinkFilter,
-  readingsOfStory, saveLinkFilter, storyCoverage,
+  saveLinkFilter, storyCoverage,
 } from '../src/js/lib/libraryLinks.js';
-import { createLibraryLinkFilter, linkNarrowing } from '../src/js/views/shared/library-link-filter.js';
+import { createLibraryLinkFilter, linkNarrower, linkNarrowing } from '../src/js/views/shared/library-link-filter.js';
 
 const approval = 'https://github.com/raymond-nassar/recap-page/issues/1203#issuecomment-6839342560';
 const hoopla = { provider: 'hoopla', url: 'https://www.hoopladigital.com/title/123456789', checkedAt: '2026-11-10', confirmedBy: 'owner' };
@@ -104,19 +105,17 @@ test('shipped library-link counts match the reading lists they describe', () => 
   for (const id of Object.keys(shipped)) assert.ok(named.has(id), id);
 });
 
-test('a stop is measured against every reading in the pool, not what a search left', () => {
-  const coverage = { a: { positions: 2, either: 2, hoopla: 2, libby: 0 }, b: { positions: 3, either: 0, hoopla: 0, libby: 0 } };
-  const a = { id: 'a', count: 2, group: 'story' };
-  const b = { id: 'b', count: 3, group: 'story' };
-  const solo = { id: 'solo', count: 1 };
-  const readingsOf = readingsOfStory([a, b, solo], (list) => list.group ?? list.id);
-  assert.deepEqual(readingsOf(a), [a, b]);
-  assert.deepEqual(readingsOf(solo), [solo]);
-  assert.deepEqual(readingsOf({ id: 'stray', count: 1 }), [{ id: 'stray', count: 1 }]);
-  // A search that kept only reading a still reads the stop as 2 of 5, so it is not fully linked.
-  assert.deepEqual(storyCoverage(readingsOf(a), 'either', coverage), { linked: 2, total: 5 });
-  assert.equal(coverageMatches(storyCoverage(readingsOf(a), 'hoopla', coverage), 'every'), false);
-  assert.equal(coverageMatches(storyCoverage(readingsOf(a), 'hoopla', coverage), 'any'), true);
+test('each card counts the list it opens, not the other readings of its story', () => {
+  const catalogLists = JSON.parse(readFileSync(new URL('../src/data/catalog.json', import.meta.url), 'utf8')).lists;
+  const card = (id) => catalogEntries(catalogLists.filter((list) => list.id === id))[0];
+  const every = linkNarrower({ coverage: 'every', provider: 'either' });
+  const any = linkNarrower({ coverage: 'any', provider: 'either' });
+  // Civil War: Essential is fully linked on its own, though the stop's other readings are not.
+  assert.equal(every.linkText(card('civil-war-essential')), '7 of 7 comics with a checked Hoopla or Libby link');
+  assert.equal(every.keep(card('civil-war-essential')), true);
+  // Secret Invasion: Essential has no linked comic, though another reading of its story does.
+  assert.equal(any.keep(card('secret-invasion-essential')), false);
+  assert.equal(any.keep(card('secret-invasion')), true);
 });
 
 test('the shared filter remembers one choice, and the category always filters', () => {
@@ -144,4 +143,27 @@ test('the shared filter remembers one choice, and the category always filters', 
   filter.reset('catalog', { silent: true });
   assert.equal(changes.length, 1);
   assert.equal(linkNarrowing({ coverage: 'any', provider: 'either' }), ' with at least one checked Hoopla or Libby link');
+});
+
+test('choosing on the Library links page saves only the provider', () => {
+  const map = new Map();
+  const storage = { getItem: (key) => map.get(key) ?? null, setItem: (key, value) => map.set(key, value) };
+  const el = (tag, props = {}, children = []) => ({ tag, props, children });
+  const container = { nodes: [], replaceChildren(...nodes) { this.nodes = nodes; }, contains: () => false, querySelectorAll: () => [] };
+  const pick = (name, value) => {
+    const walk = (node) => (node?.props?.name === name && node.props.value === value
+      ? node : (node?.children ?? []).map(walk).find(Boolean));
+    container.nodes.map(walk).find(Boolean).props.onchange();
+  };
+  const filter = createLibraryLinkFilter({ el, storage, key: LIBRARY_LINKS_KEY });
+  filter.mount('catalog', null);
+  filter.mount('library-links', container, { always: true });
+  pick('library-links-links-coverage', 'every');
+  assert.deepEqual(filter.current('library-links'), { coverage: 'every', provider: 'either' });
+  assert.deepEqual(filter.current('catalog'), { coverage: 'off', provider: 'either' });
+  assert.equal(map.has(LIBRARY_LINKS_KEY), false);
+  pick('library-links-links-provider', 'libby');
+  assert.deepEqual(filter.current('library-links'), { coverage: 'every', provider: 'libby' });
+  assert.deepEqual(filter.current('catalog'), { coverage: 'off', provider: 'libby' });
+  assert.equal(map.get(LIBRARY_LINKS_KEY), '{"coverage":"off","provider":"libby"}');
 });

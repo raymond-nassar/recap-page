@@ -1,4 +1,4 @@
-import { catalogEntries, storyKey } from '../lib/catalog.js';
+import { catalogEntries } from '../lib/catalog.js';
 import { mcuPrepSections, parseMcuPrep, releaseDateLabel } from '../lib/mcuPrep.js';
 import { linkNarrower } from './shared/library-link-filter.js';
 
@@ -84,7 +84,7 @@ export function createMcuPrepView({
     if (!ready || !isCurrent() || !requestIsCurrent()) return;
     const nodes = elements();
     const companions = catalog.lists.filter((list) => list.type === 'screen-companion');
-    const narrower = linkNarrower(linkChoice(), companions, storyKey);
+    const narrower = linkNarrower(linkChoice());
     const sections = mcuPrepSections(catalog.lists, metadata, { query, sort })
       .map((section) => ({
         ...section,

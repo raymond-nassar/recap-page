@@ -25,6 +25,9 @@ const KEY = 'mrt.library-links.v1';
 const click = (page, selector) => page.$eval(selector, (node) => node.click());
 const cardTexts = (page, route) => page.$$eval(`#${route}-results .catalog-card`, (cards) =>
   cards.map((card) => card.querySelector('.catalog-card-links')?.textContent ?? null));
+const cardCounts = (page, route) => page.$$eval(`#${route}-results .catalog-card`, (cards) =>
+  cards.map((card) => [card.dataset.story, card.querySelector('.catalog-card-links')?.textContent ?? null]));
+const listCount = new Map(catalog.lists.map((list) => [`list:${list.id}`, list.count]));
 
 export const libraryLinksMutations = [
   {
@@ -44,6 +47,24 @@ export const libraryLinksMutations = [
     breaks: 'library-links',
     why: 'the Library links category gains an Off choice and stops filtering by default',
     rewriteMain: (source) => source.replace('always: category.route === LIBRARY_LINKS_ROUTE,', 'always: false,'),
+  },
+  {
+    id: 'library-links-toggle-survives-return',
+    breaks: 'library-links',
+    why: 'the in-list switch stays on when the reader leaves the list and comes back in the app',
+    rewriteMain: (source) => source.replace("if (next === 'read' && view !== 'read') readingView.resetLinksOnly();", ''),
+  },
+  {
+    id: 'library-links-strip-ignores-toggle',
+    breaks: 'library-links',
+    why: 'the order strip keeps counting the full order while the switch hides unlinked comics',
+    rewriteReading: (source) => source.replace('linksOnly ? items.length : null', 'null'),
+  },
+  {
+    id: 'library-links-toggle-silent',
+    breaks: 'library-links',
+    why: 'the switch hides comics without announcing how many',
+    rewriteReading: (source) => source.replace('if (linksOnly && linksHidden) announce(hiddenSentence(linksHidden));', ''),
   },
 ];
 
@@ -67,10 +88,17 @@ export const libraryLinks = {
     t.check('the category offers no Off choice and opens on any checked link',
       !always.some(([, value]) => value === 'off') && always.some(([group, value, checked]) => group === 'coverage' && value === 'any' && checked),
       JSON.stringify(always));
-    const anyTexts = await cardTexts(page, 'library-links');
-    t.check('every card in the category names its checked-link count against its full order',
-      anyTexts.length > 0 && anyTexts.every((text) => /^[1-9]\d* of \d+ comics? with a checked .+ link/.test(text ?? '')),
-      JSON.stringify(anyTexts.slice(0, 5)));
+    const anyCards = await cardCounts(page, 'library-links');
+    const anyTexts = anyCards.map(([, text]) => text);
+    const miscounted = anyCards.filter(([story, text]) => {
+      const [, linked, total] = /^(\d+) of (\d+) comics? with a checked .+ link/.exec(text ?? '') ?? [];
+      return !linked || Number(linked) < 1 || Number(total) !== listCount.get(story);
+    });
+    t.check('every card in the category counts its checked links against its own list',
+      anyCards.length > 0 && !miscounted.length
+        && anyCards.some(([story, text]) => story === 'list:civil-war-essential' && text?.startsWith('7 of 7 '))
+        && !anyCards.some(([story]) => story === 'list:secret-invasion-essential'),
+      JSON.stringify({ miscounted: miscounted.slice(0, 5), cards: anyCards.length }));
     const summary = await page.$eval('#library-links-links .link-filter-summary', (node) => ({
       hidden: node.hidden, text: node.textContent, reset: !!node.querySelector('button'),
     }));
@@ -88,18 +116,27 @@ export const libraryLinks = {
       }), JSON.stringify({ any: anyTexts.length, every: everyTexts }));
     await page.setOfflineMode(false);
     const stored = await page.evaluate((key) => localStorage.getItem(key), KEY);
-    t.check('the choice is remembered on this device under its own key',
-      JSON.parse(stored ?? '{}').coverage === 'every', stored);
+    t.check('a coverage choice on the category is not saved for other pages',
+      JSON.parse(stored ?? '{"coverage":"off"}').coverage === 'off', stored);
 
     await page.goto(`${page.__origin}/#/young-readers`, { waitUntil: 'load' });
+    await page.waitForSelector('#young-readers-results .catalog-card');
+    const optIn = await page.$eval('#young-readers-links input[value="off"]', (input) => input.checked);
+    t.check('other pages still open unfiltered after a choice on the category', optIn, String(optIn));
+    await click(page, '#young-readers-links input[value="every"]');
     await page.waitForSelector('#young-readers-links .link-filter-summary button');
     const empty = await page.evaluate(() => ({
       cards: document.querySelectorAll('#young-readers-results .catalog-card').length,
       text: document.querySelector('#young-readers-results').textContent,
       every: document.querySelector('#young-readers-links input[value="every"]').checked,
     }));
-    t.check('Young readers carries the remembered filter and explains its empty result',
-      empty.every && empty.cards === 0 && /No Reading Lists/.test(empty.text), JSON.stringify(empty));
+    t.check('Young readers explains its empty result with the page heading',
+      empty.every && empty.cards === 0
+        && empty.text.includes('No Reading Lists in Young readers where every comic has a checked'),
+      JSON.stringify(empty));
+    const remembered = await page.evaluate((key) => localStorage.getItem(key), KEY);
+    t.check('a choice on an opt-in page is remembered on this device under its own key',
+      JSON.parse(remembered ?? '{}').coverage === 'every', remembered);
     await click(page, '#young-readers-links .link-filter-summary button');
     await page.waitForSelector('#young-readers-results .catalog-card');
     const reset = await page.evaluate(() => ({
@@ -122,21 +159,40 @@ export const libraryLinks = {
         toggle.hidden === !linked && !toggle.checked, JSON.stringify(toggle));
       if (!linked) continue;
       const before = await page.$$eval('#rows .row', (rows) => rows.length);
-      await click(page, 'input[name="library-links-only"]');
+      await page.focus('input[name="library-links-only"]');
+      await page.keyboard.press('Space');
       await page.waitForFunction((count) => document.querySelectorAll('#rows .row').length === count, {}, linkedCount);
       const note = await page.$eval('#rows .link-only-note', (node) => node.textContent);
       t.check(`${id}: only linked comics show and the hidden gaps are named`,
         before > linkedCount && note.startsWith(`${before - linkedCount} `), JSON.stringify({ before, note }));
-      await page.reload({ waitUntil: 'load' });
-      await page.waitForSelector('#full');
+      const hiddenSentence = `${before - linkedCount} comics without a checked library link are hidden.`;
+      await page.waitForFunction((text) => document.querySelector('#announcer')?.textContent === text, { timeout: 3000 }, hiddenSentence)
+        .catch(() => {});
+      const spoken = await page.evaluate(() => ({
+        announced: document.querySelector('#announcer')?.textContent,
+        focus: document.activeElement?.name,
+        strip: document.querySelector('#full .order-shown')?.textContent ?? null,
+      }));
+      t.check(`${id}: the switch announces the hidden comics, keeps focus and counts what it shows`,
+        spoken.announced === hiddenSentence && spoken.focus === 'library-links-only'
+          && spoken.strip === `Showing ${linkedCount} of ${before} comics.`, JSON.stringify(spoken));
+
+      // In-app navigation rather than a reload, so state held by the view is what is tested.
+      await page.evaluate(() => { window.__sameDocument = true; });
+      await click(page, '.brand[data-view="home"]');
+      await page.waitForFunction(() => !document.querySelector('#view-home')?.hidden);
+      await page.goBack();
+      await page.waitForFunction(() => !document.querySelector('#view-read')?.hidden);
       await page.evaluate(() => { document.querySelector('#full').open = true; });
-      await page.waitForSelector('#rows .row');
+      await page.waitForFunction((count) => document.querySelectorAll('#rows .row').length === count, { timeout: 5000 }, before)
+        .catch(() => {});
       const after = await page.evaluate(() => ({
+        sameDocument: window.__sameDocument === true,
         rows: document.querySelectorAll('#rows .row').length,
         checked: document.querySelector('input[name="library-links-only"]').checked,
       }));
-      t.check(`${id}: reopening the list shows every comic again`,
-        after.rows === before && !after.checked, JSON.stringify(after));
+      t.check(`${id}: coming back to the list in the app shows every comic again`,
+        after.sameDocument && after.rows === before && !after.checked, JSON.stringify(after));
     }
   },
 };
