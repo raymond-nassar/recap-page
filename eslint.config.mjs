@@ -141,6 +141,7 @@ export default [
       'scripts/browser-defer.mjs',
       'scripts/browser-done-undo.mjs',
       'scripts/browser-bulk-read.mjs',
+      'scripts/browser-app-window-invitation.mjs',
       'scripts/browser-milestones.mjs',
       'scripts/browser-save-notice.mjs',
       'scripts/browser-phone-layout.mjs',

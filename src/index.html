@@ -185,6 +185,18 @@
 
             <p id="reader-closure-notice" class="notice notice-warn"><span id="reader-closure-text">Marvel Unlimited ends December 7, 2026, and Read will then open the Marvel Comics website.</span> <a id="reader-closure-faq" href="https://help.marvel.com/article/marvel-whats-happening-to-marvel-unlimited" target="_blank" rel="noopener noreferrer">Marvel's FAQ</a><button id="reader-closure-dismiss" type="button" class="btn btn-g btn-icon notice-dismiss has-tooltip" aria-label="Dismiss the Marvel Unlimited notice" data-tooltip="Dismiss the Marvel Unlimited notice"><span aria-hidden="true">&times;</span></button></p>
 
+            <!-- #1412: Windows readers in Edge or Chrome are invited once to open Recap Page in its own
+                 window; Firefox readers are told how. install.js decides which, if either, shows. -->
+            <section id="app-window-invitation" class="card card-static" hidden aria-labelledby="app-window-invitation-h">
+              <h2 id="app-window-invitation-h">Install Recap Page as an app</h2>
+              <p id="app-window-invitation-text">Open Recap Page in its own window from the Start menu. Your saved progress stays where it is.</p>
+              <div class="cta">
+                <button type="button" class="btn" id="btn-invitation-install" aria-describedby="app-window-invitation-text">Install Recap Page</button>
+                <button type="button" class="btn btn-g" id="btn-invitation-later">Not now</button>
+              </div>
+            </section>
+            <p id="app-window-notice" class="notice" hidden><span id="app-window-notice-text">To use Recap Page in its own window, install it in Microsoft Edge or Chrome. Your saved progress stays in this browser. To use it in another browser, first export a backup here and then restore it there.</span><button id="app-window-notice-dismiss" type="button" class="btn btn-g btn-icon notice-dismiss has-tooltip" aria-label="Dismiss the app window notice" data-tooltip="Dismiss the app window notice"><span aria-hidden="true">&times;</span></button></p>
+
             <!-- State B only: where the reader left off. -->
             <section id="home-continue" class="chero" hidden aria-labelledby="chero-h">
               <div class="chero-in">

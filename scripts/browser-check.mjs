@@ -19447,6 +19447,7 @@ async function preparePage(page, origin, mutation, scenarioId = null) {
     ['/styles.css', mutation?.rewriteStyles],
     ['/js/views/rated-comics.js', mutation?.rewriteRatedView],
     ['/js/lib/ratedComics.js', mutation?.rewriteRatedComics],
+    ['/js/lib/install.js', mutation?.rewriteInstall],
   ]) {
     if (!rewrite) continue;
     const source = readFileSync(new URL(`../src${path}`, import.meta.url), 'utf8');
@@ -19463,6 +19464,14 @@ async function preparePage(page, origin, mutation, scenarioId = null) {
       const source = readFileSync(new URL(`../src${path}`, import.meta.url), 'utf8');
       rewrites.set(`${origin}${path}`, `${source}\nglobalThis.__mrtCloudTraceInstall(${constructor}, '${kind}');\n`);
     }
+  }
+  if (scenarioId === 'app-window-invitation') {
+    // The invitation only shows on the fixed app origin, and this run must not bind it.
+    const url = `${origin}/js/lib/install.js`;
+    const source = rewrites.get(url) ?? readFileSync(new URL('../src/js/lib/install.js', import.meta.url), 'utf8');
+    const fixed = "export const APP_ORIGIN = 'http://127.0.0.1:8787';";
+    if (!source.includes(fixed)) throw new Error('install.js no longer declares the fixed app origin');
+    rewrites.set(url, source.replace(fixed, `export const APP_ORIGIN = '${origin}';`));
   }
   await page.setRequestInterception(true);
   page.on('request', async (request) => {
@@ -24573,6 +24582,8 @@ MUTATIONS.push(...selectLists.selectListsMutations);
 const progressGlance = await import('./browser-progress-glance.mjs');
 SCENARIOS.push(progressGlance.progressGlance);
 MUTATIONS.push(...progressGlance.progressGlanceMutations);
+SCENARIOS.push((await import('./browser-app-window-invitation.mjs')).appWindowInvitation);
+MUTATIONS.push(...(await import('./browser-app-window-invitation.mjs')).appWindowInvitationMutations);
 SCENARIOS.push({
   id: 'infinity-saga-actual-data',
   title: 'the actual Infinity storyline previews, imports, renders, and reloads every source position',

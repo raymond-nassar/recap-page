@@ -3110,10 +3110,11 @@ select, input[type="search"], input[type="text"], input[type="url"] {
   .rail-header.bar-two-rows :is(.brand, .mobile-link, .rail-toggle) { flex-direction: row; gap: var(--space-3); }
 }
 
-#reader-closure-notice { position: relative; min-height: calc(var(--target-touch) + 2 * var(--space-2) + 2 * var(--stroke-1)); }
-#reader-closure-text::before { content: ""; float: right; width: var(--target); height: var(--target); }
-#reader-closure-dismiss { position: absolute; inset-block-start: var(--space-2); inset-inline-end: var(--space-2); }
-#view-home > .head, #view-home > .notice, #view-home > #home-continue, #view-home > #app-report:not(:empty) { margin-bottom: var(--space-4); }
+:is(#reader-closure-notice, #app-window-notice) { position: relative; min-height: calc(var(--target-touch) + 2 * var(--space-2) + 2 * var(--stroke-1)); }
+:is(#reader-closure-text, #app-window-notice-text)::before { content: ""; float: right; width: var(--target); height: var(--target); }
+:is(#reader-closure-dismiss, #app-window-notice-dismiss) { position: absolute; inset-block-start: var(--space-2); inset-inline-end: var(--space-2); }
+#view-home > .head, #view-home > .notice, #view-home > #home-continue, #view-home > #app-window-invitation, #view-home > #app-report:not(:empty) { margin-bottom: var(--space-4); }
+#app-window-invitation p { margin: 0 0 var(--space-5); }
 
 .btn.list-source-link { border-radius: var(--radius-pill); max-width: 100%; overflow-wrap: anywhere; }
 
