@@ -54,7 +54,8 @@ function links(since) {
           [PSCustomObject]@{
             root = $root.kind; relative = $_.FullName.Substring($root.path.Length); target = $link.TargetPath;
             arguments = $link.Arguments; icon = $link.IconLocation; workingDirectory = $link.WorkingDirectory;
-            aumid = $item.ExtendedProperty('System.AppUserModel.ID'); full = $_.FullName }
+            aumid = $item.ExtendedProperty('System.AppUserModel.ID'); full = $_.FullName;
+            bytes = [Convert]::ToBase64String([IO.File]::ReadAllBytes($_.FullName)) }
         }
     }`);
 }
@@ -192,6 +193,11 @@ async function probe(spec) {
   let installed = false;
   try {
     record.version = ps(`(Get-Item -LiteralPath '${spec.exe}').VersionInfo.ProductVersion`);
+    try {
+      record.userChoice = execFileSync('reg', ['query', 'HKCU\\Software\\Microsoft\\Windows\\Shell\\Associations\\UrlAssociations\\http\\UserChoice', '/v', 'ProgId'], { encoding: 'utf8' });
+    } catch (error) {
+      record.userChoice = `error ${error.status}`;
+    }
     browser = await startBrowser(spec, profile);
     const cdp = await browser.target().createCDPSession();
     const page = await browser.newPage();
