@@ -3698,7 +3698,7 @@ The selected Modern Timeline books extend the display without inventing collecti
 [licensed check inputs](../scripts/data/collected-editions/gcd-check-inputs.json) identify the
 selected lists, source-series mappings and supporting records; the
 [checked evidence](../scripts/data/collected-editions/gcd-editions.json) retains their dates and
-results. The original pilot's 23 relations remain unchanged, and 36 selected books add 194
+results. The original pilot's 23 relations remain unchanged, and 37 selected books add 198
 relations across 34 lists, intersected with each list's exact comics. Book names stay in the
 separate curated lane. For books without an exact indexer-note range, numbered interior-cover text
 and creator credits or matching original issue stories provide the check; no image bytes are used.
@@ -3711,8 +3711,11 @@ including #10-11 outside the selected Axis list.
 
 For War of the Realms: Journey Into Mystery, the dated paperback note names #1-5. The 2019
 original series and all five original issues independently match the list identities and dates.
-The Iron Man 2020: Robot Revolution paperback note names #1-6; all six originals independently
-match the selected list's series name, issue numbers and 2020 on-sale year.
+The New Agents of Atlas paperback note names #1-4. Its original series and four issues match the
+list's identities, dates, writers and an artist credit. Some creator roles differ between the list
+and database, so matching names do not establish matching roles. The Iron Man 2020: Robot
+Revolution paperback note names #1-6; all six originals independently match the selected list's
+series name, issue numbers and 2020 on-sale year.
 
 For the three selected Secret Invasion books, retained original issues independently identify the
 series and issue numbers and match the selected trade stories' titles, features and pages. Extra

@@ -237,6 +237,10 @@ test('returned links follow their verified list comics', () => {
       ['hoopla', 'https://www.hoopladigital.com/title/12917438'],
       ['libby', 'https://share.libbyapp.com/title/8114272'],
     ]],
+    ['war-of-the-realms', 'war_of_the_realms.json', 'war-of-the-realms-new-agents-of-atlas', 27505, [1, 2, 3, 4], [
+      ['hoopla', 'https://www.hoopladigital.com/title/12917437'],
+      ['libby', 'https://share.libbyapp.com/title/5678469'],
+    ]],
     ['iron-man-2020', 'iron_man_2020.json', 'iron-man-2020-robot-revolution', 28356, [1, 2, 3, 4, 5, 6], []],
     ['infinity-countdown-wars', 'infinity_countdown_wars.json', 'asgardians-v1-the-infinity-armada', 25996, [1, 2], [
       ['hoopla', 'https://www.hoopladigital.com/title/12917385'],
@@ -319,6 +323,41 @@ test('Journey Into Mystery uses the dated original series and exact collected is
     assert.equal(original.number, String(appNumber));
     assert.equal(original.variant_of, null);
     assert.match(original.key_date, /^2019-/);
+  }
+});
+
+test('New Agents of Atlas uses the matching trade and original issues', () => {
+  const { gcdInputs, fixtures, lists, pilot } = loadInputs();
+  const id = 'war-of-the-realms-new-agents-of-atlas';
+  const edition = pilot.editions.find((entry) => entry.id === id);
+  assert.ok(edition);
+  const check = gcdInputs.editions[id];
+  const source = gcdInputs.seriesEvidence[check.sourceSeriesId].series;
+  const collection = gcdInputs.seriesEvidence[check.collectionSeriesId].series;
+  const trade = fixtures[edition.gcdIssueId].issue;
+  assert.equal(collection.api_url, trade.series);
+  assert.equal(collection.binding.toLowerCase(), edition.format);
+  assert.deepEqual(collection.active_issues, [trade.api_url]);
+  assert.equal(source.name.toLowerCase(), collection.name.toLowerCase());
+  assert.equal(source.year_began, collection.year_began);
+  assert.deepEqual(check.originalIssues.map(({ appNumber }) => appNumber), [1, 2, 3, 4]);
+  assert.equal(new Set(check.originalIssues.map(({ gcdIssueId }) => gcdIssueId)).size, 4);
+  for (const { appNumber, gcdIssueId, onSaleDate } of check.originalIssues) {
+    const original = fixtures[gcdIssueId].issue;
+    const matches = lists['war-of-the-realms'].items.filter((entry) =>
+      entry.seriesId === 27505 && entry.number === String(appNumber));
+    assert.equal(matches.length, 1);
+    const issue = matches[0];
+    assert.equal(issue.seriesName.toLowerCase(), `${source.name} (${source.year_began})`.toLowerCase());
+    assert.equal(issue.onSale.slice(0, 10), onSaleDate);
+    assert.equal(original.series, source.api_url);
+    assert.equal(original.series_name, `${source.name} (${source.year_began} series)`);
+    assert.equal(original.number, String(appNumber));
+    assert.equal(original.variant_of, null);
+    const stories = original.story_set.filter((story) => story.type === 'comic story');
+    assert.equal(stories.length, 1);
+    assert.ok(issue.creators.some(({ name, role }) => role === 'writer' && name === stories[0].script));
+    assert.ok(issue.creators.some(({ name }) => name === stories[0].pencils));
   }
 });
 
@@ -516,7 +555,10 @@ test('the bundled projection preserves pilot relations and matches selected Mode
     const items = lists[listId].items.filter((entry) => entry.seriesId === series
       && Number(entry.number) >= first && Number(entry.number) <= last);
     assert.equal(items.length, last - first + 1, listId);
-    const additionalBooks = ['doctor-strange-waid-v1-across-the-universe', 'war-of-the-realms-journey-into-mystery'];
+    const additionalBooks = [
+      'doctor-strange-waid-v1-across-the-universe', 'war-of-the-realms-journey-into-mystery',
+      'war-of-the-realms-new-agents-of-atlas',
+    ];
     const rows = groups[listId].filter((entry) => !additionalBooks.includes(entry.editionId));
     assert.deepEqual(rows.map((entry) => [entry.editionId, entry.issueId, entry.seriesId, entry.number]),
       items.map((entry) => [book, entry.issueId, entry.seriesId, String(entry.number)]), listId);
@@ -616,6 +658,10 @@ test('owner-confirmed destinations are limited to released editions', () => {
       ['hoopla', 'https://www.hoopladigital.com/title/12917438'],
       ['libby', 'https://share.libbyapp.com/title/8114272'],
     ],
+    'war-of-the-realms-new-agents-of-atlas': [
+      ['hoopla', 'https://www.hoopladigital.com/title/12917437'],
+      ['libby', 'https://share.libbyapp.com/title/5678469'],
+    ],
     'secret-invasion-fantastic-four': [
       ['hoopla', 'https://www.hoopladigital.com/title/14279808'],
       ['libby', 'https://share.libbyapp.com/title/7785428'],
@@ -625,9 +671,10 @@ test('owner-confirmed destinations are limited to released editions', () => {
       ['libby', 'https://share.libbyapp.com/title/9227013'],
     ],
   });
-  assert.equal(Object.keys(editionCatalog.editions).length, 37);
+  assert.equal(Object.keys(editionCatalog.editions).length, 38);
   for (const [id, entries] of Object.entries(destinations)) {
-    const completeReturn = id === 'war-of-the-realms-journey-into-mystery';
+    const completeReturn = ['war-of-the-realms-journey-into-mystery',
+      'war-of-the-realms-new-agents-of-atlas'].includes(id);
     const currentReturn = [
       'amazing-spider-man-edge-of-spider-verse',
       'doctor-strange-waid-v1-across-the-universe',

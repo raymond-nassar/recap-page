@@ -5,7 +5,7 @@ import { editionEvidence } from '../src/js/lib/collectedEditions.js';
 const catalog = JSON.parse(readFileSync(new URL('../src/data/catalog.json', import.meta.url), 'utf8'));
 const ids = ['civil-war-essential', 'civil-war', 'civil-war-avengers', 'nebula-reading-order', 'avengers-doomsday-secret-wars', 'realm-of-kings',
   'the-unbeatable-squirrel-girl', 'marvel-knights-to-planet-x-04', 'marvel-knights-to-planet-x-15',
-  'marvel-knights-to-planet-x-42', 'marvel-knights-to-planet-x-69'];
+  'marvel-knights-to-planet-x-42', 'marvel-knights-to-planet-x-69', 'war-of-the-realms'];
 const lists = catalog.lists.filter((list) => ids.includes(list.id));
 if (lists.length !== ids.length) throw new Error('Collected-edition browser fixtures require the chosen pilot and timeline lists');
 const orders = Object.fromEntries(lists.map((list) => [list.file,
@@ -23,6 +23,21 @@ const civilWarLinks = (page, selector) => page.$$eval(selector, (nodes) =>
       'https://www.hoopladigital.com/title/12003677',
       'https://share.libbyapp.com/title/4455520',
     ])));
+const newAgentsLinks = (page, selector, titleSelector) => page.$$eval(selector, (nodes, titleSelector) => {
+  const book = 'Collected in War of the Realms: New Agents of Atlas';
+  const labels = nodes.flatMap((node) => [...node.querySelectorAll('.collected-edition')]
+    .filter((label) => label.textContent.includes(book)));
+  return labels.length === 4 && [1, 2, 3, 4].every((number) => {
+    const matches = nodes.filter((node) => node.querySelector(titleSelector)?.textContent
+      === `War of the Realms: New Agents of Atlas (2019) #${number}`);
+    const label = matches[0]?.querySelector('.collected-edition');
+    return matches.length === 1 && label?.textContent.includes(book)
+      && JSON.stringify([...label.querySelectorAll('a')].map((link) => link.href)) === JSON.stringify([
+        'https://www.hoopladigital.com/title/12917437',
+        'https://share.libbyapp.com/title/5678469',
+      ]);
+  });
+}, titleSelector);
 
 const destinations = [
   'https://www.hoopladigital.com/title/123456789',
@@ -287,6 +302,10 @@ export const collectedEditions = {
         t.check(`${list.id}: Preview names Civil War with both confirmed links on seven issues`,
           await civilWarLinks(page, '#preview .collected-edition'));
       }
+      if (list.id === 'war-of-the-realms') {
+        t.check(`${list.id}: Preview shows both New Agents of Atlas links only on their four issues`,
+          await newAgentsLinks(page, '#preview .preview-list li', '.preview-issue-link'));
+      }
       if (list.id === 'marvel-knights-to-planet-x-42' || list.id === 'marvel-knights-to-planet-x-69') {
         const title = list.id.endsWith('-42') ? "New X-Men Vol. 4: Riot at Xavier's" : 'Daredevil Vol. 8: Echo - Vision Quest';
         t.check(`${list.id}: Preview names the confirmed book and both providers on all five issues`,
@@ -320,6 +339,10 @@ export const collectedEditions = {
       if (civilWarVariant) {
         t.check(`${list.id}: saved list names Civil War with both confirmed links on seven issues`,
           await civilWarLinks(page, '#rows .collected-edition'));
+      }
+      if (list.id === 'war-of-the-realms') {
+        t.check(`${list.id}: saved list shows both New Agents of Atlas links only on their four issues`,
+          await newAgentsLinks(page, '#rows .row', '.row-focus-title'));
       }
       if (list.id === 'marvel-knights-to-planet-x-15') {
         t.check(`${list.id}: saved list leaves the held issue 126 without a book label`,
