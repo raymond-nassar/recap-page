@@ -1919,8 +1919,8 @@
     "fp": "22bce3df8af723ed",
     "head": "function renderAll() {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:4337-4381|0": {
-    "anchor": "src/js/main.js:4337-4381",
+  "docs/ARCHITECTURE_REFERENCE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:4352-4396|0": {
+    "anchor": "src/js/main.js:4352-4396",
     "fp": "b9ebc0e419b4a53d",
     "head": "const catalogView = createCatalogView({"
   },
@@ -1954,8 +1954,8 @@
     "fp": "ffcf7e8ddf1cdadb",
     "head": "return {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:1669-1722|0": {
-    "anchor": "src/js/lib/catalog.js:1669-1722",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:1672-1725|0": {
+    "anchor": "src/js/lib/catalog.js:1672-1725",
     "fp": "2993ccc8e75ae0bb",
     "head": "// The shelf placement map deliberately keeps only the first path that reaches a story. This model"
   },
@@ -1984,18 +1984,18 @@
     "fp": "361fd1a361de6372",
     "head": "function openSavedCatalogList(list, saved, report, { fromCard = false } = {}) {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4181-4475|0": {
-    "anchor": "src/js/main.js:4181-4475",
-    "fp": "758e2c746ee35b14",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4181-4490|0": {
+    "anchor": "src/js/main.js:4181-4490",
+    "fp": "a4859b89342fe999",
     "head": "const catalogPresentation = createCatalogPresentation({"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4352-4358|0": {
-    "anchor": "src/js/main.js:4352-4358",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4367-4373|0": {
+    "anchor": "src/js/main.js:4367-4373",
     "fp": "d3051bc067e4d60f",
     "head": "follow: () => ({"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4379-4380|0": {
-    "anchor": "src/js/main.js:4379-4380",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4394-4395|0": {
+    "anchor": "src/js/main.js:4394-4395",
     "fp": "2e75d57bd558e1f6",
     "head": "onFollowChange: () => syncHash({ push: true }),"
   },
@@ -6101,7 +6101,7 @@
   },
   "docs/UX_STUDY.md|information-architecture-review|src/js/lib/route.js:98-202|0": {
     "anchor": "src/js/lib/route.js:98-202",
-    "fp": "358ddebae5258eb7",
+    "fp": "3dce39cecf76e7fc",
     "head": "export function breadcrumbHierarchy({"
   },
   "docs/UX_STUDY.md|information-architecture-review|src/js/main.js:1918-1983|0": {
@@ -6274,13 +6274,13 @@
     "fp": "ba9fc4d401e78741",
     "head": "/* Two purples, because one cannot serve both jobs on a dark page. `--accent` is a"
   },
-  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:1193-1194|0": {
-    "anchor": "src/styles.css:1193-1194",
+  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:1194-1195|0": {
+    "anchor": "src/styles.css:1194-1195",
     "fp": "4867cdf75f778888",
     "head": ".row.is-read .rt { color: var(--read-fg); text-decoration: line-through; }"
   },
-  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:1196|0": {
-    "anchor": "src/styles.css:1196",
+  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:1197|0": {
+    "anchor": "src/styles.css:1197",
     "fp": "6ba162a32bf16415",
     "head": ".row.is-read img { opacity: .5; }"
   },
@@ -6294,8 +6294,8 @@
     "fp": "d9fb3bc05f56276d",
     "head": "/* The top stop was #171a2099 (60% opaque). At that alpha the blurred cover art"
   },
-  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:1210-1213|0": {
-    "anchor": "src/styles.css:1210-1213",
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:1211-1214|0": {
+    "anchor": "src/styles.css:1211-1214",
     "fp": "67a2685668e86539",
     "head": ".cb {"
   },
@@ -6314,8 +6314,8 @@
     "fp": "3c66740b177d162f",
     "head": "function issueRowActions(item, listId, expanded = false) {"
   },
-  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:1268-1321|0": {
-    "anchor": "src/styles.css:1268-1321",
+  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:1269-1322|0": {
+    "anchor": "src/styles.css:1269-1322",
     "fp": "2d25420743119414",
     "head": ".row-actions { position: relative; justify-self: end; text-align: right; }"
   },
@@ -6549,8 +6549,8 @@
     "fp": "955a5533014388f9",
     "head": ".btn-g { background: rgb(var(--tint-base) / 5.882%); color: var(--text); border-color: var(--line-2)"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2175-2177|0": {
-    "anchor": "src/styles.css:2175-2177",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2176-2178|0": {
+    "anchor": "src/styles.css:2176-2178",
     "fp": "bf510b9aee0c8441",
     "head": "background:"
   },

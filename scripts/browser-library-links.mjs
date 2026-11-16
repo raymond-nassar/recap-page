@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { createEmptyState, createList, addIssuesToList, exportBackup } from '../src/js/lib/model.js';
 import { listLinkCoverage } from '../src/js/lib/libraryLinks.js';
-import { LENDING_NOTE } from '../src/js/views/shared/library-link-filter.js';
+import { LENDING_NOTE, PAGE_LINK_TEXT } from '../src/js/views/shared/library-link-filter.js';
 
 const catalog = JSON.parse(readFileSync(new URL('../src/data/catalog.json', import.meta.url), 'utf8'));
 const listOf = (id) => {
@@ -66,6 +66,12 @@ export const libraryLinksMutations = [
     why: 'the switch hides comics without announcing how many',
     rewriteReading: (source) => source.replace('if (linksOnly && linksHidden) announce(hiddenSentence(linksHidden));', ''),
   },
+  {
+    id: 'library-links-page-unreachable',
+    breaks: 'library-links',
+    why: 'the browsing filters lose their link, leaving the Library links page with no way in',
+    rewriteMain: (source) => source.replace('pageLink: (text) =>', 'unusedPageLink: (text) =>'),
+  },
 ];
 
 export const libraryLinks = {
@@ -82,8 +88,36 @@ export const libraryLinks = {
       window.__mrtBlockExternal = true;
     }, seed);
 
-    await page.goto(`${page.__origin}/#/library-links`, { waitUntil: 'load' });
+    await page.goto(`${page.__origin}/#/home`, { waitUntil: 'load' });
+    await page.waitForSelector('#view-home [data-category]');
+    const homeEntry = await page.evaluate(() => [...document.querySelectorAll('#view-home a, #view-home button')]
+      .filter((node) => node.dataset.category === 'library-links' || node.getAttribute('href') === '#/library-links').length);
+    t.check('Home offers no way into the Library links page', homeEntry === 0, String(homeEntry));
+
+    await page.goto(`${page.__origin}/#/catalog`, { waitUntil: 'load' });
+    await page.waitForSelector('#catalog-links .link-filter-more a');
+    const entry = await page.$eval('#catalog-links .link-filter-more a', (link) => ({
+      text: link.textContent, hash: link.hash, visible: !!link.getClientRects().length,
+      off: document.querySelector('#catalog-links input[value="off"]')?.checked,
+    }));
+    t.check('the unfiltered Modern Timeline links to the Library links page from its filter',
+      entry.text === PAGE_LINK_TEXT && entry.hash === '#/library-links' && entry.visible && entry.off, JSON.stringify(entry));
+    await page.evaluate(() => document.querySelector('#catalog-links .link-filter-more a').click());
     await page.waitForSelector('#library-links-results .catalog-card');
+    const arrival = await page.evaluate(() => {
+      const view = document.querySelector('.view:not([hidden])');
+      const heading = view?.querySelector('h1, h2');
+      return {
+        hash: location.hash,
+        heading: heading?.textContent.trim(),
+        focused: !!heading && document.activeElement === heading,
+        crumbs: [...(view?.querySelectorAll('.breadcrumb li') ?? [])].map((item) => item.textContent.trim()),
+        link: !!view?.querySelector('.link-filter-more'),
+      };
+    });
+    t.check('following the link opens the Library links page with focus on its heading, under Home',
+      arrival.hash.startsWith('#/library-links') && arrival.heading === 'Browse Library links' && arrival.focused
+        && JSON.stringify(arrival.crumbs) === '["Home","Library links"]' && !arrival.link, JSON.stringify(arrival));
     const always = await page.$$eval('#library-links-links input', (inputs) => inputs.map((input) => [input.name.split('-').at(-1), input.value, input.checked]));
     t.check('the category offers no Off choice and opens on any checked link',
       !always.some(([, value]) => value === 'off') && always.some(([group, value, checked]) => group === 'coverage' && value === 'any' && checked),
@@ -118,6 +152,11 @@ export const libraryLinks = {
     const stored = await page.evaluate((key) => localStorage.getItem(key), KEY);
     t.check('a coverage choice on the category is not saved for other pages',
       JSON.parse(stored ?? '{"coverage":"off"}').coverage === 'off', stored);
+
+    await page.goBack();
+    const back = await page.waitForFunction(() => location.hash.startsWith('#/catalog')
+      && !document.querySelector('#view-catalog').hidden, { timeout: 5000 }).then(() => true, () => false);
+    t.check('Back returns from the Library links page to the Modern Timeline', back);
 
     await page.goto(`${page.__origin}/#/young-readers`, { waitUntil: 'load' });
     await page.waitForSelector('#young-readers-results .catalog-card');

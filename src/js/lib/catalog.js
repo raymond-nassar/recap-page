@@ -1372,16 +1372,6 @@ export const HOME_CATEGORIES = [
     select: shelfCategory('young-readers'),
   },
   {
-    key: LIBRARY_LINKS_ROUTE,
-    route: LIBRARY_LINKS_ROUTE,
-    heading: 'Library links',
-    label: 'Checked Hoopla and Libby books',
-    icon: 'library-links',
-    tier: 'secondary',
-    description: 'Reading Lists with comics that have a checked Hoopla or Libby book page.',
-    select: (stories) => filterStoriesByLinks(stories, { coverage: 'any', provider: 'either' }),
-  },
-  {
     key: 'universes',
     route: 'universes',
     heading: 'Universes',
@@ -1395,6 +1385,19 @@ export const HOME_CATEGORIES = [
     plural: 'universes',
   },
 ];
+
+// The Library links page is a browsing page without a Home card: the owner chose that readers reach it
+// only through the link inside each page's library-link filter, so Home stays as it was (#1333).
+export const LIBRARY_LINKS_CATEGORY = Object.freeze({
+  key: LIBRARY_LINKS_ROUTE,
+  route: LIBRARY_LINKS_ROUTE,
+  heading: 'Library links',
+  description: 'Reading Lists with comics that have a checked Hoopla or Libby book page.',
+  select: (stories) => filterStoriesByLinks(stories, { coverage: 'any', provider: 'either' }),
+});
+
+// Every category that owns a routable page, Home's cards and the pages reached another way.
+export const ROUTED_CATEGORIES = Object.freeze([...HOME_CATEGORIES, LIBRARY_LINKS_CATEGORY]);
 
 export function availableHomeCategories(stories, definitions = HOME_CATEGORIES) {
   const all = Array.isArray(stories) ? stories : [];

@@ -303,8 +303,8 @@ mark rather than through container opacity, so the state reads without dragging 
 the contrast floor
 Backlog item: BL-030
 Resolved: the container `opacity` was replaced with a dedicated `--read-fg` foreground plus a
-strikethrough, at `src/styles.css:1193-1194`. The only opacity left on a read row is on the cover
-image at `src/styles.css:1196`, which carries no text. Re-measured with six rows actually in the
+strikethrough, at `src/styles.css:1194-1195`. The only opacity left on a read row is on the cover
+image at `src/styles.css:1197`, which carries no text. Re-measured with six rows actually in the
 read state, axe 4.13.0 reported no contrast violations on the surface.
 
 #### UX-A-003: Hero text contrast is undeterminable because it sits on a blurred cover
@@ -357,7 +357,7 @@ Backlog item: BL-028
 Current responsive behavior: the read toggle is now 24 by 24 pixels, and 44 by 44 at the narrow
 row breakpoint, with matching allocated grid space and no overlap. The measurements above remain
 the original audit baseline, not the current target size. The current rules are
-`src/styles.css:1210-1213` and `src/styles.css:2941-2942`, sizing both from `src/styles.css:81-82`.
+`src/styles.css:1211-1214` and `src/styles.css:2941-2942`, sizing both from `src/styles.css:81-82`.
 
 #### UX-A-005: Row actions are invisible until hover, so a touch user cannot see them
 
@@ -379,7 +379,7 @@ breakpoint, keeping the hover reveal only where a fine pointer is present
 Backlog item: BL-028
 Resolved: all screen sizes now show a visible More actions control, and opening it reveals full text
 labels for every row action. Closed actions take no layout space; hover alone does not reveal them.
-The responsive presentation is defined at `src/styles.css:1268-1321`, and the disclosure preserves
+The responsive presentation is defined at `src/styles.css:1269-1322`, and the disclosure preserves
 keyboard focus and Escape handling at `src/js/views/reading.js:1071-1203`.
 
 #### UX-A-006: Status messages are announced twice

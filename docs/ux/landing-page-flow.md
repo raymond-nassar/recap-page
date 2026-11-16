@@ -26,8 +26,6 @@ App launch, or selecting the brand lockup in the sidebar.
    - **MCU Prep** opens preparation lists for Marvel Cinematic Universe titles.
    - **Marvel Ages** opens one chronological gateway for populated publishing periods.
    - **Young readers** opens lists selected for younger readers.
-   - **Checked Hoopla and Libby books** opens Reading Lists with comics that have a checked Hoopla
-     or Libby book page.
 8. Marvel attribution remains at the end of the surface.
 
 ## State B: Library Has Lists

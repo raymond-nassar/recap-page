@@ -18,7 +18,6 @@ import {
 } from '../src/js/lib/catalog.js';
 import { VIEWS } from '../src/js/lib/route.js';
 import { universeDefinitions } from '../src/data/universeCatalog.js';
-import { editionEvidence } from '../src/data/collectedEditionEvidence.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (path) => readFileSync(join(ROOT, path), 'utf8');
@@ -97,12 +96,12 @@ test('the current gateway offers three primary modes and four secondary gateways
       'genres',
       'character-spotlights',
       'marvel-on-screen',
-      'marvel-ages', 'young-readers', 'library-links', 'universes',
+      'marvel-ages', 'young-readers', 'universes',
     ],
   );
   assert.deepEqual(
     categories.map(({ tier }) => tier),
-    ['primary', 'primary', 'primary', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary'],
+    ['primary', 'primary', 'primary', 'secondary', 'secondary', 'secondary', 'secondary'],
   );
 
   for (const category of categories.filter(({ shelf }) => shelf)) {
@@ -115,10 +114,6 @@ test('the current gateway offers three primary modes and four secondary gateways
   assert.equal(categories.find(({ key }) => key === 'marvel-ages').count, 218);
   assert.equal(categories.find(({ key }) => key === 'marvel-on-screen').count, currentReadingCensus.mcu);
   assert.equal(categories.find(({ key }) => key === 'young-readers').count, 15);
-  // The category counts exactly the lists the build recorded as holding a checked link, so data
-  // that adds or withdraws a link moves both numbers together (decision 10).
-  assert.equal(categories.find(({ key }) => key === 'library-links').count,
-    Object.values(editionEvidence.linkCoverage).filter(({ either }) => either > 0).length);
 });
 
 test('an empty category stays hidden while overlapping categories remain independent', () => {

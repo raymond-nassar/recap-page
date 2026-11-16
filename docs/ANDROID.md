@@ -39,8 +39,8 @@ for assistive technology and forced colors.
 
 Home's **Explore** group marks **Modern Timeline** as the recommended place to start, beside
 **Genres** and **Character spotlights**, with a **New to Marvel Comics?** link below and a
-**Discover More** group for MCU Prep, Marvel Ages, Young readers and library links. Search is in
-the navigation bar. The existing Setup guide remains on Modern Timeline and the other browse pages.
+**Discover More** group for MCU Prep, Marvel Ages and Young readers. Search is in the navigation
+bar. The existing Setup guide remains on Modern Timeline and the other browse pages.
 Its short introduction keeps the guide optional; **About this starting point** opens the full
 historical explanation.
 

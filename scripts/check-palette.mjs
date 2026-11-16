@@ -36,7 +36,6 @@ export const CATEGORY_CARDS = [
   ['the MCU Prep card', '--azure-line', '--azure-line'],
   ['the Marvel Ages card', '--magenta-line', '--magenta-line'],
   ['the Young readers card', '--green-line', '--green-line'],
-  ['the Library links card', '--cyan-line', '--cyan-line'],
   ['the Universes card', '--copper-line', '--copper-line'],
 ];
 
@@ -241,7 +240,7 @@ export const SURFACES = {
   },
   // A category card's tint is a gradient that fades from its first stop, so each card is resolved at
   // that stop, which is where the tint is strongest and the icon has the least contrast: 13% over the
-  // card at rest (`src/styles.css:2175-2177`) and 19% over the raised card on hover
+  // card at rest (`src/styles.css:2176-2178`) and 19% over the raised card on hover
   // (`src/styles.css:2195-2197`).
   ...Object.fromEntries(CATEGORY_CARDS.flatMap(([card, channel]) => [
     [card, { layer: channel, fraction: 0.13, on: '--card', css: `${channel} at 13% over the card` }],

@@ -39,7 +39,6 @@ this table, so reusing a glyph for something else fails it.
 | reader | Young readers | The Young readers card, `#/young-readers` |
 | story-types | Genres | The Genres card, `#/genres` |
 | universes | Universes | The Universes card and Search shortcut, both `#/universes` |
-| library-links | Library links | The Library links card, `#/library-links` |
 | arrow-left | Back | The integrated history control before a view heading |
 | arrow-right | Opens a category | The destination arrow on every category card |
 | thumb-up | Enjoyed | Rating a completed Reading List |
@@ -51,7 +50,7 @@ the star beside Rate this comic and on the rating dialog's five buttons. The com
 adds the two thumbs. Each Home category card has an icon and a destination arrow. The category
 icons all differ, and each names only its own destination. The hourglass was drawn for Marvel Ages in #873, `series`,
 `creator` and `timeline` for #831, the reader behind an open book for Young readers in #897, and
-the tag for Genres in #1060. The overlapping worlds mark Universes, and a book beside a chain link marks Library links (#1333). The left arrow marks Back only when the current history entry has an
+the tag for Genres in #1060. The overlapping worlds mark Universes. The left arrow marks Back only when the current history entry has an
 earlier in-app entry.
 The same category renderer supplies the age and period cards inside Marvel Ages when those screens
 open; each adds an `ages` and `arrow-right` pair. These are not a fixed runtime node count.

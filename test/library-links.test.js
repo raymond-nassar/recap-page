@@ -11,7 +11,7 @@ import {
   coverageMatches, coverageText, filterStoriesByLinks, linkFilter, listCoverage, listLinkCoverage, readLinkFilter,
   saveLinkFilter, storyCoverage,
 } from '../src/js/lib/libraryLinks.js';
-import { createLibraryLinkFilter, linkNarrower, linkNarrowing } from '../src/js/views/shared/library-link-filter.js';
+import { PAGE_LINK_TEXT, createLibraryLinkFilter, linkNarrower, linkNarrowing } from '../src/js/views/shared/library-link-filter.js';
 
 const approval = 'https://github.com/raymond-nassar/recap-page/issues/1203#issuecomment-6839342560';
 const hoopla = { provider: 'hoopla', url: 'https://www.hoopladigital.com/title/123456789', checkedAt: '2026-11-10', confirmedBy: 'owner' };
@@ -166,4 +166,17 @@ test('choosing on the Library links page saves only the provider', () => {
   assert.deepEqual(filter.current('library-links'), { coverage: 'every', provider: 'libby' });
   assert.deepEqual(filter.current('catalog'), { coverage: 'off', provider: 'libby' });
   assert.equal(map.get(LIBRARY_LINKS_KEY), '{"coverage":"off","provider":"libby"}');
+});
+
+test('every browsing filter links to the Library links page, and the page itself does not', () => {
+  const el = (tag, props = {}, children = []) => ({ tag, props, children });
+  const box = () => ({ nodes: [], replaceChildren(...nodes) { this.nodes = nodes; }, contains: () => false, querySelectorAll: () => [] });
+  const links = (node) => (node?.tag === 'link' ? [node] : (node?.children ?? []).flatMap(links));
+  const filter = createLibraryLinkFilter({ el, storage: null, key: LIBRARY_LINKS_KEY, pageLink: (text) => el('link', {}, [text]) });
+  const browsing = box();
+  const page = box();
+  filter.mount('catalog', browsing);
+  filter.mount('library-links', page, { always: true });
+  assert.deepEqual(browsing.nodes.flatMap(links).map((node) => node.children[0]), [PAGE_LINK_TEXT]);
+  assert.deepEqual(page.nodes.flatMap(links), []);
 });

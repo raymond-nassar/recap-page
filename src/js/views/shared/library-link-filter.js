@@ -14,6 +14,8 @@ const PROVIDER_CHOICES = Object.freeze([
   ['libby', 'Libby'],
 ]);
 
+export const PAGE_LINK_TEXT = 'See every Reading List with checked library links';
+
 export const LENDING_NOTE = 'Lending depends on your library. Book pages open outside Recap Page, need internet, and are not live lending checks.';
 
 // The phrase every result sentence on a filtered page ends with, so the announced count, the empty
@@ -54,7 +56,7 @@ export function linkNarrower(filter) {
 // (decision 9). The Library links category always filters, so it offers no Off. Its coverage choice
 // is held in memory only: saving it would turn filtering on for every other page, where filtering is
 // opt-in. Its provider choice is saved like any other.
-export function createLibraryLinkFilter({ el, storage, key }) {
+export function createLibraryLinkFilter({ el, storage, key, pageLink = null }) {
   let filter = readLinkFilter(storage, key);
   let alwaysCoverage = 'any';
   const mounts = new Map();
@@ -116,6 +118,8 @@ export function createLibraryLinkFilter({ el, storage, key }) {
           onclick: () => reset(id, { focus: true }),
         })]),
       ]),
+      // Stays visible with filtering off, since it is the page's only way in (#1333).
+      ...(mount.always || !pageLink ? [] : [el('p', { class: 'link-filter-more' }, [pageLink(PAGE_LINK_TEXT)])]),
     );
     if (refocus) {
       const again = [...mount.container.querySelectorAll('input')]

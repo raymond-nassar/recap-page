@@ -18,7 +18,7 @@ import {
   availablePublishingCategories, isPublishingCategoryLeaf, publishingAgeGroups, publishingCategoryStories,
   timelineYears,
   catalogListBrowseRoute, CATALOG_SHELVES, PUBLISHING_CATEGORIES,
-  modernTimelineFeaturedCard, LIBRARY_LINKS_ROUTE,
+  modernTimelineFeaturedCard, LIBRARY_LINKS_ROUTE, ROUTED_CATEGORIES,
 } from './lib/catalog.js';
 import { Store, ImportDraftStore, IMPORT_DRAFT_KEY, PRERESTORE_KEY, KEY as STATE_KEY, SETTINGS_KEY, SIDEBAR_KEY, RESTORE_NOTICE_KEY, LIBRARY_LINKS_KEY } from './storage.js';
 import { LIST_HISTORY_KEY, ListHistoryStore, eraseReaderAndHistory } from './lib/listHistory.js';
@@ -407,7 +407,7 @@ const LOCAL_CONNECTION_STEPS = iosApp
     + 'start Recap Page from the copy you downloaded or installed from the Microsoft Store, then return here.';
 const generatedCategoryByRoute = new Map([
   ...PUBLISHING_CATEGORIES,
-  ...HOME_CATEGORIES.filter((category) => !category.shelf && category.kind !== 'universe-index'),
+  ...ROUTED_CATEGORIES.filter((category) => !category.shelf && category.kind !== 'universe-index'),
 ].map((category) => [category.route, category]));
 
 // The stored API base is checked once at boot, so the complaint about a bad one is a single
@@ -1983,7 +1983,7 @@ function renderBreadcrumbs() {
 }
 
 function railParentView(next) {
-  if (next === 'home' || next === 'new-to-comics' || next === 'universe' || HOME_CATEGORIES.some(({ route }) => route === next)
+  if (next === 'home' || next === 'new-to-comics' || next === 'universe' || ROUTED_CATEGORIES.some(({ route }) => route === next)
     || generatedCategoryByRoute.has(next)) return 'home';
   if (next === 'add' || ADD_VIEWS.includes(next)) return 'add';
   if (next === 'library' || next === 'progress' || next === 'completed' || next === 'library-rated' || LIBRARY_VIEWS.some(({ value }) => value === next)) return 'library';
@@ -4198,7 +4198,22 @@ const catalogPresentation = createCatalogPresentation({
 
 // One device-local browsing choice shared by every shelf that offers it (decision 13). It lives
 // outside saved reading data, so backup and restore never carry it.
-const libraryLinkFilter = createLibraryLinkFilter({ el, storage: localStorage, key: LIBRARY_LINKS_KEY });
+// The only way into the Library links page is this link inside each browsing page's filter; the
+// owner chose that over a Home card, so Home stays as it was (#1333).
+const libraryLinkFilter = createLibraryLinkFilter({
+  el,
+  storage: localStorage,
+  key: LIBRARY_LINKS_KEY,
+  pageLink: (text) => el('a', {
+    class: 'link-filter-page',
+    href: formatRoute({ view: LIBRARY_LINKS_ROUTE }),
+    onclick: (event) => {
+      if (!isPlainNavigation(event)) return;
+      event.preventDefault();
+      navigateTo(LIBRARY_LINKS_ROUTE);
+    },
+  }, text),
+});
 
 const mcuPrepView = createMcuPrepView({
   el,
