@@ -230,7 +230,14 @@ async function main() {
             await request.abort('blockedbyclient');
           }
         });
-        const audit = await auditAndCapture(page, ORIGIN, screenshot, assetStaging);
+        let audit;
+        try {
+          audit = await auditAndCapture(page, ORIGIN, screenshot, assetStaging);
+        } catch (error) {
+          // A refused module leaves the view hidden, so a bare selector timeout hides the cause.
+          if (failures.length) error.message += `\nPage failures: ${failures.join('; ')}`;
+          throw error;
+        }
         if (failures.length) throw new Error(`${screenshot.file}: ${failures.join('; ')}`);
         audits.push({ file: screenshot.file, audit });
       } finally {

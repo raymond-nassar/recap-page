@@ -5,7 +5,7 @@ import { runInNewContext } from 'node:vm';
 import { drawIcon, encodePng } from '../scripts/build-icons.mjs';
 import {
   ASSETS, ORIGIN, FIXTURE_API, VIEWPORT, SCREENS, playIcon, featureGraphic, decodePng,
-  demonstrationState, previewResponse, completedHealthProbe, inspectAsset, previewManifest,
+  demonstrationState, previewResponse, completedHealthProbe, inspectAsset, previewManifest, shellPath,
 } from '../scripts/play-assets.mjs';
 import { migrate } from '../src/js/lib/model.js';
 import { LOCAL_SERVER_HEALTH_PATH } from '../src/js/lib/localServer.js';
@@ -195,6 +195,27 @@ test('capture allowlist serves only the generated shell and named local fixtures
     `${FIXTURE_API}/issues/1`, `${ORIGIN}/data/catalog.json?unreviewed=1`,
   ]) assert.throws(() => previewResponse(url, 'GET', assets), /Blocked/);
   assert.throws(() => previewResponse(`${ORIGIN}/`, 'POST', assets), /Blocked/);
+});
+
+test('capture allowlist admits every module the desktop and Android entries import', () => {
+  // A data module added on 2026-11-13 was refused, so every capture timed out on a hidden view.
+  const base = 'http://shell/';
+  const file = (path) => path.startsWith('android/')
+    ? new URL(`../packaging/android/web/${path.slice('android/'.length)}`, import.meta.url)
+    : new URL(`../src/${path}`, import.meta.url);
+  const pending = ['js/app.js', 'android/app.js'];
+  const seen = new Set();
+  while (pending.length) {
+    const path = pending.pop();
+    if (seen.has(path)) continue;
+    seen.add(path);
+    assert.ok(shellPath(path), `capture allowlist refuses ${path}`);
+    const source = readFileSync(file(path), 'utf8');
+    for (const [, specifier] of source.matchAll(/(?:\bfrom\s*|\bimport\s*\(?\s*)['"](\.{1,2}\/[^'"]+)['"]/g)) {
+      pending.push(new URL(specifier, new URL(path, base)).href.slice(base.length));
+    }
+  }
+  assert.ok(seen.has('data/universeCatalog.js'));
 });
 
 test('store captures accept the local wordmark without admitting cover or external images', () => {
