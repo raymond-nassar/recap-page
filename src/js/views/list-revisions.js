@@ -18,10 +18,12 @@ export function createListRevisions({ $, el, getState, activeListId, isCurrent, 
     && JSON.stringify(currentList()) === held.signature;
 
   function busy(value) {
-    for (const id of ['list-revision-review', 'list-revision-check', 'list-revision-choose']) {
-      const disabled = !canSave();
-      $(`#${id}`).disabled = disabled;
-      $(`#${id}`).setAttribute('aria-disabled', String(value || disabled));
+    const disabled = !canSave();
+    const controls = ['review', 'check', 'choose'].map((name) => $(`#list-revision-${name}`));
+    if (disabled && isCurrent() && controls.includes(document.activeElement)) focusOptions();
+    for (const control of controls) {
+      control.disabled = disabled;
+      control.setAttribute('aria-disabled', String(value || disabled));
     }
   }
 
@@ -33,9 +35,11 @@ export function createListRevisions({ $, el, getState, activeListId, isCurrent, 
     busy(false);
   }
 
-  // On phones the options summary has no box and the Reading List options button stands in for it.
+  // An open phone sheet keeps focus inside its modal; otherwise its visible button replaces the summary.
   function focusOptions() {
-    const target = [$('#list-actions > summary'), $('#android-list-options')].find((node) => node?.getClientRects().length);
+    const target = [
+      $('#android-list-sheet[open] .android-sheet-header button'), $('#list-actions > summary'), $('#android-list-options'),
+    ].find((node) => node?.getClientRects().length);
     target?.focus();
   }
 
@@ -66,8 +70,8 @@ export function createListRevisions({ $, el, getState, activeListId, isCurrent, 
     } else if (chooser && !chooserValid()) {
       closeChooser();
     }
-    $('#list-revision-offer').hidden = !isCurrent() || !canSave() || !list || !matchesEarlierPublishedOrder(list);
     busy(Boolean(request));
+    $('#list-revision-offer').hidden = !isCurrent() || !canSave() || !list || !matchesEarlierPublishedOrder(list);
   }
 
   function begin() {

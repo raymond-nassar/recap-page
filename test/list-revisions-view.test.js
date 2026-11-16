@@ -9,7 +9,7 @@ function fixture({ catalogId = null, itemIds = [1], ask = null, loadOrder = null
   for (const id of [
     'list-revision-offer', 'list-revision-review', 'list-revision-check', 'list-revision-choose',
     'list-revision-chooser', 'list-revision-select', 'list-revision-status', 'list-actions > summary',
-    'android-list-options',
+    'android-list-options', 'android-list-sheet[open] .android-sheet-header button',
   ]) {
     nodes.set(id, {
       hidden: false, value: '', textContent: '', children: [], events: {}, attributes: {}, boxes: [{}],
@@ -21,6 +21,7 @@ function fixture({ catalogId = null, itemIds = [1], ask = null, loadOrder = null
       click() { this.events.click(); },
     });
   }
+  nodes.get('android-list-sheet[open] .android-sheet-header button').boxes = [];
   globalThis.document = { activeElement: null };
   const get = (id) => nodes.get(id.replace(/^#/, ''));
   const el = (tag, properties) => ({ tag, ...properties });
@@ -332,6 +333,66 @@ test('a saving pause withdraws the offer, controls and an open review before ano
     f.view.render();
     assert.equal(f.get('list-revision-offer').hidden, false);
     assert.equal(f.get('list-revision-check').disabled, false);
+  } finally {
+    delete globalThis.document;
+  }
+});
+
+test('a saving pause moves focus from comparison controls without taking unrelated focus', () => {
+  try {
+    for (const id of ['list-revision-review', 'list-revision-check', 'list-revision-choose']) {
+      const f = fixture();
+      f.get(id).focus();
+      f.setWritable(false);
+      f.view.render();
+      assert.equal(globalThis.document.activeElement, f.get('list-actions > summary'), id);
+    }
+    const phone = fixture();
+    phone.get('list-actions > summary').boxes = [];
+    phone.get('list-revision-review').focus();
+    phone.setWritable(false);
+    phone.view.render();
+    assert.equal(globalThis.document.activeElement, phone.get('android-list-options'));
+
+    const sheet = fixture();
+    sheet.get('list-actions > summary').boxes = [];
+    sheet.get('android-list-sheet[open] .android-sheet-header button').boxes = [{}];
+    sheet.get('list-revision-check').focus();
+    sheet.setWritable(false);
+    sheet.view.render();
+    assert.equal(globalThis.document.activeElement, sheet.get('android-list-sheet[open] .android-sheet-header button'));
+
+    const f = fixture();
+    const unrelated = {};
+    globalThis.document.activeElement = unrelated;
+    f.setWritable(false);
+    f.view.render();
+    assert.equal(globalThis.document.activeElement, unrelated);
+  } finally {
+    delete globalThis.document;
+  }
+});
+
+test('a paused review moves focus after its dialog returns focus to the disabled opener', async () => {
+  let f;
+  try {
+    f = fixture({
+      catalogId: 'linked',
+      ask: ({ signal }) => new Promise((resolve) => {
+        globalThis.document.activeElement = {};
+        signal.addEventListener('abort', () => {
+          f.get('list-revision-check').focus();
+          resolve(false);
+        }, { once: true });
+      }),
+    });
+    f.get('list-revision-check').focus();
+    f.get('list-revision-check').click();
+    await settle();
+    f.setWritable(false);
+    f.view.render();
+    assert.equal(globalThis.document.activeElement, f.get('list-actions > summary'));
+    await settle();
   } finally {
     delete globalThis.document;
   }

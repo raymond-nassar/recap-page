@@ -70,6 +70,57 @@ export const listRevisions = {
     await page.waitForFunction(() => document.querySelector('#list-revision-review').getAttribute('aria-disabled') === 'false');
     t.check('cancel does not change saved bytes', await page.evaluate((key, original) => localStorage.getItem(key) === original, KEY, before));
 
+    await page.waitForFunction(() => !document.querySelector('#btn-mark-all-read').disabled);
+    await page.$eval('#list-revision-review', (node) => node.focus());
+    await click(page, '#list-revision-review');
+    await page.waitForSelector('#ask[open]');
+    await page.evaluate(() => window.dispatchEvent(new PageTransitionEvent('pagehide', { persisted: true })));
+    await page.waitForFunction(() => document.querySelector('#btn-mark-all-read').disabled);
+    t.check('a restore pause withdraws the offer, controls and open review', await page.evaluate(() => (
+      document.querySelector('#list-revision-offer').hidden
+      && ['review', 'check', 'choose'].every((name) => document.querySelector(`#list-revision-${name}`).disabled)
+      && !document.querySelector('#ask').open
+    )));
+    const pausedFocus = await page.evaluate(() => ({
+      id: document.activeElement?.id,
+      visible: Boolean(document.activeElement?.getClientRects().length),
+      successor: document.activeElement?.matches('#list-actions > summary, #android-list-options'),
+    }));
+    t.check('a withdrawn review leaves focus on a visible successor', pausedFocus.visible && pausedFocus.successor, JSON.stringify(pausedFocus));
+    await click(page, '.brand[data-view="home"]');
+    await page.waitForSelector('#view-home:not([hidden])');
+    await page.goto(`${page.__origin}/#/read/saved`, { waitUntil: 'load' });
+    await page.waitForSelector('#view-read:not([hidden])');
+    await page.waitForFunction(() => document.querySelector('#list-revision-offer').hidden
+      && ['review', 'check', 'choose'].every((name) => document.querySelector(`#list-revision-${name}`).disabled));
+    await page.evaluate(() => window.dispatchEvent(new PageTransitionEvent('pageshow', { persisted: true })));
+    await page.waitForFunction(() => !document.querySelector('#btn-mark-all-read').disabled);
+    t.check('the offer and controls return when saving resumes without a reload', await page.evaluate((key, original) => (
+      !document.querySelector('#list-revision-offer').hidden
+      && ['review', 'check', 'choose'].every((name) => !document.querySelector(`#list-revision-${name}`).disabled)
+      && localStorage.getItem(key) === original
+    ), KEY, before));
+    await openOptions(page);
+    await page.$eval('#list-revision-check', (node) => node.focus());
+    await page.evaluate(() => window.dispatchEvent(new PageTransitionEvent('pagehide', { persisted: true })));
+    await page.waitForFunction(() => document.querySelector('#btn-mark-all-read').disabled);
+    const optionsFocus = await page.evaluate(() => {
+      const sheet = document.querySelector('#android-list-sheet');
+      const active = document.activeElement;
+      return {
+        id: active?.id, tag: active?.tagName,
+        successor: sheet?.open
+          ? active === sheet.querySelector('.android-sheet-header button')
+          : active?.matches('#list-actions > summary'),
+      };
+    });
+    t.check('a pause keeps focus in the open options', optionsFocus.successor, JSON.stringify(optionsFocus));
+    await page.evaluate(() => window.dispatchEvent(new PageTransitionEvent('pageshow', { persisted: true })));
+    await page.waitForFunction(() => !document.querySelector('#btn-mark-all-read').disabled);
+    // Keep the remaining fault cases independent if the resume check fails.
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForSelector('#list-revision-offer:not([hidden])');
+
     await page.evaluate(() => { window.__revisionFault = 'silent'; });
     await click(page, '#list-revision-review');
     await page.waitForSelector('#ask[open]');

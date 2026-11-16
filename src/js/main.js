@@ -2940,6 +2940,7 @@ const COMPLETE_RESTORE_NOTICE = 'complete-restore';
 function renderCompleteRestore(state) {
   completeBackupView.render(state);
   bulkReadView.render();
+  listRevisions.render();
   if (state.phase === 'paused' && state.message && state.message !== RESTORE_MESSAGES.working) {
     notify('#save-report', state.message, 'warn', COMPLETE_RESTORE_NOTICE);
   } else clearNotice(COMPLETE_RESTORE_NOTICE);

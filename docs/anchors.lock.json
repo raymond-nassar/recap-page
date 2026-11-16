@@ -1834,8 +1834,8 @@
     "fp": "d3c89ab1f16d81ee",
     "head": "export function toggleRead(state, issueId) {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/main.js:3407-3435|0": {
-    "anchor": "src/js/main.js:3407-3435",
+  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/main.js:3408-3436|0": {
+    "anchor": "src/js/main.js:3408-3436",
     "fp": "4bfffd5990af658f",
     "head": "function renderAll() {"
   },
@@ -1914,13 +1914,13 @@
     "fp": "931bd75b9e4067fe",
     "head": "preservingFocus(rows, () => {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3407-3435|0": {
-    "anchor": "src/js/main.js:3407-3435",
+  "docs/ARCHITECTURE_REFERENCE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3408-3436|0": {
+    "anchor": "src/js/main.js:3408-3436",
     "fp": "4bfffd5990af658f",
     "head": "function renderAll() {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:4322-4364|0": {
-    "anchor": "src/js/main.js:4322-4364",
+  "docs/ARCHITECTURE_REFERENCE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:4323-4365|0": {
+    "anchor": "src/js/main.js:4323-4365",
     "fp": "39c31b26626f4d11",
     "head": "const catalogView = createCatalogView({"
   },
@@ -1974,28 +1974,28 @@
     "fp": "8f74c324b23445e0",
     "head": "if (view === RETIRED_PATHS_SEGMENT) {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3417|0": {
-    "anchor": "src/js/main.js:3417",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3418|0": {
+    "anchor": "src/js/main.js:3418",
     "fp": "ae55a874d470b605",
     "head": "catalogView.refreshProgress();"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4151-4170|0": {
-    "anchor": "src/js/main.js:4151-4170",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4152-4171|0": {
+    "anchor": "src/js/main.js:4152-4171",
     "fp": "361fd1a361de6372",
     "head": "function openSavedCatalogList(list, saved, report, { fromCard = false } = {}) {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4172-4458|0": {
-    "anchor": "src/js/main.js:4172-4458",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4173-4459|0": {
+    "anchor": "src/js/main.js:4173-4459",
     "fp": "2b46052e862088cf",
     "head": "const catalogPresentation = createCatalogPresentation({"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4336-4342|0": {
-    "anchor": "src/js/main.js:4336-4342",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4337-4343|0": {
+    "anchor": "src/js/main.js:4337-4343",
     "fp": "d3051bc067e4d60f",
     "head": "follow: () => ({"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4362-4363|0": {
-    "anchor": "src/js/main.js:4362-4363",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4363-4364|0": {
+    "anchor": "src/js/main.js:4363-4364",
     "fp": "2e75d57bd558e1f6",
     "head": "onFollowChange: () => syncHash({ push: true }),"
   },
@@ -6029,8 +6029,8 @@
     "fp": "85dd498c3e412622",
     "head": "description: 'Comics to read alongside the Marvel movies and streaming series.',"
   },
-  "docs/UX_FEEDBACK.md|feedback-signals#mcu-prep-labels|src/js/main.js:3181|0": {
-    "anchor": "src/js/main.js:3181",
+  "docs/UX_FEEDBACK.md|feedback-signals#mcu-prep-labels|src/js/main.js:3182|0": {
+    "anchor": "src/js/main.js:3182",
     "fp": "182990f15d2fff5a",
     "head": "el('p', { class: 'sub publishing-description', text: category.description }),"
   },
@@ -6064,8 +6064,8 @@
     "fp": "85dd498c3e412622",
     "head": "description: 'Comics to read alongside the Marvel movies and streaming series.',"
   },
-  "docs/UX_IMPROVEMENT_PLAN.md|7-mcu-prep-labels|src/js/main.js:3181|0": {
-    "anchor": "src/js/main.js:3181",
+  "docs/UX_IMPROVEMENT_PLAN.md|7-mcu-prep-labels|src/js/main.js:3182|0": {
+    "anchor": "src/js/main.js:3182",
     "fp": "182990f15d2fff5a",
     "head": "el('p', { class: 'sub publishing-description', text: category.description }),"
   },
@@ -6404,8 +6404,8 @@
     "fp": "74773520541572a3",
     "head": "const store = new Store({"
   },
-  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:3407-3435|0": {
-    "anchor": "src/js/main.js:3407-3435",
+  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:3408-3436|0": {
+    "anchor": "src/js/main.js:3408-3436",
     "fp": "4bfffd5990af658f",
     "head": "function renderAll() {"
   },
