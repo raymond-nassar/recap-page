@@ -4567,6 +4567,64 @@
       }
     },
     {
+      "edition": "war-of-the-realms-new-agents-of-atlas",
+      "gcdIssueId": 2013659,
+      "url": "https://www.comics.org/api/issue/2013659/?format=json",
+      "retrievedAt": "2026-11-14T14:52:18.050Z",
+      "seriesName": "War of the Realms: New Agents of Atlas (2019 series)",
+      "number": "[nn]",
+      "descriptor": "",
+      "isbn": "978-1-302-91877-4",
+      "publicationDate": "2019",
+      "pageCount": "116.000",
+      "variantOf": null,
+      "notes": "Collects War of the Realms: New Agents of Atlas (Marvel, 2019 Series) #1-4.",
+      "supportingSources": [
+        {
+          "url": "https://www.comics.org/api/issue/1961278/?format=json",
+          "retrievedAt": "2026-11-14T18:32:15.453Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/1966455/?format=json",
+          "retrievedAt": "2026-11-14T18:33:55.281Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/1974697/?format=json",
+          "retrievedAt": "2026-11-14T18:33:59.547Z"
+        },
+        {
+          "url": "https://www.comics.org/api/issue/1980741/?format=json",
+          "retrievedAt": "2026-11-14T18:34:24.086Z"
+        },
+        {
+          "url": "https://www.comics.org/api/series/name/War%20of%20the%20Realms%3A%20New%20Agents%20of%20Atlas/year/2019/?format=json",
+          "retrievedAt": "2026-11-14T16:51:37.411Z"
+        }
+      ],
+      "comicStories": [],
+      "assertedContents": [
+        {
+          "seriesId": 27505,
+          "from": 1,
+          "to": 4,
+          "assertedBy": "gcd-notes",
+          "basis": "The indexer notes list New Agents of Atlas #1-4. The original issue identities and on-sale dates match the list; some creator roles differ between sources."
+        }
+      ],
+      "check": {
+        "tier": "gcd-notes",
+        "status": "verified",
+        "verifiedComics": [
+          "27505:1",
+          "27505:2",
+          "27505:3",
+          "27505:4"
+        ],
+        "excludedSequences": [],
+        "conflicts": []
+      }
+    },
+    {
       "edition": "iron-man-2020-robot-revolution",
       "gcdIssueId": 2156466,
       "url": "https://www.comics.org/api/issue/2156466/?format=json",

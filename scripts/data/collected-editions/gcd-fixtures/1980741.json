@@ -1,0 +1,45 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/1980741/?format=json",
+  "retrievedAt": "2026-11-14T18:34:24.086Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/1980741/?format=json",
+    "series_name": "War of the Realms: New Agents of Atlas (2019 series)",
+    "descriptor": "4 [Woo Dae Shim]",
+    "number": "4",
+    "volume": "",
+    "variant_name": "Woo Dae Shim",
+    "title": "",
+    "publication_date": "August 2019",
+    "key_date": "2019-08-00",
+    "page_count": "32.000",
+    "isbn": "",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/145026/?format=json",
+    "story_set": [
+      {
+        "type": "recap",
+        "title": "",
+        "feature": "New Agents of Atlas",
+        "sequence_number": 1,
+        "page_count": "1.000",
+        "notes": "Page also includes credits and indicia.",
+        "script": "?",
+        "pencils": "None"
+      },
+      {
+        "type": "comic story",
+        "title": "Fire and Ice Chapter Four",
+        "feature": "New Agents of Atlas",
+        "sequence_number": 2,
+        "page_count": "20.000",
+        "notes": "",
+        "script": "Greg Pak",
+        "pencils": "Gang Hyuk Lim"
+      }
+    ]
+  }
+}
