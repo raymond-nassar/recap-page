@@ -436,6 +436,13 @@
                   <button type="button" class="btn btn-g" id="list-revision-review">Review update</button>
                 </div>
                 <p id="list-revision-status" role="status" aria-live="polite" hidden></p>
+                <div id="list-revision-chooser" hidden>
+                  <div class="field-row">
+                    <label for="list-revision-select">Published order</label>
+                    <select id="list-revision-select"></select>
+                    <button type="button" class="btn btn-g" id="list-revision-choose">Compare</button>
+                  </div>
+                </div>
                 <div class="list-tools">
                   <details id="list-actions" class="list-actions action-disclosure">
                     <summary>Reading List options</summary>
@@ -445,13 +452,6 @@
                       <button type="button" class="quiet" id="btn-list-note">Note</button>
                       <button type="button" class="quiet" id="btn-duplicate-list">Duplicate</button>
                       <button type="button" class="quiet" id="list-revision-check">Compare with the latest published order</button>
-                      <div id="list-revision-chooser" hidden>
-                        <div class="field-row">
-                          <label for="list-revision-select">Published order</label>
-                          <select id="list-revision-select"></select>
-                          <button type="button" class="quiet" id="list-revision-choose">Compare</button>
-                        </div>
-                      </div>
                       <button type="button" class="quiet" id="btn-mark-all-read">Mark All Read</button>
                       <details id="list-export">
                         <summary class="quiet">Export</summary>

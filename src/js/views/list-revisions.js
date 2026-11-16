@@ -31,9 +31,15 @@ export function createListRevisions({ $, el, getState, activeListId, isCurrent, 
     busy(false);
   }
 
+  // On phones the options summary has no box and the Reading List options button stands in for it.
+  function focusOptions() {
+    const target = [$('#list-actions > summary'), $('#android-list-options')].find((node) => node?.getClientRects().length);
+    target?.focus();
+  }
+
   function closeChooser() {
     if (isCurrent() && [$('#list-revision-select'), $('#list-revision-choose')].includes(document.activeElement)) {
-      $('#list-actions > summary').focus();
+      focusOptions();
     }
     $('#list-revision-chooser').hidden = true;
     chooser = null;
@@ -117,9 +123,7 @@ export function createListRevisions({ $, el, getState, activeListId, isCurrent, 
         return;
       }
       status('Your list was updated. Progress stays on the same comics.');
-      if ($('#list-revision-offer').hidden && restoreOfferFocus) {
-        $('#list-actions > summary').focus();
-      }
+      if ($('#list-revision-offer').hidden && restoreOfferFocus) focusOptions();
     } catch (error) {
       if (valid(held)) status(`Could not compare the published order (${error.message}). Your list is unchanged.`);
     }
@@ -151,7 +155,6 @@ export function createListRevisions({ $, el, getState, activeListId, isCurrent, 
         )));
         chooser = { state: held.state, id: held.id, signature: held.signature, ids: new Set(entries.map((entry) => entry.id)) };
         $('#list-revision-chooser').hidden = false;
-        if (automatic) $('#list-actions').open = true;
         status(entries.length
           ? `Choose a published order to compare.${catalog.dropped ? ' Some published orders are unavailable.' : ''}`
           : 'No published orders are available. Your list is unchanged.');

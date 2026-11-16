@@ -8,9 +8,11 @@ function fixture({ catalogId = null, itemIds = [1], ask = null, loadOrder = null
   for (const id of [
     'list-revision-offer', 'list-revision-review', 'list-revision-check', 'list-revision-choose',
     'list-revision-chooser', 'list-revision-select', 'list-revision-status', 'list-actions > summary',
+    'android-list-options',
   ]) {
     nodes.set(id, {
-      hidden: false, value: '', textContent: '', children: [], events: {}, attributes: {},
+      hidden: false, value: '', textContent: '', children: [], events: {}, attributes: {}, boxes: [{}],
+      getClientRects() { return this.boxes; },
       setAttribute(name, value) { this.attributes[name] = value; },
       addEventListener(name, callback) { this.events[name] = callback; },
       replaceChildren(...children) { this.children = children; },
@@ -134,6 +136,24 @@ test('a personal list chooses a published order, cancels and can then update', a
     await settle();
     assert.equal(f.getSaves(), 1);
     assert.match(f.get('list-revision-status').textContent, /already includes/i);
+  } finally {
+    delete globalThis.document;
+  }
+});
+
+test('on a phone the update and the chooser hand focus to the visible options button', async () => {
+  try {
+    const f = fixture();
+    f.get('list-actions > summary').boxes = [];
+    f.get('list-revision-check').click();
+    await settle();
+    f.get('list-revision-select').value = 'sample';
+    f.setAnswer(true);
+    f.get('list-revision-choose').focus();
+    f.get('list-revision-choose').click();
+    await settle();
+    assert.equal(f.getSaves(), 1);
+    assert.equal(globalThis.document.activeElement, f.get('android-list-options'));
   } finally {
     delete globalThis.document;
   }

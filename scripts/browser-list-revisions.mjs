@@ -5,6 +5,13 @@ import { READING_ORDER_REVISIONS } from '../src/js/lib/readingOrderRevisions.js'
 
 const KEY = 'mrt.state.v2';
 const click = (page, selector) => page.$eval(selector, (node) => node.click());
+// Phones replace the options disclosure with a button that opens them in a sheet.
+const openOptions = (page) => page.evaluate(() => {
+  const phone = document.querySelector('#android-list-options');
+  if (phone?.getClientRects().length) {
+    if (!document.querySelector('#android-list-sheet')?.open) phone.click();
+  } else document.querySelector('#list-actions').open = true;
+});
 
 export const listRevisions = {
   id: 'list-revisions',
@@ -23,6 +30,8 @@ export const listRevisions = {
       if (sessionStorage.getItem('revision-keep-saved')) sessionStorage.removeItem('revision-keep-saved');
       else localStorage.setItem(key, JSON.stringify(seed));
       localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+      // The desktop harness serves a small fixture catalog without this, and it has no Wolverine entry.
+      localStorage.setItem('mrt.catalog.fixture', 'actual');
       const set = Storage.prototype.setItem;
       const get = Storage.prototype.getItem;
       Storage.prototype.setItem = function (name, value) {
@@ -78,14 +87,17 @@ export const listRevisions = {
     t.check('read progress remains on the retired identity', saved.read[retired] === 123);
     t.check('the automatic offer is withdrawn and focus has a visible successor', await page.evaluate(() => (
       document.querySelector('#list-revision-offer').hidden
-      && document.activeElement === document.querySelector('#list-actions > summary')
+      && document.activeElement?.matches('#list-actions > summary, #android-list-options')
+      && document.activeElement.getClientRects().length > 0
     )));
-    await click(page, '#list-actions > summary');
+    await openOptions(page);
     await click(page, '#list-revision-check');
     await page.waitForFunction(() => document.querySelector('#list-revision-status').textContent.includes('already includes'));
     t.check('a repeated manual check makes no second update', await page.$eval('#list-revision-status', (node) => node.textContent.includes('unchanged')));
+    await openOptions(page);
     await click(page, '#btn-duplicate-list');
     await page.waitForFunction((key) => JSON.parse(localStorage.getItem(key)).active !== 'saved', {}, KEY);
+    await openOptions(page);
     await click(page, '#list-revision-check');
     await page.waitForSelector('#list-revision-chooser:not([hidden])');
     t.check('a duplicated list offers a labeled chooser without horizontal overflow', await page.evaluate(() => {
@@ -103,7 +115,9 @@ export const listRevisions = {
     t.check('the selected published order is compared without changing the duplicate',
       await page.$eval('#list-revision-status', (node) => node.textContent.includes('unchanged')));
 
+    // A hash-only goto stays in the same document, so reload to reseed the pre-update list.
     await page.goto(`${page.__origin}/#/read/saved`, { waitUntil: 'load' });
+    await page.reload({ waitUntil: 'load' });
     await page.waitForSelector('#list-revision-offer:not([hidden])');
     await page.evaluate(() => { window.__revisionFault = 'unreadable'; });
     await click(page, '#list-revision-review');
