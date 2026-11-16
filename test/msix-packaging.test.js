@@ -179,7 +179,7 @@ test('startup expectations bind three package variants and reject an unlisted ex
       const variant = await populateStartupLayout(fixture, architecture, version);
       assert.equal(variant.identity.architecture, architecture);
       assert.equal(variant.identity.version, version);
-      assert.equal(variant.files.length, 18);
+      assert.equal(variant.files.length, 19);
     } finally { fixture.close(); }
   }
   const fixture = startupLayoutFixture();
@@ -233,7 +233,22 @@ test('startup expectations bind three package variants and reject an unlisted ex
       fixture.put(path, { 'server.mjs': server, 'packaging/windows/Launcher.mjs': launcher,
         'host/cloudHost.mjs': cloudHost, 'host/appWindow.mjs': appWindow }[path]);
     }
-    t.diagnostic('startup-host-imports fixtures=19 rejected=19');
+    // The startup task module is named once, literally, by the server alone, and imports only the session
+    // check it shares with the cloud host (#1412).
+    const startupTask = read(join(ROOT, 'host', 'startupTask.mjs'));
+    for (const [path, altered] of [
+      ['server.mjs', `${server}\nimport('./host/startupTask.mjs');\n`],
+      ['server.mjs', server.replace("import('./host/startupTask.mjs')", "import('./host/' + 'startupTask.mjs')")],
+      ['packaging/windows/Launcher.mjs', `${launcher}\nimport('./host/startupTask.mjs');\n`],
+      ['host/startupTask.mjs', `${startupTask}\nimport './cloudTokens.mjs';\n`],
+      ['host/startupTask.mjs', `${startupTask}\nimport { spawn } from 'node:worker_threads';\nexport { spawn };\n`],
+    ]) {
+      fixture.put(path, altered);
+      assert.throws(() => startupSourceInputs(fixture.root), /input-mismatch/);
+      fixture.put(path, { 'server.mjs': server, 'packaging/windows/Launcher.mjs': launcher,
+        'host/startupTask.mjs': startupTask }[path]);
+    }
+    t.diagnostic('startup-host-imports fixtures=24 rejected=24');
     const localServer = read(join(ROOT, 'src', 'js', 'lib', 'localServer.js'));
     fixture.put('src/js/lib/unlisted-helper.js', "throw new Error('analyzed source must not execute');\nexport const injected = 1;\n");
     fixture.put('src/js/lib/localServer.js', `${localServer}\nexport * from './unlisted-helper.js';\n`);
@@ -263,7 +278,7 @@ export { apparentImport, apparentRequire };
       .replace(/^import /gm, '  import /* declaration */ ')
       .replace("import('node:child_process')", "import /* dynamic */ ('node:child_process')")
       + "\nexport { readFile as nativeRead } from 'node:fs/promises';\n");
-    assert.equal(startupSourceInputs(fixture.root).length, 12);
+    assert.equal(startupSourceInputs(fixture.root).length, 13);
     t.diagnostic('startup-source-syntax fixtures=8 rejected=7 allowed=1 modules-executed=0');
   } finally { fixture.close(); }
 });
@@ -273,7 +288,7 @@ test('installed startup bindings reject altered inputs activation ambiguity and 
   const fixture = startupLayoutFixture();
   try {
     const variant = await populateStartupLayout(fixture);
-    assert.equal(bindInstalledInputs(fixture.root, variant).files, 18);
+    assert.equal(bindInstalledInputs(fixture.root, variant).files, 19);
     for (const input of variant.files) {
       const file = join(fixture.root, ...input.path.split('/'));
       const bytes = readFileSync(file);

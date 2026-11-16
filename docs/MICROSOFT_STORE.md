@@ -220,9 +220,22 @@ when exactly one such install exists and its browser is the reader's current def
 the http association without writing it, so the reader never changes browser or profile and progress
 stays at the same origin. The proxy is given only the validated profile directory and the fixed app id,
 never the shortcut's own arguments, and a shortcut carrying any other switch, such as a separate user
-data directory, is not used. Anything short of the proxy exiting cleanly, including a missing module,
-opens the tab exactly as before. `host/appWindow.mjs` holds the rule and `test/app-window.test.js` pins
-it, including the measured app id.
+data directory, is not used, and neither is a shortcut whose app the profile no longer holds, read as
+the app id's folder under that profile's `Web Applications\Manifest Resources`. Anything short of the
+proxy exiting cleanly, including a missing module, opens the tab exactly as before.
+`host/appWindow.mjs` holds the rule and `test/app-window.test.js` pins it, including the measured app id.
+
+The Store package declares a startup task on its one application (#1412, decision 13). The manifest
+ships it disabled, with one fixed parameter, `--recap-startup-task-v1`, which the launcher accepts as a
+quiet start: the server comes up and no window opens. Nothing enables it but the reader. The packaged
+server answers `/__recap_startup__/v1/state` and `/__recap_startup__/v1/enable` by running the packaged
+launcher beside it with one of two further fixed tokens, which read the task's state or request
+enabling it through the Windows startup task API. Enabling is requested only from the Disabled state,
+never from a state the reader or a policy set, and the request carries a single-use consent value the
+last read issued, so it answers only the question on screen. Each request must be a same-origin POST
+from this page's own origin with the custom header and a JSON body, from the reader's own Windows
+session, one at a time. Every other build answers 404 there and loads nothing. `host/startupTask.mjs`
+holds the boundary and `test/startup-task.test.js` pins it.
 
 The maintained JavaScript coordinator validates the packaged server and generation, starts it with
 the package root as its working directory, removes every casing of `MRT_PORT` and `MRT_NO_OPEN`, and

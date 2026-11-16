@@ -133,6 +133,29 @@ async function cloudHandler() {
   return cloudHost;
 }
 
+// Starting at sign-in, for the Microsoft Store package only (#1412, decision 13). Only that package has a
+// startup task, and only its launcher can read or enable it, so every other build answers 404 here without
+// loading anything. The prefix is the host's STARTUP_API_PREFIX, which a test holds equal. The launcher is
+// the one beside this file, never a path from the environment or a request.
+const STARTUP_PREFIX = '/__recap_startup__/v1/';
+const STARTUP_LAUNCHER = fileURLToPath(new URL('./RecapPageLauncher.exe', import.meta.url));
+let startupHost = null;
+
+async function startupHandler() {
+  if (!startupHost) {
+    if (process.platform !== 'win32' || !PACKAGED || PACKAGE_GENERATION === 'development') return null;
+    const info = await stat(STARTUP_LAUNCHER).catch(() => null);
+    if (!info?.isFile()) return null;
+    startupHost ??= import('./host/startupTask.mjs')
+      .then(({ createStartupHost }) => createStartupHost({ launcher: STARTUP_LAUNCHER }))
+      .catch((err) => {
+        console.error(`Starting at sign-in is unavailable: ${err?.message ?? err}`);
+        return null;
+      });
+  }
+  return startupHost;
+}
+
 function safePath(urlPath) {
   // decodeURIComponent throws URIError on a malformed escape such as "/%" or "/a%2". This runs
   // before the request handler's try block, so an unhandled rejection would terminate the whole
@@ -180,6 +203,19 @@ async function handle(req, res) {
   // Before the method check, because the control API is POST only and answers for itself.
   if ((req.url || '/').split('?')[0].split('#')[0].startsWith(CLOUD_PREFIX)) {
     const host = await cloudHandler();
+    if (host) {
+      await host.handle(req, res);
+      return;
+    }
+    req.resume();
+    res.writeHead(404, {
+      ...SECURITY_HEADERS,
+      'content-type': 'text/plain; charset=utf-8',
+    }).end('Not found');
+    return;
+  }
+  if ((req.url || '/').split('?')[0].split('#')[0].startsWith(STARTUP_PREFIX)) {
+    const host = await startupHandler();
     if (host) {
       await host.handle(req, res);
       return;
@@ -393,5 +429,5 @@ function start() {
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) start();
 
 export {
-  CLOUD_PREFIX, CSP, DEFAULT_PORT, HOST, PACKAGE_GENERATION, safePath,
+  CLOUD_PREFIX, CSP, DEFAULT_PORT, HOST, PACKAGE_GENERATION, STARTUP_PREFIX, safePath,
 };

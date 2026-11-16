@@ -946,7 +946,9 @@ nothing but one another and the built-ins listed for each. A built-in that loads
 such as `node:module` for `createRequire`, cannot be added without changing that list, and the two ways
 to load code without an import, `process.getBuiltinModule` and `process.dlopen`, are refused by name.
 The same contract binds the app window module, `host/appWindow.mjs`, as a startup file, and lets the
-server and the launcher each import it exactly once, by name (#1412).
+server and the launcher each import it exactly once, by name (#1412). It binds the Store package's
+startup task module, `host/startupTask.mjs`, the same way: the server alone imports it once, by name,
+and it imports only the session check it shares with the cloud backup host.
 
 **The page.** `src/js/lib/cloudBackup.js` holds the transport, the protocol and the coordinator
 together for the Cloud backup card in Backup & settings, which `src/js/views/cloud.js` draws. The card

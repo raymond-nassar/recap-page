@@ -16,14 +16,15 @@ export const STARTUP_FILES = Object.freeze([
   'AppxManifest.xml', 'RecapPageLauncher.exe', 'runtime/node.exe', 'Launcher.mjs', 'RecapPageVerifier.exe',
   'server.mjs', 'src/js/lib/coverHost.js', 'src/js/lib/localServer.js',
   'host/cloudConfig.mjs', 'host/cloudHost.mjs', 'host/cloudSession.mjs', 'host/cloudSignIn.mjs',
-  'host/cloudTokens.mjs', 'host/googleDrive.mjs', 'host/oneDrive.mjs', 'host/appWindow.mjs',
+  'host/cloudTokens.mjs', 'host/googleDrive.mjs', 'host/oneDrive.mjs', 'host/appWindow.mjs', 'host/startupTask.mjs',
   'native-build.json', 'src/msix-generation.json',
 ]);
 // The cloud backup host's modules are bound as startup files although they load only at the first
 // control-API request of a build with a client configuration: server.mjs names them in its one dynamic
 // import, so their bytes decide what that server can run (#810, P02-T01 section 3.6). The app window
-// module is bound for the same reason: the launcher and the server each name it once (#1412).
-const HOST_FILES = ['cloudConfig', 'cloudHost', 'cloudSession', 'cloudSignIn', 'cloudTokens', 'googleDrive', 'oneDrive', 'appWindow']
+// module is bound for the same reason: the launcher and the server each name it once (#1412). So is the
+// startup task module, which only the Store package's server loads, at its first startup request (#1412).
+const HOST_FILES = ['cloudConfig', 'cloudHost', 'cloudSession', 'cloudSignIn', 'cloudTokens', 'googleDrive', 'oneDrive', 'appWindow', 'startupTask']
   .map((name) => [`host/${name}.mjs`, `host/${name}.mjs`]);
 export const SOURCE_FILES = Object.freeze([
   ['Launcher.mjs', 'packaging/windows/Launcher.mjs'],
@@ -41,6 +42,7 @@ const LOCAL_IMPORTS = Object.freeze({
   'host/cloudTokens.mjs': ['./cloudSession.mjs'],
   'host/googleDrive.mjs': ['./cloudSignIn.mjs'],
   'host/oneDrive.mjs': ['./cloudSignIn.mjs'],
+  'host/startupTask.mjs': ['./cloudSession.mjs'],
 });
 // And each one's Node built-ins, exactly, so none that loads code by another route, such as node:module's
 // createRequire, node:vm or node:worker_threads, can be added without changing this list. The two routes
@@ -54,13 +56,15 @@ const NODE_IMPORTS = Object.freeze({
   'host/cloudSignIn.mjs': ['node:child_process', 'node:crypto', 'node:http', 'node:path'],
   'host/cloudTokens.mjs': ['node:child_process', 'node:fs/promises', 'node:path'],
   'host/appWindow.mjs': ['node:child_process', 'node:fs/promises', 'node:path'],
+  'host/startupTask.mjs': ['node:child_process', 'node:crypto'],
 });
 const LOADERS = new Set(['getBuiltinModule', 'dlopen']);
 const HOST_IMPORT = './host/cloudHost.mjs';
 const APP_WINDOW_IMPORT = './host/appWindow.mjs';
+const STARTUP_IMPORT = './host/startupTask.mjs';
 // Each startup source's run-time imports: which literal names it may load, and which of them exactly once.
 const DYNAMIC_IMPORTS = Object.freeze({
-  'server.mjs': { allowed: ['node:child_process', HOST_IMPORT, APP_WINDOW_IMPORT], once: [HOST_IMPORT, APP_WINDOW_IMPORT] },
+  'server.mjs': { allowed: ['node:child_process', HOST_IMPORT, APP_WINDOW_IMPORT, STARTUP_IMPORT], once: [HOST_IMPORT, APP_WINDOW_IMPORT, STARTUP_IMPORT] },
   'Launcher.mjs': { allowed: [APP_WINDOW_IMPORT], once: [APP_WINDOW_IMPORT] },
 });
 export const REASONS = Object.freeze([

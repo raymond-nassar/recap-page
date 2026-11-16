@@ -9,9 +9,10 @@ import { join, sep } from 'node:path';
 import { runInNewContext } from 'node:vm';
 
 import {
-  CLOUD_PREFIX, CSP, DEFAULT_PORT, HOST, PACKAGE_GENERATION, browserCommand, createStaticServer, parsePort, safePath,
+  CLOUD_PREFIX, CSP, DEFAULT_PORT, HOST, PACKAGE_GENERATION, STARTUP_PREFIX, browserCommand, createStaticServer, parsePort, safePath,
 } from '../server.mjs';
 import { CLOUD_API_PREFIX } from '../host/cloudHost.mjs';
+import { STARTUP_API_PREFIX } from '../host/startupTask.mjs';
 import {
   LOCAL_SERVER_GENERATION_HEADER_NAME,
   LOCAL_SERVER_HEADER_NAME,
@@ -266,7 +267,7 @@ const SERVER_CHILD = [
   "await new Promise((resolve) => { server.listen(0, '127.0.0.1', resolve); });",
   'const statuses = [];',
   'for (const method of JSON.parse(process.argv[3])) {',
-  "  const res = await fetch('http://127.0.0.1:' + server.address().port + CLOUD_PREFIX + 'status', { method });",
+  "  const res = await fetch('http://127.0.0.1:' + server.address().port + (process.argv[4] ?? CLOUD_PREFIX + 'status'), { method });",
   '  await res.arrayBuffer();',
   '  statuses.push(res.status);',
   '}',
@@ -287,7 +288,7 @@ const RESOLVE_HOOKS = [
   '}',
 ].join('\n');
 
-function serverChild(methods, configuration) {
+function serverChild(methods, configuration, path) {
   const directory = mkdtempSync(join(tmpdir(), 'recap-server-child-'));
   try {
     writeFileSync(join(directory, 'child.mjs'), SERVER_CHILD);
@@ -296,7 +297,7 @@ function serverChild(methods, configuration) {
     delete env.MRT_CLOUD_CLIENT_CONFIG;
     delete env.NODE_TEST_CONTEXT;
     if (configuration) env.MRT_CLOUD_CLIENT_CONFIG = configuration;
-    const child = spawnSync(process.execPath, [join(directory, 'child.mjs'), new URL('../server.mjs', import.meta.url).href, JSON.stringify(methods)], {
+    const child = spawnSync(process.execPath, [join(directory, 'child.mjs'), new URL('../server.mjs', import.meta.url).href, JSON.stringify(methods), ...(path ? [path] : [])], {
       env, encoding: 'utf8', timeout: 60_000, windowsHide: true,
     });
     assert.equal(child.status, 0, child.stderr);
@@ -416,6 +417,62 @@ test('a packaged build reads only the configuration beside its server, and a che
   assert.deepEqual([large.text, large.read], [null, []], 'a file over 4096 bytes is refused by its size alone');
   const folder = await run({ packaged: false, env: elsewhere, kind: 'directory' });
   assert.deepEqual([folder.text, folder.read], [null, []]);
+});
+
+// Starting at sign-in belongs to the Microsoft Store package alone (#1412, decision 13). Every other build
+// answers its prefix 404 to every method, as an unknown path does, and loads none of its host.
+test('outside the Store package the startup prefix answers 404 to every method and loads nothing', async () => {
+  assert.equal(STARTUP_PREFIX, STARTUP_API_PREFIX, 'the server routes the prefix the host answers');
+  await withServer(async (port) => {
+    for (const method of ['GET', 'HEAD', 'POST', 'PUT', 'DELETE', 'OPTIONS']) {
+      const res = await fetchPath(port, `${STARTUP_PREFIX}state`, { method });
+      assert.equal(res.status, 404, method);
+      assertSecurityHeaders(res, `${method} startup prefix`);
+    }
+  });
+  const methods = ['GET', 'POST', 'PUT'];
+  for (const operation of ['state', 'enable']) {
+    assert.deepEqual(serverChild(methods, null, `${STARTUP_PREFIX}${operation}`), { statuses: methods.map(() => 404), logs: [], host: [] });
+  }
+});
+
+test('only a packaged Windows build with an MSIX generation and its own launcher loads the startup host', async () => {
+  const body = source.match(/^async function startupHandler\(\) \{[\s\S]*?^\}/m)?.[0];
+  assert.ok(body);
+  const run = async ({ platform = 'win32', packaged = true, generation = 'a'.repeat(32), launcher = 'file' } = {}) => {
+    const made = [];
+    const looked = [];
+    const loaded = [];
+    const host = await runInNewContext(`let startupHost = null;\n${body.replace("import('./host/startupTask.mjs')", "load('./host/startupTask.mjs')")}\nstartupHandler();`, {
+      process: { platform }, PACKAGED: packaged, PACKAGE_GENERATION: generation, STARTUP_LAUNCHER: 'C:/app/RecapPageLauncher.exe',
+      console,
+      stat: async (path) => {
+        looked.push(path);
+        if (launcher === 'missing') throw Object.assign(new Error('missing'), { code: 'ENOENT' });
+        return { isFile: () => launcher === 'file' };
+      },
+      load: async (specifier) => {
+        loaded.push(specifier);
+        return { createStartupHost: (options) => (made.push(options), { handle() {} }) };
+      },
+    });
+    return { host, made, looked, loaded };
+  };
+  assert.ok(body.includes("import('./host/startupTask.mjs')"), 'the host is loaded by its literal path');
+  const store = await run();
+  assert.ok(store.host, 'the Store package answers');
+  assert.deepEqual(store.loaded, ['./host/startupTask.mjs']);
+  assert.deepEqual(JSON.parse(JSON.stringify(store.made)), [{ launcher: 'C:/app/RecapPageLauncher.exe' }], 'with the launcher beside the server and nothing else');
+  for (const [label, options] of [
+    ['a checkout', { packaged: false }],
+    ['the portable download', { generation: 'development' }],
+    ['another platform', { platform: 'linux' }],
+    ['a package without its launcher', { launcher: 'missing' }],
+    ['a launcher that is not a file', { launcher: 'directory' }],
+  ]) {
+    const other = await run(options);
+    assert.deepEqual([other.host, other.made, other.loaded], [null, [], []], label);
+  }
 });
 
 test('the local health response is identifiable and cannot be cached by the worker', async () => {
