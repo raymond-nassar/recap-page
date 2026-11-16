@@ -52,13 +52,16 @@ function fixture(failAt, fault = '') {
     const fault = ${JSON.stringify(fault)};
     const nativeSetTimeout = globalThis.setTimeout;
     globalThis.setTimeout = (callback, delay, ...args) =>
-      nativeSetTimeout(callback, [2000, 5000].includes(delay) ? 25 : delay, ...args);
+      nativeSetTimeout(callback, [2000, 5000, 10000, 30000].includes(delay) ? 25 : delay, ...args);
     let launchSignal;
     const unrelated = new AbortController();
     if (fault.includes('retained')) setInterval(() => {}, 1000);
     const secret = 'PRIVATE_PROFILE https://private.invalid/ PRIVATE_STDERR';
     const failure = (name) => Object.assign(new Error(secret), { name });
-    const child = Object.assign(new EventEmitter(), { exitCode: null, signalCode: null });
+    const child = Object.assign(new EventEmitter(), {
+      exitCode: null, signalCode: null, spawnargs: ['--user-data-dir=FIXTURE_PROFILE'],
+    });
+    let profileRemoved = false;
     let contexts = 0;
     let closed = 0;
     let prepared = 0;
@@ -111,8 +114,10 @@ function fixture(failAt, fault = '') {
       launchSignal?.addEventListener('abort', () => {
         assert.equal(unrelated.signal.aborted, false);
         console.log('FIXTURE owned-abort');
-        child.exitCode = 0;
-        child.emit('exit', 0, null);
+        // taskkill /F reports 1; only a verified forced cleanup may also remove the profile.
+        child.exitCode = fault.startsWith('browser-hang-verified') ? 1 : 0;
+        profileRemoved = fault.startsWith('browser-hang-verified');
+        child.emit('exit', child.exitCode, null);
       });
       process.on('exit', () => {
         console.log('FIXTURE signal-aborted=' + launchSignal?.aborted);
@@ -122,7 +127,7 @@ function fixture(failAt, fault = '') {
     } };
     const resolveDriver = () => secret;
     const resolveEdge = () => secret;
-    const existsSync = () => true;
+    const existsSync = (path) => path !== 'FIXTURE_PROFILE' || !profileRemoved;
     const readFileSync = () => JSON.stringify({
       name: 'puppeteer-core', version: failAt === 1 ? secret : '24.31.0',
     });
@@ -274,6 +279,22 @@ test('browser cleanup deadlines stop continuation and retain primary failure and
   assert.match(primary.output, /FIXTURE disconnect/);
   assert.match(primary.output, /FIXTURE signal-aborted=true/);
   assert.doesNotMatch(primary.output, /PRIVATE_|private\.invalid|Error:|file:\/\/|data:text/);
+});
+
+test('a slow browser close passes only when the forced cleanup is seen to finish (#959)', () => {
+  const verified = fixture(null, 'browser-hang-verified');
+  assert.equal(verified.status, 0, verified.output);
+  assert.match(verified.output, /2 assertion\(s\) passed, 0 failed/);
+  assert.match(verified.stdout, /TEARDOWN stage=close-browser code=TimeoutError/);
+  assert.match(verified.stdout, /TEARDOWN stage=verify-cleanup exited=true profileRemoved=true verified=true/);
+  assert.doesNotMatch(verified.output, /FAIL /);
+  const retained = fixture(null, 'browser-hang-verified-retained');
+  assert.equal(retained.status, 0, retained.output);
+  assert.doesNotMatch(retained.output, /FAIL /);
+  const unverified = fixture(null, 'browser-hang');
+  assert.equal(unverified.status, 1, unverified.output);
+  assert.match(unverified.stdout, /TEARDOWN stage=verify-cleanup exited=true profileRemoved=false verified=false/);
+  assert.match(unverified.stderr, /FAIL stage=close-browser code=TimeoutError/);
 });
 
 test('cleanup-only browser and server failures never qualify otherwise passing scenarios', () => {
