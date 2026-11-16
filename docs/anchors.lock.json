@@ -2104,6 +2104,11 @@
     "fp": "2c436fb3c32130cb",
     "head": "<script type=\"module\" src=\"./open.js\"></script>"
   },
+  "docs/ARCHITECTURE_REFERENCE.md|where-a-reader-s-data-lives#mrt-appwindowinvitation-dismissed-v1|src/js/lib/install.js:62-70|0": {
+    "anchor": "src/js/lib/install.js:62-70",
+    "fp": "e3970c93479d3f8b",
+    "head": "function dismiss() {"
+  },
   "docs/ARCHITECTURE_REFERENCE.md|where-a-reader-s-data-lives#mrt-cache-purge-v1|src/js/main.js:494-513|0": {
     "anchor": "src/js/main.js:494-513",
     "fp": "cee382686897cf30",
@@ -2119,6 +2124,11 @@
     "fp": "2180bcb59f08dea5",
     "head": "saveRecords(records) {"
   },
+  "docs/ARCHITECTURE_REFERENCE.md|where-a-reader-s-data-lives#mrt-reconnect-storeengine-v1|src/js/lib/reconnect.js:27-41|0": {
+    "anchor": "src/js/lib/reconnect.js:27-41",
+    "fp": "357c3202ae133270",
+    "head": "export function observeEngine(fetchImpl, storage) {"
+  },
   "docs/ARCHITECTURE_REFERENCE.md|where-a-reader-s-data-lives#mrt-saveeducation-v1|src/js/lib/saveEducation.js:25-74|0": {
     "anchor": "src/js/lib/saveEducation.js:25-74",
     "fp": "34a63c10ee7c6918",
@@ -2128,6 +2138,16 @@
     "anchor": "src/js/main.js:539-551",
     "fp": "7a2f5f2530eb5b8d",
     "head": "apiBase,"
+  },
+  "docs/ARCHITECTURE_REFERENCE.md|where-a-reader-s-data-lives#mrt-startupconsent-declined-v1|src/js/lib/startupConsent.js:114-126|0": {
+    "anchor": "src/js/lib/startupConsent.js:114-126",
+    "fp": "70499f5fadb43511",
+    "head": "later.addEventListener('click', () => {"
+  },
+  "docs/ARCHITECTURE_REFERENCE.md|where-a-reader-s-data-lives#mrt-startupconsent-declined-v1|src/js/lib/startupConsent.js:132-141|0": {
+    "anchor": "src/js/lib/startupConsent.js:132-141",
+    "fp": "c87adbea67ccb312",
+    "head": "askAgain() {"
   },
   "docs/ARCHITECTURE_REFERENCE.md|where-a-reader-s-data-lives#mrt-state-prerestore|src/js/storage.js:1178-1195|0": {
     "anchor": "src/js/storage.js:1178-1195",

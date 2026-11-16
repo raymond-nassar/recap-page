@@ -392,6 +392,9 @@ flowchart TD
     rail["desktop collapse or expand toggle"] --> sidebar["sidebar.collapsed"]
     education["save-location explanation completed"] --> educationKey["mrt.saveEducation.v1"]
     news["Home highlights explicitly opened"] --> newsKey["mrt.homeUpdates.seen.v1"]
+    invitation["app-window invitation declined or unsupported-browser notice dismissed"] --> invitationKey["mrt.appWindowInvitation.dismissed.v1"]
+    startup["automatic startup declined; Reconnect clears the answer"] --> startupKey["mrt.startupConsent.declined.v1"]
+    engine["last ready engine identified as Store or development"] --> engineKey["mrt.reconnect.storeEngine.v1"]
     meta["metadata fetched from the API"] --> idb["IndexedDB database mrt-cache-v2, store responses"]
     old["metadata cached by older code"] --> legacy["legacy IndexedDB database mrt-cache, retired when no old tab keeps it open"]
     shell["successful same-origin GET responses handled by the worker"] --> offlineCache["Cache API cache mrt-offline-v2"]
@@ -439,13 +442,16 @@ Every `localStorage` name the tracker writes, and why it exists:
 | `mrt.saveEducation.v1` | the first nonempty saved list and first confirmed progress change, through `src/js/lib/saveEducation.js:25-74` | nothing | A one-way preference recording whether the reading screen still needs to explain where progress is saved. It is separate from reader data, reconciles across tabs, and a failed preference write never turns a successful progress write into a failure. |
 | `mrt.homeUpdates.seen.v1` | explicit opening of Home highlights or a quiet first-install acknowledgment, through `src/js/lib/homeUpdatesSeen.js` | actual browser app-storage or owned-key deletion | The highest acknowledged release batch on this device, held outside reading data and backups. First install requires no viewing record, no reading data and no earlier cache-cleanup launch mark, including the legacy settings mark. Browsing without saving therefore still counts as an update. Key-specific locking merges the durable maximum and verifies readback. Failed viewing writes clear New for this visit with a local warning, not a reading-save error. Reading erase, Start fresh, restore and undo keep this preference. Actual absence retires queued viewing requests; an explicit opening or a genuine first install can recreate it. |
 | `mrt.readerClosure.dismissed.v1` | explicit dismissal of Home's Marvel Unlimited notice, through `src/js/lib/noticeDismissal.js` | actual browser app-storage or owned-key deletion | Exact notice identity acknowledged on this device, one per reader phase, so a dismissal before December 7 does not hide the post-cutoff notice, which shows without a reload when the day changes. Like Home highlights, excluded from reading, complete and cloud backups. Reading erase, Start fresh, salvage, pre-restore, complete restore and undo leave it unchanged. Missing, malformed, different or unreadable values show the notice. Failed saves hide it for this page only without a reading-save warning. A materially new notice uses a new identity. |
+| `mrt.appWindowInvitation.dismissed.v1` | Not now on the app-window invitation, canceling the browser's install dialog on an installable Windows browser, or dismissing the unsupported-browser notice, through `src/js/lib/install.js:62-70` | actual browser app-storage or owned-key deletion; no in-app removal route | Remembers the answer in this browser without moving reading data. Ignoring the invitation does not write it. Reading erase and complete restore leave it unchanged; reading, complete and cloud backups exclude it. A failed write hides the invitation or notice only for this page and logs the failure. |
+| `mrt.startupConsent.declined.v1` | Not now on the automatic-startup question, through `src/js/lib/startupConsent.js:114-126` | Reconnect asks for consent again through `src/js/lib/startupConsent.js:132-141`, or actual browser app-storage or owned-key deletion | Remembers that this Windows account was not given automatic-startup consent, so the question waits for Reconnect. Reading erase and complete restore leave it unchanged; reading, complete and cloud backups exclude it. A failed write keeps the answer for this page only; failed writes and removals are logged. |
+| `mrt.reconnect.storeEngine.v1` | a ready health answer identifying a packaged engine, through `src/js/lib/reconnect.js:27-41` | a ready health answer with a development or missing generation, through the same observer, or actual browser app-storage or owned-key deletion | Remembers whether the last ready engine was the Store package, so an offline app window offers its Reconnect protocol only for that route. Failed or foreign health answers leave it unchanged. Reading erase and complete restore leave it unchanged; reading, complete and cloud backups exclude it. Failed preference access never changes the health answer. |
 | `mrt.complete-restore.v1` | a complete restore, once its journal is saved and read back, at `src/js/lib/completeRestore.js:997` | the cleanup a later start runs a day after the restore finished, the next complete restore, keeping the current data during recovery, and erase | Tells the next start whether a complete restore was running, finished or being cleaned up, and names the journal it relies on in IndexedDB database `mrt-complete-restore-v1`. Read synchronously at startup, so a start with nothing pending never waits for the journal. See Complete backups below. |
 | `mrt.cloud-backup.sync-pending.v1` | the elected OneDrive check before arming its database hold | a confirmed check or choice, a later successful check, or a successful erase | A device-local election token that blocks other tabs' uploads while a cloud check is unresolved. It contains no reading data and is not included in portable backups or restores. Older builds ignore it. |
 
-Fifteen rows in all: fourteen fixed names, and one family whose suffix is the moment it was written.
+Eighteen rows in all: seventeen fixed names, and one family whose suffix is the moment it was written.
 The storage module declares nine of the fixed names: its own five, the settings, sidebar and
 complete-restore marker names it holds for the complete backup, and the cloud-check marker. The
-other five are declared by their owners, which is why an enumeration taken from the storage module
+other eight are declared by their owners, which is why an enumeration taken from the storage module
 alone misses them. One route
 crosses every row a complete restore writes: Restore prior data, offered when a complete restore is
 interrupted, puts each key back exactly as it was, so it removes a key that did not exist before.
@@ -455,7 +461,7 @@ that unreadable data is no longer wanted. A copy protecting an active saving blo
 but cannot be removed: downloading or starting fresh still needs it. Removal becomes available after
 the block is resolved.
 
-The erase names itself in seven rows, and that is a different kind of naming. Its reader write must
+Seven rows name erase as a writer or cleanup route. Its reader write must
 be verified as the exact empty payload with this erase's token before history cleanup is allowed.
 Cleanup checks the captured reader and history values again; a later tab's data is not erased.
 Partial or unconfirmed cleanup is reported explicitly. **It does not reach the salvage copies.** Measuring that needs
