@@ -15,6 +15,7 @@ let pending = null;
 let pendingKind = null;
 let opener = null;
 let naming = false;
+let removeAbortListener = null;
 // The answers of the question being asked with a choice, or null: the plain one, and the one its
 // checked choice turns it into.
 let choosing = null;
@@ -73,6 +74,8 @@ export function wireAsk() {
     const settle = pending;
     pending = null;
     pendingKind = null;
+    removeAbortListener?.();
+    removeAbortListener = null;
     // The typed value is read here, while the dialog is closing, rather than by the caller
     // after it has awaited: the field is shared, so the next question would otherwise be able
     // to overwrite an answer that had not been read yet.
@@ -94,13 +97,13 @@ export function wireAsk() {
 // makes the destructive default "no".
 function open({
   title, body, confirmLabel, prefill = null, inputLabel = '', multiline = false, danger = false, choice = null,
-  alternateLabel = null, focusAlternate = false, disableConfirm = false,
+  alternateLabel = null, focusAlternate = false, disableConfirm = false, signal = null,
 }) {
   const {
     dlg, title: h, body: p, field, label, input, error, areaField, areaLabel, area, choiceField, choiceLabel,
     choice: box, ok, cancel, alternate,
   } = parts();
-  if (!dlg || pending || (alternateLabel && !alternate)) {
+  if (!dlg || pending || signal?.aborted || (alternateLabel && !alternate)) {
     return Promise.resolve({ ok: false, value: '', area: '', choice: false, unavailable: true });
   }
   // A page whose dialog has no choice cannot ask a question that needs one.
@@ -170,6 +173,15 @@ function open({
     return Promise.resolve({ ok: false, value: '', area: '', choice: false, unavailable: true });
   }
   opener = nextOpener;
+  if (signal) {
+    const abort = () => dlg.close('');
+    signal.addEventListener('abort', abort, { once: true });
+    removeAbortListener = () => signal.removeEventListener('abort', abort);
+    if (signal.aborted) {
+      abort();
+      return answered;
+    }
+  }
   if (asksForText) input.select();
   if (asksForNote) area.select();
   // A dialog focuses its first control, which a choice would be, so Cancel is given focus outright.
@@ -195,8 +207,8 @@ export function withdrawSyncChoice() {
 }
 
 // `danger` is for an answer with no way back: no Undo, no kept copy, nothing else to recover from.
-export async function askConfirm({ title, body = '', confirmLabel = 'Confirm', danger = false }) {
-  const { ok } = await open({ title, body, confirmLabel, danger });
+export async function askConfirm({ title, body = '', confirmLabel = 'Confirm', danger = false, signal = null }) {
+  const { ok } = await open({ title, body, confirmLabel, danger, signal });
   return ok;
 }
 

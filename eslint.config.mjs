@@ -146,6 +146,7 @@ export default [
       'scripts/browser-phone-layout.mjs',
       'scripts/browser-reading-card.mjs',
       'scripts/browser-ordered-import.mjs',
+      'scripts/browser-list-revisions.mjs',
       'scripts/browser-completion.mjs',
       'scripts/browser-issue-ratings.mjs',
       'scripts/browser-library-ratings.mjs',

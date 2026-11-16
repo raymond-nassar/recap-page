@@ -57,6 +57,8 @@ import { createSavedListsPresenter } from './views/shared/saved-lists.js';
 import { createFeedback, watchNoticeOverflow } from './views/shared/feedback.js';
 import { createIssueView } from './views/issue.js';
 import { createReadingView, synopsisFallback } from './views/reading.js';
+import { createListRevisions } from './views/list-revisions.js';
+import { isListRevisionVerificationPaused, saveListRevision } from './lib/listRevisionSave.js';
 import { createBulkReadView } from './views/bulk-read.js';
 import { createHomeView } from './views/home.js';
 import { homeUpdatesContent } from './lib/homeUpdatesContent.js';
@@ -112,7 +114,7 @@ const RAIL_BREAKPOINT = 1000;
 const $ = (sel) => document.querySelector(sel);
 
 const settings = loadSettings();
-const temporaryReaderLinks = createTemporaryReaderLinks();
+const temporaryReaderLinks = createTemporaryReaderLinks({ blockedMessage: listRevisionPauseMessage });
 const limiter = new RateLimiter();
 let cache = new ResponseCache({ baseUrl: settings.apiBase });
 let api = new MarvelApi({ baseUrl: settings.apiBase, limiter, cache, onStatus: onApiStatus });
@@ -122,6 +124,7 @@ let api = new MarvelApi({ baseUrl: settings.apiBase, limiter, cache, onStatus: o
 // silently reverted on the next paint.
 const store = new Store({
   storage: localStorage,
+  blockedMessage: listRevisionPauseMessage,
   onChange: (_state, err) => {
     if (store.blocked) temporaryReaderLinks.reconcile(_state, { changed: null });
     renderAll();
@@ -129,6 +132,10 @@ const store = new Store({
     else clearNotice('reader-save');
   },
 });
+
+function listRevisionPauseMessage() {
+  return isListRevisionVerificationPaused(store) ? 'Saving is paused; reopen the app to check your list.' : null;
+}
 const saveEducation = createSaveEducation({ storage: globalThis.localStorage });
 const importDraft = new ImportDraftStore({
   reader: store,
@@ -1850,6 +1857,7 @@ function showView(next, { focus = true, push = false, at = null, capturePosition
   homeAt = next === 'home' && at === HOME_CARDS ? at : null;
   view = next;
   addView.enter(next);
+  listRevisions.render();
   if (next === 'add' || next === 'add-search') void searchListsView.update($('#search-q')?.value ?? '');
   for (const name of VIEWS) {
     const panel = $(`#view-${name}`);
@@ -2584,7 +2592,7 @@ const recoveryView = createRecoveryView({
     verifySalvage: $('#verify-salvage'),
     salvageList: $('#salvage-list'),
   }),
-  isBlocked: () => store.blocked,
+  isBlocked: () => store.blocked && !isListRevisionVerificationPaused(store),
   blockedReason: () => store.blockedReason,
   hasPreRestoreSnapshot: () => store.hasPreRestoreSnapshot(),
   clearRecoveryNotice: () => clearNotice('recovery-copy'),
@@ -2935,6 +2943,7 @@ const COMPLETE_RESTORE_NOTICE = 'complete-restore';
 function renderCompleteRestore(state) {
   completeBackupView.render(state);
   bulkReadView.render();
+  listRevisions.render();
   if (state.phase === 'paused' && state.message && state.message !== RESTORE_MESSAGES.working) {
     notify('#save-report', state.message, 'warn', COMPLETE_RESTORE_NOTICE);
   } else clearNotice(COMPLETE_RESTORE_NOTICE);
@@ -3433,6 +3442,7 @@ async function renderPublishingCategory(route, { isCurrent = () => view === rout
 function renderAll() {
   renderRail();
   readingView.render();
+  listRevisions.render();
   completionView.render();
   homeView.render();
   renderLibraryHub();
@@ -3448,6 +3458,7 @@ function renderAll() {
   // Kept in renderAll so the banner cannot go stale. In particular a successful restore
   // clears the block, and leaving the banner up would push the user toward "Start fresh",
   // which would then wipe the backup they had just restored.
+  $('#list-revision-uncertain-banner').hidden = !isListRevisionVerificationPaused(store, { uncertainOnly: true });
   recoveryView.render();
   dataView.renderRestoreOffer();
   renderBreadcrumbs();
@@ -3521,6 +3532,7 @@ export function boot() {
   renderCompleteRestore(completeRestore.state);
   recoveryView.wire();
   readingView.wire();
+  listRevisions.wire();
   $('#order-desc').addEventListener('toggle', rememberAbout);
   for (const shelf of CATALOG_SHELVES) {
     if (VIEWS.includes(shelf.key)) catalogView.wire(shelf.key);
@@ -3812,6 +3824,14 @@ const bulkReadView = createBulkReadView({
   },
 });
 
+const listRevisions = createListRevisions({
+  $, el, getState: () => store.state, activeListId, isCurrent: () => view === 'read',
+  canSave: () => completeRestore.writable() && !store.blocked && Boolean(store.storage),
+  getDatasetEpoch: () => temporaryReaderLinks.epoch,
+  loadCatalog, loadOrder: loadBundledOrder, askConfirm,
+  saveRevision: (id, signature, items) => saveListRevision(store, id, signature, items),
+});
+
 const readingView = createReadingView({
   $,
   activeListId,
@@ -3884,6 +3904,7 @@ const readerLinkView = createReaderLinkView({
   links: temporaryReaderLinks,
   announce,
   onChange: () => {
+    listRevisions.render();
     readingView.refreshReader();
     homeView.refreshReader();
     issueView.refreshReader();
@@ -3902,6 +3923,7 @@ const issueRatingView = createIssueRatingView({
   }),
   getState: () => store.state,
   isBlocked: () => store.blocked,
+  blockedMessage: listRevisionPauseMessage,
   saveRating: (issueId, value) => {
     store.update((state) => setIssueRating(state, issueId, value));
     return { ok: store.lastUpdateOk, error: store.lastError };
@@ -4148,6 +4170,7 @@ const ratedView = createRatedComicsView({
   emptyAction,
   getState: () => store.state,
   isBlocked: () => store.blocked,
+  blockedMessage: listRevisionPauseMessage,
   issueFocusAnchor,
   listUi: { cap: LIBRARY_CAP, moreButton, shownLine, summaryBand },
   paintCover,

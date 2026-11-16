@@ -437,6 +437,17 @@ command.
 **Download JSON backup** preserves all reader data, including notes and progress. Use it to
 protect saved data, not to share a reading order.
 
+## Compare a saved list with a published order
+
+When a saved list exactly matches a recorded earlier published order, Reading offers **Review
+update**. Any saved list can also be checked through **Reading List options**, then **Compare with
+the latest published order**. Checking a personal or duplicated list by hand asks which published
+order to compare.
+
+Review the change before choosing **Update list**. The update adds comics from the published order,
+keeps every comic already in your list and leaves progress on the same comics. Your custom order can
+change. Cancel leaves the list unchanged.
+
 ## Getting help
 
 Use [the support guide](../SUPPORT.md) to report a problem or find help from Marvel or the metadata

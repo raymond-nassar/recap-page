@@ -20,7 +20,7 @@ import {
 } from '../scripts/lib/cbh-inventory.mjs';
 import { issueIdsFromValue } from '../scripts/lib/cbh-overlap.mjs';
 import { placeholderId } from '../scripts/lib/placeholder-id.mjs';
-import { repairWolverineTitles } from '../scripts/lib/wolverine-title-repairs.mjs';
+import { repairWolverineChecklist, repairWolverineTitles } from '../scripts/lib/wolverine-title-repairs.mjs';
 import { assertApprovedRelationshipReview, buildMarkdown } from '../scripts/author-cbh-packet.mjs';
 
 import { CBH_LATER_ORDER_IDS } from '../scripts/lib/cbro-evidence.mjs';
@@ -3320,14 +3320,15 @@ test('Wolverine settles every reviewed gap without substitution or boundary wide
     path.join(root, `src/data/orders/${wolverineCandidateId}.md`),
     'utf8',
   );
-  const parsed = parseChecklist(markdown);
+  const parsed = parseChecklist(markdown, { legacyIdentityKeys: true });
   const record = inventory.find((candidate) => candidate.id === wolverineCandidateId);
   const manifestEntry = manifest.lists.find((entry) => entry.id === wolverineCandidateId);
   const catalogEntry = catalog.lists.find((entry) => entry.id === wolverineCandidateId);
   const ledger = packet.sourceReview.metadataGapLedger;
 
   assert.equal(mapping.placeholderIdentityMode, 'title');
-  assert.equal(buildMarkdown(mapping), markdown.replace(/\r\n/g, '\n'));
+  assert.equal(repairWolverineChecklist(buildMarkdown(mapping)), markdown.replace(/\r\n/g, '\n'));
+  assert.equal(repairWolverineChecklist(markdown.replace(/\r\n/g, '\n'), { undo: true }), buildMarkdown(mapping));
   assert.deepEqual(ledger.classificationCounts, {
     exact: 15,
     repeat: 3,
@@ -3505,10 +3506,15 @@ test('Wolverine settles every reviewed gap without substitution or boundary wide
   );
   assert.deepEqual(
     parsed.unresolved.map((entry) => [
-      entry.title,
-      placeholderId(wolverineCandidateId, entry.title, entry.sourceKey),
+      entry.legacyIdentityKey ?? entry.title,
+      placeholderId(wolverineCandidateId, entry.legacyIdentityKey ?? entry.title, entry.sourceKey),
     ]),
     retainedPlaceholderIds,
+  );
+  assert.equal(parsed.unresolved.filter((entry) => entry.legacyIdentityKey != null).length, 25);
+  assert.deepEqual(
+    parsed.unresolved.map((entry) => entry.title),
+    generated.unresolved.map((entry) => entry.title),
   );
   assert.deepEqual(
     generated.items

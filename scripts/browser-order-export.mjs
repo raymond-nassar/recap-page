@@ -28,6 +28,13 @@ async function activateExport(page, selector) {
   await page.keyboard.press('Enter');
 }
 
+// A new document, not a fragment change plus reload: Edge 157 can reload the entry the app
+// replaced while that change was in flight instead of the one just opened (#1329).
+async function openFresh(page, path) {
+  await page.goto('about:blank');
+  await page.goto(`${page.__origin}${path}`, { waitUntil: 'load' });
+}
+
 async function downloaded(page, count) {
   await page.waitForFunction((n) => window.__mrtDownloads.length === n, {}, count);
   return page.evaluate(() => window.__mrtDownloads.at(-1).text);
@@ -39,6 +46,8 @@ export const orderOnlyExport = {
   title: 'order-only files exclude personal data without altering personal exports or saved state',
   async run(page, t) {
     await page.evaluateOnNewDocument((seed, source) => {
+      // The about:blank document a fresh load passes through has no storage.
+      if (location.protocol === 'about:') return;
       localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
       if (!sessionStorage.getItem('export-seeded')) {
         localStorage.setItem('mrt.state.v2', JSON.stringify(seed));
@@ -166,8 +175,7 @@ export const orderOnlyExport = {
     t.check('Reading and Backup export exactly the same order', await downloaded(page, 5) === markdown);
 
     await page.evaluate(() => localStorage.removeItem('mrt.state.v2'));
-    await page.goto(`${page.__origin}/#/add-import`, { waitUntil: 'load' });
-    await page.reload({ waitUntil: 'load' });
+    await openFresh(page, '/#/add-import');
     await page.waitForSelector('#view-add-import:not([hidden])');
     await page.evaluate((text) => {
       document.querySelector('#import-text').value = text;
@@ -216,8 +224,7 @@ export const orderOnlyExport = {
       saved.lists[saved.active].deferredIssueIds = [];
       localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
     });
-    await page.goto(`${page.__origin}/#/data`, { waitUntil: 'load' });
-    await page.reload({ waitUntil: 'load' });
+    await openFresh(page, '/#/data');
     await page.waitForSelector('#view-data:not([hidden])');
     await click(page, '#btn-export-order-2');
     await page.waitForSelector('#ask[open]');
@@ -241,8 +248,7 @@ export const orderOnlyExport = {
         && document.querySelector('#app-report').textContent.includes('Could not export the reading order')));
 
     await page.evaluate(() => localStorage.removeItem('mrt.state.v2'));
-    await page.goto(`${page.__origin}/#/data`, { waitUntil: 'load' });
-    await page.reload({ waitUntil: 'load' });
+    await openFresh(page, '/#/data');
     await page.waitForSelector('#view-data:not([hidden])');
     await click(page, '#btn-export-order-2');
     t.check('no selected list produces an explicit notice instead of an invented export',

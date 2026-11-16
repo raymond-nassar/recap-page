@@ -9,7 +9,9 @@ import {
   sourcePositionsForPacket,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { beforeWolverineCorrectionIssueIds } from './helpers/wolverine-correction-history.mjs';
-import { repairWolverineTitles, wolverineTitleRepairs } from '../scripts/lib/wolverine-title-repairs.mjs';
+import {
+  registeredLegacyIdentityKey, repairWolverineChecklist, repairWolverineTitles, wolverineTitleRepairs,
+} from '../scripts/lib/wolverine-title-repairs.mjs';
 
 const id = 'wolverine-reading-order';
 const readJson = async (file) => JSON.parse(await readFile(file, 'utf8'));
@@ -87,6 +89,23 @@ test('Wolverine title overlay is repeatable and rejects unknown text or identity
   }
   const missing = { ...payload, unresolved: [] };
   assert.throws(() => repairWolverineTitles(missing), /one unresolved label/);
+});
+
+test('Wolverine checklist overlay keeps each repaired line one registered identity key from its source', async () => {
+  const shipped = (await readFile(`src/data/orders/${id}.md`, 'utf8')).replace(/\r\n/g, '\n');
+  const legacy = repairWolverineChecklist(shipped, { undo: true });
+  assert.equal(repairWolverineChecklist(legacy), shipped);
+  assert.equal(repairWolverineChecklist(shipped), shipped);
+  assert.equal(repairWolverineChecklist(legacy.replace(/\n/g, '\r\n')), shipped.replace(/\n/g, '\r\n'));
+  assert.doesNotMatch(shipped, /[\u0080-\uffff]/u);
+  const { legacyTitle } = wolverineTitleRepairs.entries[0];
+  assert.throws(() => repairWolverineChecklist(legacy.replace(`- [ ] ${legacyTitle}\n`, '')), /exactly one line/);
+  assert.throws(() => repairWolverineChecklist(`${legacy}\n- [ ] ${legacyTitle}`), /exactly one line/);
+  for (const entry of wolverineTitleRepairs.entries) {
+    assert.ok(registeredLegacyIdentityKey(id, entry.title, entry.legacyTitle));
+    assert.ok(!registeredLegacyIdentityKey('another-order', entry.title, entry.legacyTitle));
+    assert.ok(!registeredLegacyIdentityKey(id, entry.legacyTitle, entry.title));
+  }
 });
 
 test('current reading census imports without Git history and replay reads it lazily', () => {

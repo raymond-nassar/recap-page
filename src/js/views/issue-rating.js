@@ -5,7 +5,7 @@ const identity = (issue) => issue
   ? JSON.stringify([issue.issueId, issue.title, issue.seriesName, issue.number])
   : null;
 
-export function createIssueRatingView({ elements, getState, isBlocked, saveRating, announce }) {
+export function createIssueRatingView({ elements, getState, isBlocked, blockedMessage = () => null, saveRating, announce }) {
   let current = null;
   let savedIdentity = null;
   let draft = null;
@@ -39,7 +39,7 @@ export function createIssueRatingView({ elements, getState, isBlocked, saveRatin
       : score === null ? labelledName(label, current.title) : shownName([label], `Edit rating for ${current.title}`));
     nodes.root.classList.toggle('is-rated', score !== null && !unavailable);
     nodes.status.textContent = unavailable
-      ? 'Ratings are unavailable while saved reading data cannot be read. Open Backup & settings.'
+      ? blockedMessage() || 'Ratings are unavailable while saved reading data cannot be read. Open Backup & settings.'
       : replaced ? 'This saved comic changed. Reopen its details to rate it.' : '';
     nodes.status.hidden = !nodes.status.textContent;
     if (draft && !saving && (unavailable || replaced || score !== draft.original)) {

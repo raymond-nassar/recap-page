@@ -746,8 +746,16 @@ notes, or availability overrides.
 The [series-volume correction ledger](../scripts/data/cbh-source-ledgers/wolverine-reading-order-series-correction.json)
 records the prior publication and all 95 corrected source positions, including 65 distinct issues
 previously collapsed into repeats or exclusions. The earlier settlement counts remain historical.
-Existing saved lists keep their issue identities and progress; newly added lists use the correction.
-App title repairs use the separate ledger for #1256; checklist repairs remain in #1264 and gaps in #1257.
+Existing saved lists are not updated automatically. A reader can choose to update one while
+retaining its saved comics and their progress. Newly added lists use the correction.
+App title repairs use the separate [title repair ledger](../scripts/data/wolverine-title-repairs.json)
+for #1256, and gaps remain in #1257. The downloadable checklist shows the same 25 repaired titles
+(#1264). Because a placeholder's identity is a hash of the title it was first published with, each
+of those 25 lines carries a `mrt:legacy-identity-key` annotation naming that original title, and
+vendoring accepts the annotation only for a pair the ledger registers. Regenerating the guide from
+the checklist therefore keeps those 25 published identities, so readers' marks, notes and
+availability overrides stay attached, and a reader who imports the downloaded file sees the
+repaired titles without the annotation.
 
 Star-Lord's Complete guide preserves all 99 issues in displayed source order. Its 25 shared issues
 with each of Rocket Raccoon and Groot, 7 with War of Kings, and 1 with Infinity Countdown and
@@ -978,7 +986,7 @@ The first is that displaying a description and shipping a copy of one are differ
 those terms rather than two degrees of one act. Using Content inside an App is what the licence is
 for, on a condition the attribution page states plainly: "You must attribute Marvel as the source
 of data whenever you display any results from the Marvel Comics API". The app now names both the
-Marvel origin and its actual route in About at `src/index.html:1336-1340`. Redistributing Content outside an App, and sublicensing it onward, are the
+Marvel origin and its actual route in About at `src/index.html:1354-1358`. Redistributing Content outside an App, and sublicensing it onward, are the
 two things sections 4 and 5 name. An MIT grant is a sublicence to everyone who receives a copy, and
 offers them "sublicense, and/or sell".
 

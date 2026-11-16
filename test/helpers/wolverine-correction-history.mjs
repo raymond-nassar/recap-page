@@ -18,6 +18,18 @@ const prior = ledger.priorPublication;
 const show = (file) => execFileSync('git', ['show', `${prior.commit}:${file}`], {
   cwd: root, encoding: 'utf8', maxBuffer: 64 << 20,
 });
+
+export function firstReleasedWolverineIssueOrders() {
+  const unique = new Map();
+  for (const tag of ['v2.0.0', 'v2.0.1']) {
+    const payload = JSON.parse(execFileSync('git', ['show', `${tag}:src/data/wolverine_reading_order.json`], {
+      cwd: root, encoding: 'utf8', maxBuffer: 64 << 20,
+    }));
+    const ids = payload.items.map(({ issueId }) => issueId);
+    unique.set(JSON.stringify(ids), ids);
+  }
+  return [...unique.values()];
+}
 export const wolverineCorrectionItemDelta = ledger.correctionReview.corrections
   .filter(({ before, after }) => before.representation !== 'row' && after.representation === 'row').length;
 
