@@ -94,7 +94,9 @@ export function createListRevisions({ $, el, getState, activeListId, isCurrent, 
       status('');
       const yes = await askConfirm({
         title: `Update from ${entry.name}?`,
-        body: `Updating adds ${added} ${added === 1 ? 'comic' : 'comics'} from the published order. Everything already in your list stays, and your progress stays on the same comics. Your custom order may change.`,
+        body: added
+          ? `Updating adds ${added} ${added === 1 ? 'comic' : 'comics'} from the published order. Everything already in your list stays, and your progress stays on the same comics. Your custom order may change.`
+          : 'Updating puts your list in the published order. Everything already in your list stays, and your progress stays on the same comics.',
         confirmLabel: 'Update list',
         signal: held.controller.signal,
       });

@@ -50,12 +50,26 @@ function fixture({ catalogId = null, itemIds = [1], ask = null, loadOrder = null
 
 const settle = () => new Promise((resolve) => setImmediate(resolve));
 
+test('a reorder that adds nothing says the list takes the published order', async () => {
+  try {
+    const f = fixture({ catalogId: 'linked', itemIds: [2, 1] });
+    f.get('list-revision-check').click();
+    await settle();
+    assert.equal(
+      f.getQuestion().body,
+      'Updating puts your list in the published order. Everything already in your list stays, and your progress stays on the same comics.',
+    );
+    assert.equal(f.getSaves(), 0);
+  } finally {
+    delete globalThis.document;
+  }
+});
+
 test('review uses singular only when the update adds one comic', async () => {
   try {
     for (const [itemIds, count, noun] of [
       [[1], 1, 'comic'],
       [[], 2, 'comics'],
-      [[2, 1], 0, 'comics'],
     ]) {
       const f = fixture({ catalogId: 'linked', itemIds });
       f.get('list-revision-check').click();
