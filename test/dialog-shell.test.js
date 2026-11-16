@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { FOOT_HEIGHT, HEAD_HEIGHT, holdDialogEdges } from '../src/js/lib/dialogShell.js';
+import { EDGES, shellFocusStep } from '../scripts/lib/dialog-shell.mjs';
 
 // #830: every dialog that asks or shows something wears one shell. The `dialog-shell` browser owner
 // measures what the shell does in a real page. These pin the markup and the stylesheet it rests on,
@@ -172,4 +173,66 @@ test('Preview moves a tall title into the scroller instead of covering the body 
   observer.callback();
   assert.equal(title.parentElement, head, 'a roomy dialog restores the ordinary heading');
   assert.equal(props.get(HEAD_HEIGHT), '224px');
+});
+
+// #1313: Preview's title links wrap onto two lines at 360x800. Measured there, a link's lines sat at
+// 460 to 481 and 484 to 505 inside limits of 126 to 676, and the centre of the box around both lines
+// fell in the gap between them, where the parent row is what the page hits.
+function wrappedLinkPage(covered = () => false) {
+  const lines = [{ left: 82, top: 460, width: 222, height: 21 }, { left: 82, top: 484, width: 18, height: 21 }];
+  const sticky = { position: 'sticky' };
+  const head = { getBoundingClientRect: () => ({ top: 80, bottom: 126 }), contains: () => false };
+  const foot = { getBoundingClientRect: () => ({ top: 676, bottom: 784 }), contains: () => false };
+  const dialog = {
+    clientTop: 0, clientHeight: 784,
+    getBoundingClientRect: () => ({ top: 0, left: 0 }),
+    querySelector: (selector) => (selector === EDGES.head ? head : selector === EDGES.foot ? foot : null),
+    contains: () => true,
+  };
+  const row = { tagName: 'DIV', id: '', parentElement: dialog };
+  const link = {
+    tagName: 'A', id: '', textContent: 'Spider-Man: House of M (2005) #1', parentElement: row,
+    getAttribute: () => null, matches: () => false, contains: (node) => node === link,
+    getBoundingClientRect: () => ({ left: 82, top: 460, right: 304, bottom: 505, width: 222, height: 45 }),
+    getClientRects: () => lines,
+  };
+  row.children = [link];
+  dialog.children = [row];
+  const inside = (x, y, box) => x >= box.left && x <= box.left + box.width && y >= box.top && y <= box.top + box.height;
+  return {
+    document: {
+      activeElement: link,
+      querySelector: () => dialog,
+      elementFromPoint: (x, y) => {
+        if (covered(x, y)) return foot;
+        return lines.some((box) => inside(x, y, box)) ? link : row;
+      },
+    },
+    getComputedStyle: (node) => (node === head || node === foot ? sticky
+      : { clip: 'auto', clipPath: 'none', lineHeight: '21px' }),
+    innerHeight: 800, innerWidth: 360,
+  };
+}
+
+function stepIn(page) {
+  const saved = Object.fromEntries(Object.keys(page).map((key) => [key, globalThis[key]]));
+  Object.assign(globalThis, page);
+  try {
+    return shellFocusStep('#preview', EDGES);
+  } finally {
+    for (const [key, value] of Object.entries(saved)) {
+      if (value === undefined) delete globalThis[key];
+      else globalThis[key] = value;
+    }
+  }
+}
+
+test('a focused link that wraps is clear when every line it draws is shown and reached', () => {
+  const stop = stepIn(wrappedLinkPage());
+  assert.deepEqual([stop.inDialog, stop.clear, stop.limits], [true, true, [126, 676]]);
+});
+
+test('a focused link that wraps is not clear when one of its lines is covered', () => {
+  const stop = stepIn(wrappedLinkPage((x, y) => y > 484));
+  assert.equal(stop.clear, false);
 });

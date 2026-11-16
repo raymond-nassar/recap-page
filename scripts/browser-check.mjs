@@ -5791,7 +5791,14 @@ const SCENARIOS = [
         JSON.stringify(initial));
 
       await page.setViewport({ width: 390, height: 844 });
+      // #1401: headless Edge applies the new width at once but dispatches resize only at the next
+      // rendering update, and nothing here asked for one. Measured over eight runs, no resize had
+      // reached the page by the time Search had been pressed, so the app was still in its desktop
+      // layout ("Collapse sidebar", expanded) at 390 pixels. A phone starts narrow and keeps rendering.
+      await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
       await page.$eval('#home-primary-paths [data-category="timeline"]', (node) => node.scrollIntoView({ block: 'center' }));
+      // The narrow bar reacts to scrolling, so the card is measured once the scroll has painted.
+      await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
       const intermediate = await page.evaluate(() => {
         const browse = document.querySelector('#home-primary-paths [data-category="timeline"]');
         const add = document.querySelector('.mobile-link[data-view="add"]');
