@@ -64,7 +64,12 @@ The other verifying tiers retain the evidence they compare. `gcd-numbered-covers
 numbered interior-cover record immediately before one story, matching creator credits, and an
 original-series index of the same name, year, publisher, country and language. This is textual
 index metadata, not an image. `gcd-original-stories` matches each book story to an original issue
-by exact series, issue number, title, pages and writer and penciller credits.
+by exact series, issue number, title, pages and writer and penciller credits. An original the
+database numbers with a legacy number, such as `12 (718)`, matches only on its first number.
+`gcd-story-titles` matches each curated title to a distinct indexed story, so a title curated
+twice needs two stories. It verifies a range only when the book's source series is the list
+series: a crosswalk entry covers it, or the edition's `gcdSeries` names the same series with the
+same start year. A missing source series, a different name or a different year is a conflict.
 `gcd-numbered-comparison` compares a book's stories with those following another edition's
 numbered interior-cover records. A differing page count needs the matching original issue; a
 missing, stale or mismatched resolution fails closed. These checks normalize the database's
