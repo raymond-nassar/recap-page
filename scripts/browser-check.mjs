@@ -2328,8 +2328,7 @@ const SCENARIOS = [
         sessionStorage.setItem('about.fail', '1');
         sessionStorage.setItem('about.hold', '1');
       });
-      await open(page, '/#/read/source-list');
-      await page.reload({ waitUntil: 'load' });
+      await openFresh(page, '/#/read/source-list');
       await page.waitForSelector('#order-source button');
       const beforeRetry = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
       t.check('failed source loading leaves an expanded, explicit, retryable About',
@@ -3840,12 +3839,10 @@ const SCENARIOS = [
         && forwardTrail.labels.join('/') === 'Home/About this app',
         JSON.stringify({ back: backTrail.labels, forward: forwardTrail.labels }));
 
-      await open(page, '/#/about');
-      await page.reload({ waitUntil: 'load' });
+      await openFresh(page, '/#/about');
       await page.waitForSelector('#view-about:not([hidden]) > .breadcrumb');
       const directAbout = await trail();
-      await open(page, '/#/age-current');
-      await page.reload({ waitUntil: 'load' });
+      await openFresh(page, '/#/age-current');
       await page.waitForSelector('#view-age-current:not([hidden]) > .breadcrumb');
       const directAge = await trail();
       t.check('direct loads derive the same route hierarchy',
@@ -3871,16 +3868,14 @@ const SCENARIOS = [
         dynamic.name,
       );
       const encodedList = encodeURIComponent(dynamic.id);
-      await open(page, `/#/read/${encodedList}`);
-      await page.reload({ waitUntil: 'load' });
+      await openFresh(page, `/#/read/${encodedList}`);
       await page.waitForSelector('#view-read .breadcrumb [aria-current="page"]', { timeout: 15000 });
       const savedTrail = await trail();
       t.check('a saved Reading List uses its validated current name',
         savedTrail.labels.join('/') === `Home/Library/${dynamic.name}`,
         JSON.stringify(savedTrail));
 
-      await open(page, `/#/issue/900001?list=${encodedList}`);
-      await page.reload({ waitUntil: 'load' });
+      await openFresh(page, `/#/issue/900001?list=${encodedList}`);
       await page.waitForFunction(() =>
         document.querySelector('#view-issue .breadcrumb [aria-current="page"]')?.textContent.trim()
           === 'Browser Check (2026) #1');
@@ -3889,8 +3884,7 @@ const SCENARIOS = [
         listIssue.labels.join('/') === `Home/Library/${dynamic.name}/Browser Check (2026) #1`,
         JSON.stringify(listIssue));
 
-      await open(page, '/#/issue/900001?order=browser-check');
-      await page.reload({ waitUntil: 'load' });
+      await openFresh(page, '/#/issue/900001?order=browser-check');
       await page.waitForFunction(() =>
         document.querySelector('#view-issue .breadcrumb [aria-current="page"]')?.textContent.trim()
           === 'Browser Check (2026) #1');
@@ -3899,15 +3893,13 @@ const SCENARIOS = [
         orderIssue.labels.join('/') === 'Home/Modern Timeline/Browser Check (2026) #1',
         JSON.stringify(orderIssue));
 
-      await open(page, '/#/issue/900001?list=missing');
-      await page.reload({ waitUntil: 'load' });
+      await openFresh(page, '/#/issue/900001?list=missing');
       await page.waitForFunction(() =>
         location.hash === '#/issue/900001'
         && document.querySelector('#view-issue .breadcrumb [aria-current="page"]')?.textContent.trim()
           === 'Browser Check (2026) #1');
       const staleIssue = await trail();
-      await open(page, '/#/issue/900001');
-      await page.reload({ waitUntil: 'load' });
+      await openFresh(page, '/#/issue/900001');
       await page.waitForFunction(() =>
         document.querySelector('#view-issue .breadcrumb [aria-current="page"]')?.textContent.trim()
           === 'Browser Check (2026) #1');
@@ -16055,6 +16047,7 @@ const SCENARIOS = [
   {
     id: 'pages-home-navigation',
     title: 'the project home stays informational, keyboard complete and narrow-safe',
+    operations: ['open-android-section'],
     async run(page, t) {
       const { mkdtemp, rm } = await import('node:fs/promises');
       const { tmpdir } = await import('node:os');
@@ -16277,9 +16270,14 @@ const SCENARIOS = [
           ]),
           JSON.stringify(overview));
 
-        await page.$eval('.section-nav a[href="#android"]', (link) => link.focus());
-        await page.keyboard.press('Enter');
-        await page.waitForFunction(() => location.hash === '#android');
+        // This wait has timed out four times, once in a run alone at 10% CPU, and neither CPU
+        // throttling, an Enter before first paint nor another window taking focus reproduces it, so
+        // the step names the wait for the next occurrence.
+        await t.step('open-android-section', async () => {
+          await page.$eval('.section-nav a[href="#android"]', (link) => link.focus());
+          await page.keyboard.press('Enter');
+          await page.waitForFunction(() => location.hash === '#android');
+        });
         const android = await page.$eval('#android', (section) => ({
           copy: section.innerText.replace(/\s+/g, ' '),
           actions: [...section.querySelectorAll('.action-row a')].map((link) => ({
@@ -17635,9 +17633,8 @@ SCENARIOS.push({
       saved.lists.fixture.itemIds = saved.lists.fixture.itemIds.filter((itemId) => itemId !== id);
       localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
     }, last.issueId);
-    // A reload at the details link, the way a bookmark or a shared link arrives.
-    await open(page, `/?catalog=browser-check#/issue/${first.issueId}?list=fixture`);
-    await page.reload({ waitUntil: 'load' });
+    // A fresh load at the details link, the way a bookmark or a shared link arrives.
+    await openFresh(page, `/?catalog=browser-check#/issue/${first.issueId}?list=fixture`);
     await page.waitForFunction(() => document.querySelector('#btn-issue-read')?.checkVisibility()
       && document.querySelector('#issue-rating-trigger')?.checkVisibility(), { timeout: 15000 });
     await page.waitForNetworkIdle({ idleTime: 500, timeout: 10000 }).catch(() => {});
@@ -17833,8 +17830,7 @@ SCENARIOS.push({
       saved.read = { [id]: 1000 };
       localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
     }, ORDER.items[0].issueId);
-    await open(page, '/?catalog=browser-check#/read/fixture?full=1');
-    await page.reload({ waitUntil: 'load' });
+    await openFresh(page, '/?catalog=browser-check#/read/fixture?full=1');
     await page.waitForSelector('#full[open] .order-strip .pbar', { timeout: 15000 });
     const rgb = (value) => parseColour((value?.match(/rgba?\((\d+), (\d+), (\d+)/) ?? []).slice(1, 4).join(' ')) ?? null;
     const measure = async (selector, hover = null) => {
@@ -18110,6 +18106,7 @@ SCENARIOS.push({
 SCENARIOS.push({
   id: 'semantic-destinations',
   title: 'destinations expose native links, resolved titles and actual manual membership',
+  operations: ['return-to-saved-preview', 'close-saved-preview', 'open-second-preview'],
   async run(page, t) {
     const guideContext = await page.browser().createBrowserContext();
     try {
@@ -18383,14 +18380,20 @@ SCENARIOS.push({
         await bookPage.waitForSelector('#view-read:not([hidden])');
         t.check('Open selects the saved book ID, not its catalog ID',
           parseRoute(await bookPage.evaluate(() => location.hash))?.listId === imported.list.id);
-        await bookPage.goBack();
-        await bookPage.waitForFunction(() => document.querySelector('#preview[open] #preview-add [data-act="main"]')
-          ?.textContent === 'Open list');
-        await click(bookPage, '#preview-close');
-        await bookPage.waitForSelector('#view-new-to-comics:not([hidden])');
-        await click(bookPage, `[data-preview-id="${expectedBooks[1].id}"]`);
-        await bookPage.waitForFunction((count) => document.querySelectorAll('#preview[open] .preview-issue-link').length === count,
-          {}, expectedBooks[1].ids.length);
+        await t.step('return-to-saved-preview', async () => {
+          await bookPage.goBack();
+          await bookPage.waitForFunction(() => document.querySelector('#preview[open] #preview-add [data-act="main"]')
+            ?.textContent === 'Open list');
+        });
+        await t.step('close-saved-preview', async () => {
+          await click(bookPage, '#preview-close');
+          await bookPage.waitForSelector('#view-new-to-comics:not([hidden])');
+        });
+        await t.step('open-second-preview', async () => {
+          await click(bookPage, `[data-preview-id="${expectedBooks[1].id}"]`);
+          await bookPage.waitForFunction((count) => document.querySelectorAll('#preview[open] .preview-issue-link').length === count,
+            {}, expectedBooks[1].ids.length);
+        });
         const second = await bookPage.$$eval('#preview-body .preview-issue-link', (links) =>
           links.map((link) => Number(link.dataset.issueId)));
         t.check('the second book contains the four selected originals and excludes issue zero',
@@ -19203,6 +19206,16 @@ SCENARIOS.push({
 
 async function open(page, path) {
   await page.goto(`${page.__origin}${path}`, { waitUntil: 'load' });
+}
+
+// Opens a path as a new document. A goto that differs only in the fragment stays in the same
+// document, and when the page replaces its address a few milliseconds around that navigation,
+// Edge 157 then reloads the replaced entry rather than the one just opened: in a standalone probe
+// a replaceState 3 to 8 ms after the call sent 15 of 30 reloads to the old address, and this
+// form sent 0 of 30 (#987, #1329). Leaving for about:blank first makes every open a full load.
+async function openFresh(page, path) {
+  await page.goto('about:blank');
+  await open(page, path);
 }
 
 // page.click is unreliable here: an element the app has just rendered is frequently reported as
@@ -20877,8 +20890,7 @@ SCENARIOS.push(responsiveOwner({
     const cleared = await page.evaluate(() => Boolean(document.querySelector('#modern-timeline-feature')?.checkVisibility()));
     await page.evaluate(() => localStorage.setItem('mrt.list-history.v1', 'synthetic corrupt history'));
     responsiveStep(page, 'RF08-unknown-fresh-document');
-    await open(page, '/?catalog=actual#/library');
-    await page.reload({ waitUntil: 'load' });
+    await openFresh(page, '/?catalog=actual#/library');
     const unknown = await page.evaluate(() => ({
       browseHidden: document.querySelector('#library-completed-browse').hidden,
       copy: document.querySelector('#library-completed').textContent,
@@ -20892,8 +20904,7 @@ SCENARIOS.push(responsiveOwner({
       localStorage.removeItem('mrt.list-history.v1');
     });
     responsiveStep(page, 'RF08-no-list-fresh-document');
-    await open(page, '/?catalog=actual#/progress');
-    await page.reload({ waitUntil: 'load' });
+    await openFresh(page, '/?catalog=actual#/progress');
     const noList = await page.evaluate(() => ({
       subject: document.querySelector('#progress-subject').textContent,
       scopeHidden: document.querySelector('#progress-scope').hidden,
@@ -22976,7 +22987,7 @@ SCENARIOS.push({
     // A page that comes back from the back-forward cache after a restore elsewhere reads it afresh.
     await open(page, '/#/data');
     await seedCompleteData(page, { list: 'local', theme: 'light', apiBase: 'https://metadata.example.test', sidebar: false });
-    await page.reload({ waitUntil: 'load' });
+    await openFresh(page, '/#/data');
     await page.waitForSelector('#view-data:not([hidden])');
     await page.evaluate(() => addEventListener('pageshow', (event) => { sessionStorage.setItem('mrt.check.persisted', String(event.persisted)); }));
     await page.goto(`${origin}/js/app.js`, { waitUntil: 'load' });
@@ -24843,7 +24854,10 @@ async function runLongCollectionNavigation(page, t) {
   page.on('request', (request) => {
     if (/^https?:/.test(request.url()) && new URL(request.url()).origin !== page.__origin) external.push(request.url());
   });
-  await page.evaluateOnNewDocument(() => localStorage.setItem('mrt.settings', JSON.stringify({ covers: false })));
+  // The about:blank document openFresh passes through has no storage, so write only into the app's.
+  await page.evaluateOnNewDocument(() => {
+    if (location.protocol !== 'about:') localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+  });
   const settle = () => page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
   const raw = () => page.evaluate(() => ({
     reader: localStorage.getItem('mrt.state.v2'), history: localStorage.getItem('mrt.list-history.v1'),
@@ -24959,8 +24973,7 @@ async function runLongCollectionNavigation(page, t) {
       localStorage.setItem('mrt.state.v2', JSON.stringify(next));
       localStorage.setItem('mrt.list-history.v1', typeof historyValue === 'string' ? historyValue : JSON.stringify(historyValue));
     }, state, completion);
-    await open(page, url);
-    await page.reload({ waitUntil: 'load' });
+    await openFresh(page, url);
     await page.waitForSelector('#catalog-results [data-path-stop] .catalog-card');
     const pathId = new URLSearchParams(new URL(url, page.__origin).hash.split('?')[1]).get('path');
     const fixturePath = pathId === 'bc-path'
@@ -27607,7 +27620,7 @@ SCENARIOS.push({
       });
       try {
         recovery.__denyExternal = true;
-        await preparePage(recovery, page.__origin, null);
+        await preparePage(recovery, page.__origin, null, 'cloud-launch-hold-tab-close');
         await installCloudFixture(recovery, fixture);
         await recovery.evaluateOnNewDocument(() => {
           const post = BroadcastChannel.prototype.postMessage;
@@ -27616,11 +27629,35 @@ SCENARIOS.push({
             if (this.name === 'mrt.cloud-backup.changes.v1') console.debug(`CLOUD-HOLD-ANNOUNCE ${Date.now()}`);
             return result;
           };
+          window.__mrtCloudTraceInstall = (Type, kind) => {
+            if (kind !== 'launch') return;
+            const start = Type.prototype.start;
+            Type.prototype.start = function (...args) {
+              window.__recoveryLaunch = this;
+              return start.apply(this, args);
+            };
+          };
         });
         await open(recovery, '/?catalog=browser-check#/data');
         try {
           await recovery.waitForFunction(gateIsClear, { timeout: 20000 });
           await recovery.waitForFunction(() => localStorage.getItem('mrt.cloud-backup.sync-pending.v1') === null, { timeout: 20000 });
+          // A clear marker is not the end of this tab's work. It can still arm the marker again, by
+          // following the older tab's own check into a new election, or by repairing its hold when that
+          // check takes its upload permit. In the #1279 hosted run the marker was set again 38 ms after
+          // this tab's announcement and the tab was closed 19 ms later, abandoning it while the older
+          // tab sat clear with no retry due, so it was held for good. Recreating that state before the
+          // close timed out the same final wait locally, so close only once both tabs are settled with
+          // no check, election, follower read or retry left to arm it.
+          const settled = () => {
+            const launch = window.__recoveryLaunch ?? window.__cloudTrace?.launch;
+            return Boolean(launch) && launch.state.phase === 'clear' && !launch.running && !launch.starting
+              && !launch.election && !launch.followerRead && !launch.cancelArm && launch.timer === null
+              && localStorage.getItem('mrt.cloud-backup.sync-pending.v1') === null;
+          };
+          await page.waitForFunction(settled, { ...olderTab, timeout: 20000 });
+          await recovery.waitForFunction(settled, { polling: 100, timeout: 20000 });
+          await page.waitForFunction(settled, { ...olderTab, timeout: 20000 });
         } catch (err) {
           const observed = await settleWithin(recovery.evaluate(async () => ({
             visibility: document.visibilityState,
