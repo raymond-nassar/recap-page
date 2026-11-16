@@ -194,11 +194,14 @@ const BODY = releaseBody(CHANGELOG, '4.7.0', COMMIT);
 const PLAN = { version: '4.7.0', commit: COMMIT, body: BODY, zipSha256: digest(WINDOWS_ZIP),
   zipBytes: WINDOWS_ZIP.length, preparationRunId: 500 };
 const ASSET_URL = `https://github.com/${REPO}/releases/download/v4.7.0/${ASSET}`;
-const release = (draft) => ({ id: 77, tag_name: 'v4.7.0', target_commitish: COMMIT, name: 'Recap Page 4.7.0',
-  body: BODY, draft, prerelease: false, assets: [],
+const release = (draft, assets = []) => ({ id: 77, tag_name: 'v4.7.0', target_commitish: COMMIT, name: 'Recap Page 4.7.0',
+  body: BODY, draft, prerelease: false, assets,
   upload_url: `https://uploads.github.com/repos/${REPO}/releases/77/assets{?name,label}` });
+// GitHub serves a draft's assets from an untagged- address until the release is published.
 const uploadedAsset = { id: 88, name: ASSET, state: 'uploaded', size: WINDOWS_ZIP.length,
-  digest: `sha256:${digest(WINDOWS_ZIP)}`, browser_download_url: ASSET_URL };
+  digest: `sha256:${digest(WINDOWS_ZIP)}`,
+  browser_download_url: `https://github.com/${REPO}/releases/download/untagged-0123456789abcdef0123/${ASSET}` };
+const publishedAsset = { ...uploadedAsset, browser_download_url: ASSET_URL };
 
 function happySteps() {
   return [
@@ -209,7 +212,7 @@ function happySteps() {
     ['POST', `https://uploads.github.com/repos/${REPO}/releases/77/assets?name=${ASSET}`, 201, { id: 88 }],
     ['GET', `${API}/releases/77/assets?per_page=100`, 200, [uploadedAsset]],
     ['PATCH', `${API}/releases/77`, 200, { id: 77 }],
-    ['GET', `${API}/releases/tags/v4.7.0`, 200, release(false)],
+    ['GET', `${API}/releases/tags/v4.7.0`, 200, release(false, [publishedAsset])],
     ['GET', `${API}/git/ref/tags/v4.7.0`, 200, { ref: 'refs/tags/v4.7.0', object: { type: 'commit', sha: COMMIT } }],
     ['GET', `${API}/releases/latest`, 200, { id: 77 }],
     ['GET', ASSET_URL, 200, WINDOWS_ZIP],
@@ -286,6 +289,14 @@ test('an existing draft for the tag stops before any write', async () => {
   await stopped(run, 'RELEASE_ALREADY_EXISTS');
   assert.equal(calls.length, 2);
   assert.equal(receipts.at(-1).state, 'blocked');
+});
+
+test('a published asset that is not served at the tagged address stops as uncertain before any download', async () => {
+  const { calls, receipts, run } = harness(swap(7, release(false, [uploadedAsset])));
+  await stopped(run, 'ASSET_URL_MISMATCH');
+  assert.equal(calls.filter((call) => call.method === 'PATCH').length, 1);
+  assert.ok(!calls.some((call) => call.url === ASSET_URL));
+  assert.equal(receipts.at(-1).state, 'uncertain');
 });
 
 test('an asset digest that differs stops as uncertain and never publishes', async () => {

@@ -377,8 +377,9 @@ export async function transact({ plan, zip, token, record, fetchImpl = globalThi
       'GitHub reported no digest, so the uploaded bytes cannot be confirmed');
     demand(assets[0].size === plan.zipBytes && assets[0].digest === `sha256:${plan.zipSha256}`,
       'ASSET_DIGEST_MISMATCH');
+    // A draft has no tag, so GitHub serves its assets from an untagged- address until it is
+    // published; the tagged address can only be checked on the published read back.
     const assetUrl = `https://github.com/${REPOSITORY}/releases/download/${tag}/${ASSET}`;
-    demand(assets[0].browser_download_url === assetUrl, 'ASSET_URL_MISMATCH');
     receipt.stage = 'draft-verified';
     await save();
 
@@ -399,7 +400,12 @@ export async function transact({ plan, zip, token, record, fetchImpl = globalThi
     }
     receipt.draft = false;
     await save();
-    expectRelease(await request('read-published', 'GET', `${repo}/releases/tags/${tag}`), false);
+    const published = await request('read-published', 'GET', `${repo}/releases/tags/${tag}`);
+    expectRelease(published, false);
+    const servedAssets = Array.isArray(published.assets) ? published.assets : [];
+    demand(servedAssets.length === 1 && servedAssets[0]?.id === uploaded.id && servedAssets[0].name === ASSET
+      && servedAssets[0].size === plan.zipBytes && servedAssets[0].digest === `sha256:${plan.zipSha256}`
+      && servedAssets[0].browser_download_url === assetUrl, 'ASSET_URL_MISMATCH');
     const ref = await request('read-tag', 'GET', `${repo}/git/ref/tags/${tag}`);
     demand(ref?.ref === `refs/tags/${tag}` && ref.object?.type === 'commit', 'LIGHTWEIGHT_TAG_REQUIRED');
     demand(ref.object.sha === plan.commit, 'TAG_COMMIT_MISMATCH');
