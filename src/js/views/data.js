@@ -27,7 +27,7 @@ const READING_DATA_CONTENTS = 'lists, notes, comic ratings, reading progress, de
 //
 // BL-113's decision, and the reason it is a pair of sentences rather than a wider erase.
 //
-// The rule at `src/js/storage.js:747-750` stands: nothing but the reader removes a salvage copy,
+// The rule at `src/js/storage.js:758-761` stands: nothing but the reader removes a salvage copy,
 // because no rule this app could apply would know whether they still want data it could not read
 // itself. So the erase is not widened to reach those copies, and the wording is narrowed to stop
 // claiming that it does. They are not undisclosed either way, which is what separates them from
@@ -508,9 +508,9 @@ export function completeRestoreQuestion({ lists, records, draft }, { source = 'f
 
 // Keeping the current data deletes the recovery copy only when one can be read, so the question says
 // what happens to the copy this recovery actually has. A copy this browser cannot remove yet, as on a
-// full disk, goes at a later start instead (#947), except one that fails its checks: the next start
-// offers that one again (#954). The exact prior copy can be downloaded but not restored by this
-// version, so the question says so before the copy goes.
+// full disk, goes at a later start instead (#947). An invalid copy whose identity cannot be checked
+// safely is left in place and offered again. The exact prior copy can be downloaded but not restored
+// by this version, so the question says so before the copy goes.
 export function keepCurrentQuestion(recovery, { isIos = isIosApp() } = {}) {
   const lead = `Recovery ends and saving starts again with the data ${isIos ? 'this app' : 'this browser'} holds now, which may mix restored and earlier data.`;
   const when = `at once, or at a later start if ${isIos ? 'the app' : 'this browser'} cannot remove it yet`;
@@ -519,8 +519,12 @@ export function keepCurrentQuestion(recovery, { isIos = isIosApp() } = {}) {
       + 'This version cannot restore that copy: it is for recovering the earlier data by hand or with help.';
   }
   if (recovery?.download === 'raw') {
-    return `${lead} The recovery copy, which this version cannot read, is then deleted, so download it first if you might need it. `
-      + `If ${isIos ? 'the app' : 'this browser'} cannot remove it yet, the next start offers it again. Its data can only be recovered by hand or with help.`;
+    if (recovery.fingerprint) {
+      return `${lead} The recovery copy, which this version cannot read, is then deleted, ${when}, so download it first if you might need it. `
+        + 'Its data can only be recovered by hand or with help.';
+    }
+    return `${lead} The recovery copy cannot be identified safely, so it is left in place and the next start offers it again. `
+      + 'Its data can only be recovered by hand or with help.';
   }
   if (recovery?.kind === 'unchecked') {
     return `${lead} The recovery copy could not be checked, so it is left in place, and a later start offers it again if it can.`;
@@ -537,6 +541,7 @@ export function keepCurrentQuestion(recovery, { isIos = isIosApp() } = {}) {
 export function keptNotice(result) {
   const ended = 'Recovery ended. Saving has started again with the data that was here.';
   if (!result?.copyKept) return ended;
+  if (result.unidentified) return 'The data that was here is unchanged. The recovery copy could not be identified safely, so it is offered again.';
   if (result.offered) return 'The data that was here is unchanged, but the recovery copy could not be removed, perhaps because storage is full, so it is offered again.';
   return `${ended} ${RESTORE_MESSAGES.copyKept}`;
 }

@@ -1671,36 +1671,44 @@ test('the keep question says a recovery copy goes at once, or at a later start i
   }
   const raw = keepCurrentQuestion({ kind: 'invalid', download: 'raw' });
   assert.ok(!raw.includes(later), 'a copy that fails its checks is never removed by a later start on its own');
-  assert.ok(raw.includes('If this browser cannot remove it yet, the next start offers it again.'), raw);
+  assert.ok(raw.includes('The recovery copy cannot be identified safely, so it is left in place and the next start offers it again.'), raw);
+  assert.equal(keptNotice({ copyKept: true, offered: true, unidentified: true }),
+    'The data that was here is unchanged. The recovery copy could not be identified safely, so it is offered again.');
+  assert.ok(keepCurrentQuestion({ kind: 'invalid', download: 'raw', fingerprint: 'a'.repeat(64) }).includes(later),
+    'a safely identified invalid copy can wait for cleanup without another choice');
   assert.ok(!keepCurrentQuestion({ kind: 'unchecked', download: null }).includes(later), 'an unchecked copy is never deleted by keeping');
   assert.ok(keepCurrentQuestion({ kind: 'missing', download: null }).endsWith('There is no recovery copy left to delete.'));
 });
 
-// A copy that fails its checks cannot wait with its cleaning: marker the way a readable one does: the
-// next start clears that marker and offers the copy again (#954). The behavior is left as it is; what
-// keeping and erase say about it is what this holds. Both recoveries over such a copy are covered.
-test('a recovery copy that fails its checks and cannot be removed is offered again at the next start, and keeping and erase say so', async () => {
+// The accepted cleanup identifies the whole invalid record, not its untrusted restore id.
+test('a recovery copy that fails its checks keeps its accepted cleanup across starts', async () => {
   for (const variant of ['invalid', 'missing']) {
     const env = environment();
     env.journal.plantRaw({ id: 'x', backup: 'not a backup' }, null);
     if (variant === 'missing') env.storage.map.set(RESTORE_MARKER_KEY, `active:${'a'.repeat(64)}`);
-    const tab = await env.open();
+    let tab = await env.open();
     assert.deepEqual({ kind: tab.state.recovery?.kind, download: tab.state.recovery?.download }, { kind: variant, download: 'raw' });
     env.journal.faults.remove = true;
     const kept = await tab.keepCurrent();
-    assert.deepEqual(kept, { ok: true, changed: false, copyKept: true, offered: true }, variant);
-    assert.equal(keptNotice(kept), 'The data that was here is unchanged, but the recovery copy could not be removed, perhaps because storage is full, so it is offered again.');
-    assert.equal(tab.state.unavailableReason, RESTORE_MESSAGES.copyStuckOffered, variant);
-    await tab.releaseShared();
-    const next = await env.open();
-    assert.deepEqual({ phase: next.state.phase, kind: next.state.recovery?.kind }, { phase: 'paused', kind: 'invalid' }, `${variant}: the reload after keeping offers it again`);
-    const erased = await next.erase(async () => true);
-    assert.deepEqual(erased, { ok: true, erased: true, copyRemoved: false, error: RESTORE_MESSAGES.copyOffered }, variant);
-    assert.equal(next.state.unavailableReason, RESTORE_MESSAGES.copyStuckOffered, variant);
-    await next.releaseShared();
-    const after = await env.open();
-    assert.deepEqual({ phase: after.state.phase, kind: after.state.recovery?.kind }, { phase: 'paused', kind: 'invalid' }, `${variant}: and so does the next start after erase`);
+    assert.deepEqual(kept, { ok: true, changed: false, copyKept: true }, variant);
+    assert.equal(tab.state.unavailableReason, RESTORE_MESSAGES.copyStuck, variant);
+    for (let start = 0; start < 3; start += 1) {
+      await tab.releaseShared();
+      tab = await env.open();
+      assert.equal(tab.state.phase, 'open', `${variant} restart ${start}`);
+      assert.equal(tab.state.recovery, null);
+      assert.equal(tab.state.unavailableReason, RESTORE_MESSAGES.copyStuck);
+      tab.storage.setItem(SIDEBAR_KEY, 'true');
+    }
+    const erased = await tab.erase(async () => true);
+    assert.deepEqual(erased, { ok: true, erased: true, copyRemoved: false, error: RESTORE_MESSAGES.copyKept }, variant);
     assert.equal(env.journal.record?.id, 'x', 'the copy is still there');
+    env.journal.faults.remove = false;
+    await tab.releaseShared();
+    const later = await env.open();
+    assert.equal(later.state.phase, 'open');
+    assert.equal(later.state.available, true);
+    assert.equal(env.journal.record, null);
   }
   // A copy that can be read keeps its own wording: it waits for a later start.
   assert.equal(keptNotice({ ok: true, copyKept: true }), `Recovery ended. Saving has started again with the data that was here. ${RESTORE_MESSAGES.copyKept}`);
@@ -1905,9 +1913,10 @@ test('a write the browser refuses stops the restore part way, and recovery puts 
   const result = await tab.restore((await fileBackup()).text);
   assert.equal(result.ok, false);
   assert.match(result.error, /Browser storage is full/);
-  assert.equal(tab.state.recovery?.kind, 'interrupted');
+  assert.equal(result.rolledBack, true);
+  assert.equal(tab.state.phase, 'open');
+  assert.equal(tab.state.recovery, null);
   env.storage.refuse.clear();
-  assert.equal((await tab.recover('prior')).ok, true);
   assertImage(env, prior, 'put back');
 });
 
@@ -1923,8 +1932,9 @@ test('iOS complete restore quota failure names app storage', async () => {
     assert.equal(result.ok, false);
     assert.match(result.error, /App storage is full/);
     assert.doesNotMatch(result.error, /browser/i);
+    assert.equal(result.rolledBack, true);
+    assert.equal(tab.state.phase, 'open');
     env.storage.refuse.clear();
-    assert.equal((await tab.recover('prior')).ok, true);
     assertImage(env, prior, 'put back');
   } finally {
     if (previous === undefined) delete globalThis.document;
@@ -2107,7 +2117,7 @@ test('on iOS a complete restore of reading data 1.2 times the owner\'s fits, int
   }
 });
 
-test('on iOS a restore that cannot fit still stops with today\'s recovery and pauses saving', async () => {
+test('on iOS a restore that cannot fit puts prior data back and resumes saving', async () => {
   const previous = globalThis.document;
   globalThis.document = { documentElement: { dataset: { platform: 'ios' } } };
   try {
@@ -2119,12 +2129,10 @@ test('on iOS a restore that cannot fit still stops with today\'s recovery and pa
     assert.equal(result.ok, false);
     assert.match(result.error, /App storage is full/);
     assert.ok(env.storage.refusals > 0);
-    assert.equal(tab.state.recovery?.kind, 'interrupted');
-    assert.throws(() => tab.storage.setItem(SETTINGS_KEY, '{}'), /did not finish/);
-    assert.equal(tab.state.recovery.canKeep, true);
+    assert.equal(result.rolledBack, true);
+    assert.equal(tab.state.recovery, null);
+    assert.equal(tab.state.phase, 'open');
     assertImage(env, prior, 'nothing was replaced');
-    assert.equal((await withOneByteStrings(env.storage, () => tab.keepCurrent())).ok, true);
-    assertImage(env, prior, 'kept');
   } finally {
     if (previous === undefined) delete globalThis.document;
     else globalThis.document = previous;
@@ -2132,6 +2140,291 @@ test('on iOS a restore that cannot fit still stops with today\'s recovery and pa
 });
 
 // ------------------------------------------------------------------ journals written by 4.5.0
+
+test('invalid-copy identity never authorizes a different or lossy raw journal', async () => {
+  const cycle = {};
+  cycle.self = cycle;
+  for (const raw of [
+    { damaged: 'original' }, { damaged: new Date(0) }, { damaged: new Map([['a', 1]]) },
+    { damaged: new Set([1]) }, { damaged: Array(1) }, { damaged: undefined },
+    { damaged: new Uint8Array([1]) }, { damaged: -0 }, cycle,
+  ]) {
+    const env = environment();
+    env.journal.plantRaw(raw, null);
+    env.journal.faults.remove = true;
+    const tab = await env.open();
+    const eligible = raw.damaged === 'original';
+    assert.equal(Boolean(tab.state.recovery.fingerprint), eligible);
+    assert.equal((await tab.keepCurrent()).ok, true);
+    assert.equal(readMarker(env.storage).state, eligible ? 'discarding' : 'absent');
+    await tab.releaseShared();
+    if (eligible) env.journal.plantRaw({ damaged: 'replacement' }, null);
+    const later = await env.open();
+    assert.equal(later.state.phase, 'paused', 'a replacement or an ineligible raw record is still offered');
+    assert.equal(later.state.recovery.kind, 'invalid');
+    if (eligible) {
+      env.journal.plantRaw({ damaged: 'changed after display' }, null);
+      assert.equal((await later.keepCurrent()).error, RESTORE_MESSAGES.copyChanged);
+      const { record } = await planted(env, { id: 'e'.repeat(64), marker: null, writes: 2, steps: 2 });
+      env.storage.map.set(RESTORE_MARKER_KEY, `discarding:${tab.markerSeen.split(':')[1]}`);
+      await later.releaseShared();
+      const replacement = await env.open();
+      assert.equal(replacement.state.recovery.kind, 'interrupted', 'a valid replacement never inherits discard permission');
+      assert.equal(env.journal.record.id, record.id);
+      await replacement.releaseShared();
+    }
+    await later.releaseShared();
+  }
+});
+
+test('keeping an unidentified recovery copy never deletes a changed journal', async () => {
+  for (const marker of ['absent', 'active', 'done', 'invalid']) {
+    for (const changed of [false, true]) {
+      const env = environment();
+      env.journal.plantRaw({ damaged: new Map([['old', 1]]) }, null);
+      if (marker === 'active' || marker === 'done') {
+        env.storage.map.set(RESTORE_MARKER_KEY, `${marker}:${'a'.repeat(64)}`);
+      } else if (marker === 'invalid') env.storage.map.set(RESTORE_MARKER_KEY, 'unrecognized');
+      const tab = await env.open();
+      assert.equal(tab.state.recovery.fingerprint, undefined);
+      if (changed) env.journal.plantRaw({ damaged: new Map([['new', 2]]) }, null);
+      const retained = await env.journal.read();
+      const result = await tab.keepCurrent();
+      assert.deepEqual(result, { ok: true, changed: false, copyKept: true, offered: true, unidentified: true });
+      assert.deepEqual(await env.journal.read(), retained, `${marker}:${changed}`);
+      assert.equal(readMarker(env.storage).state, marker === 'done' ? 'done' : 'absent');
+      assert.equal(tab.state.phase, 'open');
+      assert.equal(tab.state.available, false);
+      tab.storage.setItem(SIDEBAR_KEY, 'true');
+      await tab.releaseShared();
+      const later = await env.open();
+      assert.equal(later.state.phase, 'paused');
+      assert.equal(later.state.recovery.kind, 'invalid');
+      assert.deepEqual(await env.journal.read(), retained);
+      await later.releaseShared();
+    }
+  }
+  const env = environment();
+  env.journal.plantRaw({ damaged: new Map([['old', 1]]) }, null);
+  env.storage.map.set(RESTORE_MARKER_KEY, `active:${'a'.repeat(64)}`);
+  const tab = await env.open();
+  env.storage.refuseRemoval.add(RESTORE_MARKER_KEY);
+  const result = await tab.keepCurrent();
+  assert.equal(result.ok, false);
+  assert.equal(tab.state.phase, 'paused');
+  assert.ok(await env.journal.read());
+  await tab.releaseShared();
+
+  const replacement = environment();
+  replacement.journal.plantRaw({ damaged: new Map([['old', 1]]) }, null);
+  const stale = await replacement.open();
+  const { record } = await planted(replacement, { id: 'b'.repeat(64), marker: null, writes: 2, steps: 2 });
+  const refused = await stale.keepCurrent();
+  assert.equal(refused.ok, false);
+  assert.equal(refused.error, RESTORE_MESSAGES.copyReadable);
+  assert.equal(replacement.journal.record.id, record.id);
+  assert.equal(stale.state.recovery.id, record.id);
+  await stale.releaseShared();
+
+  const missing = environment();
+  missing.journal.plantRaw({ damaged: new Map([['old', 1]]) }, null);
+  const outdated = await missing.open();
+  missing.journal.plant(null);
+  assert.deepEqual(await outdated.keepCurrent(), { ok: true, changed: false });
+  assert.equal(outdated.state.phase, 'open');
+  assert.equal(await missing.journal.read(), null);
+  await outdated.releaseShared();
+});
+
+test('quota rollback matrix restores every prior key after each refused forward effect', async () => {
+  const { text } = await fileBackup();
+  for (let at = 0; at < 7; at += 1) {
+    const env = environment([...localEntries(), ['mrt.state.restore.tmp', 'old stage'], [PRERESTORE_KEY, 'old saved copy']]);
+    const prior = priorOf(env);
+    let effects;
+    const begin = env.journal.begin;
+    env.journal.begin = async (record) => {
+      effects = restorePlan(record.prepared, await parseCompleteBackup(record.backup, { cryptoProvider: webcrypto }))
+        .components.flatMap((part) => part.effects);
+      await begin(record);
+    };
+    const set = env.storage.setItem;
+    const remove = env.storage.removeItem;
+    let refused = false;
+    const attempt = (key, write) => {
+      if (!refused && effects && key === effects[at].key) {
+        refused = true;
+        throw Object.assign(new Error('Injected quota refusal'), { name: 'QuotaExceededError' });
+      }
+      write();
+    };
+    env.storage.setItem = (key, value) => attempt(key, () => set(key, value));
+    env.storage.removeItem = (key) => attempt(key, () => remove(key));
+    const tab = await env.open();
+    const result = await tab.restore(text);
+    assert.equal(refused, true, `effect ${at} was exercised: ${result.error}`);
+    assert.deepEqual([result.ok, result.changed, result.rolledBack], [false, false, true], `effect ${at}: ${result.error}`);
+    assertImage(env, prior, `effect ${at}`);
+    assert.equal(tab.state.phase, 'open');
+    assert.equal(env.journal.record.direction, 'prior');
+    assert.equal(env.journal.record.phase, 'done');
+    await tab.releaseShared();
+    const reopened = await env.open();
+    assert.equal(reopened.state.phase, 'open');
+    await reopened.releaseShared();
+  }
+});
+
+test('quota rollback refuses uncertain journals, foreign values and failed reversal', async () => {
+  for (const fault of ['reverse', 'read', 'foreign', 'journal', 'marker', 'checkpoint']) {
+    const env = environment();
+    const set = env.storage.setItem;
+    let refused = false;
+    env.storage.setItem = (key, value) => {
+      if (key === LIST_HISTORY_KEY && !refused) {
+        refused = true;
+        if (fault === 'reverse') env.storage.refuse.add(KEY);
+        if (fault === 'read') env.journal.faults.read = 1;
+        if (fault === 'foreign') env.storage.map.set(KEY, 'foreign data');
+        if (fault === 'journal') env.journal.plantRaw({ id: 'another restore' }, null);
+        if (fault === 'marker') env.storage.map.set(RESTORE_MARKER_KEY, `active:${'f'.repeat(64)}`);
+        if (fault === 'checkpoint') env.journal.progress = async () => { throw new Error('Rollback checkpoint refused'); };
+        throw Object.assign(new Error('Injected quota refusal'), { name: 'QuotaExceededError' });
+      }
+      set(key, value);
+    };
+    const tab = await env.open();
+    const result = await tab.restore((await fileBackup()).text);
+    assert.deepEqual([result.ok, result.changed], [false, null], fault);
+    assert.equal(result.rolledBack, undefined, fault);
+    assert.match(result.error, /Automatic rollback could not finish/, fault);
+    assert.equal(tab.state.phase, 'paused', fault);
+    assert.ok(tab.state.recovery, fault);
+    assert.ok(env.journal.record, fault);
+    if (fault === 'foreign') assert.equal(env.storage.getItem(KEY), 'foreign data');
+    await tab.releaseShared();
+  }
+});
+
+test('quota rollback keeps local authorization and unsaved draft guards', async () => {
+  for (const fault of ['authorization', 'draft']) {
+    const env = environment();
+    const tab = await env.open();
+    const prior = await captureCompleteBackup({ storage: env.storage, cryptoProvider: webcrypto });
+    const draft = emptyImportDraft();
+    let authorized = true;
+    let atFailure;
+    const set = env.storage.setItem;
+    env.storage.setItem = (key, value) => {
+      if (key === LIST_HISTORY_KEY) {
+        atFailure = priorOf(env);
+        throw Object.assign(new Error('Quota'), { name: 'QuotaExceededError' });
+      }
+      set(key, value);
+    };
+    const progress = env.journal.progress;
+    env.journal.progress = async (record) => {
+      await progress(record);
+      if (record.direction === 'prior') {
+        if (fault === 'authorization') authorized = false;
+        else draft.recovery.push('unsaved source');
+      }
+    };
+    const result = await tab.restore((await fileBackup()).text, {
+      expectedPriorDigest: prior.backup.digest, importDraft: draft,
+      assertStillAuthorized: () => { if (!authorized) throw new Error('Local choice revoked'); },
+    });
+    assert.equal(result.ok, false);
+    assert.equal(result.changed, null);
+    assert.equal(tab.state.phase, 'paused');
+    assert.deepEqual(priorOf(env), atFailure, 'no reverse write followed the revoked guard');
+    await tab.releaseShared();
+  }
+});
+
+test('quota rollback restart cuts retain recoverable prior direction', async () => {
+  for (const cut of ['before-reverse', 'after-reverse', 'before-marker', 'lost-prefix', 'done']) {
+    const env = environment();
+    const prior = priorOf(env);
+    const tab = await env.open();
+    env.storage.refuse.add(LIST_HISTORY_KEY);
+    const apply = tab.apply.bind(tab);
+    const step = tab.writeStep.bind(tab);
+    const checkpoint = tab.checkpoint.bind(tab);
+    let forwardPrefix;
+    tab.apply = async (...args) => {
+      if (args[2] === 'prior') {
+        forwardPrefix = env.storage.history.length - 1;
+        if (cut === 'before-reverse') throw new Error('Process ended before reversal');
+      }
+      return apply(...args);
+    };
+    tab.writeStep = (...args) => {
+      const changed = step(...args);
+      if (args[2] === 'prior' && changed && cut === 'after-reverse') throw new Error('Process ended after reverse effect');
+      return changed;
+    };
+    tab.checkpoint = async (record) => {
+      const result = await checkpoint(record);
+      if (cut === 'before-marker' && record.direction === 'prior' && record.phase === 'done') {
+        throw new Error('Process ended before done marker');
+      }
+      return result;
+    };
+    const result = await tab.restore((await fileBackup()).text);
+    if (cut === 'done' || cut === 'lost-prefix') assert.equal(result.rolledBack, true);
+    else assert.equal(result.changed, null);
+    if (cut === 'lost-prefix') env.storage.rewind(forwardPrefix);
+    env.storage.refuse.clear();
+    await tab.releaseShared();
+    const reopened = await env.open();
+    if (cut === 'done') assert.equal(reopened.state.phase, 'open');
+    else {
+      assert.equal(reopened.state.phase, 'paused', cut);
+      assert.equal(reopened.state.recovery.canFinish, true, cut);
+      assert.equal((reopened.state.recovery.canRestorePrior
+        ? await reopened.recover('prior') : await reopened.keepCurrent()).ok, true, cut);
+    }
+    assertImage(env, prior, cut);
+    if (cut !== 'before-marker') assert.ok(env.journal.record);
+    await reopened.releaseShared();
+  }
+});
+
+test('iOS file capacity preserves complete prior content and Undo without a staged third copy', async () => {
+  const previous = globalThis.document;
+  globalThis.document = { documentElement: { dataset: { platform: 'ios' } } };
+  try {
+    for (const wide of [false, true]) {
+      const incoming = JSON.stringify(exportBackup(readerOfSize(CAPACITY_TARGET_CHARS, { wide, seed: 1 })));
+      const priorState = readerOfSize(CAPACITY_TARGET_CHARS, { wide, seed: 2 });
+      for (const prior of ['empty', 'saved', 'wide']) {
+        const env = await iosEnvironment(prior, priorState);
+        const before = env.storage.getItem(KEY);
+        const store = new Store({ storage: env.storage });
+        store.load();
+        await withOneByteStrings(env.storage, async () => {
+          const result = store.restore(incoming);
+          assert.equal(result.ok, true, `${wide}:${prior}: ${result.errors.join(' ')}`);
+          assert.equal(canonical(readerContent(store.state)), canonical(readerContent(store.inspectBackup(incoming).state)));
+          assert.equal(env.storage.getItem('mrt.state.restore.tmp'), null);
+          if (before) {
+            assert.deepEqual(JSON.parse(env.storage.getItem(PRERESTORE_KEY)), JSON.parse(before));
+            assert.equal(store.restoreOffer().kind, 'undo', 'the actual narrowed identity is tracked');
+            assert.equal(store.undoRestore().ok, true);
+            assert.equal(canonical(readerContent(store.state)), canonical(readerContent(store.inspectBackup(before).state)));
+            assert.equal(store.restoreOffer().kind, 'copy');
+          }
+        });
+        assert.equal(env.storage.refusals, 0);
+        assert.ok(env.storage.peak <= IOS_QUOTA);
+      }
+    }
+  } finally {
+    if (previous === undefined) delete globalThis.document;
+    else globalThis.document = previous;
+  }
+});
 
 test('a restore journal 4.5.0 wrote, interrupted after any of its eight writes, still recovers either way', async () => {
   const { readFileSync } = await import('node:fs');
