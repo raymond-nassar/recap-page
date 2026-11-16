@@ -1803,7 +1803,9 @@ async function categoryLabelReadability(page, label, viewport) {
         && JSON.stringify(card.parts.map((part) => part.text.trim())) === JSON.stringify([categoryLabel, category.heading, count]),
       `${label} ${view}: ${category.key}: exact wording, order and accessible name`);
       const caption = (viewport.desktop ? 12 : 14) * scale;
-      const title = category.tier === 'secondary' ? 28 * scale : viewport.desktop ? 28.8 : 20;
+      // Since #1181 the primary title's floor is the subtitle token, so it grows with the reader's text
+      // as the caption does; only the desktop's 1.8rem cap at normal text sits above that floor.
+      const title = category.tier === 'secondary' ? 28 * scale : Math.max(20 * scale, viewport.desktop ? 28.8 : 0);
       check(card.parts[0].font === caption && Math.abs(card.parts[1].font - title) < 0.01
         && card.parts[2].font === caption && card.parts.every((part) => part.family === card.parts[0].family),
       `${label} ${view}: ${category.key}: existing computed type sizes ${JSON.stringify(card.parts)}`);
