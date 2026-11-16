@@ -1085,10 +1085,9 @@ opener so the focused control remains in view.
 
 Catalog shelves, Preview and generated publishing pages share one constructed presentation
 contract for individually titled cards, exact-list inspection and source attribution.
-that internal module imports neither the controller nor another concrete view. The controller
-injects navigation, imports, Store effects and the shared presentation into catalog views at
-`src/js/main.js:4207-4423`, and uses that presentation for generated publishing pages at
-`src/js/main.js:3277-3415`.
+That internal module imports neither the controller nor another concrete view; the controller injects
+navigation, imports, Store effects and publishing-page orchestration at
+`src/js/main.js:4207-4516`.
 
 Closing an unchanged Preview leaves its source cards and focus intact. A changed library refreshes
 the source, including an Add that finishes after dismissal. Each refresh belongs to its specific
@@ -1115,7 +1114,7 @@ The shared presentation contract removes the previous positional state and paint
 current label, hidden message, completion state or unavailable message at
 `src/js/views/shared/catalog-presentation.js:230-294`. Only the visible current list receives
 `aria-current="step"`. The controller injects live state and current-view knowledge at
-`src/js/main.js:4401-4404`, while the existing Store-driven render path calls the position-only
+`src/js/main.js:4378-4422`, while the existing Store-driven render path calls the position-only
 refresh at `src/js/main.js:3442-3470`. That refresh leaves cards, controls, focus and scroll
 intact across same-tab and cross-tab state changes.
 

@@ -1919,10 +1919,10 @@
     "fp": "4bfffd5990af658f",
     "head": "function renderAll() {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:4401-4404|0": {
-    "anchor": "src/js/main.js:4401-4404",
-    "fp": "2806538fc18f01b4",
-    "head": "getState: () => store.state,"
+  "docs/ARCHITECTURE_REFERENCE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:4378-4422|0": {
+    "anchor": "src/js/main.js:4378-4422",
+    "fp": "b9ebc0e419b4a53d",
+    "head": "const catalogView = createCatalogView({"
   },
   "docs/ARCHITECTURE_REFERENCE.md|modern-timeline-position-is-a-store-projection|src/js/views/catalog.js:212-269|0": {
     "anchor": "src/js/views/catalog.js:212-269",
@@ -1974,11 +1974,6 @@
     "fp": "8f74c324b23445e0",
     "head": "if (view === RETIRED_PATHS_SEGMENT) {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3277-3415|0": {
-    "anchor": "src/js/main.js:3277-3415",
-    "fp": "bb13eeedcc4f1821",
-    "head": "async function renderPublishingCategory(route, { isCurrent = () => view === route } = {}) {"
-  },
   "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3452|0": {
     "anchor": "src/js/main.js:3452",
     "fp": "ae55a874d470b605",
@@ -1989,9 +1984,9 @@
     "fp": "361fd1a361de6372",
     "head": "function openSavedCatalogList(list, saved, report, { fromCard = false } = {}) {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4207-4423|0": {
-    "anchor": "src/js/main.js:4207-4423",
-    "fp": "ff58d8a97e8d5878",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4207-4516|0": {
+    "anchor": "src/js/main.js:4207-4516",
+    "fp": "a4859b89342fe999",
     "head": "const catalogPresentation = createCatalogPresentation({"
   },
   "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4393-4399|0": {
@@ -6104,15 +6099,15 @@
     "fp": "7d86d42f1e10dd81",
     "head": "// routable but not showable, or showable but silently unreachable by URL."
   },
-  "docs/UX_STUDY.md|information-architecture-review|src/js/lib/route.js:98-201|0": {
-    "anchor": "src/js/lib/route.js:98-201",
-    "fp": "b3819b9af9d71c88",
+  "docs/UX_STUDY.md|information-architecture-review|src/js/lib/route.js:98-202|0": {
+    "anchor": "src/js/lib/route.js:98-202",
+    "fp": "3dce39cecf76e7fc",
     "head": "export function breadcrumbHierarchy({"
   },
-  "docs/UX_STUDY.md|information-architecture-review|src/js/main.js:1925-1990|0": {
-    "anchor": "src/js/main.js:1925-1990",
-    "fp": "8ce8e0d780a9b12c",
-    "head": "function renderBreadcrumbs() {"
+  "docs/UX_STUDY.md|information-architecture-review|src/js/main.js:1926-1991|0": {
+    "anchor": "src/js/main.js:1926-1991",
+    "fp": "b069a7184e014010",
+    "head": "const section = $(`#view-${view}`);"
   },
   "docs/UX_STUDY.md|information-architecture-review|test/ux-completion.test.js:92-106|0": {
     "anchor": "test/ux-completion.test.js:92-106",
@@ -6219,10 +6214,10 @@
     "fp": "ed4359c1c4354a5b",
     "head": "<form id=\"form-catalog-search\" class=\"stack\" role=\"search\">"
   },
-  "docs/UX_STUDY.md|sweep-result|src/js/views/catalog.js:667-670|0": {
-    "anchor": "src/js/views/catalog.js:667-670",
-    "fp": "df051e15d3f9789f",
-    "head": "nodes.search.addEventListener('submit', (event) => event.preventDefault());"
+  "docs/UX_STUDY.md|sweep-result|src/js/views/catalog.js:664-708|0": {
+    "anchor": "src/js/views/catalog.js:664-708",
+    "fp": "d915b82bc5b029f7",
+    "head": "function wire(key) {"
   },
   "docs/UX_STUDY.md|sweep-result|src/styles.css:2485-2487|0": {
     "anchor": "src/styles.css:2485-2487",

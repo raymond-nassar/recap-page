@@ -252,7 +252,7 @@ Notable passes, recorded because a reader would reasonably expect them to fail:
 * 3.2.2 On Input passes, overturning a tool result. HTML_CodeSniffer flagged `#form-catalog-search`
   under H32.2 for having no submit button on both scanned surfaces. The form is search-as-you-type
   and calls `preventDefault` on submit, results update in place, and no change of context occurs,
-  so the criterion is met. Evidence: `src/index.html:787-793`, `src/js/views/catalog.js:667-670`.
+  so the criterion is met. Evidence: `src/index.html:787-793`, `src/js/views/catalog.js:664-708`.
 
 #### UX-A-001: The primary call to action and the accent text fall below 4.5:1
 
@@ -745,8 +745,8 @@ to add comics remain separate addressable screens, while the Search address, `#/
 Evidence: `src/index.html:62-97`, `src/js/lib/route.js:24-33`.
 
 Every routed page except Home now states its stable hierarchy in one breadcrumb trail. Preview and
-Ask remain dialogs without breadcrumbs. Evidence: `src/js/lib/route.js:98-201`,
-`src/js/main.js:1925-1990`, `test/ux-completion.test.js:92-106`.
+Ask remain dialogs without breadcrumbs. Evidence: `src/js/lib/route.js:98-202`,
+`src/js/main.js:1926-1991`, `test/ux-completion.test.js:92-106`.
 
 The two missing Library sub-views recorded as UX-I-003 are now present, closing the grouping gap.
 
