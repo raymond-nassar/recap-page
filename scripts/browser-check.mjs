@@ -26590,6 +26590,120 @@ SCENARIOS.push({
 });
 
 SCENARIOS.push({
+  id: 'cloud-sync-review',
+  title: 'cloud review checks devices in batches and binds acknowledgment to the unchecked list',
+  async run(page, t) {
+    const fixture = cloudFixtureHost();
+    fixture.signedIn();
+    await installCloudFixture(page, fixture);
+    await seedFixtureState(page);
+    const packed = await page.evaluate(async () => {
+      const { CloudBackupProtocol, cloudBackupName } = await import('/js/lib/cloudProtocol.js');
+      const { createCloudHostTransport } = await import('/js/lib/cloudHostTransport.js');
+      const { captureCompleteBackup } = await import('/js/lib/completeBackup.js');
+      const protocol = new CloudBackupProtocol({ transport: createCloudHostTransport() });
+      await protocol.recordConsent({ connection: 'c'.repeat(32), provider: 'onedrive', device: 'Desktop' });
+      const snapshot = await captureCompleteBackup({ storage: localStorage });
+      const files = [];
+      for (let index = 1; index <= 17; index += 1) {
+        const stream = index.toString(16).padStart(32, '0');
+        const bytes = await protocol.pack(snapshot.text, { stream, generation: 1, device: `Phone ${index}` });
+        files.push({ name: cloudBackupName(stream, 1), bytes: Array.from(bytes) });
+      }
+      return files;
+    });
+    for (const [index, item] of packed.entries()) {
+      const bytes = Buffer.from(item.bytes);
+      fixture.host.items.set(`review-${index}`, {
+        id: `review-${index}`, name: item.name, bytes: bytes.toString('base64'), size: bytes.length, created: index,
+      });
+    }
+    fixture.host.items.set('broken-newest', {
+      id: 'broken-newest', name: packed[16].name.replace('-1.json.gz', '-2.json.gz'),
+      bytes: 'AQID', size: 3, created: 20,
+    });
+    fixture.host.items.set('unsupported', {
+      id: 'unsupported', name: 'recap-page-backup-v2-unreadable.json.gz', bytes: 'AQ==', size: 1, created: 21,
+    });
+    fixture.host.calls.length = 0;
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForSelector('#cloud-sync-review-backups:not([hidden])', { timeout: 20000 });
+    await click(page, '#cloud-sync-review-backups');
+    await page.waitForSelector('#cloud-sync-review:not([hidden])');
+    const gateIs = async (expected) => {
+      const { CloudBackupProtocol } = await import('/js/lib/cloudProtocol.js');
+      const { createCloudHostTransport } = await import('/js/lib/cloudHostTransport.js');
+      const protocol = new CloudBackupProtocol({ transport: createCloudHostTransport() });
+      const record = await protocol.record();
+      return (await protocol.syncGate({
+        connection: record.consent.connection, stream: record.stream, consentId: record.consent.id,
+      }))?.held === expected;
+    };
+    const held = () => page.evaluate(gateIs, true);
+    const firstBatch = {
+      held: await held(),
+      status: await page.$eval('#cloud-backup-status', (node) => node.textContent),
+    };
+    t.check('the first batch shows 15 checked backups and leaves one older device for the next batch while uploads stay held',
+      firstBatch.held && firstBatch.status.includes('15 device backups checked')
+      && firstBatch.status.includes('1 more device still to check'), JSON.stringify(firstBatch));
+    const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+    await click(page, '#btn-cloud-sync-check');
+    await page.waitForFunction(() => !document.querySelector('#btn-cloud-sync-override').hidden
+      && document.querySelector('#btn-cloud-sync-override').textContent === 'Continue with unchecked backups');
+    const listed = await page.$eval('#cloud-sync-review', (node) => node.textContent);
+    t.check('checked progress is shown beside each unchecked newest file, never its readable older generation',
+      listed.includes('Phone 16') && !listed.includes('Phone 17:') && listed.includes('Newest backup could not be read')
+      && listed.includes('recap-page-backup-v2-unreadable.json.gz') && await held());
+    const layout = [];
+    for (const width of [320, 640]) {
+      await page.setViewport({ width, height: 900 });
+      layout.push(await page.$eval('#cloud-sync-review', (node) => ({
+        width: innerWidth, fits: node.scrollWidth <= node.clientWidth + 1
+          && document.documentElement.scrollWidth <= document.documentElement.clientWidth + 1,
+      })));
+    }
+    await page.setViewport({ width: 1280, height: 900 });
+    t.check('the checked and unchecked lists wrap without horizontal scrolling on a narrow or zoomed page',
+      layout.every((entry) => entry.fits), JSON.stringify(layout));
+    await page.$eval('#btn-cloud-sync-override', (node) => { node.focus(); node.click(); });
+    await page.waitForSelector('#ask[open]');
+    await completePresentation(page, t, {
+      label: 'the unchecked-backup confirmation', root: '#ask', order: ['#ask-cancel', '#ask-ok'],
+      names: { '#ask-cancel': 'Cancel', '#ask-ok': 'Continue with unchecked backups' },
+    });
+    await escapeShellDialog(page, '#ask');
+    const canceled = await page.evaluate((saved) => ({
+      unchanged: localStorage.getItem('mrt.state.v2') === saved, focus: document.activeElement?.id,
+    }), before);
+    t.check('cancel preserves saved data, the held uploads and a usable confirmation control',
+      await held() && canceled.unchanged && canceled.focus === 'btn-cloud-sync-override', JSON.stringify(canceled));
+    await click(page, '#btn-cloud-sync-override');
+    await page.waitForSelector('#ask[open]');
+    fixture.host.items.set('later-unsupported', {
+      id: 'later-unsupported', name: 'recap-page-backup-v3-later.json.gz', bytes: 'AQ==', size: 1, created: 22,
+    });
+    await click(page, '#ask-ok');
+    await page.waitForFunction(() => document.querySelector('#cloud-backup-report').textContent.includes('changed during review'));
+    t.check('an intervening listing change withdraws acknowledgment without uploading', await held() && !fixture.host.calls.includes('create'));
+    await click(page, '#btn-cloud-sync-check');
+    await page.waitForFunction(() => document.querySelector('#btn-cloud-sync-check').textContent === 'Check next devices');
+    await click(page, '#btn-cloud-sync-check');
+    await page.waitForFunction(() => !document.querySelector('#btn-cloud-sync-override').hidden);
+    await click(page, '#btn-cloud-sync-override');
+    await page.waitForSelector('#ask[open]');
+    await click(page, '#ask-ok');
+    await page.waitForFunction(gateIs, { timeout: 20000 }, false);
+    const confirmed = {
+      held: await held(), unchanged: await page.evaluate((saved) => localStorage.getItem('mrt.state.v2') === saved, before),
+      status: await page.$eval('#cloud-backup-status', (node) => node.textContent),
+    };
+    t.check('confirming the current complete list releases uploads without changing local progress',
+      !confirmed.held && confirmed.unchanged, JSON.stringify(confirmed));
+  },
+});
+
+SCENARIOS.push({
   id: 'cloud-launch-sync',
   title: 'a cloud launch offer stays reversible through Keep, Load and Go back',
   async run(page, t) {
@@ -27429,6 +27543,15 @@ SCENARIOS.push({
         await installCloudFixture(faulty, fixture);
         await faulty.evaluateOnNewDocument(() => {
           window.__failedGateWrites = 0;
+          window.__failedMarkerWrites = 0;
+          const setItem = Storage.prototype.setItem;
+          Storage.prototype.setItem = function (key, value) {
+            if (key === 'mrt.cloud-backup.sync-pending.v1') {
+              window.__failedMarkerWrites += 1;
+              throw new DOMException('The marker write was refused.', 'QuotaExceededError');
+            }
+            return setItem.call(this, key, value);
+          };
           const put = IDBObjectStore.prototype.put;
           IDBObjectStore.prototype.put = function (value, key) {
             if (this.transaction.db.name === 'mrt-cloud-backup-v1' && key === 'sync-gate' && value?.held === true) {
@@ -27444,8 +27567,9 @@ SCENARIOS.push({
           && document.querySelector('#cloud-backup-status').textContent.includes('could not be confirmed'), { timeout: 20000 });
         t.check('the failed tab warns that its hold was not confirmed',
           await faulty.evaluate(() => document.querySelector('#cloud-backup-status').textContent.includes('Turn automatic backup off')));
-        t.check('the independent pending marker survives the refused IndexedDB hold',
-          await page.evaluate(() => localStorage.getItem('mrt.cloud-backup.sync-pending.v1') !== null)
+        t.check('neither hold persisted, and the previous database check still appears clear',
+          await faulty.evaluate(() => window.__failedMarkerWrites > 0)
+            && await page.evaluate(() => localStorage.getItem('mrt.cloud-backup.sync-pending.v1') === null)
             && await page.evaluate(gateIsClear));
       } finally {
         await faulty.close();

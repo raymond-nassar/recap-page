@@ -15,6 +15,7 @@ import { CloudBackupCoordinator } from './cloudCoordinator.js';
 import { cloudErrorText } from './cloudCopy.js';
 import { CloudLaunchSync, createCloudSyncMarker } from './cloudLaunchSync.js';
 import { CAPTURE_KEYS } from './completeBackup.js';
+import { CloudUploadPermit } from './cloudUploadPermit.js';
 
 export const CLOUD_BACKUP_CHANNEL = 'mrt.cloud-backup.changes.v1';
 // How often the card asks whether a sign-in in the browser has finished. The host answers from memory.
@@ -74,6 +75,10 @@ export function createCloudBackup({
   let keptRevision = 0;
   let coordinator = null;
   let launch = null;
+  const uploadPermit = launchSync ? new CloudUploadPermit({
+    locks: launchSync.locks ?? coordinatorOptions.locks ?? globalThis.navigator?.locks,
+    onLost: () => launch?.permitLost(),
+  }) : null;
   let launchContext = null;
   let discovery = IDLE;
   let discoveries = 0;
@@ -183,6 +188,10 @@ export function createCloudBackup({
           const current = await protocol.record();
           if (!current?.consent) return false;
           if (current.consent.provider !== 'onedrive') return true;
+          if (!await uploadPermit.allowed()) {
+            void launch?.follow();
+            return false;
+          }
           if (syncMarker.pending()) return false;
           const gate = await protocol.syncGate({
             connection: current.consent.connection, stream: current.stream, consentId: current.consent.id,
@@ -239,7 +248,7 @@ export function createCloudBackup({
     launchContext = context;
     running.holdSync('checking');
     launch = new CloudLaunchSync({
-      ...launchSync, protocol, coordinator: running, capture, isBlocked, marker: syncMarker,
+      ...launchSync, protocol, coordinator: running, capture, isBlocked, marker: syncMarker, uploadPermit,
       isOnline: coordinatorOptions.isOnline ?? (() => globalThis.navigator?.onLine !== false),
       connectionCurrent: async (context) => {
         const now = await transport.status();
@@ -430,8 +439,9 @@ export function createCloudBackup({
     loadSync() {
       return launch?.loadOffer() ?? Promise.resolve({ ok: false, error: 'Cloud backup is not available. Check again.' });
     },
-    overrideSync() {
-      return launch?.overrideFailure() ?? Promise.resolve({ ok: false, error: 'Cloud backup is not available. Check again.' });
+    overrideSync(review = null) {
+      return (review ? launch?.acknowledgeReview(review) : launch?.overrideFailure())
+        ?? Promise.resolve({ ok: false, error: 'Cloud backup is not available. Check again.' });
     },
     goBackSync() {
       return launch?.goBack() ?? Promise.resolve({ ok: false, error: 'Cloud backup is not available. Check again.' });

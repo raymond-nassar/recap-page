@@ -9,7 +9,7 @@ source can be reviewed alongside the prose.
 ## The three entry points
 
 The desktop source has three pages at one origin, each loading one module: the tracker at
-`src/index.html:1640`, the reader launch tab at `src/open.html:24`, and the development-only fault
+`src/index.html:1642`, the reader launch tab at `src/open.html:24`, and the development-only fault
 harness at `src/dev-faults.html:137`.
 
 The tracker entry calls `boot()`, then wires optional installation and registers the offline worker,
@@ -303,7 +303,7 @@ and it shares the same single offer: the result goes under the card's commands, 
 stands only while Home is the view, so leaving Home or using Done in the reading view ends it.
 
 **Refreshing shared state does not mean rebuilding every view.** The callback runs the shared
-refresh fan-out at `src/js/main.js:3396-3422`, including the rail, reading view, Home, Library hub
+refresh fan-out at `src/js/main.js:3399-3425`, including the rail, reading view, Home, Library hub
 and detail, Progress, API queue, Add destination, blocked state, breadcrumbs and route
 synchronization. Catalog and generated publishing panels render when their routes need them. Inside
 the reading view, each row is compared against a cache key built from the whole item and its node is
@@ -715,7 +715,7 @@ naming its stream, generation, device label and time, compressed with gzip, and 
 format and the compression. The 32 MiB cap applies to the envelope before it is compressed. After a
 create, the file is read back and the SHA-256 digests of the bytes sent and returned are compared, and
 only then does the generation count as made. Each backup can delete up to two of this stream's ordinary
-backup files older than its second-newest verified generation, at `src/js/lib/cloudProtocol.js:2242-2244`:
+backup files older than its second-newest verified generation, at `src/js/lib/cloudProtocol.js:2250-2252`:
 one delete keeps pace
 with one new file, and a second removes a file that a lost reply or a closed page left behind.
 
@@ -777,10 +777,12 @@ marker before arming the durable upload hold under the worker lock. Workers refu
 either hold remains. Before releasing a confirmed choice, the leader clears the marker while the
 database hold is still set, then releases that hold. A later check replaces an abandoned marker.
 Erase removes the marker along with the cloud records, but portable backup and restore do not carry
-it; older builds ignore it. If the marker and database hold both cannot be written, the card warns
-that the hold is unconfirmed and says to turn automatic backup off. If the checking tab then closes,
-an older tab may upload; issue #1161 tracks this remaining case. Other tabs follow a confirmed shared
-hold; no worker waits for the person's answer while holding its upload lock. When a hold is confirmed,
+it; older builds ignore it. Each current tab also needs a live upload permit held through Web Locks.
+Before attempting either hold write, the checking tab revokes existing permits under the worker lock.
+Closing a tab that failed both writes cannot restore another tab's revoked permit. A verified completed
+check grants a replacement; followers may adopt only a newer completed check. A reload starts a fresh
+check rather than inheriting an old permit. Missing lock capabilities stop uploads with update guidance.
+Other tabs follow a confirmed shared hold; no worker waits for the person's answer while holding its upload lock. When a hold is confirmed,
 failed or inconclusive checks leave uploads paused until a later check succeeds or the person confirms
 the warned override.
 A late check is quiet, and closing the question leaves the offer available. The banner's dismiss
@@ -790,8 +792,15 @@ connection, consent, election, local content and selected remote identity and by
 before it is applied. While a choice waits, the watcher lists identities and sizes without downloading
 unchanged files, backing off from five seconds to five minutes. Since a same-size in-place change is
 not visible in a listing, the final choice still downloads and checks the exact bytes. An unreadable,
-ambiguous or unsupported newest stream, or more than 16 other streams, makes the check inconclusive
-and leaves uploads paused; issue #1164 tracks a recoverable partial-result design.
+ambiguous or unsupported newest stream is listed separately from checked backups. Checks process
+at most 16 streams per batch, most recent identifiable streams first; Check next devices continues
+the review while uploads remain paused. Missing creation times sort after known times, not as evidence
+that a stream is older. No older generation replaces an unreadable newest backup. Once all batches
+finish, the reader must explicitly acknowledge the exact unchecked list before the existing progress
+choices or uploads can continue. That acknowledgement is local to this check, not a saved ignore rule.
+A changed listing withdraws it. Partial-review choices recheck the full listing and download the
+selected checked backup again, including its exact byte digest; unchanged checked identities from
+earlier batches describe the snapshots that were reviewed, not a globally atomic account snapshot.
 
 Before Load, a local snapshot with data or settings to preserve, or an earlier kept reference, is
 independently kept and verified without publishing it as a new ordinary backup. The protocol reuses
@@ -849,7 +858,7 @@ backup-format compatibility rules still apply.
 restored from an older backup, a new phone set up from one while the old one still runs, or a Windows
 or Android profile restored the same way. Such a record holds a counter behind the files its stream
 already has, and nothing on any platform says so. So every backup lists before it creates, at
-`src/js/lib/cloudProtocol.js:2182-2183`: a file of this stream at or above the number just taken, or a
+`src/js/lib/cloudProtocol.js:2190-2191`: a file of this stream at or above the number just taken, or a
 create refused because its name is taken, means another copy of the record is in use, and the browser
 starts a new stream, committed with strict durability and read back, rather than use that number. The
 old stream's files are left alone, because the other copy may still be making them, and discovery
@@ -1042,8 +1051,8 @@ Modern Timeline follows a path rather than a page of its own, since #897 retired
 page. Its follow control lists the resolved paths; choosing one narrows the Timeline to that path's
 stops in the path's own order, each led by the reading the path names, at
 `src/js/views/catalog.js:98-110`. The controller gives the catalog view the control's elements and
-its history effects rather than those concrete owners, at `src/js/main.js:4311-4317` and
-`src/js/main.js:4337-4338`. The followed id lives only in the validated `path` query of the
+its history effects rather than those concrete owners, at `src/js/main.js:4314-4320` and
+`src/js/main.js:4340-4341`. The followed id lives only in the validated `path` query of the
 Timeline's hash route, not in saved reader state, at `src/js/lib/route.js:334-336`. The retired
 page's addresses parse to the Timeline following the path they name, with the first path as the
 page's own fallback, at `src/js/lib/route.js:386-392`.
@@ -1060,14 +1069,14 @@ unread or deferred comics never finish one. Each stop is counted and drawn by th
 whose catalog id exactly matches the stop, then the first imported sibling in catalog order, then
 the reading the path names, at `src/js/views/catalog.js:40-54` and `src/js/views/catalog.js:74-96`. The
 place and the path's own progress are repainted in place by the Timeline's position-only refresh,
-which every Store-driven render calls at `src/js/main.js:3405`, preserving the selector, the stops
+which every Store-driven render calls at `src/js/main.js:3408`, preserving the selector, the stops
 and their DOM identities.
 
 Each stop is the Timeline's own card, with its Preview and its Add or Open. A followed path keeps the
 retired page's jump, to any stop by name or to **Next unfinished stop**, which is the stop marked
 **You are here**, at `src/js/views/catalog.js:378-402`; a jump opens, saves and marks nothing.
 Opening or previewing a stop records the path and that control in the current history entry, after
-any selection has settled, while its source address is retained, at `src/js/main.js:4126-4145`. After Back renders that path,
+any selection has settled, while its source address is retained, at `src/js/main.js:4129-4148`. After Back renders that path,
 focus returns to the control and brings it into view at `src/js/views/catalog.js:404-415`; there is
 no scroll position in saved reading data. Shared history-entry positions yield to this explicit
 opener so the focused control remains in view.
@@ -1076,7 +1085,7 @@ Catalog shelves, Preview and generated publishing pages share one constructed pr
 contract for individually titled cards, exact-list inspection and source attribution.
 That internal module imports neither the controller nor another concrete view; the controller injects
 navigation, imports, Store effects and publishing-page orchestration at
-`src/js/main.js:4147-4433`.
+`src/js/main.js:4150-4436`.
 
 Closing an unchanged Preview leaves its source cards and focus intact. A changed library refreshes
 the source, including an Add that finishes after dismissal. Each refresh belongs to its specific
@@ -1103,8 +1112,8 @@ The shared presentation contract removes the previous positional state and paint
 current label, hidden message, completion state or unavailable message at
 `src/js/views/shared/catalog-presentation.js:223-274`. Only the visible current list receives
 `aria-current="step"`. The controller injects live state and current-view knowledge at
-`src/js/main.js:4297-4339`, while the existing Store-driven render path calls the position-only
-refresh at `src/js/main.js:3396-3422`. That refresh leaves cards, controls, focus and scroll
+`src/js/main.js:4300-4342`, while the existing Store-driven render path calls the position-only
+refresh at `src/js/main.js:3399-3425`. That refresh leaves cards, controls, focus and scroll
 intact across same-tab and cross-tab state changes.
 
 ## Universes are a reviewed catalog projection

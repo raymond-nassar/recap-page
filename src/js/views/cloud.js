@@ -99,6 +99,13 @@ function keptAttentionNotice({ keptAttention } = {}) {
 function syncStatus(model) {
   const { sync } = model;
   if (!sync || sync.phase === 'off' || sync.phase === 'clear') return '';
+  if (sync.phase === 'review') {
+    const review = sync.review;
+    return `${plural(review.remotes.length, 'device backup')} checked. ${
+      review.remaining ? `${plural(review.remaining, 'more device')} still to check.`
+        : `${plural(review.unchecked.length, 'backup')} could not be checked. Review the list before continuing.`
+    } Automatic backups are paused. No older backups were substituted.`;
+  }
   if (sync.phase === 'failed') {
     if (sync.code === 'hold-unconfirmed') return cloudErrorText(sync.error, model.scope);
     const failure = {
@@ -168,7 +175,7 @@ export function cloudCardStatus(model, options = {}) {
 // Stopped and failed states, which wear the warning notice, whose mark does not rely on color.
 export function cloudCardWarns(model) {
   const { host } = model;
-  if (model.sync?.phase === 'failed' || model.sync?.keptUnavailable) return true;
+  if (['failed', 'review'].includes(model.sync?.phase) || model.sync?.keptUnavailable) return true;
   if (model.keptProblem || model.keptAttention > 0) return true;
   if (host === 'needs-sign-in' || host === 'unavailable' || host === 'not-answering') return true;
   if (host === 'not-connected') return Boolean(model.message);
@@ -187,6 +194,7 @@ function noticeOf(model, previous) {
   if (host === 'connected' && model.askedAgain) return 'asked-again';
   if (host === 'connected' && model.recordUnreadable) return 'record-unreadable';
   if (host === 'connected' && model.sync?.phase === 'failed') return `sync-failed:${model.sync.error}`;
+  if (host === 'connected' && model.sync?.phase === 'review') return `sync-review:${model.sync.review.checked}`;
   if (host === 'connected' && model.on && model.backup.phase === 'failed') return `failed:${model.backup.code}`;
   return null;
 }
@@ -412,9 +420,12 @@ export function createCloudSyncPrompt({
   }
 
   function render() {
-    const { notice, message, review } = elements();
+    const { notice, message, review, backupReview } = elements();
     if (!notice) return;
     const dismiss = dismissControl(notice);
+    const needsReview = getModel()?.sync?.phase === 'review';
+    if (backupReview) backupReview.hidden = !needsReview;
+    if (dismiss) dismiss.hidden = needsReview;
     const offer = currentOffer();
     const id = offer ? syncOfferId(offer) : null;
     if (question && question.id !== id && !question.withdrawn) {
@@ -430,9 +441,10 @@ export function createCloudSyncPrompt({
       if (['clear', 'off'].includes(sync?.phase)) announcedOffer = null;
       if (!sync?.notice) withdrawnWhileOpen = false;
       const withdrawn = withdrawnWhileOpen ? sync.notice : null;
-      notice.hidden = !withdrawn;
+      notice.hidden = !withdrawn && !needsReview;
       if (review) review.hidden = true;
-      if (message && withdrawn) message.textContent = withdrawn;
+      if (message && needsReview) message.textContent = 'Cloud backups need review. Automatic backups are paused.';
+      else if (message && withdrawn) message.textContent = withdrawn;
       if (dismiss) labelDismiss(dismiss, 'Dismiss the cloud notice');
       dismissShows = withdrawn ? { mode: 'notice', id: null } : null;
       return;
@@ -574,6 +586,7 @@ export function createCloudBackupView({
   // page finds already true when it opens (stage 3 review, S3b-2).
   let heard = null;
   let lastSyncFailure = null;
+  let shownReview = null;
   const report = (message, kind = 'error', claims = null) => {
     claimed = claims;
     notify('#cloud-backup-report', cloudErrorText(message, getModel().scope), kind);
@@ -679,9 +692,28 @@ export function createCloudBackupView({
     nodes.autoInput.checked = toggling ?? agreed;
     if (nodes.syncActions) {
       const sync = model.sync;
-      nodes.syncCheck.hidden = sync?.phase !== 'failed';
-      nodes.syncOverride.hidden = sync?.phase !== 'failed';
-      nodes.syncOverride.disabled = working || !sync?.canOverride;
+      const review = sync?.phase === 'review' ? sync.review : null;
+      if (nodes.syncReview) {
+        nodes.syncReview.hidden = !review;
+        if (shownReview !== review) {
+          shownReview = review;
+          nodes.syncReview.replaceChildren(...(review ? [
+            el('h4', { text: 'Checked newest backups' }),
+            el('ul', {}, review.remotes.map((copy) => el('li', {
+              text: `${copy.device}: ${when(copy.createdAt)}, ${plural(copy.readCount, 'comic marked read')}`,
+            }))),
+            review.unchecked.length ? el('h4', { text: 'Backups that could not be checked' }) : null,
+            review.unchecked.length ? el('ul', {}, review.unchecked.map((copy) => el('li', {
+              text: `${copy.name}: ${copy.reason}.`,
+            }))) : null,
+          ].filter(Boolean) : []));
+        }
+      }
+      nodes.syncCheck.hidden = sync?.phase !== 'failed' && !review?.remaining;
+      nodes.syncCheck.textContent = review ? 'Check next devices' : 'Check now';
+      nodes.syncOverride.hidden = sync?.phase !== 'failed' && !(review && review.remaining === 0);
+      nodes.syncOverride.textContent = review ? 'Continue with unchecked backups' : 'Back up this device anyway';
+      nodes.syncOverride.disabled = working || (!review && !sync?.canOverride);
       nodes.syncBack.hidden = !(sync?.phase === 'clear' && sync.kept && !sync.keptUnavailable);
       if (nodes.syncDiscard) {
         nodes.syncDiscard.hidden = !sync?.keptUnavailable || !['clear', 'offer', 'failed'].includes(sync.phase);
@@ -885,15 +917,22 @@ export function createCloudBackupView({
 
   function syncOverride() {
     return run(async () => {
-      const yes = await askConfirm({
+      const review = getModel().sync?.phase === 'review' ? getModel().sync.review : null;
+      const yes = await askConfirm(review ? {
+        title: 'Continue without checking these backups?',
+        body: `${plural(review.unchecked.length, 'backup')} in the list could not be checked. ${
+          plural(review.remotes.length, 'device backup')
+        } could be checked. Unchecked backups may contain different progress. Continuing does not delete them or select an older backup. This acknowledgment applies only to this check.`,
+        confirmLabel: 'Continue with unchecked backups',
+      } : {
         title: 'Back up this device anyway?',
         body: 'This device may not have the newest cloud progress. Backing it up now may offer older progress to your other devices.',
         confirmLabel: 'Back up this device anyway',
       });
       if (!yes) return;
-      const result = await onSyncOverride();
+      const result = await onSyncOverride(review);
       if (!result.ok) report(result.error);
-      else announce('Automatic backups can continue.');
+      else if (getModel().sync?.phase === 'clear') announce('Automatic backups can continue.');
     });
   }
 
