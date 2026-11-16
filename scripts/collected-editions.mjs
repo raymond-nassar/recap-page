@@ -402,6 +402,40 @@ function sameStory(a, b, comparePages = true) {
       && Number(a.page_count) === Number(b.page_count))));
 }
 
+// Matching titles say which stories a book holds, not which series printed them. The same rule as
+// the notes tier applies (#1274): a validated crosswalk entry, or a named source series whose
+// title and start year both match the list. A crosswalk conflict is already recorded and blocked.
+function titleSeriesConflict(check, range, seriesNames, mapping) {
+  if (!range || range.portion === 'partial') {
+    return { kind: 'series-identity', detail: 'A curated story title names an issue outside the full claimed contents.' };
+  }
+  if (mapping?.kind || mapping?.entry) return null;
+  const series = seriesForRange(check, range);
+  const listName = seriesNames?.[range.seriesId];
+  const span = range.from === range.to ? `#${range.from}` : `#${range.from}-${range.to}`;
+  if (typeof series !== 'string') {
+    return { kind: 'series-identity', detail: `No database series is recorded for ${span}, so its titles cannot identify the list's issues.` };
+  }
+  const ours = seriesStartYear(listName);
+  const theirs = seriesStartYear(series);
+  if (!ours || !theirs) {
+    return { kind: 'series-year', detail: `Cannot compare series start years (list: ${ours || 'unknown'}; database: ${theirs || 'unknown'}).` };
+  }
+  if (ours !== theirs) return { kind: 'series-year', detail: `The list dates this series from ${ours}; the database from ${theirs}.` };
+  if (!seriesTitle(series) || seriesTitle(series) !== seriesTitle(listName)) {
+    return { kind: 'series-name', detail: `The list series does not match ${series}.` };
+  }
+  return null;
+}
+
+// The database records a renumbered issue as its own number followed by the legacy number, as in
+// "12 (718)". Only the issue's own number may match; the legacy number never does (#1306).
+function sameIssueNumber(recorded, number) {
+  if (recorded === String(number)) return true;
+  const legacy = /^([1-9]\d*) \([1-9]\d*\)$/.exec(recorded || '');
+  return Boolean(legacy && legacy[1] === String(number));
+}
+
 function originalMatches(original, number, story, check, fixtures) {
   const url = `https://www.comics.org/api/issue/${original?.gcdIssueId}/?format=json`;
   const record = fixtures[original?.gcdIssueId];
@@ -410,7 +444,7 @@ function originalMatches(original, number, story, check, fixtures) {
   const name = check.gcdSeries.replace(/\(Marvel, (\d{4} series)\)$/, '($1)');
   return Number.isInteger(original?.gcdIssueId) && original.collectionSequence === story?.sequence_number
     && record?.url === url && issue?.api_url === url && issue.series === check.gcdSeriesUrl
-    && issue.series_name === name && issue.number === String(number) && !issue.variant_of
+    && issue.series_name === name && sameIssueNumber(issue.number, number) && !issue.variant_of
     && sourceStories.length === 1 && sameStory(sourceStories[0], story);
 }
 
@@ -602,7 +636,15 @@ export function checkEdition(edition, fixture, seriesNames, { crosswalk = [], fi
   } else if (check.tier === 'gcd-story-titles') {
     const titles = stories.map((story) => story.title);
     const wanted = Object.values(check.storyTitles);
-    const missing = wanted.filter((title) => !titles.includes(title));
+    // Each curated title consumes its own indexed story, so a repeated title cannot stand in for a
+    // second issue whose story the book does not hold (#1268).
+    const unclaimed = [...titles];
+    const missing = wanted.filter((title) => {
+      const index = unclaimed.indexOf(title);
+      if (index === -1) return true;
+      unclaimed.splice(index, 1);
+      return false;
+    });
     if (stories.length !== expected || missing.length) {
       conflicts.push({
         kind: 'evidence-weak',
@@ -612,9 +654,18 @@ export function checkEdition(edition, fixture, seriesNames, { crosswalk = [], fi
       });
     } else {
       const seriesId = edition.contents[0].seriesId;
+      const identities = new Map();
       for (const number of Object.keys(check.storyTitles)) {
         const key = number.includes(':') ? number : rowKey(seriesId, number);
-        if (!weak.has(number) && !blocked.has(key)) verified.add(key);
+        const [keySeries, keyNumber] = key.split(':').map(Number);
+        const range = edition.contents.find((candidate) => candidate.seriesId === keySeries
+          && candidate.from <= keyNumber && keyNumber <= candidate.to);
+        if (!identities.has(range)) {
+          const conflict = titleSeriesConflict(check, range, seriesNames, mappings.get(range));
+          if (conflict) conflicts.push({ ...conflict, evidence });
+          identities.set(range, !conflict);
+        }
+        if (identities.get(range) && !weak.has(number) && !blocked.has(key)) verified.add(key);
       }
     }
   } else if (['gcd-numbered-covers', 'gcd-original-stories', 'gcd-numbered-comparison'].includes(check.tier)) {

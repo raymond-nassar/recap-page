@@ -51,14 +51,20 @@ function stripComments(source) {
   return source.replace(/\/\*[\s\S]*?\*\//g, (comment) => ' '.repeat(comment.length));
 }
 
-function lineAt(source, index) {
-  return source.slice(0, index).split(/\r?\n/).length;
-}
-
 export function declarations(source) {
   const clean = stripComments(source);
   const out = [];
   const pattern = /([-\w]+)\s*:\s*([^;{}]+)(?:;|(?=\s*}))/g;
+  // Counted forward rather than re-split from the start for every declaration. The re-split was
+  // quadratic in the stylesheet: one call took about 345 ms on the 198 KB main stylesheet, and the
+  // spacing tests call this hundreds of times, which made them the slowest file in the suite.
+  let line = 1;
+  let counted = 0;
+  const lineAt = (index) => {
+    for (let at = source.indexOf('\n', counted); at !== -1 && at < index; at = source.indexOf('\n', at + 1)) line += 1;
+    counted = Math.max(counted, index);
+    return line;
+  };
   for (const match of clean.matchAll(pattern)) {
     const open = clean.lastIndexOf('{', match.index);
     const previousClose = clean.lastIndexOf('}', open);
@@ -69,7 +75,7 @@ export function declarations(source) {
       value: match[2].trim(),
       selector,
       index: match.index,
-      line: lineAt(source, match.index),
+      line: lineAt(match.index),
     });
   }
   return out;
