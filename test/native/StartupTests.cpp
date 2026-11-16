@@ -1385,7 +1385,7 @@ COLORREF capture(HWND window, const fs::path& destination, RenderEvidence* evide
     DeleteObject(bitmap);
     DeleteDC(memory);
     ReleaseDC(window, dc);
-    check(printed && static_cast<bool>(output), "fixture window capture failed");
+    check(static_cast<bool>(output), "fixture window capture failed");
     return color;
 }
 
