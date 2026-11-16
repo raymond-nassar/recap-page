@@ -56,7 +56,20 @@ test('timeout observation uses only retained exact-image root instances and fixe
   assert.match(report, /owner == state\.pid/);
   assert.match(report, /if \(emitted\+\+ == 16\) break/);
   assert.doesNotMatch(report, /<< (?:detail|button|executable)|EnumWindows|OpenProcess/);
-  assert.match(native, /return completeInstalledWait\(waitState,[\s\S]*fs::exists\(control \/ L"finish\.txt"\)[\s\S]*fs::exists\(control \/ L"root-timeout\.txt"\)/);
+  assert.match(native, /const bool complete = completeInstalledWait\(waitState,[\s\S]*fs::exists\(control \/ L"finish\.txt"\)[\s\S]*fs::exists\(control \/ L"root-timeout\.txt"\)[\s\S]*?return complete;/);
+});
+
+test('a missing retained root reports what its window anchor attempts found before failing', () => {
+  const observer = readFileSync(new URL('../test/native/StartupObserver.h', import.meta.url), 'utf8');
+  const hook = observer.match(/fact\.kind == WindowKind::startup && fact\.owner &&[\s\S]*?noteRootCandidate\([^;]*;/)?.[0];
+  assert.ok(hook);
+  for (const outcome of ['open-failed', 'exited', 'image-differs', 'thread-unmatched', 'bound'])
+    assert.match(hook, new RegExp(`"${outcome}"`));
+  assert.match(hook, /current_->bindRoot\(fact\.owner, process\.get\(\), primary\.get\(\)\);\s*outcome = "bound";/);
+  assert.match(observer, /if \(rootCandidates_\.size\(\) >= 64\) \{ \+\+rootCandidatesDropped_; return; \}/);
+  assert.match(observer, /if \(retained == rootAnchors_\.end\(\)\) reportRootCandidate\(value\);\s*finalRequire\(retained != rootAnchors_\.end\(\), "final-root-retained-instance-missing"/);
+  const native = readFileSync(new URL('../test/native/StartupTests.cpp', import.meta.url), 'utf8');
+  assert.match(native, /if \(finished - pollBegin >= 500 && \+\+slowPolls <= 16\) \{\s*report << "DIAG installed-poll-slow /);
 });
 
 test('actual native handoff ordering observes a timeout published at the finish boundary once', () => {

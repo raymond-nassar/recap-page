@@ -78,6 +78,7 @@ struct FixtureSetupContext {
     std::string fixture;
     DWORD gui = 0, coordinator = 0, sentinel = 0;
     size_t recordBytes = 0;
+    unsigned recordAttempts = 0;
     bool recordReady = false, recordParsed = false, clientRetained = false;
 };
 
@@ -267,7 +268,7 @@ auto fixtureSetup(const char* stage, FixtureSetupContext& context, Action action
                         << " condition=" << code << " category=" << category << " numeric=" << numeric
                         << " gui_pid=" << context.gui << " coordinator_pid=" << context.coordinator
                         << " sentinel_pid=" << context.sentinel << " record_bytes=" << context.recordBytes
-                        << " record_ready=" << context.recordReady << " record_parsed=" << context.recordParsed
+                        << " record_attempts=" << context.recordAttempts << " record_ready=" << context.recordReady << " record_parsed=" << context.recordParsed
                         << " client_retained=" << context.clientRetained << "\n";
             liveReport->flush();
         }
@@ -554,19 +555,45 @@ DWORD parseFixtureRecord(const std::string& text, FixtureRecordKind kind) {
     return pid;
 }
 
+constexpr unsigned SemanticRecordReadRetryLimit = 25;
+
+template<class Read, class Pause>
+auto retrySemanticRecordRead(Read read, Pause pause) -> decltype(read()) {
+    for (unsigned retry = 0;; ++retry) {
+        try {
+            return read();
+        } catch (const std::ios_base::failure&) {
+            if (retry == SemanticRecordReadRetryLimit) throw;
+            pause();
+        }
+    }
+}
+
+// A completed record that something else briefly holds open after its rename fails to open as a
+// stream error (#1239: record_bytes=49 record_ready=1 category=stream on arm64). Only that I/O
+// failure is retried, within the same bound as semantic records; a malformed record never is.
+template<class Pause>
+std::string readFixtureRecord(const fs::path& path, FixtureSetupContext& context, Pause pause) {
+    context.recordAttempts = 0;
+    return retrySemanticRecordRead([&] {
+        ++context.recordAttempts;
+        const auto bytes = fs::file_size(path);
+        context.recordBytes = static_cast<size_t>(bytes);
+        if (!bytes) throw FixtureRecordFailure("fixture-record-empty", 0);
+        if (bytes > 256) throw FixtureRecordFailure("fixture-record-oversize", context.recordBytes);
+        std::ifstream input;
+        input.exceptions(std::ios::badbit | std::ios::failbit);
+        input.open(path, std::ios::binary);
+        std::string text(static_cast<size_t>(bytes), '\0');
+        input.read(text.data(), static_cast<std::streamsize>(bytes));
+        if (input.peek() != std::char_traits<char>::eof())
+            throw FixtureRecordFailure("fixture-record-size-changed", text.size());
+        return text;
+    }, pause);
+}
+
 std::string readFixtureRecord(const fs::path& path, FixtureSetupContext& context) {
-    const auto bytes = fs::file_size(path);
-    context.recordBytes = static_cast<size_t>(bytes);
-    if (!bytes) throw FixtureRecordFailure("fixture-record-empty", 0);
-    if (bytes > 256) throw FixtureRecordFailure("fixture-record-oversize", context.recordBytes);
-    std::ifstream input;
-    input.exceptions(std::ios::badbit | std::ios::failbit);
-    input.open(path, std::ios::binary);
-    std::string text(static_cast<size_t>(bytes), '\0');
-    input.read(text.data(), static_cast<std::streamsize>(bytes));
-    if (input.peek() != std::char_traits<char>::eof())
-        throw FixtureRecordFailure("fixture-record-size-changed", text.size());
-    return text;
+    return readFixtureRecord(path, context, [] { Sleep(20); });
 }
 
 void fixtureRecordCases() {
@@ -629,8 +656,48 @@ void fixtureRecordCases() {
             error.numeric == std::make_error_code(std::errc::permission_denied).value();
     }
     expect(fileContext, "filesystem setup context lost its genuine code");
-    check(cases == 18 && liveReport, "fixture record case count or report differs");
-    *liveReport << "DIAG fixture-record-cases cases=18 passed=18 max_bytes=256 no_bad_record_retry=1\n";
+    const auto heldPath = fs::temp_directory_path() / (L"recap-held-record-" + std::to_wstring(GetCurrentProcessId()) + L".txt");
+    {
+        std::ofstream output(heldPath, std::ios::binary | std::ios::trunc);
+        output << valid;
+        check(static_cast<bool>(output), "held fixture record could not be written");
+    }
+    const auto hold = [&] {
+        recap::Handle value(CreateFileW(heldPath.c_str(), GENERIC_READ, 0, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr));
+        check(static_cast<bool>(value), "held fixture record could not be locked");
+        return value;
+    };
+    FixtureSetupContext held{ "held-record-case" };
+    auto briefHold = hold();
+    unsigned pauses = 0;
+    std::string recovered;
+    try {
+        recovered = readFixtureRecord(heldPath, held, [&] { if (++pauses == 2) briefHold.close(); });
+    } catch (const std::exception&) {}
+    expect(recovered == valid && held.recordAttempts == 3 && pauses == 2,
+        "briefly held fixture record did not recover through the bounded retry");
+    auto persistentHold = hold();
+    bool persistent = false;
+    try { readFixtureRecord(heldPath, held, [] {}); }
+    catch (const std::ios_base::failure&) { persistent = held.recordAttempts == SemanticRecordReadRetryLimit + 1; }
+    catch (const std::exception&) {}
+    expect(persistent, "persistently held fixture record was not reported as a stream failure after its bound");
+    persistentHold.close();
+    {
+        std::ofstream output(heldPath, std::ios::binary | std::ios::trunc);
+        check(static_cast<bool>(output), "empty fixture record could not be written");
+    }
+    bool notRetried = false;
+    try { readFixtureRecord(heldPath, held, [] {}); }
+    catch (const FixtureRecordFailure& error) {
+        notRetried = std::string_view(error.code) == "fixture-record-empty" && held.recordAttempts == 1;
+    }
+    catch (const std::exception&) {}
+    expect(notRetried, "completed bad fixture record was retried");
+    std::error_code removed;
+    fs::remove(heldPath, removed);
+    check(cases == 21 && liveReport, "fixture record case count or report differs");
+    *liveReport << "DIAG fixture-record-cases cases=21 passed=21 max_bytes=256 no_bad_record_retry=1 held_record_attempts=3\n";
     liveReport->flush();
 }
 
@@ -674,20 +741,6 @@ void write(const fs::path& path, const std::string& text) {
     std::ofstream output(path, std::ios::binary);
     output << text;
     check(static_cast<bool>(output), "fixture output could not be written");
-}
-
-constexpr unsigned SemanticRecordReadRetryLimit = 25;
-
-template<class Read, class Pause>
-auto retrySemanticRecordRead(Read read, Pause pause) -> decltype(read()) {
-    for (unsigned retry = 0;; ++retry) {
-        try {
-            return read();
-        } catch (const std::ios_base::failure&) {
-            if (retry == SemanticRecordReadRetryLimit) throw;
-            pause();
-        }
-    }
 }
 
 std::string readSemanticRecord(const fs::path& path) {
@@ -1148,6 +1201,37 @@ struct RenderEvidence {
     bool footerVerified = false;
 };
 
+constexpr unsigned FooterRecaptureLimit = 40;
+constexpr DWORD FooterRecaptureIntervalMs = 50;
+
+template<class Capture, class Inked, class Pause>
+unsigned recaptureUntilInked(Capture capture, Inked inked, Pause pause, unsigned limit) {
+    for (unsigned attempts = 1;; ++attempts) {
+        capture();
+        if (inked() || attempts >= limit) return attempts;
+        pause();
+    }
+}
+
+void footerCaptureCases() {
+    unsigned captures = 0, pauses = 0;
+    const auto immediate = recaptureUntilInked([&] { ++captures; }, [] { return true; }, [&] { ++pauses; }, FooterRecaptureLimit);
+    check(immediate == 1 && captures == 1 && pauses == 0, "an inked footer was recaptured");
+    captures = pauses = 0;
+    const auto delayed = recaptureUntilInked([&] { ++captures; }, [&] { return captures >= 3; }, [&] { ++pauses; }, FooterRecaptureLimit);
+    check(delayed == 3 && captures == 3 && pauses == 2, "a footer painted late was not recaptured until inked");
+    captures = pauses = 0;
+    bool inkedLast = true;
+    const auto never = recaptureUntilInked([&] { ++captures; }, [&] { return inkedLast = false; }, [&] { ++pauses; }, FooterRecaptureLimit);
+    check(never == FooterRecaptureLimit && captures == FooterRecaptureLimit && pauses == FooterRecaptureLimit - 1 && !inkedLast,
+          "a footer that never paints was not bounded and left uninked");
+    if (liveReport) {
+        *liveReport << "DIAG footer-capture-cases cases=3 passed=3 limit=" << FooterRecaptureLimit
+                    << " interval_ms=" << FooterRecaptureIntervalMs << "\n";
+        liveReport->flush();
+    }
+}
+
 COLORREF capture(HWND window, const fs::path& destination, RenderEvidence* evidence = nullptr) {
     check(window && IsWindow(window), "owned capture window is missing");
     RECT rect{};
@@ -1193,10 +1277,42 @@ COLORREF capture(HWND window, const fs::path& destination, RenderEvidence* evide
     const auto bitmap = CreateDIBSection(dc, &info, DIB_RGB_COLORS, &data, nullptr, 0);
     check(bitmap && memory, "fixture window capture unavailable");
     const auto old = SelectObject(memory, bitmap);
-    const bool printed = observed("print-window", [&] { return PrintWindow(window, memory, PW_CLIENTONLY) != FALSE; });
-    check(printed, "fixture window capture failed");
-    const auto color = GetPixel(memory, 10, 10);
-    check(color != CLR_INVALID, "owned capture background unavailable");
+    COLORREF color = CLR_INVALID;
+    LONG left = rect.right, right = -1, top = rect.bottom, bottom = -1;
+    const auto countFooterInk = [&] {
+        const auto* pixels = static_cast<const unsigned char*>(data);
+        evidence->footerInk = 0;
+        left = rect.right; right = -1; top = rect.bottom; bottom = -1;
+        for (LONG y = evidence->footer.top; y < evidence->footer.bottom; ++y) {
+            for (LONG x = evidence->footer.left; x < evidence->footer.right; ++x) {
+                const auto offset = (static_cast<size_t>(y) * static_cast<size_t>(rect.right) + static_cast<size_t>(x)) * 4;
+                if (RGB(pixels[offset + 2], pixels[offset + 1], pixels[offset]) == color) continue;
+                ++evidence->footerInk;
+                left = std::min(left, x); right = std::max(right, x);
+                top = std::min(top, y); bottom = std::max(bottom, y);
+            }
+        }
+        return evidence->footerInk >= 64 && right - left >= 16 && bottom - top >= 4;
+    };
+    // #1108: on hosted x64 the footer sometimes reads as properties-correct yet holds no ink in the
+    // first PrintWindow, while the wordmark beside it is drawn. The footer is recaptured, repainting
+    // first, until its ink appears or the bound is spent, and every check below still runs unchanged
+    // on whichever capture came last, so a footer that never paints fails exactly as before.
+    unsigned captureStarted = 0;
+    const auto attempts = recaptureUntilInked([&] {
+        if (captureStarted++) {
+            check(observed("owned-client-repaint", [&] {
+                return RedrawWindow(window, nullptr, nullptr, RDW_INVALIDATE | RDW_UPDATENOW | RDW_ALLCHILDREN) != FALSE;
+            }), "owned client repaint failed");
+        }
+        GdiFlush();
+        ZeroMemory(data, static_cast<size_t>(rect.right) * static_cast<size_t>(rect.bottom) * 4);
+        const bool printed = observed("print-window", [&] { return PrintWindow(window, memory, PW_CLIENTONLY) != FALSE; });
+        check(printed, "fixture window capture failed");
+        GdiFlush();
+        color = GetPixel(memory, 10, 10);
+        check(color != CLR_INVALID, "owned capture background unavailable");
+    }, [&] { return !evidence || countFooterInk(); }, [] { Sleep(FooterRecaptureIntervalMs); }, FooterRecaptureLimit);
     if (evidence) {
         checkpoint("ENTER", "wordmark-ink");
         RECT heading{};
@@ -1245,19 +1361,11 @@ COLORREF capture(HWND window, const fs::path& destination, RenderEvidence* evide
               "actual wordmark fill outline shadow or unclipped ink was not observed");
         checkpoint("EXIT", "wordmark-ink");
         checkpoint("ENTER", "pending-footer-ink");
-        LONG left = rect.right, right = -1, top = rect.bottom, bottom = -1;
-        for (LONG y = evidence->footer.top; y < evidence->footer.bottom; ++y) {
-            for (LONG x = evidence->footer.left; x < evidence->footer.right; ++x) {
-                const auto offset = (static_cast<size_t>(y) * static_cast<size_t>(rect.right) + static_cast<size_t>(x)) * 4;
-                if (RGB(pixels[offset + 2], pixels[offset + 1], pixels[offset]) == color) continue;
-                ++evidence->footerInk;
-                left = std::min(left, x); right = std::max(right, x);
-                top = std::min(top, y); bottom = std::max(bottom, y);
-            }
-        }
+        countFooterInk();
         if (liveReport) {
             *liveReport << "DIAG footer-capture ink_pixels=" << evidence->footerInk
-                        << " ink_left=" << left << " ink_top=" << top << " ink_right=" << right << " ink_bottom=" << bottom << "\n";
+                        << " ink_left=" << left << " ink_top=" << top << " ink_right=" << right << " ink_bottom=" << bottom
+                        << " capture_attempts=" << attempts << " capture_limit=" << FooterRecaptureLimit << "\n";
             liveReport->flush();
         }
         check(evidence->footerInk >= 64 && right - left >= 16 && bottom - top >= 4,
@@ -3521,11 +3629,17 @@ void installed(const std::map<std::wstring, std::wstring>& options, std::ofstrea
     size_t operationOrdinal = 1;
     bool operationActive = false;
     InstalledWaitState waitState;
+    // #1365: one failing arm64 run polled only twice while its root lived about 2.2 s. A slow poll
+    // names which part held it, so a stalled root count can be told from a stalled channel read.
+    size_t slowPolls = 0;
     observedWait("installed-result-wait", [&] {
         return installedPoll(report, [&](const char*& operation) {
+            const auto pollBegin = GetTickCount64();
             collectSemanticOperations(observer, control, operationOrdinal, operationActive);
+            const auto collected = GetTickCount64();
             operation = "root-count";
             const auto counts = observer.entryCounts(executable);
+            const auto counted = GetTickCount64();
             operation = "counts-publish";
             write(control / L"counts.txt", "started=" + std::to_string(counts.first) +
                   "\nended=" + std::to_string(counts.second) + "\n");
@@ -3554,10 +3668,18 @@ void installed(const std::map<std::wstring, std::wstring>& options, std::ofstrea
                    break;
                }
             }
-            return completeInstalledWait(waitState,
+            const bool complete = completeInstalledWait(waitState,
                [&] { operation = "finish-query"; return busy ? dismissed : fs::exists(control / L"finish.txt"); },
                [&] { operation = "timeout-query"; return fs::exists(control / L"root-timeout.txt"); },
                [&] { operation = "root-diagnostic"; reportInstalledRootTimeout(observer, executable, report); });
+            const auto finished = GetTickCount64();
+            if (finished - pollBegin >= 500 && ++slowPolls <= 16) {
+                report << "DIAG installed-poll-slow ordinal=" << slowPolls << " total_ms=" << finished - pollBegin
+                       << " collect_ms=" << collected - pollBegin << " root_count_ms=" << counted - collected
+                       << " remainder_ms=" << finished - counted << "\n";
+                report.flush();
+            }
+            return complete;
         });
     }, "installed observer deadline exceeded", 600000);
     observed("semantic-channel-drain", [&] {
@@ -3721,6 +3843,7 @@ int wmain(int argc, wchar_t** argv) {
             observed("semantic-evidence-cases", [] { semanticEvidenceCases(); });
             observed("caller-context-cases", [] { callerContextCases(); });
             observed("fixture-record-cases", [] { fixtureRecordCases(); });
+            observed("footer-capture-cases", [] { footerCaptureCases(); });
             beginHost(options, report, "preflight");
             proof::Observer observer(true, proof::ObservationProfile::calibration);
             size_t started = 0;
