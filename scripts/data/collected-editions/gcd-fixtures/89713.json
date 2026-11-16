@@ -1,0 +1,75 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/89713/?format=json",
+  "retrievedAt": "2026-11-16T02:24:43.840Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/89713/?format=json",
+    "series_name": "Wolverine: The Origin (2001 series)",
+    "descriptor": "3",
+    "number": "3",
+    "volume": "1",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "January 2002",
+    "key_date": "2002-01-00",
+    "page_count": "36.000",
+    "isbn": "",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/9926/?format=json",
+    "story_set": [
+      {
+        "type": "credits, title page",
+        "title": "Credits",
+        "feature": "Wolverine",
+        "sequence_number": 1,
+        "page_count": "1.000",
+        "notes": "Credits page with indicia on black background.",
+        "script": "None",
+        "pencils": "None"
+      },
+      {
+        "type": "comic story",
+        "title": "The Beast Within",
+        "feature": "Wolverine",
+        "sequence_number": 2,
+        "page_count": "23.000",
+        "notes": "No inks used, color applied digitally directly on pencilled artwork. Special thanks to Karen Staff.",
+        "script": "Paul Jenkins (credited) (plot, script); Bill Jemas (credited) (plot); Joe Quesada (credited) (plot)",
+        "pencils": "Andy Kubert (credited)"
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "House Advertisement",
+        "feature": "",
+        "sequence_number": 3,
+        "page_count": "1.000",
+        "notes": "House Advertisement (One-Pager) for: ULTIMATE MARVEL books (Ultimate X-Men #10, Ultimate Marvel Team-Up #8, Ultimate Spider-Man #13).",
+        "script": "None",
+        "pencils": "Adam Kubert"
+      },
+      {
+        "type": "advertisement",
+        "title": "Ads",
+        "feature": "Activision Video Games; Bandai Action Figures; Corn Nuts; Lorillard Tobacco Youth Smoking Prevention; Namco Games; Sony Imagesoft and Computer Entertainment Games; Square Enix Games",
+        "sequence_number": 4,
+        "page_count": "9.000",
+        "notes": "Total of 7 one-page and 1 two-pages advertisements for: Corn Nuts (snack, K.F. Holdings), Tales of Destiny II (game, Playstation, Namco), Mobile Suit Gundam (toys, Bandai), ICO (game, Playstation, Sony, 2 pages), Dragon Warrior VII game, Playstation, Enix), X-Men: Mutant Academy 2 (game, Playstation, Activision), Spider-Man 2: Enter Electro (game, Playstation, Activision), Tobacco is Whacko (anti-drugs, Lorillard).",
+        "script": "?",
+        "pencils": "various"
+      },
+      {
+        "type": "text article",
+        "title": "Back Cover",
+        "feature": "Wolverine",
+        "sequence_number": 5,
+        "page_count": "1.000",
+        "notes": "Back cover text.",
+        "script": "?",
+        "pencils": "None"
+      }
+    ]
+  }
+}

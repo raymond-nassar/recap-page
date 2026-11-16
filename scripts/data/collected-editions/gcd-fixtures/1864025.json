@@ -1,0 +1,45 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/1864025/?format=json",
+  "retrievedAt": "2026-11-14T12:51:51.695Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/1864025/?format=json",
+    "series_name": "Spider-Force (2018 series)",
+    "descriptor": "1",
+    "number": "1",
+    "volume": "",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "December 2018",
+    "key_date": "2018-12-00",
+    "page_count": "32.000",
+    "isbn": "",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/132588/?format=json",
+    "story_set": [
+      {
+        "type": "comic story",
+        "title": "15 Minutes",
+        "feature": "The Uncanny Spider-Force",
+        "sequence_number": 1,
+        "page_count": "21.000",
+        "notes": "",
+        "script": "Christopher Priest (credited as Priest)",
+        "pencils": "Paulo Siqueira (credited)"
+      },
+      {
+        "type": "promo (ad from the publisher)",
+        "title": "Spider-Geddon is Nigh! Keep a Watchful Eye...",
+        "feature": "Spider-Geddon",
+        "sequence_number": 2,
+        "page_count": "1.000",
+        "notes": "",
+        "script": "None",
+        "pencils": "?"
+      }
+    ]
+  }
+}

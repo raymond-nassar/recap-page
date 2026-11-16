@@ -1,0 +1,45 @@
+{
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0. Minimised and reorganised for this project; cover images are never recorded.",
+  "url": "https://www.comics.org/api/issue/558938/?format=json",
+  "retrievedAt": "2026-11-16T01:56:11.934Z",
+  "issue": {
+    "api_url": "https://www.comics.org/api/issue/558938/?format=json",
+    "series_name": "WWH Aftersmash: Warbound (2008 series)",
+    "descriptor": "1",
+    "number": "1",
+    "volume": "",
+    "variant_name": "",
+    "title": "",
+    "publication_date": "February 2008",
+    "key_date": "2008-02-00",
+    "page_count": "52.000",
+    "isbn": "",
+    "notes": "",
+    "variant_of": null,
+    "series": "https://www.comics.org/api/series/33241/?format=json",
+    "story_set": [
+      {
+        "type": "comic story",
+        "title": "",
+        "feature": "Warbound",
+        "sequence_number": 1,
+        "page_count": "17.000",
+        "notes": "",
+        "script": "Greg Pak",
+        "pencils": "Leonard Kirk"
+      },
+      {
+        "type": "comic story",
+        "title": "Tales of the Warbound",
+        "feature": "Warbound",
+        "sequence_number": 2,
+        "page_count": "6.000",
+        "notes": "",
+        "script": "Greg Pak",
+        "pencils": "Rafa Sandoval"
+      }
+    ]
+  }
+}

@@ -3694,12 +3694,12 @@ for this book on Hoopla" or "in Libby", never that borrowing is possible, and op
 with referrer isolation. No live provider lookup, availability, account, credential, cover image,
 description or affiliate/store destination is added.
 
-The selected Modern Timeline books extend the display without inventing collection headings. The
+The other selected books extend the display without inventing collection headings. The
 [licensed check inputs](../scripts/data/collected-editions/gcd-check-inputs.json) identify the
 selected lists, source-series mappings and supporting records; the
 [checked evidence](../scripts/data/collected-editions/gcd-editions.json) retains their dates and
-results. The original pilot's 23 relations remain unchanged, and 37 selected books add 198
-relations across 34 lists, intersected with each list's exact comics. Book names stay in the
+results. The original pilot's 23 relations remain unchanged, and 41 selected books add 224
+relations across 38 lists, intersected with each list's exact comics. Book names stay in the
 separate curated lane. For books without an exact indexer-note range, numbered interior-cover text
 and creator credits or matching original issue stories provide the check; no image bytes are used.
 
@@ -3716,6 +3716,51 @@ list's identities, dates, writers and an artist credit. Some creator roles diffe
 and database, so matching names do not establish matching roles. The Iron Man 2020: Robot
 Revolution paperback note names #1-6; all six originals independently match the selected list's
 series name, issue numbers and 2020 on-sale year.
+
+For World War Hulk: Warbound, the [paperback](https://www.comics.org/issue/1052285/) has no
+indexed ISBN; its note names WWH Aftersmash: Warbound #1-5. Its
+[collection series](https://www.comics.org/series/71229/) identifies one trade paperback. The
+[original series](https://www.comics.org/series/33241/) identifies the five separately retained
+originals. The [guide](https://www.comicbookherald.com/planet-hulk-reading-order-and-greg-pak-hulk-comics-guide/)
+names World War Hulk: Warbound #1-5 as the Aftersmash series. The list calls the series 2007
+and the database calls it 2008. The first original's on-sale date, 2007-12-19, and Greg Pak
+writing credit match the list. For #2-5, the database gives on-sale dates 2008-01-16, 2008-02-20,
+2008-03-19 and 2008-04-16; the list gives 2008-03-01, 2008-04-01, 2008-05-01 and 2008-06-16.
+Those list months match the database's cover months, not its on-sale dates. The database credits
+Leonard Kirk with the main story's pencils on #1-5 and Rafa Sandoval with the backup on #1-4.
+The list credits Sandoval as penciler on #1-3, Kirk as cover artist on #1 and penciler on #5,
+and gives no creators for #4. Matching names do not establish matching roles. The book and series
+were read on 2026-11-13 Pacific; the five originals were read on 2026-11-15 Pacific.
+
+For Wolverine: The Origin, the [paperback](https://www.comics.org/issue/1087082/) has ISBN
+0-7851-0965-X and six indexed comic stories. Its
+[collection series](https://www.comics.org/series/72280/) identifies one trade paperback. The
+[original series](https://www.comics.org/series/9926/) and six retained originals identify
+#1-6; each story matches the book's title, pages and credits. The list and database agree on the
+on-sale dates for #3-6. For #1 the list gives 2001-10-01 and the database gives 2001-09-05; for
+#2 the list gives 2001-11-01 and the database gives 2010-10-03. Both returned provider pages use
+the shorter title Wolverine: Origin and describe #1-6; the Libby return identifies a 2012 ebook
+with ISBN 9780785178255, not the print ISBN. The book and collection series were read on
+2026-11-12 Pacific; the original series and six issues were read on 2026-11-15 Pacific.
+
+For Spider-Geddon: Covert Ops, the [paperback](https://www.comics.org/issue/1928388/) has ISBN
+978-1-302-91497-4. Its [collection series](https://www.comics.org/series/141117/) identifies one
+trade paperback. The book has no indexed comic stories; its note names Spider-Force #1-3 and
+Spider-Girls #1-3. The separately identified original series and six retained issues match the
+list's series, numbers, on-sale dates and writers. The returned Libby page names both ranges;
+the Hoopla return names only #1-3 without identifying both series and remains held in
+[#1346](https://github.com/raymond-nassar/recap-page/issues/1346). The collection series was read
+on 2026-11-13 Pacific; the book, original series and issues were read on 2026-11-14 Pacific.
+
+For Thunderbolts: Burning Down the House, the [paperback](https://www.comics.org/issue/1091596/)
+has ISBN 978-0-7851-3166-3, and its
+[collection series](https://www.comics.org/series/72598/) identifies one trade paperback. The
+book's note names Thunderbolts #126-129; the existing crosswalk and four retained originals
+identify the list's series and match its issue numbers, on-sale dates and Andy Diggle writing
+credit. This book was held because the note's italic markers did not match the crosswalk's
+unformatted name; the checker now accepts that formatting without changing the crosswalk.
+The book and series were read on 2026-11-13 Pacific; the originals were read on 2026-11-15
+Pacific. The owner previously confirmed the Hoopla address; neither provider was retried.
 
 For the three selected Secret Invasion books, retained original issues independently identify the
 series and issue numbers and match the selected trade stories' titles, features and pages. Extra
