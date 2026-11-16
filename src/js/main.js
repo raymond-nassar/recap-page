@@ -1848,8 +1848,8 @@ function showView(next, { focus = true, push = false, at = null, capturePosition
   }
   homeAt = next === 'home' && at === HOME_CARDS ? at : null;
   view = next;
-  listRevisions.render();
   addView.enter(next);
+  listRevisions.render();
   if (next === 'add' || next === 'add-search') void searchListsView.update($('#search-q')?.value ?? '');
   for (const name of VIEWS) {
     const panel = $(`#view-${name}`);

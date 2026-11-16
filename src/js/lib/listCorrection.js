@@ -98,8 +98,9 @@ export function applyListRevision(state, listId, expectedList, items) {
   });
   const deferred = new Set(list.deferredIssueIds ?? []);
   const lists = Object.assign(Object.create(null), added.state.lists);
+  const merged = added.state.lists[listId];
   lists[listId] = {
-    ...added.state.lists[listId],
+    ...merged,
     itemIds: order,
     deferredIssueIds: order.filter((id) => deferred.has(id)),
   };
