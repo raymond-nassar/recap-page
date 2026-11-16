@@ -2600,6 +2600,54 @@ export const editionEvidence = {
       "checkedAt": "2026-11-14T14:52:18.050Z"
     },
     {
+      "catalogId": "war-of-the-realms",
+      "editionId": "thor-v3-wars-end",
+      "issueId": 69934,
+      "seriesId": 24308,
+      "number": "12",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/2130031/?format=json",
+      "checkedAt": "2026-11-14T20:46:09.293Z"
+    },
+    {
+      "catalogId": "war-of-the-realms",
+      "editionId": "thor-v3-wars-end",
+      "issueId": 70791,
+      "seriesId": 24308,
+      "number": "13",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/2130031/?format=json",
+      "checkedAt": "2026-11-14T20:46:09.293Z"
+    },
+    {
+      "catalogId": "war-of-the-realms",
+      "editionId": "thor-v3-wars-end",
+      "issueId": 70792,
+      "seriesId": 24308,
+      "number": "14",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/2130031/?format=json",
+      "checkedAt": "2026-11-14T20:46:09.293Z"
+    },
+    {
+      "catalogId": "war-of-the-realms",
+      "editionId": "thor-v3-wars-end",
+      "issueId": 70793,
+      "seriesId": 24308,
+      "number": "15",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/2130031/?format=json",
+      "checkedAt": "2026-11-14T20:46:09.293Z"
+    },
+    {
       "catalogId": "spider-verse",
       "editionId": "amazing-spider-man-edge-of-spider-verse",
       "issueId": 50954,
@@ -2970,6 +3018,126 @@ export const editionEvidence = {
       "conflicts": [],
       "source": "https://www.comics.org/api/issue/1052285/?format=json",
       "checkedAt": "2026-11-13T14:51:02.170Z"
+    },
+    {
+      "catalogId": "thor-best-of",
+      "editionId": "thor-v3-wars-end",
+      "issueId": 69934,
+      "seriesId": 24308,
+      "number": "12",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/2130031/?format=json",
+      "checkedAt": "2026-11-14T20:46:09.293Z"
+    },
+    {
+      "catalogId": "thor-best-of",
+      "editionId": "thor-v3-wars-end",
+      "issueId": 70791,
+      "seriesId": 24308,
+      "number": "13",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/2130031/?format=json",
+      "checkedAt": "2026-11-14T20:46:09.293Z"
+    },
+    {
+      "catalogId": "thor-best-of",
+      "editionId": "thor-v3-wars-end",
+      "issueId": 70792,
+      "seriesId": 24308,
+      "number": "14",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/2130031/?format=json",
+      "checkedAt": "2026-11-14T20:46:09.293Z"
+    },
+    {
+      "catalogId": "thor-best-of",
+      "editionId": "thor-v3-wars-end",
+      "issueId": 70793,
+      "seriesId": 24308,
+      "number": "15",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/2130031/?format=json",
+      "checkedAt": "2026-11-14T20:46:09.293Z"
+    },
+    {
+      "catalogId": "thor-best-of",
+      "editionId": "thor-v3-wars-end",
+      "issueId": 70794,
+      "seriesId": 24308,
+      "number": "16",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/2130031/?format=json",
+      "checkedAt": "2026-11-14T20:46:09.293Z"
+    },
+    {
+      "catalogId": "loki-reading-order",
+      "editionId": "thor-v3-wars-end",
+      "issueId": 69934,
+      "seriesId": 24308,
+      "number": "12",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/2130031/?format=json",
+      "checkedAt": "2026-11-14T20:46:09.293Z"
+    },
+    {
+      "catalogId": "loki-reading-order",
+      "editionId": "thor-v3-wars-end",
+      "issueId": 70791,
+      "seriesId": 24308,
+      "number": "13",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/2130031/?format=json",
+      "checkedAt": "2026-11-14T20:46:09.293Z"
+    },
+    {
+      "catalogId": "loki-reading-order",
+      "editionId": "thor-v3-wars-end",
+      "issueId": 70792,
+      "seriesId": 24308,
+      "number": "14",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/2130031/?format=json",
+      "checkedAt": "2026-11-14T20:46:09.293Z"
+    },
+    {
+      "catalogId": "loki-reading-order",
+      "editionId": "thor-v3-wars-end",
+      "issueId": 70793,
+      "seriesId": 24308,
+      "number": "15",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/2130031/?format=json",
+      "checkedAt": "2026-11-14T20:46:09.293Z"
+    },
+    {
+      "catalogId": "loki-reading-order",
+      "editionId": "thor-v3-wars-end",
+      "issueId": 70794,
+      "seriesId": 24308,
+      "number": "16",
+      "status": "verified",
+      "portion": "full",
+      "conflicts": [],
+      "source": "https://www.comics.org/api/issue/2130031/?format=json",
+      "checkedAt": "2026-11-14T20:46:09.293Z"
     }
   ],
   "linkCoverage": {
@@ -3014,6 +3182,12 @@ export const editionEvidence = {
       "either": 3,
       "hoopla": 3,
       "libby": 2
+    },
+    "loki-reading-order": {
+      "positions": 656,
+      "either": 5,
+      "hoopla": 5,
+      "libby": 5
     },
     "marvel-knights-to-planet-x-04": {
       "positions": 4,
@@ -3093,11 +3267,17 @@ export const editionEvidence = {
       "hoopla": 5,
       "libby": 0
     },
+    "thor-best-of": {
+      "positions": 144,
+      "either": 5,
+      "hoopla": 5,
+      "libby": 5
+    },
     "war-of-the-realms": {
       "positions": 66,
-      "either": 12,
-      "hoopla": 12,
-      "libby": 12
+      "either": 16,
+      "hoopla": 16,
+      "libby": 16
     },
     "world-war-hulk-aftersmash": {
       "positions": 26,

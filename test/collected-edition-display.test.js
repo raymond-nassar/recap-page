@@ -768,7 +768,7 @@ test('the bundled projection preserves pilot relations and matches selected list
   const lists = loadInputs().lists;
   assert.deepEqual(Object.keys(groups).sort(), [
     'civil-war-avengers', 'nebula-reading-order', 'doomwar', 'x-men-regenesis', 'secret-invasion', 'spider-geddon',
-    'siege-dark-reign-prelude', 'chaos-war', 'axis', 'iron-man-2020', ...Object.keys(expected),
+    'siege-dark-reign-prelude', 'chaos-war', 'axis', 'iron-man-2020', 'thor-best-of', 'loki-reading-order', ...Object.keys(expected),
   ].sort());
   for (const [listId, [book, series, first, last]] of Object.entries(expected)) {
     const items = lists[listId].items.filter((entry) => entry.seriesId === series
@@ -776,7 +776,7 @@ test('the bundled projection preserves pilot relations and matches selected list
     assert.equal(items.length, last - first + 1, listId);
     const additionalBooks = [
       'doctor-strange-waid-v1-across-the-universe', 'war-of-the-realms-journey-into-mystery',
-      'war-of-the-realms-new-agents-of-atlas',
+      'war-of-the-realms-new-agents-of-atlas', 'thor-v3-wars-end',
     ];
     const rows = groups[listId].filter((entry) => !additionalBooks.includes(entry.editionId));
     assert.deepEqual(rows.map((entry) => [entry.editionId, entry.issueId, entry.seriesId, entry.number]),
@@ -820,6 +820,10 @@ test('owner-confirmed destinations are limited to released editions', () => {
     editionId, entries.map(({ provider, url }) => [provider, url]),
   ]));
   assert.deepEqual(actual, {
+    'thor-v3-wars-end': [
+      ['hoopla', 'https://www.hoopladigital.com/title/13232107'],
+      ['libby', 'https://share.libbyapp.com/title/5678436'],
+    ],
     'xtreme-xmen-v1-destiny': [['libby', 'https://share.libbyapp.com/title/13812993']],
     'civil-war-2007-tpb': [
       ['hoopla', 'https://www.hoopladigital.com/title/12003677'],
@@ -897,11 +901,11 @@ test('owner-confirmed destinations are limited to released editions', () => {
       ['libby', 'https://share.libbyapp.com/title/9227013'],
     ],
   });
-  assert.equal(Object.keys(editionCatalog.editions).length, 42);
+  assert.equal(Object.keys(editionCatalog.editions).length, 43);
   for (const [id, entries] of Object.entries(destinations)) {
     const completeReturn = ['war-of-the-realms-journey-into-mystery',
       'war-of-the-realms-new-agents-of-atlas', 'world-war-hulk-warbound',
-      'wolverine-the-origin', 'spider-geddon-covert-ops'].includes(id);
+      'wolverine-the-origin', 'spider-geddon-covert-ops', 'thor-v3-wars-end'].includes(id);
     const currentReturn = [
       'amazing-spider-man-edge-of-spider-verse',
       'doctor-strange-waid-v1-across-the-universe',
@@ -981,4 +985,77 @@ test('heading-free selection rejects unknown, duplicate and mismatched reference
   }
   inputs.gcdInputs.listSelections = [valid, clone(valid)];
   assert.throws(() => buildAppData(inputs, build(inputs)), /selection/i);
+});
+
+test("Thor War's End links only the five independently matched original stories", () => {
+  const inputs = loadInputs();
+  const id = 'thor-v3-wars-end';
+  const edition = inputs.pilot.editions.find((entry) => entry.id === id);
+  assert.ok(edition, 'the selected book exists');
+  const check = inputs.gcdInputs.editions[id];
+  const trade = inputs.fixtures[edition.gcdIssueId].issue;
+  const source = inputs.gcdInputs.seriesEvidence[check.sourceSeriesId].series;
+  const collection = inputs.gcdInputs.seriesEvidence[check.collectionSeriesId].series;
+  assert.equal(edition.gcdIssueId, 2130031);
+  assert.equal(edition.gcdCheck.tier, 'gcd-original-stories');
+  assert.equal(trade.title, "War's End");
+  assert.equal(trade.number, '3');
+  assert.equal(trade.isbn, '978-1-302-91445-5');
+  assert.equal(trade.variant_of, null);
+  assert.equal(collection.api_url, trade.series);
+  assert.deepEqual(collection.active_issues, [trade.api_url]);
+  assert.equal(collection.binding, edition.format);
+  assert.equal(source.api_url, 'https://www.comics.org/api/series/125894/?format=json');
+  const originals = [
+    [12, 1950733, 3, '2019-04-17', '12 (718)'],
+    [13, 1971225, 5, '2019-05-29', '13 (719)'],
+    [14, 1980727, 7, '2019-06-26', '14 (720)'],
+    [15, 1987833, 10, '2019-07-10', '15 (721)'],
+    [16, 2012179, 13, '2019-08-28', '16 (722)'],
+  ];
+  assert.deepEqual(check.originalIssues.map(({ appNumber, gcdIssueId, collectionSequence, onSaleDate }) =>
+    [appNumber, gcdIssueId, collectionSequence, onSaleDate]), originals.map((entry) => entry.slice(0, 4)));
+  const clean = (value) => value.toLowerCase().replaceAll('(credited)', '').replace(/\s+/g, ' ').trim();
+  for (const [number, issueId, sequence, date, legacy] of originals) {
+    const original = inputs.fixtures[issueId].issue;
+    const stories = original.story_set.filter((story) => story.type === 'comic story');
+    const collected = trade.story_set.find((story) => story.sequence_number === sequence);
+    assert.equal(original.series, source.api_url);
+    assert.equal(original.number, legacy);
+    assert.equal(original.variant_of, null);
+    assert.ok(source.active_issues.includes(original.api_url));
+    assert.equal(stories.length, 1);
+    assert.equal(collected.type, 'comic story');
+    for (const field of ['title', 'feature', 'page_count', 'script', 'pencils']) {
+      assert.equal(clean(collected[field]), clean(stories[0][field]), `#${number} ${field}`);
+    }
+    for (const listId of ['war-of-the-realms', 'thor-best-of', 'loki-reading-order']) {
+      const items = inputs.lists[listId].items.filter((item) => item.seriesId === 24308 && item.number === String(number));
+      assert.equal(items.length, listId === 'war-of-the-realms' && number === 16 ? 0 : 1);
+      for (const item of items) {
+        assert.equal(item.title, `Thor (2018) #${number}`);
+        assert.equal(item.seriesName, 'Thor (2018 - 2019)');
+        assert.equal(item.onSale.slice(0, 10), date);
+        assert.deepEqual(editionRelations(listId, item).find((book) => book.id === id)?.links
+          .map(({ provider, url }) => [provider, url]), [
+          ['hoopla', 'https://www.hoopladigital.com/title/13232107'],
+          ['libby', 'https://share.libbyapp.com/title/5678436'],
+        ]);
+      }
+    }
+  }
+  const relations = editionEvidence.relations.filter((entry) => entry.editionId === id);
+  const issueIds = [69934, 70791, 70792, 70793, 70794];
+  assert.deepEqual(relations.map(({ catalogId, issueId }) => [catalogId, issueId]), [
+    ...issueIds.slice(0, 4).map((issueId) => ['war-of-the-realms', issueId]),
+    ...issueIds.map((issueId) => ['thor-best-of', issueId]),
+    ...issueIds.map((issueId) => ['loki-reading-order', issueId]),
+  ]);
+  const outputs = build(inputs);
+  assert.equal(outputs['gcd-editions.json'].editions.find((entry) => entry.edition === id).check.status, 'verified');
+  const bad = clone(inputs);
+  bad.fixtures[1971225].issue.number = '12 (719)';
+  const rejected = build(bad);
+  assert.notEqual(rejected['gcd-editions.json'].editions.find((entry) => entry.edition === id).check.status, 'verified');
+  assert.ok(!buildAppData(bad, rejected)['collectedEditionEvidence.js'].includes(`"editionId": "${id}"`));
 });
