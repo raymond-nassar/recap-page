@@ -79,21 +79,22 @@ export function createListRevisions({ $, el, getState, activeListId, isCurrent, 
   }
 
   async function compare(held, entry) {
-    status('Loading the published order...');
+    status('Loading the published order…');
     let order;
     try {
       order = await loadOrder(entry.file, { signal: held.controller.signal });
       if (!valid(held)) return;
       const items = publishedRevisionItems(entry, order);
       const difference = compareListOrders(currentList().itemIds, items.map(({ issueId }) => issueId));
-      if (!difference.added.length && !difference.reordered) {
+      const added = difference.added.length;
+      if (!added && !difference.reordered) {
         status('Your list already includes this published order. Your list is unchanged.');
         return;
       }
       status('');
       const yes = await askConfirm({
         title: `Update from ${entry.name}?`,
-        body: `Updating adds ${difference.added.length} comics from the published order. Everything already in your list stays, and your progress stays on the same comics. Your custom order may change.`,
+        body: `Updating adds ${added} ${added === 1 ? 'comic' : 'comics'} from the published order. Everything already in your list stays, and your progress stays on the same comics. Your custom order may change.`,
         confirmLabel: 'Update list',
         signal: held.controller.signal,
       });
@@ -125,7 +126,7 @@ export function createListRevisions({ $, el, getState, activeListId, isCurrent, 
   async function start({ automatic = false } = {}) {
     const held = begin();
     if (!held) return;
-    status('Loading published orders...');
+    status('Loading published orders…');
     try {
       const catalog = await loadCatalog();
       if (!valid(held)) return;

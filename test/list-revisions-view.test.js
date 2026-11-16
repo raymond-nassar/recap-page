@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { createListRevisions } from '../src/js/views/list-revisions.js';
 import { READING_ORDER_REVISIONS } from '../src/js/lib/readingOrderRevisions.js';
 
-function fixture({ catalogId = null, itemIds = [1], ask = null } = {}) {
+function fixture({ catalogId = null, itemIds = [1], ask = null, loadOrder = null } = {}) {
   const nodes = new Map();
   for (const id of [
     'list-revision-offer', 'list-revision-review', 'list-revision-check', 'list-revision-choose',
@@ -30,7 +30,7 @@ function fixture({ catalogId = null, itemIds = [1], ask = null } = {}) {
   let question;
   const view = createListRevisions({
     $: get, el, getState: () => state, activeListId: () => 'saved', isCurrent: () => visible,
-    loadCatalog: async () => ({ lists: [entry] }), loadOrder: async () => order,
+    loadCatalog: async () => ({ lists: [entry] }), loadOrder: loadOrder ?? (async () => order),
     askConfirm: async (options) => { question = options; return ask ? ask(options) : answer; },
     saveRevision: (_id, _signature, items) => {
       saves += 1;
@@ -49,6 +49,49 @@ function fixture({ catalogId = null, itemIds = [1], ask = null } = {}) {
 }
 
 const settle = () => new Promise((resolve) => setImmediate(resolve));
+
+test('review uses singular only when the update adds one comic', async () => {
+  try {
+    for (const [itemIds, count, noun] of [
+      [[1], 1, 'comic'],
+      [[], 2, 'comics'],
+      [[2, 1], 0, 'comics'],
+    ]) {
+      const f = fixture({ catalogId: 'linked', itemIds });
+      f.get('list-revision-check').click();
+      await settle();
+      assert.equal(
+        f.getQuestion().body,
+        `Updating adds ${count} ${noun} from the published order. Everything already in your list stays, and your progress stays on the same comics. Your custom order may change.`,
+      );
+      assert.equal(f.getSaves(), 0);
+    }
+  } finally {
+    delete globalThis.document;
+  }
+});
+
+test('pending comparison uses the app ellipsis in both loading messages', async () => {
+  let releaseOrder;
+  const pendingOrder = new Promise((resolve) => { releaseOrder = resolve; });
+  const f = fixture({ catalogId: 'linked', loadOrder: () => pendingOrder });
+  try {
+    f.get('list-revision-check').click();
+    const catalogStatus = f.get('list-revision-status').textContent;
+    await settle();
+    assert.deepEqual(
+      [catalogStatus, f.get('list-revision-status').textContent],
+      ['Loading published orders…', 'Loading the published order…'],
+    );
+    releaseOrder(f.order);
+    await settle();
+    assert.ok(f.getQuestion());
+  } finally {
+    releaseOrder(f.order);
+    await settle();
+    delete globalThis.document;
+  }
+});
 
 test('a personal list chooses a published order, cancels and can then update', async () => {
   try {
