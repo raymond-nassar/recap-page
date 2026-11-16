@@ -5668,7 +5668,7 @@ try {
   if (onlyViewport) viewports = viewports.filter((viewport) => (
     `${viewport.width}x${viewport.height}${viewport.textScale ? `@${viewport.textScale}` : ''}` === onlyViewport
   ));
-  assert.ok(viewports.length || onlyArgs[0] === '--only=phone-layout', `Unknown viewport: ${onlyViewport}`);
+  assert.ok(viewports.length || ['--only=phone-layout', '--only=list-revisions'].includes(onlyArgs[0]), `Unknown viewport: ${onlyViewport}`);
   if (placeholderAx) assert.deepEqual(viewports.map((profile) => profile.id), ['M11', 'M16'],
     'Placeholder AX proof requires exactly M11 and M16');
   for (const viewport of viewports) {
