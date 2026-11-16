@@ -433,8 +433,14 @@ final class LaunchUITests: XCTestCase {
                 var backgroundAtMs: Double?
                 if afterBackground {
                     XCUIDevice.shared.press(.home)
+                    // iOS 18 run 43132264103 polled for 10 seconds without seeing .runningBackground
+                    // (#1032). A home press can carry the app straight on to suspension between
+                    // the waiter's one-second polls, and a suspended app has left the foreground too.
                     let backgrounded = XCTNSPredicateExpectation(
-                        predicate: NSPredicate { _, _ in writer.state == .runningBackground },
+                        predicate: NSPredicate { _, _ in
+                            writer.state == .runningBackground
+                                || writer.state == .runningBackgroundSuspended
+                        },
                         object: writer)
                     XCTAssertEqual(
                         XCTWaiter.wait(for: [backgrounded], timeout: 10),
