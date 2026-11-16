@@ -235,7 +235,7 @@ reads the store's actual state before and after it changes anything.
 | App Store review submission | [`app-store-release.yml`](IOS.md#submit-through-the-workflow) | `app-store-release` | `docs/releases/<version>-store.json`, 4,000 characters |
 | GitHub release | [`github-release.yml`](MAINTAINING.md#4-create-the-release-from-the-merged-commit) | `github-release` | The version's reader summary in `CHANGELOG.md` and a link to the full changelog |
 
-The production Play credential is a separate service account bound only to its environment, so
+The production Play credential must be a separate service account bound only to its environment, so
 the delegated test-build approvals cannot reach production. Microsoft Store submission already
 reads the same store text and is unchanged.
 
