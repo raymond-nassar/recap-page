@@ -564,12 +564,31 @@ async function watchPackage(ms) {
 const launcherArguments = (processes) => processes.filter((entry) => /^RecapPageLauncher\.exe$/i.test(entry.Name))
   .map((entry) => String(entry.CommandLine ?? '').replace(/^\s*(?:"[^"]*"|\S+)\s*/, '').trim());
 
+// The launcher exits within milliseconds of starting the engine, so polling never saw it: run 43971703534
+// recorded only node.exe for all three activations. Process-creation auditing with command lines keeps a
+// record after the process is gone. Hosted runners are en-US, which is where the subcategory name holds.
+function auditProcessCreation() {
+  ps(`auditpol.exe /set /subcategory:'Process Creation' /success:enable | Out-Null;
+    if ($LASTEXITCODE -ne 0) { throw "auditpol exited $LASTEXITCODE" }
+    $key = 'HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System\\Audit';
+    New-Item -Path $key -Force | Out-Null;
+    Set-ItemProperty -Path $key -Name 'ProcessCreationIncludeCmdLine_Enabled' -Value 1 -Type DWord`);
+}
+
+const launchersCreatedSince = (since) => psJson(`
+  Get-WinEvent -FilterHashtable @{ LogName = 'Security'; Id = 4688; StartTime = [DateTime]::Parse('${since}') } -ErrorAction SilentlyContinue |
+    ForEach-Object {
+      $data = @{}; ([xml]$_.ToXml()).Event.EventData.Data | ForEach-Object { $data[$_.Name] = $_.'#text' };
+      if ($data.NewProcessName -like '*\\RecapPageLauncher.exe') {
+        [PSCustomObject]@{ Name = 'RecapPageLauncher.exe'; CommandLine = $data.CommandLine; path = $data.NewProcessName } } }`);
+
 // Start the package through a route other than its Start entry and record what ran, whether the engine
 // answered and whether any window opened: Reconnect and sign-in must start only the engine.
 async function quietActivation(label, start) {
   await stopPackage();
   await stopEdge();
   const before = windowKeys();
+  const since = new Date(Date.now() - 2000).toISOString();
   let error = null;
   try {
     start();
@@ -580,8 +599,9 @@ async function quietActivation(label, start) {
   const ready = await engineReady(30000);
   await sleep(3000);
   const windows = newWindows(before);
+  const launchers = launchersCreatedSince(since);
   return {
-    label, error, engineReady: ready, windows, launcherArguments: launcherArguments(processes),
+    label, error, engineReady: ready, windows, launchers, launcherArguments: launcherArguments(launchers),
     processes: processes.map(({ Name, CommandLine, packageFullName }) => ({ Name, CommandLine, packageFullName })),
     browserWindows: windows.filter((entry) => entry.ProcessName === 'msedge').length,
   };
@@ -589,6 +609,7 @@ async function quietActivation(label, start) {
 
 async function mechanismsPhase() {
   const record = {};
+  auditProcessCreation();
   const protocol = (uri) => () => ps(`Start-Process -FilePath ${encoded(uri)}`);
   record.reconnect = await quietActivation('reconnect', protocol('recap-page:'));
   // Web content controls the whole address; with fixed Parameters and no %1 none of it may reach the launcher.
