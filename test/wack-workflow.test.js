@@ -696,7 +696,14 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
   assert.match(observer, /registered-visual-helper/);
   assert.match(native, /process-instance-cases cases=6 passed=6/);
   assert.match(native, /pending footer text ink was not captured/);
-  assert.match(native, /fixture-record-cases cases=18 passed=18 max_bytes=256 no_bad_record_retry=1/);
+  assert.match(native, /footer-capture-cases cases=3 passed=3 limit=/);
+  assert.match(native, /observed\("footer-capture-cases", \[\] \{ footerCaptureCases\(\); \}\)/);
+  assert.match(native, /capture_attempts=/);
+  assert.match(native, /fixture-record-cases cases=21 passed=21 max_bytes=256 no_bad_record_retry=1 held_record_attempts=3/);
+  const fixtureRead = native.match(/std::string readFixtureRecord\(const fs::path& path, FixtureSetupContext& context, Pause pause\) \{([\s\S]*?)^\}/m)?.[1];
+  assert.ok(fixtureRead);
+  assert.match(fixtureRead, /retrySemanticRecordRead\(\[&\]/);
+  assert.match(native, /record_attempts=/);
   assert.match(native, /fixture-observed-parse/);
   assert.match(native, /fixture-sentinel-retain/);
   assert.doesNotMatch(native, /stoul\(observed\.substr/);
