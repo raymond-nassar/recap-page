@@ -3,6 +3,7 @@
 #include "ServerOwnership.h"
 #include <filesystem>
 #include <fstream>
+#include <ostream>
 #include <thread>
 
 namespace recap::ownership::tests {
@@ -23,6 +24,73 @@ public:
 
 inline void check(bool value, const char* message) {
     if (!value) throw FixtureFailure(message);
+}
+
+enum class FixtureOperation {
+    unitCases, directory, script, runtimeDirectory, runtimeCopy, runtimeSize, runtimeCompare,
+    canonicalize, childStart, childReady, verify, childStop, closedListener, handles, cleanup
+};
+
+inline const char* operationName(FixtureOperation operation) {
+    switch (operation) {
+    case FixtureOperation::unitCases: return "unit-cases";
+    case FixtureOperation::directory: return "directory";
+    case FixtureOperation::script: return "script";
+    case FixtureOperation::runtimeDirectory: return "runtime-directory";
+    case FixtureOperation::runtimeCopy: return "runtime-copy";
+    case FixtureOperation::runtimeSize: return "runtime-size";
+    case FixtureOperation::runtimeCompare: return "runtime-compare";
+    case FixtureOperation::canonicalize: return "canonicalize";
+    case FixtureOperation::childStart: return "child-start";
+    case FixtureOperation::childReady: return "child-ready";
+    case FixtureOperation::verify: return "verify";
+    case FixtureOperation::childStop: return "child-stop";
+    case FixtureOperation::closedListener: return "closed-listener";
+    case FixtureOperation::handles: return "handles";
+    case FixtureOperation::cleanup: return "cleanup";
+    }
+    return "unknown";
+}
+
+class FixtureObservation {
+    std::ostream& report_;
+    FixtureOperation operation_ = FixtureOperation::unitCases;
+public:
+    explicit FixtureObservation(std::ostream& report) : report_(report) {}
+    void checkpoint(FixtureOperation operation) {
+        operation_ = operation;
+        report_ << "DIAG native-verifier-operation operation=" << operationName(operation_) << "\n";
+        report_.flush();
+    }
+    void failure(const std::exception& error) {
+        const char* category = "standard";
+        long long numeric = 0;
+        if (const auto* file = dynamic_cast<const std::filesystem::filesystem_error*>(&error)) {
+            category = "filesystem"; numeric = file->code().value();
+        } else if (const auto* stream = dynamic_cast<const std::ios_base::failure*>(&error)) {
+            category = "stream"; numeric = stream->code().value();
+        } else if (const auto* system = dynamic_cast<const std::system_error*>(&error)) {
+            category = "system"; numeric = system->code().value();
+        } else if (dynamic_cast<const std::bad_alloc*>(&error)) {
+            category = "allocation";
+        } else if (dynamic_cast<const FixtureFailure*>(&error)) {
+            category = "condition";
+        }
+        report_ << "DIAG native-verifier-exception operation=" << operationName(operation_)
+                << " category=" << category << " numeric=" << numeric << "\n";
+        report_.flush();
+    }
+};
+
+template<class Action>
+inline void observeFixture(std::ostream& report, Action action) {
+    FixtureObservation observation(report);
+    try {
+        action(observation);
+    } catch (const std::exception& error) {
+        observation.failure(error);
+        throw;
+    }
 }
 
 class FakeApi final : public Api {
@@ -237,8 +305,11 @@ public:
 };
 
 // Call in the proof worker before any WMI/UIAutomation activation initializes COM security.
-inline void run(const std::wstring& nodeRuntime, const std::filesystem::path& scratchDirectory) {
+inline void runCases(const std::wstring& nodeRuntime, const std::filesystem::path& scratchDirectory,
+                     FixtureObservation& observation) {
+    observation.checkpoint(FixtureOperation::unitCases);
     unitCases();
+    observation.checkpoint(FixtureOperation::directory);
     const auto directory = scratchDirectory / (L"server-ownership-" + std::to_wstring(GetCurrentProcessId()));
     check(std::filesystem::create_directory(directory), "server-verifier/fixture-directory");
     struct Cleanup {
@@ -254,6 +325,7 @@ inline void run(const std::wstring& nodeRuntime, const std::filesystem::path& sc
             std::filesystem::remove(directory, error);
         }
     } cleanup{ directory };
+    observation.checkpoint(FixtureOperation::script);
     const auto script = directory / L"server.mjs";
     {
         std::ofstream file(script, std::ios::binary);
@@ -263,12 +335,16 @@ inline void run(const std::wstring& nodeRuntime, const std::filesystem::path& sc
         check(static_cast<bool>(file), "server-verifier/fixture-script");
     }
     const auto runtimeDirectory = directory / L"runtime";
+    observation.checkpoint(FixtureOperation::runtimeDirectory);
     check(std::filesystem::create_directory(runtimeDirectory), "server-verifier/fixture-runtime-directory");
     const auto runtime = runtimeDirectory / L"node.exe";
+    observation.checkpoint(FixtureOperation::runtimeCopy);
     check(std::filesystem::copy_file(nodeRuntime, runtime), "server-verifier/fixture-runtime-copy");
+    observation.checkpoint(FixtureOperation::runtimeSize);
     const auto bytes = std::filesystem::file_size(nodeRuntime);
     check(bytes > 0 && bytes <= 160ULL * 1024 * 1024 && std::filesystem::file_size(runtime) == bytes,
           "server-verifier/fixture-runtime-size");
+    observation.checkpoint(FixtureOperation::runtimeCompare);
     {
         std::ifstream source(std::filesystem::path(nodeRuntime), std::ios::binary), copied(runtime, std::ios::binary);
         check(source && copied, "server-verifier/fixture-runtime-open");
@@ -285,14 +361,18 @@ inline void run(const std::wstring& nodeRuntime, const std::filesystem::path& sc
         } while (source.gcount() != 0);
         check(compared == bytes, "server-verifier/fixture-runtime-complete");
     }
+    observation.checkpoint(FixtureOperation::canonicalize);
     Expectations expected{ canonicalFile(runtime.wstring()), canonicalFile(script.wstring()), 0 };
+    observation.checkpoint(FixtureOperation::childStart);
     OwnedNode child(expected);
+    observation.checkpoint(FixtureOperation::childReady);
     expected.port = child.port();
     WinApi api;
     const auto invoke = [&](DWORD pid, const Expectations& value) {
         CallDeadline deadline;
         return verify(pid, value, api);
     };
+    observation.checkpoint(FixtureOperation::verify);
     auto result = invoke(child.pid, expected);
     if (result.owned != Owned::yes) throw FixtureFailure("server-verifier/owned-fixture", result);
     check(invoke(child.pid == MAXDWORD ? child.pid - 1 : child.pid + 1, expected).owned == Owned::no,
@@ -303,12 +383,20 @@ inline void run(const std::wstring& nodeRuntime, const std::filesystem::path& sc
     wrong = expected;
     wrong.server += L".foreign";
     check(invoke(child.pid, wrong).owned == Owned::no, "server-verifier/wrong-command");
+    observation.checkpoint(FixtureOperation::childStop);
     child.stop();
+    observation.checkpoint(FixtureOperation::closedListener);
     check(invoke(child.pid, expected).owned == Owned::no, "server-verifier/closed-listener");
+    observation.checkpoint(FixtureOperation::handles);
     check(child.process.close() == ERROR_SUCCESS && child.output.close() == ERROR_SUCCESS &&
           child.job.close() == ERROR_SUCCESS, "server-verifier/fixture-handles");
+    observation.checkpoint(FixtureOperation::cleanup);
     check(std::filesystem::remove(script) && std::filesystem::remove(runtime) &&
           std::filesystem::remove(runtimeDirectory) && std::filesystem::remove(directory),
           "server-verifier/fixture-cleanup");
+}
+
+inline void run(const std::wstring& nodeRuntime, const std::filesystem::path& scratchDirectory, std::ostream& report) {
+    observeFixture(report, [&](FixtureObservation& observation) { runCases(nodeRuntime, scratchDirectory, observation); });
 }
 }
