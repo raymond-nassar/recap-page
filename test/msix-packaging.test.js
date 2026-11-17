@@ -776,19 +776,20 @@ test('the package declares only runFullTrust', () => {
 
 test('the package activates only through its startup task and fixed Reconnect protocol (#1412)', async () => {
   const { activationExtensions } = await import('../scripts/inspect-msix.mjs');
-  const source = read(MANIFEST);
+  const source = read(MANIFEST).replaceAll('\r\n', '\n');
   assert.deepEqual(activationExtensions(source), [
     'Category=windows.startupTask|Executable=RecapPageLauncher.exe'
       + '|EntryPoint=Windows.FullTrustApplication|uap10:Parameters=--recap-startup-task-v1'
       + '|desktop:StartupTask:TaskId=RecapPageStartup|Enabled=false|DisplayName=Recap Page',
     'Category=windows.protocol|uap3:Protocol:Name=recap-page|Parameters=--recap-reconnect-v1',
   ]);
+  assert.deepEqual(activationExtensions(source.replaceAll('\n', '\r\n')), activationExtensions(source));
   for (const [before, after] of [
     ['Enabled="false"', 'Enabled="true"'],
     ['uap10:Parameters="--recap-startup-task-v1"', 'uap10:Parameters="--recap-startup-task-v1 %1"'],
     ['uap10:Parameters="--recap-startup-task-v1"', 'uap11:Parameters="--recap-startup-task-v1"'],
     ['uap10:Parameters="--recap-startup-task-v1"', ''],
-    ['Executable="RecapPageLauncher.exe"\r\n          EntryPoint', 'Executable="runtime\\node.exe"\r\n          EntryPoint'],
+    ['Executable="RecapPageLauncher.exe"\n          EntryPoint', 'Executable="runtime\\node.exe"\n          EntryPoint'],
     ['</Extensions>', '<uap:Extension Category="windows.fileTypeAssociation" /></Extensions>'],
     ['<Extensions>', '<Extensions><desktop:Extension Category="windows.fullTrustProcess" Executable="RecapPageLauncher.exe" />'],
     // Windows would hand the page's whole address to the launcher through %1, so the token stays alone.
@@ -800,7 +801,10 @@ test('the package activates only through its startup task and fixed Reconnect pr
       '<uap3:Extension Category="windows.protocol" Executable="runtime\\node.exe" EntryPoint="Windows.FullTrustApplication">'],
   ]) {
     assert.equal(source.split(before).length, 2, `the mutation seam ${before} is not unique`);
-    assert.throws(() => activationExtensions(source.replace(before, after)), /activation extensions differ/);
+    for (const newline of ['\n', '\r\n']) {
+      const mutated = source.replace(before, after).replaceAll('\n', newline);
+      assert.throws(() => activationExtensions(mutated), /activation extensions differ/);
+    }
   }
   // The pin only guards a release if every inspected package's own manifest goes through it.
   const inspectPackage = read(INSPECT).replaceAll('\r\n', '\n')
