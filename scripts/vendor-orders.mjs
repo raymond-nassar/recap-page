@@ -34,7 +34,8 @@ import { RateLimiter } from '../src/js/lib/limiter.js';
 import { placeholderId } from './lib/placeholder-id.mjs';
 import { legacyIdentityChecked, legacyIdentityKeyFor, repairWolverineTitles } from './lib/wolverine-title-repairs.mjs';
 import { countOrderGaps } from '../src/js/lib/model.js';
-import { OWNER_EXTERNAL_SUPPLEMENT_KIND, supplementItemFields } from './lib/owner-external-supplement.mjs';
+import { supplementItemFields } from './lib/owner-external-supplement.mjs';
+import { OWNER_GCD_SUPPLEMENT } from '../src/js/lib/model.js';
 import {
   RATED_GUIDE_INDEX_FILE,
   buildRatedGuideIndex,
@@ -347,10 +348,15 @@ function catalogCover(order, payload) {
 // credits, like the issue count, and kept to writers credited on at least a quarter of its issues:
 // a crossover credits dozens of writers once each, and naming them all would link every event to
 // every other.
+//
+// Credits from the Grand Comics Database are left out. Its data is CC BY-SA 4.0 and is kept to the
+// few files the LICENSE names, and the catalog is not one of them; the floor still counts every
+// issue, so those issues weigh against a writer rather than vanishing from the denominator.
 export function catalogWriters(payload) {
   const items = Array.isArray(payload?.items) ? payload.items : [];
   const counts = new Map();
   for (const item of items) {
+    if (item?.metadataSourceKind === OWNER_GCD_SUPPLEMENT) continue;
     const names = new Set((Array.isArray(item?.creators) ? item.creators : [])
       .filter((credit) => credit?.role === 'writer' && typeof credit.name === 'string' && credit.name.trim())
       .map((credit) => credit.name.trim()));
@@ -389,7 +395,7 @@ function catalogEntry(order, payload) {
   const writers = catalogWriters(payload);
   const { coverIssueId, cover } = catalogCover(order, payload);
   const {
-    placeholders, empty, ownerConfirmed, ownerSupplemented,
+    placeholders, empty, ownerConfirmed, ownerSupplemented, ownerGcdSupplemented,
   } = countOrderGaps(payload);
   return {
     id: order.id,
@@ -414,6 +420,8 @@ function catalogEntry(order, payload) {
     ...(ownerConfirmed ? { ownerConfirmedIdentityCount: ownerConfirmed } : {}),
     // A subset of the count above, written only when nonzero so older entries keep their bytes.
     ...(ownerSupplemented ? { ownerSupplementedCount: ownerSupplemented } : {}),
+    // A subset of that, for the comics whose details carry the Grand Comics Database licence.
+    ...(ownerGcdSupplemented ? { ownerGcdSupplementedCount: ownerGcdSupplemented } : {}),
     // Derived from the payload for the same reason the issue count is: a number the reader
     // sees before importing must come from the file they will actually import. Orders that are
     // not divided into collected editions report 0, which the catalog renders as nothing.
@@ -616,7 +624,7 @@ async function main() {
           // Which outside sources filled an owner-confirmed comic is recorded on the mapping row;
           // the item carries only the closed kind, so the app can say truthfully where the cover
           // and credits came from while every provider field stays null.
-          ...(supplement ? { metadataSourceKind: OWNER_EXTERNAL_SUPPLEMENT_KIND } : {}),
+          ...(supplement ? { metadataSourceKind: supplement.metadataSourceKind } : {}),
           // The collected edition this issue belongs to, taken from the checklist's own
           // sub-headings. It is the curator's grouping, not Marvel's: the metadata API carries
           // no collection record for anything published after 2023, so there is nothing

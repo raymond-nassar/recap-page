@@ -12,10 +12,14 @@ import { allowedCoverUrl } from './coverHost.js';
 // Older schemas rebuild named fields and would silently discard ratings on their next save.
 export const SCHEMA_VERSION = 4;
 
-// The one recorded kind of owner-approved outside details for an owner-confirmed comic: a cover
-// address from its marvel.com issue page and credits from the Marvel Fandom wiki. Closed, so no
-// other value survives normalization.
+// The recorded kinds of owner-approved outside details for an owner-confirmed comic. Both carry a
+// cover address from its marvel.com issue page. The first takes its release date and credits from
+// the Marvel Fandom wiki, the second from the Grand Comics Database, whose data is CC BY-SA 4.0 and
+// so must be credited and linked wherever it is shown. Closed, so no other value survives
+// normalization.
 export const OWNER_EXTERNAL_SUPPLEMENT = 'owner-external-supplement';
+export const OWNER_GCD_SUPPLEMENT = 'owner-gcd-supplement';
+const OWNER_SUPPLEMENT_KINDS = new Set([OWNER_EXTERNAL_SUPPLEMENT, OWNER_GCD_SUPPLEMENT]);
 
 // The list map is keyed by ids that come from a restored backup, so a reader whose file happens to
 // contain a list called `__proto__` or `constructor` used to lose it. An ordinary object answers
@@ -143,6 +147,7 @@ export function countOrderGaps(order) {
   let empty = 0;
   let ownerConfirmed = 0;
   let ownerSupplemented = 0;
+  let ownerGcdSupplemented = 0;
   for (const item of items) {
     const metadata = hasMetadata(item);
     // Exclusive, because an unlinked placeholder holds no metadata either and would otherwise be
@@ -152,13 +157,19 @@ export function countOrderGaps(order) {
       ownerConfirmed += 1;
       // A subset of the count above, not a separate gap: the comic still has no provider record
       // or Unlimited link, but it does show a cover and credits from the owner-approved sources.
-      if (item.metadataSourceKind === OWNER_EXTERNAL_SUPPLEMENT) ownerSupplemented += 1;
+      if (OWNER_SUPPLEMENT_KINDS.has(item.metadataSourceKind)) ownerSupplemented += 1;
+      // A subset again, because these details carry a licence the reader has to be told about.
+      if (item.metadataSourceKind === OWNER_GCD_SUPPLEMENT) ownerGcdSupplemented += 1;
     } else if (item?.placeholder !== true && !metadata) empty += 1;
   }
   // Written only when nonzero, so every order without a supplemented comic keeps the exact shape
   // its callers and tests already compare against.
   return {
-    placeholders, empty, ownerConfirmed, ...(ownerSupplemented ? { ownerSupplemented } : {}),
+    placeholders,
+    empty,
+    ownerConfirmed,
+    ...(ownerSupplemented ? { ownerSupplemented } : {}),
+    ...(ownerGcdSupplemented ? { ownerGcdSupplemented } : {}),
   };
 }
 
@@ -166,11 +177,15 @@ export function countOrderGaps(order) {
 // whether the issue can be opened: those items carry a real, positive issue id, so the app does
 // open a tab for them and the lookup fails in the tab. Repeating "cannot be opened" here would be
 // a false promise of the same shape as the silence it replaces.
+//
+// The hand-checked comics get one lead sentence and then one short sentence per kind of detail, in
+// the plain wording the owner approved on 2026-11-16 (recorded on #1427): no source jargon, and the
+// Grand Comics Database is named with its licence described in words, because this text can carry
+// no link.
 export function orderGapSentences(order) {
   const {
-    placeholders, empty, ownerConfirmed, ownerSupplemented = 0,
+    placeholders, empty, ownerConfirmed, ownerSupplemented = 0, ownerGcdSupplemented = 0,
   } = countOrderGaps(order);
-  const plainOwnerConfirmed = ownerConfirmed - ownerSupplemented;
   const out = [];
   if (placeholders) {
     out.push(`${placeholders} of them ${placeholders === 1 ? 'has' : 'have'} no Marvel Unlimited link yet and cannot be opened.`);
@@ -178,11 +193,23 @@ export function orderGapSentences(order) {
   if (empty) {
     out.push(`${empty} of them came with no details at all, so ${empty === 1 ? 'it shows' : 'they show'} no cover and ${empty === 1 ? 'has' : 'have'} no Unlimited link.`);
   }
-  if (plainOwnerConfirmed) {
-    out.push(`${plainOwnerConfirmed} of them have an owner-confirmed issue identity but no provider details or cover.`);
-  }
-  if (ownerSupplemented) {
-    out.push(`${ownerSupplemented} of them ${ownerSupplemented === 1 ? 'has' : 'have'} an owner-confirmed issue identity, with a cover and credits from marvel.com and the Marvel Fandom wiki rather than the metadata provider.`);
+  if (ownerConfirmed) {
+    out.push(ownerConfirmed === 1
+      ? "1 of them was checked by hand because the app's usual comic listings don't include it yet."
+      : `${ownerConfirmed} of them were checked by hand because the app's usual comic listings don't include them yet.`);
+    const kinds = [
+      [ownerGcdSupplemented, 'a cover from marvel.com and a release date and credits from the Grand Comics Database, shared under a Creative Commons license', 'Each has'],
+      [ownerSupplemented - ownerGcdSupplemented, 'a cover from marvel.com and a release date and credits from the Marvel Fandom wiki', 'Each has'],
+      [ownerConfirmed - ownerSupplemented, 'no cover or details yet', 'They have'],
+    ];
+    for (const [count, detail, allOf] of kinds) {
+      if (!count) continue;
+      // A kind that covers every hand-checked comic is said of all of them rather than counted.
+      let lead;
+      if (count === ownerConfirmed) lead = count === 1 ? 'It has' : allOf;
+      else lead = count === 1 ? '1 of these has' : `${count} of these have`;
+      out.push(`${lead} ${detail}.`);
+    }
   }
   return out;
 }
@@ -246,8 +273,8 @@ export function normalizeIssue(input) {
     // Kept only beside an owner-confirmed identity, the one place the owner approved it, and only
     // as the closed value, so a hand-edited backup cannot make the app credit an unknown source.
     ...(input.identityEvidenceKind === 'owner-confirmed-identity'
-      && input.metadataSourceKind === OWNER_EXTERNAL_SUPPLEMENT
-      ? { metadataSourceKind: OWNER_EXTERNAL_SUPPLEMENT }
+      && OWNER_SUPPLEMENT_KINDS.has(input.metadataSourceKind)
+      ? { metadataSourceKind: input.metadataSourceKind }
       : {}),
   };
 }

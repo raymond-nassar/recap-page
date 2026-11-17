@@ -3,7 +3,12 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { assertOwnerDeliveryContract } from './helpers/owner-delivery-contract.mjs';
 import { registeredOwnerContracts } from './helpers/current-reading-library.mjs';
-import { validateOwnerExternalSupplement } from '../scripts/lib/owner-external-supplement.mjs';
+import {
+  supplementItemFields, supplementItemKind, validateOwnerExternalSupplement,
+} from '../scripts/lib/owner-external-supplement.mjs';
+import {
+  gcdCreditNames, gcdSupplementFields, loadGcdRecords, validateGcdRecords,
+} from '../scripts/lib/gcd-issue-records.mjs';
 import { assertMappingMatchesPacketOccurrences } from '../scripts/lib/cbh-inventory.mjs';
 import { mergeIssueMetadata } from '../src/js/lib/model.js';
 
@@ -34,6 +39,63 @@ test('a recorded supplement names one source for every field it supplies', async
   assert.throws(altered((s) => { s.sources[0].fields.push('creators'); }), /cannot supply/);
   assert.throws(altered((s) => { s.sources[0].url = 'https://read.marvel.com/#/book/1'; }), /own marvel.com issue page/);
   assert.throws(altered((s) => { s.sources[1].url = 'https://marvel.fandom.com/wiki/Captain_America_Vol_14_5'; }), /pinned page revision/);
+});
+
+// The Fandom-supplemented row reshaped into the Grand Comics Database form, so the cover source and
+// every other field stay those of a real recorded supplement.
+const gcdRow = async (gcdIssueId = 2839942) => {
+  const { row } = await supplementedRow();
+  const copy = structuredClone(row);
+  const s = copy.externalMetadataSupplement;
+  const derived = gcdSupplementFields(`https://www.comics.org/issue/${gcdIssueId}/`, '2026-11-17');
+  s.retrievedAt = '2026-11-17';
+  s.fields = { cover: s.fields.cover, onSale: derived.onSale, creators: derived.creators };
+  s.sources = [s.sources[0], { kind: 'gcd-issue', url: `https://www.comics.org/issue/${gcdIssueId}/`, fields: ['onSale', 'creators'] }];
+  return copy;
+};
+
+test('a Grand Comics Database supplement must equal its pinned record and never mixes with the wiki', async () => {
+  const row = await gcdRow();
+  validateOwnerExternalSupplement(row);
+  assert.equal(supplementItemKind(row), 'owner-gcd-supplement');
+  assert.equal(supplementItemKind((await supplementedRow()).row), 'owner-external-supplement');
+  assert.equal(supplementItemFields(row).pageCount, null);
+  assert.ok(row.externalMetadataSupplement.fields.creators.some((c) => c.name === 'Chip Zdarsky' && c.role === 'writer'));
+  const altered = (change) => {
+    const copy = structuredClone(row);
+    change(copy.externalMetadataSupplement);
+    return () => validateOwnerExternalSupplement(copy);
+  };
+  assert.throws(altered((s) => { s.fields.onSale = '2026-06-11T00:00:00+0000'; }), /pinned Grand Comics Database record/);
+  assert.throws(altered((s) => { s.fields.creators = s.fields.creators.slice(1); }), /pinned Grand Comics Database record/);
+  assert.throws(altered((s) => { s.retrievedAt = '2026-11-16'; }), /cannot predate/);
+  assert.throws(altered((s) => { s.sources[1].url = 'https://www.comics.org/issue/1/'; }), /No pinned Grand Comics Database record/);
+  assert.throws(altered((s) => { s.sources[1].url = 'https://www.comics.org/series/1/'; }), /one issue page/);
+  assert.throws(altered((s) => { s.fields.pageCount = 32; s.sources[1].fields.push('pageCount'); }), /cannot supply/);
+  assert.throws(altered((s) => { s.sources[1].fields.push('cover'); }), /cannot supply/);
+  assert.throws(altered((s) => {
+    s.fields.pageCount = 32;
+    s.sources.push({ kind: 'marvel-fandom-wiki', url: 'https://marvel.fandom.com/wiki/X?oldid=1', fields: ['pageCount'] });
+  }), /one outside source, not both/);
+});
+
+test('Grand Comics Database credits are read without their printing annotations', () => {
+  assert.deepEqual(gcdCreditNames('Chip Zdarsky (credited)'), ['Chip Zdarsky']);
+  assert.deepEqual(gcdCreditNames('Cafu (credited); Valerio Schiti (credited) (pages 1-10)'), ['Cafu', 'Valerio Schiti']);
+  assert.deepEqual(gcdCreditNames('Ryan Stegman (signed as Stegman [scrawl]) (credited)'), ['Ryan Stegman']);
+  assert.deepEqual(gcdCreditNames('None'), []);
+  assert.deepEqual(gcdCreditNames('?'), []);
+  assert.throws(() => gcdCreditNames('Someone (credited'), /Unbalanced/);
+  assert.throws(() => gcdCreditNames('Someone [as X'), /Unbalanced/);
+  const file = loadGcdRecords();
+  assert.equal(file.records.length, 12);
+  assert.throws(() => validateGcdRecords({ ...file, license: 'CC BY 4.0' }));
+  const bad = structuredClone(file);
+  bad.records[0].sequences[0].type = 'text story';
+  assert.throws(() => validateGcdRecords(bad), /cover and comic story/);
+  const twice = structuredClone(file);
+  twice.records.push(twice.records[0]);
+  assert.throws(() => validateGcdRecords(twice), /appears twice/);
 });
 
 test('a list that vendors no credits for a comic keeps the credits another list supplied', async () => {

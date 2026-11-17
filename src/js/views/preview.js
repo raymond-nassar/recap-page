@@ -10,6 +10,7 @@ import { isIosApp } from '../lib/platform.js';
 import { sourceButton } from './shared/catalog-presentation.js';
 import { editionRelations } from '../lib/collectedEditions.js';
 import { collectedEditionCredit, collectedEditionLabels } from './shared/collected-editions.js';
+import { gcdDetailsCredit, hasGcdDetails } from './shared/details-credit.js';
 
 const ADD_TEXT = '+ Add to library';
 const OPEN_TEXT = 'Open list';
@@ -414,6 +415,7 @@ export function createPreviewView({
       });
       const credit = order.items.some((item) => editionRelations(list.id, item).length)
         ? [collectedEditionCredit(el)] : [];
+      if (hasGcdDetails(order.items)) credit.push(gcdDetailsCredit(el));
       nodes.body.replaceChildren(...notice, ...credit, el('ol', { class: 'preview-list' }, rows));
     } catch (error) {
       if (loadToken !== token) return;
