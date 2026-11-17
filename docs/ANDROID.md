@@ -155,7 +155,7 @@ licenses using Android Studio or the SDK manager.
 From the repository root on Windows:
 
 ```powershell
-.\packaging\android\gradlew.bat -p packaging\android assembleDebug assembleDebugAndroidTest lintDebug policyTest
+.\packaging\android\gradlew.bat -p packaging\android assembleDebug assembleDebugAndroidTest lintDebug policyTest cloudTest
 ```
 
 On first use, the Windows wrapper restores its checksum-verified Gradle launcher locally.
@@ -664,6 +664,10 @@ The job runs six native scenarios and a separate seed/force-stop/restart probe. 
 only the native connection marker in a temporary build and requires the targeted save test to
 fail. It restores the source before running the real suite. Missing or skipped tests, incomplete
 runs and failures cannot pass.
+
+The same build also runs `cloudTest`, the OneDrive and Google Drive account rules, on the desktop
+JVM against a scripted network, so it needs no device and makes no network request. The release
+candidate runs it too, and each Gradle invocation runs it under a three-minute task deadline.
 
 The emulator uses real WebView and DocumentsUI for app and picker interactions. External traffic
 is blocked; fabricated reading state and an in-device loopback fixture supply data. A test-only

@@ -99,6 +99,24 @@ automatic cleanup. Check its title bar, taskbar and Alt+Tab appearance, and chec
 handoff separately with your own subscription. Do not equate programmatic standalone detection
 with those human observations.
 
+### Measure browser app shortcuts on a hosted runner
+
+The Windows launcher opens an installed app window through the browser's own Start menu shortcut
+(#1412), so the shortcut location, its arguments and the app id browsers derive are measured rather
+than assumed. Dispatch **Windows App Certification Kit** with default inputs; its `pwa-probe` job
+runs only on that manual dispatch, never on a pull request or a release preparation, and uses no
+environment and no secret. It installs the app in disposable Edge and Chrome profiles on the runner,
+records each shortcut, Start entry, registry trace and launch route, runs the shipped shortcut reader
+against the real shortcut, then uninstalls. It then puts the removed shortcut back and starts it, to
+see what a reader would get from a shortcut that outlived its app. Finally it builds and installs the
+test package, has Edge install the app into its default profile through a browser policy set only on
+that runner, and starts the package from its Start entry with the app present, again with it removed,
+and with only a stale shortcut left, recording each window, which package every browser process runs
+in, and what lands in the package's own storage. The `pwa-probe` artifact keeps the records for seven days.
+Re-measure after any change to the manifest id or the shortcut reader, or when a browser update may
+have changed the shortcut format. Never run the probe script on your own machine: its install and
+uninstall touch the signed-in user's Start menu, and its package phase sets a machine-wide browser policy.
+
 ## Run the browser check
 
 Use `puppeteer-core` installed outside this repository. Never add it to `package.json`.
@@ -1172,22 +1190,51 @@ gh workflow run CI --ref main
 
 ### 4. Create the release from the merged commit
 
-Create the GitHub release with tag `v<version>`, choose the merged commit as its target, paste the
-prepared release notes, and attach `dist/marvel-reading-tracker-windows.zip`. Creating the release is
-what creates the tag. Do not create the tag on the feature branch: squash merging would leave it
-pointing to a commit that never reaches the default branch.
+Create the release with the protected `GitHub release` workflow,
+`.github/workflows/github-release.yml`, from `main`. It takes only `mode`, `version` and
+`preparation_run_id`, the successful first attempt of the Windows App Certification Kit run with
+`release_preparation` enabled at the merged release commit.
+
+1. Dispatch `Validate`. Without writing, it checks that the commit is on main and holds the version
+   in `package.json`, builds the release body, verifies the prepared archive and its record against
+   the commit, and checks that neither the tag nor a release for it exists. Read the intent it
+   prints.
+2. Dispatch `Publish` with the same inputs. After the owner's `github-release` approval it repeats
+   every check, creates a draft at the commit, uploads `marvel-reading-tracker-windows.zip` from the
+   preparation run, reads both back and only then publishes, which creates the tag.
+
+The release body is the reader summary from the version's changelog section, the first `###`
+section under `## <version>`, followed by a link to the full changelog at the release commit, as the
+owner chose on 16 November 2026. Nothing is typed.
+
+The preparation run's archive is kept for one day, so `Publish` must start within a day of it. An
+expired archive stops the run with `PREPARATION_ARTIFACT_MISSING_OR_EXPIRED`; dispatch a fresh
+preparation run while main is still the release commit and release from that.
+
+If GitHub refuses to publish, for example because the workflow token cannot create a tag at a
+commit that changes workflow files, the run stops with `PUBLISH_REFUSED_DRAFT_LEFT_FOR_OWNER`. The
+verified draft stays with its asset and no tag; check it on the Releases page and publish it by
+hand. Any other stop after the draft exists is reported as `uncertain`: read the Releases page
+before any new dispatch, and never add a second release for the tag.
+
+Never create the tag on the feature branch: squash merging would leave it pointing to a commit that
+never reaches the default branch.
 
 Publishing this release does not request a Store deployment. A separate explicit protected Submit
 dispatch submits the MSIX bundle; it does not change or replace the attached GitHub ZIP.
 
 ### 5. Verify the published release
 
-Confirm:
+`Publish` checks most of this itself and its receipt records the result: the tag is a lightweight
+tag at the release commit, the release is public, not a draft and marked latest, and both the
+release's own download and the stable README URL serve bytes with the prepared archive's SHA-256.
+Confirm by hand:
 
+* The receipt's state is `published-verified`.
 * The tag resolves to the intended merged commit.
 * The release is public and not a draft.
 * The Windows archive is attached.
-* The published checksum matches the locally reviewed archive.
+* The published checksum matches the reviewed archive.
 * The stable download URL in the root README resolves to the new archive.
 * A clean download opens at `http://127.0.0.1:8787/`.
 

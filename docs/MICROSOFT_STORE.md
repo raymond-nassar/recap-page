@@ -212,6 +212,42 @@ liveness backstop, not a replacement for the existing readiness checks or a star
 Cleanup targets retained helper/coordinator handles only, never a detached healthy server.
 Direct-console use of the JavaScript coordinator retains its existing diagnostics and pause.
 
+Before that browser command, the coordinator tries the reader's installed Recap Page app window (#1412),
+and the portable server does the same on Windows. It reads only the reader's own Start menu Programs
+folder, and its `Chrome Apps` subfolder, for a shortcut that Edge or Chrome made for this app's fixed
+app id and whose target is that browser's own proxy executable under Program Files. It uses one only
+when exactly one such install exists and its browser is the reader's current default browser, read from
+the http association without writing it, so the reader never changes browser or profile and progress
+stays at the same origin. The proxy is given only the validated profile directory and the fixed app id,
+never the shortcut's own arguments, and a shortcut carrying any other switch, such as a separate user
+data directory, is not used, and neither is a shortcut whose app the profile no longer holds, read as
+the app id's folder under that profile's `Web Applications\Manifest Resources`. Anything short of the
+proxy exiting cleanly, including a missing module, opens the tab exactly as before.
+`host/appWindow.mjs` holds the rule and `test/app-window.test.js` pins it, including the measured app id.
+
+The Store package declares a startup task on its one application (#1412, decision 13). The manifest
+ships it disabled, with one fixed parameter, `--recap-startup-task-v1`, which the launcher accepts as a
+quiet start: the server comes up and no window opens. Nothing enables it but the reader. The packaged
+server answers `/__recap_startup__/v1/state` and `/__recap_startup__/v1/enable` by running the packaged
+launcher beside it with one of two further fixed tokens, which read the task's state or request
+enabling it through the Windows startup task API. Enabling is requested only from the Disabled state,
+never from a state the reader or a policy set, and the request carries a single-use consent value the
+last read issued, so it answers only the question on screen. Each request must be a same-origin POST
+from this page's own origin with the custom header and a JSON body, from the reader's own Windows
+session, one at a time. Every other build answers 404 there and loads nothing. `host/startupTask.mjs`
+holds the boundary and `test/startup-task.test.js` pins it.
+
+The Store package also registers the `recap-page:` address (#1412, decision 10), so an app window
+whose engine has stopped can start it again without a terminal. The registration carries the one
+fixed parameter `--recap-reconnect-v1` and no `%1`, so nothing a page puts in the address reaches the
+launcher, which treats the token as a quiet start like the startup task's. The page offers Reconnect
+only in the installed app window at the fixed origin, and only after a health answer from a Store
+package generation recorded that this reader's engine is the Store's; the portable download and a
+browser tab keep today's notice. Choosing it hands the address to the browser, which asks the reader
+before opening the app, then waits a minute for the health answer, reports the connection ready, and
+otherwise offers Reconnect again. `src/js/lib/reconnect.js` holds the rule, `test/reconnect.test.js`
+pins it, and `scripts/inspect-msix.mjs` refuses a package whose protocol differs.
+
 The maintained JavaScript coordinator validates the packaged server and generation, starts it with
 the package root as its working directory, removes every casing of `MRT_PORT` and `MRT_NO_OPEN`, and
 gives the server independent hidden process and stream ownership. It waits for the exact-generation

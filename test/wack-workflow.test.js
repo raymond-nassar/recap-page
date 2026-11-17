@@ -200,7 +200,7 @@ test('WACK proof lanes upload no package, certificate, installer, or raw report'
   }
   assert.doesNotMatch(workflow, /cache\/save|gh release|store upload/i);
   assert.doesNotMatch(workflow, /\.pfx|winsdksetup/);
-  assert.equal((workflow.match(/Invoke-WebRequest/g) ?? []).length, 3);
+  assert.equal((workflow.match(/Invoke-WebRequest/g) ?? []).length, 4);
   assert.match(workflow, /if: always\(\)/);
   assert.match(workflow, /Get-AppxPackage -Name PanelStackLabs\.RecapPage/);
   assert.match(workflow, /Cert:\\LocalMachine\\TrustedPeople/);
@@ -237,13 +237,17 @@ test('N1 mutation resolves verifier dependencies inside the copied header tree',
 test('native producer outputs and job deadlines bind every package consumer', () => {
   assert.match(workflow, /run: \.\/scripts\/build-native-launcher\.ps1 -IncludeProofTools/);
   assert.match(workflow, /run: \.\/scripts\/native-startup-proof\.ps1 -Negatives/);
-  assert.equal((workflow.match(/^ {4}needs: native$/gm) ?? []).length, 2);
-  assert.equal((workflow.match(/MRT_NATIVE_SHA256:/g) ?? []).length, 2);
+  assert.equal((workflow.match(/^ {4}needs: native$/gm) ?? []).length, 3);
+  assert.equal((workflow.match(/MRT_NATIVE_SHA256:/g) ?? []).length, 3);
   assert.match(workflow, /MRT_NATIVE_PROOF_SHA256: \$\{\{ needs\.native\.outputs\.proof_sha256 \}\}/);
   assert.match(workflow, /native-startup-proof\.ps1 -Architecture '\$\{\{ matrix\.architecture \}\}'/);
   const jobs = workflow.slice(workflow.search(/^jobs:\r?$/m))
     .split(/(?=^ {2}[a-z][\w-]*:)/m).slice(1);
-  assert.deepEqual(jobs.map((job) => /^ {2}([\w-]+):/.exec(job)?.[1]), ['native', 'certify', 'installed', 'preparation', 'browser-diagnostic']);
+  assert.deepEqual(jobs.map((job) => /^ {2}([\w-]+):/.exec(job)?.[1]), ['native', 'certify', 'installed', 'preparation', 'browser-diagnostic', 'pwa-probe']);
+  assert.doesNotMatch(jobs.at(-1), /^ {4}environment:|secrets\./m, 'the app window measurement never reaches a protected environment or a secret');
+  assert.doesNotMatch(jobs.at(-1), /release-cloud-client|release_preparation == true/, 'the measured package is never a release build');
+  assert.match(jobs.at(-1), /if: \$\{\{ always\(\) \}\}[\s\S]*Remove-ItemProperty -Path 'HKLM:\\SOFTWARE\\Policies\\Microsoft\\Edge' -Name 'WebAppInstallForceList'/,
+    'the forced browser install policy is removed even when the measurement fails');
   assert.match(workflow, /native_only:\r?\n {8}description: .+\r?\n {8}type: boolean\r?\n {8}required: false\r?\n {8}default: false/);
   assert.match(workflow, /diagnostic_only:\r?\n {8}description: .+\r?\n {8}type: boolean\r?\n {8}required: false\r?\n {8}default: false/);
   const predicate = "!(github.event_name == 'workflow_dispatch' && (inputs.native_only == true || inputs.diagnostic_only == true))";
@@ -336,7 +340,7 @@ test('native producer outputs and job deadlines bind every package consumer', ()
     ['workflow_dispatch', recoveryMode, ['browser-diagnostic']],
     ['workflow_dispatch', ratingsMode, ['browser-diagnostic']],
     ['workflow_dispatch', interactionMode, ['browser-diagnostic']],
-    ['workflow_dispatch', {}, ['native', 'certify', 'installed']],
+    ['workflow_dispatch', {}, ['native', 'certify', 'installed', 'pwa-probe']],
     ['workflow_dispatch', { release_preparation: true }, ['native', 'certify', 'installed', 'preparation']],
     ['workflow_dispatch', { diagnostic_only: true, diagnostic_target: 'handles' }, ['native']],
     ['pull_request', browserMode, ['native', 'certify', 'installed']],
@@ -626,8 +630,8 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
   t.diagnostic('PASS existing-helper-binding fixed-listener=1 unchanged-presentation-options=1');
   const proofJobs = workflow.split(/\r?\n {2}preparation:/)[0];
   assert.equal((proofJobs.match(/actions\/upload-artifact@[0-9a-f]{40}/g) ?? []).length, 4);
-  assert.equal((workflow.match(/actions\/download-artifact@[0-9a-f]{40}/g) ?? []).length, 3);
-  assert.equal((workflow.match(/digest-mismatch: error/g) ?? []).length, 3);
+  assert.equal((workflow.match(/actions\/download-artifact@[0-9a-f]{40}/g) ?? []).length, 4);
+  assert.equal((workflow.match(/digest-mismatch: error/g) ?? []).length, 4);
   const inputs = [...workflow.matchAll(/^ {12}(dist\/native-(?:launcher|proof)\/.+)$/gm)]
     .map((match) => match[1]);
   assert.deepEqual(inputs, [
@@ -804,7 +808,7 @@ test('app startup prerequisites preserve native-only and all five installed jour
     ['pull_request', {}, true],
     ['workflow_dispatch', { diagnostic_only: true }, false],
   ]) assert.equal(runInNewContext(expression, { github: { event_name: event }, inputs }), enabled);
-  assert.equal(jobs.length, 5);
+  assert.equal(jobs.length, 6);
   assert.match(workflow, /--scenario=certification-functionality/);
   assert.match(workflow, /--scenario=busy-port-refusal/);
   assert.match(workflow, /--scenario=update-state-continuity/);
@@ -814,7 +818,7 @@ test('app startup prerequisites preserve native-only and all five installed jour
   assert.match(build, /WaitForExit\(120000\)/);
 });
 
-const browserDiagnostic = workflow.slice(workflow.indexOf('\n  browser-diagnostic:'));
+const browserDiagnostic = workflow.slice(workflow.indexOf('\n  browser-diagnostic:'), workflow.indexOf('\n  pwa-probe:'));
 const preparation = workflow.slice(workflow.indexOf('\n  preparation:'), workflow.indexOf('\n  browser-diagnostic:'));
 
 test('browser diagnostic includes release history for the ordinary Pages scenario', () => {
@@ -825,6 +829,16 @@ test('browser diagnostic includes release history for the ordinary Pages scenari
   assert.match(checkout, /ref: \$\{\{ github\.sha \}\}/);
   assert.match(checkout, /fetch-depth: 0/);
   assert.match(checkout, /persist-credentials: false/);
+});
+
+test('every workflow step that drives the Appx cmdlets runs in Windows PowerShell', () => {
+  // pwsh 7 on the hosted runner refuses Add-AppxPackage with 0x80131539, which ended the first #1412
+  // probe before it measured anything.
+  const steps = workflow.split(/\n(?= {6}- name: )/).filter((step) => /\b(Add|Remove|Get)-AppxPackage\b/.test(step));
+  assert.ok(steps.length >= 5, `expected the package install and cleanup steps, found ${steps.length}`);
+  for (const step of steps) {
+    assert.match(step, /\n {8}shell: powershell\r?\n/, `${/- name: (.*?)\r?$/m.exec(step)[1]} must use Windows PowerShell`);
+  }
 });
 
 test('portable preparation excludes nonmanual and incomplete proof executions', () => {

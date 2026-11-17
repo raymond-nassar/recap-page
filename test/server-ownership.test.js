@@ -181,7 +181,7 @@ test('native verifier sources use direct APIs and production fixtures rather tha
   }
   assert.match(core, /offsetof\(MIB_TCPTABLE_OWNER_PID, table\)/);
   assert.match(core, /Next\(static_cast<long>\(remaining\), 2/);
-  assert.match(fixture, /inline void run\(const std::wstring& nodeRuntime, const std::filesystem::path& scratchDirectory\)/);
+  assert.match(fixture, /inline void run\(const std::wstring& nodeRuntime, const std::filesystem::path& scratchDirectory, std::ostream& report\)/);
   assert.match(fixture, /server\.listen\(0,'127\.0\.0\.1'/);
   assert.match(fixture, /JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE/);
   assert.match(fixture, /api\.changedCreation = mode == 2/);

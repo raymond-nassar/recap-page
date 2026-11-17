@@ -225,6 +225,8 @@ function iosStaticCopy(html, iCloudBackup, oneDrive) {
     ['Your reading progress lives in this browser, at this exact address, and is never sent anywhere.', 'Your reading progress is saved privately in this app.'],
     ['The choice is stored in this browser', 'The choice is stored in this app'],
     ['Open Recap Page in its own window, using this browser\'s saved progress.', 'Open Recap Page in its own window, using this app\'s saved progress.'],
+    // #1412's Windows sentence describes the Windows launcher, which iOS does not have.
+    [' On Windows, starting Recap Page then opens this window instead of a tab.', ''],
     ['Close other Recap Page tabs before restoring.', 'Close other copies of Recap Page before restoring.'],
     ['Undo is offered once, until you reload; after that, download the saved copy instead.',
       'Undo is offered once, until you close and reopen the app; after that, download the saved copy instead.'],
@@ -239,6 +241,13 @@ function iosStaticCopy(html, iCloudBackup, oneDrive) {
   index = replaceIosPattern(index, /<p id="local-connection-help" class="rail-hint">[\s\S]*?<\/p>/g,
     '<p id="local-connection-help" class="rail-hint">Your saved data is safe. Restart the app and check again.</p>',
     'iOS local connection help changed');
+  // #1412's app window invitation, its browser notice and the startup question are Windows-only, and
+  // the iOS entry never wires them, so the iOS page carries none of them.
+  index = replaceIosPattern(index,
+    /\s*<!-- #1412: Windows readers[\s\S]*?<\/section>\s*<p id="app-window-notice"[\s\S]*?<\/p>/g,
+    '', 'iOS app window invitation changed');
+  index = replaceIosPattern(index, /\s*<!-- #1412 decision 13:[\s\S]*?<section id="startup-consent"[\s\S]*?<\/section>/g,
+    '', 'iOS startup question changed');
   return index;
 }
 

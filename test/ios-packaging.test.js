@@ -831,6 +831,8 @@ test('iOS About states private app storage, device backups and what the requests
   assert.equal(hasSplitWordComment(page), false, 'HTML comments must not split visible words');
   const visiblePage = page.replace(/<!--[\s\S]*?-->/g, ' ');
   assert.doesNotMatch(visiblePage, /data-cloud-copy="on"|id="cloud-backup"/);
+  assert.doesNotMatch(page, /id="app-window-invitation"|id="app-window-notice"|id="startup-consent"|#1412/,
+    'the Windows app window invitation, notice and startup question stay off iOS');
   const visibleText = prose(visiblePage);
   const platformNames = /\b(?:Android|Windows|Edge|Google(?: Drive| Play)?|Microsoft Store|OneDrive|Microsoft)\b/;
   assert.doesNotMatch('the bottom edge and windows of time', platformNames);

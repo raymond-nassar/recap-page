@@ -6,7 +6,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { prepareAndroid } from './prepare-android.mjs';
 import { sourceIdentity, assertSourceUnchanged } from './lib/release-identity.mjs';
 import { KEY } from '../src/js/storage.js';
-import { framedText, installCloudFixture, prepareCloudView, dismissListingNotice } from './listing-fixtures.mjs';
+import { framedText, installCloudFixture, prepareCloudView, dismissListingNotice, openListingScreen } from './listing-fixtures.mjs';
 import {
   ORIGIN, FIXTURE_API, VIEWPORT, SCREENS, sha256, shellPath, previewResponse, completedHealthProbe,
   screenState, playIcon, featureGraphic, inspectAsset, previewManifest,
@@ -68,7 +68,7 @@ async function installPreview(page, shell, headers, failures, fixtureResponses, 
 }
 
 async function captureScreen(page, screen, output) {
-  await page.goto(`${ORIGIN}/${screen.route}`, { waitUntil: 'networkidle0', timeout: 15000 });
+  await openListingScreen(page, ORIGIN, screen, { waitUntil: 'networkidle0', timeout: 15000 });
   await page.waitForSelector(`#${screen.view}:not([hidden])`, { timeout: 10000 });
   await page.waitForFunction((texts) => texts.every((text) => document.body.innerText.includes(text)), { timeout: 10000 }, screen.text);
   await prepareCloudView(page, screen.view);
@@ -116,7 +116,8 @@ async function captureScreen(page, screen, output) {
       // still running, and 600 ms later it was wholly off screen, so the image depended on timing.
       navigation: Boolean(bar && !document.querySelector('.rail-header.mobile-nav-hidden')
         && bar.top >= 0 && bar.bottom <= document.documentElement.clientHeight + 0.5),
-      settled: document.getAnimations().length === 0,
+      // Route entry uses fill-mode both, so its finished animation remains in this list.
+      settled: document.getAnimations().every((animation) => animation.playState === 'finished'),
       android: Boolean(document.querySelector('script[src="./android/app.js"]')
         && document.querySelector('link[href="./android/mobile.css"]')),
       coversOff: settings.covers === false,

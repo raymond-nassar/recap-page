@@ -90,6 +90,34 @@ function xmlAttribute(source, elementName, attributeName) {
   return element.match(new RegExp(`\\b${attributeName}="([^"]*)"`, 'i'))?.[1] ?? null;
 }
 
+// Every extension is an activation surface Windows will launch the packaged launcher through, so
+// the whole set is pinned: the consent-first startup task and the Reconnect protocol, each with one
+// fixed token and no %1, so no address a page writes reaches the launcher (#1412). Names are kept
+// with values so moving a value to a sibling attribute such as uap11:Parameters is a difference.
+const ACTIVATION_EXTENSIONS = Object.freeze([
+  'Category=windows.startupTask|Executable=RecapPageLauncher.exe'
+    + '|EntryPoint=Windows.FullTrustApplication|uap10:Parameters=--recap-startup-task-v1'
+    + '|desktop:StartupTask:TaskId=RecapPageStartup|Enabled=false|DisplayName=Recap Page',
+  'Category=windows.protocol|uap3:Protocol:Name=recap-page|Parameters=--recap-reconnect-v1',
+]);
+
+function xmlAttributes(element) {
+  return [...element.matchAll(/\s([\w:]+)="([^"]*)"/g)].map(([, name, value]) => `${name}=${value}`);
+}
+
+export function activationExtensions(manifest) {
+  const found = [...manifest.matchAll(/<((?:\w+:)?)Extension\b([^>]*?)(?:\/>|>([\s\S]*?)<\/\1Extension>)/gi)]
+    .map(([, , attributes, body = '']) => [
+      ...xmlAttributes(attributes),
+      ...[...body.matchAll(/<([\w:]+)\b([^>]*?)\/?>/g)]
+        .map(([, name, childAttributes]) => `${name}:${xmlAttributes(childAttributes).join('|')}`),
+    ].join('|'));
+  if (JSON.stringify(found) !== JSON.stringify(ACTIVATION_EXTENSIONS)) {
+    throw new Error(`activation extensions differ: ${JSON.stringify(found)}`);
+  }
+  return found;
+}
+
 export function peMachine(bytes) {
   if (bytes.length < 0x40 || bytes.toString('ascii', 0, 2) !== 'MZ') {
     throw new Error('file is not a PE executable');
@@ -250,6 +278,7 @@ async function inspectPackage(path, target, hashes, {
       || xmlAttribute(manifest, 'TargetDeviceFamily', 'MinVersion') !== '10.0.19041.0') {
       throw new Error(`${basename(path)} activation differs: ${JSON.stringify(application)}`);
     }
+    activationExtensions(manifest);
 
     const files = await filesUnder(unpacked);
     const build = validateIdentity(JSON.parse(await readFile(join(unpacked, 'src', 'build-info.json'), 'utf8')));

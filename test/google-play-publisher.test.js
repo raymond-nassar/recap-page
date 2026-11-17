@@ -24,27 +24,27 @@ const code = 3000004;
 const bytes = Buffer.from('Synthetic network fixture, not a signed candidate.');
 const artifact = { name: 'recap-page-android.aab', bytes: bytes.length, sha256: digest(bytes) };
 const emptyTrack = () => ({ track: 'qa', releases: [] });
+const NOTES = '- Compatible reading improvements.';
 const release = () => ({
   name: 'Recap Page 3.2.0', versionCodes: [String(code)], status: 'completed',
-  releaseNotes: [{ language: 'en-US', text: 'Compatible reading improvements.' }],
+  releaseNotes: [{ language: 'en-US', text: NOTES }],
 });
 function raw(mode = 'Publish') {
   return {
     mode, source_sha: source, ledger_sha: ledger, candidate_run_id: '123', artifact_id: '456',
     version_code: String(code), upload_cert_sha256: signer,
     track: mode === 'Inspect' ? '' : 'qa',
-    release_json: mode === 'Inspect' ? '' : JSON.stringify(release()),
     expected_track_sha256: mode === 'Inspect' ? '' : trackDigest(emptyTrack()),
   };
 }
 const pins = ['source_sha', 'ledger_sha', 'artifact_id', 'version_code', 'upload_cert_sha256'];
 function guided(mode = 'Publish') {
-  return { mode, candidate_run_id: '123', track: 'qa', release_notes: release().releaseNotes[0].text };
+  return { mode, candidate_run_id: '123', track: 'qa' };
 }
-function resolved(value = guided()) {
+function resolved(value = guided(), notes = NOTES) {
   const request = validateIntent(value);
   return resolveIntent(request, { sourceSha: source, ledgerSha: request.ledgerSha || tooling,
-    artifactId: 456, code, signer, productVersion: '3.2.0' });
+    artifactId: 456, code, signer, productVersion: '3.2.0', notes });
 }
 const identity = () => ({
   schemaVersion: 1, productVersion: '3.2.0', platform: 'android', packageVersion: code,
@@ -155,7 +155,7 @@ function harness(options = {}) {
     record: async (value) => { receipts.push(value); timeline.push(`receipt:${value.stage}`); },
   };
 }
-const operation = (mode, fixture) => transact(validateIntent(raw(mode)), bytes, artifact, fixture);
+const operation = (mode, fixture) => transact(resolved(raw(mode)), bytes, artifact, fixture);
 
 test('publisher intent accepts explicit modes and rejects unpinned or production input', () => {
   for (const mode of ['Validate', 'Inspect', 'Publish', 'Promote']) assert.equal(validateIntent(raw(mode)).mode, mode);
@@ -173,20 +173,22 @@ test('publisher intent accepts explicit modes and rejects unpinned or production
   }
 });
 
-test('release intent is closed, bounded and never supplies an implicit rollout or code', () => {
+test('release intent is closed: no input carries notes or a release, and notes come only from the approved text', () => {
   for (const change of [
-    (v) => { v.expected_track_sha256 = ''; }, (v) => { v.release_json = '{'; },
-    (v) => { v.release_json = JSON.stringify({ ...release(), userFraction: 0.5 }); },
-    (v) => { v.release_json = JSON.stringify({ ...release(), status: 'inProgress' }); },
-    (v) => { v.release_json = JSON.stringify({ ...release(), versionCodes: ['3000003'] }); },
-    (v) => { v.release_json = JSON.stringify({ ...release(), versionCodes: [String(code), String(code)] }); },
-    (v) => { v.release_json = JSON.stringify({ ...release(), releaseNotes: [{ language: 'en-US', text: 'x'.repeat(501) }] }); },
+    (v) => { v.release_notes = 'Typed at dispatch.'; },
+    (v) => { v.release_json = JSON.stringify(release()); },
     (v) => { v.mode = 'Inspect'; },
   ]) {
     const value = raw();
     change(value);
     assert.throws(() => validateIntent(value));
   }
+  assert.throws(() => validateIntent({ ...raw(), release_notes: 'Typed.' }), /UNEXPECTED_FIELDS/);
+  const spec = resolved(raw(), 'Approved store text.');
+  assert.deepEqual(spec.release.releaseNotes, [{ language: 'en-US', text: 'Approved store text.' }]);
+  assert.equal(spec.release.status, 'completed');
+  assert.deepEqual(spec.release.versionCodes, [String(code)]);
+  for (const notes of ['', ' \n\t', 'x'.repeat(501)]) assert.throws(() => resolved(raw(), notes));
 });
 
 test('guided and pinned requests share canonical mode policy routing without mixed overrides', () => {
@@ -201,16 +203,6 @@ test('guided and pinned requests share canonical mode policy routing without mix
         const value = { ...guided(mode), ...identityPins, ...input };
         assert.equal(validateIntent(value).trackStatePolicy, expected);
         assert.deepEqual(resolved(value).release, release());
-      }
-      const custom = { ...release(), name: 'Reviewed custom release', status: 'draft',
-        versionCodes: ['3000003', String(code)], releaseNotes: [{ language: 'fr', text: 'Notes.' }, ...release().releaseNotes] };
-      for (const policy of ['automatic', 'capture-current-simple']) {
-        const value = { mode, candidate_run_id: '123', track: 'qa', ...identityPins,
-          release_json: JSON.stringify(custom), track_state_policy: policy,
-          expected_track_sha256: policy === 'automatic' ? trackDigest(emptyTrack()) : '' };
-        assert.deepEqual(resolved(value).release, custom);
-        assert.equal(validateIntent(value).trackStatePolicy,
-          policy === 'automatic' ? 'explicit-pin' : 'capture-current-simple');
       }
     }
   }
@@ -238,19 +230,15 @@ test('guided and pinned requests share canonical mode policy routing without mix
     assert.throws(() => validateIntent({ ...raw(), [key]: '' }), /ALL_OR_NONE/);
   }
   for (const patch of [
-    { release_json: JSON.stringify(release()) }, { release_notes: ' \n\t' },
-    { release_notes: '\u{1f642}'.repeat(501) }, { expected_track_sha256: 'not-a-digest' },
+    { release_json: JSON.stringify(release()) }, { release_notes: 'Typed.' },
+    { expected_track_sha256: 'not-a-digest' },
     { track_state_policy: 'unknown' }, { mode: 'Inspect' },
     { mode: 'Promote' }, { track_state_policy: 'explicit-pin' },
     { track_state_policy: 'capture-current-simple', expected_track_sha256: trackDigest(emptyTrack()) },
     { mode: 'Promote', track_state_policy: 'capture-current-simple' },
   ]) assert.throws(() => validateIntent({ ...guided(), ...patch }));
-  assert.equal(validateIntent({ ...guided(), release_notes: '\u{1f642}'.repeat(500) }).releaseNotes.length, 1000);
+  assert.equal(resolved(guided(), '\u{1f642}'.repeat(500)).releaseNotes.length, 1000);
   assert.equal(resolved({ ...guided('Promote'), expected_track_sha256: trackDigest(emptyTrack()) }).trackStatePolicy, 'explicit-pin');
-  assert.throws(() => validateIntent({ ...raw(), release_json: `{"name":"${'x'.repeat(8192)}"}` }), /TOO_LARGE/);
-  const wrongCode = { ...raw(), release_json: JSON.stringify({ ...release(), versionCodes: ['3000003'] }) };
-  for (const key of pins) delete wrongCode[key];
-  assert.throws(() => resolved(wrongCode), /CANDIDATE_CODE_REQUIRED/);
   for (const patch of [{ source_sha: tooling }, { artifact_id: '457' }, { upload_cert_sha256: 'e'.repeat(64) }]) {
     assert.throws(() => resolved({ ...raw(), ...patch }), /IDENTITY_PIN_MISMATCH/);
   }
@@ -377,7 +365,7 @@ test('track digest normalizes documented defaults and unordered codes and langua
 });
 
 test('proposed track refuses stale, complex or unapproved retained-version changes', () => {
-  const spec = validateIntent(raw());
+  const spec = resolved(raw());
   assert.deepEqual(proposedTrack(spec, emptyTrack()), { track: 'qa', releases: [release()] });
   assert.throws(() => proposedTrack({ ...spec, expectedTrackSha256: '0'.repeat(64) }, emptyTrack()));
   for (const releases of [[release(), release()], [{ ...release(), status: 'inProgress', userFraction: 0.2 }],
@@ -405,7 +393,7 @@ test('publish uses exact bytes once and reports submitted rather than user avail
   const later = harness({ intercept: (call) => {
     if (call.path.endsWith('/tracks') && call.method === 'GET') changed[0] ^= 1;
   } });
-  await assert.rejects(transact(validateIntent(raw()), changed, artifact, later), /BUNDLE_CHANGED_BEFORE_UPLOAD/);
+  await assert.rejects(transact(resolved(raw()), changed, artifact, later), /BUNDLE_CHANGED_BEFORE_UPLOAD/);
   assert.equal(later.calls.length, 4);
 });
 
@@ -491,10 +479,10 @@ test('no Google request occurs without exact bundle bytes, token, receipt writer
     { bundle: Buffer.alloc(bytes.length), options: {} },
     { bundle: bytes, options: { token: '' } },
     { bundle: bytes, options: { record: undefined } },
-    { bundle: bytes, options: {}, spec: { ...validateIntent(raw()), track: 'production' } },
+    { bundle: bytes, options: {}, spec: { ...resolved(raw()), track: 'production' } },
   ]) {
     const fixture = harness();
-    await assert.rejects(transact(value.spec || validateIntent(raw()), value.bundle, artifact,
+    await assert.rejects(transact(value.spec || resolved(raw()), value.bundle, artifact,
       { ...fixture, ...value.options }));
     assert.equal(fixture.calls.length, 0);
   }
@@ -627,7 +615,7 @@ test('workflow protects the exact main operation before narrow short-lived authe
   assert.match(workflow, /workflow_dispatch:/);
   assert.match(workflow, /default: Validate/);
   assert.match(workflow, /candidate_run_id:[\s\S]*?type: string\s+required: true/);
-  assert.match(workflow, /release_notes:[\s\S]*?type: string/);
+  assert.doesNotMatch(workflow, /release_notes|release_json/, 'No dispatch input may carry typed notes');
   assert.match(workflow, /options: \[automatic, capture-current-simple, explicit-pin\]\s+default: automatic/);
   assert.equal([...workflow.matchAll(/required: true/g)].length, 1, 'Only the named producer is always required');
   for (const name of pins) {
@@ -665,11 +653,14 @@ test('workflow protects the exact main operation before narrow short-lived authe
 });
 
 test('prepared binding cannot be forged, changed after approval or reused by another run', () => {
-  const spec = validateIntent(raw());
-  const binding = { request: spec, spec, source: identity(), artifactId: 456, bundle: artifact };
+  const request = validateIntent(raw());
+  const spec = resolved(raw());
+  const binding = { request, spec, source: identity(), artifactId: 456, bundle: artifact };
   const expected = digest(canonical(binding));
   const prepared = { binding, bindingSha: expected, approval: { approved: true }, context: context() };
-  assert.doesNotThrow(() => validatePrepared(prepared, spec, context(), expected));
+  assert.doesNotThrow(() => validatePrepared(prepared, request, context(), expected, NOTES));
+  assert.throws(() => validatePrepared(prepared, request, context(), expected, '- Edited after approval.'),
+    /APPROVED_PREPARATION_REQUIRED/);
   for (const change of [
     (v) => { v.approval.approved = false; }, (v) => { v.context.runId += 1; },
     (v) => { v.context.attempt = 2; }, (v) => { v.binding.bundle.sha256 = '0'.repeat(64); },
@@ -679,12 +670,12 @@ test('prepared binding cannot be forged, changed after approval or reused by ano
   ]) {
     const value = structuredClone(prepared);
     change(value);
-    assert.throws(() => validatePrepared(value, spec, context(), expected));
+    assert.throws(() => validatePrepared(value, request, context(), expected, NOTES));
   }
   for (const value of [
     { mode: 'Validate', candidate_run_id: '123' }, { mode: 'Inspect', candidate_run_id: '123' },
     guided(), guided('Validate'), { ...guided('Promote'), expected_track_sha256: trackDigest(emptyTrack()) },
-    { ...raw(), release_json: '', release_notes: guided().release_notes, expected_track_sha256: '' },
+    { ...raw(), expected_track_sha256: '' },
     { ...raw(), track_state_policy: 'capture-current-simple', expected_track_sha256: '' },
   ]) {
     const request = validateIntent(value);
@@ -692,9 +683,10 @@ test('prepared binding cannot be forged, changed after approval or reused by ano
     const binding = { request, spec: actual, source: identity(), artifactId: 456, bundle: artifact };
     const expected = digest(canonical(binding));
     const prepared = { binding, bindingSha: expected, approval: { approved: true }, context: context() };
-    assert.deepEqual(validatePrepared(prepared, validateIntent(value), context(), expected), actual);
-    assert.throws(() => validatePrepared(prepared, { ...request, track: 'other' }, context(), expected));
-    assert.throws(() => validatePrepared(prepared, { ...request, trackStatePolicy: 'automatic' }, context(), expected));
+    const notes = request.trackStatePolicy === null ? '' : NOTES;
+    assert.deepEqual(validatePrepared(prepared, validateIntent(value), context(), expected, notes), actual);
+    assert.throws(() => validatePrepared(prepared, { ...request, track: 'other' }, context(), expected, notes));
+    assert.throws(() => validatePrepared(prepared, { ...request, trackStatePolicy: 'automatic' }, context(), expected, notes));
   }
 });
 
@@ -718,6 +710,7 @@ test('guided preparation and approved execution use the original packet and immu
   const main = '9'.repeat(40);
   const laterLedger = '8'.repeat(40);
   const githubReads = [];
+  let storeText = NOTES;
   const ancestry = [];
   const nativeCalls = [];
   const gitOutput = (args) => {
@@ -737,6 +730,9 @@ test('guided preparation and approved execution use the original packet and immu
     }
     if (args[0] === 'show') {
       if (args[1] === `${source}:package.json`) return JSON.stringify({ version: '3.2.0' });
+      if (args[1] === `${tooling}:docs/releases/3.2.0-store.json`) {
+        return JSON.stringify({ version: '3.2.0', locale: 'en-us', text: storeText });
+      }
       if (args[1].endsWith(':packaging/android/version-codes.json')) {
         const revision = args[1].split(':')[0];
         return JSON.stringify(revision === ledger ? reservation : revision === tooling ? sealed : current);
@@ -805,7 +801,7 @@ test('guided preparation and approved execution use the original packet and immu
       const result = await prepare();
       assert.equal(result.publisherPolicy, null);
       assert.equal(result.binding.spec.ledgerSha, tooling);
-      assert.equal(result.binding.spec.trackStatePolicy, inputs.release_notes ? 'capture-current-simple' : null);
+      assert.equal(result.binding.spec.trackStatePolicy, inputs.track ? 'capture-current-simple' : null);
       assert.equal(fixture.calls.length, 0, 'Validate never contacts Google');
       await rm(work, { recursive: true, force: true });
     }
@@ -826,20 +822,25 @@ test('guided preparation and approved execution use the original packet and immu
     assert.equal(fixture.calls.length, 0);
     process.env.RECAP_PLAY_APPROVED_SIGNER = signer;
     await rm(work, { recursive: true, force: true });
-    await setInput({ ...guided(), release_notes: 'Changed while awaiting approval.' });
+    storeText = '- Changed while awaiting approval.';
     await assert.rejects(prepare({ afterApproval: true }), /APPROVED_BINDING_OR_POLICY_CHANGED/);
     await rm(work, { recursive: true, force: true });
-    await setInput(guided());
+    storeText = NOTES;
     const approved = await prepare({ afterApproval: true });
     assert.equal(approved.bindingSha, initial.bindingSha, 'Later main reservations must not retarget the selected ledger');
     assert.equal(approved.approval.approved, true);
     process.env.RECAP_PLAY_ACCESS_TOKEN = fixture.token;
-    await setInput({ ...guided(), release_notes: 'Changed after approval.' });
+    storeText = '- Changed after approval.';
     await assert.rejects(publish(), /APPROVED_PREPARATION_REQUIRED/);
     assert.equal(fixture.calls.length, 0);
-    await setInput(guided());
+    storeText = `- ${'x'.repeat(499)}`;
+    await assert.rejects(publish(), /accepts at most 500 characters .* holds 501\./);
+    assert.equal(fixture.calls.length, 0, 'Over-limit or malformed approved text stops before Google');
+    storeText = NOTES;
     assert.equal((await publish()).state, 'submitted-publication-unverified');
     assert.equal(fixture.calls.length, 9);
+    const put = fixture.calls.find((call) => call.method === 'PUT');
+    assert.deepEqual(JSON.parse(put.init.body).releases[0].releaseNotes, [{ language: 'en-US', text: NOTES }]);
     const receipt = JSON.parse(await readFile(join(work, 'google-play-receipt.json'), 'utf8'));
     assert.deepEqual(receipt.targetBefore, emptyTrack());
     assert.equal(receipt.trackStatePolicy, 'capture-current-simple');

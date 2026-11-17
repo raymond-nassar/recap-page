@@ -1,0 +1,98 @@
+name: GitHub release
+run-name: GitHub release ${{ inputs.mode }} v${{ inputs.version }} from preparation run ${{ inputs.preparation_run_id }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Validate reads only; Publish creates the release after owner approval
+        type: choice
+        options: [Validate, Publish]
+        default: Validate
+      version:
+        description: Exact release version, x.y.z, already on main in package.json and CHANGELOG.md
+        type: string
+        required: true
+      preparation_run_id:
+        description: The successful Windows App Certification Kit run with release_preparation enabled, under a day old
+        type: string
+        required: true
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: github-release
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: Verify the release commit, notes and prepared archive without writing
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    outputs:
+      environment: ${{ steps.verify.outputs.environment }}
+      environment_id: ${{ steps.verify.outputs.environment_id }}
+      policy_sha: ${{ steps.verify.outputs.policy_sha }}
+      binding_sha: ${{ steps.verify.outputs.binding_sha }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 2
+        with:
+          ref: ${{ github.workflow_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        timeout-minutes: 4
+        with:
+          node-version: '24'
+      - name: Validate the commit, changelog body, archive and absence of the tag
+        id: verify
+        timeout-minutes: 15
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/github-release.mjs validate
+
+  publish:
+    name: Approved release of the exact validated commit and archive
+    needs: validate
+    if: >-
+      github.event_name == 'workflow_dispatch' &&
+      github.ref == 'refs/heads/main' &&
+      inputs.mode == 'Publish' &&
+      needs.validate.outputs.environment == 'github-release'
+    environment: github-release
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 2
+        with:
+          ref: ${{ github.workflow_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        timeout-minutes: 4
+        with:
+          node-version: '24'
+      - name: Recheck everything, the approval, then create, verify and publish once
+        timeout-minutes: 30
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          RECAP_RELEASE_EXPECTED_ENVIRONMENT_ID: ${{ needs.validate.outputs.environment_id }}
+          RECAP_RELEASE_EXPECTED_POLICY_SHA: ${{ needs.validate.outputs.policy_sha }}
+          RECAP_RELEASE_EXPECTED_BINDING_SHA: ${{ needs.validate.outputs.binding_sha }}
+        run: node scripts/github-release.mjs publish
+      - name: Retain only the sanitized release receipt
+        if: always()
+        timeout-minutes: 2
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: github-release-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 30
+          if-no-files-found: warn
+          path: ${{ runner.temp }}/recap-github-release-${{ github.run_id }}-${{ github.run_attempt }}/github-release-receipt.json

@@ -185,6 +185,28 @@
 
             <p id="reader-closure-notice" class="notice notice-warn"><span id="reader-closure-text">Marvel Unlimited ends December 7, 2026, and Read will then open the Marvel Comics website.</span> <a id="reader-closure-faq" href="https://help.marvel.com/article/marvel-whats-happening-to-marvel-unlimited" target="_blank" rel="noopener noreferrer">Marvel's FAQ</a><button id="reader-closure-dismiss" type="button" class="btn btn-g btn-icon notice-dismiss has-tooltip" aria-label="Dismiss the Marvel Unlimited notice" data-tooltip="Dismiss the Marvel Unlimited notice"><span aria-hidden="true">&times;</span></button></p>
 
+            <!-- #1412: Windows readers in Edge or Chrome are invited once to open Recap Page in its own
+                 window; Firefox, Brave and Opera readers are told how. install.js decides which, if either, shows. -->
+            <section id="app-window-invitation" class="card card-static" hidden aria-labelledby="app-window-invitation-h">
+              <h2 id="app-window-invitation-h">Install Recap Page as an app</h2>
+              <p id="app-window-invitation-text">Open Recap Page in its own window from the Start menu. Your saved progress stays where it is.</p>
+              <div class="cta">
+                <button type="button" class="btn" id="btn-invitation-install" aria-describedby="app-window-invitation-text">Install Recap Page</button>
+                <button type="button" class="btn btn-g" id="btn-invitation-later">Not now</button>
+              </div>
+            </section>
+            <p id="app-window-notice" class="notice" hidden><span id="app-window-notice-text">To use Recap Page in its own window, install it in Microsoft Edge or Chrome. Your saved progress stays in this browser. To use it in another browser, first export a backup here and then restore it there.</span><button id="app-window-notice-dismiss" type="button" class="btn btn-g btn-icon notice-dismiss has-tooltip" aria-label="Dismiss the app window notice" data-tooltip="Dismiss the app window notice"><span aria-hidden="true">&times;</span></button></p>
+            <!-- #1412 decision 13: the Microsoft Store app's window asks before it starts at sign-in.
+                 startupConsent.js shows it only when the package's own host says the task is off. -->
+            <section id="startup-consent" class="card card-static" hidden aria-labelledby="startup-consent-h">
+              <h2 id="startup-consent-h">Start Recap Page automatically?</h2>
+              <p id="startup-consent-text">Have Recap Page ready when you sign in.</p>
+              <div class="cta">
+                <button type="button" class="btn" id="btn-startup-on" aria-describedby="startup-consent-text">Turn on</button>
+                <button type="button" class="btn btn-g" id="btn-startup-later">Not now</button>
+              </div>
+            </section>
+
             <!-- State B only: where the reader left off. -->
             <section id="home-continue" class="chero" hidden aria-labelledby="chero-h">
               <div class="chero-in">
@@ -1253,7 +1275,7 @@
                 <button type="button" class="btn btn-g setting-ctl setting-action" id="btn-install" aria-describedby="pwa-install-help">Install Recap Page</button>
                 <details class="setting-more">
                   <summary>What installation changes</summary>
-                  <p class="rail-hint">Adds an app icon without moving your data. The local app still needs to run for uncached content. Comics and live lookups need an internet connection.</p>
+                  <p class="rail-hint">Adds an app icon without moving your data. On Windows, starting Recap Page then opens this window instead of a tab. The local app still needs to run for uncached content. Comics and live lookups need an internet connection.</p>
                 </details>
               </div>
               <div id="pwa-install-report"></div>
@@ -1269,9 +1291,9 @@
                 <details class="setting-more">
                   <summary>If the connection needs attention</summary>
                   <p id="local-connection-help" class="rail-hint">
-                    Leave this window open. Start Recap Page from the copy you downloaded or installed
-                    from the Microsoft Store, then return here and check again. A browser-installed app
-                    cannot start that separate copy itself.
+                    Leave this window open. If you installed Recap Page from the Microsoft Store, choose
+                    Reconnect. Otherwise start Recap Page from the copy you downloaded, then return here
+                    and check again. A browser-installed app cannot start the downloaded copy itself.
                   </p>
                 </details>
                 <div id="local-connection-report" class="results"></div>

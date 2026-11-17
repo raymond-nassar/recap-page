@@ -1,5 +1,28 @@
 import { CLOUD_HOST_PREFIX } from '../src/js/lib/cloudHostTransport.js';
 
+export const FICTIONAL_SYNOPSIS = 'A lighthouse keeper follows a strange signal across the harbor.';
+
+export async function installSynopsisFixture(synopsis, baseURI = document.baseURI) {
+  const { SessionSynopsis } = await import(new URL('js/synopsis.js', baseURI).href);
+  const originalGet = SessionSynopsis.prototype.get;
+  SessionSynopsis.prototype.get = function(issueId) {
+    return Number(issueId) === synopsis.issueId ? synopsis.text : originalGet.call(this, issueId);
+  };
+}
+
+export async function openListingScreen(page, origin, screen, options) {
+  await page.goto(`${origin}/${screen.synopsis ? '#/home' : screen.route}`, options);
+  if (screen.synopsis) {
+    await page.evaluate(installSynopsisFixture, screen.synopsis);
+    await page.evaluate((route) => { location.hash = route; }, screen.route);
+    await page.waitForSelector(`#${screen.view}:not([hidden])`, { timeout: 15000 });
+    await page.waitForFunction(
+      () => document.getAnimations().every((animation) => animation.playState === 'finished'),
+      { timeout: 15000 },
+    );
+  }
+}
+
 // A tooling-only configuration, not a Microsoft application or a credential. No host is started:
 // the capture answers only status, so it cannot sign in, read an account or upload a backup.
 export const CLOUD_FIXTURE = Object.freeze({

@@ -126,14 +126,19 @@ Dispatch from `main`, once per intended operation. Reruns are refused.
 | `Publish` | Requires protected approval. Uploads the exact retained AAB once, verifies returned code/hash, sets the approved testing target, checks all tracks and commits once. |
 | `Promote` | Requires protected approval. Reuses a matching code/hash already present in Play; never uploads or rebuilds the bundle. |
 
-The normal new-version operation supplies four values:
+The normal new-version operation supplies three values:
 
 | Input | Normal Publish value |
 |---|---|
 | `mode` | `Publish` |
 | `candidate_run_id` | One successful Candidate run ID, or its exact `https://github.com/raymond-nassar/recap-page/actions/runs/RUN_ID` URL |
 | `track` | The actual existing testing track identifier, not a guessed alias |
-| `release_notes` | Reviewed plain notes for this version, at most 500 Unicode code points |
+
+No input carries release notes. They come only from the approved store text,
+`docs/releases/<version>-store.json`, read at the executing workflow commit for the verified
+application version. The text must pass the store-file check and fit Play's 500-character limit,
+counted by the larger of code points and UTF-16 units. Text that does not fit stops the run before
+any Google access; nothing is truncated. A text changed after approval stops the approved job too.
 
 The publisher derives the exact packet artifact, source, code and public signer from that
 named successful main/direct/first-attempt producer, its original verified packet and the
@@ -143,14 +148,14 @@ missing, duplicate, ambiguous, truncated, expired or wrong-producer evidence fai
 competing packet cannot be ignored to make selection unique. Current main is checked for intact
 history and seals, not used to retarget the approved source.
 
-Plain notes generate the release name `Recap Page PRODUCT_VERSION` from the verified application
+The approved notes generate the release name `Recap Page PRODUCT_VERSION` from the verified application
 source, its one resolved version code, status `completed` and language `en-US`. The visible
 `track_state_policy` defaults to `automatic`, which selects `capture-current-simple` for this
 normal path. It captures and checks the actual simple target state inside the approved Publish
 edit. A separate Inspect or Validate run is not required.
 
-`Validate` needs only its mode and named producer for packet checks. Adding track and release
-intent previews the same normalized operation without Google access. `Inspect` is optional
+`Validate` needs only its mode and named producer for packet checks. Adding a track previews the
+same normalized operation, with the approved notes, without Google access. `Inspect` is optional
 discovery or reconciliation: after approval it returns actual non-production track identifiers,
 current digests and code high-water. Do not assume an `internal` alias. Inspection creates an
 edit, so coordinate it with Console work too.
@@ -163,40 +168,23 @@ explicit artifact lookup and existing ledger ancestry checks; every pin must mat
 packet, source, seal, approval and signature evidence. These fields remain visible, but are not
 needed for normal publication. They are identifiers, not credentials.
 
-Use `release_json` instead of plain notes for a custom name, `draft` status, retained codes or
-multiple languages. Never supply both release forms. `expected_track_sha256` supplies the exact
-previous target digest when an explicit pin is required.
+The release is always the one generated from the approved notes: status `completed`, language
+`en-US`, the one candidate code. The custom name, draft status, retained codes and multiple
+languages the removed `release_json` input once allowed are no longer offered, because each was a
+typed release form. `expected_track_sha256` supplies the exact previous target digest when an
+explicit pin is required.
 
 | Release intent | State policy |
 |---|---|
-| Candidate-only Validate or Inspect, with no release or digest | Neutral `automatic` resolves to no transaction policy; explicit transaction policies are rejected. |
-| Publish or Validate preview with plain notes, no digest | `automatic` resolves to `capture-current-simple`, with either derived or complete identity pins. |
-| Complete release form and valid digest | `automatic` resolves to `explicit-pin`. |
-| Full JSON without a digest | Rejected under `automatic`; explicitly select `capture-current-simple` only for a supported new-version Publish or its Validate preview. |
+| Candidate-only Validate or Inspect, with no track or digest | Neutral `automatic` resolves to no transaction policy; explicit transaction policies are rejected. |
+| Publish or Validate preview with a track and no digest | `automatic` resolves to `capture-current-simple`, with either derived or complete identity pins. |
+| A track and a valid digest | `automatic` resolves to `explicit-pin`. |
 | Explicit `capture-current-simple` plus any digest | Rejected as conflicting intent. |
-| Promote, with either complete release form | A valid digest and `explicit-pin` are required; `automatic` with a digest resolves to that policy. Capture is never allowed. |
+| Promote | A valid digest and `explicit-pin` are required; `automatic` with a digest resolves to that policy. Capture is never allowed. |
 
 An explicit pin must still match the actual target when the edit begins. Identity lookup form
-does not change release-state policy. Inspect accepts neither release intent nor a digest.
+does not change release-state policy. Inspect accepts neither a track intent nor a digest.
 
-Example shape only; placeholders are not a reservation or authorization:
-
-```json
-{
-  "name": "Recap Page PRODUCT_VERSION",
-  "versionCodes": ["SEALED_VERSION_CODE"],
-  "status": "completed",
-  "releaseNotes": [
-    {
-      "language": "en-US",
-      "text": "Reviewed release notes for this exact version."
-    }
-  ]
-}
-```
-
-Only `draft` and `completed` are supported. The JSON input is bounded to 8 KiB, with notes limited
-to 500 Unicode code points per language. Whitespace-only inputs are invalid.
 The candidate code must appear exactly once; any other retained code must already
 belong to the selected target track. This is an explicit replacement, not an inferred merge.
 Multiple active releases, rollouts, country targeting or non-default update priority require
@@ -262,7 +250,7 @@ There is no automatic ledger merge or privileged release broker.
 | Normal supplied values or approvals | Previously | Now |
 |---|---|---|
 | Candidate inputs | 6 | 4: mode, reserved code, observed high-water and public evidence |
-| Play Publish inputs | 10 | 4: mode, named Candidate, actual track and plain notes |
+| Play Publish inputs | 10 | 3: mode, named Candidate and actual track; notes come from the approved store text |
 | Native CI rehearsal inputs | 3 | 1: native mode |
 | Routine Android environment approvals | 3, including separate Inspect | 2: signing and publishing |
 
@@ -284,6 +272,49 @@ its artifact record and distribution approval are separate from this uploader.
 Production also requires app-specific eligibility, the applicable testing/access process,
 owner product/privacy/device acceptance and a separately reviewed production-permission path.
 Neither testing access nor a successful GitHub workflow grants those.
+
+### Production promotion workflow
+
+`.github/workflows/google-play-production.yml` promotes the exact bundle testers already received
+to the production track. It never uploads or rebuilds, and its inputs are only `mode` and
+`version`: no input can carry notes. Dispatch it from `main`, once per intended operation.
+
+| Mode | Google access and effect |
+|---|---|
+| `Validate` (default) | No Google credentials. Checks the invocation, the newest sealed ledger record for the version, the approved store text and its 500-character Play limit, then prints the binding the owner approves. |
+| `Inspect` | Requires the `google-play-production` approval. Opens one edit, reads tracks and bundles, runs every promotion check and deletes the edit. Changes nothing a reader can see. |
+| `Publish` | Requires the same approval. Runs the same checks, sets production, reads every track back in the edit, validates, commits once and reads production back in a fresh edit. |
+
+Before anything changes, Play's own record must agree with the sealed ledger: one bundle for the
+sealed code, with the sealed SHA-256; a completed testing release already carrying that code, every
+testing release of it with notes equal to the approved text; and production holding nothing but one
+simple completed release of a lower code. Anything else stops with a named code, and a more complex
+production track needs reconciling in the Console first. An older seal for a version that was
+rebuilt is refused rather than chosen.
+
+The release goes to everyone at once, status `completed`, as the owner chose on 16 November 2026
+([#1322](https://github.com/raymond-nassar/recap-page/issues/1322)). A staged rollout would be one
+constant in the script. The commit uses `changesInReviewBehavior=ERROR_IF_IN_REVIEW`, so the same
+rule about pending Console work applies as for testing.
+
+The approved job rechecks the binding, the environment policy and the actual current-run approval
+before it obtains a token. The credential is a separate Play service account with production
+permission, bound by workload identity only to this environment and this workflow, through the
+repository variables `GOOGLE_PLAY_PRODUCTION_WORKLOAD_IDENTITY_PROVIDER` and
+`GOOGLE_PLAY_PRODUCTION_SERVICE_ACCOUNT`. Test-build approvals are delegated, so the testing account
+never receives production permission. The `google-play-production` environment and that account are
+owner setup; until both exist, Inspect and Publish stop before any Google access.
+
+The retained `google-play-production-RUN_ID` receipt records production before and after,
+the edit identities and the stage. Mutations are sent once without retries.
+
+| Outcome | Meaning |
+|---|---|
+| `inspected-no-release-change` | Every check passed; the edit was deleted. |
+| `submitted-production-review-unverified` | Committed, and production read back as approved. Google's review and actual availability remain separate. |
+| `committed-readback-unverified` | Commit acknowledged, but the fresh read back failed or differed. Read the Console before anything else. |
+| `blocked` | A check or a known rejection stopped it before any change could have reached Play. |
+| `uncertain` | A change may have reached Play without a trustworthy answer. Read the Console before any new dispatch. |
 
 ### Production release in Play Console
 
