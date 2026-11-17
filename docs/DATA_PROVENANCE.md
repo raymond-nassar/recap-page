@@ -416,16 +416,16 @@ orders: **null means nobody granted anything for this file, not that the file is
 
 ### Reading orders, pinned
 
-Three hundred and forty-eight pinned reading-order payloads remain under
-[`src/data/`](../src/data): 345 active visible catalog files, one active noncatalog partition parent,
-and the retired No Way Home (18 originals) and withdrawn Marvel Multiverse (2 comics) payloads. The 346 active files hold
-33,025 issue records covering 20,306 distinct tracked identities. The visible files hold 32,538 of those records;
+Three hundred and forty-nine pinned reading-order payloads remain under
+[`src/data/`](../src/data): 346 active visible catalog files, one active noncatalog partition parent,
+and the retired No Way Home (18 originals) and withdrawn Marvel Multiverse (2 comics) payloads. The 347 active files hold
+33,049 issue records covering 20,317 distinct tracked identities. The visible files hold 32,562 of those records;
 the extra 487 are the retained Marvel Knights to Planet X parent whose ordinary children partition
 the same vector. Records use these fields:
 `issueId`, `title`,
 `number`, `url`, `seriesId`, `seriesName`, `onSale`, `mu`, `digitalId`, `pageCount`, a `cover`
-object of `path` and `ext`, and `creators` of `name` and `role`. Across the 346 active payloads, 28,124
-records carry a cover URL and 26,396 carry creator credits. The retired No Way Home payload remains byte-exact;
+object of `path` and `ext`, and `creators` of `name` and `role`. Across the 347 active payloads, 28,147
+records carry a cover URL and 26,419 carry creator credits. The retired No Way Home payload remains byte-exact;
 neither retired payload contributes to active discovery or this active census.
 
 `description` was the field to look at hardest and is now empty. The others are facts about a
@@ -645,7 +645,7 @@ character labels say which guide an issue belongs to, not who appears in the iss
 
 ### Order checklists
 
-The 269 Markdown files retained in [`src/data/orders/`](../src/data/orders) contain 267 active
+The 270 Markdown files retained in [`src/data/orders/`](../src/data/orders) contain 268 active
 local source files, the retired owner-selected No Way Home checklist and the withdrawn Marvel
 Multiverse checklist. Every active source order now has a local checklist. The fast-track
 checklist serves two independent Reading Lists, so local-file and source-order counts differ.
@@ -3109,7 +3109,7 @@ when it carries both a cover and credits, only when every field names exactly on
 URL and the wiki source is a pinned revision, and only when the cover is on the pinned host. A
 Grand Comics Database source, approved on 2026-11-16 and described below, may supply only the
 on-sale date and credits, never alongside a wiki source, and only values equal to its pinned record
-(`scripts/lib/owner-external-supplement.mjs:47-120`). The inventory refuses a supplement anywhere
+(`scripts/lib/owner-external-supplement.mjs:47-123`). The inventory refuses a supplement anywhere
 else (`scripts/lib/cbh-inventory.mjs:1196-1202`).
 
 The vendored item copies exactly those fields and adds `metadataSourceKind:

@@ -108,8 +108,11 @@ export function validateOwnerExternalSupplement(row, label = `Source position ${
   const kinds = new Set(supplement.sources.map((source) => source.kind));
   assert.ok(!(kinds.has('gcd-issue') && kinds.has('marvel-fandom-wiki')),
     `${label}: a supplement takes details from one outside source, not both.`);
-  const gcd = supplement.sources.find((source) => source.kind === 'gcd-issue');
-  if (gcd) {
+  // One pinned record per comic. A second gcd-issue source would otherwise pass unchecked, since
+  // its address need only look like an issue page, and could carry invented credits.
+  const gcdSources = supplement.sources.filter((source) => source.kind === 'gcd-issue');
+  assert.ok(gcdSources.length <= 1, `${label}: a supplement takes one Grand Comics Database issue record.`);
+  for (const gcd of gcdSources) {
     const derived = gcdSupplementFields(gcd.url, supplement.retrievedAt);
     for (const field of gcd.fields) {
       assert.deepEqual(fields[field], derived[field],

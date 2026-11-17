@@ -1572,7 +1572,10 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // Spidey adds six distinct source-position placeholders for the School's Out chapters.
   // The three Captain America (2025) lists add twelve owner-confirmed identities without provider
   // details. Issue 123361 was already counted, so the distinct refused total rises by eleven.
-  assert.equal(refused.length, 1413);
+  // Avengers: Armageddon adds 24 owner-confirmed identities without provider details. Captain
+  // America (2025) #6-16, The Will of Doom #1 and Ultimate Impact: Reborn #1 were already counted,
+  // so the distinct refused total rises by eleven.
+  assert.equal(refused.length, 1424);
   const infinity = JSON.parse(readFileSync(join(dataDir,
     'marvels_infinity_saga_gauntlet_wars_crusade_reading_order.json'), 'utf8'));
   assert.equal(infinity.items.filter((item) => item.detailsRefused && item.issueId > 0).length, 11);

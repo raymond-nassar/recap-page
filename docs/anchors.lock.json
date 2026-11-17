@@ -5919,9 +5919,9 @@
     "fp": "ee83bead50989c2c",
     "head": "if (Object.hasOwn(row, 'externalMetadataSupplement')) {"
   },
-  "docs/DATA_PROVENANCE.md|owner-approved-external-supplement-for-owner-con|scripts/lib/owner-external-supplement.mjs:47-120|0": {
-    "anchor": "scripts/lib/owner-external-supplement.mjs:47-120",
-    "fp": "8ef793cefa9e4dfd",
+  "docs/DATA_PROVENANCE.md|owner-approved-external-supplement-for-owner-con|scripts/lib/owner-external-supplement.mjs:47-123|0": {
+    "anchor": "scripts/lib/owner-external-supplement.mjs:47-123",
+    "fp": "e072367714219cf6",
     "head": "export function validateOwnerExternalSupplement(row, label = `Source position ${row?.sourcePosition}"
   },
   "docs/DATA_PROVENANCE.md|owner-approved-external-supplement-for-owner-con|src/js/lib/model.js:270-279|0": {

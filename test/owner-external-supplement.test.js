@@ -77,6 +77,11 @@ test('a Grand Comics Database supplement must equal its pinned record and never 
     s.fields.pageCount = 32;
     s.sources.push({ kind: 'marvel-fandom-wiki', url: 'https://marvel.fandom.com/wiki/X?oldid=1', fields: ['pageCount'] });
   }), /one outside source, not both/);
+  assert.throws(altered((s) => {
+    s.sources[1].fields = ['onSale'];
+    s.sources.push({ kind: 'gcd-issue', url: 'https://www.comics.org/issue/999999999/', fields: ['creators'] });
+    s.fields.creators = [{ name: 'Invented Person', role: 'writer' }];
+  }), /one Grand Comics Database issue record/);
 });
 
 test('Grand Comics Database credits are read without their printing annotations', () => {
