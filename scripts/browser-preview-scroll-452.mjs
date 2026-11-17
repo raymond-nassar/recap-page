@@ -172,15 +172,15 @@ export const previewScroll452 = {
       }
       await page.focus('#preview-close');
       await page.keyboard.press('Tab');
+      t.check(`${cfg.name}: the curator pill sits under the introduction, before About`,
+        await page.evaluate(() => document.activeElement.matches('#preview-visit .list-source-link')));
+      await page.keyboard.press('Tab');
       t.check(`${cfg.name}: About is expanded and its summary comes before the sources`,
         await page.evaluate(() => document.querySelector('#preview-about').open
           && document.activeElement.matches('#preview-about > summary')));
       await page.keyboard.press('Tab');
       t.check(`${cfg.name}: Source precedes the issue list or Add action`,
-        await page.evaluate(() => document.activeElement.matches('#preview-source a:not(.list-source-link)')));
-      await page.keyboard.press('Tab');
-      t.check(`${cfg.name}: the curator pill follows full credit before the issue list`,
-        await page.evaluate(() => document.activeElement.matches('#preview-source .list-source-link')));
+        await page.evaluate(() => document.activeElement.matches('#preview-source a')));
       const stationary = await stationaryControl(page);
       t.check(`${cfg.name}: the next Preview control settles with its full focus outline visible`,
         stationary.settled && stationary.last.same && stationary.last.focusVisible

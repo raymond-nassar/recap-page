@@ -80,32 +80,36 @@ export const sourceCredits = {
         && (expectedUrl == null || expectedSection !== null || !preview.text.includes('Section:'))
         && preview.text.includes(`Snapshot taken ${updatedLabel(list)}`), JSON.stringify(preview));
       if (expectedUrl) {
-        const checkVisit = async (about, surfaceName) => {
+        // The button sits outside About, so it is checked with About closed as well as open.
+        const checkVisit = async (about, holder, surfaceName) => {
           for (const width of [1280, 390]) {
             await page.setViewport({ width, height: 900 });
-            const visit = await page.$eval(about, (node) => {
-              const link = node.querySelector('.list-source-link');
+            const visit = await page.$eval(about, (node, holder) => {
+              const link = document.querySelector(holder).querySelector('.list-source-link');
               const box = link?.getBoundingClientRect();
               return {
                 open: node.open, visible: link?.checkVisibility(),
+                inAbout: Boolean(node.querySelector('.list-source-link')),
                 text: link?.textContent, href: link?.href,
                 target: link?.target, rel: link?.rel,
                 fits: box && box.left >= 0 && box.right <= innerWidth,
               };
-            });
+            }, holder);
             t.check(`${id}: ${surfaceName} at ${width}px shows Visit Comic Book Herald`,
-              visit.open && visit.visible && visit.fits
+              visit.visible && visit.fits && !visit.inAbout
               && visit.text === 'Visit Comic Book Herald' && visit.href === expectedUrl
               && visit.target === '_blank' && visit.rel === 'noopener noreferrer',
               JSON.stringify(visit));
           }
         };
-        await checkVisit('#preview-about', 'Preview About');
+        await checkVisit('#preview-about', '#preview-visit', 'Preview');
         await page.$eval('#preview-add button[data-act="main"]', (button) => button.click());
         await page.waitForSelector('#preview-add a[data-act="main"]');
         await page.$eval('#preview-add a[data-act="main"]', (link) => link.click());
-        await page.waitForSelector('#view-read:not([hidden]) #order-source .list-source-link');
-        await checkVisit('#order-desc', 'saved-list About');
+        await page.waitForSelector('#view-read:not([hidden]) #order-visit .list-source-link');
+        await checkVisit('#order-desc', '#order-visit', 'saved list');
+        await page.$eval('#order-desc', (node) => { node.open = false; });
+        await checkVisit('#order-desc', '#order-visit', 'saved list with About closed');
         continue;
       }
       await page.keyboard.press('Escape');

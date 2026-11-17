@@ -473,7 +473,7 @@ export function createCatalogPresentation({
   };
 }
 
-export function sourceButton(el, list) {
+export function sourceButton(el, list, createIcon = null) {
   const href = sourceLink(list);
   if (!href) return null;
   const site = sourceSiteName(href);
@@ -485,18 +485,52 @@ export function sourceButton(el, list) {
     target: '_blank',
     rel: 'noopener noreferrer',
     'aria-label': `${label}, source of ${list.name} (opens in your browser)`,
-  }, label);
+  }, visitContent(label, createIcon));
 }
+
+export const PROJECT_HOME = 'https://raymond-nassar.github.io/recap-page/';
+
+// The owner's decision on 2026-11-16: every Reading List screen carries a Visit button. A list with
+// no outside website (a project selection, a reader's own list, a retired one) links the project's
+// home page, and its name claims to be no list's source.
+export function homeButton(el, createIcon = null) {
+  return el('a', {
+    class: 'btn btn-g list-home-link',
+    href: PROJECT_HOME,
+    target: '_blank',
+    rel: 'noopener noreferrer',
+    'aria-label': 'Visit the Recap Page website (opens in your browser)',
+  }, visitContent('Visit the Recap Page website', createIcon));
+}
+
+export function visitButton(el, list, createIcon = null) {
+  return (list && sourceButton(el, list, createIcon)) || homeButton(el, createIcon);
+}
+
+// The glyph marks the one button that leaves the app. It is decorative: the accessible name already
+// says the link opens in your browser.
+function visitContent(label, createIcon) {
+  const glyph = createIcon?.('external', 'gi list-visit-glyph');
+  return glyph ? [label, glyph] : label;
+}
+
+// Owner direction on 2026-11-16: readers see a site's everyday name, never a web address or a
+// repository path. The fallback to the bare host exists only for a future source nobody has named
+// yet, and the catalog test fails until that source is added here.
+const SITE_NAMES = new Map([
+  ['comicbookherald.com', 'Comic Book Herald'],
+  ['comicbookreadingorders.com', 'Comic Book Reading Orders'],
+  ['reddit.com', 'Reddit'],
+  ['overdrive.com', 'OverDrive'],
+  ['wikipedia.org', 'Wikipedia'],
+  ['github.com', 'GitHub'],
+]);
 
 function sourceSiteName(href) {
   const url = new URL(href);
   const host = url.hostname.replace(/^www\./, '');
-  if (host === 'comicbookherald.com') return 'Comic Book Herald';
-  if (host === 'comicbookreadingorders.com') return 'Comic Book Reading Orders';
-  if (host === 'github.com') {
-    const repository = url.pathname.split('/').slice(1, 3).join('/');
-    if (repository === 'raymond-nassar/recap-page') return 'Recap Page';
-    if (repository && !repository.endsWith('/')) return repository;
-  }
-  return host;
+  if (host === 'github.com'
+    && url.pathname.split('/').slice(1, 3).join('/') === 'raymond-nassar/recap-page') return 'Recap Page';
+  const site = SITE_NAMES.get(host) || SITE_NAMES.get(host.replace(/^[a-z]{2,3}\.(?=wikipedia\.org$)/, ''));
+  return site || host;
 }

@@ -318,6 +318,8 @@
               <div class="head-left">
                 <h1 id="order-name">Recap Page</h1>
                 <div class="sub" id="order-sub">Curated Reading Lists, tracked locally.</div>
+                <!-- Outside About, so the way to the list's own website survives a closed disclosure. -->
+                <div class="list-visit" id="order-visit" hidden></div>
                 <!-- The order's own blurb. It used to be welded onto the end of the subtitle above,
                      which is a line with room for a fact and not for three sentences. -->
                 <details class="setting-more order-desc" id="order-desc" open hidden>
@@ -1551,6 +1553,7 @@
         <button type="button" class="quiet" id="preview-close">Close</button>
       </div>
       <p class="result-meta" id="preview-meta"></p>
+      <div class="list-visit" id="preview-visit"></div>
       <details class="setting-more order-desc" id="preview-about" open>
         <summary>About this list</summary>
         <p class="rail-hint" id="preview-desc"></p>

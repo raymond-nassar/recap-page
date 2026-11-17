@@ -79,6 +79,9 @@ Code comments explain why, with evidence where needed. Do not restate the code.
 
 No em dashes anywhere in anything a reader sees. Commas, colons and full stops instead.
 
+Text the app shows or speaks to readers uses plain, everyday language with no technical jargon
+(owner direction, 16 November 2026).
+
 Start each pull request with `## In plain English`. In at most four short paragraphs, explain why
 the change matters and what a reader will notice, including when nothing changes for them. Use no
 file names, identifiers, commands, or backlog IDs; describe what those things do instead.

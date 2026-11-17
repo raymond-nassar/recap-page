@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { createCatalogPresentation, sourceButton } from '../src/js/views/shared/catalog-presentation.js';
+import { readFileSync } from 'node:fs';
+import { createCatalogPresentation, PROJECT_HOME, sourceButton, visitButton } from '../src/js/views/shared/catalog-presentation.js';
 import { updatedLabel } from '../src/js/lib/catalog.js';
 
 function el(tag, props = {}, children = []) {
@@ -92,8 +93,11 @@ test('list source pills name the curator and keep the exact private new-tab dest
   for (const [source, site] of [
     [list.source, 'Comic Book Herald'],
     ['https://comicbookreadingorders.com/marvel/events/house-of-m/', 'Comic Book Reading Orders'],
-    ['https://github.com/emreparker/marvel-comics/blob/main/order.md', 'emreparker/marvel-comics'],
+    ['https://github.com/emreparker/marvel-comics/blob/main/order.md', 'GitHub'],
     ['https://www.example.org/guide/?chapter=2#reading', 'example.org'],
+    ['https://www.reddit.com/r/xmen/comments/abc/nightcrawler/', 'Reddit'],
+    ['https://www.overdrive.com/collections/marvel', 'OverDrive'],
+    ['https://en.wikipedia.org/wiki/House_of_M', 'Wikipedia'],
   ]) {
     const link = sourceButton(el, { ...list, source });
     assert.equal(link.tag, 'a');
@@ -111,10 +115,32 @@ test('missing, unsafe and project-owned sources do not invent a curator pill', (
   for (const source of [null, '', 'not a URL', 'javascript:alert(1)', 'http://example.org/',
     'https://github.com/raymond-nassar/recap-page/issues/759']) {
     assert.equal(sourceButton(el, { ...list, source }), null);
+    const link = visitButton(el, { ...list, source });
+    assert.equal(link.href, PROJECT_HOME, 'a list with no outside website links the project home page');
+    assert.equal(link.class, 'btn btn-g list-home-link');
+    assert.equal(link.target, '_blank');
+    assert.equal(link.rel, 'noopener noreferrer');
+    assert.equal(text(link), 'Visit the Recap Page website');
+    assert.equal(link['aria-label'], 'Visit the Recap Page website (opens in your browser)', 'it claims to be no list\'s source');
   }
+  assert.equal(visitButton(el, null).href, PROJECT_HOME, 'a retired list has no entry to read');
+  assert.equal(visitButton(el, list).href, list.source);
   const mixed = { ...list, sourceOrigin: `${list.sourceOrigin}, with owner-selected additions` };
   assert.ok(text(presentation.attributionLine(mixed)).includes(mixed.sourceOrigin));
   assert.ok(sourceButton(el, mixed));
+});
+
+// The owner asked for the Visit button to stand out as a way to another website. The glyph is
+// decorative, so the label and the spoken name stay exactly as approved.
+test('Visit buttons carry the decorative external-link glyph after an unchanged label', () => {
+  const createIcon = (name, className) => el('svg', { icon: name, class: className, text: '' });
+  for (const link of [visitButton(el, list, createIcon), visitButton(el, null, createIcon)]) {
+    const glyph = link.children.at(-1);
+    assert.equal(glyph.icon, 'external');
+    assert.equal(glyph.class, 'gi list-visit-glyph');
+    assert.match(text(link), /^Visit (Comic Book Herald|the Recap Page website)$/);
+    assert.match(link['aria-label'], /\(opens in your browser\)$/);
+  }
 });
 
 // UX-11 (#830): one prominent action per card. The title opens Preview, named by the title it shows
@@ -223,21 +249,41 @@ test('a card has three keyboard stops with a linked source and two without one',
     'Source: Compiled for this project');
 });
 
-test('compact source names credit the actual site or repository, not its hosting platform', () => {
+test('compact source names credit the site in plain words, never a web address', () => {
   for (const [source, label] of [
     ['https://www.comicbookherald.com/guide/', 'Comic Book Herald'],
     ['https://comicbookherald.com/guide/', 'Comic Book Herald'],
     ['https://comicbookreadingorders.com/marvel/events/guide/', 'Comic Book Reading Orders'],
     ['https://www.comicbookreadingorders.com/guide/', 'Comic Book Reading Orders'],
-    ['https://github.com/emreparker/marvel-comics/blob/main/data/hickman_full.md', 'emreparker/marvel-comics'],
+    ['https://github.com/emreparker/marvel-comics/blob/main/data/hickman_full.md', 'GitHub'],
     ['https://github.com/raymond-nassar/recap-page/issues/303', 'Recap Page'],
+    ['https://www.reddit.com/r/xmen/comments/abc/nightcrawler/', 'Reddit'],
+    ['https://www.overdrive.com/collections/marvel', 'OverDrive'],
+    ['https://en.wikipedia.org/wiki/House_of_M', 'Wikipedia'],
     ['https://www.example.com/reading-order', 'example.com'],
     ['https://comicbookherald.com.example.com/guide', 'comicbookherald.com.example.com'],
+    ['https://en.wikipedia.org.example.com/wiki', 'en.wikipedia.org.example.com'],
   ]) {
     const line = presentation.attributionLine({ source }, { compact: true });
     assert.equal(text(line), `Source: ${label}`);
     assert.equal(descendants(line).find((node) => node.tag === 'a').href, source);
   }
+});
+
+// Owner direction on 2026-11-16: readers see a site's everyday name. A source added to the catalog
+// from a site nobody has named yet would otherwise reach readers as a bare web address.
+test('every catalog source shows readers a named site, never a web address', () => {
+  const catalog = JSON.parse(readFileSync(new URL('../src/data/catalog.json', import.meta.url), 'utf8'));
+  let named = 0;
+  for (const entry of catalog.lists) {
+    const link = sourceButton(el, entry);
+    if (!link) continue;
+    named++;
+    assert.doesNotMatch(text(link), /[./]/, `${entry.id} reads ${JSON.stringify(text(link))}`);
+    const compact = text(presentation.attributionLine(entry, { compact: true }));
+    assert.doesNotMatch(compact, /[./]/, `${entry.id} card reads ${JSON.stringify(compact)}`);
+  }
+  assert.ok(named > 200, `expected the outside-source lists, found ${named}`);
 });
 
 test('Preview keeps full provenance and the exact section visible', () => {

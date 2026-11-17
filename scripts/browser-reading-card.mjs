@@ -251,7 +251,7 @@ export const readingCardPhoneOverview = {
       });
       const layout = await page.evaluate(() => {
         const selectors = [
-          '#order-name', '#hero', '#order-sub', '#ring-wrap', '#hero-progress', '#order-desc', '#list-note',
+          '#order-name', '#hero', '#order-sub', '#order-visit', '#ring-wrap', '#hero-progress', '#order-desc', '#list-note',
         ];
         const nodes = selectors.map((selector) => document.querySelector(selector));
         const boxes = nodes.map((node) => {

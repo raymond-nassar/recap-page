@@ -2341,7 +2341,10 @@ async function readingAccessibility(page, result, id) {
   await page.focus('#order-name');
   const controls = result.controls.map((control) => control.selector);
   const phone = await page.evaluate(() => matchMedia('(max-width: 700px)').matches);
-  const expected = [...(phone ? [...controls, '#order-desc > summary'] : ['#order-desc > summary', ...controls]),
+  // The visit button follows the list's introduction, ahead of About, on every Reading List.
+  const visit = await page.$eval('#order-visit', (node) => !node.hidden && node.querySelector('a') ? ['#order-visit a'] : []);
+  const context = [...visit, '#order-desc > summary'];
+  const expected = [...(phone ? [...controls, ...context] : [...context, ...controls]),
     ...result.listOptions.map((control) => control.selector)];
   for (const selector of expected) {
     await page.keyboard.press('Tab');
