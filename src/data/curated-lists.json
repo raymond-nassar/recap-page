@@ -9827,6 +9827,45 @@
       "coverIssueId": 38394
     },
     {
+      "id": "nightcrawler-best-of",
+      "name": "Best Nightcrawler Comics Reading List",
+      "description": "Kurt Wagner teleports into the X-Men in 1975 and these picks follow him from Claremont's X-Men to leading Excalibur, his solo series, Amazing X-Men and a stint as Uncanny Spider-Man. Four standalone favorites close the list. 4 comics from the source order aren't in the app's comic data yet, so they don't appear among this order's issues.",
+      "type": "character-run",
+      "spotlightKind": "best-of",
+      "depth": "selected",
+      "storyTypes": [
+        "science-fiction",
+        "magic-supernatural"
+      ],
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "nightcrawler-best-of.md",
+      "sourcePage": "https://www.reddit.com/r/marvelcomics/s/hHJ4rVgM9v",
+      "sourceOrigin": "Selected by Proxy616 on r/marvelcomics; expanded into original issues for this project",
+      "sourceLicense": null,
+      "out": "nightcrawler_best_of.json",
+      "characters": [
+        "Nightcrawler",
+        "X-Men",
+        "Excalibur",
+        "Kitty Pryde",
+        "Captain Britain",
+        "Spider-Man"
+      ],
+      "keywords": [
+        "Kurt Wagner",
+        "Excalibur",
+        "Amazing X-Men",
+        "Uncanny Spider-Man",
+        "Dark Phoenix Saga"
+      ],
+      "expect": 187,
+      "timeline": 1975,
+      "coverIssueId": 8797
+    },
+    {
       "id": "miles-morales-spider-man-reading-order",
       "name": "Spider-Man: Miles Morales",
       "description": "Between the Ultimate Universe and Earth-616, Miles Morales grows up as Spider-Man over a dozen years of solo books and team-ups. Cataclysm, Ultimate End and Secret Wars come before Champions and Bendis's Spider-Man. Saladin Ahmed's Miles Morales: Spider-Man follows, and Cody Ziglar's Trial By Spider carries the journey to 2023.",

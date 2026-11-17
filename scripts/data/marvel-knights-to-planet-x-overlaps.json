@@ -1,12 +1,12 @@
 {
   "parentId": "marvel-knights-to-planet-x",
-  "generatedAt": "2026-11-13T07:32:25.875Z",
-  "pairCount": 89,
-  "chapterCountWithOverlap": 52,
-  "existingListCount": 27,
-  "sharedOccurrenceCount": 476,
+  "generatedAt": "2026-11-17T04:17:43.354Z",
+  "pairCount": 94,
+  "chapterCountWithOverlap": 56,
+  "existingListCount": 28,
+  "sharedOccurrenceCount": 492,
   "internalChildOverlapCount": 0,
-  "matrixSha256": "6eaee595b7cc1fb6fca010c7136b2acf1c48f3753040003318058ea93cc49f2f",
+  "matrixSha256": "b73592859fde4a7690bcdd34def834a55c8b28556ac789666096fdc0f8df03f8",
   "existingLists": [
     {
       "id": "amazing-spider-man-reading-order-modern-marvel-era",
@@ -71,6 +71,10 @@
     {
       "id": "modern-x-men-fast-track",
       "sharedCount": 42
+    },
+    {
+      "id": "nightcrawler-best-of",
+      "sharedCount": 16
     },
     {
       "id": "professor-x-reading-order",
@@ -157,6 +161,14 @@
         18986,
         22447,
         22448
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-03",
+      "existingListId": "nightcrawler-best-of",
+      "sharedCount": 1,
+      "sharedIssueIds": [
+        13935
       ]
     },
     {
@@ -281,6 +293,17 @@
       ]
     },
     {
+      "chapterId": "marvel-knights-to-planet-x-08",
+      "existingListId": "nightcrawler-best-of",
+      "sharedCount": 4,
+      "sharedIssueIds": [
+        13936,
+        13937,
+        13938,
+        13939
+      ]
+    },
+    {
       "chapterId": "marvel-knights-to-planet-x-12",
       "existingListId": "emma-frost-reading-order",
       "sharedCount": 7,
@@ -387,6 +410,15 @@
       ]
     },
     {
+      "chapterId": "marvel-knights-to-planet-x-16",
+      "existingListId": "nightcrawler-best-of",
+      "sharedCount": 2,
+      "sharedIssueIds": [
+        13940,
+        13941
+      ]
+    },
+    {
       "chapterId": "marvel-knights-to-planet-x-17",
       "existingListId": "mcu-prep-the-incredible-hulk-2008",
       "sharedCount": 6,
@@ -461,6 +493,20 @@
         43134,
         43137,
         43139
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-22",
+      "existingListId": "nightcrawler-best-of",
+      "sharedCount": 7,
+      "sharedIssueIds": [
+        13942,
+        13943,
+        13944,
+        13945,
+        13946,
+        13947,
+        13948
       ]
     },
     {
@@ -577,6 +623,15 @@
       "sharedIssueIds": [
         14946,
         14947
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-30",
+      "existingListId": "nightcrawler-best-of",
+      "sharedCount": 2,
+      "sharedIssueIds": [
+        13949,
+        13950
       ]
     },
     {

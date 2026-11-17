@@ -416,16 +416,16 @@ orders: **null means nobody granted anything for this file, not that the file is
 
 ### Reading orders, pinned
 
-Three hundred and forty-seven pinned reading-order payloads remain under
-[`src/data/`](../src/data): 344 active visible catalog files, one active noncatalog partition parent,
-and the retired No Way Home (18 originals) and withdrawn Marvel Multiverse (2 comics) payloads. The 345 active files hold
-32,838 issue records covering 20,183 distinct tracked identities. The visible files hold 32,351 of those records;
+Three hundred and forty-eight pinned reading-order payloads remain under
+[`src/data/`](../src/data): 345 active visible catalog files, one active noncatalog partition parent,
+and the retired No Way Home (18 originals) and withdrawn Marvel Multiverse (2 comics) payloads. The 346 active files hold
+33,025 issue records covering 20,306 distinct tracked identities. The visible files hold 32,538 of those records;
 the extra 487 are the retained Marvel Knights to Planet X parent whose ordinary children partition
 the same vector. Records use these fields:
 `issueId`, `title`,
 `number`, `url`, `seriesId`, `seriesName`, `onSale`, `mu`, `digitalId`, `pageCount`, a `cover`
-object of `path` and `ext`, and `creators` of `name` and `role`. Across the 345 active payloads, 27,937
-records carry a cover URL and 26,209 carry creator credits. The retired No Way Home payload remains byte-exact;
+object of `path` and `ext`, and `creators` of `name` and `role`. Across the 346 active payloads, 28,124
+records carry a cover URL and 26,396 carry creator credits. The retired No Way Home payload remains byte-exact;
 neither retired payload contributes to active discovery or this active census.
 
 `description` was the field to look at hardest and is now empty. The others are facts about a
@@ -1157,10 +1157,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes four independent Reading Paths with 104 stops: three
 authored paths with 10, 12 and 4 stops from the curated manifest at
-`src/data/curated-lists.json:11255-11306`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:11294-11345`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all four at
-`src/data/catalog.json:16770-16907`.
+`src/data/catalog.json:16827-16964`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -3862,3 +3862,56 @@ Newly added lists save the description shown while browsing. Existing saved snap
 including Thor's seven unrelated originals and their progress, are not rewritten or relabeled.
 Historical review helpers replay only the captured prior publications or these exact corrections,
 without rewriting frozen approvals.
+
+## Best Nightcrawler Comics Reading List
+
+The locally authored [Best Nightcrawler Comics Reading List](../src/data/orders/nightcrawler-best-of.md)
+is a character best-of path from a selection Proxy616 posted on
+[r/marvelcomics](https://www.reddit.com/r/marvelcomics/s/hHJ4rVgM9v). The owner supplied its text
+on 2026-11-16 and asked for it to be credited with the link kept. An ordinary request to that link
+returned HTTP 403 the same day and was not worked around, so the owner's message is the source of
+record. It is not an official Marvel reading order. The source lists, in this order:
+
+> Recommended series:
+> Uncanny X-Men by Chris Claremont (1975) (Kurt’s debut);
+> Nightcrawler (1985) (4 issues);
+> Excalibur by Chris Claremont (1988), Alan Davis (1991), and Warren Ellis (1994) (Kurt’s the leader);
+> Uncanny X-Men by Joe Casey (2001); Nightcrawler (2004); Amazing X-Men (2014) (Kurt centric);
+> Nightcrawler (2014); Uncanny spider-man was fun (2023) Kurt does a brief stint as a spider-man.
+> My favourite one-shots: ”The Gift” a short back up story in classic X-men (1986-1990) #9;
+> Guardians team-up #6 (2015) - cross over with Gamora from Guardians if the galaxy;
+> X-men unlimited #49 (1993-2003) - if you can get past the art, this is a fun one; X-Men Legends #12.
+
+The commenter's remarks stay here only; the app shows none of them. The checklist keeps the
+source order as eleven sections, the eight series with Excalibur split by writer, then the
+one-shots. Every identity and writer credit below comes from the configured metadata provider,
+retrieved 2026-11-16.
+
+The first section is the owner's curation, recorded in three layers. The source line names
+Claremont's Uncanny X-Men from 1975 without issues. Kurt Wagner debuts in Giant-Size X-Men (1975)
+#1, so the owner chose to start there. The owner's own selection was #94, #96-108 including "the
+Phoenix and Dark Phoenix material", #141-142, "#153 and the Kitty Pryde issues around it" and
+#162-167. On 2026-11-16 the owner then accepted four refinements: add #95, which ends #94's story;
+add the Dark Phoenix Saga, #129-138, which lies outside #96-108; read the Kitty issues as #151-153;
+and keep #162-167 for the Brood saga. The published section is Giant-Size X-Men #1, then Uncanny
+X-Men #94-108, #129-138, #141-142, #151-153 and #162-167: 37 issues.
+
+Excalibur opens with the team's debut special, Excalibur: The Sword Is Drawn (1988) #1, followed by
+the writer eras the source names: Claremont #1-34, Alan Davis #42-67 and Warren Ellis #83-103. The
+issues between those eras are not selected. Joe Casey's Uncanny X-Men run is #394-409. Nightcrawler
+(2004) #1-12, Amazing X-Men #1-19 (dated 2013 by the provider, from its first on-sale date),
+Nightcrawler (2014) #1-12 and Uncanny Spider-Man (2023) #1-5 are complete series. The one-shots are
+Classic X-Men (1986) #9, which carries the back-up story "The Gift", Guardians Team-Up (2015) #6,
+X-Men Unlimited (1993) #49 and X-Men Legends (2021) #12, the only X-Men Legends volume with a #12.
+
+The source has 191 positions and 187 exact issues are published. Nightcrawler (1985) #1-4, the
+source's second series and positions 38 to 41, has no series at the provider. Those positions
+stay in the checklist's unresolved table and in
+[the metadata gap Issue](https://github.com/raymond-nassar/recap-page/issues/1422), and no other
+comic or collection replaces them. The card description says that 4 comics from the source order
+are not shown. [The source ledger](../scripts/data/curated-source-ledgers/nightcrawler-best-of.json)
+records every source position, the failed lookup for the gap and the reviewed overlap with each
+other list; the one issue shared with the Onslaught order, Excalibur (1988) #100, carries the
+coordinator's reciprocal approval. The list has no Universe association: the source states no reality, and the list
+follows primary continuity. Only factual metadata and cover addresses are kept. Existing saved
+data is unchanged.
