@@ -16,11 +16,8 @@ on:
       track:
         description: Actual testing track ID for Publish or Promote; no production or guessed alias
         type: string
-      release_notes:
-        description: Plain notes for this version; generates a completed en-US release with its one sealed code
-        type: string
       track_state_policy:
-        description: Automatic captures simple state for plain notes; advanced digest pins remain explicit
+        description: Automatic captures simple state, or pins it when a digest is given; notes come from the approved store text
         type: choice
         options: [automatic, capture-current-simple, explicit-pin]
         default: automatic
@@ -36,11 +33,8 @@ on:
       version_code:
         description: Advanced optional sealed Android code; part of the complete five-pin set
         type: string
-      release_json:
-        description: Advanced optional complete name, versionCodes, status and releaseNotes; never combine with plain notes
-        type: string
       expected_track_sha256:
-        description: Advanced optional target digest; required for Promote and automatic full-JSON intent
+        description: Advanced optional target digest; required for Promote
         type: string
       upload_cert_sha256:
         description: Advanced optional public upload-certificate SHA-256; part of the complete five-pin set

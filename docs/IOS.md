@@ -700,8 +700,44 @@ To regenerate them:
 
 ## App Store submission
 
-The owner approves the submission and every text readers see. These steps come from 4.4.0, the
-first App Store release
+The owner approves the submission and every text readers see.
+
+### Submit through the workflow
+
+`.github/workflows/app-store-release.yml` takes only `mode`, `version` and `build_number`; no input
+can carry text. What's New comes only from `docs/releases/<version>-store.json` at the workflow's
+commit, and must fit Apple's 4,000-character limit or the run stops before any Apple request;
+nothing is truncated. Dispatch from `main`, once per operation.
+
+| Mode | Apple access and effect |
+|---|---|
+| `Validate` (default) | No Apple credentials. Checks the build number is the newest sealed build for that version in `packaging/ios/build-numbers.json`, the source version and the approved text. |
+| `Inspect` | Requires the `app-store-release` approval. Sends only reads and reports what Submit would change, including each line where the live What's New differs from the approved file. |
+| `Submit` | Requires the same approval. Creates or updates the version, attaches the build, sets What's New and submits it for review, reading each change back. |
+
+Before any write it requires one processed, unexpired build whose number and version are the sealed
+ones, with export compliance already answered; the target version absent or still editable; no
+other editable version; and no open review submission. Nothing is reused or canceled. The release
+option is **Automatically release this version** (`AFTER_APPROVAL`), as the owner chose on 16
+November 2026 ([#1322](https://github.com/raymond-nassar/recap-page/issues/1322)); it is one
+constant in the script.
+
+The approved job rechecks the binding, the policy and the current-run approval, then signs a
+15-minute ES256 token with `node:crypto`. The App Store Connect key needs a role that can edit
+versions and submit for review, App Manager or higher, and its secrets must exist in the
+`app-store-release` environment itself; secrets scoped to `ios-testflight` are not visible there.
+
+| Outcome | Meaning |
+|---|---|
+| `inspected-no-change` | Reads only; the receipt lists the planned writes and the What's New difference. |
+| `submitted-for-review` | The submission read back as waiting for or in review, with the build and text as approved. |
+| `submitted-readback-unverified` | Apple acknowledged the submit, but the read back failed or showed another state. Read App Store Connect before anything else. |
+| `blocked` | A check or a known rejection stopped it. If `mutationAttempted` is true, earlier changes to the editable version may be live there, but nothing was submitted; a new dispatch reconciles them. |
+| `uncertain` | A write may have been applied without a trustworthy answer. Read App Store Connect before any new dispatch. |
+
+### Manual submission, as 4.4.0 did
+
+These steps come from 4.4.0, the first App Store release
 ([recorded on #949](https://github.com/raymond-nassar/recap-page/issues/949#issuecomment-6640861707)):
 
 1. After the owner withdrew 4.3.0 from review, the version page read **Developer Rejected**, already

@@ -28,14 +28,14 @@ Do not turn these routes into one universal command sequence:
 | Platform or channel | Authoritative route |
 |---|---|
 | Android build allocation or candidate | [Android release contract](../../../docs/RELEASING.md#android-allocation-and-exact-artifact-contract) and [Android candidate procedure](../../../docs/ANDROID.md#protected-app-bundle-candidates). `docs/RELEASING.md:35-60`; `docs/ANDROID.md:241-248` |
-| Google Play testing or promotion | [Protected Google Play publication](../../../docs/GOOGLE_PLAY_PUBLISHING.md). `docs/RELEASING.md:206-216`; `docs/GOOGLE_PLAY_PUBLISHING.md:1-20` `docs/GOOGLE_PLAY_PUBLISHING.md:256-295` |
-| iOS build allocation, TestFlight export, or upload | [iOS release contract](../../../docs/RELEASING.md#ios-allocation-and-exact-artifact-contract) and [TestFlight procedure](../../../docs/IOS.md#signing-and-internal-testflight). `docs/RELEASING.md:258-285`; `docs/IOS.md:475-484` `docs/IOS.md:516-548` |
+| Google Play testing or promotion | [Protected Google Play publication](../../../docs/GOOGLE_PLAY_PUBLISHING.md). `docs/RELEASING.md:206-216`; `docs/GOOGLE_PLAY_PUBLISHING.md:1-20` `docs/GOOGLE_PLAY_PUBLISHING.md:244-326` |
+| iOS build allocation, TestFlight export, or upload | [iOS release contract](../../../docs/RELEASING.md#ios-allocation-and-exact-artifact-contract) and [TestFlight procedure](../../../docs/IOS.md#signing-and-internal-testflight). `docs/RELEASING.md:274-301`; `docs/IOS.md:475-484` `docs/IOS.md:516-548` |
 | Windows portable or MSIX proof | [Windows package proof](../../../docs/MICROSOFT_STORE.md#build-controlled-proof-packages). `docs/MICROSOFT_STORE.md:281-340` |
 | Microsoft Store handoff, submission, or live review | [Store submission handoff](../../../docs/MICROSOFT_STORE_SUBMISSION.md#final-upload-handoff) and [live-review stop points](../../../docs/MICROSOFT_STORE_SUBMISSION.md#live-review-stop-points). `docs/MICROSOFT_STORE_SUBMISSION.md:457-491` `docs/MICROSOFT_STORE_SUBMISSION.md:493-515`; `docs/RELEASING.md:191-199` |
 
 Preserve each platform's independent version or artifact ledger, exact-artifact checks, channel,
 and protected approval boundary. A successful build, artifact, upload, or request does not prove
-publication or user availability. `docs/RELEASING.md:226-239`
+publication or user availability. `docs/RELEASING.md:242-255`
 
 ## Preparation boundary
 
@@ -48,8 +48,8 @@ action-specific authorization before any such action. `docs/RELEASING.md:99-102`
 
 After an uncertain release, upload, submission, or other mutation, inspect the authoritative
 external state before taking another action. Never retry by guess.
-`docs/RELEASING.md:99-102` `docs/RELEASING.md:309-315`
-`docs/IOS.md:536-540` `docs/GOOGLE_PLAY_PUBLISHING.md:250`
+`docs/RELEASING.md:99-102` `docs/RELEASING.md:325-331`
+`docs/IOS.md:536-540` `docs/GOOGLE_PLAY_PUBLISHING.md:238`
 `docs/MICROSOFT_STORE_SUBMISSION.md:548-550`
 
 ## Completion

@@ -269,11 +269,16 @@ test('the App Store screenshot capture runs only from an opted-in manual dispatc
 
 test('screenshot capture retries only recognized Xcode infrastructure failures and exports the last attempt', async () => {
   const capture = stepScript(jobSource('screenshots'), 'Capture the screens');
+  const screenshotLaunch = '/repo/AppStoreScreenshotUITests.swift:55: error: '
+    + '-[RecapPageUITests.AppStoreScreenshotUITests testCaptureAppStoreScreens] : '
+    + `Failed to launch ${appImpl} via Xcode: Timed out while launching application via Xcode.`;
   for (const [scenario, exit, expectedAttempts] of [
     ['recover', 0, 2],
     ['mixed', 1, 1],
     ['twice', 1, 2],
     ['logfail', 1, 1],
+    ['quoted', 1, 1],
+    ['quotedonly', 1, 1],
   ]) {
     const root = await mkdtemp(join(tmpdir(), 'recap-ios-screens-retry-'));
     try {
@@ -306,16 +311,22 @@ xcodebuild() {
   count=$((count + 1))
   printf '%s\\n' "$count" > "$RUNNER_TEMP/count-$set-$appearance"
   if [ "$set:$appearance" = "iphone-6.3:dark" ]; then
-    if [ "$CASE" = twice ] || [ "$CASE" = mixed ] || { [ "$CASE" = recover ] && [ "$count" = 1 ]; }; then
-      echo "/repo/AppStoreScreenshotUITests.swift:55: error: Timed out while launching application via Xcode."
+    if [ "$CASE" = twice ] || [ "$CASE" = mixed ] || [ "$CASE" = quoted ] || [ "$CASE" = quotedonly ] ||
+        { [ "$CASE" = recover ] && [ "$count" = 1 ]; }; then
+      if [ "$CASE" != quotedonly ]; then echo "${screenshotLaunch}"; fi
       if [ "$CASE" = mixed ]; then echo "/repo/AppStoreScreenshotUITests.swift:56: error: XCTAssertEqual failed - wrong screen"; fi
+      if [ "$CASE" = quoted ] || [ "$CASE" = quotedonly ]; then echo "${quoting(screenshotLaunch)}"; fi
       return 65
     fi
   fi
   echo "captured $set $appearance attempt $count"
 }
 ${capture}`;
-      const result = await runScript(root, harness, { CASE: scenario });
+      // The whole capture step runs per case: six phases and about forty process starts, none of
+      // them slow alone. Measured on a 12-thread Windows machine (#1215), a case took 2.1 to 2.5 s
+      // idle, 16 to 22 s with 24 busy processes and 50 to 55 s with 48, every step growing about
+      // alike, so the limit here only has to catch a hang and is set well clear of a busy machine.
+      const result = await runScript(root, harness, { CASE: scenario }, 120000);
       assert.equal(result.status, exit, `${scenario}: ${result.stdout}${result.stderr}`);
       assert.equal(Number((await readFile(join(root, 'count-iphone-6.3-dark'), 'utf8')).trim()), expectedAttempts, scenario);
       for (const phase of ['ipad-13-dark', 'ipad-13-light', 'iphone-6.3-light', 'iphone-6.9-dark', 'iphone-6.9-light']) {
@@ -461,23 +472,53 @@ test('minimum runtime builds once and each UI group uses its exact test run and 
 });
 
 const bash = process.platform === 'win32' ? 'C:\\Program Files\\Git\\bin\\bash.exe' : '/bin/bash';
+// Each recognized failure is a whole line as the runner wrote it, because the gate is anchored to
+// that shape (#1031). The job each one came from is named beside it.
+const testFailure = (file, method) =>
+  `/Users/runner/work/recap-page/recap-page/packaging/ios/RecapPageUITests/${file}.swift:15: error: `
+  + `-[RecapPageUITests.${file} ${method}] : `;
+const appImpl = '<XCUIApplicationImpl: 0x10285cec0 io.github.raymondnassar.recappage at '
+  + '/Users/runner/work/_temp/DerivedData/Build/Products/Debug-iphonesimulator/RecapPage.app>';
 const infrastructure = [
-  'The test runner failed to initialize for UI testing.',
-  'Failed to get background assertion for target app with pid 13819: Timed out while acquiring background assertion.',
-  'Failed to launch application: Timed out while launching application via Xcode.',
+  // Job 123270191232, in the "Testing failed:" block, where xcodebuild indents with a tab.
+  '\tRecapPageUITests-Runner (20005) encountered an error (The test runner failed to initialize for UI testing. '
+    + '(Underlying Error: Failed call to AXDisableAccessibilityOnTermination: kAXErrorCannotComplete))',
+  // Job 123272240109.
+  testFailure('LaunchUITests', 'testHomeAndAListPreviewOpenWithEveryRemoteLoadBlocked')
+    + 'Failed to get background assertion for target app with pid 13819: Timed out while acquiring background assertion.',
+  // Job 123258717428.
+  testFailure('LaunchUITests', 'testHomeAndAListPreviewOpenWithEveryRemoteLoadBlocked')
+    + `Failed to launch ${appImpl} via Xcode: Timed out while launching application via Xcode.`,
   // Run 41174084511: launch could not end the previous test's instance before the test body ran.
   '/repo/LaunchUITests.swift:37: error: -[RecapPageUITests.LaunchUITests testFifthJournalPutFailureOffersRecoveryAfterForcedTermination] : '
     + 'Failed to terminate io.github.raymondnassar.recappage:19342: Failed to terminate io.github.raymondnassar.recappage:0',
+  // Job 123258717428 again: the same assertion can end without the reason.
+  testFailure('LaunchUITests', 'testSavedDataSurvivesTheAppEndingAndOpeningAgain')
+    + 'Failed to get background assertion for target app with pid 12516: No failure details provided',
 ];
 const minimumInfrastructure = [
   ...infrastructure,
-  'Failed to get matching snapshots: Error getting main window kAXErrorServerNotFound',
-  'RecapPageUITests-Runner encountered an error (Early unexpected exit, operation never finished bootstrapping (Underlying Error: Test crashed with signal kill before establishing connection.))',
-  // Run 41198453337, job 124529283379, verbatim: XCTest quotes the reason inside the parentheses.
-  'Failure Reason: The request was denied by service delegate (SBMainWorkspace) for reason: '
-    + 'Busy ("Application "io.github.raymondnassar.recappage" is installing or uninstalling, and cannot be launched").',
-  'Audit failed to complete in time',
+  // Job 124603384554.
+  testFailure('LaunchUITests', 'testCancelledAndFailedUnreadableDataExportsDoNotAuthorizeStartingFresh')
+    + 'Failed to get matching snapshots: Error getting main window kAXErrorServerNotFound',
+  // Job 124804924050, in the "Testing failed:" block.
+  '\tRecapPageUITests-Runner encountered an error (Early unexpected exit, operation never finished bootstrapping - '
+    + 'no restart will be attempted. (Underlying Error: Test crashed with signal kill before establishing connection.))',
+  // Run 41198453337, job 124529283379: XCTest quotes the reason inside the parentheses. The
+  // underlying error is shortened here; the rest of the line is verbatim.
+  testFailure('PresentationUITests', 'testBottomNavigationOcclusionRejectsLiveInteractiveLabelUnreachableAndNavigationOwners')
+    + `Failed to get launch progress for ${appImpl.replace('0x10285cec0', '0x600000d16820')}: Simulator device failed to launch `
+    + 'io.github.raymondnassar.recappage. The request was denied by service delegate (SBMainWorkspace) for reason: '
+    + 'Busy ("Application "io.github.raymondnassar.recappage" is installing or uninstalling, and cannot be launched"). '
+    + '(Underlying Error: The request to open "io.github.raymondnassar.recappage" failed.)',
+  // Job 124702065933.
+  testFailure('PresentationUITests', 'testCoreScreensPassAccessibilityAuditsAtDefaultAndLargestTextSizes')
+    + 'failed: caught error: "Error Domain=com.apple.xcode.xctest.accessibilityAudit Code=-56 '
+    + '"Audit failed to complete in time" UserInfo={NSLocalizedDescription=Audit failed to complete in time}"',
 ];
+// An assertion whose message quotes a recognized failure is still an assertion failure.
+const quoting = (line) => '/repo/LaunchUITests.swift:40: error: -[RecapPageUITests.LaunchUITests testHome] : '
+  + `XCTAssertTrue failed - ${line.includes('] : ') ? line.slice(line.indexOf('] : ') + 4) : line.trim()}`;
 const terminate = infrastructure[3];
 const otherTerminate = '/repo/LaunchUITests.swift:37: error: -[LaunchUITests testHome] : Failed to terminate com.apple.mobilesafari:4242';
 const assertion = '/repo/LaunchUITests.swift:40: error: -[LaunchUITests testHome] : XCTAssertTrue failed';
@@ -490,11 +531,11 @@ const anticipated = [
     + 'occlusion-mutant: above-navigationReason: (Ignoring the mutant.)',
 ].join('\n');
 
-async function runScript(root, script, env = {}) {
+async function runScript(root, script, env = {}, timeout = 15000) {
   const path = join(root, 'step.sh');
   await writeFile(path, script);
   const result = spawnSync(bash, ['--noprofile', '--norc', '-e', '-o', 'pipefail', path], {
-    encoding: 'utf8', timeout: 15000,
+    encoding: 'utf8', timeout,
     env: {
       ...process.env,
       RUNNER_TEMP: root,
@@ -650,7 +691,7 @@ test('the minimum runtime runs only one booted Simulator at a time', async () =>
   printf '%s\\n' "$*" >> "$RUNNER_TEMP/test-calls"
   invocation=$(wc -l < "$RUNNER_TEMP/test-calls" | tr -d ' ')
   case "$invocation" in
-    1) printf '%s\\n' ${JSON.stringify(message)}; return 65 ;;
+    1) printf '%s\\n' '${message.replaceAll("'", "'\\''")}'; return 65 ;;
     2) echo passed; return 0 ;;
     *) return 99 ;;
   esac
@@ -854,6 +895,46 @@ test('the separate presentation and capacity suites retry only the recognized UI
   }
 });
 
+test('an assertion that quotes a recognized infrastructure failure is never retried away (#1031)', async (t) => {
+  for (const [job, label] of [
+    ['newest', 'Run the UI tests'],
+    ['ipad', 'Run presentation UI tests on iPad'],
+    ['ipad', 'Measure restore capacity on iPad'],
+    ['minimum', 'Run the UI tests'],
+    ['minimum', 'Run presentation UI tests on the minimum iPhone'],
+    ['minimum', 'Run presentation UI tests on iPhone SE (3rd generation)'],
+  ]) {
+    const recognized = job === 'minimum' ? minimumInfrastructure : infrastructure;
+    const script = stepScript(jobSource(job), label);
+    for (const [index, line] of recognized.entries()) {
+      for (const [name, log] of [
+        ['alone', quoting(line)],
+        ['beside a recognized failure', `${recognized[3]}\n${quoting(line)}`],
+      ]) {
+        await t.test(`${job}: ${label}: quoted signature ${index + 1} ${name}`, async () => {
+          const root = await mkdtemp(join(tmpdir(), 'recap-ios-quoted-'));
+          try {
+            await writeFile(join(root, 'fixture.log'), log + '\n');
+            const stub = `xcodebuild() {
+  printf '%s\\n' "$*" >> "$RUNNER_TEMP/calls"
+  cat "$RUNNER_TEMP/fixture.log"
+  return 65
+}
+`;
+            const result = await runScript(root, stub + script,
+              { IPHONE_375_UDID: 'chosen-se', GITHUB_ENV: join(root, 'github-env') });
+            assert.equal(result.status, 1, result.stderr + result.stdout);
+            assert.equal((await readFile(join(root, 'calls'), 'utf8')).trim().split('\n').length, 1);
+            assert.doesNotMatch(result.stdout, /::warning::/);
+          } finally {
+            await rm(root, { recursive: true, force: true });
+          }
+        });
+      }
+    }
+  }
+});
+
 test('a retry after a finished attempt reruns only the tests that failed (#1245)', async (t) => {
   const caseLine = (suite, name, outcome) =>
     `Test Case '-[RecapPageUITests.${suite} ${name}]' ${outcome} (290.187 seconds).`;
@@ -867,7 +948,8 @@ test('a retry after a finished attempt reruns only the tests that failed (#1245)
     ['minimum', 'Run presentation UI tests on iPhone SE (3rd generation)', 'ui-iphone-se',
       'RecapPageUITests/PresentationUITests'],
   ]) {
-    const reason = job === 'minimum' ? 'Audit failed to complete in time' : infrastructure[2];
+    const recognized = job === 'minimum' ? minimumInfrastructure.at(-1) : infrastructure[2];
+    const reason = recognized.slice(recognized.indexOf('] : ') + 4);
     const failure = (suite, name) =>
       `/repo/${suite}.swift:1750: error: -[RecapPageUITests.${suite} ${name}] : ${reason}`;
     const scenarios = [
@@ -883,7 +965,7 @@ test('a retry after a finished attempt reruns only the tests that failed (#1245)
         log: [caseLine('PresentationUITests', 'testSearch', 'passed'), failure('PresentationUITests', 'testAudit'),
           caseLine('PresentationUITests', 'testAudit', 'failed')] },
       { name: 'a finished attempt that names no failed test', expected: [group],
-        log: [caseLine('PresentationUITests', 'testSearch', 'passed'), reason, finished] },
+        log: [caseLine('PresentationUITests', 'testSearch', 'passed'), infrastructure[0], finished] },
     ];
     const script = stepScript(jobSource(job), label);
     for (const scenario of scenarios) {

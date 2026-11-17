@@ -161,6 +161,8 @@ export const ALLOWED = new Map([
     'a fabricated privacy-negative log path that the native capsule test asserts is never retained'],
   ['test/app-window.test.js|a path inside one machine\'s user profile|C:\\\\Us' + 'ers\\\\reader',
     'the fabricated reader profile that places a per-user Chrome install, which the app-window launcher must refuse'],
+  ['test/ios-workflow.test.js|a path inside one machine\'s home directory|\'/Us' + 'ers/runner/',
+    'GitHub\'s hosted macOS runner home, quoted from real runner logs to test the anchored retry patterns, not anyone\'s machine'],
   ['test/android-instrumentation.test.js|a secret assigned in code|pass' + "word = 'PRIVATE_SECRET'",
     'a fixed synthetic forbidden-field payload that the native capsule schema rejects, not a credential'],
   ['test/browser-reporting.test.js|a secret assigned in code|' + 'secret' + " : 'HeadlessChrome/140.0.7339.0'",

@@ -40,7 +40,7 @@ const allowedModes = new Set([
   'done-hint', 'completion-focus', 'long-list-name', 'selection-bar', 'milestones', 'save-notice', 'home-continue',
   'progress-glance',
   'confirmations', 'issue-poster',
-  'story-types', 'touch-feedback', 'phone-layout', 'universes', 'list-revisions',
+  'story-types', 'touch-feedback', 'phone-layout', 'universes', 'list-revisions', 'collected-editions',
 ]);
 if (onlyArgs.length > 1 || (onlyArgs.length && !allowedModes.has(onlyArgs[0].slice('--only='.length)))) {
   throw new Error('Choose one exact supported Android --only selector; comma selections are not supported');
@@ -5477,7 +5477,63 @@ async function completeBackupAndroidCheck(page, label) {
 }
 
 try {
-  browser = await puppeteer.launch({ executablePath: edge, headless: !process.env.MRT_HEADED, args: ['--no-first-run', '--no-default-browser-check'] });
+  // #1286: the same isolation the desktop collected-editions owner launches with, so a provider or any
+  // other outside host that slips past request interception cannot resolve or leave through a proxy.
+  browser = await puppeteer.launch({ executablePath: edge, headless: !process.env.MRT_HEADED,
+    args: ['--no-first-run', '--no-default-browser-check', '--no-proxy-server',
+      '--host-resolver-rules=MAP * ~NOTFOUND, EXCLUDE 127.0.0.1'] });
+  if (onlyArgs[0] === '--only=collected-editions') {
+    const { collectedEditions } = await import('./browser-collected-editions.mjs');
+    const page = await browser.newPage();
+    page.__origin = origin;
+    const errors = [];
+    const blocked = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    // The owner sets its own phone and wide widths; each becomes a touch device viewport on the Android
+    // build, so the 1280 pass is an Android tablet rather than desktop evidence.
+    const setViewport = page.setViewport.bind(page);
+    page.setViewport = (viewport) => setViewport({ ...viewport, isMobile: true, hasTouch: true, deviceScaleFactor: 1 });
+    await page.setViewport({ width: 360, height: 800 });
+    // The Android build checks the public metadata service directly, which the first run of this owner
+    // measured as two requests. That check is
+    // not part of edition display, so it is answered in the page and never becomes a request the owner's
+    // no-external-requests assertion would count.
+    await page.evaluateOnNewDocument(() => {
+      const fetch = window.fetch.bind(window);
+      window.__mrtHealthStubbed = 0;
+      window.fetch = (input, init) => {
+        const url = typeof input === 'string' ? input : input instanceof URL ? input.href : input?.url ?? '';
+        if (url === 'https://marvel.emreparker.com/v1/health') {
+          window.__mrtHealthStubbed++;
+          return Promise.resolve(new Response('{"status":"ok"}', { status: 200, headers: { 'content-type': 'application/json' } }));
+        }
+        return fetch(input, init);
+      };
+    });
+    await page.setRequestInterception(true);
+    page.on('request', (request) => {
+      if (/^https?:/.test(request.url()) && new URL(request.url()).origin !== origin) {
+        blocked.push(request.url());
+        return request.abort('blockedbyclient');
+      }
+      return request.continue();
+    });
+    await page.goto(origin, { waitUntil: 'networkidle0' });
+    const presentation = await page.evaluate(() => ({
+      mobileCss: [...document.styleSheets].some((sheet) => sheet.href?.endsWith('/android/mobile.css')),
+      coarse: matchMedia('(pointer: coarse)').matches,
+      width: innerWidth,
+    }));
+    check(presentation.mobileCss && presentation.coarse && presentation.width === 360,
+      `collected editions run on the Android build with touch input ${JSON.stringify(presentation)}`);
+    await collectedEditions.run(page, { check: (name, ok, detail) => check(ok, `${name} ${detail ?? ''}`) });
+    const providers = blocked.filter((url) => /hoopladigital\.com|libbyapp\.com/.test(new URL(url).hostname));
+    const stubbed = await page.evaluate(() => window.__mrtHealthStubbed);
+    console.log(`Android collected editions: ${blocked.length} outside request(s) blocked at the source page, ${providers.length} to a provider; ${stubbed} metadata health check(s) answered in the last loaded page`);
+    check(blocked.every((url) => /hoopladigital\.com|libbyapp\.com/.test(new URL(url).hostname)),
+      `only provider requests were attempted from the source page ${JSON.stringify(blocked)}`);
+    check(errors.length === 0, `Android collected editions has no page errors: ${errors.join('; ')}`);
+  }
   if (onlyArgs[0] === '--only=phone-layout') {
     const page = await browser.newPage();
     page.__origin = origin;
@@ -5491,7 +5547,7 @@ try {
     page.__revisionViewport = { width: 360, height: 800, isMobile: true, hasTouch: true, deviceScaleFactor: 1 };
     await listRevisions.run(page, { check: (name, ok, detail) => check(ok, `${name} ${detail ?? ''}`) });
   }
-  let viewports = ['--only=phone-layout', '--only=list-revisions'].includes(onlyArgs[0]) ? []
+  let viewports = ['--only=phone-layout', '--only=list-revisions', '--only=collected-editions'].includes(onlyArgs[0]) ? []
     : [{ width: 360, height: 800 }, { width: 412, height: 915 }, { width: 800, height: 360 }];
   if (mobileUi) viewports.push({ width: 360, height: 800, textScale: 1.3 }, { width: 1280, height: 900 });
   if (phoneHeader) viewports = [
@@ -5670,7 +5726,7 @@ try {
   if (onlyViewport) viewports = viewports.filter((viewport) => (
     `${viewport.width}x${viewport.height}${viewport.textScale ? `@${viewport.textScale}` : ''}` === onlyViewport
   ));
-  assert.ok(viewports.length || ['--only=phone-layout', '--only=list-revisions'].includes(onlyArgs[0]), `Unknown viewport: ${onlyViewport}`);
+  assert.ok(viewports.length || ['--only=phone-layout', '--only=list-revisions', '--only=collected-editions'].includes(onlyArgs[0]), `Unknown viewport: ${onlyViewport}`);
   if (placeholderAx) assert.deepEqual(viewports.map((profile) => profile.id), ['M11', 'M16'],
     'Placeholder AX proof requires exactly M11 and M16');
   for (const viewport of viewports) {

@@ -12,6 +12,7 @@ import {
   ROOT, ANDROID_CODE_LIMIT, DEVELOPMENT_ANDROID_CODE, sourceIdentity,
   validateAndroidLedger, assertAppendOnlyLedger, verifyAndroidPromotion,
 } from './lib/release-identity.mjs';
+import { approvedStoreText, StoreTextError, storeTextPath } from './lib/store-text.mjs';
 
 export const ENVIRONMENT = 'google-play-publishing';
 export const WORKFLOW = '.github/workflows/google-play-release.yml';
@@ -23,9 +24,11 @@ const HASH = /^[0-9a-f]{64}$/;
 const MAX_ARCHIVE = 256 * 1024 * 1024;
 const MAX_JSON = 2 * 1024 * 1024;
 const MODES = ['Validate', 'Inspect', 'Publish', 'Promote'];
+// No input carries release notes. Every release's notes come from the approved store text at the
+// reviewed tooling commit, so nothing is typed at dispatch (#1322). Production lives in its own
+// workflow and script, google-play-production, so this testing path never holds that credential.
 const INPUTS = ['mode', 'source_sha', 'ledger_sha', 'candidate_run_id', 'artifact_id',
-  'version_code', 'track', 'release_notes', 'release_json', 'track_state_policy',
-  'expected_track_sha256', 'upload_cert_sha256'];
+  'version_code', 'track', 'track_state_policy', 'expected_track_sha256', 'upload_cert_sha256'];
 const IDENTITY_INPUTS = ['source_sha', 'ledger_sha', 'artifact_id', 'version_code', 'upload_cert_sha256'];
 const API = `https://androidpublisher.googleapis.com/androidpublisher/v3/applications/${OFFICIAL_ID}`;
 
@@ -128,17 +131,18 @@ export function validateIntent(raw) {
     ? raw.candidate_run_id.slice(runPrefix.length) : raw.candidate_run_id;
   const requestedPolicy = raw.track_state_policy || 'automatic';
   demand(['automatic', 'capture-current-simple', 'explicit-pin'].includes(requestedPolicy), 'UNKNOWN_TRACK_STATE_POLICY');
-  demand(!(raw.release_notes && raw.release_json), 'NOTES_AND_JSON_CONFLICT');
   const spec = {
     mode: raw.mode, sourceSha: pinned ? raw.source_sha : null, ledgerSha: pinned ? raw.ledger_sha : null,
     producerRunId: integer(producer), artifactId: pinned ? integer(raw.artifact_id) : null, code,
     signer: pinned ? certificateFingerprint(raw.upload_cert_sha256) : null, track: raw.track || '',
     expectedTrackSha256: raw.expected_track_sha256 || '', trackStatePolicy: null,
-    releaseNotes: raw.release_notes ? text(raw.release_notes, 500) : '', release: null,
+    releaseNotes: '', release: null,
   };
   if (spec.track) testingTrack(spec.track);
   const mutating = ['Publish', 'Promote'].includes(spec.mode);
-  const proposed = Boolean(raw.release_json || spec.releaseNotes);
+  // A track is what asks for a release now that notes are never typed: Validate with a track
+  // previews exactly the release Publish would send, and Validate without one checks the packet only.
+  const proposed = Boolean(spec.track);
   demand(!spec.expectedTrackSha256 || HASH.test(spec.expectedTrackSha256), 'INVALID_TRACK_PIN');
   demand(requestedPolicy !== 'capture-current-simple' || !spec.expectedTrackSha256, 'CAPTURE_AND_PIN_CONFLICT');
   demand(spec.mode !== 'Inspect' || (!proposed && !spec.expectedTrackSha256 && requestedPolicy === 'automatic'),
@@ -147,35 +151,45 @@ export function validateIntent(raw) {
     demand(!spec.expectedTrackSha256 && requestedPolicy === 'automatic', 'NEUTRAL_MODE_CANNOT_RECEIVE_TRACK_POLICY');
   } else {
     testingTrack(spec.track);
-    demand(proposed, 'RELEASE_REQUIRED');
     spec.trackStatePolicy = requestedPolicy === 'automatic'
-      ? spec.expectedTrackSha256 ? 'explicit-pin' : spec.releaseNotes ? 'capture-current-simple' : null
+      ? spec.expectedTrackSha256 ? 'explicit-pin' : 'capture-current-simple'
       : requestedPolicy;
-    demand(spec.trackStatePolicy !== null, 'TRACK_PIN_AND_RELEASE_REQUIRED');
     demand(spec.trackStatePolicy !== 'explicit-pin' || HASH.test(spec.expectedTrackSha256), 'TRACK_PIN_REQUIRED');
     demand(spec.mode !== 'Promote' || spec.trackStatePolicy === 'explicit-pin', 'PROMOTION_REQUIRES_EXPLICIT_PIN');
-    if (raw.release_json) {
-      demand(Buffer.byteLength(raw.release_json) <= 8192, 'RELEASE_JSON_TOO_LARGE');
-      let release;
-      try { release = JSON.parse(raw.release_json); } catch { throw new PublisherError('INVALID_RELEASE_JSON'); }
-      spec.release = desiredRelease(release, code);
-    }
   }
   return spec;
 }
 
-export function resolveIntent(request, { sourceSha, ledgerSha, artifactId, code, signer, productVersion }) {
+// The approved store text is the only source of release notes (#1322). It is read from the reviewed
+// tooling commit, and its own Play limit is checked before anything is sent, never truncated.
+export function approvedPlayNotes(bytes, productVersion) {
+  return approvedStoreText(bytes, productVersion, 'google-play').text;
+}
+function approvedNotesAt(request, commit, productVersion) {
+  if (request.trackStatePolicy === null) return '';
+  const path = storeTextPath(productVersion);
+  let bytes;
+  try { bytes = native('git', ['--no-pager', 'show', `${commit}:${path}`], { binary: true }); } catch {
+    throw new StoreTextError(`store text: ${path} is missing at the reviewed commit ${commit}. `
+      + 'Merge the approved store text first; nothing was sent.');
+  }
+  return approvedPlayNotes(bytes, productVersion);
+}
+
+export function resolveIntent(request, { sourceSha, ledgerSha, artifactId, code, signer, productVersion, notes = '' }) {
   demand(SHA.test(sourceSha) && SHA.test(ledgerSha) && Number.isSafeInteger(artifactId) && artifactId > 0
     && Number.isSafeInteger(code) && code > DEVELOPMENT_ANDROID_CODE && code <= ANDROID_CODE_LIMIT
     && HASH.test(signer), 'RESOLVED_IDENTITY_REQUIRED');
   const pins = { sourceSha, ledgerSha, artifactId, code, signer };
   demand(Object.entries(pins).every(([key, value]) => request[key] === null || request[key] === value),
     'IDENTITY_PIN_MISMATCH');
-  const release = request.releaseNotes ? {
+  if (request.trackStatePolicy === null) return { ...request, ...pins };
+  const releaseNotes = text(notes, 500);
+  const release = {
     name: `Recap Page ${text(productVersion, 80)}`, versionCodes: [String(code)], status: 'completed',
-    releaseNotes: [{ language: 'en-US', text: request.releaseNotes }],
-  } : request.release;
-  return { ...request, ...pins, release: release ? desiredRelease(release, code) : null };
+    releaseNotes: [{ language: 'en-US', text: releaseNotes }],
+  };
+  return { ...request, ...pins, releaseNotes, release: desiredRelease(release, code) };
 }
 
 export function validateInvocation(context, run) {
@@ -339,7 +353,7 @@ export function proposedTrack(spec, current) {
     'UNAPPROVED_RETAINED_CODE');
   return { track: spec.track, releases: [spec.release] };
 }
-function tracksBody(value) {
+export function tracksBody(value) {
   object(value, [], ['kind', 'tracks'], 'tracksListResponse');
   if (value.kind !== undefined) demand(value.kind === 'androidpublisher#tracksListResponse', 'INVALID_TRACKS_KIND');
   const tracks = value.tracks === undefined ? [] : value.tracks;
@@ -348,7 +362,7 @@ function tracksBody(value) {
   demand(new Set(result.map((track) => track.track)).size === result.length, 'DUPLICATE_TRACK');
   return result;
 }
-function binaryList(value, property) {
+export function binaryList(value, property) {
   object(value, [], [property, 'kind'], `${property}ListResponse`);
   const items = value[property] === undefined ? [] : value[property];
   demand(Array.isArray(items) && items.length <= 10000, 'INVALID_BINARY_LIST');
@@ -356,7 +370,7 @@ function binaryList(value, property) {
     && item.versionCode > 0 && item.versionCode <= ANDROID_CODE_LIMIT, 'INVALID_REMOTE_CODE');
   return items;
 }
-async function boundedJson(response) {
+export async function boundedJson(response) {
   demand(response.body, 'EMPTY_API_RESPONSE');
   const reader = response.body.getReader();
   const chunks = [];
@@ -651,7 +665,8 @@ export async function prepare({ afterApproval = false } = {}) {
     sourceRevision: sourceSha, sourceTree: git('rev-parse', `${sourceSha}^{tree}`), sourceDirty: false,
   };
   const spec = resolveIntent(request, { sourceSha, ledgerSha, artifactId: artifact.id, code,
-    signer: certificateFingerprint(report.bundle?.bundleSignerSha256), productVersion: identity.productVersion });
+    signer: certificateFingerprint(report.bundle?.bundleSignerSha256), productVersion: identity.productVersion,
+    notes: approvedNotesAt(request, context.workflowSha, identity.productVersion) });
   checkRecord(record, identity);
   assertAppendOnlyLedger(proposed, selected);
   const bundlePath = join(packet, 'recap-page-android.aab');
@@ -711,7 +726,7 @@ export async function prepare({ afterApproval = false } = {}) {
   console.log(`Google Play packet validated: ${identity.productVersion}, code ${spec.code}; no Google access performed.`);
   return result;
 }
-export function validatePrepared(prepared, request, context, expectedBinding) {
+export function validatePrepared(prepared, request, context, expectedBinding, notes = '') {
   demand(prepared.approval?.approved === true && prepared.context?.runId === context.runId
     && prepared.context.attempt === 1 && prepared.context.workflowSha === context.workflowSha
     && canonical(prepared.binding?.request) === canonical(request)
@@ -721,7 +736,7 @@ export function validatePrepared(prepared, request, context, expectedBinding) {
   const spec = resolveIntent(request, {
     sourceSha: prepared.binding.source.sourceRevision, ledgerSha: request.ledgerSha || context.workflowSha,
     artifactId: prepared.binding.artifactId, code: prepared.binding.source.packageVersion,
-    signer: prepared.binding.spec.signer, productVersion: prepared.binding.source.productVersion,
+    signer: prepared.binding.spec.signer, productVersion: prepared.binding.source.productVersion, notes,
   });
   demand(canonical(prepared.binding.spec) === canonical(spec), 'APPROVED_PREPARATION_REQUIRED');
   return spec;
@@ -730,7 +745,8 @@ export async function publish() {
   const work = await ownedWork();
   const prepared = await readJson(join(work, 'prepared.json'));
   const { request, context } = await contextAndInput();
-  const spec = validatePrepared(prepared, request, context, process.env.RECAP_PLAY_EXPECTED_BINDING_SHA);
+  const spec = validatePrepared(prepared, request, context, process.env.RECAP_PLAY_EXPECTED_BINDING_SHA,
+    approvedNotesAt(request, context.workflowSha, prepared.binding?.source?.productVersion));
   const currentPolicy = await policy(ENVIRONMENT);
   demand(currentPolicy.environmentId === prepared.publisherPolicy.environmentId
     && currentPolicy.sha256 === prepared.publisherPolicy.sha256, 'POLICY_CHANGED_BEFORE_OPERATION');
@@ -767,7 +783,8 @@ async function main() {
 }
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   main().catch((error) => {
-    console.error(error instanceof PublisherError || error instanceof CandidateError ? error.message
+    console.error(error instanceof PublisherError || error instanceof CandidateError
+      || error instanceof StoreTextError ? error.message
       : 'Google Play publisher: required qualification failed; no success or retry implied.');
     process.exitCode = 1;
   });

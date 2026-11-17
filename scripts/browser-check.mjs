@@ -6988,7 +6988,7 @@ const SCENARIOS = [
         completedIssues.length === 3, JSON.stringify(completedIssues));
       await openBrowseCategory(page, 'timeline');
       await page.waitForSelector('#catalog-results .catalog-card[aria-current="step"]');
-      await new Promise((resolve) => setTimeout(resolve, 600));
+      await page.waitForFunction(() => document.querySelector('#announcer')?.textContent.includes('You are here: Avengers Disassembled'), { timeout: 5000 }).catch(() => {}); // #1111: 500ms debounce plus the 30ms channel; a fixed 600ms once read the previous message.
       const advanced = await page.evaluate(() => {
         const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
         return {
@@ -23064,6 +23064,13 @@ function tally() {
   };
 }
 
+class CleanupDeadlineError extends Error {
+  constructor() {
+    super('Browser check cleanup deadline exceeded');
+    this.name = 'TimeoutError';
+  }
+}
+
 async function cleanupDeadline(action, timeoutMs = 5000) {
   let timer;
   try {
@@ -23071,7 +23078,7 @@ async function cleanupDeadline(action, timeoutMs = 5000) {
       Promise.resolve().then(action),
       new Promise((_, reject) => {
         timer = globalThis.setTimeout(() => {
-          reject(Object.assign(new Error('Browser check cleanup deadline exceeded'), { name: 'TimeoutError' }));
+          reject(new CleanupDeadlineError());
         }, timeoutMs);
       }),
     ]);
@@ -23294,6 +23301,7 @@ async function withStack(fn, { port = 0, onCleanupFailure = null } = {}) {
   let closing = false;
   let disconnectedBeforeCleanup = false;
   let nativeFailed = false;
+  let forced = false;
   const browserEvidence = (stage, exit = child?.exitCode, signal = child?.signalCode) => {
     const exitCode = Number.isInteger(exit) ? exit : 'unknown';
     const exitHex = Number.isInteger(exit) && exit >= -2147483648 && exit <= 4294967295
@@ -23302,7 +23310,7 @@ async function withStack(fn, { port = 0, onCleanupFailure = null } = {}) {
     console.log(`BROWSER stage=${stage} cleanup=${closing} browser=${browserVersion} driver=${driverRelease} exit=${exitCode} signal=${signalCode} exitHex=${exitHex} disconnectedBeforeCleanup=${disconnectedBeforeCleanup}`);
   };
   child?.once('exit', (code, signal) => {
-    if ((Number.isInteger(code) && code !== 0) || signal) {
+    if (!forced && ((Number.isInteger(code) && code !== 0) || signal)) {
       nativeFailed = true;
       process.exitCode = 1;
     }
@@ -23330,20 +23338,44 @@ async function withStack(fn, { port = 0, onCleanupFailure = null } = {}) {
     if (primaryError || code !== 0) browserEvidence('failure');
     closing = true;
     let cleanupFailed = false;
+    const closeStarted = performance.now();
     const close = Promise.resolve().then(() => browser.close());
     try {
-      await cleanupDeadline(() => close);
+      // #959: a close measured at 105 to 190ms on this host once ran past 5s after 256 passing scenarios.
+      await cleanupDeadline(() => close, 30000);
+      console.log(`BROWSER stage=closed ms=${Math.round(performance.now() - closeStarted)}`);
     } catch (err) {
-      console.error(`FAIL stage=close-browser code=${failureCode(err)}`);
-      onCleanupFailure?.();
-      code = 1;
-      cleanupFailed = true;
+      const slow = err instanceof CleanupDeadlineError;
+      if (!slow) console.error(`FAIL stage=close-browser code=${failureCode(err)}`);
+      else console.log(`TEARDOWN stage=close-browser code=TimeoutError ms=${Math.round(performance.now() - closeStarted)}`);
+      // The forced kill's own exit code is not a crash; one that came before it has already counted.
+      forced = true;
       console.log('BROWSER stage=abort-owned-launch cleanup=true');
       ownedBrowser.abort();
+      let disconnectFailed = false;
       try {
         await cleanupDeadline(() => browser.disconnect(), 2000);
       } catch (disconnectError) {
+        disconnectFailed = true;
         console.error(`FAIL stage=disconnect-browser code=${failureCode(disconnectError)}`);
+      }
+      // A slow close is forgiven only once Edge is seen to have exited and its temporary profile is
+      // gone. Anything short of that, or a close that failed outright, still fails the run.
+      const profile = child?.spawnargs?.find((arg) => arg.startsWith('--user-data-dir='))?.slice(16);
+      const exited = () => Boolean(child) && (child.exitCode !== null || child.signalCode !== null);
+      const removed = () => Boolean(profile) && !existsSync(profile);
+      let polling = slow;
+      await cleanupDeadline(() => new Promise((resolve) => {
+        const poll = () => (!polling || (exited() && removed()) ? resolve() : globalThis.setTimeout(poll, 100));
+        poll();
+      }), 10000).catch(() => {}).finally(() => { polling = false; });
+      const verified = slow && exited() && removed();
+      console.log(`TEARDOWN stage=verify-cleanup exited=${exited()} profileRemoved=${removed()} verified=${verified}`);
+      if (!verified || disconnectFailed) {
+        if (slow && !verified) console.error('FAIL stage=close-browser code=TimeoutError');
+        onCleanupFailure?.();
+        code = 1;
+        cleanupFailed = true;
       }
     }
     try {
@@ -23363,6 +23395,9 @@ async function withStack(fn, { port = 0, onCleanupFailure = null } = {}) {
         console.error('FAIL stage=cleanup-exit code=TimeoutError');
         process.exit(1);
       }, 5000).unref();
+    } else if (forced) {
+      // The same retained handles after a verified forced cleanup: exit with whatever the run decided.
+      globalThis.setTimeout(() => process.exit(), 5000).unref();
     }
   }
   if (primaryError) throw primaryError;
@@ -24262,6 +24297,11 @@ SCENARIOS.push({
       setup.active === 'fixture' && setup.view === 'view-read' && setup.full && setup.rows > 0,
       JSON.stringify(setup));
     const saved = await readState(page);
+    // Boot applies the saved collapsed rail after the shell's 150ms column transition is live, so the
+    // pane slides left as the page settles. A hover point taken mid-slide goes stale: two runs of 23
+    // failed this way, and in the probed one the pointer went to x 646.5, hit Done, then landed on its
+    // row when Done settled at 568.9 to 644.9, so the hint never showed. Measure once the slide ends.
+    await page.$eval('.shell', (shell) => Promise.all(shell.getAnimations().map((motion) => motion.finished.catch(() => {}))));
     const settle = () => page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
     const reset = async () => {
       await page.mouse.move(page.viewport().width - 1, page.viewport().height - 1);
@@ -24434,8 +24474,24 @@ SCENARIOS.push({
         return [...content];
       }, tipId);
       console.log(`  ${name} rendered meaningful content beneath long hint: ${JSON.stringify(occlusion)}`);
+      // The zoom takes Done out of view, and the hint's first refresh after it closes the hint for
+      // good, so pan Done back from a capturing listener that runs before that refresh. Panning in a
+      // later round trip raced it (#1105): Chromium raises a pointer move for the resting mouse once
+      // the zoom changes what lies beneath it, and when that came first the hint closed with Done at
+      // x 201 against a zoomed visible width of 195.
+      if (name === 'action') await page.$eval(selector, (node) => {
+        const sources = [[window, ['pointerover', 'pointerout', 'pointermove', 'resize', 'scroll']], [visualViewport, ['resize', 'scroll']]];
+        const listen = (method, pan) => sources.forEach(([target, types]) => types.forEach((type) => target[method](type, pan, true)));
+        const pan = () => {
+          if (visualViewport.scale === 1) return;
+          listen('removeEventListener', pan);
+          node.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+          window.zoomPanned1105 = true;
+        };
+        listen('addEventListener', pan);
+      });
       await client.send('Emulation.setPageScaleFactor', { pageScaleFactor: 2 });
-      if (name === 'action') await page.$eval(selector, (node) => node.scrollIntoView({ block: 'nearest', inline: 'nearest' }));
+      if (name === 'action') await page.waitForFunction(() => window.zoomPanned1105 === true, { timeout: 5000 });
       await settle();
       const zoom = await tooltipVisual449(page, selector, tipId);
       t.check(`${name}: 200 percent zoom retains visible, non-overlapping keyboard hints`, zoom.visible && zoom.focus && fits(zoom), JSON.stringify(zoom));
