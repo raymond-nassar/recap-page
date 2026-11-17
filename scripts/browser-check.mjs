@@ -2119,14 +2119,18 @@ const SCENARIOS = [
       }, state);
       await page.setViewport({ width: 1280, height: 900 });
       await open(page, '/#/read/source-list');
-      await page.waitForSelector('#order-source .list-source-link');
-      const readAbout = (selector) => page.$eval(selector, (about) => {
-        const link = about.querySelector('.list-source-link');
+      await page.waitForSelector('#order-visit .list-source-link');
+      // The visit button sits outside About, so a closed About never hides the way to the source.
+      const readAbout = (selector, visit) => page.evaluate((selector, visit) => {
+        const about = document.querySelector(selector);
+        const link = document.querySelector(visit)?.querySelector('a');
         const rect = link?.getBoundingClientRect();
         return {
           open: about.open, hidden: about.hidden,
           summary: about.querySelector('summary')?.textContent,
           text: about.textContent,
+          inAbout: Boolean(about.querySelector('.list-source-link, .list-home-link')),
+          shown: Boolean(rect?.width && rect?.height),
           label: link?.textContent,
           name: link?.getAttribute('aria-label'),
           href: link?.getAttribute('href'),
@@ -2135,10 +2139,10 @@ const SCENARIOS = [
           width: rect?.width, height: rect?.height,
           overflow: document.documentElement.scrollWidth > innerWidth,
         };
-      });
-      const saved = await readAbout('#order-desc');
+      }, selector, visit);
+      const saved = await readAbout('#order-desc', '#order-visit');
       t.check('a cold saved source-only list opens About and resolves its exact catalog credit',
-        saved.open && !saved.hidden && saved.summary === 'About this list'
+        saved.open && !saved.hidden && saved.summary === 'About this list' && !saved.inAbout && saved.shown
         && saved.href === CATALOG.lists[0].source && saved.text.includes('Fixture section')
         && saved.text.includes('Snapshot taken') && saved.label === 'Visit example.com'
         && saved.name.includes(CATALOG.lists[0].name) && saved.name.includes(saved.label)
@@ -2155,19 +2159,26 @@ const SCENARIOS = [
       await page.waitForFunction((title) => document.querySelector('#hero-title').textContent !== title, {}, beforeHero);
       t.check('a progress redraw does not undo a keyboard collapse',
         !(await page.$eval('#order-desc', (node) => node.open)));
+      const collapsed = await readAbout('#order-desc', '#order-visit');
+      t.check('a collapsed About still shows the visit button under the introduction',
+        !collapsed.open && collapsed.shown && collapsed.href === saved.href, JSON.stringify(collapsed));
       await page.setViewport({ width: 390, height: 844 });
       t.check('phone reflow preserves the same collapsed disclosure',
         !(await page.$eval('#order-desc', (node) => node.open)));
+      await page.focus('#order-visit .list-source-link');
+      const keyboard = await page.evaluate(() => ({
+        focused: document.activeElement.matches('#order-visit .list-source-link'),
+        visible: document.activeElement.getClientRects().length > 0,
+        open: document.querySelector('#order-desc').open,
+        after: document.querySelector('#order-visit').previousElementSibling?.id,
+        overview: document.querySelector('#order-visit').parentElement.id,
+      }));
+      t.check('on a phone the visit button follows the introduction in the overview and stays focusable with About closed',
+        keyboard.focused && keyboard.visible && !keyboard.open && keyboard.after === 'order-sub'
+        && keyboard.overview === 'reading-overview', JSON.stringify(keyboard));
       await page.focus('#order-desc > summary');
       await page.keyboard.press('Enter');
       await page.waitForFunction(() => document.querySelector('#order-desc').open);
-      await page.focus('#order-source .list-source-link');
-      const keyboard = await page.evaluate(() => ({
-        focused: document.activeElement.matches('#order-source .list-source-link'),
-        visible: document.activeElement.getClientRects().length > 0,
-      }));
-      t.check('the open phone disclosure exposes a keyboard-focusable native source destination',
-        keyboard.focused && keyboard.visible, JSON.stringify(keyboard));
       for (const width of [320, 390, 1280]) {
         await page.setViewport({ width, height: 900 });
         for (const theme of ['light', 'dark']) {
@@ -2175,7 +2186,7 @@ const SCENARIOS = [
             { name: 'prefers-color-scheme', value: theme },
             { name: 'prefers-reduced-motion', value: 'reduce' },
           ]);
-          const layout = await readAbout('#order-desc');
+          const layout = await readAbout('#order-desc', '#order-visit');
           t.check(`saved About retains its destination without clipping at ${width}px in ${theme}`,
             layout.open && !layout.overflow && layout.width >= 24 && layout.height >= 24,
             JSON.stringify(layout));
@@ -2183,7 +2194,7 @@ const SCENARIOS = [
       }
       await page.emulateMediaFeatures([{ name: 'forced-colors', value: 'active' }]);
       t.check('forced colors retains a visible focusable source destination',
-        await page.$eval('#order-source .list-source-link', (link) =>
+        await page.$eval('#order-visit .list-source-link', (link) =>
           getComputedStyle(link).visibility === 'visible' && link.getClientRects().length > 0));
       await page.emulateMediaFeatures([]);
       // Back and Forward restore a pixel scroll position, so About must come back at the height it
@@ -2230,7 +2241,7 @@ const SCENARIOS = [
           !returned.open && Math.abs(returned.after - returned.left) <= 1, JSON.stringify(returned));
 
         await page.reload({ waitUntil: 'networkidle0' });
-        await page.waitForSelector('#order-source .list-source-link');
+        await page.waitForSelector('#order-visit .list-source-link');
         const reloaded = await page.$eval('#order-desc', (node) => ({
           open: node.open, recorded: history.state?.aboutOpen,
         }));
@@ -2289,19 +2300,20 @@ const SCENARIOS = [
       await click(page, '.brand[data-view="home"]');
       await page.waitForSelector('#view-home:not([hidden])');
       await click(page, '#home-yours-list a[href="#/read/source-list"]');
-      await page.waitForSelector('#view-read:not([hidden]) #order-source .list-source-link');
+      await page.waitForSelector('#view-read:not([hidden]) #order-visit .list-source-link');
       t.check('returning to the same saved list through Home resets About to expanded',
         await page.$eval('#order-desc', (node) => node.open));
       await page.evaluate(() => { location.hash = '#/preview/browser-check'; });
       await page.waitForSelector('#preview[open] .preview-issue-link');
-      const preview = await readAbout('#preview-about');
+      const preview = await readAbout('#preview-about', '#preview-visit');
       t.check('Preview has the same expanded About, exact curator destination and full credit',
         preview.open && preview.summary === 'About this list' && preview.href === saved.href
+        && !preview.inAbout && preview.shown
         && preview.text.includes('Fixture section') && preview.rel === saved.rel,
         JSON.stringify(preview));
       for (const width of [320, 390, 1280]) {
         await page.setViewport({ width, height: 900 });
-        const layout = await readAbout('#preview-about');
+        const layout = await readAbout('#preview-about', '#preview-visit');
         t.check(`Preview About wraps without clipping at ${width}px`,
           layout.open && !layout.overflow && layout.width >= 24 && layout.height >= 24,
           JSON.stringify(layout));
@@ -2321,9 +2333,12 @@ const SCENARIOS = [
         && !location.hash.startsWith('#/preview/'));
       await page.evaluate(() => { location.hash = '#/read/custom-list'; });
       await page.waitForSelector('#view-read:not([hidden])');
-      t.check('a custom list with neither description nor source has no invented destination or empty About',
-        await page.evaluate(() => document.querySelector('#order-desc').hidden
-          && !document.querySelector('#order-source a')));
+      const custom = await readAbout('#order-desc', '#order-visit');
+      t.check('a custom list has no empty About and links the project home page without claiming it as a source',
+        custom.hidden && !custom.inAbout && custom.shown && custom.label === 'Visit the Recap Page website'
+        && custom.name === 'Visit the Recap Page website (opens in your browser)'
+        && custom.href === 'https://raymond-nassar.github.io/recap-page/'
+        && custom.target === '_blank' && custom.rel === 'noopener noreferrer', JSON.stringify(custom));
       await page.evaluate(() => {
         sessionStorage.setItem('about.fail', '1');
         sessionStorage.setItem('about.hold', '1');
@@ -2331,9 +2346,10 @@ const SCENARIOS = [
       await openFresh(page, '/#/read/source-list');
       await page.waitForSelector('#order-source button');
       const beforeRetry = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
-      t.check('failed source loading leaves an expanded, explicit, retryable About',
+      t.check('failed source loading leaves an expanded, explicit, retryable About and no visit button',
         await page.$eval('#order-desc', (node) => !node.hidden && node.open
-          && node.textContent.includes('fixture offline') && node.textContent.includes('Retry source credit')));
+          && node.textContent.includes('fixture offline') && node.textContent.includes('Retry source credit')
+          && document.querySelector('#order-visit').hidden));
       await page.focus('#order-source button');
       await page.keyboard.press('Enter');
       await page.waitForFunction(() => typeof window.__releaseAboutSource === 'function');
@@ -2342,9 +2358,9 @@ const SCENARIOS = [
           && button.getAttribute('aria-disabled') === 'true'));
       await page.keyboard.press('Enter');
       await page.evaluate(() => window.__releaseAboutSource());
-      await page.waitForSelector('#order-source .list-source-link');
+      await page.waitForSelector('#order-visit .list-source-link');
       t.check('source retry restores exact credit and logical focus without changing saved bytes',
-        await page.evaluate((before) => document.activeElement.matches('#order-source .list-source-link')
+        await page.evaluate((before) => document.activeElement.matches('#order-visit .list-source-link')
           && document.activeElement.getAttribute('href') === 'https://example.com/shared-page'
           && localStorage.getItem('mrt.state.v2') === before, beforeRetry));
     },

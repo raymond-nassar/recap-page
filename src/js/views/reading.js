@@ -30,7 +30,8 @@ import { DEFAULT_FILTER, READING_FILTERS, matchesReadingFilter } from '../lib/re
 import { shortcutAllowed } from '../lib/shortcuts.js';
 import { playMilestone, readMilestones, sectionHeading, sectionSentence } from '../lib/milestones.js';
 import { paintGlance } from '../lib/progressGlance.js';
-import { sourceButton } from './shared/catalog-presentation.js';
+import { homeButton, visitButton } from './shared/catalog-presentation.js';
+import { uiIcon } from '../lib/uiIcon.js';
 import { editionRelations } from '../lib/collectedEditions.js';
 import { positionProviders } from '../lib/libraryLinks.js';
 import { collectedEditionCredit, collectedEditionLabels } from './shared/collected-editions.js';
@@ -115,6 +116,7 @@ export function createReadingView({
   askNote,
   askText,
   clearNotice,
+  createIcon = uiIcon,
   detailUrl,
   el,
   fact,
@@ -199,6 +201,11 @@ export function createReadingView({
     const disclosure = $('#order-desc');
     const description = $('#order-desc-text');
     const source = $('#order-source');
+    const visit = $('#order-visit');
+    const showVisit = (button) => {
+      visit.replaceChildren(...(button ? [button] : []));
+      visit.hidden = !button;
+    };
     const changed = aboutListId !== list?.id || aboutCatalogId !== list?.catalogId;
     description.textContent = list?.description || '';
     description.hidden = !list?.description;
@@ -208,6 +215,8 @@ export function createReadingView({
       aboutRequest = null;
       aboutHasSource = false;
       source.replaceChildren();
+      // A catalog list waits for its entry, so a project button never flashes before an outside one.
+      showVisit(list && (!list.catalogId || !loadCatalog) ? homeButton(el, createIcon) : null);
     }
     if (typeof open === 'boolean') disclosure.open = open;
     else if (changed || arrival) disclosure.open = true;
@@ -248,16 +257,14 @@ export function createReadingView({
       const entry = catalog.lists.find((candidate) => candidate.id === list.catalogId);
       const content = entry ? [
         listAttribution(entry),
-        sourceButton(el, entry),
         ...(entry.universeIds?.length ? listUniverseLines(entry) : []),
       ].filter(Boolean) : [];
       source.replaceChildren(...content);
+      showVisit(visitButton(el, entry, createIcon));
       aboutHasSource = content.length > 0;
       disclosure.hidden = !getState().lists[list.id]?.description && !aboutHasSource;
-      if (held) {
-        if (disclosure.hidden) focusCurrentView();
-        else (source.querySelector('.list-source-link') ?? source.querySelector('a') ?? disclosure.querySelector('summary')).focus();
-      }
+      // Retry asked for the source, so focus lands on the button that now leads to it.
+      if (held) visit.querySelector('a').focus();
     }
     request.ready = load();
   }
@@ -292,17 +299,18 @@ export function createReadingView({
   function syncPhoneOverview() {
     const overview = $('#reading-overview');
     const sub = $('#order-sub');
+    const visit = $('#order-visit');
     const ring = $('#ring-wrap');
     const progress = $('#hero-progress');
     const description = $('#order-desc');
     const note = $('#list-note');
     const similarHint = $('#list-similar-hint');
-    const moved = [sub, ring, progress, description, note, similarHint];
+    const moved = [sub, visit, ring, progress, description, note, similarHint];
     const focused = moved.some((entry) => entry.contains(document.activeElement)) ? document.activeElement : null;
     if (phoneOverview.matches) {
       overview.append(...moved);
     } else {
-      $('#view-read > .head > .head-left').append(sub, description);
+      $('#view-read > .head > .head-left').append(sub, visit, description);
       $('#view-read > .head > .headright').append(ring);
       $('#hero-reader-temporary').after(progress);
       $('#reading-body > .list-work').after(note);
@@ -627,6 +635,7 @@ export function createReadingView({
     renderSaveEducation();
 
     if (!list) {
+      renderAbout();
       $('#order-name').textContent = 'Recap Page';
       $('#order-sub').textContent = 'Curated Reading Lists, tracked locally, linked into the Unlimited reader.';
       // Boot passes through here before it has shown any view whenever there is no list to resume,

@@ -4480,6 +4480,7 @@ const previewView = createPreviewView({
     meta: $('#preview-meta'),
     paths: $('#preview-paths'),
     source: $('#preview-source'),
+    visit: $('#preview-visit'),
   }),
   getState: () => store.state,
   isInLibrary: (catalogId) => listForCatalogId(store.state, catalogId),

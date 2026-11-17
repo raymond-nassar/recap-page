@@ -164,7 +164,13 @@ export const PAIRS = [
   // ghost button has any: its label and its border. Both are listed rather than assumed, because
   // the button that was made quieter is the one it would be worst to make unreadable.
   ['--text', 'the ghost button on the unreadable-data banner', BODY, 'the label of the start-fresh button'],
-  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:2549`'],
+  // The Visit button that leads to a list's source or the project home page is drawn in the link blue
+  // over its own blue tint. The reading screen puts it on the page and Preview on a card.
+  ['--blue', 'the Visit button on the page', BODY, 'the label and glyph of the Visit button on the reading screen'],
+  ['--blue', 'the Visit button on the page on hover', BODY, 'the same label while the pointer rests on it'],
+  ['--blue', 'the Visit button in Preview', BODY, 'the label and glyph of the Visit button in Preview'],
+  ['--blue', 'the Visit button in Preview on hover', BODY, 'the same label in Preview while the pointer rests on it'],
+  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:2550`'],
 
   // Each category card's icon is measured on its card's tint at rest and on hover, the two surfaces it
   // is ever drawn on (#872, #873). Its 3:1 is a request rather than a WCAG duty, since the icon is
@@ -226,7 +232,7 @@ export const SURFACES = {
     layer: '--warn',
     fraction: 0.12,
     on: '--panel',
-    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:2525`',
+    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:2526`',
   },
   // Built on a surface rather than a token, which is the case the first version of this could not
   // express. A ghost button is a tint over whatever it is dropped onto, so on the banner it is a
@@ -236,12 +242,18 @@ export const SURFACES = {
     layer: '--tint-base',
     fraction: 0.05882,
     on: 'the unreadable-data banner',
-    css: 'rgb(var(--tint-base) / 5.882%) over the banner, at `src/styles.css:1004`',
+    css: 'rgb(var(--tint-base) / 5.882%) over the banner, at `src/styles.css:1005`',
   },
+  // color-mix toward transparent lays the blue down at that alpha, quantized to eight bits as above:
+  // 12% is 31/255 and 18% is 46/255.
+  'the Visit button on the page': { layer: '--blue', fraction: 31 / 255, on: '--bg', css: '--blue at 12% over the page' },
+  'the Visit button on the page on hover': { layer: '--blue', fraction: 46 / 255, on: '--bg', css: '--blue at 18% over the page' },
+  'the Visit button in Preview': { layer: '--blue', fraction: 31 / 255, on: '--card', css: '--blue at 12% over the card' },
+  'the Visit button in Preview on hover': { layer: '--blue', fraction: 46 / 255, on: '--card', css: '--blue at 18% over the card' },
   // A category card's tint is a gradient that fades from its first stop, so each card is resolved at
   // that stop, which is where the tint is strongest and the icon has the least contrast: 13% over the
-  // card at rest (`src/styles.css:2178-2180`) and 19% over the raised card on hover
-  // (`src/styles.css:2197-2199`).
+  // card at rest (`src/styles.css:2179-2181`) and 19% over the raised card on hover
+  // (`src/styles.css:2198-2200`).
   ...Object.fromEntries(CATEGORY_CARDS.flatMap(([card, channel]) => [
     [card, { layer: channel, fraction: 0.13, on: '--card', css: `${channel} at 13% over the card` }],
     [`${card} on hover`, { layer: channel, fraction: 0.19, on: '--card-2', css: `${channel} at 19% over the raised card` }],
