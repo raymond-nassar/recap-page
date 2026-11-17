@@ -1559,8 +1559,8 @@
     "fp": "6fde7f377cd6f228",
     "head": "Finish reads GitHub; it never requests a merge. It requires an actual merge event and the published"
   },
-  ".github/skills/new-reading-list/SKILL.md|preserve-the-source-while-preparing-delivery|docs/MAINTAINING.md:1895|0": {
-    "anchor": "docs/MAINTAINING.md:1895",
+  ".github/skills/new-reading-list/SKILL.md|preserve-the-source-while-preparing-delivery|docs/MAINTAINING.md:1901|0": {
+    "anchor": "docs/MAINTAINING.md:1901",
     "fp": "bc5ae9fc4df20cc3",
     "head": "## Place a new reading list in a Universe"
   },

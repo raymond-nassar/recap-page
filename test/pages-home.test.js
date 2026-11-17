@@ -17,13 +17,17 @@ import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 
 import {
+  ASSET_STAMPS,
   PAGE_DOCUMENTS,
   PAGE_OUTPUTS,
   PAGE_SOURCES,
   RELEASE_PAGE,
   artifactInventory,
+  assetVersion,
   buildPages,
   installArtifact,
+  stampAssets,
+  stampedReference,
 } from '../scripts/build-pages.mjs';
 import {
   SITE_ICON,
@@ -595,25 +599,39 @@ test('the builder copies only approved bytes and leaves no staging residue', asy
     assert.deepEqual(result.files, PAGE_OUTPUTS);
     assert.deepEqual(await artifactInventory(destination), PAGE_OUTPUTS);
 
+    // The version stamps are checked against the deployed bytes by their own test below.
+    const stamped = new Set(ASSET_STAMPS.map(({ file }) => file));
+    const unstamped = async (file) => (
+      (await readFile(join(destination, file), 'utf8')).replace(/\?v=[0-9a-f]{12}/g, '')
+    );
+
     for (const { source, destination: relativeDestination } of PAGE_SOURCES) {
-      assert.deepEqual(
-        await readFile(join(destination, ...relativeDestination.split('/'))),
-        await readFile(join(ROOT, ...source.split('/'))),
-        `${relativeDestination} differs from ${source}`,
-      );
+      if (stamped.has(relativeDestination)) {
+        assert.equal(
+          await unstamped(relativeDestination),
+          await readFile(join(ROOT, ...source.split('/')), 'utf8'),
+          `${relativeDestination} differs from ${source} beyond its version stamps`,
+        );
+      } else {
+        assert.deepEqual(
+          await readFile(join(destination, ...relativeDestination.split('/'))),
+          await readFile(join(ROOT, ...source.split('/'))),
+          `${relativeDestination} differs from ${source}`,
+        );
+      }
       assert.equal((await lstat(join(destination, ...relativeDestination.split('/')))).isFile(), true);
     }
 
     for (const document of PAGE_DOCUMENTS) {
       const markdown = await readFile(join(ROOT, ...document.source.split('/')), 'utf8');
       assert.equal(
-        await readFile(join(destination, document.destination), 'utf8'),
+        await unstamped(document.destination),
         renderDocumentPage(document, markdown),
         `${document.destination} differs from the page rendered from ${document.source}`,
       );
     }
     assert.equal(
-      await readFile(join(destination, RELEASE_PAGE.destination), 'utf8'),
+      await unstamped(RELEASE_PAGE.destination),
       releaseHtml,
       `${RELEASE_PAGE.destination} differs from the page generated from the changelog`,
     );
@@ -626,6 +644,46 @@ test('the builder copies only approved bytes and leaves no staging residue', asy
     assert.deepEqual(leftovers, []);
   } finally {
     await rm(temporary, { recursive: true, force: true });
+  }
+});
+
+test('every page asks for its stylesheet, script and demo by a digest of the deployed bytes', async () => {
+  const temporary = await mkdtemp(join(tmpdir(), 'recap-page-pages-stamps-'));
+  const destination = join(temporary, 'artifact');
+  try {
+    await buildPages({ destination });
+    for (const stamp of ASSET_STAMPS) {
+      const page = await readFile(join(destination, stamp.file), 'utf8');
+      const version = assetVersion(await readFile(join(destination, stamp.asset)));
+      assert.equal(
+        page.split(stampedReference(stamp, version)).length,
+        2,
+        `${stamp.file} asks for ./${stamp.asset} once, by the digest ${version} of the deployed bytes`,
+      );
+    }
+  } finally {
+    await rm(temporary, { recursive: true, force: true });
+  }
+});
+
+test('a page whose asset reference was rewritten is refused rather than published unstamped', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'recap-page-pages-unstamped-'));
+  const [stamp] = ASSET_STAMPS.filter(({ file, asset }) => file === 'index.html' && asset === 'site.css');
+  try {
+    await writeFile(join(root, 'site.css'), 'body {}\n', 'utf8');
+    for (const [page, found] of [
+      [stamp.reference.replace('href="./site.css"', 'href="site.css"'), 0],
+      [`${stamp.reference}\n${stamp.reference}`, 2],
+    ]) {
+      await writeFile(join(root, 'index.html'), page, 'utf8');
+      await assert.rejects(
+        stampAssets(root, [stamp]),
+        new RegExp(`index\\.html must contain .*\\./site\\.css.* exactly once, found ${found}`),
+      );
+      assert.equal(await readFile(join(root, 'index.html'), 'utf8'), page);
+    }
+  } finally {
+    await rm(root, { recursive: true, force: true });
   }
 });
 

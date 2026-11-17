@@ -9,7 +9,7 @@ import {
   rm,
   writeFile,
 } from 'node:fs/promises';
-import { randomUUID } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import { dirname, basename, join, relative, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { PAGE_DOCUMENTS, RELEASE_PAGE, renderDocumentPage, renderSitePage } from './lib/pages-documents.mjs';
@@ -57,6 +57,41 @@ export const PAGE_OUTPUTS = Object.freeze(
 );
 
 export { PAGE_DOCUMENTS, RELEASE_PAGE };
+
+// GitHub Pages lets a browser reuse each file for ten minutes, so a visit soon after a deploy could
+// pair new markup with the previous stylesheet and script. Three minutes after #1421 deployed, the
+// redesigned home rendered that way, unstyled and pinned to the left of a wide window. A digest of
+// each file's bytes in the address makes every deploy that changes a file ask for it afresh. The
+// order is load-bearing: the demo address lands in site.js before site.js is digested.
+const STYLESHEET_LINK = '<link rel="stylesheet" href="./site.css" />';
+export const ASSET_STAMPS = Object.freeze([
+  Object.freeze({ file: 'site.js', asset: 'demo.html', reference: "frame.src = './demo.html';" }),
+  Object.freeze({ file: 'index.html', asset: 'site.css', reference: STYLESHEET_LINK }),
+  Object.freeze({ file: 'index.html', asset: 'site.js', reference: '<script type="module" src="./site.js"></script>' }),
+  ...[...PAGE_DOCUMENTS, RELEASE_PAGE].map(({ destination }) => (
+    Object.freeze({ file: destination, asset: 'site.css', reference: STYLESHEET_LINK })
+  )),
+]);
+
+export function assetVersion(bytes) {
+  return createHash('sha256').update(bytes).digest('hex').slice(0, 12);
+}
+
+export function stampedReference({ asset, reference }, version) {
+  return reference.replace(`./${asset}`, `./${asset}?v=${version}`);
+}
+
+export async function stampAssets(root, stamps = ASSET_STAMPS) {
+  for (const stamp of stamps) {
+    const path = join(root, stamp.file);
+    const parts = (await readFile(path, 'utf8')).split(stamp.reference);
+    if (parts.length !== 2) {
+      throw new Error(`${stamp.file} must contain ${stamp.reference} exactly once, found ${parts.length - 1}`);
+    }
+    const version = assetVersion(await readFile(join(root, stamp.asset)));
+    await writeFile(path, parts.join(stampedReference(stamp, version)));
+  }
+}
 
 async function exists(path) {
   try {
@@ -193,6 +228,7 @@ export async function buildPages({
     }
     await writeFile(join(staged, RELEASE_PAGE.destination), releasePage);
     await writeFile(join(staged, 'demo.html'), await renderAppDemo(sourceRoot));
+    await stampAssets(staged);
     await verifyArtifact(staged);
     await installer(staged, output);
   } finally {

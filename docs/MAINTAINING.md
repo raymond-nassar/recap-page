@@ -1359,6 +1359,12 @@ assets/wordmark.svg
 assets/wordmark-dark.svg
 ```
 
+GitHub Pages lets a browser reuse each file for ten minutes, so the build appends a digest of the
+file's bytes to every page's address for the stylesheet, the script and the demo, as `?v=`
+followed by twelve hex digits. A deploy that changes one of them is then fetched afresh rather than
+paired with markup it was not written for. Keep each of those references written exactly once, in
+the form `ASSET_STAMPS` in `scripts/build-pages.mjs` names, or the build stops.
+
 The four document pages are generated, not copied. `scripts/lib/pages-documents.mjs` renders
 `SUPPORT.md`, `PRIVACY.md`, `pages/data-sources.md` and `pages/being-built.md` into the home's page shell, so those files
 stay the only source and the published privacy policy cannot drift from the one the app links. Its
