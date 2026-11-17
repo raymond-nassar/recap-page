@@ -8,6 +8,7 @@ export const REVIEWED_CREDIT_DIGESTS = Object.freeze([
   'f3fd0ecac4ef51e38fbb27187cf2e70a6c6b582b069696998c4743d080ad8ff6',
   '7b41f67b2db1af02ca15f201cd0fbea3d3a40668d597879debd2cd2ce42e38d7',
   'ab988659f374ab74ffb0d0e1df58bf794e25bbd8992fb60cb59b6b81cd3dc9e6',
+  '6dda1db8437ba9f82b78293e6f0edde68eda526a0503a64815f99997fb464d24',
 ]);
 
 const keys = (value, expected, label) => {

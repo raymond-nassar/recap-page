@@ -5904,8 +5904,8 @@
     "fp": "b13d07662a86c4ca",
     "head": "const { captureSha256, ...baseline } = JSON.parse(readFileSync("
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:260-286|0": {
-    "anchor": "test/helpers/owner-delivery-contract.mjs:260-286",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:265-291|0": {
+    "anchor": "test/helpers/owner-delivery-contract.mjs:265-291",
     "fp": "98a73dedad194b8f",
     "head": "async function assertRegisteredLaterPeer(id, later, { contracts, json }) {"
   },
@@ -5941,7 +5941,7 @@
   },
   "docs/DATA_PROVENANCE.md|owner-approved-external-supplement-for-owner-con|test/helpers/owner-delivery-contract.mjs:114-142|0": {
     "anchor": "test/helpers/owner-delivery-contract.mjs:114-142",
-    "fp": "43d0b140db456174",
+    "fp": "dbe332822758972a",
     "head": "if (row.identityEvidenceKind === 'owner-confirmed-identity') {"
   },
   "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/lib/owner-guide.mjs:859-881|0": {
@@ -5984,13 +5984,13 @@
     "fp": "ff9ba71742d8b8c0",
     "head": "\"chapterCount\": 78,"
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:16827-16964|0": {
-    "anchor": "src/data/catalog.json:16827-16964",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:16883-17020|0": {
+    "anchor": "src/data/catalog.json:16883-17020",
     "fp": "364a367730afd192",
     "head": "\"paths\": ["
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:11294-11345|0": {
-    "anchor": "src/data/curated-lists.json:11294-11345",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:11334-11385|0": {
+    "anchor": "src/data/curated-lists.json:11334-11385",
     "fp": "5aace0a0508135ac",
     "head": "\"paths\": ["
   },

@@ -10,6 +10,14 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
 export const GCD_RECORDS_PATH = 'scripts/data/owner-gcd/issues.json';
+// Every tracked file allowed to hold these records or anything derived from them. LICENSE names each
+// one outside its MIT grant, and test/licence-boundary.test.js holds every tracked file carrying them
+// to LICENSE, so share-alike data cannot settle somewhere the MIT grant would appear to cover it.
+export const GCD_LICENSED_FILES = Object.freeze([
+  GCD_RECORDS_PATH,
+  'scripts/data/owner-mappings/avengers-armageddon.json',
+  'src/data/avengers_armageddon.json',
+]);
 export const GCD_ISSUE_URL = /^https:\/\/www\.comics\.org\/issue\/([1-9]\d*)\/$/;
 export const GCD_LICENSE = Object.freeze({
   license: 'CC BY-SA 4.0',

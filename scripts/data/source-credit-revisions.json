@@ -103,6 +103,30 @@
         }
       ],
       "approval": "https://github.com/raymond-nassar/recap-page/issues/1217#issuecomment-6784814234"
+    },
+    {
+      "id": "avengers-armageddon",
+      "file": "avengers_armageddon.json",
+      "before": {
+        "source": "https://github.com/raymond-nassar/recap-page/issues/1427",
+        "section": "Avengers: Armageddon"
+      },
+      "after": {
+        "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/armageddon-reading-order/",
+        "section": null
+      },
+      "sourceOrigin": "Selected by raymond-nassar for Modern Timeline",
+      "sourceLicense": null,
+      "evidence": [
+        {
+          "url": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/armageddon-reading-order/",
+          "section": null,
+          "method": "24 of the page's 25 positions match the owner's rows in order; position 25, Immortal Soldiers #1, is a recorded gap.",
+          "retrieved": "2026-11-16",
+          "record": "scripts/data/owner-selections/avengers-armageddon.json"
+        }
+      ],
+      "approval": "https://github.com/raymond-nassar/recap-page/issues/1427#issuecomment-6940211082"
     }
   ]
 }

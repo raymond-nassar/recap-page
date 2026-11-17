@@ -195,6 +195,11 @@
       "id": "captain-america-2025-hells-angel",
       "contract": "test/fixtures/owner-delivery/captain-america-2025-hells-angel.json",
       "surface": "modern-timeline"
+    },
+    {
+      "id": "avengers-armageddon",
+      "contract": "test/fixtures/owner-delivery/avengers-armageddon.json",
+      "surface": "modern-timeline"
     }
   ]
 }

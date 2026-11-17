@@ -1190,10 +1190,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes four independent Reading Paths with 104 stops: three
 authored paths with 10, 12 and 4 stops from the curated manifest at
-`src/data/curated-lists.json:11294-11345`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:11334-11385`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all four at
-`src/data/catalog.json:16827-16964`.
+`src/data/catalog.json:16883-17020`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -3950,3 +3950,74 @@ other list; the one issue shared with the Onslaught order, Excalibur (1988) #100
 coordinator's reciprocal approval. The list has no Universe association: the source states no reality, and the list
 follows primary continuity. Only factual metadata and cover addresses are kept. Existing saved
 data is unchanged.
+
+## Owner-selected Modern Timeline event: Avengers: Armageddon
+
+The [guide Issue](https://github.com/raymond-nassar/recap-page/issues/1427) delivers **Avengers:
+Armageddon** from the owner's 24-row table, sent on 16 Nov 2026 at 21:28 Pacific, which follows
+[Comic Book Herald's Armageddon reading order](https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/armageddon-reading-order/),
+read on 2026-11-17. The [owner selection](../scripts/data/owner-selections/avengers-armageddon.json)
+keeps every row's table line verbatim, its section, Prologue (13) or Main Event (11), and both of
+the owner's links. Comic Book Herald's issue-by-issue order is positions 1 to 24 exactly, then
+lists Immortal Soldiers #1 at position 25. The owner left it out because it is not yet available
+digitally; it stays an open gap in the selection, with its own
+[follow-up Issue](https://github.com/raymond-nassar/recap-page/issues/1424), and the card
+description says that 1 comic from the source order is not shown. No other comic replaces it.
+
+At 22:02 Pacific the owner corrected row 1's Marvel Comics app link from
+`https://www.marvelcomicsapp.com/series/5448` to `https://www.marvelcomicsapp.com/issues/25490`.
+The selection records the correction beside the original table line rather than overwriting it.
+Every other app link is kept exactly as given. The Wolverine: Weapons of Armageddon #2 and #4 links,
+`https://www.marvelcomicsapp.com/issues/36190` and `https://www.marvelcomicsapp.com/issues/36192`,
+are not yet confirmed to open those comics and stay flagged for the
+[Marvel Unlimited shutdown work](https://github.com/raymond-nassar/recap-page/issues/950).
+
+The metadata provider answered all 24 marvel.com issue IDs with HTTP 404, so every row is an
+owner-confirmed identity under the evidence kind described above, confirmed in
+[the identity comment](https://github.com/raymond-nassar/recap-page/issues/1427#issuecomment-6940191777)
+and recorded failure by failure in
+[the gap Issue](https://github.com/raymond-nassar/recap-page/issues/1426). Captain America (2025)
+#6-16 reuse the eleven existing identities and their Marvel Fandom supplements unchanged. The other
+twelve comics, The Will of Doom #1, Ultimate Impact: Reborn #1, Wolverine: Weapons of Armageddon
+#1-4, the Comics Giveaway Day Armageddon / X-Men #1 and Avengers: Armageddon #1-5, take their cover
+address from their own marvel.com page and their release date and credits from the Grand Comics
+Database. Avengers (2026) #1 has no record there yet, so it keeps the empty owner-confirmed shape
+and the gap Issue records it. The Will of Doom #1 is supplemented here only; One World Under Doom
+keeps its own row unchanged, as it did for Captain America (2025) #6. No page count is taken.
+
+The Grand Comics Database source was approved by the owner on 2026-11-16 for these comics. Its
+twelve records, in [the records file](../scripts/data/owner-gcd/issues.json), each keep the issue's
+address, its API address and the retrieval date, 2026-11-17, with the database's attribution and
+licence at the top. They are comics.org issues 2788160, 2835650, 2815656, 2823756, 2830326,
+2835432, 2827769, 2839942, 2850495, 2860616, 2867185 and 2874401. A row may take a database value
+only if it equals the pinned record. The description's "Chip Zdarsky's 2026 Avengers event" rests
+on those records: all five Avengers: Armageddon issues, 2839942, 2850495, 2860616, 2867185 and
+2874401, credit Chip Zdarsky with the script.
+
+The database's records are licensed under CC BY-SA 4.0, so everything derived from them is kept
+out of the MIT grant. LICENSE names three files as adaptations under that licence, with the
+database's address, the licence's address and what was adapted: the records file,
+[the owner mapping](../scripts/data/owner-mappings/avengers-armageddon.json), which copies the
+values and names the source beside each field, and the list's
+[data file](../src/data/avengers_armageddon.json). The data file must be among them because it is
+what the app loads, and it carries the adapted release dates and credits, marked
+`owner-gcd-supplement`, for each of the twelve comics. A check in the test suite reads every tracked
+JSON file and fails if one carrying a database source, a database supplement or a dated database
+issue record is not named in LICENSE, or if a named file stops carrying one, so the share-alike
+data cannot settle in a file the MIT grant appears to cover. In the app, each of the twelve comics'
+notes credits the Grand Comics Database, and the
+list's reading screen and Preview carry one credit line that links the database and the Creative
+Commons licence and says the data was rearranged; the order's Markdown notice repeats it. The
+catalog card and Preview count the comics whose details come from each source. The reader-facing
+wording is the owner's approved plain wording, recorded on the guide Issue.
+
+The card credits the owner's selection, "Selected by raymond-nassar for Modern Timeline", and its
+source button reads "Visit Comic Book Herald", following One World Under Doom; the source-credit
+revision cites [the owner's decision](https://github.com/raymond-nassar/recap-page/issues/1427#issuecomment-6940211082).
+The list sits in the 2026 group after Captain America (2025) Hell's Angel and before Marvel Zombies
+in the manifest. It has no Universe association. Its reports compare it with the existing library;
+the only shared originals are all six of Doom's Shadow, all five of Hell's Angel, The Will of Doom
+#1 and Captain America (2025) #6 with One World Under Doom, and Ultimate Impact: Reborn #1 with New
+Ultimate Universe. The coordinator's source, insertion and overlap review on 2026-11-17 approved
+each as related and kept separate. This is model authority, not a human review. Comic image bytes
+and narrative prose are excluded, availability stays unknown, and existing saved data is unchanged.

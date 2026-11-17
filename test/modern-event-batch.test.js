@@ -20,16 +20,16 @@ const legacyEventIds = ['the-death-of-ms-marvel', 'contest-of-chaos', 'gang-war'
 const captainAmericaIds = [
   'captain-america-2025-our-secret-wars', 'captain-america-2025-dooms-shadow', 'captain-america-2025-hells-angel',
 ];
-const eventIds = [...legacyEventIds, 'one-world-under-doom', ...captainAmericaIds];
+const eventIds = [...legacyEventIds, 'one-world-under-doom', ...captainAmericaIds, 'avengers-armageddon'];
 
-test('seven independent events remain on Timeline and Genres, not MCU Prep or the historical Storylines projection', async () => {
+test('eight independent events remain on Timeline and Genres, not MCU Prep or the historical Storylines projection', async () => {
   assert.deepEqual(registeredEventContracts.map((entry) => entry.id), eventIds);
   const laterMcu = registeredOwnerAdditionContracts.filter((entry) => entry.surface === undefined).length - 2;
   // Young readers' owner picks and local curated guides join the rosters without becoming MCU Prep.
   const otherAdditions = registeredYoungReaderContracts.length + registeredCuratedGuides.length;
   const newcomerGuides = registeredCuratedGuides.filter((entry) => entry.surface === 'new-to-comics').length;
   assert.deepEqual([currentReadingCensus.sources, currentReadingCensus.visible, currentReadingCensus.allOrders],
-    [223 + laterMcu + otherAdditions, 300 + laterMcu + otherAdditions, 301 + laterMcu + otherAdditions]);
+    [224 + laterMcu + otherAdditions, 301 + laterMcu + otherAdditions, 302 + laterMcu + otherAdditions]);
   assert.deepEqual([currentReadingCensus.mcu, currentReadingCensus.storylines], [19 + laterMcu, 50 + newcomerGuides]);
   const catalog = parseCatalog(await json('src/data/catalog.json'));
   assert.equal(catalog.dropped, 0);
@@ -40,6 +40,8 @@ test('seven independent events remain on Timeline and Genres, not MCU Prep or th
   const capIndexes = captainAmericaIds.map((id) => catalog.lists.findIndex((entry) => entry.id === id));
   assert.ok(capIndexes[0] >= 0 && capIndexes[0] < doomIndex);
   assert.ok(doomIndex < capIndexes[1] && capIndexes[1] < capIndexes[2] && capIndexes[2] < anchorIndex);
+  const armageddonIndex = catalog.lists.findIndex((entry) => entry.id === 'avengers-armageddon');
+  assert.ok(armageddonIndex === capIndexes[2] + 1 && armageddonIndex < anchorIndex);
   const stories = groupCatalog(catalog.lists);
   const mcu = HOME_CATEGORIES.find((entry) => entry.key === 'marvel-on-screen').select(stories);
   assert.ok(mcu.every((story) => story.lists.every((list) => !eventIds.includes(list.id))));
@@ -50,9 +52,10 @@ test('seven independent events remain on Timeline and Genres, not MCU Prep or th
   const timeline = modernTimelineLists(catalog.lists);
   assert.equal(timeline.length, currentReadingCensus.modernTimeline);
   assert.deepEqual(timeline.filter((entry) => entry.timeline === 2023).map((entry) => entry.id), legacyEventIds);
-  assert.deepEqual(timeline.slice(-4).map((entry) => [entry.id, entry.timeline]), [
+  assert.deepEqual(timeline.slice(-5).map((entry) => [entry.id, entry.timeline]), [
     ['captain-america-2025-our-secret-wars', 2025], ['one-world-under-doom', 2025],
     ['captain-america-2025-dooms-shadow', 2025], ['captain-america-2025-hells-angel', 2026],
+    ['avengers-armageddon', 2026],
   ]);
   assert.ok(legacyEventIds.every((id) => timeline.findIndex((entry) => entry.id === id)
     < timeline.findIndex((entry) => entry.id === 'fall-house-x-rise-powers-x')));
