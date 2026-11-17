@@ -132,6 +132,13 @@
       },
       "rowCount": 4,
       "surface": "new-to-comics"
+    },
+    {
+      "id": "nightcrawler-best-of",
+      "insertionAnchor": {
+        "beforeId": "miles-morales-spider-man-reading-order"
+      },
+      "rowCount": 187
     }
   ]
 }

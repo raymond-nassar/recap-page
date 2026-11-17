@@ -130,14 +130,25 @@ export function beforeWolverineCorrectionChapterOverlaps(report) {
   }
   pairs.sort((a, b) => a.chapterId.localeCompare(b.chapterId)
     || a.existingListId.localeCompare(b.existingListId));
+  // Lists published after the correction bring their own reviewed overlaps; setting them aside
+  // keeps this comparison to the Wolverine identities alone.
+  const baselineListIds = new Set(JSON.parse(show('src/data/catalog.json')).lists.map(({ id }) => id));
+  const priorReport = chapterOverlapSummary(report, report.generatedAt,
+    report.pairs.filter(({ existingListId }) => baselineListIds.has(existingListId)));
+  assert.deepEqual(priorReport, chapterOverlapSummary(baseline, report.generatedAt, pairs),
+    'Only the reviewed Wolverine identities may change chapter overlaps.');
+  return baseline;
+}
+
+function chapterOverlapSummary(baseline, generatedAt, pairs) {
   const existingLists = [...new Set(pairs.map(({ existingListId }) => existingListId))]
     .sort().map((id) => ({
       id, sharedCount: pairs.filter(({ existingListId }) => existingListId === id)
         .reduce((sum, { sharedCount }) => sum + sharedCount, 0),
     }));
-  const expected = {
+  return {
     ...baseline,
-    generatedAt: report.generatedAt,
+    generatedAt,
     pairCount: pairs.length,
     chapterCountWithOverlap: new Set(pairs.map(({ chapterId }) => chapterId)).size,
     existingListCount: existingLists.length,
@@ -148,6 +159,4 @@ export function beforeWolverineCorrectionChapterOverlaps(report) {
     existingLists,
     pairs,
   };
-  assert.deepEqual(report, expected, 'Only the reviewed Wolverine identities may change chapter overlaps.');
-  return baseline;
 }

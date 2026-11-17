@@ -8,6 +8,7 @@ import { createCatalogView, modernTimelinePosition } from '../src/js/views/catal
 import { createCatalogPresentation } from '../src/js/views/shared/catalog-presentation.js';
 import { createPreviewView } from '../src/js/views/preview.js';
 import { createStoryTypesView } from '../src/js/views/story-types.js';
+import { beforeHickmanInterleaveIssueIds } from './helpers/reading-list-correction-history.mjs';
 
 const data = (file) => JSON.parse(readFileSync(new URL(`../src/data/${file}`, import.meta.url), 'utf8'));
 const titles = new Map([
@@ -359,8 +360,10 @@ test('the MCU Prep list is independently named but has identical source contents
 test('renaming the complete saga preserves its entire original issue vector', () => {
   const fullSaga = data('hickman_full.json');
   assert.equal(fullSaga.count, 219);
+  // The later Avengers interleave is a registered revision, so the rename is checked before it.
+  const renamed = beforeHickmanInterleaveIssueIds(fullSaga.items.map(({ issueId }) => issueId));
   assert.equal(
-    createHash('sha256').update(fullSaga.items.map(({ issueId }) => issueId).join(',')).digest('hex'),
+    createHash('sha256').update(renamed.join(',')).digest('hex'),
     '61c4ea7f8a36b7ed898e47a7c7f5fd923e2d49548c7e9d75bf7a9d08e35d709a',
   );
 });
