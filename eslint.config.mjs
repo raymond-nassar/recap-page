@@ -95,7 +95,14 @@ export default [
   },
   {
     // Everything served out of src/ runs in the browser, and so do the app shells' own web files.
-    files: ['src/**/*.js', 'packaging/android/web/*.js', 'packaging/ios/web/*.js', 'packaging/ios/icloud-web/*.js'],
+    files: [
+      'src/**/*.js',
+      'pages/**/*.js',
+      'dist/pages/**/*.js',
+      'packaging/android/web/*.js',
+      'packaging/ios/web/*.js',
+      'packaging/ios/icloud-web/*.js',
+    ],
     languageOptions: { globals: globals.browser },
     rules: noEmDashInShippedCopy,
   },
@@ -132,6 +139,7 @@ export default [
     // The upgrade check is the same shape for the same reason.
     files: [
       'scripts/browser-check.mjs',
+      'scripts/browser-project-page.mjs',
       'scripts/lib/touch-feedback.mjs',
       'scripts/browser-android.mjs',
       'scripts/browser-android-catalog-cards.mjs',

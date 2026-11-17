@@ -1,0 +1,82 @@
+/* Only the guide and the sample's boundaries differ from the installed app. */
+#demo-guide {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  padding: var(--space-6);
+  border-bottom: var(--stroke-2) solid var(--red-fg);
+  background: var(--bg);
+  color: var(--text);
+}
+
+#demo-step {
+  margin: 0;
+  font-weight: 700;
+}
+
+.demo-boundary {
+  margin: var(--space-4) 0;
+}
+
+.demo-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.demo-highlight {
+  outline: var(--stroke-2) solid var(--accent);
+  outline-offset: var(--space-2);
+}
+
+#hero {
+  scroll-margin-top: 15rem;
+}
+
+#demo-guide [hidden] {
+  display: none;
+}
+
+/* A tour is not a second installation: keep navigation, settings and live lookup tools out. */
+#sidebar,
+body > footer,
+#app-report,
+#save-education,
+#list-wrap-up,
+#completion-history-controls,
+#btn-new-list,
+#library-rated-shelf,
+.library-tools,
+#view-read .breadcrumb,
+#view-read .headright > :not(#ring-wrap),
+#view-read .head-tools,
+.reading-comic-actions,
+#shelf-sec,
+#full-sec,
+#reading-list-options,
+#list-note,
+#list-similar-hint,
+#hero-reader-help,
+#hero-reader-temporary,
+#library-links-nudge,
+.footer,
+.view:not(#view-read):not(#view-library) {
+  display: none !important;
+}
+
+#shell,
+#shell.railed {
+  display: block;
+}
+
+#main {
+  margin: 0;
+}
+
+@media (forced-colors: active) {
+  #demo-guide,
+  .demo-highlight {
+    border-color: Highlight;
+    outline-color: Highlight;
+  }
+}

@@ -33,6 +33,6 @@ test('the app uses the SVG with its original accessible heading and forced-color
   assert.match(css, /@media \(forced-colors: active\) \{\s*#view-home \.home-brand \{ color: CanvasText; \}\s*\.home-wordmark \{ display: none; \}\s*\.home-brand-text \{ position: static;/);
 });
 
-test('the public mission is the approved sentence beneath the existing website description', () => {
-  assert.match(read('pages/index.html'), /Find Marvel reading lists and keep track of what you've read\.\s*<\/p>\s*<p>\s*Our mission is to make Marvel reading orders easier to follow, so you can keep your place and enjoy the story\.\s*<\/p>/);
+test('the public mission follows the concrete introduction', () => {
+  assert.match(read('pages/index.html'), /Find a reading order, see how the stories connect, and pick up right where you left off\.\s*<\/p>\s*<p class="opening-mission">\s*Our mission is to make Marvel reading orders easier to follow, so you can keep your place and enjoy the story\.\s*<\/p>/);
 });

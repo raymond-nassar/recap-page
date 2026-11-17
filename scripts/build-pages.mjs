@@ -14,12 +14,14 @@ import { dirname, basename, join, relative, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { PAGE_DOCUMENTS, RELEASE_PAGE, renderDocumentPage, renderSitePage } from './lib/pages-documents.mjs';
 import { readReleaseDates, releasesPage } from './lib/pages-releases.mjs';
+import { renderAppDemo } from './lib/pages-demo.mjs';
 
 const ROOT = resolve(fileURLToPath(new URL('..', import.meta.url)));
 
 export const PAGE_SOURCES = Object.freeze([
   Object.freeze({ source: 'pages/index.html', destination: 'index.html' }),
   Object.freeze({ source: 'pages/site.css', destination: 'site.css' }),
+  Object.freeze({ source: 'pages/site.js', destination: 'site.js' }),
   Object.freeze({
     source: 'docs/screenshots/home-960.png',
     destination: 'assets/home-960.png',
@@ -51,7 +53,7 @@ export const PAGE_SOURCES = Object.freeze([
 ]);
 
 export const PAGE_OUTPUTS = Object.freeze(
-  [...PAGE_SOURCES, ...PAGE_DOCUMENTS, RELEASE_PAGE].map(({ destination }) => destination).sort(),
+  [...PAGE_SOURCES, ...PAGE_DOCUMENTS, RELEASE_PAGE, { destination: 'demo.html' }].map(({ destination }) => destination).sort(),
 );
 
 export { PAGE_DOCUMENTS, RELEASE_PAGE };
@@ -156,7 +158,7 @@ export async function buildPages({
   const sourceRoot = resolve(root);
   const output = resolve(destination);
   const outputParent = dirname(output);
-  await requireExactEntries(join(sourceRoot, 'pages'), ['assets', 'being-built.md', 'data-sources.md', 'index.html', 'site.css']);
+  await requireExactEntries(join(sourceRoot, 'pages'), ['assets', 'being-built.md', 'data-sources.md', 'demo.css', 'demo.js', 'index.html', 'site.css', 'site.js']);
   await requireExactEntries(
     join(sourceRoot, 'pages', 'assets'),
     PAGE_SOURCES
@@ -190,6 +192,7 @@ export async function buildPages({
       await writeFile(join(staged, document.destination), renderDocumentPage(document, markdown));
     }
     await writeFile(join(staged, RELEASE_PAGE.destination), releasePage);
+    await writeFile(join(staged, 'demo.html'), await renderAppDemo(sourceRoot));
     await verifyArtifact(staged);
     await installer(staged, output);
   } finally {

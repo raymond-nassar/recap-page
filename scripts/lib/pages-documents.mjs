@@ -271,25 +271,26 @@ const FOOTER_LINKS = [
   ['./data-sources.html', 'Data sources'],
   [`${REPOSITORY}/blob/main/SECURITY.md`, 'Security'],
   [`${REPOSITORY}/blob/main/LICENSE`, 'License'],
+  ['https://ko-fi.com/panelstacklabs', 'Buy Ray a Coffee'],
 ];
 
 export function renderFooter(indent = '    ') {
   const links = FOOTER_LINKS
-    .map(([href, label]) => `${indent}      <a href="${href}">${label}</a>`)
+    .map(([href, label]) => `${indent}      <a href="${href}"${href.startsWith('https://ko-fi.com/') ? ' rel="noreferrer"' : ''}>${label}</a>`)
     .join('\n');
   return [
     `${indent}<footer class="footer">`,
-    `${indent}  <div class="shell">`,
-    `${indent}    <p class="hosting-note">`,
-    `${indent}      GitHub hosts this site and receives request details, including your IP address.`,
-    `${indent}      This site can't access your saved reading data.`,
-    `${indent}    </p>`,
-    `${indent}    <p>`,
-    `${indent}      Unofficial fan project. Not affiliated with or endorsed by Marvel Entertainment.`,
-    `${indent}    </p>`,
-    `${indent}    <p>`,
+    `${indent}  <div class="shell footer-layout">`,
+    `${indent}    <div>`,
+    `${indent}      <p class="hosting-note">`,
+    `${indent}        GitHub hosts this site and receives request details, including your IP address.`,
+    `${indent}        This site cannot access your saved reading data.`,
+    `${indent}      </p>`,
+    `${indent}      <p>Unofficial fan project. Not affiliated with or endorsed by Marvel Entertainment.</p>`,
+    `${indent}    </div>`,
+    `${indent}    <nav aria-label="Project links">`,
     links,
-    `${indent}    </p>`,
+    `${indent}    </nav>`,
     `${indent}  </div>`,
     `${indent}</footer>`,
   ].join('\n');

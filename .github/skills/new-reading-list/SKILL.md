@@ -47,7 +47,7 @@ attribution or force an ambiguous request into a route. `docs/BATCH_READING_LIST
 - Propose a Universe placement from the list's own source, with evidence, and ask the owner only
   when it is unclear. An open placement question never blocks publication.
   [Universe placement](../../../docs/MAINTAINING.md#place-a-new-reading-list-in-a-universe).
-  `docs/MAINTAINING.md:1876`
+  `docs/MAINTAINING.md:1895`
 
 ## Completion
 

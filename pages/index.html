@@ -1,4 +1,11 @@
 <!doctype html>
+<!--
+THESIS: A Marvel reading order is a sourced path, not a pile of comics.
+OWN-WORLD: Recap Page purple, framed comic panels, generous white space, and blue/red wayfinding marks.
+STORY: New readers discover a path, try tracking one issue, then choose a platform.
+FIRST VIEWPORT: Wordmark and compact navigation above a direct headline beside the guided reading demo.
+FORM: Purple comic-index page with an unequal proof spread, grounded structure 7, surface seed d32612da and direction seed c5e19b1b.
+-->
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -7,475 +14,403 @@
     <meta name="referrer" content="no-referrer" />
     <meta
       name="description"
-      content="Track Marvel reading orders and progress. Comics are not included."
+      content="Explore curated Marvel reading orders, see how stories connect, and keep your place with Recap Page."
     />
-    <title>Recap Page project home</title>
+    <title>Recap Page | Follow every Marvel story</title>
     <link
       rel="icon"
       href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNyIgZmlsbD0iIzZkMjhkOSIvPjxyZWN0IHg9IjgiIHk9IjUuNSIgd2lkdGg9IjE2IiBoZWlnaHQ9IjcuNSIgcng9IjEuNjI1IiBmaWxsPSIjZmZmZmZmIi8+PHBvbHlnb24gcG9pbnRzPSI4LDE1LjUgMTYsMTUuNSAxMy4yNSwyNi41IDgsMjYuNSIgZmlsbD0iI2ZmZmZmZiIvPjxwb2x5Z29uIHBvaW50cz0iMTgsMTUuNSAyNCwxNS41IDI0LDI2LjUgMTUuNzUsMjYuNSIgZmlsbD0iIzllNzFlNiIvPjwvc3ZnPg=="
     />
     <link rel="stylesheet" href="./site.css" />
+    <script type="module" src="./site.js"></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
 
     <header class="masthead">
-      <div class="shell">
-        <p class="site-name"><picture><source media="(prefers-color-scheme: light)" srcset="./assets/wordmark.svg" /><img src="./assets/wordmark-dark.svg" alt="Recap Page" width="1000" height="168" /></picture><span class="site-name-text" aria-hidden="true">Recap Page</span></p>
+      <div class="shell masthead-inner">
+        <p class="site-name">
+          <picture>
+            <source media="(prefers-color-scheme: light)" srcset="./assets/wordmark.svg" />
+            <img src="./assets/wordmark-dark.svg" alt="Recap Page" width="1000" height="168" />
+          </picture>
+          <span class="site-name-text" aria-hidden="true">Recap Page</span>
+        </p>
         <nav class="section-nav" aria-label="Site">
           <ul>
-            <li><a href="#android">Android</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#getting-started">Get started</a></li>
-            <li><a href="#documentation">Guides</a></li>
-            <li><a href="#feedback">Feedback</a></li>
-            <li><a href="./support.html">Support</a></li>
-            <li><a href="./privacy.html">Privacy</a></li>
-            <li><a href="./data-sources.html">Data sources</a></li>
+            <li><a href="#demo">Try it</a></li>
+            <li><a href="#reading-orders">Reading orders</a></li>
+            <li><a href="#timeline">Timeline</a></li>
+            <li><a href="#explore">Explore</a></li>
+            <li><a href="#mcu-prep">MCU Prep</a></li>
+            <li><a href="#get-started">Get the app</a></li>
+            <li><a href="#guides">Guide sources</a></li>
           </ul>
         </nav>
       </div>
     </header>
 
     <main id="main">
-      <section id="overview" class="section shell overview" aria-labelledby="overview-title">
-        <div class="overview-copy">
-          <h1 id="overview-title">Keep your place in every story.</h1>
-          <p class="lede">
-            Find Marvel reading lists and keep track of what you've read.
-          </p>
-          <p>
-            Our mission is to make Marvel reading orders easier to follow, so you can keep your place and enjoy the story.
-          </p>
-          <p class="platform-status">Available for Windows, Android, iPhone, and iPad.</p>
-          <p class="action-row">
-            <a class="button" href="#getting-started">Get started</a>
-            <a href="#android">See the Android app</a>
-          </p>
-        </div>
-        <img
-          class="feature-art"
-          src="./assets/android-feature-graphic.png"
-          width="1024"
-          height="500"
-          loading="eager"
-          fetchpriority="high"
-          alt="Recap Page. Browse. Choose. Read. Keep your place in every story. An illustrated checklist with a bookmark."
-        />
-        <p class="overview-boundary">
-          No Recap Page account. No automatic device sync or offline comic reading.
-        </p>
-        <p class="overview-boundary">
-          Marvel Unlimited ends December 7, 2026, and Read will then open the Marvel Comics website.
-          <a href="https://help.marvel.com/article/marvel-whats-happening-to-marvel-unlimited">Marvel's FAQ</a>
-        </p>
-      </section>
-
-      <section id="android" class="section section-tinted" aria-labelledby="android-title">
-        <div class="shell">
-          <div class="android-intro">
-            <div class="section-heading">
-              <h2 id="android-title">Recap Page for Android</h2>
-              <p>
-                No computer needed. Built-in lists and saved progress work offline.
-                Search and Marvel reading need an internet connection.
-              </p>
-              <p class="action-row">
-                <a class="button" href="https://play.google.com/store/apps/details?id=io.github.raymondnassar.recappage">
-                  Open Google Play
-                </a>
-                <a href="https://github.com/raymond-nassar/recap-page/blob/main/docs/ANDROID.md">
-                  About the Android app
-                </a>
-              </p>
-            </div>
-            <ul class="android-features">
-              <li>
-                <strong>Made for touch.</strong>
-                Larger buttons, light and dark themes, compact filters, and easy-to-reach list options.
-                Press Back to close menus.
-              </li>
-              <li>
-                Android's Read uses an installed browser, not the Marvel Unlimited app.
-              </li>
-              <li>
-                <strong>Move between devices.</strong>
-                Desktop and Android save separately. Move progress with a JSON or OneDrive
-                backup. Restoring replaces the app's saved data.
-              </li>
-            </ul>
-          </div>
-          <div class="phone-gallery">
-            <figure class="phone-preview">
-              <img
-                src="./assets/android-library-preview.png"
-                width="1080"
-                height="1920"
-                loading="lazy"
-                alt="Android Library with two fictional reading lists, Lantern Harbor at 3 of 8 and Paper Moons not started, above the bottom navigation"
-              />
-              <figcaption>
-                <strong>Your reading lists.</strong>
-                <a href="./assets/android-library-preview.png">Enlarge Library preview</a>
-              </figcaption>
-            </figure>
-            <figure class="phone-preview">
-              <img
-                src="./assets/android-reading-preview.png"
-                width="1080"
-                height="1920"
-                loading="lazy"
-                alt="Android reading view with fictional Lantern Harbor #4, a Done button, writer and penciler credits, reading progress, and Reading List options above the bottom navigation"
-              />
-              <figcaption>
-                <strong>Your next comic.</strong>
-                <a href="./assets/android-reading-preview.png">Enlarge reading preview</a>
-              </figcaption>
-            </figure>
-          </div>
-          <p class="preview-note">
-            Android previews made in a desktop browser, not on a phone.
-            Lists and progress are made up; cover art is off.
-          </p>
-        </div>
-      </section>
-
-      <section id="features" class="section shell" aria-labelledby="features-title">
-        <div class="section-heading">
-          <h2 id="features-title">Read your way</h2>
-          <p>In every app.</p>
-        </div>
-        <div class="feature-grid">
-          <article>
-            <h3>Explore Marvel</h3>
-            <p>
-              Explore Modern Timeline, Marvel Ages, Genres, Character spotlights, Young readers,
-              creator guides, and MCU Prep. Follow Reading Paths on Modern Timeline.
+      <section id="overview" class="opening section" aria-labelledby="overview-title">
+        <div class="shell opening-grid">
+          <div class="opening-copy">
+            <h1 id="overview-title">Every Marvel story has a place. Keep yours.</h1>
+            <p class="lede">
+              Find a reading order, see how the stories connect, and pick up right where you left off.
             </p>
-          </article>
-          <article>
-            <h3>Take a break</h3>
-            <p>
-              Defer for later skips a comic in one list without marking it read.
-              Return anytime.
+            <p class="opening-mission">
+              Our mission is to make Marvel reading orders easier to follow, so you can keep your place and enjoy the story.
             </p>
-          </article>
-          <article>
-            <h3>Make your own lists</h3>
-            <p>
-              Search Reading Lists, series, creators, and comics, with spelling suggestions.
-              Add comics by hand, write notes, and hide descriptions.
-            </p>
-          </article>
-          <article>
-            <h3>Marvel Unlimited record</h3>
-            <p>
-              This is a historical record, not availability in Marvel Comics.
-              Missing guide entries stay visible.
-            </p>
-          </article>
-          <article>
-            <h3>Back up or share</h3>
-            <p>
-              Save JSON backups or preview Markdown checklists. Store apps can back up to
-              your own OneDrive, or iCloud Drive on iPhone and iPad.
-              Share an order without notes, reading history, or availability choices.
-            </p>
-          </article>
-        </div>
-        <p class="action-row">
-          <a href="#demo">See how desktop works</a>
-          <a href="./whats-new.html">What's new</a>
-        </p>
-        <h3>What's being built</h3>
-        <p>Cloud backup: <a href="./being-built.html">see provider progress</a>.</p>
-      </section>
-
-      <section id="feedback" class="section shell" aria-labelledby="feedback-title">
-        <div class="section-heading">
-          <h2 id="feedback-title">Help shape Recap Page</h2>
-          <p>Requests are reviewed; replies can take time or may be declined.</p>
-        </div>
-        <div class="link-grid">
-          <a href="https://github.com/raymond-nassar/recap-page/issues/new?template=feature.yml">
-            <strong>Suggest an improvement</strong>
-          </a>
-          <a href="https://github.com/raymond-nassar/recap-page/issues/new?template=reading-list.yml">
-            <strong>Request a reading list</strong>
-          </a>
-          <a href="https://github.com/raymond-nassar/recap-page/issues/new?template=data-order.yml">
-            <strong>Correct a reading list</strong>
-          </a>
-          <a href="https://github.com/raymond-nassar/recap-page/issues/new?template=bug.yml">
-            <strong>Report a bug</strong>
-          </a>
-        </div>
-      </section>
-
-      <section id="demo" class="section section-tinted" aria-labelledby="demo-title">
-        <div class="shell">
-          <div class="section-heading">
-            <h2 id="demo-title">How it works on desktop</h2>
-            <p>An example with made-up progress.</p>
-          </div>
-          <ol class="walkthrough">
-            <li>
-              <strong>Browse for a list.</strong> Add
-              <strong>Civil War: Avengers and Aftermath Reading Order</strong> from
-              <a href="https://www.comicbookherald.com/where-do-i-start-with-avengers-trade-collections/">Comic Book Herald's guide</a>.
-            </li>
-            <li>
-              <strong>See what's next.</strong> With the first six comics marked read,
-              <strong>Civil War (2006) #7</strong> is next.
-            </li>
-            <li>
-              <strong>Choose Read.</strong> Until December 7, 2026, the Marvel Unlimited web reader opens in a separate tab when a link is recorded, with a comic details page as the fallback. From that date, Read opens the general Marvel Comics website, not a single-comic link.
-            </li>
-            <li>
-              <strong>Mark it read.</strong> Return and choose <strong>Done</strong>.
-              <strong>New Avengers (2004) #21</strong> is next. Reading isn't detected automatically.
-            </li>
-            <li>
-              <strong>Come back anytime.</strong> Reopen the list in the same browser profile to resume.
-            </li>
-          </ol>
-          <p>
-            An issue marked read stays read across lists. Each list keeps its own order.
-          </p>
-          <p>Desktop views with cover art off.</p>
-          <div class="demo-grid">
-            <figure class="demo">
-              <img
-                src="./assets/home-960.png"
-                width="960"
-                height="900"
-                loading="lazy"
-                alt="Home with the Explore categories Modern Timeline, recommended as the place to start, Genres, and Character spotlights, a New to Marvel Comics? link, and Discover More with MCU Prep, Marvel Ages, and Young readers"
-              />
-              <figcaption>
-                Choose where to start.
-                <a href="./assets/home-960.png">Enlarge Home screenshot</a>
-              </figcaption>
-            </figure>
-            <figure class="demo">
-              <img
-                src="./assets/avengers-disassembled-reading-960.png"
-                width="960"
-                height="900"
-                loading="lazy"
-                alt="Avengers Disassembled showing the next issue, Read and Done buttons, reading progress, and Reading List options below the comic card"
-              />
-              <figcaption>
-                See what to read next.
-                <a href="./assets/avengers-disassembled-reading-960.png">Enlarge reading screenshot</a>
-              </figcaption>
-            </figure>
-          </div>
-        </div>
-      </section>
-
-      <section id="getting-started" class="section shell" aria-labelledby="getting-started-title">
-        <div class="section-heading">
-          <h2 id="getting-started-title">Get started</h2>
-        </div>
-        <div class="card-grid platform-grid">
-          <article class="card route-card">
-            <h3>Windows</h3>
-            <p>Install and update through Microsoft Store.</p>
-            <a class="button" href="https://apps.microsoft.com/detail/9PDJ7XR9Q40Q">
-              Open Microsoft Store
-            </a>
-          </article>
-          <article class="card route-card">
-            <h3>Android</h3>
-            <p>Android 8 or later, with an up-to-date Android System WebView.</p>
-            <a class="button" href="https://play.google.com/store/apps/details?id=io.github.raymondnassar.recappage">
-              Open Google Play
-            </a>
-          </article>
-          <article class="card route-card">
-            <h3>Windows download</h3>
-            <p>Unzip, then run <strong>Start on Windows.cmd</strong>.</p>
-            <a
-              href="https://github.com/raymond-nassar/recap-page/releases/latest/download/marvel-reading-tracker-windows.zip"
-            >
-              Download for Windows
-            </a>
-          </article>
-          <article class="card route-card">
-            <h3>Run from source</h3>
-            <p>Requires Node.js 20 or newer.</p>
-            <a href="https://github.com/raymond-nassar/recap-page/blob/main/docs/RUNNING.md">
-              Source setup guide
-            </a>
-          </article>
-          <article class="card route-card">
-            <h3>iPhone and iPad</h3>
-            <p>Install and update through the App Store.</p>
-            <a class="button" href="https://apps.apple.com/us/app/recap-page/id6828494712">
-              Open the App Store
-            </a>
-          </article>
-        </div>
-        <aside class="origin-warning" aria-labelledby="origin-warning-title">
-          <h3 id="origin-warning-title">Keep your desktop progress</h3>
-          <p><code>http://127.0.0.1:8787/</code></p>
-          <p>
-            Keep using this address and the same browser profile.
-            A different address, port, or profile won't show your saved progress.
-          </p>
-        </aside>
-        <p class="action-row">
-          <a class="button" href="http://127.0.0.1:8787/">Open Recap Page</a>
-          <span>Already running?</span>
-        </p>
-        <p class="platform-note">
-          Uninstalling the Android app deletes its saved data. Save and check a backup first.
-        </p>
-      </section>
-
-      <section id="troubleshooting" class="section section-tinted" aria-labelledby="troubleshooting-title">
-        <div class="shell split">
-          <div class="section-heading">
-            <h2 id="troubleshooting-title">Need help?</h2>
-          </div>
-          <div class="route-list">
-            <a
-              class="route"
-              href="https://github.com/raymond-nassar/recap-page/blob/main/docs/RUNNING.md#troubleshooting"
-            >
-              <strong>Fix a problem</strong>
-              <span>Startup, reader links, or missing progress.</span>
-            </a>
-            <a class="route" href="./support.html">
-              <strong>Get support</strong>
-              <span>Where to ask for help.</span>
-            </a>
-            <a class="route" href="#project-questions">
-              <strong>Ask a question</strong>
-              <span>About Recap Page and how it works.</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section id="documentation" class="section shell" aria-labelledby="documentation-title">
-        <div class="section-heading">
-          <h2 id="documentation-title">Learn more</h2>
-        </div>
-        <div class="link-grid">
-          <a href="https://github.com/raymond-nassar/recap-page/blob/main/docs/ANDROID.md">
-            <strong>Android app</strong><span>Setup and features.</span>
-          </a>
-          <a href="https://github.com/raymond-nassar/recap-page#readme">
-            <strong>Overview</strong><span>Start here.</span>
-          </a>
-          <a href="https://github.com/raymond-nassar/recap-page/blob/main/docs/RUNNING.md">
-            <strong>Setup</strong><span>Install and update.</span>
-          </a>
-          <a href="https://github.com/raymond-nassar/recap-page/blob/main/docs/ARCHITECTURE.md">
-            <strong>How it works</strong><span>App design.</span>
-          </a>
-          <a href="./data-sources.html">
-            <strong>Data sources</strong><span>Credits and sources.</span>
-          </a>
-          <a href="./privacy.html">
-            <strong>Privacy</strong><span>Your data.</span>
-          </a>
-          <a href="./support.html">
-            <strong>Support</strong><span>Get help.</span>
-          </a>
-          <a href="https://github.com/raymond-nassar/recap-page/blob/main/SECURITY.md">
-            <strong>Security</strong><span>Report privately.</span>
-          </a>
-          <a href="https://github.com/raymond-nassar/recap-page/blob/main/docs/MAINTAINING.md">
-            <strong>For maintainers</strong><span>Data and releases.</span>
-          </a>
-          <a href="https://github.com/raymond-nassar/recap-page/blob/main/CONTRIBUTING.md">
-            <strong>Contribute</strong><span>Ways to help.</span>
-          </a>
-          <a href="https://github.com/raymond-nassar/recap-page/blob/main/GOVERNANCE.md">
-            <strong>Project decisions</strong><span>How they're made.</span>
-          </a>
-          <a href="./whats-new.html">
-            <strong>What's new</strong><span>Recent changes.</span>
-          </a>
-          <a href="https://github.com/raymond-nassar/recap-page/blob/main/docs/WHY_A_BROWSER_APP.md">
-            <strong>Why a browser app</strong><span>Platform choices.</span>
-          </a>
-        </div>
-      </section>
-
-      <section id="project-questions" class="section section-tinted" aria-labelledby="project-questions-title">
-        <div class="shell split">
-          <div class="section-heading">
-            <h2 id="project-questions-title">Questions about Recap Page?</h2>
-          </div>
-          <aside class="disclosure" aria-labelledby="question-disclosure-title">
-            <h3 id="question-disclosure-title">Before you post</h3>
-            <p>
-              Sign in to GitHub to post. Your username, question, and replies are public.
-              GitHub hosts and processes posts. Recap Page sends nothing automatically.
-            </p>
-            <p>
-              Don't post reading progress, lists, notes, backups, personal information,
-              attachments, or vulnerability details.
+            <p class="opening-truth">
+              These are curated reading lists with real sources, not AI-generated orders.
             </p>
             <p class="action-row">
-              <a
-                class="button"
-                href="https://github.com/raymond-nassar/recap-page/issues/new?template=project-question.yml"
-              >
-                Ask a question
-              </a>
+              <a class="button" href="#demo">Try the guided demo</a>
+              <a class="text-link" href="#reading-orders">See what you can explore</a>
             </p>
-          </aside>
+            <p class="platform-status">For Windows, Android, iPhone, and iPad.</p>
+          </div>
+
+          <section id="demo" class="guided-tour" aria-labelledby="demo-title">
+            <div class="tour-heading">
+              <h2 id="demo-title">Choose a list. Find your next comic.</h2>
+              <p>The real app, with a guided overlay and three-comic samples. Nothing is saved.</p>
+              <button
+                class="button button-secondary tour-expand"
+                type="button"
+                data-tour-expand
+                aria-controls="tour-screen"
+                aria-expanded="false"
+                hidden
+              >Expand demo</button>
+            </div>
+            <div id="tour-screen" class="tour-screen" data-guided-demo hidden>
+              <iframe
+                title="Recap Page guided app demo"
+                sandbox="allow-scripts"
+                referrerpolicy="no-referrer"
+                data-tour-frame
+              ></iframe>
+            </div>
+            <p data-tour-status role="status" aria-live="polite">Start the guided tour to load the app and its sample covers.</p>
+            <button type="button" class="button button-primary" data-tour-start hidden>Start guided tour</button>
+            <button type="button" class="reset-demo" data-tour-reset hidden>Reset demo</button>
+            <p class="tour-boundary">Recap Page tracks your place. Comics are read separately, and this demo never opens a reader.</p>
+            <p class="cover-disclosure">
+              Cover art loads directly from Marvel's image server when shown. Recap Page stores cover links, not image files.
+            </p>
+            <noscript>
+              <p class="no-script-note">
+                The guided controls need JavaScript. The screenshots and feature examples below work without it.
+              </p>
+            </noscript>
+          </section>
         </div>
       </section>
 
-      <section id="security-report" class="section shell" aria-labelledby="security-report-title">
-        <div class="section-heading">
-          <h2 id="security-report-title">Security</h2>
-        </div>
-        <div class="link-grid">
-          <a class="security-route" href="https://github.com/raymond-nassar/recap-page/blob/main/SECURITY.md">
-            <strong>Report a security problem</strong>
-            <span>Report privately, not in a public post.</span>
-          </a>
+      <section id="reading-orders" class="section feature-section" aria-labelledby="orders-title">
+        <div class="shell feature-layout feature-layout--orders">
+          <div class="feature-copy">
+            <h2 id="orders-title">Not a random pile. A path someone put together.</h2>
+            <p>
+              Follow a story in sequence, from a character's first appearance to a crossover and its aftermath.
+              Each list keeps its own order; the same issue stays marked read across lists.
+            </p>
+            <details class="example-detail">
+              <summary>Preview the first three comics in a real reading order</summary>
+              <ol>
+                <li>Ultimate Spider-Man (2000) #1</li>
+                <li>Ultimate Spider-Man (2000) #2</li>
+                <li>Ultimate Spider-Man (2000) #3</li>
+              </ol>
+              <p>
+                Compiled from Comic Book Herald's guide. Recap Page labels sources; permissions vary by publisher.
+              </p>
+              <a href="https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/ultimate-marvel-universe-reading-order/" rel="noreferrer">
+                Open the credited guide
+              </a>
+              <a href="./data-sources.html">See guide credits and permissions</a>
+            </details>
+          </div>
+          <figure class="screen-proof screen-proof--reading">
+            <img
+              src="./assets/avengers-disassembled-reading-960.png"
+              width="960"
+              height="900"
+              loading="lazy"
+              alt="Recap Page reading view showing the next issue, Read and Done actions, reading progress, and list options"
+            />
+            <figcaption>One ordered list. A clear next step.</figcaption>
+          </figure>
         </div>
       </section>
 
-      <section id="source-history" class="section section-compact section-tinted" aria-labelledby="source-history-title">
+      <section id="timeline" class="section timeline-section" aria-labelledby="timeline-title">
+        <div class="shell timeline-layout">
+          <div>
+            <h2 id="timeline-title">See where a story fits.</h2>
+            <p>
+              Modern Timeline puts selected events and Reading Paths in story context, so you can choose
+              a place to begin without treating every comic as one giant checklist.
+            </p>
+          </div>
+          <div class="timeline-examples">
+            <details>
+              <summary>2011: several stories, several paths</summary>
+              <ul>
+                <li>Age of X</li>
+                <li>Spider-Island</li>
+                <li>X-Men: Schism</li>
+              </ul>
+              <p>These are separate reading orders grouped in the Modern Timeline.</p>
+            </details>
+            <details>
+              <summary>2023: a new Ultimate Universe</summary>
+              <p>
+                Start with Ultimate Invasion, then follow the separate Ultimate Spider-Man,
+                Ultimate Black Panther, and Ultimate X-Men series in the project's selected order.
+              </p>
+            </details>
+            <a href="./data-sources.html">How the timeline and list sources are recorded</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="explore" class="section feature-section" aria-labelledby="explore-title">
+        <div class="shell explore-layout">
+          <div class="explore-heading">
+            <h2 id="explore-title">Start with what you like.</h2>
+            <p>Not sure about an event name? Explore Marvel from more than one direction.</p>
+          </div>
+          <div class="explore-spread">
+            <details>
+              <summary>Characters</summary>
+              <p>Open a character spotlight and find reading lists centered on that character.</p>
+            </details>
+            <details>
+              <summary>Genres and eras</summary>
+              <p>Browse by story type, Marvel Ages, and the Modern Timeline.</p>
+            </details>
+            <details>
+              <summary>Young readers</summary>
+              <p>Find selected all-ages stories, including Marvel Adventures and Marvel Action series.</p>
+            </details>
+            <details>
+              <summary>Creators and Reading Paths</summary>
+              <p>Search creators, then follow a Reading Path from the Modern Timeline.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section id="mcu-prep" class="section mcu-section" aria-labelledby="mcu-title">
+        <div class="shell mcu-layout">
+          <div>
+            <h2 id="mcu-title">Get ready for the themes behind the screen.</h2>
+            <p>
+              MCU Prep connects comics to characters and themes in an MCU project; it does not predict what the
+              screen story will adapt.
+            </p>
+          </div>
+          <div class="mcu-example">
+            <p class="mcu-label">A sample path</p>
+            <h3>Daredevil: Born Again</h3>
+            <p>A project-selected Daredevil path, identified in the app as project-authored.</p>
+            <details>
+              <summary>Explore the first steps in this sample path</summary>
+              <p>
+                This selection introduces Matt Murdock, then follows later stories about his exposed identity,
+                conscience, and place in Hell's Kitchen. It offers character background, not a scene-by-scene guide.
+              </p>
+              <ol>
+                <li>Daredevil: The Man Without Fear (1993) #1</li>
+                <li>Daredevil: The Man Without Fear (1993) #2</li>
+                <li>Daredevil: The Man Without Fear (1993) #3</li>
+              </ol>
+            </details>
+            <a href="./data-sources.html">Read how MCU Prep sources are credited</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="guides" class="section source-section" aria-labelledby="guides-title">
+        <div class="shell source-layout">
+          <div>
+            <h2 id="guides-title">Real guides. Visible sources.</h2>
+            <p>
+              Reading lists are curated by people, drawn from published guides, selected by the project,
+              or assembled from issue metadata. Each list tells you which it is.
+            </p>
+          </div>
+          <div class="source-copy">
+            <p>
+              Some publishers have explicitly permitted building from eligible public reading orders
+              when their work is credited and linked. Others have approved credit and links without
+              granting a broader license. Their terms and exclusions are kept separate.
+            </p>
+            <p>
+              Comic Book Reading Orders permits eligible public guides with credit and a link to the
+              exact guide. Its Marvel Master Reading Order and Patreon-only orders are excluded.
+              Comic Book Herald's recorded response approves continued crediting and linking; it is
+              not a blanket license over its editorial work or Marvel's comics.
+            </p>
+            <a class="button button--outline" href="./data-sources.html">See guide credits and permissions</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="get-started" class="section platform-section" aria-labelledby="platform-title">
         <div class="shell">
-          <div class="section-heading">
-            <h2 id="source-history-title">Project links</h2>
+          <div class="platform-heading">
+            <h2 id="platform-title">Pick your screen. Keep your place.</h2>
+            <p>Choose your device for setup details. All four versions are here.</p>
           </div>
-          <div class="project-links">
-            <a href="https://github.com/raymond-nassar/recap-page">Source code</a>
-            <a href="https://github.com/raymond-nassar/recap-page/issues">Issues</a>
-            <a href="https://github.com/raymond-nassar/recap-page/commits/main">Commits</a>
-            <a href="https://github.com/raymond-nassar/recap-page/releases">Releases</a>
+          <label class="platform-picker" for="platform-picker">
+            Choose a device
+            <select id="platform-picker" aria-controls="platform-details">
+              <option value="all">Show all devices</option>
+              <option value="windows">Windows</option>
+              <option value="android">Android</option>
+              <option value="iphone">iPhone</option>
+              <option value="ipad">iPad</option>
+            </select>
+          </label>
+          <div id="platform-details" class="platform-spread">
+            <article data-platform="windows">
+              <h3>Windows</h3>
+              <p>Install and update through Microsoft Store, or download the desktop app.</p>
+              <a class="button" href="https://apps.microsoft.com/detail/9PDJ7XR9Q40Q">Open Microsoft Store</a>
+              <a href="https://github.com/raymond-nassar/recap-page/releases/latest/download/marvel-reading-tracker-windows.zip">
+                Download for Windows
+              </a>
+            </article>
+            <article data-platform="android">
+              <h3>Android</h3>
+              <p>Android 8 or later, with an up-to-date Android System WebView.</p>
+              <a class="button" href="https://play.google.com/store/apps/details?id=io.github.raymondnassar.recappage">
+                Open Google Play
+              </a>
+              <a href="https://github.com/raymond-nassar/recap-page/blob/main/docs/ANDROID.md">
+                Android app details
+              </a>
+            </article>
+            <article data-platform="iphone">
+              <h3>iPhone</h3>
+              <p>Install and update through the App Store. iCloud backup is optional.</p>
+              <a class="button" href="https://apps.apple.com/us/app/recap-page/id6828494712">Open the App Store</a>
+            </article>
+            <article data-platform="ipad">
+              <h3>iPad</h3>
+              <p>Install and update through the App Store. iCloud backup is optional.</p>
+              <a class="button" href="https://apps.apple.com/us/app/recap-page/id6828494712">Open the App Store</a>
+            </article>
           </div>
+          <details class="desktop-setup">
+            <summary>Running Recap Page on desktop</summary>
+            <p>Requires Node.js 20 or newer. Keep the same browser profile and address to see your progress.</p>
+            <p><code>http://127.0.0.1:8787/</code></p>
+            <a href="https://github.com/raymond-nassar/recap-page/blob/main/docs/RUNNING.md">Setup guide</a>
+            <p>Uninstalling Android deletes its saved data. Save and check a backup first.</p>
+          </details>
+        </div>
+      </section>
+
+      <section id="faq" class="section faq-section" aria-labelledby="faq-title">
+        <div class="shell faq-layout">
+          <div>
+            <h2 id="faq-title">A few things to know.</h2>
+            <p>Clear answers before you start.</p>
+          </div>
+          <div class="faq-list">
+            <details>
+              <summary>Does Recap Page include comics?</summary>
+              <p>No. It tracks lists and reading progress. You read comics separately with a service or edition you choose.</p>
+            </details>
+            <details>
+              <summary>Does it make reading orders with AI?</summary>
+              <p>
+                No. Reading lists follow named published guides, project selections, or series metadata.
+                Source and permission details vary by list and are linked from its card and the
+                <a href="./data-sources.html">data sources page</a>.
+              </p>
+            </details>
+            <details>
+              <summary>Does my progress sync automatically?</summary>
+              <p>
+                No. Each installation saves separately. Recap Page does not detect your reading or
+                include offline comics. Export a backup or choose the supported backup to your own
+                OneDrive or iCloud account; restoring replaces saved data.
+              </p>
+            </details>
+            <details>
+              <summary>Where does Read open?</summary>
+              <p>
+                Marvel Unlimited changes its service on December 7, 2026. Until then, a recorded
+                reader link can open its web reader. After that, Read opens the general Marvel Comics
+                website, not a single-comic link.
+                <a href="https://help.marvel.com/article/marvel-whats-happening-to-marvel-unlimited">Marvel's FAQ</a>
+              </p>
+            </details>
+            <details>
+              <summary>Where can I get help or suggest a list?</summary>
+              <p>
+                <a href="./support.html">Get support</a>, or
+                <a href="#feedback">send a question or request</a>.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section id="feedback" class="section feedback-section" aria-labelledby="feedback-title">
+        <div class="shell feedback-layout">
+          <h2 id="feedback-title">Help shape what comes next.</h2>
+          <p>Requests are reviewed. Replies can take time or may be declined.</p>
+          <div class="feedback-links">
+            <a href="https://github.com/raymond-nassar/recap-page/issues/new?template=feature.yml">Suggest an improvement</a>
+            <a href="https://github.com/raymond-nassar/recap-page/issues/new?template=reading-list.yml">Request a reading list</a>
+            <a href="https://github.com/raymond-nassar/recap-page/issues/new?template=data-order.yml">Correct a reading list</a>
+            <a href="https://github.com/raymond-nassar/recap-page/issues/new?template=bug.yml">Report a bug</a>
+          </div>
+          <p>
+            <a href="./being-built.html">See what's being built</a>
+            <span aria-hidden="true"> · </span>
+            <a href="./whats-new.html">Read what's new</a>
+          </p>
+        </div>
+      </section>
+
+      <section id="support-project" class="section support-section" aria-labelledby="support-title">
+        <div class="shell support-layout">
+          <h2 id="support-title">Enjoying the app?</h2>
+          <p>
+            If Recap Page helps you follow a story, you can support its continued development.
+            This is optional and does not unlock features.
+          </p>
+          <a class="button button--support" href="https://ko-fi.com/panelstacklabs" rel="noreferrer">
+            Buy Ray a Coffee
+          </a>
         </div>
       </section>
     </main>
 
     <footer class="footer">
-      <div class="shell">
-        <p class="hosting-note">
-          GitHub hosts this site and receives request details, including your IP address.
-          This site can't access your saved reading data.
-        </p>
-        <p>
-          Unofficial fan project. Not affiliated with or endorsed by Marvel Entertainment.
-        </p>
-        <p>
+      <div class="shell footer-layout">
+        <div>
+          <p class="hosting-note">
+            GitHub hosts this site and receives request details, including your IP address.
+            This site cannot access your saved reading data.
+          </p>
+          <p>Unofficial fan project. Not affiliated with or endorsed by Marvel Entertainment.</p>
+        </div>
+        <nav aria-label="Project links">
           <a href="./privacy.html">Privacy</a>
           <a href="./support.html">Support</a>
           <a href="./data-sources.html">Data sources</a>
           <a href="https://github.com/raymond-nassar/recap-page/blob/main/SECURITY.md">Security</a>
           <a href="https://github.com/raymond-nassar/recap-page/blob/main/LICENSE">License</a>
-        </p>
+          <a href="https://ko-fi.com/panelstacklabs" rel="noreferrer">Buy Ray a Coffee</a>
+        </nav>
       </div>
     </footer>
   </body>
