@@ -531,7 +531,7 @@ incidental property of the schema.
 | Compiled for this project from Comic Book Herald's guide | 150 | The guide's issue selection and sequence, re-expressed as local checklists. Every visible card links to the exact guide followed |
 | Compiled for this project from the owner's selected Comic Book Herald excerpt | 1 | The owner's seven-block Shang-Chi selection, expanded to original issues. The card links to the verified CBH page and section; the authored source and factual ledger retain the exact owner input |
 | Compiled for this project from Comic Book Reading Orders | 41 | Factual issue identities and order from exact event pages or visible timeline sections. Every card links to the source followed |
-| Vendored from `emreparker/marvel-comics` | 1 | Nothing. The order is the upstream curator's; only the issue lookups were done here |
+| Issue set vendored from `emreparker/marvel-comics`; Avengers and New Avengers order from Comic Book Herald's guide | 1 | The guide's interleaving of the 85 Avengers, New Avengers and Infinity rows, re-expressed with the rest of the upstream curator's sequence as a local checklist. See [the Hickman saga record](#complete-hickman-saga-reading-order) |
 | Selected by the owner for MCU Prep; expanded into original issues for this project | 1 | Three owner-selected Moon Knight first volumes, expanded into verified original comics. The card links to the owner intake, and the selection ledger retains the approved title corrections |
 | Selected by raymond-nassar for MCU Prep | 7 | The Daredevil selections expand into six collection groups; Brand New Day retains three first trades and an explicit missing-original ledger; She-Hulk keeps one Savage origin and two six-issue first trades; Ms. Marvel keeps three six-original collection groups; Brave New World keeps three first volumes in seven/six/six originals; Guardians keeps four selections in eleven/six/six/five originals; Agatha retains one introduction, six Orlando originals and five explicit House of Harkness gaps |
 
@@ -593,6 +593,39 @@ The stable fast-track catalog ID is retained, but its former 89-issue template i
 any saved library copy. The complete saga is renamed without changing its 219 originals. Previously
 saved names, issue vectors, section maps and notes remain the reader's own snapshots.
 
+### Complete Hickman saga reading order
+
+The Complete Hickman Saga to Secret Wars keeps the 219-issue set it was vendored with from
+[`emreparker/marvel-comics`](https://github.com/emreparker/marvel-comics/blob/main/data/hickman_full.md),
+now held as a [local checklist](../src/data/orders/hickman-full.md). A reader asked for Avengers and
+New Avengers in their intended reading order, because the upstream list read every Avengers issue
+before any New Avengers issue. The 85 rows holding Avengers (2012) #1-44, #34.1 and #34.2, New
+Avengers (2013) #1-33 and Infinity (2013) #1-6 now follow the "Jonathan Hickman's Avengers
+Reading Order" list in section VI of
+[Comic Book Herald's Secret Wars reading order](https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/secret-wars-reading-order/#secretwars6),
+retrieved 2026-11-16 when the page read "Last Updated: 7/27/26". Of those 85 positions, 84 hold a
+different issue than before. The other 134 rows keep their upstream positions, and no issue is
+added or removed.
+
+Three differences from the guide are deliberate:
+
+- New Avengers #13 is not in that section.
+  [Guide Part 18](https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/guide-part-18-infinity/),
+  retrieved 2026-11-16, lists it in the Inhumanity reading order after Infinity, so it follows
+  Infinity #6 and New Avengers #12 here and comes before Avengers #24.
+- The section's New Avengers Annual #1 and Original Sin #1-8, and its optional Captain America
+  #21-22, AXIS and Avengers World #17-21 detours, are not added, because the request was for an
+  order rather than more issues. The guide reads Avengers #29-34 inside its Original Sin order,
+  after Avengers #28 and before New Avengers #16; they keep that place here, read consecutively.
+- The guide reads Ultimate Comics Ultimates before Avengers #41. The upstream Ultimate block, at
+  positions 99-124 before the Avengers block, stays where it was, which is outside the request.
+
+Readers who saved the earlier order are offered the new one through the reading-order revision
+registry in [`src/js/lib/readingOrderRevisions.js`](../src/js/lib/readingOrderRevisions.js). It
+records the earlier 219-issue sequence, so only a saved copy still matching it is offered the
+update, and a copy the reader has edited is left alone. Read marks and notes are kept by comic
+identity, so accepting the update keeps all reading progress.
+
 ### Series and creator indexes
 
 [`src/data/series-index.json`](../src/data/series-index.json) holds 6,990 series and
@@ -612,10 +645,10 @@ character labels say which guide an issue belongs to, not who appears in the iss
 
 ### Order checklists
 
-The 215 Markdown files retained in [`src/data/orders/`](../src/data/orders) contain 214 active
-local source files and the retired owner-selected No Way Home checklist. The upstream full
-Hickman checklist is fetched separately when vendored. The fast-track checklist serves two
-independent Reading Lists, so local-file and source-order counts differ.
+The 269 Markdown files retained in [`src/data/orders/`](../src/data/orders) contain 267 active
+local source files, the retired owner-selected No Way Home checklist and the withdrawn Marvel
+Multiverse checklist. Every active source order now has a local checklist. The fast-track
+checklist serves two independent Reading Lists, so local-file and source-order counts differ.
 The active local sources include publication-order metadata, reviewed Comic Book Herald and
 Comic Book Reading Orders selections, and owner-authored compilations.
 Every file carries its own derivation trail. Cards credit the source followed and link to its

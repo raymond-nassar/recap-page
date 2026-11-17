@@ -213,9 +213,9 @@
       "group": "hickman-secret-wars",
       "groupName": "Hickman to Secret Wars",
       "variant": "Complete reading, with tie-ins",
-      "sourceUrl": "https://raw.githubusercontent.com/emreparker/marvel-comics/main/data/hickman_full.md",
-      "sourcePage": "https://github.com/emreparker/marvel-comics/blob/main/data/hickman_full.md",
-      "sourceOrigin": "Vendored from emreparker/marvel-comics",
+      "sourceFile": "hickman-full.md",
+      "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/secret-wars-reading-order/#secretwars6",
+      "sourceOrigin": "Issue set vendored from emreparker/marvel-comics; Avengers and New Avengers order from Comic Book Herald's Secret Wars guide",
       "sourceLicense": null,
       "out": "hickman_full.json",
       "characters": [
