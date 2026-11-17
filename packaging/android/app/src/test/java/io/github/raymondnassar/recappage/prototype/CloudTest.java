@@ -717,7 +717,8 @@ public final class CloudTest {
                 + "\",\"id_token\":\"" + idToken(nonce, CLIENT) + "\",\"scope\":\"Files.ReadWrite.AppFolder\"}"))
                 .then(request -> json(200, "{\"id\":\"FOLDER1\",\"parentReference\":{\"driveId\":\"DRIVE1\"}}"));
         h.account.redirect(REDIRECT + "?code=CODE1&state=" + h.param("state"));
-        for (int i = 0; i < 100 && !"connected".equals(h.status().get("state")); i++) Thread.sleep(10);
+        // Sign-in finishes on a pool thread; a loaded CI runner gets ten seconds rather than one.
+        for (int i = 0; i < 1000 && !"connected".equals(h.status().get("state")); i++) Thread.sleep(10);
         CountDownLatch release = new CountDownLatch(1);
         Script slow = h.http;
         slow.then(request -> {

@@ -3559,9 +3559,64 @@ void semanticRecordReadCases() {
           "non-I/O semantic record failure was retried");
 }
 
+void nativeVerifierDiagnosticCases(std::ostream& report) {
+    using recap::ownership::tests::FixtureObservation;
+    using recap::ownership::tests::FixtureOperation;
+    using recap::ownership::tests::FixtureFailure;
+    using recap::ownership::tests::observeFixture;
+    unsigned cases = 0;
+    const auto rejects = [&](const std::exception& failure, const std::string& category, long long code) {
+        std::ostringstream captured;
+        bool unchanged = false;
+        try {
+            observeFixture(captured, [&](FixtureObservation& observation) {
+                observation.checkpoint(FixtureOperation::runtimeCopy);
+                throw;
+            });
+        } catch (const std::exception& original) {
+            unchanged = &original == &failure;
+        }
+        const auto text = captured.str();
+        check(unchanged, "verifier diagnostics changed the original exception");
+        check(text == "DIAG native-verifier-operation operation=runtime-copy\n"
+              "DIAG native-verifier-exception operation=runtime-copy category=" + category +
+              " numeric=" + std::to_string(code) + "\n",
+              "verifier diagnostics lost the operation, exception category or numeric code");
+        check(text.find("private") == std::string::npos, "verifier diagnostics exposed private exception details");
+        ++cases;
+    };
+    try {
+        throw fs::filesystem_error("private filesystem message", fs::path(L"C:\\private\\source"),
+            fs::path(L"C:\\private\\destination"), std::error_code(ERROR_SHARING_VIOLATION, std::system_category()));
+    } catch (const fs::filesystem_error& error) { rejects(error, "filesystem", ERROR_SHARING_VIOLATION); }
+    try { throw std::ios_base::failure("private stream message", std::error_code(5, std::system_category())); }
+    catch (const std::ios_base::failure& error) { rejects(error, "stream", error.code().value()); }
+    try { throw std::system_error(std::error_code(8, std::system_category()), "private system message"); }
+    catch (const std::system_error& error) { rejects(error, "system", 8); }
+    try { throw std::bad_alloc(); }
+    catch (const std::bad_alloc& error) { rejects(error, "allocation", 0); }
+    try { throw FixtureFailure("private condition"); }
+    catch (const FixtureFailure& error) { rejects(error, "condition", 0); }
+    try { throw std::runtime_error("private unexpected message"); }
+    catch (const std::runtime_error& error) { rejects(error, "standard", 0); }
+    std::ostringstream successful;
+    unsigned calls = 0;
+    observeFixture(successful, [&](FixtureObservation& observation) {
+        observation.checkpoint(FixtureOperation::cleanup);
+        ++calls;
+    });
+    check(calls == 1 && successful.str() == "DIAG native-verifier-operation operation=cleanup\n",
+          "verifier diagnostics changed the success path");
+    ++cases;
+    check(cases == 7, "verifier diagnostic case count differs");
+    report << "DIAG native-verifier-diagnostic-cases cases=7 passed=7\n";
+    report.flush();
+}
+
 void serverVerifierCases() {
     installedPollCases();
     semanticRecordReadCases();
+    nativeVerifierDiagnosticCases(*liveReport);
     const recap::ownership::tests::FixtureFailure fixtureFailure("server-verifier/owned-fixture",
         recap::ownership::unknown(recap::ownership::Stage::wmi, recap::ownership::Reason::nativeReturn, E_ACCESSDENIED));
     std::ostringstream fixtureReport;
@@ -3611,7 +3666,7 @@ void installed(const std::map<std::wstring, std::wstring>& options, std::ofstrea
     if (!busy) {
         observed("native-server-verifier-cases", [&] {
             try {
-                recap::ownership::tests::run((package / L"runtime" / L"node.exe").wstring(), control);
+                recap::ownership::tests::run((package / L"runtime" / L"node.exe").wstring(), control, report);
             } catch (const recap::ownership::Failure& failure) {
                 throw recap::ownership::tests::FixtureFailure("server-verifier/setup", failure.result);
             }

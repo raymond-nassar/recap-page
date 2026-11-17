@@ -126,6 +126,15 @@ function observe(page) {
 
 const spoken = (seen, n) => seen.said.filter((text) => text.includes(title(n)));
 
+// The announcer writes on a timer, so a fixed pause can read before the words arrive: once, after D,
+// two of the three were there (#1107). Waits for them, bounded so a missing one is reported by the
+// check rather than a timeout, then keeps the old pause so a repeat would still be counted.
+async function heard(page, words, { count = 1, match = 'includes' } = {}) {
+  await page.waitForFunction((text, n, how) => window.__said.filter((said) => (how === 'equals' ? said === text : said[how](text))).length >= n,
+    { timeout: 5000 }, words, count, match).catch(() => {});
+  await wait(100);
+}
+
 export const milestones = {
   id: 'milestones',
   title: 'Finishing a section or the whole list is said once, drawn in words and taken back by Undo or an unmark',
@@ -141,7 +150,7 @@ export const milestones = {
 
     const doneMoment = await act(page, '#btn-hero-done');
     await page.waitForFunction((name) => document.querySelector('#hero-title').textContent === name, {}, title(3));
-    await wait(100);
+    await heard(page, `${title(2)} marked read.`, { match: 'startsWith' });
     const done = await observe(page);
     t.check('Done on the last unread comic of a section says so in its result and in its one announcement',
       done.result === `Marked ${title(2)} read. Section complete: Book One.`
@@ -166,7 +175,7 @@ export const milestones = {
 
     await press(page, '#done-result button');
     await page.waitForFunction((name) => document.querySelector('#hero-title').textContent === name, {}, title(2));
-    await wait(100);
+    await heard(page, title(2), { count: 2 });
     const undone = await observe(page);
     const restored = await saved(page);
     t.check('Undo takes the milestone back with every read mark, list and note as they were',
@@ -180,7 +189,7 @@ export const milestones = {
     await page.focus('#order-name').catch(() => {});
     await page.keyboard.press('d');
     await page.waitForFunction((name) => document.querySelector('#hero-title').textContent === name, {}, title(3));
-    await wait(100);
+    await heard(page, title(2), { count: 3 });
     const keyed = await observe(page);
     t.check('D says the same once and draws the same heading',
       spoken(keyed, 2).length === 3 && spoken(keyed, 2)[2].startsWith(`${title(2)} marked read. Section complete: Book One.`)
@@ -188,13 +197,14 @@ export const milestones = {
       JSON.stringify(spoken(keyed, 2)));
 
     await act(page, row(ids[2], 'read'));
-    await wait(100);
+    await heard(page, `${title(3)} marked read.`, { match: 'equals' });
     const listMoment = await act(page, row(ids[3], 'read'));
     // The line is what is under test, so a missing one is reported by the check below, not a timeout.
     await page.waitForSelector('#list-wrap-up-cheer:not([hidden])', { timeout: 5000 }).catch(() => {});
     // Measured once the moment has settled, so the scale it starts from is not taken for the layout. A
     // transition replaced before it ends rejects its promise, and has settled all the same.
     await page.evaluate(() => Promise.all(document.getAnimations().map((animation) => animation.finished.catch(() => {}))));
+    await heard(page, `${title(4)} marked read. That is the whole order finished.`, { match: 'equals' });
     const finishedList = await observe(page);
     t.check('the row toggle that finishes the list says so once, and that covers the section it finished',
       spoken(finishedList, 3).at(-1) === `${title(3)} marked read.`
@@ -209,7 +219,7 @@ export const milestones = {
       && listMoment.every((moment) => moment.duration < 500), JSON.stringify(listMoment));
 
     await act(page, row(ids[3], 'read'));
-    await wait(100);
+    await heard(page, `${title(4)} marked unread.`, { match: 'equals' });
     const unmarked = await observe(page);
     t.check('an unmark takes the line and the heading back and says nothing more than the unmark',
       unmarked.cheer === null && !unmarked.heads[1].done && unmarked.heads[1].bar
@@ -217,7 +227,7 @@ export const milestones = {
 
     await act(page, '#btn-hero-done');
     await page.waitForSelector('#list-wrap-up-cheer:not([hidden])', { timeout: 5000 }).catch(() => {});
-    await wait(100);
+    await heard(page, `${title(4)} marked read. That is the whole order finished. Undo is available.`, { match: 'startsWith' });
     const doneList = await observe(page);
     t.check('Done that finishes the list keeps its one announcement and opens the wrap-up with the line',
       spoken(doneList, 4).at(-1).startsWith(`${title(4)} marked read. That is the whole order finished. Undo is available.`)
