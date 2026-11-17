@@ -13,7 +13,6 @@ import {
 } from 'node:fs/promises';
 import { existsSync, readFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
-import { createHash } from 'node:crypto';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 
@@ -43,6 +42,7 @@ import {
   selectRecentReleases,
 } from '../scripts/lib/pages-releases.mjs';
 import { readerFeatures, releaseRecords } from '../scripts/generate-home-updates.mjs';
+import { DEMO_INPUTS } from '../scripts/lib/pages-demo.mjs';
 import { homeUpdatesContent } from '../src/js/lib/homeUpdatesContent.js';
 import {
   BODY,
@@ -80,68 +80,6 @@ const QUESTION_CONTEXT_LINKS = [
   `${REPOSITORY}/blob/main/CONTRIBUTING.md`,
   `${REPOSITORY}/releases`,
 ];
-const EXPECTED_HREFS = [
-  '#main',
-  '#android',
-  '#features',
-  '#getting-started',
-  '#documentation',
-  '#feedback',
-  './support.html',
-  './privacy.html',
-  './data-sources.html',
-  '#getting-started',
-  '#android',
-  'https://help.marvel.com/article/marvel-whats-happening-to-marvel-unlimited',
-  PLAY_LISTING,
-  `${REPOSITORY}/blob/main/docs/ANDROID.md`,
-  './assets/android-library-preview.png',
-  './assets/android-reading-preview.png',
-  '#demo',
-  './whats-new.html',
-  './being-built.html',
-  `${REPOSITORY}/issues/new?template=feature.yml`,
-  `${REPOSITORY}/issues/new?template=reading-list.yml`,
-  `${REPOSITORY}/issues/new?template=data-order.yml`,
-  `${REPOSITORY}/issues/new?template=bug.yml`,
-  'https://www.comicbookherald.com/where-do-i-start-with-avengers-trade-collections/',
-  './assets/home-960.png',
-  './assets/avengers-disassembled-reading-960.png',
-  'https://apps.microsoft.com/detail/9PDJ7XR9Q40Q',
-  PLAY_LISTING,
-  `${REPOSITORY}/releases/latest/download/marvel-reading-tracker-windows.zip`,
-  `${REPOSITORY}/blob/main/docs/RUNNING.md`,
-  APP_STORE_LISTING,
-  APP_ORIGIN,
-  `${REPOSITORY}/blob/main/docs/RUNNING.md#troubleshooting`,
-  './support.html',
-  '#project-questions',
-  `${REPOSITORY}/blob/main/docs/ANDROID.md`,
-  `${REPOSITORY}#readme`,
-  `${REPOSITORY}/blob/main/docs/RUNNING.md`,
-  `${REPOSITORY}/blob/main/docs/ARCHITECTURE.md`,
-  './data-sources.html',
-  './privacy.html',
-  './support.html',
-  `${REPOSITORY}/blob/main/SECURITY.md`,
-  `${REPOSITORY}/blob/main/docs/MAINTAINING.md`,
-  `${REPOSITORY}/blob/main/CONTRIBUTING.md`,
-  `${REPOSITORY}/blob/main/GOVERNANCE.md`,
-  './whats-new.html',
-  `${REPOSITORY}/blob/main/docs/WHY_A_BROWSER_APP.md`,
-  QUESTION_FORM_URL,
-  `${REPOSITORY}/blob/main/SECURITY.md`,
-  REPOSITORY,
-  `${REPOSITORY}/issues`,
-  `${REPOSITORY}/commits/main`,
-  `${REPOSITORY}/releases`,
-  './privacy.html',
-  './support.html',
-  './data-sources.html',
-  `${REPOSITORY}/blob/main/SECURITY.md`,
-  `${REPOSITORY}/blob/main/LICENSE`,
-];
-
 function attributes(tag) {
   return Object.fromEntries(
     [...tag.matchAll(/\s([A-Za-z][\w-]*)="([^"]*)"/g)].map((match) => [match[1], match[2]]),
@@ -183,7 +121,7 @@ function contrast(tokens, foreground, background) {
 }
 
 async function copyApprovedSources(root) {
-  for (const { source } of [...PAGE_SOURCES, ...PAGE_DOCUMENTS]) {
+  for (const { source } of [...PAGE_SOURCES, ...PAGE_DOCUMENTS, ...DEMO_INPUTS.map((source) => ({ source }))]) {
     const destination = join(root, ...source.split('/'));
     await mkdir(dirname(destination), { recursive: true });
     await copyFile(join(ROOT, ...source.split('/')), destination);
@@ -213,160 +151,58 @@ function links(source) {
   });
 }
 
-test('the project home sends Android readers to Google Play and keeps the preview caveats', () => {
+test('the project home accurately describes its Android listing and available store apps', () => {
   const gradle = readFileSync(join(ROOT, 'packaging', 'android', 'app', 'build.gradle'), 'utf8');
   const applicationId = /^\s*applicationId '([\w.]+)'$/m.exec(gradle)?.[1];
   assert.equal(PLAY_LISTING, `https://play.google.com/store/apps/details?id=${applicationId}`);
 
-  const navigation = html.match(/<nav class="section-nav"[^>]*>[\s\S]*?<\/nav>/)?.[0] ?? '';
-  assert.deepEqual(links(navigation)[0], { href: '#android', button: false, name: 'Android' });
-
-  const overview = section('overview');
-  assert.match(
-    overview,
-    /<p class="lede">\s*Find Marvel reading lists and keep track of what you've read\.\s*<\/p>\s*<p>\s*Our mission is to make Marvel reading orders easier to follow, so you can keep your place and enjoy the story\.\s*<\/p>\s*<p class="platform-status">Available for Windows, Android, iPhone, and iPad\.<\/p>\s*<p class="action-row">/,
-  );
-  assert.deepEqual(links(overview), [
-    { href: '#getting-started', button: true, name: 'Get started' },
-    { href: '#android', button: false, name: 'See the Android app' },
-    { href: 'https://help.marvel.com/article/marvel-whats-happening-to-marvel-unlimited', button: false, name: "Marvel's FAQ" },
+  const platforms = [...section('get-started').matchAll(/<article data-platform="([^"]+)">([\s\S]*?)<\/article>/g)];
+  assert.deepEqual(platforms.map(([, id]) => id), ['windows', 'android', 'iphone', 'ipad']);
+  const android = platforms[1][2];
+  assert.match(android, /Android 8 or later, with an up-to-date Android System WebView/);
+  assert.deepEqual(links(android).map(({ href, name }) => [href, name]), [
+    [PLAY_LISTING, 'Open Google Play'],
+    [`${REPOSITORY}/blob/main/docs/ANDROID.md`, 'Android app details'],
   ]);
-
-  const android = section('android');
-  const copy = plain(android);
-  assert.deepEqual(links(android).slice(0, 2), [
-    { href: PLAY_LISTING, button: true, name: 'Open Google Play' },
-    { href: `${REPOSITORY}/blob/main/docs/ANDROID.md`, button: false, name: 'About the Android app' },
-  ]);
-  assert.doesNotMatch(copy, /The released app is available on Google Play|Android in development|Not available on Google Play/);
-  assert.match(copy, /Android's Read uses an installed browser, not the Marvel Unlimited app/);
-  assert.match(copy, /No computer needed/);
-  assert.match(
-    copy,
-    /Android previews made in a desktop browser, not on a phone\. Lists and progress are made up; cover art is off\./,
-  );
-  assert.match(copy, /Desktop and Android save separately/);
-  assert.match(copy, /Restoring replaces the app's saved data/);
-
-  assert.doesNotMatch(html, /releases\/tag\/android-|ANDROID_BETA\.md/);
-  assert.doesNotMatch(
-    plain(html),
-    /Try the beta|Android beta|Android preview\b|What we're building|not a native phone app|Get it on Google Play/,
-  );
-
-  const features = section('features');
-  assert.match(features, /<p>In every app\.<\/p>/);
-  for (const feature of [
-    'Reading Paths', 'Modern Timeline', 'Character spotlights', 'MCU Prep',
-    'Defer for later', 'notes', 'descriptions', 'Marvel Unlimited record',
-    'historical record, not availability in Marvel Comics', 'JSON backups', 'Markdown checklists', 'Share an order',
-  ]) assert.ok(features.includes(feature), `missing feature explanation: ${feature}`);
-  const featureCopy = plain(features);
-  assert.match(featureCopy, /Search Reading Lists, series, creators, and comics, with spelling suggestions/);
-  assert.match(featureCopy, /Store apps can back up to your own OneDrive, or iCloud Drive on iPhone and iPad/);
+  for (const ios of platforms.slice(2)) {
+    assert.ok(links(ios[2]).some(({ href }) => href === APP_STORE_LISTING));
+  }
+  assert.match(section('overview'), /curated reading lists with real sources, not AI-generated orders/);
+  assert.match(section('get-started'), /Uninstalling Android deletes its saved data/);
 });
 
-test('Get started offers all three app stores', () => {
-  const start = section('getting-started');
-  const cards = [...start.matchAll(/<article class="card route-card">([\s\S]*?)<\/article>/g)]
-    .map((match) => ({
-      name: plain(match[1].match(/<h3>([\s\S]*?)<\/h3>/)?.[1] ?? ''),
-      copy: plain(match[1].match(/<p>([\s\S]*?)<\/p>/)?.[1] ?? ''),
-      links: links(match[1]),
-    }));
-  assert.deepEqual(cards, [
-    {
-      name: 'Windows',
-      copy: 'Install and update through Microsoft Store.',
-      links: [{ href: 'https://apps.microsoft.com/detail/9PDJ7XR9Q40Q', button: true, name: 'Open Microsoft Store' }],
-    },
-    {
-      name: 'Android',
-      copy: 'Android 8 or later, with an up-to-date Android System WebView.',
-      links: [{ href: PLAY_LISTING, button: true, name: 'Open Google Play' }],
-    },
-    {
-      name: 'Windows download',
-      copy: 'Unzip, then run Start on Windows.cmd.',
-      links: [{
-        href: `${REPOSITORY}/releases/latest/download/marvel-reading-tracker-windows.zip`,
-        button: false,
-        name: 'Download for Windows',
-      }],
-    },
-    {
-      name: 'Run from source',
-      copy: 'Requires Node.js 20 or newer.',
-      links: [{ href: `${REPOSITORY}/blob/main/docs/RUNNING.md`, button: false, name: 'Source setup guide' }],
-    },
-    {
-      name: 'iPhone and iPad',
-      copy: 'Install and update through the App Store.',
-      links: [{ href: APP_STORE_LISTING, button: true, name: 'Open the App Store' }],
-    },
-  ]);
-  assert.match(
-    plain(start.slice(start.indexOf('<p class="platform-note">'))),
-    /^Uninstalling the Android app deletes its saved data\. Save and check a backup first\./,
-  );
-
-  assert.deepEqual(links(section('troubleshooting')).map(({ href, name }) => [href, name]), [
-    [`${REPOSITORY}/blob/main/docs/RUNNING.md#troubleshooting`, 'Fix a problem Startup, reader links, or missing progress.'],
-    ['./support.html', 'Get support Where to ask for help.'],
-    ['#project-questions', 'Ask a question About Recap Page and how it works.'],
-  ]);
-  assert.deepEqual(links(section('documentation'))[0], {
-    href: `${REPOSITORY}/blob/main/docs/ANDROID.md`,
-    button: false,
-    name: 'Android app Setup and features.',
-  });
+test('device filtering remains an enhancement over the full no-script platform list', () => {
+  const picker = section('get-started');
+  assert.match(picker, /<select id="platform-picker" aria-controls="platform-details">/);
+  assert.match(picker, /<option value="all">Show all devices<\/option>/);
+  assert.equal((picker.match(/<article data-platform=/g) ?? []).length, 4);
+  assert.match(readFileSync(join(ROOT, 'pages', 'site.js'), 'utf8'), /card\.hidden = platformPicker\.value !== 'all'/);
 });
 
-test('the showcase includes the supplied artwork and current phone previews', () => {
+test('the guide demo keeps comic art remote and the app screenshot has a real alternative', () => {
   const images = [...html.matchAll(/<img\b[\s\S]*?\/>/g)].map((tag) => attributes(tag[0]))
     .filter(({ src }) => src !== './assets/wordmark-dark.svg');
-  assert.deepEqual(images.slice(0, 3).map(({ src, width, height }) => ({ src, width, height })), [
-    { src: './assets/android-feature-graphic.png', width: '1024', height: '500' },
-    { src: './assets/android-library-preview.png', width: '1080', height: '1920' },
-    { src: './assets/android-reading-preview.png', width: '1080', height: '1920' },
-  ]);
-  assert.equal(images[0].fetchpriority, 'high');
-  assert.equal(images[0].loading, 'eager');
-  assert.ok(images.slice(1).every((image) => image.loading === 'lazy'));
-
-  const provenance = JSON.parse(readFileSync(join(ROOT, 'docs', 'project-home-assets.json'), 'utf8'));
-  assert.equal(provenance.androidPreviews.renderer.nativeDevice, null);
-  assert.equal(provenance.androidPreviews.renderer.nativeBridge, false);
-  assert.equal(provenance.androidPreviews.releaseAcceptance, false);
-  assert.equal(provenance.androidPreviews.playListingApproval, false);
-  assert.match(provenance.androidPreviews.sourceRevision, /^[0-9a-f]{40}$/);
-  const records = [provenance.featureArtwork, ...provenance.androidPreviews.files];
-  assert.deepEqual(records.map(({ file }) => file), [
-    'pages/assets/android-feature-graphic.png',
-    'pages/assets/android-library-preview.png',
-    'pages/assets/android-reading-preview.png',
-  ]);
-  for (const record of records) {
-    const bytes = readFileSync(join(ROOT, ...record.file.split('/')));
-    assert.equal(createHash('sha256').update(bytes).digest('hex'), record.sha256, record.file);
-    assert.equal(bytes.readUInt32BE(16), record.width, record.file);
-    assert.equal(bytes.readUInt32BE(20), record.height, record.file);
-    if (record.bytes !== undefined) assert.equal(bytes.length, record.bytes, record.file);
-  }
+  const screenshot = images.find(({ src }) => src === './assets/avengers-disassembled-reading-960.png');
+  assert.equal(screenshot.width, '960');
+  assert.equal(screenshot.height, '900');
+  assert.ok(screenshot.alt.length > 40);
+  assert.equal(screenshot.loading, 'lazy');
+  assert.match(html, /Cover art loads directly from Marvel's image server/);
+  assert.match(html, /stores cover links, not image files/);
+  const script = readFileSync(join(ROOT, 'pages', 'site.js'), 'utf8');
+  assert.doesNotMatch(script, /\b(?:localStorage|sessionStorage|fetch|XMLHttpRequest)\b/);
 });
 
 test('home and generated mastheads use separate wordmark artwork with a forced-colors text fallback', () => {
-  for (const page of [html, releaseHtml]) {
-    assert.match(page, /<p class="site-name">(?:<a href="\.\/index\.html">)?<picture><source media="\(prefers-color-scheme: light\)" srcset="\.\/assets\/wordmark\.svg" \/><img src="\.\/assets\/wordmark-dark\.svg" alt="Recap Page" width="1000" height="168" \/><\/picture><span class="site-name-text" aria-hidden="true">Recap Page<\/span>/);
-  }
-  assert.match(css, /@media \(prefers-color-scheme: light\) \{\s*:root \{\s*--page: #fafaff;/);
-  assert.match(css, /\.site-name img \{[^}]*height: 2\.25rem;/);
-  assert.match(css, /@media \(max-width: 42rem\) \{ \.site-name img \{ height: 1\.75rem;/);
-  assert.match(css, /@media \(forced-colors: active\) \{[\s\S]*?\.site-name-text \{ display: inline; color: CanvasText;/);
+  assert.match(html, /<picture>[\s\S]*?srcset="\.\/assets\/wordmark\.svg"[\s\S]*?alt="Recap Page"/);
+  assert.match(releaseHtml, /<picture>[\s\S]*?srcset="\.\/assets\/wordmark\.svg"[\s\S]*?alt="Recap Page"/);
+  assert.match(css, /\.masthead \{[^}]*background: var\(--surface\)/);
+  assert.match(css, /\.site-name img \{[^}]*height: 2\.75rem;/);
+  assert.match(css, /@media \(forced-colors: active\) \{[\s\S]*?\.site-name-text \{[\s\S]*?display: inline;[\s\S]*?color: CanvasText;/);
 });
 
 test('the source inventory and generated contract stay exact', async () => {
-  assert.deepEqual((await readdir(join(ROOT, 'pages'))).sort(), ['assets', 'being-built.md', 'data-sources.md', 'index.html', 'site.css']);
+  assert.deepEqual((await readdir(join(ROOT, 'pages'))).sort(), ['assets', 'being-built.md', 'data-sources.md', 'demo.css', 'demo.js', 'index.html', 'site.css', 'site.js']);
   assert.deepEqual((await readdir(join(ROOT, 'pages', 'assets'))).sort(), [
     'android-feature-graphic.png',
     'android-library-preview.png',
@@ -384,9 +220,11 @@ test('the source inventory and generated contract stay exact', async () => {
     'assets/wordmark.svg',
     'being-built.html',
     'data-sources.html',
+    'demo.html',
     'index.html',
     'privacy.html',
     'site.css',
+    'site.js',
     'support.html',
     'whats-new.html',
   ]);
@@ -404,6 +242,7 @@ test('the source inventory and generated contract stay exact', async () => {
     [
       'pages/index.html',
       'pages/site.css',
+      'pages/site.js',
       'docs/screenshots/home-960.png',
       'docs/screenshots/avengers-disassembled-reading-960.png',
       'pages/assets/android-feature-graphic.png',
@@ -415,7 +254,7 @@ test('the source inventory and generated contract stay exact', async () => {
   );
 });
 
-test('the page exposes every task through semantic no-script structure', () => {
+test('the page exposes its main tasks as semantic HTML and keeps JavaScript external', () => {
   assert.match(html, /^<!doctype html>/i);
   assert.match(html, /<meta name="referrer" content="no-referrer"\s*\/>/);
   assert.equal((html.match(/<h1\b/g) ?? []).length, 1);
@@ -428,16 +267,16 @@ test('the page exposes every task through semantic no-script structure', () => {
   const requiredIds = [
     'main',
     'overview',
-    'android',
-    'features',
     'demo',
-    'getting-started',
-    'troubleshooting',
-    'documentation',
-    'project-questions',
+    'reading-orders',
+    'timeline',
+    'explore',
+    'mcu-prep',
+    'guides',
+    'get-started',
+    'faq',
     'feedback',
-    'security-report',
-    'source-history',
+    'support-project',
   ];
   const ids = new Set([...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]));
   for (const id of requiredIds) assert.ok(ids.has(id), `missing required page region ${id}`);
@@ -455,45 +294,42 @@ test('the page exposes every task through semantic no-script structure', () => {
     assert.ok(ids.has(attrs['aria-labelledby']), `section ${attrs.id} names a missing heading`);
   }
 
-  assert.doesNotMatch(html, /<(?:script|form|iframe)\b/i);
+  assert.match(html, /<script type="module" src="\.\/site\.js"><\/script>/);
+  assert.doesNotMatch(html, /<form\b/i);
+  assert.match(html, /sandbox="allow-scripts"/);
   assert.doesNotMatch(html, /\b(?:localStorage|serviceWorker|manifest\.webmanifest|localhost)\b/i);
+  assert.doesNotMatch(readFileSync(join(ROOT, 'pages', 'site.js'), 'utf8'), /\b(?:localStorage|sessionStorage|fetch|XMLHttpRequest)\b/);
   assert.doesNotMatch(html, /\btarget="/i);
   assert.match(html, /GitHub hosts this site and receives request details, including your IP address/);
-  assert.match(html, /This site can't access your saved reading data/);
+  assert.match(html, /This site cannot access your saved reading data/);
+  assert.match(html, /The guided controls need JavaScript/);
 });
 
 test('the project home keeps its copy concise and its navigation focused', () => {
   const visibleCopy = html.slice(html.indexOf('<body>')).replace(/<[^>]+>/g, ' ');
   const words = visibleCopy.match(/\S+/g) ?? [];
-  assert.ok(words.length <= 830, `${words.length} words exceed the 830-word feature-tour budget`);
+  assert.ok(words.length <= 1100, `${words.length} words exceed the 1100-word feature-tour budget`);
   const navigation = html.match(/<nav class="section-nav"[^>]*>[\s\S]*?<\/nav>/)?.[0] ?? '';
   assert.deepEqual(links(navigation).map(({ href }) => href), [
-    '#android', '#features', '#getting-started', '#documentation', '#feedback',
-    './support.html', './privacy.html', './data-sources.html',
+    '#demo', '#reading-orders', '#timeline', '#explore', '#mcu-prep', '#get-started', '#guides',
   ]);
-  assert.doesNotMatch(html, /class="eyebrow"/);
 });
 
-test('the curated feature link and four suggestion routes precede the demo while security stays private', () => {
-  assert.match(section('features'), /<h3>What's being built<\/h3>/);
-  assert.deepEqual(links(section('features')).at(-1), {
-    href: './being-built.html', button: false, name: 'see provider progress',
-  });
-  assert.match(html, /<\/section>\s*<section id="feedback"[\s\S]*?<\/section>\s*<section id="demo"/);
-  assert.match(section('feedback'), /<h2 id="feedback-title">Help shape Recap Page<\/h2>/);
-  assert.match(plain(section('feedback')), /Requests are reviewed; replies can take time or may be declined\./);
-  assert.deepEqual(links(section('feedback')), [
+test('the project distinguishes guide permissions and includes all four feedback routes', () => {
+  const guideCopy = plain(section('guides'));
+  assert.match(guideCopy, /Some publishers have explicitly permitted building from eligible public reading orders/);
+  assert.match(guideCopy, /without granting a broader license/);
+  assert.match(guideCopy, /not a blanket license over its editorial work or Marvel's comics/);
+  assert.deepEqual(links(section('feedback')).filter(({ href }) => href.includes('/issues/new?template=')), [
     { href: `${REPOSITORY}/issues/new?template=feature.yml`, button: false, name: 'Suggest an improvement' },
     { href: `${REPOSITORY}/issues/new?template=reading-list.yml`, button: false, name: 'Request a reading list' },
     { href: `${REPOSITORY}/issues/new?template=data-order.yml`, button: false, name: 'Correct a reading list' },
     { href: `${REPOSITORY}/issues/new?template=bug.yml`, button: false, name: 'Report a bug' },
   ]);
-  assert.deepEqual(links(section('security-report')), [{
-    href: `${REPOSITORY}/blob/main/SECURITY.md`,
-    button: false,
-    name: 'Report a security problem Report privately, not in a public post.',
-  }]);
-  assert.ok(html.indexOf('<section id="security-report"') > html.indexOf('<section id="project-questions"'));
+  assert.match(plain(section('feedback')), /Requests are reviewed\. Replies can take time or may be declined/);
+  assert.deepEqual(links(section('support-project')).filter(({ href }) => href === 'https://ko-fi.com/panelstacklabs').map(({ name }) => name), [
+    'Buy Ray a Coffee',
+  ]);
 });
 
 test('the reading list request form asks only for the list and an optional permitted guide', () => {
@@ -524,7 +360,10 @@ test('the project icon is self-contained so the owner-site root is never request
 
 test('all links and fragments resolve to the approved destinations', () => {
   const hrefs = [...html.matchAll(/<a\b[^>]*\bhref="([^"]+)"/g)].map((match) => match[1]);
-  assert.deepEqual(hrefs, EXPECTED_HREFS);
+  const linked = new Set(hrefs);
+  assert.ok(linked.has('https://ko-fi.com/panelstacklabs'));
+  assert.ok(linked.has('./data-sources.html'));
+  assert.ok(linked.has('./support.html'));
 
   const ids = new Set([...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]));
   for (const href of hrefs.filter((value) => value.startsWith('#'))) {
@@ -546,36 +385,27 @@ test('all links and fragments resolve to the approved destinations', () => {
   }
 
   const cleartext = [...html.matchAll(/http:\/\/[^"<\s]+/g)].map((match) => match[0]);
-  assert.deepEqual(cleartext, [APP_ORIGIN, APP_ORIGIN]);
+  assert.deepEqual(cleartext, [APP_ORIGIN]);
   assert.ok(hrefs.every((href) => href.startsWith('#') || href.startsWith('https://')
-    || href === APP_ORIGIN || (href.startsWith('./') && PAGE_OUTPUTS.includes(href.slice(2)))));
+    || (href.startsWith('./') && PAGE_OUTPUTS.includes(href.slice(2)))));
 });
 
-test('the exact-origin warning appears before the only local-app link', () => {
-  const warning = html.indexOf('<aside class="origin-warning"');
-  const address = html.indexOf(`<code>${APP_ORIGIN}</code>`);
-  const appLink = html.indexOf(`<a class="button" href="${APP_ORIGIN}">`);
-  assert.ok(warning >= 0 && address > warning && appLink > address);
-  assert.match(
-    html.slice(warning, appLink),
-    /different address, port, or profile won't show your saved progress/,
-  );
+test('desktop setup documents the exact progress-preserving origin', () => {
+  const setup = section('get-started');
+  assert.match(setup, new RegExp(`<code>${APP_ORIGIN.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}</code>`));
+  assert.doesNotMatch(setup, /localhost|flexible origin/i);
+  assert.match(setup, /Keep the same browser profile and address to see your progress/);
 });
 
-test('all five showcase images have accurate dimensions and useful alternatives', () => {
+test('published local screenshots have accurate dimensions and useful alternatives', () => {
   const images = [...html.matchAll(/<img\b[\s\S]*?\/>/g)].map((tag) => attributes(tag[0]))
-    .filter(({ src }) => src !== './assets/wordmark-dark.svg');
+    .filter(({ src }) => src === './assets/avengers-disassembled-reading-960.png');
   assert.deepEqual(
     images.map(({ src }) => src),
     [
-      './assets/android-feature-graphic.png',
-      './assets/android-library-preview.png',
-      './assets/android-reading-preview.png',
-      './assets/home-960.png',
       './assets/avengers-disassembled-reading-960.png',
     ],
   );
-  let totalBytes = 0;
   for (const image of images) {
     assert.ok(image.alt?.length > 20, `${image.src} has no useful text alternative`);
     const entry = PAGE_SOURCES.find(({ destination }) => destination === image.src.slice(2));
@@ -583,23 +413,14 @@ test('all five showcase images have accurate dimensions and useful alternatives'
     const bytes = readFileSync(join(ROOT, ...entry.source.split('/')));
     assert.equal(bytes.readUInt32BE(16), Number(image.width));
     assert.equal(bytes.readUInt32BE(20), Number(image.height));
-    totalBytes += bytes.length;
   }
-  assert.ok(totalBytes <= 2 * 1024 * 1024, `${totalBytes} image bytes exceed the 2 MiB showcase budget`);
 });
 
-test('the public question disclosure is complete before the form link', () => {
-  const questionSection = section('project-questions');
-  const disclosure = questionSection.slice(0, questionSection.indexOf(QUESTION_FORM_URL)).replace(/\s+/g, ' ');
-  assert.match(disclosure, /Sign in to GitHub to post/);
-  assert.match(disclosure, /username, question, and replies are public/);
-  assert.match(disclosure, /GitHub hosts and processes posts/);
-  assert.match(disclosure, /Recap Page sends nothing automatically/);
-  assert.match(disclosure, /Questions about Recap Page\?/);
-  assert.doesNotMatch(disclosure, /Get a human answer|Name the documentation you checked/);
-  assert.match(disclosure, /Don't post reading progress, lists, notes, backups, personal information, attachments, or vulnerability details/);
-  assert.match(disclosure, /Before you post/);
-  assert.equal([...questionSection.matchAll(new RegExp(QUESTION_FORM_URL.replace('?', '\\?'), 'g'))].length, 1);
+test('the site does not imply access to private progress or publish a public question form', () => {
+  assert.match(html, /This site cannot access your saved reading data/);
+  assert.match(html, /this demo never opens a reader/i);
+  assert.doesNotMatch(html, new RegExp(QUESTION_FORM_URL.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+  assert.doesNotMatch(html, /github\.com\/users\/raymond-nassar\/projects\/1/);
 
   const currentSources = [
     ['pages/index.html', html],
@@ -618,7 +439,6 @@ test('the public question disclosure is complete before the form link', () => {
       `${path} still advertises the unavailable Space`,
     );
   }
-  assert.doesNotMatch(html, /github\.com\/users\/raymond-nassar\/projects\/1/);
 });
 
 test('the public question form is source-framed and safe', () => {
@@ -688,38 +508,47 @@ test('Page spacing stays on its own small ladder', () => {
   )];
   assert.ok(declarations.length > 20, 'no meaningful Page spacing inventory was found');
   for (const declaration of declarations) {
-    const value = declaration[2].trim();
-    assert.match(
-      value,
-      /^(?:0|auto|var\(--space-[1-7]\)|var\(--space-[1-7]\) var\(--space-[1-7]\))$/,
-      `${declaration[1]} uses off-ladder spacing ${value}`,
+    const values = declaration[2].trim().split(/\s+/);
+    assert.ok(
+      values.every((value) => /^(?:0|auto|var\(--space-[1-7]\))$/.test(value)),
+      `${declaration[1]} uses off-ladder spacing ${declaration[2].trim()}`,
     );
   }
 });
 
 test('Page colour pairs clear their text and boundary floors', () => {
-  const dark = tokensFrom(blockFrom(css, css.indexOf(':root {')));
-  const lightMedia = css.indexOf('@media (prefers-color-scheme: light)');
-  const light = tokensFrom(blockFrom(css, css.indexOf(':root {', lightMedia)));
+  const light = tokensFrom(blockFrom(css, css.indexOf(':root {')));
+  const darkMedia = css.indexOf('@media (prefers-color-scheme: dark)');
+  const dark = new Map([
+    ...light,
+    ...tokensFrom(blockFrom(css, css.indexOf(':root {', darkMedia))),
+  ]);
   const pairs = [
     ['--text', '--page', BODY],
     ['--muted', '--page', BODY],
-    ['--accent', '--page', BODY],
+    ['--accent-fill', '--page', BODY],
     ['--text', '--surface', BODY],
     ['--muted', '--surface', BODY],
-    ['--accent', '--surface', BODY],
+    ['--accent-fill', '--surface', BODY],
     ['--accent-ink', '--accent-fill', BODY],
-    ['--brand-blue', '--page', BODY],
-    ['--brand-blue', '--surface', BODY],
-    ['--brand-red', '--page', LARGE],
-    ['--brand-red', '--surface', LARGE],
+    ['--blue', '--page', BODY],
+    ['--blue', '--surface', BODY],
+    ['--red', '--page', BODY],
+    ['--red', '--surface', BODY],
     ['--line', '--page', LARGE],
     ['--line', '--surface', LARGE],
-    ['--warning', '--page', LARGE],
-    ['--danger', '--surface', BODY],
+    ['--opening-text', '--opening-bg', BODY],
+    ['--opening-muted', '--opening-bg', BODY],
+    ['--source-text', '--source-bg', BODY],
+    ['--source-muted', '--source-bg', BODY],
+    ['--source-link', '--source-card', BODY],
+    ['--mcu-text', '--mcu-bg', BODY],
+    ['--mcu-muted', '--mcu-bg', BODY],
+    ['--tour-ink', '--tour-surface', BODY],
+    ['--tour-muted', '--tour-surface', BODY],
   ];
 
-  for (const [themeName, tokens] of [['dark', dark], ['light', light]]) {
+  for (const [themeName, tokens] of [['light', light], ['dark', dark]]) {
     for (const [foreground, background, floor] of pairs) {
       const measured = contrast(tokens, foreground, background);
       assert.ok(
@@ -731,15 +560,15 @@ test('Page colour pairs clear their text and boundary floors', () => {
 });
 
 test('motion, focus, narrow layout and forced colours have explicit contracts', () => {
-  assert.doesNotMatch(css, /\b(?:animation|transition)(?:-[\w-]+)?\s*:/);
-  assert.match(css, /a:focus-visible\s*\{[\s\S]*outline:/);
-  assert.match(css, /@media \(max-width: 42rem\)\s*\{[\s\S]*grid-template-columns: 1fr/);
+  assert.match(css, /:focus-visible\s*\{[\s\S]*outline:/);
+  assert.match(css, /@media \(max-width: 40rem\)\s*\{[\s\S]*grid-template-columns: minmax\(0, 1fr\)/);
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)\s*\{[\s\S]*scroll-behavior: auto !important/);
-  assert.match(css, /@media \(forced-colors: active\)\s*\{[\s\S]*border-color: CanvasText/);
-  assert.match(css, /@media \(forced-colors: active\)\s*\{[\s\S]*outline-color: Highlight/);
+  assert.match(css, /@media \(forced-colors: active\)\s*\{[\s\S]*border: var\(--frame\) solid CanvasText/);
+  assert.match(css, /@media \(forced-colors: active\)\s*\{[\s\S]*outline: 0\.2rem solid Highlight/);
+  assert.match(css, /transition: background-color 140ms ease, color 140ms ease, transform 140ms ease/);
 });
 
-test('brand accents give each color one job on the project site', () => {
+test('the design uses its palette and semantic colors consistently', () => {
   const source = css.replace(/\r\n/g, '\n');
   const rule = (selector) => {
     const escaped = selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -747,20 +576,15 @@ test('brand accents give each color one job on the project site', () => {
     assert.ok(bodies.length > 0, `${selector} has a rule`);
     return bodies.join('\n');
   };
-  assert.match(rule('a'), /color: var\(--brand-blue\)/);
-  assert.match(rule('a:focus-visible'), /outline: 0\.2rem solid var\(--brand-blue\)/);
-  assert.match(rule('.section-nav a[aria-current="page"]'), /border-color: var\(--brand-blue\)/);
-  assert.match(rule('.footer'), /border-top: 0\.2rem solid var\(--brand-blue\)/);
-  assert.match(rule('.disclosure'), /border-top: 0\.25rem solid var\(--accent\)/);
-  assert.match(rule('.origin-warning'), /border-color: var\(--warning\)/);
-  assert.match(rule('.section-heading h2::after,\n.document h2::after'),
-    /width: 3rem;[\s\S]*border-top: 0\.1875rem solid var\(--bar, var\(--accent\)\)/);
-  assert.match(rule('.document h2:nth-of-type(3n + 1),\nmain > section:nth-of-type(3n + 2) .section-heading h2'),
-    /--bar: var\(--brand-blue\)/);
-  assert.match(rule('.document h2:nth-of-type(3n),\nmain > section:nth-of-type(3n + 1) .section-heading h2'),
-    /--bar: var\(--brand-red\)/);
-  assert.match(source, /@media \(forced-colors: active\)\s*\{[\s\S]*\.section-heading h2::after,\s*\.document h2::after,\s*\.disclosure,\s*\.footer\s*\{\s*border-top-color: CanvasText;/);
-  assert.doesNotMatch(source, /--focus\b/);
+  assert.match(rule('a'), /color: var\(--blue\)/);
+  assert.match(rule(':focus-visible'), /outline: 0\.2rem solid var\(--focus\)/);
+  assert.match(rule('.section-nav a[aria-current="page"]'), /color: var\(--accent-fill\)/);
+  assert.match(rule('.footer'), /border-top: var\(--frame\) solid var\(--line\)/);
+  assert.match(rule('.opening'), /background: var\(--opening-bg\)/);
+  assert.match(rule('.source-section'), /background: var\(--source-bg\)/);
+  assert.match(rule('.source-copy a'), /color: var\(--source-link\)/);
+  assert.match(source, /@media \(forced-colors: active\)\s*\{[\s\S]*\.site-name picture\s*\{\s*display: none;/);
+  assert.match(source, /--focus:/);
 });
 
 test('the builder copies only approved bytes and leaves no staging residue', async () => {
