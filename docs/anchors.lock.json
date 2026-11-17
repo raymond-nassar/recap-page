@@ -1559,8 +1559,8 @@
     "fp": "6fde7f377cd6f228",
     "head": "Finish reads GitHub; it never requests a merge. It requires an actual merge event and the published"
   },
-  ".github/skills/new-reading-list/SKILL.md|preserve-the-source-while-preparing-delivery|docs/MAINTAINING.md:1829|0": {
-    "anchor": "docs/MAINTAINING.md:1829",
+  ".github/skills/new-reading-list/SKILL.md|preserve-the-source-while-preparing-delivery|docs/MAINTAINING.md:1858|0": {
+    "anchor": "docs/MAINTAINING.md:1858",
     "fp": "bc5ae9fc4df20cc3",
     "head": "## Place a new reading list in a Universe"
   },
@@ -1604,8 +1604,8 @@
     "fp": "584ec6b521007920",
     "head": "## Choose the product version and platforms"
   },
-  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/GOOGLE_PLAY_PUBLISHING.md:250|0": {
-    "anchor": "docs/GOOGLE_PLAY_PUBLISHING.md:250",
+  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/GOOGLE_PLAY_PUBLISHING.md:238|0": {
+    "anchor": "docs/GOOGLE_PLAY_PUBLISHING.md:238",
     "fp": "a61496c78a00502b",
     "head": "| `uncertain` | A mutating request may have reached Google without a trustworthy result. Inspect Con"
   },
@@ -1634,8 +1634,8 @@
     "fp": "0209fd221c84d800",
     "head": "merge; a new manual workflow cannot be dispatched until it exists on the default branch."
   },
-  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/RELEASING.md:309-315|0": {
-    "anchor": "docs/RELEASING.md:309-315",
+  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/RELEASING.md:325-331|0": {
+    "anchor": "docs/RELEASING.md:325-331",
     "fp": "0ac7b7fd79909700",
     "head": "Upload mode downloads the packet from the selected successful export run of this workflow on"
   },
@@ -1664,9 +1664,9 @@
     "fp": "06bff25642e95726",
     "head": "# Protected Google Play testing publication"
   },
-  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#google-play-testing-or-promotion|docs/GOOGLE_PLAY_PUBLISHING.md:256-295|0": {
-    "anchor": "docs/GOOGLE_PLAY_PUBLISHING.md:256-295",
-    "fp": "ce0481b546ab544e",
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#google-play-testing-or-promotion|docs/GOOGLE_PLAY_PUBLISHING.md:244-326|0": {
+    "anchor": "docs/GOOGLE_PLAY_PUBLISHING.md:244-326",
+    "fp": "e6d9de742e23ec41",
     "head": "## Normal release operations"
   },
   ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#google-play-testing-or-promotion|docs/RELEASING.md:206-216|0": {
@@ -1684,8 +1684,8 @@
     "fp": "3d8eb59b07214148",
     "head": "### Each build: reserve, export, seal, upload"
   },
-  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#ios-build-allocation-testflight-export-or-upload|docs/RELEASING.md:258-285|0": {
-    "anchor": "docs/RELEASING.md:258-285",
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#ios-build-allocation-testflight-export-or-upload|docs/RELEASING.md:274-301|0": {
+    "anchor": "docs/RELEASING.md:274-301",
     "fp": "db1889f906600a13",
     "head": "## iOS allocation and exact-artifact contract"
   },
@@ -1709,8 +1709,8 @@
     "fp": "ef88d42bea1c0f8d",
     "head": "## Build controlled proof packages"
   },
-  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work|docs/RELEASING.md:226-239|0": {
-    "anchor": "docs/RELEASING.md:226-239",
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work|docs/RELEASING.md:242-255|0": {
+    "anchor": "docs/RELEASING.md:242-255",
     "fp": "f608e6624cff2139",
     "head": "## Delivered release matrix"
   },
