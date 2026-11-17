@@ -25196,7 +25196,7 @@ async function runLongCollectionNavigation(page, t) {
 
     enter('LC04 reusable long leaves and small exclusion');
     for (const [key, count, last] of [
-      ['fresh-start', 13, 'king-in-black'], ['current', 20, 'captain-america-2025-hells-angel'],
+      ['fresh-start', 13, 'king-in-black'], ['current', 21, 'avengers-armageddon'],
       ['early-modern', 18, 'operation-zero-tolerance'],
     ]) {
       await ageReady(key);

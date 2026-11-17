@@ -378,7 +378,7 @@ export function ownerGuideScenario(contract, { savedCopyOnly = false } = {}) {
         t.check('owner-confirmed identity remains explicit after import and reload',
           identityStatus.title === nextOriginal.title
           && identityStatus.badge === 'checked by hand'
-          && /^This comic was checked by hand\./.test(identityStatus.hint ?? '')
+          && /^\. This comic was checked by hand\./.test(identityStatus.hint ?? '')
           && (source
             ? source.test(identityStatus.hint ?? '') && !/has no cover or details/.test(identityStatus.hint ?? '')
             : /has no cover or details/.test(identityStatus.hint ?? '')), JSON.stringify(identityStatus));
