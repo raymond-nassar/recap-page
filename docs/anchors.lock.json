@@ -1559,8 +1559,8 @@
     "fp": "6fde7f377cd6f228",
     "head": "Finish reads GitHub; it never requests a merge. It requires an actual merge event and the published"
   },
-  ".github/skills/new-reading-list/SKILL.md|preserve-the-source-while-preparing-delivery|docs/MAINTAINING.md:1829|0": {
-    "anchor": "docs/MAINTAINING.md:1829",
+  ".github/skills/new-reading-list/SKILL.md|preserve-the-source-while-preparing-delivery|docs/MAINTAINING.md:1848|0": {
+    "anchor": "docs/MAINTAINING.md:1848",
     "fp": "bc5ae9fc4df20cc3",
     "head": "## Place a new reading list in a Universe"
   },
@@ -1723,6 +1723,121 @@
     "anchor": "test/launcher.test.js:77",
     "fp": "c727e9b5638b206f",
     "head": "assert.doesNotMatch(code, /MRT_PORT/, `${name} sets a port, which moves the stored progress`);"
+  },
+  "DESIGN.md|colors|pages/site.css:1-24|0": {
+    "anchor": "pages/site.css:1-24",
+    "fp": "88baf98dab454544",
+    "head": ":root {"
+  },
+  "DESIGN.md|colors|pages/site.css:246-258|0": {
+    "anchor": "pages/site.css:246-258",
+    "fp": "dbf8edc1b1a33d54",
+    "head": ".opening {"
+  },
+  "DESIGN.md|colors|pages/site.css:770-829|0": {
+    "anchor": "pages/site.css:770-829",
+    "fp": "6751f60875ce3ebc",
+    "head": ".mcu-example {"
+  },
+  "DESIGN.md|do|pages/site.css:120-122|0": {
+    "anchor": "pages/site.css:120-122",
+    "fp": "bc548c5ef2d5325d",
+    "head": "outline: 0.2rem solid var(--focus);"
+  },
+  "DESIGN.md|do|pages/site.css:1656-1690|0": {
+    "anchor": "pages/site.css:1656-1690",
+    "fp": "e4e8cd35309f2789",
+    "head": "@media (prefers-reduced-motion: reduce) {"
+  },
+  "DESIGN.md|do|pages/site.css:1695-1739|0": {
+    "anchor": "pages/site.css:1695-1739",
+    "fp": "cf5524dbd198eada",
+    "head": "@media (forced-colors: active) {"
+  },
+  "DESIGN.md|do|pages/site.css:45-62|0": {
+    "anchor": "pages/site.css:45-62",
+    "fp": "1156fe99080a7951",
+    "head": "@media (prefers-color-scheme: dark) {"
+  },
+  "DESIGN.md|elevation-depth|pages/site.css:120-122|0": {
+    "anchor": "pages/site.css:120-122",
+    "fp": "bc548c5ef2d5325d",
+    "head": "outline: 0.2rem solid var(--focus);"
+  },
+  "DESIGN.md|elevation-depth|pages/site.css:393-399|0": {
+    "anchor": "pages/site.css:393-399",
+    "fp": "cd27979506d3e723",
+    "head": ".guided-tour {"
+  },
+  "DESIGN.md|guided-app-tour|pages/demo.css:12-30|0": {
+    "anchor": "pages/demo.css:12-30",
+    "fp": "a33eb4bf2e30d630",
+    "head": "#demo-step {"
+  },
+  "DESIGN.md|guided-app-tour|pages/demo.css:2-10|0": {
+    "anchor": "pages/demo.css:2-10",
+    "fp": "11333ea759f7a369",
+    "head": "#demo-guide {"
+  },
+  "DESIGN.md|layout|pages/site.css:126-128|0": {
+    "anchor": "pages/site.css:126-128",
+    "fp": "90f27d63ac672f9c",
+    "head": "width: min(calc(100% - var(--space-4) * 2), var(--content));"
+  },
+  "DESIGN.md|layout|pages/site.css:1525-1554|0": {
+    "anchor": "pages/site.css:1525-1554",
+    "fp": "f0397ce7c8fae8c4",
+    "head": "@media (max-width: 58rem) {"
+  },
+  "DESIGN.md|layout|pages/site.css:1685-1690|0": {
+    "anchor": "pages/site.css:1685-1690",
+    "fp": "252e8812c730d291",
+    "head": "@media (prefers-reduced-motion: no-preference) {"
+  },
+  "DESIGN.md|layout|pages/site.css:270-275|0": {
+    "anchor": "pages/site.css:270-275",
+    "fp": "ea1cbc31022d4675",
+    "head": ".opening-grid {"
+  },
+  "DESIGN.md|layout|pages/site.css:31-38|0": {
+    "anchor": "pages/site.css:31-38",
+    "fp": "0fb8657c3e662c65",
+    "head": "--content: 76rem;"
+  },
+  "DESIGN.md|overview|pages/index.html:3-6|0": {
+    "anchor": "pages/index.html:3-6",
+    "fp": "47f13a456323fad3",
+    "head": "THESIS: A Marvel reading order is a sourced path, not a pile of comics."
+  },
+  "DESIGN.md|overview|pages/site.css:246-275|0": {
+    "anchor": "pages/site.css:246-275",
+    "fp": "cb11c22115f3e725",
+    "head": ".opening {"
+  },
+  "DESIGN.md|shapes|pages/site.css:339-349|0": {
+    "anchor": "pages/site.css:339-349",
+    "fp": "14c30e9f881dcf71",
+    "head": ".button {"
+  },
+  "DESIGN.md|shapes|pages/site.css:39-41|0": {
+    "anchor": "pages/site.css:39-41",
+    "fp": "8e2ef122780752a8",
+    "head": "--radius-1: 0.25rem;"
+  },
+  "DESIGN.md|shapes|pages/site.css:393-399|0": {
+    "anchor": "pages/site.css:393-399",
+    "fp": "cd27979506d3e723",
+    "head": ".guided-tour {"
+  },
+  "DESIGN.md|typography|pages/site.css:301-311|0": {
+    "anchor": "pages/site.css:301-311",
+    "fp": "0e31f96eba7bcc2e",
+    "head": "font-family: \"Franklin Gothic Medium\", \"Arial Narrow\", \"Trebuchet MS\", sans-serif;"
+  },
+  "DESIGN.md|typography|pages/site.css:81|0": {
+    "anchor": "pages/site.css:81",
+    "fp": "6f92dcd71d16045b",
+    "head": "font-family: Aptos, \"Segoe UI\", Arial, sans-serif;"
   },
   "docs/ARCHITECTURE_REFERENCE.md|cloud-backup|src/js/lib/cloudCoordinator.js:28-34|0": {
     "anchor": "src/js/lib/cloudCoordinator.js:28-34",
