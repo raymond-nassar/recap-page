@@ -7,6 +7,20 @@ const MODULE_ORIGIN = 'https://recap.invalid/';
 const json = (value) => JSON.stringify(value).replaceAll('<', '\\u003c');
 const dataUrl = (type, text) => `data:${type};base64,${Buffer.from(text).toString('base64')}`;
 
+// A scan rather than a pattern, so a comment opener left behind by removal cannot survive.
+function stripHtmlComments(source) {
+  let out = '';
+  let at = 0;
+  for (;;) {
+    const open = source.indexOf('<!--', at);
+    if (open === -1) return out + source.slice(at);
+    const close = source.indexOf('-->', open + 4);
+    out += source.slice(at, open);
+    if (close === -1) return out;
+    at = close + 3;
+  }
+}
+
 // Inline the app's module graph so an opaque-origin frame needs neither CORS nor permission
 // to share the host's origin. Only module addresses change; app controllers stay the shipped ones.
 export async function renderAppDemo(root) {
@@ -47,7 +61,7 @@ export async function renderAppDemo(root) {
   const sprite = (await readFile(join(root, 'src', 'icons', 'ui.svg'), 'utf8'))
     .replace(/id="([^"]+)"/g, 'id="demo-icon-$1"')
     .replace('<svg ', '<svg hidden aria-hidden="true" ');
-  html = html.replace(/<!--[\s\S]*?-->/g, '')
+  html = stripHtmlComments(html)
     .replace(/<link[^>]+rel="manifest"[^>]*>/, '')
     .replace(/<img[^>]+src="\.\/brands\/[^"]+"[^>]*\/>/g, '')
     .replace(/<script type="module" src="\.\/js\/app\.js"><\/script>/, '')

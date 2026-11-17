@@ -360,9 +360,10 @@ test('the project icon is self-contained so the owner-site root is never request
 
 test('all links and fragments resolve to the approved destinations', () => {
   const hrefs = [...html.matchAll(/<a\b[^>]*\bhref="([^"]+)"/g)].map((match) => match[1]);
-  assert.ok(hrefs.includes('https://ko-fi.com/panelstacklabs'));
-  assert.ok(hrefs.includes('./data-sources.html'));
-  assert.ok(hrefs.includes('./support.html'));
+  const linked = new Set(hrefs);
+  assert.ok(linked.has('https://ko-fi.com/panelstacklabs'));
+  assert.ok(linked.has('./data-sources.html'));
+  assert.ok(linked.has('./support.html'));
 
   const ids = new Set([...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]));
   for (const href of hrefs.filter((value) => value.startsWith('#'))) {
