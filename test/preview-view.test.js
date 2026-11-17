@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 import { createPreviewView } from '../src/js/views/preview.js';
-import { createCatalogPresentation } from '../src/js/views/shared/catalog-presentation.js';
+import { createCatalogPresentation, PROJECT_HOME } from '../src/js/views/shared/catalog-presentation.js';
 
 function node(props = {}, children = []) {
   return {
@@ -45,7 +45,7 @@ test('P04 Preview shows the mixed guide universe and its scope without changing 
     };
     const before = JSON.stringify(entry);
     const view = createPreviewView({
-      captureFocus: () => null, el: element, elements: () => nodes,
+      captureFocus: () => null, createIcon: () => null, el: element, elements: () => nodes,
       getState: () => ({ lists: {}, listOrder: [] }), isInLibrary: () => null,
       issueFocusAnchor: () => node(), loadOrder: async () => ({ items: [] }),
       onClose: async () => {}, onIssueLoadFailure: ({ error }) => { throw error; },
@@ -82,7 +82,7 @@ test('Preview rejects an older issue response after a newer selection opens', as
   const focused = [];
   const state = { lists: {}, listOrder: [] };
   const view = createPreviewView({
-    captureFocus: () => null,
+    captureFocus: () => null, createIcon: () => null,
     el: element,
     elements: () => nodes,
     getState: () => state,
@@ -119,27 +119,33 @@ test('Preview rejects an older issue response after a newer selection opens', as
   assert.equal(nodes.source.children[0].textContent, 'Source of two');
 });
 
-test('Preview shows a source-only About and its curator pill, but hides a genuinely empty About', async () => {
+test('Preview puts its visit button outside About on every list, and hides a genuinely empty About', async () => {
   const nodes = Object.fromEntries([
-    'about', 'add', 'secondary', 'body', 'close', 'description', 'dialog', 'heading', 'meta', 'paths', 'source',
+    'about', 'add', 'secondary', 'body', 'close', 'description', 'dialog', 'heading', 'meta', 'paths', 'source', 'visit',
   ].map((key) => [key, node()]));
   const view = createPreviewView({
-    captureFocus: () => null, el: element, elements: () => nodes,
+    captureFocus: () => null, createIcon: () => null, el: element, elements: () => nodes,
     getState: () => ({ lists: {}, listOrder: [] }), isInLibrary: () => null,
     issueFocusAnchor: () => node(), loadOrder: async () => ({ items: [] }),
     onClose: async () => {}, onIssueLoadFailure: ({ error }) => { throw error; },
-    presentation: { attributionLine: () => null }, restoreFocus: () => {},
+    presentation: { attributionLine: (entry) => (entry.source ? element('p', { textContent: 'Credit' }) : null) },
+    restoreFocus: () => {},
   });
   await view.open({ ...list('source-only'), source: 'https://comicbookreadingorders.com/guide/' });
   assert.equal(nodes.about.hidden, false);
   assert.equal(nodes.description.hidden, true);
-  assert.equal(nodes.source.children[0].href, 'https://comicbookreadingorders.com/guide/');
+  assert.equal(nodes.source.children.length, 1, 'About holds the credit line, not the button');
+  assert.equal(nodes.visit.children[0].href, 'https://comicbookreadingorders.com/guide/');
+  assert.equal(nodes.visit.children[0].children.join(''), 'Visit Comic Book Reading Orders');
   nodes.about.open = false;
   view.syncAdd();
   assert.equal(nodes.about.open, false);
   await view.open(list('empty'));
   assert.equal(nodes.about.hidden, true);
   assert.equal(nodes.source.children.length, 0);
+  assert.equal(nodes.visit.children.length, 1, 'a list with no outside website still offers a visit');
+  assert.equal(nodes.visit.children[0].href, PROJECT_HOME);
+  assert.equal(nodes.visit.children[0]['aria-label'], 'Visit the Recap Page website (opens in your browser)');
 });
 
 test('Preview separates individual issues after an edition without changing original order', async () => {
@@ -165,7 +171,7 @@ test('Preview separates individual issues after an edition without changing orig
   const focused = [];
   const state = { lists: {}, listOrder: [] };
   const view = createPreviewView({
-    captureFocus: () => null,
+    captureFocus: () => null, createIcon: () => null,
     el: element,
     elements: () => nodes,
     getState: () => state,
@@ -222,7 +228,7 @@ test('Preview keeps interior padding open, and after an add makes Open list the 
     let opened = 0;
     const state = { lists: {}, listOrder: [] };
     const view = createPreviewView({
-      captureFocus: () => null, el: element, elements: () => nodes, getState: () => state,
+      captureFocus: () => null, createIcon: () => null, el: element, elements: () => nodes, getState: () => state,
       isInLibrary: () => saved ? { id: 'saved', itemIds: [1, 2, 3] } : null,
       issueFocusAnchor: () => node(), loadOrder: async () => ({ items: [] }),
       onAdd: async () => { saved = true; return 'saved'; },
@@ -275,7 +281,7 @@ test('Preview puts its offline status above the held actions, not among them', a
       setAttribute(name, value) { this[name] = value; },
     });
     const view = createPreviewView({
-      captureFocus: () => null, el: withAttributes, elements: () => nodes, getState: () => ({ lists: {}, listOrder: [] }),
+      captureFocus: () => null, createIcon: () => null, el: withAttributes, elements: () => nodes, getState: () => ({ lists: {}, listOrder: [] }),
       isInLibrary: () => null, issueFocusAnchor: () => node(), loadOrder: async () => ({ items: [] }),
       onAdd: async () => null, onClose: async () => {}, onIssueLoadFailure: async (failure) => { throw failure.error; },
       onOpen: () => {}, presentation: { attributionLine: () => null }, restoreFocus: () => {},
@@ -295,7 +301,7 @@ test('Preview puts its offline status above the held actions, not among them', a
     ].map((key) => [key, node()]));
     const iosView = createPreviewView({
       isIos: true,
-      captureFocus: () => null, el: withAttributes, elements: () => iosNodes,
+      captureFocus: () => null, createIcon: () => null, el: withAttributes, elements: () => iosNodes,
       getState: () => ({ lists: {}, listOrder: [] }),
       isInLibrary: () => null, issueFocusAnchor: () => node(), loadOrder: async () => ({ items: [] }),
       onAdd: async () => null, onClose: async () => {}, onIssueLoadFailure: async (failure) => { throw failure.error; },

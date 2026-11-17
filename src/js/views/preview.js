@@ -7,9 +7,11 @@ import {
 import { labelledName } from '../lib/accname.js';
 import { formatRoute, isPlainNavigation } from '../lib/route.js';
 import { isIosApp } from '../lib/platform.js';
-import { sourceButton } from './shared/catalog-presentation.js';
+import { visitButton } from './shared/catalog-presentation.js';
+import { uiIcon } from '../lib/uiIcon.js';
 import { editionRelations } from '../lib/collectedEditions.js';
 import { collectedEditionCredit, collectedEditionLabels } from './shared/collected-editions.js';
+import { gcdDetailsCredit, hasGcdDetails } from './shared/details-credit.js';
 
 const ADD_TEXT = '+ Add to library';
 const OPEN_TEXT = 'Open list';
@@ -17,6 +19,7 @@ const OPEN_TEXT = 'Open list';
 export function createPreviewView({
   isIos = isIosApp(),
   captureFocus,
+  createIcon = uiIcon,
   el,
   elements,
   getState,
@@ -356,10 +359,10 @@ export function createPreviewView({
     nodes.description.hidden = !list.description;
     const source = [
       presentation.attributionLine(list),
-      sourceButton(el, list),
       ...(list.universeIds?.length ? presentation.listUniverseLines(list) : []),
     ].filter(Boolean);
     nodes.source.replaceChildren(...source);
+    nodes.visit?.replaceChildren(visitButton(el, list, createIcon));
     if (nodes.about) nodes.about.hidden = !list.description && !source.length;
     paintAdd(list);
     const offline = elements().offline;
@@ -414,6 +417,7 @@ export function createPreviewView({
       });
       const credit = order.items.some((item) => editionRelations(list.id, item).length)
         ? [collectedEditionCredit(el)] : [];
+      if (hasGcdDetails(order.items)) credit.push(gcdDetailsCredit(el));
       nodes.body.replaceChildren(...notice, ...credit, el('ol', { class: 'preview-list' }, rows));
     } catch (error) {
       if (loadToken !== token) return;

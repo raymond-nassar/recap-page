@@ -30,3 +30,17 @@ Grand Comics Database data (https://www.comics.org/) licensed under Creative Com
 Attribution-ShareAlike 4.0 International:
 https://creativecommons.org/licenses/by-sa/4.0/
 Their attribution, source records and modification notices accompany the data.
+
+The MIT grant above also does not cover the Grand Comics Database-derived release
+dates and credits in scripts/data/owner-gcd/issues.json,
+scripts/data/owner-mappings/avengers-armageddon.json and
+src/data/avengers_armageddon.json. Those files are adaptations of Grand Comics
+Database data (https://www.comics.org/) licensed under Creative Commons
+Attribution-ShareAlike 4.0 International:
+https://creativecommons.org/licenses/by-sa/4.0/
+Adapted for this project: each record keeps only the series name, issue number,
+on-sale date and the script and pencils credits of the issue, turned into a release
+date and writer, penciler and cover artist credits. Cover images, prose and notes are
+never recorded. The records file carries the attribution and each record's source
+address and retrieval date, the mapping names the source address beside each field it
+supplies, and the app credits the Grand Comics Database on each comic it supplies.

@@ -213,6 +213,10 @@ function normalizeEntry(raw) {
   const ownerSupplementedCount = Number.isInteger(raw.ownerSupplementedCount)
     && raw.ownerSupplementedCount >= 0
     ? Math.min(raw.ownerSupplementedCount, ownerConfirmedIdentityCount) : 0;
+  // In turn a subset of the supplemented count, for the same reason one level down.
+  const ownerGcdSupplementedCount = Number.isInteger(raw.ownerGcdSupplementedCount)
+    && raw.ownerGcdSupplementedCount >= 0
+    ? Math.min(raw.ownerGcdSupplementedCount, ownerSupplementedCount) : 0;
   if (!id || !name || !file || count == null
     || placeholderCount == null || emptyRecordCount == null) return null;
 
@@ -225,6 +229,7 @@ function normalizeEntry(raw) {
     emptyRecordCount,
     ownerConfirmedIdentityCount,
     ownerSupplementedCount,
+    ownerGcdSupplementedCount,
     // How many collected editions the order is divided into, or 0 for an ordinary issue order.
     // A trade order is a different kind of reading commitment, so the number a reader weighs is
     // the number of books, not only the number of issues.
@@ -343,18 +348,20 @@ export function catalogGapLabels(list) {
       `${count} ${count === 1 ? 'comic has no details, cover, or Unlimited link' : 'comics have no details, covers, or Unlimited links'}`,
     );
   }
-  const supplemented = Math.min(Math.max(Number(list?.ownerSupplementedCount) || 0, 0),
-    Math.max(Number(list?.ownerConfirmedIdentityCount) || 0, 0));
-  if (list?.ownerConfirmedIdentityCount - supplemented > 0) {
-    const count = list.ownerConfirmedIdentityCount - supplemented;
-    out.push(
-      `${count} ${count === 1 ? 'comic has an owner-confirmed identity' : 'comics have owner-confirmed identities'} but no provider details or ${count === 1 ? 'cover' : 'covers'}`,
-    );
+  // Plain wording approved by the owner on 2026-11-16, recorded on #1427. Each label counts the
+  // hand-checked comics whose details came from one place, so the three always add up to the
+  // confirmed total.
+  const confirmed = Math.max(Number(list?.ownerConfirmedIdentityCount) || 0, 0);
+  const supplemented = Math.min(Math.max(Number(list?.ownerSupplementedCount) || 0, 0), confirmed);
+  const gcd = Math.min(Math.max(Number(list?.ownerGcdSupplementedCount) || 0, 0), supplemented);
+  const handChecked = (count) => `${count} ${count === 1 ? 'comic' : 'comics'} checked by hand`;
+  if (gcd > 0) out.push(`${handChecked(gcd)}, with details from marvel.com and the Grand Comics Database`);
+  if (supplemented - gcd > 0) {
+    out.push(`${handChecked(supplemented - gcd)}, with details from marvel.com and the Marvel Fandom wiki`);
   }
-  if (supplemented > 0) {
-    out.push(
-      `${supplemented} ${supplemented === 1 ? 'comic has an owner-confirmed identity' : 'comics have owner-confirmed identities'} with ${supplemented === 1 ? 'a cover' : 'covers'} and credits from marvel.com and the Marvel Fandom wiki`,
-    );
+  if (confirmed - supplemented > 0) {
+    const count = confirmed - supplemented;
+    out.push(`${handChecked(count)}, with no ${count === 1 ? 'cover' : 'covers'} or details yet`);
   }
   return out;
 }

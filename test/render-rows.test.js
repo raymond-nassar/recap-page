@@ -9,6 +9,7 @@ import assert from 'node:assert/strict';
 
 import { commitRows, rowCacheKey, detailsState, synopsisFallback, DETAILS_BADGE } from '../src/js/views/reading.js';
 import { NO_SYNOPSIS } from '../src/js/synopsis.js';
+import { gcdDetailsCredit, gcdDetailsCreditMarkdown, hasGcdDetails } from '../src/js/views/shared/details-credit.js';
 
 // The smallest node that commitRows actually uses: childNodes, remove() and insertBefore().
 // A DOM implementation would do, but nothing here needs one, which is the point.
@@ -186,17 +187,43 @@ test('an owner-confirmed identity remains distinct from an ordinary provider ref
   assert.equal(detailsState(confirmed), 'owner-confirmed');
   assert.equal(detailsState({ ...confirmed, hydrated: true }), null);
   assert.equal(detailsState({ ...confirmed, identityEvidenceKind: undefined }), 'norecord');
-  assert.equal(DETAILS_BADGE['owner-confirmed'].text, 'identity confirmed');
-  assert.match(DETAILS_BADGE['owner-confirmed'].hint, /owner confirmed this comic identity/);
-  assert.match(DETAILS_BADGE['owner-confirmed'].hint, /no provider details or cover/);
+  assert.equal(DETAILS_BADGE['owner-confirmed'].text, 'checked by hand');
+  assert.equal(DETAILS_BADGE['owner-confirmed'].hint,
+    "This comic was checked by hand. The app's usual comic listings don't include it yet, so it has no cover or details.");
   assert.equal(synopsisFallback(confirmed), DETAILS_BADGE['owner-confirmed'].hint);
   const supplemented = { ...confirmed, metadataSourceKind: 'owner-external-supplement' };
   assert.equal(detailsState(supplemented), 'owner-supplemented');
-  assert.equal(DETAILS_BADGE['owner-supplemented'].text, 'identity confirmed');
+  assert.equal(DETAILS_BADGE['owner-supplemented'].text, 'checked by hand');
   assert.equal(DETAILS_BADGE['owner-supplemented'].hint,
-    'The owner confirmed this comic identity. Its cover and credits come from marvel.com and the Marvel Fandom wiki, not the metadata provider.');
+    "This comic was checked by hand. The app's usual comic listings don't include it yet, so its cover comes from marvel.com and its release date and credits from the Marvel Fandom wiki.");
   assert.equal(synopsisFallback(supplemented), DETAILS_BADGE['owner-supplemented'].hint);
   assert.equal(detailsState({ ...supplemented, identityEvidenceKind: undefined }), 'norecord');
+  const gcd = { ...confirmed, metadataSourceKind: 'owner-gcd-supplement' };
+  assert.equal(detailsState(gcd), 'owner-gcd-supplemented');
+  assert.equal(DETAILS_BADGE['owner-gcd-supplemented'].text, 'checked by hand');
+  assert.equal(DETAILS_BADGE['owner-gcd-supplemented'].hint,
+    "This comic was checked by hand. The app's usual comic listings don't include it yet, so its cover comes from marvel.com and its release date and credits from the Grand Comics Database, shared under a Creative Commons license.");
+  assert.equal(synopsisFallback(gcd), DETAILS_BADGE['owner-gcd-supplemented'].hint);
+  assert.equal(detailsState({ ...gcd, identityEvidenceKind: undefined }), 'norecord');
+});
+
+// The Grand Comics Database licence asks for the source, the licence and a note of change, with
+// links. The per-comic notes are plain text and cannot carry links, so this line is where they live.
+test('the Grand Comics Database credit links its source and licence and appears only for its comics', () => {
+  const el = (tag, props, children = []) => ({ tag, ...props, children: [].concat(children).filter(Boolean) });
+  const credit = gcdDetailsCredit(el);
+  const links = credit.children.filter((child) => child.tag === 'a');
+  assert.deepEqual(links.map(({ text, href }) => [text, href]), [
+    ['Grand Comics Database', 'https://www.comics.org/'],
+    ['Creative Commons license', 'https://creativecommons.org/licenses/by-sa/4.0/'],
+  ]);
+  const words = credit.children.map((child) => (typeof child === 'string' ? child : child.text)).join('');
+  assert.equal(words, 'Some release dates and credits in this list come from the Grand Comics Database, rearranged for this app and shared under a Creative Commons license.');
+  assert.equal(gcdDetailsCreditMarkdown(), 'Some release dates and credits in this list come from the [Grand Comics Database](https://www.comics.org/), rearranged for this app and shared under a [Creative Commons license](https://creativecommons.org/licenses/by-sa/4.0/).');
+  assert.ok(!/[\u2013\u2014]/.test(words), 'constraint 11: no dashes in shipped copy');
+  assert.equal(hasGcdDetails([{ metadataSourceKind: 'owner-external-supplement' }, {}]), false);
+  assert.equal(hasGcdDetails([{}, { metadataSourceKind: 'owner-gcd-supplement' }]), true);
+  assert.equal(hasGcdDetails(null), false);
 });
 
 // The visible half of a badge is two or three words, so the reason has to live in the hidden half
@@ -206,7 +233,7 @@ test('each details badge carries its reason in the half a screen reader gets', (
   assert.equal(DETAILS_BADGE.norecord.text, 'no details held');
   assert.match(DETAILS_BADGE.norecord.hint, /no record of this comic/);
   assert.match(DETAILS_BADGE.norecord.hint, /nothing to fetch|no details to fetch/);
-  assert.equal(DETAILS_BADGE['owner-confirmed'].text, 'identity confirmed');
+  assert.equal(DETAILS_BADGE['owner-confirmed'].text, 'checked by hand');
   assert.equal(DETAILS_BADGE.pending.text, 'details pending');
   assert.match(DETAILS_BADGE.pending.hint, /have not been fetched yet/);
   for (const { text, hint } of Object.values(DETAILS_BADGE)) {

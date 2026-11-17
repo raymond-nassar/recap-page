@@ -275,15 +275,16 @@ test('the shipped Modern Timeline carries all chapters into the Avengers era', (
   const chapters = selectedLists.filter(({ id }) => isModernTimelineChapterId(id));
   assert.equal(selectedLists.length, currentReadingCensus.modernTimeline);
   assert.equal(selectedStories.length, currentReadingCensus.modernTimelineStories);
-  assert.deepEqual(selectedLists.slice(-5).map(({ id, timeline }) => [id, timeline]), [
+  assert.deepEqual(selectedLists.slice(-6).map(({ id, timeline }) => [id, timeline]), [
     ['fall-house-x-rise-powers-x', 2024],
     ['captain-america-2025-our-secret-wars', 2025],
     ['one-world-under-doom', 2025],
     ['captain-america-2025-dooms-shadow', 2025],
     ['captain-america-2025-hells-angel', 2026],
+    ['avengers-armageddon', 2026],
   ]);
   const doomStory = selectedStories.find(({ key }) => key === 'list:one-world-under-doom');
-  assert.equal(selectedStories.at(-1).key, 'list:captain-america-2025-hells-angel');
+  assert.equal(selectedStories.at(-1).key, 'list:avengers-armageddon');
   assert.equal(doomStory.lists.length, 1);
   assert.equal(doomStory.lists[0].description.includes(
     'Doctor Strange of Asgard (2025) #1-5 is an optional tie-in.',
@@ -293,7 +294,7 @@ test('the shipped Modern Timeline carries all chapters into the Avengers era', (
   ), true);
   assert.equal(unplacedSection?.heading, 'Not yet placed in an era');
   assert.ok(['list:one-world-under-doom', 'list:captain-america-2025-our-secret-wars',
-    'list:captain-america-2025-dooms-shadow', 'list:captain-america-2025-hells-angel']
+    'list:captain-america-2025-dooms-shadow', 'list:captain-america-2025-hells-angel', 'list:avengers-armageddon']
     .every((key) => unplacedSection.stories.some((story) => story.key === key)));
   assert.equal(olderEvents.length, 38);
   assert.deepEqual(

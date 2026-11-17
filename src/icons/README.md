@@ -41,6 +41,7 @@ this table, so reusing a glyph for something else fails it.
 | universes | Universes | The Universes card and Search shortcut, both `#/universes` |
 | arrow-left | Back | The integrated history control before a view heading |
 | arrow-right | Opens a category | The destination arrow on every category card |
+| external | Opens in your browser | The Visit button that leads to a list's source website or the project home page |
 | thumb-up | Enjoyed | Rating a completed Reading List |
 | thumb-down | Did not enjoy | Rating a completed Reading List |
 | star | Rating | Your ratings, `#/library-rated`, Rate this comic, and the rating dialog's five stars |

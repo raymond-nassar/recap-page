@@ -361,7 +361,11 @@ export function ownerGuideScenario(contract, { savedCopyOnly = false } = {}) {
       await page.waitForFunction((name) => document.querySelector('#order-name')?.textContent.trim() === name, {}, contract.name);
       checkSaved(t, await readSaved(page));
       if (nextOriginal.identityEvidenceKind === 'owner-confirmed-identity') {
-        const supplemented = nextOriginal.metadataSourceKind === 'owner-external-supplement';
+        const kind = nextOriginal.metadataSourceKind;
+        const badgeClass = kind === 'owner-gcd-supplement' ? 'badge-owner-gcd-supplemented'
+          : kind === 'owner-external-supplement' ? 'badge-owner-supplemented' : 'badge-owner-confirmed';
+        const source = kind === 'owner-gcd-supplement' ? /release date and credits from the Grand Comics Database/
+          : kind === 'owner-external-supplement' ? /release date and credits from the Marvel Fandom wiki/ : null;
         const identityStatus = await page.$$eval('#rows .row', (nodes, id, badgeClass) => {
           const row = nodes.find((node) => Number(node.querySelector('.rt')?.dataset.issueId) === id);
           const badge = row?.querySelector(`.${badgeClass}`);
@@ -370,15 +374,14 @@ export function ownerGuideScenario(contract, { savedCopyOnly = false } = {}) {
             badge: badge?.childNodes[0]?.textContent.trim() ?? null,
             hint: badge?.querySelector('.visually-hidden')?.textContent.trim() ?? null,
           };
-        }, nextOriginal.issueId, supplemented ? 'badge-owner-supplemented' : 'badge-owner-confirmed');
+        }, nextOriginal.issueId, badgeClass);
         t.check('owner-confirmed identity remains explicit after import and reload',
           identityStatus.title === nextOriginal.title
-          && identityStatus.badge === 'identity confirmed'
-          && /owner confirmed this comic identity/.test(identityStatus.hint ?? '')
-          && (supplemented
-            ? /cover and credits come from marvel\.com and the Marvel Fandom wiki/.test(identityStatus.hint ?? '')
-              && !/no provider details or cover/.test(identityStatus.hint ?? '')
-            : /no provider details or cover/.test(identityStatus.hint ?? '')), JSON.stringify(identityStatus));
+          && identityStatus.badge === 'checked by hand'
+          && /^\. This comic was checked by hand\./.test(identityStatus.hint ?? '')
+          && (source
+            ? source.test(identityStatus.hint ?? '') && !/has no cover or details/.test(identityStatus.hint ?? '')
+            : /has no cover or details/.test(identityStatus.hint ?? '')), JSON.stringify(identityStatus));
       }
       await page.evaluate(() => {
         window.__dispatching = true;

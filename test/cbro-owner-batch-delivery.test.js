@@ -110,9 +110,9 @@ test('the batch keeps every visible and hidden peer in its factual relationship 
   const orders = await Promise.all([...files].map(async ([orderId, file]) => ({
     orderId, issueIds: (await readJson(`src/data/${file}`)).items,
   })));
-  // The Captain America (2025) Modern Timeline lists were registered after these reviews.
+  // The Captain America (2025) and Avengers: Armageddon Modern Timeline lists were registered after these reviews.
   const laterModernTimelineIds = ['captain-america-2025-our-secret-wars',
-    'captain-america-2025-dooms-shadow', 'captain-america-2025-hells-angel'];
+    'captain-america-2025-dooms-shadow', 'captain-america-2025-hells-angel', 'avengers-armageddon'];
   const batchIds = ['mc2', 'second-clone-saga', 'marvel-1602', 'blood-and-thunder'];
   assert.ok(batchIds.every((id) => registeredCuratedGuides.some((entry) => entry.id === id)));
   const laterCuratedIds = registeredCuratedGuides.slice(registeredCuratedGuides

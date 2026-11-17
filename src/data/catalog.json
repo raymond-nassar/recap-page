@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-17T04:57:08.071Z",
+  "generatedAt": "2026-11-17T08:25:16.216Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2293,6 +2293,62 @@
       "sourceOrigin": "Selected by raymond-nassar for Modern Timeline",
       "sourceLicense": null,
       "updatedAt": "2026-11-07T00:05:27.240Z"
+    },
+    {
+      "id": "avengers-armageddon",
+      "file": "avengers_armageddon.json",
+      "name": "Avengers: Armageddon",
+      "description": "Chip Zdarsky's 2026 Avengers event in Comic Book Herald's reading order. The prologue gathers The Will of Doom, Captain America, Ultimate Impact: Reborn, Wolverine: Weapons of Armageddon and the Comics Giveaway Day issue, then the five-issue main series runs alongside its Captain America chapters and ends with Avengers (2026) #1. One comic in Comic Book Herald's order, Immortal Soldiers #1, isn't available digitally yet, so it isn't in this list for now.",
+      "type": "event",
+      "depth": "selected",
+      "storyTypes": [
+        "war",
+        "political"
+      ],
+      "tones": [
+        "epic"
+      ],
+      "writers": [
+        "Chip Zdarsky"
+      ],
+      "contains": [
+        "captain-america-2025-dooms-shadow",
+        "captain-america-2025-hells-angel"
+      ],
+      "count": 24,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "ownerConfirmedIdentityCount": 24,
+      "ownerSupplementedCount": 23,
+      "ownerGcdSupplementedCount": 12,
+      "collections": 2,
+      "characters": [
+        "Avengers",
+        "Captain America",
+        "Doctor Doom",
+        "Red Hulk",
+        "Wolverine"
+      ],
+      "keywords": [
+        "Avengers: Armageddon",
+        "Chip Zdarsky",
+        "Armageddon",
+        "2026 event"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2026,
+      "coverIssueId": 126711,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/60/693323d118283",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/armageddon-reading-order/",
+      "sourceOrigin": "Selected by raymond-nassar for Modern Timeline",
+      "sourceLicense": null,
+      "updatedAt": "2026-11-17T08:25:16.216Z"
     },
     {
       "id": "marvel-zombies-reading-order",

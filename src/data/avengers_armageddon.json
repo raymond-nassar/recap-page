@@ -1,0 +1,923 @@
+{
+  "id": "avengers-armageddon",
+  "name": "Avengers: Armageddon",
+  "description": "Chip Zdarsky's 2026 Avengers event in Comic Book Herald's reading order. The prologue gathers The Will of Doom, Captain America, Ultimate Impact: Reborn, Wolverine: Weapons of Armageddon and the Comics Giveaway Day issue, then the five-issue main series runs alongside its Captain America chapters and ends with Avengers (2026) #1. One comic in Comic Book Herald's order, Immortal Soldiers #1, isn't available digitally yet, so it isn't in this list for now.",
+  "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/armageddon-reading-order/",
+  "sourceOrigin": "Selected by raymond-nassar for Modern Timeline",
+  "sourceLicense": null,
+  "generatedAt": "2026-11-17T08:25:16.216Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 24,
+  "collections": 2,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 126711,
+      "title": "The Will of Doom (2025) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/126711/the_will_of_doom_1_2025_1",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": "2025-12-24T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/60/693323d118283",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": null,
+      "creators": [
+        {
+          "name": "Jonas Scharf",
+          "role": "cover artist"
+        },
+        {
+          "name": "Cafu",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "metadataSourceKind": "owner-gcd-supplement",
+      "collectedIn": "Prologue"
+    },
+    {
+      "issueId": 123361,
+      "title": "Captain America (2025) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/123361/captain_america_2025_6",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": "2026-01-21T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/30/6957e7a70cf64",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Alpizar",
+          "role": "penciler"
+        },
+        {
+          "name": "Delio Diaz",
+          "role": "penciler"
+        },
+        {
+          "name": "Ben Harvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "metadataSourceKind": "owner-external-supplement",
+      "collectedIn": "Prologue"
+    },
+    {
+      "issueId": 123362,
+      "title": "Captain America (2025) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/123362/captain_america_2025_7",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": "2026-02-18T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/69836452ca21e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Alpizar",
+          "role": "penciler"
+        },
+        {
+          "name": "Delio Diaz",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "metadataSourceKind": "owner-external-supplement",
+      "collectedIn": "Prologue"
+    },
+    {
+      "issueId": 123363,
+      "title": "Captain America (2025) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/123363/captain_america_2025_8",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": "2026-03-18T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/90/69a0877c7c489",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Martin Jr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jan Bazaldua",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "metadataSourceKind": "owner-external-supplement",
+      "collectedIn": "Prologue"
+    },
+    {
+      "issueId": 123364,
+      "title": "Captain America (2025) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/123364/captain_america_2025_9",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": "2026-04-22T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/a0/69cfe7568b7c6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Romulo Fajardo, Jr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ton Lima",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "metadataSourceKind": "owner-external-supplement",
+      "collectedIn": "Prologue"
+    },
+    {
+      "issueId": 123365,
+      "title": "Captain America (2025) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/123365/",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": "2026-04-29T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/80/69dcef670ce89",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "Ben Harvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "metadataSourceKind": "owner-external-supplement",
+      "collectedIn": "Prologue"
+    },
+    {
+      "issueId": 130145,
+      "title": "Captain America (2025) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/130145/captain_america_2025_11",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": "2026-05-13T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/70/019dc14453b2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "Ben Harvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "metadataSourceKind": "owner-external-supplement",
+      "collectedIn": "Prologue"
+    },
+    {
+      "issueId": 132862,
+      "title": "Ultimate Impact: Reborn (2026) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/132862",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": "2026-05-20T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/d0/019de5105ec6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": null,
+      "creators": [
+        {
+          "name": "Ben Harvey",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Condon",
+          "role": "writer"
+        }
+      ],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "metadataSourceKind": "owner-gcd-supplement",
+      "collectedIn": "Prologue"
+    },
+    {
+      "issueId": 134111,
+      "title": "Wolverine: Weapons of Armageddon (2026) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/134111",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": "2026-02-18T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/03/6983641871dc0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": null,
+      "creators": [
+        {
+          "name": "Leinil Francis Yu",
+          "role": "cover artist"
+        },
+        {
+          "name": "Luca Maresca",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "metadataSourceKind": "owner-gcd-supplement",
+      "collectedIn": "Prologue"
+    },
+    {
+      "issueId": 134112,
+      "title": "Wolverine: Weapons of Armageddon (2026) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/134112",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": "2026-03-25T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/a0/69aedff0d5f4a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": null,
+      "creators": [
+        {
+          "name": "Leinil Francis Yu",
+          "role": "cover artist"
+        },
+        {
+          "name": "Luca Maresca",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "metadataSourceKind": "owner-gcd-supplement",
+      "collectedIn": "Prologue"
+    },
+    {
+      "issueId": 134113,
+      "title": "Wolverine: Weapons of Armageddon (2026) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/134113",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": "2026-04-29T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/c0/69dcef394ddaa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": null,
+      "creators": [
+        {
+          "name": "Leinil Francis Yu",
+          "role": "cover artist"
+        },
+        {
+          "name": "Luca Maresca",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "metadataSourceKind": "owner-gcd-supplement",
+      "collectedIn": "Prologue"
+    },
+    {
+      "issueId": 134114,
+      "title": "Wolverine: Weapons of Armageddon (2026) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/134114",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": "2026-05-20T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/d0/019de50ee1e4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": null,
+      "creators": [
+        {
+          "name": "Leinil Francis Yu",
+          "role": "cover artist"
+        },
+        {
+          "name": "Luca Maresca",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "metadataSourceKind": "owner-gcd-supplement",
+      "collectedIn": "Prologue"
+    },
+    {
+      "issueId": 135239,
+      "title": "Comics Giveaway Day 2026: Armageddon / X-Men (2026) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/135239",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": "2026-05-02T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/d0/69ce93e8d4488",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": null,
+      "creators": [
+        {
+          "name": "Ryan Stegman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Alpizar",
+          "role": "penciler"
+        },
+        {
+          "name": "Delio Diaz",
+          "role": "penciler"
+        },
+        {
+          "name": "Federico Vicentini",
+          "role": "penciler"
+        },
+        {
+          "name": "Francesco Mobili",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        },
+        {
+          "name": "Jed MacKay",
+          "role": "writer"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "metadataSourceKind": "owner-gcd-supplement",
+      "collectedIn": "Prologue"
+    },
+    {
+      "issueId": 134097,
+      "title": "Avengers: Armageddon (2026) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/134097",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": "2026-06-10T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/01a18e3ff39e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": null,
+      "creators": [
+        {
+          "name": "Dike Ruan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Delio Diaz",
+          "role": "penciler"
+        },
+        {
+          "name": "Frank Alpizar",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "metadataSourceKind": "owner-gcd-supplement",
+      "collectedIn": "Main Event"
+    },
+    {
+      "issueId": 134098,
+      "title": "Avengers: Armageddon (2026) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/134098",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": "2026-07-15T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/20/01a18e3fb01e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": null,
+      "creators": [
+        {
+          "name": "Dike Ruan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Delio Diaz",
+          "role": "penciler"
+        },
+        {
+          "name": "Frank Alpizar",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "metadataSourceKind": "owner-gcd-supplement",
+      "collectedIn": "Main Event"
+    },
+    {
+      "issueId": 130146,
+      "title": "Captain America (2025) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/130146/captain_america_2025_12",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": "2026-06-24T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/01a1456b9761",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "Ben Harvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "metadataSourceKind": "owner-external-supplement",
+      "collectedIn": "Main Event"
+    },
+    {
+      "issueId": 130147,
+      "title": "Captain America (2025) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/130147/",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": "2026-07-15T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/90/01a1456b9f23",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ton Lima",
+          "role": "penciler"
+        },
+        {
+          "name": "Ben Harvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "metadataSourceKind": "owner-external-supplement",
+      "collectedIn": "Main Event"
+    },
+    {
+      "issueId": 130148,
+      "title": "Captain America (2025) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/130148/",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": "2026-08-05T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/e0/01a1456ba5b1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Romulo Fajardo, Jr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ton Lima",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "metadataSourceKind": "owner-external-supplement",
+      "collectedIn": "Main Event"
+    },
+    {
+      "issueId": 130149,
+      "title": "Captain America (2025) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/130149/captain_america_2025_15",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": "2026-09-02T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/f0/019f61e5731b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Romulo Fajardo, Jr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "metadataSourceKind": "owner-external-supplement",
+      "collectedIn": "Main Event"
+    },
+    {
+      "issueId": 134099,
+      "title": "Avengers: Armageddon (2026) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/134099",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": "2026-08-19T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/70/01a18e3f54d0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": null,
+      "creators": [
+        {
+          "name": "Dike Ruan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ario Anindito",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "metadataSourceKind": "owner-gcd-supplement",
+      "collectedIn": "Main Event"
+    },
+    {
+      "issueId": 134100,
+      "title": "Avengers: Armageddon (2026) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/134100",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": "2026-09-16T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/40/01a1b339c3e4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": null,
+      "creators": [
+        {
+          "name": "Dike Ruan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Delio Diaz",
+          "role": "penciler"
+        },
+        {
+          "name": "Frank Alpizar",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "metadataSourceKind": "owner-gcd-supplement",
+      "collectedIn": "Main Event"
+    },
+    {
+      "issueId": 134101,
+      "title": "Avengers: Armageddon (2026) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/134101",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": "2026-10-21T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/e0/01a0f96406f6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": null,
+      "creators": [
+        {
+          "name": "Dike Ruan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Delio Diaz",
+          "role": "penciler"
+        },
+        {
+          "name": "Ario Anindito",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "metadataSourceKind": "owner-gcd-supplement",
+      "collectedIn": "Main Event"
+    },
+    {
+      "issueId": 135945,
+      "title": "Captain America (2025) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/135945/captain_america_2025_16",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": "2026-10-28T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/c0/01a121b41680",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "Ben Harvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "metadataSourceKind": "owner-external-supplement",
+      "collectedIn": "Main Event"
+    },
+    {
+      "issueId": 130523,
+      "title": "Avengers (2026) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/130523",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true,
+      "identityEvidenceKind": "owner-confirmed-identity",
+      "collectedIn": "Main Event"
+    }
+  ]
+}

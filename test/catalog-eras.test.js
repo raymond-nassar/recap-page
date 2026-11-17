@@ -91,12 +91,14 @@ test('the approved 2025 and 2026 events are the only shipped orders held in the 
     'One World Under Doom (2025)',
     "Captain America (2025) Vol. 2: Doom's Shadow (2025)",
     "Captain America (2025) Vol. 3: Hell's Angel (2026)",
+    'Avengers: Armageddon (2026)',
   ]);
   const fallbackStories = sections.filter((section) => section.fallback)
     .flatMap((section) => section.stories);
   assert.deepEqual(fallbackStories.map((story) => story.key), [
     'list:captain-america-2025-our-secret-wars', 'list:one-world-under-doom',
     'list:captain-america-2025-dooms-shadow', 'list:captain-america-2025-hells-angel',
+    'list:avengers-armageddon',
   ]);
 });
 

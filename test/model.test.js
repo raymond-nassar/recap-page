@@ -1102,9 +1102,14 @@ test('owner-confirmed identity is distinct from missing metadata and makes no av
   assert.deepEqual(countOrderGaps(order), { placeholders: 0, empty: 0, ownerConfirmed: 1 });
   const said = orderGapSentences(order);
   assert.deepEqual(said, [
-    '1 of them have an owner-confirmed issue identity but no provider details or cover.',
+    "1 of them was checked by hand because the app's usual comic listings don't include it yet.",
+    'It has no cover or details yet.',
   ]);
   assert.ok(!said.join(' ').includes('Marvel Unlimited'));
+  assert.deepEqual(orderGapSentences({ items: [order.items[0], { ...order.items[0], issueId: 121581 }] }), [
+    "2 of them were checked by hand because the app's usual comic listings don't include them yet.",
+    'They have no cover or details yet.',
+  ]);
   assert.deepEqual(countOrderGaps({
     items: [{ issueId: 121580, seriesId: 10, identityEvidenceKind: 'owner-confirmed-identity' }],
   }), { placeholders: 0, empty: 0, ownerConfirmed: 0 }, 'later metadata ends the identity-only gap');
@@ -1123,15 +1128,42 @@ test('an owner-confirmed comic with the external supplement is not described as 
   assert.deepEqual(countOrderGaps({ items: [supplemented, plain] }),
     { placeholders: 0, empty: 0, ownerConfirmed: 2, ownerSupplemented: 1 });
   assert.deepEqual(orderGapSentences({ items: [supplemented, plain] }), [
-    '1 of them have an owner-confirmed issue identity but no provider details or cover.',
-    '1 of them has an owner-confirmed issue identity, with a cover and credits from marvel.com and the Marvel Fandom wiki rather than the metadata provider.',
+    "2 of them were checked by hand because the app's usual comic listings don't include them yet.",
+    '1 of these has a cover from marvel.com and a release date and credits from the Marvel Fandom wiki.',
+    '1 of these has no cover or details yet.',
   ]);
   const both = orderGapSentences({ items: [supplemented, { ...supplemented, issueId: 123361 }] });
   assert.deepEqual(both, [
-    '2 of them have an owner-confirmed issue identity, with a cover and credits from marvel.com and the Marvel Fandom wiki rather than the metadata provider.',
+    "2 of them were checked by hand because the app's usual comic listings don't include them yet.",
+    'Each has a cover from marvel.com and a release date and credits from the Marvel Fandom wiki.',
   ]);
   assert.ok(!both.join(' ').includes('Marvel Unlimited'));
-  assert.ok(!both.join(' ').includes('no provider details or cover'));
+  assert.ok(!both.join(' ').includes('no cover or details'));
+});
+
+test('Grand Comics Database details are counted apart and named with their licence in words', () => {
+  const base = { detailsRefused: true, identityEvidenceKind: 'owner-confirmed-identity' };
+  const gcd = { ...base, issueId: 134097, metadataSourceKind: 'owner-gcd-supplement' };
+  const fandom = { ...base, issueId: 123361, metadataSourceKind: 'owner-external-supplement' };
+  const plain = { ...base, issueId: 130523 };
+  const items = [gcd, { ...gcd, issueId: 134098 }, fandom, plain];
+  assert.deepEqual(countOrderGaps({ items }),
+    { placeholders: 0, empty: 0, ownerConfirmed: 4, ownerSupplemented: 3, ownerGcdSupplemented: 2 });
+  assert.deepEqual(orderGapSentences({ items }), [
+    "4 of them were checked by hand because the app's usual comic listings don't include them yet.",
+    '2 of these have a cover from marvel.com and a release date and credits from the Grand Comics Database, shared under a Creative Commons license.',
+    '1 of these has a cover from marvel.com and a release date and credits from the Marvel Fandom wiki.',
+    '1 of these has no cover or details yet.',
+  ]);
+  assert.deepEqual(orderGapSentences({ items: [gcd] }), [
+    "1 of them was checked by hand because the app's usual comic listings don't include it yet.",
+    'It has a cover from marvel.com and a release date and credits from the Grand Comics Database, shared under a Creative Commons license.',
+  ]);
+  assert.deepEqual(orderGapSentences({ items: [gcd, fandom] }).slice(1), [
+    '1 of these has a cover from marvel.com and a release date and credits from the Grand Comics Database, shared under a Creative Commons license.',
+    '1 of these has a cover from marvel.com and a release date and credits from the Marvel Fandom wiki.',
+  ]);
+  assert.equal(normalizeIssue(gcd).metadataSourceKind, 'owner-gcd-supplement');
 });
 
 test('the external supplement marker survives only as the closed value beside an owner-confirmed identity', () => {
@@ -1540,7 +1572,10 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // Spidey adds six distinct source-position placeholders for the School's Out chapters.
   // The three Captain America (2025) lists add twelve owner-confirmed identities without provider
   // details. Issue 123361 was already counted, so the distinct refused total rises by eleven.
-  assert.equal(refused.length, 1413);
+  // Avengers: Armageddon adds 24 owner-confirmed identities without provider details. Captain
+  // America (2025) #6-16, The Will of Doom #1 and Ultimate Impact: Reborn #1 were already counted,
+  // so the distinct refused total rises by eleven.
+  assert.equal(refused.length, 1424);
   const infinity = JSON.parse(readFileSync(join(dataDir,
     'marvels_infinity_saga_gauntlet_wars_crusade_reading_order.json'), 'utf8'));
   assert.equal(infinity.items.filter((item) => item.detailsRefused && item.issueId > 0).length, 11);

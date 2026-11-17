@@ -1,0 +1,297 @@
+{
+  "source": "Grand Comics Database",
+  "sourceUrl": "https://www.comics.org/",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "attribution": "Data from the Grand Comics Database (https://www.comics.org/), used under CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/). Adapted for this project: each record keeps only the series name, issue number, on-sale date and the script and pencils credits of its cover and comic story sequences. Cover images, prose and notes are never recorded.",
+  "records": [
+    {
+      "gcdIssueId": 2788160,
+      "url": "https://www.comics.org/issue/2788160/",
+      "apiUrl": "https://www.comics.org/api/issue/2788160/?format=json",
+      "retrievedAt": "2026-11-17",
+      "seriesName": "The Will of Doom (2026 series)",
+      "number": "1",
+      "onSaleDate": "2025-12-24",
+      "sequences": [
+        {
+          "sequenceNumber": 0,
+          "type": "cover",
+          "script": "None",
+          "pencils": "Jonas Scharf (credited)"
+        },
+        {
+          "sequenceNumber": 1,
+          "type": "comic story",
+          "script": "Chip Zdarsky (credited)",
+          "pencils": "Cafu (credited)"
+        }
+      ]
+    },
+    {
+      "gcdIssueId": 2835650,
+      "url": "https://www.comics.org/issue/2835650/",
+      "apiUrl": "https://www.comics.org/api/issue/2835650/?format=json",
+      "retrievedAt": "2026-11-17",
+      "seriesName": "Ultimate Impact: Reborn (2026 series)",
+      "number": "1",
+      "onSaleDate": "2026-05-20",
+      "sequences": [
+        {
+          "sequenceNumber": 0,
+          "type": "cover",
+          "script": "None",
+          "pencils": "Ben Harvey (credited)"
+        },
+        {
+          "sequenceNumber": 2,
+          "type": "comic story",
+          "script": "Chris Condon (credited)",
+          "pencils": "Stefano Caselli (credited)"
+        }
+      ]
+    },
+    {
+      "gcdIssueId": 2815656,
+      "url": "https://www.comics.org/issue/2815656/",
+      "apiUrl": "https://www.comics.org/api/issue/2815656/?format=json",
+      "retrievedAt": "2026-11-17",
+      "seriesName": "Wolverine: Weapons of Armageddon (2026 series)",
+      "number": "1",
+      "onSaleDate": "2026-02-18",
+      "sequences": [
+        {
+          "sequenceNumber": 0,
+          "type": "cover",
+          "script": "None",
+          "pencils": "Leinil Francis Yu (credited) (signed as LEINIL)"
+        },
+        {
+          "sequenceNumber": 1,
+          "type": "comic story",
+          "script": "Chip Zdarsky (credited)",
+          "pencils": "Luca Maresca (credited)"
+        }
+      ]
+    },
+    {
+      "gcdIssueId": 2823756,
+      "url": "https://www.comics.org/issue/2823756/",
+      "apiUrl": "https://www.comics.org/api/issue/2823756/?format=json",
+      "retrievedAt": "2026-11-17",
+      "seriesName": "Wolverine: Weapons of Armageddon (2026 series)",
+      "number": "2",
+      "onSaleDate": "2026-03-25",
+      "sequences": [
+        {
+          "sequenceNumber": 0,
+          "type": "cover",
+          "script": "None",
+          "pencils": "Leinil Francis Yu (credited) (signed as Leinil)"
+        },
+        {
+          "sequenceNumber": 1,
+          "type": "comic story",
+          "script": "Chip Zdarsky (credited)",
+          "pencils": "Luca Maresca (credited)"
+        }
+      ]
+    },
+    {
+      "gcdIssueId": 2830326,
+      "url": "https://www.comics.org/issue/2830326/",
+      "apiUrl": "https://www.comics.org/api/issue/2830326/?format=json",
+      "retrievedAt": "2026-11-17",
+      "seriesName": "Wolverine: Weapons of Armageddon (2026 series)",
+      "number": "3",
+      "onSaleDate": "2026-04-29",
+      "sequences": [
+        {
+          "sequenceNumber": 0,
+          "type": "cover",
+          "script": "None",
+          "pencils": "Leinil Francis Yu (credited) (signed as Leinil)"
+        },
+        {
+          "sequenceNumber": 1,
+          "type": "comic story",
+          "script": "Chip Zdarsky (credited)",
+          "pencils": "Luca Maresca (credited)"
+        }
+      ]
+    },
+    {
+      "gcdIssueId": 2835432,
+      "url": "https://www.comics.org/issue/2835432/",
+      "apiUrl": "https://www.comics.org/api/issue/2835432/?format=json",
+      "retrievedAt": "2026-11-17",
+      "seriesName": "Wolverine: Weapons of Armageddon (2026 series)",
+      "number": "4",
+      "onSaleDate": "2026-05-20",
+      "sequences": [
+        {
+          "sequenceNumber": 0,
+          "type": "cover",
+          "script": "None",
+          "pencils": "Leinil Francis Yu (credited) (signed as Leinil)"
+        },
+        {
+          "sequenceNumber": 1,
+          "type": "comic story",
+          "script": "Chip Zdarsky (credited)",
+          "pencils": "Luca Maresca (credited)"
+        }
+      ]
+    },
+    {
+      "gcdIssueId": 2827769,
+      "url": "https://www.comics.org/issue/2827769/",
+      "apiUrl": "https://www.comics.org/api/issue/2827769/?format=json",
+      "retrievedAt": "2026-11-17",
+      "seriesName": "Armageddon / X-Men CGD 2026 (2026 series)",
+      "number": "1",
+      "onSaleDate": "2026-05-02",
+      "sequences": [
+        {
+          "sequenceNumber": 0,
+          "type": "cover",
+          "script": "None",
+          "pencils": "Ryan Stegman (credited) (signed as STEGMAN [stegosaurus])"
+        },
+        {
+          "sequenceNumber": 1,
+          "type": "comic story",
+          "script": "Chip Zdarsky (credited)",
+          "pencils": "Frank Alpizar (credited); Delio Diaz (credited)"
+        },
+        {
+          "sequenceNumber": 2,
+          "type": "comic story",
+          "script": "Jed MacKay (credited)",
+          "pencils": "Federico Vicentini (credited)"
+        },
+        {
+          "sequenceNumber": 3,
+          "type": "comic story",
+          "script": "Ryan North (credited)",
+          "pencils": "Francesco Mobili (credited)"
+        }
+      ]
+    },
+    {
+      "gcdIssueId": 2839942,
+      "url": "https://www.comics.org/issue/2839942/",
+      "apiUrl": "https://www.comics.org/api/issue/2839942/?format=json",
+      "retrievedAt": "2026-11-17",
+      "seriesName": "Avengers: Armageddon (2026 series)",
+      "number": "1 (803)",
+      "onSaleDate": "2026-06-10",
+      "sequences": [
+        {
+          "sequenceNumber": 0,
+          "type": "cover",
+          "script": "None",
+          "pencils": "Dike Ruan (credited) (signed as 阮)"
+        },
+        {
+          "sequenceNumber": 1,
+          "type": "comic story",
+          "script": "Chip Zdarsky (credited)",
+          "pencils": "Delio Diaz (credited) (signed as Delio D); Frank Alpizar (credited) (signed as Frinks)"
+        }
+      ]
+    },
+    {
+      "gcdIssueId": 2850495,
+      "url": "https://www.comics.org/issue/2850495/",
+      "apiUrl": "https://www.comics.org/api/issue/2850495/?format=json",
+      "retrievedAt": "2026-11-17",
+      "seriesName": "Avengers: Armageddon (2026 series)",
+      "number": "2 (804)",
+      "onSaleDate": "2026-07-15",
+      "sequences": [
+        {
+          "sequenceNumber": 0,
+          "type": "cover",
+          "script": "None",
+          "pencils": "Dike Ruan (credited)"
+        },
+        {
+          "sequenceNumber": 1,
+          "type": "comic story",
+          "script": "Chip Zdarsky (credited)",
+          "pencils": "Delio Diaz (credited); Frank Alpizar (credited)"
+        }
+      ]
+    },
+    {
+      "gcdIssueId": 2860616,
+      "url": "https://www.comics.org/issue/2860616/",
+      "apiUrl": "https://www.comics.org/api/issue/2860616/?format=json",
+      "retrievedAt": "2026-11-17",
+      "seriesName": "Avengers: Armageddon (2026 series)",
+      "number": "3 (805)",
+      "onSaleDate": "2026-08-19",
+      "sequences": [
+        {
+          "sequenceNumber": 0,
+          "type": "cover",
+          "script": "None",
+          "pencils": "Dike Ruan (credited) (signed as 阮)"
+        },
+        {
+          "sequenceNumber": 1,
+          "type": "comic story",
+          "script": "Chip Zdarsky (credited)",
+          "pencils": "Ario Anindito (credited)"
+        }
+      ]
+    },
+    {
+      "gcdIssueId": 2867185,
+      "url": "https://www.comics.org/issue/2867185/",
+      "apiUrl": "https://www.comics.org/api/issue/2867185/?format=json",
+      "retrievedAt": "2026-11-17",
+      "seriesName": "Avengers: Armageddon (2026 series)",
+      "number": "4 (806)",
+      "onSaleDate": "2026-09-16",
+      "sequences": [
+        {
+          "sequenceNumber": 0,
+          "type": "cover",
+          "script": "None",
+          "pencils": "Dike Ruan (credited) (signed as 阮)"
+        },
+        {
+          "sequenceNumber": 2,
+          "type": "comic story",
+          "script": "Chip Zdarsky (credited)",
+          "pencils": "Delio Diaz (credited); Frank Alpizar (credited)"
+        }
+      ]
+    },
+    {
+      "gcdIssueId": 2874401,
+      "url": "https://www.comics.org/issue/2874401/",
+      "apiUrl": "https://www.comics.org/api/issue/2874401/?format=json",
+      "retrievedAt": "2026-11-17",
+      "seriesName": "Avengers: Armageddon (2026 series)",
+      "number": "5 (807)",
+      "onSaleDate": "2026-10-21",
+      "sequences": [
+        {
+          "sequenceNumber": 0,
+          "type": "cover",
+          "script": "None",
+          "pencils": "Dike Ruan (credited) (signed as 阮)"
+        },
+        {
+          "sequenceNumber": 2,
+          "type": "comic story",
+          "script": "Chip Zdarsky (credited)",
+          "pencils": "Delio Diaz (credited); Ario Anindito (credited)"
+        }
+      ]
+    }
+  ]
+}

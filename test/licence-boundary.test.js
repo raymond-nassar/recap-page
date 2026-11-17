@@ -1,6 +1,8 @@
 import { currentReadingCensus } from './helpers/current-reading-library.mjs';
+import { GCD_LICENSED_FILES } from '../scripts/lib/gcd-issue-records.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { execFileSync } from 'node:child_process';
 import { readFile, readdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -119,4 +121,51 @@ test('every shipped order keeps its own editorial description', async () => {
     assert.equal(typeof order.description, 'string', `${file} lost its own description`);
     assert.ok(order.description.length > 40, `${file} has a description too short to be the editorial one`);
   }
+});
+
+// The Grand Comics Database's data is CC BY-SA 4.0, and share-alike follows it wherever it is
+// copied. LICENSE carves out each file or folder that holds it by name, so a copy anywhere else
+// would sit under the MIT grant while saying nothing about it. The markers are the ones the owner
+// route writes: a mapping supplement's gcd-issue source, a payload item's owner-gcd-supplement kind
+// and a pinned issue record with its on-sale date, a shape the collected-editions check inputs share.
+// A comics.org page address on its own is a citation, which reading lists carry freely.
+function gcdMarkers(value, found = new Set()) {
+  if (Array.isArray(value)) {
+    for (const entry of value) gcdMarkers(entry, found);
+  } else if (value && typeof value === 'object') {
+    if (value.kind === 'gcd-issue') found.add('gcd-issue source');
+    if (value.metadataSourceKind === 'owner-gcd-supplement') found.add('owner-gcd-supplement item');
+    if (Number.isInteger(value.gcdIssueId) && 'onSaleDate' in value) found.add('dated GCD issue record');
+    for (const entry of Object.values(value)) gcdMarkers(entry, found);
+  }
+  return found;
+}
+
+test('every tracked file holding Grand Comics Database issue details is named outside the MIT grant', async () => {
+  const tracked = execFileSync('git', ['-c', 'core.quotePath=false', 'ls-files', '-z'], { cwd: repoRoot, encoding: 'utf8' })
+    .split('\u0000').filter((file) => file.endsWith('.json'));
+  assert.ok(tracked.length > 200, `only ${tracked.length} tracked JSON files were read, so this test proves nothing`);
+
+  const licence = (await readFile(path.join(repoRoot, 'LICENSE'), 'utf8')).replace(/\s+/g, ' ');
+  // Only a path LICENSE names as a token of its own counts, so naming one file in a folder does not
+  // carve out its neighbours. A token ending in a slash names a whole folder.
+  const named = new Set((licence.match(/[\w.-]+(?:\/[\w.-]+)+\/?/g) ?? []).map((token) => token.replace(/\.$/, '')));
+  const carved = (file) => named.has(file) || [...named].some((token) => token.endsWith('/') && file.startsWith(token));
+  const holders = [];
+  const uncarved = [];
+  for (const file of tracked) {
+    const found = gcdMarkers(JSON.parse(await readFile(path.join(repoRoot, file), 'utf8')));
+    if (found.size === 0) continue;
+    holders.push(file);
+    if (!carved(file)) uncarved.push(`${file}: ${[...found].sort().join(', ')}`);
+  }
+  assert.deepEqual(uncarved, [], 'Grand Comics Database data sits in a file LICENSE leaves under the MIT grant');
+
+  // The owner route's own list is held exactly in the other direction too: a listed file that holds
+  // nothing means LICENSE carves out a file the data has left, so the list has gone stale.
+  for (const file of GCD_LICENSED_FILES) {
+    assert.ok(holders.includes(file), `${file} no longer holds Grand Comics Database data`);
+    assert.ok(named.has(file), `LICENSE does not name ${file} outside the MIT grant`);
+  }
+  assert.ok(licence.includes('https://creativecommons.org/licenses/by-sa/4.0/'), 'LICENSE lost the CC BY-SA 4.0 link');
 });

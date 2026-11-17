@@ -13,10 +13,10 @@ import { loadCurrentOwnerLibrary } from '../../scripts/lib/owner-current-library
 import { OWNER_PROVIDER } from '../../scripts/lib/owner-guide.mjs';
 import { OWNER_EVENT_PROVIDER } from '../../scripts/lib/owner-guide-registry.mjs';
 import { parseChecklist } from '../../src/js/lib/markdown.js';
-import { normalizeCover } from '../../src/js/lib/model.js';
+import { normalizeCover, OWNER_GCD_SUPPLEMENT } from '../../src/js/lib/model.js';
 import { allowedCoverUrl } from '../../src/js/lib/coverHost.js';
 import {
-  OWNER_EXTERNAL_SUPPLEMENT_KIND, validateOwnerExternalSupplement,
+  supplementItemKind, validateOwnerExternalSupplement,
 } from '../../scripts/lib/owner-external-supplement.mjs';
 import {
   currentReadingCensus, registeredCuratedGuides, registeredOwnerBaselineRows, registeredOwnerContracts,
@@ -125,7 +125,7 @@ export async function assertOwnerDeliveryContract(contract, {
         // The owner approved outside details for this comic; every one must match the recorded
         // supplement exactly and the cover must stay an address on the pinned host.
         const { fields } = validateOwnerExternalSupplement(row);
-        assert.equal(item.metadataSourceKind, OWNER_EXTERNAL_SUPPLEMENT_KIND);
+        assert.equal(item.metadataSourceKind, supplementItemKind(row));
         assert.deepEqual(item.cover, fields.cover ?? null);
         assert.equal(item.onSale, fields.onSale ?? null);
         assert.equal(item.pageCount, fields.pageCount ?? null);
@@ -178,6 +178,11 @@ export async function assertOwnerDeliveryContract(contract, {
   assert.equal(
     catalog.lists.find((row) => row.id === id).ownerSupplementedCount ?? 0,
     mapping.rows.filter((row) => Object.hasOwn(row, 'externalMetadataSupplement')).length,
+  );
+  assert.equal(
+    catalog.lists.find((row) => row.id === id).ownerGcdSupplementedCount ?? 0,
+    mapping.rows.filter((row) => Object.hasOwn(row, 'externalMetadataSupplement')
+      && supplementItemKind(row) === OWNER_GCD_SUPPLEMENT).length,
   );
 
   const library = await loadCurrentOwnerLibrary(id, { root });

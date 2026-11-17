@@ -40,9 +40,9 @@ test('the authored symbol set has exactly the used names and no remote or active
     .map(([, id]) => id);
   assert.deepEqual(ids.sort(), [...new Set([
     ...expected, 'storylines', 'screen', 'ages', 'reader', 'arrow-left', 'arrow-right', 'thumb-up', 'thumb-down', 'star',
-    'story-types', 'paste', 'issue-add',
+    'story-types', 'paste', 'issue-add', 'external',
   ])].sort());
-  assert.equal(ids.length, 25);
+  assert.equal(ids.length, 26);
   assert.doesNotMatch(sprite, /<(?:script|image|foreignObject|style|text)\b|\bhref=|\bon\w+=/i);
   assert.doesNotMatch(sprite, /[\uE000-\uF8FF]/);
   assert.match(css, /\.gi \{\s*fill: none; stroke: currentColor;/);

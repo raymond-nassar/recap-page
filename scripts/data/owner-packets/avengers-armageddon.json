@@ -1,0 +1,1378 @@
+{
+  "schemaVersion": 1,
+  "id": "avengers-armageddon",
+  "inventoryId": "avengers-armageddon",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/1427",
+  "sourceSection": "Avengers: Armageddon",
+  "sourceRetrievedAt": "2026-11-16",
+  "sourceProvider": "owner-authored",
+  "sourceContentSha256": "a46218fbbfa06c382266bff1d175d17d0de1f5f2a8bff75797f217000d7cd46e",
+  "sourceIssueBearingBlocksSha256": "fcd636277202fc4c923182846fe48aa8160f80c4cbf0faa623973b14e6360abd",
+  "sourceBoundary": "The exact owner-selected Avengers: Armageddon source, following Comic Book Herald's Armageddon reading order. Positions 1 to 24 are the owner's table in supplied order; all 24 are owner-confirmed identities whose provider lookups returned HTTP 404, 12 of them reusing identities already published. Position 25, Immortal Soldiers #1, is listed by Comic Book Herald but is not yet available digitally and remains an open gap tracked in #1424.",
+  "excludedSourceReferences": [],
+  "canonicalSourcePositions": true,
+  "sourceOccurrenceCount": 25,
+  "expectedCount": 24,
+  "proposedManifest": {
+    "id": "avengers-armageddon",
+    "name": "Avengers: Armageddon",
+    "description": "Chip Zdarsky's 2026 Avengers event in Comic Book Herald's reading order. The prologue gathers The Will of Doom, Captain America, Ultimate Impact: Reborn, Wolverine: Weapons of Armageddon and the Comics Giveaway Day issue, then the five-issue main series runs alongside its Captain America chapters and ends with Avengers (2026) #1. One comic in Comic Book Herald's order, Immortal Soldiers #1, isn't available digitally yet, so it isn't in this list for now.",
+    "type": "event",
+    "depth": "selected",
+    "beginner": false,
+    "timeline": 2026,
+    "sourceFile": "avengers-armageddon.md",
+    "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/1427",
+    "sourceSection": "Avengers: Armageddon",
+    "sourceOrigin": "Selected by raymond-nassar for Modern Timeline",
+    "sourceLicense": null,
+    "out": "avengers_armageddon.json",
+    "characters": [
+      "Avengers",
+      "Captain America",
+      "Doctor Doom",
+      "Red Hulk",
+      "Wolverine"
+    ],
+    "keywords": [
+      "Avengers: Armageddon",
+      "Chip Zdarsky",
+      "Armageddon",
+      "2026 event"
+    ],
+    "expect": 24,
+    "coverIssueId": null,
+    "group": null,
+    "groupName": null,
+    "variant": null
+  },
+  "insertionAnchor": {
+    "beforeId": "marvel-zombies-reading-order"
+  },
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "The Will of Doom (2025) #1",
+      "sourceRangeReference": "Prologue",
+      "normalizedSeriesTitle": "the will of doom",
+      "seriesYear": 2025,
+      "issueNumber": "1",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Captain America (2025) #6",
+      "sourceRangeReference": "Prologue",
+      "normalizedSeriesTitle": "captain america",
+      "seriesYear": 2025,
+      "issueNumber": "6",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Captain America (2025) #7",
+      "sourceRangeReference": "Prologue",
+      "normalizedSeriesTitle": "captain america",
+      "seriesYear": 2025,
+      "issueNumber": "7",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Captain America (2025) #8",
+      "sourceRangeReference": "Prologue",
+      "normalizedSeriesTitle": "captain america",
+      "seriesYear": 2025,
+      "issueNumber": "8",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Captain America (2025) #9",
+      "sourceRangeReference": "Prologue",
+      "normalizedSeriesTitle": "captain america",
+      "seriesYear": 2025,
+      "issueNumber": "9",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Captain America (2025) #10",
+      "sourceRangeReference": "Prologue",
+      "normalizedSeriesTitle": "captain america",
+      "seriesYear": 2025,
+      "issueNumber": "10",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Captain America (2025) #11",
+      "sourceRangeReference": "Prologue",
+      "normalizedSeriesTitle": "captain america",
+      "seriesYear": 2025,
+      "issueNumber": "11",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Ultimate Impact: Reborn (2026) #1",
+      "sourceRangeReference": "Prologue",
+      "normalizedSeriesTitle": "ultimate impact reborn",
+      "seriesYear": 2026,
+      "issueNumber": "1",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Wolverine: Weapons of Armageddon (2026) #1",
+      "sourceRangeReference": "Prologue",
+      "normalizedSeriesTitle": "wolverine weapons of armageddon",
+      "seriesYear": 2026,
+      "issueNumber": "1",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Wolverine: Weapons of Armageddon (2026) #2",
+      "sourceRangeReference": "Prologue",
+      "normalizedSeriesTitle": "wolverine weapons of armageddon",
+      "seriesYear": 2026,
+      "issueNumber": "2",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Wolverine: Weapons of Armageddon (2026) #3",
+      "sourceRangeReference": "Prologue",
+      "normalizedSeriesTitle": "wolverine weapons of armageddon",
+      "seriesYear": 2026,
+      "issueNumber": "3",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Wolverine: Weapons of Armageddon (2026) #4",
+      "sourceRangeReference": "Prologue",
+      "normalizedSeriesTitle": "wolverine weapons of armageddon",
+      "seriesYear": 2026,
+      "issueNumber": "4",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Comics Giveaway Day 2026: Armageddon / X-Men #1",
+      "sourceRangeReference": "Prologue",
+      "normalizedSeriesTitle": "comics giveaway day 2026 armageddon x men",
+      "seriesYear": 2026,
+      "issueNumber": "1",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Avengers: Armageddon (2026) #1",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "avengers armageddon",
+      "seriesYear": 2026,
+      "issueNumber": "1",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "Avengers: Armageddon (2026) #2",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "avengers armageddon",
+      "seriesYear": 2026,
+      "issueNumber": "2",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "Captain America (2025) #12",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "captain america",
+      "seriesYear": 2025,
+      "issueNumber": "12",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "Captain America (2025) #13",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "captain america",
+      "seriesYear": 2025,
+      "issueNumber": "13",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Captain America (2025) #14",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "captain america",
+      "seriesYear": 2025,
+      "issueNumber": "14",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "Captain America (2025) #15",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "captain america",
+      "seriesYear": 2025,
+      "issueNumber": "15",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "Avengers: Armageddon (2026) #3",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "avengers armageddon",
+      "seriesYear": 2026,
+      "issueNumber": "3",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "Avengers: Armageddon (2026) #4",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "avengers armageddon",
+      "seriesYear": 2026,
+      "issueNumber": "4",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "Avengers: Armageddon (2026) #5",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "avengers armageddon",
+      "seriesYear": 2026,
+      "issueNumber": "5",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 23,
+      "sourceIssueReference": "Captain America (2025) #16",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "captain america",
+      "seriesYear": 2025,
+      "issueNumber": "16",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 24,
+      "sourceIssueReference": "Avengers (2026) #1",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "avengers",
+      "seriesYear": 2026,
+      "issueNumber": "1",
+      "candidateIssueId": null,
+      "seriesId": null,
+      "manualSeriesSelectionApproved": false
+    }
+  ],
+  "sourceGaps": [
+    {
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-11-16",
+      "auditBasis": "Comic Book Herald lists Immortal Soldiers #1 after Avengers (2026) #1. The owner's table leaves it out because it is not yet available digitally, and the owner expects it in January 2027. No Marvel issue ID, provider record or Grand Comics Database record exists for it on the check date, so no identity, publication or availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/armageddon-reading-order/",
+          "retrievedAt": "2026-11-16"
+        },
+        {
+          "kind": "owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1427#issuecomment-6940211082",
+          "retrievedAt": "2026-11-16"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1424",
+          "retrievedAt": "2026-11-16"
+        }
+      ],
+      "sourcePosition": 25,
+      "sourceIssueReference": "Immortal Soldiers #1",
+      "sourceRangeReference": "Main Event",
+      "normalizedSeriesTitle": "immortal soldiers",
+      "seriesYear": 2026,
+      "issueNumber": "1",
+      "evidenceDigest": "659c9e0ac24adc961f1eec50298166ac88486d12c140f562a7733e7650429b89"
+    }
+  ],
+  "packetDigest": "bc6aea8ddf201a19f60a3e0348277943a36fd09f86725be6ad5bf58ea16ebaf6",
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "Claude Opus 5.5 coordinator source, insertion and overlap review, 2026-11-17",
+    "rationale": "The 24 rows are the owner's table, confirmed verbatim with the 22:02 row 1 app-link correction recorded; they follow Comic Book Herald's Armageddon order positions 1 to 24 exactly, and position 25, Immortal Soldiers #1, is an open gap tracked in #1424.",
+    "reviewedAt": "2026-11-17T08:24:04.153Z",
+    "proposalDigest": "74e4f8c6530ed25a0bfd5f851e52673af5e2ec037214315c29091457b803db56"
+  },
+  "sourceGapResolutions": [
+    {
+      "sourcePosition": 1,
+      "previousSourceIssueReference": "The Will of Doom (2025) #1",
+      "previousSourceRangeReference": "Prologue",
+      "previousNormalizedSeriesTitle": "The Will of Doom",
+      "previousSeriesYear": 2025,
+      "previousIssueNumber": "1",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 126711,
+      "resolvedNormalizedSeriesTitle": "the will of doom",
+      "resolvedSeriesYear": 2025,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-10-21",
+      "auditBasis": "Owner-confirmed identity for The Will of Doom (2025) #1, recorded by raymond-nassar on 2026-10-21. The configured metadata provider returned HTTP 404 on 2026-10-21; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "independent-bibliography",
+          "url": "https://aiptcomics.com/2025/12/24/the-will-of-doom-1-review/",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/126711",
+          "retrievedAt": "2026-10-21"
+        },
+        {
+          "kind": "metadata-provider-lookup",
+          "url": "https://marvel.emreparker.com/v1/issues/126711",
+          "retrievedAt": "2026-10-09"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/772#issuecomment-6331455208",
+          "retrievedAt": "2026-10-22"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/772",
+          "retrievedAt": "2026-10-09"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-10-21",
+        "issueId": 126711,
+        "label": "The Will of Doom (2025) #1",
+        "url": "https://www.marvel.com/comics/issue/126711/the_will_of_doom_1_2025_1",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/772#issuecomment-6331455208"
+      },
+      "evidenceDigest": "747401c8bf4a841dd16e072589bb2b24e57e1028b1bc97857b0f341f18e6449a"
+    },
+    {
+      "sourcePosition": 2,
+      "previousSourceIssueReference": "Captain America (2025) #6",
+      "previousSourceRangeReference": "Prologue",
+      "previousNormalizedSeriesTitle": "Captain America",
+      "previousSeriesYear": 2025,
+      "previousIssueNumber": "6",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 123361,
+      "resolvedNormalizedSeriesTitle": "captain america",
+      "resolvedSeriesYear": 2025,
+      "resolvedIssueNumber": "6",
+      "checkedAt": "2026-11-06",
+      "auditBasis": "Owner-confirmed identity for Captain America (2025) #6, recorded by raymond-nassar on 2026-11-06. The configured metadata provider returned HTTP 404 on 2026-11-06; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/123361",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1145",
+          "retrievedAt": "2026-11-06"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-11-06",
+        "issueId": 123361,
+        "label": "Captain America (2025) #6",
+        "url": "https://www.marvel.com/comics/issue/123361/captain_america_2025_6",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832"
+      },
+      "evidenceDigest": "0f423fdbd2bc04f4bc1ea572103ae276c3021ceb09c1b79e8133794587510515"
+    },
+    {
+      "sourcePosition": 3,
+      "previousSourceIssueReference": "Captain America (2025) #7",
+      "previousSourceRangeReference": "Prologue",
+      "previousNormalizedSeriesTitle": "Captain America",
+      "previousSeriesYear": 2025,
+      "previousIssueNumber": "7",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 123362,
+      "resolvedNormalizedSeriesTitle": "captain america",
+      "resolvedSeriesYear": 2025,
+      "resolvedIssueNumber": "7",
+      "checkedAt": "2026-11-06",
+      "auditBasis": "Owner-confirmed identity for Captain America (2025) #7, recorded by raymond-nassar on 2026-11-06. The configured metadata provider returned HTTP 404 on 2026-11-06; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/123362",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1145",
+          "retrievedAt": "2026-11-06"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-11-06",
+        "issueId": 123362,
+        "label": "Captain America (2025) #7",
+        "url": "https://www.marvel.com/comics/issue/123362/captain_america_2025_7",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832"
+      },
+      "evidenceDigest": "7b2e79503ba8359754416abb8ebe7e9b235b40d764292b5877c62a77fa57ef60"
+    },
+    {
+      "sourcePosition": 4,
+      "previousSourceIssueReference": "Captain America (2025) #8",
+      "previousSourceRangeReference": "Prologue",
+      "previousNormalizedSeriesTitle": "Captain America",
+      "previousSeriesYear": 2025,
+      "previousIssueNumber": "8",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 123363,
+      "resolvedNormalizedSeriesTitle": "captain america",
+      "resolvedSeriesYear": 2025,
+      "resolvedIssueNumber": "8",
+      "checkedAt": "2026-11-06",
+      "auditBasis": "Owner-confirmed identity for Captain America (2025) #8, recorded by raymond-nassar on 2026-11-06. The configured metadata provider returned HTTP 404 on 2026-11-06; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/123363",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1145",
+          "retrievedAt": "2026-11-06"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-11-06",
+        "issueId": 123363,
+        "label": "Captain America (2025) #8",
+        "url": "https://www.marvel.com/comics/issue/123363/captain_america_2025_8",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832"
+      },
+      "evidenceDigest": "26ed8b2c2f43552e6bd5c7ee258a5ffc4b0807907e6194f3a28e6eca08201251"
+    },
+    {
+      "sourcePosition": 5,
+      "previousSourceIssueReference": "Captain America (2025) #9",
+      "previousSourceRangeReference": "Prologue",
+      "previousNormalizedSeriesTitle": "Captain America",
+      "previousSeriesYear": 2025,
+      "previousIssueNumber": "9",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 123364,
+      "resolvedNormalizedSeriesTitle": "captain america",
+      "resolvedSeriesYear": 2025,
+      "resolvedIssueNumber": "9",
+      "checkedAt": "2026-11-06",
+      "auditBasis": "Owner-confirmed identity for Captain America (2025) #9, recorded by raymond-nassar on 2026-11-06. The configured metadata provider returned HTTP 404 on 2026-11-06; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/123364",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1145",
+          "retrievedAt": "2026-11-06"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-11-06",
+        "issueId": 123364,
+        "label": "Captain America (2025) #9",
+        "url": "https://www.marvel.com/comics/issue/123364/captain_america_2025_9",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832"
+      },
+      "evidenceDigest": "c43ef86b1c262f66e6cc5ab273097b5c7a1052500d0107f1acd0a69ba2dd7728"
+    },
+    {
+      "sourcePosition": 6,
+      "previousSourceIssueReference": "Captain America (2025) #10",
+      "previousSourceRangeReference": "Prologue",
+      "previousNormalizedSeriesTitle": "Captain America",
+      "previousSeriesYear": 2025,
+      "previousIssueNumber": "10",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 123365,
+      "resolvedNormalizedSeriesTitle": "captain america",
+      "resolvedSeriesYear": 2025,
+      "resolvedIssueNumber": "10",
+      "checkedAt": "2026-11-06",
+      "auditBasis": "Owner-confirmed identity for Captain America (2025) #10, recorded by raymond-nassar on 2026-11-06. The configured metadata provider returned HTTP 404 on 2026-11-06; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/123365",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1145",
+          "retrievedAt": "2026-11-06"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-11-06",
+        "issueId": 123365,
+        "label": "Captain America (2025) #10",
+        "url": "https://www.marvel.com/comics/issue/123365/",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832"
+      },
+      "evidenceDigest": "4db5b91a8d6f2d230420a7de627b0802ae3dadfeefb469129bf2cab13a3ebf6c"
+    },
+    {
+      "sourcePosition": 7,
+      "previousSourceIssueReference": "Captain America (2025) #11",
+      "previousSourceRangeReference": "Prologue",
+      "previousNormalizedSeriesTitle": "Captain America",
+      "previousSeriesYear": 2025,
+      "previousIssueNumber": "11",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 130145,
+      "resolvedNormalizedSeriesTitle": "captain america",
+      "resolvedSeriesYear": 2025,
+      "resolvedIssueNumber": "11",
+      "checkedAt": "2026-11-06",
+      "auditBasis": "Owner-confirmed identity for Captain America (2025) #11, recorded by raymond-nassar on 2026-11-06. The configured metadata provider returned HTTP 404 on 2026-11-06; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/130145",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1145",
+          "retrievedAt": "2026-11-06"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-11-06",
+        "issueId": 130145,
+        "label": "Captain America (2025) #11",
+        "url": "https://www.marvel.com/comics/issue/130145/captain_america_2025_11",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832"
+      },
+      "evidenceDigest": "0500b12281bacbf8c0f878a0c09534deceeb16256f1a614a928082dada928311"
+    },
+    {
+      "sourcePosition": 8,
+      "previousSourceIssueReference": "Ultimate Impact: Reborn (2026) #1",
+      "previousSourceRangeReference": "Prologue",
+      "previousNormalizedSeriesTitle": "Ultimate Impact: Reborn",
+      "previousSeriesYear": 2026,
+      "previousIssueNumber": "1",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 132862,
+      "resolvedNormalizedSeriesTitle": "ultimate impact reborn",
+      "resolvedSeriesYear": 2026,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-11-16",
+      "auditBasis": "Owner-confirmed identity for Ultimate Impact: Reborn (2026) #1, recorded by raymond-nassar on 2026-11-16. The configured metadata provider returned HTTP 404 on 2026-11-16; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/132862",
+          "retrievedAt": "2026-11-16"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1427#issuecomment-6940191777",
+          "retrievedAt": "2026-11-16"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1426",
+          "retrievedAt": "2026-11-16"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-11-16",
+        "issueId": 132862,
+        "label": "Ultimate Impact: Reborn (2026) #1",
+        "url": "https://www.marvel.com/comics/issue/132862",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/1427#issuecomment-6940191777"
+      },
+      "evidenceDigest": "15300eeef26cd6f19a2f7cece7496308b32f5bfd29205dcd1236751cccef9ee6"
+    },
+    {
+      "sourcePosition": 9,
+      "previousSourceIssueReference": "Wolverine: Weapons of Armageddon (2026) #1",
+      "previousSourceRangeReference": "Prologue",
+      "previousNormalizedSeriesTitle": "Wolverine: Weapons of Armageddon",
+      "previousSeriesYear": 2026,
+      "previousIssueNumber": "1",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 134111,
+      "resolvedNormalizedSeriesTitle": "wolverine weapons of armageddon",
+      "resolvedSeriesYear": 2026,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-11-16",
+      "auditBasis": "Owner-confirmed identity for Wolverine: Weapons of Armageddon (2026) #1, recorded by raymond-nassar on 2026-11-16. The configured metadata provider returned HTTP 404 on 2026-11-16; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/134111",
+          "retrievedAt": "2026-11-16"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1427#issuecomment-6940191777",
+          "retrievedAt": "2026-11-16"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1426",
+          "retrievedAt": "2026-11-16"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-11-16",
+        "issueId": 134111,
+        "label": "Wolverine: Weapons of Armageddon (2026) #1",
+        "url": "https://www.marvel.com/comics/issue/134111",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/1427#issuecomment-6940191777"
+      },
+      "evidenceDigest": "6ac09e2f18ad3eff0672e0aba53121c1fb171626a3e4dee1489bc3eaac858456"
+    },
+    {
+      "sourcePosition": 10,
+      "previousSourceIssueReference": "Wolverine: Weapons of Armageddon (2026) #2",
+      "previousSourceRangeReference": "Prologue",
+      "previousNormalizedSeriesTitle": "Wolverine: Weapons of Armageddon",
+      "previousSeriesYear": 2026,
+      "previousIssueNumber": "2",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 134112,
+      "resolvedNormalizedSeriesTitle": "wolverine weapons of armageddon",
+      "resolvedSeriesYear": 2026,
+      "resolvedIssueNumber": "2",
+      "checkedAt": "2026-11-16",
+      "auditBasis": "Owner-confirmed identity for Wolverine: Weapons of Armageddon (2026) #2, recorded by raymond-nassar on 2026-11-16. The configured metadata provider returned HTTP 404 on 2026-11-16; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/134112",
+          "retrievedAt": "2026-11-16"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1427#issuecomment-6940191777",
+          "retrievedAt": "2026-11-16"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1426",
+          "retrievedAt": "2026-11-16"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-11-16",
+        "issueId": 134112,
+        "label": "Wolverine: Weapons of Armageddon (2026) #2",
+        "url": "https://www.marvel.com/comics/issue/134112",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/1427#issuecomment-6940191777"
+      },
+      "evidenceDigest": "773a39bdb0d9bb7937b435b449411c8b73a28df768f6e4f4fe11f40f6f178e4e"
+    },
+    {
+      "sourcePosition": 11,
+      "previousSourceIssueReference": "Wolverine: Weapons of Armageddon (2026) #3",
+      "previousSourceRangeReference": "Prologue",
+      "previousNormalizedSeriesTitle": "Wolverine: Weapons of Armageddon",
+      "previousSeriesYear": 2026,
+      "previousIssueNumber": "3",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 134113,
+      "resolvedNormalizedSeriesTitle": "wolverine weapons of armageddon",
+      "resolvedSeriesYear": 2026,
+      "resolvedIssueNumber": "3",
+      "checkedAt": "2026-11-16",
+      "auditBasis": "Owner-confirmed identity for Wolverine: Weapons of Armageddon (2026) #3, recorded by raymond-nassar on 2026-11-16. The configured metadata provider returned HTTP 404 on 2026-11-16; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/134113",
+          "retrievedAt": "2026-11-16"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1427#issuecomment-6940191777",
+          "retrievedAt": "2026-11-16"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1426",
+          "retrievedAt": "2026-11-16"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-11-16",
+        "issueId": 134113,
+        "label": "Wolverine: Weapons of Armageddon (2026) #3",
+        "url": "https://www.marvel.com/comics/issue/134113",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/1427#issuecomment-6940191777"
+      },
+      "evidenceDigest": "e37245a66bc5de1af86cdf5ed25d052923ab083f24d6c109be60280df9104a34"
+    },
+    {
+      "sourcePosition": 12,
+      "previousSourceIssueReference": "Wolverine: Weapons of Armageddon (2026) #4",
+      "previousSourceRangeReference": "Prologue",
+      "previousNormalizedSeriesTitle": "Wolverine: Weapons of Armageddon",
+      "previousSeriesYear": 2026,
+      "previousIssueNumber": "4",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 134114,
+      "resolvedNormalizedSeriesTitle": "wolverine weapons of armageddon",
+      "resolvedSeriesYear": 2026,
+      "resolvedIssueNumber": "4",
+      "checkedAt": "2026-11-16",
+      "auditBasis": "Owner-confirmed identity for Wolverine: Weapons of Armageddon (2026) #4, recorded by raymond-nassar on 2026-11-16. The configured metadata provider returned HTTP 404 on 2026-11-16; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/134114",
+          "retrievedAt": "2026-11-16"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1427#issuecomment-6940191777",
+          "retrievedAt": "2026-11-16"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1426",
+          "retrievedAt": "2026-11-16"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-11-16",
+        "issueId": 134114,
+        "label": "Wolverine: Weapons of Armageddon (2026) #4",
+        "url": "https://www.marvel.com/comics/issue/134114",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/1427#issuecomment-6940191777"
+      },
+      "evidenceDigest": "8476fa62a5c88ebdf56e7d51e20358d163edf00f75a7c2fcc7d0b4fe75dd2db4"
+    },
+    {
+      "sourcePosition": 13,
+      "previousSourceIssueReference": "Comics Giveaway Day 2026: Armageddon / X-Men #1",
+      "previousSourceRangeReference": "Prologue",
+      "previousNormalizedSeriesTitle": "Comics Giveaway Day 2026: Armageddon / X-Men",
+      "previousSeriesYear": 2026,
+      "previousIssueNumber": "1",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 135239,
+      "resolvedNormalizedSeriesTitle": "comics giveaway day 2026 armageddon x men",
+      "resolvedSeriesYear": 2026,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-11-16",
+      "auditBasis": "Owner-confirmed identity for Comics Giveaway Day 2026: Armageddon / X-Men (2026) #1, recorded by raymond-nassar on 2026-11-16. The configured metadata provider returned HTTP 404 on 2026-11-16; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/135239",
+          "retrievedAt": "2026-11-16"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1427#issuecomment-6940191777",
+          "retrievedAt": "2026-11-16"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1426",
+          "retrievedAt": "2026-11-16"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-11-16",
+        "issueId": 135239,
+        "label": "Comics Giveaway Day 2026: Armageddon / X-Men (2026) #1",
+        "url": "https://www.marvel.com/comics/issue/135239",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/1427#issuecomment-6940191777"
+      },
+      "evidenceDigest": "09110a5dd74d76167508441ece1dec32791e396383e4ef3ffaf159943387d5b1"
+    },
+    {
+      "sourcePosition": 14,
+      "previousSourceIssueReference": "Avengers: Armageddon (2026) #1",
+      "previousSourceRangeReference": "Main Event",
+      "previousNormalizedSeriesTitle": "Avengers: Armageddon",
+      "previousSeriesYear": 2026,
+      "previousIssueNumber": "1",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 134097,
+      "resolvedNormalizedSeriesTitle": "avengers armageddon",
+      "resolvedSeriesYear": 2026,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-11-16",
+      "auditBasis": "Owner-confirmed identity for Avengers: Armageddon (2026) #1, recorded by raymond-nassar on 2026-11-16. The configured metadata provider returned HTTP 404 on 2026-11-16; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/134097",
+          "retrievedAt": "2026-11-16"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1427#issuecomment-6940191777",
+          "retrievedAt": "2026-11-16"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1426",
+          "retrievedAt": "2026-11-16"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-11-16",
+        "issueId": 134097,
+        "label": "Avengers: Armageddon (2026) #1",
+        "url": "https://www.marvel.com/comics/issue/134097",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/1427#issuecomment-6940191777"
+      },
+      "evidenceDigest": "81dcc42ef11eb5f5eb234ad5198567e279d16baafe2e13b08e7772d22c087709"
+    },
+    {
+      "sourcePosition": 15,
+      "previousSourceIssueReference": "Avengers: Armageddon (2026) #2",
+      "previousSourceRangeReference": "Main Event",
+      "previousNormalizedSeriesTitle": "Avengers: Armageddon",
+      "previousSeriesYear": 2026,
+      "previousIssueNumber": "2",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 134098,
+      "resolvedNormalizedSeriesTitle": "avengers armageddon",
+      "resolvedSeriesYear": 2026,
+      "resolvedIssueNumber": "2",
+      "checkedAt": "2026-11-16",
+      "auditBasis": "Owner-confirmed identity for Avengers: Armageddon (2026) #2, recorded by raymond-nassar on 2026-11-16. The configured metadata provider returned HTTP 404 on 2026-11-16; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/134098",
+          "retrievedAt": "2026-11-16"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1427#issuecomment-6940191777",
+          "retrievedAt": "2026-11-16"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1426",
+          "retrievedAt": "2026-11-16"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-11-16",
+        "issueId": 134098,
+        "label": "Avengers: Armageddon (2026) #2",
+        "url": "https://www.marvel.com/comics/issue/134098",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/1427#issuecomment-6940191777"
+      },
+      "evidenceDigest": "c56a62667ac4c6627d00e3e20ed136ed7d5cb0bea22b5766775e89131ebb4613"
+    },
+    {
+      "sourcePosition": 16,
+      "previousSourceIssueReference": "Captain America (2025) #12",
+      "previousSourceRangeReference": "Main Event",
+      "previousNormalizedSeriesTitle": "Captain America",
+      "previousSeriesYear": 2025,
+      "previousIssueNumber": "12",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 130146,
+      "resolvedNormalizedSeriesTitle": "captain america",
+      "resolvedSeriesYear": 2025,
+      "resolvedIssueNumber": "12",
+      "checkedAt": "2026-11-06",
+      "auditBasis": "Owner-confirmed identity for Captain America (2025) #12, recorded by raymond-nassar on 2026-11-06. The configured metadata provider returned HTTP 404 on 2026-11-06; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/130146",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1145",
+          "retrievedAt": "2026-11-06"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-11-06",
+        "issueId": 130146,
+        "label": "Captain America (2025) #12",
+        "url": "https://www.marvel.com/comics/issue/130146/captain_america_2025_12",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832"
+      },
+      "evidenceDigest": "f32a7fc45158382784270c02e8f4c5ddeaca03eb18797ed053f9366b8f9180bd"
+    },
+    {
+      "sourcePosition": 17,
+      "previousSourceIssueReference": "Captain America (2025) #13",
+      "previousSourceRangeReference": "Main Event",
+      "previousNormalizedSeriesTitle": "Captain America",
+      "previousSeriesYear": 2025,
+      "previousIssueNumber": "13",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 130147,
+      "resolvedNormalizedSeriesTitle": "captain america",
+      "resolvedSeriesYear": 2025,
+      "resolvedIssueNumber": "13",
+      "checkedAt": "2026-11-06",
+      "auditBasis": "Owner-confirmed identity for Captain America (2025) #13, recorded by raymond-nassar on 2026-11-06. The configured metadata provider returned HTTP 404 on 2026-11-06; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/130147",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1145",
+          "retrievedAt": "2026-11-06"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-11-06",
+        "issueId": 130147,
+        "label": "Captain America (2025) #13",
+        "url": "https://www.marvel.com/comics/issue/130147/",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832"
+      },
+      "evidenceDigest": "d86a79ed01bf0f0e6978811393a9b2cdfcf30c9bebc14a1e828dfec9615ce033"
+    },
+    {
+      "sourcePosition": 18,
+      "previousSourceIssueReference": "Captain America (2025) #14",
+      "previousSourceRangeReference": "Main Event",
+      "previousNormalizedSeriesTitle": "Captain America",
+      "previousSeriesYear": 2025,
+      "previousIssueNumber": "14",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 130148,
+      "resolvedNormalizedSeriesTitle": "captain america",
+      "resolvedSeriesYear": 2025,
+      "resolvedIssueNumber": "14",
+      "checkedAt": "2026-11-06",
+      "auditBasis": "Owner-confirmed identity for Captain America (2025) #14, recorded by raymond-nassar on 2026-11-06. The configured metadata provider returned HTTP 404 on 2026-11-06; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/130148",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1145",
+          "retrievedAt": "2026-11-06"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-11-06",
+        "issueId": 130148,
+        "label": "Captain America (2025) #14",
+        "url": "https://www.marvel.com/comics/issue/130148/",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832"
+      },
+      "evidenceDigest": "9f1e76da9d5cbadb13c8a76d1948c0d016f6d446566b49abe20413ea919a694e"
+    },
+    {
+      "sourcePosition": 19,
+      "previousSourceIssueReference": "Captain America (2025) #15",
+      "previousSourceRangeReference": "Main Event",
+      "previousNormalizedSeriesTitle": "Captain America",
+      "previousSeriesYear": 2025,
+      "previousIssueNumber": "15",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 130149,
+      "resolvedNormalizedSeriesTitle": "captain america",
+      "resolvedSeriesYear": 2025,
+      "resolvedIssueNumber": "15",
+      "checkedAt": "2026-11-06",
+      "auditBasis": "Owner-confirmed identity for Captain America (2025) #15, recorded by raymond-nassar on 2026-11-06. The configured metadata provider returned HTTP 404 on 2026-11-06; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/130149",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1145",
+          "retrievedAt": "2026-11-06"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-11-06",
+        "issueId": 130149,
+        "label": "Captain America (2025) #15",
+        "url": "https://www.marvel.com/comics/issue/130149/captain_america_2025_15",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832"
+      },
+      "evidenceDigest": "e9f9821d5119d9018194ddee57c6cef9412b0d31e08434eddfe8a87c9be202f7"
+    },
+    {
+      "sourcePosition": 20,
+      "previousSourceIssueReference": "Avengers: Armageddon (2026) #3",
+      "previousSourceRangeReference": "Main Event",
+      "previousNormalizedSeriesTitle": "Avengers: Armageddon",
+      "previousSeriesYear": 2026,
+      "previousIssueNumber": "3",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 134099,
+      "resolvedNormalizedSeriesTitle": "avengers armageddon",
+      "resolvedSeriesYear": 2026,
+      "resolvedIssueNumber": "3",
+      "checkedAt": "2026-11-16",
+      "auditBasis": "Owner-confirmed identity for Avengers: Armageddon (2026) #3, recorded by raymond-nassar on 2026-11-16. The configured metadata provider returned HTTP 404 on 2026-11-16; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/134099",
+          "retrievedAt": "2026-11-16"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1427#issuecomment-6940191777",
+          "retrievedAt": "2026-11-16"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1426",
+          "retrievedAt": "2026-11-16"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-11-16",
+        "issueId": 134099,
+        "label": "Avengers: Armageddon (2026) #3",
+        "url": "https://www.marvel.com/comics/issue/134099",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/1427#issuecomment-6940191777"
+      },
+      "evidenceDigest": "7015f0577e8e5004db759ac776d7a8d8750f9063636c4c95bb26f67fb6f12622"
+    },
+    {
+      "sourcePosition": 21,
+      "previousSourceIssueReference": "Avengers: Armageddon (2026) #4",
+      "previousSourceRangeReference": "Main Event",
+      "previousNormalizedSeriesTitle": "Avengers: Armageddon",
+      "previousSeriesYear": 2026,
+      "previousIssueNumber": "4",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 134100,
+      "resolvedNormalizedSeriesTitle": "avengers armageddon",
+      "resolvedSeriesYear": 2026,
+      "resolvedIssueNumber": "4",
+      "checkedAt": "2026-11-16",
+      "auditBasis": "Owner-confirmed identity for Avengers: Armageddon (2026) #4, recorded by raymond-nassar on 2026-11-16. The configured metadata provider returned HTTP 404 on 2026-11-16; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/134100",
+          "retrievedAt": "2026-11-16"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1427#issuecomment-6940191777",
+          "retrievedAt": "2026-11-16"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1426",
+          "retrievedAt": "2026-11-16"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-11-16",
+        "issueId": 134100,
+        "label": "Avengers: Armageddon (2026) #4",
+        "url": "https://www.marvel.com/comics/issue/134100",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/1427#issuecomment-6940191777"
+      },
+      "evidenceDigest": "550143846768fceaae0187df51a79506cd52b9f94899bef618aa5232c7f15b49"
+    },
+    {
+      "sourcePosition": 22,
+      "previousSourceIssueReference": "Avengers: Armageddon (2026) #5",
+      "previousSourceRangeReference": "Main Event",
+      "previousNormalizedSeriesTitle": "Avengers: Armageddon",
+      "previousSeriesYear": 2026,
+      "previousIssueNumber": "5",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 134101,
+      "resolvedNormalizedSeriesTitle": "avengers armageddon",
+      "resolvedSeriesYear": 2026,
+      "resolvedIssueNumber": "5",
+      "checkedAt": "2026-11-16",
+      "auditBasis": "Owner-confirmed identity for Avengers: Armageddon (2026) #5, recorded by raymond-nassar on 2026-11-16. The configured metadata provider returned HTTP 404 on 2026-11-16; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/134101",
+          "retrievedAt": "2026-11-16"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1427#issuecomment-6940191777",
+          "retrievedAt": "2026-11-16"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1426",
+          "retrievedAt": "2026-11-16"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-11-16",
+        "issueId": 134101,
+        "label": "Avengers: Armageddon (2026) #5",
+        "url": "https://www.marvel.com/comics/issue/134101",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/1427#issuecomment-6940191777"
+      },
+      "evidenceDigest": "1014301462e541a3504b614c261312726b974e044c3e3530e26ce31678aa6487"
+    },
+    {
+      "sourcePosition": 23,
+      "previousSourceIssueReference": "Captain America (2025) #16",
+      "previousSourceRangeReference": "Main Event",
+      "previousNormalizedSeriesTitle": "Captain America",
+      "previousSeriesYear": 2025,
+      "previousIssueNumber": "16",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 135945,
+      "resolvedNormalizedSeriesTitle": "captain america",
+      "resolvedSeriesYear": 2025,
+      "resolvedIssueNumber": "16",
+      "checkedAt": "2026-11-06",
+      "auditBasis": "Owner-confirmed identity for Captain America (2025) #16, recorded by raymond-nassar on 2026-11-06. The configured metadata provider returned HTTP 404 on 2026-11-06; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/135945",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832",
+          "retrievedAt": "2026-11-06"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1145",
+          "retrievedAt": "2026-11-06"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-11-06",
+        "issueId": 135945,
+        "label": "Captain America (2025) #16",
+        "url": "https://www.marvel.com/comics/issue/135945/captain_america_2025_16",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832"
+      },
+      "evidenceDigest": "9debd4a927a14f206273fa405e29375e7a117cdb9fd855923b0732bcb54c6f5a"
+    },
+    {
+      "sourcePosition": 24,
+      "previousSourceIssueReference": "Avengers (2026) #1",
+      "previousSourceRangeReference": "Main Event",
+      "previousNormalizedSeriesTitle": "Avengers",
+      "previousSeriesYear": 2026,
+      "previousIssueNumber": "1",
+      "resolutionKind": "owner-confirmed-identity",
+      "selectedIssueId": 130523,
+      "resolvedNormalizedSeriesTitle": "avengers",
+      "resolvedSeriesYear": 2026,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-11-16",
+      "auditBasis": "Owner-confirmed identity for Avengers (2026) #1, recorded by raymond-nassar on 2026-11-16. The configured metadata provider returned HTTP 404 on 2026-11-16; no provider metadata or reading availability is inferred.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider-404",
+          "url": "https://marvel.emreparker.com/v1/issues/130523",
+          "retrievedAt": "2026-11-16"
+        },
+        {
+          "kind": "owner-confirmation",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1427#issuecomment-6940191777",
+          "retrievedAt": "2026-11-16"
+        },
+        {
+          "kind": "repository-gap-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1426",
+          "retrievedAt": "2026-11-16"
+        }
+      ],
+      "identityEvidence": {
+        "kind": "owner-confirmed-identity",
+        "confirmingActor": "raymond-nassar",
+        "confirmedAt": "2026-11-16",
+        "issueId": 130523,
+        "label": "Avengers (2026) #1",
+        "url": "https://www.marvel.com/comics/issue/130523",
+        "confirmationSource": "https://github.com/raymond-nassar/recap-page/issues/1427#issuecomment-6940191777"
+      },
+      "evidenceDigest": "9d00917062f9662c85985318ec30e9e0fba322bddc55e80c81c2e0c2a0625cb7"
+    }
+  ]
+}

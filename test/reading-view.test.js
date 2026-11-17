@@ -17,7 +17,7 @@ import {
 } from '../src/js/lib/model.js';
 import { Store, KEY } from '../src/js/storage.js';
 import { DEFAULT_FILTER, READING_FILTERS } from '../src/js/lib/readingFilters.js';
-import { createCatalogPresentation } from '../src/js/views/shared/catalog-presentation.js';
+import { createCatalogPresentation, PROJECT_HOME } from '../src/js/views/shared/catalog-presentation.js';
 import {
   createReadingView,
   commitRows,
@@ -321,6 +321,7 @@ function harness(overrides = {}) {
     orderDesc: node({ id: 'order-desc', open: true }),
     orderDescText: node({ id: 'order-desc-text' }),
     orderSource: node({ id: 'order-source' }),
+    orderVisit: node({ id: 'order-visit', hidden: true }),
     listNote: node({ id: 'list-note' }),
     similarHint: node({ id: 'list-similar-hint' }),
     ringArc: node({ id: 'ring-arc' }),
@@ -425,6 +426,7 @@ function harness(overrides = {}) {
     ['#order-desc', nodes.orderDesc],
     ['#order-desc-text', nodes.orderDescText],
     ['#order-source', nodes.orderSource],
+    ['#order-visit', nodes.orderVisit],
     ['#list-note', nodes.listNote],
     ['#list-similar-hint', nodes.similarHint],
     ['#ring-arc', nodes.ringArc],
@@ -469,7 +471,7 @@ function harness(overrides = {}) {
   nodes.orderDescSummary = node({ tag: 'summary', text: 'About this order' });
   nodes.orderDesc.append(nodes.orderDescSummary, nodes.orderDescText);
   nodes.ringWrap.append(nodes.ringLabel, nodes.ringSub);
-  nodes.headingLeft = node({ class: 'head-left' }, [nodes.orderName, nodes.orderSub, nodes.orderDesc]);
+  nodes.headingLeft = node({ class: 'head-left' }, [nodes.orderName, nodes.orderSub, nodes.orderVisit, nodes.orderDesc]);
   nodes.headingRight = node({ class: 'headright' }, [nodes.ringWrap]);
   nodes.heading = node({ class: 'head' }, [nodes.headingLeft, nodes.headingRight]);
   nodes.readingOverview = node({ id: 'reading-overview' });
@@ -519,6 +521,7 @@ function harness(overrides = {}) {
     askNote: overrides.askNote ?? (async () => null),
     askText: overrides.askText ?? (async () => null),
     clearNotice: (key) => { calls.clearNotice.push(key); notices.delete(key); },
+    createIcon: (name, className) => element('svg', { className, dataset: { icon: name } }),
     detailUrl: (item) => item.url ?? `https://example.test/${item.issueId}`,
     el: element,
     fact: (key, value, className) => ({ key, value, className }),
@@ -714,6 +717,7 @@ test('About resolves exact catalog identity for source-only lists without changi
     h.view.render();
     assert.equal(h.nodes.orderDesc.hidden, false);
     assert.match(h.nodes.orderSource.childNodes[0].textContent, /Loading source credit/);
+    assert.equal(h.nodes.orderVisit.hidden, true, 'no button claims a site before the entry arrives');
     h.nodes.orderDesc.open = false;
     resolve({ lists: [
       { id: 'wrong', name: 'List A', source: 'https://wrong.test/' },
@@ -723,11 +727,15 @@ test('About resolves exact catalog identity for source-only lists without changi
     assert.equal(h.nodes.orderDesc.hidden, false);
     assert.equal(h.nodes.orderDesc.open, false, 'async completion preserves collapse');
     assert.equal(h.nodes.orderSource.childNodes[0].textContent, 'Full credit');
-    assert.equal(h.nodes.orderSource.querySelector('a').href, 'https://comicbookherald.com/guide/');
+    assert.equal(h.nodes.orderSource.querySelector('a'), null, 'the visit button left About');
+    assert.equal(h.nodes.orderVisit.hidden, false, 'a closed About still shows the way to the source');
+    assert.equal(h.nodes.orderVisit.querySelector('a').href, 'https://comicbookherald.com/guide/');
+    assert.equal(heldText(h.nodes.orderVisit.querySelector('a')), 'Visit Comic Book Herald');
     assert.equal(JSON.stringify(h.state()), before);
     h.setActive('list-b');
     h.view.render();
     assert.equal(h.nodes.orderSource.childNodes.length, 1, 'old source clears immediately');
+    assert.equal(h.nodes.orderVisit.hidden, true, 'old button clears immediately');
     resolve({ lists: [] });
     await new Promise(setImmediate);
     assert.equal(h.nodes.orderSource.childNodes.length, 0);
@@ -786,10 +794,11 @@ test('source retry is latched, remains actionable after failure and settles keyb
     await new Promise(setImmediate);
     assert.equal(h.nodes.orderSource.childNodes[1], retry);
     assert.equal(retry.getAttribute('aria-disabled'), undefined);
+    assert.equal(h.nodes.orderVisit.hidden, true, 'a failed source shows no button beside its Retry');
     retry.fire('click');
     pending[2].resolve({ lists: [{ id: 'cat-a', name: 'Source list', source: 'https://example.org/guide/' }] });
     await new Promise(setImmediate);
-    assert.equal(globalThis.document.activeElement, h.nodes.orderSource.querySelector('a'));
+    assert.equal(globalThis.document.activeElement, h.nodes.orderVisit.querySelector('a'));
     assert.equal(globalThis.document.activeElement.href, 'https://example.org/guide/');
     h.view.enterAbout();
     h.nodes.orderName.focus();
@@ -819,8 +828,44 @@ test('stale source results and failures cannot paint or focus a different list; 
       assert.equal(h.nodes.orderSource.childNodes.length, 0);
       assert.equal(h.nodes.orderDesc.hidden, true);
       assert.equal(globalThis.document.activeElement, h.nodes.orderName);
+      assert.equal(h.nodes.orderVisit.querySelector('a').href, PROJECT_HOME, 'a stale source never replaces the home button');
     } finally { h.restore(); }
   }
+});
+
+test('lists without an outside website link the project home page without claiming it as their source', async () => {
+  const state = seededState();
+  state.lists['list-b'].catalogId = null;
+  const catalog = { lists: [{ id: 'cat-a', name: 'Owner pick', source: 'https://github.com/raymond-nassar/recap-page/issues/1' }] };
+  const shared = createCatalogPresentation({ el: element });
+  const h = harness({ state, loadCatalog: async () => catalog, listAttribution: shared.attributionLine });
+  try {
+    const home = () => {
+      assert.equal(h.nodes.orderVisit.hidden, false);
+      const link = h.nodes.orderVisit.querySelector('a');
+      assert.equal(link.href, PROJECT_HOME);
+      assert.equal(heldText(link), 'Visit the Recap Page website');
+      assert.equal(link.getAttribute('aria-label'), 'Visit the Recap Page website (opens in your browser)');
+      assert.equal(link.target, '_blank');
+      assert.equal(link.rel, 'noopener noreferrer');
+    };
+    h.view.render();
+    await new Promise(setImmediate);
+    home();
+    catalog.lists = [];
+    h.setActive('list-b');
+    h.view.render();
+    home();
+    h.setActive('list-a');
+    h.view.render();
+    await new Promise(setImmediate);
+    home();
+  } finally { h.restore(); }
+  const offline = harness({ state: seededState() });
+  try {
+    offline.view.render();
+    assert.equal(offline.nodes.orderVisit.querySelector('a').href, PROJECT_HOME, 'no catalog loader still links somewhere');
+  } finally { offline.restore(); }
 });
 
 function heldText(entry) {
@@ -836,11 +881,11 @@ test('phone reading context follows the comic and returns to the heading without
     h.view.wire();
     h.view.render();
     assert.deepEqual(h.nodes.readingOverview.childNodes.map((entry) => entry.id),
-      ['order-sub', 'ring-wrap', 'hero-progress', 'order-desc', 'list-note', 'list-similar-hint']);
+      ['order-sub', 'order-visit', 'ring-wrap', 'hero-progress', 'order-desc', 'list-note', 'list-similar-hint']);
 
     h.nodes.orderDescSummary.focus();
     h.setPhone(false);
-    assert.deepEqual(h.nodes.headingLeft.childNodes.map((entry) => entry.id), ['order-name', 'order-sub', 'order-desc']);
+    assert.deepEqual(h.nodes.headingLeft.childNodes.map((entry) => entry.id), ['order-name', 'order-sub', 'order-visit', 'order-desc']);
     assert.deepEqual(h.nodes.headingRight.childNodes.map((entry) => entry.id), ['ring-wrap']);
     assert.equal(h.nodes.heroProgress.parentNode, h.nodes.heroBody);
     assert.ok(h.nodes.readingBody.childNodes.indexOf(h.nodes.listNote) < h.nodes.readingBody.childNodes.indexOf(h.nodes.hero));

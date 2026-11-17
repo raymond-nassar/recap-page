@@ -25,7 +25,9 @@ import {
   assertCbhBaselinePayload, cbhBaselineContractRows, preserveCbhBaselinePlaceholders, updatedCbhBaselineChecklist,
 } from './owner-cbh-baseline.mjs';
 import { beforeMcuEditorialEntry, mcuEditorial } from './mcu-editorial.mjs';
-import { OWNER_EXTERNAL_SUPPLEMENT_KIND } from './owner-external-supplement.mjs';
+import { OWNER_EXTERNAL_SUPPLEMENT_KIND, supplementItemKind } from './owner-external-supplement.mjs';
+import { OWNER_GCD_SUPPLEMENT } from '../../src/js/lib/model.js';
+import { gcdDetailsCreditMarkdown } from '../../src/js/views/shared/details-credit.js';
 
 const ROOT = fileURLToPath(new URL('../..', import.meta.url));
 export const OWNER_PROVIDER = Object.freeze({
@@ -472,12 +474,18 @@ export function ownerApprovalRequest(proposal) {
   };
 }
 
-// Owner-confirmed rows split by whether the owner approved outside details for them, so a notice
-// never says "no cover" about a comic that has one.
+// Owner-confirmed rows split by whether the owner approved outside details for them, and from which
+// source, so a notice never says "no cover" about a comic that has one and every Grand Comics
+// Database detail carries its credit.
 function ownerConfirmedCounts(mapping) {
   const confirmed = mapping.rows.filter((row) => row.identityEvidenceKind === 'owner-confirmed-identity');
-  const supplementedCount = confirmed.filter((row) => Object.hasOwn(row, 'externalMetadataSupplement')).length;
-  return { plainCount: confirmed.length - supplementedCount, supplementedCount };
+  const supplemented = confirmed.filter((row) => Object.hasOwn(row, 'externalMetadataSupplement'));
+  const gcdCount = supplemented.filter((row) => supplementItemKind(row) === OWNER_GCD_SUPPLEMENT).length;
+  return {
+    plainCount: confirmed.length - supplemented.length,
+    supplementedCount: supplemented.length - gcdCount,
+    gcdCount,
+  };
 }
 
 function supplementedNotice(count) {
@@ -485,7 +493,7 @@ function supplementedNotice(count) {
 }
 
 export function ownerChecklist(source, mapping) {
-  const { plainCount: confirmedCount, supplementedCount } = ownerConfirmedCounts(mapping);
+  const { plainCount: confirmedCount, supplementedCount, gcdCount } = ownerConfirmedCounts(mapping);
   const openGapCount = mapping.sourceGaps?.length ?? 0;
   const sourceCredit = source.sourceCredit ?? OWNER_PROVIDER.sourceOrigin;
   const lines = [
@@ -496,6 +504,7 @@ export function ownerChecklist(source, mapping) {
       `${confirmedCount} owner-confirmed identities have no provider details or cover.`,
     ] : []),
     ...(supplementedCount ? [supplementedNotice(supplementedCount)] : []),
+    ...(gcdCount ? [gcdDetailsCreditMarkdown()] : []),
     ...(openGapCount ? [
       `${openGapCount} unresolved originals remain explicit in the factual source and linked gap Issues.`,
     ] : []),
@@ -536,9 +545,9 @@ export function ownerGuideDisplayGroups(markdown, mapping) {
 export function updatedOwnerChecklist(existingMarkdown, source, previousMapping, mapping) {
   let lines = existingMarkdown.replace(/\r\n/g, '\n').split('\n');
   const displayGroupBySourceRange = ownerGuideDisplayGroups(existingMarkdown, previousMapping);
-  const { plainCount: confirmedCount, supplementedCount } = ownerConfirmedCounts(mapping);
+  const { plainCount: confirmedCount, supplementedCount, gcdCount } = ownerConfirmedCounts(mapping);
   const openGapCount = mapping.sourceGaps?.length ?? 0;
-  const obsoleteNotice = /(?:supplied positions lack exact provider metadata|supplied identities in this section remain metadata gaps|missing originals remain explicit in the factual source and its linked gap issues|owner-confirmed identities have no provider details or cover|unresolved originals remain explicit in the factual source|owner-confirmed (?:identity has|identities have) a cover and credits from marvel\.com)/i;
+  const obsoleteNotice = /(?:supplied positions lack exact provider metadata|supplied identities in this section remain metadata gaps|missing originals remain explicit in the factual source and its linked gap issues|owner-confirmed identities have no provider details or cover|unresolved originals remain explicit in the factual source|owner-confirmed (?:identity has|identities have) a cover and credits from marvel\.com|^Some release dates and credits in this list come from the \[Grand Comics Database\])/i;
   lines = lines.filter((line) => !obsoleteNotice.test(line));
 
   const notices = [
@@ -546,6 +555,7 @@ export function updatedOwnerChecklist(existingMarkdown, source, previousMapping,
       `${confirmedCount} owner-confirmed ${confirmedCount === 1 ? 'identity has' : 'identities have'} no provider details or cover.`,
     ] : []),
     ...(supplementedCount ? [supplementedNotice(supplementedCount)] : []),
+    ...(gcdCount ? [gcdDetailsCreditMarkdown()] : []),
     ...(openGapCount ? [
       `${openGapCount} unresolved source positions remain explicit in the factual source${source.gapIssueUrl
         ? ` and the [assigned gap issue](${source.gapIssueUrl})` : ''}.`,
@@ -1523,11 +1533,13 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
     else if (item.identityEvidenceKind === 'owner-confirmed-identity'
       && !item.seriesId && !item.digitalId) {
       counts.ownerConfirmed += 1;
-      if (item.metadataSourceKind === OWNER_EXTERNAL_SUPPLEMENT_KIND) counts.ownerSupplemented += 1;
+      if (item.metadataSourceKind === OWNER_EXTERNAL_SUPPLEMENT_KIND
+        || item.metadataSourceKind === OWNER_GCD_SUPPLEMENT) counts.ownerSupplemented += 1;
+      if (item.metadataSourceKind === OWNER_GCD_SUPPLEMENT) counts.ownerGcdSupplemented += 1;
     } else if (!item.seriesId && !item.digitalId) counts.empty += 1;
     return counts;
   }, {
-    placeholders: 0, empty: 0, ownerConfirmed: 0, ownerSupplemented: 0,
+    placeholders: 0, empty: 0, ownerConfirmed: 0, ownerSupplemented: 0, ownerGcdSupplemented: 0,
   });
   const catalogEntry = catalog.lists.find((entry) => entry.id === request.id);
   assert.ok(catalogEntry, 'Registered owner guide is missing from the catalog.');
@@ -1537,6 +1549,7 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
       if (entry.id !== request.id) return entry;
       const rest = { ...entry };
       delete rest.ownerSupplementedCount;
+      delete rest.ownerGcdSupplementedCount;
       return {
         ...rest,
         ...(Object.hasOwn(request, 'description') ? { description: request.description } : {}),
@@ -1547,6 +1560,7 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
           ? { ownerConfirmedIdentityCount: gaps.ownerConfirmed }
           : { ownerConfirmedIdentityCount: 0 }),
         ...(gaps.ownerSupplemented ? { ownerSupplementedCount: gaps.ownerSupplemented } : {}),
+        ...(gaps.ownerGcdSupplemented ? { ownerGcdSupplementedCount: gaps.ownerGcdSupplemented } : {}),
         collections: nextPayload.collections,
         updatedAt: request.generatedAt,
       };

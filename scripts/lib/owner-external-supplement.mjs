@@ -6,19 +6,27 @@
 // rows blank forever: the cover image address from the comic's own marvel.com issue page, and the
 // release date, page count and credits from a pinned revision of its Marvel Fandom wiki page.
 //
+// The owner approved a third source on 2026-11-16 for comics too new for the wiki: the Grand Comics
+// Database, for the release date and credits only, never a cover or prose. Its data is CC BY-SA 4.0,
+// so a `gcd-issue` source must name a record in the separately licensed record file, and the fields
+// it supplies must equal what that record derives (see gcd-issue-records.mjs). The two outside
+// detail sources never mix in one supplement, so each comic's details carry exactly one licence.
+//
 // Everything here is a closed shape on purpose. The fields that decide availability or launch,
 // `mu` and `digitalId`, can never arrive this way (constraints 6 and 7), and neither can
 // `seriesId`, so the app still reads the comic as one with no provider metadata. A cover is an
 // address on the pinned CDN only, never image bytes (constraint 1).
 import assert from 'node:assert/strict';
-import { normalizeCover, OWNER_EXTERNAL_SUPPLEMENT } from '../../src/js/lib/model.js';
+import { normalizeCover, OWNER_EXTERNAL_SUPPLEMENT, OWNER_GCD_SUPPLEMENT } from '../../src/js/lib/model.js';
 import { allowedCoverUrl } from '../../src/js/lib/coverHost.js';
+import { GCD_ISSUE_URL, gcdSupplementFields } from './gcd-issue-records.mjs';
 
 export const OWNER_EXTERNAL_SUPPLEMENT_KIND = OWNER_EXTERNAL_SUPPLEMENT;
 export const SUPPLEMENT_FIELDS = Object.freeze(['cover', 'onSale', 'pageCount', 'creators']);
 const SOURCE_FIELDS = Object.freeze({
   'marvel-issue-page': Object.freeze(['cover']),
   'marvel-fandom-wiki': Object.freeze(['onSale', 'pageCount', 'creators']),
+  'gcd-issue': Object.freeze(['onSale', 'creators']),
 });
 const SUPPLEMENT_KEYS = ['kind', 'approvedBy', 'approvedAt', 'retrievedAt', 'fields', 'sources'];
 const FANDOM_REVISION = /^https:\/\/marvel\.fandom\.com\/wiki\/[A-Za-z0-9_%().'-]+\?oldid=[1-9]\d*$/;
@@ -85,6 +93,8 @@ export function validateOwnerExternalSupplement(row, label = `Source position ${
     assert.ok(allowed, `${label}: unknown supplement source kind ${source.kind}.`);
     if (source.kind === 'marvel-issue-page') {
       assert.equal(source.url, row.marvelIssueUrl, `${label}: the cover source must be the comic's own marvel.com issue page.`);
+    } else if (source.kind === 'gcd-issue') {
+      assert.match(source.url ?? '', GCD_ISSUE_URL, `${label}: a Grand Comics Database source must name one issue page.`);
     } else {
       assert.match(source.url ?? '', FANDOM_REVISION, `${label}: a wiki source must name one pinned page revision.`);
     }
@@ -95,7 +105,28 @@ export function validateOwnerExternalSupplement(row, label = `Source position ${
   }
   assert.deepEqual([...covered].sort(), [...present].sort(),
     `${label}: every supplemented field needs exactly one recorded source.`);
+  const kinds = new Set(supplement.sources.map((source) => source.kind));
+  assert.ok(!(kinds.has('gcd-issue') && kinds.has('marvel-fandom-wiki')),
+    `${label}: a supplement takes details from one outside source, not both.`);
+  // One pinned record per comic. A second gcd-issue source would otherwise pass unchecked, since
+  // its address need only look like an issue page, and could carry invented credits.
+  const gcdSources = supplement.sources.filter((source) => source.kind === 'gcd-issue');
+  assert.ok(gcdSources.length <= 1, `${label}: a supplement takes one Grand Comics Database issue record.`);
+  for (const gcd of gcdSources) {
+    const derived = gcdSupplementFields(gcd.url, supplement.retrievedAt);
+    for (const field of gcd.fields) {
+      assert.deepEqual(fields[field], derived[field],
+        `${label}: supplement ${field} must equal the pinned Grand Comics Database record.`);
+    }
+  }
   return supplement;
+}
+
+// Which outside source supplied a supplemented row's details, as the closed item kind the app
+// reads, so a payload item can say which licence its details carry.
+export function supplementItemKind(row) {
+  const { sources } = validateOwnerExternalSupplement(row);
+  return sources.some((source) => source.kind === 'gcd-issue') ? OWNER_GCD_SUPPLEMENT : OWNER_EXTERNAL_SUPPLEMENT;
 }
 
 // The item fields a vendored payload carries for a supplemented row, in the payload's own shape.
@@ -106,5 +137,6 @@ export function supplementItemFields(row) {
     cover: fields.cover ?? null,
     pageCount: fields.pageCount ?? null,
     creators: fields.creators ?? [],
+    metadataSourceKind: supplementItemKind(row),
   };
 }

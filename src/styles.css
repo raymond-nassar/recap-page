@@ -873,6 +873,7 @@ main { min-width: 0; }
 /* The order's blurb sits under the title, so it needs the header's own left edge rather than the
    inset a settings card gives it. */
 .order-desc { margin-top: var(--space-4); }
+.list-visit { margin-top: var(--space-4); }
 .save-education { max-width: 72ch; margin-top: var(--space-6); }
 .save-education .rail-hint { margin: 0 0 var(--space-5); }
 
@@ -2593,7 +2594,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 @media (max-width: 700px) {
   #reading-overview { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-4); margin: var(--space-7) 0; }
   #reading-overview #order-sub { color: var(--muted); font-size: var(--t-body); max-width: 62ch; }
-  #reading-overview :is(#hero-progress, #order-desc, #list-note) { margin: 0; }
+  #reading-overview :is(#hero-progress, #order-visit, #order-desc, #list-note) { margin: 0; }
   #reading-overview #hero-progress { width: 100%; }
   #hero .hero-in { display: flow-root; padding: var(--space-6); }
   /* The reserve leaves room for the title and both commands above the bottom bar. The list context
@@ -3116,7 +3117,15 @@ select, input[type="search"], input[type="text"], input[type="url"] {
 #view-home > .head, #view-home > .notice, #view-home > #home-continue, #view-home > #app-window-invitation, #view-home > #startup-consent, #view-home > #app-report:not(:empty) { margin-bottom: var(--space-4); }
 :is(#app-window-invitation, #startup-consent) p { margin: 0 0 var(--space-5); }
 
-.btn.list-source-link { border-radius: var(--radius-pill); max-width: 100%; overflow-wrap: anywhere; }
+/* The owner asked for the Visit button to stand out as the way to another website. It takes the link
+   blue, so it reads as a link rather than as an action, and stays a tint and an outline rather than a
+   fill so the purple Read button remains the strongest thing on the screen. */
+.btn:is(.list-source-link, .list-home-link) {
+  border-radius: var(--radius-pill); max-width: 100%; overflow-wrap: anywhere;
+  color: var(--blue); border-color: var(--blue); background: color-mix(in srgb, var(--blue) 12%, transparent);
+}
+.btn:is(.list-source-link, .list-home-link):hover { background: color-mix(in srgb, var(--blue) 18%, transparent); filter: none; }
+.list-visit-glyph { width: 1em; flex: none; }
 
 /* An inset edge adds held-input feedback without moving a target or replacing its focus ring.
    Keep native tap highlights and selection. */
