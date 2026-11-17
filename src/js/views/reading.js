@@ -18,7 +18,7 @@ import {
   upNext,
   coverUrl,
   isDeferred, setDeferred, queuedIssueIds, listReadingProgress,
-  OWNER_EXTERNAL_SUPPLEMENT,
+  OWNER_EXTERNAL_SUPPLEMENT, OWNER_GCD_SUPPLEMENT,
 } from '../lib/model.js';
 import { availability, describe, localDayString, RECORD_HEADING, RECORD_NOTE, STATE } from '../lib/availability.js';
 import { readerAction, readerContext } from '../lib/readerDestination.js';
@@ -35,6 +35,7 @@ import { uiIcon } from '../lib/uiIcon.js';
 import { editionRelations } from '../lib/collectedEditions.js';
 import { positionProviders } from '../lib/libraryLinks.js';
 import { collectedEditionCredit, collectedEditionLabels } from './shared/collected-editions.js';
+import { gcdDetailsCredit, hasGcdDetails } from './shared/details-credit.js';
 
 export const RING_CIRCUMFERENCE = 119.4; // 2πr for r=19, matching the SVG in index.html
 const UNDO_DELETE = 'undo-delete';
@@ -57,6 +58,7 @@ export function rowCacheKey(item, currentId, today, covers) {
 export function detailsState(item) {
   if (item?.hydrated) return null;
   if (item?.detailsRefused && item?.identityEvidenceKind === 'owner-confirmed-identity') {
+    if (item.metadataSourceKind === OWNER_GCD_SUPPLEMENT) return 'owner-gcd-supplemented';
     return item.metadataSourceKind === OWNER_EXTERNAL_SUPPLEMENT ? 'owner-supplemented' : 'owner-confirmed';
   }
   if (item?.detailsRefused) return 'norecord';
@@ -64,16 +66,22 @@ export function detailsState(item) {
   return null;
 }
 
+// The three hand-checked states share their visible text, because the identity evidence is the
+// same; only the hint differs, so it never tells a reader looking at a cover that there is none,
+// and it names where the details came from. Plain wording approved by the owner on 2026-11-16,
+// recorded on #1427.
 export const DETAILS_BADGE = {
   'owner-confirmed': {
-    text: 'identity confirmed',
-    hint: 'The owner confirmed this comic identity. The metadata snapshot has no provider details or cover.',
+    text: 'checked by hand',
+    hint: "This comic was checked by hand. The app's usual comic listings don't include it yet, so it has no cover or details.",
   },
-  // Same visible text as an unsupplemented confirmation, because the identity evidence is the
-  // same; only the hint differs, so it never tells a reader looking at a cover that there is none.
   'owner-supplemented': {
-    text: 'identity confirmed',
-    hint: 'The owner confirmed this comic identity. Its cover and credits come from marvel.com and the Marvel Fandom wiki, not the metadata provider.',
+    text: 'checked by hand',
+    hint: "This comic was checked by hand. The app's usual comic listings don't include it yet, so its cover comes from marvel.com and its release date and credits from the Marvel Fandom wiki.",
+  },
+  'owner-gcd-supplemented': {
+    text: 'checked by hand',
+    hint: "This comic was checked by hand. The app's usual comic listings don't include it yet, so its cover comes from marvel.com and its release date and credits from the Grand Comics Database, shared under a Creative Commons license.",
   },
   norecord: {
     text: 'no details held',
@@ -100,7 +108,7 @@ export function synopsisFallback(issue, sessionEntry = null, noSynopsisMarker = 
   }
   if (!issue?.hydrated && issue?.detailsRefused) {
     const state = detailsState(issue);
-    if (state === 'owner-confirmed' || state === 'owner-supplemented') return DETAILS_BADGE[state].hint;
+    if (state?.startsWith('owner-')) return DETAILS_BADGE[state].hint;
     return DETAILS_BADGE.norecord.hint;
   }
   return 'Story summary has not been loaded.';
@@ -868,6 +876,12 @@ export function createReadingView({
           rowCache.set('edition-credit', { node: el('li', { class: 'edition-attribution' }, [collectedEditionCredit(el)]) });
         }
         desired.push(rowCache.get('edition-credit').node);
+      }
+      if (hasGcdDetails(items)) {
+        if (!rowCache.has('gcd-credit')) {
+          rowCache.set('gcd-credit', { node: el('li', { class: 'edition-attribution' }, [gcdDetailsCredit(el)]) });
+        }
+        desired.push(rowCache.get('gcd-credit').node);
       }
       const hiddenGaps = linksOnly ? all.filter((item) => !linked.has(item.issueId)).length : 0;
       linksHidden = hiddenGaps;

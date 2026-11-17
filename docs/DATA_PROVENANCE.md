@@ -1064,9 +1064,9 @@ app encounters that state rather than hypothetically. At removal, 606 carried a 
 id and 69 held neither. Neither metadata shape proves that a synopsis request has completed.
 The interface now distinguishes a summary that has not been loaded from a completed request with
 no synopsis and from prose held only in memory after explicit consent. The shared presentation
-reaches the interface in the reading hero at `src/js/views/reading.js:703` and the issue-details view at
+reaches the interface in the reading hero at `src/js/views/reading.js:711` and the issue-details view at
 `src/js/views/issue.js:105`. The function behind both already answers for the absence at
-`src/js/views/reading.js:95-106`, with a test asserting the sentence it returns. It is also reversible:
+`src/js/views/reading.js:103-114`, with a test asserting the sentence it returns. It is also reversible:
 the project this repository fetched from still serves the field,
 the contract check having run on 2026-08-15 with 33 of 33 assumptions holding, so the vendoring
 script can fetch it again if a review comes back permissive.
@@ -3076,9 +3076,9 @@ supplies the confirming actor, exact issue IDs, labels and URLs, and the separat
 Issue #6 is the same identity One World Under Doom already confirms, so the two lists share it.
 
 The owner-guide contract requires a positive ID, exact matching owner-supplied Marvel URL, named
-confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:849-871`).
+confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:859-881`).
 The vendor excludes these entries from metadata lookup and creates no provider projection
-(`scripts/vendor-orders.mjs:499-503`, `scripts/vendor-orders.mjs:569-570`, `scripts/vendor-orders.mjs:614-615`).
+(`scripts/vendor-orders.mjs:507-511`, `scripts/vendor-orders.mjs:577-578`, `scripts/vendor-orders.mjs:622-623`).
 Unless a row carries the external supplement described below, the published rows carry only their
 confirmed identity, issue ID, URL and refusal state; optional provider details and covers remain
 empty. The ten One World Under Doom rows are of that kind. No comic image bytes are stored and no
@@ -3106,8 +3106,10 @@ Each supplemented mapping row records an `externalMetadataSupplement` with the a
 approval and retrieval dates, the supplied `fields` and one `sources` entry per field. The validator
 accepts it only on an owner-confirmed row, only for cover, on-sale date, page count and credits, only
 when it carries both a cover and credits, only when every field names exactly one allowed source, only when the cover source is the row's own Marvel
-URL and the wiki source is a pinned revision, and only when the cover is on the pinned host
-(`scripts/lib/owner-external-supplement.mjs:39-99`). The inventory refuses a supplement anywhere
+URL and the wiki source is a pinned revision, and only when the cover is on the pinned host. A
+Grand Comics Database source, approved on 2026-11-16 and described below, may supply only the
+on-sale date and credits, never alongside a wiki source, and only values equal to its pinned record
+(`scripts/lib/owner-external-supplement.mjs:47-120`). The inventory refuses a supplement anywhere
 else (`scripts/lib/cbh-inventory.mjs:1196-1202`).
 
 The vendored item copies exactly those fields and adds `metadataSourceKind:
@@ -3120,11 +3122,11 @@ shape (`test/helpers/owner-delivery-contract.mjs:114-142`).
 
 The app carries only the optional `identityEvidenceKind` marker in the existing normalized issue
 record so the reading view can distinguish an owner-confirmed identity from an ordinary missing
-provider record after import and reload (`src/js/lib/model.js:243-252`,
-`src/js/views/reading.js:59-61`, `src/js/views/reading.js:68-77`). It keeps `metadataSourceKind` the
-same way, only as the closed value and only beside an owner-confirmed identity, so a supplemented
-comic's badge hint, gap sentence and catalog label credit marvel.com and the Marvel Fandom wiki
-instead of claiming it has no cover. The actor, date, URL and confirmation
+provider record after import and reload (`src/js/lib/model.js:270-279`,
+`src/js/views/reading.js:60-63`, `src/js/views/reading.js:74-85`). It keeps `metadataSourceKind` the
+same way, only as one of the closed values and only beside an owner-confirmed identity, so a
+supplemented comic's badge hint, gap sentence and catalog label credit marvel.com and whichever
+outside source supplied its details instead of claiming it has no cover. The actor, date, URL and confirmation
 comment stay in the repository evidence. These additive markers do not change saved-data version 4;
 existing saves need no migration, and older builds may discard the markers without changing reading
 progress or issue identity.

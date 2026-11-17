@@ -6181,7 +6181,7 @@ const SCENARIOS = [
         && timeline.doom.description.startsWith('Doctor Doom brings one world under his rule in 2025')
         && timeline.doom.meta.startsWith('85 comics')
         && timeline.doom.meta.includes(
-          '10 comics have owner-confirmed identities but no provider details or covers',
+          '10 comics checked by hand, with no covers or details yet',
         )
         && timeline.cardYears.at(-1) === 2026
         && timeline.chapterCards === 78
@@ -6234,10 +6234,10 @@ const SCENARIOS = [
         description: document.querySelector('#preview-desc')?.textContent ?? '',
         issues: document.querySelectorAll('#preview .preview-issue-link').length,
       }));
-      t.check('Doom Preview shows all 85 issues, owner-confirmed identities and both reviewed source annotations',
+      t.check('Doom Preview shows all 85 issues, its hand-checked comics and both reviewed source annotations',
         doomPreview.meta.includes('85 comics')
         && doomPreview.meta.includes(
-          '10 comics have owner-confirmed identities but no provider details or covers',
+          '10 comics checked by hand, with no covers or details yet',
         )
         && doomPreview.description.includes(
           'Doctor Strange of Asgard (2025) #1-5 is an optional tie-in.',
