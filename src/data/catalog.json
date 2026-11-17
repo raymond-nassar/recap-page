@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-14T22:52:01.662Z",
+  "generatedAt": "2026-11-17T04:57:08.071Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -298,10 +298,10 @@
         "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/5cb736a3cdd49",
         "ext": "jpg"
       },
-      "source": "https://github.com/emreparker/marvel-comics/blob/main/data/hickman_full.md",
-      "sourceOrigin": "Vendored from emreparker/marvel-comics",
+      "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/secret-wars-reading-order/#secretwars6",
+      "sourceOrigin": "Issue set vendored from emreparker/marvel-comics; Avengers and New Avengers order from Comic Book Herald's Secret Wars guide",
       "sourceLicense": null,
-      "updatedAt": "2026-08-04T06:14:48.703Z"
+      "updatedAt": "2026-11-17T04:57:08.071Z"
     },
     {
       "id": "minimum-carnage",
@@ -14935,6 +14935,63 @@
       "sourceOrigin": "Selected by the project owner",
       "sourceLicense": null,
       "updatedAt": "2026-10-10T01:15:39.703Z"
+    },
+    {
+      "id": "nightcrawler-best-of",
+      "file": "nightcrawler_best_of.json",
+      "name": "Best Nightcrawler Comics Reading List",
+      "description": "Kurt Wagner teleports into the X-Men in 1975 and these picks follow him from Claremont's X-Men to leading Excalibur, his solo series, Amazing X-Men and a stint as Uncanny Spider-Man. Four standalone favorites close the list. 4 comics from the source order aren't in the app's comic data yet, so they don't appear among this order's issues.",
+      "type": "character-run",
+      "depth": "selected",
+      "spotlightKind": "best-of",
+      "storyTypes": [
+        "science-fiction",
+        "magic-supernatural"
+      ],
+      "writers": [
+        "Chris Claremont"
+      ],
+      "contains": [
+        "phoenix-saga",
+        "dark-phoenix-saga",
+        "days-of-future-past",
+        "marvel-knights-to-planet-x-08",
+        "marvel-knights-to-planet-x-22",
+        "marvel-knights-to-planet-x-30"
+      ],
+      "count": 187,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 10,
+      "characters": [
+        "Nightcrawler",
+        "X-Men",
+        "Excalibur",
+        "Kitty Pryde",
+        "Captain Britain",
+        "Spider-Man"
+      ],
+      "keywords": [
+        "Kurt Wagner",
+        "Excalibur",
+        "Amazing X-Men",
+        "Uncanny Spider-Man",
+        "Dark Phoenix Saga"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1975,
+      "coverIssueId": 8797,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/5b314996e924c",
+        "ext": "jpg"
+      },
+      "source": "https://www.reddit.com/r/marvelcomics/s/hHJ4rVgM9v",
+      "sourceOrigin": "Selected by Proxy616 on r/marvelcomics; expanded into original issues for this project",
+      "sourceLicense": null,
+      "updatedAt": "2026-11-17T04:17:43.354Z"
     },
     {
       "id": "miles-morales-spider-man-reading-order",

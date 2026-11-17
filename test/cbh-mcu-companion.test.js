@@ -456,7 +456,7 @@ test('approved CBH evidence retains five active MCU Prep choices and the withdra
   );
   assert.deepEqual(
     shelfLists(catalog.lists, 'spotlights').length,
-    72,
+    73,
     'Character Spotlight count differs from the merged catalog',
   );
 });

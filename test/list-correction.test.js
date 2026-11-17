@@ -159,12 +159,29 @@ const ledgerEarlierOrders = {
     assert.equal(retained[0], ledger.retained.firstIssueId);
     return [...ledger.removed.map(({ issueId }) => issueId), ...retained];
   },
+  // The upstream checklist kept each series together, with Avengers #34.1 and #34.2 after #44,
+  // so regrouping the interleaved block by series rebuilds the order readers saved before.
+  'hickman-full': (revised) => {
+    const byId = new Map(readJson('../src/data/hickman_full.json').items.map((item) => [item.issueId, item]));
+    const series = ['Avengers (2012)', 'New Avengers (2013)', 'Infinity (2013)'];
+    const block = revised.slice(124, 209);
+    const key = (id) => {
+      const [, name, number] = byId.get(id).title.match(/^(.+) #(\S+)$/);
+      return [series.indexOf(name), Number.isInteger(Number(number)) ? 0 : 1, Number(number)];
+    };
+    assert.ok(block.every((id) => key(id)[0] >= 0));
+    const regrouped = [...block].sort((a, b) => {
+      const [x, y] = [key(a), key(b)];
+      return x[0] - y[0] || x[1] - y[1] || x[2] - y[2];
+    });
+    return [...revised.slice(0, 124), ...regrouped, ...revised.slice(209)];
+  },
 };
 
 test('each registered revision records the published order before it and the order published now', () => {
   const catalog = readJson('../src/data/catalog.json');
   assert.deepEqual(READING_ORDER_REVISIONS.map(({ catalogId }) => catalogId).sort(),
-    ['thor-best-of', 'wolverine-reading-order', 'xmen-claremont']);
+    ['hickman-full', 'thor-best-of', 'wolverine-reading-order', 'xmen-claremont']);
   for (const { catalogId, previousOrders, revisedOrder } of READING_ORDER_REVISIONS) {
     const entry = (catalog.lists ?? catalog).find(({ id }) => id === catalogId);
     const payload = readJson(`../src/data/${entry.file}`);
@@ -227,3 +244,25 @@ for (const [catalogId, file, removed, added, length] of [
     assert.equal(updated.notes[retired.at(-1)], 'My note');
   });
 }
+
+test('updating the earlier Hickman list interleaves Avengers and New Avengers and keeps all progress', () => {
+  const payload = readJson('../src/data/hickman_full.json');
+  const revised = payload.items.map(({ issueId }) => issueId);
+  const saved = ledgerEarlierOrders['hickman-full'](revised);
+  assert.equal(matchesEarlierPublishedOrder({ catalogId: payload.id, itemIds: saved }), true);
+  assert.deepEqual(compareListOrders(saved, revised), { added: [], retained: [], reordered: true });
+  assert.equal(saved.filter((id, index) => id !== revised[index]).length, 84);
+  const titles = new Map(payload.items.map(({ issueId, title }) => [issueId, title]));
+  assert.deepEqual(revised.slice(124, 128).map((id) => titles.get(id)), [
+    'New Avengers (2013) #1', 'New Avengers (2013) #2', 'New Avengers (2013) #3', 'Avengers (2012) #1',
+  ]);
+  const [avengers, newAvengers] = [revised[124 + 3], revised[124]];
+  let state = createList(createEmptyState(), { id: 'saved', name: 'Saved', catalogId: payload.id });
+  state = addIssuesToList(state, 'saved', saved.map((issueId) => payload.items.find((item) => item.issueId === issueId))).state;
+  state = markRead(state, avengers, true, 123);
+  state = setIssueNote(state, newAvengers, 'My note');
+  const updated = applyListRevision(state, 'saved', JSON.stringify(state.lists.saved), payload.items);
+  assert.deepEqual(updated.lists.saved.itemIds, revised);
+  assert.deepEqual(updated.read, { [avengers]: 123 });
+  assert.equal(updated.notes[newAvengers], 'My note');
+});

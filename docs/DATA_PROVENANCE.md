@@ -416,16 +416,16 @@ orders: **null means nobody granted anything for this file, not that the file is
 
 ### Reading orders, pinned
 
-Three hundred and forty-seven pinned reading-order payloads remain under
-[`src/data/`](../src/data): 344 active visible catalog files, one active noncatalog partition parent,
-and the retired No Way Home (18 originals) and withdrawn Marvel Multiverse (2 comics) payloads. The 345 active files hold
-32,838 issue records covering 20,183 distinct tracked identities. The visible files hold 32,351 of those records;
+Three hundred and forty-eight pinned reading-order payloads remain under
+[`src/data/`](../src/data): 345 active visible catalog files, one active noncatalog partition parent,
+and the retired No Way Home (18 originals) and withdrawn Marvel Multiverse (2 comics) payloads. The 346 active files hold
+33,025 issue records covering 20,306 distinct tracked identities. The visible files hold 32,538 of those records;
 the extra 487 are the retained Marvel Knights to Planet X parent whose ordinary children partition
 the same vector. Records use these fields:
 `issueId`, `title`,
 `number`, `url`, `seriesId`, `seriesName`, `onSale`, `mu`, `digitalId`, `pageCount`, a `cover`
-object of `path` and `ext`, and `creators` of `name` and `role`. Across the 345 active payloads, 27,937
-records carry a cover URL and 26,209 carry creator credits. The retired No Way Home payload remains byte-exact;
+object of `path` and `ext`, and `creators` of `name` and `role`. Across the 346 active payloads, 28,124
+records carry a cover URL and 26,396 carry creator credits. The retired No Way Home payload remains byte-exact;
 neither retired payload contributes to active discovery or this active census.
 
 `description` was the field to look at hardest and is now empty. The others are facts about a
@@ -531,7 +531,7 @@ incidental property of the schema.
 | Compiled for this project from Comic Book Herald's guide | 150 | The guide's issue selection and sequence, re-expressed as local checklists. Every visible card links to the exact guide followed |
 | Compiled for this project from the owner's selected Comic Book Herald excerpt | 1 | The owner's seven-block Shang-Chi selection, expanded to original issues. The card links to the verified CBH page and section; the authored source and factual ledger retain the exact owner input |
 | Compiled for this project from Comic Book Reading Orders | 41 | Factual issue identities and order from exact event pages or visible timeline sections. Every card links to the source followed |
-| Vendored from `emreparker/marvel-comics` | 1 | Nothing. The order is the upstream curator's; only the issue lookups were done here |
+| Issue set vendored from `emreparker/marvel-comics`; Avengers and New Avengers order from Comic Book Herald's guide | 1 | The guide's interleaving of the 85 Avengers, New Avengers and Infinity rows, re-expressed with the rest of the upstream curator's sequence as a local checklist. See [the Hickman saga record](#complete-hickman-saga-reading-order) |
 | Selected by the owner for MCU Prep; expanded into original issues for this project | 1 | Three owner-selected Moon Knight first volumes, expanded into verified original comics. The card links to the owner intake, and the selection ledger retains the approved title corrections |
 | Selected by raymond-nassar for MCU Prep | 7 | The Daredevil selections expand into six collection groups; Brand New Day retains three first trades and an explicit missing-original ledger; She-Hulk keeps one Savage origin and two six-issue first trades; Ms. Marvel keeps three six-original collection groups; Brave New World keeps three first volumes in seven/six/six originals; Guardians keeps four selections in eleven/six/six/five originals; Agatha retains one introduction, six Orlando originals and five explicit House of Harkness gaps |
 
@@ -593,6 +593,39 @@ The stable fast-track catalog ID is retained, but its former 89-issue template i
 any saved library copy. The complete saga is renamed without changing its 219 originals. Previously
 saved names, issue vectors, section maps and notes remain the reader's own snapshots.
 
+### Complete Hickman saga reading order
+
+The Complete Hickman Saga to Secret Wars keeps the 219-issue set it was vendored with from
+[`emreparker/marvel-comics`](https://github.com/emreparker/marvel-comics/blob/main/data/hickman_full.md),
+now held as a [local checklist](../src/data/orders/hickman-full.md). A reader asked for Avengers and
+New Avengers in their intended reading order, because the upstream list read every Avengers issue
+before any New Avengers issue. The 85 rows holding Avengers (2012) #1-44, #34.1 and #34.2, New
+Avengers (2013) #1-33 and Infinity (2013) #1-6 now follow the "Jonathan Hickman's Avengers
+Reading Order" list in section VI of
+[Comic Book Herald's Secret Wars reading order](https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/secret-wars-reading-order/#secretwars6),
+retrieved 2026-11-16 when the page read "Last Updated: 7/27/26". Of those 85 positions, 84 hold a
+different issue than before. The other 134 rows keep their upstream positions, and no issue is
+added or removed.
+
+Three differences from the guide are deliberate:
+
+- New Avengers #13 is not in that section.
+  [Guide Part 18](https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/guide-part-18-infinity/),
+  retrieved 2026-11-16, lists it in the Inhumanity reading order after Infinity, so it follows
+  Infinity #6 and New Avengers #12 here and comes before Avengers #24.
+- The section's New Avengers Annual #1 and Original Sin #1-8, and its optional Captain America
+  #21-22, AXIS and Avengers World #17-21 detours, are not added, because the request was for an
+  order rather than more issues. The guide reads Avengers #29-34 inside its Original Sin order,
+  after Avengers #28 and before New Avengers #16; they keep that place here, read consecutively.
+- The guide reads Ultimate Comics Ultimates before Avengers #41. The upstream Ultimate block, at
+  positions 99-124 before the Avengers block, stays where it was, which is outside the request.
+
+Readers who saved the earlier order are offered the new one through the reading-order revision
+registry in [`src/js/lib/readingOrderRevisions.js`](../src/js/lib/readingOrderRevisions.js). It
+records the earlier 219-issue sequence, so only a saved copy still matching it is offered the
+update, and a copy the reader has edited is left alone. Read marks and notes are kept by comic
+identity, so accepting the update keeps all reading progress.
+
 ### Series and creator indexes
 
 [`src/data/series-index.json`](../src/data/series-index.json) holds 6,990 series and
@@ -612,10 +645,10 @@ character labels say which guide an issue belongs to, not who appears in the iss
 
 ### Order checklists
 
-The 215 Markdown files retained in [`src/data/orders/`](../src/data/orders) contain 214 active
-local source files and the retired owner-selected No Way Home checklist. The upstream full
-Hickman checklist is fetched separately when vendored. The fast-track checklist serves two
-independent Reading Lists, so local-file and source-order counts differ.
+The 269 Markdown files retained in [`src/data/orders/`](../src/data/orders) contain 267 active
+local source files, the retired owner-selected No Way Home checklist and the withdrawn Marvel
+Multiverse checklist. Every active source order now has a local checklist. The fast-track
+checklist serves two independent Reading Lists, so local-file and source-order counts differ.
 The active local sources include publication-order metadata, reviewed Comic Book Herald and
 Comic Book Reading Orders selections, and owner-authored compilations.
 Every file carries its own derivation trail. Cards credit the source followed and link to its
@@ -1157,10 +1190,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes four independent Reading Paths with 104 stops: three
 authored paths with 10, 12 and 4 stops from the curated manifest at
-`src/data/curated-lists.json:11255-11306`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:11294-11345`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all four at
-`src/data/catalog.json:16770-16907`.
+`src/data/catalog.json:16827-16964`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -3862,3 +3895,56 @@ Newly added lists save the description shown while browsing. Existing saved snap
 including Thor's seven unrelated originals and their progress, are not rewritten or relabeled.
 Historical review helpers replay only the captured prior publications or these exact corrections,
 without rewriting frozen approvals.
+
+## Best Nightcrawler Comics Reading List
+
+The locally authored [Best Nightcrawler Comics Reading List](../src/data/orders/nightcrawler-best-of.md)
+is a character best-of path from a selection Proxy616 posted on
+[r/marvelcomics](https://www.reddit.com/r/marvelcomics/s/hHJ4rVgM9v). The owner supplied its text
+on 2026-11-16 and asked for it to be credited with the link kept. An ordinary request to that link
+returned HTTP 403 the same day and was not worked around, so the owner's message is the source of
+record. It is not an official Marvel reading order. The source lists, in this order:
+
+> Recommended series:
+> Uncanny X-Men by Chris Claremont (1975) (Kurt’s debut);
+> Nightcrawler (1985) (4 issues);
+> Excalibur by Chris Claremont (1988), Alan Davis (1991), and Warren Ellis (1994) (Kurt’s the leader);
+> Uncanny X-Men by Joe Casey (2001); Nightcrawler (2004); Amazing X-Men (2014) (Kurt centric);
+> Nightcrawler (2014); Uncanny spider-man was fun (2023) Kurt does a brief stint as a spider-man.
+> My favourite one-shots: ”The Gift” a short back up story in classic X-men (1986-1990) #9;
+> Guardians team-up #6 (2015) - cross over with Gamora from Guardians if the galaxy;
+> X-men unlimited #49 (1993-2003) - if you can get past the art, this is a fun one; X-Men Legends #12.
+
+The commenter's remarks stay here only; the app shows none of them. The checklist keeps the
+source order as eleven sections, the eight series with Excalibur split by writer, then the
+one-shots. Every identity and writer credit below comes from the configured metadata provider,
+retrieved 2026-11-16.
+
+The first section is the owner's curation, recorded in three layers. The source line names
+Claremont's Uncanny X-Men from 1975 without issues. Kurt Wagner debuts in Giant-Size X-Men (1975)
+#1, so the owner chose to start there. The owner's own selection was #94, #96-108 including "the
+Phoenix and Dark Phoenix material", #141-142, "#153 and the Kitty Pryde issues around it" and
+#162-167. On 2026-11-16 the owner then accepted four refinements: add #95, which ends #94's story;
+add the Dark Phoenix Saga, #129-138, which lies outside #96-108; read the Kitty issues as #151-153;
+and keep #162-167 for the Brood saga. The published section is Giant-Size X-Men #1, then Uncanny
+X-Men #94-108, #129-138, #141-142, #151-153 and #162-167: 37 issues.
+
+Excalibur opens with the team's debut special, Excalibur: The Sword Is Drawn (1988) #1, followed by
+the writer eras the source names: Claremont #1-34, Alan Davis #42-67 and Warren Ellis #83-103. The
+issues between those eras are not selected. Joe Casey's Uncanny X-Men run is #394-409. Nightcrawler
+(2004) #1-12, Amazing X-Men #1-19 (dated 2013 by the provider, from its first on-sale date),
+Nightcrawler (2014) #1-12 and Uncanny Spider-Man (2023) #1-5 are complete series. The one-shots are
+Classic X-Men (1986) #9, which carries the back-up story "The Gift", Guardians Team-Up (2015) #6,
+X-Men Unlimited (1993) #49 and X-Men Legends (2021) #12, the only X-Men Legends volume with a #12.
+
+The source has 191 positions and 187 exact issues are published. Nightcrawler (1985) #1-4, the
+source's second series and positions 38 to 41, has no series at the provider. Those positions
+stay in the checklist's unresolved table and in
+[the metadata gap Issue](https://github.com/raymond-nassar/recap-page/issues/1422), and no other
+comic or collection replaces them. The card description says that 4 comics from the source order
+are not shown. [The source ledger](../scripts/data/curated-source-ledgers/nightcrawler-best-of.json)
+records every source position, the failed lookup for the gap and the reviewed overlap with each
+other list; the one issue shared with the Onslaught order, Excalibur (1988) #100, carries the
+coordinator's reciprocal approval. The list has no Universe association: the source states no reality, and the list
+follows primary continuity. Only factual metadata and cover addresses are kept. Existing saved
+data is unchanged.

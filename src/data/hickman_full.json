@@ -2,12 +2,14 @@
   "id": "hickman-full",
   "name": "Complete Hickman Saga to Secret Wars",
   "description": "The complete Hickman saga including tie-ins, ending with Secret Wars (2015).",
-  "source": "https://github.com/emreparker/marvel-comics/blob/main/data/hickman_full.md",
-  "sourceOrigin": "Vendored from emreparker/marvel-comics",
+  "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/secret-wars-reading-order/#secretwars6",
+  "sourceOrigin": "Issue set vendored from emreparker/marvel-comics; Avengers and New Avengers order from Comic Book Herald's Secret Wars guide",
   "sourceLicense": null,
-  "generatedAt": "2026-08-04T06:14:48.703Z",
+  "generatedAt": "2026-11-17T04:57:08.071Z",
   "apiBase": "https://marvel.emreparker.com/v1",
   "count": 219,
+  "collections": 0,
+  "placeholders": 0,
   "unresolved": [],
   "items": [
     {
@@ -3811,6 +3813,91 @@
       ]
     },
     {
+      "issueId": 43512,
+      "title": "New Avengers (2013) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/43512/new_avengers_2013_1",
+      "seriesId": 16451,
+      "seriesName": "New Avengers (2013 - 2015)",
+      "onSale": "2013-01-02T00:00:00+0000",
+      "mu": "2013-07-08T00:00:00+0000",
+      "digitalId": 28087,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/03/5164719b5f233",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jock",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43516,
+      "title": "New Avengers (2013) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/43516/new_avengers_2013_2",
+      "seriesId": 16451,
+      "seriesName": "New Avengers (2013 - 2015)",
+      "onSale": "2013-01-16T00:00:00+0000",
+      "mu": "2013-07-15T00:00:00+0000",
+      "digitalId": 28088,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/a0/510dc11490922",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rick Magyar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Epting",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43517,
+      "title": "New Avengers (2013) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/43517/new_avengers_2013_3",
+      "seriesId": 16451,
+      "seriesName": "New Avengers (2013 - 2015)",
+      "onSale": "2013-02-06T00:00:00+0000",
+      "mu": "2013-08-05T00:00:00+0000",
+      "digitalId": 28423,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/510c75dd48ea0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jock",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 43528,
       "title": "Avengers (2012) #1",
       "number": "1",
@@ -3972,6 +4059,87 @@
       "creators": [
         {
           "name": "Dustin Weaver",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43518,
+      "title": "New Avengers (2013) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/43518/new_avengers_2013_4",
+      "seriesId": 16451,
+      "seriesName": "New Avengers (2013 - 2015)",
+      "onSale": "2013-03-20T00:00:00+0000",
+      "mu": "2013-09-23T00:00:00+0000",
+      "digitalId": 28779,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/00/57752b89b5155",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jock",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43519,
+      "title": "New Avengers (2013) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/43519/new_avengers_2013_5",
+      "seriesId": 16451,
+      "seriesName": "New Avengers (2013 - 2015)",
+      "onSale": "2013-04-24T00:00:00+0000",
+      "mu": "2013-10-28T00:00:00+0000",
+      "digitalId": 29449,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/577538c2cc58e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jock",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43520,
+      "title": "New Avengers (2013) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/43520/new_avengers_2013_6",
+      "seriesId": 16451,
+      "seriesName": "New Avengers (2013 - 2015)",
+      "onSale": "2013-05-29T00:00:00+0000",
+      "mu": "2013-11-25T00:00:00+0000",
+      "digitalId": 29450,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/03/577545201b3b9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jock",
           "role": "penciler"
         },
         {
@@ -4178,6 +4346,33 @@
       ]
     },
     {
+      "issueId": 43521,
+      "title": "New Avengers (2013) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/43521/new_avengers_2013_7",
+      "seriesId": 16451,
+      "seriesName": "New Avengers (2013 - 2015)",
+      "onSale": "2013-06-19T00:00:00+0000",
+      "mu": "2013-12-16T00:00:00+0000",
+      "digitalId": 29451,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/51b78bdbc8877",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 43544,
       "title": "Avengers (2012) #14",
       "number": "14",
@@ -4298,6 +4493,60 @@
       ]
     },
     {
+      "issueId": 47120,
+      "title": "Infinity (2013) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/47120/infinity_2013_1",
+      "seriesId": 17735,
+      "seriesName": "Infinity (2013)",
+      "onSale": "2013-08-14T00:00:00+0000",
+      "mu": "2014-02-10T00:00:00+0000",
+      "digitalId": 30683,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/a0/5abc01506bfee",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 64,
+      "creators": [
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43522,
+      "title": "New Avengers (2013) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/43522/new_avengers_2013_8",
+      "seriesId": 16451,
+      "seriesName": "New Avengers (2013 - 2015)",
+      "onSale": "2013-07-24T00:00:00+0000",
+      "mu": "2014-01-20T00:00:00+0000",
+      "digitalId": 30649,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/51debf44a4418",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 43548,
       "title": "Avengers (2012) #18",
       "number": "18",
@@ -4316,6 +4565,87 @@
       "creators": [
         {
           "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43523,
+      "title": "New Avengers (2013) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/43523/new_avengers_2013_9",
+      "seriesId": 16451,
+      "seriesName": "New Avengers (2013 - 2015)",
+      "onSale": "2013-08-28T00:00:00+0000",
+      "mu": "2014-02-17T00:00:00+0000",
+      "digitalId": 31066,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/a0/521278dc0080a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 47123,
+      "title": "Infinity (2013) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/47123/infinity_2013_2",
+      "seriesId": 17735,
+      "seriesName": "Infinity (2013)",
+      "onSale": "2013-09-04T00:00:00+0000",
+      "mu": "2014-03-03T00:00:00+0000",
+      "digitalId": 31380,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5abc01d6c9793",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43524,
+      "title": "New Avengers (2013) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/43524/new_avengers_2013_10",
+      "seriesId": 16451,
+      "seriesName": "New Avengers (2013 - 2015)",
+      "onSale": "2013-09-18T00:00:00+0000",
+      "mu": "2014-03-17T00:00:00+0000",
+      "digitalId": 31514,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/522e2d0f381b5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Mike Deodato",
           "role": "penciler"
         },
         {
@@ -4352,6 +4682,33 @@
       ]
     },
     {
+      "issueId": 47124,
+      "title": "Infinity (2013) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/47124/infinity_2013_3",
+      "seriesId": 17735,
+      "seriesName": "Infinity (2013)",
+      "onSale": "2013-09-18T00:00:00+0000",
+      "mu": "2014-03-17T00:00:00+0000",
+      "digitalId": 31501,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/80/5abc023d12556",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 43550,
       "title": "Avengers (2012) #20",
       "number": "20",
@@ -4379,6 +4736,33 @@
       ]
     },
     {
+      "issueId": 47125,
+      "title": "Infinity (2013) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/47125/infinity_2013_4",
+      "seriesId": 17735,
+      "seriesName": "Infinity (2013)",
+      "onSale": "2013-10-09T00:00:00+0000",
+      "mu": "2014-04-14T00:00:00+0000",
+      "digitalId": 31528,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/d0/5abc031296f2d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 46927,
       "title": "Avengers (2012) #21",
       "number": "21",
@@ -4397,6 +4781,60 @@
       "creators": [
         {
           "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43525,
+      "title": "New Avengers (2013) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/43525/new_avengers_2013_11",
+      "seriesId": 16451,
+      "seriesName": "New Avengers (2013 - 2015)",
+      "onSale": "2013-10-16T00:00:00+0000",
+      "mu": "2014-05-14T10:10:15+0000",
+      "digitalId": 31729,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/80/57757dcd74891",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 47126,
+      "title": "Infinity (2013) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/47126/infinity_2013_5",
+      "seriesId": 17735,
+      "seriesName": "Infinity (2013)",
+      "onSale": "2013-10-30T00:00:00+0000",
+      "mu": "2014-04-28T00:00:00+0000",
+      "digitalId": 31741,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/60/5abc036c50a6b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Adam Kubert",
           "role": "penciler"
         },
         {
@@ -4460,6 +4898,87 @@
       ]
     },
     {
+      "issueId": 47127,
+      "title": "Infinity (2013) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/47127/infinity_2013_6",
+      "seriesId": 17735,
+      "seriesName": "Infinity (2013)",
+      "onSale": "2013-11-27T00:00:00+0000",
+      "mu": "2014-05-26T00:00:00+0000",
+      "digitalId": 32315,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/80/5abc03d24ae81",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 64,
+      "creators": [
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43526,
+      "title": "New Avengers (2013) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/43526/new_avengers_2013_12",
+      "seriesId": 16451,
+      "seriesName": "New Avengers (2013 - 2015)",
+      "onSale": "2013-11-27T00:00:00+0000",
+      "mu": "2014-05-26T00:00:00+0000",
+      "digitalId": 32345,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/40/528a7e752ff49",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43527,
+      "title": "New Avengers (2013) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/43527/new_avengers_2013_13",
+      "seriesId": 16451,
+      "seriesName": "New Avengers (2013 - 2015)",
+      "onSale": "2013-12-31T00:00:00+0000",
+      "mu": "2014-06-23T00:00:00+0000",
+      "digitalId": 32471,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/70/52b0ac601933c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Simone Bianchi",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 46931,
       "title": "Avengers (2012) #24",
       "number": "24",
@@ -4482,6 +5001,60 @@
         },
         {
           "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 48784,
+      "title": "New Avengers (2013) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/48784/new_avengers_2013_14",
+      "seriesId": 16451,
+      "seriesName": "New Avengers (2013 - 2015)",
+      "onSale": "2014-02-05T00:00:00+0000",
+      "mu": "2014-08-04T00:00:00+0000",
+      "digitalId": 32824,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/52e6ca21298c3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Simone Bianchi",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 48785,
+      "title": "New Avengers (2013) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/48785/new_avengers_2013_15",
+      "seriesId": 16451,
+      "seriesName": "New Avengers (2013 - 2015)",
+      "onSale": "2014-03-19T00:00:00+0000",
+      "mu": "2014-09-15T00:00:00+0000",
+      "digitalId": 33028,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/577580a3bd921",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Simone Bianchi",
+          "role": "penciler"
+        },
+        {
+          "name": "Rick Remender",
           "role": "writer"
         }
       ]
@@ -4761,739 +5334,6 @@
       ]
     },
     {
-      "issueId": 48389,
-      "title": "Avengers (2012) #35",
-      "number": "35",
-      "url": "https://www.marvel.com/comics/issue/48389/avengers_2012_35",
-      "seriesId": 16452,
-      "seriesName": "Avengers (2012 - 2015)",
-      "onSale": "2014-09-17T00:00:00+0000",
-      "mu": "2015-03-16T00:00:00+0000",
-      "digitalId": 34774,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/a0/5410aed23a94b",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 32,
-      "creators": [
-        {
-          "name": "Jim Cheung",
-          "role": "penciler"
-        },
-        {
-          "name": "Jonathan Hickman",
-          "role": "writer"
-        }
-      ]
-    },
-    {
-      "issueId": 48390,
-      "title": "Avengers (2012) #36",
-      "number": "36",
-      "url": "https://www.marvel.com/comics/issue/48390/avengers_2012_36",
-      "seriesId": 16452,
-      "seriesName": "Avengers (2012 - 2015)",
-      "onSale": "2014-10-08T00:00:00+0000",
-      "mu": "2015-04-06T00:00:00+0000",
-      "digitalId": 34882,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/20/54299756a3c92",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 32,
-      "creators": [
-        {
-          "name": "Stuart Immonen",
-          "role": "penciler"
-        },
-        {
-          "name": "Jonathan Hickman",
-          "role": "writer"
-        }
-      ]
-    },
-    {
-      "issueId": 48391,
-      "title": "Avengers (2012) #37",
-      "number": "37",
-      "url": "https://www.marvel.com/comics/issue/48391/avengers_2012_37",
-      "seriesId": 16452,
-      "seriesName": "Avengers (2012 - 2015)",
-      "onSale": "2014-10-22T00:00:00+0000",
-      "mu": "2015-04-20T00:00:00+0000",
-      "digitalId": 34894,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/54383a52ce8a5",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 32,
-      "creators": [
-        {
-          "name": "Jamie Mckelvie",
-          "role": "penciler"
-        },
-        {
-          "name": "Jonathan Hickman",
-          "role": "writer"
-        }
-      ]
-    },
-    {
-      "issueId": 48392,
-      "title": "Avengers (2012) #38",
-      "number": "38",
-      "url": "https://www.marvel.com/comics/issue/48392/avengers_2012_38",
-      "seriesId": 16452,
-      "seriesName": "Avengers (2012 - 2015)",
-      "onSale": "2014-11-19T00:00:00+0000",
-      "mu": "2015-05-11T00:00:00+0000",
-      "digitalId": 35385,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/54622b38a92d0",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 32,
-      "creators": [
-        {
-          "name": "Brandon Peterson",
-          "role": "penciler"
-        },
-        {
-          "name": "Jonathan Hickman",
-          "role": "writer"
-        }
-      ]
-    },
-    {
-      "issueId": 48393,
-      "title": "Avengers (2012) #39",
-      "number": "39",
-      "url": "https://www.marvel.com/comics/issue/48393/avengers_2012_39",
-      "seriesId": 16452,
-      "seriesName": "Avengers (2012 - 2015)",
-      "onSale": "2014-12-10T00:00:00+0000",
-      "mu": "2015-06-08T00:00:00+0000",
-      "digitalId": 35747,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/03/54822674178ac",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 32,
-      "creators": [
-        {
-          "name": "Alan Davis",
-          "role": "penciler"
-        },
-        {
-          "name": "Jonathan Hickman",
-          "role": "writer"
-        }
-      ]
-    },
-    {
-      "issueId": 48394,
-      "title": "Avengers (2012) #40",
-      "number": "40",
-      "url": "https://www.marvel.com/comics/issue/48394/avengers_2012_40",
-      "seriesId": 16452,
-      "seriesName": "Avengers (2012 - 2015)",
-      "onSale": "2015-01-14T00:00:00+0000",
-      "mu": "2015-07-06T00:00:00+0000",
-      "digitalId": 35749,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/54abfb471a37e",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 40,
-      "creators": [
-        {
-          "name": "Dale Keown",
-          "role": "penciler"
-        },
-        {
-          "name": "Jonathan Hickman",
-          "role": "writer"
-        }
-      ]
-    },
-    {
-      "issueId": 48395,
-      "title": "Avengers (2012) #41",
-      "number": "41",
-      "url": "https://www.marvel.com/comics/issue/48395/avengers_2012_41",
-      "seriesId": 16452,
-      "seriesName": "Avengers (2012 - 2015)",
-      "onSale": "2015-02-04T00:00:00+0000",
-      "mu": "2015-08-03T00:00:00+0000",
-      "digitalId": 35750,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/54c147ab537ab",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 32,
-      "creators": [
-        {
-          "name": "Bryan Hitch",
-          "role": "penciler"
-        },
-        {
-          "name": "Jonathan Hickman",
-          "role": "writer"
-        }
-      ]
-    },
-    {
-      "issueId": 48396,
-      "title": "Avengers (2012) #42",
-      "number": "42",
-      "url": "https://www.marvel.com/comics/issue/48396/avengers_2012_42",
-      "seriesId": 16452,
-      "seriesName": "Avengers (2012 - 2015)",
-      "onSale": "2015-03-04T00:00:00+0000",
-      "mu": "2015-09-07T00:00:00+0000",
-      "digitalId": 36844,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/54ece6c21db84",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 32,
-      "creators": [
-        {
-          "name": "Scott Kolins",
-          "role": "penciler"
-        },
-        {
-          "name": "Jonathan Hickman",
-          "role": "writer"
-        }
-      ]
-    },
-    {
-      "issueId": 48397,
-      "title": "Avengers (2012) #43",
-      "number": "43",
-      "url": "https://www.marvel.com/comics/issue/48397/avengers_2012_43",
-      "seriesId": 16452,
-      "seriesName": "Avengers (2012 - 2015)",
-      "onSale": "2015-04-01T00:00:00+0000",
-      "mu": "2015-09-21T00:00:00+0000",
-      "digitalId": 36942,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/03/55119c23c6219",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 32,
-      "creators": [
-        {
-          "name": "Adam Kubert",
-          "role": "penciler"
-        },
-        {
-          "name": "Jonathan Hickman",
-          "role": "writer"
-        }
-      ]
-    },
-    {
-      "issueId": 48398,
-      "title": "Avengers (2012) #44",
-      "number": "44",
-      "url": "https://www.marvel.com/comics/issue/48398/avengers_2012_44",
-      "seriesId": 16452,
-      "seriesName": "Avengers (2012 - 2015)",
-      "onSale": "2015-04-29T00:00:00+0000",
-      "mu": "2015-10-26T00:00:00+0000",
-      "digitalId": 37778,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/553e4ecf080cb",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 56,
-      "creators": [
-        {
-          "name": "Dustin Weaver",
-          "role": "penciler"
-        },
-        {
-          "name": "Jonathan Hickman",
-          "role": "writer"
-        }
-      ]
-    },
-    {
-      "issueId": 50951,
-      "title": "Avengers (2012) #34.1",
-      "number": "34.1",
-      "url": "https://www.marvel.com/comics/issue/50951/avengers_2012_34.1",
-      "seriesId": 16452,
-      "seriesName": "Avengers (2012 - 2015)",
-      "onSale": "2014-09-10T00:00:00+0000",
-      "mu": "2015-03-09T00:00:00+0000",
-      "digitalId": 34832,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/5407727c64fb5",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 32,
-      "creators": [
-        {
-          "name": "Dale Keown",
-          "role": "penciler"
-        },
-        {
-          "name": "Al Ewing",
-          "role": "writer"
-        }
-      ]
-    },
-    {
-      "issueId": 51410,
-      "title": "Avengers (2012) #34.2",
-      "number": "34.2",
-      "url": "https://www.marvel.com/comics/issue/51410/avengers_2012_34.2",
-      "seriesId": 16452,
-      "seriesName": "Avengers (2012 - 2015)",
-      "onSale": "2014-09-15T00:00:00+0000",
-      "mu": "2015-07-13T00:00:00+0000",
-      "digitalId": 36297,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/54aafc92a4536",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 40,
-      "creators": [
-        {
-          "name": "Bengal",
-          "role": "penciler"
-        },
-        {
-          "name": "Sam Humphries",
-          "role": "writer"
-        }
-      ]
-    },
-    {
-      "issueId": 43512,
-      "title": "New Avengers (2013) #1",
-      "number": "1",
-      "url": "https://www.marvel.com/comics/issue/43512/new_avengers_2013_1",
-      "seriesId": 16451,
-      "seriesName": "New Avengers (2013 - 2015)",
-      "onSale": "2013-01-02T00:00:00+0000",
-      "mu": "2013-07-08T00:00:00+0000",
-      "digitalId": 28087,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/03/5164719b5f233",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 32,
-      "creators": [
-        {
-          "name": "Jock",
-          "role": "penciler"
-        },
-        {
-          "name": "Jonathan Hickman",
-          "role": "writer"
-        }
-      ]
-    },
-    {
-      "issueId": 43516,
-      "title": "New Avengers (2013) #2",
-      "number": "2",
-      "url": "https://www.marvel.com/comics/issue/43516/new_avengers_2013_2",
-      "seriesId": 16451,
-      "seriesName": "New Avengers (2013 - 2015)",
-      "onSale": "2013-01-16T00:00:00+0000",
-      "mu": "2013-07-15T00:00:00+0000",
-      "digitalId": 28088,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/a0/510dc11490922",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 32,
-      "creators": [
-        {
-          "name": "Rick Magyar",
-          "role": "cover artist"
-        },
-        {
-          "name": "Steve Epting",
-          "role": "penciler"
-        },
-        {
-          "name": "Jonathan Hickman",
-          "role": "writer"
-        }
-      ]
-    },
-    {
-      "issueId": 43517,
-      "title": "New Avengers (2013) #3",
-      "number": "3",
-      "url": "https://www.marvel.com/comics/issue/43517/new_avengers_2013_3",
-      "seriesId": 16451,
-      "seriesName": "New Avengers (2013 - 2015)",
-      "onSale": "2013-02-06T00:00:00+0000",
-      "mu": "2013-08-05T00:00:00+0000",
-      "digitalId": 28423,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/510c75dd48ea0",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 32,
-      "creators": [
-        {
-          "name": "Jock",
-          "role": "penciler"
-        },
-        {
-          "name": "Jonathan Hickman",
-          "role": "writer"
-        }
-      ]
-    },
-    {
-      "issueId": 43518,
-      "title": "New Avengers (2013) #4",
-      "number": "4",
-      "url": "https://www.marvel.com/comics/issue/43518/new_avengers_2013_4",
-      "seriesId": 16451,
-      "seriesName": "New Avengers (2013 - 2015)",
-      "onSale": "2013-03-20T00:00:00+0000",
-      "mu": "2013-09-23T00:00:00+0000",
-      "digitalId": 28779,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/00/57752b89b5155",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 32,
-      "creators": [
-        {
-          "name": "Jock",
-          "role": "penciler"
-        },
-        {
-          "name": "Jonathan Hickman",
-          "role": "writer"
-        }
-      ]
-    },
-    {
-      "issueId": 43519,
-      "title": "New Avengers (2013) #5",
-      "number": "5",
-      "url": "https://www.marvel.com/comics/issue/43519/new_avengers_2013_5",
-      "seriesId": 16451,
-      "seriesName": "New Avengers (2013 - 2015)",
-      "onSale": "2013-04-24T00:00:00+0000",
-      "mu": "2013-10-28T00:00:00+0000",
-      "digitalId": 29449,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/577538c2cc58e",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 32,
-      "creators": [
-        {
-          "name": "Jock",
-          "role": "penciler"
-        },
-        {
-          "name": "Jonathan Hickman",
-          "role": "writer"
-        }
-      ]
-    },
-    {
-      "issueId": 43520,
-      "title": "New Avengers (2013) #6",
-      "number": "6",
-      "url": "https://www.marvel.com/comics/issue/43520/new_avengers_2013_6",
-      "seriesId": 16451,
-      "seriesName": "New Avengers (2013 - 2015)",
-      "onSale": "2013-05-29T00:00:00+0000",
-      "mu": "2013-11-25T00:00:00+0000",
-      "digitalId": 29450,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/03/577545201b3b9",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 32,
-      "creators": [
-        {
-          "name": "Jock",
-          "role": "penciler"
-        },
-        {
-          "name": "Jonathan Hickman",
-          "role": "writer"
-        }
-      ]
-    },
-    {
-      "issueId": 43521,
-      "title": "New Avengers (2013) #7",
-      "number": "7",
-      "url": "https://www.marvel.com/comics/issue/43521/new_avengers_2013_7",
-      "seriesId": 16451,
-      "seriesName": "New Avengers (2013 - 2015)",
-      "onSale": "2013-06-19T00:00:00+0000",
-      "mu": "2013-12-16T00:00:00+0000",
-      "digitalId": 29451,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/51b78bdbc8877",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 32,
-      "creators": [
-        {
-          "name": "Mike Deodato",
-          "role": "penciler"
-        },
-        {
-          "name": "Jonathan Hickman",
-          "role": "writer"
-        }
-      ]
-    },
-    {
-      "issueId": 43522,
-      "title": "New Avengers (2013) #8",
-      "number": "8",
-      "url": "https://www.marvel.com/comics/issue/43522/new_avengers_2013_8",
-      "seriesId": 16451,
-      "seriesName": "New Avengers (2013 - 2015)",
-      "onSale": "2013-07-24T00:00:00+0000",
-      "mu": "2014-01-20T00:00:00+0000",
-      "digitalId": 30649,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/51debf44a4418",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 32,
-      "creators": [
-        {
-          "name": "Mike Deodato",
-          "role": "penciler"
-        },
-        {
-          "name": "Jonathan Hickman",
-          "role": "writer"
-        }
-      ]
-    },
-    {
-      "issueId": 43523,
-      "title": "New Avengers (2013) #9",
-      "number": "9",
-      "url": "https://www.marvel.com/comics/issue/43523/new_avengers_2013_9",
-      "seriesId": 16451,
-      "seriesName": "New Avengers (2013 - 2015)",
-      "onSale": "2013-08-28T00:00:00+0000",
-      "mu": "2014-02-17T00:00:00+0000",
-      "digitalId": 31066,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/a0/521278dc0080a",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 40,
-      "creators": [
-        {
-          "name": "Mike Deodato",
-          "role": "penciler"
-        },
-        {
-          "name": "Jonathan Hickman",
-          "role": "writer"
-        }
-      ]
-    },
-    {
-      "issueId": 43524,
-      "title": "New Avengers (2013) #10",
-      "number": "10",
-      "url": "https://www.marvel.com/comics/issue/43524/new_avengers_2013_10",
-      "seriesId": 16451,
-      "seriesName": "New Avengers (2013 - 2015)",
-      "onSale": "2013-09-18T00:00:00+0000",
-      "mu": "2014-03-17T00:00:00+0000",
-      "digitalId": 31514,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/522e2d0f381b5",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 40,
-      "creators": [
-        {
-          "name": "Mike Deodato",
-          "role": "penciler"
-        },
-        {
-          "name": "Jonathan Hickman",
-          "role": "writer"
-        }
-      ]
-    },
-    {
-      "issueId": 43525,
-      "title": "New Avengers (2013) #11",
-      "number": "11",
-      "url": "https://www.marvel.com/comics/issue/43525/new_avengers_2013_11",
-      "seriesId": 16451,
-      "seriesName": "New Avengers (2013 - 2015)",
-      "onSale": "2013-10-16T00:00:00+0000",
-      "mu": "2014-05-14T10:10:15+0000",
-      "digitalId": 31729,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/80/57757dcd74891",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 40,
-      "creators": [
-        {
-          "name": "Mike Deodato",
-          "role": "penciler"
-        },
-        {
-          "name": "Jonathan Hickman",
-          "role": "writer"
-        }
-      ]
-    },
-    {
-      "issueId": 43526,
-      "title": "New Avengers (2013) #12",
-      "number": "12",
-      "url": "https://www.marvel.com/comics/issue/43526/new_avengers_2013_12",
-      "seriesId": 16451,
-      "seriesName": "New Avengers (2013 - 2015)",
-      "onSale": "2013-11-27T00:00:00+0000",
-      "mu": "2014-05-26T00:00:00+0000",
-      "digitalId": 32345,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/40/528a7e752ff49",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 40,
-      "creators": [
-        {
-          "name": "Mike Deodato",
-          "role": "penciler"
-        },
-        {
-          "name": "Jonathan Hickman",
-          "role": "writer"
-        }
-      ]
-    },
-    {
-      "issueId": 43527,
-      "title": "New Avengers (2013) #13",
-      "number": "13",
-      "url": "https://www.marvel.com/comics/issue/43527/new_avengers_2013_13",
-      "seriesId": 16451,
-      "seriesName": "New Avengers (2013 - 2015)",
-      "onSale": "2013-12-31T00:00:00+0000",
-      "mu": "2014-06-23T00:00:00+0000",
-      "digitalId": 32471,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/70/52b0ac601933c",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 32,
-      "creators": [
-        {
-          "name": "Simone Bianchi",
-          "role": "penciler"
-        },
-        {
-          "name": "Jonathan Hickman",
-          "role": "writer"
-        }
-      ]
-    },
-    {
-      "issueId": 48784,
-      "title": "New Avengers (2013) #14",
-      "number": "14",
-      "url": "https://www.marvel.com/comics/issue/48784/new_avengers_2013_14",
-      "seriesId": 16451,
-      "seriesName": "New Avengers (2013 - 2015)",
-      "onSale": "2014-02-05T00:00:00+0000",
-      "mu": "2014-08-04T00:00:00+0000",
-      "digitalId": 32824,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/52e6ca21298c3",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 32,
-      "creators": [
-        {
-          "name": "Simone Bianchi",
-          "role": "penciler"
-        },
-        {
-          "name": "Jonathan Hickman",
-          "role": "writer"
-        }
-      ]
-    },
-    {
-      "issueId": 48785,
-      "title": "New Avengers (2013) #15",
-      "number": "15",
-      "url": "https://www.marvel.com/comics/issue/48785/new_avengers_2013_15",
-      "seriesId": 16451,
-      "seriesName": "New Avengers (2013 - 2015)",
-      "onSale": "2014-03-19T00:00:00+0000",
-      "mu": "2014-09-15T00:00:00+0000",
-      "digitalId": 33028,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/577580a3bd921",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 32,
-      "creators": [
-        {
-          "name": "Simone Bianchi",
-          "role": "penciler"
-        },
-        {
-          "name": "Rick Remender",
-          "role": "writer"
-        }
-      ]
-    },
-    {
       "issueId": 48786,
       "title": "New Avengers (2013) #16",
       "number": "16",
@@ -5706,6 +5546,87 @@
       ]
     },
     {
+      "issueId": 50951,
+      "title": "Avengers (2012) #34.1",
+      "number": "34.1",
+      "url": "https://www.marvel.com/comics/issue/50951/avengers_2012_34.1",
+      "seriesId": 16452,
+      "seriesName": "Avengers (2012 - 2015)",
+      "onSale": "2014-09-10T00:00:00+0000",
+      "mu": "2015-03-09T00:00:00+0000",
+      "digitalId": 34832,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/5407727c64fb5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dale Keown",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 51410,
+      "title": "Avengers (2012) #34.2",
+      "number": "34.2",
+      "url": "https://www.marvel.com/comics/issue/51410/avengers_2012_34.2",
+      "seriesId": 16452,
+      "seriesName": "Avengers (2012 - 2015)",
+      "onSale": "2014-09-15T00:00:00+0000",
+      "mu": "2015-07-13T00:00:00+0000",
+      "digitalId": 36297,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/54aafc92a4536",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Bengal",
+          "role": "penciler"
+        },
+        {
+          "name": "Sam Humphries",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 48389,
+      "title": "Avengers (2012) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/48389/avengers_2012_35",
+      "seriesId": 16452,
+      "seriesName": "Avengers (2012 - 2015)",
+      "onSale": "2014-09-17T00:00:00+0000",
+      "mu": "2015-03-16T00:00:00+0000",
+      "digitalId": 34774,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/a0/5410aed23a94b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 50096,
       "title": "New Avengers (2013) #24",
       "number": "24",
@@ -5724,6 +5645,33 @@
       "creators": [
         {
           "name": "Gabriele Dell'otto",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 48390,
+      "title": "Avengers (2012) #36",
+      "number": "36",
+      "url": "https://www.marvel.com/comics/issue/48390/avengers_2012_36",
+      "seriesId": 16452,
+      "seriesName": "Avengers (2012 - 2015)",
+      "onSale": "2014-10-08T00:00:00+0000",
+      "mu": "2015-04-06T00:00:00+0000",
+      "digitalId": 34882,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/20/54299756a3c92",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Stuart Immonen",
           "role": "penciler"
         },
         {
@@ -5760,6 +5708,33 @@
       ]
     },
     {
+      "issueId": 48391,
+      "title": "Avengers (2012) #37",
+      "number": "37",
+      "url": "https://www.marvel.com/comics/issue/48391/avengers_2012_37",
+      "seriesId": 16452,
+      "seriesName": "Avengers (2012 - 2015)",
+      "onSale": "2014-10-22T00:00:00+0000",
+      "mu": "2015-04-20T00:00:00+0000",
+      "digitalId": 34894,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/54383a52ce8a5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jamie Mckelvie",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 52257,
       "title": "New Avengers (2013) #26",
       "number": "26",
@@ -5787,6 +5762,33 @@
       ]
     },
     {
+      "issueId": 48392,
+      "title": "Avengers (2012) #38",
+      "number": "38",
+      "url": "https://www.marvel.com/comics/issue/48392/avengers_2012_38",
+      "seriesId": 16452,
+      "seriesName": "Avengers (2012 - 2015)",
+      "onSale": "2014-11-19T00:00:00+0000",
+      "mu": "2015-05-11T00:00:00+0000",
+      "digitalId": 35385,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/54622b38a92d0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brandon Peterson",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 52259,
       "title": "New Avengers (2013) #27",
       "number": "27",
@@ -5805,6 +5807,33 @@
       "creators": [
         {
           "name": "Salvador Larroca",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 48393,
+      "title": "Avengers (2012) #39",
+      "number": "39",
+      "url": "https://www.marvel.com/comics/issue/48393/avengers_2012_39",
+      "seriesId": 16452,
+      "seriesName": "Avengers (2012 - 2015)",
+      "onSale": "2014-12-10T00:00:00+0000",
+      "mu": "2015-06-08T00:00:00+0000",
+      "digitalId": 35747,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/03/54822674178ac",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alan Davis",
           "role": "penciler"
         },
         {
@@ -5849,6 +5878,33 @@
       ]
     },
     {
+      "issueId": 48394,
+      "title": "Avengers (2012) #40",
+      "number": "40",
+      "url": "https://www.marvel.com/comics/issue/48394/avengers_2012_40",
+      "seriesId": 16452,
+      "seriesName": "Avengers (2012 - 2015)",
+      "onSale": "2015-01-14T00:00:00+0000",
+      "mu": "2015-07-06T00:00:00+0000",
+      "digitalId": 35749,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/54abfb471a37e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Dale Keown",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 52261,
       "title": "New Avengers (2013) #29",
       "number": "29",
@@ -5876,6 +5932,33 @@
       ]
     },
     {
+      "issueId": 48395,
+      "title": "Avengers (2012) #41",
+      "number": "41",
+      "url": "https://www.marvel.com/comics/issue/48395/avengers_2012_41",
+      "seriesId": 16452,
+      "seriesName": "Avengers (2012 - 2015)",
+      "onSale": "2015-02-04T00:00:00+0000",
+      "mu": "2015-08-03T00:00:00+0000",
+      "digitalId": 35750,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/54c147ab537ab",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 52263,
       "title": "New Avengers (2013) #30",
       "number": "30",
@@ -5894,6 +5977,33 @@
       "creators": [
         {
           "name": "Alan Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 48396,
+      "title": "Avengers (2012) #42",
+      "number": "42",
+      "url": "https://www.marvel.com/comics/issue/48396/avengers_2012_42",
+      "seriesId": 16452,
+      "seriesName": "Avengers (2012 - 2015)",
+      "onSale": "2015-03-04T00:00:00+0000",
+      "mu": "2015-09-07T00:00:00+0000",
+      "digitalId": 36844,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/54ece6c21db84",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Kolins",
           "role": "penciler"
         },
         {
@@ -5957,6 +6067,33 @@
       ]
     },
     {
+      "issueId": 48397,
+      "title": "Avengers (2012) #43",
+      "number": "43",
+      "url": "https://www.marvel.com/comics/issue/48397/avengers_2012_43",
+      "seriesId": 16452,
+      "seriesName": "Avengers (2012 - 2015)",
+      "onSale": "2015-04-01T00:00:00+0000",
+      "mu": "2015-09-21T00:00:00+0000",
+      "digitalId": 36942,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/03/55119c23c6219",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
       "issueId": 52267,
       "title": "New Avengers (2013) #33",
       "number": "33",
@@ -5984,159 +6121,24 @@
       ]
     },
     {
-      "issueId": 47120,
-      "title": "Infinity (2013) #1",
-      "number": "1",
-      "url": "https://www.marvel.com/comics/issue/47120/infinity_2013_1",
-      "seriesId": 17735,
-      "seriesName": "Infinity (2013)",
-      "onSale": "2013-08-14T00:00:00+0000",
-      "mu": "2014-02-10T00:00:00+0000",
-      "digitalId": 30683,
+      "issueId": 48398,
+      "title": "Avengers (2012) #44",
+      "number": "44",
+      "url": "https://www.marvel.com/comics/issue/48398/avengers_2012_44",
+      "seriesId": 16452,
+      "seriesName": "Avengers (2012 - 2015)",
+      "onSale": "2015-04-29T00:00:00+0000",
+      "mu": "2015-10-26T00:00:00+0000",
+      "digitalId": 37778,
       "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/a0/5abc01506bfee",
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/553e4ecf080cb",
         "ext": "jpg"
       },
       "description": null,
-      "pageCount": 64,
+      "pageCount": 56,
       "creators": [
         {
-          "name": "Adam Kubert",
-          "role": "penciler"
-        },
-        {
-          "name": "Jonathan Hickman",
-          "role": "writer"
-        }
-      ]
-    },
-    {
-      "issueId": 47123,
-      "title": "Infinity (2013) #2",
-      "number": "2",
-      "url": "https://www.marvel.com/comics/issue/47123/infinity_2013_2",
-      "seriesId": 17735,
-      "seriesName": "Infinity (2013)",
-      "onSale": "2013-09-04T00:00:00+0000",
-      "mu": "2014-03-03T00:00:00+0000",
-      "digitalId": 31380,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5abc01d6c9793",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 40,
-      "creators": [
-        {
-          "name": "Adam Kubert",
-          "role": "penciler"
-        },
-        {
-          "name": "Jonathan Hickman",
-          "role": "writer"
-        }
-      ]
-    },
-    {
-      "issueId": 47124,
-      "title": "Infinity (2013) #3",
-      "number": "3",
-      "url": "https://www.marvel.com/comics/issue/47124/infinity_2013_3",
-      "seriesId": 17735,
-      "seriesName": "Infinity (2013)",
-      "onSale": "2013-09-18T00:00:00+0000",
-      "mu": "2014-03-17T00:00:00+0000",
-      "digitalId": 31501,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/80/5abc023d12556",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 40,
-      "creators": [
-        {
-          "name": "Adam Kubert",
-          "role": "penciler"
-        },
-        {
-          "name": "Jonathan Hickman",
-          "role": "writer"
-        }
-      ]
-    },
-    {
-      "issueId": 47125,
-      "title": "Infinity (2013) #4",
-      "number": "4",
-      "url": "https://www.marvel.com/comics/issue/47125/infinity_2013_4",
-      "seriesId": 17735,
-      "seriesName": "Infinity (2013)",
-      "onSale": "2013-10-09T00:00:00+0000",
-      "mu": "2014-04-14T00:00:00+0000",
-      "digitalId": 31528,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/d0/5abc031296f2d",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 40,
-      "creators": [
-        {
-          "name": "Adam Kubert",
-          "role": "penciler"
-        },
-        {
-          "name": "Jonathan Hickman",
-          "role": "writer"
-        }
-      ]
-    },
-    {
-      "issueId": 47126,
-      "title": "Infinity (2013) #5",
-      "number": "5",
-      "url": "https://www.marvel.com/comics/issue/47126/infinity_2013_5",
-      "seriesId": 17735,
-      "seriesName": "Infinity (2013)",
-      "onSale": "2013-10-30T00:00:00+0000",
-      "mu": "2014-04-28T00:00:00+0000",
-      "digitalId": 31741,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/60/5abc036c50a6b",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 40,
-      "creators": [
-        {
-          "name": "Adam Kubert",
-          "role": "penciler"
-        },
-        {
-          "name": "Jonathan Hickman",
-          "role": "writer"
-        }
-      ]
-    },
-    {
-      "issueId": 47127,
-      "title": "Infinity (2013) #6",
-      "number": "6",
-      "url": "https://www.marvel.com/comics/issue/47127/infinity_2013_6",
-      "seriesId": 17735,
-      "seriesName": "Infinity (2013)",
-      "onSale": "2013-11-27T00:00:00+0000",
-      "mu": "2014-05-26T00:00:00+0000",
-      "digitalId": 32315,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/80/5abc03d24ae81",
-        "ext": "jpg"
-      },
-      "description": null,
-      "pageCount": 64,
-      "creators": [
-        {
-          "name": "Adam Kubert",
+          "name": "Dustin Weaver",
           "role": "penciler"
         },
         {

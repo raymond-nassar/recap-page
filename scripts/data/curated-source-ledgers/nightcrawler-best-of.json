@@ -1,0 +1,5455 @@
+{
+  "schemaVersion": 1,
+  "id": "nightcrawler-best-of",
+  "source": {
+    "provider": "reddit-comment",
+    "url": "https://www.reddit.com/r/marvelcomics/s/hHJ4rVgM9v",
+    "retrievedAt": "2026-11-16",
+    "boundary": "Proxy616's eight recommended series and four favorite one-shots, in the supplied order, expanded into original issues; the first section is the owner's Claremont selection.",
+    "sourceReconciliation": "An ordinary request to the link returned HTTP 403 on 2026-11-16 and was not worked around; the owner’s supplied text is the source of record, quoted in docs/DATA_PROVENANCE.md.",
+    "permission": "Credited and linked at the owner’s request. Factual issue identities and order only; no commentary, images or artwork copied."
+  },
+  "ownerDecision": "Giant-Size X-Men #1, then Uncanny X-Men #94-108, #129-138, #141-142, #151-153 and #162-167 (37 issues)",
+  "counts": {
+    "sourcePositions": 191,
+    "resolved": 187,
+    "gaps": 4,
+    "repeats": 0
+  },
+  "sourceRows": [
+    {
+      "sourcePosition": 1,
+      "sourceKey": "1",
+      "sourceIssueReference": "Giant-Size X-Men (1975) #1",
+      "seriesId": 2016,
+      "seriesYear": 1975,
+      "issueNumber": "1",
+      "selectedIssueId": 8797,
+      "resolvedIssueTitle": "Giant-Size X-Men (1975) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8797/giant-size_x-men_1975_1",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8797"
+    },
+    {
+      "sourcePosition": 2,
+      "sourceKey": "2",
+      "sourceIssueReference": "Uncanny X-Men (1963) #94",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "94",
+      "selectedIssueId": 12548,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #94",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12548/uncanny_x-men_1963_94",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12548"
+    },
+    {
+      "sourcePosition": 3,
+      "sourceKey": "3",
+      "sourceIssueReference": "Uncanny X-Men (1963) #95",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "95",
+      "selectedIssueId": 12549,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #95",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12549/uncanny_x-men_1963_95",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12549"
+    },
+    {
+      "sourcePosition": 4,
+      "sourceKey": "4",
+      "sourceIssueReference": "Uncanny X-Men (1963) #96",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "96",
+      "selectedIssueId": 12550,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #96",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12550/uncanny_x-men_1963_96",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12550"
+    },
+    {
+      "sourcePosition": 5,
+      "sourceKey": "5",
+      "sourceIssueReference": "Uncanny X-Men (1963) #97",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "97",
+      "selectedIssueId": 12551,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #97",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12551/uncanny_x-men_1963_97",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12551"
+    },
+    {
+      "sourcePosition": 6,
+      "sourceKey": "6",
+      "sourceIssueReference": "Uncanny X-Men (1963) #98",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "98",
+      "selectedIssueId": 12552,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #98",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12552/uncanny_x-men_1963_98",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12552"
+    },
+    {
+      "sourcePosition": 7,
+      "sourceKey": "7",
+      "sourceIssueReference": "Uncanny X-Men (1963) #99",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "99",
+      "selectedIssueId": 12553,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #99",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12553/uncanny_x-men_1963_99",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12553"
+    },
+    {
+      "sourcePosition": 8,
+      "sourceKey": "8",
+      "sourceIssueReference": "Uncanny X-Men (1963) #100",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "100",
+      "selectedIssueId": 12415,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #100",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12415/uncanny_x-men_1963_100",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12415"
+    },
+    {
+      "sourcePosition": 9,
+      "sourceKey": "9",
+      "sourceIssueReference": "Uncanny X-Men (1963) #101",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "101",
+      "selectedIssueId": 12416,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #101",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12416/uncanny_x-men_1963_101",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12416"
+    },
+    {
+      "sourcePosition": 10,
+      "sourceKey": "10",
+      "sourceIssueReference": "Uncanny X-Men (1963) #102",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "102",
+      "selectedIssueId": 12417,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #102",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12417/uncanny_x-men_1963_102",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12417"
+    },
+    {
+      "sourcePosition": 11,
+      "sourceKey": "11",
+      "sourceIssueReference": "Uncanny X-Men (1963) #103",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "103",
+      "selectedIssueId": 12418,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #103",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12418/uncanny_x-men_1963_103",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12418"
+    },
+    {
+      "sourcePosition": 12,
+      "sourceKey": "12",
+      "sourceIssueReference": "Uncanny X-Men (1963) #104",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "104",
+      "selectedIssueId": 12419,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #104",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12419/uncanny_x-men_1963_104",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12419"
+    },
+    {
+      "sourcePosition": 13,
+      "sourceKey": "13",
+      "sourceIssueReference": "Uncanny X-Men (1963) #105",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "105",
+      "selectedIssueId": 12420,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #105",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12420/uncanny_x-men_1963_105",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12420"
+    },
+    {
+      "sourcePosition": 14,
+      "sourceKey": "14",
+      "sourceIssueReference": "Uncanny X-Men (1963) #106",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "106",
+      "selectedIssueId": 12421,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #106",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12421/uncanny_x-men_1963_106",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12421"
+    },
+    {
+      "sourcePosition": 15,
+      "sourceKey": "15",
+      "sourceIssueReference": "Uncanny X-Men (1963) #107",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "107",
+      "selectedIssueId": 12422,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #107",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12422/uncanny_x-men_1963_107",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12422"
+    },
+    {
+      "sourcePosition": 16,
+      "sourceKey": "16",
+      "sourceIssueReference": "Uncanny X-Men (1963) #108",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "108",
+      "selectedIssueId": 12423,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #108",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12423/uncanny_x-men_1963_108",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12423"
+    },
+    {
+      "sourcePosition": 17,
+      "sourceKey": "17",
+      "sourceIssueReference": "Uncanny X-Men (1963) #129",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "129",
+      "selectedIssueId": 12446,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #129",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12446/uncanny_x-men_1963_129",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12446"
+    },
+    {
+      "sourcePosition": 18,
+      "sourceKey": "18",
+      "sourceIssueReference": "Uncanny X-Men (1963) #130",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "130",
+      "selectedIssueId": 12448,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #130",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12448/uncanny_x-men_1963_130",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12448"
+    },
+    {
+      "sourcePosition": 19,
+      "sourceKey": "19",
+      "sourceIssueReference": "Uncanny X-Men (1963) #131",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "131",
+      "selectedIssueId": 12449,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #131",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12449/uncanny_x-men_1963_131",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12449"
+    },
+    {
+      "sourcePosition": 20,
+      "sourceKey": "20",
+      "sourceIssueReference": "Uncanny X-Men (1963) #132",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "132",
+      "selectedIssueId": 12450,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #132",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12450/uncanny_x-men_1963_132",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12450"
+    },
+    {
+      "sourcePosition": 21,
+      "sourceKey": "21",
+      "sourceIssueReference": "Uncanny X-Men (1963) #133",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "133",
+      "selectedIssueId": 12451,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #133",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12451/uncanny_x-men_1963_133",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12451"
+    },
+    {
+      "sourcePosition": 22,
+      "sourceKey": "22",
+      "sourceIssueReference": "Uncanny X-Men (1963) #134",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "134",
+      "selectedIssueId": 12452,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #134",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12452/uncanny_x-men_1963_134",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12452"
+    },
+    {
+      "sourcePosition": 23,
+      "sourceKey": "23",
+      "sourceIssueReference": "Uncanny X-Men (1963) #135",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "135",
+      "selectedIssueId": 12453,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #135",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12453/uncanny_x-men_1963_135",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12453"
+    },
+    {
+      "sourcePosition": 24,
+      "sourceKey": "24",
+      "sourceIssueReference": "Uncanny X-Men (1963) #136",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "136",
+      "selectedIssueId": 12454,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #136",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12454/uncanny_x-men_1963_136",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12454"
+    },
+    {
+      "sourcePosition": 25,
+      "sourceKey": "25",
+      "sourceIssueReference": "Uncanny X-Men (1963) #137",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "137",
+      "selectedIssueId": 12455,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #137",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12455/uncanny_x-men_1963_137",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12455"
+    },
+    {
+      "sourcePosition": 26,
+      "sourceKey": "26",
+      "sourceIssueReference": "Uncanny X-Men (1963) #138",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "138",
+      "selectedIssueId": 12456,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #138",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12456/uncanny_x-men_1963_138",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12456"
+    },
+    {
+      "sourcePosition": 27,
+      "sourceKey": "27",
+      "sourceIssueReference": "Uncanny X-Men (1963) #141",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "141",
+      "selectedIssueId": 12460,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #141",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12460/uncanny_x-men_1963_141",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/12460"
+    },
+    {
+      "sourcePosition": 28,
+      "sourceKey": "28",
+      "sourceIssueReference": "Uncanny X-Men (1963) #142",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "142",
+      "selectedIssueId": 13683,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #142",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13683/uncanny_x-men_1963_142",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13683"
+    },
+    {
+      "sourcePosition": 29,
+      "sourceKey": "29",
+      "sourceIssueReference": "Uncanny X-Men (1963) #151",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "151",
+      "selectedIssueId": 13692,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #151",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13692/uncanny_x-men_1963_151",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13692"
+    },
+    {
+      "sourcePosition": 30,
+      "sourceKey": "30",
+      "sourceIssueReference": "Uncanny X-Men (1963) #152",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "152",
+      "selectedIssueId": 13693,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #152",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13693/uncanny_x-men_1963_152",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13693"
+    },
+    {
+      "sourcePosition": 31,
+      "sourceKey": "31",
+      "sourceIssueReference": "Uncanny X-Men (1963) #153",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "153",
+      "selectedIssueId": 13694,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #153",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13694/uncanny_x-men_1963_153",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13694"
+    },
+    {
+      "sourcePosition": 32,
+      "sourceKey": "32",
+      "sourceIssueReference": "Uncanny X-Men (1963) #162",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "162",
+      "selectedIssueId": 13703,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #162",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13703/uncanny_x-men_1963_162",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13703"
+    },
+    {
+      "sourcePosition": 33,
+      "sourceKey": "33",
+      "sourceIssueReference": "Uncanny X-Men (1963) #163",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "163",
+      "selectedIssueId": 13704,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #163",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13704/uncanny_x-men_1963_163",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13704"
+    },
+    {
+      "sourcePosition": 34,
+      "sourceKey": "34",
+      "sourceIssueReference": "Uncanny X-Men (1963) #164",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "164",
+      "selectedIssueId": 13705,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #164",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13705/uncanny_x-men_1963_164",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13705"
+    },
+    {
+      "sourcePosition": 35,
+      "sourceKey": "35",
+      "sourceIssueReference": "Uncanny X-Men (1963) #165",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "165",
+      "selectedIssueId": 13706,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #165",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13706/uncanny_x-men_1963_165",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13706"
+    },
+    {
+      "sourcePosition": 36,
+      "sourceKey": "36",
+      "sourceIssueReference": "Uncanny X-Men (1963) #166",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "166",
+      "selectedIssueId": 13707,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #166",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13707/uncanny_x-men_1963_166",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13707"
+    },
+    {
+      "sourcePosition": 37,
+      "sourceKey": "37",
+      "sourceIssueReference": "Uncanny X-Men (1963) #167",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "167",
+      "selectedIssueId": 13708,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #167",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13708/uncanny_x-men_1963_167",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13708"
+    },
+    {
+      "sourcePosition": 38,
+      "sourceKey": "38",
+      "sourceIssueReference": "Nightcrawler (1985) #1",
+      "seriesId": null,
+      "seriesYear": 1985,
+      "issueNumber": "1",
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
+          "scope": "The complete provider series listing, offsets 0 through 6800: 6,990 series records, the reported total. No series is the 1985 Nightcrawler limited series.",
+          "retrievedAt": "2026-11-17T03:40:15Z",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1422"
+    },
+    {
+      "sourcePosition": 39,
+      "sourceKey": "39",
+      "sourceIssueReference": "Nightcrawler (1985) #2",
+      "seriesId": null,
+      "seriesYear": 1985,
+      "issueNumber": "2",
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
+          "scope": "The complete provider series listing, offsets 0 through 6800: 6,990 series records, the reported total. No series is the 1985 Nightcrawler limited series.",
+          "retrievedAt": "2026-11-17T03:40:15Z",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1422"
+    },
+    {
+      "sourcePosition": 40,
+      "sourceKey": "40",
+      "sourceIssueReference": "Nightcrawler (1985) #3",
+      "seriesId": null,
+      "seriesYear": 1985,
+      "issueNumber": "3",
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
+          "scope": "The complete provider series listing, offsets 0 through 6800: 6,990 series records, the reported total. No series is the 1985 Nightcrawler limited series.",
+          "retrievedAt": "2026-11-17T03:40:15Z",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1422"
+    },
+    {
+      "sourcePosition": 41,
+      "sourceKey": "41",
+      "sourceIssueReference": "Nightcrawler (1985) #4",
+      "seriesId": null,
+      "seriesYear": 1985,
+      "issueNumber": "4",
+      "selectedIssueId": null,
+      "resolutionStatus": "metadata-gap",
+      "failedLookups": [
+        {
+          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
+          "scope": "The complete provider series listing, offsets 0 through 6800: 6,990 series records, the reported total. No series is the 1985 Nightcrawler limited series.",
+          "retrievedAt": "2026-11-17T03:40:15Z",
+          "exactMatchCount": 0
+        }
+      ],
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/1422"
+    },
+    {
+      "sourcePosition": 42,
+      "sourceKey": "42",
+      "sourceIssueReference": "Excalibur: The Sword Is Drawn (1988) #1",
+      "seriesId": 3735,
+      "seriesYear": 1988,
+      "issueNumber": "1",
+      "selectedIssueId": 20042,
+      "resolvedIssueTitle": "Excalibur: The Sword Is Drawn (1988) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/20042/excalibur_the_sword_is_drawn_1988_1",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/20042"
+    },
+    {
+      "sourcePosition": 43,
+      "sourceKey": "43",
+      "sourceIssueReference": "Excalibur (1988) #1",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "1",
+      "selectedIssueId": 8562,
+      "resolvedIssueTitle": "Excalibur (1988) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8562/excalibur_1988_1",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8562"
+    },
+    {
+      "sourcePosition": 44,
+      "sourceKey": "44",
+      "sourceIssueReference": "Excalibur (1988) #2",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "2",
+      "selectedIssueId": 8599,
+      "resolvedIssueTitle": "Excalibur (1988) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8599/excalibur_1988_2",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8599"
+    },
+    {
+      "sourcePosition": 45,
+      "sourceKey": "45",
+      "sourceIssueReference": "Excalibur (1988) #3",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "3",
+      "selectedIssueId": 8610,
+      "resolvedIssueTitle": "Excalibur (1988) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8610/excalibur_1988_3",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8610"
+    },
+    {
+      "sourcePosition": 46,
+      "sourceKey": "46",
+      "sourceIssueReference": "Excalibur (1988) #4",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "4",
+      "selectedIssueId": 8621,
+      "resolvedIssueTitle": "Excalibur (1988) #4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8621/excalibur_1988_4",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8621"
+    },
+    {
+      "sourcePosition": 47,
+      "sourceKey": "47",
+      "sourceIssueReference": "Excalibur (1988) #5",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "5",
+      "selectedIssueId": 8632,
+      "resolvedIssueTitle": "Excalibur (1988) #5",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8632/excalibur_1988_5",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8632"
+    },
+    {
+      "sourcePosition": 48,
+      "sourceKey": "48",
+      "sourceIssueReference": "Excalibur (1988) #6",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "6",
+      "selectedIssueId": 8643,
+      "resolvedIssueTitle": "Excalibur (1988) #6",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8643/excalibur_1988_6",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8643"
+    },
+    {
+      "sourcePosition": 49,
+      "sourceKey": "49",
+      "sourceIssueReference": "Excalibur (1988) #7",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "7",
+      "selectedIssueId": 8654,
+      "resolvedIssueTitle": "Excalibur (1988) #7",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8654/excalibur_1988_7",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8654"
+    },
+    {
+      "sourcePosition": 50,
+      "sourceKey": "50",
+      "sourceIssueReference": "Excalibur (1988) #8",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "8",
+      "selectedIssueId": 8665,
+      "resolvedIssueTitle": "Excalibur (1988) #8",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8665/excalibur_1988_8",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8665"
+    },
+    {
+      "sourcePosition": 51,
+      "sourceKey": "51",
+      "sourceIssueReference": "Excalibur (1988) #9",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "9",
+      "selectedIssueId": 8676,
+      "resolvedIssueTitle": "Excalibur (1988) #9",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8676/excalibur_1988_9",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8676"
+    },
+    {
+      "sourcePosition": 52,
+      "sourceKey": "52",
+      "sourceIssueReference": "Excalibur (1988) #10",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "10",
+      "selectedIssueId": 8563,
+      "resolvedIssueTitle": "Excalibur (1988) #10",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8563/excalibur_1988_10",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8563"
+    },
+    {
+      "sourcePosition": 53,
+      "sourceKey": "53",
+      "sourceIssueReference": "Excalibur (1988) #11",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "11",
+      "selectedIssueId": 8574,
+      "resolvedIssueTitle": "Excalibur (1988) #11",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8574/excalibur_1988_11",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8574"
+    },
+    {
+      "sourcePosition": 54,
+      "sourceKey": "54",
+      "sourceIssueReference": "Excalibur (1988) #12",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "12",
+      "selectedIssueId": 8585,
+      "resolvedIssueTitle": "Excalibur (1988) #12",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8585/excalibur_1988_12",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8585"
+    },
+    {
+      "sourcePosition": 55,
+      "sourceKey": "55",
+      "sourceIssueReference": "Excalibur (1988) #13",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "13",
+      "selectedIssueId": 8592,
+      "resolvedIssueTitle": "Excalibur (1988) #13",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8592/excalibur_1988_13",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8592"
+    },
+    {
+      "sourcePosition": 56,
+      "sourceKey": "56",
+      "sourceIssueReference": "Excalibur (1988) #14",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "14",
+      "selectedIssueId": 8593,
+      "resolvedIssueTitle": "Excalibur (1988) #14",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8593/excalibur_1988_14",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8593"
+    },
+    {
+      "sourcePosition": 57,
+      "sourceKey": "57",
+      "sourceIssueReference": "Excalibur (1988) #15",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "15",
+      "selectedIssueId": 8594,
+      "resolvedIssueTitle": "Excalibur (1988) #15",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8594/excalibur_1988_15",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8594"
+    },
+    {
+      "sourcePosition": 58,
+      "sourceKey": "58",
+      "sourceIssueReference": "Excalibur (1988) #16",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "16",
+      "selectedIssueId": 8595,
+      "resolvedIssueTitle": "Excalibur (1988) #16",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8595/excalibur_1988_16",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8595"
+    },
+    {
+      "sourcePosition": 59,
+      "sourceKey": "59",
+      "sourceIssueReference": "Excalibur (1988) #17",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "17",
+      "selectedIssueId": 8596,
+      "resolvedIssueTitle": "Excalibur (1988) #17",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8596/excalibur_1988_17",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8596"
+    },
+    {
+      "sourcePosition": 60,
+      "sourceKey": "60",
+      "sourceIssueReference": "Excalibur (1988) #18",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "18",
+      "selectedIssueId": 8597,
+      "resolvedIssueTitle": "Excalibur (1988) #18",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8597/excalibur_1988_18",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8597"
+    },
+    {
+      "sourcePosition": 61,
+      "sourceKey": "61",
+      "sourceIssueReference": "Excalibur (1988) #19",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "19",
+      "selectedIssueId": 8598,
+      "resolvedIssueTitle": "Excalibur (1988) #19",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8598/excalibur_1988_19",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8598"
+    },
+    {
+      "sourcePosition": 62,
+      "sourceKey": "62",
+      "sourceIssueReference": "Excalibur (1988) #20",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "20",
+      "selectedIssueId": 8600,
+      "resolvedIssueTitle": "Excalibur (1988) #20",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8600/excalibur_1988_20",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8600"
+    },
+    {
+      "sourcePosition": 63,
+      "sourceKey": "63",
+      "sourceIssueReference": "Excalibur (1988) #21",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "21",
+      "selectedIssueId": 8601,
+      "resolvedIssueTitle": "Excalibur (1988) #21",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8601/excalibur_1988_21",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8601"
+    },
+    {
+      "sourcePosition": 64,
+      "sourceKey": "64",
+      "sourceIssueReference": "Excalibur (1988) #22",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "22",
+      "selectedIssueId": 8602,
+      "resolvedIssueTitle": "Excalibur (1988) #22",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8602/excalibur_1988_22",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8602"
+    },
+    {
+      "sourcePosition": 65,
+      "sourceKey": "65",
+      "sourceIssueReference": "Excalibur (1988) #23",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "23",
+      "selectedIssueId": 8603,
+      "resolvedIssueTitle": "Excalibur (1988) #23",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8603/excalibur_1988_23",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8603"
+    },
+    {
+      "sourcePosition": 66,
+      "sourceKey": "66",
+      "sourceIssueReference": "Excalibur (1988) #24",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "24",
+      "selectedIssueId": 8604,
+      "resolvedIssueTitle": "Excalibur (1988) #24",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8604/excalibur_1988_24",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8604"
+    },
+    {
+      "sourcePosition": 67,
+      "sourceKey": "67",
+      "sourceIssueReference": "Excalibur (1988) #25",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "25",
+      "selectedIssueId": 8605,
+      "resolvedIssueTitle": "Excalibur (1988) #25",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8605/excalibur_1988_25",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8605"
+    },
+    {
+      "sourcePosition": 68,
+      "sourceKey": "68",
+      "sourceIssueReference": "Excalibur (1988) #26",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "26",
+      "selectedIssueId": 8606,
+      "resolvedIssueTitle": "Excalibur (1988) #26",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8606/excalibur_1988_26",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8606"
+    },
+    {
+      "sourcePosition": 69,
+      "sourceKey": "69",
+      "sourceIssueReference": "Excalibur (1988) #27",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "27",
+      "selectedIssueId": 8607,
+      "resolvedIssueTitle": "Excalibur (1988) #27",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8607/excalibur_1988_27",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8607"
+    },
+    {
+      "sourcePosition": 70,
+      "sourceKey": "70",
+      "sourceIssueReference": "Excalibur (1988) #28",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "28",
+      "selectedIssueId": 8608,
+      "resolvedIssueTitle": "Excalibur (1988) #28",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8608/excalibur_1988_28",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8608"
+    },
+    {
+      "sourcePosition": 71,
+      "sourceKey": "71",
+      "sourceIssueReference": "Excalibur (1988) #29",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "29",
+      "selectedIssueId": 8609,
+      "resolvedIssueTitle": "Excalibur (1988) #29",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8609/excalibur_1988_29",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8609"
+    },
+    {
+      "sourcePosition": 72,
+      "sourceKey": "72",
+      "sourceIssueReference": "Excalibur (1988) #30",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "30",
+      "selectedIssueId": 8611,
+      "resolvedIssueTitle": "Excalibur (1988) #30",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8611/excalibur_1988_30",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8611"
+    },
+    {
+      "sourcePosition": 73,
+      "sourceKey": "73",
+      "sourceIssueReference": "Excalibur (1988) #31",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "31",
+      "selectedIssueId": 8612,
+      "resolvedIssueTitle": "Excalibur (1988) #31",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8612/excalibur_1988_31",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8612"
+    },
+    {
+      "sourcePosition": 74,
+      "sourceKey": "74",
+      "sourceIssueReference": "Excalibur (1988) #32",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "32",
+      "selectedIssueId": 8613,
+      "resolvedIssueTitle": "Excalibur (1988) #32",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8613/excalibur_1988_32",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8613"
+    },
+    {
+      "sourcePosition": 75,
+      "sourceKey": "75",
+      "sourceIssueReference": "Excalibur (1988) #33",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "33",
+      "selectedIssueId": 8614,
+      "resolvedIssueTitle": "Excalibur (1988) #33",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8614/excalibur_1988_33",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8614"
+    },
+    {
+      "sourcePosition": 76,
+      "sourceKey": "76",
+      "sourceIssueReference": "Excalibur (1988) #34",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "34",
+      "selectedIssueId": 8615,
+      "resolvedIssueTitle": "Excalibur (1988) #34",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8615/excalibur_1988_34",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8615"
+    },
+    {
+      "sourcePosition": 77,
+      "sourceKey": "77",
+      "sourceIssueReference": "Excalibur (1988) #42",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "42",
+      "selectedIssueId": 8624,
+      "resolvedIssueTitle": "Excalibur (1988) #42",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8624/excalibur_1988_42",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8624"
+    },
+    {
+      "sourcePosition": 78,
+      "sourceKey": "78",
+      "sourceIssueReference": "Excalibur (1988) #43",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "43",
+      "selectedIssueId": 8625,
+      "resolvedIssueTitle": "Excalibur (1988) #43",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8625/excalibur_1988_43",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8625"
+    },
+    {
+      "sourcePosition": 79,
+      "sourceKey": "79",
+      "sourceIssueReference": "Excalibur (1988) #44",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "44",
+      "selectedIssueId": 8626,
+      "resolvedIssueTitle": "Excalibur (1988) #44",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8626/excalibur_1988_44",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8626"
+    },
+    {
+      "sourcePosition": 80,
+      "sourceKey": "80",
+      "sourceIssueReference": "Excalibur (1988) #45",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "45",
+      "selectedIssueId": 8627,
+      "resolvedIssueTitle": "Excalibur (1988) #45",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8627/excalibur_1988_45",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8627"
+    },
+    {
+      "sourcePosition": 81,
+      "sourceKey": "81",
+      "sourceIssueReference": "Excalibur (1988) #46",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "46",
+      "selectedIssueId": 8628,
+      "resolvedIssueTitle": "Excalibur (1988) #46",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8628/excalibur_1988_46",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8628"
+    },
+    {
+      "sourcePosition": 82,
+      "sourceKey": "82",
+      "sourceIssueReference": "Excalibur (1988) #47",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "47",
+      "selectedIssueId": 8629,
+      "resolvedIssueTitle": "Excalibur (1988) #47",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8629/excalibur_1988_47",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8629"
+    },
+    {
+      "sourcePosition": 83,
+      "sourceKey": "83",
+      "sourceIssueReference": "Excalibur (1988) #48",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "48",
+      "selectedIssueId": 8630,
+      "resolvedIssueTitle": "Excalibur (1988) #48",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8630/excalibur_1988_48",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8630"
+    },
+    {
+      "sourcePosition": 84,
+      "sourceKey": "84",
+      "sourceIssueReference": "Excalibur (1988) #49",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "49",
+      "selectedIssueId": 8631,
+      "resolvedIssueTitle": "Excalibur (1988) #49",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8631/excalibur_1988_49",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8631"
+    },
+    {
+      "sourcePosition": 85,
+      "sourceKey": "85",
+      "sourceIssueReference": "Excalibur (1988) #50",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "50",
+      "selectedIssueId": 8633,
+      "resolvedIssueTitle": "Excalibur (1988) #50",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8633/excalibur_1988_50",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8633"
+    },
+    {
+      "sourcePosition": 86,
+      "sourceKey": "86",
+      "sourceIssueReference": "Excalibur (1988) #51",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "51",
+      "selectedIssueId": 8634,
+      "resolvedIssueTitle": "Excalibur (1988) #51",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8634/excalibur_1988_51",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8634"
+    },
+    {
+      "sourcePosition": 87,
+      "sourceKey": "87",
+      "sourceIssueReference": "Excalibur (1988) #52",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "52",
+      "selectedIssueId": 8635,
+      "resolvedIssueTitle": "Excalibur (1988) #52",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8635/excalibur_1988_52",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8635"
+    },
+    {
+      "sourcePosition": 88,
+      "sourceKey": "88",
+      "sourceIssueReference": "Excalibur (1988) #53",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "53",
+      "selectedIssueId": 8636,
+      "resolvedIssueTitle": "Excalibur (1988) #53",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8636/excalibur_1988_53",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8636"
+    },
+    {
+      "sourcePosition": 89,
+      "sourceKey": "89",
+      "sourceIssueReference": "Excalibur (1988) #54",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "54",
+      "selectedIssueId": 8637,
+      "resolvedIssueTitle": "Excalibur (1988) #54",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8637/excalibur_1988_54",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8637"
+    },
+    {
+      "sourcePosition": 90,
+      "sourceKey": "90",
+      "sourceIssueReference": "Excalibur (1988) #55",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "55",
+      "selectedIssueId": 8638,
+      "resolvedIssueTitle": "Excalibur (1988) #55",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8638/excalibur_1988_55",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8638"
+    },
+    {
+      "sourcePosition": 91,
+      "sourceKey": "91",
+      "sourceIssueReference": "Excalibur (1988) #56",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "56",
+      "selectedIssueId": 8639,
+      "resolvedIssueTitle": "Excalibur (1988) #56",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8639/excalibur_1988_56",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8639"
+    },
+    {
+      "sourcePosition": 92,
+      "sourceKey": "92",
+      "sourceIssueReference": "Excalibur (1988) #57",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "57",
+      "selectedIssueId": 8640,
+      "resolvedIssueTitle": "Excalibur (1988) #57",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8640/excalibur_1988_57",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8640"
+    },
+    {
+      "sourcePosition": 93,
+      "sourceKey": "93",
+      "sourceIssueReference": "Excalibur (1988) #58",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "58",
+      "selectedIssueId": 8641,
+      "resolvedIssueTitle": "Excalibur (1988) #58",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8641/excalibur_1988_58",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8641"
+    },
+    {
+      "sourcePosition": 94,
+      "sourceKey": "94",
+      "sourceIssueReference": "Excalibur (1988) #59",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "59",
+      "selectedIssueId": 8642,
+      "resolvedIssueTitle": "Excalibur (1988) #59",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8642/excalibur_1988_59",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8642"
+    },
+    {
+      "sourcePosition": 95,
+      "sourceKey": "95",
+      "sourceIssueReference": "Excalibur (1988) #60",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "60",
+      "selectedIssueId": 8644,
+      "resolvedIssueTitle": "Excalibur (1988) #60",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8644/excalibur_1988_60",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8644"
+    },
+    {
+      "sourcePosition": 96,
+      "sourceKey": "96",
+      "sourceIssueReference": "Excalibur (1988) #61",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "61",
+      "selectedIssueId": 8645,
+      "resolvedIssueTitle": "Excalibur (1988) #61",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8645/excalibur_1988_61",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8645"
+    },
+    {
+      "sourcePosition": 97,
+      "sourceKey": "97",
+      "sourceIssueReference": "Excalibur (1988) #62",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "62",
+      "selectedIssueId": 8646,
+      "resolvedIssueTitle": "Excalibur (1988) #62",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8646/excalibur_1988_62",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8646"
+    },
+    {
+      "sourcePosition": 98,
+      "sourceKey": "98",
+      "sourceIssueReference": "Excalibur (1988) #63",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "63",
+      "selectedIssueId": 8647,
+      "resolvedIssueTitle": "Excalibur (1988) #63",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8647/excalibur_1988_63",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8647"
+    },
+    {
+      "sourcePosition": 99,
+      "sourceKey": "99",
+      "sourceIssueReference": "Excalibur (1988) #64",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "64",
+      "selectedIssueId": 8648,
+      "resolvedIssueTitle": "Excalibur (1988) #64",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8648/excalibur_1988_64",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8648"
+    },
+    {
+      "sourcePosition": 100,
+      "sourceKey": "100",
+      "sourceIssueReference": "Excalibur (1988) #65",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "65",
+      "selectedIssueId": 8649,
+      "resolvedIssueTitle": "Excalibur (1988) #65",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8649/excalibur_1988_65",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8649"
+    },
+    {
+      "sourcePosition": 101,
+      "sourceKey": "101",
+      "sourceIssueReference": "Excalibur (1988) #66",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "66",
+      "selectedIssueId": 8650,
+      "resolvedIssueTitle": "Excalibur (1988) #66",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8650/excalibur_1988_66",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8650"
+    },
+    {
+      "sourcePosition": 102,
+      "sourceKey": "102",
+      "sourceIssueReference": "Excalibur (1988) #67",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "67",
+      "selectedIssueId": 8651,
+      "resolvedIssueTitle": "Excalibur (1988) #67",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8651/excalibur_1988_67",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8651"
+    },
+    {
+      "sourcePosition": 103,
+      "sourceKey": "103",
+      "sourceIssueReference": "Excalibur (1988) #83",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "83",
+      "selectedIssueId": 8669,
+      "resolvedIssueTitle": "Excalibur (1988) #83",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8669/excalibur_1988_83",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8669"
+    },
+    {
+      "sourcePosition": 104,
+      "sourceKey": "104",
+      "sourceIssueReference": "Excalibur (1988) #84",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "84",
+      "selectedIssueId": 8670,
+      "resolvedIssueTitle": "Excalibur (1988) #84",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8670/excalibur_1988_84",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8670"
+    },
+    {
+      "sourcePosition": 105,
+      "sourceKey": "105",
+      "sourceIssueReference": "Excalibur (1988) #85",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "85",
+      "selectedIssueId": 8671,
+      "resolvedIssueTitle": "Excalibur (1988) #85",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8671/excalibur_1988_85",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8671"
+    },
+    {
+      "sourcePosition": 106,
+      "sourceKey": "106",
+      "sourceIssueReference": "Excalibur (1988) #86",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "86",
+      "selectedIssueId": 8672,
+      "resolvedIssueTitle": "Excalibur (1988) #86",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8672/excalibur_1988_86",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8672"
+    },
+    {
+      "sourcePosition": 107,
+      "sourceKey": "107",
+      "sourceIssueReference": "Excalibur (1988) #87",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "87",
+      "selectedIssueId": 8673,
+      "resolvedIssueTitle": "Excalibur (1988) #87",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8673/excalibur_1988_87",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8673"
+    },
+    {
+      "sourcePosition": 108,
+      "sourceKey": "108",
+      "sourceIssueReference": "Excalibur (1988) #88",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "88",
+      "selectedIssueId": 8674,
+      "resolvedIssueTitle": "Excalibur (1988) #88",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8674/excalibur_1988_88",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8674"
+    },
+    {
+      "sourcePosition": 109,
+      "sourceKey": "109",
+      "sourceIssueReference": "Excalibur (1988) #89",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "89",
+      "selectedIssueId": 8675,
+      "resolvedIssueTitle": "Excalibur (1988) #89",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8675/excalibur_1988_89",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8675"
+    },
+    {
+      "sourcePosition": 110,
+      "sourceKey": "110",
+      "sourceIssueReference": "Excalibur (1988) #90",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "90",
+      "selectedIssueId": 8677,
+      "resolvedIssueTitle": "Excalibur (1988) #90",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8677/excalibur_1988_90",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8677"
+    },
+    {
+      "sourcePosition": 111,
+      "sourceKey": "111",
+      "sourceIssueReference": "Excalibur (1988) #91",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "91",
+      "selectedIssueId": 8678,
+      "resolvedIssueTitle": "Excalibur (1988) #91",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8678/excalibur_1988_91",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8678"
+    },
+    {
+      "sourcePosition": 112,
+      "sourceKey": "112",
+      "sourceIssueReference": "Excalibur (1988) #92",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "92",
+      "selectedIssueId": 8679,
+      "resolvedIssueTitle": "Excalibur (1988) #92",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8679/excalibur_1988_92",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8679"
+    },
+    {
+      "sourcePosition": 113,
+      "sourceKey": "113",
+      "sourceIssueReference": "Excalibur (1988) #93",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "93",
+      "selectedIssueId": 8680,
+      "resolvedIssueTitle": "Excalibur (1988) #93",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8680/excalibur_1988_93",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8680"
+    },
+    {
+      "sourcePosition": 114,
+      "sourceKey": "114",
+      "sourceIssueReference": "Excalibur (1988) #94",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "94",
+      "selectedIssueId": 8681,
+      "resolvedIssueTitle": "Excalibur (1988) #94",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8681/excalibur_1988_94",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8681"
+    },
+    {
+      "sourcePosition": 115,
+      "sourceKey": "115",
+      "sourceIssueReference": "Excalibur (1988) #95",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "95",
+      "selectedIssueId": 8682,
+      "resolvedIssueTitle": "Excalibur (1988) #95",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8682/excalibur_1988_95",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8682"
+    },
+    {
+      "sourcePosition": 116,
+      "sourceKey": "116",
+      "sourceIssueReference": "Excalibur (1988) #96",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "96",
+      "selectedIssueId": 8683,
+      "resolvedIssueTitle": "Excalibur (1988) #96",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8683/excalibur_1988_96",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8683"
+    },
+    {
+      "sourcePosition": 117,
+      "sourceKey": "117",
+      "sourceIssueReference": "Excalibur (1988) #97",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "97",
+      "selectedIssueId": 8684,
+      "resolvedIssueTitle": "Excalibur (1988) #97",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8684/excalibur_1988_97",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8684"
+    },
+    {
+      "sourcePosition": 118,
+      "sourceKey": "118",
+      "sourceIssueReference": "Excalibur (1988) #98",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "98",
+      "selectedIssueId": 8685,
+      "resolvedIssueTitle": "Excalibur (1988) #98",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8685/excalibur_1988_98",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8685"
+    },
+    {
+      "sourcePosition": 119,
+      "sourceKey": "119",
+      "sourceIssueReference": "Excalibur (1988) #99",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "99",
+      "selectedIssueId": 8686,
+      "resolvedIssueTitle": "Excalibur (1988) #99",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8686/excalibur_1988_99",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8686"
+    },
+    {
+      "sourcePosition": 120,
+      "sourceKey": "120",
+      "sourceIssueReference": "Excalibur (1988) #100",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "100",
+      "selectedIssueId": 8564,
+      "resolvedIssueTitle": "Excalibur (1988) #100",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8564/excalibur_1988_100",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8564"
+    },
+    {
+      "sourcePosition": 121,
+      "sourceKey": "121",
+      "sourceIssueReference": "Excalibur (1988) #101",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "101",
+      "selectedIssueId": 8565,
+      "resolvedIssueTitle": "Excalibur (1988) #101",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8565/excalibur_1988_101",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8565"
+    },
+    {
+      "sourcePosition": 122,
+      "sourceKey": "122",
+      "sourceIssueReference": "Excalibur (1988) #102",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "102",
+      "selectedIssueId": 8566,
+      "resolvedIssueTitle": "Excalibur (1988) #102",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8566/excalibur_1988_102",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8566"
+    },
+    {
+      "sourcePosition": 123,
+      "sourceKey": "123",
+      "sourceIssueReference": "Excalibur (1988) #103",
+      "seriesId": 2011,
+      "seriesYear": 1988,
+      "issueNumber": "103",
+      "selectedIssueId": 8567,
+      "resolvedIssueTitle": "Excalibur (1988) #103",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8567/excalibur_1988_103",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/8567"
+    },
+    {
+      "sourcePosition": 124,
+      "sourceKey": "124",
+      "sourceIssueReference": "Uncanny X-Men (1963) #394",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "394",
+      "selectedIssueId": 13935,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #394",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13935/uncanny_x-men_1963_394",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13935"
+    },
+    {
+      "sourcePosition": 125,
+      "sourceKey": "125",
+      "sourceIssueReference": "Uncanny X-Men (1963) #395",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "395",
+      "selectedIssueId": 13936,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #395",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13936/uncanny_x-men_1963_395",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13936"
+    },
+    {
+      "sourcePosition": 126,
+      "sourceKey": "126",
+      "sourceIssueReference": "Uncanny X-Men (1963) #396",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "396",
+      "selectedIssueId": 13937,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #396",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13937/uncanny_x-men_1963_396",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13937"
+    },
+    {
+      "sourcePosition": 127,
+      "sourceKey": "127",
+      "sourceIssueReference": "Uncanny X-Men (1963) #397",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "397",
+      "selectedIssueId": 13938,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #397",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13938/uncanny_x-men_1963_397",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13938"
+    },
+    {
+      "sourcePosition": 128,
+      "sourceKey": "128",
+      "sourceIssueReference": "Uncanny X-Men (1963) #398",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "398",
+      "selectedIssueId": 13939,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #398",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13939/uncanny_x-men_1963_398",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13939"
+    },
+    {
+      "sourcePosition": 129,
+      "sourceKey": "129",
+      "sourceIssueReference": "Uncanny X-Men (1963) #399",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "399",
+      "selectedIssueId": 13940,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #399",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13940/uncanny_x-men_1963_399",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13940"
+    },
+    {
+      "sourcePosition": 130,
+      "sourceKey": "130",
+      "sourceIssueReference": "Uncanny X-Men (1963) #400",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "400",
+      "selectedIssueId": 13941,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #400",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13941/uncanny_x-men_1963_400",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13941"
+    },
+    {
+      "sourcePosition": 131,
+      "sourceKey": "131",
+      "sourceIssueReference": "Uncanny X-Men (1963) #401",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "401",
+      "selectedIssueId": 13942,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #401",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13942/uncanny_x-men_1963_401",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13942"
+    },
+    {
+      "sourcePosition": 132,
+      "sourceKey": "132",
+      "sourceIssueReference": "Uncanny X-Men (1963) #402",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "402",
+      "selectedIssueId": 13943,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #402",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13943/uncanny_x-men_1963_402",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13943"
+    },
+    {
+      "sourcePosition": 133,
+      "sourceKey": "133",
+      "sourceIssueReference": "Uncanny X-Men (1963) #403",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "403",
+      "selectedIssueId": 13944,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #403",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13944/uncanny_x-men_1963_403",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13944"
+    },
+    {
+      "sourcePosition": 134,
+      "sourceKey": "134",
+      "sourceIssueReference": "Uncanny X-Men (1963) #404",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "404",
+      "selectedIssueId": 13945,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #404",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13945/uncanny_x-men_1963_404",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13945"
+    },
+    {
+      "sourcePosition": 135,
+      "sourceKey": "135",
+      "sourceIssueReference": "Uncanny X-Men (1963) #405",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "405",
+      "selectedIssueId": 13946,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #405",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13946/uncanny_x-men_1963_405",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13946"
+    },
+    {
+      "sourcePosition": 136,
+      "sourceKey": "136",
+      "sourceIssueReference": "Uncanny X-Men (1963) #406",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "406",
+      "selectedIssueId": 13947,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #406",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13947/uncanny_x-men_1963_406",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13947"
+    },
+    {
+      "sourcePosition": 137,
+      "sourceKey": "137",
+      "sourceIssueReference": "Uncanny X-Men (1963) #407",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "407",
+      "selectedIssueId": 13948,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #407",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13948/uncanny_x-men_1963_407",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13948"
+    },
+    {
+      "sourcePosition": 138,
+      "sourceKey": "138",
+      "sourceIssueReference": "Uncanny X-Men (1963) #408",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "408",
+      "selectedIssueId": 13949,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #408",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13949/uncanny_x-men_1963_408",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13949"
+    },
+    {
+      "sourcePosition": 139,
+      "sourceKey": "139",
+      "sourceIssueReference": "Uncanny X-Men (1963) #409",
+      "seriesId": 2258,
+      "seriesYear": 1963,
+      "issueNumber": "409",
+      "selectedIssueId": 13950,
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #409",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13950/uncanny_x-men_1963_409",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/13950"
+    },
+    {
+      "sourcePosition": 140,
+      "sourceKey": "140",
+      "sourceIssueReference": "Nightcrawler (2004) #1",
+      "seriesId": 717,
+      "seriesYear": 2004,
+      "issueNumber": "1",
+      "selectedIssueId": 838,
+      "resolvedIssueTitle": "Nightcrawler (2004) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/838/nightcrawler_2004_1",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/838"
+    },
+    {
+      "sourcePosition": 141,
+      "sourceKey": "141",
+      "sourceIssueReference": "Nightcrawler (2004) #2",
+      "seriesId": 717,
+      "seriesYear": 2004,
+      "issueNumber": "2",
+      "selectedIssueId": 928,
+      "resolvedIssueTitle": "Nightcrawler (2004) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/928/nightcrawler_2004_2",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/928"
+    },
+    {
+      "sourcePosition": 142,
+      "sourceKey": "142",
+      "sourceIssueReference": "Nightcrawler (2004) #3",
+      "seriesId": 717,
+      "seriesYear": 2004,
+      "issueNumber": "3",
+      "selectedIssueId": 28,
+      "resolvedIssueTitle": "Nightcrawler (2004) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/28/nightcrawler_2004_3",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/28"
+    },
+    {
+      "sourcePosition": 143,
+      "sourceKey": "143",
+      "sourceIssueReference": "Nightcrawler (2004) #4",
+      "seriesId": 717,
+      "seriesYear": 2004,
+      "issueNumber": "4",
+      "selectedIssueId": 1425,
+      "resolvedIssueTitle": "Nightcrawler (2004) #4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/1425/nightcrawler_2004_4",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/1425"
+    },
+    {
+      "sourcePosition": 144,
+      "sourceKey": "144",
+      "sourceIssueReference": "Nightcrawler (2004) #5",
+      "seriesId": 717,
+      "seriesYear": 2004,
+      "issueNumber": "5",
+      "selectedIssueId": 1521,
+      "resolvedIssueTitle": "Nightcrawler (2004) #5",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/1521/nightcrawler_2004_5",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/1521"
+    },
+    {
+      "sourcePosition": 145,
+      "sourceKey": "145",
+      "sourceIssueReference": "Nightcrawler (2004) #6",
+      "seriesId": 717,
+      "seriesYear": 2004,
+      "issueNumber": "6",
+      "selectedIssueId": 1621,
+      "resolvedIssueTitle": "Nightcrawler (2004) #6",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/1621/nightcrawler_2004_6",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/1621"
+    },
+    {
+      "sourcePosition": 146,
+      "sourceKey": "146",
+      "sourceIssueReference": "Nightcrawler (2004) #7",
+      "seriesId": 717,
+      "seriesYear": 2004,
+      "issueNumber": "7",
+      "selectedIssueId": 2130,
+      "resolvedIssueTitle": "Nightcrawler (2004) #7",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/2130/nightcrawler_2004_7",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/2130"
+    },
+    {
+      "sourcePosition": 147,
+      "sourceKey": "147",
+      "sourceIssueReference": "Nightcrawler (2004) #8",
+      "seriesId": 717,
+      "seriesYear": 2004,
+      "issueNumber": "8",
+      "selectedIssueId": 2239,
+      "resolvedIssueTitle": "Nightcrawler (2004) #8",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/2239/nightcrawler_2004_8",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/2239"
+    },
+    {
+      "sourcePosition": 148,
+      "sourceKey": "148",
+      "sourceIssueReference": "Nightcrawler (2004) #9",
+      "seriesId": 717,
+      "seriesYear": 2004,
+      "issueNumber": "9",
+      "selectedIssueId": 2350,
+      "resolvedIssueTitle": "Nightcrawler (2004) #9",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/2350/nightcrawler_2004_9",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/2350"
+    },
+    {
+      "sourcePosition": 149,
+      "sourceKey": "149",
+      "sourceIssueReference": "Nightcrawler (2004) #10",
+      "seriesId": 717,
+      "seriesYear": 2004,
+      "issueNumber": "10",
+      "selectedIssueId": 2494,
+      "resolvedIssueTitle": "Nightcrawler (2004) #10",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/2494/nightcrawler_2004_10",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/2494"
+    },
+    {
+      "sourcePosition": 150,
+      "sourceKey": "150",
+      "sourceIssueReference": "Nightcrawler (2004) #11",
+      "seriesId": 717,
+      "seriesYear": 2004,
+      "issueNumber": "11",
+      "selectedIssueId": 2495,
+      "resolvedIssueTitle": "Nightcrawler (2004) #11",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/2495/nightcrawler_2004_11",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/2495"
+    },
+    {
+      "sourcePosition": 151,
+      "sourceKey": "151",
+      "sourceIssueReference": "Nightcrawler (2004) #12",
+      "seriesId": 717,
+      "seriesYear": 2004,
+      "issueNumber": "12",
+      "selectedIssueId": 3096,
+      "resolvedIssueTitle": "Nightcrawler (2004) #12",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/3096/nightcrawler_2004_12",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/3096"
+    },
+    {
+      "sourcePosition": 152,
+      "sourceKey": "152",
+      "sourceIssueReference": "Amazing X-Men (2013) #1",
+      "seriesId": 18142,
+      "seriesYear": 2013,
+      "issueNumber": "1",
+      "selectedIssueId": 48019,
+      "resolvedIssueTitle": "Amazing X-Men (2013) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/48019/amazing_x-men_2013_1",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/48019"
+    },
+    {
+      "sourcePosition": 153,
+      "sourceKey": "153",
+      "sourceIssueReference": "Amazing X-Men (2013) #2",
+      "seriesId": 18142,
+      "seriesYear": 2013,
+      "issueNumber": "2",
+      "selectedIssueId": 48020,
+      "resolvedIssueTitle": "Amazing X-Men (2013) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/48020/amazing_x-men_2013_2",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/48020"
+    },
+    {
+      "sourcePosition": 154,
+      "sourceKey": "154",
+      "sourceIssueReference": "Amazing X-Men (2013) #3",
+      "seriesId": 18142,
+      "seriesYear": 2013,
+      "issueNumber": "3",
+      "selectedIssueId": 48021,
+      "resolvedIssueTitle": "Amazing X-Men (2013) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/48021/amazing_x-men_2013_3",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/48021"
+    },
+    {
+      "sourcePosition": 155,
+      "sourceKey": "155",
+      "sourceIssueReference": "Amazing X-Men (2013) #4",
+      "seriesId": 18142,
+      "seriesYear": 2013,
+      "issueNumber": "4",
+      "selectedIssueId": 48022,
+      "resolvedIssueTitle": "Amazing X-Men (2013) #4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/48022/amazing_x-men_2013_4",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/48022"
+    },
+    {
+      "sourcePosition": 156,
+      "sourceKey": "156",
+      "sourceIssueReference": "Amazing X-Men (2013) #5",
+      "seriesId": 18142,
+      "seriesYear": 2013,
+      "issueNumber": "5",
+      "selectedIssueId": 48023,
+      "resolvedIssueTitle": "Amazing X-Men (2013) #5",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/48023/amazing_x-men_2013_5",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/48023"
+    },
+    {
+      "sourcePosition": 157,
+      "sourceKey": "157",
+      "sourceIssueReference": "Amazing X-Men (2013) #6",
+      "seriesId": 18142,
+      "seriesYear": 2013,
+      "issueNumber": "6",
+      "selectedIssueId": 48024,
+      "resolvedIssueTitle": "Amazing X-Men (2013) #6",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/48024/amazing_x-men_2013_6",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/48024"
+    },
+    {
+      "sourcePosition": 158,
+      "sourceKey": "158",
+      "sourceIssueReference": "Amazing X-Men (2013) #7",
+      "seriesId": 18142,
+      "seriesYear": 2013,
+      "issueNumber": "7",
+      "selectedIssueId": 48025,
+      "resolvedIssueTitle": "Amazing X-Men (2013) #7",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/48025/amazing_x-men_2013_7",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/48025"
+    },
+    {
+      "sourcePosition": 159,
+      "sourceKey": "159",
+      "sourceIssueReference": "Amazing X-Men (2013) #8",
+      "seriesId": 18142,
+      "seriesYear": 2013,
+      "issueNumber": "8",
+      "selectedIssueId": 48026,
+      "resolvedIssueTitle": "Amazing X-Men (2013) #8",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/48026/amazing_x-men_2013_8",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/48026"
+    },
+    {
+      "sourcePosition": 160,
+      "sourceKey": "160",
+      "sourceIssueReference": "Amazing X-Men (2013) #9",
+      "seriesId": 18142,
+      "seriesYear": 2013,
+      "issueNumber": "9",
+      "selectedIssueId": 48027,
+      "resolvedIssueTitle": "Amazing X-Men (2013) #9",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/48027/amazing_x-men_2013_9",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/48027"
+    },
+    {
+      "sourcePosition": 161,
+      "sourceKey": "161",
+      "sourceIssueReference": "Amazing X-Men (2013) #10",
+      "seriesId": 18142,
+      "seriesYear": 2013,
+      "issueNumber": "10",
+      "selectedIssueId": 48028,
+      "resolvedIssueTitle": "Amazing X-Men (2013) #10",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/48028/amazing_x-men_2013_10",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/48028"
+    },
+    {
+      "sourcePosition": 162,
+      "sourceKey": "162",
+      "sourceIssueReference": "Amazing X-Men (2013) #11",
+      "seriesId": 18142,
+      "seriesYear": 2013,
+      "issueNumber": "11",
+      "selectedIssueId": 48029,
+      "resolvedIssueTitle": "Amazing X-Men (2013) #11",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/48029/amazing_x-men_2013_11",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/48029"
+    },
+    {
+      "sourcePosition": 163,
+      "sourceKey": "163",
+      "sourceIssueReference": "Amazing X-Men (2013) #12",
+      "seriesId": 18142,
+      "seriesYear": 2013,
+      "issueNumber": "12",
+      "selectedIssueId": 48030,
+      "resolvedIssueTitle": "Amazing X-Men (2013) #12",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/48030/amazing_x-men_2013_12",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/48030"
+    },
+    {
+      "sourcePosition": 164,
+      "sourceKey": "164",
+      "sourceIssueReference": "Amazing X-Men (2013) #13",
+      "seriesId": 18142,
+      "seriesYear": 2013,
+      "issueNumber": "13",
+      "selectedIssueId": 51081,
+      "resolvedIssueTitle": "Amazing X-Men (2013) #13",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51081/amazing_x-men_2013_13",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/51081"
+    },
+    {
+      "sourcePosition": 165,
+      "sourceKey": "165",
+      "sourceIssueReference": "Amazing X-Men (2013) #14",
+      "seriesId": 18142,
+      "seriesYear": 2013,
+      "issueNumber": "14",
+      "selectedIssueId": 51147,
+      "resolvedIssueTitle": "Amazing X-Men (2013) #14",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51147/amazing_x-men_2013_14",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/51147"
+    },
+    {
+      "sourcePosition": 166,
+      "sourceKey": "166",
+      "sourceIssueReference": "Amazing X-Men (2013) #15",
+      "seriesId": 18142,
+      "seriesYear": 2013,
+      "issueNumber": "15",
+      "selectedIssueId": 51343,
+      "resolvedIssueTitle": "Amazing X-Men (2013) #15",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51343/amazing_x-men_2013_15",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/51343"
+    },
+    {
+      "sourcePosition": 167,
+      "sourceKey": "167",
+      "sourceIssueReference": "Amazing X-Men (2013) #16",
+      "seriesId": 18142,
+      "seriesYear": 2013,
+      "issueNumber": "16",
+      "selectedIssueId": 51345,
+      "resolvedIssueTitle": "Amazing X-Men (2013) #16",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51345/amazing_x-men_2013_16",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/51345"
+    },
+    {
+      "sourcePosition": 168,
+      "sourceKey": "168",
+      "sourceIssueReference": "Amazing X-Men (2013) #17",
+      "seriesId": 18142,
+      "seriesYear": 2013,
+      "issueNumber": "17",
+      "selectedIssueId": 51346,
+      "resolvedIssueTitle": "Amazing X-Men (2013) #17",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51346/amazing_x-men_2013_17",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/51346"
+    },
+    {
+      "sourcePosition": 169,
+      "sourceKey": "169",
+      "sourceIssueReference": "Amazing X-Men (2013) #18",
+      "seriesId": 18142,
+      "seriesYear": 2013,
+      "issueNumber": "18",
+      "selectedIssueId": 51347,
+      "resolvedIssueTitle": "Amazing X-Men (2013) #18",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51347/amazing_x-men_2013_18",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/51347"
+    },
+    {
+      "sourcePosition": 170,
+      "sourceKey": "170",
+      "sourceIssueReference": "Amazing X-Men (2013) #19",
+      "seriesId": 18142,
+      "seriesYear": 2013,
+      "issueNumber": "19",
+      "selectedIssueId": 51348,
+      "resolvedIssueTitle": "Amazing X-Men (2013) #19",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51348/amazing_x-men_2013_19",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/51348"
+    },
+    {
+      "sourcePosition": 171,
+      "sourceKey": "171",
+      "sourceIssueReference": "Nightcrawler (2014) #1",
+      "seriesId": 18875,
+      "seriesYear": 2014,
+      "issueNumber": "1",
+      "selectedIssueId": 50497,
+      "resolvedIssueTitle": "Nightcrawler (2014) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50497/nightcrawler_2014_1",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/50497"
+    },
+    {
+      "sourcePosition": 172,
+      "sourceKey": "172",
+      "sourceIssueReference": "Nightcrawler (2014) #2",
+      "seriesId": 18875,
+      "seriesYear": 2014,
+      "issueNumber": "2",
+      "selectedIssueId": 50498,
+      "resolvedIssueTitle": "Nightcrawler (2014) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50498/nightcrawler_2014_2",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/50498"
+    },
+    {
+      "sourcePosition": 173,
+      "sourceKey": "173",
+      "sourceIssueReference": "Nightcrawler (2014) #3",
+      "seriesId": 18875,
+      "seriesYear": 2014,
+      "issueNumber": "3",
+      "selectedIssueId": 50499,
+      "resolvedIssueTitle": "Nightcrawler (2014) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50499/nightcrawler_2014_3",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/50499"
+    },
+    {
+      "sourcePosition": 174,
+      "sourceKey": "174",
+      "sourceIssueReference": "Nightcrawler (2014) #4",
+      "seriesId": 18875,
+      "seriesYear": 2014,
+      "issueNumber": "4",
+      "selectedIssueId": 50500,
+      "resolvedIssueTitle": "Nightcrawler (2014) #4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50500/nightcrawler_2014_4",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/50500"
+    },
+    {
+      "sourcePosition": 175,
+      "sourceKey": "175",
+      "sourceIssueReference": "Nightcrawler (2014) #5",
+      "seriesId": 18875,
+      "seriesYear": 2014,
+      "issueNumber": "5",
+      "selectedIssueId": 50501,
+      "resolvedIssueTitle": "Nightcrawler (2014) #5",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50501/nightcrawler_2014_5",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/50501"
+    },
+    {
+      "sourcePosition": 176,
+      "sourceKey": "176",
+      "sourceIssueReference": "Nightcrawler (2014) #6",
+      "seriesId": 18875,
+      "seriesYear": 2014,
+      "issueNumber": "6",
+      "selectedIssueId": 50502,
+      "resolvedIssueTitle": "Nightcrawler (2014) #6",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50502/nightcrawler_2014_6",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/50502"
+    },
+    {
+      "sourcePosition": 177,
+      "sourceKey": "177",
+      "sourceIssueReference": "Nightcrawler (2014) #7",
+      "seriesId": 18875,
+      "seriesYear": 2014,
+      "issueNumber": "7",
+      "selectedIssueId": 50503,
+      "resolvedIssueTitle": "Nightcrawler (2014) #7",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50503/nightcrawler_2014_7",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/50503"
+    },
+    {
+      "sourcePosition": 178,
+      "sourceKey": "178",
+      "sourceIssueReference": "Nightcrawler (2014) #8",
+      "seriesId": 18875,
+      "seriesYear": 2014,
+      "issueNumber": "8",
+      "selectedIssueId": 50504,
+      "resolvedIssueTitle": "Nightcrawler (2014) #8",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50504/nightcrawler_2014_8",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/50504"
+    },
+    {
+      "sourcePosition": 179,
+      "sourceKey": "179",
+      "sourceIssueReference": "Nightcrawler (2014) #9",
+      "seriesId": 18875,
+      "seriesYear": 2014,
+      "issueNumber": "9",
+      "selectedIssueId": 50505,
+      "resolvedIssueTitle": "Nightcrawler (2014) #9",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50505/nightcrawler_2014_9",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/50505"
+    },
+    {
+      "sourcePosition": 180,
+      "sourceKey": "180",
+      "sourceIssueReference": "Nightcrawler (2014) #10",
+      "seriesId": 18875,
+      "seriesYear": 2014,
+      "issueNumber": "10",
+      "selectedIssueId": 50506,
+      "resolvedIssueTitle": "Nightcrawler (2014) #10",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50506/nightcrawler_2014_10",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/50506"
+    },
+    {
+      "sourcePosition": 181,
+      "sourceKey": "181",
+      "sourceIssueReference": "Nightcrawler (2014) #11",
+      "seriesId": 18875,
+      "seriesYear": 2014,
+      "issueNumber": "11",
+      "selectedIssueId": 50507,
+      "resolvedIssueTitle": "Nightcrawler (2014) #11",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50507/nightcrawler_2014_11",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/50507"
+    },
+    {
+      "sourcePosition": 182,
+      "sourceKey": "182",
+      "sourceIssueReference": "Nightcrawler (2014) #12",
+      "seriesId": 18875,
+      "seriesYear": 2014,
+      "issueNumber": "12",
+      "selectedIssueId": 50508,
+      "resolvedIssueTitle": "Nightcrawler (2014) #12",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50508/nightcrawler_2014_12",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/50508"
+    },
+    {
+      "sourcePosition": 183,
+      "sourceKey": "183",
+      "sourceIssueReference": "Uncanny Spider-Man (2023) #1",
+      "seriesId": 37091,
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "selectedIssueId": 107624,
+      "resolvedIssueTitle": "Uncanny Spider-Man (2023) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/107624/uncanny_spider-man_2023_1",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/107624"
+    },
+    {
+      "sourcePosition": 184,
+      "sourceKey": "184",
+      "sourceIssueReference": "Uncanny Spider-Man (2023) #2",
+      "seriesId": 37091,
+      "seriesYear": 2023,
+      "issueNumber": "2",
+      "selectedIssueId": 107626,
+      "resolvedIssueTitle": "Uncanny Spider-Man (2023) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/107626/uncanny_spider-man_2023_2",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/107626"
+    },
+    {
+      "sourcePosition": 185,
+      "sourceKey": "185",
+      "sourceIssueReference": "Uncanny Spider-Man (2023) #3",
+      "seriesId": 37091,
+      "seriesYear": 2023,
+      "issueNumber": "3",
+      "selectedIssueId": 107627,
+      "resolvedIssueTitle": "Uncanny Spider-Man (2023) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/107627/uncanny_spider-man_2023_3",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/107627"
+    },
+    {
+      "sourcePosition": 186,
+      "sourceKey": "186",
+      "sourceIssueReference": "Uncanny Spider-Man (2023) #4",
+      "seriesId": 37091,
+      "seriesYear": 2023,
+      "issueNumber": "4",
+      "selectedIssueId": 107628,
+      "resolvedIssueTitle": "Uncanny Spider-Man (2023) #4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/107628/uncanny_spider-man_2023_4",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/107628"
+    },
+    {
+      "sourcePosition": 187,
+      "sourceKey": "187",
+      "sourceIssueReference": "Uncanny Spider-Man (2023) #5",
+      "seriesId": 37091,
+      "seriesYear": 2023,
+      "issueNumber": "5",
+      "selectedIssueId": 107629,
+      "resolvedIssueTitle": "Uncanny Spider-Man (2023) #5",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/107629/uncanny_spider-man_2023_5",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/107629"
+    },
+    {
+      "sourcePosition": 188,
+      "sourceKey": "188",
+      "sourceIssueReference": "Classic X-Men (1986) #9",
+      "seriesId": 3751,
+      "seriesYear": 1986,
+      "issueNumber": "9",
+      "selectedIssueId": 20607,
+      "resolvedIssueTitle": "Classic X-Men (1986) #9",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/20607/classic_x-men_1986_9",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/20607"
+    },
+    {
+      "sourcePosition": 189,
+      "sourceKey": "189",
+      "sourceIssueReference": "Guardians Team-Up (2015) #6",
+      "seriesId": 19453,
+      "seriesYear": 2015,
+      "issueNumber": "6",
+      "selectedIssueId": 51932,
+      "resolvedIssueTitle": "Guardians Team-Up (2015) #6",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51932/guardians_team-up_2015_6",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/51932"
+    },
+    {
+      "sourcePosition": 190,
+      "sourceKey": "190",
+      "sourceIssueReference": "X-Men Unlimited (1993) #49",
+      "seriesId": 3637,
+      "seriesYear": 1993,
+      "issueNumber": "49",
+      "selectedIssueId": 18153,
+      "resolvedIssueTitle": "X-Men Unlimited (1993) #49",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18153/x-men_unlimited_1993_49",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/18153"
+    },
+    {
+      "sourcePosition": 191,
+      "sourceKey": "191",
+      "sourceIssueReference": "X-Men Legends (2021) #12",
+      "seriesId": 31393,
+      "seriesYear": 2021,
+      "issueNumber": "12",
+      "selectedIssueId": 91792,
+      "resolvedIssueTitle": "X-Men Legends (2021) #12",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/91792/x-men_legends_2021_12",
+      "resolutionStatus": "exact",
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/91792"
+    }
+  ],
+  "resolvedVector": [
+    8797,
+    12548,
+    12549,
+    12550,
+    12551,
+    12552,
+    12553,
+    12415,
+    12416,
+    12417,
+    12418,
+    12419,
+    12420,
+    12421,
+    12422,
+    12423,
+    12446,
+    12448,
+    12449,
+    12450,
+    12451,
+    12452,
+    12453,
+    12454,
+    12455,
+    12456,
+    12460,
+    13683,
+    13692,
+    13693,
+    13694,
+    13703,
+    13704,
+    13705,
+    13706,
+    13707,
+    13708,
+    20042,
+    8562,
+    8599,
+    8610,
+    8621,
+    8632,
+    8643,
+    8654,
+    8665,
+    8676,
+    8563,
+    8574,
+    8585,
+    8592,
+    8593,
+    8594,
+    8595,
+    8596,
+    8597,
+    8598,
+    8600,
+    8601,
+    8602,
+    8603,
+    8604,
+    8605,
+    8606,
+    8607,
+    8608,
+    8609,
+    8611,
+    8612,
+    8613,
+    8614,
+    8615,
+    8624,
+    8625,
+    8626,
+    8627,
+    8628,
+    8629,
+    8630,
+    8631,
+    8633,
+    8634,
+    8635,
+    8636,
+    8637,
+    8638,
+    8639,
+    8640,
+    8641,
+    8642,
+    8644,
+    8645,
+    8646,
+    8647,
+    8648,
+    8649,
+    8650,
+    8651,
+    8669,
+    8670,
+    8671,
+    8672,
+    8673,
+    8674,
+    8675,
+    8677,
+    8678,
+    8679,
+    8680,
+    8681,
+    8682,
+    8683,
+    8684,
+    8685,
+    8686,
+    8564,
+    8565,
+    8566,
+    8567,
+    13935,
+    13936,
+    13937,
+    13938,
+    13939,
+    13940,
+    13941,
+    13942,
+    13943,
+    13944,
+    13945,
+    13946,
+    13947,
+    13948,
+    13949,
+    13950,
+    838,
+    928,
+    28,
+    1425,
+    1521,
+    1621,
+    2130,
+    2239,
+    2350,
+    2494,
+    2495,
+    3096,
+    48019,
+    48020,
+    48021,
+    48022,
+    48023,
+    48024,
+    48025,
+    48026,
+    48027,
+    48028,
+    48029,
+    48030,
+    51081,
+    51147,
+    51343,
+    51345,
+    51346,
+    51347,
+    51348,
+    50497,
+    50498,
+    50499,
+    50500,
+    50501,
+    50502,
+    50503,
+    50504,
+    50505,
+    50506,
+    50507,
+    50508,
+    107624,
+    107626,
+    107627,
+    107628,
+    107629,
+    20607,
+    51932,
+    18153,
+    91792
+  ],
+  "repeats": [],
+  "ledgerDigest": "640cd8408f2a1b1f3cddc45f01c9b9905961e3cb1889752b4f47782d21ffa3b8",
+  "relationshipReview": {
+    "reviewer": "Copilot Reading Lists lane K",
+    "authorityType": "agent-content-review",
+    "reviewedAt": "2026-11-17T04:28:28.252Z",
+    "report": {
+      "candidateId": "nightcrawler-best-of",
+      "ledgerDigest": "640cd8408f2a1b1f3cddc45f01c9b9905961e3cb1889752b4f47782d21ffa3b8",
+      "candidateCount": 187,
+      "comparisonCount": 345,
+      "comparisons": [
+        {
+          "orderId": "abomination-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "absolute-carnage",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "adam-warlock-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "agatha-harkness-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "age-of-x-man",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "agents-of-atlas-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "all-new-all-different-avengers",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "annihilation",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "annihilation-conquest",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "ant-man-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "apocalypse-wars",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "atlantis-attacks",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "avengers-defenders-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "avengers-disassembled",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "avengers-doomsday-secret-wars",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "avengers-enemy-within",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "axis",
+          "sharedCount": 1,
+          "sharedIds": [
+            "51147"
+          ],
+          "relationship": "partial"
+        },
+        {
+          "orderId": "best-ultron-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "black-panther-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "black-widow-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "blood-and-thunder",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "bloodties",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "captain-america-2025-dooms-shadow",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "captain-america-2025-hells-angel",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "captain-america-2025-our-secret-wars",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "captain-america-best-of",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "captain-america-reading-order-modern-marvel-era",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "captain-marvel-ms-marvel-reading-order",
+          "sharedCount": 9,
+          "sharedIds": [
+            "13692",
+            "13693",
+            "13694",
+            "13703",
+            "13704",
+            "13705",
+            "13706",
+            "13707",
+            "13708"
+          ],
+          "relationship": "partial"
+        },
+        {
+          "orderId": "chaos-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "childs-play",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "civil-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "civil-war-avengers",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "civil-war-essential",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "clone-conspiracy",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "contest-of-champions",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "contest-of-chaos",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "damnation",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "daredevil-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "dark-phoenix-saga",
+          "sharedCount": 9,
+          "sharedIds": [
+            "12446",
+            "12448",
+            "12449",
+            "12450",
+            "12451",
+            "12452",
+            "12453",
+            "12454",
+            "12455"
+          ],
+          "relationship": "existing-subset"
+        },
+        {
+          "orderId": "dark-reign-avengers",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "dark-web",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "days-of-future-past",
+          "sharedCount": 2,
+          "sharedIds": [
+            "12460",
+            "13683"
+          ],
+          "relationship": "existing-subset"
+        },
+        {
+          "orderId": "days-of-future-present",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "dead-mans-hand",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "deadpool-best-of",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "death-of-doctor-strange",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "devils-reign",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "doctor-doom-primer",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "doctor-octopus-otto-octavius-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "doctor-strange-multiverse-of-madness",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "doctor-strange-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "donny-cates-marvel-universe-reading-order-2017",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "doomwar",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "eighth-day",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "emma-frost-reading-order",
+          "sharedCount": 7,
+          "sharedIds": [
+            "12446",
+            "12448",
+            "12449",
+            "13692",
+            "13693",
+            "48024",
+            "50501"
+          ],
+          "relationship": "partial"
+        },
+        {
+          "orderId": "essential-avengers",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "evolutionary-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "falcon-sam-wilson-captain-america-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "fall-house-x-rise-powers-x",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "fall-of-the-hulks",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "fall-of-the-mutants",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "fantastic-four-and-power-pack",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "fantastic-four-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "fatal-attractions",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "franklin-richards-one-shots",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "gang-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "generations",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "groot-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "guardians-of-the-galaxy-reading-order",
+          "sharedCount": 1,
+          "sharedIds": [
+            "51932"
+          ],
+          "relationship": "partial"
+        },
+        {
+          "orderId": "hawkeye-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "heroes-reborn-2021",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "heroic-age-avengers",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "hickman-full",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "hickman-minimal",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "hickman-x-men",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "history-of-the-marvel-universe-2019",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "hope-summers-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "house-of-m",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "house-of-m-essential",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "hunt-for-wolverine",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "hunt-for-xavier",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "inferno",
+          "sharedCount": 2,
+          "sharedIds": [
+            "8643",
+            "8654"
+          ],
+          "relationship": "partial"
+        },
+        {
+          "orderId": "infinite-destinies",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "infinity-countdown-wars",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "inhumans-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "inhumans-vs-x-men",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "iron-fist-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "iron-man-2020",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "iron-man-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "judgment-day",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "king-in-black",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "kravens-last-hunt",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "kree-skrull-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "last-annihilation",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "loki-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "magneto-reading-order",
+          "sharedCount": 37,
+          "sharedIds": [
+            "8797",
+            "12548",
+            "12549",
+            "12550",
+            "12551",
+            "12552",
+            "12553",
+            "12415",
+            "12416",
+            "12417",
+            "12418",
+            "12419",
+            "12420",
+            "12421",
+            "12422",
+            "12423",
+            "12446",
+            "12448",
+            "12449",
+            "12450",
+            "12451",
+            "12452",
+            "12453",
+            "12454",
+            "12455",
+            "12456",
+            "12460",
+            "13683",
+            "13692",
+            "13693",
+            "13694",
+            "13703",
+            "13704",
+            "13705",
+            "13706",
+            "13707",
+            "13708"
+          ],
+          "relationship": "partial"
+        },
+        {
+          "orderId": "magneto-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-1602",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-2099",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-action-avengers",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-action-black-panther",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-action-captain-marvel",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-action-spider-man",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-adventures-the-avengers",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-fresh-start-avengers",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x",
+          "sharedCount": 16,
+          "sharedIds": [
+            "13935",
+            "13936",
+            "13937",
+            "13938",
+            "13939",
+            "13940",
+            "13941",
+            "13942",
+            "13943",
+            "13944",
+            "13945",
+            "13946",
+            "13947",
+            "13948",
+            "13949",
+            "13950"
+          ],
+          "relationship": "partial"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-01",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-02",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-03",
+          "sharedCount": 1,
+          "sharedIds": [
+            "13935"
+          ],
+          "relationship": "partial"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-04",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-05",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-06",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-07",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-08",
+          "sharedCount": 4,
+          "sharedIds": [
+            "13936",
+            "13937",
+            "13938",
+            "13939"
+          ],
+          "relationship": "existing-subset"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-09",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-10",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-11",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-12",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-13",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-14",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-15",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-16",
+          "sharedCount": 2,
+          "sharedIds": [
+            "13940",
+            "13941"
+          ],
+          "relationship": "partial"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-17",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-18",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-19",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-20",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-21",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-22",
+          "sharedCount": 7,
+          "sharedIds": [
+            "13942",
+            "13943",
+            "13944",
+            "13945",
+            "13946",
+            "13947",
+            "13948"
+          ],
+          "relationship": "existing-subset"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-23",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-24",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-25",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-26",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-27",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-28",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-29",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-30",
+          "sharedCount": 2,
+          "sharedIds": [
+            "13949",
+            "13950"
+          ],
+          "relationship": "existing-subset"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-31",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-32",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-33",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-34",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-35",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-36",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-37",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-38",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-39",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-40",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-41",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-42",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-43",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-44",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-45",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-46",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-47",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-48",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-49",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-50",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-51",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-52",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-53",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-54",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-55",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-56",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-57",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-58",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-59",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-60",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-61",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-62",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-63",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-64",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-65",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-66",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-67",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-68",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-69",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-70",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-71",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-72",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-73",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-74",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-75",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-76",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-77",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-knights-to-planet-x-78",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-rising",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-super-hero-adventures",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-super-heroes-secret-wars",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-universe-guardians-of-the-galaxy-infinite-comic",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-what-if",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvel-zombies-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvels-1994",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "marvels-best-phoenix-comics",
+          "sharedCount": 1,
+          "sharedIds": [
+            "8605"
+          ],
+          "relationship": "partial"
+        },
+        {
+          "orderId": "marvels-infinity-saga-gauntlet-wars-crusade-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "maximum-security",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mc2",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-agatha-all-along",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-ant-man-2015",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-avengers-age-of-ultron-2015",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-avengers-infinity-war-endgame",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-black-panther-2018",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-captain-america-brave-new-world",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-captain-america-civil-war-2016",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-captain-america-the-first-avenger-2011",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-captain-america-the-winter-soldier-2014",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-captain-marvel-2019",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-daredevil-born-again",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-deadpool-and-wolverine",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-doctor-strange-2016",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-eternals",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-fantastic-four-first-steps",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-guardians-of-the-galaxy",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-iron-man-2-2010",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-iron-man-2008",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-iron-man-3-2013",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-moon-knight",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-ms-marvel",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-shang-chi-and-the-legend-of-the-ten-rings",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-she-hulk",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-spider-man-brand-new-day",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-the-avengers-2012",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-the-incredible-hulk-2008",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-thor-2011",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-thor-ragnarok-2017",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-thor-the-dark-world-2013",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-thunderbolts",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-visionquest",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mephisto-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "messiah-complex",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "messiah-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "midnight-massacre",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "miles-morales-best-of",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "miles-morales-spider-man-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "minimum-carnage",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "modern-x-men-fast-track",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "monsters-unleashed",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "moon-girl-and-devil-dinosaur",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "moon-knight-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "ms-marvel-kamala-khan-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "muir-island-saga",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mutant-massacre",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mys-tech-wars",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "namor-sub-mariner-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "nebula-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "necrosha",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "new-ultimate-universe",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "new-ultimate-universe-trades",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "nick-fury-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "nova-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "one-world-under-doom",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "operation-galactic-storm",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "operation-zero-tolerance",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "original-clone-saga",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "phalanx-covenant",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "phalanx-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "phoenix-saga",
+          "sharedCount": 8,
+          "sharedIds": [
+            "12416",
+            "12417",
+            "12418",
+            "12419",
+            "12420",
+            "12421",
+            "12422",
+            "12423"
+          ],
+          "relationship": "existing-subset"
+        },
+        {
+          "orderId": "planet-hulk",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "power-pack-pack-attack-and-team-ups",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "professor-x-reading-order",
+          "sharedCount": 3,
+          "sharedIds": [
+            "8797",
+            "12548",
+            "12549"
+          ],
+          "relationship": "partial"
+        },
+        {
+          "orderId": "punisher-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "realm-of-kings",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "reckoning-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "reed-richards-and-sue-storms-wedding",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "revolutionary-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "rise-of-the-midnight-sons",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "rocket-raccoon-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "runaways-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "scarlet-witch-best-of",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "second-clone-saga",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "second-coming",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "secret-invasion",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "secret-invasion-essential",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "secret-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "secret-wars-ii",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "setup-to-modern-timeline",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "shadow-king-reading-order",
+          "sharedCount": 3,
+          "sharedIds": [
+            "50504",
+            "50505",
+            "50506"
+          ],
+          "relationship": "partial"
+        },
+        {
+          "orderId": "shadowland",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "shang-chi-master-of-kung-fu-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "siege-dark-reign-prelude",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "silent-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "silk-cindy-moon-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "silver-surfer-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "sins-of-sinister",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-geddon",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-gwen-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-island",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-man-2099-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-man-best-of",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-man-far-from-home",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-man-identity-crisis",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-man-no-way-home",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-man-the-other",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-verse",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spidey",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "star-lord-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "thanos-imperative",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "thanos-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "thanos-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
+          "sharedCount": 1,
+          "sharedIds": [
+            "8564"
+          ],
+          "relationship": "partial"
+        },
+        {
+          "orderId": "the-death-of-ms-marvel",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "the-defenders-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "the-night-gwen-stacy-died",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "the-unbeatable-squirrel-girl",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "the-vision-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "thor-best-of",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "thor-the-mighty-avenger",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "thunderbolts-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "time-and-time-again",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "ultimate-marvel-intro",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "ultimate-spider-man-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "venom-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "venomverse",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "wandavision",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "war-of-kings",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "war-of-the-realms",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "white-tiger-ava-ayala",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "winter-soldier-bucky-barnes-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "wolverine-goes-to-hell",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "wolverine-reading-order",
+          "sharedCount": 16,
+          "sharedIds": [
+            "8797",
+            "12548",
+            "12549",
+            "12550",
+            "12551",
+            "12552",
+            "12553",
+            "12415",
+            "12416",
+            "12417",
+            "12418",
+            "12419",
+            "12420",
+            "12421",
+            "12422",
+            "12423"
+          ],
+          "relationship": "partial"
+        },
+        {
+          "orderId": "world-war-hulk-aftersmash",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "wraith-war",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-23-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-cutioners-song",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-force-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-age-of-x",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-battle-of-the-atom",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-curse-of-the-mutants",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-divided-we-stand",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-extermination",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-inferno",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-manifest-destiny",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-nation-x",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-regenesis",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-schism",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-trial-of-jean-grey",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-men-utopia",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-of-swords",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-termination",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "x-tinction-agenda",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "xmen-claremont",
+          "sharedCount": 37,
+          "sharedIds": [
+            "8797",
+            "12548",
+            "12549",
+            "12550",
+            "12551",
+            "12552",
+            "12553",
+            "12415",
+            "12416",
+            "12417",
+            "12418",
+            "12419",
+            "12420",
+            "12421",
+            "12422",
+            "12423",
+            "12446",
+            "12448",
+            "12449",
+            "12450",
+            "12451",
+            "12452",
+            "12453",
+            "12454",
+            "12455",
+            "12456",
+            "12460",
+            "13683",
+            "13692",
+            "13693",
+            "13694",
+            "13703",
+            "13704",
+            "13705",
+            "13706",
+            "13707",
+            "13708"
+          ],
+          "relationship": "partial"
+        },
+        {
+          "orderId": "xmen-claremont-complete",
+          "sharedCount": 37,
+          "sharedIds": [
+            "8797",
+            "12548",
+            "12549",
+            "12550",
+            "12551",
+            "12552",
+            "12553",
+            "12415",
+            "12416",
+            "12417",
+            "12418",
+            "12419",
+            "12420",
+            "12421",
+            "12422",
+            "12423",
+            "12446",
+            "12448",
+            "12449",
+            "12450",
+            "12451",
+            "12452",
+            "12453",
+            "12454",
+            "12455",
+            "12456",
+            "12460",
+            "13683",
+            "13692",
+            "13693",
+            "13694",
+            "13703",
+            "13704",
+            "13705",
+            "13706",
+            "13707",
+            "13708"
+          ],
+          "relationship": "partial"
+        },
+        {
+          "orderId": "young-avengers-reading-order",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        }
+      ],
+      "reportDigest": "c516543f14a160261831a60e5f7381def017dc88c911cabb785d9214b25bc588"
+    },
+    "decisions": [
+      {
+        "orderId": "axis",
+        "sharedCount": 1,
+        "sharedIds": [
+          "51147"
+        ],
+        "relationship": "partial",
+        "authorityType": "agent-content-review",
+        "rationale": "This character best-of path selects Nightcrawler’s key series; the peer selects a different character, creator run or broader chronology. Preserve shared originals in both."
+      },
+      {
+        "orderId": "captain-marvel-ms-marvel-reading-order",
+        "sharedCount": 9,
+        "sharedIds": [
+          "13692",
+          "13693",
+          "13694",
+          "13703",
+          "13704",
+          "13705",
+          "13706",
+          "13707",
+          "13708"
+        ],
+        "relationship": "partial",
+        "authorityType": "agent-content-review",
+        "rationale": "This character best-of path selects Nightcrawler’s key series; the peer selects a different character, creator run or broader chronology. Preserve shared originals in both."
+      },
+      {
+        "orderId": "dark-phoenix-saga",
+        "sharedCount": 9,
+        "sharedIds": [
+          "12446",
+          "12448",
+          "12449",
+          "12450",
+          "12451",
+          "12452",
+          "12453",
+          "12454",
+          "12455"
+        ],
+        "relationship": "existing-subset",
+        "authorityType": "agent-content-review",
+        "rationale": "Every original in the peer is among this best-of path’s selections because the Claremont and Excalibur picks span the peer’s story. The peer is a focused story order and this is a character path, so preserve both lists and their shared originals."
+      },
+      {
+        "orderId": "days-of-future-past",
+        "sharedCount": 2,
+        "sharedIds": [
+          "12460",
+          "13683"
+        ],
+        "relationship": "existing-subset",
+        "authorityType": "agent-content-review",
+        "rationale": "Every original in the peer is among this best-of path’s selections because the Claremont and Excalibur picks span the peer’s story. The peer is a focused story order and this is a character path, so preserve both lists and their shared originals."
+      },
+      {
+        "orderId": "emma-frost-reading-order",
+        "sharedCount": 7,
+        "sharedIds": [
+          "12446",
+          "12448",
+          "12449",
+          "13692",
+          "13693",
+          "48024",
+          "50501"
+        ],
+        "relationship": "partial",
+        "authorityType": "agent-content-review",
+        "rationale": "This character best-of path selects Nightcrawler’s key series; the peer selects a different character, creator run or broader chronology. Preserve shared originals in both."
+      },
+      {
+        "orderId": "guardians-of-the-galaxy-reading-order",
+        "sharedCount": 1,
+        "sharedIds": [
+          "51932"
+        ],
+        "relationship": "partial",
+        "authorityType": "agent-content-review",
+        "rationale": "This character best-of path selects Nightcrawler’s key series; the peer selects a different character, creator run or broader chronology. Preserve shared originals in both."
+      },
+      {
+        "orderId": "inferno",
+        "sharedCount": 2,
+        "sharedIds": [
+          "8643",
+          "8654"
+        ],
+        "relationship": "partial",
+        "authorityType": "agent-content-review",
+        "rationale": "This character best-of path selects Nightcrawler’s key series; the peer selects a different character, creator run or broader chronology. Preserve shared originals in both."
+      },
+      {
+        "orderId": "magneto-reading-order",
+        "sharedCount": 37,
+        "sharedIds": [
+          "8797",
+          "12548",
+          "12549",
+          "12550",
+          "12551",
+          "12552",
+          "12553",
+          "12415",
+          "12416",
+          "12417",
+          "12418",
+          "12419",
+          "12420",
+          "12421",
+          "12422",
+          "12423",
+          "12446",
+          "12448",
+          "12449",
+          "12450",
+          "12451",
+          "12452",
+          "12453",
+          "12454",
+          "12455",
+          "12456",
+          "12460",
+          "13683",
+          "13692",
+          "13693",
+          "13694",
+          "13703",
+          "13704",
+          "13705",
+          "13706",
+          "13707",
+          "13708"
+        ],
+        "relationship": "partial",
+        "authorityType": "agent-content-review",
+        "rationale": "This character best-of path selects Nightcrawler’s key series; the peer selects a different character, creator run or broader chronology. Preserve shared originals in both."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x",
+        "sharedCount": 16,
+        "sharedIds": [
+          "13935",
+          "13936",
+          "13937",
+          "13938",
+          "13939",
+          "13940",
+          "13941",
+          "13942",
+          "13943",
+          "13944",
+          "13945",
+          "13946",
+          "13947",
+          "13948",
+          "13949",
+          "13950"
+        ],
+        "relationship": "partial",
+        "authorityType": "agent-content-review",
+        "rationale": "This character best-of path selects Nightcrawler’s key series; the peer selects a different character, creator run or broader chronology. Preserve shared originals in both."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-03",
+        "sharedCount": 1,
+        "sharedIds": [
+          "13935"
+        ],
+        "relationship": "partial",
+        "authorityType": "agent-content-review",
+        "rationale": "This character best-of path selects Nightcrawler’s key series; the peer selects a different character, creator run or broader chronology. Preserve shared originals in both."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-08",
+        "sharedCount": 4,
+        "sharedIds": [
+          "13936",
+          "13937",
+          "13938",
+          "13939"
+        ],
+        "relationship": "existing-subset",
+        "authorityType": "agent-content-review",
+        "rationale": "Every original in the peer is among this best-of path’s selections because the Claremont and Excalibur picks span the peer’s story. The peer is a focused story order and this is a character path, so preserve both lists and their shared originals."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-16",
+        "sharedCount": 2,
+        "sharedIds": [
+          "13940",
+          "13941"
+        ],
+        "relationship": "partial",
+        "authorityType": "agent-content-review",
+        "rationale": "This character best-of path selects Nightcrawler’s key series; the peer selects a different character, creator run or broader chronology. Preserve shared originals in both."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-22",
+        "sharedCount": 7,
+        "sharedIds": [
+          "13942",
+          "13943",
+          "13944",
+          "13945",
+          "13946",
+          "13947",
+          "13948"
+        ],
+        "relationship": "existing-subset",
+        "authorityType": "agent-content-review",
+        "rationale": "Every original in the peer is among this best-of path’s selections because the Claremont and Excalibur picks span the peer’s story. The peer is a focused story order and this is a character path, so preserve both lists and their shared originals."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-30",
+        "sharedCount": 2,
+        "sharedIds": [
+          "13949",
+          "13950"
+        ],
+        "relationship": "existing-subset",
+        "authorityType": "agent-content-review",
+        "rationale": "Every original in the peer is among this best-of path’s selections because the Claremont and Excalibur picks span the peer’s story. The peer is a focused story order and this is a character path, so preserve both lists and their shared originals."
+      },
+      {
+        "orderId": "marvels-best-phoenix-comics",
+        "sharedCount": 1,
+        "sharedIds": [
+          "8605"
+        ],
+        "relationship": "partial",
+        "authorityType": "agent-content-review",
+        "rationale": "This character best-of path selects Nightcrawler’s key series; the peer selects a different character, creator run or broader chronology. Preserve shared originals in both."
+      },
+      {
+        "orderId": "phoenix-saga",
+        "sharedCount": 8,
+        "sharedIds": [
+          "12416",
+          "12417",
+          "12418",
+          "12419",
+          "12420",
+          "12421",
+          "12422",
+          "12423"
+        ],
+        "relationship": "existing-subset",
+        "authorityType": "agent-content-review",
+        "rationale": "Every original in the peer is among this best-of path’s selections because the Claremont and Excalibur picks span the peer’s story. The peer is a focused story order and this is a character path, so preserve both lists and their shared originals."
+      },
+      {
+        "orderId": "professor-x-reading-order",
+        "sharedCount": 3,
+        "sharedIds": [
+          "8797",
+          "12548",
+          "12549"
+        ],
+        "relationship": "partial",
+        "authorityType": "agent-content-review",
+        "rationale": "This character best-of path selects Nightcrawler’s key series; the peer selects a different character, creator run or broader chronology. Preserve shared originals in both."
+      },
+      {
+        "orderId": "shadow-king-reading-order",
+        "sharedCount": 3,
+        "sharedIds": [
+          "50504",
+          "50505",
+          "50506"
+        ],
+        "relationship": "partial",
+        "authorityType": "agent-content-review",
+        "rationale": "This character best-of path selects Nightcrawler’s key series; the peer selects a different character, creator run or broader chronology. Preserve shared originals in both."
+      },
+      {
+        "orderId": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
+        "sharedCount": 1,
+        "sharedIds": [
+          "8564"
+        ],
+        "relationship": "partial",
+        "authorityType": "agent-content-review",
+        "rationale": "This character best-of path selects Nightcrawler’s key series; the peer selects a different character, creator run or broader chronology. Preserve shared originals in both."
+      },
+      {
+        "orderId": "wolverine-reading-order",
+        "sharedCount": 16,
+        "sharedIds": [
+          "8797",
+          "12548",
+          "12549",
+          "12550",
+          "12551",
+          "12552",
+          "12553",
+          "12415",
+          "12416",
+          "12417",
+          "12418",
+          "12419",
+          "12420",
+          "12421",
+          "12422",
+          "12423"
+        ],
+        "relationship": "partial",
+        "authorityType": "agent-content-review",
+        "rationale": "This character best-of path selects Nightcrawler’s key series; the peer selects a different character, creator run or broader chronology. Preserve shared originals in both."
+      },
+      {
+        "orderId": "xmen-claremont",
+        "sharedCount": 37,
+        "sharedIds": [
+          "8797",
+          "12548",
+          "12549",
+          "12550",
+          "12551",
+          "12552",
+          "12553",
+          "12415",
+          "12416",
+          "12417",
+          "12418",
+          "12419",
+          "12420",
+          "12421",
+          "12422",
+          "12423",
+          "12446",
+          "12448",
+          "12449",
+          "12450",
+          "12451",
+          "12452",
+          "12453",
+          "12454",
+          "12455",
+          "12456",
+          "12460",
+          "13683",
+          "13692",
+          "13693",
+          "13694",
+          "13703",
+          "13704",
+          "13705",
+          "13706",
+          "13707",
+          "13708"
+        ],
+        "relationship": "partial",
+        "authorityType": "agent-content-review",
+        "rationale": "This character best-of path selects Nightcrawler’s key series; the peer selects a different character, creator run or broader chronology. Preserve shared originals in both."
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "sharedCount": 37,
+        "sharedIds": [
+          "8797",
+          "12548",
+          "12549",
+          "12550",
+          "12551",
+          "12552",
+          "12553",
+          "12415",
+          "12416",
+          "12417",
+          "12418",
+          "12419",
+          "12420",
+          "12421",
+          "12422",
+          "12423",
+          "12446",
+          "12448",
+          "12449",
+          "12450",
+          "12451",
+          "12452",
+          "12453",
+          "12454",
+          "12455",
+          "12456",
+          "12460",
+          "13683",
+          "13692",
+          "13693",
+          "13694",
+          "13703",
+          "13704",
+          "13705",
+          "13706",
+          "13707",
+          "13708"
+        ],
+        "relationship": "partial",
+        "authorityType": "agent-content-review",
+        "rationale": "This character best-of path selects Nightcrawler’s key series; the peer selects a different character, creator run or broader chronology. Preserve shared originals in both."
+      }
+    ],
+    "status": "approved",
+    "dispositions": [
+      {
+        "orderId": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authority": "Claude Opus 5.5 coordinator reciprocal overlap review, 2026-11-16",
+        "relationship": "partial",
+        "sharedCount": 1,
+        "sharedIds": [
+          "8564"
+        ],
+        "ledgerDigest": "640cd8408f2a1b1f3cddc45f01c9b9905961e3cb1889752b4f47782d21ffa3b8",
+        "reportDigest": "c516543f14a160261831a60e5f7381def017dc88c911cabb785d9214b25bc588",
+        "rationale": "Independently verified against main e807e713 and the candidate files. The one shared original is Excalibur (1988) #100 (issueId 8564, digitalId 11019), with identical issueId and digitalId values in both lists, at Onslaught position 46 and Nightcrawler position 116. An independent intersection of the two payloads is exactly this one, and neither list contains the other, so partial is correct. Onslaught's identities, positions and placeholders are unchanged; both lists keep the shared original as one shared read identity."
+      }
+    ],
+    "approvalDigest": "8a19e86027919ccda8b487ef65551ec98c6156cf6c6a8a17ada4d91258d02ff5"
+  }
+}
