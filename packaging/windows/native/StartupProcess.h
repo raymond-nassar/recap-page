@@ -115,8 +115,29 @@ inline Handle readableFile(const std::wstring& path, const wchar_t* role) {
     return file;
 }
 
+// The whole of what the launcher accepts (#1412). Windows passes the startup task and the recap-page:
+// protocol only the fixed Parameters their manifest entries declare, and the server's consent check passes
+// one of the two state tokens. Anything else, a protocol address included, is refused whole, so nothing a
+// page writes can choose a mode or reach an argument.
+enum class LaunchMode { interactive, background, startupState, startupEnable };
+constexpr wchar_t StartupTaskToken[] = L"--recap-startup-task-v1";
+constexpr wchar_t ReconnectToken[] = L"--recap-reconnect-v1";
+constexpr wchar_t StartupStateToken[] = L"--recap-startup-state-v1";
+constexpr wchar_t StartupEnableToken[] = L"--recap-startup-enable-v1";
+
+inline LaunchMode launchMode(const std::wstring& arguments) {
+    const auto first = arguments.find_first_not_of(L" \t");
+    if (first == std::wstring::npos) return LaunchMode::interactive;
+    const auto token = arguments.substr(first, arguments.find_last_not_of(L" \t") - first + 1);
+    if (token == StartupTaskToken || token == ReconnectToken) return LaunchMode::background;
+    if (token == StartupStateToken) return LaunchMode::startupState;
+    if (token == StartupEnableToken) return LaunchMode::startupEnable;
+    throw WindowsFailure(L"Recap Page received unexpected startup arguments", ERROR_BAD_ARGUMENTS);
+}
+
 inline void validateArguments(const std::wstring& arguments) {
-    if (arguments.find_first_not_of(L" \t") != std::wstring::npos)
+    const auto mode = launchMode(arguments);
+    if (mode != LaunchMode::interactive && mode != LaunchMode::background)
         throw WindowsFailure(L"Recap Page received unexpected startup arguments", ERROR_BAD_ARGUMENTS);
 }
 
@@ -157,8 +178,9 @@ inline std::wstring quoted(const std::wstring& argument) {
     return result + L"\"";
 }
 
-inline std::wstring coordinatorCommand(const LaunchPaths& paths) {
-    return quoted(paths.runtime) + L" " + quoted(paths.coordinator) + L" --gui-startup-v1";
+inline std::wstring coordinatorCommand(const LaunchPaths& paths, bool background = false) {
+    return quoted(paths.runtime) + L" " + quoted(paths.coordinator) +
+        (background ? L" --gui-startup-background-v1" : L" --gui-startup-v1");
 }
 
 inline bool blockedEnvironment(const std::wstring& entry) {

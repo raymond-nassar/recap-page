@@ -53,6 +53,10 @@ const SYSTEM_IMPORTS = new Set([
   'windowscodecs.dll', 'comctl32.dll', 'msimg32.dll', 'advapi32.dll',
   'shell32.dll', 'shlwapi.dll',
 ]);
+// The launcher alone reads and enables the package's startup task through WinRT (#1412).
+const LAUNCHER_WINRT_IMPORTS = new Set([
+  'api-ms-win-core-winrt-l1-1-0.dll', 'api-ms-win-core-winrt-string-l1-1-0.dll',
+]);
 
 export const sha256 = (bytes) => createHash('sha256').update(bytes).digest('hex');
 function demand(condition, message) {
@@ -114,6 +118,7 @@ export function nativePe(bytes, target, { proof = false, verifier = false } = {}
         demand(end > nameOffset && end - nameOffset <= 260, 'invalid imported library name');
         const name = bytes.toString('ascii', nameOffset, end).toLowerCase();
         demand(SYSTEM_IMPORTS.has(name)
+          || (!proof && !verifier && LAUNCHER_WINRT_IMPORTS.has(name))
           || (proof && ['tdh.dll', 'uiautomationcore.dll', 'kernelbase.dll'].includes(name))
           || ((proof || verifier) && ['iphlpapi.dll', 'ws2_32.dll'].includes(name)),
         `unexpected runtime dependency ${name}`);

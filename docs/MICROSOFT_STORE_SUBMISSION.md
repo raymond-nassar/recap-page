@@ -272,7 +272,7 @@ text.
 
 ### Restricted-capability explanation
 
-Recap Page declares runFullTrust so it can start its bundled Node runtime as a local server and open the user's default browser. The server binds only to 127.0.0.1:8787 and accepts no remote connections. It requests no elevation, installs no background service, creates no account and sends no telemetry. Optional OneDrive backup goes only to the user's own Microsoft account, never to the developer.
+Recap Page declares runFullTrust so it can start its bundled Node runtime as a local server and open Recap Page in the user's default browser, in its own app window when the user has installed it there as an app. The server binds only to 127.0.0.1:8787 and accepts no remote connections. It requests no elevation, installs no background service, creates no account and sends no telemetry. If the user agrees, a startup task starts the local server when they sign in, and the user can turn it off in Windows settings. A recap-page: link lets the installed app window start the local server again; it takes no input from the link. Optional OneDrive backup goes only to the user's own Microsoft account, never to the developer.
 
 ## Notes for certification
 
@@ -283,12 +283,12 @@ still required.
 
 Prepared for Recap Page 4.3.0, package version 4.3.0.0.
 
-Launching Recap Page starts a hidden local server on 127.0.0.1:8787 and opens the default browser there. No console stays open. No account or test credentials are needed to track lists.
+Launching Recap Page starts a hidden local server on 127.0.0.1:8787 and opens the default browser there, in Recap Page's own app window when it is installed as an app in that browser and otherwise in a tab. No console stays open. No account or test credentials are needed to track lists.
 
 Core test path:
-1. Launch Recap Page from Start and confirm that the default browser opens http://127.0.0.1:8787/ without leaving a console open.
+1. Launch Recap Page from Start and confirm that the default browser opens http://127.0.0.1:8787/ without leaving a console open. In Microsoft Edge or Chrome, Recap Page offers to install itself as an app; after you install it, launching from Start opens Recap Page in its own window instead of a tab.
 2. On Home, open Modern Timeline and find House of M. Preview it, add it to the library, mark an issue read and add a note.
-3. Close the browser and relaunch in the same profile. Confirm the saved progress and note remain.
+3. Close the browser, or Recap Page's own window if it is installed as an app, and relaunch from Start in the same profile. Confirm the saved progress and note remain.
 4. In Backup & settings, export a complete backup. Restoring it requires confirmation and replaces its saved components; use test data.
 5. OneDrive is optional. To test it, use a personal Microsoft test account that the tester controls, connect it under Backup & settings, review existing backups and turn automatic backup on. Make a reading change and check the successful backup status. Use test data for a confirmed restore.
 6. Delete this device's cloud backups removes recognized files for this installation. Disconnect also offers deletion. OneDrive can retain deleted files in its recycle bin; local erase and uninstall do not delete cloud copies.

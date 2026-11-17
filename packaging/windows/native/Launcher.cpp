@@ -3,6 +3,11 @@
 #include <commctrl.h>
 #include <windowsx.h>
 #include <wincodec.h>
+#include <roapi.h>
+#include <winstring.h>
+#include <wrl/client.h>
+#include <windows.applicationmodel.h>
+#include <windows.applicationmodel.activation.h>
 #include <atomic>
 #include <cmath>
 #include <iterator>
@@ -142,7 +147,7 @@ struct Operations {
     }
 };
 
-recap::Outcome runCoordinator(const std::wstring& arguments) {
+recap::Outcome runCoordinator(const std::wstring& arguments, bool background = false) {
     const auto paths = recap::launchPaths(recap::modulePath(), arguments);
     auto work = std::make_shared<PipeWork>();
     work->done = recap::Handle(CreateEventW(nullptr, TRUE, FALSE, nullptr));
@@ -171,7 +176,7 @@ recap::Outcome runCoordinator(const std::wstring& arguments) {
     startup.StartupInfo.hStdOutput = outWriter.get();
     startup.StartupInfo.hStdError = errorWriter.get();
     startup.lpAttributeList = attributes.list;
-    auto command = recap::coordinatorCommand(paths);
+    auto command = recap::coordinatorCommand(paths, background);
     auto environment = recap::childEnvironment();
     PROCESS_INFORMATION created{};
     recap::require(CreateProcessW(paths.runtime.c_str(), command.data(), nullptr, nullptr, TRUE,
@@ -655,9 +660,130 @@ void publish(const std::shared_ptr<App>& app, recap::Outcome result) {
     }
     if (!SetEvent(app->completed.get())) PostMessageW(app->window, CompleteMessage, 0, 0);
 }
+
+// The package's startup task (#1412), read and enabled only from a process the packaged server starts with a
+// fixed token, so the answer comes back as the exit code: the StartupTaskState value itself, or one of these.
+namespace startup = ABI::Windows::ApplicationModel;
+using Microsoft::WRL::ComPtr;
+constexpr wchar_t StartupTaskId[] = L"RecapPageStartup";
+constexpr int StartupNoPackage = 10, StartupTimedOut = 12, StartupFailed = 13;
+
+HRESULT referenceString(const wchar_t* text, HSTRING_HEADER& header, HSTRING& value) {
+    return WindowsCreateStringReference(text, static_cast<UINT32>(wcslen(text)), &header, &value);
+}
+
+template<class Factory> HRESULT factory(const wchar_t* name, ComPtr<Factory>& result) {
+    HSTRING_HEADER header{};
+    HSTRING value = nullptr;
+    const auto created = referenceString(name, header, value);
+    return FAILED(created) ? created : RoGetActivationFactory(value, IID_PPV_ARGS(result.GetAddressOf()));
+}
+
+// Polled rather than awaited with a handler: the operations finish in milliseconds, and a bounded poll keeps
+// a stuck broker from holding the server's request open.
+template<class Operation> HRESULT finish(Operation* operation) {
+    ComPtr<ABI::Windows::Foundation::IAsyncInfo> info;
+    auto result = operation->QueryInterface(IID_PPV_ARGS(info.GetAddressOf()));
+    if (FAILED(result)) return result;
+    auto status = ABI::Windows::Foundation::AsyncStatus::Started;
+    for (const auto started = GetTickCount64();; Sleep(10)) {
+        result = info->get_Status(&status);
+        if (FAILED(result)) return result;
+        if (status != ABI::Windows::Foundation::AsyncStatus::Started) break;
+        if (GetTickCount64() - started > 15000) {
+            info->Cancel();
+            return HRESULT_FROM_WIN32(ERROR_TIMEOUT);
+        }
+    }
+    if (status == ABI::Windows::Foundation::AsyncStatus::Completed) return S_OK;
+    HRESULT error = E_FAIL;
+    info->get_ErrorCode(&error);
+    return FAILED(error) ? error : E_FAIL;
+}
+
+int startupCode(HRESULT result) {
+    if (result == HRESULT_FROM_WIN32(APPMODEL_ERROR_NO_PACKAGE)) return StartupNoPackage;
+    return result == HRESULT_FROM_WIN32(ERROR_TIMEOUT) ? StartupTimedOut : StartupFailed;
+}
+
+// Enables only a task that is plainly off. A reader who turned it off in Settings, or a policy that did, is
+// reported and never overridden: Windows offers no way to re-enable those, and trying would be the silent
+// re-enable the consent rules forbid.
+int startupTaskState(bool enable) {
+    if (FAILED(RoInitialize(RO_INIT_MULTITHREADED))) return StartupFailed;
+    int code = StartupFailed;
+    {
+        ComPtr<startup::IStartupTaskStatics> statics;
+        ComPtr<ABI::Windows::Foundation::IAsyncOperation<startup::StartupTask*>> lookup;
+        ComPtr<startup::IStartupTask> task;
+        HSTRING_HEADER header{};
+        HSTRING id = nullptr;
+        auto result = factory(RuntimeClass_Windows_ApplicationModel_StartupTask, statics);
+        if (SUCCEEDED(result)) result = referenceString(StartupTaskId, header, id);
+        if (SUCCEEDED(result)) result = statics->GetAsync(id, lookup.GetAddressOf());
+        if (SUCCEEDED(result)) result = finish(lookup.Get());
+        if (SUCCEEDED(result)) result = lookup->GetResults(task.GetAddressOf());
+        if (SUCCEEDED(result) && !task) result = E_UNEXPECTED;
+        auto state = startup::StartupTaskState_Disabled;
+        if (SUCCEEDED(result)) result = task->get_State(&state);
+        if (SUCCEEDED(result) && enable && state == startup::StartupTaskState_Disabled) {
+            ComPtr<ABI::Windows::Foundation::IAsyncOperation<startup::StartupTaskState>> request;
+            result = task->RequestEnableAsync(request.GetAddressOf());
+            if (SUCCEEDED(result)) result = finish(request.Get());
+            if (SUCCEEDED(result)) result = request->GetResults(&state);
+        }
+        code = SUCCEEDED(result) ? static_cast<int>(state) : startupCode(result);
+    }
+    RoUninitialize();
+    return code;
+}
+
+// How Windows started this process, or -1 when it cannot say. Read on its own multithreaded thread so the
+// feedback window's single-threaded apartment is untouched.
+int activationKind() {
+    int kind = -1;
+    try {
+        std::thread([&kind] {
+            if (FAILED(RoInitialize(RO_INIT_MULTITHREADED))) return;
+            {
+                ComPtr<startup::IAppInstanceStatics> statics;
+                ComPtr<startup::Activation::IActivatedEventArgs> activated;
+                auto value = startup::Activation::ActivationKind_Launch;
+                if (SUCCEEDED(factory(RuntimeClass_Windows_ApplicationModel_AppInstance, statics)) &&
+                    SUCCEEDED(statics->GetActivatedEventArgs(activated.GetAddressOf())) && activated &&
+                    SUCCEEDED(activated->get_Kind(&value)))
+                    kind = static_cast<int>(value);
+            }
+            RoUninitialize();
+        }).join();
+    } catch (const std::system_error&) {
+        kind = -1;
+    }
+    return kind;
+}
 } // namespace
 
 int WINAPI wWinMain(HINSTANCE instance, HINSTANCE, PWSTR arguments, int) {
+    const std::wstring command(arguments ? arguments : L"");
+    auto mode = recap::LaunchMode::interactive;
+    // An unknown argument stays on the interactive path, which refuses it in the feedback window as before.
+    try { mode = recap::launchMode(command); } catch (const recap::WindowsFailure&) {}
+    if (mode == recap::LaunchMode::startupState || mode == recap::LaunchMode::startupEnable)
+        return startupTaskState(mode == recap::LaunchMode::startupEnable);
+    // The manifest gives sign-in and Reconnect fixed Parameters; the activation kind covers a Windows build
+    // that drops them, because a window at sign-in is exactly what the reader did not ask for.
+    if (mode == recap::LaunchMode::interactive && command.find_first_not_of(L" \t") == std::wstring::npos) {
+        const auto kind = activationKind();
+        if (kind == startup::Activation::ActivationKind_StartupTask ||
+            kind == startup::Activation::ActivationKind_Protocol)
+            mode = recap::LaunchMode::background;
+    }
+    // Quiet by design: only the engine starts, and the page that asked for it reports whether it came up.
+    if (mode == recap::LaunchMode::background) {
+        try { return runCoordinator(command, true).opened ? 0 : 1; }
+        catch (const recap::WindowsFailure&) { return 1; }
+        catch (const std::exception&) { return 1; }
+    }
     const auto com = CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED);
     try {
         auto app = std::make_shared<App>();
@@ -725,7 +851,6 @@ int WINAPI wWinMain(HINSTANCE instance, HINSTANCE, PWSTR arguments, int) {
         if (!resourceError.empty()) {
             showFailure(*app, resourceError);
         } else {
-            const std::wstring command(arguments ? arguments : L"");
             try {
                 std::thread([app, command] {
                     try { publish(app, runCoordinator(command)); }

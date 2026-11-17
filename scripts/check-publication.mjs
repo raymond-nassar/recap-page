@@ -159,6 +159,8 @@ export const ALLOWED = new Map([
   'the fabricated native reader fixture DRN, not a session, user or workspace identity'],
   ['test/android-instrumentation.test.js|a path inside one machine\'s home directory|/ho' + 'me/private/',
     'a fabricated privacy-negative log path that the native capsule test asserts is never retained'],
+  ['test/app-window.test.js|a path inside one machine\'s user profile|C:\\\\Us' + 'ers\\\\reader',
+    'the fabricated reader profile that places a per-user Chrome install, which the app-window launcher must refuse'],
   ['test/ios-workflow.test.js|a path inside one machine\'s home directory|\'/Us' + 'ers/runner/',
     'GitHub\'s hosted macOS runner home, quoted from real runner logs to test the anchored retry patterns, not anyone\'s machine'],
   ['test/android-instrumentation.test.js|a secret assigned in code|pass' + "word = 'PRIVATE_SECRET'",

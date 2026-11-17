@@ -8929,7 +8929,7 @@ const SCENARIOS = [
       t.check('Backup and settings reports the local connection separately and explains recovery',
         settings.text === 'The local app connection needs attention.'
         && settings.describedBy === 'local-connection-status local-connection-help'
-        && settings.help.includes('browser-installed app cannot start that separate copy itself'),
+        && settings.help.includes('browser-installed app cannot start the downloaded copy itself'),
         JSON.stringify(settings));
 
       await setMode(page, 'health', 'pending');
@@ -19447,6 +19447,9 @@ async function preparePage(page, origin, mutation, scenarioId = null) {
     ['/styles.css', mutation?.rewriteStyles],
     ['/js/views/rated-comics.js', mutation?.rewriteRatedView],
     ['/js/lib/ratedComics.js', mutation?.rewriteRatedComics],
+    ['/js/lib/install.js', mutation?.rewriteInstall],
+    ['/js/lib/startupConsent.js', mutation?.rewriteStartupConsent],
+    ['/js/lib/reconnect.js', mutation?.rewriteReconnect],
   ]) {
     if (!rewrite) continue;
     const source = readFileSync(new URL(`../src${path}`, import.meta.url), 'utf8');
@@ -19463,6 +19466,28 @@ async function preparePage(page, origin, mutation, scenarioId = null) {
       const source = readFileSync(new URL(`../src${path}`, import.meta.url), 'utf8');
       rewrites.set(`${origin}${path}`, `${source}\nglobalThis.__mrtCloudTraceInstall(${constructor}, '${kind}');\n`);
     }
+  }
+  if (scenarioId === 'app-window-invitation' || scenarioId === 'startup-consent' || scenarioId === 'reconnect') {
+    // The invitation, the startup question and Reconnect only show on the fixed app origin, and this run must not bind it.
+    const url = `${origin}/js/lib/install.js`;
+    const source = rewrites.get(url) ?? readFileSync(new URL('../src/js/lib/install.js', import.meta.url), 'utf8');
+    const fixed = "export const APP_ORIGIN = 'http://127.0.0.1:8787';";
+    if (!source.includes(fixed)) throw new Error('install.js no longer declares the fixed app origin');
+    rewrites.set(url, source.replace(fixed, `export const APP_ORIGIN = '${origin}';`));
+  }
+  if (scenarioId === 'reconnect') {
+    // Handing recap-page: to the browser would leave the page under test, so the run records the request,
+    // and it waits three seconds rather than a minute so the timeout is reached.
+    const url = `${origin}/js/lib/reconnect.js`;
+    let source = rewrites.get(url) ?? readFileSync(new URL('../src/js/lib/reconnect.js', import.meta.url), 'utf8');
+    for (const [from, to] of [
+      ['  scope.location.assign(RECONNECT_ADDRESS);', '  (scope.__reconnectLaunches ??= []).push(RECONNECT_ADDRESS);'],
+      ['export const RECONNECT_WAIT_MS = 60_000;', 'export const RECONNECT_WAIT_MS = 3_000;'],
+    ]) {
+      if (!source.includes(from)) throw new Error(`reconnect.js no longer holds: ${from}`);
+      source = source.replace(from, to);
+    }
+    rewrites.set(url, source);
   }
   await page.setRequestInterception(true);
   page.on('request', async (request) => {
@@ -24629,6 +24654,12 @@ MUTATIONS.push(...selectLists.selectListsMutations);
 const progressGlance = await import('./browser-progress-glance.mjs');
 SCENARIOS.push(progressGlance.progressGlance);
 MUTATIONS.push(...progressGlance.progressGlanceMutations);
+SCENARIOS.push((await import('./browser-app-window-invitation.mjs')).appWindowInvitation);
+MUTATIONS.push(...(await import('./browser-app-window-invitation.mjs')).appWindowInvitationMutations);
+SCENARIOS.push((await import('./browser-startup-consent.mjs')).startupConsent);
+MUTATIONS.push(...(await import('./browser-startup-consent.mjs')).startupConsentMutations);
+SCENARIOS.push((await import('./browser-reconnect.mjs')).reconnect);
+MUTATIONS.push(...(await import('./browser-reconnect.mjs')).reconnectMutations);
 SCENARIOS.push({
   id: 'infinity-saga-actual-data',
   title: 'the actual Infinity storyline previews, imports, renders, and reloads every source position',

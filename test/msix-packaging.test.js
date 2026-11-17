@@ -98,32 +98,45 @@ test('installed startup rejects legacy success without mandatory evidence', asyn
 test('GUI default creation contracts call the real browser adapter and default server environment', async () => {
   const production = await import('../packaging/windows/Launcher.mjs');
   const present = read(LAUNCHER).match(/^export async function presentLaunch\([\s\S]*?^\}$/m)[0].replace('export ', '');
-  let browserCall;
-  let exit;
-  const output = capturedStream();
-  await runInNewContext(`${present}\npresentLaunch({
-    args: ['--gui-startup-v1'], output, errorOutput: output, environment: {},
-    coordinate: async (options) => { await options.openBrowser(); return { status: 'opened' }; },
-    setExitCode: setExit
-  });`, {
-    selectGuiStartup: production.selectGuiStartup, coordinateLaunch: production.coordinateLaunch,
-    openDefaultBrowser: (url, options) => {
-      browserCall = { url, options };
-      const child = fakeChild();
-      queueMicrotask(() => child.emit('exit', 0));
-      return production.openDefaultBrowser(url, { ...options, spawnImpl: () => child });
-    },
-    encodeGuiResult: production.encodeGuiResult, writeGuiFrame: production.writeGuiFrame,
-    LAUNCH_RESULT: production.LAUNCH_RESULT, GUI_BROWSER_TIMEOUT_MS: production.GUI_BROWSER_TIMEOUT_MS,
-    ORIGIN: production.ORIGIN, output, setExit: (code) => { exit = code; },
-    process: { argv: [], stdout: output, stderr: output, env: {}, arch: 'x64' },
-    fail: () => { throw new Error('GUI called console failure'); },
-    Buffer,
-  });
-  assert.equal(exit, 0);
-  assert.equal(browserCall.url, 'http://127.0.0.1:8787/');
-  assert.equal(browserCall.options.timeoutMs, 30000);
-  assert.equal(output.frames.length, 1);
+  // The installed app window is tried first and the bounded tab opens only when it does not (#1412).
+  for (const [appOpens, failure] of [[false, null], [true, null], [false, new Error('no app window')]]) {
+    let appCall;
+    let browserCall;
+    let exit;
+    const output = capturedStream();
+    await runInNewContext(`${present}\npresentLaunch({
+      args: ['--gui-startup-v1'], output, errorOutput: output, environment: {},
+      coordinate: async (options) => { await options.openBrowser(); return { status: 'opened' }; },
+      setExitCode: setExit
+    });`, {
+      selectGuiStartup: production.selectGuiStartup, coordinateLaunch: production.coordinateLaunch,
+      openAppOrTab: (options) => production.openAppOrTab({ ...options, loadAppWindow: async () => {
+        if (failure) throw failure;
+        return { openAppWindow: async (url) => { appCall = url; return appOpens; } };
+      } }),
+      openDefaultBrowser: (url, options) => {
+        browserCall = { url, options };
+        const child = fakeChild();
+        queueMicrotask(() => child.emit('exit', 0));
+        return production.openDefaultBrowser(url, { ...options, spawnImpl: () => child });
+      },
+      encodeGuiResult: production.encodeGuiResult, writeGuiFrame: production.writeGuiFrame,
+      LAUNCH_RESULT: production.LAUNCH_RESULT, GUI_BROWSER_TIMEOUT_MS: production.GUI_BROWSER_TIMEOUT_MS,
+      ORIGIN: production.ORIGIN, output, setExit: (code) => { exit = code; },
+      process: { argv: [], stdout: output, stderr: output, env: {}, arch: 'x64' },
+      fail: () => { throw new Error('GUI called console failure'); },
+      Buffer,
+    });
+    assert.equal(exit, 0);
+    assert.equal(appCall, failure ? undefined : 'http://127.0.0.1:8787/');
+    if (appOpens) {
+      assert.equal(browserCall, undefined);
+    } else {
+      assert.equal(browserCall.url, 'http://127.0.0.1:8787/');
+      assert.equal(browserCall.options.timeoutMs, 30000);
+    }
+    assert.equal(output.frames.length, 1);
+  }
 });
 
 function startupLayoutFixture() {
@@ -166,7 +179,7 @@ test('startup expectations bind three package variants and reject an unlisted ex
       const variant = await populateStartupLayout(fixture, architecture, version);
       assert.equal(variant.identity.architecture, architecture);
       assert.equal(variant.identity.version, version);
-      assert.equal(variant.files.length, 17);
+      assert.equal(variant.files.length, 19);
     } finally { fixture.close(); }
   }
   const fixture = startupLayoutFixture();
@@ -203,7 +216,39 @@ test('startup expectations bind three package variants and reject an unlisted ex
       assert.throws(() => startupSourceInputs(fixture.root), /input-mismatch/);
     }
     fixture.put('server.mjs', server);
-    t.diagnostic('startup-host-imports fixtures=13 rejected=13');
+    // The app window module is named once by the launcher and once by the server, literally, and by
+    // nothing else; it imports no module of its own (#1412).
+    const launcher = read(LAUNCHER);
+    const appWindow = read(join(ROOT, 'host', 'appWindow.mjs'));
+    for (const [path, altered] of [
+      ['server.mjs', `${server}\nimport('./host/appWindow.mjs');\n`],
+      ['server.mjs', server.replace("import('./host/appWindow.mjs')", "import('./host/' + 'appWindow.mjs')")],
+      ['packaging/windows/Launcher.mjs', `${launcher}\nimport('./host/appWindow.mjs');\n`],
+      ['packaging/windows/Launcher.mjs', launcher.replace("import('./host/appWindow.mjs')", "import('./host/cloudHost.mjs')")],
+      ['host/cloudHost.mjs', `${cloudHost}\nimport('./appWindow.mjs');\n`],
+      ['host/appWindow.mjs', `${appWindow}\nimport './cloudTokens.mjs';\n`],
+    ]) {
+      fixture.put(path, altered);
+      assert.throws(() => startupSourceInputs(fixture.root), /input-mismatch/);
+      fixture.put(path, { 'server.mjs': server, 'packaging/windows/Launcher.mjs': launcher,
+        'host/cloudHost.mjs': cloudHost, 'host/appWindow.mjs': appWindow }[path]);
+    }
+    // The startup task module is named once, literally, by the server alone, and imports only the session
+    // check it shares with the cloud host (#1412).
+    const startupTask = read(join(ROOT, 'host', 'startupTask.mjs'));
+    for (const [path, altered] of [
+      ['server.mjs', `${server}\nimport('./host/startupTask.mjs');\n`],
+      ['server.mjs', server.replace("import('./host/startupTask.mjs')", "import('./host/' + 'startupTask.mjs')")],
+      ['packaging/windows/Launcher.mjs', `${launcher}\nimport('./host/startupTask.mjs');\n`],
+      ['host/startupTask.mjs', `${startupTask}\nimport './cloudTokens.mjs';\n`],
+      ['host/startupTask.mjs', `${startupTask}\nimport { spawn } from 'node:worker_threads';\nexport { spawn };\n`],
+    ]) {
+      fixture.put(path, altered);
+      assert.throws(() => startupSourceInputs(fixture.root), /input-mismatch/);
+      fixture.put(path, { 'server.mjs': server, 'packaging/windows/Launcher.mjs': launcher,
+        'host/startupTask.mjs': startupTask }[path]);
+    }
+    t.diagnostic('startup-host-imports fixtures=24 rejected=24');
     const localServer = read(join(ROOT, 'src', 'js', 'lib', 'localServer.js'));
     fixture.put('src/js/lib/unlisted-helper.js', "throw new Error('analyzed source must not execute');\nexport const injected = 1;\n");
     fixture.put('src/js/lib/localServer.js', `${localServer}\nexport * from './unlisted-helper.js';\n`);
@@ -233,7 +278,7 @@ export { apparentImport, apparentRequire };
       .replace(/^import /gm, '  import /* declaration */ ')
       .replace("import('node:child_process')", "import /* dynamic */ ('node:child_process')")
       + "\nexport { readFile as nativeRead } from 'node:fs/promises';\n");
-    assert.equal(startupSourceInputs(fixture.root).length, 11);
+    assert.equal(startupSourceInputs(fixture.root).length, 13);
     t.diagnostic('startup-source-syntax fixtures=8 rejected=7 allowed=1 modules-executed=0');
   } finally { fixture.close(); }
 });
@@ -243,7 +288,7 @@ test('installed startup bindings reject altered inputs activation ambiguity and 
   const fixture = startupLayoutFixture();
   try {
     const variant = await populateStartupLayout(fixture);
-    assert.equal(bindInstalledInputs(fixture.root, variant).files, 17);
+    assert.equal(bindInstalledInputs(fixture.root, variant).files, 19);
     for (const input of variant.files) {
       const file = join(fixture.root, ...input.path.split('/'));
       const bytes = readFileSync(file);
@@ -355,6 +400,32 @@ test('GUI reserved arguments refuse coordination without changing ordinary argum
     assert.equal(code, 1);
     assert.equal(output.frames.length, 1);
     assert.equal(output.frames[0][5], 1);
+  }
+});
+
+test('GUI background startup coordinates the engine without opening any window (#1412)', async () => {
+  const { selectGuiStartup, presentLaunch, GUI_BACKGROUND_ARGUMENT } = await import('../packaging/windows/Launcher.mjs');
+  assert.equal(GUI_BACKGROUND_ARGUMENT, '--gui-startup-background-v1');
+  assert.equal(selectGuiStartup(['--gui-startup-background-v1']), 'background');
+  for (const args of [['--gui-startup-background-v2'], ['--gui-startup-background-v1', 'extra']]) {
+    assert.throws(() => selectGuiStartup(args), /unsupported startup request/);
+  }
+  for (const [args, expected] of [[['--gui-startup-background-v1'], 0], [['--gui-startup-v1'], 1]]) {
+    let opened = 0;
+    let code;
+    const output = capturedStream();
+    await presentLaunch({
+      args, output, setExitCode: (value) => { code = value; },
+      openBrowser: async () => { opened += 1; },
+      coordinate: async ({ openBrowser }) => {
+        await openBrowser();
+        return { status: 'opened' };
+      },
+    });
+    assert.equal(opened, expected);
+    assert.equal(code, 0);
+    assert.equal(output.frames.length, 1);
+    assert.equal(output.frames[0][5], 0);
   }
 });
 
@@ -547,6 +618,33 @@ test('native PE policy requires complete architecture-matched GUI executable hea
   }
 });
 
+function importingImage(library) {
+  const bytes = Buffer.concat([nativeImage(), Buffer.alloc(512)]);
+  bytes.writeUInt16LE(1, 70);
+  bytes.writeUInt32LE(16, 196);
+  bytes.writeUInt32LE(0x1000, 208);
+  bytes.writeUInt32LE(0x1000, 340);
+  bytes.writeUInt32LE(0x100, 344);
+  bytes.writeUInt32LE(512, 348);
+  bytes.writeUInt32LE(0x1040, 512 + 12);
+  bytes.write(`${library}\0`, 576, 'ascii');
+  return bytes;
+}
+
+test('native PE policy admits the WinRT api-sets for the launcher alone', async () => {
+  // The launcher reads and enables the package's startup task through WinRT (#1412); the verifier never does.
+  const { nativePe, NATIVE_TARGETS } = await import('../scripts/lib/native-launcher.mjs');
+  const [target] = NATIVE_TARGETS;
+  for (const library of ['api-ms-win-core-winrt-l1-1-0.dll', 'api-ms-win-core-winrt-string-l1-1-0.dll']) {
+    assert.deepEqual(nativePe(importingImage(library), target).imports, [library]);
+    assert.throws(() => nativePe(importingImage(library), target, { verifier: true }), /unexpected runtime dependency/);
+  }
+  assert.deepEqual(nativePe(importingImage('KERNEL32.dll'), target).imports, ['kernel32.dll']);
+  for (const library of ['api-ms-win-core-winrt-error-l1-1-0.dll', 'runtimeobject.dll', 'evil.dll']) {
+    assert.throws(() => nativePe(importingImage(library), target), /unexpected runtime dependency/);
+  }
+});
+
 test('native package policy permits only the exact three executable relative paths', async () => {
   const { exactExecutablePayloads } = await import('../scripts/lib/native-launcher.mjs');
   const expected = ['RecapPageLauncher.exe', 'RecapPageVerifier.exe', 'runtime\\node.exe', 'Launcher.mjs'];
@@ -674,6 +772,44 @@ test('the package declares only runFullTrust', () => {
   assert.deepEqual(declared, ['runFullTrust']);
   assert.match(source, /xmlns:rescap="http:\/\/schemas\.microsoft\.com\/appx\/manifest\/foundation\/windows10\/restrictedcapabilities"/);
   assert.match(source, /xmlns:uap10="http:\/\/schemas\.microsoft\.com\/appx\/manifest\/uap\/windows10\/10"/);
+});
+
+test('the package activates only through its startup task and fixed Reconnect protocol (#1412)', async () => {
+  const { activationExtensions } = await import('../scripts/inspect-msix.mjs');
+  const source = read(MANIFEST).replaceAll('\r\n', '\n');
+  assert.deepEqual(activationExtensions(source), [
+    'Category=windows.startupTask|Executable=RecapPageLauncher.exe'
+      + '|EntryPoint=Windows.FullTrustApplication|uap10:Parameters=--recap-startup-task-v1'
+      + '|desktop:StartupTask:TaskId=RecapPageStartup|Enabled=false|DisplayName=Recap Page',
+    'Category=windows.protocol|uap3:Protocol:Name=recap-page|Parameters=--recap-reconnect-v1',
+  ]);
+  assert.deepEqual(activationExtensions(source.replaceAll('\n', '\r\n')), activationExtensions(source));
+  for (const [before, after] of [
+    ['Enabled="false"', 'Enabled="true"'],
+    ['uap10:Parameters="--recap-startup-task-v1"', 'uap10:Parameters="--recap-startup-task-v1 %1"'],
+    ['uap10:Parameters="--recap-startup-task-v1"', 'uap11:Parameters="--recap-startup-task-v1"'],
+    ['uap10:Parameters="--recap-startup-task-v1"', ''],
+    ['Executable="RecapPageLauncher.exe"\n          EntryPoint', 'Executable="runtime\\node.exe"\n          EntryPoint'],
+    ['</Extensions>', '<uap:Extension Category="windows.fileTypeAssociation" /></Extensions>'],
+    ['<Extensions>', '<Extensions><desktop:Extension Category="windows.fullTrustProcess" Executable="RecapPageLauncher.exe" />'],
+    // Windows would hand the page's whole address to the launcher through %1, so the token stays alone.
+    ['Parameters="--recap-reconnect-v1"', 'Parameters="--recap-reconnect-v1 &quot;%1&quot;"'],
+    ['Parameters="--recap-reconnect-v1"', 'Parameters="--recap-startup-enable-v1"'],
+    [' Parameters="--recap-reconnect-v1"', ''],
+    ['Name="recap-page"', 'Name="ms-settings"'],
+    ['<uap3:Extension Category="windows.protocol">',
+      '<uap3:Extension Category="windows.protocol" Executable="runtime\\node.exe" EntryPoint="Windows.FullTrustApplication">'],
+  ]) {
+    assert.equal(source.split(before).length, 2, `the mutation seam ${before} is not unique`);
+    for (const newline of ['\n', '\r\n']) {
+      const mutated = source.replace(before, after).replaceAll('\n', newline);
+      assert.throws(() => activationExtensions(mutated), /activation extensions differ/);
+    }
+  }
+  // The pin only guards a release if every inspected package's own manifest goes through it.
+  const inspectPackage = read(INSPECT).replaceAll('\r\n', '\n')
+    .match(/\nasync function inspectPackage\([\s\S]*?\n}\n/)?.[0] ?? '';
+  assert.match(inspectPackage, /readFile\(join\(unpacked, 'AppxManifest\.xml'\), 'utf8'\);[\s\S]*?\n {4}activationExtensions\(manifest\);\n/);
 });
 
 test('the packer separates the Store bundle from its proof-only update', async () => {
