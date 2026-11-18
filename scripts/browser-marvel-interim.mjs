@@ -1,5 +1,6 @@
 import { readFile } from 'node:fs/promises';
 import { RECORD_HEADING, RECORD_NOTE } from '../src/js/lib/availability.js';
+import { marvelComicsAppMuIssueIds } from '../src/data/marvelComicsAppMuIssues.js';
 
 export async function dismissClosureNotice(page, t, { seedFixtureState, click }) {
   await localClock(page);
@@ -688,6 +689,72 @@ export async function linkedReadingOptions(page, t, { listId, sourceIssueId }) {
     await page.evaluate(() => document.activeElement?.dataset.key === '71308'
       && document.activeElement?.dataset.act === 'reading-options'
       && document.activeElement.getAttribute('aria-expanded') === 'true'));
+  await muReadingOptions(page, t, { listId, sourceIssueId });
+}
+
+async function muReadingOptions(page, t, { listId, sourceIssueId }) {
+  if (!marvelComicsAppMuIssueIds.length) {
+    console.log("SKIP MU Reading options: awaiting the owner's approved number set");
+    return;
+  }
+  const issueId = marvelComicsAppMuIssueIds.includes(10441) ? 10441 : marvelComicsAppMuIssueIds[0];
+  await page.evaluate(({ listId, sourceIssueId, issueId }) => {
+    const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+    state.issues[issueId] = {
+      ...state.issues[sourceIssueId], issueId, title: 'MU address fixture',
+      digitalId: 700001, url: `https://www.marvel.com/comics/issue/${issueId}/fixture`,
+    };
+    state.lists[listId].catalogId = null;
+    state.lists[listId].itemIds = [issueId];
+    delete state.read[issueId];
+    localStorage.setItem('mrt.state.v2', JSON.stringify(state));
+    sessionStorage.removeItem('marvel-clock');
+  }, { listId, sourceIssueId, issueId });
+  await page.reload({ waitUntil: 'load' });
+  await route(page, `#/read/${encodeURIComponent(listId)}`, '#view-read:not([hidden])');
+  await page.waitForFunction(() => document.querySelector('#hero-title')?.textContent === 'MU address fixture');
+  const saved = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+  const chosen = (key) => page.evaluate((id, key) => {
+    const call = window.__marvelOpens.at(-1);
+    if (!call) return false;
+    const query = new URL(call[0]).searchParams;
+    return query.get('i') === String(id) && !query.has('a')
+      && (key === 'app' ? query.get('m') === String(id) : !query.has('m') && query.get('r') === 'unlimited')
+      && call[1] === '_blank' && call[2] === 'noopener';
+  }, issueId, key);
+  await page.$eval('#btn-hero-read', (node) => node.click());
+  t.check('MU-address hero Read opens the same comic synchronously', await chosen('app'));
+  await page.$eval('#full > summary', (node) => { if (!node.parentElement.open) node.click(); });
+  const row = `#rows [data-key="${issueId}"]`;
+  await page.waitForSelector(`${row}[data-act="more"]`);
+  await page.$eval(`${row}[data-act="more"]`, (node) => node.click());
+  for (const [label, toggle, list] of [
+    ['hero', '#btn-hero-reading-options', '#hero-reading-options-list'],
+    ['row', `${row}[data-act="reading-options"]`, `#row-reading-options-list-${issueId}`],
+  ]) {
+    await page.$eval(toggle, (node) => node.click());
+    await page.$eval(`${list} [data-reading-option="app"]`, (node) => node.click());
+    t.check(`MU-address ${label} app choice opens the same comic`, await chosen('app'));
+    await page.$eval(`${list} [data-reading-option="unlimited"]`, (node) => node.click());
+    t.check(`MU-address ${label} Unlimited choice bypasses the app link`, await chosen('unlimited'));
+  }
+  await route(page, `#/issue/${issueId}?list=${encodeURIComponent(listId)}`, '#issue-focus-card:not([hidden])');
+  await page.waitForFunction(() => document.querySelector('#issue-focus-h')?.textContent === 'MU address fixture');
+  await page.$eval('#btn-issue-read', (node) => node.click());
+  t.check('MU-address issue Read opens the same comic', await chosen('app'));
+  await page.$eval('#btn-issue-reading-options', (node) => node.click());
+  await page.$eval('#issue-reading-options-list [data-reading-option="app"]', (node) => node.click());
+  t.check('MU-address issue app choice opens the same comic', await chosen('app'));
+  await page.$eval('#issue-reading-options-list [data-reading-option="unlimited"]', (node) => node.click());
+  t.check('MU-address issue Unlimited choice bypasses the app link', await chosen('unlimited'));
+  await page.evaluate(() => {
+    window.__marvelClock = new Date(2026, 11, 7).getTime();
+    dispatchEvent(new Event('focus'));
+  });
+  await page.$eval('#btn-issue-read', (node) => node.click());
+  t.check('after the cutoff MU-address Read still opens the same comic', await chosen('app'));
+  t.check('MU-address handoffs do not change saved data',
+    await page.evaluate((before) => localStorage.getItem('mrt.state.v2') === before, saved));
 }
 
 export async function retiredReaderHelp(page, t, { seedFixtureState, click, openFullOrder, order }) {

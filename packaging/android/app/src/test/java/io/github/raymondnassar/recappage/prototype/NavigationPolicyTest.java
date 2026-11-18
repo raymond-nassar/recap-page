@@ -51,6 +51,16 @@ public final class NavigationPolicyTest {
         check(!policy.isOfficialReader(marvelIssue), "Marvel Unlimited app links are retired");
         check(policy.isOfficialReader("https://marvel.webtoon.com/"), "Exact general Marvel Comics website");
         check(policy.isOfficialReader("https://www.marvelcomicsapp.com/viewer/4879"), "Marvel Comics app comic");
+        check(policy.isOfficialReader("https://www.marvelcomicsapp.com/mu/issues/10441"), "Marvel Unlimited issue in new app");
+        for (String rejected : new String[] {
+                "https://www.marvelcomicsapp.com/mu/issues/", "https://www.marvelcomicsapp.com/mu/issues/0",
+                "https://www.marvelcomicsapp.com/mu/issues/012", "https://www.marvelcomicsapp.com/mu/issues/1234567890",
+                "https://www.marvelcomicsapp.com/mu/issues/12/", "https://www.marvelcomicsapp.com/mu/issues/12?x=1",
+                "https://www.marvelcomicsapp.com/mu/issues/12#x", "https://www.marvelcomicsapp.com/mu/issues/%31",
+                "https://www.marvelcomicsapp.com/mu/12", "https://www.marvelcomicsapp.com/mu/viewer/12",
+                "https://marvelcomicsapp.com/mu/issues/12", "https://user@www.marvelcomicsapp.com/mu/issues/12",
+                "https://www.marvelcomicsapp.com:8443/mu/issues/12", "http://www.marvelcomicsapp.com/mu/issues/12"
+        }) check(!policy.isOfficialReader(rejected), "Reject MU compatibility bypass: " + rejected);
         for (String rejected : new String[] {
                 "https://www.marvelcomicsapp.com/", "https://www.marvelcomicsapp.com/viewer/",
                 "https://www.marvelcomicsapp.com/viewer/0", "https://www.marvelcomicsapp.com/viewer/012",

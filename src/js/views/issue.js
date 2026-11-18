@@ -1,5 +1,5 @@
 import { labelledName } from '../lib/accname.js';
-import { appViewerFor } from '../lib/marvelComicsApp.js';
+import { appLinkFor } from '../lib/marvelComicsApp.js';
 import { readerAction, readerName } from '../lib/readerDestination.js';
 import { issuePresentation, resolveIssueFocus } from '../lib/issueFocus.js';
 import { isDeferred, isRead } from '../lib/model.js';
@@ -260,7 +260,7 @@ export function createIssueView({
     nodes.context.textContent = issueContextText(currentResult.context, currentResult.issue.issueId);
     const focused = nodes.read.ownerDocument?.activeElement === nodes.read && nodes.read.getClientRects().length > 0;
     const { launchable } = readerPresentation(currentResult.issue, currentResult.source);
-    const app = Boolean(appViewerFor(currentResult.issue.issueId));
+    const app = Boolean(appLinkFor(currentResult.issue.issueId));
     nodes.read.hidden = !launchable;
     nodes.read.textContent = readerAction(new Date(), { app });
     nodes.read.setAttribute('aria-label', readerName(currentResult.issue.title, new Date(), { app }));

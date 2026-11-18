@@ -214,7 +214,7 @@ sends normalized factual metadata through the same Store boundary as a reader ed
 instead end in the tab-memory map and disappear when the tab closes.
 
 A Read press opens the same-origin launch page synchronously so popup permission is not lost,
-at `src/js/reader.js:90-114`. The synchronous device-local date choice is carried into that tab.
+at `src/js/reader.js:91-115`. The synchronous device-local date choice is carried into that tab.
 A comic with a bundled Marvel Comics app link opens that link on both sides of the date, with no
 lookup, as described in the data provenance record.
 Before December 7, 2026, a known digital ID redirects straight to the Marvel Unlimited web reader.

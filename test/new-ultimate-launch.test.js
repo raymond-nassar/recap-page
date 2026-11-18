@@ -454,3 +454,51 @@ test('950 desktop launcher opens the app link without a lookup and rebuilds it f
   const bare = await desktopLauncher('?a=18255', () => assert.fail('no fetch'));
   assert.deepEqual(bare.navigations, []);
 });
+
+test('950 desktop launcher opens the MU address without lookup and ignores mismatched or repeated references', async () => {
+  const expected = 'https://www.marvelcomicsapp.com/mu/issues/10441';
+  for (const r of ['unlimited', 'comics']) {
+    const f = await desktopLauncher(`?r=${r}&m=10441&i=10441`, () => assert.fail('An app link must not fetch'));
+    assert.deepEqual(f.navigations, [expected]);
+    assert.equal(f.nodes.fallback.href, expected);
+    assert.equal(f.nodes.p.textContent, 'Taking you to this comic in the Marvel Comics app.');
+    assert.equal(f.requests.length, 0);
+  }
+  for (const query of ['m=10442&i=10441', 'm=012&i=012', 'm=0&i=0', 'm=1234567890&i=1234567890',
+    'm=12%2F3&i=12%2F3', 'm=10441&m=10441&i=10441', 'm=10441&i=10441&i=42']) {
+    const f = await desktopLauncher(`?${query}&d=38811&r=unlimited`, () => assert.fail('no fetch'));
+    assert.deepEqual(f.navigations, ['https://read.marvel.com/#/book/38811'], query);
+  }
+  const both = await desktopLauncher('?a=18255&m=10441&i=10441', () => assert.fail('no fetch'));
+  assert.deepEqual(both.navigations, [appLink], 'published viewer link wins');
+  const bare = await desktopLauncher('?m=10441', () => assert.fail('no fetch'));
+  assert.deepEqual(bare.navigations, []);
+});
+
+test('950 MU Read carries its own issue number, stays synchronous and can be bypassed for Unlimited',
+  { skip: marvelComicsAppMuIssueIds.length ? false : 'Awaiting the owner-approved number set' }, () => {
+    const issueId = marvelComicsAppMuIssueIds[0];
+    const comic = { issueId, digitalId: 38811, title: 'Approved MU comic' };
+    const prior = globalThis.window;
+    const calls = [];
+    globalThis.window = { open(...args) { calls.push(args); return null; } };
+    try {
+      for (const now of [beforeCutoff, new Date(2026, 11, 8, 12)]) {
+        const url = new URL(launchUrl(comic, origin, { now }));
+        assert.equal(url.searchParams.get('m'), String(issueId));
+        assert.equal(url.searchParams.has('a'), false);
+        assert.equal(new URL(launchUrl(linked, origin, { now })).searchParams.has('m'), false);
+        assert.equal(openIssue(comic, { origin, now }).target, 'app');
+        const bypass = new URL(launchUrl(comic, origin, { now, app: false }));
+        assert.equal(bypass.searchParams.has('m'), false);
+        assert.equal(bypass.searchParams.has('a'), false);
+        assert.equal(openIssue(comic, { origin, now, app: false }).target,
+          now === beforeCutoff ? 'reader' : 'comics');
+      }
+      assert.equal(calls.length, 4);
+      assert.ok(calls.every((call) => call[1] === '_blank' && call[2] === 'noopener'));
+    } finally {
+      globalThis.window = prior;
+    }
+  });
+import { marvelComicsAppMuIssueIds } from '../src/data/marvelComicsAppMuIssues.js';

@@ -97,10 +97,10 @@ final class NavigationPolicy {
         if (host.equals("marvel.webtoon.com")) {
             return "/".equals(uri.getRawPath()) && uri.getRawQuery() == null && uri.getRawFragment() == null;
         }
-        // A single comic in the Marvel Comics app (#950): the bundled viewer link exactly, nothing more.
+        // Only the two approved single-comic routes, never a general redirect.
         if (host.equals("www.marvelcomicsapp.com")) {
             String path = uri.getRawPath();
-            return path != null && path.matches("/viewer/[1-9][0-9]{0,8}")
+            return path != null && path.matches("/(?:viewer|mu/issues)/[1-9][0-9]{0,8}")
                     && uri.getRawQuery() == null && uri.getRawFragment() == null;
         }
         return host.equals("read.marvel.com") || host.equals("www.marvel.com") || host.equals("marvel.com");

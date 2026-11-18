@@ -4088,3 +4088,35 @@ On the comic's page, the list's current comic, and each row's More actions, Read
 the Marvel Comics app and Marvel Unlimited until December 7. Where the owner has confirmed a
 library book that collects the comic, it also offers Hoopla and Libby. Nothing a reader has saved
 is changed, and the links are not written into saved data or backups.
+
+### Marvel Comics app addresses using Marvel Unlimited issue numbers
+
+On 18 November 2026 the owner relayed a message from Comic Book Reading Orders:
+"The easiest way is to use the Marvel Unlimited issue IDs which still work."
+The example was New Mutants (1983) #98: Marvel issue number 10441 opens through
+`https://www.marvelcomicsapp.com/mu/issues/10441`. This route uses the Marvel issue
+number, not the number in either an issues address or a viewer address.
+
+The owner approved a separate follow-up after the viewer-link change, subject to
+a stratified hand-check. The approved population is **pending**: the committed
+approval record has no groups or issue numbers, and its generated module is empty.
+No new comic uses this route until the owner's results determine the approved set.
+Negative stand-ins cannot supply a Marvel issue number and are always excluded.
+
+The generator reads the local catalog and freezes approved positive, unlinked
+issue numbers in `scripts/data/marvel-comics-app-links/mu-issues.json`. It checks
+their group against the recorded date and refuses numbers that already have a
+viewer link. Later catalog additions do not gain approval automatically.
+`node scripts/marvel-comics-app-links.mjs --check` checks both bundled modules.
+No network request is made to collect, generate or validate these addresses.
+
+Viewer links remain the first choice. A listed issue number uses the new address
+for Read and the Marvel Comics app choice in Reading options. The launcher
+requires the number to name the same comic as its issue reference. Comics outside
+the approved set retain their existing behavior, and availability records and
+saved data are unchanged. The existing credit still names only links collected
+from the site; any credit change and revised release-note total await the owner.
+
+No public lifetime guarantee for this route was found. The team's statement and
+the owner's checks are evidence of current behavior, not a promise that a comic
+is available or that the route will survive the Marvel Unlimited closure.

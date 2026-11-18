@@ -33,7 +33,7 @@ export function createAndroidReader({
   const readerUrl = (id) => `https://read.marvel.com/#/book/${id}`;
   const detailUrl = (id) => `https://www.marvel.com/comics/issue/${id}/`;
   // #950: a comic with a bundled Marvel Comics app link opens it before and after December 7.
-  const appUrl = (digitalId || issueId) && query.getAll('a').length === 1 ? appUrlFor(query.get('a')) : null;
+  const appUrl = (digitalId || issueId) ? appUrlFor(query) : null;
   fallback.textContent = 'Open in browser';
   fallback.href = appUrl || (destination === 'comics' ? comicsUrl
     : digitalId ? readerUrl(digitalId) : pageUrl || (issueId ? detailUrl(issueId) : comicsUrl));
