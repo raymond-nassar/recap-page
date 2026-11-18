@@ -13,6 +13,8 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+## 4.7.0
+
 ### What's new for readers
 
 - The 'Read' button can open links for the Marvel Comics app by WEBTOON when they are available. Over 19,000 comics have a link for the Marvel Comics app by WEBTOON. Where more than one choice is available, Reading options can also offer Marvel Unlimited until reading there ends on December 7, or help you look for a book on Hoopla or in Libby.
@@ -44,7 +46,7 @@ This record prepares the shared app and Windows Store version 4.7.0.0. It does n
 
 ### Reading and reading lists
 
-- Read opens a Marvel Comics link when one is available for a comic. Some links come from Comic Book Reading Orders, used with permission. When more than one choice is available, Reading options can offer Marvel Unlimited until reading there ends on December 7, 2026, and can link to Hoopla or Libby where a checked book covers the comic. Starting December 7 on the device's local clock, Read opens the general Marvel Comics website for a comic without a Marvel Comics link. (#1435; add the follow-up PR at the cut)
+- Read opens a Marvel Comics link when one is available for a comic. Some links come from Comic Book Reading Orders, used with permission. When more than one choice is available, Reading options can offer Marvel Unlimited until reading there ends on December 7, 2026, and can link to Hoopla or Libby where a checked book covers the comic. Starting December 7 on the device's local clock, Read opens the general Marvel Comics website for a comic without a Marvel Comics link. (#1435, #1439)
 - Saved reading lists can now be updated when their published order changes. If a saved list matches an earlier version of Wolverine, Best of Thor or X-Men Core, the reading screen offers to review an update. You can also compare any saved list with a published order from Reading List options. Updating adds the new comics and keeps everything already in your list, with your progress on the same comics. The Wolverine checklist download also shows 25 titles correctly that previously had garbled characters. (#1400)
 - The X-Men Core reading order now starts with the modern First Class stories before continuing into the Claremont era. The expanded order still includes the original Silver Age stories. (#1325)
 - New reading list: Best Nightcrawler Comics Reading List, with 187 comics following Kurt Wagner through his early X-Men stories, Excalibur, solo stories, Amazing X-Men and Uncanny Spider-Man, with four favorite one-shots. The four Nightcrawler comics from 1985 are not included yet and are recorded as a gap. The Complete Hickman Saga to Secret Wars now alternates Avengers and New Avengers in their recommended order without adding or removing comics; an unchanged saved copy is offered the update with progress preserved. (#1425; gap #1422)
