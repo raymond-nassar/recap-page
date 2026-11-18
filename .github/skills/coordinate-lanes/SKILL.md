@@ -21,7 +21,9 @@ owner rules and history live there. A fresh coordinator, including one resuming 
 starts with bounded reads, never a full replay:
 
 - The state file's standing-rule categories, its merge procedure, and its current sections only.
-- The append-only log's last 120 or so lines, not the whole file.
+- The append-only log from its latest handoff entry onward (its last few entries if there is
+  none), not a fixed number of lines: entries vary so much in length that one 120-line tail
+  measured about 42 KB. Search the log for an older decision rather than reading back to it.
 - The latest report, if one exists.
 
 Records age the moment a lane pushes, merges, or finishes, so re-verify live state before acting on
@@ -149,7 +151,7 @@ already long session; or the owner says the context feels large.
 Act on that only at a safe boundary: no merge in flight, no background agent whose findings have
 not yet been relayed, and no lane waiting on context that is not yet written into the records.
 
-Hand off before recommending anything. Write a compact state snapshot, a log entry, and a report
+Hand off before recommending anything. Write a compact state snapshot, a handoff entry in the log, and a report
 if a batch just finished; confirm the helper scripts live in the coordinator files folder rather
 than a temporary one; then write a successor prompt. The successor prompt names who the new
 session is and where its records live, states that the records are the durable handoff and live
