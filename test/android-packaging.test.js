@@ -537,6 +537,7 @@ test('Android preparation copies shared feature modules with exact manifest dige
       ['js', 'lib', 'collectedEditions.js'],
       ['js', 'views', 'shared', 'collected-editions.js'],
       ['data', 'marvelComicsAppLinks.js'],
+      ['data', 'marvelComicsAppMuIssues.js'],
       ['js', 'lib', 'marvelComicsApp.js'],
       ['js', 'lib', 'marvelComicsAppUrl.js'],
     ]) {
