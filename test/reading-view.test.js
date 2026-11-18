@@ -474,9 +474,8 @@ function harness(overrides = {}) {
   // The document nests each end-state heading in its section and the hero's two commands in one
   // group, which is what Done's result is placed against and what hiding a section hides.
   nodes.heroReadingOptions.append(nodes.btnHeroReadingOptions, nodes.heroReadingOptionsList);
-  nodes.heroPrimaryActions = node({ id: 'hero-primary-actions' }, [
-    nodes.btnHeroRead, nodes.btnHeroDone, nodes.heroReadingOptions,
-  ]);
+  nodes.heroTooltipGroup = node({ id: 'hero-tooltip-group' }, [nodes.btnHeroRead, nodes.btnHeroDone]);
+  nodes.heroPrimaryActions = node({ id: 'hero-primary-actions' }, [nodes.heroTooltipGroup, nodes.heroReadingOptions]);
   nodes.heroProgress.append(nodes.heroProgressCount, node({ class: 'glance-bar' }, [nodes.heroProgressFill]));
   nodes.heroBody = node({ class: 'hero-body' }, [nodes.heroPrimaryActions,
     nodes.heroReaderTemporary, nodes.heroProgress, nodes.heroFacts]);

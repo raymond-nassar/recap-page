@@ -272,7 +272,7 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
   #hero-by, #hero-desc { margin-bottom: var(--space-4); }
   #hero-desc, #hero-facts, #hero .cta { clear: both; }
   #hero-facts { gap: var(--space-4) var(--space-5); margin-bottom: var(--space-4); }
-  .hero .cta > .btn { width: 100%; justify-content: center; }
+  .hero .cta > .btn, #hero-tooltip-group > .btn { width: 100%; justify-content: center; }
   .chero-primary-actions > .btn { flex: 1 1 6rem; }
   .facts { gap: var(--space-6); }
   .headright { flex-wrap: wrap; }
@@ -296,7 +296,7 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open], #more-sheet[
 
 /* WebView scales text but not rem, so the phone row needs its content minimum to keep words whole. */
 @media (max-width: 700px) {
-  #hero-primary-actions > .btn { min-width: auto; overflow-wrap: normal; }
+  #hero-tooltip-group > .btn { min-width: auto; overflow-wrap: normal; }
 }
 
 /* On a short landscape viewport, a wrapping sticky filter can cover most of the reading area. */

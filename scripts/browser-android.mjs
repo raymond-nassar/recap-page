@@ -2344,18 +2344,32 @@ async function readingAccessibility(page, result, id) {
   const phone = await page.evaluate(() => matchMedia('(max-width: 700px)').matches);
   // The visit button follows the list's introduction, ahead of About, on every Reading List.
   const visit = await page.$eval('#order-visit', (node) => !node.hidden && node.querySelector('a') ? ['#order-visit a'] : []);
-  const context = [...visit, '#order-desc > summary'];
+  const aboutLinks = await page.evaluate(() => ['#order-source a', '#order-app-link-credit a']
+    .filter((selector) => document.querySelector(selector)?.checkVisibility()));
+  check(aboutLinks.includes('#order-app-link-credit a'), `${id}: the link credit is in the open list introduction`);
+  const context = [...visit, '#order-desc > summary', ...aboutLinks];
   const expected = [...(phone ? [...controls, ...context] : [...context, ...controls]),
     ...result.listOptions.map((control) => control.selector)];
   for (const selector of expected) {
     await page.keyboard.press('Tab');
     check(await page.$eval(selector, (node) => document.activeElement === node), `${id}: native Tab reaches ${selector}`);
-    check(await page.$eval(selector, (node) => {
-      const rect = node.getBoundingClientRect(), style = getComputedStyle(node);
-      const hit = document.elementFromPoint(rect.left + rect.width / 2, rect.top + rect.height / 2);
-      return rect.top >= 0 && rect.bottom <= innerHeight && (node === hit || node.contains(hit))
-        && node.matches(':focus-visible') && style.outlineStyle !== 'none';
-    }), `${id}: focused control visible and unobscured`);
+    const focus = await page.$eval(selector, (node) => {
+      const style = getComputedStyle(node);
+      const fragments = [...node.getClientRects()].filter((rect) => rect.width && rect.height).map((rect) => {
+        const hit = document.elementFromPoint(rect.left + rect.width / 2, rect.top + rect.height / 2);
+        return {
+          top: rect.top, bottom: rect.bottom, unobscured: node === hit || node.contains(hit),
+          hit: hit ? { tag: hit.tagName, id: hit.id, text: hit.textContent.trim().slice(0, 100) } : null,
+        };
+      });
+      return {
+        ok: fragments.length > 0 && fragments.every((rect) => rect.top >= 0 && rect.bottom <= innerHeight && rect.unobscured)
+          && node.matches(':focus-visible') && style.outlineStyle !== 'none',
+        control: node.id || node.textContent.trim(), fragments, viewport: innerHeight,
+        focusVisible: node.matches(':focus-visible'), outline: style.outlineStyle,
+      };
+    });
+    check(focus.ok, `${id}: ${selector} focused control visible and unobscured ${JSON.stringify(focus)}`);
     // A keyboard reader reaches Defer and Issue page by opening More comic actions from its summary.
     if (selector === '#hero-more-actions > summary'
       && await page.$eval(selector, (node) => document.activeElement === node && !node.parentElement.open)) {

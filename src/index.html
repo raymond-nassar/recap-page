@@ -375,13 +375,15 @@
                          out. -->
                     <h2 id="hero-title">Nothing up next</h2>
                     <p class="byline" id="hero-by"></p>
-                    <div class="cta" id="hero-primary-actions" data-tooltip-group>
-                      <button type="button" class="btn btn-lg has-tooltip" id="btn-hero-read" data-tooltip="Keyboard shortcut: Enter" aria-keyshortcuts="Enter">
-                        Read
-                      </button>
-                      <button type="button" class="btn btn-g has-tooltip" id="btn-hero-done" data-tooltip="Mark as read and continue. Keyboard shortcut: D" aria-keyshortcuts="d" aria-describedby="hero-done-help">
-                        Done
-                      </button><span id="hero-done-help" hidden>Mark as read and continue.</span>
+                    <div class="cta" id="hero-primary-actions">
+                      <div id="hero-tooltip-group" data-tooltip-group>
+                        <button type="button" class="btn btn-lg has-tooltip" id="btn-hero-read" data-tooltip="Keyboard shortcut: Enter" aria-keyshortcuts="Enter">
+                          Read
+                        </button>
+                        <button type="button" class="btn btn-g has-tooltip" id="btn-hero-done" data-tooltip="Mark as read and continue. Keyboard shortcut: D" aria-keyshortcuts="d" aria-describedby="hero-done-help">
+                          Done
+                        </button><span id="hero-done-help" hidden>Mark as read and continue.</span>
+                      </div>
                       <div class="reading-options" id="hero-reading-options" hidden>
                         <button type="button" class="btn btn-g" id="btn-hero-reading-options" aria-expanded="false" aria-controls="hero-reading-options-list">Reading options</button>
                         <ul class="reading-options-list" id="hero-reading-options-list" hidden></ul>

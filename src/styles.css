@@ -965,7 +965,7 @@ body.nocovers .fallback, .fallback.show { display: flex; }
 /* #950: the wrapper joins the row like the saved actions, so the open list takes a line of its own
    straight after its button and pushes the rest of the row below it, keeping what is seen in the
    order it is read. */
-#issue-reading-options, #hero-reading-options, .row-reading-options { display: contents; }
+#issue-reading-options, #hero-reading-options, #hero-tooltip-group, .row-reading-options { display: contents; }
 #issue-reading-options[hidden], #hero-reading-options[hidden], .row-reading-options[hidden], .reading-options-list[hidden] { display: none; }
 .reading-options-list {
   flex-basis: 100%; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-3);
@@ -2628,7 +2628,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
      view wherever Read is. The basis is in rem, so a larger text size, or a label wider than its half,
      wraps the row back to stacked full-width buttons rather than truncating either. */
   #hero-primary-actions { align-items: stretch; }
-  #hero-primary-actions > .btn { flex: 1 1 8rem; min-height: var(--target-touch); justify-content: center; }
+  #hero-tooltip-group > .btn { flex: 1 1 8rem; min-height: var(--target-touch); justify-content: center; }
   .reading-comic-actions > .btn { min-height: var(--target-touch); }
   #view-data .setting-more > summary { min-height: var(--target-touch); box-sizing: border-box; }
   #form-search .btn-icon, #form-series .btn-icon, #form-creator .btn-icon { min-width: var(--target-touch); min-height: var(--target-touch); }

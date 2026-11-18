@@ -207,6 +207,11 @@ export function createReadingView({
   let aboutHasSource = false;
   let heroOptions = null;
 
+  function ownList(id) {
+    const lists = getState().lists;
+    return Object.hasOwn(lists, id ?? '') ? lists[id] : null;
+  }
+
   function getHeroOptions() {
     if (!heroOptions) {
       heroOptions = createReadingOptions({
@@ -798,7 +803,7 @@ export function createReadingView({
     button.textContent = readerAction(new Date(), { app });
     button.setAttribute('aria-label', issue ? readerName(issue.title, new Date(), { app })
       : labelledName(readerAction(), ''));
-    const catalogId = getState().lists[activeListId()]?.catalogId ?? null;
+    const catalogId = ownList(activeListId())?.catalogId ?? null;
     getHeroOptions().paint(issue, readingChoices(issue, catalogId, { launchable: !button.hidden, app }));
     const temporary = $('#hero-reader-temporary');
     temporary.hidden = button.hidden || !reader.temporary;
@@ -1157,7 +1162,7 @@ export function createReadingView({
     });
     const reader = readerPresentation(item, 'saved');
     const app = Boolean(appViewerFor(item.issueId));
-    const choices = readingChoices(item, getState().lists[listId]?.catalogId ?? null, { launchable: reader.launchable, app });
+    const choices = readingChoices(item, ownList(listId)?.catalogId ?? null, { launchable: reader.launchable, app });
     let options = null;
     let optionsRoot = null;
     if (choices.length >= 2) {
@@ -1173,7 +1178,7 @@ export function createReadingView({
         el, root: optionsRoot, toggle: optionsToggle, list, trackRow: true,
         onRead: (issue, event, choice) => {
           const current = savedReaderIssue(getState(), issue?.issueId);
-          if (!current || activeListId() !== listId || !getState().lists[listId]?.itemIds.includes(issue.issueId)) {
+          if (!current || activeListId() !== listId || !ownList(listId)?.itemIds.includes(issue.issueId)) {
             announce('That comic is no longer in this Reading List.');
             return;
           }

@@ -284,7 +284,8 @@ async function listReadingOptions(page, t, { listId, sourceIssueId }) {
   const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
   t.check('the hero offers a closed Reading options disclosure in its primary actions',
     await page.$eval(heroToggle, (node) => !node.parentElement.hidden
-      && node.closest('#hero-primary-actions') !== null && node.getAttribute('aria-expanded') === 'false'
+      && node.closest('#hero-primary-actions') !== null && !node.closest('[data-tooltip-group]')
+      && node.getAttribute('aria-expanded') === 'false'
       && node.getAttribute('aria-controls') === 'hero-reading-options-list'
       && node.getAttribute('aria-label') === 'Reading options for Linked browser fixture'));
   await page.focus(heroToggle);
@@ -347,6 +348,8 @@ async function listReadingOptions(page, t, { listId, sourceIssueId }) {
         viewport: innerWidth, page: document.documentElement.scrollWidth,
         paired: Math.abs(read.top - done.top) < 1,
         followsPair: options.top >= Math.max(read.bottom, done.bottom) - 1,
+        besidePair: options.left >= done.right && options.top < Math.min(read.bottom, done.bottom)
+          && options.bottom > Math.max(read.top, done.top),
         controls: nodes.map((node) => ({
           height: node.getBoundingClientRect().height, scroll: node.scrollWidth, client: node.clientWidth,
         })),
@@ -355,7 +358,7 @@ async function listReadingOptions(page, t, { listId, sourceIssueId }) {
     });
     t.check(`hero options fit at ${width}px and follow Read and Done on phones`,
       geometry.controls.length === 3 && geometry.page <= geometry.viewport
-        && (width > 700 || (geometry.followsPair && (width < 360 || geometry.paired)))
+        && (width > 700 ? geometry.besidePair : geometry.followsPair && (width < 360 || geometry.paired))
         && geometry.controls.every((node) => node.height >= geometry.minimum && node.scroll <= node.client),
       JSON.stringify(geometry));
     await page.$eval(heroToggle, (node) => node.click());
