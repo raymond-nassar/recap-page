@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import { generateKeyPairSync, verify } from 'node:crypto';
 import {
   ENVIRONMENT, WORKFLOW, BUNDLE_ID, RELEASE_TYPE, AppStoreError, validateIntent, sealedBuild, validateInvocation,
-  ascToken, ascClient, whatsNewDifference, transact, plan,
+  ascToken, ascClient, whatsNewDifference, reportTextDifferences, transact, plan,
 } from '../scripts/app-store-release.mjs';
 import { REPOSITORY_ID } from '../scripts/google-play-publisher.mjs';
 import { REPOSITORY } from '../scripts/android-candidate.mjs';
@@ -23,7 +23,7 @@ const LIVE_LINE_ONE = '- Browse the new "Universes" section, still under constru
 const ledger = JSON.parse(readFileSync('packaging/ios/build-numbers.json', 'utf8'));
 const workflow = readFileSync(WORKFLOW, 'utf8').replace(/\r\n/g, '\n');
 const spec = (mode = 'Submit', whatsNew = TEXT) => ({ mode, version: VERSION, buildNumber: BUILD,
-  sealedBuildNumber: BUILD, whatsNew });
+  sealedBuildNumber: BUILD, whatsNew, description: null });
 
 const appsReply = () => ({ data: [{ type: 'apps', id: 'app1', attributes: { bundleId: BUNDLE_ID } }] });
 function buildsReply(attributes = {}, train = {}) {
@@ -248,6 +248,8 @@ test('Submit creates a missing version, attaches the build, sets What\'s New and
     reviewSubmission: 'sub1', reviewSubmissionItem: 'item1' });
   assert.equal(result.before.appStoreVersion, null);
   assert.deepEqual(result.before.openSubmissions, []);
+  assert.equal(result.descriptionSha256, 'not-requested');
+  assert.equal(result.descriptionDifference, null);
   assert.equal(result.after.reviewSubmission.state, 'WAITING_FOR_REVIEW');
   assert.equal(result.after.appStoreVersion.appVersionState, 'WAITING_FOR_REVIEW');
   assert.equal(writes(calls).length, 6);
@@ -376,6 +378,105 @@ test('a What\'s New readback that is not byte for byte the approved text stops',
   at(steps, 'readback-whats-new').reply = { data: localization(`${TEXT} `) };
   const { last } = await stops(steps, 'WHATS_NEW_READBACK_MISMATCH');
   assert.equal(last.mutationAttempted, true);
+});
+
+test('approved description is patched alone and every localization attribute is checked before submission', async () => {
+  const steps = journey({ create: false, attached: 'build12', releaseType: RELEASE_TYPE });
+  const before = at(steps, 'read-localizations').reply.data[1];
+  before.attributes.description = 'Fake old description';
+  before.attributes.keywords = 'fake keywords';
+  const after = { ...before, attributes: { ...before.attributes, whatsNew: TEXT, description: 'Fake approved description' } };
+  const index = steps.findIndex((step) => step.stage === 'create-review-submission');
+  steps.splice(index, 0,
+    { stage: 'update-description', method: 'PATCH', path: '/v1/appStoreVersionLocalizations/loc46',
+      body: { data: { type: 'appStoreVersionLocalizations', id: 'loc46',
+        attributes: { description: 'Fake approved description' } } }, reply: { data: after } },
+    { stage: 'readback-description', method: 'GET', path: '/v1/appStoreVersionLocalizations/loc46',
+      reply: { data: after } });
+  for (const corrupt of [false, true]) {
+    const attempt = structuredClone(steps);
+    if (corrupt) at(attempt, 'readback-description').reply.data.attributes.keywords = 'changed';
+    const harness = fixture(corrupt ? through(attempt, 'readback-description') : attempt);
+    const action = transact({ ...spec(), description: 'Fake approved description' },
+      { fetchImpl: harness.fetchImpl, token: BEARER, record: harness.record, mode: 'Submit' });
+    if (corrupt) {
+      await assert.rejects(action, (error) => error.code === 'DESCRIPTION_READBACK_MISMATCH');
+      assert.equal(harness.receipts.at(-1).state, 'blocked');
+      assert.equal(harness.calls.at(-1).stage, 'readback-description');
+    } else {
+      const result = await action;
+      assert.equal(result.state, 'submitted-for-review');
+      assert.equal(result.before.description, 'Fake old description');
+      assert.equal(result.descriptionDifference.identical, false);
+      assert.equal(harness.calls.length, steps.length);
+    }
+  }
+});
+
+test('Inspect plans a new version description and invalid text stops before any Apple request', async () => {
+  const steps = journey({ create: true }).filter((step) => step.method === 'GET').slice(0, 4);
+  const harness = fixture(steps);
+  const result = await transact({ ...spec('Inspect'), description: 'Fake approved description' },
+    { fetchImpl: harness.fetchImpl, token: BEARER, record: harness.record, mode: 'Inspect' });
+  assert.equal(result.planned.find((item) => item.stage === 'update-description').path,
+    '/v1/appStoreVersionLocalizations/<created-en-US>');
+  assert.equal(writes(harness.calls).length, 0);
+  for (const description of [undefined, '', 'x'.repeat(4001)]) {
+    const noCalls = fixture([]);
+    await assert.rejects(transact({ ...spec(), description },
+      { fetchImpl: noCalls.fetchImpl, token: BEARER, record: noCalls.record, mode: 'Submit' }),
+    (error) => error.code === 'APPROVED_DESCRIPTION_REQUIRED');
+    assert.equal(noCalls.calls.length, 0);
+  }
+});
+
+test('a matching approved description is not rewritten but is still read back', async () => {
+  const steps = journey({ create: false, live: TEXT, attached: 'build12', releaseType: RELEASE_TYPE });
+  const localizationValue = at(steps, 'read-localizations').reply.data[1];
+  localizationValue.attributes.description = 'Fake approved description';
+  const index = steps.findIndex((step) => step.stage === 'create-review-submission');
+  steps.splice(index, 0, { stage: 'readback-description', method: 'GET',
+    path: '/v1/appStoreVersionLocalizations/loc46', reply: { data: structuredClone(localizationValue) } });
+  const harness = fixture(steps);
+  const result = await transact({ ...spec(), description: 'Fake approved description' },
+    { fetchImpl: harness.fetchImpl, token: BEARER, record: harness.record, mode: 'Submit' });
+  assert.equal(result.descriptionDifference.identical, true);
+  assert.ok(!harness.calls.some((call) => call.stage === 'update-description'));
+  assert.equal(harness.calls.length, steps.length);
+});
+
+test('description-only Inspect differences are reported even when What\'s New already matches', async () => {
+  const steps = journey({ create: false, live: TEXT, attached: 'build12', releaseType: RELEASE_TYPE })
+    .filter((step) => ['read-app', 'read-build', 'read-versions', 'read-review-submissions',
+      'read-version-build', 'read-localizations'].includes(step.stage));
+  at(steps, 'read-localizations').reply.data[1].attributes.description = 'Fake old description';
+  const harness = fixture(steps);
+  const result = await transact({ ...spec('Inspect'), description: 'Fake approved description' },
+    { fetchImpl: harness.fetchImpl, token: BEARER, record: harness.record, mode: 'Inspect' });
+  const lines = [];
+  reportTextDifferences(result, (line) => lines.push(line));
+  assert.deepEqual(lines, [
+    'Description line 1 differs. Live: "Fake old description" Approved: "Fake approved description"',
+  ]);
+  assert.deepEqual(result.planned.filter((item) => item.stage === 'update-description').map((item) => item.body),
+    [{ data: { type: 'appStoreVersionLocalizations', id: 'loc46',
+      attributes: { description: 'Fake approved description' } } }]);
+  assert.equal(writes(harness.calls).length, 0);
+});
+
+test('case variants make the English localization ambiguous before description writes', async () => {
+  for (const locales of [['en-us'], ['en-US', 'en-us']]) {
+    const steps = through(journey({ create: false, live: TEXT, attached: 'build12',
+      releaseType: RELEASE_TYPE }), 'read-localizations');
+    at(steps, 'read-localizations').reply.data = locales.map((locale, index) =>
+      ({ ...localization(TEXT, locale), id: `loc${index}` }));
+    const harness = fixture(steps);
+    await assert.rejects(transact({ ...spec(), description: 'Fake approved description' },
+      { fetchImpl: harness.fetchImpl, token: BEARER, record: harness.record, mode: 'Submit' }),
+    (error) => error.code === 'ONE_EN_US_LOCALIZATION_REQUIRED');
+    assert.equal(writes(harness.calls).length, 0);
+    assert.equal(harness.receipts.at(-1).state, 'blocked');
+  }
 });
 
 test('a build relationship readback that is not the target build stops', async () => {

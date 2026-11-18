@@ -245,14 +245,14 @@ function isControl(character) {
   return (code < 0x20 && code !== 0x0a) || (code >= 0x7f && code <= 0x9f);
 }
 
-function approvedText(text, limit, label) {
+export function approvedText(text, limit, label) {
   // UTF-16 length never undercounts code points, so a limit check on it cannot let longer text through.
   if (typeof text !== 'string' || !text || text !== text.trim() || !text.isWellFormed() ||
       [...text].some(isControl)) {
-    throw new Error(`Store listing ${label} must be nonempty, trimmed text with only line breaks as controls`);
+    throw new Error(`${label} must be nonempty, trimmed text with only line breaks as controls`);
   }
   if (text.length > limit) {
-    throw new Error(`Store listing ${label} must be at most ${limit} characters`);
+    throw new Error(`${label} must be at most ${limit} characters`);
   }
 }
 
@@ -266,9 +266,9 @@ export function validateStoreListing(listing, packageVersion) {
   }
   parseVersion(packageVersion);
   if (source.locale !== 'en-us') throw new Error('Store listing text locale must be en-us');
-  approvedText(source.description, STORE_LISTING_LIMITS.description, 'description');
+  approvedText(source.description, STORE_LISTING_LIMITS.description, 'Store listing description');
   approvedText(source.notesForCertification, STORE_LISTING_LIMITS.notesForCertification,
-    'notesForCertification');
+    'Store listing notesForCertification');
   return source;
 }
 
