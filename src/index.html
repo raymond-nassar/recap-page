@@ -1441,14 +1441,16 @@
                   comics are on screen; switching cover art off stops them being requested at all.
                   Those are the only servers a cover is ever asked of: an address the metadata API
                   reports on any other host is refused before anything is fetched.
-                  Before December 7, 2026, pressing Read opens Marvel's web reader when its direct
-                  reader link is known. With a matching comic-page link but a refused reader-ID lookup,
+                  When a comic has a Marvel Comics app link, pressing Read opens it in the Marvel Comics app.
+                  For a comic without one, before December 7, 2026, pressing Read opens Marvel's web reader
+                  when its direct reader link is known. With a matching comic-page link but a refused reader-ID lookup,
                   Read opens the exact Marvel comic page directly. Otherwise the launch tab asks
                   the metadata API for a missing reader link and opens the web reader if found,
                   or the comic page if not. From the start of December 7 on your device's local
-                  clock, Read opens the general Marvel Comics website without a reader-link lookup.
+                  clock, Read opens the general Marvel Comics website for a comic without an app link,
+                  with no reader-link lookup.
                   Android uses your installed browser, not the Marvel Unlimited app, on both sides
-                  of that date. Recap Page no longer contacts Bifrost.
+                  of that date.
                   Adding a comic by hand sends the words in the title box to the Marvel Fandom wiki
                   only when you press the lookup button; the wiki sees that title, but no picture is fetched.
                   These requests include no part of your lists, progress, or notes.
