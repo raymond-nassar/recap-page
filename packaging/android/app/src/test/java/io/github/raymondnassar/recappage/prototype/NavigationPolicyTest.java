@@ -34,6 +34,8 @@ public final class NavigationPolicyTest {
         check(policy.isPopupAsset("js/lib/apiBase.js"), "Popup settings dependency");
         check(policy.isPopupAsset("js/lib/issuePageUrl.js"), "Popup issue-page dependency");
         check(policy.isPopupAsset("js/lib/readerDestination.js"), "Popup shared cutoff dependency");
+        check(policy.isPopupAsset("js/lib/marvelComicsAppUrl.js"), "Popup Marvel Comics app address dependency");
+        check(!policy.isPopupAsset("js/lib/marvelComicsApp.js"), "Popup never loads the whole link table");
         check(!policy.isPopupAsset("js/lib/model.js"), "No unrelated popup library module");
         check(policy.isPopupAsset("android/launch.css"), "Package-only popup accessibility stylesheet");
         check(!policy.isPopupAsset("android/bridge.js"), "No popup bridge");
@@ -48,6 +50,17 @@ public final class NavigationPolicyTest {
                 + "03baf094-d1bf-4eb6-8533-0840ebc0d0b9";
         check(!policy.isOfficialReader(marvelIssue), "Marvel Unlimited app links are retired");
         check(policy.isOfficialReader("https://marvel.webtoon.com/"), "Exact general Marvel Comics website");
+        check(policy.isOfficialReader("https://www.marvelcomicsapp.com/viewer/4879"), "Marvel Comics app comic");
+        for (String rejected : new String[] {
+                "https://www.marvelcomicsapp.com/", "https://www.marvelcomicsapp.com/viewer/",
+                "https://www.marvelcomicsapp.com/viewer/0", "https://www.marvelcomicsapp.com/viewer/012",
+                "https://www.marvelcomicsapp.com/viewer/1234567890", "https://www.marvelcomicsapp.com/viewer/12/",
+                "https://www.marvelcomicsapp.com/viewer/12?x=1", "https://www.marvelcomicsapp.com/viewer/12#x",
+                "https://www.marvelcomicsapp.com/issues/34561", "https://www.marvelcomicsapp.com/viewer/%31",
+                "https://marvelcomicsapp.com/viewer/12", "https://www.marvelcomicsapp.com.evil/viewer/12",
+                "https://user@www.marvelcomicsapp.com/viewer/12", "https://www.marvelcomicsapp.com:8443/viewer/12",
+                "http://www.marvelcomicsapp.com/viewer/12"
+        }) check(!policy.isOfficialReader(rejected), "Reject Marvel Comics app bypass: " + rejected);
         for (String rejected : new String[] {
                 null, "", "marvelunlimited://reader/38811", marvelIssue.toUpperCase(),
                 "https://marvel.webtoon.com.evil/", "https://user@marvel.webtoon.com/",

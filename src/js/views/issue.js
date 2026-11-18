@@ -1,5 +1,9 @@
 import { labelledName } from '../lib/accname.js';
-import { readerAction, readerContext } from '../lib/readerDestination.js';
+import { editionRelations } from '../lib/collectedEditions.js';
+import { appViewerFor } from '../lib/marvelComicsApp.js';
+import {
+  MARVEL_UNLIMITED_CHOICE, readerAction, readerDestination, readerName,
+} from '../lib/readerDestination.js';
 import { issuePresentation, resolveIssueFocus } from '../lib/issueFocus.js';
 import { isDeferred, isRead } from '../lib/model.js';
 import { savedReaderIssue } from '../lib/temporaryReaderLink.js';
@@ -12,6 +16,7 @@ const comicIdentity = (issue) => issue
 export function createIssueView({
   coverUrl,
   decorateResult,
+  el,
   elements,
   fact,
   getApi,
@@ -257,13 +262,95 @@ export function createIssueView({
     nodes.context.textContent = issueContextText(currentResult.context, currentResult.issue.issueId);
     const focused = nodes.read.ownerDocument?.activeElement === nodes.read && nodes.read.getClientRects().length > 0;
     const { launchable } = readerPresentation(currentResult.issue, currentResult.source);
+    const app = Boolean(appViewerFor(currentResult.issue.issueId));
     nodes.read.hidden = !launchable;
-    nodes.read.textContent = readerAction();
-    nodes.read.setAttribute('aria-label', labelledName(readerAction(),
-      readerContext(currentResult.issue.title)));
+    nodes.read.textContent = readerAction(new Date(), { app });
+    nodes.read.setAttribute('aria-label', readerName(currentResult.issue.title, new Date(), { app }));
+    paintReadingOptions(launchable, app);
     if (focused && !launchable) {
       nodes.heading.setAttribute('tabindex', '-1');
       nodes.heading.focus({ preventScroll: true });
+    }
+  }
+
+  // The bundled order names the reading list whose curated books a comic is collected in; a saved
+  // list carries the order it was added from.
+  function editionCatalogId(context) {
+    if (context?.kind === 'order') return context.id;
+    if (context?.kind === 'list') return getState().lists?.[context.id]?.catalogId ?? null;
+    return null;
+  }
+
+  // #950: the places this comic can be read, in the order the owner approved. It is offered only
+  // when there is a real choice, so it never shows a list of one beside Read.
+  function readingChoices(launchable, app) {
+    const issue = currentResult.issue;
+    const choices = [];
+    if (launchable && app) {
+      choices.push({
+        key: 'app', text: 'Marvel Comics app', name: readerName(issue.title, new Date(), { app: true }),
+        read: { app: true },
+      });
+    }
+    if (launchable && readerDestination() === 'unlimited') {
+      choices.push({
+        key: 'unlimited', text: MARVEL_UNLIMITED_CHOICE, name: `Read ${issue.title} in ${MARVEL_UNLIMITED_CHOICE}`,
+        read: { app: false },
+      });
+    }
+    for (const edition of editionRelations(editionCatalogId(currentResult.context), issue)) {
+      for (const link of edition.links) {
+        const text = `Look for this book ${link.preposition} ${link.name}`;
+        choices.push({
+          key: `${edition.id}:${link.provider}:${link.url}`, text, href: link.url,
+          name: labelledName(text, `${edition.title} (opens outside Recap Page)`),
+        });
+      }
+    }
+    return choices;
+  }
+
+  let readingOptionsKey = null;
+  let readingOptionsIssue = null;
+
+  function setReadingOptionsOpen(open) {
+    const nodes = elements();
+    nodes.readingOptionsList.hidden = !open;
+    nodes.readingOptionsToggle.setAttribute('aria-expanded', String(open));
+  }
+
+  function paintReadingOptions(launchable, app) {
+    const nodes = elements();
+    const issue = currentResult.issue;
+    const choices = readingChoices(launchable, app);
+    const key = JSON.stringify([issue.issueId, issue.title, choices.map((choice) => [choice.key, choice.name])]);
+    nodes.readingOptions.hidden = choices.length < 2;
+    nodes.readingOptionsToggle.setAttribute('aria-label', `Reading options for ${issue.title}`);
+    if (key === readingOptionsKey) return;
+    // Rebuilt only when the choices change, so a repaint after Mark as read keeps focus in the list.
+    const active = nodes.readingOptions.ownerDocument?.activeElement;
+    const inside = Boolean(active && nodes.readingOptionsList.contains?.(active));
+    readingOptionsKey = key;
+    if (readingOptionsIssue !== issue.issueId || choices.length < 2) setReadingOptionsOpen(false);
+    readingOptionsIssue = issue.issueId;
+    nodes.readingOptionsList.replaceChildren(...choices.map((choice) => el('li', {}, [choice.href
+      ? el('a', {
+        class: 'mini', href: choice.href, target: '_blank', rel: 'noopener noreferrer',
+        referrerPolicy: 'no-referrer', 'aria-label': choice.name, text: choice.text,
+      })
+      : el('button', {
+        type: 'button', class: 'mini', 'aria-label': choice.name, text: choice.text,
+        dataset: { readingOption: choice.key },
+        onclick: (event) => {
+          if (currentResult?.issue === issue) {
+            onRead(issue, event, currentResult.source, event.currentTarget, choice.read);
+          }
+        },
+      })])));
+    if (inside) {
+      const target = choices.length >= 2 ? nodes.readingOptionsToggle : nodes.heading;
+      if (target === nodes.heading) target.setAttribute('tabindex', '-1');
+      target.focus({ preventScroll: true });
     }
   }
 
@@ -291,6 +378,19 @@ export function createIssueView({
     }
     nodes.read.addEventListener('click', (event) => {
       if (currentResult?.issue) onRead(currentResult.issue, event, currentResult.source);
+    });
+    // The same disclosure as a row's More actions: ordinary buttons and links, not an ARIA menu.
+    nodes.readingOptionsToggle.addEventListener('click', () => {
+      setReadingOptionsOpen(nodes.readingOptionsList.hidden);
+    });
+    nodes.readingOptions.addEventListener('focusout', (event) => {
+      if (!nodes.readingOptions.contains(event.relatedTarget)) setReadingOptionsOpen(false);
+    });
+    nodes.readingOptions.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape' || nodes.readingOptionsList.hidden) return;
+      event.preventDefault();
+      setReadingOptionsOpen(false);
+      nodes.readingOptionsToggle.focus({ preventScroll: true });
     });
     nodes.synopsis.addEventListener('click', async () => {
       if (!currentResult?.issue) return;

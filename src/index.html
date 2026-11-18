@@ -183,7 +183,7 @@
               </details>
             </div>
 
-            <p id="reader-closure-notice" class="notice notice-warn"><span id="reader-closure-text">Marvel Unlimited ends December 7, 2026, and Read will then open the Marvel Comics website.</span> <a id="reader-closure-faq" href="https://help.marvel.com/article/marvel-whats-happening-to-marvel-unlimited" target="_blank" rel="noopener noreferrer">Marvel's FAQ</a><button id="reader-closure-dismiss" type="button" class="btn btn-g btn-icon notice-dismiss has-tooltip" aria-label="Dismiss the Marvel Unlimited notice" data-tooltip="Dismiss the Marvel Unlimited notice"><span aria-hidden="true">&times;</span></button></p>
+            <p id="reader-closure-notice" class="notice notice-warn"><span id="reader-closure-text">Read now opens comics in the Marvel Comics app when we have a link. Marvel Unlimited ends December 7, 2026. Until then you can still choose it under Reading options.</span> <a id="reader-closure-faq" href="https://help.marvel.com/article/marvel-whats-happening-to-marvel-unlimited" target="_blank" rel="noopener noreferrer">Marvel's FAQ</a><button id="reader-closure-dismiss" type="button" class="btn btn-g btn-icon notice-dismiss has-tooltip" aria-label="Dismiss the Marvel Unlimited notice" data-tooltip="Dismiss the Marvel Unlimited notice"><span aria-hidden="true">&times;</span></button></p>
 
             <!-- #1412: Windows readers in Edge or Chrome are invited once to open Recap Page in its own
                  window; Firefox, Brave and Opera readers are told how. install.js decides which, if either, shows. -->
@@ -546,6 +546,10 @@
                     <button type="button" class="btn btn-lg" id="btn-issue-read">
                       Read
                     </button>
+                    <div class="reading-options" id="issue-reading-options" hidden>
+                      <button type="button" class="btn btn-g" id="btn-issue-reading-options" aria-expanded="false" aria-controls="issue-reading-options-list">Reading options</button>
+                      <ul class="reading-options-list" id="issue-reading-options-list" hidden></ul>
+                    </div>
                     <div class="cta" id="issue-saved-actions" hidden>
                       <button type="button" class="btn btn-g" id="btn-issue-mark-read">Mark as read</button>
                       <button type="button" class="btn btn-g" id="btn-issue-note">Add note</button>

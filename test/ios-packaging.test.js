@@ -522,7 +522,8 @@ test('the iOS manifest lists every bundled file once with its exact digest', asy
   assert.equal(new Set(listed).size, listed.length);
   for (const name of ['data/collectedEditionCatalog.js', 'data/collectedEditionEvidence.js',
     'js/lib/collectedEditions.js', 'js/views/shared/collected-editions.js',
-    'data/universeCatalog.js', 'js/lib/universeSchema.js', 'js/lib/universes.js']) {
+    'data/universeCatalog.js', 'js/lib/universeSchema.js', 'js/lib/universes.js',
+    'data/marvelComicsAppLinks.js', 'js/lib/marvelComicsApp.js', 'js/lib/marvelComicsAppUrl.js']) {
     assert.ok(listed.includes(name), name);
     assert.deepEqual(await readFile(join(output, name)), await readFile(new URL(`../src/${name}`, import.meta.url)), name);
   }

@@ -21,7 +21,8 @@ import {
   OWNER_EXTERNAL_SUPPLEMENT, OWNER_GCD_SUPPLEMENT,
 } from '../lib/model.js';
 import { availability, describe, localDayString, RECORD_HEADING, RECORD_NOTE, STATE } from '../lib/availability.js';
-import { readerAction, readerContext } from '../lib/readerDestination.js';
+import { readerAction, readerName } from '../lib/readerDestination.js';
+import { appViewerFor } from '../lib/marvelComicsApp.js';
 import { savedReaderIssue } from '../lib/temporaryReaderLink.js';
 import { labelledName } from '../lib/accname.js';
 import { isPlainNavigation } from '../lib/route.js';
@@ -34,7 +35,9 @@ import { homeButton, visitButton } from './shared/catalog-presentation.js';
 import { uiIcon } from '../lib/uiIcon.js';
 import { editionRelations } from '../lib/collectedEditions.js';
 import { positionProviders } from '../lib/libraryLinks.js';
-import { collectedEditionCredit, collectedEditionLabels } from './shared/collected-editions.js';
+import {
+  collectedEditionCredit, collectedEditionLabels, marvelComicsAppCredit,
+} from './shared/collected-editions.js';
 import { gcdDetailsCredit, hasGcdDetails } from './shared/details-credit.js';
 
 export const RING_CIRCUMFERENCE = 119.4; // 2πr for r=19, matching the SVG in index.html
@@ -754,9 +757,10 @@ export function createReadingView({
     const reader = readerPresentation(issue, 'saved');
     const button = $('#btn-hero-read');
     button.hidden = isCompleted(getState(), activeListId()) || !reader.launchable;
-    button.textContent = readerAction();
-    button.setAttribute('aria-label', labelledName(readerAction(), issue
-      ? readerContext(issue.title) : ''));
+    const app = Boolean(issue && appViewerFor(issue.issueId));
+    button.textContent = readerAction(new Date(), { app });
+    button.setAttribute('aria-label', issue ? readerName(issue.title, new Date(), { app })
+      : labelledName(readerAction(), ''));
     const temporary = $('#hero-reader-temporary');
     temporary.hidden = button.hidden || !reader.temporary;
     temporary.textContent = temporary.hidden ? '' : 'Using a temporary reader link.';
@@ -792,7 +796,8 @@ export function createReadingView({
         const year = ymd(item.onSale).slice(0, 4);
         const label = [short, year].filter(Boolean).join(' ');
         const reader = readerPresentation(item, 'saved');
-        const readName = labelledName(readerAction(), readerContext(label));
+        const app = Boolean(appViewerFor(item.issueId));
+        const readName = readerName(label, new Date(), { app });
         const context = { kind: 'list', id };
 
         shelf.append(el('li', { class: 'tile' }, [
@@ -818,7 +823,7 @@ export function createReadingView({
             dataset: { key: item.issueId, act: 'open' },
             hidden: !reader.launchable,
             onclick: (e) => { if (activeListId() === id && !isCompleted(getState(), id)) launch(item, e); },
-          }, readerAction()),
+          }, readerAction(new Date(), { app })),
         ]));
       }
     }, {
@@ -882,6 +887,14 @@ export function createReadingView({
           rowCache.set('gcd-credit', { node: el('li', { class: 'edition-attribution' }, [gcdDetailsCredit(el)]) });
         }
         desired.push(rowCache.get('gcd-credit').node);
+      }
+      if (items.some((item) => appViewerFor(item.issueId))) {
+        if (!rowCache.has('app-link-credit')) {
+          rowCache.set('app-link-credit', {
+            node: el('li', { class: 'edition-attribution' }, [marvelComicsAppCredit(el)]),
+          });
+        }
+        desired.push(rowCache.get('app-link-credit').node);
       }
       const hiddenGaps = linksOnly ? all.filter((item) => !linked.has(item.issueId)).length : 0;
       linksHidden = hiddenGaps;
@@ -1105,11 +1118,11 @@ export function createReadingView({
       group('Open', [
         el('button', {
           type: 'button', class: 'mini',
-          'aria-label': labelledName(readerAction(), readerContext(item.title)),
+          'aria-label': readerName(item.title, new Date(), { app: Boolean(appViewerFor(item.issueId)) }),
           dataset: { key: item.issueId, act: 'open' },
           hidden: !reader.launchable,
           onclick: (e) => launch(item, e),
-        }, readerAction()),
+        }, readerAction(new Date(), { app: Boolean(appViewerFor(item.issueId)) })),
         ...(reader.temporary ? [el('span', {
           class: 'rail-hint', dataset: { readerTemporary: 'true' }, text: 'Temporary reader link',
         })] : []),

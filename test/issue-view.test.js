@@ -54,11 +54,21 @@ function harness({
     savedActions: node(),
     markRead: node(),
     editNote: node(),
+    readingOptions: node(),
+    readingOptionsList: node(),
+    readingOptionsToggle: node('Reading options'),
   };
   const document = { activeElement: null };
   for (const value of Object.values(nodes)) value.ownerDocument = document;
   nodes.retry.hidden = true;
   nodes.savedActions.hidden = true;
+  nodes.readingOptions.hidden = true;
+  nodes.readingOptionsList.hidden = true;
+  const within = (parent) => (target) => target === parent || Boolean(parent.children?.some((child) =>
+    child === target || child.children?.includes(target)));
+  nodes.readingOptions.contains = (target) => target === nodes.readingOptionsToggle
+    || within(nodes.readingOptionsList)(target);
+  nodes.readingOptionsList.contains = within(nodes.readingOptionsList);
   nodes.description.id = 'issue-focus-desc';
   const calls = {
     breadcrumbs: 0,
@@ -74,6 +84,7 @@ function harness({
     coverUrl: (issue) => issue.cover || null,
     decorateResult: (result) => ({ ...result, breadcrumbShelf: 'validated-shelf' }),
     elements: () => nodes,
+    el: (tag, props = {}, children = []) => ({ tag, ...props, children: [].concat(children) }),
     fact: (key, value, className) => ({ key, value, className }),
     getApi: () => ({ issue: apiIssue ?? (async () => null) }),
     getState: () => state ?? {
@@ -727,4 +738,63 @@ test('#980 Issue view paints the cover with the variant the page names, once per
   await phone.view.render({ issueId: 42 });
   assert.deepEqual(phone.calls.coverVariants, ['detail']);
   assert.deepEqual(asked, [[phone.nodes.image, '--issue-cover-variant']], 'the image itself is read');
+});
+
+// #950: issue 12459 has a Marvel Comics app link in the bundled data and issue 42 has none.
+function savedComic(issueId) {
+  return { issues: { [issueId]: issue(issueId) }, read: {}, overrides: {}, notes: {}, lists: {} };
+}
+
+test('950 Reading options offers the app and Marvel Unlimited for a linked comic before December 7', async () => {
+  const h = harness({ state: savedComic(12459) });
+  h.view.wire();
+  await h.view.render({ issueId: 12459 });
+  assert.equal(h.nodes.read.textContent, 'Read');
+  assert.equal(h.nodes.read.attributes['aria-label'], 'Read Issue title in the Marvel Comics app');
+  assert.equal(h.nodes.readingOptions.hidden, false);
+  assert.equal(h.nodes.readingOptionsList.hidden, true);
+  assert.equal(h.nodes.readingOptionsToggle.attributes['aria-label'], 'Reading options for Issue title');
+  const buttons = h.nodes.readingOptionsList.children.map((item) => item.children[0]);
+  assert.deepEqual(buttons.map((button) => [button.tag, button.text, button['aria-label']]), [
+    ['button', 'Marvel Comics app', 'Read Issue title in the Marvel Comics app'],
+    ['button', 'Marvel Unlimited, until December 7, 2026',
+      'Read Issue title in Marvel Unlimited, until December 7, 2026'],
+  ]);
+
+  h.nodes.readingOptionsToggle.listeners.click();
+  assert.equal(h.nodes.readingOptionsList.hidden, false);
+  assert.equal(h.nodes.readingOptionsToggle.attributes['aria-expanded'], 'true');
+  const event = { currentTarget: buttons[1] };
+  buttons[1].onclick(event);
+  assert.deepEqual(h.calls.read, [[h.view.result().issue, event, 'saved', buttons[1], { app: false }]]);
+  buttons[0].onclick({ currentTarget: buttons[0] });
+  assert.deepEqual(h.calls.read[1].at(-1), { app: true });
+
+  let prevented = false;
+  h.nodes.readingOptions.listeners.keydown({ key: 'Escape', preventDefault() { prevented = true; } });
+  assert.equal(prevented, true);
+  assert.equal(h.nodes.readingOptionsList.hidden, true);
+  assert.equal(h.nodes.readingOptionsToggle.attributes['aria-expanded'], 'false');
+  assert.equal(h.nodes.readingOptions.ownerDocument.activeElement, h.nodes.readingOptionsToggle);
+
+  h.nodes.readingOptionsToggle.listeners.click();
+  h.nodes.readingOptions.listeners.focusout({ relatedTarget: buttons[0] });
+  assert.equal(h.nodes.readingOptionsList.hidden, false);
+  h.nodes.readingOptions.listeners.focusout({ relatedTarget: null });
+  assert.equal(h.nodes.readingOptionsList.hidden, true);
+});
+
+test('950 Reading options stays hidden when there is only one place to read', async (t) => {
+  const unlinked = harness({ state: savedComic(42) });
+  await unlinked.view.render({ issueId: 42 });
+  assert.equal(unlinked.nodes.read.attributes['aria-label'],
+    'Read: Issue title in Marvel Unlimited (reading ends December 7, 2026)');
+  assert.equal(unlinked.nodes.readingOptions.hidden, true);
+
+  t.mock.timers.setTime(new Date(2026, 11, 8, 12).getTime());
+  const linked = harness({ state: savedComic(12459) });
+  await linked.view.render({ issueId: 12459 });
+  assert.equal(linked.nodes.read.attributes['aria-label'], 'Read Issue title in the Marvel Comics app');
+  assert.equal(linked.nodes.readingOptions.hidden, true);
+  assert.equal(linked.nodes.readingOptionsList.hidden, true);
 });
