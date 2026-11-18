@@ -716,11 +716,17 @@ characters except line feeds. Invalid text stops the run, never truncates it. No
 live description stays unchanged; Validate says that explicitly. When present, Validate prints the
 exact App Store description and its digest joins the approval binding.
 
+The optional `docs/releases/<version>-app-store-review-notes.json` at that same commit holds the App
+Review notes and has exactly `version` and `notes`, with no locale. Its version must match, and the
+notes follow the same text rules within 4,000 UTF-8 bytes. No file means the publisher sends no
+review-detail request at all and the live notes stay unchanged; Validate says so. When present,
+Validate prints the exact notes with their byte count and their digest joins the approval binding.
+
 | Mode | Apple access and effect |
 |---|---|
 | `Validate` (default) | No Apple credentials. Checks the build number is the newest sealed build for that version in `packaging/ios/build-numbers.json`, the source version and the approved text. |
-| `Inspect` | Requires the `app-store-release` approval. Sends only reads and reports what Submit would change, including the live versus approved What's New and any requested description change. |
-| `Submit` | Requires the same approval. Creates or updates the version, attaches the build, sets What's New and any approved description, then submits it for review, reading each change back. |
+| `Inspect` | Requires the `app-store-release` approval. Sends only reads and reports what Submit would change, including the live versus approved What's New and any requested description change; approved App Review notes are planned by digest only. |
+| `Submit` | Requires the same approval. Creates or updates the version, attaches the build, sets What's New, any approved description and any approved App Review notes, then submits it for review, reading each change back. |
 
 Before any write it requires one processed, unexpired build whose number and version are the sealed
 ones, with export compliance already answered; the target version absent or still editable; no
@@ -733,8 +739,15 @@ The description belongs to that version's `en-US` localization, not an app-wide 
 PATCHes only its `description` when it differs, before creating the review submission, then reads
 it back even if it already matched. The entire returned localization must equal the original
 attributes except for the approved What's New and description. Any difference stops submission;
-keywords, URLs, promotional text and other attributes are not rewritten. App Review notes are
-neither read nor changed by this publisher.
+keywords, URLs, promotional text and other attributes are not rewritten.
+
+App Review notes belong to the version's review details. With an approved file, Submit reads those
+details and PATCHes only `notes` when they differ, before creating the review submission, then reads
+them back; every other review-detail attribute, including contact and sign-in fields, must come back
+unchanged or submission stops. If the version has no review details, or they are malformed, the run
+stops: it never creates them or copies earlier contact or sign-in data. Live review details are
+compared in memory only; the receipt records their ID, whether the notes already matched, and the
+approved digest and byte count, never live text.
 
 The approved job rechecks the binding, the policy and the current-run approval, then signs a
 15-minute ES256 token with `node:crypto`. The App Store Connect key needs a role that can edit
