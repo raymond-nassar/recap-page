@@ -11,7 +11,7 @@ body :is(button, .btn, select, summary, .checkbox, .fp > span, .path > span) {
   min-height: var(--target-touch);
   min-width: var(--target-touch);
 }
-body .row-actions-toggle, body .row-actions .mini { min-height: var(--target-touch); }
+body .row-actions-toggle, body .row-actions .mini, body .reading-options-list .mini { min-height: var(--target-touch); }
 #marvel-ages-modern-all { min-height: var(--target-touch); }
 body .home-guide-link { min-height: var(--target-touch); }
 body #view-home #home-updates :is(button, summary) { min-height: var(--target-touch); min-width: var(--target-touch); }

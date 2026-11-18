@@ -17422,13 +17422,17 @@ SCENARIOS.push({
       for (const index of [0, 19]) {
         const row = `#rows .row:nth-child(${index + 1})`;
         const toggle = `${row} .row-actions-toggle`;
-        const actions = ['open', 'info', 'up', 'down', 'override-available', 'override-unavailable', 'override-clear', 'defer', 'remove'];
         await page.mouse.move(0, 0);
         await page.$eval(toggle, (el) => { el.scrollIntoView({ block: 'center' }); el.focus(); });
         await page.keyboard.press('Enter');
         t.check(`${size} row ${index}: Enter opens More actions`,
           await page.$eval(toggle, (el) => el.getAttribute('aria-expanded') === 'true'));
         const panel = `${row} .ract`;
+        const hasOptions = await page.$(`${panel} [data-act="reading-options"]`) !== null;
+        const actions = [
+          'open', ...(hasOptions ? ['reading-options'] : []), 'info', 'up', 'down',
+          'override-available', 'override-unavailable', 'override-clear', 'defer', 'remove',
+        ];
         await page.$eval(panel, (el) => el.scrollIntoView({ block: 'center' }));
         const panelBounds = await page.$eval(panel, (el) => {
           const r = el.getBoundingClientRect();
@@ -17446,6 +17450,7 @@ SCENARIOS.push({
         const pointers = [];
         for (const act of actions) {
           const selector = `${panel} [data-act="${act}"]`;
+          await page.$eval(selector, (el) => el.scrollIntoView({ block: 'center' }));
           const geometry = await controlGeometry(selector);
           pointers.push({ act, ...geometry });
           const point = await page.$eval(selector, (el) => {
@@ -17473,7 +17478,7 @@ SCENARIOS.push({
           keyboard.length === actions.length && keyboard.every((g) => g.focused && g.ring > 0
             && g.visible && g.hits && g.ringHits && !g.clips.length), JSON.stringify(keyboard));
         const activations = await page.evaluate(() => window.__mrt443Activations.splice(0));
-        t.check(`${size} row ${index}: all nine actions receive trusted pointer and keyboard activation`,
+        t.check(`${size} row ${index}: all ${actions.length} actions receive trusted pointer and keyboard activation`,
           activations.length === actions.length * 2 && activations.every((event, i) => event.trusted
             && event.act === actions[i % actions.length]), JSON.stringify(activations));
         const hintVisible = await page.evaluate(() => {

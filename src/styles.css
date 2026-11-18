@@ -965,16 +965,17 @@ body.nocovers .fallback, .fallback.show { display: flex; }
 /* #950: the wrapper joins the row like the saved actions, so the open list takes a line of its own
    straight after its button and pushes the rest of the row below it, keeping what is seen in the
    order it is read. */
-#issue-reading-options { display: contents; }
-#issue-reading-options[hidden], .reading-options-list[hidden] { display: none; }
+#issue-reading-options, #hero-reading-options, .row-reading-options { display: contents; }
+#issue-reading-options[hidden], #hero-reading-options[hidden], .row-reading-options[hidden], .reading-options-list[hidden] { display: none; }
 .reading-options-list {
   flex-basis: 100%; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-3);
   max-width: 36rem; margin: 0; padding: var(--space-3); list-style: none;
   border: var(--stroke-1) solid var(--line-2); border-radius: var(--radius-md); background: var(--card-2);
 }
 .reading-options-list .mini {
-  display: flex; align-items: center; width: 100%; min-height: var(--target); text-align: left;
+  display: flex; align-items: center; width: 100%; min-height: var(--target); text-align: left; overflow-wrap: anywhere;
 }
+.ract .reading-options-list { grid-column: 1 / -1; max-width: none; }
 @media (max-width: 700px) {
   .issue-focus .hero-in { grid-template-rows: none; gap: var(--space-6); }
   .issue-focus .hero-in > .art, .issue-focus .hero-body, .issue-reading-controls { grid-column: auto; grid-row: auto; }
@@ -983,7 +984,7 @@ body.nocovers .fallback, .fallback.show { display: flex; }
   .issue-focus .fallback .fs { font-size: var(--t-caption); overflow-wrap: anywhere; }
   .issue-focus .fallback .fn { font-size: var(--t-title-lg); }
   #btn-issue-read { min-height: var(--target-touch); width: 100%; justify-content: center; }
-  #btn-issue-reading-options { min-height: var(--target-touch); width: 100%; justify-content: center; }
+  #btn-issue-reading-options, #btn-hero-reading-options { min-height: var(--target-touch); width: 100%; justify-content: center; }
   .reading-options-list .mini { min-height: var(--target-touch); }
 }
 .byline { color: var(--dim); margin: 0 0 var(--space-6); font-size: var(--t-body); }

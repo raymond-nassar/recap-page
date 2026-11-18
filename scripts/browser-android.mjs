@@ -2544,7 +2544,7 @@ async function readingCompositionCheck(page, profile) {
   }
   const result = await readingEvidence(page, profile);
   if (readingCase === 'M01') {
-    await linkedReadingOptions(page, { check: (name, ok) => check(ok, `M01: ${name}`) },
+    await linkedReadingOptions(page, { check: (name, ok, detail) => check(ok, `M01: ${name} ${detail ?? ''}`) },
       { listId: READING_LIST, sourceIssueId: readingIssue.issueId });
     const manualState = createList(createEmptyState(), { id: 'manual-links', name: 'Manual links fixture' });
     await page.evaluate((state, key) => localStorage.setItem(key, JSON.stringify(state)), manualState, KEY);

@@ -817,3 +817,18 @@ test('950 Reading options stays hidden when there is only one place to read', as
   assert.equal(linked.nodes.readingOptions.hidden, true);
   assert.equal(linked.nodes.readingOptionsList.hidden, true);
 });
+
+test('950 an unchanged options list follows a refreshed reference to the same comic', async () => {
+  const state = savedComic(12459);
+  const h = harness({ state });
+  h.view.wire();
+  await h.view.render({ issueId: 12459 });
+  const app = h.nodes.readingOptionsList.children[0].children[0];
+  state.issues[12459] = { ...state.issues[12459] };
+  await h.view.render({ issueId: 12459 });
+  assert.equal(h.nodes.readingOptionsList.children[0].children[0], app);
+  const event = { currentTarget: app };
+  app.onclick(event);
+  assert.equal(h.calls.read.length, 1);
+  assert.equal(h.calls.read[0][0], h.view.result().issue);
+});
