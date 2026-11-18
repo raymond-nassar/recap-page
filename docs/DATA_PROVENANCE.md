@@ -4074,8 +4074,8 @@ it from a new offline match file, run `--import <file>` and then the script with
 **Checks by the owner.** On 2026-11-17 the owner hand-checked a 40-link sample of exact matches and
 all 40 opened the right comic. For Amazing Spider-Man Annual (1964) #1, the owner's own link (an
 issues address) and the site's (a viewer address) open the same comic. The site's link goes straight
-to the reading screen, so the owner chose the site's links "for now". A 20-link sample of one-year-apart
-links is prepared for the owner to hand-check before this change merges.
+to the reading screen, so the owner chose the site's links "for now". On 2026-11-18 the owner hand-checked
+a 20-link sample of one-year-apart links, and all 20 opened the same comic.
 
 **Credit.** Every list holding at least one of these comics carries, on its page and in its preview,
 "Marvel Comics app links from Comic Book Reading Orders, used with permission." That credit links to
