@@ -24,7 +24,7 @@ import { isAllowedApiBase } from './js/lib/apiBase.js';
 import { issuePageUrl } from './js/lib/issuePageUrl.js';
 import { themeAttribute, normaliseTheme, applyThemeMeta } from './js/lib/theme.js';
 import { launchDestination, MARVEL_COMICS_URL } from './js/lib/readerDestination.js';
-import { appViewerUrl } from './js/lib/marvelComicsAppUrl.js';
+import { appLaunchUrl } from './js/lib/marvelComicsAppUrl.js';
 
 // Disown the opener before anything else, and in particular before any navigation.
 // The opener belongs to the tab rather than to the document, so severing it here also
@@ -48,9 +48,9 @@ const issueId = digits(q.get('i'));
 const pageUrl = issueId && q.getAll('u').length === 1 ? issuePageUrl(q.get('u'), issueId) : null;
 const knownPage = pageUrl && q.getAll('p').length === 1 && q.get('p') === '1';
 const title = (q.get('t') || '').slice(0, 120);
-// #950: only a viewer number crosses the query, and the address is rebuilt from the one fixed
-// Marvel Comics app prefix, so this cannot be pointed anywhere else.
-const appUrl = q.getAll('a').length === 1 ? appViewerUrl(q.get('a')) : null;
+// #950: only numbers cross the query, and addresses are rebuilt from fixed prefixes.
+// A Marvel Unlimited issue number must name this same comic, not another destination.
+const appUrl = appLaunchUrl(q);
 
 const h = document.getElementById('h');
 const p = document.getElementById('p');

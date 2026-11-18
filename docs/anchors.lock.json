@@ -1924,9 +1924,9 @@
     "fp": "cb1b4832836576a0",
     "head": "function loadCatalog({ refresh = false } = {}) {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|how-reading-content-reaches-the-browser|src/js/reader.js:90-114|0": {
-    "anchor": "src/js/reader.js:90-114",
-    "fp": "a8f8434eed1d9f9f",
+  "docs/ARCHITECTURE_REFERENCE.md|how-reading-content-reaches-the-browser|src/js/reader.js:91-115|0": {
+    "anchor": "src/js/reader.js:91-115",
+    "fp": "4413a2c0330e969f",
     "head": "// Must be called synchronously from a user gesture, or the browser will block the tab."
   },
   "docs/ARCHITECTURE_REFERENCE.md|how-reading-content-reaches-the-browser|src/open.js:139-183|0": {
@@ -2369,9 +2369,9 @@
     "fp": "e967f1f041a97dc5",
     "head": "self.addEventListener('fetch', (event) => {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|where-a-reader-s-data-lives|src/sw.js:77-171|0": {
-    "anchor": "src/sw.js:77-171",
-    "fp": "1f763642512b2d2b",
+  "docs/ARCHITECTURE_REFERENCE.md|where-a-reader-s-data-lives|src/sw.js:77-172|0": {
+    "anchor": "src/sw.js:77-172",
+    "fp": "29f996350c416cd0",
     "head": "async function networkThenCache(event) {"
   },
   "docs/archive/PRODUCT_BACKLOG.md|1-functional-suitability|package.json:10|0": {
@@ -6446,7 +6446,7 @@
   },
   "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/js/views/reading.js:1154-1317|0": {
     "anchor": "src/js/views/reading.js:1154-1317",
-    "fp": "914de4272a4b43ff",
+    "fp": "4708678c9ebb0221",
     "head": "function issueRowActions(item, listId, expanded = false, optionsExpanded = false) {"
   },
   "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:1288-1341|0": {

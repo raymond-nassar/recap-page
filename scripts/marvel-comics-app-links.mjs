@@ -207,6 +207,111 @@ export function serializeInput(input) {
   return `${top},\n  "links": [\n${links.map((link) => `    ${JSON.stringify(link)}`).join(',\n')}\n  ]\n}\n`;
 }
 
+export const MU_INPUT_PATH = join(ROOT, 'scripts', 'data', 'marvel-comics-app-links', 'mu-issues.json');
+export const MU_MODULE_PATH = join(ROOT, 'src', 'data', 'marvelComicsAppMuIssues.js');
+const MU_GROUPS = ['recorded-unlimited', 'unknown-unlimited'];
+
+export function muIssueGroup(item, asOf) {
+  const date = String(item.mu ?? '').slice(0, 10);
+  return /^\d{4}-\d{2}-\d{2}$/.test(date) && date >= '2007-11-13' && date <= asOf
+    && /^[1-9]\d{0,11}$/.test(String(item.digitalId ?? ''))
+    ? 'recorded-unlimited' : 'unknown-unlimited';
+}
+
+export function catalogComics() {
+  const catalog = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'catalog.json'), 'utf8'));
+  const comics = new Map();
+  for (const file of new Set(catalog.lists.map((list) => list.file).filter(Boolean))) {
+    const data = JSON.parse(readFileSync(join(ROOT, 'src', 'data', file), 'utf8'));
+    for (const item of data.items ?? []) {
+      if (!Number.isInteger(item.issueId)) continue;
+      const current = comics.get(item.issueId);
+      if (!current) comics.set(item.issueId, { ...item });
+      else {
+        if (!current.mu && item.mu) current.mu = item.mu;
+        if (current.digitalId == null && item.digitalId != null) current.digitalId = item.digitalId;
+      }
+    }
+  }
+  return [...comics.values()];
+}
+
+// The input freezes the owner's approved population. A later catalog addition does not inherit
+// approval merely because its number could be inserted into the same address.
+function approvedMuIds(items, viewerLinks, approvedGroups, asOf, excludedIssueIds = []) {
+  const viewers = new Set(viewerLinks.map((link) => link.issueId));
+  const excluded = new Set(excludedIssueIds);
+  return [...new Set(items.filter((item) => Number.isInteger(item.issueId)
+    && /^[1-9]\d{0,8}$/.test(String(item.issueId)) && !viewers.has(item.issueId)
+    && !excluded.has(item.issueId)
+    && approvedGroups.includes(muIssueGroup(item, asOf))).map((item) => item.issueId))].sort((a, b) => a - b);
+}
+
+export function muInputFrom(items, viewerLinks, approvedGroups, asOf, excludedIssueIds = []) {
+  if (!Array.isArray(approvedGroups) || approvedGroups.some((group) => !MU_GROUPS.includes(group))) {
+    throw new Error('Unknown Marvel Unlimited hand-check group');
+  }
+  return {
+    status: 'owner-approved', asOf, approvedGroups, excludedIssueIds,
+    issueIds: approvedMuIds(items, viewerLinks, approvedGroups, asOf, excludedIssueIds),
+  };
+}
+
+export function buildMuModule(input, items, viewerLinks) {
+  const fail = (message) => { throw new Error(`Refusing Marvel Unlimited app addresses: ${message}`); };
+  if (!['awaiting-owner-handcheck', 'owner-approved'].includes(input?.status)
+    || !/^\d{4}-\d{2}-\d{2}$/.test(input?.asOf)
+    || !Array.isArray(input?.approvedGroups) || !Array.isArray(input?.issueIds)) fail('invalid approval record');
+  if (input.approvedGroups.some((group) => !MU_GROUPS.includes(group))
+    || new Set(input.approvedGroups).size !== input.approvedGroups.length) fail('unknown or repeated group');
+  const excludedIssueIds = input.excludedIssueIds ?? [];
+  if (!Array.isArray(excludedIssueIds)) fail('invalid exclusions');
+  if (input.status === 'awaiting-owner-handcheck'
+    && (input.approvedGroups.length || input.issueIds.length || excludedIssueIds.length)) {
+    fail('pending approval must contain no groups or numbers');
+  }
+  const comics = new Map(items.map((item) => [item.issueId, item]));
+  const viewers = new Set(viewerLinks.map((link) => link.issueId));
+  let previousExcluded = 0;
+  for (const id of excludedIssueIds) {
+    const item = comics.get(id);
+    if (!Number.isInteger(id) || !/^[1-9]\d{0,8}$/.test(String(id)) || id <= previousExcluded
+      || !item || viewers.has(id) || !input.approvedGroups.includes(muIssueGroup(item, input.asOf))) {
+      fail(`invalid exclusion ${id}`);
+    }
+    previousExcluded = id;
+  }
+  let previous = 0;
+  for (const id of input.issueIds) {
+    if (!Number.isInteger(id) || !/^[1-9]\d{0,8}$/.test(String(id)) || id <= previous) {
+      fail(`invalid, repeated or unsorted number ${id}`);
+    }
+    const item = comics.get(id);
+    if (!item || viewers.has(id) || !input.approvedGroups.includes(muIssueGroup(item, input.asOf))) {
+      fail(`comic ${id} is not in an approved unlinked group`);
+    }
+    if (excludedIssueIds.includes(id)) fail(`comic ${id} is excluded`);
+    previous = id;
+  }
+  if (input.status === 'owner-approved') {
+    const expected = approvedMuIds(items, viewerLinks, input.approvedGroups, input.asOf, excludedIssueIds);
+    if (expected.length !== input.issueIds.length || expected.some((id, i) => id !== input.issueIds[i])) {
+      fail('issue numbers do not match the approved groups and exclusions');
+    }
+  }
+  const lines = [];
+  for (let i = 0; i < input.issueIds.length; i += 16) lines.push(`  ${input.issueIds.slice(i, i + 16).join(',')},`);
+  return [
+    '// Generated by scripts/marvel-comics-app-links.mjs from scripts/data/marvel-comics-app-links/mu-issues.json.',
+    input.status === 'awaiting-owner-handcheck'
+      ? "// Awaiting the owner's hand-check: no Marvel Unlimited issue numbers are approved yet."
+      : '// Owner-approved Marvel Unlimited issue numbers; docs/DATA_PROVENANCE.md records the sample and limits.',
+    ...(lines.length ? ['export const marvelComicsAppMuIssueIds = [', ...lines, '];']
+      : ['export const marvelComicsAppMuIssueIds = [];']),
+    '',
+  ].join('\n');
+}
+
 function main(args) {
   const at = args.indexOf('--import');
   if (at >= 0) {
@@ -219,7 +324,9 @@ function main(args) {
     console.log(`Wrote ${input.counts.total} links (${input.counts.exact} exact, ${input.counts.coverYearShift} one year apart).`);
     return 0;
   }
-  const text = buildModule(JSON.parse(readFileSync(INPUT_PATH, 'utf8')));
+  const input = JSON.parse(readFileSync(INPUT_PATH, 'utf8'));
+  const text = buildModule(input);
+  const muText = buildMuModule(JSON.parse(readFileSync(MU_INPUT_PATH, 'utf8')), catalogComics(), input.links);
   if (args.includes('--check')) {
     let current;
     try { current = readFileSync(MODULE_PATH, 'utf8'); } catch { current = ''; }
@@ -227,10 +334,16 @@ function main(args) {
       console.error('src/data/marvelComicsAppLinks.js is out of date. Run node scripts/marvel-comics-app-links.mjs');
       return 1;
     }
+    const currentMu = readFileSync(MU_MODULE_PATH, 'utf8');
+    if (currentMu.replace(/\r\n/g, '\n') !== muText) {
+      console.error('src/data/marvelComicsAppMuIssues.js is out of date. Run node scripts/marvel-comics-app-links.mjs');
+      return 1;
+    }
     console.log('Marvel Comics app links are current.');
     return 0;
   }
   writeFileSync(MODULE_PATH, text);
+  writeFileSync(MU_MODULE_PATH, muText);
   console.log('Wrote src/data/marvelComicsAppLinks.js.');
   return 0;
 }

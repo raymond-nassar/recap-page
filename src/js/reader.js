@@ -13,7 +13,7 @@
 // upstream repo README is stale for at least issue 52447.
 
 import { issuePageUrl } from './lib/issuePageUrl.js';
-import { appViewerFor } from './lib/marvelComicsApp.js';
+import { appLinkFor, appViewerFor } from './lib/marvelComicsApp.js';
 import { readerDestination } from './lib/readerDestination.js';
 
 export const READER_PREFIX = 'https://read.marvel.com/#/book/';
@@ -62,7 +62,7 @@ export function isLaunchable(issue) {
 
 // Builds the same-origin launch URL. A known book ID skips lookup; a previously refused
 // issue with a matching pinned page skips the same lookup without inventing a book ID.
-// A comic with a bundled Marvel Comics app link carries it as `a`, which the launcher page prefers
+// A bundled app link carries its viewer number as `a` or its own issue number as `m`, preferred
 // from today rather than from December 7. `app: false` leaves it out, so Marvel Unlimited can still
 // be chosen on purpose until it closes.
 export function launchUrl(issue, origin = location.origin, { now = new Date(), app = true } = {}) {
@@ -72,6 +72,7 @@ export function launchUrl(issue, origin = location.origin, { now = new Date(), a
   const issueId = referenceId(issue?.issueId);
   const viewer = app && issueId ? appViewerFor(issueId) : null;
   if (viewer) params.set('a', viewer);
+  else if (app && issueId && appLinkFor(issueId)) params.set('m', issueId);
   if (digitalId) params.set('d', digitalId);
   if (issueId) {
     params.set('i', issueId);
@@ -108,7 +109,7 @@ export function openIssue(issue, { origin = location.origin, now = new Date(), a
   // is not proof of a block. Treat it as opened; the launcher page reports its own failures.
   return {
     ok: true,
-    target: params.has('a') ? 'app' : params.get('r') === 'comics' ? 'comics'
+    target: params.has('a') || params.has('m') ? 'app' : params.get('r') === 'comics' ? 'comics'
       : params.has('d') ? 'reader' : params.get('p') === '1' ? 'page' : 'lookup',
     window: win,
   };

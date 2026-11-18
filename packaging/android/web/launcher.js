@@ -2,7 +2,7 @@ import { isAllowedApiBase } from '../js/lib/apiBase.js';
 import { issuePageUrl } from '../js/lib/issuePageUrl.js';
 import { createAndroidReader } from './reader.js';
 import { launchDestination, MARVEL_COMICS_URL } from '../js/lib/readerDestination.js';
-import { appViewerUrl } from '../js/lib/marvelComicsAppUrl.js';
+import { appLaunchUrl } from '../js/lib/marvelComicsAppUrl.js';
 
 window.opener = null;
 
@@ -33,5 +33,5 @@ createAndroidReader({
   destination: launchDestination(new URLSearchParams(window.location.search)),
   comicsUrl: MARVEL_COMICS_URL,
   validateIssuePageUrl: issuePageUrl,
-  appUrlFor: appViewerUrl,
+  appUrlFor: appLaunchUrl,
 }).start();

@@ -3,7 +3,8 @@
 // window.open (constraint 7). A link says where a comic can be opened; it never says the comic is
 // available, and nothing here touches the availability record (constraint 6).
 import { marvelComicsAppLinkPairs } from '../../data/marvelComicsAppLinks.js';
-import { viewerNumber } from './marvelComicsAppUrl.js';
+import { marvelComicsAppMuIssueIds } from '../../data/marvelComicsAppMuIssues.js';
+import { appMuIssuesUrl, appViewerUrl, viewerNumber } from './marvelComicsAppUrl.js';
 
 let table = null;
 
@@ -18,4 +19,13 @@ export function appViewerFor(issueId) {
   if (!/^[1-9][0-9]{0,11}$/.test(String(issueId))) return null;
   const n = links().get(Number(issueId));
   return n === undefined ? null : viewerNumber(n);
+}
+
+const muIssues = new Set(marvelComicsAppMuIssueIds);
+
+export function appLinkFor(issueId) {
+  const viewer = appViewerFor(issueId);
+  if (viewer) return appViewerUrl(viewer);
+  const url = appMuIssuesUrl(issueId);
+  return url && muIssues.has(Number(issueId)) ? url : null;
 }
