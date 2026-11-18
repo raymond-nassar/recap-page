@@ -21,6 +21,7 @@ function field(document, heading) {
 // The restricted-capability explanation and the fixed certification notes were revised for the
 // Windows app window, approved on #1412:
 // https://github.com/raymond-nassar/recap-page/issues/1412#issuecomment-6931922442
+// The What's new field uses the owner's approved 4.7.0 v3 release text from 18 November 2026.
 const STORE_FIELDS = [
   ['Product name', '9788b641c5da1860151ba10cca83bb529559e65b4a8c92e5ac92d0ccf7bd23c5'],
   ['Short description', 'c471d668394be0890c520c96053d33b070520e7a96f698130f5f8534b5c84093'],
@@ -31,7 +32,7 @@ const STORE_FIELDS = [
   ['Personal-information answer and package-data declaration', 'c83391c909b2a0787fe20ef028858d25d9c2fbc3513d377a18ccba7e828be268'],
   ['Restricted-capability explanation', 'cef30f63c959c5298c1cb44dc957279697aef1d6544b09ae9975edbe6c3dbe63'],
   ['Notes for certification: fixed text', '2a2a85b85490fac9b46c8345d20fc19c9b28ae913a60f433a8f7e78471fe5ed2'],
-  ["What's new in this version: proposed exact field", '02119021374627a945544137d3478f70a01da1359d835d14b961d3f331fe1c06'],
+  ["What's new in this version: proposed exact field", '0d32271f8bb57542b50b7ae52be3a3e20276accf686cf2a5ff696e6a412d1098'],
 ];
 
 const PLAY_FIELDS = [
@@ -70,7 +71,7 @@ test('the privacy policy preserves its approved wording', () => {
   assert.equal(digest(privacy), '847770f554afd29ce601c2d29489880abf122be122a5b69358f32f6b66b3a3e1');
 });
 
-test('the 4.3.0 Microsoft Store fields are the approved text', () => {
+test('the Microsoft Store packet fields are the approved text', () => {
   const document = read('docs/MICROSOFT_STORE_SUBMISSION.md');
   for (const [heading, expected] of STORE_FIELDS) {
     assert.equal(digest(field(document, heading)), expected, heading);
@@ -87,14 +88,13 @@ test('the 4.3.0 Play listing and Data safety selections are the approved text', 
   assert.ok([...field(document, 'Release notes: proposed exact field')].length <= 500);
 });
 
-test('the 4.3.0 Store publisher uses the approved release notes', () => {
+test('the 4.7.0 Store publisher uses the approved release notes', () => {
   const document = read('docs/MICROSOFT_STORE_SUBMISSION.md');
-  const payload = JSON.parse(read('docs/releases/4.3.0-store.json'));
-  assert.equal(payload.version, '4.3.0');
+  const payload = JSON.parse(read('docs/releases/4.7.0-store.json'));
+  assert.equal(payload.version, '4.7.0');
   assert.equal(payload.locale, 'en-us');
   const bullets = payload.text.split('\n');
-  assert.equal(bullets.length, 4);
+  assert.equal(bullets.length, 5);
   assert.ok(bullets.every((bullet) => /^- \S.*\.$/.test(bullet)));
-  assert.equal(bullets.map((bullet) => bullet.slice(2)).join(' '),
-    field(document, "What's new in this version: proposed exact field"));
+  assert.equal(payload.text, field(document, "What's new in this version: proposed exact field"));
 });

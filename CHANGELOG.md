@@ -13,6 +13,62 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+## 4.7.0
+
+### What's new for readers
+
+- The 'Read' button can open links for the Marvel Comics app by WEBTOON when they are available. Over 19,000 comics have a link for the Marvel Comics app by WEBTOON. Where more than one choice is available, Reading options can also offer Marvel Unlimited until reading there ends on December 7, or help you look for a book on Hoopla or in Libby.
+- Update saved reading lists when a published order changes. Review what will change first; all comics already on your list and your progress stay with you.
+- Explore Best Nightcrawler Comics and Avengers: Armageddon, two new reading lists. Each list notes comics it could not include yet.
+- The X-Men Core order now starts with First Class, while the complete Hickman saga alternates Avengers and New Avengers. The X-Men list still includes the original Silver Age stories.
+- Find reading lists with links to Hoopla or Libby, or hide comics without a link. More books are linked across several lists; a link does not guarantee your library has the book.
+- Every reading list now has a button to visit the website it came from, or the Recap Page website for lists with no outside source.
+- When a restore runs out of storage, the app now tries to bring your earlier data back. On iPhone and iPad, restoring a large reading backup needs less room.
+- If cloud backup pauses because it finds too many devices or a backup it cannot read, you can review what it found and confirm before backups resume.
+- On Windows, Recap Page can open in its own window when installed as an app in Edge or Chrome. The Microsoft Store version can also be ready when you sign in if you turn that on. Your saved progress stays where it is.
+- Universes is still under construction.
+
+### Saved data and upgrading
+
+Reading-data schema 4, its existing storage key and portable backup formats are unchanged. Existing saved lists, progress, notes and backups remain readable by older schema-4 builds. No migration or additional backup step is required.
+
+Saved lists remain snapshots unless you choose an update. The update keeps every comic already in the list and keeps progress on the same comics. Older builds can read and back up the updated list. Import drafts from the repaired Wolverine checklist retain the earlier title text needed by older builds.
+
+If a damaged recovery copy cannot be deleted after you discard it, a new discard marker may remain. An older build treats that marker as unreadable and offers recovery once. Cloud backup's new permission to resume adds no portable backup field or storage key; older builds do not participate in that permission.
+
+The library-link filter is a device-local preference and is not included in backups. Windows keeps three device-local choices or hints for the app window, startup invitation and Reconnect; they are also excluded from backups. A complete restore or erase leaves those Windows choices in place, and older builds ignore them.
+
+Marvel Comics links are bundled with the app, not written into saved data or backups. The updated notice has a new identity, so a reader who dismissed the earlier notice sees the new one once. After a rollback, an older build can show its own notice once more.
+
+Versions before 4.0.0 cannot edit schema-4 data or restore schema-4 backups. If you upgrade from one of those versions, keep an independent backup and read the [4.0.0 compatibility guidance](#400). The cloud progress decisions and upload hold retain the [4.5.0 limitations](#450) for older builds.
+
+This record prepares the shared app and Windows Store version 4.7.0.0. It does not announce store availability or approve publication. Android and iOS build allocation, exact-artifact checks, device acceptance and action-specific approvals remain separate.
+
+### Reading and reading lists
+
+- Read opens a Marvel Comics link when one is available for a comic. Some links come from Comic Book Reading Orders, used with permission. When more than one choice is available, Reading options can offer Marvel Unlimited until reading there ends on December 7, 2026, and can link to Hoopla or Libby where a checked book covers the comic. Starting December 7 on the device's local clock, Read opens the general Marvel Comics website for a comic without a Marvel Comics link. (#1435, #1439)
+- Saved reading lists can now be updated when their published order changes. If a saved list matches an earlier version of Wolverine, Best of Thor or X-Men Core, the reading screen offers to review an update. You can also compare any saved list with a published order from Reading List options. Updating adds the new comics and keeps everything already in your list, with your progress on the same comics. The Wolverine checklist download also shows 25 titles correctly that previously had garbled characters. (#1400)
+- The X-Men Core reading order now starts with the modern First Class stories before continuing into the Claremont era. The expanded order still includes the original Silver Age stories. (#1325)
+- New reading list: Best Nightcrawler Comics Reading List, with 187 comics following Kurt Wagner through his early X-Men stories, Excalibur, solo stories, Amazing X-Men and Uncanny Spider-Man, with four favorite one-shots. The four Nightcrawler comics from 1985 are not included yet and are recorded as a gap. The Complete Hickman Saga to Secret Wars now alternates Avengers and New Avengers in their recommended order without adding or removing comics; an unchanged saved copy is offered the update with progress preserved. (#1425; gap #1422)
+- New reading list: Avengers: Armageddon, with 24 comics in Comic Book Herald's order for the 2026 Avengers event. Immortal Soldiers #1 is not included yet and is recorded as a gap. Every reading list now shows a button under its introduction to visit its source website, or the Recap Page website when it has no outside source. (#1430; gap #1424)
+- Browsing pages can show only reading orders whose comics have a checked Hoopla or Libby book page, and each filter links to a page listing those orders. Inside a reading order, a switch hides comics without one. A link does not establish whether a library can lend the book. (#1367)
+- Look for War of the Realms: New Agents of Atlas on Hoopla or in Libby from its four comics in the War of the Realms reading list. Four more checked collected editions have links in five reading lists, and Thor Vol. 3: War's End has checked links on selected Thor comics in The War of the Realms, The Best of Thor and Loki. (#1368, #1402, #1410)
+
+### Backups and recovery
+
+- When a restore runs out of storage part way, the app now tries to put your earlier data back before asking you to recover. On iPhone and iPad, restoring a large reading-data backup now needs less storage. (#1311)
+- Cloud backup no longer stays paused when your account holds backups from more than 16 devices or a backup it cannot read. The app shows what it checked and what it could not, and resumes automatic backups once you confirm the list. (#1339)
+
+### Windows
+
+- On Windows, Recap Page can now open in its own app window when it is installed in your default Microsoft Edge or Chrome browser. Eligible readers can install it from Home. Your saved progress stays where it is. The Microsoft Store version can also be ready when you sign in, if you choose Turn on, and Reconnect can start it again from the window without opening the Store. If the installed window cannot be identified safely, Recap Page opens a normal browser tab. (#1420)
+
+### Release tooling
+
+- Release publishing now uses approved release text, with owner approval before each public store or GitHub release. Store screenshot tools now load the current catalog and use a consistent fictional summary. (#1419)
+- Release publishing can also update each store's description, the Microsoft Store tester notes and Apple's App Review notes from approved text. (#1436, #1437, #1438)
+- The Android Gradle wrapper was updated to 9.9.1 for builds. This changes nothing readers would notice and does not touch saved data. (#1411)
+
 ## 4.6.0
 
 ### What's new for readers
