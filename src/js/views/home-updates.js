@@ -7,6 +7,10 @@ const IOS_FEATURE_COPY = new Map([
   ['iPhone and iPad: you can now back up your reading progress to your own iCloud Drive. Open the backup card, choose Connect iCloud and turn on automatic backup; backups appear in a Recap Page folder in the Files app. Recap Page uploads nothing until you turn it on, and the project never receives your backups. If iCloud has not finished uploading a backup, checking for or restoring that backup says so and asks you to try again once iCloud has uploaded it.',
     'You can now back up your reading progress to your own iCloud Drive. Open the backup card, choose Connect iCloud and turn on automatic backup; backups appear in a Recap Page folder in the Files app. Recap Page uploads nothing until you turn it on, and the project never receives your backups. If iCloud has not finished uploading a backup, checking for or restoring that backup says so and asks you to try again once iCloud has uploaded it.'],
 ]);
+// Lines with no part an iPhone or iPad reader can use, reviewed and approved for omission there.
+export const IOS_OMITTED_FEATURES = new Set([
+  'On Windows, Recap Page can open in its own window when installed as an app in Edge or Chrome. The Microsoft Store version can also be ready when you sign in if you turn that on. Your saved progress stays where it is.',
+]);
 // OneDrive and a Microsoft account are offered on iPhone and iPad too since 4.5.0 (#1113), so only the
 // Microsoft Store still marks a line as another platform's.
 const OTHER_PLATFORM_NAMES = /\b(?:Android|Windows|Edge|Google(?: Drive| Play)?|Microsoft Store)\b/;
@@ -108,6 +112,9 @@ export function createHomeUpdatesView({
       return;
     }
     const features = isIos ? batch.features.flatMap((feature) => {
+      if (IOS_OMITTED_FEATURES.has(feature)) {
+        return [];
+      }
       const projected = IOS_FEATURE_COPY.get(feature) ?? feature;
       if (OTHER_PLATFORM_NAMES.test(projected)) {
         return [];

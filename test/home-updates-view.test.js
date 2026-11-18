@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { createHomeUpdatesView } from '../src/js/views/home-updates.js';
+import { createHomeUpdatesView, IOS_OMITTED_FEATURES } from '../src/js/views/home-updates.js';
 import { createHomeUpdatesSeen, HOME_UPDATES_SEEN_KEY } from '../src/js/lib/homeUpdatesSeen.js';
 import { homeUpdatesContent } from '../src/js/lib/homeUpdatesContent.js';
 
@@ -74,21 +74,22 @@ test('iOS projects platform-specific highlights without changing the generated s
   h.view.wire();
   const text = walk(h.nodes.content).map((item) => item.textContent).join(' ');
   const features = walk(h.nodes.content).find((item) => item.dataset.homeUpdatesSection === 'features');
-  assert.equal(walk(features).filter((item) => item.tag === 'li').length, sourceFeatures.length,
-    'every real feature needs reviewed iOS copy, not omission');
-  assert.match(text, /Browse Marvel's realities in the new Universes section/);
+  const omitted = sourceFeatures.filter((feature) => IOS_OMITTED_FEATURES.has(feature));
+  assert.deepEqual(omitted, [sourceFeatures[8]], 'only the reviewed Windows-only line is left out');
+  assert.equal(walk(features).filter((item) => item.tag === 'li').length, sourceFeatures.length - omitted.length,
+    'every other real feature needs reviewed iOS copy, not omission');
+  assert.match(text, /Over 19,000 comics have a link for the Marvel Comics app by WEBTOON/);
   assert.match(text, /Universes is still under construction/);
-  assert.match(text, /Search Reading Lists, series, creators and comics from one box/);
-  assert.match(text, /Fixed OneDrive checks and restores/);
-  assert.match(text, /On iPhone and iPad, tapping a text field no longer leaves the page zoomed/);
+  assert.match(text, /On iPhone and iPad, restoring a large reading backup needs less room/);
+  assert.match(text, /If cloud backup pauses because it finds too many devices/);
   assert.doesNotMatch(text, /\b(?:Android|Windows|Edge|Google(?: Drive| Play)?|Microsoft Store)\b/);
   assert.deepEqual(homeUpdatesContent.batch.features, sourceFeatures);
   const web = harness({ content: homeUpdatesContent });
   web.view.wire();
   const webText = walk(web.nodes.content).map((item) => item.textContent).join(' ');
   assert.match(webText, /Universes is still under construction/);
-  assert.match(webText, /On iPhone and iPad, tapping a text field no longer leaves the page zoomed/,
-    'other platforms see the text-field fix named as the iPhone and iPad feature it is');
+  assert.match(webText, /On Windows, Recap Page can open in its own window/,
+    'other platforms see the Windows feature');
 });
 
 test('iOS retains the historical iCloud and Windows release-copy projections', () => {
