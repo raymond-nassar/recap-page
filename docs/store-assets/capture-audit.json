@@ -1,11 +1,11 @@
 {
   "status": "preview-unapproved",
   "origin": "http://127.0.0.1:8787",
-  "renderer": "Edg/156.0.4314.58",
+  "renderer": "Edg/157.0.4341.60",
   "source": {
-    "sourceRevision": "9a962b519aaf083f4bd5360c42e2c6092469b0bb",
-    "sourceTree": "161eef18623d151c08716bc608510e7689deadf5",
-    "sourceDirty": true
+    "sourceRevision": "ede4424f9ba8a7c47821bc9304b2281d4d5a30b8",
+    "sourceTree": "44a21d80c83b6b4d73b4e52dc3e585bc93a0fbea",
+    "sourceDirty": false
   },
   "inputs": [
     {
@@ -18,7 +18,27 @@
     },
     {
       "path": "src/data/catalog.json",
-      "sha256": "6b5dae91f2a682f6603b5f6be7cf5548f77e78976f409cf1d65a31b69fa3468d"
+      "sha256": "e7e8cdf06aab6c9953705cb364cd5fd75714a8f44382ad5a4f22f559ac105662"
+    },
+    {
+      "path": "src/data/collectedEditionCatalog.js",
+      "sha256": "f865a2a0ff5b2365eef18ccf3d139ce062ec80b87d446f71c97098b99fc301c1"
+    },
+    {
+      "path": "src/data/collectedEditionEvidence.js",
+      "sha256": "23f863fb2107f445c20459279dd92a087ef25eb18f0a658ec14e4e158e802c06"
+    },
+    {
+      "path": "src/data/marvelComicsAppLinks.js",
+      "sha256": "cbcf9bc4083e8d8d44e6027473ebb555713e2cfa38593017f418349c6a9c22db"
+    },
+    {
+      "path": "src/data/marvelComicsAppMuIssues.js",
+      "sha256": "faee3ed46d4067b56c7b376c131b3b66ffc6caecf935d5ee5cc0adddd3af5335"
+    },
+    {
+      "path": "src/data/universeCatalog.js",
+      "sha256": "4c953a9c25f224363d1edbcf45194718898b21228588b94dc15e6ed48c0e1c04"
     },
     {
       "path": "src/icons/icon-192.png",
@@ -34,23 +54,31 @@
     },
     {
       "path": "src/icons/ui.svg",
-      "sha256": "86f764dfc24c9cd24196346c9573ccab2cf1be42c8b06348e0e57279a84b41d9"
+      "sha256": "9bfe08004d13802689d7daa9cd55f8450d475d4a30e66221970bbdb915f77c05"
+    },
+    {
+      "path": "src/icons/wordmark-dark.svg",
+      "sha256": "b629a73dd8507dc56c49284054aea9e536361fdf2688592125a4735cf40c298f"
+    },
+    {
+      "path": "src/icons/wordmark.svg",
+      "sha256": "fc16a21368dfa33fa02cdeb84562fd9758980c15d6f5740b8d44219a8ac3d668"
     },
     {
       "path": "src/index.html",
-      "sha256": "51e69d1edcfba475739b2f88e737ac5ba89596d6f9a604bfabdcaa8aa0ed2edf"
+      "sha256": "23a28616c9a3bc0e80742deab9e348d164e701cbe5f529bce61a4bb8bb31b7c6"
     },
     {
       "path": "src/js/api.js",
-      "sha256": "09db2b337e7b2962e38304d7c3cebcc853ac23d274184e921cdea70c97187afa"
+      "sha256": "82422b9fc41cd765dba3bf21d35e7b1dc783c3329ef02064e0222a209d6583f0"
     },
     {
       "path": "src/js/app.js",
-      "sha256": "29177d3e27ff4e04a456523da3bb947bd711dfba51fc212ce19d3556d1b47e8d"
+      "sha256": "4ba493205c421adef6d5474f4d02d12cd7beca4d616226404fc71ee4b1df44b8"
     },
     {
       "path": "src/js/ask.js",
-      "sha256": "cdf5bf93ce9eac743b1225794533f22b667c103aea13f58b279960e4e44b6b12"
+      "sha256": "ed92f4cfd5ac7568db8c6f7199896130bcffc89a2e0d6788e0dd6c9a348b4d37"
     },
     {
       "path": "src/js/cache.js",
@@ -78,15 +106,15 @@
     },
     {
       "path": "src/js/lib/catalog.js",
-      "sha256": "449c4360cee4dda20cff1b30e14c552667bcc1a64d8d79bdea9e9b8b3721ce19"
+      "sha256": "6e66e0c46427402876d5749526395e25bccccad274e2d3d100f79a721974a543"
     },
     {
       "path": "src/js/lib/cloudBackup.js",
-      "sha256": "e6bd4db643e5dd3e7692d9dc637652f024d47841f44b57a8d0efe9ce2e62f8cd"
+      "sha256": "ce0fdbd44e8a490928b5039d8d58f71f6d827176e8bf01a0b115e720ce083b6b"
     },
     {
       "path": "src/js/lib/cloudCoordinator.js",
-      "sha256": "ad5db66cdfc880cc18a5ed569653869a16de1b612c34259a0b5d909da6bcbfe8"
+      "sha256": "2fe8c9c3533cb9db154d69843d9d24a466704c73b1c550622eade7b0ce72524b"
     },
     {
       "path": "src/js/lib/cloudCopy.js",
@@ -97,24 +125,36 @@
       "sha256": "37b6d03822f75f05f194fb375bb1d2f7b470cfc7557093a206b140f13fc301d8"
     },
     {
+      "path": "src/js/lib/cloudLaunchSync.js",
+      "sha256": "7106ea4695352a6d72622dc3633cad38e0a7e1dbe6419fd87f7ab0f6e35d83e1"
+    },
+    {
       "path": "src/js/lib/cloudProtocol.js",
-      "sha256": "52be07f1b4d757cb5ff65aa1930fb858b860bfe6094895904138d421c43e68da"
+      "sha256": "d706763966d2f6cdc4adfa8bfb0022bc20b775fb11859622d140677a186c5d72"
     },
     {
       "path": "src/js/lib/cloudSync.js",
-      "sha256": "cdd389072ba151a6ed4fb32b1934eb0dfbccf55d5a9bc17f002faf38d9175cbc"
+      "sha256": "6a92a5caab684f52f4bd6d3213d9e3456c4f667cb54bab3ef59d744af92474ac"
     },
     {
       "path": "src/js/lib/cloudTransports.js",
       "sha256": "48632ededab51bb4afb483e0db483b8a35562f77493be73ad41e8b12c4744820"
     },
     {
+      "path": "src/js/lib/cloudUploadPermit.js",
+      "sha256": "82d9d33acfccfda62a45bd96eaad29fba1312fb3fe7752e1b121c0462400bd77"
+    },
+    {
+      "path": "src/js/lib/collectedEditions.js",
+      "sha256": "23a2e639d2b1ffcba944c4408e461d68f3f32d163b8cc44795b99ffb9160a9b7"
+    },
+    {
       "path": "src/js/lib/completeBackup.js",
-      "sha256": "51703e0576403b451507bb5b73a5221bd354f86b4e6f54874c012e2e32226bfb"
+      "sha256": "b191df964d701323cc3f11b79e90d8910c04d8b4fd8b568dcbb34adf3bec198d"
     },
     {
       "path": "src/js/lib/completeRestore.js",
-      "sha256": "0c48063a3f10a32b70328e2a8120fb9976226cf5ac6f9e337795dce9866aa466"
+      "sha256": "899013f3d493dcad4ab0d92605e9225787138d4f23cad13bd676e187ead40bf3"
     },
     {
       "path": "src/js/lib/coverHost.js",
@@ -122,31 +162,35 @@
     },
     {
       "path": "src/js/lib/curated.js",
-      "sha256": "e820c837402166dd471de9ffac7ce7acb0809c7df96b0acf051f1a6c49377880"
+      "sha256": "84e0193d21ea87b02d43fcdf4e8d6a5da5c2765fafe9a2abb1c57629e068d0b4"
     },
     {
       "path": "src/js/lib/dialogShell.js",
-      "sha256": "96b3443348ceb41860f38996980456e743f63ccab209353bb0f1f340271640e1"
+      "sha256": "3aa016278b2f971d6743ed068c104477d2ceb186f8f2a556e2cf39c81bb0af30"
     },
     {
       "path": "src/js/lib/download.js",
       "sha256": "ea0338bf5024ed38eb366f4defe010520601a902f280ec0b4f6122ab2072b8df"
     },
     {
+      "path": "src/js/lib/editionDestinations.js",
+      "sha256": "56e836858b359544d654442df27d31a6ff3beedc43dcaeb226d9950ee5cdfa61"
+    },
+    {
       "path": "src/js/lib/homeUpdatesContent.js",
-      "sha256": "0bcddf00152f6ec1c51e8c78483637b55e44fa9a6a906a93657c685ba5ae5ec9"
+      "sha256": "9149a2936e9675f47672f5c02147c7d6575a0510eff434c862acc5603bcefed8"
     },
     {
       "path": "src/js/lib/homeUpdatesSeen.js",
-      "sha256": "2edd9f27af5a961bac5057ac1d6f66bc607ab8c480b63f01c8ce5c3be5397764"
+      "sha256": "ec69921ad7af981dca22ac865870b2315d3d0bca9faf937da321c7f0a5becfc5"
     },
     {
       "path": "src/js/lib/importDraft.js",
-      "sha256": "ab4fe09823e0774e4fe9fcce81445f2d8e8ba7fec381135bfb3f3fc0c54072d2"
+      "sha256": "fe9b7813c27a4d1b81074ccf29699be834f24ef950a8ccac682275b02854ba29"
     },
     {
       "path": "src/js/lib/install.js",
-      "sha256": "614ffa94de9f89b28a93d4876df7b772f137796780267a3ddafdcb77ee95310a"
+      "sha256": "805ab681c69fa773cb5e9445554e91456c8074e383f4ae09b9ddf22eba83ee6f"
     },
     {
       "path": "src/js/lib/issueFocus.js",
@@ -158,7 +202,11 @@
     },
     {
       "path": "src/js/lib/library.js",
-      "sha256": "60c8941840fcb6d70a76b00522c54bddb0a1d0391bb60210a67f26698202552c"
+      "sha256": "58d55282b9cb9917eb70563829a2a283cf1c15e1f4f03a955e1a12890a9c4be7"
+    },
+    {
+      "path": "src/js/lib/libraryLinks.js",
+      "sha256": "8c5c6c70f9ea0d3a88fd992da6ea395b0e074ba4f4204e5bcb69c43f8e813fb5"
     },
     {
       "path": "src/js/lib/librarySummary.js",
@@ -169,16 +217,24 @@
       "sha256": "8c545f7a9862acf880908dbee69d8a10150607a22543985196ef2965cd1fc3dd"
     },
     {
+      "path": "src/js/lib/listCorrection.js",
+      "sha256": "2ca412f57cedddbc5aedd8f3b29612abef9490d4942bd72b0ff324c355c396a9"
+    },
+    {
       "path": "src/js/lib/listHistory.js",
-      "sha256": "26fe11be2f8128186676b759171d86bc562538e993534078541fa457b2ef525d"
+      "sha256": "404d2186012e41feaeccf44d84670d7345636b9b98d2693c93ca45923494675b"
     },
     {
       "path": "src/js/lib/listRecommendations.js",
       "sha256": "afec3be3852d869a60593b2d908a629243ec0a275b19d224b0eaa573c8ac926b"
     },
     {
+      "path": "src/js/lib/listRevisionSave.js",
+      "sha256": "48fb52a9989eb7eddcf36a8c49a8f2c4913a43d487a2ca5002aba9a9614cbb9f"
+    },
+    {
       "path": "src/js/lib/listSearch.js",
-      "sha256": "768a47c23bb32aecd86a00a7612d0561f1f23f842aa22e7d4904a297118b7ba8"
+      "sha256": "ec7ab466e532b4a6c9c0f7c664a19c04529484454e88d4e6ab2abcbdf31ce153"
     },
     {
       "path": "src/js/lib/localServer.js",
@@ -186,7 +242,15 @@
     },
     {
       "path": "src/js/lib/markdown.js",
-      "sha256": "a3db90a9f33b90430af510bf4e73a87b762f22dc6f9201930458e1d9b6062ee9"
+      "sha256": "0c95fd2e4953133e037672f01f619aff619770fd3cc21025dc97ce9a2e964b20"
+    },
+    {
+      "path": "src/js/lib/marvelComicsApp.js",
+      "sha256": "b3a71b60aef777e5c6e97f0e8297f909557c1aa4c69149330e70955cf220863a"
+    },
+    {
+      "path": "src/js/lib/marvelComicsAppUrl.js",
+      "sha256": "7b07cdd657c215be3ff01f72d72f440a35b7a034b7555dfefdb53ebaf0d129b4"
     },
     {
       "path": "src/js/lib/mcuPrep.js",
@@ -194,7 +258,7 @@
     },
     {
       "path": "src/js/lib/milestones.js",
-      "sha256": "d175af1c56ecc52e3c8d2a2979d9c790499fe68874e86ef7eac572be29b4df64"
+      "sha256": "35c6c1d23564b5f29a16c23c267c696c770431c99a0c9a4f29696e52026b7b65"
     },
     {
       "path": "src/js/lib/mobileNavigation.js",
@@ -202,15 +266,19 @@
     },
     {
       "path": "src/js/lib/model.js",
-      "sha256": "f3fb3ebceb775223a4e85ca3ee146a9182cb3eacac4768cd1af25f7ee791f192"
+      "sha256": "a21dcc82e3288a485bda308943da9ce2faf7207200262017039cdbe2cba430f9"
     },
     {
       "path": "src/js/lib/nameIndex.js",
       "sha256": "ffda6ba64c6e5bc1c3936e1ebba04b1afcc054552b268762ae26edbc6a6fae21"
     },
     {
+      "path": "src/js/lib/navigationPosition.js",
+      "sha256": "62e6b94d2e51b54c084706f30768aa5bed9b380b494582817c106de8c90cd796"
+    },
+    {
       "path": "src/js/lib/noticeDismissal.js",
-      "sha256": "eddccc1aa54f37d69e9134dc22ef97886df5da86ed07b68f53406fff570d253c"
+      "sha256": "7ce982be14e787a21f9ba99cc98c2c5d9b3e0a2651d3492972d496dd0447ff8a"
     },
     {
       "path": "src/js/lib/offline.js",
@@ -218,11 +286,15 @@
     },
     {
       "path": "src/js/lib/offlineContent.js",
-      "sha256": "76c12c44839de0570258cecbe61722740c74985df0c1d7f86a81249d9ae92e2a"
+      "sha256": "c807fcad280c3032e4ece01e98c15e3d36068941c28c7ec363778a2ccd236628"
     },
     {
       "path": "src/js/lib/platform.js",
       "sha256": "1f95bd371feeb8fc72ca9f6a537d85700645b789dfc9d7744010a54d50f73157"
+    },
+    {
+      "path": "src/js/lib/pressFeedback.js",
+      "sha256": "55154f6e254fff23a0ad59344e4466733eccbaabe5c5af5d268500b518f9156a"
     },
     {
       "path": "src/js/lib/progressGlance.js",
@@ -234,23 +306,31 @@
     },
     {
       "path": "src/js/lib/readerDestination.js",
-      "sha256": "66b07ed1c31aab20099212875eb1d3634ebb6f18c4189660813df4caed02b3be"
+      "sha256": "7ee0e512f1b9fdbcf26283963e9f42d7459a788c07cd201f02efca08f30d30da"
     },
     {
       "path": "src/js/lib/readingFilters.js",
       "sha256": "64ac1764ea977776dbf29a7a5a71b8356aae5ea83af5a807e1c1c1935c2d4f73"
     },
     {
-      "path": "src/js/lib/reorientation.js",
-      "sha256": "c1bab11310c6ec7fbd360d1df7a6ca208acc432ea24207a14416217d43b27bf3"
+      "path": "src/js/lib/readingOrderRevisions.js",
+      "sha256": "a3a908528ea9726b1988f743df0aae46a4ceaacc73dcee0b8584487b1fa760ff"
+    },
+    {
+      "path": "src/js/lib/reconnect.js",
+      "sha256": "65bddc95c90f31cd208984ed9c75f1883833525b0218c8c4a8fe3023cff1c9f9"
     },
     {
       "path": "src/js/lib/route.js",
-      "sha256": "6e84b521d2f265a0bf59ba125a7e5f57b9ea43fb5cee8a5e8f8615be025f20dc"
+      "sha256": "22e05c0e66c4e49d2cfc7b0e1aa34703d963b16bd604abd7ba36ed80e13b2dbc"
     },
     {
       "path": "src/js/lib/saveEducation.js",
       "sha256": "14a64ea62bd1bc290cec2118684d7bd08f296d4323e61928d7614d1c0a3b9a63"
+    },
+    {
+      "path": "src/js/lib/searchSpelling.js",
+      "sha256": "557d44eaa7a8b77faab73dbbf96ff01c8b9db51840e90880b7494459c0969dc1"
     },
     {
       "path": "src/js/lib/shortcuts.js",
@@ -265,8 +345,12 @@
       "sha256": "8e967f68d264f73e54e48ff7c9e75026185e254d1c7efb001b4e54be79e7cdaf"
     },
     {
+      "path": "src/js/lib/startupConsent.js",
+      "sha256": "b87dfd228ca4585ef560e524571e2b45b202a0eaf6fd1be3cf0349eda1f409a0"
+    },
+    {
       "path": "src/js/lib/temporaryReaderLink.js",
-      "sha256": "a4f97bec7a0d210d082e6cb85120c4e1f3a0598f84b84b7fadb6ab4f73e1b1e2"
+      "sha256": "5a4d17dd2717d0fb7d0b139435ab191c06449e5e3de774105756b69c67ba277b"
     },
     {
       "path": "src/js/lib/theme.js",
@@ -281,8 +365,16 @@
       "sha256": "15d881f2319aa51324470f4c0528318c3bbeb7c84cf4dc6838d7b172d3301163"
     },
     {
+      "path": "src/js/lib/universes.js",
+      "sha256": "daa88338f3b3057387f56e3ea213ce3b3058c5051cc87c9bd7f1a0129e9d2b22"
+    },
+    {
+      "path": "src/js/lib/universeSchema.js",
+      "sha256": "764760abaad24a7f525f40d089a5153ff7acb0db7c458b8a69a81292e2c7c910"
+    },
+    {
       "path": "src/js/lib/version.js",
-      "sha256": "a46374d8a1d3016b8112fff5fb88329dddfc121c7da875e6dd69fd6dcc9a29ef"
+      "sha256": "d57d63e390b5d48065e7a4dd543a448c84a3601396efd159dc40ef355529ba68"
     },
     {
       "path": "src/js/lib/wiki.js",
@@ -294,15 +386,15 @@
     },
     {
       "path": "src/js/main.js",
-      "sha256": "b967fe3435acb4362a617056bead4cd5a1fb67a0a6b598e3651ed08ff24f5383"
+      "sha256": "0aa0c74f9587119259f1bd3691d2d259648759cde1eefbcd7a349cf58f4e92a4"
     },
     {
       "path": "src/js/reader.js",
-      "sha256": "917a129849b37290e77ca529a3d85a21c309a267c9c0662a4259d42d13470b60"
+      "sha256": "edc45c39afb32a721ed8c4765ffae5c970c7351d3b84e4f8f674301af672029c"
     },
     {
       "path": "src/js/storage.js",
-      "sha256": "ae53f517f340b20b83d49a4dc29b981fd623261d06a8c808bcc79ae9ef090bac"
+      "sha256": "5fd1d6cb855e3a1c633d831610fdb19b57d2d242100c170ef1921057f3a1b26b"
     },
     {
       "path": "src/js/synopsis.js",
@@ -310,75 +402,79 @@
     },
     {
       "path": "src/js/views/add.js",
-      "sha256": "d3892c34e425f0f463050bbf5e8f62f579f391940e49eb322ebd2226a1626b03"
+      "sha256": "086b9b3f476cf54c5ed93e999a42fdbacd8b829f506c50775689641cdca5f662"
     },
     {
       "path": "src/js/views/bulk-read.js",
-      "sha256": "db2a091fda79663d302d505d74b7d53e1f58d41ba74455c579226c406461802c"
+      "sha256": "f8e35740e94b3cc8f2ea13992743c10987e346ea9122e5ff3a75ad41a5fa4863"
     },
     {
       "path": "src/js/views/catalog.js",
-      "sha256": "01a28d81bdf8470eeadc0264932e82fd0b50994a6ba01726ce16f34dafcc30d4"
+      "sha256": "a3fd8dc942fd2d939481bb24ab4b3bc07ddacd692b47fe127a5ed7e24dcb8813"
     },
     {
       "path": "src/js/views/cloud.js",
-      "sha256": "1a00054a30eb71c9375efd7388df1771e5602a9e1cbb5009832f6f9fd9ea6981"
+      "sha256": "de3d5a384ffc9016d43df7f488673ad47490018b73b8487c77282ee62e7c91b4"
     },
     {
       "path": "src/js/views/completion.js",
-      "sha256": "63f81a2d1236c6dffb2d8687ad69137574f02cfe1403b11e0e9dfa4939c69627"
+      "sha256": "58ff9de873a215f5da4306b22b6e8f4d43285bc941828a85181c5e417b1fb882"
     },
     {
       "path": "src/js/views/data.js",
-      "sha256": "bb2c1d892a146b82aaeac7a3a1669a67e9d9ccbe88c67f8f43b51270ad597d92"
+      "sha256": "674bc7a2d7168222831854d82a66091d53bf7049771ec0983f1a17a73ab5529c"
     },
     {
       "path": "src/js/views/home-updates.js",
-      "sha256": "17cd38ba3515323c153bd3c0be44a7533b64d39ce72c0e2eb9bc82f8fb29d78e"
+      "sha256": "da6e3f722d84249b2ffde3e1b50b92886f9fff4d78c3e1f9423fe553cd94ed29"
     },
     {
       "path": "src/js/views/home.js",
-      "sha256": "f8ee6070aba552457b79a306d996e75b4e1d4079e7befdaf25f8e89969879bb6"
+      "sha256": "55c78524e9005654e2ce9fdf960af4c5b32325e6d8393086bff5442de14ce2d6"
     },
     {
       "path": "src/js/views/issue-rating.js",
-      "sha256": "b2bcffe2233c349ab2c8e9bd6a7bd074540e64677d49a85791bcd6d0ab629c6b"
+      "sha256": "dfb512922213cfeffc8231f8d235cbbc13b89644a5bde3b3c61b30afe6c5be9b"
     },
     {
       "path": "src/js/views/issue.js",
-      "sha256": "b0f7861b704251933782b4d2cab02e0301e868f29afe3759217809b43fdba7ba"
+      "sha256": "e6a3e6a932a2ff9c3738839e71ef11e78e6bcae150fe2c23be8dcbeabead384c"
     },
     {
       "path": "src/js/views/library.js",
       "sha256": "28a622449edd5b7983de7f7747d814eae7b06e3c7ab075683eb0ace0e5a58644"
     },
     {
+      "path": "src/js/views/list-revisions.js",
+      "sha256": "88d150288a34c9eda04b90391549cf9b403b98d9902289f6c35dc568ccb63e09"
+    },
+    {
       "path": "src/js/views/markdown-export.js",
-      "sha256": "0bc38b96767da9da866f9712177d8a2d8ef0e0ae94cf482381789d24ede82ca4"
+      "sha256": "1fd8d9840742214ff287751d5943b6b534094937dae48ec08fccc90a6ba93565"
     },
     {
       "path": "src/js/views/mcu-prep.js",
-      "sha256": "e99fcc2f187ca41b93b73f8eeee54178f5c0bca0dfa8567f242a3bfbbbf97224"
+      "sha256": "5c9e73d7f169ed59fd5d33eecb4798f961839a3d875657bbdfb701b1ddcb02b0"
     },
     {
       "path": "src/js/views/preview.js",
-      "sha256": "26ff1e5cc3f100fbea0c6222da4230cb040cec7fa3a0fe0b3c525cd67fa42249"
+      "sha256": "a212856579c4c4350b596a418ce1a8ae5b914fce430ec2686e93eb3995e2da17"
     },
     {
       "path": "src/js/views/progress.js",
-      "sha256": "8c754d7610a9cdd683565a44360415fcde8fa99cbd269d6d249abf561fc9a1bc"
+      "sha256": "ef7d2af9fcc5cf94065ea777cc99aa5385b367f43fd61d6efc970d3c660e01da"
     },
     {
       "path": "src/js/views/rated-comics.js",
-      "sha256": "140189b50250d72d320b188ffd6decb3b191c77a5da022a8b9d47532ab90623a"
+      "sha256": "a08ef7cb3e885e2ffd7ad3175ecf8a8015304d71e5b87aee7937d04a5dc7c2e4"
     },
     {
       "path": "src/js/views/reader-link.js",
-      "sha256": "9ce00056d183b817ba5d754099c7c21e0f2f1e13008f1a90fd817795e97daebe"
+      "sha256": "eea358ad062f2f8cc748b9e1b6311fc26e8dbbc888f98ab30ba0f68387ff9759"
     },
     {
       "path": "src/js/views/reading.js",
-      "sha256": "6283ce4b8237674b7b67211e853554996165b378d00b9e7030bcb55361dbbc71"
+      "sha256": "42c99263d0566e7a928fb74414ee075f42a145cb793e3d86fc509b12828df66e"
     },
     {
       "path": "src/js/views/recovery.js",
@@ -386,31 +482,51 @@
     },
     {
       "path": "src/js/views/search-lists.js",
-      "sha256": "eb1b7a1403a0ee25e369a0e20dd4294de3e5200a34648e47d9f0db83435444ca"
+      "sha256": "4cb53118aa1e6f3387ae975b7cc149eb59f039816bac13b5e3b158a4295fc017"
     },
     {
       "path": "src/js/views/shared/catalog-presentation.js",
-      "sha256": "4289d519dcf33b47c89db67cf8308cd2ac58b68b3c1660760cc7d6c753935cf7"
+      "sha256": "c4c9e4faee1a8e5a2bb3b02643a4266429831e816864a3b079b102b503b3b268"
+    },
+    {
+      "path": "src/js/views/shared/collected-editions.js",
+      "sha256": "513a4cc08cfcdde4011c7d68c2c4f951ef9148b5aefaab93ef1eb286eb72f378"
     },
     {
       "path": "src/js/views/shared/collection-navigation.js",
       "sha256": "3ffa9d84b4d818bf528dc4a8f0e71418c2c47225c580acd5c232e896723d56aa"
     },
     {
+      "path": "src/js/views/shared/details-credit.js",
+      "sha256": "9abcf18665bc5b1bcb18574950a34162e6d77afae707ad9d7b03e171898b6bc6"
+    },
+    {
       "path": "src/js/views/shared/feedback.js",
-      "sha256": "d35fef0e001cdcea79df506f316b6d2bdac81a644d6ba5e2336632aa9b12164b"
+      "sha256": "44f3ab3630b504f542d3f905eaee51eaa9b04770c1ac6907b6a3f6ea86e6c99b"
     },
     {
       "path": "src/js/views/shared/field-validation.js",
       "sha256": "665fb3a673b0e36efca1a64a9a1417afad7750ae1cdac2d58ed55d86871b33a4"
     },
     {
+      "path": "src/js/views/shared/library-link-filter.js",
+      "sha256": "b61a7f25a29cfef9755d252c908dcc0639641ffc8b7d31a7b38b27c64bb9f6f4"
+    },
+    {
+      "path": "src/js/views/shared/reading-options.js",
+      "sha256": "041b84f1521ab6292c10788de7361e6b86ada6cd9a03a189ee9c463ed0753a35"
+    },
+    {
       "path": "src/js/views/shared/saved-lists.js",
-      "sha256": "683379c4166b52a24a676a082a4624283ed5e1ca36c0e9d364ec91b54ed2a9a9"
+      "sha256": "e3bec67a3109830afbd4e76fed0f6e649092fbbff4a8cad2fdf6c05fb4e59e1d"
     },
     {
       "path": "src/js/views/story-types.js",
-      "sha256": "8a0033f67e7d0d22056f9b493b5b17e9b944fb20658c4fb4bc02391b041d3502"
+      "sha256": "54d46b2b33cb669e1f1205dd12a155799dfd3b3a17e2729bf222ec8a4d6608b1"
+    },
+    {
+      "path": "src/js/views/universes.js",
+      "sha256": "05d73e22e71c9347bc51581f7296d74d4c0eed56d574af5306eaa4f74233c157"
     },
     {
       "path": "src/manifest.webmanifest",
@@ -418,7 +534,7 @@
     },
     {
       "path": "src/styles.css",
-      "sha256": "21a37d89e7769ac635f976a30630a495cb659e5ff9cd6cdb4932a8947816234d"
+      "sha256": "71b56dc3123bee9fb39c89dd3675475a4cd62e05c68283f91a4c0a972eeeaee7"
     }
   ],
   "cloud": {
@@ -445,15 +561,15 @@
         "view": "view-home",
         "required": [
           {
-            "value": "RECAP PAGE!",
+            "value": "Explore",
             "present": true
           },
           {
-            "value": "Browse. Choose. Read.",
+            "value": "New to Marvel Comics?",
             "present": true
           },
           {
-            "value": "Start with Modern Timeline",
+            "value": "Modern Timeline",
             "present": true
           },
           {
@@ -547,6 +663,10 @@
           {
             "value": "3 of 8 read",
             "present": true
+          },
+          {
+            "value": "A lighthouse keeper follows a strange signal across the harbor.",
+            "present": true
           }
         ],
         "privateText": false,
@@ -573,7 +693,7 @@
             "present": true
           },
           {
-            "value": "4.4.0",
+            "value": "4.7.0",
             "present": true
           }
         ],

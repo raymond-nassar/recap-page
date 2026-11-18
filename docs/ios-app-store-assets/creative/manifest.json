@@ -8,7 +8,7 @@
       "file": "docs/ios-app-store-assets/iphone-6.9/06-library.png",
       "width": 1320,
       "height": 2868,
-      "sha256": "2dc13e2109eef04c3b8b1f8e40f208efb3f6644a46595a706f290c1d044e4728",
+      "sha256": "ded29d9059b86cde3d4113b73ce200b0209b43bb4810427fa715e3eece785050",
       "chunks": [
         "sRGB"
       ]
@@ -17,7 +17,7 @@
       "file": "docs/ios-app-store-assets/iphone-6.9/03-reading-list.png",
       "width": 1320,
       "height": 2868,
-      "sha256": "7498adbe3015e1744a774eecb67a18e2d5a32d89617a1a121d4c000cacf1a612",
+      "sha256": "38ceffab427544cbb064addc896530fcb57c4f18886f60adf69cd9c4dcb5bafc",
       "chunks": [
         "sRGB"
       ]
@@ -26,7 +26,7 @@
       "file": "docs/ios-app-store-assets/iphone-6.9/01-home.png",
       "width": 1320,
       "height": 2868,
-      "sha256": "27f8f43609b3707d203e9f76394e4e9e21435b9928f2215c2d1c11514eee5dcc",
+      "sha256": "bbbdcd4675500fe873332110a22d5ad1a8d6767c8dc63776cf31ce8152823dd6",
       "chunks": [
         "sRGB"
       ]
@@ -57,8 +57,8 @@
       "file": "search-results.png",
       "width": 3840,
       "height": 2560,
-      "bytes": 1351562,
-      "sha256": "cd1aa9b02f6fb2adb96c78c75d41082e7aadcce61929e302f05b4d693da3f71a",
+      "bytes": 1350123,
+      "sha256": "845e57bd9acc3e77545c1ad8c6690cfb17552705dec0627129839dbb81f09352",
       "alt": "Three iPhone screens of the app with made-up reading lists on deep purple.",
       "safeArea": {
         "left": 836,
