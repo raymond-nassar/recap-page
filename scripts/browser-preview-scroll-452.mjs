@@ -200,11 +200,23 @@ export const previewScroll452 = {
       await page.focus('#preview-close');
       await page.keyboard.press('Tab');
       await page.keyboard.press('Tab');
+      const creditSelector = '#preview-source a, #preview-body .edition-credit a';
+      const creditLinks = await page.$$(creditSelector);
+      const visualOrder = await page.$$eval(creditSelector, (links) => links.every((link, index) => {
+        if (index === 0) return true;
+        const previous = [...links[index - 1].getClientRects()].at(-1);
+        const current = link.getClientRects()[0];
+        return previous && current && (current.top > previous.top + 1
+          || (Math.abs(current.top - previous.top) <= 1 && current.left >= previous.right - 1));
+      }));
+      const focusOrder = [];
+      for (const link of creditLinks) {
+        await page.keyboard.press('Tab');
+        focusOrder.push(await page.evaluate((expected) => document.activeElement === expected, link));
+      }
+      t.check(`${cfg.name}: source and credit links follow their visual tab order`,
+        creditLinks.length > 0 && visualOrder && focusOrder.every(Boolean), JSON.stringify(focusOrder));
       await page.keyboard.press('Tab');
-      await page.keyboard.press('Tab');
-      // Lists with collected-edition evidence credit that source above the issues; Tab past its links.
-      const creditLinks = await page.$$eval('#preview-body .edition-credit a', (a) => a.length);
-      for (let i = 0; i < creditLinks; i += 1) await page.keyboard.press('Tab');
       await checkFocusedControl(page, t, `${cfg.name}: first issue boundary focus`,
         '#preview-body .preview-issue-link');
       const links = await page.$$('#preview-body .preview-issue-link');
