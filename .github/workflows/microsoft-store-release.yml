@@ -232,6 +232,7 @@ jobs:
             -BundlePath '${{ steps.release.outputs.bundle }}' `
             -ExpectedVersion '${{ steps.release.outputs.store_version }}' `
             -ReleaseNotesPath './docs/releases/${{ steps.release.outputs.app_version }}-store.json' `
+            -StoreListingPath './docs/releases/${{ steps.release.outputs.app_version }}-microsoft-store-listing.json' `
             -WorkDirectory '${{ steps.release.outputs.temp_root }}'
 
       - name: Recheck the bundle before mutation
@@ -270,6 +271,7 @@ jobs:
             -BundlePath '${{ steps.release.outputs.bundle }}' `
             -ExpectedVersion '${{ steps.release.outputs.store_version }}' `
             -ReleaseNotesPath './docs/releases/${{ steps.release.outputs.app_version }}-store.json' `
+            -StoreListingPath './docs/releases/${{ steps.release.outputs.app_version }}-microsoft-store-listing.json' `
             -WorkDirectory '${{ steps.release.outputs.temp_root }}'
 
       - name: Write an allowlisted outcome summary

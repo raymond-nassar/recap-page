@@ -1572,8 +1572,19 @@ guidance, not GitHub download instructions.
 Both protected workflow paths pass the file to `publish-store-update.ps1` as `ReleaseNotesPath`.
 Before creating a draft, the publisher validates the version, text and existing English base listing.
 It changes only that listing's release notes; other languages, descriptions, images and unrelated
-settings stay unchanged. Exact note read-back is required before the one-time draft commit.
+settings stay unchanged, except as the next paragraph allows. Exact note read-back is required
+before the one-time draft commit.
 A missing or ambiguous listing field blocks the run. Never create or substitute one.
+
+A release may also carry the owner-approved English long description and certification notes in
+`docs/releases/<application-version>-microsoft-store-listing.json`, with exactly `version`,
+`locale`, `description` and `notesForCertification`. Both workflow paths pass it as
+`StoreListingPath`. When it exists, the publisher validates it before any Store request, sets both
+texts in the draft, and requires exact read-back of both before the commit. Each text must be
+trimmed, with no control character except a line break, and the description is limited to 10,000
+characters and the certification notes to 2,000; text over a limit stops the run and is never
+shortened. When it is absent, the live description and certification notes are left exactly as
+published. Commit-only recovery and read-only diagnosis read the same file from the tagged source.
 
 Run `node --test test/microsoft-store-release.test.js` for the payload and delivery contracts.
 Repeat the protected read-only rehearsal after changing publisher behavior, as required above.

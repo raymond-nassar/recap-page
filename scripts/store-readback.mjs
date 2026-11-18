@@ -3,6 +3,7 @@ import { isDeepStrictEqual } from 'node:util';
 import {
   apiFields, mutableIntent, preservedIntentPair, requirePendingDraft, verifyDraft, verifyPreservedIntent,
   prepareApiDraft, validatePublishedSubmission, validateApiPackageReplacement, validateReleaseNotesTarget,
+  validateStoreListingTarget,
 } from './check-store-release.mjs';
 
 const FIELDS = new Set(`applicationCategory pricing trialPeriod marketSpecificPricings sales priceId
@@ -91,10 +92,10 @@ export function checkResult(checkId, operation) {
   }
 }
 
-export function readbackChecks(actual, expected, { bundleName, pendingId, notes, version }) {
+export function readbackChecks(actual, expected, { bundleName, pendingId, notes, version, listing = null }) {
   const checks = [
     checkResult('READBACK_PENDING', () => requirePendingDraft(actual)),
-    checkResult('READBACK_DRAFT', () => verifyDraft(actual, bundleName, pendingId, notes, version)),
+    checkResult('READBACK_DRAFT', () => verifyDraft(actual, bundleName, pendingId, notes, version, listing)),
     checkResult('READBACK_INTENT', () => verifyPreservedIntent(actual, expected, bundleName)),
   ];
   let semantic;
@@ -126,6 +127,7 @@ export function applicationReferenceChecks(app, config, prefix = 'APPLICATION') 
 
 export function currentReadbackChecks({ app, published, pending, status }, config) {
   const { publishedId, pendingId, bundleName, version, notes } = config;
+  const listing = config.listing ?? null;
   const checks = applicationReferenceChecks(app, config);
   const demand = (condition) => { if (!condition) throw new Error('Current readback contract failed'); };
   const check = (id, operation) => checks.push(checkResult(id, operation));
@@ -135,6 +137,9 @@ export function currentReadbackChecks({ app, published, pending, status }, confi
   check('PUBLISHED_VERSION_ADVANCE', () => validatePublishedSubmission(published, version));
   check('PUBLISHED_PACKAGE_REPLACEMENT', () => validateApiPackageReplacement(published, bundleName));
   check('PUBLISHED_NOTES_TARGET', () => validateReleaseNotesTarget(published, notes, version));
+  if (listing !== null) {
+    check('PUBLISHED_LISTING_TARGET', () => validateStoreListingTarget(published, listing, version));
+  }
   check('PENDING_IDENTITY', () => demand(pending?.id === pendingId));
   check('PENDING_FREE', () => demand(pending?.pricing?.priceId === 'Free'));
   check('PENDING_PUBLICATION_MODE', () => demand(pending?.targetPublishMode === 'Immediate'));
@@ -151,11 +156,16 @@ export function currentReadbackChecks({ app, published, pending, status }, confi
   check('PENDING_NOTES_LOCALE', () => demand(Object.hasOwn(pending?.listings ?? {}, notes.locale)));
   const observedNotes = pending?.listings?.[notes.locale]?.baseListing?.releaseNotes;
   check('PENDING_NOTES_HASH', () => demand(typeof observedNotes === 'string' && sha256(observedNotes) === config.notesSha256));
+  if (listing !== null) {
+    check('PENDING_LISTING_TEXT', () => demand(
+      pending?.listings?.[listing.locale]?.baseListing?.description === listing.description
+      && pending?.notesForCertification === listing.notesForCertification));
+  }
   check('STATUS_PENDING', () => demand(status?.status === 'PendingCommit'));
   check('STATUS_ERRORS_EMPTY', () => demand(Array.isArray(status?.statusDetails?.errors) && status.statusDetails.errors.length === 0));
   let expected;
   check('EXPECTED_UPDATE', () => {
-    expected = prepareApiDraft({ ...published, id: pendingId }, bundleName, pendingId, notes, version);
+    expected = prepareApiDraft({ ...published, id: pendingId }, bundleName, pendingId, notes, version, listing);
   });
   const readback = readbackChecks(pending, expected, config);
   checks.push(...readback.checks);
