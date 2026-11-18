@@ -300,10 +300,10 @@ export function createIssueView({
     }
     for (const edition of editionRelations(editionCatalogId(currentResult.context), issue)) {
       for (const link of edition.links) {
-        const text = `Look for this book ${link.preposition} ${link.name}`;
+        const text = `Look for ${edition.title} ${link.preposition} ${link.name}`;
         choices.push({
           key: `${edition.id}:${link.provider}:${link.url}`, text, href: link.url,
-          name: labelledName(text, `${edition.title} (opens outside Recap Page)`),
+          name: labelledName(text, 'opens outside Recap Page'),
         });
       }
     }

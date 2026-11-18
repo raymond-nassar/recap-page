@@ -784,6 +784,25 @@ test('950 Reading options offers the app and Marvel Unlimited for a linked comic
   assert.equal(h.nodes.readingOptionsList.hidden, true);
 });
 
+test('950 Reading options names the collected book in both library links', async () => {
+  const comic = { ...issue(4216), number: '1', seriesId: 1067 };
+  const state = {
+    issues: { 4216: comic }, read: {}, overrides: {}, notes: {},
+    lists: { sample: { name: 'Sample', catalogId: 'civil-war-avengers', itemIds: [4216] } },
+  };
+  const h = harness({ state });
+  await h.view.render({ issueId: 4216, context: { kind: 'list', id: 'sample' } });
+  assert.equal(h.nodes.readingOptions.hidden, false);
+  const links = h.nodes.readingOptionsList.children.map((item) => item.children[0])
+    .filter((choice) => choice.tag === 'a');
+  assert.deepEqual(links.map((link) => [link.text, link['aria-label'], link.href, link.target, link.rel]), [
+    ['Look for Civil War on Hoopla', 'Look for Civil War on Hoopla: opens outside Recap Page',
+      'https://www.hoopladigital.com/title/12003677', '_blank', 'noopener noreferrer'],
+    ['Look for Civil War in Libby', 'Look for Civil War in Libby: opens outside Recap Page',
+      'https://share.libbyapp.com/title/4455520', '_blank', 'noopener noreferrer'],
+  ]);
+});
+
 test('950 Reading options stays hidden when there is only one place to read', async (t) => {
   const unlinked = harness({ state: savedComic(42) });
   await unlinked.view.render({ issueId: 42 });

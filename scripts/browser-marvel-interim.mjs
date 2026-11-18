@@ -378,6 +378,50 @@ export async function linkedReadingOptions(page, t, { listId, sourceIssueId }) {
     }));
   t.check('Reading options and both handoffs leave saved data unchanged',
     await page.evaluate((before) => localStorage.getItem('mrt.state.v2') === before, saved));
+
+  await page.evaluate(({ listId, sourceIssueId }) => {
+    const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+    state.issues[71308] = {
+      ...state.issues[sourceIssueId], issueId: 71308, seriesId: 25996, number: '1',
+      title: 'Asgardians fixture', url: 'https://www.marvel.com/comics/issue/71308/fixture',
+    };
+    state.lists[listId].catalogId = 'nebula-reading-order';
+    if (!state.lists[listId].itemIds.includes(71308)) state.lists[listId].itemIds.push(71308);
+    localStorage.setItem('mrt.state.v2', JSON.stringify(state));
+  }, { listId, sourceIssueId });
+  await page.reload({ waitUntil: 'load' });
+  await route(page, `#/issue/71308?list=${encodeURIComponent(listId)}`, '#issue-focus-card:not([hidden])');
+  await page.waitForFunction(() => document.querySelector('#issue-focus-h').textContent === 'Asgardians fixture');
+  await page.$eval(toggle, (node) => node.click());
+  const title = 'Asgardians of the Galaxy Vol. 1: The Infinity Armada';
+  t.check('library options visibly name their book and retain their accessible labels',
+    await page.$$eval(`${list} a`, (links, title) => links.length === 2
+      && links.every((link, index) => {
+        const label = `Look for ${title} ${index === 0 ? 'on Hoopla' : 'in Libby'}`;
+        const spoken = label.replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+        return link.textContent === label
+          && link.getAttribute('aria-label') === `${spoken}: opens outside Recap Page`;
+      }), title));
+  for (const width of [320, 360]) {
+    await page.setViewport({ width, height: 800, isMobile: width === 360, hasTouch: width === 360 });
+    await page.waitForFunction(() => document.querySelector('#issue-focus-h')?.textContent === 'Asgardians fixture'
+      && !document.querySelector('#issue-reading-options')?.hidden);
+    if (await page.$eval(list, (node) => node.hidden)) await page.$eval(toggle, (node) => node.click());
+    await page.waitForFunction(() => !document.querySelector('#issue-reading-options-list')?.hidden);
+    const geometry = await page.evaluate(() => {
+      const links = [...document.querySelectorAll('#issue-reading-options-list a')];
+      return {
+        viewport: innerWidth, page: document.documentElement.scrollWidth,
+        links: links.map((link) => ({
+          height: link.getBoundingClientRect().height, scroll: link.scrollWidth, client: link.clientWidth,
+        })),
+      };
+    });
+    t.check(`long library book labels fit at ${width}px with full-size targets`,
+      geometry.links.length === 2 && geometry.page <= geometry.viewport
+        && geometry.links.every((link) => link.height >= 44 && link.scroll <= link.client),
+      JSON.stringify(geometry));
+  }
 }
 
 export async function retiredReaderHelp(page, t, { seedFixtureState, click, openFullOrder, order }) {
