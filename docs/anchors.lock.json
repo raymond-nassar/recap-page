@@ -1619,8 +1619,8 @@
     "fp": "09cad2e2a247e2db",
     "head": "Never rerun either mode or dispatch it twice for the same number. Even failed or uncertain"
   },
-  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/MICROSOFT_STORE_SUBMISSION.md:568-570|0": {
-    "anchor": "docs/MICROSOFT_STORE_SUBMISSION.md:568-570",
+  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/MICROSOFT_STORE_SUBMISSION.md:577-579|0": {
+    "anchor": "docs/MICROSOFT_STORE_SUBMISSION.md:577-579",
     "fp": "b0a4750ea6767f95",
     "head": "If any failure occurs at or after draft upload, do not rerun the workflow. Inspect Partner Center"
   },
@@ -1689,13 +1689,13 @@
     "fp": "db1889f906600a13",
     "head": "## iOS allocation and exact-artifact contract"
   },
-  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#microsoft-store-handoff-submission-or-live-revie|docs/MICROSOFT_STORE_SUBMISSION.md:461-497|0": {
-    "anchor": "docs/MICROSOFT_STORE_SUBMISSION.md:461-497",
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#microsoft-store-handoff-submission-or-live-revie|docs/MICROSOFT_STORE_SUBMISSION.md:470-506|0": {
+    "anchor": "docs/MICROSOFT_STORE_SUBMISSION.md:470-506",
     "fp": "2e0a754231df713e",
     "head": "## Final upload handoff"
   },
-  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#microsoft-store-handoff-submission-or-live-revie|docs/MICROSOFT_STORE_SUBMISSION.md:499-521|0": {
-    "anchor": "docs/MICROSOFT_STORE_SUBMISSION.md:499-521",
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#microsoft-store-handoff-submission-or-live-revie|docs/MICROSOFT_STORE_SUBMISSION.md:508-530|0": {
+    "anchor": "docs/MICROSOFT_STORE_SUBMISSION.md:508-530",
     "fp": "69ee19f753078b7e",
     "head": "## Live-review stop points"
   },

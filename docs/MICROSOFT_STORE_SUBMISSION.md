@@ -328,10 +328,19 @@ Once 4.4.0 is live, a separate listing-only Partner Center submission through Pl
 this refreshed Windows set with the approved captions
 ([owner approval](https://github.com/raymond-nassar/recap-page/issues/1015#issuecomment-6624904685)).
 Google Play and the App Store refresh their screenshots with 4.4.0. The final captures come from
-the 4.4.0 release source, which includes the iPad breadcrumb fix (#1070, #1042). Google Play shows
+the recorded sources below. Google Play shows
 the set the owner uploaded on 2026-10-31, which predates Genres and still shows Storylines.
 No upload, submission or certification step is part of this work.
 #1015 stays open until the stores show the refreshed sets.
+
+For the 4.7.0 image refresh, the desktop capture source is
+`ede4424f9ba8a7c47821bc9304b2281d4d5a30b8`, with the same tree as the 4.7.0 release merge
+`bb48263071fe1379ccc23269af8f6abe3e5204ce`. The Play capture source is
+`c9e77da5d695e8e38296fb08a90e8f11083e450d`. Both capture records report `sourceDirty: false`.
+The owner approved all 40 images across the three stores and the caption and description changes
+on November 18, 2026. Image approval is not upload or publication approval; the manifests retain
+their capture-time publication flags. The Play manifest's two image descriptions use the approved
+wording without changing its source hashes or image bytes.
 
 The six screenshots were captured at 1920 x 1080 from installed Edge with an isolated temporary
 profile and a fresh disposable context for each image. Cover art was off. Home, Genres and
@@ -383,7 +392,7 @@ Play's phone set below shows the Android OneDrive wording instead.
 | `01-home-discovery.png` | Home offers a first step on Modern Timeline and category cards for Genres, Character spotlights, Young readers, and more. |
 | `02-browse-reading-lists.png` | Genres, reached from Home's category cards, sorts Reading Lists by genre and tone and suggests popular places to start. |
 | `03-reading-paths.png` | Modern Timeline follows the Modern Avengers Reading Path stop by stop and marks the first stop. |
-| `04-reading-progress.png` | A fictional Reading List keeps the next issue, issue order, and completion progress together, with three of eight read. |
+| `04-reading-progress.png` | A fictional Reading List keeps the next comic, reading order, and completion progress together, with three of eight read. |
 | `05-about-onedrive.png` | About explains that saved lists, progress and notes go only to your own OneDrive if you choose cloud backup. |
 | `06-backup-settings.png` | Backup & settings offers optional OneDrive sign-in and explains backup retention and privacy before an account is connected. |
 | `store-tile-300.png` | Exact 300 x 300 Store tile derived from the existing purple panels app icon. |
@@ -396,12 +405,12 @@ Prepared desktop asset measurements:
 
 | File | Dimensions | Bytes | SHA-256 |
 |---|---:|---:|---|
-| `01-home-discovery.png` | 1920 x 1080 | 176408 | `786AFD820B69780EDCD686213257FA2C20CFCA1FA3B63513107CCB0922CE79E3` |
-| `02-browse-reading-lists.png` | 1920 x 1080 | 217092 | `500EAE3B1E6366D030F699F7370A0AEEA52B1E7653B28E387BCE730375025ACF` |
-| `03-reading-paths.png` | 1920 x 1080 | 98991 | `6C61DC15774969C0EEF7FC99E2D98B0614503FED23CB10D820C6E5C2B44E6FD5` |
-| `04-reading-progress.png` | 1920 x 1080 | 203562 | `3A87C8A10ABCA09033DAB44809DC715AB2622FDA9826FCBFC9CD97E3D60D42BA` |
-| `05-about-onedrive.png` | 1920 x 1080 | 122000 | `70F033C9DBF494D3513EFA4C5E8646190F3F67823471B2B10A275A3F0E92D6C4` |
-| `06-backup-settings.png` | 1920 x 1080 | 95267 | `5A87543953CC23D129945CAFE271C52B48CEBD3163291725132836618705FA6A` |
+| `01-home-discovery.png` | 1920 x 1080 | 166466 | `294D694E2D937E7802F62C6448B04C7AADE50804246EFFD4291C3B058F1046D5` |
+| `02-browse-reading-lists.png` | 1920 x 1080 | 234917 | `40FF2EB47D72BF75FB51A8DD3FC9C9D6E9A6CC7D42AAE08A3D5871F5ECC364D1` |
+| `03-reading-paths.png` | 1920 x 1080 | 114168 | `316EBF330134676F047F85EFC72573EE8FCE196298C5118608741748A5FDDD55` |
+| `04-reading-progress.png` | 1920 x 1080 | 193604 | `5F31095DB82573A358287BE59625A4BEEE4FA7BA9663275792012173328F02ED` |
+| `05-about-onedrive.png` | 1920 x 1080 | 117899 | `0A0DB2E73C0E0FDBDF79FF4E287739510327A6A19DF24DC5171F413F15E6B04C` |
+| `06-backup-settings.png` | 1920 x 1080 | 100011 | `BCE6CB838E2B186F11BF3B10A99AFD14C504D42A0705A66916B7DD1DA4FA677F` |
 | `store-tile-300.png` | 300 x 300 | 3060 | `F61B2F972D66CEF3ECBB6723FBE222ADA2C9234A83B4CEB1A8F90336C95C3ECF` |
 
 ### Google Play phone captions and measurements
@@ -415,14 +424,14 @@ manual set. The light Library and reading images replace `android-library-previe
 
 | File | Bytes | Caption for the next listing update |
 |---|---:|---|
-| `dark-01-home.png` | 209356 | Dark Home offers a first reading step on Modern Timeline, with Search and a Modern Timeline discovery card. |
-| `dark-02-genres.png` | 173408 | Dark Genres sorts Reading Lists by genre and tone and suggests popular places to start. |
-| `dark-03-modern-timeline.png` | 104646 | Dark Modern Timeline offers the Modern Avengers path and controls for choosing a stop. |
-| `dark-04-reading-progress.png` | 322686 | Dark reading view shows a fictional list three of eight read, with the next issues coming up. |
-| `01-library-preview.png` | 133329 | Library separates a fictional list in progress from one not yet started. |
-| `02-reading-preview.png` | 175285 | Light reading view puts the next fictional issue and its Done button first, with cover art off. |
-| `03-about-onedrive.png` | 254595 | About explains Android app storage and optional uploads only to your own OneDrive. |
-| `04-backup-settings.png` | 213205 | Cloud backup offers Microsoft sign-in and explains optional OneDrive backups before connecting an account. |
+| `dark-01-home.png` | 246449 | Dark Home offers a first reading step on Modern Timeline, with Search and a Modern Timeline discovery card. |
+| `dark-02-genres.png` | 187510 | Dark Genres sorts Reading Lists by genre and tone and suggests popular places to start. |
+| `dark-03-modern-timeline.png` | 163802 | Dark Modern Timeline offers the Modern Avengers path and controls for choosing a stop. |
+| `dark-04-reading-progress.png` | 238005 | Dark reading view shows a fictional list three of eight read, with the next comics coming up. |
+| `01-library-preview.png` | 133461 | Library separates a fictional list in progress from one not yet started. |
+| `02-reading-preview.png` | 193690 | Light reading view puts the next fictional comic and its Done button first, with cover art off. |
+| `03-about-onedrive.png` | 254195 | About explains Android app storage and optional uploads only to your own OneDrive. |
+| `04-backup-settings.png` | 210272 | Cloud backup offers Microsoft sign-in and explains optional OneDrive backups before connecting an account. |
 
 Every phone image was inspected for private content and copy made untrue by OneDrive. The six
 replacement images contain no claim that progress or notes are never sent anywhere. The added

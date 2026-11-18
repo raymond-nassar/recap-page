@@ -636,8 +636,11 @@ blocked.
 
 By owner decision, the App Store and Google Play refresh their screenshots with 4.4.0;
 the Microsoft Store updates its listing separately after the automated 4.4.0 app submission is live.
-The final captures come from the 4.4.0 release source, which includes the iPad breadcrumb fix
-(#1070, #1042).
+The current screenshots come from source `c9e77da5d695e8e38296fb08a90e8f11083e450d`,
+captured by [iOS run 44379346800](https://github.com/raymond-nassar/recap-page/actions/runs/44379346800)
+for the 4.7.0 image refresh. The creative was regenerated with the unchanged script from these
+screenshots. Each manifest preserves dimensions, bytes and SHA-256. The owner approved the images
+on November 18, 2026; upload and publication still require separate approval.
 
 The checked-in images show Genres in place of the retired Storylines screen and the updated Home
 screen. Image 7 shows the Cloud backup card. That screen alone launches the app signed in to the Debug build's fake iCloud
