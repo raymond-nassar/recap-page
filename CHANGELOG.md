@@ -66,6 +66,7 @@ This record prepares the shared app and Windows Store version 4.7.0.0. It does n
 ### Release tooling
 
 - Release publishing now uses approved release text, with owner approval before each public store or GitHub release. Store screenshot tools now load the current catalog and use a consistent fictional summary. (#1419)
+- Release publishing can also update each store's description, the Microsoft Store tester notes and Apple's App Review notes from approved text. (#1436, #1437, #1438)
 - The Android Gradle wrapper was updated to 9.9.1 for builds. This changes nothing readers would notice and does not touch saved data. (#1411)
 
 ## 4.6.0
