@@ -388,6 +388,8 @@ permissions, and approval rules remain authoritative.
   to prepare the Windows listing screenshots for review."
 - [Update dependencies](../.github/skills/update-dependencies/SKILL.md): "Use update-dependencies to
   update this requested action pin with its release evidence."
+- [Coordinate lanes](../.github/skills/coordinate-lanes/SKILL.md): "Use coordinate-lanes to resume
+  as coordinator and review this lane's commits before its pull request merges."
 
 For reading-list delivery, use [New reading list](../.github/skills/new-reading-list/SKILL.md). For
 release preparation, use [Prepare release](../.github/skills/prepare-release/SKILL.md).
