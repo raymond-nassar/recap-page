@@ -1,8 +1,10 @@
 import { labelledName } from '../lib/accname.js';
-import { readerAction, readerContext } from '../lib/readerDestination.js';
+import { appViewerFor } from '../lib/marvelComicsApp.js';
+import { readerAction, readerName } from '../lib/readerDestination.js';
 import { issuePresentation, resolveIssueFocus } from '../lib/issueFocus.js';
 import { isDeferred, isRead } from '../lib/model.js';
 import { savedReaderIssue } from '../lib/temporaryReaderLink.js';
+import { createReadingOptions, readingChoices } from './shared/reading-options.js';
 
 // The fields that name a saved comic, the same ones the rating editor compares.
 const comicIdentity = (issue) => issue
@@ -12,6 +14,7 @@ const comicIdentity = (issue) => issue
 export function createIssueView({
   coverUrl,
   decorateResult,
+  el,
   elements,
   fact,
   getApi,
@@ -257,14 +260,49 @@ export function createIssueView({
     nodes.context.textContent = issueContextText(currentResult.context, currentResult.issue.issueId);
     const focused = nodes.read.ownerDocument?.activeElement === nodes.read && nodes.read.getClientRects().length > 0;
     const { launchable } = readerPresentation(currentResult.issue, currentResult.source);
+    const app = Boolean(appViewerFor(currentResult.issue.issueId));
     nodes.read.hidden = !launchable;
-    nodes.read.textContent = readerAction();
-    nodes.read.setAttribute('aria-label', labelledName(readerAction(),
-      readerContext(currentResult.issue.title)));
+    nodes.read.textContent = readerAction(new Date(), { app });
+    nodes.read.setAttribute('aria-label', readerName(currentResult.issue.title, new Date(), { app }));
+    paintReadingOptions(launchable, app);
     if (focused && !launchable) {
       nodes.heading.setAttribute('tabindex', '-1');
       nodes.heading.focus({ preventScroll: true });
     }
+  }
+
+  // The bundled order names the reading list whose curated books a comic is collected in; a saved
+  // list carries the order it was added from.
+  function editionCatalogId(context) {
+    if (context?.kind === 'order') return context.id;
+    if (context?.kind === 'list') return getState().lists?.[context.id]?.catalogId ?? null;
+    return null;
+  }
+
+  let options = null;
+
+  function readingOptions() {
+    if (!options) {
+      const nodes = elements();
+      options = createReadingOptions({
+        el, root: nodes.readingOptions, toggle: nodes.readingOptionsToggle, list: nodes.readingOptionsList,
+        onRead: (issue, event, choice) => {
+          if (currentResult?.issue === issue) {
+            onRead(issue, event, currentResult.source, event.currentTarget, choice);
+          }
+        },
+        focusFallback: () => {
+          nodes.heading.setAttribute('tabindex', '-1');
+          nodes.heading.focus({ preventScroll: true });
+        },
+      });
+    }
+    return options;
+  }
+
+  function paintReadingOptions(launchable, app) {
+    const issue = currentResult.issue;
+    readingOptions().paint(issue, readingChoices(issue, editionCatalogId(currentResult.context), { launchable, app }));
   }
 
   function currentSavedReference() {
@@ -292,6 +330,7 @@ export function createIssueView({
     nodes.read.addEventListener('click', (event) => {
       if (currentResult?.issue) onRead(currentResult.issue, event, currentResult.source);
     });
+    readingOptions().wire();
     nodes.synopsis.addEventListener('click', async () => {
       if (!currentResult?.issue) return;
       const issue = currentResult.issue;

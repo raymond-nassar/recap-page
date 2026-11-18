@@ -14,6 +14,7 @@ import { KEY } from '../src/js/storage.js';
 import { LIST_HISTORY_FORMAT, LIST_HISTORY_KEY } from '../src/js/lib/listHistory.js';
 import { SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE } from '../src/js/lib/saveEducation.js';
 import { issuePresentation } from '../src/js/lib/issueFocus.js';
+import { linkedReadingOptions, manualLinkFeedback } from './browser-marvel-interim.mjs';
 import { homeUpdatesContent } from '../src/js/lib/homeUpdatesContent.js';
 import { HOME_UPDATES_SEEN_KEY } from '../src/js/lib/homeUpdatesSeen.js';
 import { availableHomeCategories, catalogEntries, groupCatalog, HOME_CATEGORIES, publishingAgeGroups } from '../src/js/lib/catalog.js';
@@ -2343,18 +2344,32 @@ async function readingAccessibility(page, result, id) {
   const phone = await page.evaluate(() => matchMedia('(max-width: 700px)').matches);
   // The visit button follows the list's introduction, ahead of About, on every Reading List.
   const visit = await page.$eval('#order-visit', (node) => !node.hidden && node.querySelector('a') ? ['#order-visit a'] : []);
-  const context = [...visit, '#order-desc > summary'];
+  const aboutLinks = await page.evaluate(() => ['#order-source a', '#order-app-link-credit a']
+    .filter((selector) => document.querySelector(selector)?.checkVisibility()));
+  check(aboutLinks.includes('#order-app-link-credit a'), `${id}: the link credit is in the open list introduction`);
+  const context = [...visit, '#order-desc > summary', ...aboutLinks];
   const expected = [...(phone ? [...controls, ...context] : [...context, ...controls]),
     ...result.listOptions.map((control) => control.selector)];
   for (const selector of expected) {
     await page.keyboard.press('Tab');
     check(await page.$eval(selector, (node) => document.activeElement === node), `${id}: native Tab reaches ${selector}`);
-    check(await page.$eval(selector, (node) => {
-      const rect = node.getBoundingClientRect(), style = getComputedStyle(node);
-      const hit = document.elementFromPoint(rect.left + rect.width / 2, rect.top + rect.height / 2);
-      return rect.top >= 0 && rect.bottom <= innerHeight && (node === hit || node.contains(hit))
-        && node.matches(':focus-visible') && style.outlineStyle !== 'none';
-    }), `${id}: focused control visible and unobscured`);
+    const focus = await page.$eval(selector, (node) => {
+      const style = getComputedStyle(node);
+      const fragments = [...node.getClientRects()].filter((rect) => rect.width && rect.height).map((rect) => {
+        const hit = document.elementFromPoint(rect.left + rect.width / 2, rect.top + rect.height / 2);
+        return {
+          top: rect.top, bottom: rect.bottom, unobscured: node === hit || node.contains(hit),
+          hit: hit ? { tag: hit.tagName, id: hit.id, text: hit.textContent.trim().slice(0, 100) } : null,
+        };
+      });
+      return {
+        ok: fragments.length > 0 && fragments.every((rect) => rect.top >= 0 && rect.bottom <= innerHeight && rect.unobscured)
+          && node.matches(':focus-visible') && style.outlineStyle !== 'none',
+        control: node.id || node.textContent.trim(), fragments, viewport: innerHeight,
+        focusVisible: node.matches(':focus-visible'), outline: style.outlineStyle,
+      };
+    });
+    check(focus.ok, `${id}: ${selector} focused control visible and unobscured ${JSON.stringify(focus)}`);
     // A keyboard reader reaches Defer and Issue page by opening More comic actions from its summary.
     if (selector === '#hero-more-actions > summary'
       && await page.$eval(selector, (node) => document.activeElement === node && !node.parentElement.open)) {
@@ -2542,7 +2557,28 @@ async function readingCompositionCheck(page, profile) {
     return;
   }
   const result = await readingEvidence(page, profile);
-  if (readingCase === 'M01') return;
+  if (readingCase === 'M01') {
+    await linkedReadingOptions(page, { check: (name, ok, detail) => check(ok, `M01: ${name} ${detail ?? ''}`) },
+      { listId: READING_LIST, sourceIssueId: readingIssue.issueId });
+    const manualState = createList(createEmptyState(), { id: 'manual-links', name: 'Manual links fixture' });
+    await page.evaluate((state, key) => localStorage.setItem(key, JSON.stringify(state)), manualState, KEY);
+    await page.goto(origin, { waitUntil: 'networkidle0' });
+    await route(page, 'add-manual');
+    await manualLinkFeedback(page, { check: (name, ok, detail) => check(ok, `M01: ${name} ${detail ?? ''}`) }, {
+      addByHand: async (target, title, url) => {
+        await target.evaluate((name, address) => {
+          document.querySelector('#manual-report').replaceChildren();
+          document.querySelector('#manual-title').value = name;
+          document.querySelector('#manual-url').value = address;
+          document.querySelector('#form-manual').requestSubmit();
+        }, title, url);
+        await target.waitForFunction(() => (document.querySelector('#manual-report')?.textContent ?? '').trim().length > 0);
+      },
+      manualReport: (target) => target.$eval('#manual-report', (node) => node.textContent.replace(/\s+/g, ' ').trim()),
+      readState: (target) => target.evaluate((key) => JSON.parse(localStorage.getItem(key)), KEY),
+    });
+    return;
+  }
   if (!profile.desktop) await readingAccessibility(page, result, profile.id);
   if (profile.id === 'M05') {
     check(await page.evaluate(() => !document.querySelector('#btn-hero-description')), 'M05: #1061 no reveal control');

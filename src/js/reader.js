@@ -13,6 +13,7 @@
 // upstream repo README is stale for at least issue 52447.
 
 import { issuePageUrl } from './lib/issuePageUrl.js';
+import { appViewerFor } from './lib/marvelComicsApp.js';
 import { readerDestination } from './lib/readerDestination.js';
 
 export const READER_PREFIX = 'https://read.marvel.com/#/book/';
@@ -61,11 +62,16 @@ export function isLaunchable(issue) {
 
 // Builds the same-origin launch URL. A known book ID skips lookup; a previously refused
 // issue with a matching pinned page skips the same lookup without inventing a book ID.
-export function launchUrl(issue, origin = location.origin, { now = new Date() } = {}) {
+// A comic with a bundled Marvel Comics app link carries it as `a`, which the launcher page prefers
+// from today rather than from December 7. `app: false` leaves it out, so Marvel Unlimited can still
+// be chosen on purpose until it closes.
+export function launchUrl(issue, origin = location.origin, { now = new Date(), app = true } = {}) {
   const params = new URLSearchParams();
   params.set('r', readerDestination(now));
   const digitalId = referenceId(issue?.digitalId);
   const issueId = referenceId(issue?.issueId);
+  const viewer = app && issueId ? appViewerFor(issueId) : null;
+  if (viewer) params.set('a', viewer);
   if (digitalId) params.set('d', digitalId);
   if (issueId) {
     params.set('i', issueId);
@@ -84,12 +90,12 @@ export function launchUrl(issue, origin = location.origin, { now = new Date() } 
 // Must be called synchronously from a user gesture, or the browser will block the tab.
 // Returns { ok, target }, where `target` is 'reader', 'page' or 'lookup',
 // and null when there was no reference.
-export function openIssue(issue, { origin = location.origin, now = new Date() } = {}) {
+export function openIssue(issue, { origin = location.origin, now = new Date(), app = true } = {}) {
   if (!isLaunchable(issue)) {
     return { ok: false, target: null, reason: 'no-reference' };
   }
 
-  const url = launchUrl(issue, origin, { now });
+  const url = launchUrl(issue, origin, { now, app });
   const params = new URL(url).searchParams;
   let win;
   try {
@@ -102,7 +108,7 @@ export function openIssue(issue, { origin = location.origin, now = new Date() } 
   // is not proof of a block. Treat it as opened; the launcher page reports its own failures.
   return {
     ok: true,
-    target: params.get('r') === 'comics' ? 'comics'
+    target: params.has('a') ? 'app' : params.get('r') === 'comics' ? 'comics'
       : params.has('d') ? 'reader' : params.get('p') === '1' ? 'page' : 'lookup',
     window: win,
   };

@@ -129,7 +129,7 @@ export function shellPath(path) {
     || /^android\/(?:app|bridge|mobile-ui|cloud|cloudPort)\.js$/.test(path) || path === 'android/mobile.css'
     || /^icons\/icon(?:-(?:192|512)\.png|\.svg)$/.test(path) || path === 'icons/ui.svg' || ['icons/wordmark.svg', 'icons/wordmark-dark.svg'].includes(path)
     || path === 'brands/ms-symbollockup_mssymbol_19.svg' || path === 'brands/g-logo.png' || path === 'data/catalog.json'
-    || /^data\/(?:collectedEdition(?:Catalog|Evidence)|universeCatalog)\.js$/.test(path);
+    || /^data\/(?:collectedEdition(?:Catalog|Evidence)|universeCatalog|marvelComicsAppLinks)\.js$/.test(path);
 }
 
 export function previewResponse(url, method, assets) {

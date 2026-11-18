@@ -536,6 +536,9 @@ test('Android preparation copies shared feature modules with exact manifest dige
       ['js', 'lib', 'universes.js'],
       ['js', 'lib', 'collectedEditions.js'],
       ['js', 'views', 'shared', 'collected-editions.js'],
+      ['data', 'marvelComicsAppLinks.js'],
+      ['js', 'lib', 'marvelComicsApp.js'],
+      ['js', 'lib', 'marvelComicsAppUrl.js'],
     ]) {
       const source = await readFile(join('src', ...parts));
       const bytes = await readFile(join(directory, ...parts));
@@ -604,13 +607,22 @@ test('Android assets preserve every catalog payload and the shared feature modul
     assert.ok(generated.indexOf('styles.css') < generated.indexOf('android/mobile.css'));
     assert.doesNotMatch(generated, /src="\.\/js\/app\.js"/);
     assert.doesNotMatch(await readFile(join('src', 'index.html'), 'utf8'), /android\/(?:mobile\.css|app\.js)/);
-    assert.match(generated, /installed browser, not the Marvel Unlimited app/);
-    assert.match(generated, /no longer contacts Bifrost/);
-    assert.match(generated, /general Marvel Comics website without a reader-link lookup/);
+    assert.match(generated, /A comic with a Marvel Comics app link opens there/);
+    assert.match(generated, /general Marvel Comics website without a lookup/);
+    assert.doesNotMatch(generated, /no longer contacts Bifrost/);
     const launcher = await readFile(join(output, 'open.html'), 'utf8');
     assert.match(launcher, /src="\.\/android\/launcher\.js"/);
     assert.doesNotMatch(launcher, /src="\.\/open\.js"/);
-    assert.match(await readFile(join('src', 'open.html'), 'utf8'), /src="\.\/open\.js"/);
+    const sharedLauncher = await readFile(join('src', 'open.html'), 'utf8');
+    assert.match(sharedLauncher, /src="\.\/open\.js"/);
+    for (const copy of [
+      '<title>Opening your comic - Recap Page</title>',
+      '<h1 id="h">Opening your comic</h1>',
+      '<p id="p" role="status" aria-live="polite" aria-atomic="true">One moment.</p>',
+    ]) {
+      assert.ok(sharedLauncher.includes(copy), `shared launcher must include ${copy}`);
+      assert.ok(launcher.includes(copy), `Android launcher must include ${copy}`);
+    }
     for (const name of ['launcher.js', 'reader.js']) {
       assert.deepEqual(await readFile(join(output, 'android', name)), await readFile(join('packaging', 'android', 'web', name)));
     }

@@ -4,9 +4,11 @@ export const NOTICE_DISMISSAL_KEY = 'mrt.readerClosure.dismissed.v1';
 
 // The notice says something materially different once reading in Marvel Unlimited has ended, so
 // each phase is its own identity: dismissing the warning before December 7 must not hide the
-// later explanation of why Read now opens the Marvel Comics website.
+// later explanation of why Read now opens the Marvel Comics website. The Marvel Comics app links
+// (#950) changed both texts, so their identities changed too: a reader who dismissed the earlier
+// warning sees the new one once.
 export function readerClosureNoticeId(now = new Date()) {
-  return `marvel-unlimited-closure-${readerDestination(now)}`;
+  return `marvel-comics-app-${readerDestination(now)}`;
 }
 
 // An acknowledgement belongs to this device, like Home updates seen state, not to portable

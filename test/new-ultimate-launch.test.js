@@ -412,3 +412,45 @@ test('desktop valid page without refusal flag keeps exact slug after unresolved 
     assert.deepEqual(f.navigations, [page], 'fallback retains the original slug');
   }
 });
+
+// #950: issue 12459 has a bundled Marvel Comics app link (viewer 18255) and issue 42 has none.
+const linked = { issueId: 12459, digitalId: 38811, title: 'Linked comic', url: 'https://www.marvel.com/comics/issue/12459/x' };
+const appLink = 'https://www.marvelcomicsapp.com/viewer/18255';
+
+test('950 Read carries the app link from today and Marvel Unlimited can still be chosen', () => {
+  const afterCutoff = new Date(2026, 11, 8, 12);
+  for (const now of [beforeCutoff, afterCutoff]) {
+    assert.equal(new URL(launchUrl(linked, origin, { now })).searchParams.get('a'), '18255');
+    assert.equal(new URL(launchUrl(linked, origin, { now, app: false })).searchParams.has('a'), false);
+  }
+  assert.equal(new URL(launchUrl({ ...linked, issueId: 42 }, origin, { now: beforeCutoff })).searchParams.has('a'), false);
+  const prior = globalThis.window;
+  const calls = [];
+  globalThis.window = { open(...args) { calls.push(args); return null; } };
+  try {
+    assert.equal(openIssue(linked, { origin, now: beforeCutoff }).target, 'app');
+    assert.equal(openIssue(linked, { origin, now: beforeCutoff, app: false }).target, 'reader');
+    assert.equal(calls.length, 2);
+    assert.deepEqual(calls.map((call) => call.slice(1)), [['_blank', 'noopener'], ['_blank', 'noopener']]);
+  } finally {
+    globalThis.window = prior;
+  }
+});
+
+test('950 desktop launcher opens the app link without a lookup and rebuilds it from the number', async () => {
+  for (const r of ['unlimited', 'comics']) {
+    const f = await desktopLauncher(`?r=${r}&a=18255&i=12459`, () => assert.fail('An app link must not fetch'));
+    assert.deepEqual(f.navigations, [appLink]);
+    assert.equal(f.nodes.fallback.href, appLink);
+    assert.equal(f.nodes.p.textContent, 'Taking you to this comic in the Marvel Comics app.');
+    assert.equal(f.requests.length, 0);
+  }
+  for (const a of ['0', '012', '12/3', 'https://evil.example/', '1234567890']) {
+    const f = await desktopLauncher(`?a=${encodeURIComponent(a)}&d=38811&i=12459`, () => assert.fail('no fetch'));
+    assert.deepEqual(f.navigations, ['https://read.marvel.com/#/book/38811'], a);
+  }
+  const twice = await desktopLauncher('?a=18255&a=1&d=38811&i=12459', () => assert.fail('no fetch'));
+  assert.deepEqual(twice.navigations, ['https://read.marvel.com/#/book/38811']);
+  const bare = await desktopLauncher('?a=18255', () => assert.fail('no fetch'));
+  assert.deepEqual(bare.navigations, []);
+});

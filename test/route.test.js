@@ -825,6 +825,14 @@ test('a list id naming a prototype member cannot be adopted from an address', ()
   );
 });
 
+test('Reading options reject inherited list keys for their choices and launches', () => {
+  has(reading, /function ownList\(id\) \{[\s\S]*?Object\.hasOwn\(lists, id \?\? ''\) \? lists\[id\] : null;/,
+    'the Reading options lookups rejecting inherited list keys');
+  has(reading, /ownList\(activeListId\(\)\)\?\.catalogId/, 'the hero options using the guarded list');
+  has(reading, /ownList\(listId\)\?\.catalogId/, 'the row options using the guarded list');
+  has(reading, /ownList\(listId\)\?\.itemIds\.includes\(issue\.issueId\)/, 'the row launch checking the guarded list');
+});
+
 // Assigning location.hash fires hashchange, which re-runs applyRoute and moves focus to the view
 // heading. For a filter radio that throws the keyboard out of the control just pressed. Measured in
 // Edge: pushState fires no hashchange, and Back over an entry it made still does.

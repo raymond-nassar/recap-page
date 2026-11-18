@@ -78,7 +78,8 @@ test('the project home and README distinguish shared progress and manual reading
     assert.match(copy, /(?:not|isn't) detected automatically|does not detect (?:it|your reading)/i);
     assert.match(copy, /same browser profile/);
     assert.match(copy, /December 7, 2026/);
-    assert.match(copy, /general Marvel Comics website, not a single-comic link/);
+    assert.match(copy, /When a comic has a Marvel Comics app link, Read opens it in the Marvel Comics app\./);
+    assert.match(copy, /From that date, Read opens the general Marvel Comics website for those comics, not a link to a single comic\./);
     if (source === page) assert.match(copy, /desktop/);
     assert.match(copy, /Each installation saves separately|No automatic device sync/);
     assert.match(copy, /offline comic reading|(?:does not )?include offline comics/);
