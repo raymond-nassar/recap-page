@@ -1,11 +1,15 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { readFileSync } from 'node:fs';
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 
 import {
   comparePackageVersions,
   prepareApiDraft,
+  readStoreListing,
+  STORE_LISTING_LIMITS,
   validateApiPackageReplacement,
   validateActivationSubmission,
   validateApplication,
@@ -15,6 +19,8 @@ import {
   validateReleaseNotes,
   validateReleaseNotesTarget,
   validateSubmissionIdentity,
+  validateStoreListing,
+  validateStoreListingTarget,
   validateSubmissionStatus,
   verifyDraft,
 } from '../scripts/check-store-release.mjs';
@@ -328,12 +334,155 @@ test('Store draft read-back rejects changed release notes', () => {
   );
 });
 
+function listing(overrides = {}) {
+  return {
+    version: nextVersion.slice(0, -2), locale: 'en-us',
+    description: 'Fixture description.\nSecond fixture line.',
+    notesForCertification: 'Fixture tester notes.',
+    ...overrides,
+  };
+}
+
+test('Store listing text requires exact keys, version and locale, and limits that stop rather than truncate', () => {
+  assert.deepEqual(validateStoreListing(listing(), nextVersion), listing());
+  assert.deepEqual(STORE_LISTING_LIMITS, { description: 10000, notesForCertification: 2000 });
+  for (const field of ['description', 'notesForCertification']) {
+    const limit = STORE_LISTING_LIMITS[field];
+    const atLimit = listing({ [field]: 'x'.repeat(limit) });
+    assert.equal(validateStoreListing(atLimit, nextVersion)[field].length, limit);
+    assert.throws(() => validateStoreListing(listing({ [field]: 'x'.repeat(limit + 1) }), nextVersion),
+      new RegExp(`at most ${limit} characters`));
+    for (const text of ['', ' leading', 'trailing\n', 'carriage\r\nreturn', 'tab\there', 'next\u0085line',
+      'delete\u007f', 'lone \ud800 surrogate', 42, null]) {
+      assert.throws(() => validateStoreListing(listing({ [field]: text }), nextVersion),
+        /nonempty, trimmed text/);
+    }
+  }
+  for (const invalid of [
+    listing({ version: '0.0.0' }),
+    listing({ locale: 'EN-US' }),
+    listing({ locale: 'fr-fr' }),
+    listing({ extra: 'not allowed' }),
+    (() => { const value = listing(); delete value.notesForCertification; return value; })(),
+    [],
+  ]) {
+    assert.throws(() => validateStoreListing(invalid, nextVersion), /Store listing text/);
+  }
+});
+
+test('Store listing text file: absent means no change, anything else unreadable or malformed stops', (t) => {
+  const directory = mkdtempSync(join(tmpdir(), 'recap-store-listing-'));
+  t.after(() => rmSync(directory, { recursive: true, force: true }));
+  assert.equal(readStoreListing(join(directory, 'absent.json')), null);
+  assert.throws(() => readStoreListing(directory), /could not be read/);
+  const file = join(directory, 'listing.json');
+  for (const [text, message] of [['{', /valid JSON/], ['null', /must be an object/], ['[]', /must be an object/]]) {
+    writeFileSync(file, text);
+    assert.throws(() => readStoreListing(file), message);
+  }
+  writeFileSync(file, JSON.stringify(listing()));
+  assert.deepEqual(readStoreListing(file), listing());
+});
+
+test('approved listing text updates only the en-us description and certification notes', () => {
+  const original = submission({ NotesForCertification: 'Earlier tester notes' });
+  original.Listings['fr-fr'] = { BaseListing: { ReleaseNotes: 'Conserver', Description: 'Autre' } };
+  const before = structuredClone(original);
+  const replacement = `RecapPage_${nextVersion}_x64_arm64.msixbundle`;
+  const plain = prepareApiDraft(original, replacement, 'submission-id', notes(), nextVersion);
+  const draft = prepareApiDraft(original, replacement, 'submission-id', notes(), nextVersion, listing());
+  assert.deepEqual(original, before);
+  assert.equal(plain.Listings['en-us'].BaseListing.Description, 'Preserved');
+  assert.equal(plain.NotesForCertification, 'Earlier tester notes');
+  const expected = structuredClone(plain);
+  expected.Listings['en-us'].BaseListing.Description = listing().description;
+  expected.NotesForCertification = listing().notesForCertification;
+  assert.deepEqual(draft, expected);
+  verifyDraft(draft, replacement, 'submission-id', notes(), nextVersion, listing());
+  const lowerCase = structuredClone(original);
+  lowerCase.notesForCertification = null;
+  delete lowerCase.NotesForCertification;
+  lowerCase.listings = { 'en-us': { baseListing: { releaseNotes: 'Earlier notes', description: null } } };
+  delete lowerCase.Listings;
+  const lowerDraft = prepareApiDraft(lowerCase, replacement, 'submission-id', notes(), nextVersion, listing());
+  assert.equal(lowerDraft.listings['en-us'].baseListing.description, listing().description);
+  assert.equal(lowerDraft.notesForCertification, listing().notesForCertification);
+  assert.equal(Object.hasOwn(lowerDraft, 'NotesForCertification'), false);
+  assert.equal(Object.hasOwn(lowerDraft.listings['en-us'].baseListing, 'Description'), false);
+  verifyDraft(lowerDraft, replacement, 'submission-id', notes(), nextVersion, listing());
+});
+
+test('approved listing text read-back rejects any difference from the approved text', () => {
+  const replacement = `RecapPage_${nextVersion}_x64_arm64.msixbundle`;
+  const draft = () => prepareApiDraft(submission({ NotesForCertification: '' }), replacement,
+    'submission-id', notes(), nextVersion, listing());
+  for (const [mutate, message] of [
+    [(d) => { d.Listings['en-us'].BaseListing.Description = 'Preserved'; }, /description does not match/],
+    [(d) => { d.Listings['en-us'].BaseListing.Description = listing().description.replace('\n', '\r\n'); },
+      /description does not match/],
+    [(d) => { d.NotesForCertification = ''; }, /certification notes do not match/],
+    [(d) => { d.NotesForCertification = null; }, /certification notes do not match/],
+    [(d) => { delete d.NotesForCertification; }, /NotesForCertification/],
+  ]) {
+    const changed = draft();
+    mutate(changed);
+    assert.throws(
+      () => verifyDraft(changed, replacement, 'submission-id', notes(), nextVersion, listing()),
+      message,
+    );
+  }
+});
+
+test('approved listing text rejects missing, ambiguous or overridden destination fields', () => {
+  const base = () => submission({ NotesForCertification: 'Earlier tester notes' });
+  for (const mutate of [
+    (s) => { delete s.NotesForCertification; },
+    (s) => { s.notesForCertification = 'Duplicate'; },
+    (s) => { s.NotesForCertification = 7; },
+    (s) => { delete s.Listings['en-us'].BaseListing.Description; },
+    (s) => { s.Listings['en-us'].BaseListing.description = 'Duplicate'; },
+    (s) => { s.Listings['en-us'].BaseListing.Description = ['Preserved']; },
+    (s) => { s.Listings['EN-US'] = structuredClone(s.Listings['en-us']); },
+    (s) => { s.Listings = { 'EN-US': s.Listings['en-us'] }; },
+    (s) => { s.Listings['en-us'].PlatformOverrides = { Windows81: { Description: 'Override' } }; },
+    (s) => { s.Listings['en-us'].platformOverrides = { Windows81: { description: 'Override' } }; },
+    (s) => { s.Listings['en-us'].PlatformOverrides = {}; s.Listings['en-us'].platformOverrides = {}; },
+    (s) => { s.Listings['en-us'].PlatformOverrides = { Windows81: null }; },
+  ]) {
+    const target = base();
+    mutate(target);
+    assert.throws(() => validateStoreListingTarget(target, listing(), nextVersion),
+      /submission|listing|Listings|override/);
+  }
+  for (const overrides of [null, {}, { Windows81: { Description: '' } }, { Windows81: { Description: null } },
+    { Windows81: { ReleaseNotes: 'Other platform notes' } }]) {
+    const target = base();
+    target.Listings['en-us'].PlatformOverrides = overrides;
+    assert.deepEqual(validateStoreListingTarget(target, listing(), nextVersion), listing());
+  }
+  const missing = base();
+  delete missing.NotesForCertification;
+  assert.equal(validateStoreListingTarget(missing, null, nextVersion), null);
+});
+
+test('release notes reject a locale that also appears under another casing', () => {
+  for (const listings of [
+    { 'en-us': { BaseListing: { ReleaseNotes: '' } }, 'EN-US': { BaseListing: { ReleaseNotes: '' } } },
+    { 'EN-US': { BaseListing: { ReleaseNotes: '' } } },
+  ]) {
+    assert.throws(
+      () => validateReleaseNotesTarget(submission({ Listings: listings }), notes(), nextVersion),
+      /exactly once/,
+    );
+  }
+});
 test('Store notes are version-bound in both workflow paths using the tested production publisher', () => {
   for (const name of ['Validate Partner Center without mutation', 'Submit one Store update']) {
     assert.match(step(name), /-ReleaseNotesPath '\.\/docs\/releases\/\$\{\{ steps\.release\.outputs\.app_version \}\}-store\.json'/);
+    assert.match(step(name), /-StoreListingPath '\.\/docs\/releases\/\$\{\{ steps\.release\.outputs\.app_version \}\}-microsoft-store-listing\.json'/);
   }
   assert.match(apiScript, /& node \(Join-Path \$PSScriptRoot 'store-release\.mjs'\)/);
-  assert.match(apiScript, /\$Mode \$ProductId \$BundlePath \$ExpectedVersion \$ReleaseNotesPath \$archivePath/);
+  assert.match(apiScript, /\$Mode \$ProductId \$BundlePath \$ExpectedVersion \$ReleaseNotesPath \$archivePath \$StoreListingPath/);
   assert.match(workflow, /test\/store-publisher\.test\.js/);
 });
 

@@ -369,6 +369,15 @@ test('configuration loader binds real git tag, checkout, ancestor, version and a
     assert.equal(loaded.actualSourceSha, commit);
     assert.equal(loaded.bundleName, config.bundleName);
     assert.deepEqual(loaded.notes, config.notes);
+    assert.equal(loaded.listing, null);
+    const listingFile = join(source, 'docs', 'releases', '3.1.0-microsoft-store-listing.json');
+    const listing = { version: '3.1.0', locale: 'en-us', description: 'Fixture description.',
+      notesForCertification: 'Fixture tester notes.' };
+    writeFileSync(listingFile, JSON.stringify(listing));
+    assert.deepEqual(loadConfiguration(env).listing, listing);
+    writeFileSync(listingFile, '{');
+    assert.throws(() => loadConfiguration(env), /valid JSON/);
+    rmSync(listingFile);
     assert.throws(() => loadConfiguration({ ...env, SOURCE_SHA: '--help' }));
     assert.throws(() => loadConfiguration({ ...env, RELEASE_TAG: '../unsafe' }));
     assert.throws(() => loadConfiguration({ ...env, READ_UPLOADED_BUNDLE: 'maybe' }));

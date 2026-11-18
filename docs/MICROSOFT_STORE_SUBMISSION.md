@@ -460,8 +460,10 @@ Submit.
 
 In Partner Center, remove the existing About screenshot before submitting 4.3.0. The owner
 chooses and separately approves how the approved listing and certification notes are coordinated
-with the package; the protected Store updater does not change listing text, images or
-certification notes.
+with the package; the protected Store updater used for 4.3.0 did not change listing text, images or
+certification notes. It now sets the English long description and the certification notes only
+from an approved file, as [Future Store updates](#future-store-updates) describes, and still never
+changes images.
 
 ### Historical 2.0.2 replacement
 
@@ -538,6 +540,20 @@ version. It builds the release tag once, inspects and WACK-tests that exact bund
 again, creates one draft through Microsoft's submission API, and captures its submission ID. It
 uploads the bundle archive, sets immediate publication with gradual rollout off, verifies that exact
 draft, and commits the same ID once.
+
+The draft also takes the listing's English long description and the certification notes for
+Microsoft's testers when the release tag holds the owner-approved file
+`docs/releases/<version>-microsoft-store-listing.json`. It holds exactly `version`, `locale`,
+`description` and `notesForCertification`; the version must equal the package version and the
+locale must be `en-us`. Each text must be trimmed, contain no control character except a line
+break, and fit its limit: 10,000 characters for the description and 2,000 for the certification
+notes. Text over a limit stops the workflow before any Store request rather than being shortened.
+The workflow also stops before changing anything if the published submission does not hold exactly
+one English listing, holds a platform-specific description that would override it, or lacks the
+certification notes field. The draft is read back and must hold both texts exactly before it is
+committed, and every other listing and certification field is kept as published. When the file is
+absent, the live description and certification notes stay exactly as they are. The workflow's
+outcome reports the SHA-256 of the approved texts, or `not-requested` when there is no file.
 
 Immediate publication means Microsoft publishes the update automatically after certification. It
 does not bypass certification or make workflow completion mean the update is already visible. The

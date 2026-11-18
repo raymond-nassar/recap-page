@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { commitStoreUpdate, runCommitOnly, loadCommitConfiguration } from '../scripts/commit-store-update.mjs';
-import { prepareApiDraft } from '../scripts/check-store-release.mjs';
+import { prepareApiDraft, storeListingSha256 } from '../scripts/check-store-release.mjs';
 import { sha256 } from '../scripts/store-readback.mjs';
 import { archive, payload, bundleName } from './support/store-zip.mjs';
 
@@ -162,6 +162,42 @@ test('commit-only local binding and explicit approval blockers send no requests'
   }
 });
 
+function withListing(f, { pendingHoldsText = true } = {}) {
+  const listing = { version: '3.1.0', locale: 'en-us', description: 'Fixture description.\nSecond line.',
+    notesForCertification: 'Fixture tester notes.' };
+  f.config.listing = listing;
+  f.published.notesForCertification = 'PRIVATE_EARLIER_NOTES';
+  f.pending.notesForCertification = pendingHoldsText ? listing.notesForCertification : 'PRIVATE_EARLIER_NOTES';
+  if (pendingHoldsText) f.pending.listings['en-us'].baseListing.description = listing.description;
+  return listing;
+}
+
+test('commit-only binds approved description and certification notes and proves them before and after commit', async () => {
+  const f = fixture();
+  const listing = withListing(f);
+  const result = await f.run();
+  assert.equal(result.state, 'certification');
+  assert.equal(result.intent, 'verified');
+  assert.equal(result.listingSha256, storeListingSha256(listing));
+  assert.ok(result.checks.some((entry) => entry.checkId === 'PENDING_LISTING_TEXT' && entry.result === 'pass'));
+  assert.deepEqual(f.mutations(), [{ url: `${f.draftUrl}/commit`, method: 'POST' }]);
+  assert.equal(fixture().config.listing, undefined);
+  assert.equal((await fixture().run()).listingSha256, 'not-requested');
+});
+
+test('commit-only stops without mutation when the pending draft lacks the approved text or the text is invalid', async () => {
+  const stale = fixture();
+  withListing(stale, { pendingHoldsText: false });
+  const result = await stale.run();
+  assert.equal(result.state, 'failed');
+  assert.equal(result.commitAttempted, false);
+  assert.deepEqual(stale.mutations(), []);
+  assert.ok(result.checks.some((entry) => entry.checkId === 'PENDING_LISTING_TEXT' && entry.result === 'fail'));
+  const invalid = fixture();
+  withListing(invalid).description = ' untrimmed';
+  assert.equal((await invalid.run()).state, 'failed');
+  assert.equal(invalid.calls.length, 0);
+});
 test('current metadata blockers preserve ID and stop without any Store mutation', async () => {
   for (const mutate of [
     (f) => { f.app.id = 'wrong'; },

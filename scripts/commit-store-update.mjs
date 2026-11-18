@@ -1,7 +1,7 @@
 import { appendFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 import { apiFields, verifyPreservedIntent, validateCommitResponse } from './check-store-release.mjs';
-import { configurationChecks, loadConfiguration, runDiagnosis } from './diagnose-store-readback.mjs';
+import { configurationChecks, listingBinding, loadConfiguration, runDiagnosis } from './diagnose-store-readback.mjs';
 import { checkResult, currentReadbackChecks, statusObservation } from './store-readback.mjs';
 import { observeUploadedBundle } from './store-upload-readback.mjs';
 import { formatOutcome, observeCommittedSubmission } from './store-release.mjs';
@@ -66,7 +66,7 @@ export async function commitStoreUpdate(config, {
     const { productId, pendingId, publishedId, bundleName, version, credentials } = config;
     Object.assign(outcome, { submissionId: pendingId, publishedId, releaseTag: config.releaseTag,
       sourceSha: config.sourceSha, toolingSha: config.toolingSha, version, bundleName,
-      notesSha256: config.notesSha256, bundleSha256: config.bundleSha256,
+      notesSha256: config.notesSha256, listingSha256: listingBinding(config), bundleSha256: config.bundleSha256,
       approvedCurrentZipSha256: config.currentZipSha256 });
     check('PROTECTED_CREDENTIALS', () => {
       for (const key of ['tenantId', 'clientId', 'clientSecret']) {
