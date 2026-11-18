@@ -127,10 +127,13 @@ test('950 MU selection freezes only approved positive unlinked comics and refuse
   const all = muInputFrom([...items, items[0]], links, ['recorded-unlimited', 'unknown-unlimited'], asOf);
   assert.deepEqual(all.issueIds, [4, 5, 6, 7, 10441], 'sorted, unique, no stand-ins or viewer-linked comics');
   assert.match(buildMuModule(approved, items, links), /10441/);
+  assert.deepEqual(muInputFrom(items, links, ['recorded-unlimited'], asOf, [10441]).issueIds, []);
   assert.throws(() => muInputFrom(items, links, ['unreviewed'], asOf), /Unknown/);
   for (const issueIds of [[-8], [12459], [999], [4], [10441, 10441], [7, 4], ['10441'], [1234567890]]) {
     assert.throws(() => buildMuModule({ ...approved, issueIds }, items, links), /Refusing/, JSON.stringify(issueIds));
   }
+  assert.throws(() => buildMuModule({ ...approved, excludedIssueIds: [10441] }, items, links), /excluded/);
+  assert.throws(() => buildMuModule({ ...approved, issueIds: [] }, items, links), /do not match/);
   assert.throws(() => buildMuModule({ ...approved, status: 'awaiting-owner-handcheck' }, items, links), /pending/);
   assert.throws(() => buildMuModule({ ...approved, approvedGroups: ['unreviewed'] }, items, links), /group/);
 });
@@ -141,6 +144,9 @@ test('950 the bundled MU set is current, frozen to its approval record and never
   assert.equal(readFileSync(MU_MODULE_PATH, 'utf8').replace(/\r\n/g, '\n'),
     buildMuModule(approval, catalogComics(), input.links));
   assert.deepEqual(marvelComicsAppMuIssueIds, approval.issueIds);
+  assert.equal(approval.issueIds.length, 6043);
+  assert.deepEqual(approval.excludedIssueIds, [11185]);
+  assert.equal(appLinkFor(11185), null);
   for (const id of approval.issueIds) {
     assert.equal(appViewerFor(id), null);
     assert.equal(appLinkFor(String(id)), appMuIssuesUrl(id));

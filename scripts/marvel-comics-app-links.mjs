@@ -238,15 +238,23 @@ export function catalogComics() {
 
 // The input freezes the owner's approved population. A later catalog addition does not inherit
 // approval merely because its number could be inserted into the same address.
-export function muInputFrom(items, viewerLinks, approvedGroups, asOf) {
+function approvedMuIds(items, viewerLinks, approvedGroups, asOf, excludedIssueIds = []) {
+  const viewers = new Set(viewerLinks.map((link) => link.issueId));
+  const excluded = new Set(excludedIssueIds);
+  return [...new Set(items.filter((item) => Number.isInteger(item.issueId)
+    && /^[1-9]\d{0,8}$/.test(String(item.issueId)) && !viewers.has(item.issueId)
+    && !excluded.has(item.issueId)
+    && approvedGroups.includes(muIssueGroup(item, asOf))).map((item) => item.issueId))].sort((a, b) => a - b);
+}
+
+export function muInputFrom(items, viewerLinks, approvedGroups, asOf, excludedIssueIds = []) {
   if (!Array.isArray(approvedGroups) || approvedGroups.some((group) => !MU_GROUPS.includes(group))) {
     throw new Error('Unknown Marvel Unlimited hand-check group');
   }
-  const viewers = new Set(viewerLinks.map((link) => link.issueId));
-  const ids = new Set(items.filter((item) => Number.isInteger(item.issueId)
-    && /^[1-9]\d{0,8}$/.test(String(item.issueId)) && !viewers.has(item.issueId)
-    && approvedGroups.includes(muIssueGroup(item, asOf))).map((item) => item.issueId));
-  return { status: 'owner-approved', asOf, approvedGroups, issueIds: [...ids].sort((a, b) => a - b) };
+  return {
+    status: 'owner-approved', asOf, approvedGroups, excludedIssueIds,
+    issueIds: approvedMuIds(items, viewerLinks, approvedGroups, asOf, excludedIssueIds),
+  };
 }
 
 export function buildMuModule(input, items, viewerLinks) {
@@ -256,11 +264,23 @@ export function buildMuModule(input, items, viewerLinks) {
     || !Array.isArray(input?.approvedGroups) || !Array.isArray(input?.issueIds)) fail('invalid approval record');
   if (input.approvedGroups.some((group) => !MU_GROUPS.includes(group))
     || new Set(input.approvedGroups).size !== input.approvedGroups.length) fail('unknown or repeated group');
-  if (input.status === 'awaiting-owner-handcheck' && (input.approvedGroups.length || input.issueIds.length)) {
+  const excludedIssueIds = input.excludedIssueIds ?? [];
+  if (!Array.isArray(excludedIssueIds)) fail('invalid exclusions');
+  if (input.status === 'awaiting-owner-handcheck'
+    && (input.approvedGroups.length || input.issueIds.length || excludedIssueIds.length)) {
     fail('pending approval must contain no groups or numbers');
   }
   const comics = new Map(items.map((item) => [item.issueId, item]));
   const viewers = new Set(viewerLinks.map((link) => link.issueId));
+  let previousExcluded = 0;
+  for (const id of excludedIssueIds) {
+    const item = comics.get(id);
+    if (!Number.isInteger(id) || !/^[1-9]\d{0,8}$/.test(String(id)) || id <= previousExcluded
+      || !item || viewers.has(id) || !input.approvedGroups.includes(muIssueGroup(item, input.asOf))) {
+      fail(`invalid exclusion ${id}`);
+    }
+    previousExcluded = id;
+  }
   let previous = 0;
   for (const id of input.issueIds) {
     if (!Number.isInteger(id) || !/^[1-9]\d{0,8}$/.test(String(id)) || id <= previous) {
@@ -270,7 +290,14 @@ export function buildMuModule(input, items, viewerLinks) {
     if (!item || viewers.has(id) || !input.approvedGroups.includes(muIssueGroup(item, input.asOf))) {
       fail(`comic ${id} is not in an approved unlinked group`);
     }
+    if (excludedIssueIds.includes(id)) fail(`comic ${id} is excluded`);
     previous = id;
+  }
+  if (input.status === 'owner-approved') {
+    const expected = approvedMuIds(items, viewerLinks, input.approvedGroups, input.asOf, excludedIssueIds);
+    if (expected.length !== input.issueIds.length || expected.some((id, i) => id !== input.issueIds[i])) {
+      fail('issue numbers do not match the approved groups and exclusions');
+    }
   }
   const lines = [];
   for (let i = 0; i < input.issueIds.length; i += 16) lines.push(`  ${input.issueIds.slice(i, i + 16).join(',')},`);

@@ -476,19 +476,25 @@ async function recordNote(page, t, facts) {
 }
 
 export async function linkedReadingOptions(page, t, { listId, sourceIssueId }) {
+  // Once the MU-number route was approved, every comic of the Android reading list gained an app
+  // link, so the unlinked row is a negative stand-in, which can never carry one.
+  const unlinkedId = -950950;
   await localClock(page);
-  await page.evaluate(({ listId, sourceIssueId }) => {
+  await page.evaluate(({ listId, sourceIssueId, unlinkedId }) => {
     const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
     state.issues[12459] = {
       ...state.issues[sourceIssueId], issueId: 12459, title: 'Linked browser fixture',
       digitalId: 700001, url: 'https://www.marvel.com/comics/issue/12459/fixture',
     };
-    state.lists[listId].itemIds = [12459, ...state.lists[listId].itemIds.filter((id) => id !== 12459)];
+    state.issues[unlinkedId] = { ...state.issues[sourceIssueId], issueId: unlinkedId, title: 'Unlinked browser fixture' };
+    state.lists[listId].itemIds = [12459, unlinkedId,
+      ...state.lists[listId].itemIds.filter((id) => id !== 12459 && id !== unlinkedId)];
     delete state.read[12459];
+    delete state.read[unlinkedId];
     localStorage.setItem('mrt.state.v2', JSON.stringify(state));
-  }, { listId, sourceIssueId });
+  }, { listId, sourceIssueId, unlinkedId });
   await page.reload({ waitUntil: 'load' });
-  await listReadingOptions(page, t, { listId, sourceIssueId });
+  await listReadingOptions(page, t, { listId, sourceIssueId: unlinkedId });
   await route(page, '#/issue/12459', '#issue-focus-card:not([hidden])');
   await page.waitForFunction(() => document.querySelector('#issue-focus-h').textContent === 'Linked browser fixture');
   const saved = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));

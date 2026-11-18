@@ -4098,10 +4098,19 @@ The example was New Mutants (1983) #98: Marvel issue number 10441 opens through
 number, not the number in either an issues address or a viewer address.
 
 The owner approved a separate follow-up after the viewer-link change, subject to
-a stratified hand-check. The approved population is **pending**: the committed
-approval record has no groups or issue numbers, and its generated module is empty.
-No new comic uses this route until the owner's results determine the approved set.
-Negative stand-ins cannot supply a Marvel issue number and are always excluded.
+a stratified hand-check. On 18 November 2026 the owner checked 30 addresses.
+All 12 comics without useful Marvel Unlimited data opened correctly. Among 12
+comics recorded on Marvel Unlimited, 10 opened correctly, one was left blank,
+and Sub-Mariner Comics (1941) #10, issue 11185, opened the app's home page. All
+six already-linked comparison rows opened the same comic as their viewer links;
+the viewer links opened directly in the reading screen.
+
+The owner then decided to add both groups, accepting that some comics recorded
+on Marvel Unlimited may open the app's home page. The coordinator excluded issue
+11185 alone because that result is known. The approval adds 6,043 positive,
+unlinked issue numbers: 2,189 from the Marvel Unlimited group and 3,854 from the
+other group. With 13,143 viewer links, 19,186 comics have a Marvel Comics app
+link. Negative stand-ins cannot supply a Marvel issue number and are always excluded.
 
 The generator reads the local catalog and freezes approved positive, unlinked
 issue numbers in `scripts/data/marvel-comics-app-links/mu-issues.json`. It checks
