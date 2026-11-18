@@ -31,7 +31,7 @@ Do not turn these routes into one universal command sequence:
 | Google Play testing or promotion | [Protected Google Play publication](../../../docs/GOOGLE_PLAY_PUBLISHING.md). `docs/RELEASING.md:206-216`; `docs/GOOGLE_PLAY_PUBLISHING.md:1-20` `docs/GOOGLE_PLAY_PUBLISHING.md:244-342` |
 | iOS build allocation, TestFlight export, or upload | [iOS release contract](../../../docs/RELEASING.md#ios-allocation-and-exact-artifact-contract) and [TestFlight procedure](../../../docs/IOS.md#signing-and-internal-testflight). `docs/RELEASING.md:274-301`; `docs/IOS.md:475-484` `docs/IOS.md:516-548` |
 | Windows portable or MSIX proof | [Windows package proof](../../../docs/MICROSOFT_STORE.md#build-controlled-proof-packages). `docs/MICROSOFT_STORE.md:281-340` |
-| Microsoft Store handoff, submission, or live review | [Store submission handoff](../../../docs/MICROSOFT_STORE_SUBMISSION.md#final-upload-handoff) and [live-review stop points](../../../docs/MICROSOFT_STORE_SUBMISSION.md#live-review-stop-points). `docs/MICROSOFT_STORE_SUBMISSION.md:457-493` `docs/MICROSOFT_STORE_SUBMISSION.md:495-517`; `docs/RELEASING.md:191-199` |
+| Microsoft Store handoff, submission, or live review | [Store submission handoff](../../../docs/MICROSOFT_STORE_SUBMISSION.md#final-upload-handoff) and [live-review stop points](../../../docs/MICROSOFT_STORE_SUBMISSION.md#live-review-stop-points). `docs/MICROSOFT_STORE_SUBMISSION.md:461-497` `docs/MICROSOFT_STORE_SUBMISSION.md:499-521`; `docs/RELEASING.md:191-199` |
 
 Preserve each platform's independent version or artifact ledger, exact-artifact checks, channel,
 and protected approval boundary. A successful build, artifact, upload, or request does not prove
@@ -50,7 +50,7 @@ After an uncertain release, upload, submission, or other mutation, inspect the a
 external state before taking another action. Never retry by guess.
 `docs/RELEASING.md:99-102` `docs/RELEASING.md:325-331`
 `docs/IOS.md:536-540` `docs/GOOGLE_PLAY_PUBLISHING.md:238`
-`docs/MICROSOFT_STORE_SUBMISSION.md:564-566`
+`docs/MICROSOFT_STORE_SUBMISSION.md:568-570`
 
 ## Completion
 

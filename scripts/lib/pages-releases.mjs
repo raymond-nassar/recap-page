@@ -78,6 +78,18 @@ export const PLATFORM_LABELS = new Map([
     'Fixed OneDrive checks and restores that failed when Microsoft forwarded downloads through more than one address, and improved how large complete backups fit on iPhone and iPad.',
     'OneDrive forwarding: Windows, Android, iPhone and iPad. Complete restore capacity: iPhone and iPad.',
   ],
+  [
+    'When a restore runs out of storage, the app now tries to bring your earlier data back. On iPhone and iPad, restoring a large reading backup needs less room.',
+    'Every platform. Less room for large restores: iPhone and iPad.',
+  ],
+  [
+    'If cloud backup pauses because it finds too many devices or a backup it cannot read, you can review what it found and confirm before backups resume.',
+    'Cloud backup: Windows, Android, iPhone and iPad.',
+  ],
+  [
+    'On Windows, Recap Page can open in its own window when installed as an app in Edge or Chrome. The Microsoft Store version can also be ready when you sign in if you turn that on. Your saved progress stays where it is.',
+    'Windows only.',
+  ],
 ]);
 
 const PLATFORM_BOUND = /\b(?:Windows|Android|iPhone|iPad|iOS|macOS|Mac|Edge|Chrome|Safari|Firefox|OneDrive|Google Drive|iCloud|Microsoft|Google Play|App Store|TestFlight|offline|install\w*|cloud)\b/i;

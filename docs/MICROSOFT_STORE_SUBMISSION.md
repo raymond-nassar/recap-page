@@ -216,7 +216,11 @@ The next heading retains the reviewed packet's label; its field text is approved
 
 ### What's new in this version: proposed exact field
 
-Back up automatically to your own OneDrive, or keep everything in one backup file. Mark a whole list read at once, with Undo. Explore the new Professor X spotlight and reading path. Marvel Unlimited reading ends December 7, 2026, and Read then opens the Marvel Comics website.
+- The 'Read' button can open links for the Marvel Comics app by WEBTOON when they are available. Reading options shows other choices for some comics.
+- Update saved lists, keeping progress. Find lists with library book links.
+- New Nightcrawler and Avengers: Armageddon lists; updated X-Men and Hickman orders.
+- Windows: use an Edge or Chrome app window. You can have the Store app ready at sign-in.
+- Review paused cloud backups; recover from some failed restores. Universes is under construction.
 
 ### Availability guidance
 
