@@ -14,6 +14,13 @@ which predates Genres and still shows Storylines. No upload step is part of this
 the desktop set planned for Play and the cloud fixture are recorded in
 [the Store submission document](MICROSOFT_STORE_SUBMISSION.md#listing-assets).
 
+The current 4.7.0 phone packet was captured from
+`c9e77da5d695e8e38296fb08a90e8f11083e450d`, with `sourceDirty: false`.
+Its manifest records dimensions, bytes and SHA-256 for every image. The owner approved the image
+bytes and the updated descriptions on November 18, 2026. Capture-time publication flags remain
+unset; this image approval does not authorize an upload or establish native-device acceptance.
+The project home's feature graphic already has the current wordmark and remains unchanged.
+
 ## Generate an unapproved preview packet
 
 Use Node.js 20 or newer, installed Microsoft Edge and externally installed `puppeteer-core`.
@@ -64,7 +71,7 @@ The [capture command](../scripts/capture-play-assets.mjs) prepares the
 [Android generated shell](../scripts/prepare-android.mjs) in a temporary directory. It renders the
 real entry module and mobile stylesheet in **desktop Edge** at a 360 x 640 CSS-pixel touch/mobile
 viewport, scale 3. No native Android device or bridge is used. These are not physical-device
-captures, release acceptance or approved final Play screenshots. Filenames and the manifest state
+captures or release acceptance. Filenames and the manifest state
 that distinction; keep the manifest with the images. The library is captured from the top. The light
 reading view is scrolled to its next-issue card, and the dark one to the progress and Coming up
 rows that a phone shows below that card, without changing layout or hiding controls.
