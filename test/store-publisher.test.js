@@ -258,7 +258,11 @@ test('approved description and certification notes stop before commit when the d
   for (const mutate of [
     (d) => { d.listings['en-us'].baseListing.description = 'Private listing'; },
     (d) => { d.listings['en-us'].baseListing.description = `${approvedListing.description}\n`; },
-    (d) => { d.listings['en-us'].baseListing.description = approvedListing.description.replace('\n', '\r\n'); },
+    (d) => {
+      const crlf = approvedListing.description.replaceAll('\n', '\r\n');
+      assert.notEqual(crlf, approvedListing.description);
+      d.listings['en-us'].baseListing.description = crlf;
+    },
     (d) => { d.notesForCertification = 'Private tester notes'; },
     (d) => { delete d.notesForCertification; },
   ]) {

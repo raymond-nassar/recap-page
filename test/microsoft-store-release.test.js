@@ -418,8 +418,11 @@ test('approved listing text read-back rejects any difference from the approved t
     'submission-id', notes(), nextVersion, listing());
   for (const [mutate, message] of [
     [(d) => { d.Listings['en-us'].BaseListing.Description = 'Preserved'; }, /description does not match/],
-    [(d) => { d.Listings['en-us'].BaseListing.Description = listing().description.replace('\n', '\r\n'); },
-      /description does not match/],
+    [(d) => {
+      const crlf = listing().description.replaceAll('\n', '\r\n');
+      assert.notEqual(crlf, listing().description);
+      d.Listings['en-us'].BaseListing.Description = crlf;
+    }, /description does not match/],
     [(d) => { d.NotesForCertification = ''; }, /certification notes do not match/],
     [(d) => { d.NotesForCertification = null; }, /certification notes do not match/],
     [(d) => { delete d.NotesForCertification; }, /NotesForCertification/],
