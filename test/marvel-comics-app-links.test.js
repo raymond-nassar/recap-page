@@ -2,10 +2,12 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import {
-  buildModule, excludedPage, INPUT_PATH, inputFrom, MODULE_PATH, selectLinks, validateInput,
+  buildModule, buildMuModule, catalogComics, excludedPage, INPUT_PATH, inputFrom, MODULE_PATH,
+  MU_INPUT_PATH, MU_MODULE_PATH, muInputFrom, selectLinks, validateInput,
 } from '../scripts/marvel-comics-app-links.mjs';
-import { appViewerFor } from '../src/js/lib/marvelComicsApp.js';
-import { appViewerUrl, viewerNumber } from '../src/js/lib/marvelComicsAppUrl.js';
+import { appLinkFor, appViewerFor } from '../src/js/lib/marvelComicsApp.js';
+import { appLaunchUrl, appMuIssuesUrl, appViewerUrl, viewerNumber } from '../src/js/lib/marvelComicsAppUrl.js';
+import { marvelComicsAppMuIssueIds } from '../src/data/marvelComicsAppMuIssues.js';
 
 // Rows written for this project in the shape of the offline match file; no site markup is used.
 const page = (slug) => `https://comicbookreadingorders.com/marvel/events/${slug}/`;
@@ -91,4 +93,64 @@ test('950 viewer numbers only ever rebuild the published link shape', () => {
     assert.equal(appViewerUrl(value), null, String(value));
     assert.equal(viewerNumber(value), null, String(value));
   }
+});
+
+test('950 MU addresses use only a checked issue number and cannot change the comic in the launch query', () => {
+  const expected = 'https://www.marvelcomicsapp.com/mu/issues/10441';
+  assert.equal(appMuIssuesUrl(10441), expected);
+  assert.equal(appMuIssuesUrl('10441'), expected);
+  for (const value of [0, -5, '012', '1234567890', '12a', '', null, undefined, {}, '12/', '%31']) {
+    assert.equal(appMuIssuesUrl(value), null, String(value));
+  }
+  assert.equal(appLaunchUrl(new URLSearchParams('m=10441&i=10441')), expected);
+  assert.equal(appLaunchUrl(new URLSearchParams('a=18255&m=10441&i=10441')), viewer(18255));
+  for (const query of ['m=10441', 'm=10441&i=42', 'm=10441&m=10441&i=10441',
+    'm=10441&i=10441&i=42', 'm=012&i=012', 'm=0&i=0']) {
+    assert.equal(appLaunchUrl(new URLSearchParams(query)), null, query);
+  }
+});
+
+test('950 MU selection freezes only approved positive unlinked comics and refuses other inputs', () => {
+  const items = [
+    { issueId: 10441, mu: '2008-04-30', digitalId: 10002 },
+    { issueId: 4, mu: null, digitalId: null },
+    { issueId: 5, mu: '1963-03-01', digitalId: 5 },
+    { issueId: 6, mu: '2026-12-01', digitalId: 6 },
+    { issueId: 7, mu: '2020-01-01', digitalId: null },
+    { issueId: -8, mu: '2020-01-01', digitalId: 8 },
+    { issueId: 12459, mu: '2020-01-01', digitalId: 9 },
+  ];
+  const links = [{ issueId: 12459, viewer: 18255 }];
+  const asOf = '2026-11-18';
+  const approved = muInputFrom(items, links, ['recorded-unlimited'], asOf);
+  assert.deepEqual(approved.issueIds, [10441]);
+  const all = muInputFrom([...items, items[0]], links, ['recorded-unlimited', 'unknown-unlimited'], asOf);
+  assert.deepEqual(all.issueIds, [4, 5, 6, 7, 10441], 'sorted, unique, no stand-ins or viewer-linked comics');
+  assert.match(buildMuModule(approved, items, links), /10441/);
+  assert.deepEqual(muInputFrom(items, links, ['recorded-unlimited'], asOf, [10441]).issueIds, []);
+  assert.throws(() => muInputFrom(items, links, ['unreviewed'], asOf), /Unknown/);
+  for (const issueIds of [[-8], [12459], [999], [4], [10441, 10441], [7, 4], ['10441'], [1234567890]]) {
+    assert.throws(() => buildMuModule({ ...approved, issueIds }, items, links), /Refusing/, JSON.stringify(issueIds));
+  }
+  assert.throws(() => buildMuModule({ ...approved, excludedIssueIds: [10441] }, items, links), /excluded/);
+  assert.throws(() => buildMuModule({ ...approved, issueIds: [] }, items, links), /do not match/);
+  assert.throws(() => buildMuModule({ ...approved, status: 'awaiting-owner-handcheck' }, items, links), /pending/);
+  assert.throws(() => buildMuModule({ ...approved, approvedGroups: ['unreviewed'] }, items, links), /group/);
+});
+
+test('950 the bundled MU set is current, frozen to its approval record and never replaces viewer links', () => {
+  const approval = JSON.parse(readFileSync(MU_INPUT_PATH, 'utf8'));
+  const input = JSON.parse(readFileSync(INPUT_PATH, 'utf8'));
+  assert.equal(readFileSync(MU_MODULE_PATH, 'utf8').replace(/\r\n/g, '\n'),
+    buildMuModule(approval, catalogComics(), input.links));
+  assert.deepEqual(marvelComicsAppMuIssueIds, approval.issueIds);
+  assert.equal(approval.issueIds.length, 6043);
+  assert.deepEqual(approval.excludedIssueIds, [11185]);
+  assert.equal(appLinkFor(11185), null);
+  for (const id of approval.issueIds) {
+    assert.equal(appViewerFor(id), null);
+    assert.equal(appLinkFor(String(id)), appMuIssuesUrl(id));
+  }
+  for (const link of input.links) assert.equal(appLinkFor(link.issueId), viewer(link.viewer));
+  for (const id of [-1001, 999999999, '010441', undefined, {}]) assert.equal(appLinkFor(id), null);
 });

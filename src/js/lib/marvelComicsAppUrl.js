@@ -1,4 +1,4 @@
-// The one Marvel Comics app address Recap Page builds (#950). Kept apart from the link table so the
+// The fixed Marvel Comics app addresses Recap Page builds (#950). Apart from the link table so the
 // launcher page can check a number from its query without loading every link. The Android
 // navigation policy accepts exactly this shape and nothing near it.
 export const MARVEL_COMICS_APP_VIEWER = 'https://www.marvelcomicsapp.com/viewer/';
@@ -15,4 +15,17 @@ export function viewerNumber(value) {
 export function appViewerUrl(value) {
   const n = viewerNumber(value);
   return n ? `${MARVEL_COMICS_APP_VIEWER}${n}` : null;
+}
+
+export function appMuIssuesUrl(value) {
+  const n = viewerNumber(value);
+  return n ? `https://www.marvelcomicsapp.com/mu/issues/${n}` : null;
+}
+
+export function appLaunchUrl(query) {
+  const viewer = query.getAll('a').length === 1 ? appViewerUrl(query.get('a')) : null;
+  if (viewer) return viewer;
+  if (query.getAll('m').length !== 1 || query.getAll('i').length !== 1
+    || query.get('m') !== query.get('i')) return null;
+  return appMuIssuesUrl(query.get('m'));
 }

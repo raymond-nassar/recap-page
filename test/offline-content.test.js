@@ -217,7 +217,8 @@ test('Universe modules are required, verified and served offline without admitti
 
 test('collected-edition modules survive selected-list offline preparation and worker fallback', async () => {
   const world = makeWorld();
-  const files = ['/data/collectedEditionCatalog.js', '/data/collectedEditionEvidence.js', '/data/marvelComicsAppLinks.js'];
+  const files = ['/data/collectedEditionCatalog.js', '/data/collectedEditionEvidence.js', '/data/marvelComicsAppLinks.js',
+    '/data/marvelComicsAppMuIssues.js'];
   const entries = world.scope.performance.getEntriesByType();
   world.scope.performance.getEntriesByType = () => [...entries, ...files.map((file) => ({ name: `${ORIGIN}${file}` }))];
   for (const file of files) world.scope.bodies.set(`${ORIGIN}${file}`, ['export const fixture = {};', 'text/javascript']);

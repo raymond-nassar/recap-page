@@ -22,7 +22,7 @@ import {
 } from '../lib/model.js';
 import { availability, describe, localDayString, RECORD_HEADING, RECORD_NOTE, STATE } from '../lib/availability.js';
 import { readerAction, readerName } from '../lib/readerDestination.js';
-import { appViewerFor } from '../lib/marvelComicsApp.js';
+import { appLinkFor, appViewerFor } from '../lib/marvelComicsApp.js';
 import { savedReaderIssue } from '../lib/temporaryReaderLink.js';
 import { labelledName } from '../lib/accname.js';
 import { isPlainNavigation } from '../lib/route.js';
@@ -799,7 +799,7 @@ export function createReadingView({
     const reader = issue ? readerPresentation(issue, 'saved') : { launchable: false, temporary: false };
     const button = $('#btn-hero-read');
     button.hidden = !issue || isCompleted(getState(), activeListId()) || !reader.launchable;
-    const app = Boolean(issue && appViewerFor(issue.issueId));
+    const app = Boolean(issue && appLinkFor(issue.issueId));
     button.textContent = readerAction(new Date(), { app });
     button.setAttribute('aria-label', issue ? readerName(issue.title, new Date(), { app })
       : labelledName(readerAction(), ''));
@@ -840,7 +840,7 @@ export function createReadingView({
         const year = ymd(item.onSale).slice(0, 4);
         const label = [short, year].filter(Boolean).join(' ');
         const reader = readerPresentation(item, 'saved');
-        const app = Boolean(appViewerFor(item.issueId));
+        const app = Boolean(appLinkFor(item.issueId));
         const readName = readerName(label, new Date(), { app });
         const context = { kind: 'list', id };
 
@@ -1161,7 +1161,7 @@ export function createReadingView({
       text: 'More actions', dataset: { key: item.issueId, act: 'more' },
     });
     const reader = readerPresentation(item, 'saved');
-    const app = Boolean(appViewerFor(item.issueId));
+    const app = Boolean(appLinkFor(item.issueId));
     const choices = readingChoices(item, ownList(listId)?.catalogId ?? null, { launchable: reader.launchable, app });
     let options = null;
     let optionsRoot = null;

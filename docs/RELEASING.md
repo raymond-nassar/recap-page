@@ -232,7 +232,7 @@ reads the store's actual state before and after it changes anything.
 | Public action | Workflow | Approval | Text it reads |
 |---|---|---|---|
 | Google Play production | [`google-play-production.yml`](GOOGLE_PLAY_PUBLISHING.md#production-promotion-workflow) | `google-play-production` | `docs/releases/<version>-store.json`, 500-character notes; optional `docs/releases/<version>-store-descriptions.json`, 4,000-character `googlePlay` description |
-| App Store review submission | [`app-store-release.yml`](IOS.md#submit-through-the-workflow) | `app-store-release` | `docs/releases/<version>-store.json`, 4,000-character notes; optional `docs/releases/<version>-store-descriptions.json`, 4,000-character `appStore` description |
+| App Store review submission | [`app-store-release.yml`](IOS.md#submit-through-the-workflow) | `app-store-release` | `docs/releases/<version>-store.json`, 4,000-character notes; optional `docs/releases/<version>-store-descriptions.json`, 4,000-character `appStore` description; optional `docs/releases/<version>-app-store-review-notes.json`, App Review notes within 4,000 UTF-8 bytes |
 | GitHub release | [`github-release.yml`](MAINTAINING.md#4-create-the-release-from-the-merged-commit) | `github-release` | The version's reader summary in `CHANGELOG.md` and a link to the full changelog |
 
 The production Play credential must be a separate service account bound only to its environment, so

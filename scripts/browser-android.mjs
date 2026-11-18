@@ -15,6 +15,7 @@ import { LIST_HISTORY_FORMAT, LIST_HISTORY_KEY } from '../src/js/lib/listHistory
 import { SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE } from '../src/js/lib/saveEducation.js';
 import { issuePresentation } from '../src/js/lib/issueFocus.js';
 import { linkedReadingOptions, manualLinkFeedback } from './browser-marvel-interim.mjs';
+import { appLinkFor } from '../src/js/lib/marvelComicsApp.js';
 import { homeUpdatesContent } from '../src/js/lib/homeUpdatesContent.js';
 import { HOME_UPDATES_SEEN_KEY } from '../src/js/lib/homeUpdatesSeen.js';
 import { availableHomeCategories, catalogEntries, groupCatalog, HOME_CATEGORIES, publishingAgeGroups } from '../src/js/lib/catalog.js';
@@ -2223,8 +2224,12 @@ async function readingEvidence(page, profile, id = profile.id) {
     `${id}: measured text/control containment ${JSON.stringify({ clipped: result.clipped, overlaps: result.overlaps })}`);
   // Reading List options moved below the card in #1250; the comic's six controls remain inside it.
   // M05 loads a summary, which before #1061 also brought a Hide button.
+  // Before December 7 a comic with an app link also offers Marvel Unlimited, so the hero adds its
+  // Reading options disclosure; every comic of this list gained a link with the MU-number route.
+  const heroOptions = appLinkFor(readingIssue.issueId) && Date.now() < new Date(2026, 11, 7).getTime()
+    ? ['#btn-hero-reading-options'] : [];
   check(JSON.stringify(result.controls.map(({ selector }) => selector)) === JSON.stringify([
-    '#btn-hero-read', '#btn-hero-done', '#btn-hero-inspect', '#hero-more-actions > summary',
+    '#btn-hero-read', '#btn-hero-done', ...heroOptions, '#btn-hero-inspect', '#hero-more-actions > summary',
     '#btn-hero-defer', '#btn-hero-info',
   ])
     && result.controls.every(({ box }) => box.width >= 48 && box.height >= (profile.desktop ? 44 : 48)),
