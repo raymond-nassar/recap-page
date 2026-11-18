@@ -2369,9 +2369,9 @@
     "fp": "e967f1f041a97dc5",
     "head": "self.addEventListener('fetch', (event) => {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|where-a-reader-s-data-lives|src/sw.js:77-171|0": {
-    "anchor": "src/sw.js:77-171",
-    "fp": "1f763642512b2d2b",
+  "docs/ARCHITECTURE_REFERENCE.md|where-a-reader-s-data-lives|src/sw.js:77-172|0": {
+    "anchor": "src/sw.js:77-172",
+    "fp": "29f996350c416cd0",
     "head": "async function networkThenCache(event) {"
   },
   "docs/archive/PRODUCT_BACKLOG.md|1-functional-suitability|package.json:10|0": {
