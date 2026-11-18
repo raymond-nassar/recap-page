@@ -1619,8 +1619,8 @@
     "fp": "09cad2e2a247e2db",
     "head": "Never rerun either mode or dispatch it twice for the same number. Even failed or uncertain"
   },
-  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/MICROSOFT_STORE_SUBMISSION.md:564-566|0": {
-    "anchor": "docs/MICROSOFT_STORE_SUBMISSION.md:564-566",
+  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/MICROSOFT_STORE_SUBMISSION.md:568-570|0": {
+    "anchor": "docs/MICROSOFT_STORE_SUBMISSION.md:568-570",
     "fp": "b0a4750ea6767f95",
     "head": "If any failure occurs at or after draft upload, do not rerun the workflow. Inspect Partner Center"
   },
@@ -1689,13 +1689,13 @@
     "fp": "db1889f906600a13",
     "head": "## iOS allocation and exact-artifact contract"
   },
-  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#microsoft-store-handoff-submission-or-live-revie|docs/MICROSOFT_STORE_SUBMISSION.md:457-493|0": {
-    "anchor": "docs/MICROSOFT_STORE_SUBMISSION.md:457-493",
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#microsoft-store-handoff-submission-or-live-revie|docs/MICROSOFT_STORE_SUBMISSION.md:461-497|0": {
+    "anchor": "docs/MICROSOFT_STORE_SUBMISSION.md:461-497",
     "fp": "2e0a754231df713e",
     "head": "## Final upload handoff"
   },
-  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#microsoft-store-handoff-submission-or-live-revie|docs/MICROSOFT_STORE_SUBMISSION.md:495-517|0": {
-    "anchor": "docs/MICROSOFT_STORE_SUBMISSION.md:495-517",
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#microsoft-store-handoff-submission-or-live-revie|docs/MICROSOFT_STORE_SUBMISSION.md:499-521|0": {
+    "anchor": "docs/MICROSOFT_STORE_SUBMISSION.md:499-521",
     "fp": "69ee19f753078b7e",
     "head": "## Live-review stop points"
   },
@@ -6084,13 +6084,13 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:5809-5820|0": {
-    "anchor": "CHANGELOG.md:5809-5820",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:5862-5873|0": {
+    "anchor": "CHANGELOG.md:5862-5873",
     "fp": "7ebb6ef43a1f1241",
     "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:5822-5832|0": {
-    "anchor": "CHANGELOG.md:5822-5832",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:5875-5885|0": {
+    "anchor": "CHANGELOG.md:5875-5885",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },
