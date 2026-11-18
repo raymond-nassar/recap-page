@@ -212,6 +212,7 @@ export function createReadingView({
     const disclosure = $('#order-desc');
     const description = $('#order-desc-text');
     const source = $('#order-source');
+    const appCredit = $('#order-app-link-credit');
     const visit = $('#order-visit');
     const showVisit = (button) => {
       visit.replaceChildren(...(button ? [button] : []));
@@ -220,6 +221,12 @@ export function createReadingView({
     const changed = aboutListId !== list?.id || aboutCatalogId !== list?.catalogId;
     description.textContent = list?.description || '';
     description.hidden = !list?.description;
+    const hasAppCredit = Boolean(list?.itemIds?.some((issueId) => appViewerFor(issueId)));
+    if (hasAppCredit && !appCredit.firstChild) appCredit.replaceChildren(marvelComicsAppCredit(el));
+    const creditHadFocus = !hasAppCredit && appCredit.contains(document.activeElement);
+    if (!hasAppCredit && appCredit.firstChild) {
+      appCredit.replaceChildren();
+    }
     if (changed) {
       aboutListId = list?.id ?? null;
       aboutCatalogId = list?.catalogId ?? null;
@@ -231,7 +238,12 @@ export function createReadingView({
     }
     if (typeof open === 'boolean') disclosure.open = open;
     else if (changed || arrival) disclosure.open = true;
-    disclosure.hidden = !list?.description && !aboutHasSource;
+    disclosure.hidden = !list?.description && !aboutHasSource && !hasAppCredit;
+    if (creditHadFocus) {
+      const target = disclosure.hidden ? $('#order-name') : disclosure.querySelector('summary');
+      if (disclosure.hidden) target.setAttribute('tabindex', '-1');
+      target.focus({ preventScroll: true });
+    }
     if (!list?.catalogId || !loadCatalog || (!changed && !arrival)) return;
     if (aboutRequest?.pending) return;
 
@@ -273,7 +285,8 @@ export function createReadingView({
       source.replaceChildren(...content);
       showVisit(visitButton(el, entry, createIcon));
       aboutHasSource = content.length > 0;
-      disclosure.hidden = !getState().lists[list.id]?.description && !aboutHasSource;
+      disclosure.hidden = !getState().lists[list.id]?.description && !aboutHasSource
+        && !getState().lists[list.id]?.itemIds?.some((issueId) => appViewerFor(issueId));
       // Retry asked for the source, so focus lands on the button that now leads to it.
       if (held) visit.querySelector('a').focus();
     }
@@ -887,14 +900,6 @@ export function createReadingView({
           rowCache.set('gcd-credit', { node: el('li', { class: 'edition-attribution' }, [gcdDetailsCredit(el)]) });
         }
         desired.push(rowCache.get('gcd-credit').node);
-      }
-      if (items.some((item) => appViewerFor(item.issueId))) {
-        if (!rowCache.has('app-link-credit')) {
-          rowCache.set('app-link-credit', {
-            node: el('li', { class: 'edition-attribution' }, [marvelComicsAppCredit(el)]),
-          });
-        }
-        desired.push(rowCache.get('app-link-credit').node);
       }
       const hiddenGaps = linksOnly ? all.filter((item) => !linked.has(item.issueId)).length : 0;
       linksHidden = hiddenGaps;

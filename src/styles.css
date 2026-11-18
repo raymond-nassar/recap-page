@@ -2404,7 +2404,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .collected-editions { margin-top: var(--space-1); font-size: var(--t-caption); color: var(--muted); }
 .collected-edition { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2); overflow-wrap: anywhere; }
 .collected-edition a { display: inline-flex; align-items: center; min-height: var(--target); }
-.edition-credit { font-size: var(--t-caption); color: var(--muted); overflow-wrap: anywhere; margin: var(--space-2) 0; }
+.edition-credit, .app-link-credit { font-size: var(--t-caption); color: var(--muted); overflow-wrap: anywhere; margin: var(--space-2) 0; }
 .edition-attribution { list-style: none; }
 .preview-foot { display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; border-top: var(--stroke-1) solid var(--line); padding-top: var(--space-6); }
 .preview-foot .btn { min-height: var(--target); scroll-margin: var(--space-3); }

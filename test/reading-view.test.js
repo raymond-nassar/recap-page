@@ -88,6 +88,7 @@ function node(props = {}, children = []) {
     name: props.name,
     open: props.open ?? false,
     parentNode: null,
+    get firstChild() { return this.childNodes[0] ?? null; },
     get nextElementSibling() {
       if (!this.parentNode) return null;
       const siblings = this.parentNode.childNodes;
@@ -321,6 +322,7 @@ function harness(overrides = {}) {
     orderDesc: node({ id: 'order-desc', open: true }),
     orderDescText: node({ id: 'order-desc-text' }),
     orderSource: node({ id: 'order-source' }),
+    orderAppLinkCredit: node({ id: 'order-app-link-credit' }),
     orderVisit: node({ id: 'order-visit', hidden: true }),
     listNote: node({ id: 'list-note' }),
     similarHint: node({ id: 'list-similar-hint' }),
@@ -426,6 +428,7 @@ function harness(overrides = {}) {
     ['#order-desc', nodes.orderDesc],
     ['#order-desc-text', nodes.orderDescText],
     ['#order-source', nodes.orderSource],
+    ['#order-app-link-credit', nodes.orderAppLinkCredit],
     ['#order-visit', nodes.orderVisit],
     ['#list-note', nodes.listNote],
     ['#list-similar-hint', nodes.similarHint],
@@ -700,6 +703,33 @@ test('About ignores inherited list records', () => {
     h.view.enterAbout();
     assert.equal(h.nodes.orderDesc.hidden, true);
     assert.equal(h.nodes.orderDescText.textContent, '');
+  } finally { h.restore(); }
+});
+
+test('app link credit follows the whole saved list and retains focus across redraws', () => {
+  let state = createEmptyState();
+  state = createList(state, { id: 'linked', name: 'Linked' });
+  state = createList(state, { id: 'unlinked', name: 'Unlinked' });
+  state = addIssuesToList(state, 'linked', [issue(12459, 'Linked comic')]).state;
+  state = addIssuesToList(state, 'unlinked', [issue(7, 'Unlinked comic')]).state;
+  state = setActive(state, 'linked');
+  const h = harness({ state, fullOpen: false });
+  try {
+    const saved = JSON.stringify(h.state());
+    h.view.render();
+    assert.equal(h.nodes.orderDesc.hidden, false);
+    const link = h.nodes.orderAppLinkCredit.querySelector('a');
+    assert.equal(link.href, 'https://comicbookreadingorders.com/marvel/event-timeline/');
+    link.focus();
+    h.view.render();
+    assert.equal(h.nodes.orderAppLinkCredit.querySelector('a'), link);
+    assert.equal(globalThis.document.activeElement, link);
+    assert.equal(JSON.stringify(h.state()), saved);
+    h.setActive('unlinked');
+    h.view.render();
+    assert.equal(h.nodes.orderAppLinkCredit.childNodes.length, 0);
+    assert.equal(h.nodes.orderDesc.hidden, true);
+    assert.equal(globalThis.document.activeElement, h.nodes.orderName);
   } finally { h.restore(); }
 });
 

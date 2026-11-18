@@ -9,7 +9,7 @@ source can be reviewed alongside the prose.
 ## The three entry points
 
 The desktop source has three pages at one origin, each loading one module: the tracker at
-`src/index.html:1694`, the reader launch tab at `src/open.html:24`, and the development-only fault
+`src/index.html:1697`, the reader launch tab at `src/open.html:24`, and the development-only fault
 harness at `src/dev-faults.html:137`.
 
 The tracker entry calls `boot()`, then wires optional installation and the Store app's question
@@ -280,7 +280,7 @@ sequenceDiagram
     end
 ```
 
-**The transform is pure; the Store writes.** The shared read action at `src/js/views/reading.js:1242-1260` passes
+**The transform is pure; the Store writes.** The shared read action at `src/js/views/reading.js:1247-1265` passes
 a function to the Store. That transform returns new state without side effects at
 `src/js/lib/model.js:788-790`. The write, result, and notification are handled together at
 `src/js/storage.js:795-822`.
@@ -296,7 +296,7 @@ The UI restores the row and shows a notice rather than making an unsaved change 
 offered only after the mark is saved. The next Done, a change of view, and ten seconds
 (`DONE_RESULT_MS`) without the pointer on the message or keyboard focus in it each retire it. The
 offer records the view it was made in, the list's membership and deferral arrays by reference, the
-comic's read timestamp and the list's queue, at `src/js/views/reading.js:1580-1594`. The first
+comic's read timestamp and the list's queue, at `src/js/views/reading.js:1585-1599`. The first
 repaint that changes any of them withdraws it, as does a switch of list, completion, blocked storage
 or another tab's save, while a rename or a note keeps it. Undo checks the same record inside its own
 transaction, so a change that arrives without a repaint is refused rather than written over. Nothing
@@ -311,7 +311,7 @@ synchronization. Catalog and generated publishing panels render when their route
 the reading view, each row is compared against a cache key built from the whole item and its node is
 reused when nothing changed, while the full order is skipped entirely when its container is closed.
 Focus is captured before a rebuild and restored by identity afterwards, at
-`src/js/views/reading.js:840`, which is what keeps the keyboard where the reader left it. The row list is
+`src/js/views/reading.js:853`, which is what keeps the keyboard where the reader left it. The row list is
 committed by moving nodes rather than replacing the container, at
 `src/js/views/reading.js:47-55`.
 

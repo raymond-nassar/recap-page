@@ -14,6 +14,7 @@ import { KEY } from '../src/js/storage.js';
 import { LIST_HISTORY_FORMAT, LIST_HISTORY_KEY } from '../src/js/lib/listHistory.js';
 import { SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE } from '../src/js/lib/saveEducation.js';
 import { issuePresentation } from '../src/js/lib/issueFocus.js';
+import { linkedReadingOptions } from './browser-marvel-interim.mjs';
 import { homeUpdatesContent } from '../src/js/lib/homeUpdatesContent.js';
 import { HOME_UPDATES_SEEN_KEY } from '../src/js/lib/homeUpdatesSeen.js';
 import { availableHomeCategories, catalogEntries, groupCatalog, HOME_CATEGORIES, publishingAgeGroups } from '../src/js/lib/catalog.js';
@@ -2542,7 +2543,11 @@ async function readingCompositionCheck(page, profile) {
     return;
   }
   const result = await readingEvidence(page, profile);
-  if (readingCase === 'M01') return;
+  if (readingCase === 'M01') {
+    await linkedReadingOptions(page, { check: (name, ok) => check(ok, `M01: ${name}`) },
+      { listId: READING_LIST, sourceIssueId: readingIssue.issueId });
+    return;
+  }
   if (!profile.desktop) await readingAccessibility(page, result, profile.id);
   if (profile.id === 'M05') {
     check(await page.evaluate(() => !document.querySelector('#btn-hero-description')), 'M05: #1061 no reveal control');

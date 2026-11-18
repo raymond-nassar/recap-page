@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { createEmptyState, createList, addIssuesToList, exportBackup, migrate } from '../src/js/lib/model.js';
 import { editionEvidence } from '../src/js/lib/collectedEditions.js';
+import { appViewerFor } from '../src/js/lib/marvelComicsApp.js';
 
 const catalog = JSON.parse(readFileSync(new URL('../src/data/catalog.json', import.meta.url), 'utf8'));
 const ids = ['civil-war-essential', 'civil-war', 'civil-war-avengers', 'nebula-reading-order', 'avengers-doomsday-secret-wars', 'realm-of-kings',
@@ -370,6 +371,7 @@ export const collectedEditions = {
 
     for (const list of lists) {
       const expected = editionEvidence.relations.filter((relation) => relation.catalogId === list.id);
+      const hasAppCredit = orders[list.file].items.some((item) => appViewerFor(item.issueId));
       const civilWarVariant = ['civil-war-essential', 'civil-war'].includes(list.id);
       await page.goto(`${page.__origin}/#/preview/${list.id}`, { waitUntil: 'load' });
       await page.waitForSelector('#preview[open] .preview-list li');
@@ -427,10 +429,20 @@ export const collectedEditions = {
       }
       t.check(`${list.id}: Preview shows credit exactly when relations are displayed`,
         await page.$$eval('#preview .edition-credit', (nodes) => nodes.length) === (expected.length ? 1 : 0));
+      t.check(`${list.id}: Preview credits app links in About this list`,
+        await page.$$eval('#preview-source .app-link-credit', (nodes, expectedCredit) =>
+          nodes.length === (expectedCredit ? 1 : 0) && nodes.every((node) =>
+            node.querySelector('a')?.href === 'https://comicbookreadingorders.com/marvel/event-timeline/'),
+        hasAppCredit));
       await page.keyboard.press('Escape');
       await page.evaluate((id) => { location.hash = `#/read/edition-${id}`; }, list.id);
       await page.waitForSelector('#view-read:not([hidden])');
       await page.waitForFunction((name) => document.querySelector('#order-name').textContent === name, {}, list.name);
+      t.check(`${list.id}: saved list credits app links outside the full order`,
+        await page.$$eval('#order-app-link-credit .app-link-credit', (nodes, expectedCredit) =>
+          nodes.length === (expectedCredit ? 1 : 0) && nodes.every((node) =>
+            node.querySelector('a')?.href === 'https://comicbookreadingorders.com/marvel/event-timeline/'
+              && !!node.closest('#order-desc')), hasAppCredit));
       await page.evaluate(() => { document.querySelector('#full').open = true; });
       await page.waitForFunction((count) => document.querySelectorAll('#rows .row').length === count,
         {}, state.lists[`edition-${list.id}`].itemIds.length);

@@ -421,7 +421,10 @@ export function createPreviewView({
       const credit = order.items.some((item) => editionRelations(list.id, item).length)
         ? [collectedEditionCredit(el)] : [];
       if (hasGcdDetails(order.items)) credit.push(gcdDetailsCredit(el));
-      if (order.items.some((item) => appViewerFor(item.issueId))) credit.push(marvelComicsAppCredit(el));
+      if (order.items.some((item) => appViewerFor(item.issueId))) {
+        nodes.source.append(marvelComicsAppCredit(el));
+        if (nodes.about) nodes.about.hidden = false;
+      }
       nodes.body.replaceChildren(...notice, ...credit, el('ol', { class: 'preview-list' }, rows));
     } catch (error) {
       if (loadToken !== token) return;

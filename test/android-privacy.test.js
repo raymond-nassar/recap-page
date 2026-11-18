@@ -69,6 +69,13 @@ test('web privacy explains which Read route applies to linked and unlinked comic
   assert.doesNotMatch(text, /no longer contacts Bifrost/);
 });
 
+test('About explains app links and the fallback on web and Android', () => {
+  for (const html of [desktop, generated]) {
+    const text = prose(html);
+    assert.ok(text.includes('When a comic has a Marvel Comics app link, Read opens it in the Marvel Comics app. For other comics, before that date Read uses the web reader when a link is recorded, with your own subscription. From that date, Read opens the general Marvel Comics website for those comics, not a single-comic link.'));
+  }
+});
+
 // Cloud backup on Android (#810, P03-T03): the sentences the replacement writes come in the shared off and
 // on variants, so a build with cloud backup does not say nothing is uploaded, and the card's privacy
 // paragraph names this device rather than a Windows account.
