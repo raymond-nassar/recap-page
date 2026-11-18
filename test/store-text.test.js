@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { approvedStoreText, textLength, STORE_LIMITS, StoreTextError } from '../scripts/lib/store-text.mjs';
 import { approvedDescriptions, approvedDescriptionsAt } from '../scripts/lib/store-descriptions.mjs';
+import { approvedReviewNotes, approvedReviewNotesAt } from '../scripts/lib/app-store-review-notes.mjs';
 
 const file = (text, version = '4.6.0') => JSON.stringify({ locale: 'en-us', text, version });
 
@@ -61,4 +62,32 @@ test('only an absent tree entry means no description change', () => {
   assert.throws(() => approvedDescriptionsAt({ revision: 'abc', version: '../bad', git: () => '' }), StoreTextError);
   assert.throws(() => approvedDescriptionsAt({ revision: 'abc', version: '4.6.0',
     git: () => { throw new Error('Fake unreadable revision'); } }), /Fake unreadable revision/);
+});
+
+test('App Review notes need exactly version and notes, and stop over 4,000 UTF-8 bytes', () => {
+  const value = { version: '4.6.0', notes: 'Fake reviewer note.\nSecond fake line.' };
+  const result = approvedReviewNotes(JSON.stringify(value), '4.6.0');
+  assert.equal(result.notes, value.notes);
+  assert.equal(result.path, 'docs/releases/4.6.0-app-store-review-notes.json');
+  assert.equal(approvedReviewNotes(JSON.stringify({ ...value, notes: 'x'.repeat(4000) }), '4.6.0').bytes, 4000);
+  // 1,334 three-byte characters are 4,002 bytes but only 1,334 characters, so only a byte count stops them.
+  for (const bad of [{ ...value, locale: 'en-us' }, { notes: value.notes }, { ...value, version: '4.5.0' },
+    { ...value, notes: '' }, { ...value, notes: ' padded' }, { ...value, notes: 'bad\rtext' }, { ...value, notes: '\ud800' },
+    { ...value, notes: 'x'.repeat(4001) }, { ...value, notes: '\u20ac'.repeat(1334) }, [value]]) {
+    assert.throws(() => approvedReviewNotes(JSON.stringify(bad), '4.6.0'), StoreTextError);
+  }
+  assert.throws(() => approvedReviewNotes('{', '4.6.0'), StoreTextError);
+});
+
+test('only an absent tree entry means no App Review notes change', () => {
+  const value = JSON.stringify({ version: '4.6.0', notes: 'Fake reviewer note.' });
+  const path = 'docs/releases/4.6.0-app-store-review-notes.json';
+  const calls = [];
+  const git = (...args) => { calls.push(args); return args[0] === 'ls-tree' ? path : value; };
+  assert.equal(approvedReviewNotesAt({ revision: 'abc', version: '4.6.0', git }).notes, 'Fake reviewer note.');
+  assert.deepEqual(calls, [['ls-tree', '--name-only', 'abc', '--', path], ['show', `abc:${path}`]]);
+  assert.equal(approvedReviewNotesAt({ revision: 'abc', version: '4.6.0', git: () => '' }), null);
+  assert.throws(() => approvedReviewNotesAt({ revision: 'abc', version: '4.6.0', git: () => 'unexpected' }),
+    StoreTextError);
+  assert.throws(() => approvedReviewNotesAt({ revision: 'abc', version: '../bad', git: () => '' }), StoreTextError);
 });

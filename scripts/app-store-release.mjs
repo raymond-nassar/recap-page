@@ -12,6 +12,9 @@ import {
 } from './lib/store-text.mjs';
 import { approvedText } from './check-store-release.mjs';
 import { approvedDescriptionsAt, DESCRIPTION_LIMIT, markdownFence } from './lib/store-descriptions.mjs';
+import {
+  approvedReviewNotesAt, validReviewNotes, reviewNotesBytes, REVIEW_NOTES_LIMIT_BYTES,
+} from './lib/app-store-review-notes.mjs';
 
 export const ENVIRONMENT = 'app-store-release';
 export const WORKFLOW = '.github/workflows/app-store-release.yml';
@@ -245,15 +248,24 @@ export async function transact(spec, { fetchImpl = globalThis.fetch, token, reco
     try { approvedText(spec.description, DESCRIPTION_LIMIT, 'App Store description'); }
     catch { throw new AppStoreError('APPROVED_DESCRIPTION_REQUIRED'); }
   }
+  if (spec.reviewNotes !== null) {
+    try { validReviewNotes(spec.reviewNotes); }
+    catch { throw new AppStoreError('APPROVED_REVIEW_NOTES_REQUIRED'); }
+  }
+  const notes = spec.reviewNotes;
   demand(typeof token === 'string' && /^[\w-]+\.[\w-]+\.[\w-]+$/.test(token), 'ASC_TOKEN_REQUIRED');
   const text = spec.whatsNew;
   const receipt = {
     schemaVersion: 1, mode, bundleId: BUNDLE_ID, version: spec.version, buildNumber: spec.buildNumber,
     releaseType: RELEASE_TYPE, locale: APPLE_LOCALE, whatsNewSha256: digest(text), whatsNewLength: textLength(text),
     descriptionSha256: spec.description === null ? 'not-requested' : digest(spec.description),
+    // Review details can hold the sign-in account Apple's reviewers use, so the receipt records
+    // only the approved notes' hash and size; no live review-detail value is ever copied into it.
+    reviewNotesSha256: notes === null ? 'not-requested' : digest(notes),
+    reviewNotesBytes: notes === null ? null : reviewNotesBytes(notes), reviewNotesIdentical: null,
     stage: 'ready', state: 'running', mutationAttempted: false, httpStatus: null,
-    ids: { app: null, build: null, appStoreVersion: null, localization: null, reviewSubmission: null,
-      reviewSubmissionItem: null },
+    ids: { app: null, build: null, appStoreVersion: null, localization: null, reviewDetail: null,
+      reviewSubmission: null, reviewSubmissionItem: null },
     before: { appStoreVersion: null, buildId: null, whatsNew: null, description: null, openSubmissions: null },
     whatsNewDifference: null, descriptionDifference: null, planned: [], after: null,
   };
@@ -268,9 +280,9 @@ export async function transact(spec, { fetchImpl = globalThis.fetch, token, reco
     return body;
   }
   // A write that Apple acknowledged but whose answer cannot be verified leaves the outcome unknown.
-  async function change(stage, method, path, payload, check = () => {}) {
+  async function change(stage, method, path, payload, check = () => {}, plannedBody = payload) {
     if (mode === 'Inspect') {
-      receipt.planned.push({ stage, method, path, body: payload ?? null });
+      receipt.planned.push({ stage, method, path, body: plannedBody ?? null });
       return null;
     }
     const result = await request(stage, method, path, payload);
@@ -432,6 +444,38 @@ export async function transact(spec, { fetchImpl = globalThis.fetch, token, reco
       }
     }
 
+    // Set and read back before the review submission exists, so Apple reviews the approved notes.
+    // A version without review details stops: they are never created here, and no earlier
+    // version's contact or sign-in details are copied in.
+    if (notes !== null) {
+      const notesBody = (id) => ({ data: { type: 'appStoreReviewDetails', id, attributes: { notes } } });
+      const plannedNotes = (id) => ({ data: { type: 'appStoreReviewDetails', id,
+        attributes: { notes: `<approved notes, ${receipt.reviewNotesBytes} bytes, SHA-256 ${receipt.reviewNotesSha256}>` } } });
+      if (versionId) {
+        const relation = await read('read-review-detail', `${versionPath(versionId)}/appStoreReviewDetail`);
+        demand(plainObject(relation) && plainObject(relation.data), 'REVIEW_DETAIL_REQUIRED',
+          'add the review details in App Store Connect; none are created here');
+        const detail = single(relation, 'appStoreReviewDetails');
+        const live = detail.attributes.notes;
+        demand(live === null || live === undefined || typeof live === 'string', 'INVALID_REVIEW_DETAIL');
+        receipt.ids.reviewDetail = detail.id;
+        receipt.reviewNotesIdentical = live === notes;
+        const path = `/v1/appStoreReviewDetails/${detail.id}`;
+        if (live !== notes) {
+          await change('update-review-notes', 'PATCH', path, notesBody(detail.id), () => {}, plannedNotes(detail.id));
+        }
+        if (mode === 'Submit') {
+          const readback = single(await read('readback-review-notes', path), 'appStoreReviewDetails');
+          demand(readback.id === detail.id
+            && canonical(readback.attributes) === canonical({ ...detail.attributes, notes }),
+          'REVIEW_NOTES_READBACK_MISMATCH', 'the review details are not the approved notes with every other field unchanged');
+        }
+      } else {
+        await change('update-review-notes', 'PATCH', '/v1/appStoreReviewDetails/<created-version-review-detail>',
+          notesBody('<created-version-review-detail>'), () => {}, plannedNotes('<created-version-review-detail>'));
+      }
+    }
+
     let submissionId = null;
     await change('create-review-submission', 'POST', '/v1/reviewSubmissions', { data: { type: 'reviewSubmissions',
       attributes: { platform: PLATFORM }, relationships: { app: { data: { type: 'apps', id: appId } } } } }, (body) => {
@@ -548,6 +592,14 @@ async function environmentPolicy() {
     await github(`repos/${REPOSITORY}/environments/${ENVIRONMENT}/deployment-branch-policies?per_page=100`),
     ENVIRONMENT);
 }
+// Every text Apple would receive is hashed into what the approver approves, so text changed after
+// approval, or notes added where the approval had none, fails the post-approval check.
+export function approvalBinding({ intent, entry, whatsNew, description, reviewNotes }) {
+  return { intent, entry, whatsNewSha256: digest(whatsNew),
+    descriptionSha256: description === null ? null : digest(description),
+    reviewNotesSha256: reviewNotes === null ? null : digest(reviewNotes) };
+}
+
 export async function prepare({ afterApproval = false } = {}) {
   demand(!process.env.ASC_PRIVATE_KEY && !process.env.ASC_KEY_ID && !process.env.ASC_ISSUER_ID,
     'APPLE_CREDENTIALS_BEFORE_APPROVED_OPERATION');
@@ -579,8 +631,9 @@ export async function prepare({ afterApproval = false } = {}) {
   demand(approved.locale === STORE_LOCALE, 'APPROVED_LOCALE_MISMATCH');
   const descriptions = approvedDescriptionsAt({ revision: context.workflowSha, version: intent.version, git: gitOut });
   const description = descriptions?.appStore ?? null;
-  const binding = { intent, entry, whatsNewSha256: digest(approved.text),
-    descriptionSha256: description === null ? null : digest(description) };
+  const reviewNotes = approvedReviewNotesAt({ revision: context.workflowSha, version: intent.version, git: gitOut });
+  const binding = approvalBinding({ intent, entry, whatsNew: approved.text, description,
+    reviewNotes: reviewNotes?.notes ?? null });
   const bindingSha = digest(canonical(binding));
   let policy = null;
   if (intent.mode !== 'Validate') {
@@ -600,6 +653,12 @@ export async function prepare({ afterApproval = false } = {}) {
       : [`### App Store description (${APPLE_LOCALE}), exactly as it would be sent`, '',
         `${textLength(description)} of ${DESCRIPTION_LIMIT} characters, from ${descriptions.path} at ${context.workflowSha}.`, '',
         `${markdownFence(description)}text`, description, markdownFence(description), ''];
+    const reviewNotesLines = reviewNotes === null
+      ? ['No approved App Review notes file: the notes for Apple\'s reviewers are not changed.', '']
+      : ['### App Review notes, exactly as they would be sent', '',
+        `${reviewNotes.bytes} of ${REVIEW_NOTES_LIMIT_BYTES} bytes, from ${reviewNotes.path} at ${context.workflowSha}. `
+        + 'Every other review detail is left as it is.', '',
+        `${markdownFence(reviewNotes.notes)}text`, reviewNotes.notes, markdownFence(reviewNotes.notes), ''];
     await appendFile(process.env.GITHUB_STEP_SUMMARY, [
       '## App Store review submission intent', '',
       `Mode ${intent.mode}, version ${intent.version}, sealed build ${entry.buildNumber}, source ${entry.sourceRevision}, `
@@ -608,6 +667,7 @@ export async function prepare({ afterApproval = false } = {}) {
       `${approved.length} of ${approved.limit} characters, from ${approved.path} at ${context.workflowSha}.`, '',
       `${marks}text`, approved.text, marks, '',
       ...descriptionLines,
+      ...reviewNotesLines,
       'No Apple access has occurred in this validation. Approve only this exact version, build and text.', '',
     ].join('\n'));
   }
@@ -616,7 +676,7 @@ export async function prepare({ afterApproval = false } = {}) {
       + `environment_id=${policy?.environmentId ?? ''}\npolicy_sha=${policy?.sha256 ?? ''}\n`);
   }
   console.log(`App Store intent validated: ${intent.version} build ${entry.buildNumber}; no Apple access performed.`);
-  return { intent, context, entry, approved, description, bindingSha, policy };
+  return { intent, context, entry, approved, description, reviewNotes, bindingSha, policy };
 }
 
 export function reportTextDifferences(receipt, write = console.log) {
@@ -644,7 +704,8 @@ export async function operate(command) {
   const token = ascToken(secrets);
   const receiptPath = join(await ownedWork(), 'app-store-receipt.json');
   const result = await transact({ mode, version: prepared.intent.version, buildNumber: prepared.intent.buildNumber,
-    sealedBuildNumber: prepared.entry.buildNumber, whatsNew: prepared.approved.text, description: prepared.description },
+    sealedBuildNumber: prepared.entry.buildNumber, whatsNew: prepared.approved.text, description: prepared.description,
+    reviewNotes: prepared.reviewNotes?.notes ?? null },
   { token, mode, record: (receipt) => atomicJson(receiptPath, receipt) });
   console.log(`App Store result: ${result.state}.`);
   reportTextDifferences(result);
