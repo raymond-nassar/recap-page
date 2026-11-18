@@ -17,6 +17,9 @@ param(
   [string]$ReleaseNotesPath,
 
   [Parameter(Mandatory = $true)]
+  [string]$StoreListingPath,
+
+  [Parameter(Mandatory = $true)]
   [string]$WorkDirectory
 )
 
@@ -32,7 +35,7 @@ try {
     Compress-Archive -LiteralPath $BundlePath -DestinationPath $archivePath -CompressionLevel Optimal
   }
   & node (Join-Path $PSScriptRoot 'store-release.mjs') `
-    $Mode $ProductId $BundlePath $ExpectedVersion $ReleaseNotesPath $archivePath
+    $Mode $ProductId $BundlePath $ExpectedVersion $ReleaseNotesPath $archivePath $StoreListingPath
   if ($LASTEXITCODE -ne 0) {
     throw 'Store automation stopped. Inspect the reported stage and submission; do not rerun.'
   }

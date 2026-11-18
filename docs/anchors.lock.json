@@ -1559,8 +1559,8 @@
     "fp": "6fde7f377cd6f228",
     "head": "Finish reads GitHub; it never requests a merge. It requires an actual merge event and the published"
   },
-  ".github/skills/new-reading-list/SKILL.md|preserve-the-source-while-preparing-delivery|docs/MAINTAINING.md:1895|0": {
-    "anchor": "docs/MAINTAINING.md:1895",
+  ".github/skills/new-reading-list/SKILL.md|preserve-the-source-while-preparing-delivery|docs/MAINTAINING.md:1906|0": {
+    "anchor": "docs/MAINTAINING.md:1906",
     "fp": "bc5ae9fc4df20cc3",
     "head": "## Place a new reading list in a Universe"
   },
@@ -1619,8 +1619,8 @@
     "fp": "09cad2e2a247e2db",
     "head": "Never rerun either mode or dispatch it twice for the same number. Even failed or uncertain"
   },
-  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/MICROSOFT_STORE_SUBMISSION.md:548-550|0": {
-    "anchor": "docs/MICROSOFT_STORE_SUBMISSION.md:548-550",
+  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/MICROSOFT_STORE_SUBMISSION.md:564-566|0": {
+    "anchor": "docs/MICROSOFT_STORE_SUBMISSION.md:564-566",
     "fp": "b0a4750ea6767f95",
     "head": "If any failure occurs at or after draft upload, do not rerun the workflow. Inspect Partner Center"
   },
@@ -1664,9 +1664,9 @@
     "fp": "06bff25642e95726",
     "head": "# Protected Google Play testing publication"
   },
-  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#google-play-testing-or-promotion|docs/GOOGLE_PLAY_PUBLISHING.md:244-326|0": {
-    "anchor": "docs/GOOGLE_PLAY_PUBLISHING.md:244-326",
-    "fp": "e6d9de742e23ec41",
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#google-play-testing-or-promotion|docs/GOOGLE_PLAY_PUBLISHING.md:244-342|0": {
+    "anchor": "docs/GOOGLE_PLAY_PUBLISHING.md:244-342",
+    "fp": "7a6c30b483abd6cf",
     "head": "## Normal release operations"
   },
   ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#google-play-testing-or-promotion|docs/RELEASING.md:206-216|0": {
@@ -1689,13 +1689,13 @@
     "fp": "db1889f906600a13",
     "head": "## iOS allocation and exact-artifact contract"
   },
-  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#microsoft-store-handoff-submission-or-live-revie|docs/MICROSOFT_STORE_SUBMISSION.md:457-491|0": {
-    "anchor": "docs/MICROSOFT_STORE_SUBMISSION.md:457-491",
-    "fp": "40fbeae438b9cd1d",
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#microsoft-store-handoff-submission-or-live-revie|docs/MICROSOFT_STORE_SUBMISSION.md:457-493|0": {
+    "anchor": "docs/MICROSOFT_STORE_SUBMISSION.md:457-493",
+    "fp": "2e0a754231df713e",
     "head": "## Final upload handoff"
   },
-  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#microsoft-store-handoff-submission-or-live-revie|docs/MICROSOFT_STORE_SUBMISSION.md:493-515|0": {
-    "anchor": "docs/MICROSOFT_STORE_SUBMISSION.md:493-515",
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#microsoft-store-handoff-submission-or-live-revie|docs/MICROSOFT_STORE_SUBMISSION.md:495-517|0": {
+    "anchor": "docs/MICROSOFT_STORE_SUBMISSION.md:495-517",
     "fp": "69ee19f753078b7e",
     "head": "## Live-review stop points"
   },

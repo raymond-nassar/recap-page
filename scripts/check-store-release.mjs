@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { createHash } from 'node:crypto';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { basename } from 'node:path';
 import { extname } from 'node:path';
@@ -237,28 +238,126 @@ export function validateReleaseNotes(notes, packageVersion) {
   return source;
 }
 
-function releaseNotesField(submission, locale) {
+export const STORE_LISTING_LIMITS = Object.freeze({ description: 10000, notesForCertification: 2000 });
+
+function isControl(character) {
+  const code = character.codePointAt(0);
+  return (code < 0x20 && code !== 0x0a) || (code >= 0x7f && code <= 0x9f);
+}
+
+export function approvedText(text, limit, label) {
+  // UTF-16 length never undercounts code points, so a limit check on it cannot let longer text through.
+  if (typeof text !== 'string' || !text || text !== text.trim() || !text.isWellFormed() ||
+      [...text].some(isControl)) {
+    throw new Error(`${label} must be nonempty, trimmed text with only line breaks as controls`);
+  }
+  if (text.length > limit) {
+    throw new Error(`${label} must be at most ${limit} characters`);
+  }
+}
+
+export function validateStoreListing(listing, packageVersion) {
+  const source = record(listing, 'Store listing text');
+  if (Object.keys(source).sort().join(',') !== 'description,locale,notesForCertification,version') {
+    throw new Error('Store listing text must contain only description, locale, notesForCertification and version');
+  }
+  if (typeof source.version !== 'string' || `${source.version}.0` !== packageVersion) {
+    throw new Error('Store listing text version must match the Store package version');
+  }
+  parseVersion(packageVersion);
+  if (source.locale !== 'en-us') throw new Error('Store listing text locale must be en-us');
+  approvedText(source.description, STORE_LISTING_LIMITS.description, 'Store listing description');
+  approvedText(source.notesForCertification, STORE_LISTING_LIMITS.notesForCertification,
+    'Store listing notesForCertification');
+  return source;
+}
+
+export function storeListingSha256(listing) {
+  return createHash('sha256')
+    .update(JSON.stringify([listing.description, listing.notesForCertification]), 'utf8')
+    .digest('hex');
+}
+
+export function readStoreListing(path) {
+  let text;
+  try {
+    text = readFileSync(path, 'utf8');
+  } catch (error) {
+    // Only an absent file means "no approved change"; anything else must stop the release.
+    if (error?.code === 'ENOENT') return null;
+    throw new Error('Store listing text could not be read', { cause: error });
+  }
+  let parsed;
+  try {
+    parsed = JSON.parse(text);
+  } catch (error) {
+    throw new Error('Store listing text must be valid JSON', { cause: error });
+  }
+  return record(parsed, 'Store listing text');
+}
+
+function localeListing(submission, locale) {
   const listings = requiredKey(
     record(submission, 'submission'),
     ['Listings', 'listings'],
     'submission.Listings',
   ).value;
   record(listings, 'submission.Listings');
-  if (!Object.hasOwn(listings, locale)) {
-    throw new Error(`submission.Listings must contain ${locale}`);
+  // A differently cased duplicate could be the entry the Store shows, so the target must be unambiguous.
+  const matches = Object.keys(listings).filter((key) => key.toLowerCase() === locale.toLowerCase());
+  if (matches.length !== 1 || matches[0] !== locale) {
+    throw new Error(`submission.Listings must contain ${locale} exactly once`);
   }
-  const listing = requiredKey(
-    record(listings[locale], `submission.Listings.${locale}`),
-    ['BaseListing', 'baseListing'],
-    'listing.BaseListing',
-  ).value;
-  const field = requiredKey(
-    record(listing, 'listing.BaseListing'),
-    ['ReleaseNotes', 'releaseNotes'],
-    'listing.ReleaseNotes',
-  );
+  const entry = record(listings[locale], `submission.Listings.${locale}`);
+  const base = requiredKey(entry, ['BaseListing', 'baseListing'], 'listing.BaseListing').value;
+  return { entry, base: record(base, 'listing.BaseListing') };
+}
+
+function releaseNotesField(submission, locale) {
+  const { base: listing } = localeListing(submission, locale);
+  const field = requiredKey(listing, ['ReleaseNotes', 'releaseNotes'], 'listing.ReleaseNotes');
   if (typeof field.value !== 'string') throw new Error('listing.ReleaseNotes must be a string');
   return { listing, ...field };
+}
+
+function descriptionField(submission, locale) {
+  const { entry, base: listing } = localeListing(submission, locale);
+  const field = requiredKey(listing, ['Description', 'description'], 'listing.Description', true);
+  if (field.value !== null && typeof field.value !== 'string') {
+    throw new Error('listing.Description must be a string');
+  }
+  const overrideKeys = ['PlatformOverrides', 'platformOverrides'].filter((name) => Object.hasOwn(entry, name));
+  if (overrideKeys.length > 1) throw new Error('listing.PlatformOverrides is ambiguous');
+  const overrides = overrideKeys.length ? entry[overrideKeys[0]] : null;
+  if (overrides !== null) {
+    for (const [platform, override] of Object.entries(record(overrides, 'listing.PlatformOverrides'))) {
+      const value = record(override, `listing.PlatformOverrides.${platform}`);
+      // A platform description would hide the approved one on that platform.
+      if (['Description', 'description'].some((name) => Object.hasOwn(value, name) &&
+          value[name] !== null && value[name] !== '')) {
+        throw new Error('a platform override replaces listing.Description');
+      }
+    }
+  }
+  return { listing, ...field };
+}
+
+function certificationNotesField(submission) {
+  const target = record(submission, 'submission');
+  const field = requiredKey(target, ['NotesForCertification', 'notesForCertification'],
+    'submission.NotesForCertification', true);
+  if (field.value !== null && typeof field.value !== 'string') {
+    throw new Error('submission.NotesForCertification must be a string');
+  }
+  return { target, ...field };
+}
+
+export function validateStoreListingTarget(submission, listing, packageVersion) {
+  if (listing === null) return null;
+  const source = validateStoreListing(listing, packageVersion);
+  descriptionField(submission, source.locale);
+  certificationNotesField(submission);
+  return source;
 }
 
 export function validateReleaseNotesTarget(submission, notes, packageVersion) {
@@ -267,9 +366,10 @@ export function validateReleaseNotesTarget(submission, notes, packageVersion) {
   return source;
 }
 
-export function prepareApiDraft(submission, bundleName, submissionId, notes, packageVersion) {
+export function prepareApiDraft(submission, bundleName, submissionId, notes, packageVersion, listing = null) {
   const draft = structuredClone(record(submission, 'submission'));
   const source = validateReleaseNotesTarget(draft, notes, packageVersion);
+  const approved = validateStoreListingTarget(draft, listing, packageVersion);
   validateSubmissionIdentity(draft, submissionId);
   requireFreePricing(draft, 'submission');
   const { replacedBundleName } = validateApiPackageReplacement(draft, bundleName);
@@ -305,14 +405,27 @@ export function prepareApiDraft(submission, bundleName, submissionId, notes, pac
   fields.rollout.value[fields.enabled.key] = false;
   const noteField = releaseNotesField(draft, source.locale);
   noteField.listing[noteField.key] = source.text;
+  if (approved !== null) {
+    const description = descriptionField(draft, approved.locale);
+    description.listing[description.key] = approved.description;
+    const certification = certificationNotesField(draft);
+    certification.target[certification.key] = approved.notesForCertification;
+  }
   return draft;
 }
 
-export function verifyDraft(submission, bundleName, submissionId, notes, packageVersion) {
+export function verifyDraft(submission, bundleName, submissionId, notes, packageVersion, listing = null) {
   const draft = record(submission, 'submission');
   const source = validateReleaseNotesTarget(draft, notes, packageVersion);
   if (releaseNotesField(draft, source.locale).value !== source.text) {
     throw new Error('submission release notes do not match the approved release notes');
+  }
+  const approved = validateStoreListingTarget(draft, listing, packageVersion);
+  if (approved !== null && descriptionField(draft, approved.locale).value !== approved.description) {
+    throw new Error('submission description does not match the approved description');
+  }
+  if (approved !== null && certificationNotesField(draft).value !== approved.notesForCertification) {
+    throw new Error('submission certification notes do not match the approved certification notes');
   }
   validateSubmissionIdentity(draft, submissionId);
   const packages = requiredKey(

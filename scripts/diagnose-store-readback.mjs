@@ -4,6 +4,7 @@ import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import {
   apiFields, validateReleaseEvent, validateReleaseNotes, verifyPreservedIntent,
+  validateStoreListing, storeListingSha256, readStoreListing,
 } from './check-store-release.mjs';
 import {
   sha256, kind, descriptor, checkResult, knownValue, statusObservation, packageObservation,
@@ -18,6 +19,10 @@ const SUBMISSION = /^[1-9]\d{1,30}$/;
 
 function demand(condition) {
   if (!condition) throw new Error('Contract check failed');
+}
+
+export function listingBinding(config) {
+  return (config.listing ?? null) === null ? 'not-requested' : storeListingSha256(config.listing);
 }
 
 export function configurationChecks(config) {
@@ -38,6 +43,9 @@ export function configurationChecks(config) {
     checkResult('PUBLIC_RELEASE', () => validateReleaseEvent({ action: 'published', release },
       applicationVersion, version)),
     checkResult('APPROVED_NOTES', () => validateReleaseNotes(notes, version)),
+    checkResult('APPROVED_LISTING', () => {
+      if ((config.listing ?? null) !== null) validateStoreListing(config.listing, version);
+    }),
     checkResult('NOTES_HASH', () => demand(
       typeof notesSha256 === 'string' && HASH.test(notesSha256)
       && typeof notes?.text === 'string' && sha256(notes.text) === notesSha256)),
@@ -65,7 +73,7 @@ export async function diagnoseStoreReadback(config, { fetchImpl = globalThis.fet
   const { productId, publishedId, pendingId, bundleName, version, notes, credentials } = config;
   report.bindings = { releaseTag: config.releaseTag, sourceSha: config.sourceSha, toolingSha: config.toolingSha,
     version, bundleName, bundleSha256: config.bundleSha256, notesSha256: config.notesSha256,
-    pendingId, publishedId };
+    listingSha256: listingBinding(config), pendingId, publishedId };
   const check = (id, operation) => {
     const result = checkResult(id, operation);
     report.checks.push(result);
@@ -187,6 +195,8 @@ export function loadConfiguration(env = process.env) {
     bundleSha256: env.BUNDLE_SHA256, notesSha256: env.NOTES_SHA256,
     readUploadedBundle: env.READ_UPLOADED_BUNDLE === 'true',
     notes: JSON.parse(readFileSync(resolve(source, 'docs', 'releases', `${applicationVersion}-store.json`), 'utf8')),
+    listing: readStoreListing(resolve(source, 'docs', 'releases',
+      `${applicationVersion}-microsoft-store-listing.json`)),
     release: JSON.parse(readFileSync(env.READBACK_RELEASE_FILE, 'utf8')),
     credentials: { tenantId: env.PARTNER_CENTER_TENANT_ID, clientId: env.PARTNER_CENTER_CLIENT_ID,
       clientSecret: env.PARTNER_CENTER_CLIENT_SECRET },

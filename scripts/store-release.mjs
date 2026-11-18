@@ -5,6 +5,7 @@ import { createHash } from 'node:crypto';
 import {
   apiFields, validateApplication, validateSubmissionIdentity, validatePublishedSubmission,
   validateApiPackageReplacement, validateReleaseNotes, validateReleaseNotesTarget,
+  validateStoreListing, validateStoreListingTarget, storeListingSha256, readStoreListing,
   prepareApiDraft, verifyPreservedIntent, requirePendingDraft,
   validateCommitResponse, validateSubmissionStatus,
 } from './check-store-release.mjs';
@@ -54,7 +55,7 @@ export function formatOutcome(outcome) {
       : outcome.state === 'published' ? 'Store reports Published.'
         : outcome.state === 'validated' ? 'Read-only rehearsal passed; no Store mutation was sent.'
           : 'Publication is not verified. Monitor this submission; do not rerun. Microsoft publishes after certification.';
-  return `Store release: ${outcome.state}; stage: ${outcome.stage}; submission: ${outcome.submissionId ?? 'not-known'}; status: ${outcome.status ?? 'not-observed'}; commit: ${outcome.commit}; ingested package: ${outcome.package ?? 'not-observed'}; approved notes SHA-256: ${outcome.notesSha256 ?? 'not-validated'}.\n${action}\n`
+  return `Store release: ${outcome.state}; stage: ${outcome.stage}; submission: ${outcome.submissionId ?? 'not-known'}; status: ${outcome.status ?? 'not-observed'}; commit: ${outcome.commit}; ingested package: ${outcome.package ?? 'not-observed'}; approved notes SHA-256: ${outcome.notesSha256 ?? 'not-validated'}; approved description and certification notes SHA-256: ${outcome.listingSha256 ?? 'not-validated'}.\n${action}\n`
     + `Approved notes: ${outcome.notes ?? 'not-observed'}; nonpackage intent: ${outcome.intent ?? 'not-observed'}.\n`
     + (outcome.failureCode ? `Failure code: ${outcome.failureCode}\n` : '')
     + (outcome.readback ? `${JSON.stringify(outcome.readback)}\n` : '');
@@ -151,12 +152,15 @@ export async function publishStoreUpdate(config, {
   };
   try {
     const { mode, productId, bundleName, version, notes, archive, credentials } = config;
+    const listing = config.listing ?? null;
     if (!['Validate', 'Submit'].includes(mode) || !ID.test(productId) ||
         bundleName !== `RecapPage_${version}_x64_arm64.msixbundle`) {
       throw new Error('Invalid release configuration');
     }
     validateReleaseNotes(notes, version);
     outcome.notesSha256 = createHash('sha256').update(notes.text).digest('hex');
+    if (listing !== null) validateStoreListing(listing, version);
+    outcome.listingSha256 = listing === null ? 'not-requested' : storeListingSha256(listing);
     if (mode === 'Submit' && (!Buffer.isBuffer(archive) || !archive.length)) {
       throw new Error('Missing upload archive');
     }
@@ -196,6 +200,7 @@ export async function publishStoreUpdate(config, {
     validatePublishedSubmission(published, version);
     validateApiPackageReplacement(published, bundleName);
     validateReleaseNotesTarget(published, notes, version);
+    validateStoreListingTarget(published, listing, version);
     if (mode === 'Validate') {
       outcome.state = 'validated';
       return outcome;
@@ -210,7 +215,7 @@ export async function publishStoreUpdate(config, {
     log(`Store stage=create submission=${created.id}\n`);
     requirePendingDraft(created);
     verifyPreservedIntent(created, published);
-    const prepared = prepareApiDraft(created, bundleName, created.id, notes, version);
+    const prepared = prepareApiDraft(created, bundleName, created.id, notes, version, listing);
     const uploadUrl = uploadLocation(created.fileUploadUrl, now());
     const draftUrl = `${submissions}/${encodeURIComponent(created.id)}`;
     outcome.stage = 'pre-upload';
@@ -226,7 +231,8 @@ export async function publishStoreUpdate(config, {
     outcome.stage = 'readback';
     outcome.failureCode = 'READBACK_REQUEST';
     const actual = apiFields(await request('GET', draftUrl));
-    const readback = readbackChecks(actual, prepared, { bundleName, pendingId: created.id, notes, version });
+    const readback = readbackChecks(actual, prepared,
+      { bundleName, pendingId: created.id, notes, version, listing });
     const failed = readback.checks.find((check) => check.checkId !== 'READBACK_DIFFERENCES' && check.result === 'fail');
     if (failed) {
       outcome.failureCode = failed.code;
@@ -274,11 +280,12 @@ export async function runRelease(args, env = process.env) {
     if (env.GITHUB_STEP_SUMMARY) appendFileSync(env.GITHUB_STEP_SUMMARY, text);
   };
   try {
-    const [mode, productId, bundlePath, version, notesPath, archivePath, ...extra] = args;
-    if (extra.length || !archivePath) throw new Error('Invalid arguments');
+    const [mode, productId, bundlePath, version, notesPath, archivePath, listingPath, ...extra] = args;
+    if (extra.length || !archivePath || !listingPath) throw new Error('Invalid arguments');
     result = await publishStoreUpdate({
       mode, productId, bundleName: basename(bundlePath), version,
       notes: JSON.parse(readFileSync(notesPath, 'utf8')),
+      listing: readStoreListing(listingPath),
       archive: mode === 'Submit' ? readFileSync(archivePath) : undefined,
       credentials: { tenantId: env.PARTNER_CENTER_TENANT_ID,
         clientId: env.PARTNER_CENTER_CLIENT_ID, clientSecret: env.PARTNER_CENTER_CLIENT_SECRET },

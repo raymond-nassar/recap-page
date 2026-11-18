@@ -7,7 +7,7 @@ import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { publishStoreUpdate, formatOutcome, uploadLocation, runRelease } from '../scripts/store-release.mjs';
-import { apiFields, verifyPreservedIntent } from '../scripts/check-store-release.mjs';
+import { apiFields, verifyPreservedIntent, storeListingSha256 } from '../scripts/check-store-release.mjs';
 
 const product = '9TESTPRODUCT';
 const publishedId = '1234567890123456789';
@@ -31,7 +31,7 @@ function baseline() {
     packageDeliveryOptions: { isMandatoryUpdate: false, mandatoryUpdateEffectiveDate: '1601-01-01T00:00:00Z',
       packageRollout: { isPackageRollout: false, packageRolloutPercentage: 0,
         packageRolloutStatus: 'PackageRolloutNotStarted', fallbackSubmissionId: '0' } },
-    visibility: 'Public', automaticBackupEnabled: false,
+    visibility: 'Public', automaticBackupEnabled: false, notesForCertification: 'Private tester notes',
     allowTargetFutureDeviceFamilies: { Desktop: true, Mobile: false },
   };
 }
@@ -41,6 +41,7 @@ function fixture(options = {}) {
   const calls = [];
   const reports = [];
   const source = baseline();
+  options.published?.(source);
   let draft;
   let statusIndex = 0;
   let appReads = 0;
@@ -130,7 +131,7 @@ test('production flow accepts create201 and commit202, uploads and commits exact
   assert.deepEqual(result, { state: 'processing', stage: 'status', submissionId: draftId,
     status: 'PreProcessing', commit: 'acknowledged', package: 'verified',
     notes: 'verified', intent: 'verified',
-    notesSha256: createHash('sha256').update(f.config.notes.text).digest('hex') });
+    notesSha256: createHash('sha256').update(f.config.notes.text).digest('hex'), listingSha256: 'not-requested' });
   assert.deepEqual(f.mutations(), ['POST', 'upload', 'PUT', 'commit']);
   assert.equal(f.calls.filter((call) => call.url.endsWith('/status')).length, 2);
   assert.equal(f.reports[0].state, 'acknowledged');
@@ -231,6 +232,71 @@ test('created copy drift and wrong pending identity stop before upload', async (
   }
 });
 
+const approvedListing = Object.freeze({ version: '3.1.0', locale: 'en-us',
+  description: 'Fixture description line one.\nFixture description line two.',
+  notesForCertification: 'Fixture tester notes.' });
+
+test('approved description and certification notes are set, read back exactly and bound to the outcome', async () => {
+  const f = fixture({ config: { listing: approvedListing } });
+  const result = await f.run();
+  assert.equal(result.state, 'processing');
+  assert.equal(result.intent, 'verified');
+  assert.equal(result.listingSha256, storeListingSha256(approvedListing));
+  assert.deepEqual(f.mutations(), ['POST', 'upload', 'PUT', 'commit']);
+  const sent = JSON.parse(f.calls.find((call) => call.method === 'PUT' && call.url !== sas).body);
+  assert.equal(sent.listings['en-us'].baseListing.description, approvedListing.description);
+  assert.equal(sent.notesForCertification, approvedListing.notesForCertification);
+  const expected = baseline();
+  expected.listings['en-us'].baseListing.releaseNotes = f.config.notes.text;
+  expected.listings['en-us'].baseListing.description = approvedListing.description;
+  assert.deepEqual(sent.listings, expected.listings);
+  assert.match(formatOutcome(result), new RegExp(`certification notes SHA-256: ${result.listingSha256}`));
+  assert.doesNotMatch(formatOutcome(result), /Fixture/);
+});
+
+test('approved description and certification notes stop before commit when the draft does not hold them', async () => {
+  for (const mutate of [
+    (d) => { d.listings['en-us'].baseListing.description = 'Private listing'; },
+    (d) => { d.listings['en-us'].baseListing.description = `${approvedListing.description}\n`; },
+    (d) => {
+      const crlf = approvedListing.description.replaceAll('\n', '\r\n');
+      assert.notEqual(crlf, approvedListing.description);
+      d.listings['en-us'].baseListing.description = crlf;
+    },
+    (d) => { d.notesForCertification = 'Private tester notes'; },
+    (d) => { delete d.notesForCertification; },
+  ]) {
+    const f = fixture({ config: { listing: approvedListing }, readback: mutate });
+    const result = await f.run();
+    assert.equal(result.state, 'failed');
+    assert.equal(result.failureCode, 'READBACK_DRAFT');
+    assert.deepEqual(f.mutations(), ['POST', 'upload', 'PUT']);
+  }
+});
+
+test('invalid approved text stops before any Store request and untargetable text before any mutation', async () => {
+  for (const options of [
+    { config: { listing: { ...approvedListing, version: '3.0.0' } } },
+    { config: { listing: { ...approvedListing, notesForCertification: 'x'.repeat(2001) } } },
+    { config: { listing: { ...approvedListing, locale: 'EN-US' }, mode: 'Validate', archive: undefined } },
+  ]) {
+    const f = fixture(options);
+    assert.equal((await f.run()).state, 'failed');
+    assert.equal(f.calls.length, 0);
+  }
+  for (const published of [
+    (s) => { delete s.notesForCertification; },
+    (s) => { s.listings['EN-US'] = structuredClone(s.listings['en-us']); },
+    (s) => { s.listings['en-us'].platformOverrides = { Windows81: { description: 'Private override' } }; },
+  ]) {
+    for (const mode of ['Validate', 'Submit']) {
+      const f = fixture({ published, config: { listing: approvedListing, mode,
+        archive: mode === 'Submit' ? Buffer.from('qualified ZIP fixture') : undefined } });
+      assert.equal((await f.run()).state, 'failed');
+      assert.deepEqual(f.mutations(), []);
+    }
+  }
+});
 test('production read-only rehearsal never creates, uploads, updates, commits or polls', async () => {
   const f = fixture({ config: { mode: 'Validate', archive: undefined } });
   assert.equal((await f.run()).state, 'validated');
@@ -416,6 +482,7 @@ test('publisher CLI exits nonzero for local verification blockers and zero for f
   t.after(() => rmSync(directory, { recursive: true, force: true }));
   const notes = join(directory, 'notes.json');
   const archive = join(directory, 'bundle.zip');
+  const absentListing = join(directory, 'absent-listing.json');
   const output = [];
   t.mock.method(process.stdout, 'write', (text) => { output.push(text); return true; });
   for (const [ingested, exitCode] of [
@@ -426,7 +493,7 @@ test('publisher CLI exits nonzero for local verification blockers and zero for f
     writeFileSync(notes, JSON.stringify(f.config.notes));
     writeFileSync(archive, f.config.archive);
     t.mock.method(globalThis, 'fetch', f.fetchImpl);
-    assert.equal(await runRelease(['Submit', product, bundleName, version, notes, archive], {
+    assert.equal(await runRelease(['Submit', product, bundleName, version, notes, archive, absentListing], {
       PARTNER_CENTER_TENANT_ID: 'fixture', PARTNER_CENTER_CLIENT_ID: 'PRIVATE_CLIENT',
       PARTNER_CENTER_CLIENT_SECRET: 'PRIVATE_SECRET',
     }), exitCode);
@@ -466,13 +533,32 @@ test('CLI returns failure and writes a safe actionable summary for missing or in
   t.mock.method(process.stdout, 'write', (text) => { output.push(text); return true; });
   for (const text of [undefined, 'PRIVATE malformed JSON', '{}']) {
     if (text !== undefined) writeFileSync(notes, text);
-    assert.equal(await runRelease(['Validate', product, bundleName, version, notes, 'unused'],
+    assert.equal(await runRelease(['Validate', product, bundleName, version, notes, 'unused', join(directory, 'absent.json')],
       { GITHUB_STEP_SUMMARY: summary }), 1);
   }
   assert.match(readFileSync(summary, 'utf8'), /Inspect this submission/);
   assert.doesNotMatch(output.join(''), /PRIVATE/);
 });
 
+test('CLI reads a present listing file and stops on malformed approved text before any request', async (t) => {
+  const directory = mkdtempSync(join(tmpdir(), 'recap-store-listing-cli-'));
+  t.after(() => rmSync(directory, { recursive: true, force: true }));
+  const notes = join(directory, 'notes.json');
+  const listingFile = join(directory, 'listing.json');
+  t.mock.method(process.stdout, 'write', () => true);
+  for (const [text, exitCode, requests] of [['{', 1, false], [JSON.stringify(approvedListing), 0, true]]) {
+    const f = fixture({ config: { mode: 'Validate' } });
+    writeFileSync(notes, JSON.stringify(f.config.notes));
+    writeFileSync(listingFile, text);
+    t.mock.method(globalThis, 'fetch', f.fetchImpl);
+    assert.equal(await runRelease(['Validate', product, bundleName, version, notes, 'unused', listingFile], {
+      PARTNER_CENTER_TENANT_ID: 'fixture', PARTNER_CENTER_CLIENT_ID: 'PRIVATE_CLIENT',
+      PARTNER_CENTER_CLIENT_SECRET: 'PRIVATE_SECRET',
+    }), exitCode);
+    assert.equal(f.calls.length > 0, requests);
+    assert.deepEqual(f.mutations(), []);
+  }
+});
 test('PowerShell entry point invokes the production CLI and cleans its archive after local rejection',
   { skip: process.platform !== 'win32' }, (t) => {
     const directory = mkdtempSync(join(tmpdir(), 'recap-store-wrapper-'));
@@ -485,7 +571,8 @@ test('PowerShell entry point invokes the production CLI and cleans its archive a
     const result = spawnSync('powershell.exe', ['-NoProfile', '-File',
       fileURLToPath(new URL('../scripts/publish-store-update.ps1', import.meta.url)),
       '-Mode', 'Submit', '-ProductId', product, '-BundlePath', bundle,
-      '-ExpectedVersion', version, '-ReleaseNotesPath', notes, '-WorkDirectory', directory], {
+      '-ExpectedVersion', version, '-ReleaseNotesPath', notes,
+      '-StoreListingPath', join(directory, 'absent.json'), '-WorkDirectory', directory], {
       encoding: 'utf8', timeout: 30000, env: { ...process.env, GITHUB_STEP_SUMMARY: summary,
         PARTNER_CENTER_CLIENT_ID: '', PARTNER_CENTER_CLIENT_SECRET: '', PARTNER_CENTER_TENANT_ID: '' },
     });
@@ -501,13 +588,14 @@ test('summary write failure after commit preserves the acknowledged submission a
   const f = fixture({ statuses: ['PreProcessing'] });
   const notes = join(directory, 'notes.json');
   const archive = join(directory, 'bundle.zip');
+  const absentListing = join(directory, 'absent-listing.json');
   writeFileSync(notes, JSON.stringify(f.config.notes));
   writeFileSync(archive, f.config.archive);
   const output = [];
   t.mock.method(globalThis, 'fetch', f.fetchImpl);
   t.mock.method(process.stdout, 'write', (text) => { output.push(text); return true; });
   t.mock.method(process.stderr, 'write', (text) => { output.push(text); return true; });
-  assert.equal(await runRelease(['Submit', product, bundleName, version, notes, archive], {
+  assert.equal(await runRelease(['Submit', product, bundleName, version, notes, archive, absentListing], {
     PARTNER_CENTER_TENANT_ID: 'fixture', PARTNER_CENTER_CLIENT_ID: 'PRIVATE_CLIENT',
     PARTNER_CENTER_CLIENT_SECRET: 'PRIVATE_SECRET',
     GITHUB_STEP_SUMMARY: join(directory, 'missing-directory', 'summary.txt'),

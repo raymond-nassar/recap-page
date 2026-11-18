@@ -5,6 +5,8 @@ import { fileURLToPath } from 'node:url';
 import { REPOSITORY, OFFICIAL_ID, protectionPolicy, requireApproval, CandidateError } from './android-candidate.mjs';
 import { ROOT, ANDROID_CODE_LIMIT, validateAndroidLedger, assertAppendOnlyLedger, sourceIdentity } from './lib/release-identity.mjs';
 import { approvedStoreText, StoreTextError, storeTextPath } from './lib/store-text.mjs';
+import { approvedText } from './check-store-release.mjs';
+import { approvedDescriptionsAt, descriptionsPath, DESCRIPTION_LIMIT, markdownFence } from './lib/store-descriptions.mjs';
 import {
   REPOSITORY_ID, PublisherError, digest, canonical, trackSnapshot, tracksBody, binaryList, boundedJson,
 } from './google-play-publisher.mjs';
@@ -60,12 +62,15 @@ export function desiredProduction(version, code, notes) {
   };
 }
 
-export function bindingFor({ version, reservation, notes, workflowSha }) {
+export function bindingFor({ version, reservation, notes, description, workflowSha }) {
   demand(SHA.test(workflowSha), 'WORKFLOW_SHA_REQUIRED');
+  demand(description === null || typeof description === 'string', 'APPROVED_DESCRIPTION_REQUIRED');
   return {
     schemaVersion: 1, version, versionCode: reservation.versionCode,
     sourceRevision: reservation.sourceRevision, sourceTree: reservation.sourceTree,
     bundle: reservation.artifact, notesSha256: digest(notes), notesPath: storeTextPath(version),
+    descriptionSha256: description === null ? null : digest(description),
+    descriptionPath: description === null ? null : descriptionsPath(version),
     desired: desiredProduction(version, reservation.versionCode, notes), workflowSha,
   };
 }
@@ -102,16 +107,36 @@ export function planPromotion({ tracks, bundles, reservation, notes, version }) 
   };
 }
 
-export async function transactProduction(binding, { token, fetchImpl = globalThis.fetch, record, now = Date.now, mode, notes }) {
+function listingSnapshot(body) {
+  demand(body && typeof body === 'object' && Array.isArray(body.listings) && !body.nextPageToken,
+    'INVALID_LISTINGS');
+  const listings = body.listings;
+  demand(listings.every((item) => item && typeof item === 'object' && !Array.isArray(item)
+    && typeof item.language === 'string'), 'INVALID_LISTINGS');
+  const languages = listings.map((item) => item.language.toLowerCase());
+  demand(new Set(languages).size === languages.length
+    && listings.filter((item) => item.language === 'en-US').length === 1,
+  'ONE_EN_US_LISTING_REQUIRED');
+  return [...listings].sort((a, b) => a.language.localeCompare(b.language));
+}
+
+export async function transactProduction(binding, { token, fetchImpl = globalThis.fetch, record, now = Date.now, mode, notes, description }) {
   demand(['Inspect', 'Publish'].includes(mode), 'PLAY_OPERATION_REQUIRED');
   demand(typeof record === 'function', 'DURABLE_RECEIPT_WRITER_REQUIRED');
   demand(typeof token === 'string' && token.length > 0 && !/[\r\n]/.test(token), 'ACCESS_TOKEN_REQUIRED');
+  if (description !== null) {
+    try { approvedText(description, DESCRIPTION_LIMIT, 'Google Play description'); }
+    catch { throw new PublisherError('APPROVED_DESCRIPTION_REQUIRED'); }
+  }
   demand(Number.isSafeInteger(binding.versionCode) && binding.versionCode <= ANDROID_CODE_LIMIT
-    && digest(notes) === binding.notesSha256, 'BINDING_CHANGED_BEFORE_OPERATION');
+    && digest(notes) === binding.notesSha256
+    && (description === null ? binding.descriptionSha256 === null : digest(description) === binding.descriptionSha256),
+  'BINDING_CHANGED_BEFORE_OPERATION');
   const reservation = { versionCode: binding.versionCode, artifact: binding.bundle };
   const receipt = {
     schemaVersion: 1, mode, packageName: OFFICIAL_ID, track: PRODUCTION_TRACK, version: binding.version,
     versionCode: binding.versionCode, bundleSha256: binding.bundle.sha256, notesSha256: binding.notesSha256,
+    descriptionSha256: binding.descriptionSha256,
     bindingSha256: digest(canonical(binding)), stage: 'ready', state: 'running', editId: null,
     mutationAttempted: false, commitAcknowledged: false, userAvailability: 'unverified', httpStatus: null,
   };
@@ -122,8 +147,8 @@ export async function transactProduction(binding, { token, fetchImpl = globalThi
     receipt.stage = stage;
     receipt.httpStatus = null;
     const mutation = method !== 'GET';
-    // Opening or discarding an edit changes nothing a reader can see; only these three can.
-    receipt.mutationAttempted ||= ['update-track', 'validate-edit', 'commit-edit'].includes(stage);
+    // Opening or discarding an edit changes nothing a reader can see.
+    receipt.mutationAttempted ||= ['update-track', 'update-listing', 'validate-edit', 'commit-edit'].includes(stage);
     await save();
     let response;
     try {
@@ -167,6 +192,13 @@ export async function transactProduction(binding, { token, fetchImpl = globalThi
     receipt.productionBeforeSha256 = plan.beforeSha256;
     receipt.desiredProduction = plan.desired;
     receipt.testingTracks = plan.testingTracks;
+    let expectedListings = null;
+    if (description !== null) {
+      const listings = listingSnapshot(await request('read-listings', 'GET', `${edit.url}/listings`));
+      receipt.listingBefore = listings.find((item) => item.language === 'en-US');
+      expectedListings = listings.map((item) => item.language === 'en-US'
+        ? { ...item, fullDescription: description } : item);
+    }
     receipt.stage = 'target-prepared';
     await save();
     if (mode === 'Inspect') {
@@ -184,6 +216,13 @@ export async function transactProduction(binding, { token, fetchImpl = globalThi
         const original = tracks.find((track) => track.track === actual.track);
         return original && canonical(actual) === canonical(original);
       }), 'TRACK_READBACK_MISMATCH');
+    if (expectedListings !== null) {
+      if (receipt.listingBefore.fullDescription !== description) {
+        await request('update-listing', 'PATCH', `${edit.url}/listings/en-US`, { fullDescription: description });
+      }
+      const listings = listingSnapshot(await request('readback-listings', 'GET', `${edit.url}/listings`));
+      demand(canonical(listings) === canonical(expectedListings), 'LISTING_READBACK_MISMATCH');
+    }
     const validation = await request('validate-edit', 'POST', `${edit.url}:validate`);
     demand(validation.id === edit.id, 'VALIDATION_IDENTITY_MISMATCH');
     const committed = await request('commit-edit', 'POST', `${edit.url}:commit?changesInReviewBehavior=ERROR_IF_IN_REVIEW`);
@@ -196,14 +235,21 @@ export async function transactProduction(binding, { token, fetchImpl = globalThi
     const after = tracksBody(await request('readback-committed-tracks', 'GET', `${fresh.url}/tracks`))
       .find((track) => track.track === PRODUCTION_TRACK);
     receipt.productionAfter = after || null;
+    let afterListings = null;
+    if (expectedListings !== null) {
+      afterListings = listingSnapshot(await request('readback-committed-listings', 'GET', `${fresh.url}/listings`));
+      receipt.listingAfter = afterListings.find((item) => item.language === 'en-US');
+    }
     await request('delete-readback-edit', 'DELETE', fresh.url);
     demand(after && canonical(after) === canonical(plan.desired), 'COMMITTED_PRODUCTION_DIFFERS');
+    demand(expectedListings === null || canonical(afterListings) === canonical(expectedListings),
+      'COMMITTED_LISTING_DIFFERS');
     receipt.state = 'submitted-production-review-unverified';
     receipt.stage = 'complete';
     await save();
     return receipt;
   } catch (error) {
-    const unverifiedMutation = ['update-track', 'commit-edit'].includes(receipt.stage)
+    const unverifiedMutation = ['update-track', 'update-listing', 'commit-edit'].includes(receipt.stage)
       && receipt.httpStatus >= 200 && receipt.httpStatus < 300;
     receipt.state = receipt.commitAcknowledged ? 'committed-readback-unverified'
       : (error instanceof PublisherError && error.uncertain) || unverifiedMutation ? 'uncertain' : 'blocked';
@@ -280,6 +326,8 @@ async function prepareBinding() {
   demand(!source.sourceDirty && source.sourceRevision === context.workflowSha, 'CLEAN_REVIEWED_TOOLING_REQUIRED');
   const notes = approvedStoreText(git('show', `${context.workflowSha}:${storeTextPath(request.version)}`),
     request.version, 'google-play').text;
+  const descriptions = approvedDescriptionsAt({ revision: context.workflowSha, version: request.version, git });
+  const description = descriptions?.googlePlay ?? null;
   const selected = validateAndroidLedger(JSON.parse(git('show', `${context.workflowSha}:${LEDGER}`)));
   git('fetch', '--no-tags', 'origin', 'refs/heads/main:refs/remotes/origin/main');
   const current = validateAndroidLedger(JSON.parse(git('show', `refs/remotes/origin/main:${LEDGER}`)));
@@ -287,8 +335,8 @@ async function prepareBinding() {
   const reservation = selectReservation(selected, request.version);
   demand(canonical(selectReservation(current, request.version)) === canonical(reservation), 'LATEST_MAIN_SEAL_CHANGED');
   git('merge-base', '--is-ancestor', reservation.sourceRevision, context.workflowSha);
-  const binding = bindingFor({ version: request.version, reservation, notes, workflowSha: context.workflowSha });
-  return { request, context, notes, binding, bindingSha: digest(canonical(binding)) };
+  const binding = bindingFor({ version: request.version, reservation, notes, description, workflowSha: context.workflowSha });
+  return { request, context, notes, description, binding, bindingSha: digest(canonical(binding)) };
 }
 async function checkApproved({ context, bindingSha }) {
   const currentPolicy = await policy();
@@ -302,7 +350,7 @@ async function checkApproved({ context, bindingSha }) {
 export async function preflight({ afterApproval = false } = {}) {
   demand(!process.env.RECAP_PLAY_ACCESS_TOKEN, 'TOKEN_BEFORE_APPROVED_VALIDATION');
   const prepared = await prepareBinding();
-  const { request, binding, bindingSha } = prepared;
+  const { request, binding, bindingSha, description } = prepared;
   let currentPolicy = null;
   if (request.mode !== 'Validate') {
     currentPolicy = afterApproval ? await checkApproved(prepared) : await policy();
@@ -312,7 +360,11 @@ export async function preflight({ afterApproval = false } = {}) {
       JSON.stringify({ mode: request.mode, ...binding }, null, 2)}\n\`\`\`\n\n`
       + 'No Google access has occurred in this validation. Approving promotes only this sealed code, already on a '
       + 'testing track, to production for everyone with exactly these notes. Nothing is uploaded. '
-      + 'Committing can also submit Console work already ready for review, so there must be none pending.\n');
+      + 'Committing can also submit Console work already ready for review, so there must be none pending.\n\n'
+      + (description === null ? 'No approved description file: the Google Play description is not changed.\n'
+        : `### Google Play description (en-US), exactly as it would be sent\n\n`
+          + `${description.length} of ${DESCRIPTION_LIMIT} characters, from ${binding.descriptionPath} at ${binding.workflowSha}.\n\n`
+          + `${markdownFence(description)}text\n${description}\n${markdownFence(description)}\n`));
   }
   if (process.env.GITHUB_OUTPUT && !afterApproval) {
     await appendFile(process.env.GITHUB_OUTPUT, `binding_sha=${bindingSha}\n`
@@ -326,12 +378,12 @@ export async function operate() {
   // Everything is derived again from the reviewed commit and checked against what was approved,
   // so a ledger seal or approved-text change after approval stops here, before Google is touched.
   const prepared = await prepareBinding();
-  const { request, notes, binding } = prepared;
+  const { request, notes, description, binding } = prepared;
   demand(request.mode !== 'Validate', 'VALIDATE_HAS_NO_APPROVAL_OR_GOOGLE_ACCESS');
   await checkApproved(prepared);
   const receiptPath = join(await work(), 'google-play-production-receipt.json');
   const result = await transactProduction(binding, {
-    token: process.env.RECAP_PLAY_ACCESS_TOKEN, mode: request.mode, notes,
+    token: process.env.RECAP_PLAY_ACCESS_TOKEN, mode: request.mode, notes, description,
     record: (receipt) => atomicJson(receiptPath, receipt),
   });
   console.log(`Google Play production result: ${result.state}; review outcome and user availability remain unverified.`);
