@@ -1979,33 +1979,33 @@
     "fp": "c010224d377056bd",
     "head": "restore(rawJson, { expected, recovering = false } = {}) {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/views/add.js:1250-1254|0": {
-    "anchor": "src/js/views/add.js:1250-1254",
+  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/views/add.js:1253-1257|0": {
+    "anchor": "src/js/views/add.js:1253-1257",
     "fp": "05a600aed3203ac7",
     "head": "globalThis.addEventListener('beforeunload', (event) => {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/views/add.js:31-68|0": {
-    "anchor": "src/js/views/add.js:31-68",
+  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/views/add.js:32-69|0": {
+    "anchor": "src/js/views/add.js:32-69",
     "fp": "25b24212ed6208de",
     "head": "export function mergeSearchSelection(state, items, { listId = null, name = '' } = {}) {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/views/add.js:346-389|0": {
-    "anchor": "src/js/views/add.js:346-389",
+  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/views/add.js:347-390|0": {
+    "anchor": "src/js/views/add.js:347-390",
     "fp": "db2a727c16a4b4f7",
     "head": "function saveSelected(config) {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/views/add.js:648-677|0": {
-    "anchor": "src/js/views/add.js:648-677",
+  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/views/add.js:649-678|0": {
+    "anchor": "src/js/views/add.js:649-678",
     "fp": "955625acdb46c742",
     "head": "for (const config of searches) {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/views/add.js:70-93|0": {
-    "anchor": "src/js/views/add.js:70-93",
+  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/views/add.js:71-94|0": {
+    "anchor": "src/js/views/add.js:71-94",
     "fp": "2f677131e0096b88",
     "head": "export function persistSearchSelection(readerStore, items, destination = {}, onSaved = () => null) {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/views/add.js:95-187|0": {
-    "anchor": "src/js/views/add.js:95-187",
+  "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/views/add.js:96-188|0": {
+    "anchor": "src/js/views/add.js:96-188",
     "fp": "b2df7c6a7a91153d",
     "head": "export class ComicSearchRunner {"
   },
@@ -6779,8 +6779,8 @@
     "fp": "307982fb4a5a2d23",
     "head": "this.onProgress(this.status('running'));"
   },
-  "test/passive-announce.test.js|preamble|src/js/views/add.js:379-388|0": {
-    "anchor": "src/js/views/add.js:379-388",
+  "test/passive-announce.test.js|preamble|src/js/views/add.js:380-389|0": {
+    "anchor": "src/js/views/add.js:380-389",
     "fp": "ab21e79435cdec8a",
     "head": "notify(report, withSaveEducation(message, result.transition), result.added ? 'ok' : 'warn');"
   },

@@ -668,6 +668,11 @@ test('iOS feature configuration fails closed and preview overrides cannot enter 
 
 test('the generated Read launcher stylesheet is linked, hashed and served by the iOS app', async () => {
   const launcher = await readFile(join(output, 'open.html'), 'utf8');
+  for (const copy of [
+    '<title>Opening your comic - Recap Page</title>',
+    '<h1 id="h">Opening your comic</h1>',
+    '<p id="p" role="status" aria-live="polite" aria-atomic="true">One moment.</p>',
+  ]) assert.ok(launcher.includes(copy), `iOS launcher must include ${copy}`);
   const sharedLink = launcher.indexOf('<link rel="stylesheet" href="./open.css" />');
   const iosLink = launcher.indexOf('<link rel="stylesheet" href="./ios/launcher.css" />');
   assert.ok(sharedLink >= 0 && iosLink > sharedLink, 'the iOS launcher overlay follows open.css');

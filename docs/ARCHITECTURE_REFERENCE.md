@@ -325,19 +325,19 @@ replacement paths.
 **Comic searches preview first and save once.** The API delivers each normalized page before it
 requests the next one, at `src/js/api.js:197-234`. Each search owns a read-only run that accumulates
 comics in memory, rejects invalid issue identities, and reports incomplete loads against the API's
-total, at `src/js/views/add.js:95-187`. Cancellation retires the run before aborting its request;
+total, at `src/js/views/add.js:96-188`. Cancellation retires the run before aborting its request;
 late responses cannot replace a newer preview. Received partial results remain selectable, with
 an explicit stopped or failed notice. When a focused Cancel action disappears, its search field
-receives focus, at `src/js/views/add.js:648-677`. Search announces comic progress only while the
+receives focus, at `src/js/views/add.js:649-678`. Search announces comic progress only while the
 query still matches its box and Top or Comics is pressed; Enter in a local scope stays local.
 
 The shared selection survives searches and issue-detail navigation, but not a document reload.
 A named new list is the default destination. The explicit save composes creation, selected membership,
-and activation in one Store update, at `src/js/views/add.js:31-68` and `src/js/views/add.js:70-93`.
+and activation in one Store update, at `src/js/views/add.js:32-69` and `src/js/views/add.js:71-94`.
 An existing destination keeps its prior order, skips duplicate membership, and retains shared progress.
 A refused write leaves the selection and intended destination intact; only a successful addition
-starts hydration, at `src/js/views/add.js:346-389`. The browser warns before leaving with an unsaved
-selection, at `src/js/views/add.js:1250-1254`. Manual entry keeps its existing path.
+starts hydration, at `src/js/views/add.js:347-390`. The browser warns before leaving with an unsaved
+selection, at `src/js/views/add.js:1253-1257`. Manual entry keeps its existing path.
 
 **Pasted imports have a separate durable source journal.** The storage-owned import draft keeps
 verbatim source (including original full-paste line endings), recognized physical positions,

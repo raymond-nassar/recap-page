@@ -114,10 +114,12 @@ progress or backups.
 - The optional hand-entry lookup sends your title to the Marvel Fandom wiki, only when you press
   its button.
 - **Look for this book** opens that book's page on Hoopla or in Libby, in your browser or that service's app, only when you choose it.
-- Before December 7, 2026, **Read** opens the Marvel Unlimited web reader when a link is known,
-  and may look up a missing link first. Otherwise it opens the comic's details page. From
-  December 7, 2026, by your device's clock, **Read** opens the Marvel Comics website instead. On
-  Android, **Read** opens your browser, not the Marvel Unlimited app.
+- When a comic has a Marvel Comics app link, **Read** opens it in the Marvel Comics app. For a comic
+  without one, before December 7, 2026, **Read** opens Marvel's web reader when its direct reader
+  link is known. Otherwise it may look up the link or open the comic's details page. From the start
+  of December 7 on your device's local clock, **Read** opens the general Marvel Comics website for a
+  comic without an app link, without looking up a reader link. On Android, **Read** opens your
+  installed browser. A comic with a Marvel Comics app link opens there.
 
 Each service sees the request and your network address. How long it keeps them is up to that
 service.

@@ -489,6 +489,30 @@ export async function retiredReaderHelp(page, t, { seedFixtureState, click, open
   await linkedReadingOptions(page, t, { listId: 'fixture', sourceIssueId: first.issueId });
 }
 
+export async function manualLinkFeedback(page, t, { addByHand, manualReport, readState }) {
+  const before = await readState(page);
+  await addByHand(page, 'Secret Wars (2015) #1', 'https://www.marvel.com/comics/issue/52447/secret_wars');
+  const linkedReport = await manualReport(page);
+  const after = await readState(page);
+  t.check('a comic details URL still saves without inventing a reader reference',
+    after?.issues?.['52447']?.url.includes('/comics/issue/52447')
+      && after.issues['52447'].digitalId == null, JSON.stringify(after?.issues?.['52447']));
+  t.check('the saved linked comic receives the app explanation instead of the older reference note',
+    linkedReport.includes('Read opens this comic in the Marvel Comics app. It does not mark the comic read.')
+      && !linkedReport.includes('Read uses the recorded comic reference.'), linkedReport);
+  t.check('adding the linked comic does not change read markers or availability overrides',
+    JSON.stringify(after?.read ?? {}) === JSON.stringify(before?.read ?? {})
+      && JSON.stringify(after?.overrides ?? {}) === JSON.stringify(before?.overrides ?? {}));
+
+  await addByHand(page, 'Unlinked fixture', 'https://www.marvel.com/comics/issue/129648/fixture');
+  const unlinkedReport = await manualReport(page);
+  const unlinked = await readState(page);
+  t.check('an unlinked comic details URL still saves without a Read explanation',
+    Boolean(unlinked?.issues?.['129648']) && unlinkedReport.includes('Added')
+      && !unlinkedReport.includes('Read opens this comic')
+      && !unlinkedReport.includes('Read uses the recorded comic reference.'), unlinkedReport);
+}
+
 export async function retiredManualLink(page, t, { open, click, addByHand, manualReport, readState }) {
   await open(page, '/');
   await click(page, '[data-view="add-manual"]');
@@ -505,11 +529,7 @@ export async function retiredManualLink(page, t, { open, click, addByHand, manua
   const refused = await readState(page);
   t.check('refused reader paste writes no comic or list', JSON.stringify(refused) === JSON.stringify(before));
   await page.$eval('#manual-url', (node) => node.dispatchEvent(new Event('input', { bubbles: true })));
-  await addByHand(page, 'Secret Wars (2015) #1', 'https://www.marvel.com/comics/issue/52447/secret_wars');
-  const after = await readState(page);
-  t.check('a comic details URL still saves without inventing a reader reference',
-    after?.issues?.['52447']?.url.includes('/comics/issue/52447')
-      && after.issues['52447'].digitalId == null, JSON.stringify(after?.issues?.['52447']));
+  await manualLinkFeedback(page, t, { addByHand, manualReport, readState });
 }
 
 export async function legacyReaderBackup(page, t, { seedFixtureState, click, openFullOrder, readerId, digitalId }) {
