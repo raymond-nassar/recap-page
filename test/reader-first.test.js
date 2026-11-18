@@ -383,7 +383,7 @@ test('Coming up Read buttons carry their name once, with no title repeating it',
   // UX-29: the title repeated the accessible name as a description, so it was announced twice.
   const source = read('../src/js/views/reading.js');
   const start = source.indexOf("class: 'tile-read',");
-  const end = source.indexOf('}, readerAction()),', start);
+  const end = source.indexOf('}, readerAction(new Date(), { app })),', start);
   assert.ok(end > start, 'the Coming up Read button must have an explicit boundary');
   const button = source.slice(start, end);
   assert.notEqual(start, -1, 'the Coming up Read button moved');

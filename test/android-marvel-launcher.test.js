@@ -1,8 +1,10 @@
 import test from 'node:test';
+import { readFileSync } from 'node:fs';
 import assert from 'node:assert/strict';
 import { createAndroidReader, digitalReference } from '../packaging/android/web/reader.js';
 import { issuePageUrl } from '../src/js/lib/issuePageUrl.js';
 import { launchDestination, MARVEL_COMICS_URL } from '../src/js/lib/readerDestination.js';
+import { appViewerUrl } from '../src/js/lib/marvelComicsAppUrl.js';
 
 const response = (body, ok = true) => ({ ok, json: async () => body });
 const before = new Date(2026, 11, 6, 23, 59, 59, 999);
@@ -24,7 +26,7 @@ function events(properties = {}) {
 }
 
 function fixture(search = '?d=38811&i=52986', fetchImpl = async () => response({ digitalId: 38811 }),
-  readApiBase = () => 'https://metadata.example/v1', now = before) {
+  readApiBase = () => 'https://metadata.example/v1', now = before, appUrlFor = undefined) {
   const timers = new Map();
   const host = events({
     setTimeout(handler, milliseconds) {
@@ -43,6 +45,7 @@ function fixture(search = '?d=38811&i=52986', fetchImpl = async () => response({
     destination: launchDestination(new URLSearchParams(search), now), comicsUrl: MARVEL_COMICS_URL,
     location: { search, assign: (url) => navigations.push(url) },
     fetchImpl: (...args) => { requests.push(args); return fetchImpl(...args); },
+    ...(appUrlFor ? { appUrlFor } : {}),
   });
   return { launch, host, elements, navigations, requests, timers };
 }
@@ -227,4 +230,38 @@ test('Android browser choice and teardown abort lookup and suppress late metadat
     assert.deepEqual(f.navigations, []);
     assert.equal(f.timers.size, 0);
   }
+});
+
+test('950 Android opens a Marvel Comics app link before and after the cutoff without a lookup', async () => {
+  const appLink = 'https://www.marvelcomicsapp.com/viewer/4879';
+  for (const now of [before, after]) {
+    for (const search of ['?a=4879&i=52986', '?a=4879&d=38811&i=52986']) {
+      const f = fixture(search, () => assert.fail('An app link cannot fetch'), () => assert.fail('no settings lookup'), now, appViewerUrl);
+      assert.equal(f.elements.fallback.href, appLink);
+      await f.launch.start();
+      assert.deepEqual(f.navigations, [appLink]);
+      assert.equal(f.elements.status.textContent, 'Taking you to this comic in the Marvel Comics app.');
+      assert.equal(f.requests.length, 0);
+    }
+  }
+  for (const search of ['?a=0&d=38811', '?a=4879&a=5&d=38811', '?a=https%3A%2F%2Fevil.example&d=38811']) {
+    const f = fixture(search, () => assert.fail('no fetch'), undefined, before, appViewerUrl);
+    await f.launch.start();
+    assert.deepEqual(f.navigations, [exactReader], search);
+  }
+  const bare = fixture('?a=4879', () => assert.fail('no fetch'), undefined, before, appViewerUrl);
+  await bare.launch.start();
+  assert.deepEqual(bare.navigations, []);
+  const unwired = fixture('?a=4879&d=38811', () => assert.fail('no fetch'));
+  await unwired.launch.start();
+  assert.deepEqual(unwired.navigations, [exactReader]);
+});
+
+test('950 the Android launch page note names the app link and the lookup in plain words', () => {
+  const source = readFileSync(new URL('../packaging/android/web/launcher.js', import.meta.url), 'utf8');
+  assert.ok(source.includes("'Read opens your installed browser. A comic with a Marvel Comics app link opens there. "
+    + 'Before December 7, 2026, Read may look up the Marvel Unlimited link online for a comic without one. '
+    + 'From that date it opens the general Marvel Comics website without a lookup. '
+    + "Lists, notes and reading progress are not sent.'"));
+  assert.doesNotMatch(source, /Bifrost|metadata/);
 });

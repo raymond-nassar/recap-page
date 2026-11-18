@@ -244,9 +244,10 @@ test('UX-05 Done keeps its short label and is described for assistive technology
 test('#860 Read and Done form the one hint group', () => {
   const groups = [...html.matchAll(/<[a-z]+\b[^>]*\bdata-tooltip-group\b[^>]*>/g)].map(([tag]) => tag);
   assert.equal(groups.length, 1, `only the hero's pair is a hint group: ${groups.join(' ')}`);
-  assert.match(groups[0], /\bid="hero-primary-actions"/);
-  const cta = html.match(/<div class="cta" id="hero-primary-actions"[^>]*>[\s\S]*?<\/div>/)[0];
-  assert.deepEqual([...cta.matchAll(/<button[^>]*\bid="([^"]+)"/g)].map(([, id]) => id), ['btn-hero-read', 'btn-hero-done']);
+  assert.match(groups[0], /\bid="hero-tooltip-group"/);
+  const group = html.match(/<div id="hero-tooltip-group"[^>]*>[\s\S]*?<\/div>/)?.[0] ?? '';
+  assert.deepEqual([...group.matchAll(/<(button|a)\b([^>]*)>/g)].map(([, tag, attrs]) =>
+    [tag, attrs.match(/\bid="([^"]+)"/)?.[1]]), [['button', 'btn-hero-read'], ['button', 'btn-hero-done']]);
 });
 
 test('icon-only controls expose their meaning on hover and keyboard focus', () => {

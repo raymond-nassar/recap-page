@@ -16,6 +16,7 @@ final class NavigationPolicy {
     static final int MAX_SAVE_BYTES = 32 * 1024 * 1024;
     private static final Set<String> POPUP_ASSETS = new HashSet<>(Arrays.asList(
             "open.html", "open.js", "open.css", "js/lib/apiBase.js", "js/lib/issuePageUrl.js", "js/lib/readerDestination.js",
+            "js/lib/marvelComicsAppUrl.js",
             "android/launch.css", "android/launcher.js", "android/reader.js"));
     private final String origin;
     private final URI base;
@@ -95,6 +96,12 @@ final class NavigationPolicy {
         String host = uri.getHost();
         if (host.equals("marvel.webtoon.com")) {
             return "/".equals(uri.getRawPath()) && uri.getRawQuery() == null && uri.getRawFragment() == null;
+        }
+        // A single comic in the Marvel Comics app (#950): the bundled viewer link exactly, nothing more.
+        if (host.equals("www.marvelcomicsapp.com")) {
+            String path = uri.getRawPath();
+            return path != null && path.matches("/viewer/[1-9][0-9]{0,8}")
+                    && uri.getRawQuery() == null && uri.getRawFragment() == null;
         }
         return host.equals("read.marvel.com") || host.equals("www.marvel.com") || host.equals("marvel.com");
     }

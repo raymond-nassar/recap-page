@@ -911,7 +911,7 @@ export const readDoneHintsMutations = [
     why: 'without the group each hint takes its usual spot, over the other button where they are stacked',
     rewriteReading: (source) => source.replace(
       "    $('#btn-hero-read').addEventListener('click', (e) => {",
-      "    $('#hero-primary-actions').removeAttribute('data-tooltip-group');\n    $('#btn-hero-read').addEventListener('click', (e) => {",
+      "    $('#hero-tooltip-group').removeAttribute('data-tooltip-group');\n    $('#btn-hero-read').addEventListener('click', (e) => {",
     ),
   },
 ];

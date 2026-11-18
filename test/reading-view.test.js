@@ -62,6 +62,7 @@ function queryAll(root, selector) {
     if (selector === '#reading-filters' && node.id === 'reading-filters') found.push(node);
     if (selector === '.order-strip' && node.className.split(/\s+/).includes('order-strip')) found.push(node);
     if (selector === '.row-actions' && node.classList.contains('row-actions')) found.push(node);
+    if (selector === '.row-reading-options-toggle' && node.classList.contains('row-reading-options-toggle')) found.push(node);
     if (selector === 'input[name="filter"]' && node.tag === 'input' && node.name === 'filter') found.push(node);
     if (selector === '[data-act="read"]' && node.dataset?.act === 'read') found.push(node);
     if (selector === '.rg-done' && node.classList?.contains('rg-done')) found.push(node);
@@ -88,6 +89,7 @@ function node(props = {}, children = []) {
     name: props.name,
     open: props.open ?? false,
     parentNode: null,
+    get firstChild() { return this.childNodes[0] ?? null; },
     get nextElementSibling() {
       if (!this.parentNode) return null;
       const siblings = this.parentNode.childNodes;
@@ -321,6 +323,7 @@ function harness(overrides = {}) {
     orderDesc: node({ id: 'order-desc', open: true }),
     orderDescText: node({ id: 'order-desc-text' }),
     orderSource: node({ id: 'order-source' }),
+    orderAppLinkCredit: node({ id: 'order-app-link-credit' }),
     orderVisit: node({ id: 'order-visit', hidden: true }),
     listNote: node({ id: 'list-note' }),
     similarHint: node({ id: 'list-similar-hint' }),
@@ -343,6 +346,9 @@ function harness(overrides = {}) {
     heroFacts: node({ id: 'hero-facts' }),
     btnHeroInfo: node({ id: 'btn-hero-info', text: 'Info', tag: 'a' }),
     btnHeroRead: node({ id: 'btn-hero-read', tag: 'button' }),
+    heroReadingOptions: node({ id: 'hero-reading-options', hidden: true }),
+    btnHeroReadingOptions: node({ id: 'btn-hero-reading-options', tag: 'button', text: 'Reading options' }),
+    heroReadingOptionsList: node({ id: 'hero-reading-options-list', tag: 'ul', hidden: true }),
     heroReaderTemporary: node({ id: 'hero-reader-temporary', hidden: true }),
     // #876: the hero's progress row, kept from assistive technology because the ring reads it out.
     heroProgress: node({ id: 'hero-progress', 'aria-hidden': 'true' }),
@@ -415,6 +421,9 @@ function harness(overrides = {}) {
     ['#btn-synopsis', nodes.btnSynopsis],
     ['#btn-cancel-synopsis', nodes.btnCancelSynopsis],
     ['#btn-hero-read', nodes.btnHeroRead],
+    ['#hero-reading-options', nodes.heroReadingOptions],
+    ['#btn-hero-reading-options', nodes.btnHeroReadingOptions],
+    ['#hero-reading-options-list', nodes.heroReadingOptionsList],
     ['#hero-reader-temporary', nodes.heroReaderTemporary],
     ['#btn-hero-inspect', nodes.btnHeroInspect],
     ['#btn-hero-done', nodes.btnHeroDone],
@@ -426,6 +435,7 @@ function harness(overrides = {}) {
     ['#order-desc', nodes.orderDesc],
     ['#order-desc-text', nodes.orderDescText],
     ['#order-source', nodes.orderSource],
+    ['#order-app-link-credit', nodes.orderAppLinkCredit],
     ['#order-visit', nodes.orderVisit],
     ['#list-note', nodes.listNote],
     ['#list-similar-hint', nodes.similarHint],
@@ -463,7 +473,9 @@ function harness(overrides = {}) {
   }
   // The document nests each end-state heading in its section and the hero's two commands in one
   // group, which is what Done's result is placed against and what hiding a section hides.
-  nodes.heroPrimaryActions = node({ id: 'hero-primary-actions' }, [nodes.btnHeroRead, nodes.btnHeroDone]);
+  nodes.heroReadingOptions.append(nodes.btnHeroReadingOptions, nodes.heroReadingOptionsList);
+  nodes.heroTooltipGroup = node({ id: 'hero-tooltip-group' }, [nodes.btnHeroRead, nodes.btnHeroDone]);
+  nodes.heroPrimaryActions = node({ id: 'hero-primary-actions' }, [nodes.heroTooltipGroup, nodes.heroReadingOptions]);
   nodes.heroProgress.append(nodes.heroProgressCount, node({ class: 'glance-bar' }, [nodes.heroProgressFill]));
   nodes.heroBody = node({ class: 'hero-body' }, [nodes.heroPrimaryActions,
     nodes.heroReaderTemporary, nodes.heroProgress, nodes.heroFacts]);
@@ -700,6 +712,33 @@ test('About ignores inherited list records', () => {
     h.view.enterAbout();
     assert.equal(h.nodes.orderDesc.hidden, true);
     assert.equal(h.nodes.orderDescText.textContent, '');
+  } finally { h.restore(); }
+});
+
+test('app link credit follows the whole saved list and retains focus across redraws', () => {
+  let state = createEmptyState();
+  state = createList(state, { id: 'linked', name: 'Linked' });
+  state = createList(state, { id: 'unlinked', name: 'Unlinked' });
+  state = addIssuesToList(state, 'linked', [issue(12459, 'Linked comic')]).state;
+  state = addIssuesToList(state, 'unlinked', [issue(7, 'Unlinked comic')]).state;
+  state = setActive(state, 'linked');
+  const h = harness({ state, fullOpen: false });
+  try {
+    const saved = JSON.stringify(h.state());
+    h.view.render();
+    assert.equal(h.nodes.orderDesc.hidden, false);
+    const link = h.nodes.orderAppLinkCredit.querySelector('a');
+    assert.equal(link.href, 'https://comicbookreadingorders.com/marvel/event-timeline/');
+    link.focus();
+    h.view.render();
+    assert.equal(h.nodes.orderAppLinkCredit.querySelector('a'), link);
+    assert.equal(globalThis.document.activeElement, link);
+    assert.equal(JSON.stringify(h.state()), saved);
+    h.setActive('unlinked');
+    h.view.render();
+    assert.equal(h.nodes.orderAppLinkCredit.childNodes.length, 0);
+    assert.equal(h.nodes.orderDesc.hidden, true);
+    assert.equal(globalThis.document.activeElement, h.nodes.orderName);
   } finally { h.restore(); }
 });
 
@@ -1031,6 +1070,168 @@ test('an open row command disclosure survives its own saved-state rerender', () 
   } finally {
     h.restore();
   }
+});
+
+test('950 hero and row options share the approved choices and launch without changing progress', () => {
+  let state = createList(createEmptyState(), { id: 'linked', name: 'Linked', catalogId: 'civil-war-avengers' });
+  state = addIssuesToList(state, 'linked', [
+    issue(4216, 'Civil War fixture', { number: '1', seriesId: 1067, digitalId: 700001 }),
+    issue(12459, 'Linked fixture'),
+    issue(42, 'Unlinked fixture'),
+  ]).state;
+  const h = harness({ state });
+  const find = (root, predicate) => {
+    let found;
+    walk(root, (entry) => { if (predicate(entry)) found = entry; });
+    return found;
+  };
+  const rowAction = (id, act) => find(h.nodes.rows, (entry) => Number(entry.dataset?.key) === id && entry.dataset.act === act);
+  try {
+    h.view.wire();
+    h.view.render();
+    const before = JSON.stringify(h.state());
+    assert.equal(h.nodes.heroReadingOptions.hidden, false);
+    assert.equal(h.nodes.btnHeroReadingOptions.getAttribute('aria-label'), 'Reading options for Civil War fixture');
+    const heroChoices = h.nodes.heroReadingOptionsList.childNodes.map((item) => item.childNodes[0]);
+    assert.deepEqual(heroChoices.map((choice) => choice.textContent), [
+      'Marvel Comics app', 'Marvel Unlimited, until December 7, 2026',
+      'Look for Civil War on Hoopla', 'Look for Civil War in Libby',
+    ]);
+    assert.deepEqual(heroChoices.slice(2).map((choice) => [choice.href, choice.target, choice.rel]), [
+      ['https://www.hoopladigital.com/title/12003677', '_blank', 'noopener noreferrer'],
+      ['https://share.libbyapp.com/title/4455520', '_blank', 'noopener noreferrer'],
+    ]);
+    h.nodes.btnHeroReadingOptions.fire('click');
+    heroChoices[0].fire('click', { currentTarget: heroChoices[0] });
+    heroChoices[1].fire('click', { currentTarget: heroChoices[1] });
+    assert.deepEqual(h.calls.launch.map((call) => [call[0].issueId, call[2], call[4]]), [
+      [4216, 'saved', { app: true }], [4216, 'saved', { app: false }],
+    ]);
+
+    const rowToggle = rowAction(4216, 'more');
+    rowToggle.fire('click');
+    const optionsToggle = rowAction(4216, 'reading-options');
+    const rowOptions = optionsToggle.parentNode;
+    const group = rowOptions.parentNode;
+    assert.equal(group.getAttribute('aria-label'), 'Open');
+    assert.equal(optionsToggle.getAttribute('aria-controls'), 'row-reading-options-list-4216');
+    assert.equal(optionsToggle.getAttribute('aria-label'), 'Reading options for Civil War fixture');
+    optionsToggle.fire('click');
+    const rowChoices = rowOptions.childNodes[1].childNodes.map((entry) => entry.childNodes[0]);
+    assert.deepEqual(rowChoices.map((choice) => choice.textContent), heroChoices.map((choice) => choice.textContent));
+    rowChoices[1].fire('click', { currentTarget: rowChoices[1] });
+    assert.deepEqual(h.calls.launch.at(-1).slice(2), ['saved', rowChoices[1], { app: false }]);
+    let prevented = false;
+    let stopped = false;
+    rowChoices[0].focus();
+    rowOptions.fire('keydown', {
+      key: 'Escape',
+      preventDefault() { prevented = true; },
+      stopPropagation() { stopped = true; },
+    });
+    assert.ok(prevented && stopped);
+    assert.equal(optionsToggle.getAttribute('aria-expanded'), 'false');
+    assert.equal(rowToggle.getAttribute('aria-expanded'), 'true');
+    assert.equal(globalThis.document.activeElement, optionsToggle);
+
+    optionsToggle.fire('click');
+    h.state().notes[4216] = 'Updated note';
+    h.view.renderRows();
+    assert.equal(rowAction(4216, 'more').getAttribute('aria-expanded'), 'true');
+    assert.equal(rowAction(4216, 'reading-options').getAttribute('aria-expanded'), 'true');
+    assert.ok(rowAction(12459, 'reading-options'));
+    assert.equal(rowAction(42, 'reading-options'), undefined);
+    assert.equal(find(h.nodes.shelf, (entry) => entry.classList?.contains('reading-options')), undefined);
+    assert.equal(find(h.nodes.homeContinue, (entry) => entry.classList?.contains('reading-options')), undefined);
+    h.state().notes[4216] = undefined;
+    delete h.state().notes[4216];
+    assert.equal(JSON.stringify(h.state()), before);
+  } finally { h.restore(); }
+});
+
+test('950 hero and row options refresh across the cutoff and follow their list context', (t) => {
+  const comic = issue(4216, 'Civil War fixture', { number: '1', seriesId: 1067 });
+  let state = createList(createEmptyState(), { id: 'curated', name: 'Curated', catalogId: 'civil-war-avengers' });
+  state = addIssuesToList(state, 'curated', [comic]).state;
+  state = createList(state, { id: 'custom', name: 'Custom' });
+  state = addIssuesToList(state, 'custom', [comic]).state;
+  state = setActive(state, 'curated');
+  const h = harness({ state });
+  const rowOptions = () => {
+    let found;
+    walk(h.nodes.rows, (entry) => { if (entry.dataset?.act === 'reading-options') found = entry; });
+    return found;
+  };
+  try {
+    h.view.wire();
+    h.view.render();
+    h.nodes.btnHeroReadingOptions.fire('click');
+    const unlimited = h.nodes.heroReadingOptionsList.childNodes[1].childNodes[0];
+    unlimited.focus();
+    t.mock.timers.setTime(new Date(2026, 11, 7, 12).getTime());
+    h.view.refreshReader();
+    assert.equal(h.nodes.heroReadingOptions.hidden, false);
+    assert.deepEqual(h.nodes.heroReadingOptionsList.childNodes.map((entry) => entry.childNodes[0].textContent), [
+      'Marvel Comics app', 'Look for Civil War on Hoopla', 'Look for Civil War in Libby',
+    ]);
+    assert.equal(globalThis.document.activeElement, h.nodes.btnHeroReadingOptions);
+    unlimited.fire('click', { currentTarget: unlimited });
+    assert.equal(h.calls.launch.length, 0);
+    assert.ok(rowOptions());
+
+    h.setActive('custom');
+    h.view.render();
+    assert.equal(h.nodes.heroReadingOptions.hidden, true);
+    assert.equal(h.nodes.heroReadingOptionsList.hidden, true);
+    assert.equal(globalThis.document.activeElement, h.nodes.btnHeroRead);
+    assert.equal(rowOptions(), undefined);
+  } finally { h.restore(); }
+});
+
+test('950 hero options follow the next comic and an obsolete choice cannot launch after completion', () => {
+  let state = createList(createEmptyState(), { id: 'next', name: 'Next' });
+  state = addIssuesToList(state, 'next', [issue(12459, 'Linked fixture'), issue(42, 'Unlinked fixture')]).state;
+  const h = harness({ state });
+  try {
+    h.view.wire();
+    h.view.render();
+    h.nodes.btnHeroReadingOptions.fire('click');
+    const obsolete = h.nodes.heroReadingOptionsList.childNodes[0].childNodes[0];
+    obsolete.focus();
+    h.nodes.btnHeroDone.fire('click');
+    h.view.renderHero();
+    assert.equal(h.nodes.heroTitle.textContent, 'Unlinked fixture');
+    assert.equal(h.nodes.heroReadingOptions.hidden, true);
+    assert.equal(globalThis.document.activeElement, h.nodes.btnHeroRead);
+    obsolete.fire('click', { currentTarget: obsolete });
+    assert.equal(h.calls.launch.length, 0);
+
+    h.nodes.btnHeroDone.fire('click');
+    h.view.renderHero();
+    assert.equal(h.nodes.hero.hidden, true);
+    obsolete.fire('click', { currentTarget: obsolete });
+    assert.equal(h.calls.launch.length, 0);
+  } finally { h.restore(); }
+});
+
+test('950 row offers two verified library destinations even when Read is unavailable', () => {
+  let state = createList(createEmptyState(), { id: 'books', name: 'Books', catalogId: 'civil-war-avengers' });
+  state = addIssuesToList(state, 'books', [issue(4216, 'Civil War fixture', { number: '1', seriesId: 1067 })]).state;
+  const h = harness({ state, readerPresentation: () => ({ launchable: false, temporary: false }) });
+  try {
+    h.view.render();
+    let options;
+    let open;
+    walk(h.nodes.rows, (entry) => {
+      if (entry.dataset?.act === 'reading-options') options = entry;
+      if (entry.dataset?.act === 'open') open = entry;
+    });
+    assert.equal(open.hidden, true);
+    assert.equal(options.parentNode.parentNode.hidden, false);
+    assert.deepEqual(options.parentNode.childNodes[1].childNodes.map((entry) => entry.childNodes[0].textContent), [
+      'Look for Civil War on Hoopla', 'Look for Civil War in Libby',
+    ]);
+  } finally { h.restore(); }
 });
 
 test('UX05 reorder announces the persisted comic position and never claims a failed move', () => {

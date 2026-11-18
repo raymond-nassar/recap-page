@@ -108,6 +108,7 @@ function contentShellPath(path) {
     || path === '/styles.css'
     || (/^\/js\/.+\.js$/).test(path)
     || (/^\/data\/collectedEdition(?:Catalog|Evidence)\.js$/).test(path)
+    || path === '/data/marvelComicsAppLinks.js'
     || path === '/data/universeCatalog.js';
 }
 

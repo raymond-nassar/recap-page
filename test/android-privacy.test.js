@@ -45,9 +45,8 @@ test('Android About distinguishes automatic requests, explicit export and privat
   assert.match(text, /clearing app data or uninstalling[^.]*removes/i);
   assert.match(text, /keep a backup outside the app/i);
   assert.doesNotMatch(text, /progress and your notes are never sent anywhere/i);
-  assert.match(text, /no longer contacts Bifrost/);
-  assert.match(text, /installed browser, not the Marvel Unlimited app/);
-  assert.match(text, /general Marvel Comics website without a reader-link lookup/);
+  assert.ok(text.includes('On Android, Read opens your installed browser. A comic with a Marvel Comics app link opens there. Before December 7, 2026, Read may look up the Marvel Unlimited link online for a comic without one. From that date it opens the general Marvel Comics website without a lookup. The external service sees the requested address and your network address, not your saved lists, notes or read markers. Open in browser remains available if no browser opens.'));
+  assert.doesNotMatch(text, /no longer contacts Bifrost/);
   assert.doesNotMatch(text, /sends a known digital issue ID to Marvel's Bifrost/);
   assert.match(text, /Open in browser/);
   assert.match(text, /Searching for comics sends what you typed/);
@@ -61,6 +60,20 @@ test('Android About distinguishes automatic requests, explicit export and privat
   assert.match(links[0][0], /referrerpolicy="no-referrer"/);
   assert.equal(prose(links[0][2]), 'Privacy policy (opens in your browser)');
   assert.doesNotMatch(links[0][0], /onclick=|data-view=/);
+});
+
+test('web privacy explains which Read route applies to linked and unlinked comics', () => {
+  const text = prose(yourData(desktop));
+  assert.ok(text.includes('When a comic has a Marvel Comics app link, pressing Read opens it in the Marvel Comics app. For a comic without one, before December 7, 2026, pressing Read opens Marvel\'s web reader when its direct reader link is known.'));
+  assert.ok(text.includes('From the start of December 7 on your device\'s local clock, Read opens the general Marvel Comics website for a comic without an app link, with no reader-link lookup.'));
+  assert.doesNotMatch(text, /no longer contacts Bifrost/);
+});
+
+test('About explains app links and the fallback on web and Android', () => {
+  for (const html of [desktop, generated]) {
+    const text = prose(html);
+    assert.ok(text.includes('When a comic has a Marvel Comics app link, Read opens it in the Marvel Comics app. For other comics, before that date Read uses the web reader when a link is recorded, with your own subscription. From that date, Read opens the general Marvel Comics website for those comics, not a single-comic link.'));
+  }
 });
 
 // Cloud backup on Android (#810, P03-T03): the sentences the replacement writes come in the shared off and

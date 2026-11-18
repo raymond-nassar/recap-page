@@ -1019,7 +1019,7 @@ The first is that displaying a description and shipping a copy of one are differ
 those terms rather than two degrees of one act. Using Content inside an App is what the licence is
 for, on a condition the attribution page states plainly: "You must attribute Marvel as the source
 of data whenever you display any results from the Marvel Comics API". The app now names both the
-Marvel origin and its actual route in About at `src/index.html:1378-1382`. Redistributing Content outside an App, and sublicensing it onward, are the
+Marvel origin and its actual route in About at `src/index.html:1391-1395`. Redistributing Content outside an App, and sublicensing it onward, are the
 two things sections 4 and 5 name. An MIT grant is a sublicence to everyone who receives a copy, and
 offers them "sublicense, and/or sell".
 
@@ -1064,9 +1064,9 @@ app encounters that state rather than hypothetically. At removal, 606 carried a 
 id and 69 held neither. Neither metadata shape proves that a synopsis request has completed.
 The interface now distinguishes a summary that has not been loaded from a completed request with
 no synopsis and from prose held only in memory after explicit consent. The shared presentation
-reaches the interface in the reading hero at `src/js/views/reading.js:711` and the issue-details view at
-`src/js/views/issue.js:105`. The function behind both already answers for the absence at
-`src/js/views/reading.js:103-114`, with a test asserting the sentence it returns. It is also reversible:
+reaches the interface in the reading hero at `src/js/views/reading.js:756` and the issue-details view at
+`src/js/views/issue.js:108`. The function behind both already answers for the absence at
+`src/js/views/reading.js:107-118`, with a test asserting the sentence it returns. It is also reversible:
 the project this repository fetched from still serves the field,
 the contract check having run on 2026-08-15 with 33 of 33 assumptions holding, so the vendoring
 script can fetch it again if a review comes back permissive.
@@ -3123,7 +3123,7 @@ shape (`test/helpers/owner-delivery-contract.mjs:114-142`).
 The app carries only the optional `identityEvidenceKind` marker in the existing normalized issue
 record so the reading view can distinguish an owner-confirmed identity from an ordinary missing
 provider record after import and reload (`src/js/lib/model.js:270-279`,
-`src/js/views/reading.js:60-63`, `src/js/views/reading.js:74-85`). It keeps `metadataSourceKind` the
+`src/js/views/reading.js:64-67`, `src/js/views/reading.js:78-89`). It keeps `metadataSourceKind` the
 same way, only as one of the closed values and only beside an owner-confirmed identity, so a
 supplemented comic's badge hint, gap sentence and catalog label credit marvel.com and whichever
 outside source supplied its details instead of claiming it has no cover. The actor, date, URL and confirmation
@@ -4021,3 +4021,70 @@ the only shared originals are all six of Doom's Shadow, all five of Hell's Angel
 Ultimate Universe. The coordinator's source, insertion and overlap review on 2026-11-17 approved
 each as related and kept separate. This is model authority, not a human review. Comic image bytes
 and narrative prose are excluded, availability stays unknown, and existing saved data is unchanged.
+
+## Marvel Comics app links from Comic Book Reading Orders
+
+Read opens a comic in the Marvel Comics app when the app has a link for it ([#950](https://github.com/raymond-nassar/recap-page/issues/950)).
+Those links come from [Comic Book Reading Orders](https://comicbookreadingorders.com/marvel/event-timeline/),
+whose 2026-08-20 grant is quoted above. The owner reported on 2026-11-17 that the site had been
+updated to link its reading orders to the new app, and that it uses plain links with no identifiers
+or affiliate codes. That evening the owner directed that the links be collected under the existing
+grant. The grant's two exclusions still apply, and on 2026-11-17 the owner ruled that the four era
+orders (Marvel NOW!, All-New All-Different Marvel, Marvel Legacy and A Fresh Start) are part of the
+Marvel Master Reading Order.
+
+**How they were collected.** A separate session read the site once, between 05:11:35 and 06:23:54
+UTC on 2026-11-18. It requested only comicbookreadingorders.com, read robots.txt first, and read 284
+pages, every one HTTP 200. Seventeen pages were skipped unread because they belong to the Master
+Reading Order or are Patreon only. Six era pages were read and then left out of every count, and the
+owner's ruling later placed them in the Master Reading Order. Two slips are
+recorded rather than hidden. Four event pages were requested a second time after a transport
+failure, so the site received four extra requests. One TCP connection test was made to github.com,
+which sent no request and no data. No Marvel, Marvel Comics app or WEBTOON address was requested,
+then or since. Matching against this project's comics was done offline from that saved copy, and no
+page markup from the site is committed.
+
+**What was kept.** The matcher produced 36,108 rows. The generator,
+`scripts/marvel-comics-app-links.mjs`, keeps a comic when either of these is true:
+
+- It has an exact match with exactly one published link. That gives 11,783 comics.
+- The site dates it one year apart from our record, it has no exact link, and it carries exactly one
+  number. The owner approved these on 2026-11-17. There are 2,691 one-year-apart rows, and 2,667 of
+  them carry a link, covering 1,373 comics. Twelve of those comics already have an exact link with a
+  different number, and the exact link is kept. Of the 1,361 left, Spider-Verse (2014) #1 carries two
+  numbers (viewer 12507 and viewer 18005), so it is left out under one number per comic. That adds
+  1,360.
+
+That is 13,143 links in total, drawn from 268 of the pages read. The 11 comics the matcher marked as
+conflicts are left out, and so is every other ambiguous row. The generator also refuses any link
+that is not the site's published `https://www.marvelcomicsapp.com/viewer/<number>` address.
+It never builds a viewer address from an issues address or the reverse. It also refuses any page on
+the excluded list, and any number two comics would share. None of those refusals fired on this
+input, and its tests prove each one on rows written for this project.
+
+**What ships.** `scripts/data/marvel-comics-app-links/links.json` keeps every link with its
+basis and the source pages it came from. `src/data/marvelComicsAppLinks.js` is generated from
+it as comic and number pairs. The app reads the pairs synchronously, so Read never waits on a lookup
+before opening a tab (constraint 7). Nothing is fetched at run time and nothing is uploaded
+(constraint 3). A link only says where a comic can be opened. It never sets or changes the
+availability record, and every availability state stays as it was (constraint 6). Run
+`node scripts/marvel-comics-app-links.mjs --check` to confirm the module matches its input. To rebuild
+it from a new offline match file, run `--import <file>` and then the script with no arguments.
+
+**Checks by the owner.** On 2026-11-17 the owner hand-checked a 40-link sample of exact matches and
+all 40 opened the right comic. For Amazing Spider-Man Annual (1964) #1, the owner's own link (an
+issues address) and the site's (a viewer address) open the same comic. The site's link goes straight
+to the reading screen, so the owner chose the site's links "for now". On 2026-11-18 the owner hand-checked
+a 20-link sample of one-year-apart links, and all 20 opened the same comic.
+
+**Credit.** Every list holding at least one of these comics carries, on its page and in its preview,
+"Marvel Comics app links from Comic Book Reading Orders, used with permission." That credit links to
+the event timeline. The wording is the owner's choice: on 2026-11-17 the owner kept "used with
+permission" against the coordinator's suggestion to wait for the site to confirm it.
+
+**Where Read goes.** A comic with a link opens in the Marvel Comics app, from today. A comic without
+one keeps what it did before: Marvel Unlimited until December 7, 2026, then the Marvel Comics website.
+On the comic's page, the list's current comic, and each row's More actions, Reading options offers
+the Marvel Comics app and Marvel Unlimited until December 7. Where the owner has confirmed a
+library book that collects the comic, it also offers Hoopla and Libby. Nothing a reader has saved
+is changed, and the links are not written into saved data or backups.
