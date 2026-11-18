@@ -277,13 +277,20 @@ Neither testing access nor a successful GitHub workflow grants those.
 
 `.github/workflows/google-play-production.yml` promotes the exact bundle testers already received
 to the production track. It never uploads or rebuilds, and its inputs are only `mode` and
-`version`: no input can carry notes. Dispatch it from `main`, once per intended operation.
+`version`: no input can carry notes or descriptions. Dispatch it from `main`, once per intended operation.
+
+The optional `docs/releases/<version>-store-descriptions.json` at the workflow commit has exactly
+`version`, `locale`, `appStore` and `googlePlay`. Its version must match, its locale must be `en-us`,
+and both descriptions must be nonempty, trimmed text of at most 4,000 characters, with no control
+characters except line feeds. Invalid text stops the run, never truncates it. Without the file,
+the live listing is left alone and no listing requests are sent. Validate says so explicitly, or
+prints the exact Google Play description and includes its digest in the approval binding.
 
 | Mode | Google access and effect |
 |---|---|
 | `Validate` (default) | No Google credentials. Checks the invocation, the newest sealed ledger record for the version, the approved store text and its 500-character Play limit, then prints the binding the owner approves. |
-| `Inspect` | Requires the `google-play-production` approval. Opens one edit, reads tracks and bundles, runs every promotion check and deletes the edit. Changes nothing a reader can see. |
-| `Publish` | Requires the same approval. Runs the same checks, sets production, reads every track back in the edit, validates, commits once and reads production back in a fresh edit. |
+| `Inspect` | Requires the `google-play-production` approval. Opens one edit, reads tracks, bundles and any requested listing, runs every promotion check and deletes the edit. Changes nothing a reader can see. |
+| `Publish` | Requires the same approval. Runs the same checks, sets production and any approved description, reads tracks and listings back in the edit, validates, commits once and reads them again in a fresh edit. |
 
 Before anything changes, Play's own record must agree with the sealed ledger: one bundle for the
 sealed code, with the sealed SHA-256; a completed testing release already carrying that code, every
@@ -297,6 +304,14 @@ The release goes to everyone at once, status `completed`, as the owner chose on 
 constant in the script. The commit uses `changesInReviewBehavior=ERROR_IF_IN_REVIEW`, so the same
 rule about pending Console work applies as for testing.
 
+The full description is app-wide listing text, not track release notes. Only this production edit
+changes it; the testing publisher never does. With an approved description it requires exactly one
+`en-US` listing with no case variants, PATCHes only `fullDescription` when it differs, then checks
+every listing before validation and commit. English must equal its original fields except for the
+approved description; every other language and the number of listings must be unchanged. The fresh
+post-commit edit repeats that comparison. A mismatch before commit stops publication; a mismatch
+after commit is reported as `committed-readback-unverified`, never as success.
+
 The approved job rechecks the binding, the environment policy and the actual current-run approval
 before it obtains a token. The credential is a separate Play service account with production
 permission, bound by workload identity only to this environment and this workflow, through the
@@ -306,7 +321,8 @@ never receives production permission. The `google-play-production` environment a
 owner setup; until both exist, Inspect and Publish stop before any Google access.
 
 The retained `google-play-production-RUN_ID` receipt records production before and after,
-the edit identities and the stage. Mutations are sent once without retries.
+any requested listing before and after, its approved text digest, the edit identities and the stage.
+Mutations are sent once without retries.
 
 | Outcome | Meaning |
 |---|---|

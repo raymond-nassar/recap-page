@@ -709,11 +709,18 @@ can carry text. What's New comes only from `docs/releases/<version>-store.json` 
 commit, and must fit Apple's 4,000-character limit or the run stops before any Apple request;
 nothing is truncated. Dispatch from `main`, once per operation.
 
+The optional `docs/releases/<version>-store-descriptions.json` at that same commit has exactly
+`version`, `locale`, `appStore` and `googlePlay`. Its version must match, its locale must be `en-us`,
+and both descriptions must be nonempty, trimmed text of at most 4,000 characters, with no control
+characters except line feeds. Invalid text stops the run, never truncates it. No file means the
+live description stays unchanged; Validate says that explicitly. When present, Validate prints the
+exact App Store description and its digest joins the approval binding.
+
 | Mode | Apple access and effect |
 |---|---|
 | `Validate` (default) | No Apple credentials. Checks the build number is the newest sealed build for that version in `packaging/ios/build-numbers.json`, the source version and the approved text. |
-| `Inspect` | Requires the `app-store-release` approval. Sends only reads and reports what Submit would change, including each line where the live What's New differs from the approved file. |
-| `Submit` | Requires the same approval. Creates or updates the version, attaches the build, sets What's New and submits it for review, reading each change back. |
+| `Inspect` | Requires the `app-store-release` approval. Sends only reads and reports what Submit would change, including the live versus approved What's New and any requested description change. |
+| `Submit` | Requires the same approval. Creates or updates the version, attaches the build, sets What's New and any approved description, then submits it for review, reading each change back. |
 
 Before any write it requires one processed, unexpired build whose number and version are the sealed
 ones, with export compliance already answered; the target version absent or still editable; no
@@ -722,6 +729,13 @@ option is **Automatically release this version** (`AFTER_APPROVAL`), as the owne
 November 2026 ([#1322](https://github.com/raymond-nassar/recap-page/issues/1322)); it is one
 constant in the script.
 
+The description belongs to that version's `en-US` localization, not an app-wide listing. Submit
+PATCHes only its `description` when it differs, before creating the review submission, then reads
+it back even if it already matched. The entire returned localization must equal the original
+attributes except for the approved What's New and description. Any difference stops submission;
+keywords, URLs, promotional text and other attributes are not rewritten. App Review notes are
+neither read nor changed by this publisher.
+
 The approved job rechecks the binding, the policy and the current-run approval, then signs a
 15-minute ES256 token with `node:crypto`. The App Store Connect key needs a role that can edit
 versions and submit for review, App Manager or higher, and its secrets must exist in the
@@ -729,7 +743,7 @@ versions and submit for review, App Manager or higher, and its secrets must exis
 
 | Outcome | Meaning |
 |---|---|
-| `inspected-no-change` | Reads only; the receipt lists the planned writes and the What's New difference. |
+| `inspected-no-change` | Reads only; the receipt lists the planned writes and the What's New and requested description differences. |
 | `submitted-for-review` | The submission read back as waiting for or in review, with the build and text as approved. |
 | `submitted-readback-unverified` | Apple acknowledged the submit, but the read back failed or showed another state. Read App Store Connect before anything else. |
 | `blocked` | A check or a known rejection stopped it. If `mutationAttempted` is true, earlier changes to the editable version may be live there, but nothing was submitted; a new dispatch reconciles them. |
