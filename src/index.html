@@ -183,7 +183,7 @@
               </details>
             </div>
 
-            <p id="reader-closure-notice" class="notice notice-warn"><span id="reader-closure-text">Marvel Unlimited ends December 7, 2026, and Read will then open the Marvel Comics website.</span> <a id="reader-closure-faq" href="https://help.marvel.com/article/marvel-whats-happening-to-marvel-unlimited" target="_blank" rel="noopener noreferrer">Marvel's FAQ</a><button id="reader-closure-dismiss" type="button" class="btn btn-g btn-icon notice-dismiss has-tooltip" aria-label="Dismiss the Marvel Unlimited notice" data-tooltip="Dismiss the Marvel Unlimited notice"><span aria-hidden="true">&times;</span></button></p>
+            <p id="reader-closure-notice" class="notice notice-warn"><span id="reader-closure-text">Read now opens comics in the Marvel Comics app when we have a link. Marvel Unlimited ends December 7, 2026. Until then you can still choose it under Reading options.</span> <a id="reader-closure-faq" href="https://help.marvel.com/article/marvel-whats-happening-to-marvel-unlimited" target="_blank" rel="noopener noreferrer">Marvel's FAQ</a><button id="reader-closure-dismiss" type="button" class="btn btn-g btn-icon notice-dismiss has-tooltip" aria-label="Dismiss the Marvel Unlimited notice" data-tooltip="Dismiss the Marvel Unlimited notice"><span aria-hidden="true">&times;</span></button></p>
 
             <!-- #1412: Windows readers in Edge or Chrome are invited once to open Recap Page in its own
                  window; Firefox, Brave and Opera readers are told how. install.js decides which, if either, shows. -->
@@ -326,6 +326,7 @@
                   <summary>About this list</summary>
                   <p class="rail-hint" id="order-desc-text"></p>
                   <div id="order-source"></div>
+                  <div id="order-app-link-credit"></div>
                 </details>
               </div>
               <div class="headright">
@@ -374,13 +375,19 @@
                          out. -->
                     <h2 id="hero-title">Nothing up next</h2>
                     <p class="byline" id="hero-by"></p>
-                    <div class="cta" id="hero-primary-actions" data-tooltip-group>
-                      <button type="button" class="btn btn-lg has-tooltip" id="btn-hero-read" data-tooltip="Keyboard shortcut: Enter" aria-keyshortcuts="Enter">
-                        Read
-                      </button>
-                      <button type="button" class="btn btn-g has-tooltip" id="btn-hero-done" data-tooltip="Mark as read and continue. Keyboard shortcut: D" aria-keyshortcuts="d" aria-describedby="hero-done-help">
-                        Done
-                      </button><span id="hero-done-help" hidden>Mark as read and continue.</span>
+                    <div class="cta" id="hero-primary-actions">
+                      <div id="hero-tooltip-group" data-tooltip-group>
+                        <button type="button" class="btn btn-lg has-tooltip" id="btn-hero-read" data-tooltip="Keyboard shortcut: Enter" aria-keyshortcuts="Enter">
+                          Read
+                        </button>
+                        <button type="button" class="btn btn-g has-tooltip" id="btn-hero-done" data-tooltip="Mark as read and continue. Keyboard shortcut: D" aria-keyshortcuts="d" aria-describedby="hero-done-help">
+                          Done
+                        </button><span id="hero-done-help" hidden>Mark as read and continue.</span>
+                      </div>
+                      <div class="reading-options" id="hero-reading-options" hidden>
+                        <button type="button" class="btn btn-g" id="btn-hero-reading-options" aria-expanded="false" aria-controls="hero-reading-options-list">Reading options</button>
+                        <ul class="reading-options-list" id="hero-reading-options-list" hidden></ul>
+                      </div>
                     </div>
                     <p id="hero-reader-temporary" class="rail-hint" hidden></p>
                     <!-- The ring reads progress once. This visual row moves with it on a phone. -->
@@ -546,6 +553,10 @@
                     <button type="button" class="btn btn-lg" id="btn-issue-read">
                       Read
                     </button>
+                    <div class="reading-options" id="issue-reading-options" hidden>
+                      <button type="button" class="btn btn-g" id="btn-issue-reading-options" aria-expanded="false" aria-controls="issue-reading-options-list">Reading options</button>
+                      <ul class="reading-options-list" id="issue-reading-options-list" hidden></ul>
+                    </div>
                     <div class="cta" id="issue-saved-actions" hidden>
                       <button type="button" class="btn btn-g" id="btn-issue-mark-read">Mark as read</button>
                       <button type="button" class="btn btn-g" id="btn-issue-note">Add note</button>
@@ -1364,9 +1375,11 @@
               <p class="rail-hint">
                 No comic content is stored, copied, proxied, or served. The app tracks which comics you
                 have read and links out to Marvel's own services. Reading in Marvel Unlimited ends
-                December 7, 2026. Before that date, Read uses the web reader when a link is recorded,
-                with your own subscription. From that date, Read opens the general Marvel Comics
-                website, not a single-comic link. Access is determined by Marvel, not this tracker.
+                December 7, 2026. When a comic has a Marvel Comics app link, Read opens it in the
+                Marvel Comics app. For other comics, before that date Read uses the web reader when
+                a link is recorded, with your own subscription. From that date, Read opens the
+                general Marvel Comics website for those comics, not a single-comic link.
+                Access is determined by Marvel, not this tracker.
                 Availability badges are historical Marvel Unlimited records, not proof of access
                 to Marvel Comics. Cover images load directly from Marvel's own servers,
                 and an address on any other host is refused rather than requested.
@@ -1437,14 +1450,16 @@
                   comics are on screen; switching cover art off stops them being requested at all.
                   Those are the only servers a cover is ever asked of: an address the metadata API
                   reports on any other host is refused before anything is fetched.
-                  Before December 7, 2026, pressing Read opens Marvel's web reader when its direct
-                  reader link is known. With a matching comic-page link but a refused reader-ID lookup,
+                  When a comic has a Marvel Comics app link, pressing Read opens it in the Marvel Comics app.
+                  For a comic without one, before December 7, 2026, pressing Read opens Marvel's web reader
+                  when its direct reader link is known. With a matching comic-page link but a refused reader-ID lookup,
                   Read opens the exact Marvel comic page directly. Otherwise the launch tab asks
                   the metadata API for a missing reader link and opens the web reader if found,
                   or the comic page if not. From the start of December 7 on your device's local
-                  clock, Read opens the general Marvel Comics website without a reader-link lookup.
+                  clock, Read opens the general Marvel Comics website for a comic without an app link,
+                  with no reader-link lookup.
                   Android uses your installed browser, not the Marvel Unlimited app, on both sides
-                  of that date. Recap Page no longer contacts Bifrost.
+                  of that date.
                   Adding a comic by hand sends the words in the title box to the Marvel Fandom wiki
                   only when you press the lookup button; the wiki sees that title, but no picture is fetched.
                   These requests include no part of your lists, progress, or notes.

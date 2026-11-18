@@ -21,7 +21,8 @@ import {
   OWNER_EXTERNAL_SUPPLEMENT, OWNER_GCD_SUPPLEMENT,
 } from '../lib/model.js';
 import { availability, describe, localDayString, RECORD_HEADING, RECORD_NOTE, STATE } from '../lib/availability.js';
-import { readerAction, readerContext } from '../lib/readerDestination.js';
+import { readerAction, readerName } from '../lib/readerDestination.js';
+import { appLinkFor, appViewerFor } from '../lib/marvelComicsApp.js';
 import { savedReaderIssue } from '../lib/temporaryReaderLink.js';
 import { labelledName } from '../lib/accname.js';
 import { isPlainNavigation } from '../lib/route.js';
@@ -34,8 +35,11 @@ import { homeButton, visitButton } from './shared/catalog-presentation.js';
 import { uiIcon } from '../lib/uiIcon.js';
 import { editionRelations } from '../lib/collectedEditions.js';
 import { positionProviders } from '../lib/libraryLinks.js';
-import { collectedEditionCredit, collectedEditionLabels } from './shared/collected-editions.js';
+import {
+  collectedEditionCredit, collectedEditionLabels, marvelComicsAppCredit,
+} from './shared/collected-editions.js';
 import { gcdDetailsCredit, hasGcdDetails } from './shared/details-credit.js';
+import { createReadingOptions, readingChoices } from './shared/reading-options.js';
 
 export const RING_CIRCUMFERENCE = 119.4; // 2πr for r=19, matching the SVG in index.html
 const UNDO_DELETE = 'undo-delete';
@@ -172,7 +176,7 @@ export function createReadingView({
   withSaveEducation,
   ymd,
 }) {
-  const launch = (issue, event, control) => launchSaved(issue, event, 'saved', control);
+  const launch = (issue, event, control, options) => launchSaved(issue, event, 'saved', control, options);
   // The hero is hidden when there is no next issue, but its heading stays non-empty so the
   // document never holds an invalid heading state. This must match the initial text in index.html.
   const HERO_NO_ISSUE = 'Nothing up next';
@@ -201,6 +205,32 @@ export function createReadingView({
   let aboutCatalogId = null;
   let aboutRequest = null;
   let aboutHasSource = false;
+  let heroOptions = null;
+
+  function ownList(id) {
+    const lists = getState().lists;
+    return Object.hasOwn(lists, id ?? '') ? lists[id] : null;
+  }
+
+  function getHeroOptions() {
+    if (!heroOptions) {
+      heroOptions = createReadingOptions({
+        el, root: $('#hero-reading-options'), toggle: $('#btn-hero-reading-options'),
+        list: $('#hero-reading-options-list'),
+        onRead: (issue, event, choice) => {
+          const id = activeListId();
+          const current = isCompleted(getState(), id) ? null : upNext(getState(), id);
+          if (current && issue && current.issueId === issue.issueId) launch(current, event, event.currentTarget, choice);
+        },
+        focusFallback: () => {
+          const target = !$('#hero').hidden && !$('#btn-hero-read').hidden ? $('#btn-hero-read') : $('#order-name');
+          if (target === $('#order-name')) target.setAttribute('tabindex', '-1');
+          target.focus({ preventScroll: true });
+        },
+      });
+    }
+    return heroOptions;
+  }
 
   function renderAbout({ arrival = false, open } = {}) {
     const lists = getState().lists;
@@ -209,6 +239,7 @@ export function createReadingView({
     const disclosure = $('#order-desc');
     const description = $('#order-desc-text');
     const source = $('#order-source');
+    const appCredit = $('#order-app-link-credit');
     const visit = $('#order-visit');
     const showVisit = (button) => {
       visit.replaceChildren(...(button ? [button] : []));
@@ -217,6 +248,12 @@ export function createReadingView({
     const changed = aboutListId !== list?.id || aboutCatalogId !== list?.catalogId;
     description.textContent = list?.description || '';
     description.hidden = !list?.description;
+    const hasAppCredit = Boolean(list?.itemIds?.some((issueId) => appViewerFor(issueId)));
+    if (hasAppCredit && !appCredit.firstChild) appCredit.replaceChildren(marvelComicsAppCredit(el));
+    const creditHadFocus = !hasAppCredit && appCredit.contains(document.activeElement);
+    if (!hasAppCredit && appCredit.firstChild) {
+      appCredit.replaceChildren();
+    }
     if (changed) {
       aboutListId = list?.id ?? null;
       aboutCatalogId = list?.catalogId ?? null;
@@ -228,7 +265,12 @@ export function createReadingView({
     }
     if (typeof open === 'boolean') disclosure.open = open;
     else if (changed || arrival) disclosure.open = true;
-    disclosure.hidden = !list?.description && !aboutHasSource;
+    disclosure.hidden = !list?.description && !aboutHasSource && !hasAppCredit;
+    if (creditHadFocus) {
+      const target = disclosure.hidden ? $('#order-name') : disclosure.querySelector('summary');
+      if (disclosure.hidden) target.setAttribute('tabindex', '-1');
+      target.focus({ preventScroll: true });
+    }
     if (!list?.catalogId || !loadCatalog || (!changed && !arrival)) return;
     if (aboutRequest?.pending) return;
 
@@ -270,7 +312,8 @@ export function createReadingView({
       source.replaceChildren(...content);
       showVisit(visitButton(el, entry, createIcon));
       aboutHasSource = content.length > 0;
-      disclosure.hidden = !getState().lists[list.id]?.description && !aboutHasSource;
+      disclosure.hidden = !getState().lists[list.id]?.description && !aboutHasSource
+        && !getState().lists[list.id]?.itemIds?.some((issueId) => appViewerFor(issueId));
       // Retry asked for the source, so focus lands on the button that now leads to it.
       if (held) visit.querySelector('a').focus();
     }
@@ -531,6 +574,7 @@ export function createReadingView({
       const issue = upNext(getState(), activeListId());
       if (issue) launch(issue, e);
     });
+    getHeroOptions().wire();
     $('#btn-hero-inspect').addEventListener('click', () => {
       if (isCompleted(getState(), activeListId())) return;
       const issue = upNext(getState(), activeListId());
@@ -701,6 +745,7 @@ export function createReadingView({
     if (!issue) $('#shelf-sec').hidden = true;
     if (!issue) {
       $('#hero-title').textContent = HERO_NO_ISSUE;
+      refreshHeroReader(null);
       resetSynopsis();
       return;
     }
@@ -751,12 +796,15 @@ export function createReadingView({
   }
 
   function refreshHeroReader(issue = upNext(getState(), activeListId())) {
-    const reader = readerPresentation(issue, 'saved');
+    const reader = issue ? readerPresentation(issue, 'saved') : { launchable: false, temporary: false };
     const button = $('#btn-hero-read');
-    button.hidden = isCompleted(getState(), activeListId()) || !reader.launchable;
-    button.textContent = readerAction();
-    button.setAttribute('aria-label', labelledName(readerAction(), issue
-      ? readerContext(issue.title) : ''));
+    button.hidden = !issue || isCompleted(getState(), activeListId()) || !reader.launchable;
+    const app = Boolean(issue && appLinkFor(issue.issueId));
+    button.textContent = readerAction(new Date(), { app });
+    button.setAttribute('aria-label', issue ? readerName(issue.title, new Date(), { app })
+      : labelledName(readerAction(), ''));
+    const catalogId = ownList(activeListId())?.catalogId ?? null;
+    getHeroOptions().paint(issue, readingChoices(issue, catalogId, { launchable: !button.hidden, app }));
     const temporary = $('#hero-reader-temporary');
     temporary.hidden = button.hidden || !reader.temporary;
     temporary.textContent = temporary.hidden ? '' : 'Using a temporary reader link.';
@@ -792,7 +840,8 @@ export function createReadingView({
         const year = ymd(item.onSale).slice(0, 4);
         const label = [short, year].filter(Boolean).join(' ');
         const reader = readerPresentation(item, 'saved');
-        const readName = labelledName(readerAction(), readerContext(label));
+        const app = Boolean(appLinkFor(item.issueId));
+        const readName = readerName(label, new Date(), { app });
         const context = { kind: 'list', id };
 
         shelf.append(el('li', { class: 'tile' }, [
@@ -818,7 +867,7 @@ export function createReadingView({
             dataset: { key: item.issueId, act: 'open' },
             hidden: !reader.launchable,
             onclick: (e) => { if (activeListId() === id && !isCompleted(getState(), id)) launch(item, e); },
-          }, readerAction()),
+          }, readerAction(new Date(), { app })),
         ]));
       }
     }, {
@@ -831,6 +880,8 @@ export function createReadingView({
     const id = activeListId();
     const rows = $('#rows');
     if (id !== rowCacheListId) { rowCache = new Map(); rowCacheListId = id; }
+    const active = document.activeElement;
+    const optionKey = rows.contains(active) && active?.dataset?.readingOption ? active.dataset.key : null;
 
     preservingFocus(rows, () => {
       const desired = [];
@@ -962,6 +1013,7 @@ export function createReadingView({
         paintCover(img, fb, item, 'portrait_incredible');
 
         const expanded = entry?.node.querySelector('.row-actions')?.classList.contains('is-open') ?? false;
+        const optionsExpanded = entry?.node.querySelector('.row-reading-options-toggle')?.getAttribute('aria-expanded') === 'true';
         const node = el('li', {
           class: `row${item.read ? ' is-read' : ''}${item.issueId === currentId ? ' now' : ''}`,
         }, [
@@ -1017,7 +1069,7 @@ export function createReadingView({
               onclick: () => editIssueNote(item),
             }, item.note ? item.note : 'Add a note'),
           ]),
-          issueRowActions(item, id, expanded),
+          issueRowActions(item, id, expanded, optionsExpanded),
         ]);
         rowCache.set(item.issueId, { key: rowKey, readerKey, catalogId: list.catalogId, node });
         desired.push(node);
@@ -1028,7 +1080,15 @@ export function createReadingView({
       commitRows(rows, desired);
     }, {
       primary: 'read',
-      fallback: () => [...document.querySelectorAll('input[name="filter"]')].find((radio) => radio.checked),
+      fallback: () => {
+        if (optionKey) {
+          const controls = [...rows.querySelectorAll('[data-act]')].filter((control) => control.dataset.key === optionKey);
+          const target = controls.find((control) => control.dataset.act === 'reading-options')
+            ?? controls.find((control) => control.dataset.act === 'more');
+          if (target) return target;
+        }
+        return [...document.querySelectorAll('input[name="filter"]')].find((radio) => radio.checked);
+      },
     });
   }
 
@@ -1091,9 +1151,45 @@ export function createReadingView({
     announce(`Moved ${state.issues[issueId]?.title ?? `Issue ${issueId}`} to position ${after + 1} of ${list.itemIds.length}.`);
   }
 
-  function issueRowActions(item, listId, expanded = false) {
+  function issueRowActions(item, listId, expanded = false, optionsExpanded = false) {
     const panelId = `row-actions-${item.issueId}`;
+    const toggle = el('button', {
+      type: 'button',
+      class: 'mini row-actions-toggle',
+      'aria-expanded': 'false',
+      'aria-controls': panelId, 'aria-label': `More actions for ${item.title}`,
+      text: 'More actions', dataset: { key: item.issueId, act: 'more' },
+    });
     const reader = readerPresentation(item, 'saved');
+    const app = Boolean(appLinkFor(item.issueId));
+    const choices = readingChoices(item, ownList(listId)?.catalogId ?? null, { launchable: reader.launchable, app });
+    let options = null;
+    let optionsRoot = null;
+    if (choices.length >= 2) {
+      const optionsListId = `row-reading-options-list-${item.issueId}`;
+      const optionsToggle = el('button', {
+        type: 'button', class: 'mini row-reading-options-toggle', text: 'Reading options',
+        'aria-expanded': 'false', 'aria-controls': optionsListId,
+        dataset: { key: item.issueId, act: 'reading-options' },
+      });
+      const list = el('ul', { class: 'reading-options-list', id: optionsListId, hidden: true });
+      optionsRoot = el('div', { class: 'reading-options row-reading-options' }, [optionsToggle, list]);
+      options = createReadingOptions({
+        el, root: optionsRoot, toggle: optionsToggle, list, trackRow: true,
+        onRead: (issue, event, choice) => {
+          const current = savedReaderIssue(getState(), issue?.issueId);
+          if (!current || activeListId() !== listId || !ownList(listId)?.itemIds.includes(issue.issueId)) {
+            announce('That comic is no longer in this Reading List.');
+            return;
+          }
+          launch(current, event, event.currentTarget, choice);
+        },
+        focusFallback: () => toggle.focus({ preventScroll: true }),
+      });
+      options.wire();
+      options.paint(item, choices);
+      options.setOpen(expanded && optionsExpanded);
+    }
     // UX-13 (#830): the commands come in groups set apart by a rule: opening the comic, its place in
     // the order and its availability, each a group named for assistive technology, then deferral,
     // then removal last and alone. As nine equal buttons in one grid, Remove carried the weight of
@@ -1105,11 +1201,12 @@ export function createReadingView({
       group('Open', [
         el('button', {
           type: 'button', class: 'mini',
-          'aria-label': labelledName(readerAction(), readerContext(item.title)),
+          'aria-label': readerName(item.title, new Date(), { app }),
           dataset: { key: item.issueId, act: 'open' },
           hidden: !reader.launchable,
           onclick: (e) => launch(item, e),
-        }, readerAction()),
+        }, readerAction(new Date(), { app })),
+        optionsRoot,
         ...(reader.temporary ? [el('span', {
           class: 'rail-hint', dataset: { readerTemporary: 'true' }, text: 'Temporary reader link',
         })] : []),
@@ -1123,7 +1220,7 @@ export function createReadingView({
             dataset: { key: item.issueId, act: 'info', tooltip: 'Open comic page on marvel.com' },
           }, 'Info')
           : null,
-      ], { hidden: !reader.launchable && !detailUrl(item) }),
+      ], { hidden: !reader.launchable && !detailUrl(item) && !optionsRoot }),
       group('Order', [
         el('button', {
           type: 'button',
@@ -1200,17 +1297,11 @@ export function createReadingView({
         el('span', { class: 'mini-label', text: 'Remove from list' }),
       ])]),
     ]);
-    const toggle = el('button', {
-      type: 'button',
-      class: 'mini row-actions-toggle',
-      'aria-expanded': 'false',
-      'aria-controls': panelId, 'aria-label': `More actions for ${item.title}`,
-      text: 'More actions', dataset: { key: item.issueId, act: 'more' },
-    });
     const root = el('div', { class: 'row-actions' }, [toggle, panel]);
     const setOpen = (open) => {
       root.classList.toggle('is-open', open);
       toggle.setAttribute('aria-expanded', String(open));
+      if (!open) options?.setOpen(false);
     };
     setOpen(expanded);
     toggle.addEventListener('click', () => setOpen(!root.classList.contains('is-open')));

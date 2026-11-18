@@ -13,6 +13,7 @@ export function digitalReference(value) {
 
 export function createAndroidReader({
   host, location, elements, readApiBase, validateIssuePageUrl, destination, comicsUrl, fetchImpl = fetch,
+  appUrlFor = () => null,
 }) {
   if (typeof validateIssuePageUrl !== 'function') throw new TypeError('An issue-page validator is required');
   if (!['unlimited', 'comics'].includes(destination) || comicsUrl !== 'https://marvel.webtoon.com/') {
@@ -31,9 +32,11 @@ export function createAndroidReader({
   const title = (query.get('t') || '').slice(0, 120);
   const readerUrl = (id) => `https://read.marvel.com/#/book/${id}`;
   const detailUrl = (id) => `https://www.marvel.com/comics/issue/${id}/`;
+  // #950: a comic with a bundled Marvel Comics app link opens it before and after December 7.
+  const appUrl = (digitalId || issueId) ? appUrlFor(query) : null;
   fallback.textContent = 'Open in browser';
-  fallback.href = destination === 'comics' ? comicsUrl
-    : digitalId ? readerUrl(digitalId) : pageUrl || (issueId ? detailUrl(issueId) : comicsUrl);
+  fallback.href = appUrl || (destination === 'comics' ? comicsUrl
+    : digitalId ? readerUrl(digitalId) : pageUrl || (issueId ? detailUrl(issueId) : comicsUrl));
   if (title) heading.textContent = `Opening ${title}`;
 
   function cancel() {
@@ -65,6 +68,10 @@ export function createAndroidReader({
     if (!digitalId && !issueId) {
       heading.textContent = 'Nothing to open';
       status.textContent = 'This link was missing a valid issue reference.';
+      return;
+    }
+    if (appUrl) {
+      open(appUrl, 'Taking you to this comic in the Marvel Comics app.');
       return;
     }
     if (destination === 'comics') {

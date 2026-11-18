@@ -432,3 +432,13 @@ test('post-cutoff reader help honestly names a general website with no single-co
   assert.match(h.nodes.summary.textContent, /Marvel Comics website, not a single-comic link/);
   assert.doesNotMatch(h.nodes.summary.textContent, /opens.*Unlimited web reader/);
 });
+
+test('950 reader help names the Marvel Comics app for a linked comic on both sides of the cutoff', () => {
+  for (const now of [new Date(2026, 11, 6, 23, 59), new Date(2026, 11, 7)]) {
+    const h = harness(now);
+    h.view.show(12459);
+    assert.equal(h.nodes.summary.textContent, 'Read opens this comic in the Marvel Comics app.');
+    h.view.show(7);
+    assert.doesNotMatch(h.nodes.summary.textContent, /Marvel Comics app/);
+  }
+});

@@ -131,7 +131,8 @@ test('Read snapshots the device-local December 7 cutoff synchronously before ope
       [new Date(2026, 11, 7, 0, 0, 0, 0), 'comics', 'comics'],
       [new Date(2027, 0, 1), 'comics', 'comics'],
     ]) {
-      const result = openIssue({ issueId: 52447, digitalId: 38164 }, { origin: 'http://example.test', now });
+      // 52446 has no Marvel Comics app link, so Read follows the date switch (#950).
+      const result = openIssue({ issueId: 52446, digitalId: 38164 }, { origin: 'http://example.test', now });
       assert.equal(result.target, target);
       const [url, frame, features] = opened.at(-1);
       assert.equal(new URL(url).searchParams.get('r'), destination);

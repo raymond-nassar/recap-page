@@ -1,13 +1,18 @@
 export const MARVEL_COMICS_URL = 'https://marvel.webtoon.com/';
 
-export function readerAction(now = new Date()) {
-  return readerDestination(now) === 'unlimited' ? 'Read' : 'Find on Marvel Comics';
+export const MARVEL_UNLIMITED_CHOICE = 'Marvel Unlimited, until December 7, 2026';
+
+// A comic with a bundled Marvel Comics app link opens that comic itself, so it keeps the plain
+// Read label after December 7, when comics without one fall back to searching the website.
+export function readerAction(now = new Date(), { app = false } = {}) {
+  return app || readerDestination(now) === 'unlimited' ? 'Read' : 'Find on Marvel Comics';
 }
 
+// Wording approved by the owner on 17 Nov 2026 (#950).
 export function readerClosureNotice(now = new Date()) {
   return readerDestination(now) === 'unlimited'
-    ? 'Marvel Unlimited ends December 7, 2026, and Read will then open the Marvel Comics website.'
-    : 'Marvel Unlimited has ended, so Read opens the Marvel Comics website.';
+    ? 'Read now opens comics in the Marvel Comics app when we have a link. Marvel Unlimited ends December 7, 2026. Until then you can still choose it under Reading options.'
+    : 'Marvel Unlimited has ended. Read opens the comic in the Marvel Comics app when we have a link, and the Marvel Comics website otherwise.';
 }
 
 export function readerDestination(now = new Date()) {
@@ -19,6 +24,13 @@ export function readerContext(title, now = new Date()) {
   return readerDestination(now) === 'unlimited'
     ? `${title} in Marvel Unlimited (reading ends December 7, 2026)`
     : `Marvel Comics website to find ${title} (not a single-comic link)`;
+}
+
+// The whole accessible name of a Read control. The app form is the owner's approved sentence; the
+// others keep the label first and the context after a colon, as labelledName builds them.
+export function readerName(title, now = new Date(), { app = false } = {}) {
+  return app ? `Read ${title} in the Marvel Comics app`
+    : `${readerAction(now)}: ${readerContext(title, now)}`;
 }
 
 export function launchDestination(query, now = new Date()) {

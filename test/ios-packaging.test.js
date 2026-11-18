@@ -522,7 +522,8 @@ test('the iOS manifest lists every bundled file once with its exact digest', asy
   assert.equal(new Set(listed).size, listed.length);
   for (const name of ['data/collectedEditionCatalog.js', 'data/collectedEditionEvidence.js',
     'js/lib/collectedEditions.js', 'js/views/shared/collected-editions.js',
-    'data/universeCatalog.js', 'js/lib/universeSchema.js', 'js/lib/universes.js']) {
+    'data/universeCatalog.js', 'js/lib/universeSchema.js', 'js/lib/universes.js',
+    'data/marvelComicsAppLinks.js', 'data/marvelComicsAppMuIssues.js', 'js/lib/marvelComicsApp.js', 'js/lib/marvelComicsAppUrl.js']) {
     assert.ok(listed.includes(name), name);
     assert.deepEqual(await readFile(join(output, name)), await readFile(new URL(`../src/${name}`, import.meta.url)), name);
   }
@@ -667,6 +668,11 @@ test('iOS feature configuration fails closed and preview overrides cannot enter 
 
 test('the generated Read launcher stylesheet is linked, hashed and served by the iOS app', async () => {
   const launcher = await readFile(join(output, 'open.html'), 'utf8');
+  for (const copy of [
+    '<title>Opening your comic - Recap Page</title>',
+    '<h1 id="h">Opening your comic</h1>',
+    '<p id="p" role="status" aria-live="polite" aria-atomic="true">One moment.</p>',
+  ]) assert.ok(launcher.includes(copy), `iOS launcher must include ${copy}`);
   const sharedLink = launcher.indexOf('<link rel="stylesheet" href="./open.css" />');
   const iosLink = launcher.indexOf('<link rel="stylesheet" href="./ios/launcher.css" />');
   assert.ok(sharedLink >= 0 && iosLink > sharedLink, 'the iOS launcher overlay follows open.css');

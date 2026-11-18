@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import { generateKeyPairSync, verify } from 'node:crypto';
 import {
   ENVIRONMENT, WORKFLOW, BUNDLE_ID, RELEASE_TYPE, AppStoreError, validateIntent, sealedBuild, validateInvocation,
-  ascToken, ascClient, whatsNewDifference, transact, plan,
+  ascToken, ascClient, whatsNewDifference, reportTextDifferences, transact, plan, approvalBinding,
 } from '../scripts/app-store-release.mjs';
 import { REPOSITORY_ID } from '../scripts/google-play-publisher.mjs';
 import { REPOSITORY } from '../scripts/android-candidate.mjs';
@@ -23,7 +23,7 @@ const LIVE_LINE_ONE = '- Browse the new "Universes" section, still under constru
 const ledger = JSON.parse(readFileSync('packaging/ios/build-numbers.json', 'utf8'));
 const workflow = readFileSync(WORKFLOW, 'utf8').replace(/\r\n/g, '\n');
 const spec = (mode = 'Submit', whatsNew = TEXT) => ({ mode, version: VERSION, buildNumber: BUILD,
-  sealedBuildNumber: BUILD, whatsNew });
+  sealedBuildNumber: BUILD, whatsNew, description: null, reviewNotes: null });
 
 const appsReply = () => ({ data: [{ type: 'apps', id: 'app1', attributes: { bundleId: BUNDLE_ID } }] });
 function buildsReply(attributes = {}, train = {}) {
@@ -245,9 +245,11 @@ test('Submit creates a missing version, attaches the build, sets What\'s New and
   assert.equal(result.state, 'submitted-for-review');
   assert.equal(result.mutationAttempted, true);
   assert.deepEqual(result.ids, { app: 'app1', build: 'build12', appStoreVersion: 'v46', localization: 'loc46',
-    reviewSubmission: 'sub1', reviewSubmissionItem: 'item1' });
+    reviewDetail: null, reviewSubmission: 'sub1', reviewSubmissionItem: 'item1' });
   assert.equal(result.before.appStoreVersion, null);
   assert.deepEqual(result.before.openSubmissions, []);
+  assert.equal(result.descriptionSha256, 'not-requested');
+  assert.equal(result.descriptionDifference, null);
   assert.equal(result.after.reviewSubmission.state, 'WAITING_FOR_REVIEW');
   assert.equal(result.after.appStoreVersion.appVersionState, 'WAITING_FOR_REVIEW');
   assert.equal(writes(calls).length, 6);
@@ -378,6 +380,226 @@ test('a What\'s New readback that is not byte for byte the approved text stops',
   assert.equal(last.mutationAttempted, true);
 });
 
+test('approved description is patched alone and every localization attribute is checked before submission', async () => {
+  const steps = journey({ create: false, attached: 'build12', releaseType: RELEASE_TYPE });
+  const before = at(steps, 'read-localizations').reply.data[1];
+  before.attributes.description = 'Fake old description';
+  before.attributes.keywords = 'fake keywords';
+  const after = { ...before, attributes: { ...before.attributes, whatsNew: TEXT, description: 'Fake approved description' } };
+  const index = steps.findIndex((step) => step.stage === 'create-review-submission');
+  steps.splice(index, 0,
+    { stage: 'update-description', method: 'PATCH', path: '/v1/appStoreVersionLocalizations/loc46',
+      body: { data: { type: 'appStoreVersionLocalizations', id: 'loc46',
+        attributes: { description: 'Fake approved description' } } }, reply: { data: after } },
+    { stage: 'readback-description', method: 'GET', path: '/v1/appStoreVersionLocalizations/loc46',
+      reply: { data: after } });
+  for (const corrupt of [false, true]) {
+    const attempt = structuredClone(steps);
+    if (corrupt) at(attempt, 'readback-description').reply.data.attributes.keywords = 'changed';
+    const harness = fixture(corrupt ? through(attempt, 'readback-description') : attempt);
+    const action = transact({ ...spec(), description: 'Fake approved description' },
+      { fetchImpl: harness.fetchImpl, token: BEARER, record: harness.record, mode: 'Submit' });
+    if (corrupt) {
+      await assert.rejects(action, (error) => error.code === 'DESCRIPTION_READBACK_MISMATCH');
+      assert.equal(harness.receipts.at(-1).state, 'blocked');
+      assert.equal(harness.calls.at(-1).stage, 'readback-description');
+    } else {
+      const result = await action;
+      assert.equal(result.state, 'submitted-for-review');
+      assert.equal(result.before.description, 'Fake old description');
+      assert.equal(result.descriptionDifference.identical, false);
+      assert.equal(harness.calls.length, steps.length);
+    }
+  }
+});
+
+test('Inspect plans a new version description and invalid text stops before any Apple request', async () => {
+  const steps = journey({ create: true }).filter((step) => step.method === 'GET').slice(0, 4);
+  const harness = fixture(steps);
+  const result = await transact({ ...spec('Inspect'), description: 'Fake approved description' },
+    { fetchImpl: harness.fetchImpl, token: BEARER, record: harness.record, mode: 'Inspect' });
+  assert.equal(result.planned.find((item) => item.stage === 'update-description').path,
+    '/v1/appStoreVersionLocalizations/<created-en-US>');
+  assert.equal(writes(harness.calls).length, 0);
+  for (const description of [undefined, '', 'x'.repeat(4001)]) {
+    const noCalls = fixture([]);
+    await assert.rejects(transact({ ...spec(), description },
+      { fetchImpl: noCalls.fetchImpl, token: BEARER, record: noCalls.record, mode: 'Submit' }),
+    (error) => error.code === 'APPROVED_DESCRIPTION_REQUIRED');
+    assert.equal(noCalls.calls.length, 0);
+  }
+});
+
+test('a matching approved description is not rewritten but is still read back', async () => {
+  const steps = journey({ create: false, live: TEXT, attached: 'build12', releaseType: RELEASE_TYPE });
+  const localizationValue = at(steps, 'read-localizations').reply.data[1];
+  localizationValue.attributes.description = 'Fake approved description';
+  const index = steps.findIndex((step) => step.stage === 'create-review-submission');
+  steps.splice(index, 0, { stage: 'readback-description', method: 'GET',
+    path: '/v1/appStoreVersionLocalizations/loc46', reply: { data: structuredClone(localizationValue) } });
+  const harness = fixture(steps);
+  const result = await transact({ ...spec(), description: 'Fake approved description' },
+    { fetchImpl: harness.fetchImpl, token: BEARER, record: harness.record, mode: 'Submit' });
+  assert.equal(result.descriptionDifference.identical, true);
+  assert.ok(!harness.calls.some((call) => call.stage === 'update-description'));
+  assert.equal(harness.calls.length, steps.length);
+});
+
+test('description-only Inspect differences are reported even when What\'s New already matches', async () => {
+  const steps = journey({ create: false, live: TEXT, attached: 'build12', releaseType: RELEASE_TYPE })
+    .filter((step) => ['read-app', 'read-build', 'read-versions', 'read-review-submissions',
+      'read-version-build', 'read-localizations'].includes(step.stage));
+  at(steps, 'read-localizations').reply.data[1].attributes.description = 'Fake old description';
+  const harness = fixture(steps);
+  const result = await transact({ ...spec('Inspect'), description: 'Fake approved description' },
+    { fetchImpl: harness.fetchImpl, token: BEARER, record: harness.record, mode: 'Inspect' });
+  const lines = [];
+  reportTextDifferences(result, (line) => lines.push(line));
+  assert.deepEqual(lines, [
+    'Description line 1 differs. Live: "Fake old description" Approved: "Fake approved description"',
+  ]);
+  assert.deepEqual(result.planned.filter((item) => item.stage === 'update-description').map((item) => item.body),
+    [{ data: { type: 'appStoreVersionLocalizations', id: 'loc46',
+      attributes: { description: 'Fake approved description' } } }]);
+  assert.equal(writes(harness.calls).length, 0);
+});
+
+test('case variants make the English localization ambiguous before description writes', async () => {
+  for (const locales of [['en-us'], ['en-US', 'en-us']]) {
+    const steps = through(journey({ create: false, live: TEXT, attached: 'build12',
+      releaseType: RELEASE_TYPE }), 'read-localizations');
+    at(steps, 'read-localizations').reply.data = locales.map((locale, index) =>
+      ({ ...localization(TEXT, locale), id: `loc${index}` }));
+    const harness = fixture(steps);
+    await assert.rejects(transact({ ...spec(), description: 'Fake approved description' },
+      { fetchImpl: harness.fetchImpl, token: BEARER, record: harness.record, mode: 'Submit' }),
+    (error) => error.code === 'ONE_EN_US_LOCALIZATION_REQUIRED');
+    assert.equal(writes(harness.calls).length, 0);
+    assert.equal(harness.receipts.at(-1).state, 'blocked');
+  }
+});
+
+const NOTES = 'Fake approved reviewer note.\nSecond fake line.';
+const LIVE_NOTES = 'Fake live reviewer note.';
+const DEMO_SIGN_IN = 'fake-demo-password';
+const detail = (notes) => ({ type: 'appStoreReviewDetails', id: 'rd46', attributes: { contactFirstName: 'Fake',
+  contactEmail: 'fake@example.invalid', demoAccountName: 'fake-demo', demoAccountPassword: DEMO_SIGN_IN,
+  demoAccountRequired: true, notes } });
+// The review-detail steps sit immediately before the review submission, so Apple reviews the new notes.
+function withNotes(steps, live = LIVE_NOTES) {
+  const index = steps.findIndex((step) => step.stage === 'create-review-submission');
+  const added = [{ stage: 'read-review-detail', method: 'GET', path: '/v1/appStoreVersions/v46/appStoreReviewDetail',
+    reply: { data: detail(live) } }];
+  if (live !== NOTES) {
+    added.push({ stage: 'update-review-notes', method: 'PATCH', path: '/v1/appStoreReviewDetails/rd46',
+      body: { data: { type: 'appStoreReviewDetails', id: 'rd46', attributes: { notes: NOTES } } },
+      reply: { data: detail(NOTES) } });
+  }
+  added.push({ stage: 'readback-review-notes', method: 'GET', path: '/v1/appStoreReviewDetails/rd46',
+    reply: { data: detail(NOTES) } });
+  steps.splice(index, 0, ...added);
+  return steps;
+}
+const notesSpec = (mode = 'Submit', reviewNotes = NOTES) => ({ ...spec(mode), reviewNotes });
+async function withReviewNotes(steps, mode = 'Submit', reviewNotes = NOTES) {
+  const harness = fixture(steps);
+  const action = transact(notesSpec(mode, reviewNotes), { fetchImpl: harness.fetchImpl, token: BEARER,
+    record: harness.record, mode });
+  return { harness, action };
+}
+const existing = () => journey({ create: false, live: TEXT, attached: 'build12', releaseType: RELEASE_TYPE });
+
+test('approved App Review notes are set alone and read back before the review submission exists', async () => {
+  const steps = withNotes(existing());
+  const { harness, action } = await withReviewNotes(steps);
+  const result = await action;
+  assert.equal(result.state, 'submitted-for-review');
+  assert.equal(harness.calls.length, steps.length);
+  assert.deepEqual(writes(harness.calls).map((call) => call.stage), ['update-review-notes', 'create-review-submission',
+    'add-review-item', 'submit-for-review']);
+  assert.equal(result.ids.reviewDetail, 'rd46');
+  assert.equal(result.reviewNotesBytes, Buffer.byteLength(NOTES));
+  assert.match(result.reviewNotesSha256, /^[0-9a-f]{64}$/);
+  assert.equal(result.reviewNotesIdentical, false);
+  const saved = JSON.stringify(harness.receipts);
+  for (const live of [LIVE_NOTES, DEMO_SIGN_IN, 'fake-demo', 'fake@example.invalid']) {
+    assert.ok(!saved.includes(live), 'no live review-detail value reaches the receipt');
+  }
+});
+
+test('a review-detail readback with any other attribute changed stops before the review submission', async () => {
+  for (const change of [{ demoAccountPassword: 'fake-other-password' }, { notes: `${NOTES} ` }, { contactPhone: '+1 555 0100' }]) {
+    const steps = through(withNotes(existing()), 'readback-review-notes');
+    Object.assign(at(steps, 'readback-review-notes').reply.data.attributes, change);
+    const { harness, action } = await withReviewNotes(steps);
+    await assert.rejects(action, (error) => error.code === 'REVIEW_NOTES_READBACK_MISMATCH');
+    assert.equal(harness.calls.length, steps.length);
+    assert.equal(harness.receipts.at(-1).state, 'blocked');
+    assert.ok(!JSON.stringify(harness.receipts).includes('fake-other-password'), 'the mismatch is not copied into the receipt');
+  }
+});
+
+test('missing or malformed review details stop; none are created and no submission follows', async () => {
+  const cases = [
+    [(step) => { step.reply = { data: null }; }, 'REVIEW_DETAIL_REQUIRED'],
+    [(step) => { step.reply = {}; }, 'REVIEW_DETAIL_REQUIRED'],
+    [(step) => { step.status = 404; step.reply = { errors: [{ code: 'NOT_FOUND' }] }; }, 'APPLE_HTTP_REJECTED'],
+    [(step) => { step.reply = { data: { ...detail(LIVE_NOTES), type: 'appStoreVersions' } }; }, 'INVALID_RESOURCE'],
+    [(step) => { step.reply.data.attributes.notes = 7; }, 'INVALID_REVIEW_DETAIL'],
+  ];
+  for (const [corrupt, code] of cases) {
+    const steps = through(withNotes(existing()), 'read-review-detail');
+    corrupt(at(steps, 'read-review-detail'));
+    const { harness, action } = await withReviewNotes(steps);
+    await assert.rejects(action, (error) => error.code === code);
+    assert.equal(harness.calls.length, steps.length, code);
+    assert.equal(writes(harness.calls).length, 0, code);
+  }
+});
+
+test('matching App Review notes are not rewritten but are still read back', async () => {
+  const steps = withNotes(existing(), NOTES);
+  const { harness, action } = await withReviewNotes(steps);
+  const result = await action;
+  assert.equal(result.reviewNotesIdentical, true);
+  assert.ok(!harness.calls.some((call) => call.stage === 'update-review-notes'));
+  assert.equal(harness.calls.length, steps.length);
+});
+
+test('Inspect plans the notes by hash only and invalid notes stop before any Apple request', async () => {
+  const created = fixture(journey({ create: true }).filter((step) => step.method === 'GET').slice(0, 4));
+  const planned = await transact(notesSpec('Inspect'), { fetchImpl: created.fetchImpl, token: BEARER,
+    record: created.record, mode: 'Inspect' });
+  const item = planned.planned.find((entry) => entry.stage === 'update-review-notes');
+  assert.equal(item.path, '/v1/appStoreReviewDetails/<created-version-review-detail>');
+  assert.ok(!JSON.stringify(planned).includes(NOTES), 'the plan names the notes by size and hash');
+  assert.ok(item.body.data.attributes.notes.includes(planned.reviewNotesSha256));
+  const reads = existing().filter((step) => step.method === 'GET' && step.stage !== 'read-review-items'
+    && !step.stage.startsWith('readback'));
+  const steps = [...reads, at(withNotes(existing()), 'read-review-detail')];
+  const { harness, action } = await withReviewNotes(steps, 'Inspect');
+  const result = await action;
+  assert.equal(writes(harness.calls).length, 0);
+  assert.deepEqual(result.planned.map((entry) => entry.stage), ['update-review-notes', 'create-review-submission',
+    'add-review-item', 'submit-for-review']);
+  for (const reviewNotes of [undefined, '', 'x'.repeat(4001), '\u20ac'.repeat(1334)]) {
+    const noCalls = fixture([]);
+    await assert.rejects(transact({ ...spec(), reviewNotes }, { fetchImpl: noCalls.fetchImpl, token: BEARER,
+      record: noCalls.record, mode: 'Submit' }), (error) => error.code === 'APPROVED_REVIEW_NOTES_REQUIRED');
+    assert.equal(noCalls.calls.length, 0);
+  }
+});
+
+test('the approval binding holds the App Review notes hash, and null when there is no file', () => {
+  const base = { intent: { mode: 'Submit', version: VERSION, buildNumber: BUILD }, entry: { buildNumber: BUILD },
+    whatsNew: TEXT, description: null };
+  const none = approvalBinding({ ...base, reviewNotes: null });
+  const some = approvalBinding({ ...base, reviewNotes: NOTES });
+  const other = approvalBinding({ ...base, reviewNotes: `${NOTES}.` });
+  assert.equal(none.reviewNotesSha256, null);
+  assert.match(some.reviewNotesSha256, /^[0-9a-f]{64}$/);
+  assert.notEqual(some.reviewNotesSha256, other.reviewNotesSha256);
+});
 test('a build relationship readback that is not the target build stops', async () => {
   const steps = through(journey({ create: false, attached: 'build11', releaseType: RELEASE_TYPE }),
     'readback-version-build');

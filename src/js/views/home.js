@@ -1,6 +1,7 @@
 import { uiIcon } from '../lib/uiIcon.js';
 import { isLaunchable } from '../reader.js';
-import { readerAction, readerContext } from '../lib/readerDestination.js';
+import { readerAction, readerName } from '../lib/readerDestination.js';
+import { appLinkFor } from '../lib/marvelComicsApp.js';
 import { deferredCount } from '../lib/model.js';
 import { paintGlance } from '../lib/progressGlance.js';
 import { formatRoute, isPlainNavigation } from '../lib/route.js';
@@ -99,11 +100,9 @@ export function createHomeView({
       nodes.continueNumber.textContent = issue.number ? `#${issue.number}` : '';
       nodes.continueRead.hidden = false;
       nodes.continueRead.disabled = !reader.launchable;
-      nodes.continueRead.textContent = readerAction();
-      nodes.continueRead.setAttribute(
-        'aria-label',
-        labelledName(readerAction(), readerContext(issue.title)),
-      );
+      const app = Boolean(appLinkFor(issue.issueId));
+      nodes.continueRead.textContent = readerAction(new Date(), { app });
+      nodes.continueRead.setAttribute('aria-label', readerName(issue.title, new Date(), { app }));
       // Marking a comic read needs no reader link, so Done stays usable when Read cannot launch.
       nodes.continueDone.hidden = false;
     } else {

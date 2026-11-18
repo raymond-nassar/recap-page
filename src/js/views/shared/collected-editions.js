@@ -28,3 +28,16 @@ export function collectedEditionCredit(el) {
     '. Curated book names. Links say where to look for a book, not that it can be borrowed there.',
   ]);
 }
+
+// #950: the owner chose this wording, keeping "used with permission". The site gathered the links
+// these lists open in the Marvel Comics app, so every list that has one says where they came from.
+export function marvelComicsAppCredit(el) {
+  return el('p', { class: 'app-link-credit' }, [
+    'Marvel Comics app links from ',
+    el('a', {
+      href: 'https://comicbookreadingorders.com/marvel/event-timeline/', target: '_blank', rel: 'noopener noreferrer',
+      text: 'Comic Book Reading Orders',
+    }),
+    ', used with permission.',
+  ]);
+}

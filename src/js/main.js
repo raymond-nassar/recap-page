@@ -2240,7 +2240,7 @@ function readerHelpAnchor(control) {
   return control.closest('.cta') ?? control;
 }
 
-function openInReader(issue, event, source, control = event?.currentTarget) {
+function openInReader(issue, event, source, control = event?.currentTarget, { app = true } = {}) {
   event?.preventDefault();
   function showHelp(message) {
     retireReaderHelp();
@@ -2253,12 +2253,13 @@ function openInReader(issue, event, source, control = event?.currentTarget) {
   if (!source) { refuse('The comic source is missing. Open its current details and try again.'); return; }
   const resolved = temporaryReaderLinks.resolve(store.state, issue, { source });
   if (!resolved.ok) { refuse(resolved.error); return; }
-  const res = openIssueTab(resolved.issue);
+  const res = openIssueTab(resolved.issue, { app });
   if (!res.ok) {
     refuse(`${issue.title} has no Marvel reference recorded, so it cannot be opened.`);
     return;
   }
-  announce(res.target === 'comics'
+  if (res.target === 'app') announce('Taking you to this comic in the Marvel Comics app.');
+  else announce(res.target === 'comics'
     ? `Opening the Marvel Comics website to find ${issue.title}. This is not a single-comic link.`
     : iosApp
       ? res.target === 'reader'
@@ -3973,6 +3974,7 @@ const issueRatingView = createIssueRatingView({
 
 const issueView = createIssueView({
   coverUrl,
+  el,
   decorateResult: (result, { catalog }) => ({
     ...result,
     breadcrumbShelf: result.contextStatus === 'valid' && result.context?.kind === 'order'
@@ -3994,6 +3996,9 @@ const issueView = createIssueView({
     note: $('#issue-focus-note'),
     number: $('#issue-focus-fn'),
     read: $('#btn-issue-read'),
+    readingOptions: $('#issue-reading-options'),
+    readingOptionsList: $('#issue-reading-options-list'),
+    readingOptionsToggle: $('#btn-issue-reading-options'),
     retry: $('#btn-issue-retry'),
     series: $('#issue-focus-fs'),
     status: $('#issue-focus-status'),

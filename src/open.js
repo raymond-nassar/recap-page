@@ -24,6 +24,7 @@ import { isAllowedApiBase } from './js/lib/apiBase.js';
 import { issuePageUrl } from './js/lib/issuePageUrl.js';
 import { themeAttribute, normaliseTheme, applyThemeMeta } from './js/lib/theme.js';
 import { launchDestination, MARVEL_COMICS_URL } from './js/lib/readerDestination.js';
+import { appLaunchUrl } from './js/lib/marvelComicsAppUrl.js';
 
 // Disown the opener before anything else, and in particular before any navigation.
 // The opener belongs to the tab rather than to the document, so severing it here also
@@ -47,6 +48,9 @@ const issueId = digits(q.get('i'));
 const pageUrl = issueId && q.getAll('u').length === 1 ? issuePageUrl(q.get('u'), issueId) : null;
 const knownPage = pageUrl && q.getAll('p').length === 1 && q.get('p') === '1';
 const title = (q.get('t') || '').slice(0, 120);
+// #950: only numbers cross the query, and addresses are rebuilt from fixed prefixes.
+// A Marvel Unlimited issue number must name this same comic, not another destination.
+const appUrl = appLaunchUrl(q);
 
 const h = document.getElementById('h');
 const p = document.getElementById('p');
@@ -102,12 +106,13 @@ const presentation = {
   'lookup-unavailable': ['Reader lookup unavailable', 'Saved lookup settings could not be used. Opening the Marvel comic page instead.'],
   'missing-reference': ['Nothing to open', 'This link was missing an issue reference.'],
   comics: ['Opening Marvel Comics website', 'Find this comic on the Marvel Comics website. This is not a single-comic link. Reading progress has not changed.'],
+  app: ['Opening the Marvel Comics app', 'Taking you to this comic in the Marvel Comics app.'],
 };
 function present(state) {
   const [heading, caption] = presentation[state];
   document.documentElement.setAttribute('data-state', state);
   document.title = `${heading} - Recap Page`;
-  h.textContent = title && ['pending', 'resolved', 'page'].includes(state) ? `Opening ${title}...`
+  h.textContent = title && ['pending', 'resolved', 'page', 'app'].includes(state) ? `Opening ${title}...`
     : state === 'page' ? 'Opening the Marvel comic page' : heading;
   p.textContent = caption;
   fallback.hidden = state === 'missing-reference';
@@ -162,7 +167,10 @@ async function resolveAndGo(id, page = detailUrl(id)) {
   setTimeout(() => go(page), 1400);
 }
 
-if (launchDestination(q) === 'comics' && (digitalId || issueId)) {
+if (appUrl && (digitalId || issueId)) {
+  present('app');
+  go(appUrl);
+} else if (launchDestination(q) === 'comics' && (digitalId || issueId)) {
   present('comics');
   go(MARVEL_COMICS_URL);
 } else if (digitalId) {

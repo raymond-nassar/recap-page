@@ -21,6 +21,7 @@ import { updatedLabel } from '../lib/catalog.js';
 import { formatRoute } from '../lib/route.js';
 import { uiIcon } from '../lib/uiIcon.js';
 import { labelledName } from '../lib/accname.js';
+import { appLinkFor } from '../lib/marvelComicsApp.js';
 import { wireFieldValidation } from './shared/field-validation.js';
 import { isIosApp } from '../lib/platform.js';
 
@@ -1195,7 +1196,9 @@ export function createAddView({
       '#manual-report',
       withSaveEducation([
         `Added “${title}”.`,
-        wikiId ? 'Read uses the recorded comic reference. It does not mark the comic read.' : null,
+        appLinkFor(issueId)
+          ? 'Read opens this comic in the Marvel Comics app. It does not mark the comic read.'
+          : wikiId ? 'Read uses the recorded comic reference. It does not mark the comic read.' : null,
         filled ? `Filled from the wiki: ${filled}.` : null,
         digitalId
           ? 'Availability still shows as unknown, because that is a separate field the metadata snapshot would have supplied.'

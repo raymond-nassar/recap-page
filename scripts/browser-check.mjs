@@ -12199,6 +12199,10 @@ const SCENARIOS = [
       t.check('carrying the release date, the page count and the credits',
         kept?.onSale === '2026-03-04' && kept?.pageCount === 32 && (kept?.creators ?? []).length === 2,
         JSON.stringify(kept));
+      const unlinkedNote = await manualReport(page);
+      t.check('an unlinked wiki match keeps the previous Read explanation',
+        unlinkedNote.includes('Read uses the recorded comic reference. It does not mark the comic read.')
+          && !unlinkedNote.includes('Read opens this comic in the Marvel Comics app.'), unlinkedNote);
 
       // The point of taking the id at all. A hand entry on a synthetic negative id has no link to
       // the comic's own page, because the launcher refuses to build one for an id Marvel does not
@@ -12287,6 +12291,33 @@ const SCENARIOS = [
         JSON.stringify(endCross?.issues?.['129648'] ?? null) === beforeCross
         && Object.keys(endCross?.issues ?? {}).length === Object.keys(end?.issues ?? {}).length,
         JSON.stringify(endCross?.issues?.['129648']));
+
+      for (const [url, id, note] of [
+        ['https://www.marvel.com/comics/issue/7/fixture', '7',
+          'Read uses the recorded comic reference. It does not mark the comic read.'],
+        ['', '12459', 'Read opens this comic in the Marvel Comics app. It does not mark the comic read.'],
+      ]) {
+        await page.evaluate(() => {
+          window.__mrtWikiId = 12459;
+          window.__mrtWikiAlt = false;
+          document.querySelector('#manual-title').value = 'Fixture Vol 7 26';
+          document.querySelector('#manual-url').value = '';
+          document.querySelector('#manual-report').replaceChildren();
+        });
+        await click(page, '#btn-manual-lookup');
+        await page.waitForSelector('#manual-candidates .result .btn', { visible: true, timeout: 15000 });
+        await click(page, '#manual-candidates .result .btn');
+        await page.evaluate((value) => { document.querySelector('#manual-url').value = value; }, url);
+        await click(page, '#form-manual button[type="submit"]');
+        await page.waitForFunction(
+          () => (document.querySelector('#manual-report')?.textContent ?? '').includes('Added'),
+          { timeout: 15000 },
+        );
+        const report = await manualReport(page);
+        const saved = await readState(page);
+        t.check(`the saved issue ${id} determines its Read explanation`,
+          Boolean(saved?.issues?.[id]) && report.includes(note) && !Object.hasOwn(saved?.read ?? {}, id), report);
+      }
     },
   },
   {
@@ -17391,13 +17422,17 @@ SCENARIOS.push({
       for (const index of [0, 19]) {
         const row = `#rows .row:nth-child(${index + 1})`;
         const toggle = `${row} .row-actions-toggle`;
-        const actions = ['open', 'info', 'up', 'down', 'override-available', 'override-unavailable', 'override-clear', 'defer', 'remove'];
         await page.mouse.move(0, 0);
         await page.$eval(toggle, (el) => { el.scrollIntoView({ block: 'center' }); el.focus(); });
         await page.keyboard.press('Enter');
         t.check(`${size} row ${index}: Enter opens More actions`,
           await page.$eval(toggle, (el) => el.getAttribute('aria-expanded') === 'true'));
         const panel = `${row} .ract`;
+        const hasOptions = await page.$(`${panel} [data-act="reading-options"]`) !== null;
+        const actions = [
+          'open', ...(hasOptions ? ['reading-options'] : []), 'info', 'up', 'down',
+          'override-available', 'override-unavailable', 'override-clear', 'defer', 'remove',
+        ];
         await page.$eval(panel, (el) => el.scrollIntoView({ block: 'center' }));
         const panelBounds = await page.$eval(panel, (el) => {
           const r = el.getBoundingClientRect();
@@ -17415,6 +17450,7 @@ SCENARIOS.push({
         const pointers = [];
         for (const act of actions) {
           const selector = `${panel} [data-act="${act}"]`;
+          await page.$eval(selector, (el) => el.scrollIntoView({ block: 'center' }));
           const geometry = await controlGeometry(selector);
           pointers.push({ act, ...geometry });
           const point = await page.$eval(selector, (el) => {
@@ -17442,7 +17478,7 @@ SCENARIOS.push({
           keyboard.length === actions.length && keyboard.every((g) => g.focused && g.ring > 0
             && g.visible && g.hits && g.ringHits && !g.clips.length), JSON.stringify(keyboard));
         const activations = await page.evaluate(() => window.__mrt443Activations.splice(0));
-        t.check(`${size} row ${index}: all nine actions receive trusted pointer and keyboard activation`,
+        t.check(`${size} row ${index}: all ${actions.length} actions receive trusted pointer and keyboard activation`,
           activations.length === actions.length * 2 && activations.every((event, i) => event.trusted
             && event.act === actions[i % actions.length]), JSON.stringify(activations));
         const hintVisible = await page.evaluate(() => {

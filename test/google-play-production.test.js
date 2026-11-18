@@ -11,7 +11,7 @@ const ledger = JSON.parse(readFileSync(new URL('../packaging/android/version-cod
 const NOTES = '- Compatible reading improvements.';
 const SHA = 'a'.repeat(40);
 const reservation = selectReservation(ledger, '4.6.0');
-const binding = bindingFor({ version: '4.6.0', reservation, notes: NOTES, workflowSha: SHA });
+const binding = bindingFor({ version: '4.6.0', reservation, notes: NOTES, description: null, workflowSha: SHA });
 const testing = (code = 3000018, notes = NOTES, status = 'completed') => ({
   track: 'internal',
   releases: [{ name: 'Recap Page 4.6.0', versionCodes: [String(code)], status,
@@ -52,6 +52,7 @@ test('production goes to everyone at once with the approved notes', () => {
   assert.deepEqual(release.releaseNotes, [{ language: 'en-US', text: NOTES }]);
   assert.equal(binding.notesSha256, digest(NOTES));
   assert.equal(binding.notesPath, 'docs/releases/4.6.0-store.json');
+  assert.equal(binding.descriptionSha256, null);
 });
 
 test('promotion is planned only when Play agrees with the sealed ledger and the approved text', () => {
@@ -75,11 +76,12 @@ test('promotion is planned only when Play agrees with the sealed ledger and the 
   assert.throws(() => plan({ tracks: [testing(), staged] }), /COMPLEX_PRODUCTION_REQUIRES_OPERATOR_RECONCILIATION/);
 });
 
-function fakePlay({ committed = null, fail = null } = {}) {
+function fakePlay({ committed = null, fail = null, listings = null, listingReadback = null, committedListings = null } = {}) {
   const calls = [];
   const receipts = [];
   let edits = 0;
   let stored = [testing(), production()];
+  let storedListings = listings;
   const fetchImpl = async (url, init) => {
     const method = init.method;
     const path = url.replace(/^https:\/\/androidpublisher\.googleapis\.com\/androidpublisher\/v3\/applications\/[^/]+/, '');
@@ -94,6 +96,18 @@ function fakePlay({ committed = null, fail = null } = {}) {
     }
     if (method === 'GET' && path.endsWith('/tracks')) return json({ tracks: stored });
     if (method === 'GET' && path.endsWith('/bundles')) return json({ bundles: [bundle()] });
+    if (method === 'GET' && path.endsWith('/listings')) {
+      const list = edits === 2 && committedListings ? committedListings(storedListings)
+        : listingReadback && calls.some((call) => call.startsWith('PATCH ')) ? listingReadback(storedListings)
+          : storedListings;
+      return json({ listings: list });
+    }
+    if (method === 'PATCH' && path.endsWith('/listings/en-US')) {
+      const body = JSON.parse(init.body);
+      assert.deepEqual(Object.keys(body), ['fullDescription']);
+      storedListings = storedListings.map((item) => item.language === 'en-US' ? { ...item, ...body } : item);
+      return json(storedListings.find((item) => item.language === 'en-US'));
+    }
     if (method === 'PUT') {
       const body = JSON.parse(init.body);
       stored = [stored[0], body];
@@ -107,7 +121,8 @@ function fakePlay({ committed = null, fail = null } = {}) {
     if (method === 'DELETE') return new Response(null, { status: 204 });
     throw new Error(`unexpected ${method} ${path}`);
   };
-  const options = { token: 'token', fetchImpl, notes: NOTES, record: async (receipt) => { receipts.push(receipt); } };
+  const options = { token: 'token', fetchImpl, notes: NOTES, description: null,
+    record: async (receipt) => { receipts.push(receipt); } };
   return { calls, receipts, options };
 }
 
@@ -156,6 +171,64 @@ test('notes that changed after binding stop before Google is contacted', async (
   await assert.rejects(transactProduction(binding, { ...play.options, notes: '- Changed.', mode: 'Publish' }),
     /BINDING_CHANGED_BEFORE_OPERATION/);
   assert.equal(play.calls.length, 0);
+});
+
+test('production updates only the English description and checks all listings before and after commit', async () => {
+  const description = 'Fake approved Play description';
+  const withDescription = bindingFor({ version: '4.6.0', reservation, notes: NOTES, description, workflowSha: SHA });
+  const listings = [{ language: 'en-US', title: 'Fake title', shortDescription: 'Fake short', fullDescription: 'Fake old' },
+    { language: 'fr-FR', title: 'Fake French title', fullDescription: 'Fake French description' }];
+  const play = fakePlay({ listings });
+  const result = await transactProduction(withDescription, { ...play.options, description, mode: 'Publish' });
+  assert.equal(result.listingBefore.fullDescription, 'Fake old');
+  assert.equal(result.listingAfter.fullDescription, description);
+  assert.ok(play.calls.indexOf('GET /edits/edit-1/listings') < play.calls.indexOf('PUT /edits/edit-1/tracks/production'));
+  assert.ok(play.calls.indexOf('PATCH /edits/edit-1/listings/en-US') < play.calls.indexOf('POST /edits/edit-1:validate'));
+  assert.ok(play.calls.includes('GET /edits/edit-2/listings'));
+
+  for (const listingReadback of [
+    (items) => items.map((item) => item.language === 'en-US' ? { ...item, fullDescription: 'Different' } : item),
+    (items) => items.map((item) => item.language === 'en-US' ? { ...item, shortDescription: 'Different' } : item),
+    (items) => items.map((item) => item.language === 'fr-FR' ? { ...item, title: 'Changed' } : item),
+    (items) => items.filter((item) => item.language !== 'fr-FR'),
+  ]) {
+    const wrong = fakePlay({ listings, listingReadback });
+    await assert.rejects(transactProduction(withDescription, { ...wrong.options, description, mode: 'Publish' }),
+      /LISTING_READBACK_MISMATCH/);
+    assert.equal(wrong.calls.some((call) => call.includes(':validate') || call.includes(':commit')), false);
+    assert.equal(wrong.receipts.at(-1).state, 'blocked');
+  }
+
+  const committedWrong = fakePlay({ listings, committedListings: (items) =>
+    items.map((item) => item.language === 'en-US' ? { ...item, fullDescription: 'Different' } : item) });
+  await assert.rejects(transactProduction(withDescription, { ...committedWrong.options, description, mode: 'Publish' }),
+    /COMMITTED_LISTING_DIFFERS/);
+  assert.equal(committedWrong.receipts.at(-1).state, 'committed-readback-unverified');
+});
+
+test('description binding and ambiguous English listings fail closed', async () => {
+  const description = 'Fake approved Play description';
+  const withDescription = bindingFor({ version: '4.6.0', reservation, notes: NOTES, description, workflowSha: SHA });
+  const wrongBinding = fakePlay();
+  await assert.rejects(transactProduction(withDescription, { ...wrongBinding.options, description: 'Changed', mode: 'Publish' }),
+    /BINDING_CHANGED_BEFORE_OPERATION/);
+  assert.equal(wrongBinding.calls.length, 0);
+  const duplicate = fakePlay({ listings: [{ language: 'en-US' }, { language: 'en-us' }] });
+  await assert.rejects(transactProduction(withDescription, { ...duplicate.options, description, mode: 'Publish' }),
+    /ONE_EN_US_LISTING_REQUIRED/);
+  assert.equal(duplicate.calls.some((call) => call.startsWith('PUT')), false);
+  const inspect = fakePlay({ listings: [{ language: 'en-US', fullDescription: 'Fake old' }] });
+  const result = await transactProduction(withDescription, { ...inspect.options, description, mode: 'Inspect' });
+  assert.equal(result.state, 'inspected-no-release-change');
+  assert.equal(inspect.calls.some((call) => call.startsWith('PATCH')), false);
+  const invalid = fakePlay();
+  await assert.rejects(transactProduction(withDescription, { ...invalid.options, description: 'x'.repeat(4001), mode: 'Publish' }),
+    /APPROVED_DESCRIPTION_REQUIRED/);
+  assert.equal(invalid.calls.length, 0);
+  const matching = fakePlay({ listings: [{ language: 'en-US', fullDescription: description }] });
+  await transactProduction(withDescription, { ...matching.options, description, mode: 'Publish' });
+  assert.equal(matching.calls.some((call) => call.startsWith('PATCH')), false);
+  assert.ok(matching.calls.includes('GET /edits/edit-2/listings'));
 });
 
 test('only a first-attempt manual dispatch of this workflow on main is accepted', () => {
