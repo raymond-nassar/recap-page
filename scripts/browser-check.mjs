@@ -4202,6 +4202,7 @@ const SCENARIOS = [
             title: 'Marvel Ages',
             count: '16 Reading Lists',
           }, { key: 'young-readers', label: 'Stories for kids', title: 'Young readers', count: '1 Reading List' }, { key: 'universes', label: 'Browse realities', title: 'Universes', count: '31 universes' },
+          { key: 'creators', label: 'Browse by creator', title: 'Creators', count: '2 Reading Lists' },
         ]),
         JSON.stringify(context.secondary));
       t.check('the primary paths remain equal choices on one desktop row',
@@ -4221,15 +4222,15 @@ const SCENARIOS = [
         context.statuses.length === 1
         && context.statuses.every(({ role, hidden, visuallyHidden, text }) =>
           role === 'status' && !hidden && visuallyHidden
-          && text === '7 ways to read available.'),
+          && text === '8 ways to read available.'),
         JSON.stringify(context.statuses));
 
       // #872: MCU Prep, Marvel Ages and Young readers, which took Reading paths' place and hue in #897,
-      // each draw their edge, tint and icon from a hue of their own, so Home shows seven hues in both
+      // each draw their edge, tint and icon from a hue of their own, so Home shows eight hues in both
       // themes. Forced colors keep one system color for every edge, as before. Since #873 the top row's
       // icons take a darker or lighter ink of their card's hue to clear 3:1 on its tint, so the icon is
       // matched to its edge by OKLCH hue: the widest gap between an ink and its edge measured 4.7
-      // degrees, and the seven edges sit at least 30 degrees apart.
+      // degrees. Creators reuses the Event Era's indigo channel as its eighth distinct edge.
       const accents = () => page.evaluate(() => {
         const hue = (color) => {
           const [r, g, b] = color.match(/[\d.]+/g).slice(0, 3).map((channel) => {
@@ -4256,8 +4257,8 @@ const SCENARIOS = [
         await page.evaluate((name) => { document.documentElement.dataset.theme = name; }, theme);
         const { home, elsewhere } = await accents();
         const purple = home.find(({ key }) => key === 'timeline')?.edge;
-        t.check(`${theme}: the seven Home cards show seven different hues, each icon in its own card's hue`,
-          home.length === 7 && new Set(home.map(({ edge }) => edge)).size === 7
+        t.check(`${theme}: the eight Home cards show eight different hues, each icon in its own card's hue`,
+          home.length === 8 && new Set(home.map(({ edge }) => edge)).size === 8
           && home.every(({ gap }) => gap <= 10),
           JSON.stringify(home));
         t.check(`${theme}: MCU Prep, Marvel Ages and Young readers leave the brand purple to Modern Timeline`,
@@ -4266,7 +4267,7 @@ const SCENARIOS = [
             return card && card.edge !== purple;
           }),
           JSON.stringify({ purple, home }));
-        t.check(`${theme}: Home's seven cards are the only category cards, so no second copy can drift from their hues`,
+        t.check(`${theme}: Home's eight cards are the only category cards, so no second copy can drift from their hues`,
           elsewhere === 0, String(elsewhere));
       }
       const forcedClient = await page.createCDPSession();
@@ -4275,7 +4276,7 @@ const SCENARIOS = [
       await forcedClient.send('Emulation.setEmulatedMedia', { features: [] });
       await forcedClient.detach();
       t.check('forced colors keep one system color for every card edge and every card icon',
-        forced.home.length === 7 && new Set(forced.home.map(({ edge }) => edge)).size === 1
+        forced.home.length === 8 && new Set(forced.home.map(({ edge }) => edge)).size === 1
         && new Set(forced.home.map(({ icon }) => icon)).size === 1,
         JSON.stringify(forced.home));
       await page.evaluate((value) => {
@@ -4357,7 +4358,7 @@ const SCENARIOS = [
               const wrong = cards.filter((card) => !card.topRight || !card.above || !card.arrowRight
                 || card.icon.width < 40 * scale || card.icon.height < 40 * scale
                 || card.overlaps.length || card.clipped.length);
-              if (overflow || cards.length !== 7 || new Set(cards.map(({ symbol }) => symbol)).size !== 7
+              if (overflow || cards.length !== 8 || new Set(cards.map(({ symbol }) => symbol)).size !== 8
                 || wrong.length) failures.push({ view, theme, overflow, root, cards: wrong.length ? wrong : cards.length });
             }
           }
@@ -19055,7 +19056,7 @@ SCENARIOS.push({
     });
     await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
     await open(page, '/');
-    await page.waitForFunction(() => document.querySelectorAll('.home-path-icon').length === 7);
+    await page.waitForFunction(() => document.querySelectorAll('.home-path-icon').length === 8);
     const inventory = await page.evaluate(() => [...document.querySelectorAll('.gi')].filter((icon) => !icon.closest('.mobile-link')).map((icon) => {
       const button = icon.closest('button, a[href]');
       return {
@@ -19075,9 +19076,9 @@ SCENARIOS.push({
         'Reading guides', 'Characters', 'Series', 'Creators', 'Genres', 'Marvel Ages', 'Universes',
         'Find a series', 'Find a creator',
       ]), JSON.stringify(inventory));
-    t.check('all 37 static and generated SVGs are decorative and cannot become keyboard stops',
-      inventory.length === 37 && inventory.every((i) => i.tag === 'svg' && i.decorative));
-    t.check('the one gateway preserves seven labelled category destinations and their icon/arrow pairs',
+    t.check('all 39 static and generated SVGs are decorative and cannot become keyboard stops',
+      inventory.length === 39 && inventory.every((i) => i.tag === 'svg' && i.decorative));
+    t.check('the one gateway preserves eight labelled category destinations and their icon/arrow pairs',
       await page.evaluate(() => [...document.querySelectorAll('[data-primary-paths], [data-secondary-paths]')]
         .flatMap((root) => [...root.querySelectorAll('a.home-path')])
         .filter((button) => button.getAttribute('aria-label')?.includes('Recommended start here')
@@ -19085,7 +19086,7 @@ SCENARIOS.push({
           || button.getAttribute('aria-label')?.includes('Movies and streaming')
           || button.getAttribute('aria-label')?.includes('Publication history')
           || button.getAttribute('aria-label')?.includes('Stories for kids'))
-        .filter((button) => button.querySelectorAll('svg.gi').length === 2).length === 7));
+        .filter((button) => button.querySelectorAll('svg.gi').length === 2).length === 8));
     t.check('all icon references stay local', inventory.every((i) => i.reference?.startsWith('./icons/ui.svg#')));
 
     const seen = new Set();
@@ -19693,6 +19694,7 @@ async function preparePage(page, origin, mutation, scenarioId = null) {
     ['/dev-faults.js', mutation?.rewriteFaults],
     ['/js/main.js', mutation?.rewriteMain],
     ['/js/views/home.js', mutation?.rewriteHome],
+    ['/js/views/creators.js', mutation?.rewriteCreators],
     ['/js/views/add.js', mutation?.rewriteAdd],
     ['/js/views/data.js', mutation?.rewriteData],
     ['/js/views/completion.js', mutation?.rewriteCompletion],
@@ -28993,24 +28995,48 @@ MUTATIONS.push({
 
 SCENARIOS.push({
   id: 'creator-runs',
-  title: 'Home Creator runs filter the seven existing lists without changing saved reading data',
+  title: 'One Home card opens Creators and its seven existing runs without changing saved reading data',
   async run(page, t) {
-    const lists = ACTUAL_CATALOG.lists.filter((list) => list.type === 'creator-run');
+    const lists = ACTUAL_CATALOG.lists.filter((list) => list.type === 'creator-run').map((list) => ({
+      ...list, writers: list.writers.map((name) => name === "Mike O'sullivan" ? "Mike O'Sullivan" : name),
+    }));
     const writers = [...new Set(lists.flatMap((list) => list.writers))];
     page.__denyExternal = true;
     const errors = [];
     page.on('pageerror', (error) => errors.push(error.message));
     await page.evaluateOnNewDocument(() => {
       if (location.protocol !== 'http:') return;
-      localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, theme: 'dark' }));
+      if (!localStorage.getItem('mrt.settings')) {
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, theme: 'dark' }));
+      }
     });
     await open(page, '/?catalog=actual&local-health=ready#/home');
     await page.waitForSelector('#home-primary-paths .home-path');
-    const present = await page.$('#home-creator-runs:not([hidden])');
-    t.check('the Creator runs section exists under Discover More', Boolean(present)
-      && await page.$eval('#home-creator-runs', (node) => Boolean(node.closest('#home-more-paths'))));
+    const gateway = '#home-more-paths [data-category="creators"]';
+    const present = await page.$(gateway);
+    t.check('Home has one Creators gateway under Discover More and no inline runs or filters', Boolean(present)
+      && await page.$eval('#view-home', (root) => root.querySelectorAll('[data-category="creators"]').length === 1
+        && !root.querySelector('[data-creator-run], #creator-filters, #home-creator-runs'))
+      && await page.$eval(gateway, (link) => link.getAttribute('href') === '#/creators'
+        && link.textContent.replace(/\s+/g, ' ').trim() === 'Browse by creator Creators 7 Reading Lists'));
     if (!present) return;
     const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+    const settingsBefore = await page.evaluate(() => localStorage.getItem('mrt.settings'));
+    await page.focus(gateway);
+    await page.keyboard.press('Enter');
+    await page.waitForSelector('#view-creators:not([hidden]) [data-creator-run]');
+    t.check('Creators has its own heading, document title and Home breadcrumb, with heading focus',
+      await page.evaluate(() => location.hash === '#/creators'
+        && document.title === 'Creators | Recap Page'
+        && document.activeElement === document.querySelector('#creators-h')
+        && document.querySelector('#view-creators .breadcrumb ol a')?.getAttribute('href') === '#/browse'));
+    await page.goBack();
+    await page.waitForSelector('#view-home:not([hidden])');
+    await page.goForward();
+    await page.waitForSelector('#view-creators:not([hidden])');
+    t.check('Back and Forward retain the dedicated page without writing saved reading data or settings',
+      await page.evaluate((saved, settings) => localStorage.getItem('mrt.state.v2') === saved
+        && localStorage.getItem('mrt.settings') === settings, before, settingsBefore));
     const cards = () => page.$$eval('[data-creator-run]', (nodes) => nodes.map((node) => ({
       id: node.dataset.creatorRun, href: node.getAttribute('href'),
       name: node.querySelector('.catalog-card-title').textContent.trim(),
@@ -29022,11 +29048,11 @@ SCENARIOS.push({
         meta: `${list.writers.join(', ')} · ${list.count} comics`,
       }))));
     t.check('every credited creator has a filter, including the coauthor',
-      JSON.stringify(await page.$$eval('#home-creator-filters button', (buttons) => buttons.map((button) => button.textContent)))
+      JSON.stringify(await page.$$eval('#creator-filters button', (buttons) => buttons.map((button) => button.textContent)))
         === JSON.stringify(['All creators', ...writers]));
     for (const writer of writers) {
       const index = writers.indexOf(writer) + 2;
-      const selector = `#home-creator-filters button:nth-child(${index})`;
+      const selector = `#creator-filters button:nth-child(${index})`;
       await page.focus(selector);
       await page.keyboard.press(index % 2 ? 'Enter' : 'Space');
       t.check(`${writer} filters only the credited runs and keeps keyboard focus`,
@@ -29034,9 +29060,9 @@ SCENARIOS.push({
           === JSON.stringify(lists.filter((list) => list.writers.includes(writer)).map((list) => list.id))
         && await page.$eval(selector, (button) => document.activeElement === button
           && button.getAttribute('aria-pressed') === 'true'
-          && document.querySelectorAll('#home-creator-filters [aria-pressed="true"]').length === 1));
+          && document.querySelectorAll('#creator-filters [aria-pressed="true"]').length === 1));
     }
-    await click(page, '#home-creator-filters button');
+    await click(page, '#creator-filters button');
     t.check('All creators restores the seven separate runs and filtering never writes reading progress',
       (await cards()).length === 7
       && await page.evaluate((saved) => localStorage.getItem('mrt.state.v2') === saved, before));
@@ -29046,29 +29072,42 @@ SCENARIOS.push({
       for (const [width, height] of [[1280, 900], [390, 844], [320, 720]]) {
         await page.setViewport({ width, height });
         await page.evaluate((value) => document.documentElement.setAttribute('data-theme', value), theme);
-        const layout = await page.$eval('#home-creator-runs', (root) => {
-          const controls = [...root.querySelectorAll('button, a')];
+        const layout = await page.$eval('#view-creators', (root) => {
+          const controls = [...root.querySelectorAll('#creator-filters button, [data-creator-run]')];
           return {
             overflow: document.documentElement.scrollWidth > innerWidth,
             clipped: controls.some((node) => {
               const rect = node.getBoundingClientRect();
               return rect.left < 0 || rect.right > innerWidth + 1 || rect.width < 24 || rect.height < 24;
             }),
-            cards: root.querySelectorAll('a').length,
+            cards: root.querySelectorAll('[data-creator-run]').length,
             weight: getComputedStyle(root.querySelector('[aria-pressed="true"]')).fontWeight,
             otherWeight: getComputedStyle(root.querySelector('[aria-pressed="false"]')).fontWeight,
           };
         });
         layouts.push({ theme, width, ...layout });
         if (process.env.MRT_CREATOR_EVIDENCE && !page.__mutation && width !== 320) {
-          await page.evaluate((phone) => {
+          await page.evaluate(async () => {
             document.activeElement?.blur();
-            document.querySelector(phone ? '#home-creators-h' : '#home-more-h').scrollIntoView();
-            window.scrollBy(0, -100);
-          }, width < 600);
-          await page.screenshot({
-            path: join(process.env.MRT_CREATOR_EVIDENCE, `creator-runs-${width}-${theme}.png`),
+            window.scrollTo(0, 0);
+            await Promise.all(document.getAnimations().map((animation) => animation.finished));
           });
+          await page.screenshot({
+            path: join(process.env.MRT_CREATOR_EVIDENCE, `creators-page-${width}-${theme}.png`),
+            fullPage: true,
+          });
+          await page.evaluate(() => { location.hash = '#/home'; });
+          await page.waitForSelector('#view-home:not([hidden]) [data-category="creators"]');
+          await page.evaluate(async () => {
+            document.activeElement?.blur();
+            await Promise.all(document.getAnimations().map((animation) => animation.finished));
+          });
+          await page.screenshot({
+            path: join(process.env.MRT_CREATOR_EVIDENCE, `creators-home-${width}-${theme}.png`),
+            fullPage: true,
+          });
+          await click(page, gateway);
+          await page.waitForSelector('#view-creators:not([hidden])');
         }
       }
     }
@@ -29077,25 +29116,25 @@ SCENARIOS.push({
         && Number(row.weight) > Number(row.otherWeight)), JSON.stringify(layouts));
     await page.evaluate(() => { document.documentElement.style.fontSize = '200%'; });
     t.check('200 percent text preserves wrapping and pointer targets on the narrow phone',
-      await page.$eval('#home-creator-runs', (root) => document.documentElement.scrollWidth <= innerWidth
-        && [...root.querySelectorAll('button, a')].every((node) => {
+      await page.$eval('#view-creators', (root) => document.documentElement.scrollWidth <= innerWidth
+        && [...root.querySelectorAll('#creator-filters button, [data-creator-run]')].every((node) => {
           const box = node.getBoundingClientRect();
           return box.left >= 0 && box.right <= innerWidth + 1 && box.width >= 24 && box.height >= 24;
         })));
     await page.evaluate(() => { document.documentElement.style.fontSize = ''; });
     await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
-    await page.focus('#home-creator-filters button');
+    await page.focus('#creator-filters button');
     await page.keyboard.press('Tab');
     t.check('keyboard focus stays visibly outlined with reduced motion',
       await page.evaluate(() => {
         const target = document.activeElement;
-        return target.closest('#home-creator-filters')
+        return target.closest('#creator-filters')
           && getComputedStyle(target).outlineStyle !== 'none';
       }));
     const cdp = await page.createCDPSession();
     await cdp.send('Emulation.setEmulatedMedia', { features: [{ name: 'forced-colors', value: 'active' }] });
     t.check('forced colors retains a distinct selected filter and focus outline',
-      await page.$eval('#home-creator-filters [aria-pressed="true"]', (button) =>
+      await page.$eval('#creator-filters [aria-pressed="true"]', (button) =>
         getComputedStyle(button).borderTopWidth === '2px'
         && getComputedStyle(document.activeElement).outlineStyle !== 'none'));
     await cdp.send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-color-scheme', value: 'light' }] });
@@ -29103,7 +29142,7 @@ SCENARIOS.push({
     await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: 'light' }]);
     await page.evaluate(() => document.documentElement.removeAttribute('data-theme'));
     t.check('system light theme uses the same readable filter and card styles',
-      await page.$eval('#home-creator-filters button', (button) => {
+      await page.$eval('#creator-filters button', (button) => {
         const color = getComputedStyle(button).color;
         return matchMedia('(prefers-color-scheme: light)').matches
           && color !== getComputedStyle(button).backgroundColor;
@@ -29125,7 +29164,7 @@ SCENARIOS.push({
     await click(page, '#preview-add [data-act="main"]');
     await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')?.textContent.includes('Open'));
     await click(page, '#preview-close');
-    t.check('adding through Preview preserves the creator opener after the Home refresh',
+    t.check('adding through Preview preserves the creator opener',
       await page.$eval(opener, (link) => document.activeElement === link));
     await page.keyboard.press('Enter');
     await click(page, '#preview-add [data-act="main"]');
@@ -29135,11 +29174,39 @@ SCENARIOS.push({
         const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
         return state.lists[state.active]?.itemIds.length === 4;
       }));
+    const savedAfterAdd = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+    await page.evaluate(() => {
+      document.querySelector('input[name="filter"][value="unread"]').click();
+      location.hash = '#/creators?filter=read';
+    });
+    await page.waitForSelector('#view-creators:not([hidden]) [data-creator-run]');
+    t.check('a direct Creators address preserves a saved list and filter despite unrelated filter queries',
+      await page.evaluate((saved) => localStorage.getItem('mrt.state.v2') === saved
+        && JSON.parse(localStorage.getItem('mrt.settings')).filter === 'unread'
+        && !document.querySelector('#view-creators').hidden, savedAfterAdd));
+    await page.evaluate(() => { location.hash = '#/home'; });
+    await page.waitForSelector('#view-home:not([hidden])');
+    t.check('leaving Creators through a bare route retains the existing unread preference',
+      await page.evaluate(() => JSON.parse(localStorage.getItem('mrt.settings')).filter === 'unread'));
+    await page.goBack();
+    await page.waitForSelector('#view-creators:not([hidden])');
+    await click(page, '#view-creators .breadcrumb ol a');
+    await page.waitForSelector('#view-home:not([hidden])');
+    t.check('the Home breadcrumb returns to the shared Explore cards',
+      await page.evaluate(() => location.hash.startsWith('#/browse')
+        && !document.querySelector('#home-categories').hidden
+        && JSON.parse(localStorage.getItem('mrt.settings')).filter === 'unread'));
     await openFresh(page, '/?catalog=empty&local-health=ready#/home');
     await page.waitForFunction(() => document.querySelector('#home-paths-status')?.textContent.includes('available.'));
-    t.check('an empty catalog hides the creator section instead of leaving empty filters or cards',
-      await page.$eval('#home-creator-runs', (node) => node.hidden
-        && node.querySelectorAll('button, a').length === 0));
+    t.check('an empty catalog hides the Creators gateway',
+      !await page.$('#view-home [data-category="creators"]'));
+    await page.evaluate(() => { location.hash = '#/creators'; });
+    await page.waitForFunction(() => document.querySelector('#creators-status')?.textContent.includes('No creator runs'));
+    t.check('the direct empty page has a truthful message and a Home destination without empty filters',
+      await page.evaluate(() => !document.querySelector('#creators-status').hidden
+        && !document.querySelector('#creators-empty-home').hidden
+        && document.querySelector('#creators-empty-home').getAttribute('href') === '#/browse'
+        && document.querySelectorAll('#creator-filters button, [data-creator-run]').length === 0));
     t.check('the journey has no browser errors', errors.length === 0, JSON.stringify(errors));
   },
 });
@@ -29148,9 +29215,19 @@ MUTATIONS.push({
   id: 'creator-filter-ignored',
   breaks: 'creator-runs',
   why: 'a creator selection must narrow the seven runs rather than only painting its button',
-  rewriteHome: (source) => source.replace(
+  rewriteCreators: (source) => source.replace(
     '.filter((list) => !creator || list.writers.includes(creator)).map(creatorCard)',
     '.filter(() => true).map(creatorCard)',
+  ),
+});
+
+MUTATIONS.push({
+  id: 'creator-exit-resets-reading-filter',
+  breaks: 'creator-runs',
+  why: 'leaving the Creators page must preserve the reader\'s existing unread filter',
+  rewriteMain: (source) => source.replace(
+    " || view === 'creators'",
+    '',
   ),
 });
 

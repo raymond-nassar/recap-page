@@ -258,11 +258,6 @@
               <section class="home-more-paths" id="home-more-paths" data-more-paths hidden aria-labelledby="home-more-h">
                 <div class="sec-h"><h3 id="home-more-h">Discover More</h3></div>
                 <ul class="home-paths home-paths-secondary" id="home-secondary-paths" data-secondary-paths></ul>
-                <section id="home-creator-runs" class="home-creator-runs" hidden aria-labelledby="home-creators-h">
-                  <h4 id="home-creators-h">Creator runs</h4>
-                  <div id="home-creator-filters" class="search-scopes" role="group" aria-labelledby="home-creators-h"></div>
-                  <ul id="home-creator-results" class="catalog-grid home-creator-cards" aria-live="polite" aria-relevant="additions"></ul>
-                </section>
               </section>
             </section>
           </section>
@@ -741,6 +736,18 @@
           </section>
 
           <!-- ---------------------------------------- universes -->
+          <section id="view-creators" class="view view-wide" hidden aria-labelledby="creators-h">
+            <div class="head"><div class="head-left"><h1 id="creators-h">Creators</h1></div></div>
+            <div id="creators-report" class="report"></div>
+            <section aria-labelledby="creator-runs-h">
+              <div class="sec-h"><h2 id="creator-runs-h">Creator runs</h2></div>
+              <p id="creators-status" class="rail-hint" role="status"></p>
+              <a id="creators-empty-home" href="#/browse" hidden>Home</a>
+              <div id="creator-filters" class="search-scopes" role="group" aria-labelledby="creator-runs-h"></div>
+              <ul id="creator-results" class="catalog-grid creator-run-cards" aria-live="polite" aria-relevant="additions"></ul>
+            </section>
+          </section>
+
           <section id="view-universes" class="view view-wide" hidden aria-labelledby="universes-h">
             <div class="head"><div class="head-left"><h1 id="universes-h">Universes</h1></div></div>
             <p class="rail-hint">Explore Marvel's realities and the Reading Lists connected to them.</p>

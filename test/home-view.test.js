@@ -5,6 +5,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { createHomeView } from '../src/js/views/home.js';
+import { createCreatorsView } from '../src/js/views/creators.js';
 import { createCatalogPresentation } from '../src/js/views/shared/catalog-presentation.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -100,9 +101,6 @@ function harness({
     home: node({ hidden: false }),
     categoriesHeading: node(),
     categoriesRoot,
-    creatorRuns: node({ hidden: true }),
-    creatorFilters: node(),
-    creatorResults: node(),
     continueSection: node(),
     continueHeading: node({ text: 'Continue reading' }),
     continueBar: node(),
@@ -187,7 +185,6 @@ function harness({
     onDone: () => { calls.done += 1; },
     onNavigateCategory: (category) => calls.navigate.push(category.route),
     onNavigateHub: (viewName) => calls.navigate.push(viewName),
-    onPreview: (entry) => calls.previews.push(entry.id),
     onOpen: () => { calls.open += 1; },
     onReviewDeferred: () => calls.navigate.push('deferred'),
     onRead: (...args) => calls.read.push(args),
@@ -202,41 +199,58 @@ function harness({
   return { calls, catalog, categories, nodes, state, view };
 }
 
-test('Home creator runs include each existing creator list without grouping away variants or changing shelves', async () => {
-  const h = harness();
+function creatorHarness({ catalogLoader } = {}) {
+  const nodes = { filters: node(), results: node(), status: node(), emptyHome: node() };
+  const catalog = { lists: [] };
+  const calls = { failures: [], previews: [], clears: 0, covers: [] };
+  let current = true;
+  const view = createCreatorsView({
+    clearCatalogNotice: () => { calls.clears += 1; },
+    el: element,
+    elements: () => nodes,
+    hueOf: () => 'hue',
+    isCurrent: () => current,
+    loadCatalog: catalogLoader ?? (async () => catalog),
+    onLoadFailure: (options) => calls.failures.push(options),
+    onPreview: (entry) => calls.previews.push(entry.id),
+    paintCoverUrl: (...args) => calls.covers.push(args),
+    shortTitle: (name) => name,
+  });
+  return { calls, catalog, nodes, view, leave: () => { current = false; } };
+}
+
+test('Creators includes every existing run without grouping away variants or changing the catalog', async () => {
+  const h = creatorHarness();
   const bundled = JSON.parse(readFileSync(join(ROOT, 'src/data/catalog.json'), 'utf8'));
   h.catalog.lists = bundled.lists;
   const expected = bundled.lists.filter((list) => list.type === 'creator-run');
   const original = JSON.stringify(h.catalog);
-  const saved = JSON.stringify(h.state);
-  await h.view.renderGateways();
+  await h.view.render();
   assert.equal(expected.length, 7);
-  assert.equal(h.nodes.creatorRuns.hidden, false);
-  assert.equal(h.nodes.creatorResults.children.length, 7);
-  assert.deepEqual(h.nodes.creatorResults.children.map((row) => row.children[0].dataset.creatorRun),
+  assert.equal(h.nodes.status.hidden, true);
+  assert.equal(h.nodes.results.children.length, 7);
+  assert.deepEqual(h.nodes.results.children.map((row) => row.children[0].dataset.creatorRun),
     expected.map((list) => list.id));
   assert.equal(JSON.stringify(h.catalog), original);
-  assert.equal(JSON.stringify(h.state), saved);
-  assert.equal(h.nodes.gateways[0].nodes.secondary.children.length, 1);
 });
 
-test('Home creator filters keep both coauthors, preserve the pressed button and open native preview links', async () => {
-  const h = harness();
+test('Creators filters keep both coauthors, preserve the pressed button and open native preview links', async () => {
+  const h = creatorHarness();
   h.catalog.lists = [
     { id: 'one', name: 'One run', type: 'creator-run', writers: ['Alpha', 'Beta'], count: 6 },
     { id: 'two', name: 'Another run', type: 'creator-run', writers: ['Gamma'], count: 1 },
     { id: 'event', name: 'Not a creator run', type: 'event', writers: ['Alpha'], count: 2 },
   ];
-  await h.view.renderGateways();
-  const filters = h.nodes.creatorFilters.children;
+  await h.view.render();
+  const filters = h.nodes.filters.children;
   assert.deepEqual(filters.map((button) => button.textContent), ['All creators', 'Alpha', 'Beta', 'Gamma']);
   const beta = filters[2];
   beta.onclick();
-  assert.equal(h.nodes.creatorFilters.children[2], beta);
+  assert.equal(h.nodes.filters.children[2], beta);
   assert.equal(beta.attributes['aria-pressed'], 'true');
   assert.equal(filters[0].attributes['aria-pressed'], 'false');
-  assert.equal(h.nodes.creatorResults.children.length, 1);
-  const link = h.nodes.creatorResults.children[0].children[0];
+  assert.equal(h.nodes.results.children.length, 1);
+  const link = h.nodes.results.children[0].children[0];
   assert.equal(link.tag, 'a');
   assert.equal(link.href, '#/preview/one');
   link.onclick({ button: 0, ctrlKey: true, preventDefault() { assert.fail('modified navigation intercepted'); } });
@@ -244,31 +258,52 @@ test('Home creator filters keep both coauthors, preserve the pressed button and 
   link.onclick({ button: 0, preventDefault() {} });
   assert.deepEqual(h.calls.previews, ['one']);
   filters[0].onclick();
-  assert.equal(h.nodes.creatorResults.children.length, 2);
+  assert.equal(h.nodes.results.children.length, 2);
   assert.equal(filters[0].attributes['aria-pressed'], 'true');
-  await h.view.renderGateways();
-  assert.equal(h.nodes.creatorFilters.children[2], beta,
+  const opener = h.nodes.results.children[0].children[0];
+  await h.view.render();
+  assert.equal(h.nodes.filters.children[2], beta,
     'a saved-data refresh does not detach the focused filter or preview opener');
+  assert.equal(h.nodes.results.children[0].children[0], opener);
+  h.calls.covers.length = 0;
+  h.view.refreshCovers();
+  assert.equal(h.calls.covers.length, 2, 'cover preference repaints only the two displayed runs');
+  assert.equal(h.nodes.results.children[0].children[0], opener, 'cover changes do not replace the opener');
 });
 
-test('Home creator section stays hidden for an empty or failed catalog and appears after retry', async () => {
+test('Creators exposes loading, catalog retry and a Home destination when empty', async () => {
   let fails = true;
-  const h = harness({ categorySelector: () => [], catalogLoader: async () => {
+  const h = creatorHarness({ catalogLoader: async () => {
     if (fails) throw new Error('test catalog failure');
     return { lists: [{ id: 'run', name: 'Run', type: 'creator-run', writers: ['Alpha'], count: 2 }] };
   } });
-  await h.view.renderGateways();
-  assert.equal(h.nodes.creatorRuns.hidden, true);
+  const pending = h.view.render();
+  assert.equal(h.nodes.status.textContent, 'Loading Reading Lists...');
+  await pending;
+  assert.equal(h.nodes.status.hidden, true);
   assert.equal(h.calls.failures.length, 1);
   fails = false;
   await h.calls.failures[0].retry();
-  assert.equal(h.nodes.creatorRuns.hidden, false);
-  assert.equal(h.nodes.gateways[0].nodes.more.hidden, false);
-  const empty = harness();
-  await empty.view.renderGateways();
-  assert.equal(empty.nodes.creatorRuns.hidden, true);
-  assert.equal(empty.nodes.creatorFilters.children.length, 0);
-  assert.equal(empty.nodes.creatorResults.children.length, 0);
+  assert.equal(h.nodes.results.children.length, 1);
+  assert.equal(h.calls.clears, 2);
+  const empty = creatorHarness();
+  await empty.view.render();
+  assert.equal(empty.nodes.status.textContent, 'No creator runs are bundled with this build.');
+  assert.equal(empty.nodes.status.hidden, false);
+  assert.equal(empty.nodes.emptyHome.hidden, false);
+  assert.equal(empty.nodes.filters.children.length, 0);
+  assert.equal(empty.nodes.results.children.length, 0);
+});
+
+test('Creators does not publish late catalog results after leaving the page', async () => {
+  let resolve;
+  const h = creatorHarness({ catalogLoader: () => new Promise((done) => { resolve = done; }) });
+  const pending = h.view.render();
+  h.leave();
+  resolve({ lists: [{ id: 'run', name: 'Run', type: 'creator-run', writers: ['Alpha'], count: 2 }] });
+  await pending;
+  assert.equal(h.nodes.results.children.length, 0);
+  assert.equal(h.calls.failures.length, 0);
 });
 
 test('510 Home distinguishes deferred work from completion and exposes a separate review action', () => {

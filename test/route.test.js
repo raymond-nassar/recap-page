@@ -219,6 +219,10 @@ test('completed breadcrumbs and rail selection are owned by Library', () => {
 test('every view the rail can reach survives a round trip', () => {
   for (const view of VIEWS.filter((name) => name !== 'issue' && name !== 'universe')) {
     const parsed = parseRoute(formatRoute({ view }));
+    if (view === 'creators') {
+      assert.deepEqual(parsed, { view });
+      continue;
+    }
     if (view === 'universes') {
       assert.deepEqual(parsed, { view, universeQuery: '', universeSort: 'publication-history' });
       continue;
@@ -232,6 +236,16 @@ test('every view the rail can reach survives a round trip', () => {
       } : {}),
     }, `round trip failed for ${view}`);
   }
+});
+
+test('Creators is a dedicated browse route, not a saved list or reading filter', () => {
+  assert.equal(formatRoute({ view: 'creators', listId: 'saved', filter: 'pending' }), '#/creators');
+  assert.deepEqual(parseRoute('#/creators?filter=pending'), { view: 'creators' });
+  assert.equal(parseRoute('#/creators/saved'), null);
+  assert.deepEqual(breadcrumbHierarchy({ view: 'creators' }), [
+    { label: 'Home', href: '#/browse' },
+    { label: 'Creators', current: true },
+  ]);
 });
 
 test('signed issue ids and one optional context survive a canonical round trip', () => {
@@ -370,6 +384,7 @@ test('every routable view has one stable hierarchy and Home has none', () => {
     ['genres', ['Home', 'Genres']],
     ['library-links', ['Home', 'Library links']],
     ['universes', ['Home', 'Universes']],
+    ['creators', ['Home', 'Creators']],
     ['universe', ['Home', 'Universes', 'Universe not found']],
     ['issue', ['Home', 'Comic details']],
   ]);
@@ -858,8 +873,8 @@ test('route application separates explicit disclosure intent from restored filte
     'opening derived from explicit parsed route fields');
   has(body, /readingView\.setFilterAddressed\(route\.filter !== null\);/,
     'route application remembering whether the effective filter was explicit');
-  has(body, /const filterFallback = view === 'universes' \|\| view === 'universe'\s*\? readingView\.currentFilter\(\) : filterIfAbsent;\s*readingView\.setFilter\(route\.filter \?\? filterFallback\);/,
-    'explicit filters taking precedence while Universe navigation preserves the existing filter');
+  has(body, /const filterFallback = view === 'universes' \|\| view === 'universe' \|\| view === 'creators'\s*\? readingView\.currentFilter\(\) : filterIfAbsent;\s*readingView\.setFilter\(route\.filter \?\? filterFallback\);/,
+    'explicit filters taking precedence while Universe and Creators navigation preserves the existing filter');
   has(body, /if \(route\.view === 'read'\)/, 'disclosure changes restricted to the reading route');
   has(main, /if \(!routeReady \|\| applyingRoute\) return;/,
     'history synchronization suppressed during route application');

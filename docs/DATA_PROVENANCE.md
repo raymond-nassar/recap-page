@@ -692,6 +692,11 @@ above is listed separately because it is third-party material outside the usual 
 The validator in [`src/js/lib/curated.js`](../src/js/lib/curated.js) requires an SPDX expression
 instead of descriptive prose. It validates the format, not a hand-maintained list of licence names.
 
+The catalog reader makes one owner-approved spelling correction to a provider credit:
+`Mike O'sullivan` is displayed as `Mike O'Sullivan`. This changes the writer name used by the
+Creators filters and cards, not the bundled catalog, individual comic credits, issue identities
+or reading order.
+
 The current Character Spotlight shelf has 71 readings across 70 stories. Eight readings are
 explicit Best of selections, 38 are complete guides, and twenty-five are `other`. The two X-Men
 readings share one story and one classification, so the `other` group has twenty-four stories. The
@@ -1019,7 +1024,7 @@ The first is that displaying a description and shipping a copy of one are differ
 those terms rather than two degrees of one act. Using Content inside an App is what the licence is
 for, on a condition the attribution page states plainly: "You must attribute Marvel as the source
 of data whenever you display any results from the Marvel Comics API". The app now names both the
-Marvel origin and its actual route in About at `src/index.html:1395-1399`. Redistributing Content outside an App, and sublicensing it onward, are the
+Marvel origin and its actual route in About at `src/index.html:1402-1406`. Redistributing Content outside an App, and sublicensing it onward, are the
 two things sections 4 and 5 name. An MIT grant is a sublicence to everyone who receives a copy, and
 offers them "sublicense, and/or sell".
 
