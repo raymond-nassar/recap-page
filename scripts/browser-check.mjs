@@ -16203,6 +16203,21 @@ const SCENARIOS = [
       const nextFrames = () => page.evaluate(() => new Promise((done) => {
         requestAnimationFrame(() => requestAnimationFrame(done));
       }));
+      // GitHub's hosted Windows runner reports reduced motion, and under it the site gives every
+      // element a 0.01 ms transition, so a focus change starts transitions of the transform and
+      // outline. Measured locally with reduced motion emulated, the skip link read straight after Tab
+      // sits at top -73.75 with its unfocused transform and a running transform transition, exactly
+      // hosted run 44453089729's reading, which still held it after two frames. So a focus reading
+      // also waits for the page's transitions to finish, bounded at one second; a reader sees their
+      // end state, and a transition that never ends leaves the old style to fail the check.
+      const settledFrames = async () => {
+        await nextFrames();
+        await page.evaluate(() => Promise.race([
+          Promise.all(document.getAnimations().filter((animation) => animation instanceof CSSTransition)
+            .map((animation) => animation.finished.catch(() => {}))),
+          new Promise((done) => { setTimeout(done, 1000); }),
+        ]));
+      };
       const checkWordmark = async (label) => {
         for (const theme of ['dark', 'light']) {
           await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: theme }]);
@@ -16260,8 +16275,8 @@ const SCENARIOS = [
         // An undrawn outline still computes to its 3 pixel default width in Edge 157, so the outline
         // style is read as well. Hosted run 44431014589 read the focused link with :focus matching
         // and a solid outline, yet still at top -73.75 with its unfocused transform, which a local
-        // run never shows. A reader sees the next rendered frame, so the reading waits for two
-        // animation frames, and the reading straight after the key press is kept beside it.
+        // run never shows. A reader sees the settled frame, so the reading waits for it, and the
+        // reading straight after the key press, with the transitions it caught, is kept beside it.
         const readSkip = () => page.$eval('.skip-link', (link) => {
           const style = getComputedStyle(link);
           const box = link.getBoundingClientRect();
@@ -16273,10 +16288,12 @@ const SCENARIOS = [
             outlineStyle: style.outlineStyle,
             transform: style.transform,
             hasFocus: document.hasFocus(),
+            reducedMotion: matchMedia('(prefers-reduced-motion: reduce)').matches,
+            transitions: link.getAnimations().map((animation) => animation.transitionProperty ?? animation.animationName),
           };
         });
         const skipImmediate = await readSkip();
-        await nextFrames();
+        await settledFrames();
         const skip = { ...await readSkip(), immediate: skipImmediate };
         t.check('the first keyboard stop is a visible skip link with a focus indicator',
           skip.active && skip.top >= 0 && skip.outline > 0 && skip.outlineStyle !== 'none',
@@ -16686,8 +16703,8 @@ const SCENARIOS = [
             await page.keyboard.press('Tab');
             // Hosted run 44431014589 read three of these four outlines in the link's own color
             // rather than the focus color, as the skip link above read its unfocused transform,
-            // so the style is read on the frame a reader would see.
-            await nextFrames();
+            // so the style is read once the focus change has settled.
+            await settledFrames();
             accents.push(await page.evaluate((name) => {
               const focused = getComputedStyle(document.activeElement);
               const footer = getComputedStyle(document.querySelector('.footer'));
