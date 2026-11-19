@@ -12485,6 +12485,13 @@ const SCENARIOS = [
         };
       });
       await seedFixtureState(page);
+      // The fixture's issues carry the old description field, and startup removes it with one
+      // migrating rewrite of the reading state once the tab lock answers, after load. A baseline
+      // read before that rewrite differs from every later read although no recovery journey wrote
+      // anything (#1278). With the lock answer held back 1.5 s the comparison failed 3 of 3 runs
+      // without this wait and passed 3 of 3 with it.
+      await page.waitForFunction(() => Object.values(JSON.parse(localStorage.getItem('mrt.state.v2')).issues)
+        .every((issue) => !Object.prototype.hasOwnProperty.call(issue, 'description')));
       const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
       const navigate = async (hash) => {
         await page.evaluate((value) => { location.hash = value; }, hash);
@@ -12609,8 +12616,9 @@ const SCENARIOS = [
           && document.querySelector('#btn-issue-retry').hidden
           && document.querySelector('#issue-focus-status').textContent.includes('local comic is no longer')
         ), requests));
+      const after = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
       t.check('all recovery journeys leave saved lists, active choice, progress and notes byte-identical',
-        await page.evaluate((saved) => localStorage.getItem('mrt.state.v2') === saved, before));
+        after === before, JSON.stringify(savedStateDifference(before, after)));
       t.check('metadata Retry never starts synopsis disclosure or changes reader launch controls',
         await page.evaluate(() => (
           (window.__mrtIssueRequests ?? 0) === 0 && !document.querySelector('dialog[open]')
@@ -19509,6 +19517,33 @@ function fixtureReadingState() {
     listOrder: ['fixture'],
     active: 'fixture',
   };
+}
+
+// Where two saved states part, by path, so a byte comparison that fails names the key and field
+// that moved instead of only reporting that something did (#1278).
+function savedStateDifference(beforeRaw, afterRaw, limit = 10) {
+  if (beforeRaw === afterRaw) return [];
+  const short = (value) => (value === undefined ? 'absent' : JSON.stringify(value).slice(0, 80));
+  let before;
+  let after;
+  try {
+    before = JSON.parse(beforeRaw);
+    after = JSON.parse(afterRaw);
+  } catch {
+    return [{ path: 'raw', before: short(beforeRaw), after: short(afterRaw) }];
+  }
+  const found = [];
+  const walk = (left, right, path) => {
+    if (found.length >= limit || Object.is(left, right)) return;
+    if (!left || !right || typeof left !== 'object' || typeof right !== 'object'
+      || Array.isArray(left) !== Array.isArray(right)) {
+      found.push({ path, before: short(left), after: short(right) });
+      return;
+    }
+    for (const key of new Set([...Object.keys(left), ...Object.keys(right)])) walk(left[key], right[key], `${path}.${key}`);
+  };
+  walk(before, after, 'state');
+  return found.length ? found : [{ path: 'key order or spacing only' }];
 }
 
 async function seedFixtureState(page, { sidebarCollapsed = null, openRead = false } = {}) {
