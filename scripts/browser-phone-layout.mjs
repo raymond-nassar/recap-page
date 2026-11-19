@@ -1057,6 +1057,14 @@ export const phoneSearchRowsFit = {
           }, query);
           await page.waitForFunction((value) =>
             document.querySelector('#search-count').textContent === `Top results for \u201c${value}\u201d`, {}, query);
+          // The count line names the query in the same task as the keystroke, but every result row
+          // waits for the series and creator name indexes, which the first query downloads. On a
+          // loaded runner the first query was measured with 0 rows (#1451). Its own scope's group holds
+          // rows only once this query's results have rendered, so measuring waits for that. With
+          // both index downloads held back 3 s, 3 runs without this wait each failed 72 of 136,
+          // starting with that same row, and 3 runs with it passed 136 of 136.
+          await page.waitForFunction((kind) =>
+            document.querySelector(`#search-${kind}:not([hidden]) .search-row`) !== null, {}, scope);
           await settle(page);
           for (const shownScope of ['top', scope]) {
             if (shownScope !== 'top') {
