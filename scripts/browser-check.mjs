@@ -16192,6 +16192,7 @@ const SCENARIOS = [
             active: document.activeElement === link,
             top: box.top,
             outline: Number.parseFloat(style.outlineWidth),
+            hasFocus: document.hasFocus(),
           };
         });
         t.check('the first keyboard stop is a visible skip link with a focus indicator',

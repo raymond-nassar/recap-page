@@ -230,9 +230,20 @@ async function iosClosureTargets(page, t) {
           targetHeight: faq.getBoundingClientRect().height,
           lineHeight: parseFloat(getComputedStyle(faq).lineHeight),
           noOverlap: toggle.top >= image.bottom,
+          toggleTop: toggle.top,
+          imageBottom: image.bottom,
+          boxes: ['.head', '.home-lockup', '#home-h', '#home-updates', '#home-updates-toggle'].map((selector) => {
+            const node = document.querySelector(selector);
+            const box = node?.getBoundingClientRect();
+            return box && [selector, getComputedStyle(node).display, box.left, box.top, box.width, box.height];
+          }),
+          wordmarks: [...document.querySelectorAll('.home-wordmark')].map((node) => [
+            node.currentSrc.split('/').pop(), node.checkVisibility(), node.complete, node.naturalWidth, node.naturalHeight,
+            node.getBoundingClientRect().height]),
           imageHit: Boolean(hit?.closest('#home-h')),
           hit: hit?.id || hit?.tagName,
           scrollY,
+          hasFocus: document.hasFocus(),
           overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
         };
       });

@@ -74,6 +74,7 @@ async function comparePaint(page, first, second) {
     const pixel = (image, x, y) => (x < image.width && y < image.height ? (y * image.width + x) * 4 : -1);
     let differing = 0;
     let box = null;
+    const samples = [];
     for (let y = 0; y < height; y += 1) {
       for (let x = 0; x < width; x += 1) {
         const l = pixel(left, x, y);
@@ -82,12 +83,15 @@ async function comparePaint(page, first, second) {
         if (l >= 0 && r >= 0 && left.data[l] === right.data[r] && left.data[l + 1] === right.data[r + 1]
           && left.data[l + 2] === right.data[r + 2] && left.data[l + 3] === right.data[r + 3]) continue;
         differing += 1;
+        if (samples.length < 12) {
+          samples.push([x, y, l < 0 ? null : [...left.data.slice(l, l + 4)], r < 0 ? null : [...right.data.slice(r, r + 4)]]);
+        }
         box = box
           ? [Math.min(box[0], x), Math.min(box[1], y), Math.max(box[2], x), Math.max(box[3], y)]
           : [x, y, x, y];
       }
     }
-    return { sizes, differing, box: box && { x: box[0], y: box[1], width: box[2] - box[0] + 1, height: box[3] - box[1] + 1 } };
+    return { sizes, differing, samples, box: box && { x: box[0], y: box[1], width: box[2] - box[0] + 1, height: box[3] - box[1] + 1 } };
   }, Buffer.from(first).toString('base64'), Buffer.from(second).toString('base64'));
 }
 
@@ -137,6 +141,11 @@ async function checkPaint(page, t, selector, ruleSelector, glyph, label) {
       // Kept first, so a decoding failure below still leaves both captures to inspect.
       detail.kept = await keepPaint(label, painted, fallbackPaint).catch((error) => ({ error: String(error?.message ?? error) }));
       detail.pixels = await comparePaint(page, painted, fallbackPaint).catch((error) => ({ error: String(error?.message ?? error) }));
+      // A second capture with nothing changed tells a content difference from paint still settling.
+      const repeat = await capture(element);
+      detail.fallbackRepeatSame = Buffer.from(repeat).equals(Buffer.from(fallbackPaint));
+      detail.originalRepeatSame = Buffer.from(repeat).equals(Buffer.from(painted));
+      detail.hasFocus = await page.evaluate(() => document.hasFocus());
     }
     t.check(`${label}: glyph, spacing, color, boxes and pixels match the original content`,
       before.glyph === JSON.stringify(glyph) && isDeepStrictEqual(before, fallback) && samePixels,
