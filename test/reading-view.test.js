@@ -1994,7 +1994,7 @@ test('main constructs Reading once and delegates reading-owned work through the 
     /readingView\.currentFilter\(\)/,
     /readingView\.endFilterRun\(\{ commit: false \}\)/,
     /readingView\.setFilterAddressed\(route\.filter !== null\)/,
-    /const filterFallback = view === 'universes' \|\| view === 'universe'\s*\? readingView\.currentFilter\(\) : filterIfAbsent;\s*readingView\.setFilter\(route\.filter \?\? filterFallback\)/,
+    /const filterFallback = view === 'universes' \|\| view === 'universe' \|\| view === 'creators'\s*\? readingView\.currentFilter\(\) : filterIfAbsent;\s*readingView\.setFilter\(route\.filter \?\? filterFallback\)/,
     /readingView\.setFullOrderFromRoute\(openFromRoute\)/,
     /readingView\.renderHydration\(status\)/,
     /readingView\.renderSynopsis\(status\)/,
