@@ -208,8 +208,11 @@ Some features make direct requests:
   link is known. Otherwise it looks up the missing link or opens the recorded comic details page.
   From the start of December 7 on the device's local clock, **Read** opens the general Marvel Comics
   website for a comic without an app link, without looking up a reader link.
-- On Android, Read opens your installed browser. A comic with a Marvel Comics app link opens there.
-  **Open in browser** remains available if a browser does not open.
+- On Android, for some comics, Read tries to open the Marvel Comics app. If it cannot open an app,
+  Read opens your browser instead. Other comics open in your browser. On iPhone and iPad, for some
+  comics, Read tries to open the Marvel Comics app. If it cannot open an app, Read opens your
+  browser instead. Other comics open in your browser. **Open in browser** remains available if a
+  browser does not open.
 - **Look up on Marvel Fandom** sends your hand-entered title to that wiki only when you choose it.
   It does not fetch a cover.
 
