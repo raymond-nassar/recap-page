@@ -16200,6 +16200,9 @@ const SCENARIOS = [
       page.on('console', (message) => {
         if (message.type() === 'error') browserErrors.push(message.text());
       });
+      const nextFrames = () => page.evaluate(() => new Promise((done) => {
+        requestAnimationFrame(() => requestAnimationFrame(done));
+      }));
       const checkWordmark = async (label) => {
         for (const theme of ['dark', 'light']) {
           await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: theme }]);
@@ -16248,9 +16251,11 @@ const SCENARIOS = [
         await checkWordmark('Home');
         await page.keyboard.press('Tab');
         // An undrawn outline still computes to its 3 pixel default width in Edge 157, so the outline
-        // style is read as well. Hosted run 44426231195 measured the focused link at top -73.75 with
-        // the window focused; whether :focus matched is recorded to tell the two causes apart.
-        const skip = await page.$eval('.skip-link', (link) => {
+        // style is read as well. Hosted run 44431014589 read the focused link with :focus matching
+        // and a solid outline, yet still at top -73.75 with its unfocused transform, which a local
+        // run never shows. A reader sees the next rendered frame, so the reading waits for two
+        // animation frames, and the reading straight after the key press is kept beside it.
+        const readSkip = () => page.$eval('.skip-link', (link) => {
           const style = getComputedStyle(link);
           const box = link.getBoundingClientRect();
           return {
@@ -16263,6 +16268,9 @@ const SCENARIOS = [
             hasFocus: document.hasFocus(),
           };
         });
+        const skipImmediate = await readSkip();
+        await nextFrames();
+        const skip = { ...await readSkip(), immediate: skipImmediate };
         t.check('the first keyboard stop is a visible skip link with a focus indicator',
           skip.active && skip.top >= 0 && skip.outline > 0 && skip.outlineStyle !== 'none',
           JSON.stringify(skip));
@@ -16655,6 +16663,10 @@ const SCENARIOS = [
             await page.keyboard.press('Tab');
             await page.keyboard.up('Shift');
             await page.keyboard.press('Tab');
+            // Hosted run 44431014589 read three of these four outlines in the link's own color
+            // rather than the focus color, as the skip link above read its unfocused transform,
+            // so the style is read on the frame a reader would see.
+            await nextFrames();
             accents.push(await page.evaluate((name) => {
               const focused = getComputedStyle(document.activeElement);
               const footer = getComputedStyle(document.querySelector('.footer'));
@@ -16666,6 +16678,7 @@ const SCENARIOS = [
                 focused: `${document.activeElement.tagName} ${document.activeElement.textContent.trim().slice(0, 60)}`,
                 link: focused.color,
                 focus: `${focused.outlineStyle} ${focused.outlineColor}`,
+                focusVisible: document.activeElement.matches(':focus-visible'),
                 footer: `${Number.parseFloat(footer.borderTopWidth)} ${footer.borderTopColor}`,
                 current: currentStyle
                   ? `${currentStyle.textDecorationLine} ${currentStyle.color}`

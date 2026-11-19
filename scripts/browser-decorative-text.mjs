@@ -115,10 +115,13 @@ async function keepPaint(label, first, second) {
 const capture = (element) => element.screenshot({ captureBeyondViewport: false });
 
 // Hosted run 44426231195 failed narrow system .notice-warn with six pixels around the dismiss button
-// differing by 1 to 4 levels, and a repeat capture with nothing changed matched the fallback rather
-// than the original, so the first capture after the switch to 390 pixels caught paint still
-// settling. Each side is therefore captured until two consecutive captures agree, bounded at ten,
-// and byte equality between the two sides stays the test.
+// differing by 1 to 4 levels. Settling each side alone did not cure it: hosted run 44431014589 had
+// both sides agree with themselves on the second capture and still differ from each other, with a
+// later capture matching the fallback rather than the original, and narrow .pill-held failed the
+// same way along its edge. So the difference is between the first paint and the repaint that any
+// rule change causes, not between the two contents. The original is therefore captured again after
+// its rule is restored, so both sides come from that repaint, and byte equality stays the test.
+// Each side is still captured until two consecutive captures agree, bounded at ten.
 async function settledCapture(element) {
   let previous = await capture(element);
   for (let attempt = 1; attempt < 10; attempt += 1) {
@@ -134,46 +137,47 @@ async function checkPaint(page, t, selector, ruleSelector, glyph, label) {
   const before = await measure(page, selector);
   const layouts = { original: await layout(page) };
   const original = await settledCapture(element);
-  const painted = original.paint;
   layouts.originalAfter = await layout(page);
-  // Change only the alternative text, leaving the glyph and every other declaration alone.
-  const content = await page.evaluate((selector) => {
+  const setContent = (value) => page.evaluate((selector, value) => {
     const rule = [...document.styleSheets].flatMap((sheet) => [...sheet.cssRules])
       .find((rule) => rule.selectorText === selector);
     if (!rule) throw new Error(`Missing decorative rule: ${selector}`);
-    const original = rule.style.content;
-    rule.style.content = original.split(' / ')[0];
-    return original;
-  }, ruleSelector);
+    const previous = rule.style.content;
+    rule.style.content = value ?? previous.split(' / ')[0];
+    return previous;
+  }, ruleSelector, value);
+  // Change only the alternative text, leaving the glyph and every other declaration alone.
+  const content = await setContent(null);
   try {
     const fallback = await measure(page, selector);
     layouts.fallback = await layout(page);
     const fallbackCapture = await settledCapture(element);
     const fallbackPaint = fallbackCapture.paint;
     layouts.fallbackAfter = await layout(page);
+    await setContent(content);
+    const restored = await measure(page, selector);
+    const restoredCapture = await settledCapture(element);
+    const painted = restoredCapture.paint;
+    layouts.restoredAfter = await layout(page);
     const samePixels = Buffer.from(painted).equals(Buffer.from(fallbackPaint));
-    const detail = { before, fallback };
+    const detail = { before, fallback, restored };
     if (!samePixels) {
       detail.layouts = layouts;
-      detail.captures = { original: original.attempts, fallback: fallbackCapture.attempts };
+      detail.captures = {
+        original: original.attempts, fallback: fallbackCapture.attempts, restored: restoredCapture.attempts,
+      };
+      detail.firstPaintSame = Buffer.from(original.paint).equals(Buffer.from(painted));
       // Kept first, so a decoding failure below still leaves both captures to inspect.
       detail.kept = await keepPaint(label, painted, fallbackPaint).catch((error) => ({ error: String(error?.message ?? error) }));
       detail.pixels = await comparePaint(page, painted, fallbackPaint).catch((error) => ({ error: String(error?.message ?? error) }));
-      // A second capture with nothing changed tells a content difference from paint still settling.
-      const repeat = await capture(element);
-      detail.fallbackRepeatSame = Buffer.from(repeat).equals(Buffer.from(fallbackPaint));
-      detail.originalRepeatSame = Buffer.from(repeat).equals(Buffer.from(painted));
       detail.hasFocus = await page.evaluate(() => document.hasFocus());
     }
     t.check(`${label}: glyph, spacing, color, boxes and pixels match the original content`,
-      before.glyph === JSON.stringify(glyph) && isDeepStrictEqual(before, fallback) && samePixels,
+      before.glyph === JSON.stringify(glyph) && isDeepStrictEqual(before, fallback)
+        && isDeepStrictEqual(before, restored) && samePixels,
       JSON.stringify(detail));
   } finally {
-    await page.evaluate((selector, value) => {
-      const rule = [...document.styleSheets].flatMap((sheet) => [...sheet.cssRules])
-        .find((rule) => rule.selectorText === selector);
-      rule.style.content = value;
-    }, ruleSelector, content);
+    await setContent(content);
   }
 }
 
