@@ -5,7 +5,9 @@ import {
   buildModule, buildMuModule, catalogComics, excludedPage, INPUT_PATH, inputFrom, MODULE_PATH,
   MU_INPUT_PATH, MU_MODULE_PATH, muInputFrom, selectLinks, validateInput,
   EXPORT_SOURCE, EXPORT_PROVENANCE, mergeExportInput,
+  importNewCatalog, verifiedExportRows,
 } from '../scripts/marvel-comics-app-links.mjs';
+import { matchExportCsv, parseExportCsv } from '../scripts/lib/marvel-comics-app-export.mjs';
 import { appLinkFor, appViewerFor } from '../src/js/lib/marvelComicsApp.js';
 import { appLaunchUrl, appMuIssuesUrl, appViewerUrl, viewerNumber } from '../src/js/lib/marvelComicsAppUrl.js';
 import { marvelComicsAppMuIssueIds } from '../src/data/marvelComicsAppMuIssues.js';
@@ -63,6 +65,92 @@ const exportRow = (issueId, status, numbers, extra = {}) => {
   void ignored;
   return record;
 };
+
+const csv = (records) => '\ufeffissue_id,series_id,series_title,title,issue_number,issue_sort,publication_date,url,sort_order\r\n'
+  + records.map(([id, series, number, date]) => [id, 1, series, 'Fixture title', number, number, date, viewer(id), 1]
+    .map((cell) => `"${String(cell).replace(/"/g, '""')}"`).join(',')).join('\r\n') + '\r\n';
+
+test('new catalog matcher reuses exact title, number and sale-year rules across the entire catalog', () => {
+  const items = [
+    { issueId: 1, seriesName: 'The Stars and Stripes (2020)', number: '1', onSale: '2020-03-01' },
+    { issueId: 2, seriesName: 'Comma, "Hero" (2020)', number: '1.1', onSale: '2020-03-01' },
+    { issueId: 3, seriesName: 'Volume (2020)', number: '1', onSale: '2020-03-01' },
+    { issueId: 4, seriesName: 'Year (2020)', number: '1', onSale: '2020-10-01' },
+    { issueId: 5, seriesName: 'Ambiguous (2020)', number: '1', onSale: '2020-03-01' },
+    { issueId: 6, seriesName: 'Ambiguous (2019)', number: '1', onSale: '2020-05-01' },
+    { issueId: -7, seriesName: 'Stand-in (2020)', number: '1', onSale: '2020-03-01' },
+  ];
+  const text = csv([
+    [101, 'Stars & Stripes (2020 - 2021)', '01', '3/1/2020'],
+    [102, 'Comma, "Hero" (2020)', '1.1', '3/1/2020'],
+    [103, 'Volume Vol. 2 (2020)', '1', '3/1/2020'],
+    [104, 'Year (2020)', '1', '1/1/2021'],
+    [105, 'Ambiguous (2020)', '1', '3/1/2020'],
+    [106, 'Stand-in (2020)', '1', '3/1/2020'],
+    [107, 'Unknown (2020)', '1', '3/1/2020'],
+    [108, 'Volume (2020)', '', '3/1/2020'],
+    [109, 'Volume (2020)', '1', '3/1/2020'],
+  ]);
+  const rows = matchExportCsv(text, [...items, items[0]]);
+  assert.deepEqual(rows.slice(0, 3).map(({ issueId, status }) => [issueId, status]),
+    [[1, 'exact'], [2, 'exact'], [3, 'exact']]);
+  assert.equal(rows[3].ambiguity, 'cover-year-shift');
+  assert.equal(rows[4].status, 'ambiguous', 'an old and a new identity cannot be distinguished');
+  assert.deepEqual(rows.slice(5, 8).map((record) => record.status), ['unmatched', 'unmatched', 'unmatched']);
+  const selection = selectLinks({ source: EXPORT_SOURCE, rows });
+  assert.deepEqual(selection.links.map((link) => link.issueId), [1, 2], 'multiple exact numbers remain a conflict');
+  assert.equal(selection.left.severalNumbers, 1);
+  for (const bad of [
+    text.replace('issue_id,', 'unknown,'),
+    text.replace('"101"', '"0"'),
+    text.replace(viewer(101), 'https://example.invalid/viewer/101'),
+    text.replace('"109"', '"103"').replace(viewer(109), viewer(103)),
+    text.replace('"3/1/2020"', '"2/30/2020"'),
+    text + '"unclosed',
+    text.replace('"Fixture title"', '"closed"x'),
+    text.replace('"Fixture title",', ''),
+  ]) assert.throws(() => parseExportCsv(bad), /export|Export/);
+});
+
+test('new catalog import preserves old links and frozen fallbacks while holding unmatched additions', () => {
+  const base = inputFrom({ rows: [row(1, 'exact', [101])] });
+  const items = [
+    { issueId: 1 }, { issueId: 2 }, { issueId: 3 }, { issueId: 4 }, { issueId: 5 }, { issueId: 6 },
+  ];
+  const mu = { status: 'owner-approved', asOf: '2026-11-18',
+    approvedGroups: ['unknown-unlimited'], excludedIssueIds: [3], issueIds: [2] };
+  const rows = [
+    exportRow(1, 'exact', [901]), exportRow(2, 'exact', [902]), exportRow(3, 'exact', [903]),
+    exportRow(4, 'exact', [104]), exportRow(5, 'ambiguous', [105], { ambiguity: 'cover-year-shift' }),
+  ];
+  assert.throws(() => buildMuModule(mu, items, base.links), /do not match/);
+  const result = importNewCatalog(base, mu, items, rows);
+  assert.deepEqual(result.input.links, [base.links[0],
+    { issueId: 4, viewer: 104, basis: 'exact', source: EXPORT_SOURCE }]);
+  assert.deepEqual(result.muInput, { ...mu, unapprovedIssueIds: [5, 6] });
+  assert.equal(result.added, 1);
+  assert.equal(result.unapproved, 2);
+  assert.doesNotThrow(() => buildMuModule(result.muInput, items, result.input.links));
+  assert.deepEqual(importNewCatalog(result.input, result.muInput, items, rows),
+    { ...result, added: 0 }, 'repeated runs preserve input bytes and do not broaden approval');
+  const next = importNewCatalog(result.input, result.muInput, items, [...rows, exportRow(6, 'exact', [106])]);
+  assert.equal(next.added, 1);
+  assert.deepEqual(next.muInput.unapprovedIssueIds, [5], 'a held comic can later obtain an exact match');
+  assert.deepEqual(next.input.exportSelection, result.input.exportSelection, 'first import accounting is retained');
+  assert.throws(() => importNewCatalog(base, mu, items, [exportRow(4, 'exact', [101])]), /used by two comics/);
+  for (const pending of [[2], [3], [1], [999], [5, 5], [6, 5], ['5']]) {
+    assert.throws(() => buildMuModule({ ...result.muInput, unapprovedIssueIds: pending },
+      items, result.input.links), /Refusing/);
+  }
+  assert.throws(() => buildMuModule({ ...result.muInput, issueIds: [] }, items, result.input.links), /do not match/);
+  assert.deepEqual(base.links.map((link) => link.viewer), [101], 'original viewer links are not mutated');
+  assert.deepEqual(mu.issueIds, [2], 'fallback approval is not mutated');
+});
+
+test('new catalog import refuses a different private export before matching', () => {
+  assert.throws(() => verifiedExportRows(Buffer.from(csv([[101, 'Fixture (2020)', '1', '3/1/2020']])), []),
+    /SHA-256 differs/);
+});
 
 test('private export merges exact selections without extending the year-shift approval', () => {
   const base = inputFrom({ rows: [row(1, 'exact', [101]), row(2, 'exact', [102])] });

@@ -4205,3 +4205,13 @@ The source is credited to werhsdnas of the Continuity Guide Discord server. The 
 hand-check establishes that about 40 links worked for them; it is not an individual check of the
 eight corrections or a promise of availability. Saved data, backups, availability states and the
 reader-launch mechanism are unchanged by this link-table update.
+
+Later reading-list deliveries repeat the same offline matching with
+`--import <private-export.csv> --new-catalog`, after rebuilding the catalog, as described in
+[the maintainer workflow](MAINTAINING.md#refresh-comic-reading-links). The command verifies this
+file's pinned SHA-256, applies the original exact title, issue-number and on-sale-year rules
+against the entire catalog, and imports only newly added identities. It preserves all earlier
+viewer selections, approved fallback numbers and exclusions. New comics without a unique exact
+match stay without a new app link and are recorded separately from approved fallbacks, so a catalog
+addition cannot silently acquire an unapproved Marvel issue-number address. Repeating the command
+does not copy the CSV or its unmatched source rows into the repository.

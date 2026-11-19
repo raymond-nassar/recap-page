@@ -1,14 +1,18 @@
 // Marvel Comics app links for the reading lists (#950).
 //
 //   node scripts/marvel-comics-app-links.mjs --import <matches.json>   select links into the input
+//   node scripts/marvel-comics-app-links.mjs --import <private.csv> --new-catalog
+//                                                                  match new catalog comics offline
 //   node scripts/marvel-comics-app-links.mjs                           write the app's data module
 //   node scripts/marvel-comics-app-links.mjs --check                   fail if the module is stale
 //
 // Matching is offline. --import reads a match file, never the source sites; the build reads only
 // committed selections. docs/DATA_PROVENANCE.md records each source and the owner's decisions.
 import { readFileSync, writeFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { matchExportCsv } from './lib/marvel-comics-app-export.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 export const INPUT_PATH = join(ROOT, 'scripts', 'data', 'marvel-comics-app-links', 'links.json');
@@ -203,6 +207,41 @@ export function mergeExportInput(input, matches) {
   return result;
 }
 
+export function verifiedExportRows(bytes, items) {
+  if (createHash('sha256').update(bytes).digest('hex') !== EXPORT_PROVENANCE.sha256) {
+    throw new Error('Private export SHA-256 differs from the owner-approved source');
+  }
+  return matchExportCsv(bytes.toString('utf8'), items);
+}
+
+export function importNewCatalog(input, muInput, items, rows) {
+  const known = new Set([
+    ...input.links.map((link) => link.issueId), ...muInput.issueIds, ...(muInput.excludedIssueIds ?? []),
+  ]);
+  const newIds = new Set(items.filter((item) => validId(item.issueId) && !known.has(item.issueId))
+    .map((item) => item.issueId));
+  // Match against the entire catalog before filtering: an older comic can make a new one ambiguous.
+  const selection = selectLinks({ source: EXPORT_SOURCE, rows });
+  if (Object.values(selection.refused).some((n) => n > 0)) throw new Error('Refusing invalid export rows');
+  const added = selection.links.filter((link) => newIds.has(link.issueId));
+  const merged = added.length ? mergeExportInput(input, {
+    source: EXPORT_SOURCE, generatedAt: EXPORT_PROVENANCE.receivedAt,
+    rows: added.map((link) => ({
+      issueId: link.issueId, status: 'exact',
+      appLinks: [`https://www.marvelcomicsapp.com/viewer/${link.viewer}`],
+    })),
+  }) : input;
+  // Keep the first import's accounting intact; each later selection already records its source.
+  if (input.exportSelection && added.length) merged.exportSelection = input.exportSelection;
+  const viewers = new Set(merged.links.map((link) => link.issueId));
+  const unapprovedIssueIds = [...newIds].filter((id) => !viewers.has(id)).sort((a, b) => a - b);
+  const mu = { ...muInput };
+  if (unapprovedIssueIds.length || muInput.unapprovedIssueIds) mu.unapprovedIssueIds = unapprovedIssueIds;
+  buildModule(merged);
+  buildMuModule(mu, items, merged.links);
+  return { input: merged, muInput: mu, added: added.length, unapproved: unapprovedIssueIds.length };
+}
+
 export function validateInput(input) {
   const problems = [];
   if (!Array.isArray(input?.pages) || !Array.isArray(input?.links)) return ['the input has no pages or links'];
@@ -335,6 +374,16 @@ export function buildMuModule(input, items, viewerLinks) {
   }
   const comics = new Map(items.map((item) => [item.issueId, item]));
   const viewers = new Set(viewerLinks.map((link) => link.issueId));
+  const unapprovedIssueIds = input.unapprovedIssueIds ?? [];
+  if (!Array.isArray(unapprovedIssueIds)) fail('invalid unapproved population');
+  let previousUnapproved = 0;
+  for (const id of unapprovedIssueIds) {
+    if (!validId(id) || id > 999999999 || id <= previousUnapproved || !comics.has(id)
+      || viewers.has(id) || input.issueIds.includes(id) || excludedIssueIds.includes(id)) {
+      fail(`invalid unapproved comic ${id}`);
+    }
+    previousUnapproved = id;
+  }
   let previousExcluded = 0;
   for (const id of excludedIssueIds) {
     const item = comics.get(id);
@@ -357,7 +406,9 @@ export function buildMuModule(input, items, viewerLinks) {
     previous = id;
   }
   if (input.status === 'owner-approved') {
-    const expected = approvedMuIds(items, viewerLinks, input.approvedGroups, input.asOf, excludedIssueIds);
+    const pending = new Set(unapprovedIssueIds);
+    const expected = approvedMuIds(items.filter((item) => !pending.has(item.issueId)),
+      viewerLinks, input.approvedGroups, input.asOf, excludedIssueIds);
     if (expected.length !== input.issueIds.length || expected.some((id, i) => id !== input.issueIds[i])) {
       fail('issue numbers do not match the approved groups and exclusions');
     }
@@ -376,10 +427,24 @@ export function buildMuModule(input, items, viewerLinks) {
 }
 
 function main(args) {
+  if (args.includes('--new-catalog') && !args.includes('--import')) {
+    throw new Error('--new-catalog requires --import <private-export.csv>');
+  }
   const at = args.indexOf('--import');
   if (at >= 0) {
     const from = args[at + 1];
     if (!from) throw new Error('--import needs the path of the offline match file');
+    if (args.includes('--new-catalog')) {
+      const items = catalogComics();
+      const result = importNewCatalog(
+        JSON.parse(readFileSync(INPUT_PATH, 'utf8')), JSON.parse(readFileSync(MU_INPUT_PATH, 'utf8')),
+        items, verifiedExportRows(readFileSync(from), items),
+      );
+      writeFileSync(INPUT_PATH, serializeInput(result.input));
+      writeFileSync(MU_INPUT_PATH, `${JSON.stringify(result.muInput, null, 2)}\n`);
+      console.log(`Added ${result.added} exact viewer links; ${result.unapproved} new comics have no approved app link.`);
+      return 0;
+    }
     const matches = JSON.parse(readFileSync(from, 'utf8'));
     const input = matches.source === EXPORT_SOURCE
       ? mergeExportInput(JSON.parse(readFileSync(INPUT_PATH, 'utf8')), matches)
