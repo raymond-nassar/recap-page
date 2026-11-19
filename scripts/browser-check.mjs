@@ -16101,7 +16101,7 @@ const SCENARIOS = [
   {
     id: 'pages-home-navigation',
     title: 'the project home stays informational, keyboard complete and narrow-safe',
-    operations: ['settle-returned-home', 'open-android-section'],
+    operations: ['settle-returned-home', 'open-get-started-section'],
     async run(page, t) {
       const { mkdtemp, rm } = await import('node:fs/promises');
       const { tmpdir } = await import('node:os');
@@ -16109,53 +16109,92 @@ const SCENARIOS = [
       const temporary = await mkdtemp(join(tmpdir(), 'recap-page-pages-browser-'));
       const playListing = 'https://play.google.com/store/apps/details?id=io.github.raymondnassar.recappage';
       const appStoreListing = 'https://apps.apple.com/us/app/recap-page/id6828494712';
-      const platformCards = ['Windows', 'Android', 'Windows download', 'Run from source', 'iPhone and iPad'];
-      const platformGrid = () => page.$eval('#getting-started .platform-grid', (grid) => ({
+      const storeListing = 'https://apps.microsoft.com/detail/9PDJ7XR9Q40Q';
+      // The site scrolls smoothly (html { scroll-behavior: smooth }), so a fragment applied on load
+      // is still animating when load fires. Positions are read once scrollY has held still for
+      // ten frames, bounded at three seconds.
+      const settleScroll = () => page.evaluate(() => new Promise((resolve) => {
+        let last = scrollY;
+        let still = 0;
+        const started = performance.now();
+        const frame = () => {
+          still = scrollY === last ? still + 1 : 0;
+          last = scrollY;
+          if (still >= 10 || performance.now() - started > 3000) resolve();
+          else requestAnimationFrame(frame);
+        };
+        requestAnimationFrame(frame);
+      }));
+      // The #1421 redesign replaced the five route cards with one card per device, which the
+      // device picker filters.
+      const platformCards = ['windows', 'android', 'iphone', 'ipad'];
+      const sectionLayouts = [
+        '.opening-grid', '.feature-layout', '.timeline-layout', '.explore-layout', '.explore-spread',
+        '.mcu-layout', '.source-layout', '.faq-layout',
+      ];
+      const platformGrid = () => page.$eval('#get-started .platform-spread', (grid) => ({
         width: innerWidth,
         overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
         columns: getComputedStyle(grid).gridTemplateColumns.split(' ').length,
-        cards: [...grid.querySelectorAll('.route-card')].map((card) => {
+        cards: [...grid.querySelectorAll('[data-platform]')].map((card) => {
           const box = card.getBoundingClientRect();
-          const link = card.querySelector('a');
-          const linkBox = link?.getBoundingClientRect();
           return {
-            name: card.querySelector('h3')?.textContent.trim() ?? '',
+            name: card.dataset.platform,
+            heading: card.querySelector('h3')?.textContent.trim() ?? '',
             copy: card.querySelector('p')?.textContent.trim() ?? '',
             left: Math.round(box.left),
             top: Math.round(box.top),
+            visible: !card.hidden && box.height > 0,
             clipped: card.scrollWidth - card.clientWidth > 1,
-            link: link ? {
-              name: link.textContent.trim(),
-              href: link.getAttribute('href'),
-              button: link.classList.contains('button'),
-              height: linkBox.height,
-              inside: linkBox.left >= box.left - 0.5 && linkBox.right <= box.right + 0.5,
-            } : null,
+            links: [...card.querySelectorAll('a')].map((link) => {
+              const linkBox = link.getBoundingClientRect();
+              return {
+                name: link.textContent.trim(),
+                href: link.getAttribute('href'),
+                button: link.classList.contains('button'),
+                height: linkBox.height,
+                inside: linkBox.left >= box.left - 0.5 && linkBox.right <= box.right + 0.5,
+              };
+            }),
           };
         }),
       }));
       const platformWraps = (grid, columns) => {
-        const [windows, android, , source, iPhone] = grid.cards;
+        const [windows, android, iPhone, iPad] = grid.cards;
+        const tops = grid.cards.map((card) => card.top);
         return grid.overflow <= 1
           && grid.columns === columns
           && JSON.stringify(grid.cards.map(({ name }) => name)) === JSON.stringify(platformCards)
-          && grid.cards.every((card) => !card.clipped
-            && (card.link === null || (card.link.inside && card.link.height >= 24)))
-          && windows.link?.button === true && windows.link.height >= 44
-          && android.link?.name === 'Open Google Play' && android.link.href === playListing
-          && android.link.button && android.link.height >= 44
-          && iPhone.link?.name === 'Open the App Store' && iPhone.link.href === appStoreListing
-          && iPhone.link.button && iPhone.link.height >= 44
-          && iPhone.copy === 'Install and update through the App Store.'
-          && iPhone.left === windows.left
+          && JSON.stringify(grid.cards.map(({ heading }) => heading))
+            === JSON.stringify(['Windows', 'Android', 'iPhone', 'iPad'])
+          && grid.cards.every((card) => card.visible && !card.clipped
+            && card.links.length >= 1
+            && card.links[0].button && card.links[0].height >= 44
+            && card.links.every((link) => link.inside && link.height >= 24))
+          && windows.links[0].name === 'Open Microsoft Store' && windows.links[0].href === storeListing
+          && android.links[0].name === 'Open Google Play' && android.links[0].href === playListing
+          && [iPhone, iPad].every((card) => card.links.length === 1
+            && card.links[0].name === 'Open the App Store' && card.links[0].href === appStoreListing
+            && card.copy === 'Install and update through the App Store. iCloud backup is optional.')
           && (columns === 1
-            ? grid.cards.every((card, index) => index === 0 || card.top > grid.cards[index - 1].top)
-            : android.top === windows.top && iPhone.top > source.top);
+            ? grid.cards.every((card, index) => card.left === windows.left
+              && (index === 0 || card.top > tops[index - 1]))
+            : columns === 2
+              ? android.top === windows.top && iPad.top === iPhone.top
+                && iPhone.top > windows.top && iPhone.left === windows.left
+              : tops.every((top) => top === windows.top)
+                && grid.cards.every((card, index) => index === 0 || card.left > grid.cards[index - 1].left));
       };
       const webRequests = [];
       const browserErrors = [];
+      // The site is published over HTTPS, and its home loads site.js as a module script, which
+      // Chromium refuses from file:// pages, so the built pages are served from a local origin.
+      // Requests to that origin are the page's own files rather than web resources.
+      let siteOrigin = null;
       page.on('request', (request) => {
-        if (/^https?:/.test(request.url())) webRequests.push(request.url());
+        if (/^https?:/.test(request.url()) && !request.url().startsWith(`${siteOrigin}/`)) {
+          webRequests.push(request.url());
+        }
       });
       page.on('pageerror', (error) => browserErrors.push(error.message));
       page.on('console', (message) => {
@@ -16172,18 +16211,46 @@ const SCENARIOS = [
           t.check(`${label} selects the fixed ${theme}-surface wordmark`,
             await page.$eval('.site-name img', (image, name) => image.currentSrc.endsWith(`/assets/${name}`)
               && getComputedStyle(document.body).backgroundColor === (name === 'wordmark.svg'
-                ? 'rgb(250, 250, 255)' : 'rgb(17, 17, 23)'), file));
+                ? 'rgb(251, 249, 255)' : 'rgb(21, 17, 28)'), file));
         }
         await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: '' }]);
       };
 
+      let siteServer = null;
       try {
         const { destination } = await buildPages({ destination: join(temporary, 'site') });
-        const url = pathToFileURL(join(destination, 'index.html')).href;
+        const { readFile } = await import('node:fs/promises');
+        const { extname } = await import('node:path');
+        const types = {
+          '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript',
+          '.svg': 'image/svg+xml', '.png': 'image/png', '.json': 'application/json',
+        };
+        siteServer = createStaticServer(async (request, response) => {
+          const path = decodeURIComponent(new URL(request.url, 'http://127.0.0.1').pathname);
+          const file = resolve(destination, `.${path}`);
+          if (!file.startsWith(`${resolve(destination)}${sep}`)) return response.writeHead(404).end();
+          try {
+            const bytes = await readFile(file);
+            response.writeHead(200, { 'Content-Type': types[extname(file)] ?? 'application/octet-stream' });
+            response.end(bytes);
+          } catch (error) {
+            response.writeHead(error.code === 'ENOENT' ? 404 : 500).end();
+          }
+        });
+        await new Promise((ready) => siteServer.listen(0, '127.0.0.1', ready));
+        siteOrigin = `http://127.0.0.1:${siteServer.address().port}`;
+        page.__allowedOrigins = [siteOrigin];
+        const pageUrl = (file) => `${siteOrigin}/${file}`;
+        const url = pageUrl('index.html');
 
         await page.setViewport({ width: 1280, height: 900 });
         await page.goto(url, { waitUntil: 'load' });
         await checkWordmark('Home');
+        // Tab moves focus inside the page either way, but :focus only matches, and the skip link
+        // only slides into view, while the page's window has focus. On the hosted Windows runner
+        // the tab lost window focus to an earlier scenario's popup, so the skip link took focus
+        // and stayed at top -73.75 (run 44410557043). Raising the tab gives it focus back.
+        await page.bringToFront();
         await page.keyboard.press('Tab');
         const skip = await page.$eval('.skip-link', (link) => {
           const style = getComputedStyle(link);
@@ -16202,9 +16269,7 @@ const SCENARIOS = [
         await page.waitForFunction(() => location.hash === '#main');
         t.check('the skip link reaches the main content', true);
 
-        for (const selector of ['.phone-gallery', '#demo']) {
-          await page.$eval(selector, (section) => section.scrollIntoView({ block: 'start' }));
-        }
+        await page.$eval('.screen-proof', (figure) => figure.scrollIntoView({ block: 'start' }));
         await page.waitForFunction(() => (
           [...document.images].every((image) => (
             image.complete
@@ -16212,21 +16277,21 @@ const SCENARIOS = [
             && image.naturalHeight === Number(image.getAttribute('height'))
           ))
         ));
-        const desktop = await page.evaluate(() => ({
+        const desktop = await page.evaluate((layouts) => ({
           width: innerWidth,
           overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
           regions: [
             'overview',
-            'android',
-            'features',
             'demo',
-            'getting-started',
-            'troubleshooting',
-            'documentation',
-            'project-questions',
+            'reading-orders',
+            'timeline',
+            'explore',
+            'mcu-prep',
+            'guides',
+            'get-started',
+            'faq',
             'feedback',
-            'security-report',
-            'source-history',
+            'support-project',
           ].filter((id) => {
             const element = document.getElementById(id);
             return element && element.getBoundingClientRect().height > 0;
@@ -16235,6 +16300,8 @@ const SCENARIOS = [
             name: link.textContent.trim(),
             href: link.getAttribute('href'),
             visible: link.getBoundingClientRect().height > 0,
+            target: link.getAttribute('href').startsWith('#')
+              && document.querySelector(link.getAttribute('href')) !== null,
           })),
           images: [...document.images].filter((image) => !image.matches('.site-name img')).map((image) => ({
             complete: image.complete,
@@ -16242,31 +16309,24 @@ const SCENARIOS = [
             height: image.naturalHeight,
             displayedWidth: image.getBoundingClientRect().width,
           })),
-          demoColumns: getComputedStyle(document.querySelector('.demo-grid')).gridTemplateColumns,
-          phoneColumns: getComputedStyle(document.querySelector('.phone-gallery')).gridTemplateColumns,
-        }));
+          columns: layouts.map((selector) => getComputedStyle(document.querySelector(selector))
+            .gridTemplateColumns.split(' ').length),
+        }), sectionLayouts);
         t.check('desktop renders every project-home region without horizontal overflow',
           desktop.width === 1280
           && desktop.overflow <= 1
           && desktop.regions.length === 11
-          && desktop.navigation.length === 8
-          && desktop.navigation.every((item) => item.visible),
+          && desktop.navigation.length === 7
+          && desktop.navigation.every((item) => item.visible && item.target),
           JSON.stringify(desktop));
-        t.check('the supplied artwork and both phone previews load alongside the desktop samples',
-          desktop.images.length === 5
-          && desktop.images[0].complete
-          && desktop.images[0].width === 1024 && desktop.images[0].height === 500
-          && desktop.images.slice(1, 3).every((image) => (
-            image.complete && image.width === 1080 && image.height === 1920
-            && image.displayedWidth >= 320
-          ))
-          && desktop.images.slice(3).every((image) => (
+        t.check('the reading screenshot loads at full size beside two-column desktop sections',
+          desktop.images.length === 1
+          && desktop.images.every((image) => (
             image.complete && image.width === 960 && image.height === 900
             && image.displayedWidth >= 400
           ))
-          && desktop.demoColumns.split(' ').length === 2
-          && desktop.phoneColumns.split(' ').length === 2,
-          JSON.stringify(desktop.images));
+          && desktop.columns.every((count) => count === 2),
+          JSON.stringify({ images: desktop.images, columns: desktop.columns }));
         t.check('the information page loads no web resource or active project service',
           webRequests.length === 0,
           webRequests.join(' / '));
@@ -16280,16 +16340,18 @@ const SCENARIOS = [
             form: new URL(link.href).searchParams.get('template'),
           })),
         }));
-        t.check('suggestions are immediately after features and offer all four exact forms',
-          suggestions.previous === 'features' && suggestions.next === 'demo'
-          && suggestions.heading === 'Help shape Recap Page'
+        t.check('suggestions are immediately after the questions and offer all four exact forms',
+          suggestions.previous === 'faq' && suggestions.next === 'support-project'
+          && suggestions.heading === 'Help shape what comes next.'
           && JSON.stringify(suggestions.routes) === JSON.stringify([
             { name: 'Suggest an improvement', form: 'feature.yml' },
             { name: 'Request a reading list', form: 'reading-list.yml' },
             { name: 'Correct a reading list', form: 'data-order.yml' },
             { name: 'Report a bug', form: 'bug.yml' },
+            { name: "See what's being built", form: null },
+            { name: "Read what's new", form: null },
           ]), JSON.stringify(suggestions));
-        await page.$eval('#features a[href="./being-built.html"]', (link) => link.focus());
+        await page.$eval('#feedback a[href="./being-built.html"]', (link) => link.focus());
         await page.keyboard.press('Enter');
         await page.waitForFunction(() => location.pathname.endsWith('/being-built.html'));
         await checkWordmark('Generated masthead');
@@ -16310,11 +16372,15 @@ const SCENARIOS = [
           if (document.readyState === 'complete') settle();
           else addEventListener('load', settle, { once: true });
         })));
+        await settleScroll();
+        const feedbackBox = await page.$eval('#feedback', (section) => ({
+          top: Math.round(section.getBoundingClientRect().top),
+          innerHeight,
+          scrollY: Math.round(scrollY),
+        }));
         t.check('the curated page returns to the suggestions on the home page',
-          await page.$eval('#feedback', (section) => {
-            const box = section.getBoundingClientRect();
-            return box.top >= 0 && box.top < innerHeight;
-          }));
+          feedbackBox.top >= 0 && feedbackBox.top < feedbackBox.innerHeight,
+          JSON.stringify(feedbackBox));
 
         const overview = await page.evaluate(() => ({
           navigation: [...document.querySelectorAll('.section-nav a')].map((link) => link.textContent.trim()),
@@ -16327,81 +16393,99 @@ const SCENARIOS = [
         t.check('the overview names every platform the app is available on',
           JSON.stringify(overview.navigation)
             === JSON.stringify([
-              'Android', 'Features', 'Get started', 'Guides', 'Feedback', 'Support', 'Privacy', 'Data sources',
+              'Try it', 'Reading orders', 'Timeline', 'Explore', 'MCU Prep', 'Get the app', 'Guide sources',
             ])
-          && overview.status === 'Available for Windows, Android, iPhone, and iPad.'
+          && overview.status === 'For Windows, Android, iPhone, and iPad.'
           && JSON.stringify(overview.actions) === JSON.stringify([
-            { name: 'Get started', href: '#getting-started' },
-            { name: 'See the Android app', href: '#android' },
+            { name: 'Try the guided demo', href: '#demo' },
+            { name: 'See what you can explore', href: '#reading-orders' },
           ]),
           JSON.stringify(overview));
 
-        await t.step('open-android-section', async () => {
-          await page.$eval('.section-nav a[href="#android"]', (link) => link.focus());
+        await t.step('open-get-started-section', async () => {
+          await page.$eval('.section-nav a[href="#get-started"]', (link) => link.focus());
           await page.keyboard.press('Enter');
-          await page.waitForFunction(() => location.hash === '#android');
+          await page.waitForFunction(() => location.hash === '#get-started');
         });
-        const android = await page.$eval('#android', (section) => ({
+        const devices = await page.$eval('#get-started', (section) => ({
           copy: section.innerText.replace(/\s+/g, ' '),
-          actions: [...section.querySelectorAll('.action-row a')].map((link) => ({
-            name: link.textContent.trim(),
-            href: link.getAttribute('href'),
-            button: link.classList.contains('button'),
-            // Under --forced-colors the plain link reported a painted background too, since forced
-            // colours paint every element Canvas. The primary action's border survives there.
-            bordered: Number.parseFloat(getComputedStyle(link).borderTopWidth) > 0,
-            height: link.getBoundingClientRect().height,
-          })),
-          previews: [...section.querySelectorAll('figcaption a')].map((link) => ({
-            href: link.getAttribute('href'),
-            height: link.getBoundingClientRect().height,
+          cards: [...section.querySelectorAll('[data-platform]')].map((card) => ({
+            name: card.dataset.platform,
+            copy: card.querySelector('p')?.textContent.trim() ?? '',
+            actions: [...card.querySelectorAll('a')].map((link) => ({
+              name: link.textContent.trim(),
+              href: link.getAttribute('href'),
+              button: link.classList.contains('button'),
+              // Under --forced-colors the plain link reported a painted background too, since forced
+              // colours paint every element Canvas. The primary action's border survives there.
+              bordered: Number.parseFloat(getComputedStyle(link).borderTopWidth) > 0,
+              height: link.getBoundingClientRect().height,
+            })),
           })),
         }));
-        t.check('Android navigation leads with Google Play and keeps browser reading and preview caveats',
-          android.actions.length === 2
-          && android.actions[0].name === 'Open Google Play'
-          && android.actions[0].href === playListing
-          && android.actions[0].button && android.actions[0].bordered && android.actions[0].height >= 44
-          && android.actions[1].name === 'About the Android app'
-          && !android.actions[1].button && !android.actions[1].bordered && android.actions[1].height >= 24
-          && !/beta/i.test(android.copy)
-          && /Android's Read uses an installed browser, not the Marvel Unlimited app/.test(android.copy)
-          && /previews made in a desktop browser, not on a phone/.test(android.copy)
-          && android.previews.length === 2
-          && android.previews.every((link) => link.href.startsWith('./assets/') && link.height >= 44),
-          JSON.stringify(android));
+        const [windowsCard, androidCard] = devices.cards;
+        t.check('the app section leads each device with its store and keeps the plain second routes',
+          devices.cards.length === 4
+          && windowsCard.copy === 'Install and update through Microsoft Store, or download the desktop app.'
+          && androidCard.copy === 'Android 8 or later, with an up-to-date Android System WebView.'
+          && devices.cards.every((card) => card.actions[0].button && card.actions[0].bordered
+            && card.actions[0].height >= 44)
+          && windowsCard.actions.length === 2
+          && windowsCard.actions[0].href === storeListing
+          && windowsCard.actions[1].name === 'Download for Windows'
+          && windowsCard.actions[1].href.endsWith('/releases/latest/download/marvel-reading-tracker-windows.zip')
+          && androidCard.actions.length === 2
+          && androidCard.actions[0].name === 'Open Google Play' && androidCard.actions[0].href === playListing
+          && androidCard.actions[1].name === 'Android app details'
+          && androidCard.actions[1].href.endsWith('/docs/ANDROID.md')
+          && [windowsCard, androidCard].every((card) => !card.actions[1].button && !card.actions[1].bordered
+            && card.actions[1].height >= 24)
+          && !/beta/i.test(devices.copy),
+          JSON.stringify(devices));
 
-        await page.$eval('.section-nav a[href="#documentation"]', (link) => link.focus());
+        await page.$eval('.section-nav a[href="#guides"]', (link) => link.focus());
         await page.keyboard.press('Enter');
-        await page.waitForFunction(() => location.hash === '#documentation');
-        const documentation = await page.$eval('#documentation', (section) => ({
-          visible: section.getBoundingClientRect().height > 0,
-          links: section.querySelectorAll('a').length,
+        await page.waitForFunction(() => location.hash === '#guides');
+        const documentation = await page.evaluate(() => ({
+          visible: document.getElementById('guides').getBoundingClientRect().height > 0,
+          links: [...document.querySelectorAll('#guides a')].map((link) => link.getAttribute('href')),
+          footer: [...document.querySelectorAll('footer nav[aria-label="Project links"] a')]
+            .map((link) => link.textContent.trim()),
         }));
-        t.check('keyboard section navigation reaches the maintained-document routes',
-          documentation.visible && documentation.links === 13,
+        t.check('keyboard section navigation reaches the guide sources and the maintained-document routes',
+          documentation.visible
+          && JSON.stringify(documentation.links) === JSON.stringify(['./data-sources.html'])
+          && JSON.stringify(documentation.footer) === JSON.stringify([
+            'Privacy', 'Support', 'Data sources', 'Security', 'License', 'Buy Ray a Coffee',
+          ]),
           JSON.stringify(documentation));
 
         const wideGrid = await platformGrid();
-        t.check('the five Get started cards wrap cleanly in two columns at desktop width',
-          platformWraps(wideGrid, 2),
+        t.check('the four device cards sit side by side at desktop width',
+          platformWraps(wideGrid, 4),
           JSON.stringify(wideGrid));
 
         await page.setViewport({ width: 768, height: 900 });
         await page.waitForFunction(() => innerWidth === 768);
         const middleGrid = await platformGrid();
-        t.check('the five Get started cards keep two clean columns at a middle width',
+        t.check('the four device cards keep two clean columns at a middle width',
           platformWraps(middleGrid, 2),
           JSON.stringify(middleGrid));
+        const middleColumns = await page.evaluate((layouts) => layouts.map((selector) => (
+          getComputedStyle(document.querySelector(selector)).gridTemplateColumns.split(' ').length
+        )), sectionLayouts);
+        t.check('section layouts stack to one column at a middle width, with the explore panels in two',
+          JSON.stringify(middleColumns) === JSON.stringify([1, 1, 1, 1, 2, 1, 1, 1]),
+          JSON.stringify(middleColumns));
 
         await page.setViewport({ width: 320, height: 900 });
         await page.waitForFunction(() => innerWidth === 320);
-        const narrow = await page.evaluate(() => ({
+        const narrow = await page.evaluate((layouts) => ({
           width: innerWidth,
           overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
-          splitColumns: getComputedStyle(document.querySelector('.split')).gridTemplateColumns,
-          phoneColumns: getComputedStyle(document.querySelector('.phone-gallery')).gridTemplateColumns,
-          phoneWidths: [...document.querySelectorAll('.phone-preview img')]
+          columns: layouts.map((selector) => getComputedStyle(document.querySelector(selector))
+            .gridTemplateColumns.split(' ').length),
+          imageWidths: [...document.images].filter((image) => !image.matches('.site-name img'))
             .map((image) => image.getBoundingClientRect().width),
           navigation: [...document.querySelectorAll('.section-nav a')].map((link) => {
             const box = link.getBoundingClientRect();
@@ -16414,23 +16498,23 @@ const SCENARIOS = [
           clipped: [...document.querySelectorAll('main *, footer *')]
             .filter((element) => element.scrollWidth - element.clientWidth > 1)
             .map((element) => element.id || element.className || element.tagName),
-        }));
+        }), sectionLayouts);
         t.check('the complete home reflows to one direction at 320 CSS pixels',
           narrow.width === 320
           && narrow.overflow <= 1
-          && narrow.splitColumns.split(' ').length === 1
-          && narrow.phoneColumns.split(' ').length === 1
-          && narrow.phoneWidths.every((width) => width >= 280 && width <= 296)
+          && narrow.columns.every((count) => count === 1)
+          && narrow.imageWidths.length === 1
+          && narrow.imageWidths.every((width) => width >= 240 && width <= 288)
           && narrow.clipped.length === 0,
           JSON.stringify(narrow));
         t.check('every primary route remains visible and touch-sized at the narrow layout',
-          narrow.navigation.length === 8
+          narrow.navigation.length === 7
           && narrow.navigation.every((item) => (
             item.visible && item.height >= 44 && item.width >= 44 && item.width <= 296
           )),
           JSON.stringify(narrow.navigation));
         const narrowGrid = await platformGrid();
-        t.check('the five Get started cards stack in one column at 320 CSS pixels',
+        t.check('the four device cards stack in one column at 320 CSS pixels',
           platformWraps(narrowGrid, 1),
           JSON.stringify(narrowGrid));
 
@@ -16445,30 +16529,30 @@ const SCENARIOS = [
         const reduced = await page.evaluate(() => ({
           active: matchMedia('(prefers-reduced-motion: reduce)').matches,
           animations: document.getAnimations().length,
-          durations: [...document.querySelectorAll('a, .card, .route')]
+          // The reduced-motion rule shortens every duration to 0.01ms rather than removing it,
+          // which computed style reports as 1e-05s, so anything longer is still moving.
+          durations: [...document.querySelectorAll('a, button, summary, main > .section')]
             .flatMap((element) => {
               const style = getComputedStyle(element);
               return [style.animationDuration, style.transitionDuration];
             })
-            .filter((duration) => duration !== '0s'),
+            .filter((duration) => duration.split(',').some((part) => Number.parseFloat(part) > 0.00001)),
         }));
         t.check('reduced motion leaves no animation or transition running',
           reduced.active && reduced.animations === 0 && reduced.durations.length === 0,
           JSON.stringify(reduced));
 
-        await page.$eval('.section-nav a[href="#feedback"]', (link) => link.focus());
-        const forced = await page.$eval('.section-nav a[href="#feedback"]', (link) => {
+        await page.$eval('.section-nav a[href="#guides"]', (link) => link.focus());
+        const forced = await page.$eval('.section-nav a[href="#guides"]', (link) => {
           const style = getComputedStyle(link);
-          const bar = getComputedStyle(document.querySelector('#feedback-title'), '::after');
           return {
             active: matchMedia('(forced-colors: active)').matches,
             borderWidth: Number.parseFloat(style.borderTopWidth),
             borderColor: style.borderTopColor,
             outlineWidth: Number.parseFloat(style.outlineWidth),
             outlineColor: style.outlineColor,
-            barWidth: Number.parseFloat(bar.borderTopWidth),
-            barColor: bar.borderTopColor,
-            text: getComputedStyle(document.querySelector('#feedback-title')).color,
+            heading: getComputedStyle(document.querySelector('#guides-title')).color,
+            text: getComputedStyle(document.body).color,
           };
         });
         t.check('the forced-colour launch preserves route and focus boundaries',
@@ -16478,8 +16562,7 @@ const SCENARIOS = [
             && forced.borderColor !== 'rgba(0, 0, 0, 0)'
             && forced.outlineWidth > 0
             && forced.outlineColor !== 'rgba(0, 0, 0, 0)'
-            && forced.barWidth > 0
-            && forced.barColor === forced.text
+            && forced.heading === forced.text
           ),
           JSON.stringify(forced));
         await client.detach();
@@ -16495,7 +16578,7 @@ const SCENARIOS = [
         ]) {
           for (const width of [1280, 320]) {
             await page.setViewport({ width, height: 900 });
-            await page.goto(pathToFileURL(join(destination, file)).href, { waitUntil: 'load' });
+            await page.goto(pageUrl(file), { waitUntil: 'load' });
             documents.push(await page.evaluate((expected) => {
               const currentLinks = [...document.querySelectorAll('[aria-current="page"]')];
               const style = currentLinks[0] ? getComputedStyle(currentLinks[0]) : null;
@@ -16503,11 +16586,23 @@ const SCENARIOS = [
                 file: location.pathname.split('/').pop(),
                 width: innerWidth,
                 headings: document.querySelectorAll('h1').length,
-                landmarks: ['header', 'nav', 'main', 'footer']
-                  .every((name) => document.querySelectorAll(name).length === 1),
+                landmarks: ['header', 'main', 'footer']
+                  .every((name) => document.querySelectorAll(name).length === 1)
+                  && JSON.stringify([...document.querySelectorAll('nav')]
+                    .map((nav) => nav.getAttribute('aria-label')))
+                    === JSON.stringify(['Site', 'Project links']),
                 current: currentLinks.map((link) => link.textContent.trim()),
                 expected,
-                currentBorder: style ? Number.parseFloat(style.borderTopWidth) : 0,
+                // The redesign marks the current page with a thick underline in the accent color
+                // instead of the old border.
+                currentMark: style ? (() => {
+                  const probe = document.createElement('span');
+                  probe.style.color = 'var(--accent-fill)';
+                  document.body.append(probe);
+                  const accent = getComputedStyle(probe).color;
+                  probe.remove();
+                  return style.textDecorationLine.includes('underline') && style.color === accent;
+                })() : false,
                 overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
                 clipped: [...document.querySelectorAll('main *, footer *')]
                   .filter((element) => element.scrollWidth - element.clientWidth > 1)
@@ -16526,7 +16621,7 @@ const SCENARIOS = [
             item.headings === 1
             && item.landmarks
             && JSON.stringify(item.current) === JSON.stringify([item.expected])
-            && item.currentBorder > 0
+            && item.currentMark
             && item.overflow <= 1
             && item.clipped.length === 0
             && item.navigation.length === 6
@@ -16534,44 +16629,46 @@ const SCENARIOS = [
           )),
           JSON.stringify(documents));
 
-        // The brand accents of #1208 (P1, P2, WD1, WL1, WF1), read from computed style in each
-        // theme so a token that silently resolved to nothing would show as a missing bar.
+        // The brand accents, read from computed style in each theme so a token that silently
+        // resolved to nothing would show as a missing color. The #1421 redesign dropped the
+        // #1208 heading bars and the amber origin warning, so links, focus, the footer rule and
+        // the current-page mark are what carry the accents now.
         const accents = [];
         for (const theme of ['dark', 'light']) {
           await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: theme }]);
           for (const file of ['index.html', 'data-sources.html']) {
-            await page.goto(pathToFileURL(join(destination, file)).href, { waitUntil: 'load' });
-            const link = await page.$('main a:not(.button)');
+            await page.goto(pageUrl(file), { waitUntil: 'load' });
+            const links = await page.$$('main a:not(.button):not(.text-link)');
+            let link = null;
+            for (const candidate of links) {
+              // A link inside a closed <details> keeps a layout box in Chromium but cannot take
+              // focus, so the first link a reader can actually reach is the one measured.
+              if (await candidate.evaluate((element) => element.checkVisibility()
+                && element.getBoundingClientRect().height > 0)) {
+                link = candidate;
+                break;
+              }
+            }
             await link.focus();
             await page.keyboard.down('Shift');
             await page.keyboard.press('Tab');
             await page.keyboard.up('Shift');
             await page.keyboard.press('Tab');
             accents.push(await page.evaluate((name) => {
-              const bar = (heading) => {
-                const style = getComputedStyle(heading, '::after');
-                return `${style.borderTopColor} ${Number.parseFloat(style.borderTopWidth)} ${style.width}`;
-              };
-              const token = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
               const focused = getComputedStyle(document.activeElement);
               const footer = getComputedStyle(document.querySelector('.footer'));
-              const disclosure = document.querySelector('.disclosure');
               const current = document.querySelector('[aria-current="page"]');
+              const currentStyle = current ? getComputedStyle(current) : null;
               return {
                 theme: name,
                 file: location.pathname.split('/').pop(),
-                tokens: ['--brand-blue', '--accent', '--brand-red'].map(token),
-                bars: [...document.querySelectorAll('.section-heading h2, .document h2')].map(bar),
+                focused: `${document.activeElement.tagName} ${document.activeElement.textContent.trim().slice(0, 60)}`,
                 link: focused.color,
                 focus: `${focused.outlineStyle} ${focused.outlineColor}`,
                 footer: `${Number.parseFloat(footer.borderTopWidth)} ${footer.borderTopColor}`,
-                disclosure: disclosure
-                  ? `${Number.parseFloat(getComputedStyle(disclosure).borderTopWidth)} ${getComputedStyle(disclosure).borderTopColor}`
+                current: currentStyle
+                  ? `${currentStyle.textDecorationLine} ${currentStyle.color}`
                   : null,
-                warning: document.querySelector('.origin-warning')
-                  ? getComputedStyle(document.querySelector('.origin-warning')).borderTopColor
-                  : null,
-                current: current ? getComputedStyle(current).borderTopColor : null,
               };
             }, theme));
           }
@@ -16579,32 +16676,27 @@ const SCENARIOS = [
         await page.emulateMediaFeatures();
         const rgb = (hex) => `rgb(${[1, 3, 5].map((index) => Number.parseInt(hex.slice(index, index + 2), 16)).join(', ')})`;
         const expectedAccents = {
-          dark: { blue: rgb('#4d8dff'), purple: rgb('#b694ec'), red: rgb('#ff4d5a'), amber: rgb('#eab654') },
-          light: { blue: rgb('#1d4ed8'), purple: rgb('#5c22b8'), red: rgb('#c8102e'), amber: rgb('#7a4c00') },
+          dark: { blue: rgb('#a7c7ff'), purple: rgb('#c59bff'), focus: rgb('#ffffff'), line: rgb('#b6a6c5') },
+          light: { blue: rgb('#174ca6'), purple: rgb('#6124b8'), focus: rgb('#241536'), line: rgb('#786b85') },
         };
-        t.check('section and document heading bars cycle blue, purple, red, links and focus are blue, the footer rule is blue and the disclosure rule purple, in both themes',
+        t.check('links are blue with a solid focus ring, the footer rule is drawn and the current page is underlined in purple, in both themes',
           forcedColorsRequested || (accents.length === 4
           && accents.every((item) => {
             const colors = expectedAccents[item.theme];
-            const cycle = [colors.blue, colors.purple, colors.red];
-            return item.bars.length >= 3
-              && item.bars.every((value, index) => value === `${cycle[index % 3]} 3 48px`)
-              && item.link === colors.blue
-              && item.focus === `solid ${colors.blue}`
-              && item.footer === `3 ${colors.blue}`
+            return item.link === colors.blue
+              && item.focus === `solid ${colors.focus}`
+              && item.footer === `2 ${colors.line}`
               && (item.file === 'index.html'
-                ? item.bars.length === 10
-                  && item.disclosure === `4 ${colors.purple}`
-                  && item.warning === colors.amber
-                  && item.current === null
-                : item.current === colors.blue && item.disclosure === null);
+                ? item.current === null
+                : item.current === `underline ${colors.purple}`);
           })),
           JSON.stringify(accents));
 
         await page.setViewport({ width: 1280, height: 900 });
-        await page.goto(`${pathToFileURL(join(destination, 'privacy.html')).href}#deleting-your-data`, {
+        await page.goto(`${pageUrl('privacy.html')}#deleting-your-data`, {
           waitUntil: 'load',
         });
+        await settleScroll();
         const deletion = await page.evaluate(() => {
           const target = document.getElementById('deleting-your-data');
           return {
@@ -16617,7 +16709,8 @@ const SCENARIOS = [
           deletion.heading === 'H2' && deletion.text === 'Deleting your data'
           && deletion.top >= 0 && deletion.top < 200,
           JSON.stringify(deletion));
-        await page.goto(pathToFileURL(join(destination, 'privacy.html')).href, { waitUntil: 'load' });
+        await page.goto(pageUrl('privacy.html'), { waitUntil: 'load' });
+        await page.bringToFront();
         await page.keyboard.press('Tab');
         const documentSkip = await page.evaluate(() => ({
           skip: document.activeElement?.classList.contains('skip-link') ?? false,
@@ -16635,6 +16728,10 @@ const SCENARIOS = [
           browserErrors.length === 0,
           browserErrors.join(' / '));
       } finally {
+        if (siteServer) {
+          siteServer.closeAllConnections();
+          await new Promise((closed) => siteServer.close(closed));
+        }
         await rm(temporary, { recursive: true, force: true });
       }
     },
@@ -19594,7 +19691,8 @@ async function preparePage(page, origin, mutation, scenarioId = null) {
       return;
     }
     if (page.__denyExternal && /^https?:/.test(request.url())
-      && new URL(request.url()).origin !== origin) {
+      && new URL(request.url()).origin !== origin
+      && !page.__allowedOrigins?.includes(new URL(request.url()).origin)) {
       await request.abort(scenarioId === 'collected-editions' ? 'blockedbyclient' : 'failed');
       return;
     }
