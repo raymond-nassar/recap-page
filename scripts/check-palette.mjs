@@ -170,7 +170,7 @@ export const PAIRS = [
   ['--blue', 'the Visit button on the page on hover', BODY, 'the same label while the pointer rests on it'],
   ['--blue', 'the Visit button in Preview', BODY, 'the label and glyph of the Visit button in Preview'],
   ['--blue', 'the Visit button in Preview on hover', BODY, 'the same label in Preview while the pointer rests on it'],
-  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:2566`'],
+  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:2573`'],
 
   // Each category card's icon is measured on its card's tint at rest and on hover, the two surfaces it
   // is ever drawn on (#872, #873). Its 3:1 is a request rather than a WCAG duty, since the icon is
@@ -232,7 +232,7 @@ export const SURFACES = {
     layer: '--warn',
     fraction: 0.12,
     on: '--panel',
-    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:2542`',
+    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:2549`',
   },
   // Built on a surface rather than a token, which is the case the first version of this could not
   // express. A ghost button is a tint over whatever it is dropped onto, so on the banner it is a

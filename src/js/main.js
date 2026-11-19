@@ -4087,6 +4087,9 @@ const homeView = createHomeView({
     home: $('#view-home'),
     categoriesHeading: $('#home-cat-h'),
     categoriesRoot: $('#home-categories'),
+    creatorRuns: $('#home-creator-runs'),
+    creatorFilters: $('#home-creator-filters'),
+    creatorResults: $('#home-creator-results'),
     continueSection: $('#home-continue'),
     continueHeading: $('#chero-h'),
     continueBar: $('#chero-bar'),
@@ -4130,6 +4133,7 @@ const homeView = createHomeView({
     navigateTo(category.route);
   },
   onNavigateHub: (destination) => showView(destination, { push: true }),
+  onPreview: (list) => { void previewView.open(list); },
   onDone: () => { if (selectSavedList(continuingListId())) readingView.markReadFromHome(); }, onOpen: () => openSavedList(continuingListId()),
   onRead: (issue, event, source) => {
     if (selectSavedList(continuingListId())) openInReader(issue, event, source);

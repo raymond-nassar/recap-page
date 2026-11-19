@@ -58,6 +58,10 @@ Optional live requests fill in comic details; summaries stay temporary. Cover im
 external addresses and are never stored by the app.
 See [content and reader-launch flow](ARCHITECTURE_REFERENCE.md#how-reading-content-reaches-the-browser).
 
+Home's Discover More includes Creator runs from the catalog's existing creator-run lists.
+Creator buttons filter by the lists' credited writers, including coauthors. Each card opens
+the ordinary list preview; filtering changes neither saved progress nor the other browsing shelves.
+
 ## Marking one issue read
 
 A screen asks the Store, the object responsible for saving reading progress, to apply a data

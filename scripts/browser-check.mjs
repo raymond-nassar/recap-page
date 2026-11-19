@@ -28959,6 +28959,169 @@ MUTATIONS.push({
   ),
 });
 
+SCENARIOS.push({
+  id: 'creator-runs',
+  title: 'Home Creator runs filter the seven existing lists without changing saved reading data',
+  async run(page, t) {
+    const lists = ACTUAL_CATALOG.lists.filter((list) => list.type === 'creator-run');
+    const writers = [...new Set(lists.flatMap((list) => list.writers))];
+    page.__denyExternal = true;
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    await page.evaluateOnNewDocument(() => {
+      if (location.protocol !== 'http:') return;
+      localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, theme: 'dark' }));
+    });
+    await open(page, '/?catalog=actual&local-health=ready#/home');
+    await page.waitForSelector('#home-primary-paths .home-path');
+    const present = await page.$('#home-creator-runs:not([hidden])');
+    t.check('the Creator runs section exists under Discover More', Boolean(present)
+      && await page.$eval('#home-creator-runs', (node) => Boolean(node.closest('#home-more-paths'))));
+    if (!present) return;
+    const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+    const cards = () => page.$$eval('[data-creator-run]', (nodes) => nodes.map((node) => ({
+      id: node.dataset.creatorRun, href: node.getAttribute('href'),
+      name: node.querySelector('.catalog-card-title').textContent.trim(),
+      meta: node.querySelector('.catalog-card-meta').textContent,
+    })));
+    t.check('all seven creator lists retain their own names, credits, lengths and native preview destinations',
+      JSON.stringify(await cards()) === JSON.stringify(lists.map((list) => ({
+        id: list.id, href: `#/preview/${list.id}`, name: list.name,
+        meta: `${list.writers.join(', ')} · ${list.count} comics`,
+      }))));
+    t.check('every credited creator has a filter, including the coauthor',
+      JSON.stringify(await page.$$eval('#home-creator-filters button', (buttons) => buttons.map((button) => button.textContent)))
+        === JSON.stringify(['All creators', ...writers]));
+    for (const writer of writers) {
+      const index = writers.indexOf(writer) + 2;
+      const selector = `#home-creator-filters button:nth-child(${index})`;
+      await page.focus(selector);
+      await page.keyboard.press(index % 2 ? 'Enter' : 'Space');
+      t.check(`${writer} filters only the credited runs and keeps keyboard focus`,
+        JSON.stringify((await cards()).map((card) => card.id))
+          === JSON.stringify(lists.filter((list) => list.writers.includes(writer)).map((list) => list.id))
+        && await page.$eval(selector, (button) => document.activeElement === button
+          && button.getAttribute('aria-pressed') === 'true'
+          && document.querySelectorAll('#home-creator-filters [aria-pressed="true"]').length === 1));
+    }
+    await click(page, '#home-creator-filters button');
+    t.check('All creators restores the seven separate runs and filtering never writes reading progress',
+      (await cards()).length === 7
+      && await page.evaluate((saved) => localStorage.getItem('mrt.state.v2') === saved, before));
+
+    const layouts = [];
+    for (const theme of ['dark', 'light']) {
+      for (const [width, height] of [[1280, 900], [390, 844], [320, 720]]) {
+        await page.setViewport({ width, height });
+        await page.evaluate((value) => document.documentElement.setAttribute('data-theme', value), theme);
+        const layout = await page.$eval('#home-creator-runs', (root) => {
+          const controls = [...root.querySelectorAll('button, a')];
+          return {
+            overflow: document.documentElement.scrollWidth > innerWidth,
+            clipped: controls.some((node) => {
+              const rect = node.getBoundingClientRect();
+              return rect.left < 0 || rect.right > innerWidth + 1 || rect.width < 24 || rect.height < 24;
+            }),
+            cards: root.querySelectorAll('a').length,
+            weight: getComputedStyle(root.querySelector('[aria-pressed="true"]')).fontWeight,
+            otherWeight: getComputedStyle(root.querySelector('[aria-pressed="false"]')).fontWeight,
+          };
+        });
+        layouts.push({ theme, width, ...layout });
+        if (process.env.MRT_CREATOR_EVIDENCE && !page.__mutation && width !== 320) {
+          await page.evaluate((phone) => {
+            document.activeElement?.blur();
+            document.querySelector(phone ? '#home-creators-h' : '#home-more-h').scrollIntoView();
+            window.scrollBy(0, -100);
+          }, width < 600);
+          await page.screenshot({
+            path: join(process.env.MRT_CREATOR_EVIDENCE, `creator-runs-${width}-${theme}.png`),
+          });
+        }
+      }
+    }
+    t.check('both themes wrap every card and filter at desktop and phone widths with no page overflow',
+      layouts.every((row) => !row.overflow && !row.clipped && row.cards === 7
+        && Number(row.weight) > Number(row.otherWeight)), JSON.stringify(layouts));
+    await page.evaluate(() => { document.documentElement.style.fontSize = '200%'; });
+    t.check('200 percent text preserves wrapping and pointer targets on the narrow phone',
+      await page.$eval('#home-creator-runs', (root) => document.documentElement.scrollWidth <= innerWidth
+        && [...root.querySelectorAll('button, a')].every((node) => {
+          const box = node.getBoundingClientRect();
+          return box.left >= 0 && box.right <= innerWidth + 1 && box.width >= 24 && box.height >= 24;
+        })));
+    await page.evaluate(() => { document.documentElement.style.fontSize = ''; });
+    await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
+    await page.focus('#home-creator-filters button');
+    await page.keyboard.press('Tab');
+    t.check('keyboard focus stays visibly outlined with reduced motion',
+      await page.evaluate(() => {
+        const target = document.activeElement;
+        return target.closest('#home-creator-filters')
+          && getComputedStyle(target).outlineStyle !== 'none';
+      }));
+    const cdp = await page.createCDPSession();
+    await cdp.send('Emulation.setEmulatedMedia', { features: [{ name: 'forced-colors', value: 'active' }] });
+    t.check('forced colors retains a distinct selected filter and focus outline',
+      await page.$eval('#home-creator-filters [aria-pressed="true"]', (button) =>
+        getComputedStyle(button).borderTopWidth === '2px'
+        && getComputedStyle(document.activeElement).outlineStyle !== 'none'));
+    await cdp.send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-color-scheme', value: 'light' }] });
+    await cdp.detach();
+    await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: 'light' }]);
+    await page.evaluate(() => document.documentElement.removeAttribute('data-theme'));
+    t.check('system light theme uses the same readable filter and card styles',
+      await page.$eval('#home-creator-filters button', (button) => {
+        const color = getComputedStyle(button).color;
+        return matchMedia('(prefers-color-scheme: light)').matches
+          && color !== getComputedStyle(button).backgroundColor;
+      }));
+    await page.setViewport({ width: 1280, height: 900 });
+    const opener = '[data-creator-run="marvels-1994"]';
+    await page.focus(opener);
+    await page.keyboard.press('Enter');
+    await page.waitForSelector('#preview[open]');
+    t.check('the card opens the existing list preview without saving a list',
+      await page.$eval('#preview-h', (heading) => heading.textContent.includes('Marvels'))
+      && await page.evaluate((saved) => localStorage.getItem('mrt.state.v2') === saved, before));
+    await page.keyboard.press('Escape');
+    await page.waitForSelector('#preview:not([open])');
+    t.check('Escape restores the creator card opener',
+      await page.$eval(opener, (link) => document.activeElement === link));
+    await page.keyboard.press('Enter');
+    await page.waitForSelector('#preview[open]');
+    await click(page, '#preview-add [data-act="main"]');
+    await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')?.textContent.includes('Open'));
+    await click(page, '#preview-close');
+    t.check('adding through Preview preserves the creator opener after the Home refresh',
+      await page.$eval(opener, (link) => document.activeElement === link));
+    await page.keyboard.press('Enter');
+    await click(page, '#preview-add [data-act="main"]');
+    await page.waitForSelector('#view-read:not([hidden])');
+    t.check('the existing Preview Open reaches the saved four-comic run',
+      await page.evaluate(() => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        return state.lists[state.active]?.itemIds.length === 4;
+      }));
+    await openFresh(page, '/?catalog=empty&local-health=ready#/home');
+    await page.waitForFunction(() => document.querySelector('#home-paths-status')?.textContent.includes('available.'));
+    t.check('an empty catalog hides the creator section instead of leaving empty filters or cards',
+      await page.$eval('#home-creator-runs', (node) => node.hidden
+        && node.querySelectorAll('button, a').length === 0));
+    t.check('the journey has no browser errors', errors.length === 0, JSON.stringify(errors));
+  },
+});
+
+MUTATIONS.push({
+  id: 'creator-filter-ignored',
+  breaks: 'creator-runs',
+  why: 'a creator selection must narrow the seven runs rather than only painting its button',
+  rewriteHome: (source) => source.replace(
+    '.filter((list) => !creator || list.writers.includes(creator)).map(creatorCard)',
+    '.filter(() => true).map(creatorCard)',
+  ),
+});
+
 // Without this an unexpected throw leaves an unhandled rejection, which Node reports as a bare
 // stack and exits 1 on. Exit 1 is this check's word for "an assertion failed", so an internal
 // fault would be read as a finding about the app.

@@ -2235,6 +2235,13 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 }
 .home-path-secondary { min-height: 8rem; border-radius: var(--radius-card); }
 .home-path-secondary .home-path-title { font-size: var(--t-title); }
+.home-creator-runs { margin-top: var(--space-8); }
+.home-creator-runs > h4 { margin: 0; font-size: var(--t-subtitle); font-weight: 600; }
+.home-creator-cards { list-style: none; margin: 0; padding: 0; }
+.home-creator-cards > li { display: flex; min-width: 0; }
+.creator-run-card { width: 100%; color: var(--text); text-decoration: none; }
+.creator-run-card:hover { border-color: var(--accent-text); background: var(--card-2); }
+.creator-run-card .catalog-card-title { text-decoration: underline; text-underline-offset: 3px; }
 /* In the Home and Browse gateways the icon is the card's emblem, large and at the top right (#873).
    The card's text joins the card's own grid so the eyebrow and title run the full width beneath the
    icon's row, which is what keeps their words whole at 200% text on a 320px phone; the count sits

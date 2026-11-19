@@ -6,6 +6,7 @@ import { deferredCount } from '../lib/model.js';
 import { paintGlance } from '../lib/progressGlance.js';
 import { formatRoute, isPlainNavigation } from '../lib/route.js';
 import { shownName } from '../lib/accname.js';
+import { catalogCoverUrl } from '../lib/catalog.js';
 
 const CONTINUE_NO_LIST = 'Continue reading';
 const CATEGORY_ICONS = {
@@ -34,6 +35,7 @@ export function createHomeView({
   onDone,
   onNavigateCategory,
   onOpen,
+  onPreview,
   onRead,
   onReviewDeferred,
   paintCover,
@@ -46,6 +48,8 @@ export function createHomeView({
 }) {
   let catalog = null;
   let generation = 0;
+  let creator = '';
+  let creatorCatalog = null;
 
   function wire() {
     const nodes = elements();
@@ -181,7 +185,7 @@ export function createHomeView({
       primary.replaceChildren(...primaryCategories.map(categoryTile));
       secondary.replaceChildren(...secondaryCategories.map(categoryTile));
       primary.hidden = primaryCategories.length === 0;
-      more.hidden = secondaryCategories.length === 0;
+      more.hidden = secondaryCategories.length === 0 && nodes.creatorRuns.hidden;
       const statusText = categories.length
         ? `${categories.length} ${categories.length === 1 ? 'way' : 'ways'} to read available.`
         : 'No reading paths are bundled with this build.';
@@ -189,6 +193,61 @@ export function createHomeView({
       status.hidden = false;
       if (status.textContent !== statusText) status.textContent = statusText;
     }
+  }
+
+  function creatorCard(list) {
+    const img = el('img', { alt: '', loading: 'lazy', decoding: 'async' });
+    const fallback = el('div', { class: 'of cover-fallback', 'aria-hidden': 'true' }, [
+      el('span', { class: 'ofs', text: shortTitle(list.name) }),
+    ]);
+    paintCoverUrl(img, fallback, catalogCoverUrl(list), hueOf(list.name), list.name);
+    return el('li', {}, el('a', {
+      class: 'catalog-card creator-run-card',
+      href: formatRoute({ view: 'new-to-comics', previewId: list.id }),
+      dataset: { creatorRun: list.id },
+      onclick: (event) => {
+        if (!isPlainNavigation(event)) return;
+        event.preventDefault();
+        onPreview(list);
+      },
+    }, el('div', { class: 'catalog-card-main' }, [
+      el('div', { class: 'ocard-art' }, [img, fallback]),
+      el('div', { class: 'catalog-card-text' }, [
+        el('h5', { class: 'catalog-card-title' }, [list.name, ' ']),
+        el('p', {
+          class: 'catalog-card-meta',
+          text: `${list.writers.join(', ')} · ${list.count} comic${list.count === 1 ? '' : 's'}`,
+        }),
+      ]),
+    ])));
+  }
+
+  function renderCreatorRuns(nodes) {
+    if (catalog && creatorCatalog === catalog) return;
+    creatorCatalog = catalog;
+    const lists = (catalog?.lists ?? []).filter((list) => list.type === 'creator-run');
+    const creators = [...new Set(lists.flatMap((list) => list.writers))];
+    if (!creators.includes(creator)) creator = '';
+    nodes.creatorRuns.hidden = lists.length === 0;
+    const filters = ['', ...creators].map((name) => el('button', {
+      type: 'button',
+      class: 'search-scope',
+      text: name || 'All creators',
+      'aria-pressed': String(creator === name),
+      onclick: () => {
+        creator = name;
+        paintCards();
+      },
+    }));
+    function paintCards() {
+      filters.forEach((button, index) => {
+        button.setAttribute('aria-pressed', String(creator === (index === 0 ? '' : creators[index - 1])));
+      });
+      nodes.creatorResults.replaceChildren(...lists
+        .filter((list) => !creator || list.writers.includes(creator)).map(creatorCard));
+    }
+    nodes.creatorFilters.replaceChildren(...(lists.length ? filters : []));
+    paintCards();
   }
 
   async function renderGateways() {
@@ -210,7 +269,10 @@ export function createHomeView({
         if (currentGeneration !== generation) return;
         catalog = loaded;
       } catch (error) {
-        if (currentGeneration === generation) renderCategories(nodes, categoriesForCatalog({ lists: [] }));
+        if (currentGeneration === generation) {
+          renderCreatorRuns(nodes);
+          renderCategories(nodes, categoriesForCatalog({ lists: [] }));
+        }
         await onCatalogLoadFailure({
           error,
           isCurrent: () => currentGeneration === generation && !elements().home.hidden,
@@ -223,6 +285,7 @@ export function createHomeView({
 
     nodes = elements();
     if (catalog.dropped) onCatalogDropped(catalog.dropped);
+    renderCreatorRuns(nodes);
     renderCategories(nodes, categoriesForCatalog(catalog));
   }
 
