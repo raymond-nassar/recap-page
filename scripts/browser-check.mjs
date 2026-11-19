@@ -16496,6 +16496,10 @@ const SCENARIOS = [
 
         await page.setViewport({ width: 320, height: 900 });
         await page.waitForFunction(() => innerWidth === 320);
+        // Hosted diagnostic 44440853105 read "shell" and "platform-picker" as clipped in the frame
+        // of the resize, which this tree passed locally and on hosted run 44436509980, so the read
+        // waits for the frame a reader sees.
+        await nextFrames();
         const narrow = await page.evaluate((layouts) => ({
           width: innerWidth,
           overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
@@ -16513,7 +16517,11 @@ const SCENARIOS = [
           }),
           clipped: [...document.querySelectorAll('main *, footer *')]
             .filter((element) => element.scrollWidth - element.clientWidth > 1)
-            .map((element) => element.id || element.className || element.tagName),
+            .map((element) => ({
+              name: element.id || element.className || element.tagName,
+              scrollWidth: element.scrollWidth,
+              clientWidth: element.clientWidth,
+            })),
         }), sectionLayouts);
         t.check('the complete home reflows to one direction at 320 CSS pixels',
           narrow.width === 320
@@ -16542,6 +16550,12 @@ const SCENARIOS = [
             ...(forcedColorsRequested ? [{ name: 'forced-colors', value: 'active' }] : []),
           ],
         });
+        // Hosted diagnostic 44440853105 counted 55 animations in the frame of the media change with
+        // every duration already at 0.01ms, which reads as the instant transitions the change itself
+        // starts. The kinds seen then are recorded, and the assertion reads the frame a reader sees.
+        const immediate = await page.evaluate(() => [...new Set(document.getAnimations()
+          .map((animation) => `${animation.constructor.name}:${animation.transitionProperty ?? animation.animationName ?? ''}`))]);
+        await nextFrames();
         const reduced = await page.evaluate(() => ({
           active: matchMedia('(prefers-reduced-motion: reduce)').matches,
           animations: document.getAnimations().length,
@@ -16556,7 +16570,7 @@ const SCENARIOS = [
         }));
         t.check('reduced motion leaves no animation or transition running',
           reduced.active && reduced.animations === 0 && reduced.durations.length === 0,
-          JSON.stringify(reduced));
+          JSON.stringify({ ...reduced, immediate }));
 
         await page.$eval('.section-nav a[href="#guides"]', (link) => link.focus());
         const forced = await page.$eval('.section-nav a[href="#guides"]', (link) => {
