@@ -16899,6 +16899,37 @@ const SCENARIOS = [
 ];
 
 SCENARIOS.push({
+  id: 'reading-filter-removed',
+  title: 'a saved choice of a removed reading filter quietly returns to All',
+  async run(page, t) {
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    await page.setViewport({ width: 1280, height: 900 });
+    for (const removed of ['unlimited', 'pending']) {
+      await seedFixtureState(page);
+      await page.evaluate((value) => {
+        const prefs = JSON.parse(localStorage.getItem('mrt.settings'));
+        localStorage.setItem('mrt.settings', JSON.stringify({ ...prefs, filter: value }));
+      }, removed);
+      await page.reload({ waitUntil: 'load' });
+      await click(page, '#list-nav .ri');
+      await page.waitForSelector('#view-read:not([hidden])', { timeout: 15000 });
+      await openFullOrder(page);
+      const seen = await page.evaluate(() => ({
+        checked: document.querySelector('input[name="filter"]:checked')?.value ?? null,
+        saved: JSON.parse(localStorage.getItem('mrt.settings')).filter,
+        rows: document.querySelectorAll('#rows .row').length,
+        state: Boolean(localStorage.getItem('mrt.state.v2')),
+      }));
+      t.check(`a saved "${removed}" filter opens on All, saves All and shows every comic`,
+        seen.checked === 'all' && seen.saved === 'all' && seen.rows === ORDER.items.length && seen.state,
+        JSON.stringify(seen));
+    }
+    t.check('no page error while falling back', errors.length === 0, errors.join(' | '));
+  },
+});
+
+SCENARIOS.push({
   id: 'reading-state-clarity',
   title: 'saved comic actions and availability keep their exact meaning without interrupting reading',
   async run(page, t) {
@@ -16928,9 +16959,9 @@ SCENARIOS.push({
     await page.waitForFunction((title) => document.querySelector('#announcer').textContent
       === `Moved ${title} to position 2 of 3.`, {}, second.title);
 
-    const filter = await page.$eval('input[name="filter"][value="unlimited"]', (input) => input.parentElement.textContent.trim());
-    t.check('the unchanged availability filter predicate has a visibly hedged label',
-      filter === 'Past Unlimited date or marked available', filter);
+    const filters = await page.$$eval('input[name="filter"]', (inputs) => inputs.map((input) => input.parentElement.textContent.trim()));
+    t.check('the reading filters are All, Unread, Deferred and Read only (owner, 19 Nov 2026)',
+      filters.join('|') === 'All|Unread|Deferred|Read', filters.join('|'));
     for (const [act, badge, text] of [
       ['override-unavailable', 'override-unavailable', 'You marked it unavailable in Unlimited'],
       ['override-available', 'override-available', 'You marked it available in Unlimited'],
@@ -17664,8 +17695,9 @@ SCENARIOS.push({
         } finally {
           await page.keyboard.up('Shift');
         }
+        // Shift+Tab lands on the row's rating button, which sits after the note (owner, 19 Nov 2026).
         t.check(`${size} row ${index}: leaving the disclosure closes it without moving focus back`,
-          await page.$eval(row, (el) => document.activeElement === el.querySelector('.rnote')
+          await page.$eval(row, (el) => document.activeElement === el.querySelector('.rrate')
             && el.querySelector('.row-actions-toggle').getAttribute('aria-expanded') === 'false'));
       }
     }

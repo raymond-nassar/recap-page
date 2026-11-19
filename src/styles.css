@@ -1248,6 +1248,17 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 }
 .rnote:hover { color: var(--text); }
 .rnote.has-note { color: var(--text); border-left: var(--stroke-2) solid var(--line-2); padding-left: var(--space-4); }
+/* Rating from the list sits under the note in the note's own quiet register, so a row gains a line of
+   text rather than a second button outline. `display: flex` puts it on its own line below the note
+   whether or not a note is clamped beside it. */
+.rrate {
+  display: flex; gap: var(--space-2); align-items: center; width: fit-content;
+  margin-top: var(--space-1); padding: var(--space-1) 0; border: 0; background: none;
+  color: var(--muted); font: inherit; font-size: var(--t-caption); cursor: pointer;
+}
+.rrate:hover { color: var(--text); }
+.rrate.is-rated { color: var(--text); font-variant-numeric: tabular-nums; }
+.rrate:disabled { cursor: default; color: var(--muted); }
 
 .list-note {
   margin: 0 0 var(--space-6); padding: var(--space-4) var(--space-5); border-left: var(--stroke-2) solid var(--line);
@@ -2405,7 +2416,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .collected-editions { margin-top: var(--space-1); font-size: var(--t-caption); color: var(--muted); }
 .collected-edition { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2); overflow-wrap: anywhere; }
 .collected-edition a { display: inline-flex; align-items: center; min-height: var(--target); }
-.edition-credit, .app-link-credit { font-size: var(--t-caption); color: var(--muted); overflow-wrap: anywhere; margin: var(--space-2) 0; }
+.edition-credit { font-size: var(--t-caption); color: var(--muted); overflow-wrap: anywhere; margin: var(--space-2) 0; }
 .edition-attribution { list-style: none; }
 .preview-foot { display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; border-top: var(--stroke-1) solid var(--line); padding-top: var(--space-6); }
 .preview-foot .btn { min-height: var(--target); scroll-margin: var(--space-3); }
@@ -2596,10 +2607,12 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 #reading-list-options > .list-tools, #reading-list-options > .list-tools > .list-actions { width: 100%; }
 #reading-list-options :is(#android-list-options, #list-actions > summary) {
   box-sizing: border-box; width: 100%; min-height: var(--target-touch); justify-content: space-between;
-  background: none; color: var(--dim); border-color: transparent; font-weight: 600;
+  /* The ghost button's outline at rest (owner report, 19 Nov 2026): with the outline shown only on
+     hover, the row read as a label, and nothing said it opened a menu until a pointer found it. */
+  background: rgb(var(--tint-base) / 5.882%); color: var(--text); border-color: var(--line-2); font-weight: 600;
 }
 #reading-list-options :is(#android-list-options, #list-actions > summary):is(:hover, :focus-visible) {
-  color: var(--text); border-color: var(--line-2); filter: none;
+  border-color: var(--dim); filter: none;
 }
 #reading-list-options #android-list-options::after {
   content: "›"; content: "›" / ""; margin-left: auto; font-size: var(--t-body-lg); transform: rotate(90deg);
