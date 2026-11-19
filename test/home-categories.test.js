@@ -96,6 +96,8 @@ test('Creators adds one dedicated gateway without putting its runs on Home or mo
   assert.equal(creators.tier, 'secondary');
   assert.ok(!markup.includes('id="home-creator-runs"'));
   assert.ok(markup.includes('id="view-creators"'));
+  const ids = [...markup.matchAll(/\bid="([^"]+)"/g)].map(([, id]) => id);
+  assert.equal(new Set(ids).size, ids.length, 'the Creators panel must not duplicate an existing control ID');
   assert.deepEqual(
     catalog.lists.filter((list) => list.type === 'creator-run').map((list) => list.id),
     rawCatalog.lists.filter((list) => list.type === 'creator-run').map((list) => list.id),

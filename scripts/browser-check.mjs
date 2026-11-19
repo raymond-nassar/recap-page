@@ -4230,7 +4230,7 @@ const SCENARIOS = [
       // themes. Forced colors keep one system color for every edge, as before. Since #873 the top row's
       // icons take a darker or lighter ink of their card's hue to clear 3:1 on its tint, so the icon is
       // matched to its edge by OKLCH hue: the widest gap between an ink and its edge measured 4.7
-      // degrees. Creators reuses the Event Era's indigo channel as its eighth distinct edge.
+      // degrees. Creators reuses the existing cyan channel as its eighth distinct edge.
       const accents = () => page.evaluate(() => {
         const hue = (color) => {
           const [r, g, b] = color.match(/[\d.]+/g).slice(0, 3).map((channel) => {
@@ -14132,7 +14132,7 @@ const SCENARIOS = [
       }));
       t.check('Home leads to no retired page, and Young readers holds the place its card had',
         homeEntry.retired === 0
-        && homeEntry.secondary.join('|') === 'marvel-on-screen|marvel-ages|young-readers|universes'
+        && homeEntry.secondary.join('|') === 'marvel-on-screen|marvel-ages|young-readers|universes|creators'
         && homeEntry.title === 'Young readers' && homeEntry.count === '1 Reading List'
         && homeEntry.label === 'Stories for kids. Young readers. 1 Reading List.',
         JSON.stringify(homeEntry));

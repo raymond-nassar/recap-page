@@ -2101,7 +2101,7 @@
   },
   "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4262-4598|0": {
     "anchor": "src/js/main.js:4262-4598",
-    "fp": "5354b7c3dd34cbda",
+    "fp": "dacd450f3077959b",
     "head": "const catalogPresentation = createCatalogPresentation({"
   },
   "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/main.js:4474-4480|0": {

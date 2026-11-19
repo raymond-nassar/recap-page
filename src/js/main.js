@@ -4351,7 +4351,7 @@ const creatorsView = createCreatorsView({
   },
   el,
   elements: () => ({
-    filters: $('#creator-filters'), results: $('#creator-results'),
+    filters: $('#creator-filters'), results: $('#creator-run-results'),
     status: $('#creators-status'), emptyHome: $('#creators-empty-home'),
   }),
   hueOf,
