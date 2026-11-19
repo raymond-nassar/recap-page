@@ -4,10 +4,8 @@
 //   node scripts/marvel-comics-app-links.mjs                           write the app's data module
 //   node scripts/marvel-comics-app-links.mjs --check                   fail if the module is stale
 //
-// The links were collected once, on 2026-11-18, from comicbookreadingorders.com and matched to our
-// comics offline. Nothing here makes a network request: --import reads that offline match file and
-// the build reads only the committed input. docs/DATA_PROVENANCE.md records the source and the
-// owner's decisions this selection encodes.
+// Matching is offline. --import reads a match file, never the source sites; the build reads only
+// committed selections. docs/DATA_PROVENANCE.md records each source and the owner's decisions.
 import { readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -20,6 +18,14 @@ export const MODULE_PATH = join(ROOT, 'src', 'data', 'marvelComicsAppLinks.js');
 // the /issues/ route the owner's own copies use, is refused rather than rewritten.
 export const VIEWER_LINK = /^https:\/\/www\.marvelcomicsapp\.com\/viewer\/([1-9][0-9]{0,8})$/;
 const SITE_PAGE = /^https:\/\/comicbookreadingorders\.com\/marvel\/[a-z0-9/-]+\/$/;
+export const EXPORT_SOURCE = 'continuity-guide-discord-2026-11-19';
+export const EXPORT_PROVENANCE = Object.freeze({
+  contributor: 'werhsdnas of the Continuity Guide Discord server',
+  receivedAt: '2026-11-19',
+  sha256: '0477bb37c1e18906738c626340efd5f75e517db43b679852fc9c4fa86881a48a',
+  rows: 36985,
+  method: 'Owner-reported issue ID replacement from emreparker API URLs to WEBTOON URLs',
+});
 
 // The permission excludes the Marvel Master Reading Order and every Patreon-only order. The owner
 // ruled on 2026-11-17 that the four era orders are part of the Master Reading Order. The collection
@@ -65,6 +71,8 @@ function validId(value) {
 // record when that comic has no exact link, one number, and no other kind of row. A comic with two
 // numbers is left out under one number per comic, and so is any number two comics would share.
 export function selectLinks(matches) {
+  const fromExport = matches?.source === EXPORT_SOURCE;
+  if (matches?.source !== undefined && !fromExport) throw new Error('Unknown offline match source');
   const rows = Array.isArray(matches?.rows) ? matches.rows : [];
   const refused = { badLink: 0, excludedPage: 0, badPage: 0 };
   const conflicted = new Set((matches?.conflicts ?? []).map((entry) => entry?.issueId).filter(validId));
@@ -72,6 +80,10 @@ export function selectLinks(matches) {
   const shifted = new Map();
   const otherStatus = new Set();
   const usable = (row) => {
+    if (fromExport) {
+      if (row.pageUrl !== undefined) { refused.badPage += 1; return false; }
+      return true;
+    }
     if (!SITE_PAGE.test(String(row.pageUrl))) { refused.badPage += 1; return false; }
     if (excludedPage(row.pageUrl)) { refused.excludedPage += 1; return false; }
     return true;
@@ -81,7 +93,7 @@ export function selectLinks(matches) {
     if (numbers.some((n) => n === null)) { refused.badLink += 1; return; }
     const entry = map.get(row.issueId) ?? { numbers: new Set(), pages: new Set() };
     for (const n of numbers) entry.numbers.add(n);
-    entry.pages.add(row.pageUrl);
+    if (!fromExport) entry.pages.add(row.pageUrl);
     map.set(row.issueId, entry);
   };
   for (const row of rows) {
@@ -89,7 +101,7 @@ export function selectLinks(matches) {
     if (row.status === 'exact') {
       if (!(row.appLinks ?? []).length || !usable(row)) continue;
       add(exact, row);
-    } else if (row.status === 'ambiguous' && row.ambiguity === 'cover-year-shift') {
+    } else if (!fromExport && row.status === 'ambiguous' && row.ambiguity === 'cover-year-shift') {
       if (!(row.appLinks ?? []).length || !usable(row)) continue;
       add(shifted, row);
     } else {
@@ -127,7 +139,9 @@ export function selectLinks(matches) {
   return {
     pages,
     links: links.map(({ issueId, viewer, basis, pages: from }) => ({
-      issueId, viewer, basis, pages: [...from].map((page) => index.get(page)).sort((a, b) => a - b),
+      issueId, viewer, basis,
+      ...(fromExport ? { source: EXPORT_SOURCE }
+        : { pages: [...from].map((page) => index.get(page)).sort((a, b) => a - b) }),
     })),
     left,
     refused,
@@ -151,6 +165,44 @@ export function inputFrom(matches) {
   };
 }
 
+export function mergeExportInput(input, matches) {
+  if (matches?.source !== EXPORT_SOURCE) throw new Error('Unknown export source');
+  const before = validateInput(input);
+  if (before.length) throw new Error(before.join('\n'));
+  const selection = selectLinks(matches);
+  if (Object.values(selection.refused).some((n) => n > 0)) {
+    throw new Error(`Refusing export rows: ${JSON.stringify(selection.refused)}`);
+  }
+  const merged = new Map(input.links.map((link) => [link.issueId, link]));
+  for (const link of selection.links) merged.set(link.issueId, link);
+  const links = [...merged.values()].sort((a, b) => a.issueId - b.issueId);
+  const result = {
+    ...input,
+    sources: { ...input.sources, [EXPORT_SOURCE]: EXPORT_PROVENANCE },
+    exportSelection: {
+      source: EXPORT_SOURCE, matchedAt: String(matches.generatedAt ?? ''),
+      selected: selection.links.length,
+      rowCounts: (matches.rows ?? []).reduce((counts, row) => {
+        const status = row.ambiguity ? `${row.status}:${row.ambiguity}` : row.status;
+        counts[status] = (counts[status] ?? 0) + 1;
+        return counts;
+      }, {}),
+      conflictingComics: (matches.conflicts ?? []).length,
+      leftOut: selection.left, refusedRows: selection.refused,
+    },
+    counts: {
+      ...input.counts,
+      exact: links.filter((link) => link.basis === 'exact').length,
+      coverYearShift: links.filter((link) => link.basis === 'cover-year-shift').length,
+      total: links.length,
+    },
+    links,
+  };
+  const problems = validateInput(result);
+  if (problems.length) throw new Error(`Refusing combined links:\n${problems.join('\n')}`);
+  return result;
+}
+
 export function validateInput(input) {
   const problems = [];
   if (!Array.isArray(input?.pages) || !Array.isArray(input?.links)) return ['the input has no pages or links'];
@@ -158,6 +210,12 @@ export function validateInput(input) {
     if (!SITE_PAGE.test(page)) problems.push(`page ${i} is not a Comic Book Reading Orders page`);
     if (excludedPage(page)) problems.push(`page ${i} is excluded by the permission: ${page}`);
   });
+  for (const [source, record] of Object.entries(input.sources ?? {})) {
+    if (source !== EXPORT_SOURCE || !record
+      || Object.entries(EXPORT_PROVENANCE).some(([key, value]) => record[key] !== value)) {
+      problems.push(`unknown or invalid source ${source}`);
+    }
+  }
   const ids = new Set();
   const numbers = new Set();
   let previous = 0;
@@ -168,7 +226,12 @@ export function validateInput(input) {
       problems.push(`comic ${link?.issueId} has an invalid viewer number`);
     }
     if (!['exact', 'cover-year-shift'].includes(link?.basis)) problems.push(`comic ${link?.issueId} has an unknown basis`);
-    if (!Array.isArray(link?.pages) || !link.pages.length
+    if (link?.source !== undefined) {
+      if (link.source !== EXPORT_SOURCE || !input.sources?.[EXPORT_SOURCE]
+        || link.basis !== 'exact' || link.pages !== undefined) {
+        problems.push(`comic ${link?.issueId} has invalid export provenance`);
+      }
+    } else if (!Array.isArray(link?.pages) || !link.pages.length
       || link.pages.some((i) => !Number.isInteger(i) || i < 0 || i >= input.pages.length)) {
       problems.push(`comic ${link?.issueId} names no valid source page`);
     }
@@ -191,7 +254,7 @@ export function buildModule(input) {
   for (let i = 0; i < pairs.length; i += 12) lines.push(`  ${pairs.slice(i, i + 12).join(',')},`);
   return [
     '// Generated by scripts/marvel-comics-app-links.mjs from scripts/data/marvel-comics-app-links/links.json.',
-    '// Marvel Comics app links collected from Comic Book Reading Orders with permission.',
+    '// Offline source selections; docs/DATA_PROVENANCE.md records credits and owner approval.',
     '// docs/DATA_PROVENANCE.md records the source, the date and what was left out. Do not edit by hand.',
     'export const marvelComicsAppLinkPairs = [',
     ...lines,
@@ -317,7 +380,10 @@ function main(args) {
   if (at >= 0) {
     const from = args[at + 1];
     if (!from) throw new Error('--import needs the path of the offline match file');
-    const input = inputFrom(JSON.parse(readFileSync(from, 'utf8')));
+    const matches = JSON.parse(readFileSync(from, 'utf8'));
+    const input = matches.source === EXPORT_SOURCE
+      ? mergeExportInput(JSON.parse(readFileSync(INPUT_PATH, 'utf8')), matches)
+      : inputFrom(matches);
     const problems = validateInput(input);
     if (problems.length) throw new Error(problems.join('\n'));
     writeFileSync(INPUT_PATH, serializeInput(input));

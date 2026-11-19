@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 import {
   buildModule, buildMuModule, catalogComics, excludedPage, INPUT_PATH, inputFrom, MODULE_PATH,
   MU_INPUT_PATH, MU_MODULE_PATH, muInputFrom, selectLinks, validateInput,
+  EXPORT_SOURCE, EXPORT_PROVENANCE, mergeExportInput,
 } from '../scripts/marvel-comics-app-links.mjs';
 import { appLinkFor, appViewerFor } from '../src/js/lib/marvelComicsApp.js';
 import { appLaunchUrl, appMuIssuesUrl, appViewerUrl, viewerNumber } from '../src/js/lib/marvelComicsAppUrl.js';
@@ -55,6 +56,64 @@ test('950 the permission exclusions cover the Master Reading Order and its four 
     assert.equal(excludedPage(`https://comicbookreadingorders.com/${path}`), true, path);
   }
   assert.equal(excludedPage(page('civil-war-reading-order')), false);
+});
+
+const exportRow = (issueId, status, numbers, extra = {}) => {
+  const { pageUrl: ignored, ...record } = row(issueId, status, numbers, extra);
+  void ignored;
+  return record;
+};
+
+test('private export merges exact selections without extending the year-shift approval', () => {
+  const base = inputFrom({ rows: [row(1, 'exact', [101]), row(2, 'exact', [102])] });
+  const matches = {
+    source: EXPORT_SOURCE,
+    rows: [
+      exportRow(1, 'exact', [201]), exportRow(3, 'exact', [203]),
+      exportRow(2, 'ambiguous', [202], { ambiguity: 'cover-year-shift' }),
+      exportRow(4, 'exact', [204]), exportRow(5, 'exact', [205]), exportRow(5, 'exact', [206]),
+      exportRow(6, 'unmatched', [207]),
+    ],
+    conflicts: [{ issueId: 4 }],
+  };
+  const merged = mergeExportInput(base, matches);
+  assert.deepEqual(merged.links, [
+    { issueId: 1, viewer: 201, basis: 'exact', source: EXPORT_SOURCE },
+    base.links[1],
+    { issueId: 3, viewer: 203, basis: 'exact', source: EXPORT_SOURCE },
+  ]);
+  assert.deepEqual(base.links.map((link) => link.viewer), [101, 102], 'input is not mutated');
+  assert.deepEqual(merged.sources[EXPORT_SOURCE], EXPORT_PROVENANCE);
+  assert.deepEqual(validateInput(merged), []);
+  assert.equal(merged.counts.total, 3);
+  assert.equal(merged.exportSelection.leftOut.conflict, 1);
+  assert.equal(merged.exportSelection.leftOut.severalNumbers, 1);
+  assert.deepEqual(mergeExportInput(merged, matches), merged, 'reimport is deterministic');
+  assert.throws(() => mergeExportInput(base, {
+    source: EXPORT_SOURCE, rows: [exportRow(3, 'exact', [102])],
+  }), /used by two comics/, 'cross-source collisions cannot replace a different comic');
+});
+
+test('private export preserves refusals and requires its own exact source record', () => {
+  const base = inputFrom({ rows: [] });
+  const input = mergeExportInput(base, { source: EXPORT_SOURCE, rows: [exportRow(1, 'exact', [101])] });
+  for (const change of [
+    { sources: {} },
+    { sources: { [EXPORT_SOURCE]: { ...EXPORT_PROVENANCE, sha256: 'unverified' } } },
+    { links: [{ ...input.links[0], source: 'invented' }] },
+    { links: [{ ...input.links[0], basis: 'cover-year-shift' }] },
+    { links: [{ ...input.links[0], pages: [0] }] },
+  ]) assert.throws(() => buildModule({ ...input, ...change }), /Refusing/);
+  for (const bad of [
+    { ...exportRow(1, 'exact', []), appLinks: ['https://www.marvelcomicsapp.com/issues/101'] },
+    { ...exportRow(1, 'exact', [101]), pageUrl: page('marvel-legacy-reading-order') },
+  ]) assert.throws(() => mergeExportInput(base, { source: EXPORT_SOURCE, rows: [bad] }), /Refusing export rows/);
+  const shared = mergeExportInput(base, {
+    source: EXPORT_SOURCE, rows: [exportRow(1, 'exact', [101]), exportRow(2, 'exact', [101])],
+  });
+  assert.deepEqual(shared.links, []);
+  assert.equal(shared.exportSelection.leftOut.sharedNumber, 2);
+  assert.throws(() => selectLinks({ source: 'invented', rows: [] }), /Unknown/);
 });
 
 test('950 validation refuses a link that is not a published viewer link', () => {
@@ -144,7 +203,7 @@ test('950 the bundled MU set is current, frozen to its approval record and never
   assert.equal(readFileSync(MU_MODULE_PATH, 'utf8').replace(/\r\n/g, '\n'),
     buildMuModule(approval, catalogComics(), input.links));
   assert.deepEqual(marvelComicsAppMuIssueIds, approval.issueIds);
-  assert.equal(approval.issueIds.length, 6043);
+  assert.equal(approval.issueIds.length, 1781);
   assert.deepEqual(approval.excludedIssueIds, [11185]);
   assert.equal(appLinkFor(11185), null);
   for (const id of approval.issueIds) {
