@@ -4,13 +4,13 @@ import { readFile } from 'node:fs/promises';
 import { assertOwnerDeliveryContract } from './helpers/owner-delivery-contract.mjs';
 import { registeredOwnerContracts } from './helpers/current-reading-library.mjs';
 import {
-  supplementItemFields, supplementItemKind, validateOwnerExternalSupplement,
+  borrowedSupplement, supplementItemFields, supplementItemKind, validateOwnerExternalSupplement,
 } from '../scripts/lib/owner-external-supplement.mjs';
 import {
   gcdCreditNames, gcdSupplementFields, loadGcdRecords, validateGcdRecords,
 } from '../scripts/lib/gcd-issue-records.mjs';
 import { assertMappingMatchesPacketOccurrences } from '../scripts/lib/cbh-inventory.mjs';
-import { mergeIssueMetadata } from '../src/js/lib/model.js';
+import { addIssuesToList, createEmptyState, createList, mergeIssueMetadata } from '../src/js/lib/model.js';
 
 const ID = 'captain-america-2025-our-secret-wars';
 const json = async (name) => JSON.parse(await readFile(new URL(`../${name}`, import.meta.url), 'utf8'));
@@ -112,6 +112,56 @@ test('a list that vendors no credits for a comic keeps the credits another list 
   const merged = mergeIssueMetadata(supplemented, bare);
   assert.deepEqual(merged.creators, supplemented.creators);
   assert.ok(merged.creators.some((creator) => creator.name === 'Ben Harvey'));
+});
+
+test('saving lists in either order keeps the detailed record of a shared owner-confirmed comic', async () => {
+  const doomsShadow = await json('src/data/captain_america_2025_dooms_shadow.json');
+  const owud = await json('src/data/one_world_under_doom.json');
+  const rich = doomsShadow.items.find((item) => item.issueId === 123361);
+  const bare = owud.items.find((item) => item.issueId === 123361);
+  assert.equal(bare.onSale, null);
+  assert.equal(bare.cover, null);
+  assert.equal(Object.hasOwn(bare, 'metadataSourceKind'), false);
+  const save = (state, id, item) => addIssuesToList(createList(state, { id, name: id }), id, [{ ...item, source: 'curated' }]).state;
+  const richFirst = save(save(createEmptyState(), 'rich', rich), 'bare', bare).issues[123361];
+  const bareFirst = save(save(createEmptyState(), 'bare', bare), 'rich', rich).issues[123361];
+  for (const stored of [richFirst, bareFirst]) {
+    assert.equal(stored.onSale, rich.onSale);
+    assert.equal(stored.pageCount, rich.pageCount);
+    assert.equal(stored.cover.path, rich.cover.path);
+    assert.deepEqual(stored.creators, rich.creators);
+    assert.equal(stored.metadataSourceKind, rich.metadataSourceKind);
+    assert.equal(stored.identityEvidenceKind, 'owner-confirmed-identity');
+    assert.equal(stored.detailsRefused, true);
+  }
+  assert.deepEqual(richFirst, bareFirst);
+});
+
+test('a reused owner-confirmed comic borrows one agreed non-GCD supplement and nothing else', async () => {
+  const names = ['avengers-armageddon', 'captain-america-2025-dooms-shadow', 'captain-america-2025-hells-angel',
+    'captain-america-2025-our-secret-wars', 'one-world-under-doom'];
+  const mappings = await Promise.all(names.map(async (listId) => ({
+    listId, rows: (await json(`scripts/data/owner-mappings/${listId}.json`)).rows,
+  })));
+  const none = { ownMappedIds: new Set(), mappings };
+  const ours = mappings.find((m) => m.listId === ID).rows.find((row) => row.selectedIssueId === 123360);
+  assert.deepEqual(borrowedSupplement(123360, none), {
+    supplement: supplementItemFields(ours), reason: 'borrowed', lenders: [ID],
+  });
+  // Two lists publish identical details for this one, so either may lend them.
+  const shared = borrowedSupplement(123362, none);
+  assert.equal(shared.reason, 'borrowed');
+  assert.deepEqual(shared.lenders, ['avengers-armageddon', 'captain-america-2025-dooms-shadow']);
+  // One World Under Doom reviewed it bare, and its own review wins over any lender.
+  assert.deepEqual(borrowedSupplement(123361, { ownMappedIds: new Set(['123361']), mappings }),
+    { supplement: undefined, reason: 'own-mapping-row' });
+  // Grand Comics Database details are share-alike, so they are never lent.
+  assert.deepEqual(borrowedSupplement(134097, none), { supplement: undefined, reason: 'no-lender' });
+  const altered = structuredClone(mappings[1].rows.find((row) => row.selectedIssueId === 123362));
+  altered.externalMetadataSupplement.fields.pageCount += 1;
+  const conflict = borrowedSupplement(123362, { ownMappedIds: new Set(), mappings: [...mappings, { listId: 'other', rows: [altered] }] });
+  assert.equal(conflict.reason, 'conflict');
+  assert.equal(conflict.supplement, undefined);
 });
 
 test('the inventory refuses a supplement on a row the owner did not confirm', async () => {

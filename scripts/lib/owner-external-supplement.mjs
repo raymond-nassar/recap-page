@@ -140,3 +140,29 @@ export function supplementItemFields(row) {
     metadataSourceKind: supplementItemKind(row),
   };
 }
+
+// The supplement one list may borrow for an owner-confirmed comic it reuses from another reviewed
+// owner list, so the same comic shows the same cover, date and credits in both. A list's own
+// mapping always wins: a row it reviewed bare stays bare. Only details under the project's own
+// licence are borrowed, never Grand Comics Database ones, because copying those would put a
+// share-alike payload where none was granted. Two lists that disagree lend nothing, so no field
+// is ever combined or chosen between.
+export function borrowedSupplement(issueId, { ownMappedIds, mappings }) {
+  const id = String(issueId);
+  if (ownMappedIds.has(id)) return { supplement: undefined, reason: 'own-mapping-row' };
+  const lenders = [];
+  for (const { listId, rows } of mappings) {
+    for (const row of rows) {
+      if (String(row.selectedIssueId) !== id || !Object.hasOwn(row, 'externalMetadataSupplement')) continue;
+      const fields = supplementItemFields(row);
+      if (fields.metadataSourceKind === OWNER_GCD_SUPPLEMENT) continue;
+      lenders.push({ listId, fields });
+    }
+  }
+  if (!lenders.length) return { supplement: undefined, reason: 'no-lender' };
+  const first = JSON.stringify(lenders[0].fields);
+  if (lenders.some((lender) => JSON.stringify(lender.fields) !== first)) {
+    return { supplement: undefined, reason: 'conflict', lenders: lenders.map((lender) => lender.listId) };
+  }
+  return { supplement: lenders[0].fields, reason: 'borrowed', lenders: lenders.map((lender) => lender.listId) };
+}
