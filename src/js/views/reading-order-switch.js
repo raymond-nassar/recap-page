@@ -4,11 +4,30 @@ import { currentReadingOrder, READING_ORDERS, readingOrderChoiceFor } from '../l
 
 const KEEPS = 'Switching keeps everything you have read, your notes and your ratings.';
 const CUSTOM = 'You arranged this list yourself. Choosing an order puts it back in that order.';
+const NOT_CHANGED = 'The order could not be changed. Your list is just as it was.';
+const NOT_CONFIRMED = 'We could not confirm the new order was saved. Close and reopen the app to check your list.';
+// The save path words its results for a list update and carries technical detail in brackets, so the
+// switch says each outcome in its own plain words and leaves the detail to the console.
+const PROBLEMS = {
+  removed: 'Your saved reading was cleared in another window. The order was not changed.',
+  conflict: 'Your reading changed in another window. Choose the order again.',
+  'not-saved': 'The new order could not be saved. Your list is just as it was.',
+  'changed-while-saving': 'Your reading changed in another window while saving. Check your list before trying again.',
+  paused: 'Saving has stopped to keep your reading safe. Close and reopen the app to check your list.',
+  'saved-not-shown': 'The new order was saved, but the page did not update. Close and reopen the app to see it.',
+  'too-large': 'Your saved reading is too large to change the order. Nothing was changed.',
+};
+
+export function switchProblem(result) {
+  return Object.hasOwn(PROBLEMS, result?.reason ?? '') ? PROBLEMS[result.reason] : NOT_CHANGED;
+}
 
 // The two-way reading order switch at the top of a list whose source publishes both orders. A switch
 // re-sorts the comics the list already holds and changes nothing else, so it is saved through the
 // same verified path as a published list update, against the exact list the reader was looking at.
-export function createReadingOrderSwitch({ $, getState, activeListId, isCurrent, canSave, getDatasetEpoch, askConfirm, saveSwitch }) {
+export function createReadingOrderSwitch({
+  $, getState, activeListId, isCurrent, canSave, getDatasetEpoch, askConfirm, saveSwitch, log = console.error,
+}) {
   let request = null;
   let shownListId = null;
 
@@ -107,18 +126,22 @@ export function createReadingOrderSwitch({ $, getState, activeListId, isCurrent,
       try {
         result = saveSwitch(held.id, held.signature, target);
       } catch (error) {
-        status(`The switch could not be verified (${error.message}). Reopen the app to check your list.`);
+        log('Recap Page could not confirm the reading order switch:', error);
+        status(NOT_CONFIRMED);
         return;
       } finally {
         held.applying = false;
       }
       if (!result.ok) {
-        status(result.error);
+        log('Recap Page did not switch the reading order:', result.error);
+        status(switchProblem(result));
         return;
       }
       status(`Your list is now ${label}.`);
     } catch (error) {
-      if (valid(held)) status(`Could not switch the order (${error.message}). Your list is unchanged.`);
+      if (!valid(held)) return;
+      log('Recap Page could not arrange the reading order:', error);
+      status(NOT_CHANGED);
     } finally {
       finish(held);
     }

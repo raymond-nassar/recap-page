@@ -4,8 +4,10 @@ import { readFileSync } from 'node:fs';
 import { KEY, Store } from '../src/js/storage.js';
 import { applyListRevision, readingOrderArrangement, switchReadingOrder } from '../src/js/lib/listCorrection.js';
 import { saveListRevision } from '../src/js/lib/listRevisionSave.js';
+import { switchProblem } from '../src/js/views/reading-order-switch.js';
 import {
-  addIssuesToList, createEmptyState, createList, markRead, removeFromList, setDeferred, setIssueNote, setIssueRating, upNext,
+  addIssuesToList, createEmptyState, createList, exportBackup, markRead, MAX_BACKUP_BYTES, MAX_DESCRIPTION, removeFromList,
+  setDeferred, setIssueNote, setIssueRating, upNext,
 } from '../src/js/lib/model.js';
 import {
   bookNamesOf, bookOrderOf, booksLeaveOut, currentReadingOrder, READING_ORDER_CHOICES, readingOrderChoiceFor,
@@ -123,7 +125,8 @@ test('the book order moves a fresh reader to the event\'s first book', () => {
 test('an update keeps book names whole on a book by book list and drops them from any other order', () => {
   const items = published(choice);
   const byId = new Map(items.map((item) => [item.issueId, item]));
-  let book = switchReadingOrder(readerState(), 'wotr', signature(readerState()), 'book');
+  const start = readerState();
+  let book = switchReadingOrder(start, 'wotr', signature(start), 'book');
   book = removeFromList(book, 'wotr', 71273);
   const restored = applyListRevision(book, 'wotr', signature(book), bookOrderOf(choice).map((id) => byId.get(id)));
   assert.deepEqual(restored.lists.wotr.itemIds, bookOrderOf(choice));
@@ -179,4 +182,105 @@ test('a switch is reported only once its saved state reads back, and a failed sa
     assert.equal(storage.getItem(KEY), before, mode);
     assert.deepEqual(store.state.lists.wotr, list, mode);
   }
+});
+
+function faultyStore({ pad = false } = {}) {
+  const values = new Map();
+  const storage = {
+    mode: 'normal',
+    unreadable: false,
+    getItem(key) {
+      if (this.unreadable) throw new Error('read unavailable');
+      return values.get(key) ?? null;
+    },
+    setItem(key, value) {
+      if (this.mode === 'silent') return;
+      values.set(key, value);
+      if (this.mode === 'unreadable') this.unreadable = true;
+      if (this.mode === 'foreign') {
+        const other = JSON.parse(value);
+        other.writeToken = 'foreign-write';
+        other.lists.wotr.name = 'Changed in another window';
+        values.set(key, JSON.stringify(other));
+      }
+    },
+    removeItem(key) { values.delete(key); },
+    get length() { return values.size; },
+    key(index) { return [...values.keys()][index] ?? null; },
+  };
+  const store = new Store({ storage });
+  store.load();
+  store.update(() => (pad ? nearlyFull(readerState()) : readerState()));
+  return { store, storage, values };
+}
+
+const backupSize = (state) => new TextEncoder().encode(JSON.stringify(exportBackup(state), null, 2)).length;
+
+// Fills the reader's saved reading with lists of the same shape until one byte below the backup
+// limit, so the book titles a switch adds are the only thing that can push it over.
+function nearlyFull(state) {
+  const filler = (index, length) => ({
+    ...createList(createEmptyState(), { id: 'x', name: 'Filler' }).lists.x,
+    id: `filler-${String(index).padStart(6, '0')}`, description: 'x'.repeat(length), created: 1,
+  });
+  const withFillers = (count, last) => {
+    const lists = Object.assign(Object.create(null), state.lists);
+    const listOrder = [...state.listOrder];
+    for (let index = 0; index < count; index += 1) {
+      const list = filler(index, index === count - 1 ? last : MAX_DESCRIPTION);
+      lists[list.id] = list;
+      listOrder.push(list.id);
+    }
+    return { ...state, lists, listOrder };
+  };
+  const one = backupSize(withFillers(1, MAX_DESCRIPTION));
+  const each = backupSize(withFillers(2, MAX_DESCRIPTION)) - one;
+  let count = Math.floor((MAX_BACKUP_BYTES - one) / each);
+  let last;
+  do {
+    count += 1;
+    last = MAX_BACKUP_BYTES - 1 - backupSize(withFillers(count, 0));
+  } while (last > MAX_DESCRIPTION);
+  return withFillers(count, last);
+}
+
+test('every way a switch can fail to save shows its own plain message', () => {
+  const cases = [
+    ['not saved', 'The new order could not be saved. Your list is just as it was.', ({ storage }) => { storage.mode = 'silent'; }],
+    ['cleared elsewhere', 'Your saved reading was cleared in another window. The order was not changed.',
+      ({ storage }) => storage.removeItem(KEY)],
+    ['changed elsewhere first', 'Your reading changed in another window. Choose the order again.', ({ storage, values }) => {
+      const other = JSON.parse(storage.getItem(KEY));
+      other.writeToken = 'other-window';
+      other.lists.wotr.name = 'Changed in another window';
+      values.set(KEY, JSON.stringify(other));
+    }],
+    ['changed while saving', 'Your reading changed in another window while saving. Check your list before trying again.',
+      ({ storage }) => { storage.mode = 'foreign'; }],
+    ['unreadable after saving', 'Saving has stopped to keep your reading safe. Close and reopen the app to check your list.',
+      ({ storage }) => { storage.mode = 'unreadable'; }],
+    ['saved but not shown', 'The new order was saved, but the page did not update. Close and reopen the app to see it.',
+      ({ store }) => { store.onChange = () => { throw new Error('render failed'); }; }],
+  ];
+  for (const [name, message, prepare] of cases) {
+    const fixture = faultyStore();
+    const listSignature = signature(fixture.store.state);
+    prepare(fixture);
+    const result = saveListRevision(fixture.store, 'wotr', listSignature, 'book', switchReadingOrder);
+    assert.equal(result.ok, false, name);
+    assert.equal(switchProblem(result), message, name);
+  }
+  const stale = faultyStore();
+  const rejected = saveListRevision(stale.store, 'wotr', '{}', 'book', switchReadingOrder);
+  assert.equal(switchProblem(rejected), 'The order could not be changed. Your list is just as it was.');
+});
+
+test('a switch that would take saved reading past its size limit says so and changes nothing', () => {
+  const { store, storage } = faultyStore({ pad: true });
+  assert.equal(backupSize(store.state), MAX_BACKUP_BYTES - 1);
+  const before = storage.getItem(KEY);
+  const result = saveListRevision(store, 'wotr', signature(store.state), 'book', switchReadingOrder);
+  assert.equal(result.ok, false);
+  assert.equal(switchProblem(result), 'Your saved reading is too large to change the order. Nothing was changed.');
+  assert.equal(storage.getItem(KEY), before);
 });

@@ -32,7 +32,7 @@ function pauseForUnknown(store, previous, message, { notify = true, attemptedWri
       verificationPauses.set(store, { message, attemptedWrite });
     }
   }
-  return { ok: false, changed: attemptedWrite ? null : false, error: message };
+  return { ok: false, changed: attemptedWrite ? null : false, error: message, reason: 'paused' };
 }
 
 function reconcile(store, raw, previous, attemptedWrite = true) {
@@ -65,8 +65,8 @@ function reconcile(store, raw, previous, attemptedWrite = true) {
 }
 
 export function saveListRevision(store, listId, expectedList, items, apply = applyListRevision) {
-  if (!store.storage) return { ok: false, changed: false, error: 'Reading-data storage is unavailable. Nothing was changed.' };
-  if (store.blocked) return { ok: false, changed: false, error: 'Saving is paused. Your list was not changed.' };
+  if (!store.storage) return { ok: false, changed: false, error: 'Reading-data storage is unavailable. Nothing was changed.', reason: 'unavailable' };
+  if (store.blocked) return { ok: false, changed: false, error: 'Saving is paused. Your list was not changed.', reason: 'blocked' };
   let before;
   try {
     before = store.storage.getItem(KEY);
@@ -76,7 +76,7 @@ export function saveListRevision(store, listId, expectedList, items, apply = app
   if (before === null) {
     const uncertain = reconcile(store, before, store.state, false);
     if (uncertain) return uncertain;
-    return { ok: false, changed: false, error: 'Saved data was removed elsewhere. Your list was not changed by this update.' };
+    return { ok: false, changed: false, error: 'Saved data was removed elsewhere. Your list was not changed by this update.', reason: 'removed' };
   }
   let saved;
   try {
@@ -89,7 +89,7 @@ export function saveListRevision(store, listId, expectedList, items, apply = app
   if (comparableBackup(saved) !== comparableBackup(store.state)) {
     const uncertain = reconcile(store, before, store.state, false);
     if (uncertain) return uncertain;
-    return { ok: false, changed: false, error: 'Saved data changed elsewhere. Compare the list again before updating.' };
+    return { ok: false, changed: false, error: 'Saved data changed elsewhere. Compare the list again before updating.', reason: 'conflict' };
   }
   const previous = store.state;
   let state;
@@ -136,6 +136,7 @@ export function saveListRevision(store, listId, expectedList, items, apply = app
           error: changed
             ? `The list was saved, but the display could not refresh (${updateException.message}). Reopen the app to check it.`
             : `The list was not changed (${updateException.message}).`,
+          reason: changed ? 'saved-not-shown' : 'not-changed',
         };
       }
       return { ok: true, changed: state !== previous, state };
@@ -149,10 +150,13 @@ export function saveListRevision(store, listId, expectedList, items, apply = app
       : durable === before
         ? 'The update was not saved. Your list is unchanged.'
         : 'The saved data changed while the update was being verified. Check your list before trying again.';
+  const reason = revisionError
+    ? revisionError.reason === 'too-large' ? 'too-large' : 'rejected'
+    : conflicted ? 'conflict' : durable === before ? 'not-saved' : 'changed-while-saving';
   if (attemptedWrite) store.lastError ||= message;
   else store.lastError = message;
   store.lastUpdateOk = false;
   const uncertain = reconcile(store, durable, previous, attemptedWrite);
   if (uncertain) return uncertain;
-  return { ok: false, changed, error: message };
+  return { ok: false, changed, error: message, reason };
 }

@@ -19,7 +19,7 @@ function node(id, extra = {}) {
   };
 }
 
-function fixture({ read = [], itemIds = choice.issueOrder, catalogId = choice.catalogId, answer = true, save } = {}) {
+function fixture({ read = [], itemIds = choice.issueOrder, catalogId = choice.catalogId, answer = true, save, log } = {}) {
   const issue = node('reading-order-issue', { dataset: { order: 'issue' } });
   const book = node('reading-order-book', { dataset: { order: 'book' } });
   const nodes = {
@@ -43,7 +43,7 @@ function fixture({ read = [], itemIds = choice.issueOrder, catalogId = choice.ca
   const view = createReadingOrderSwitch({
     $: (selector) => nodes[selector.replace(/^#/, '')],
     getState: () => state, activeListId: () => 'wotr', isCurrent: () => true,
-    canSave: () => writable, getDatasetEpoch: () => 0,
+    canSave: () => writable, getDatasetEpoch: () => 0, log,
     askConfirm: async (options) => { questions.push(options); return respond(options); },
     saveSwitch: (id, signature, order) => {
       saves.push({ id, signature, order });
@@ -136,16 +136,50 @@ test('a list that changes while the question is open is not switched', async () 
   } finally { delete globalThis.document; }
 });
 
-test('a failed save says so and leaves the list as it was', async () => {
+test('a failed save shows its plain message, keeps the detail off the screen, and leaves the list as it was', async () => {
   try {
+    const logged = [];
     const f = fixture({
       read: choice.issueOrder.filter((id) => id !== 71271),
-      save: () => ({ ok: false, error: 'The update was not saved. Your list is unchanged.' }),
+      save: () => ({ ok: false, error: 'The update could not be verified (read unavailable).', reason: 'paused' }),
+      log: (...args) => logged.push(args),
     });
     f.nodes['reading-order-book'].click();
     await settle();
     assert.equal(f.saves.length, 1);
-    assert.equal(f.nodes['reading-order-status'].textContent, 'The update was not saved. Your list is unchanged.');
+    assert.equal(f.nodes['reading-order-status'].textContent,
+      'Saving has stopped to keep your reading safe. Close and reopen the app to check your list.');
     assert.equal(f.nodes['reading-order-issue'].attributes['aria-pressed'], 'true');
+    assert.deepEqual(logged, [['Recap Page did not switch the reading order:', 'The update could not be verified (read unavailable).']]);
+  } finally { delete globalThis.document; }
+});
+
+test('a save result with no plain message of its own falls back to saying nothing changed', async () => {
+  try {
+    const f = fixture({
+      read: choice.issueOrder.filter((id) => id !== 71271),
+      save: () => ({ ok: false, error: 'The list was not changed (render failed).', reason: 'not-changed' }),
+      log: () => {},
+    });
+    f.nodes['reading-order-book'].click();
+    await settle();
+    assert.equal(f.nodes['reading-order-status'].textContent, 'The order could not be changed. Your list is just as it was.');
+  } finally { delete globalThis.document; }
+});
+
+test('a save that fails outright asks the reader to reopen the app, without the technical detail', async () => {
+  try {
+    const logged = [];
+    const f = fixture({
+      read: choice.issueOrder.filter((id) => id !== 71271),
+      save: () => { throw new Error('storage exploded'); },
+      log: (...args) => logged.push(args),
+    });
+    f.nodes['reading-order-book'].click();
+    await settle();
+    assert.equal(f.nodes['reading-order-status'].textContent,
+      'We could not confirm the new order was saved. Close and reopen the app to check your list.');
+    assert.equal(logged.length, 1);
+    assert.equal(logged[0][1].message, 'storage exploded');
   } finally { delete globalThis.document; }
 });

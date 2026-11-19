@@ -92,7 +92,7 @@ function checkedCandidate(candidate) {
   if (!checked.ok) throw new Error(`The updated list cannot be backed up: ${checked.errors.join(' ')}`);
   const text = JSON.stringify(backup, null, 2);
   if (text.length > MAX_BACKUP_BYTES || new TextEncoder().encode(text).length > MAX_BACKUP_BYTES) {
-    throw new Error('The updated reading data exceeds the backup limit. Nothing was changed.');
+    throw Object.assign(new Error('The updated reading data exceeds the backup limit. Nothing was changed.'), { reason: 'too-large' });
   }
   return candidate;
 }
