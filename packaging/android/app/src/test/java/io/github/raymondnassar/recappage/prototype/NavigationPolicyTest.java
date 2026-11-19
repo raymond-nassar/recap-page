@@ -52,6 +52,16 @@ public final class NavigationPolicyTest {
         check(policy.isOfficialReader("https://marvel.webtoon.com/"), "Exact general Marvel Comics website");
         check(policy.isOfficialReader("https://www.marvelcomicsapp.com/viewer/4879"), "Marvel Comics app comic");
         check(policy.isOfficialReader("https://www.marvelcomicsapp.com/mu/issues/10441"), "Marvel Unlimited issue in new app");
+        check("marvelcomicsapp://viewer?issueId=4879".equals(
+                policy.appReaderAddress("https://www.marvelcomicsapp.com/viewer/4879")), "Viewer link maps to the app's reader");
+        check("marvelcomicsapp://viewer?issueId=123456789".equals(
+                policy.appReaderAddress("https://www.marvelcomicsapp.com:443/viewer/123456789")), "Longest viewer number maps");
+        check("com.webtoon.marvelcomics".equals(NavigationPolicy.MARVEL_COMICS_APP_PACKAGE), "Only the Marvel Comics app");
+        for (String browserOnly : new String[] {
+                null, "", "https://read.marvel.com/#/book/1", "https://marvel.webtoon.com/",
+                "https://www.marvel.com/comics/issue/6482", "https://example.com/viewer/1",
+                "https://www.marvelcomicsapp.com/mu/issues/10441", "marvelcomicsapp://viewer?issueId=1"
+        }) check(policy.appReaderAddress(browserOnly) == null, "No app address outside viewer links: " + browserOnly);
         for (String rejected : new String[] {
                 "https://www.marvelcomicsapp.com/mu/issues/", "https://www.marvelcomicsapp.com/mu/issues/0",
                 "https://www.marvelcomicsapp.com/mu/issues/012", "https://www.marvelcomicsapp.com/mu/issues/1234567890",
@@ -60,7 +70,10 @@ public final class NavigationPolicyTest {
                 "https://www.marvelcomicsapp.com/mu/12", "https://www.marvelcomicsapp.com/mu/viewer/12",
                 "https://marvelcomicsapp.com/mu/issues/12", "https://user@www.marvelcomicsapp.com/mu/issues/12",
                 "https://www.marvelcomicsapp.com:8443/mu/issues/12", "http://www.marvelcomicsapp.com/mu/issues/12"
-        }) check(!policy.isOfficialReader(rejected), "Reject MU compatibility bypass: " + rejected);
+        }) {
+            check(!policy.isOfficialReader(rejected), "Reject MU compatibility bypass: " + rejected);
+            check(policy.appReaderAddress(rejected) == null, "No app address for MU bypass: " + rejected);
+        }
         for (String rejected : new String[] {
                 "https://www.marvelcomicsapp.com/", "https://www.marvelcomicsapp.com/viewer/",
                 "https://www.marvelcomicsapp.com/viewer/0", "https://www.marvelcomicsapp.com/viewer/012",
@@ -70,7 +83,10 @@ public final class NavigationPolicyTest {
                 "https://marvelcomicsapp.com/viewer/12", "https://www.marvelcomicsapp.com.evil/viewer/12",
                 "https://user@www.marvelcomicsapp.com/viewer/12", "https://www.marvelcomicsapp.com:8443/viewer/12",
                 "http://www.marvelcomicsapp.com/viewer/12"
-        }) check(!policy.isOfficialReader(rejected), "Reject Marvel Comics app bypass: " + rejected);
+        }) {
+            check(!policy.isOfficialReader(rejected), "Reject Marvel Comics app bypass: " + rejected);
+            check(policy.appReaderAddress(rejected) == null, "No app address for viewer bypass: " + rejected);
+        }
         for (String rejected : new String[] {
                 null, "", "marvelunlimited://reader/38811", marvelIssue.toUpperCase(),
                 "https://marvel.webtoon.com.evil/", "https://user@marvel.webtoon.com/",

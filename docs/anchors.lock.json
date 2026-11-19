@@ -1609,13 +1609,13 @@
     "fp": "a61496c78a00502b",
     "head": "| `uncertain` | A mutating request may have reached Google without a trustworthy result. Inspect Con"
   },
-  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/IOS.md:516-548|0": {
-    "anchor": "docs/IOS.md:516-548",
+  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/IOS.md:521-553|0": {
+    "anchor": "docs/IOS.md:521-553",
     "fp": "3d8eb59b07214148",
     "head": "### Each build: reserve, export, seal, upload"
   },
-  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/IOS.md:536-540|0": {
-    "anchor": "docs/IOS.md:536-540",
+  ".github/skills/prepare-release/SKILL.md|preparation-boundary|docs/IOS.md:541-545|0": {
+    "anchor": "docs/IOS.md:541-545",
     "fp": "09cad2e2a247e2db",
     "head": "Never rerun either mode or dispatch it twice for the same number. Even failed or uncertain"
   },
@@ -1649,8 +1649,8 @@
     "fp": "0b24286fc02a7373",
     "head": "Upload and track promotion need separate owner approval. First recheck the latest sealed ledger,"
   },
-  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#android-build-allocation-or-candidate|docs/ANDROID.md:241-248|0": {
-    "anchor": "docs/ANDROID.md:241-248",
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#android-build-allocation-or-candidate|docs/ANDROID.md:249-256|0": {
+    "anchor": "docs/ANDROID.md:249-256",
     "fp": "d0f6e1e0e12e6c93",
     "head": "## Protected App Bundle candidates"
   },
@@ -1674,13 +1674,13 @@
     "fp": "0209fd221c84d800",
     "head": "merge; a new manual workflow cannot be dispatched until it exists on the default branch."
   },
-  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#ios-build-allocation-testflight-export-or-upload|docs/IOS.md:475-484|0": {
-    "anchor": "docs/IOS.md:475-484",
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#ios-build-allocation-testflight-export-or-upload|docs/IOS.md:480-489|0": {
+    "anchor": "docs/IOS.md:480-489",
     "fp": "fa779b8e01b8f8c9",
     "head": "## Signing and internal TestFlight"
   },
-  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#ios-build-allocation-testflight-export-or-upload|docs/IOS.md:516-548|0": {
-    "anchor": "docs/IOS.md:516-548",
+  ".github/skills/prepare-release/SKILL.md|route-platform-specific-work#ios-build-allocation-testflight-export-or-upload|docs/IOS.md:521-553|0": {
+    "anchor": "docs/IOS.md:521-553",
     "fp": "3d8eb59b07214148",
     "head": "### Each build: reserve, export, seal, upload"
   },
@@ -6154,13 +6154,13 @@
     "fp": "db046a4ee4a55494",
     "head": "**No real user was observed.** There is one user of this application and they were not interviewed"
   },
-  "docs/UX_FEEDBACK.md|feedback-signals#ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:421|0": {
-    "anchor": "packaging/ios/RecapPage/WebViewController.swift:421",
+  "docs/UX_FEEDBACK.md|feedback-signals#ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:450|0": {
+    "anchor": "packaging/ios/RecapPage/WebViewController.swift:450",
     "fp": "2f830e12ad5ec513",
     "head": "restartNoticePending = true"
   },
-  "docs/UX_FEEDBACK.md|feedback-signals#ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:432|0": {
-    "anchor": "packaging/ios/RecapPage/WebViewController.swift:432",
+  "docs/UX_FEEDBACK.md|feedback-signals#ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:461|0": {
+    "anchor": "packaging/ios/RecapPage/WebViewController.swift:461",
     "fp": "55a4cabc45fcfd0d",
     "head": "webView.reload()"
   },
@@ -6189,13 +6189,13 @@
     "fp": "244f4f24bf6d281b",
     "head": "[Android app](ANDROID.md), it is the existing web app inside a small native shell, so every fix to"
   },
-  "docs/UX_IMPROVEMENT_PLAN.md|5-ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:421|0": {
-    "anchor": "packaging/ios/RecapPage/WebViewController.swift:421",
+  "docs/UX_IMPROVEMENT_PLAN.md|5-ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:450|0": {
+    "anchor": "packaging/ios/RecapPage/WebViewController.swift:450",
     "fp": "2f830e12ad5ec513",
     "head": "restartNoticePending = true"
   },
-  "docs/UX_IMPROVEMENT_PLAN.md|5-ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:432|0": {
-    "anchor": "packaging/ios/RecapPage/WebViewController.swift:432",
+  "docs/UX_IMPROVEMENT_PLAN.md|5-ios-restart-reassurance|packaging/ios/RecapPage/WebViewController.swift:461|0": {
+    "anchor": "packaging/ios/RecapPage/WebViewController.swift:461",
     "fp": "55a4cabc45fcfd0d",
     "head": "webView.reload()"
   },
