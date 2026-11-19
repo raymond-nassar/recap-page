@@ -1019,7 +1019,7 @@ The first is that displaying a description and shipping a copy of one are differ
 those terms rather than two degrees of one act. Using Content inside an App is what the licence is
 for, on a condition the attribution page states plainly: "You must attribute Marvel as the source
 of data whenever you display any results from the Marvel Comics API". The app now names both the
-Marvel origin and its actual route in About at `src/index.html:1396-1400`. Redistributing Content outside an App, and sublicensing it onward, are the
+Marvel origin and its actual route in About at `src/index.html:1395-1399`. Redistributing Content outside an App, and sublicensing it onward, are the
 two things sections 4 and 5 name. An MIT grant is a sublicence to everyone who receives a copy, and
 offers them "sublicense, and/or sell".
 
@@ -1064,7 +1064,7 @@ app encounters that state rather than hypothetically. At removal, 606 carried a 
 id and 69 held neither. Neither metadata shape proves that a synopsis request has completed.
 The interface now distinguishes a summary that has not been loaded from a completed request with
 no synopsis and from prose held only in memory after explicit consent. The shared presentation
-reaches the interface in the reading hero at `src/js/views/reading.js:756` and the issue-details view at
+reaches the interface in the reading hero at `src/js/views/reading.js:744` and the issue-details view at
 `src/js/views/issue.js:108`. The function behind both already answers for the absence at
 `src/js/views/reading.js:107-118`, with a test asserting the sentence it returns. It is also reversible:
 the project this repository fetched from still serves the field,
@@ -4077,10 +4077,14 @@ issues address) and the site's (a viewer address) open the same comic. The site'
 to the reading screen, so the owner chose the site's links "for now". On 2026-11-18 the owner hand-checked
 a 20-link sample of one-year-apart links, and all 20 opened the same comic.
 
-**Credit.** Every list holding at least one of these comics carries, on its page and in its preview,
-"Marvel Comics app links from Comic Book Reading Orders, used with permission." That credit links to
-the event timeline. The wording is the owner's choice: on 2026-11-17 the owner kept "used with
-permission" against the coordinator's suggestion to wait for the site to confirm it.
+**Credit.** From 2026-11-17 every list holding at least one of these comics carried, on its page and
+in its preview, "Marvel Comics app links from Comic Book Reading Orders, used with permission." On
+2026-11-19 the owner moved that credit to About: "We don't need to display the source for links in
+the reading lists. Keep that in the About screens. I only want to credit curated reading lists (i.e.
+ones that come from a website), not the individual issue links themselves." About now carries a
+"Comic link credits" section in the owner's approved words, thanking werhsdnas of the Continuity
+Guide Discord server and Comic Book Reading Orders. Credits for curated lists that follow a website
+are unchanged.
 
 **Where Read goes.** A comic with a link opens in the Marvel Comics app, from today. A comic without
 one keeps what it did before: Marvel Unlimited until December 7, 2026, then the Marvel Comics website.

@@ -3917,6 +3917,7 @@ const readingView = createReadingView({
   paintCover,
   paintHeroBackground,
   preservingFocus,
+  rateIssue: (item, options) => issueRatingView.rate(item, options),
   recordDirectProgressSave,
   readerPresentation,
   renderSaveEducation,

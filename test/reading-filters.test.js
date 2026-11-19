@@ -2,9 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 import {
-  READING_FILTERS, DEFAULT_FILTER, readingFilter, matchesReadingFilter, filterListProblems,
+  READING_FILTERS, DEFAULT_FILTER, LEGACY_READING_FILTERS, readingFilter, matchesReadingFilter, filterListProblems,
 } from '../src/js/lib/readingFilters.js';
-import { STATE } from '../src/js/lib/availability.js';
 
 // The shape listItems() hands the renderer: the issue record, plus the read flag and the override
 // resolved out of their own maps. Only the five fields the predicates read are named here.
@@ -59,45 +58,13 @@ test('Read and Unread partition the list between them', () => {
   assert.equal(matchesReadingFilter('unread', item()), true);
 });
 
-test('Details pending means waiting on the API, so a manual issue is never pending', () => {
-  assert.equal(matchesReadingFilter('pending', item({ hydrated: false })), true);
-  assert.equal(matchesReadingFilter('pending', item({ hydrated: true })), false);
-  // Nothing upstream is coming for one of these, so it would otherwise sit in this list forever.
-  assert.equal(matchesReadingFilter('pending', item({ hydrated: false, source: 'manual' })), false);
-  // The same is true of an issue upstream has already refused, for a different reason: that one was
-  // asked about and the answer was that no such record exists. Without this the filter offers the
-  // reader 34 issues whose details are never going to arrive, which is a worse omission than
-  // silence because it is a promise.
-  assert.equal(matchesReadingFilter('pending', item({ hydrated: false, detailsRefused: true })), false);
-});
-
-test('In Unlimited keeps the five availability states distinct', () => {
-  // Constraint 6. Two of the five are shown and three are not, and each of the three is withheld
-  // for its own reason: scheduled is a date that has not arrived, unknown is no date at all, and
-  // override-unavailable is the reader saying they looked and it was not there. Collapsing any of
-  // them into the filter would turn a hedge into a claim.
-  const shown = { expected: item({ mu: past }), overrideAvailable: item({ mu: null, override: 'available' }) };
-  const hidden = {
-    scheduled: item({ mu: future }),
-    unknown: item({ mu: null }),
-    overrideUnavailable: item({ mu: past, override: 'unavailable' }),
-  };
-  for (const [name, row] of Object.entries(shown)) {
-    assert.equal(matchesReadingFilter('unlimited', row), true, `${name} should match`);
-  }
-  for (const [name, row] of Object.entries(hidden)) {
-    assert.equal(matchesReadingFilter('unlimited', row), false, `${name} should not match`);
-  }
-  // Named against the model rather than only against dates, so a renamed state fails here too.
-  assert.equal(STATE.EXPECTED, 'expected');
-  assert.equal(STATE.OVERRIDE_AVAILABLE, 'override-available');
-});
-
-test('an override wins over the date, in both directions', () => {
-  // The date says expected and the reader says no, so the row is not in Unlimited.
-  assert.equal(matchesReadingFilter('unlimited', item({ mu: past, override: 'unavailable' })), false);
-  // The date says nothing and the reader says yes, so it is.
-  assert.equal(matchesReadingFilter('unlimited', item({ mu: null, override: 'available' })), true);
+test('the list offers All, Unread, Deferred and Read, and nothing about availability or details', () => {
+  // Removed at the owner's request on 19 Nov 2026: "Past Unlimited date or marked available" and
+  // "Details pending" answered questions about the data rather than about reading.
+  assert.deepEqual(READING_FILTERS.map((f) => [f.value, f.label]),
+    [['all', 'All'], ['unread', 'Unread'], ['deferred', 'Deferred'], ['read', 'Read']]);
+  for (const removed of LEGACY_READING_FILTERS) assert.equal(readingFilter(removed), null, removed);
+  assert.deepEqual([...LEGACY_READING_FILTERS], ['unlimited', 'pending']);
 });
 
 test('every filter answers every row, so no radio can render without a predicate behind it', () => {

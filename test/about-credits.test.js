@@ -46,3 +46,14 @@ test('the About view credits the exact Reading List guide sources', () => {
     /Reading Lists assembled in this project come from Marvel series metadata or are compiled by hand\./,
   );
 });
+
+test('the About view credits the links that open individual comics, right after the Reading List credits', () => {
+  const about = aboutView();
+  const headings = [...about.matchAll(/<h3[^>]*>([^<]+)<\/h3>/g)].map(([, name]) => name);
+  assert.equal(headings[headings.indexOf('Reading List credits') + 1], 'Comic link credits');
+  const section = about.slice(about.indexOf('>Comic link credits</h3>'), about.indexOf('<h3', about.indexOf('>Comic link credits</h3>')));
+  assert.equal(
+    prose(section).replace(/^> ?Comic link credits /, ''),
+    'Thank you to werhsdnas of the Continuity Guide Discord server and Comic Book Reading Orders for the links that open individual comics in the Marvel Comics app.',
+  );
+});

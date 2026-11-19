@@ -289,17 +289,22 @@ export const readingCardPhoneOverview = {
             edges: [cardBox.left, cardBox.right, optionsBox.left, optionsBox.right],
             optionBackground: optionStyle.backgroundColor, doneBackground: doneStyle.backgroundColor,
             optionBorder: optionStyle.borderTopColor, doneBorder: doneStyle.borderTopColor,
+            optionBorderWidth: parseFloat(optionStyle.borderTopWidth),
           },
         };
       });
       t.check(`${theme}: the phone's title, comic and moved list context share DOM and visual order`,
         layout.dom && layout.visual && layout.afterCard, JSON.stringify(layout));
       const group = layout.optionGroup;
-      t.check(`${theme}: Reading List options form a quieter group below the card, aligned with its edges`,
+      // The owner approved, 19 Nov 2026, an outline at rest that matches the card's secondary
+      // button, so the summary reads as a control that opens a menu. Its separation from Read and
+      // Done now comes from its own place and spacing below the card rather than from looking fainter.
+      const transparent = (color) => color === 'transparent' || /rgba\([^)]*,\s*0\)$/.test(color);
+      t.check(`${theme}: Reading List options form an outlined group below the card, aligned with its edges`,
         group.outsideHero && group.placed
           && group.gap > group.rowGap && Math.abs(group.edges[0] - group.edges[2]) <= 1
           && Math.abs(group.edges[1] - group.edges[3]) <= 1
-          && group.optionBackground !== group.doneBackground && group.optionBorder !== group.doneBorder,
+          && group.optionBorderWidth > 0 && !transparent(group.optionBorder) && !transparent(group.optionBackground),
         JSON.stringify(group));
 
       const status = await page.evaluate(() => {

@@ -11,6 +11,9 @@ export function createIssueRatingView({ elements, getState, isBlocked, blockedMe
   let draft = null;
   let saving = false;
   let restoreFocus = true;
+  // Where focus goes when a rating opened from somewhere other than the details page closes. It is a
+  // function rather than an element because saving redraws the list row that opened it.
+  let returnTo = null;
 
   function error(message) {
     elements().error.textContent = message;
@@ -25,9 +28,18 @@ export function createIssueRatingView({ elements, getState, isBlocked, blockedMe
   function refresh() {
     const nodes = elements();
     nodes.root.hidden = !current;
-    if (!current) return;
     const state = getState();
     const unavailable = isBlocked();
+    if (current) paintTrigger(nodes, state, unavailable);
+    const replaced = draft && draft.identity !== null && identity(state.issues[draft.issueId]) !== draft.identity;
+    if (draft && !saving && (unavailable || replaced || issueRating(state, draft.issueId) !== draft.original)) {
+      draft.stale = true;
+      error('The saved comic or rating changed. Cancel and reopen the rating editor before saving.');
+    }
+    paintDraft();
+  }
+
+  function paintTrigger(nodes, state, unavailable) {
     const replaced = savedIdentity !== null && identity(state.issues[current.issueId]) !== savedIdentity;
     const score = issueRating(state, current.issueId);
     nodes.trigger.disabled = unavailable || replaced;
@@ -42,11 +54,6 @@ export function createIssueRatingView({ elements, getState, isBlocked, blockedMe
       ? blockedMessage() || 'Ratings are unavailable while saved reading data cannot be read. Open Backup & settings.'
       : replaced ? 'This saved comic changed. Reopen its details to rate it.' : '';
     nodes.status.hidden = !nodes.status.textContent;
-    if (draft && !saving && (unavailable || replaced || score !== draft.original)) {
-      draft.stale = true;
-      error('The saved comic or rating changed. Cancel and reopen the rating editor before saving.');
-    }
-    paintDraft();
   }
 
   function paintDraft() {
@@ -74,9 +81,26 @@ export function createIssueRatingView({ elements, getState, isBlocked, blockedMe
     refresh();
     const nodes = elements();
     if (!current || nodes.trigger.disabled || nodes.dialog.open) return;
-    const original = issueRating(getState(), current.issueId);
-    draft = { issueId: current.issueId, original, stale: false };
-    nodes.comic.textContent = current.title;
+    begin(current, savedIdentity, null);
+  }
+
+  // Rates a saved comic from a list row or another screen, through the same dialog. Focus goes back to
+  // whatever focusTarget() finds when the dialog closes.
+  function rate(issue, { focusTarget = null } = {}) {
+    const nodes = elements();
+    if (nodes.dialog.open) return false;
+    const held = issue ? getState().issues[issue.issueId] : null;
+    if (isBlocked() || !held) return false;
+    begin(held, identity(held), focusTarget);
+    return true;
+  }
+
+  function begin(issue, savedAs, focusTarget) {
+    const nodes = elements();
+    const original = issueRating(getState(), issue.issueId);
+    draft = { issueId: issue.issueId, original, identity: savedAs, stale: false };
+    returnTo = focusTarget;
+    nodes.comic.textContent = issue.title;
     nodes.input.value = original ?? '';
     nodes.remove.hidden = original === null;
     restoreFocus = true;
@@ -150,7 +174,14 @@ export function createIssueRatingView({ elements, getState, isBlocked, blockedMe
     nodes.dialog.addEventListener('close', () => {
       if (nodes.dialog.open) return;
       draft = null;
-      if (restoreFocus && current && !nodes.root.hidden && !nodes.trigger.disabled) nodes.trigger.focus();
+      const back = returnTo;
+      returnTo = null;
+      if (!restoreFocus) return;
+      if (back) {
+        back()?.focus();
+        return;
+      }
+      if (current && !nodes.root.hidden && !nodes.trigger.disabled) nodes.trigger.focus();
     });
     nodes.input.addEventListener('input', () => {
       error(nodes.input.value !== '' && !isIssueRating(Number(nodes.input.value))
@@ -164,5 +195,5 @@ export function createIssueRatingView({ elements, getState, isBlocked, blockedMe
     nodes.increase.addEventListener('click', () => change(Math.min(5, Number(nodes.input.value) + 0.5)));
   }
 
-  return { wire, show, leave, refresh };
+  return { wire, show, leave, refresh, rate };
 }

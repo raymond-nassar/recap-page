@@ -272,6 +272,23 @@ test('a complete backup refuses unsupported formats, missing components and chan
   }
 });
 
+test('a complete backup naming a removed reading filter restores, digest and all, as the All filter', async () => {
+  const { backup } = await captureCompleteBackup({ storage: completeFixture().storage, ...crypto });
+  for (const removed of ['unlimited', 'pending']) {
+    const components = structuredClone(backup.components);
+    components.settings.filter = removed;
+    const digest = createHash('sha256').update(canonical(components)).digest('hex');
+    const text = canonical({ format: COMPLETE_BACKUP_FORMAT, version: COMPLETE_BACKUP_VERSION, digest, components });
+    const decoded = await parseCompleteBackup(text, crypto);
+    assert.equal(decoded.components.settings.filter, removed, 'kept as written, because the digest covers it');
+    const prepared = prepareCompleteRestore({ backup: decoded, storage: { getItem: () => null }, isExclusive: () => true });
+    const settingsOwner = prepared.owners.find((owner) => owner.owner === 'settings');
+    const restored = JSON.parse(settingsOwner.effects.find((each) => each.key === SETTINGS_KEY).value);
+    assert.equal(restored.filter, 'all', `${removed} comes back as All`);
+    assert.equal(restored.theme, components.settings.theme, 'the rest of the settings restore as saved');
+  }
+});
+
 test('a complete backup is refused when any byte of its content differs from its digest', async () => {
   const { backup } = await captureCompleteBackup({ storage: completeFixture().storage, ...crypto });
   for (const change of [
