@@ -2911,7 +2911,7 @@ const SCENARIOS = [
   {
     id: 'temporary-reader-link',
     title: 'retired reader help and both local-clock handoffs preserve saved facts',
-    run: (page, t) => retiredReaderHelp(page, t, { seedFixtureState, click, openFullOrder, order: ORDER }),
+    run: (page, t) => retiredReaderHelp(page, t, { seedFixtureState, click, openFullOrder, order: ORDER, savedStateDifference }),
   },
   {
     id: 'loaded-summaries-1061',
