@@ -64,7 +64,7 @@ function reconcile(store, raw, previous, attemptedWrite = true) {
   return pauseForUnknown(store, store.state, 'The saved data changed again while it was being checked. Saving is paused; reopen the app to check your list.', { attemptedWrite });
 }
 
-export function saveListRevision(store, listId, expectedList, items) {
+export function saveListRevision(store, listId, expectedList, items, apply = applyListRevision) {
   if (!store.storage) return { ok: false, changed: false, error: 'Reading-data storage is unavailable. Nothing was changed.' };
   if (store.blocked) return { ok: false, changed: false, error: 'Saving is paused. Your list was not changed.' };
   let before;
@@ -98,7 +98,7 @@ export function saveListRevision(store, listId, expectedList, items) {
   try {
     state = store.update((current) => {
       try {
-        return applyListRevision(current, listId, expectedList, items);
+        return apply(current, listId, expectedList, items);
       } catch (error) {
         revisionError = error;
         throw error;

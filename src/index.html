@@ -320,11 +320,24 @@
                 <div class="sub" id="order-sub">Curated Reading Lists, tracked locally.</div>
                 <!-- Outside About, so the way to the list's own website survives a closed disclosure. -->
                 <div class="list-visit" id="order-visit" hidden></div>
+                <!-- Only lists whose source publishes both orders over the same comics show this. -->
+                <div class="reading-order" id="reading-order" hidden>
+                  <span class="reading-order-label" id="reading-order-label">Reading order</span>
+                  <div class="order-choices" role="group" aria-labelledby="reading-order-label">
+                    <button type="button" class="order-choice has-tooltip" id="reading-order-issue" data-order="issue" aria-pressed="false" aria-describedby="reading-order-issue-tip" data-tooltip="Every comic in the order it happens in the story.">Issue by issue</button>
+                    <button type="button" class="order-choice has-tooltip" id="reading-order-book" data-order="book" aria-pressed="false" aria-describedby="reading-order-book-tip" data-tooltip="Finish each collected book before starting the next.">Book by book</button>
+                  </div>
+                  <span class="visually-hidden" id="reading-order-issue-tip">Every comic in the order it happens in the story.</span>
+                  <span class="visually-hidden" id="reading-order-book-tip">Finish each collected book before starting the next.</span>
+                  <p class="rail-hint reading-order-hint" id="reading-order-hint">Switching keeps everything you have read, your notes and your ratings.</p>
+                  <p class="rail-hint reading-order-status" id="reading-order-status" role="status"></p>
+                </div>
                 <!-- The order's own blurb. It used to be welded onto the end of the subtitle above,
                      which is a line with room for a fact and not for three sentences. -->
                 <details class="setting-more order-desc" id="order-desc" open hidden>
                   <summary>About this list</summary>
                   <p class="rail-hint" id="order-desc-text"></p>
+                  <p class="rail-hint" id="order-book-note" hidden></p>
                   <div id="order-source"></div>
                   <div id="order-app-link-credit"></div>
                 </details>

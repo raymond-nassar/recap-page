@@ -234,7 +234,7 @@
   --cyan-line: 91 208 233;
   --jade-line: 78 208 182;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:844`; these pairs supply saturation and lightness where that local hue is
+     `src/js/main.js:846`; these pairs supply saturation and lightness where that local hue is
      consumed. Keeping the hue reference on the cover avoids resolving it before the cover exists. */
   --fallback-a: 42% 26%;
   --fallback-b: 38% 14%;
@@ -874,6 +874,12 @@ main { min-width: 0; }
    inset a settings card gives it. */
 .order-desc { margin-top: var(--space-4); }
 .list-visit { margin-top: var(--space-4); }
+/* The reading order switch sits with the list's own links under the title, so it takes their spacing. */
+.reading-order { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-5); margin-top: var(--space-4); }
+.reading-order[hidden], .reading-order-status[hidden] { display: none; }
+.reading-order-label { font-weight: 600; }
+.order-choices { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.reading-order-hint, .reading-order-status { margin: 0; flex-basis: 100%; }
 .save-education { max-width: 72ch; margin-top: var(--space-6); }
 .save-education .rail-hint { margin: 0 0 var(--space-5); }
 
@@ -1566,14 +1572,15 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
    ring. Each scope is a full 44 pixel target. */
 .search-page { max-width: 64rem; }
 .search-scopes { display: flex; flex-wrap: wrap; gap: var(--space-3); margin: var(--space-6) 0 var(--space-4); }
-.search-scope {
+.search-scope, .order-choice {
   min-height: var(--target); padding: var(--space-2) var(--space-6); border: var(--stroke-1) solid var(--line-2);
   border-radius: var(--radius-pill); background: var(--card); color: var(--dim); font: inherit; font-weight: 600; cursor: pointer;
 }
-.search-scope:hover { color: var(--text); border-color: var(--accent-text); }
-.search-scope[aria-pressed="true"] {
+.search-scope:hover, .order-choice:hover:not(:disabled) { color: var(--text); border-color: var(--accent-text); }
+.search-scope[aria-pressed="true"], .order-choice[aria-pressed="true"] {
   background: rgb(var(--accent-line) / 10%); color: var(--accent-text); border-color: var(--accent-text); font-weight: 700;
 }
+.order-choice:disabled { cursor: not-allowed; opacity: .6; }
 .search-count { margin: 0 0 var(--space-4); color: var(--dim); font-size: var(--t-body); font-variant-numeric: tabular-nums; }
 .search-panes { display: grid; gap: var(--space-6); }
 .search-scopes[hidden], .search-panes[hidden] { display: none; }
@@ -2710,8 +2717,8 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   #reading-filters { background: Canvas; }
   details.full, details.full > summary { border-color: CanvasText; background: Canvas; }
   .availability-choice[aria-pressed="true"] { border-color: Highlight; }
-  .search-scope { border-color: ButtonText; }
-  .search-scope[aria-pressed="true"] { border: var(--stroke-2) solid Highlight; }
+  .search-scope, .order-choice { border-color: ButtonText; }
+  .search-scope[aria-pressed="true"], .order-choice[aria-pressed="true"] { border: var(--stroke-2) solid Highlight; }
 }
 
 /* ============================================================ library and progress shape
@@ -3258,5 +3265,5 @@ select, input[type="search"], input[type="text"], input[type="url"] {
   #home-secondary-paths { grid-template-columns: 1fr; }
 }
 @media (max-width: 700px) {
-  .search-scope { min-width: var(--target); padding-inline: var(--space-4); }
+  .search-scope, .order-choice { min-width: var(--target); padding-inline: var(--space-4); }
 }

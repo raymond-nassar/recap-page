@@ -170,7 +170,7 @@ export const PAIRS = [
   ['--blue', 'the Visit button on the page on hover', BODY, 'the same label while the pointer rests on it'],
   ['--blue', 'the Visit button in Preview', BODY, 'the label and glyph of the Visit button in Preview'],
   ['--blue', 'the Visit button in Preview on hover', BODY, 'the same label in Preview while the pointer rests on it'],
-  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:2566`'],
+  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:2573`'],
 
   // Each category card's icon is measured on its card's tint at rest and on hover, the two surfaces it
   // is ever drawn on (#872, #873). Its 3:1 is a request rather than a WCAG duty, since the icon is
@@ -232,7 +232,7 @@ export const SURFACES = {
     layer: '--warn',
     fraction: 0.12,
     on: '--panel',
-    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:2542`',
+    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:2549`',
   },
   // Built on a surface rather than a token, which is the case the first version of this could not
   // express. A ghost button is a tint over whatever it is dropped onto, so on the banner it is a
@@ -242,7 +242,7 @@ export const SURFACES = {
     layer: '--tint-base',
     fraction: 0.05882,
     on: 'the unreadable-data banner',
-    css: 'rgb(var(--tint-base) / 5.882%) over the banner, at `src/styles.css:1021`',
+    css: 'rgb(var(--tint-base) / 5.882%) over the banner, at `src/styles.css:1027`',
   },
   // color-mix toward transparent lays the blue down at that alpha, quantized to eight bits as above:
   // 12% is 31/255 and 18% is 46/255.
@@ -252,8 +252,8 @@ export const SURFACES = {
   'the Visit button in Preview on hover': { layer: '--blue', fraction: 46 / 255, on: '--card', css: '--blue at 18% over the card' },
   // A category card's tint is a gradient that fades from its first stop, so each card is resolved at
   // that stop, which is where the tint is strongest and the icon has the least contrast: 13% over the
-  // card at rest (`src/styles.css:2195-2197`) and 19% over the raised card on hover
-  // (`src/styles.css:2214-2216`).
+  // card at rest (`src/styles.css:2202-2204`) and 19% over the raised card on hover
+  // (`src/styles.css:2221-2223`).
   ...Object.fromEntries(CATEGORY_CARDS.flatMap(([card, channel]) => [
     [card, { layer: channel, fraction: 0.13, on: '--card', css: `${channel} at 13% over the card` }],
     [`${card} on hover`, { layer: channel, fraction: 0.19, on: '--card-2', css: `${channel} at 19% over the raised card` }],
@@ -807,7 +807,7 @@ export function checkAll(css) {
 // carries the bar's extent at 3:1 against what is behind it, measured above on the card, the raised
 // card, the rail and the selected rail item, and the fill only has to clear those same surfaces,
 // which `--accent` does. The bar is also never the only way to read progress, because the same
-// numbers are stated as text beside it, at `src/js/main.js:2176` in the rail and
+// numbers are stated as text beside it, at `src/js/main.js:2179` in the rail and
 // `src/js/views/shared/saved-lists.js:35` in the saved lists.
 //
 // The list stays, empty, because a gate that quietly tolerates its own findings is not a gate. The

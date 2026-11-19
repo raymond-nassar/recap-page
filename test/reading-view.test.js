@@ -322,6 +322,8 @@ function harness(overrides = {}) {
     orderSub: node({ id: 'order-sub' }),
     orderDesc: node({ id: 'order-desc', open: true }),
     orderDescText: node({ id: 'order-desc-text' }),
+    orderBookNote: node({ id: 'order-book-note', hidden: true }),
+    readingOrder: node({ id: 'reading-order', hidden: true }),
     orderSource: node({ id: 'order-source' }),
     orderAppLinkCredit: node({ id: 'order-app-link-credit' }),
     orderVisit: node({ id: 'order-visit', hidden: true }),
@@ -434,6 +436,8 @@ function harness(overrides = {}) {
     ['#order-sub', nodes.orderSub],
     ['#order-desc', nodes.orderDesc],
     ['#order-desc-text', nodes.orderDescText],
+    ['#order-book-note', nodes.orderBookNote],
+    ['#reading-order', nodes.readingOrder],
     ['#order-source', nodes.orderSource],
     ['#order-app-link-credit', nodes.orderAppLinkCredit],
     ['#order-visit', nodes.orderVisit],
@@ -481,9 +485,9 @@ function harness(overrides = {}) {
     nodes.heroReaderTemporary, nodes.heroProgress, nodes.heroFacts]);
   nodes.hero.append(nodes.heroBody);
   nodes.orderDescSummary = node({ tag: 'summary', text: 'About this order' });
-  nodes.orderDesc.append(nodes.orderDescSummary, nodes.orderDescText);
+  nodes.orderDesc.append(nodes.orderDescSummary, nodes.orderDescText, nodes.orderBookNote);
   nodes.ringWrap.append(nodes.ringLabel, nodes.ringSub);
-  nodes.headingLeft = node({ class: 'head-left' }, [nodes.orderName, nodes.orderSub, nodes.orderVisit, nodes.orderDesc]);
+  nodes.headingLeft = node({ class: 'head-left' }, [nodes.orderName, nodes.orderSub, nodes.orderVisit, nodes.readingOrder, nodes.orderDesc]);
   nodes.headingRight = node({ class: 'headright' }, [nodes.ringWrap]);
   nodes.heading = node({ class: 'head' }, [nodes.headingLeft, nodes.headingRight]);
   nodes.readingOverview = node({ id: 'reading-overview' });
@@ -924,7 +928,8 @@ test('phone reading context follows the comic and returns to the heading without
 
     h.nodes.orderDescSummary.focus();
     h.setPhone(false);
-    assert.deepEqual(h.nodes.headingLeft.childNodes.map((entry) => entry.id), ['order-name', 'order-sub', 'order-visit', 'order-desc']);
+    // The reading order switch never moves to the phone overview, and returns under the list's links.
+    assert.deepEqual(h.nodes.headingLeft.childNodes.map((entry) => entry.id), ['order-name', 'order-sub', 'order-visit', 'reading-order', 'order-desc']);
     assert.deepEqual(h.nodes.headingRight.childNodes.map((entry) => entry.id), ['ring-wrap']);
     assert.equal(h.nodes.heroProgress.parentNode, h.nodes.heroBody);
     assert.ok(h.nodes.readingBody.childNodes.indexOf(h.nodes.listNote) < h.nodes.readingBody.childNodes.indexOf(h.nodes.hero));
