@@ -16246,24 +16246,25 @@ const SCENARIOS = [
         await page.setViewport({ width: 1280, height: 900 });
         await page.goto(url, { waitUntil: 'load' });
         await checkWordmark('Home');
-        // Tab moves focus inside the page either way, but :focus only matches, and the skip link
-        // only slides into view, while the page's window has focus. On the hosted Windows runner
-        // the tab lost window focus to an earlier scenario's popup, so the skip link took focus
-        // and stayed at top -73.75 (run 44410557043). Raising the tab gives it focus back.
-        await page.bringToFront();
         await page.keyboard.press('Tab');
+        // An undrawn outline still computes to its 3 pixel default width in Edge 157, so the outline
+        // style is read as well. Hosted run 44426231195 measured the focused link at top -73.75 with
+        // the window focused; whether :focus matched is recorded to tell the two causes apart.
         const skip = await page.$eval('.skip-link', (link) => {
           const style = getComputedStyle(link);
           const box = link.getBoundingClientRect();
           return {
             active: document.activeElement === link,
+            focus: link.matches(':focus'),
             top: box.top,
             outline: Number.parseFloat(style.outlineWidth),
+            outlineStyle: style.outlineStyle,
+            transform: style.transform,
             hasFocus: document.hasFocus(),
           };
         });
         t.check('the first keyboard stop is a visible skip link with a focus indicator',
-          skip.active && skip.top >= 0 && skip.outline > 0,
+          skip.active && skip.top >= 0 && skip.outline > 0 && skip.outlineStyle !== 'none',
           JSON.stringify(skip));
         await page.keyboard.press('Enter');
         await page.waitForFunction(() => location.hash === '#main');
@@ -16710,7 +16711,6 @@ const SCENARIOS = [
           && deletion.top >= 0 && deletion.top < 200,
           JSON.stringify(deletion));
         await page.goto(pageUrl('privacy.html'), { waitUntil: 'load' });
-        await page.bringToFront();
         await page.keyboard.press('Tab');
         const documentSkip = await page.evaluate(() => ({
           skip: document.activeElement?.classList.contains('skip-link') ?? false,

@@ -114,11 +114,27 @@ async function keepPaint(label, first, second) {
 // here lies inside the 1,280 by 900 viewport.
 const capture = (element) => element.screenshot({ captureBeyondViewport: false });
 
+// Hosted run 44426231195 failed narrow system .notice-warn with six pixels around the dismiss button
+// differing by 1 to 4 levels, and a repeat capture with nothing changed matched the fallback rather
+// than the original, so the first capture after the switch to 390 pixels caught paint still
+// settling. Each side is therefore captured until two consecutive captures agree, bounded at ten,
+// and byte equality between the two sides stays the test.
+async function settledCapture(element) {
+  let previous = await capture(element);
+  for (let attempt = 1; attempt < 10; attempt += 1) {
+    const next = await capture(element);
+    if (Buffer.from(next).equals(Buffer.from(previous))) return { paint: next, attempts: attempt + 1 };
+    previous = next;
+  }
+  return { paint: previous, attempts: 10, settled: false };
+}
+
 async function checkPaint(page, t, selector, ruleSelector, glyph, label) {
   const element = await page.$(selector);
   const before = await measure(page, selector);
   const layouts = { original: await layout(page) };
-  const painted = await capture(element);
+  const original = await settledCapture(element);
+  const painted = original.paint;
   layouts.originalAfter = await layout(page);
   // Change only the alternative text, leaving the glyph and every other declaration alone.
   const content = await page.evaluate((selector) => {
@@ -132,12 +148,14 @@ async function checkPaint(page, t, selector, ruleSelector, glyph, label) {
   try {
     const fallback = await measure(page, selector);
     layouts.fallback = await layout(page);
-    const fallbackPaint = await capture(element);
+    const fallbackCapture = await settledCapture(element);
+    const fallbackPaint = fallbackCapture.paint;
     layouts.fallbackAfter = await layout(page);
     const samePixels = Buffer.from(painted).equals(Buffer.from(fallbackPaint));
     const detail = { before, fallback };
     if (!samePixels) {
       detail.layouts = layouts;
+      detail.captures = { original: original.attempts, fallback: fallbackCapture.attempts };
       // Kept first, so a decoding failure below still leaves both captures to inspect.
       detail.kept = await keepPaint(label, painted, fallbackPaint).catch((error) => ({ error: String(error?.message ?? error) }));
       detail.pixels = await comparePaint(page, painted, fallbackPaint).catch((error) => ({ error: String(error?.message ?? error) }));
