@@ -52,13 +52,18 @@ async function layout(page) {
   }));
 }
 
-// Byte equality stays the test. This only explains a failure: it decodes both captures in the page,
-// with no image library, and counts the pixels that differ and the box around them.
+// The owner allowed differences too faint to see, no more than 8 shades out of 255 in any channel of
+// any pixel, after hosted runs 44440853105 and 44444275631 failed six variants with byte-identical
+// samples 1 to 4 levels apart while run 44436509980 passed them all. Decoded in the page with no image
+// library, both captures the same way and raw, so the browser neither converts color nor premultiplies
+// alpha before the comparison. It also counts the pixels that differ and the box around them.
+const PAINT_TOLERANCE = 8;
 async function comparePaint(page, first, second) {
-  return page.evaluate(async (a, b) => {
+  return page.evaluate(async (a, b, tolerance) => {
     const decode = async (base64) => {
       const bytes = Uint8Array.from(atob(base64), (char) => char.charCodeAt(0));
-      const bitmap = await createImageBitmap(new Blob([bytes], { type: 'image/png' }));
+      const bitmap = await createImageBitmap(new Blob([bytes], { type: 'image/png' }),
+        { colorSpaceConversion: 'none', premultiplyAlpha: 'none' });
       const canvas = new OffscreenCanvas(bitmap.width, bitmap.height);
       const context = canvas.getContext('2d');
       context.drawImage(bitmap, 0, 0);
@@ -73,22 +78,39 @@ async function comparePaint(page, first, second) {
     const height = Math.max(left.height, right.height);
     const pixel = (image, x, y) => (x < image.width && y < image.height ? (y * image.width + x) * 4 : -1);
     let differing = 0;
+    let maxDifference = 0;
     let box = null;
+    const samples = [];
     for (let y = 0; y < height; y += 1) {
       for (let x = 0; x < width; x += 1) {
         const l = pixel(left, x, y);
         const r = pixel(right, x, y);
         if (l < 0 && r < 0) continue;
-        if (l >= 0 && r >= 0 && left.data[l] === right.data[r] && left.data[l + 1] === right.data[r + 1]
-          && left.data[l + 2] === right.data[r + 2] && left.data[l + 3] === right.data[r + 3]) continue;
+        if (l >= 0 && r >= 0) {
+          let largest = 0;
+          for (let channel = 0; channel < 4; channel += 1) {
+            largest = Math.max(largest, Math.abs(left.data[l + channel] - right.data[r + channel]));
+          }
+          if (largest === 0) continue;
+          maxDifference = Math.max(maxDifference, largest);
+        } else {
+          maxDifference = 255;
+        }
         differing += 1;
+        if (samples.length < 12) {
+          samples.push([x, y, l < 0 ? null : [...left.data.slice(l, l + 4)], r < 0 ? null : [...right.data.slice(r, r + 4)]]);
+        }
         box = box
           ? [Math.min(box[0], x), Math.min(box[1], y), Math.max(box[2], x), Math.max(box[3], y)]
           : [x, y, x, y];
       }
     }
-    return { sizes, differing, box: box && { x: box[0], y: box[1], width: box[2] - box[0] + 1, height: box[3] - box[1] + 1 } };
-  }, Buffer.from(first).toString('base64'), Buffer.from(second).toString('base64'));
+    const sameSize = left.width === right.width && left.height === right.height;
+    return {
+      sizes, sameSize, differing, maxDifference, tolerance, withinTolerance: sameSize && maxDifference <= tolerance,
+      samples, box: box && { x: box[0], y: box[1], width: box[2] - box[0] + 1, height: box[3] - box[1] + 1 },
+    };
+  }, Buffer.from(first).toString('base64'), Buffer.from(second).toString('base64'), PAINT_TOLERANCE);
 }
 
 let keptPaint = null;
@@ -110,43 +132,72 @@ async function keepPaint(label, first, second) {
 // here lies inside the 1,280 by 900 viewport.
 const capture = (element) => element.screenshot({ captureBeyondViewport: false });
 
+// Hosted run 44426231195 failed narrow system .notice-warn with six pixels around the dismiss button
+// differing by 1 to 4 levels. Settling each side alone did not cure it: hosted run 44431014589 had
+// both sides agree with themselves on the second capture and still differ from each other, with a
+// later capture matching the fallback rather than the original, and narrow .pill-held failed the
+// same way along its edge. So the difference is between the first paint and the repaint that any
+// rule change causes, not between the two contents. The original is therefore captured again after
+// its rule is restored, so both sides come from that repaint, compared within the owner's tolerance.
+// Each side is still captured until two consecutive captures agree, bounded at ten.
+async function settledCapture(element) {
+  let previous = await capture(element);
+  for (let attempt = 1; attempt < 10; attempt += 1) {
+    const next = await capture(element);
+    if (Buffer.from(next).equals(Buffer.from(previous))) return { paint: next, attempts: attempt + 1 };
+    previous = next;
+  }
+  return { paint: previous, attempts: 10, settled: false };
+}
+
 async function checkPaint(page, t, selector, ruleSelector, glyph, label) {
   const element = await page.$(selector);
   const before = await measure(page, selector);
   const layouts = { original: await layout(page) };
-  const painted = await capture(element);
+  const original = await settledCapture(element);
   layouts.originalAfter = await layout(page);
-  // Change only the alternative text, leaving the glyph and every other declaration alone.
-  const content = await page.evaluate((selector) => {
+  const setContent = (value) => page.evaluate((selector, value) => {
     const rule = [...document.styleSheets].flatMap((sheet) => [...sheet.cssRules])
       .find((rule) => rule.selectorText === selector);
     if (!rule) throw new Error(`Missing decorative rule: ${selector}`);
-    const original = rule.style.content;
-    rule.style.content = original.split(' / ')[0];
-    return original;
-  }, ruleSelector);
+    const previous = rule.style.content;
+    rule.style.content = value ?? previous.split(' / ')[0];
+    return previous;
+  }, ruleSelector, value);
+  // Change only the alternative text, leaving the glyph and every other declaration alone.
+  const content = await setContent(null);
   try {
     const fallback = await measure(page, selector);
     layouts.fallback = await layout(page);
-    const fallbackPaint = await capture(element);
+    const fallbackCapture = await settledCapture(element);
+    const fallbackPaint = fallbackCapture.paint;
     layouts.fallbackAfter = await layout(page);
-    const samePixels = Buffer.from(painted).equals(Buffer.from(fallbackPaint));
-    const detail = { before, fallback };
-    if (!samePixels) {
+    await setContent(content);
+    const restored = await measure(page, selector);
+    const restoredCapture = await settledCapture(element);
+    const painted = restoredCapture.paint;
+    layouts.restoredAfter = await layout(page);
+    const identical = Buffer.from(painted).equals(Buffer.from(fallbackPaint));
+    const detail = { before, fallback, restored };
+    let samePixels = identical;
+    if (!identical) {
       detail.layouts = layouts;
+      detail.captures = {
+        original: original.attempts, fallback: fallbackCapture.attempts, restored: restoredCapture.attempts,
+      };
+      detail.firstPaintSame = Buffer.from(original.paint).equals(Buffer.from(painted));
       // Kept first, so a decoding failure below still leaves both captures to inspect.
       detail.kept = await keepPaint(label, painted, fallbackPaint).catch((error) => ({ error: String(error?.message ?? error) }));
       detail.pixels = await comparePaint(page, painted, fallbackPaint).catch((error) => ({ error: String(error?.message ?? error) }));
+      detail.hasFocus = await page.evaluate(() => document.hasFocus());
+      samePixels = detail.pixels.withinTolerance === true;
     }
     t.check(`${label}: glyph, spacing, color, boxes and pixels match the original content`,
-      before.glyph === JSON.stringify(glyph) && isDeepStrictEqual(before, fallback) && samePixels,
+      before.glyph === JSON.stringify(glyph) && isDeepStrictEqual(before, fallback)
+        && isDeepStrictEqual(before, restored) && samePixels,
       JSON.stringify(detail));
   } finally {
-    await page.evaluate((selector, value) => {
-      const rule = [...document.styleSheets].flatMap((sheet) => [...sheet.cssRules])
-        .find((rule) => rule.selectorText === selector);
-      rule.style.content = value;
-    }, ruleSelector, content);
+    await setContent(content);
   }
 }
 

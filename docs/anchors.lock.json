@@ -1729,13 +1729,13 @@
     "fp": "88baf98dab454544",
     "head": ":root {"
   },
-  "DESIGN.md|colors|pages/site.css:246-258|0": {
-    "anchor": "pages/site.css:246-258",
+  "DESIGN.md|colors|pages/site.css:256-268|0": {
+    "anchor": "pages/site.css:256-268",
     "fp": "dbf8edc1b1a33d54",
     "head": ".opening {"
   },
-  "DESIGN.md|colors|pages/site.css:770-829|0": {
-    "anchor": "pages/site.css:770-829",
+  "DESIGN.md|colors|pages/site.css:780-839|0": {
+    "anchor": "pages/site.css:780-839",
     "fp": "6751f60875ce3ebc",
     "head": ".mcu-example {"
   },
@@ -1744,13 +1744,13 @@
     "fp": "bc548c5ef2d5325d",
     "head": "outline: 0.2rem solid var(--focus);"
   },
-  "DESIGN.md|do|pages/site.css:1656-1690|0": {
-    "anchor": "pages/site.css:1656-1690",
+  "DESIGN.md|do|pages/site.css:1679-1713|0": {
+    "anchor": "pages/site.css:1679-1713",
     "fp": "e4e8cd35309f2789",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
-  "DESIGN.md|do|pages/site.css:1695-1739|0": {
-    "anchor": "pages/site.css:1695-1739",
+  "DESIGN.md|do|pages/site.css:1718-1762|0": {
+    "anchor": "pages/site.css:1718-1762",
     "fp": "cf5524dbd198eada",
     "head": "@media (forced-colors: active) {"
   },
@@ -1764,8 +1764,8 @@
     "fp": "bc548c5ef2d5325d",
     "head": "outline: 0.2rem solid var(--focus);"
   },
-  "DESIGN.md|elevation-depth|pages/site.css:393-399|0": {
-    "anchor": "pages/site.css:393-399",
+  "DESIGN.md|elevation-depth|pages/site.css:403-409|0": {
+    "anchor": "pages/site.css:403-409",
     "fp": "cd27979506d3e723",
     "head": ".guided-tour {"
   },
@@ -1784,18 +1784,18 @@
     "fp": "90f27d63ac672f9c",
     "head": "width: min(calc(100% - var(--space-4) * 2), var(--content));"
   },
-  "DESIGN.md|layout|pages/site.css:1525-1554|0": {
-    "anchor": "pages/site.css:1525-1554",
+  "DESIGN.md|layout|pages/site.css:1540-1569|0": {
+    "anchor": "pages/site.css:1540-1569",
     "fp": "f0397ce7c8fae8c4",
     "head": "@media (max-width: 58rem) {"
   },
-  "DESIGN.md|layout|pages/site.css:1685-1690|0": {
-    "anchor": "pages/site.css:1685-1690",
+  "DESIGN.md|layout|pages/site.css:1708-1713|0": {
+    "anchor": "pages/site.css:1708-1713",
     "fp": "252e8812c730d291",
     "head": "@media (prefers-reduced-motion: no-preference) {"
   },
-  "DESIGN.md|layout|pages/site.css:270-275|0": {
-    "anchor": "pages/site.css:270-275",
+  "DESIGN.md|layout|pages/site.css:280-285|0": {
+    "anchor": "pages/site.css:280-285",
     "fp": "ea1cbc31022d4675",
     "head": ".opening-grid {"
   },
@@ -1809,13 +1809,13 @@
     "fp": "47f13a456323fad3",
     "head": "THESIS: A Marvel reading order is a sourced path, not a pile of comics."
   },
-  "DESIGN.md|overview|pages/site.css:246-275|0": {
-    "anchor": "pages/site.css:246-275",
+  "DESIGN.md|overview|pages/site.css:256-285|0": {
+    "anchor": "pages/site.css:256-285",
     "fp": "cb11c22115f3e725",
     "head": ".opening {"
   },
-  "DESIGN.md|shapes|pages/site.css:339-349|0": {
-    "anchor": "pages/site.css:339-349",
+  "DESIGN.md|shapes|pages/site.css:349-359|0": {
+    "anchor": "pages/site.css:349-359",
     "fp": "14c30e9f881dcf71",
     "head": ".button {"
   },
@@ -1824,13 +1824,13 @@
     "fp": "8e2ef122780752a8",
     "head": "--radius-1: 0.25rem;"
   },
-  "DESIGN.md|shapes|pages/site.css:393-399|0": {
-    "anchor": "pages/site.css:393-399",
+  "DESIGN.md|shapes|pages/site.css:403-409|0": {
+    "anchor": "pages/site.css:403-409",
     "fp": "cd27979506d3e723",
     "head": ".guided-tour {"
   },
-  "DESIGN.md|typography|pages/site.css:301-311|0": {
-    "anchor": "pages/site.css:301-311",
+  "DESIGN.md|typography|pages/site.css:311-321|0": {
+    "anchor": "pages/site.css:311-321",
     "fp": "0e31f96eba7bcc2e",
     "head": "font-family: \"Franklin Gothic Medium\", \"Arial Narrow\", \"Trebuchet MS\", sans-serif;"
   },

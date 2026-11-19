@@ -110,7 +110,7 @@ components:
 
 **Creative North Star: "The Sourced Comic Index"**
 
-The page uses Recap Page's established purple identity to frame real reading paths as an organized, browsable index. Large condensed headings, comic-weight borders, and selective blue and red markers create energy without turning the interface into a costume. White space separates the evidence and actions so the page remains legible as it moves between feature explanations and interactive examples. The direction is expressed in the page contract and stylesheet. `pages/index.html:3-6` `pages/site.css:246-275`
+The page uses Recap Page's established purple identity to frame real reading paths as an organized, browsable index. Large condensed headings, comic-weight borders, and selective blue and red markers create energy without turning the interface into a costume. White space separates the evidence and actions so the page remains legible as it moves between feature explanations and interactive examples. The direction is expressed in the page contract and stylesheet. `pages/index.html:3-6` `pages/site.css:256-285`
 
 **Key Characteristics:**
 - Purple is the structural brand color.
@@ -120,7 +120,7 @@ The page uses Recap Page's established purple identity to frame real reading pat
 
 ## Colors
 
-The light palette pairs warm lavender-white surfaces with deep purple structure, dark plum text, and distinct blue and red wayfinding accents. The opening and feature sections use denser purple or dark surfaces to create contrast with the white reading panels. `pages/site.css:1-24` `pages/site.css:246-258` `pages/site.css:770-829`
+The light palette pairs warm lavender-white surfaces with deep purple structure, dark plum text, and distinct blue and red wayfinding accents. The opening and feature sections use denser purple or dark surfaces to create contrast with the white reading panels. `pages/site.css:1-24` `pages/site.css:256-268` `pages/site.css:780-839`
 
 ### Primary
 - **Recap Purple** (`#6124b8`): Primary actions, selected states, and navigation emphasis.
@@ -153,7 +153,7 @@ The light palette pairs warm lavender-white surfaces with deep purple structure,
 
 **Body Font:** Aptos, Segoe UI, Arial, sans-serif
 
-**Character:** Condensed system headings bring a direct editorial voice; the neutral sans-serif body face stays comfortable for long explanations and controls. The page uses system fonts rather than downloading a typeface. `pages/site.css:81` `pages/site.css:301-311`
+**Character:** Condensed system headings bring a direct editorial voice; the neutral sans-serif body face stays comfortable for long explanations and controls. The page uses system fonts rather than downloading a typeface. `pages/site.css:81` `pages/site.css:311-321`
 
 ### Hierarchy
 - **Display** (950, `clamp(2.8rem, 6vw, 5.75rem)`, 1.12 line-height): Main opening statement.
@@ -166,17 +166,17 @@ The light palette pairs warm lavender-white surfaces with deep purple structure,
 
 ## Layout
 
-Content sits in a centered shell capped at 76rem with 1.5rem minimum side gutters. The opening is an unequal two-column spread, with the direct introduction beside the guided reading demo. It collapses to a single column at narrower widths, and the page continues as a sequence of text-and-proof layouts with native disclosure examples. The spacing scale runs from 0.375rem to 4.5rem; section separation is generous, while controls and related copy stay compact. Supporting sections use a brief scroll-linked entrance only when the browser supports it and reduced motion is not requested. `pages/site.css:31-38` `pages/site.css:126-128` `pages/site.css:270-275` `pages/site.css:1525-1554` `pages/site.css:1685-1690`
+Content sits in a centered shell capped at 76rem with 1.5rem minimum side gutters. The opening is an unequal two-column spread, with the direct introduction beside the guided reading demo. It collapses to a single column at narrower widths, and the page continues as a sequence of text-and-proof layouts with native disclosure examples. The spacing scale runs from 0.375rem to 4.5rem; section separation is generous, while controls and related copy stay compact. Supporting sections use a brief scroll-linked entrance only when the browser supports it and reduced motion is not requested. `pages/site.css:31-38` `pages/site.css:126-128` `pages/site.css:280-285` `pages/site.css:1540-1569` `pages/site.css:1708-1713`
 
 ## Elevation & Depth
 
-Most surfaces use flat tonal layering and visible borders rather than floating cards. The guided demo gets the one prominent offset shadow so it reads as the working example in the opening; keyboard focus uses a separate high-contrast ring. `pages/site.css:120-122` `pages/site.css:393-399`
+Most surfaces use flat tonal layering and visible borders rather than floating cards. The guided demo gets the one prominent offset shadow so it reads as the working example in the opening; keyboard focus uses a separate high-contrast ring. `pages/site.css:120-122` `pages/site.css:403-409`
 
 **The Framed-First Rule.** Use borders and surface contrast for structure. Reserve shadows for the hero demo and use focus rings only to communicate interaction.
 
 ## Shapes
 
-The form language is mostly square: a 0.25rem corner radius for controls, links, and disclosure panels, with a 0.75rem radius reserved for the guided demo. Frames are crisp 2px or 4px strokes. Do not soften the panels into generic rounded cards. `pages/site.css:39-41` `pages/site.css:339-349` `pages/site.css:393-399`
+The form language is mostly square: a 0.25rem corner radius for controls, links, and disclosure panels, with a 0.75rem radius reserved for the guided demo. Frames are crisp 2px or 4px strokes. Do not soften the panels into generic rounded cards. `pages/site.css:39-41` `pages/site.css:349-359` `pages/site.css:403-409`
 
 ## Components
 
@@ -212,7 +212,7 @@ The actual app's Library and reading view run inside a scripts-only sandbox with
 ### Do:
 - **Do** keep purple as the dominant accent and use blue and red to orient readers.
 - **Do** preserve visible borders, crisp panel geometry, and generous separation between sections.
-- **Do** keep the reduced-motion, dark-mode, forced-color, and keyboard-focus treatments intact. `pages/site.css:45-62` `pages/site.css:120-122` `pages/site.css:1656-1690` `pages/site.css:1695-1739`
+- **Do** keep the reduced-motion, dark-mode, forced-color, and keyboard-focus treatments intact. `pages/site.css:45-62` `pages/site.css:120-122` `pages/site.css:1679-1713` `pages/site.css:1718-1762`
 
 ### Don't:
 - **Don't** use rounded-card grids as the default page structure.
