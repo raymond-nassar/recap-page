@@ -16211,10 +16211,17 @@ const SCENARIOS = [
             const image = document.querySelector('.site-name img');
             return image?.complete && image.naturalWidth === 1000 && image.currentSrc.endsWith(`/assets/${name}`);
           }, {}, file);
+          // Hosted diagnostic 44436509980 failed the dark Home row with the image already switched,
+          // so the body color is read on the frame a reader sees, as the focus rows are.
+          await nextFrames();
+          const wordmark = await page.$eval('.site-name img', (image) => ({
+            src: image.currentSrc,
+            background: getComputedStyle(document.body).backgroundColor,
+          }));
           t.check(`${label} selects the fixed ${theme}-surface wordmark`,
-            await page.$eval('.site-name img', (image, name) => image.currentSrc.endsWith(`/assets/${name}`)
-              && getComputedStyle(document.body).backgroundColor === (name === 'wordmark.svg'
-                ? 'rgb(251, 249, 255)' : 'rgb(21, 17, 28)'), file));
+            wordmark.src.endsWith(`/assets/${file}`)
+              && wordmark.background === (file === 'wordmark.svg' ? 'rgb(251, 249, 255)' : 'rgb(21, 17, 28)'),
+            JSON.stringify(wordmark));
         }
         await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: '' }]);
       };

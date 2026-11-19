@@ -243,6 +243,16 @@ button:disabled {
   border-radius: var(--radius-1);
 }
 
+/* Approved by the owner on 2026-11-18: the document pages' menu links are 44 pixels in each direction
+   at every width, as before the redesign; the home menu gets the same on phones below. */
+.masthead > .shell:not(.masthead-inner) .section-nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+}
+
 .opening {
   position: relative;
   isolation: isolate;
@@ -901,7 +911,12 @@ h1 {
   font-size: 0.875rem;
 }
 
+/* Approved by the owner on 2026-11-18 to return to the pre-redesign target sizes; at text height these
+   measured 22.39 pixels tall. */
 .platform-spread article > a:not(.button) {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.5rem;
   font-size: 0.875rem;
   font-weight: 750;
 }
@@ -1582,7 +1597,15 @@ body.document-page {
     gap: var(--space-1) var(--space-2);
   }
 
+  /* The owner chose on 2026-11-18 to make the phone menu links 44 pixels tall again; at text height
+     they measured 19 pixels locally and 20 on the hosted runner. The width floor keeps the shortest
+     link, at 34 pixels, a full target too. */
   .section-nav a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
     font-size: 0.875rem;
   }
 
