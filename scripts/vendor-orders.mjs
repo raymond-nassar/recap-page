@@ -49,6 +49,7 @@ import {
   validateStorylinesChildren, chapterFile,
 } from './lib/chapter-orders.mjs';
 import { sourceCreditRevisions } from './lib/source-credit-revisions.mjs';
+import { digestCanonicalJson } from './lib/cbh-inventory.mjs';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const API = 'https://marvel.emreparker.com/v1';
 const MANIFEST = join(ROOT, 'src', 'data', 'curated-lists.json');
@@ -124,6 +125,40 @@ async function loadAllOwnerMappings() {
     mappings.push({ listId: name.slice(0, -'.json'.length), rows: mapping.rows ?? [] });
   }
   return mappings;
+}
+
+async function loadDateCorrections(order, entries) {
+  let ledger;
+  try {
+    ledger = JSON.parse(await readFile(join(SCRIPT_DATA_DIR, 'curated-source-ledgers', `${order.id}.json`), 'utf8'));
+  } catch (error) {
+    if (error.code === 'ENOENT') return new Map();
+    throw error;
+  }
+  const corrections = ledger.source?.dateCorrections;
+  if (corrections === undefined) return new Map();
+  const factualLedger = { ...ledger };
+  delete factualLedger.ledgerDigest;
+  delete factualLedger.relationshipReview;
+  if (ledger.id !== order.id || ledger.ledgerDigest !== digestCanonicalJson(factualLedger) || !Array.isArray(corrections)) {
+    throw new Error(`Invalid date correction ledger for ${order.id}`);
+  }
+  const dateIsValid = (date) => typeof date === 'string' && /^\d{4}-\d{2}-\d{2}$/u.test(date)
+    && Number.isFinite(Date.parse(date)) && new Date(date).toISOString().slice(0, 10) === date;
+  const result = new Map();
+  for (const correction of corrections) {
+    const { issueId, providerDate, correctedDate, wikiUrl, independentSource } = correction;
+    if (!Number.isSafeInteger(issueId) || issueId <= 0 || result.has(issueId)
+      || !dateIsValid(providerDate) || !dateIsValid(correctedDate) || providerDate === correctedDate
+      || !/^https:\/\/[^ ]+\?oldid=\d+$/u.test(wikiUrl ?? '')
+      || !/^https:\/\/[^ ]+$/u.test(independentSource ?? '')
+      || !entries.some((entry) => entry.issueId === issueId
+        && entry.identityEvidenceKind !== 'owner-confirmed-identity')) {
+      throw new Error(`Invalid date correction for ${order.id}, issue ${issueId}`);
+    }
+    result.set(issueId, correction);
+  }
+  return result;
 }
 
 async function loadPartitionLedgers(orders) {
@@ -589,6 +624,7 @@ async function main() {
     let missingDigital = 0;
     let missingCover = 0;
     const { supplements, ownMappedIds } = await loadOwnerSupplements(order);
+    const dateCorrections = await loadDateCorrections(order, entries);
     const borrowed = [];
     // The licence list, not a flag in the order, decides which payloads may hold share-alike details,
     // so the data and the LICENSE paragraph that carves it out cannot drift apart.
@@ -611,6 +647,11 @@ async function main() {
       const metadataTitle = cleanText(d.title ?? e.title);
       const metadataNumber = parseIssueNumber(metadataTitle);
       const checklistNumber = parseIssueNumber(e.title);
+      const correction = dateCorrections.get(e.issueId);
+      if (correction && ![correction.providerDate, correction.correctedDate]
+        .includes(typeof d.onSaleDate === 'string' ? d.onSaleDate.slice(0, 10) : null)) {
+        throw new Error(`Unexpected provider date for ${order.id}, issue ${e.issueId}`);
+      }
       return {
         at: e.index,
         item: {
@@ -624,7 +665,8 @@ async function main() {
           url: d.detailUrl ?? e.url,
           seriesId: d.seriesId ?? null,
           seriesName: d.seriesName == null ? null : cleanText(d.seriesName),
-          onSale: supplement ? supplement.onSale : (d.onSaleDate ?? null),
+          onSale: correction ? `${correction.correctedDate}T00:00:00+0000`
+            : (supplement ? supplement.onSale : (d.onSaleDate ?? null)),
           mu: d.unlimitedDate ?? null,
           digitalId: d.digitalId ?? null,
           cover,
