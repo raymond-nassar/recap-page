@@ -97,8 +97,8 @@ export const currentReadingCensus = Object.freeze({
   mcu: baseline.mcuEntries.length + mcuContracts.length - 1,
   // Retained internal classification, not a browse screen; includes the four CBRO additions.
   storylines: 50 + curatedNewcomerCount,
-  modernTimeline: 148 + registeredEventContracts.length + curatedEventCount,
-  modernTimelineStories: 144 + registeredEventContracts.length + curatedEventCount,
+  modernTimeline: 148 + registeredEventContracts.length + curatedEventCount - 1,
+  modernTimelineStories: 144 + registeredEventContracts.length + curatedEventCount - 1,
   complete: baseline.payloadCounts.complete + addedRows - addedPlaceholderRows + spiderManSelectionItemDelta
     + amazingSpiderManSupplementDelta + wolverineCorrectionItemDelta + thorCorrectionItemDelta
     + ultimateSelectionDelta - ultimateSelectionEmptyDelta + xmenFirstClassDelta + ultimateIntroCorrectionDelta - 2
