@@ -175,9 +175,9 @@ test('Miles Morales best-of classifies its relationships against the full curren
   assert.equal(report.candidateCount, 84);
   assert.equal(report.comparisonCount, catalog.lists.length - 1);
   assert.equal(report.comparisons.filter((entry) => entry.relationship === 'candidate-subset').length, 1);
-  assert.equal(report.comparisons.filter((entry) => entry.relationship === 'partial').length, 14);
+  assert.equal(report.comparisons.filter((entry) => entry.relationship === 'partial').length, 16);
   assert.equal(report.comparisons.filter((entry) => entry.relationship === 'none').length,
-    report.comparisonCount - 15);
+    report.comparisonCount - 17);
   assert.equal(report.comparisons.filter((entry) => entry.relationship === 'exact').length, 0);
   assert.equal(report.comparisons.filter((entry) => entry.relationship === 'existing-subset').length, 0);
   assert.deepEqual(report.comparisons.map((entry) => entry.orderId),
@@ -188,11 +188,13 @@ test('Miles Morales best-of classifies its relationships against the full curren
     .map((entry) => [entry.orderId, entry.relationship]), [
     ['amazing-spider-man-reading-order-modern-marvel-era', 'partial'],
     ['avengers-doomsday-secret-wars', 'partial'],
+    ['dan-slott-reading-list', 'partial'],
     ['doctor-doom-primer', 'partial'],
     ['doctor-octopus-otto-octavius-reading-order', 'partial'],
     ['donny-cates-marvel-universe-reading-order-2017', 'partial'],
     ['hickman-full', 'partial'],
     ['hickman-minimal', 'partial'],
+    ['jed-mackay-reading-list', 'partial'],
     ['miles-morales-spider-man-reading-order', 'candidate-subset'],
     ['namor-sub-mariner-reading-order', 'partial'],
     ['spider-gwen-reading-order', 'partial'],
@@ -209,4 +211,8 @@ test('Miles Morales best-of classifies its relationships against the full curren
   assert.equal(broadMilesGuide.relationship, 'candidate-subset');
   assert.equal(broadMilesGuide.sharedCount, 84);
   assert.deepEqual(broadMilesGuide.sharedIds, expected.map((item) => String(item.issueId)));
+  const sharedWith = (orderId) => report.comparisons.find((entry) => entry.orderId === orderId).sharedIds;
+  assert.deepEqual(sharedWith('jed-mackay-reading-list'), ['53336']);
+  assert.deepEqual(sharedWith('dan-slott-reading-list'),
+    ['45806', '45807', '45808', '45809', '45810', '45811', '50350', '51320', '51324']);
 });
