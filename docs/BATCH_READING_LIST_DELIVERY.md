@@ -310,6 +310,10 @@ exactly one source order (`scripts/vendor-orders.mjs:473-494`). Live `--only=id1
 multiple orders and share metadata requests, but is not a multi-ID offline mode. Do not refresh
 approved metadata silently. Prefer the serial path for varying providers and overlapping lists.
 
+After the final catalog rebuild, run the required offline
+[comic reading-link refresh](MAINTAINING.md#refresh-comic-reading-links) once for the combined batch.
+Record exact matches and unresolved additions; a missing exact link never blocks list publication.
+
 ## Validate the combined candidate
 
 Plan a bounded matrix before edits. Name the exact selected IDs and independent expected vectors,

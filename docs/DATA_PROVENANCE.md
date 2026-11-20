@@ -4063,7 +4063,8 @@ the excluded list, and any number two comics would share. None of those refusals
 input, and its tests prove each one on rows written for this project.
 
 **What ships.** `scripts/data/marvel-comics-app-links/links.json` keeps every link with its
-basis and the source pages it came from. `src/data/marvelComicsAppLinks.js` is generated from
+basis and source evidence: page references for these links, or the named offline source for the
+later export below. `src/data/marvelComicsAppLinks.js` is generated from
 it as comic and number pairs. The app reads the pairs synchronously, so Read never waits on a lookup
 before opening a tab (constraint 7). Nothing is fetched at run time and nothing is uploaded
 (constraint 3). A link only says where a comic can be opened. It never sets or changes the
@@ -4077,10 +4078,12 @@ issues address) and the site's (a viewer address) open the same comic. The site'
 to the reading screen, so the owner chose the site's links "for now". On 2026-11-18 the owner hand-checked
 a 20-link sample of one-year-apart links, and all 20 opened the same comic.
 
-**Credit.** Every list holding at least one of these comics carries, on its page and in its preview,
-"Marvel Comics app links from Comic Book Reading Orders, used with permission." That credit links to
-the event timeline. The wording is the owner's choice: on 2026-11-17 the owner kept "used with
-permission" against the coordinator's suggestion to wait for the site to confirm it.
+**Credit.** The earlier delivery put "Marvel Comics app links from Comic Book Reading Orders, used
+with permission." on each linked list and its preview, pointing to the event timeline. On
+2026-11-17 the owner kept "used with permission" against the coordinator's suggestion to wait for
+the site to confirm it. This link-data update leaves reader-visible credit text unchanged.
+The later export's contributor is recorded separately below; moving link credits into About is
+separate UX work, not part of this update.
 
 **Where Read goes.** A comic with a link opens in the Marvel Comics app, from today. A comic without
 one keeps what it did before: Marvel Unlimited until December 7, 2026, then the Marvel Comics website.
@@ -4123,9 +4126,92 @@ Viewer links remain the first choice. A listed issue number uses the new address
 for Read and the Marvel Comics app choice in Reading options. The launcher
 requires the number to name the same comic as its issue reference. Comics outside
 the approved set retain their existing behavior, and availability records and
-saved data are unchanged. The existing credit still names only links collected
-from the site; any credit change and revised release-note total await the owner.
+saved data are unchanged. At that delivery, the existing credit named only links collected
+from the site; a credit change and revised release-note total awaited the owner.
 
 No public lifetime guarantee for this route was found. The team's statement and
 the owner's checks are evidence of current behavior, not a promise that a comic
 is available or that the route will survive the Marvel Unlimited closure.
+
+### Marvel Comics app links from the Continuity Guide Discord export
+
+On 19 November 2026 the owner supplied a private export and described its credit, method,
+hand-check and retention instructions:
+
+> credit for these new set of links goes to user werhsdnas from the Continuity Guide discord server. They used the issue ID replacement method to go through all of the old urls in the emreparker API and replaced them with the new ones from WEBTOON. I've already done a handcheck of \~40 issues for a good sample size and they all seem to work. Keep the file privately out of the repo.
+>
+> You can build the implementation work, just not submit PRs until 4:30 pm.
+
+This is the owner's report of the contributor's collection method, not a claim that the project
+collected the links itself. This project made no request to Marvel, the Marvel Comics app or
+WEBTOON. Matching and generation used the private file offline; the file and its unmatched rows
+are not committed. The file's SHA-256 is
+`0477bb37c1e18906738c626340efd5f75e517db43b679852fc9c4fa86881a48a`.
+Its 36,985 data rows have 36,985 distinct app numbers, no duplicate numbers and no malformed rows.
+Every address is exactly the viewer address for its row's app number.
+
+**Selection.** The earlier title, issue-number and on-sale-year matcher was reused without new
+aliases or inferred identities. Before consistency checks, 17,065 rows matched exactly, 13 needed
+the one-year-apart rule, 30 were otherwise ambiguous and 19,877 were unmatched. Of the unmatched
+rows, 17,440 had no matching series and issue number, and 2,437 differed in year. These are row
+counts, not proof that every unmatched row represents a comic absent from the catalog.
+Thirty comics received several exact app numbers, covering 63 conflicting rows. They were left
+unchanged. The remaining 17,002 exact selections are recorded with source
+`continuity-guide-discord-2026-11-19` and basis `exact` in the committed link input.
+
+The earlier one-year-apart approval does not extend to this source. Twelve of its 13 shifted rows
+also have an exact match; the other, Hulk Annual (1999) #1, would point to viewer 31261, dated
+November 2000 in the file. It keeps its existing Marvel issue-number fallback instead.
+Other ambiguous and unmatched rows also change nothing.
+
+**Result.** Of the 17,002 selections, 12,732 agree with an existing viewer link, eight correct an
+existing number and 4,262 replace a Marvel issue-number fallback. The latter comprise 1,614 comics
+from the earlier recorded-Marvel-Unlimited group and 2,648 from its other group. No previously
+unlinked comic gains a link. Another 403 earlier Comic Book Reading Orders selections remain,
+with their page evidence retained. The combined table has 17,405 viewer links: 17,375 exact and
+30 from the earlier one-year-apart approval. The frozen fallback set shrinks to 1,781, leaving
+19,186 comics linked in total. Sub-Mariner Comics (1941) #10 remains excluded.
+
+The eight corrections are recorded explicitly for comparison:
+
+| Comic | Earlier viewer number | Export viewer number |
+|---|---:|---:|
+| New Avengers: Illuminati (2006) #1 | 27241 | 2426 |
+| Fantastic Four (2012) #5 | 16759 | 16761 |
+| Secret Avengers (2014) #11 | 17183 | 17757 |
+| Avengers (2016) #1.1 | 28623 | 28610 |
+| Nova (2016) #1 | 27554 | 28774 |
+| Star-Lord (2016) #1 | 27719 | 28831 |
+| X-Force (2019) #1 | 30314 | 32044 |
+| X-Men Annual (2023) #1 | 34824 | 23424 |
+
+Uncanny Avengers (2015) #2 and #3, X-Force (2019) #2 through #4, and Punisher Kills the Marvel
+Universe (1995) #1 raised additional identity or date questions in the offline comparison.
+They remain unchanged, not silently corrected. The first five are among the 30 conflicting
+comics; the last has no selected exact replacement.
+
+**Reproduction and limits.** The input records the contributor, owner-reported method, receipt
+date, file digest and row count under the source identity, not a fabricated source page.
+The generator's `--import <matches.json>` merges an offline match file bearing that source
+identity into the existing selections. It accepts exact matches only for this source and retains
+the original page and permission checks for Comic Book Reading Orders. Invalid viewer addresses,
+unknown sources, conflicts and shared viewer numbers remain refused or excluded; a collision
+between a new selection and a retained comic refuses the combined input. Regenerating the
+fallback set uses its existing approved groups, recorded date and exclusions, less comics now
+holding viewer links. `--check` reproduces both bundled modules from the committed inputs without
+the private export.
+
+The source is credited to werhsdnas of the Continuity Guide Discord server. The owner's reported
+hand-check establishes that about 40 links worked for them; it is not an individual check of the
+eight corrections or a promise of availability. Saved data, backups, availability states and the
+reader-launch mechanism are unchanged by this link-table update.
+
+Later reading-list deliveries repeat the same offline matching with
+`--import <private-export.csv> --new-catalog`, after rebuilding the catalog, as described in
+[the maintainer workflow](MAINTAINING.md#refresh-comic-reading-links). The command verifies this
+file's pinned SHA-256, applies the original exact title, issue-number and on-sale-year rules
+against the entire catalog, and imports only newly added identities. It preserves all earlier
+viewer selections, approved fallback numbers and exclusions. New comics without a unique exact
+match stay without a new app link and are recorded separately from approved fallbacks, so a catalog
+addition cannot silently acquire an unapproved Marvel issue-number address. Repeating the command
+does not copy the CSV or its unmatched source rows into the repository.
