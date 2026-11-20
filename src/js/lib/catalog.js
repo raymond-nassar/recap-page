@@ -243,7 +243,8 @@ function normalizeEntry(raw) {
     ...copyUniverseListFields(raw),
     storyTypes: knownTags(raw.storyTypes, STORY_TYPES, MAX_STORY_TYPES),
     tones: knownTags(raw.tones, STORY_TONES, MAX_STORY_TONES),
-    writers: strings(raw.writers).slice(0, 3),
+    writers: strings(raw.writers).slice(0, 3)
+      .map((name) => name === "Mike O'sullivan" ? "Mike O'Sullivan" : name),
     contains: strings(raw.contains),
     characters: strings(raw.characters),
     keywords: strings(raw.keywords),
@@ -1390,6 +1391,16 @@ export const HOME_CATEGORIES = [
     count: universeDefinitions.length,
     singular: 'universe',
     plural: 'universes',
+  },
+  {
+    key: 'creators',
+    route: 'creators',
+    heading: 'Creators',
+    label: 'Browse by creator',
+    icon: 'creator',
+    tier: 'secondary',
+    kind: 'creator-index',
+    select: typeCategory('creator-run'),
   },
 ];
 

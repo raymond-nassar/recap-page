@@ -176,15 +176,18 @@ export const categoryWashContrast = {
   title: 'no category tile\'s hover wash takes its eyebrow or count below 4.5:1',
   async run(page, t) {
     const text = TILE_PARTS.filter(([part]) => part !== 'icon');
-    for (const [width, root] of [[1280, 100], [760, 100], [620, 100], [390, 100], [1280, 200], [760, 200], [390, 200]]) {
+    for (const [width, root] of [[1280, 100], [760, 100], [620, 100], [390, 100], [1280, 200], [760, 200], [390, 200], [1440, 100], [1024, 100]]) {
       await open(page, { width, root });
-      for (const [view, selector] of VIEWS) {
+      const compactDesktop = width === 1440 || width === 1024;
+      for (const [view, selector] of compactDesktop ? VIEWS.slice(0, 1) : VIEWS) {
         await show(page, view, selector);
         for (const name of ['dark', 'light']) {
           await theme(page, name);
-          const rows = await tileContrast(page, selector, { hover: true, parts: text });
+          const rows = await tileContrast(page, selector, {
+            hover: true, parts: compactDesktop ? [...TILE_PARTS, ['title', '.home-path-title', 4.5]] : text,
+          });
           const low = rows.filter((row) => row.ratio < row.floor || !row.pointed);
-          t.check(`${view} ${name} ${width}px at ${root}% text: every eyebrow and count clears 4.5:1 on the hover wash`,
+          t.check(`${view} ${name} ${width}px at ${root}% text: ${compactDesktop ? 'all card text and icons clear their contrast floors' : 'every eyebrow and count clears 4.5:1'} on the hover wash`,
             rows.length > 0 && low.length === 0,
             JSON.stringify(low.map(({ key, part, ratio, background, pointed }) => [key, part, Number(ratio.toFixed(2)), background, pointed])));
         }

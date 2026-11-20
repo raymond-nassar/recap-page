@@ -17,14 +17,14 @@ import {
   toggleRead,
   upNext,
   coverUrl,
-  isDeferred, setDeferred, queuedIssueIds, listReadingProgress,
+  isDeferred, setDeferred, queuedIssueIds, listReadingProgress, issueRating,
   OWNER_EXTERNAL_SUPPLEMENT, OWNER_GCD_SUPPLEMENT,
 } from '../lib/model.js';
 import { availability, describe, localDayString, RECORD_HEADING, RECORD_NOTE, STATE } from '../lib/availability.js';
 import { readerAction, readerName } from '../lib/readerDestination.js';
-import { appLinkFor, appViewerFor } from '../lib/marvelComicsApp.js';
+import { appLinkFor } from '../lib/marvelComicsApp.js';
 import { savedReaderIssue } from '../lib/temporaryReaderLink.js';
-import { labelledName } from '../lib/accname.js';
+import { labelledName, shownName } from '../lib/accname.js';
 import { isPlainNavigation } from '../lib/route.js';
 import { issuePresentation } from '../lib/issueFocus.js';
 import { DEFAULT_FILTER, READING_FILTERS, matchesReadingFilter } from '../lib/readingFilters.js';
@@ -36,7 +36,7 @@ import { uiIcon } from '../lib/uiIcon.js';
 import { editionRelations } from '../lib/collectedEditions.js';
 import { positionProviders } from '../lib/libraryLinks.js';
 import {
-  collectedEditionCredit, collectedEditionLabels, marvelComicsAppCredit,
+  collectedEditionCredit, collectedEditionLabels,
 } from './shared/collected-editions.js';
 import { gcdDetailsCredit, hasGcdDetails } from './shared/details-credit.js';
 import { createReadingOptions, readingChoices } from './shared/reading-options.js';
@@ -160,6 +160,7 @@ export function createReadingView({
   paintCover,
   paintHeroBackground,
   preservingFocus,
+  rateIssue = () => false,
   recordDirectProgressSave,
   readerPresentation = (issue) => ({ launchable: !!issuePresentation(issue)?.launchable, temporary: false }),
   renderSaveEducation,
@@ -239,7 +240,6 @@ export function createReadingView({
     const disclosure = $('#order-desc');
     const description = $('#order-desc-text');
     const source = $('#order-source');
-    const appCredit = $('#order-app-link-credit');
     const visit = $('#order-visit');
     const showVisit = (button) => {
       visit.replaceChildren(...(button ? [button] : []));
@@ -248,12 +248,6 @@ export function createReadingView({
     const changed = aboutListId !== list?.id || aboutCatalogId !== list?.catalogId;
     description.textContent = list?.description || '';
     description.hidden = !list?.description;
-    const hasAppCredit = Boolean(list?.itemIds?.some((issueId) => appViewerFor(issueId)));
-    if (hasAppCredit && !appCredit.firstChild) appCredit.replaceChildren(marvelComicsAppCredit(el));
-    const creditHadFocus = !hasAppCredit && appCredit.contains(document.activeElement);
-    if (!hasAppCredit && appCredit.firstChild) {
-      appCredit.replaceChildren();
-    }
     if (changed) {
       aboutListId = list?.id ?? null;
       aboutCatalogId = list?.catalogId ?? null;
@@ -265,12 +259,7 @@ export function createReadingView({
     }
     if (typeof open === 'boolean') disclosure.open = open;
     else if (changed || arrival) disclosure.open = true;
-    disclosure.hidden = !list?.description && !aboutHasSource && !hasAppCredit;
-    if (creditHadFocus) {
-      const target = disclosure.hidden ? $('#order-name') : disclosure.querySelector('summary');
-      if (disclosure.hidden) target.setAttribute('tabindex', '-1');
-      target.focus({ preventScroll: true });
-    }
+    disclosure.hidden = !list?.description && !aboutHasSource;
     if (!list?.catalogId || !loadCatalog || (!changed && !arrival)) return;
     if (aboutRequest?.pending) return;
 
@@ -312,8 +301,7 @@ export function createReadingView({
       source.replaceChildren(...content);
       showVisit(visitButton(el, entry, createIcon));
       aboutHasSource = content.length > 0;
-      disclosure.hidden = !getState().lists[list.id]?.description && !aboutHasSource
-        && !getState().lists[list.id]?.itemIds?.some((issueId) => appViewerFor(issueId));
+      disclosure.hidden = !getState().lists[list.id]?.description && !aboutHasSource;
       // Retry asked for the source, so focus lands on the button that now leads to it.
       if (held) visit.querySelector('a').focus();
     }
@@ -992,7 +980,8 @@ export function createReadingView({
           }
         }
 
-        const rowKey = rowCacheKey(item, currentId, today, getSettings().covers);
+        const rating = issueRating(getState(), item.issueId);
+        const rowKey = `${rowCacheKey(item, currentId, today, getSettings().covers)}|${rating}|${isStateBlocked()}`;
         const readerKey = JSON.stringify(readerPresentation(item, 'saved'));
         const entry = rowCache.get(item.issueId);
         const cached = entry?.readerKey === readerKey && entry.catalogId === list.catalogId ? entry : null;
@@ -1068,6 +1057,7 @@ export function createReadingView({
               dataset: { key: item.issueId, act: 'note' },
               onclick: () => editIssueNote(item),
             }, item.note ? item.note : 'Add a note'),
+            rateButton(item, rating),
           ]),
           issueRowActions(item, id, expanded, optionsExpanded),
         ]);
@@ -1344,6 +1334,25 @@ export function createReadingView({
     const head = section ? rowCache.get(`heading:${section.index}`)?.node : null;
     if (head?.classList.contains('is-done')) playMilestone(head.querySelector('.rg-done'));
     if (list) playMilestone($('#list-wrap-up-cheer'));
+  }
+
+  // Rating from the list (owner, 19 Nov 2026: "It's not intuitive to know that I would have to go into
+  // the comic's details to find out more and rate the comic"). The same dialog as the details page,
+  // with the same words; focus comes back to this row's button, which saving redraws.
+  function rateButton(item, rating) {
+    const label = rating === null ? 'Rate this comic' : `Your rating: ${rating}/5`;
+    const control = () => [...document.querySelectorAll('#rows [data-act="rate"]')]
+      .find((node) => node.dataset.key === String(item.issueId)) ?? null;
+    return el('button', {
+      type: 'button',
+      class: `rrate${rating === null ? '' : ' is-rated'}`,
+      'aria-label': rating === null ? labelledName(label, item.title) : shownName([label], `Edit rating for ${item.title}`),
+      dataset: { key: item.issueId, act: 'rate' },
+      // The same withdrawal as the details page's button: no rating can be saved while saved
+      // reading data cannot be read.
+      disabled: isStateBlocked(),
+      onclick: () => rateIssue(item, { focusTarget: control }),
+    }, [el('span', { 'aria-hidden': 'true', text: rating === null ? '☆' : '★' }), label]);
   }
 
   async function editIssueNote(item, isCurrent = () => true) {
