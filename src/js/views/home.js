@@ -210,7 +210,9 @@ export function createHomeView({
         if (currentGeneration !== generation) return;
         catalog = loaded;
       } catch (error) {
-        if (currentGeneration === generation) renderCategories(nodes, categoriesForCatalog({ lists: [] }));
+        if (currentGeneration === generation) {
+          renderCategories(nodes, categoriesForCatalog({ lists: [] }));
+        }
         await onCatalogLoadFailure({
           error,
           isCurrent: () => currentGeneration === generation && !elements().home.hidden,

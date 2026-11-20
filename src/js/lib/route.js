@@ -16,7 +16,8 @@ import { DEFAULT_UNIVERSE_SORT, UNIVERSE_SORTS } from './universes.js';
 
 const PUBLISHING_ROUTES = new Set(PUBLISHING_CATEGORIES.map((category) => category.route));
 const CUSTOM_CATEGORY_ROUTES = ROUTED_CATEGORIES
-  .filter((category) => !category.shelf && category.kind !== 'universe-index' && !PUBLISHING_ROUTES.has(category.route))
+  .filter((category) => !category.shelf && !['universe-index', 'creator-index'].includes(category.kind)
+    && !PUBLISHING_ROUTES.has(category.route))
   .map((category) => category.route);
 
 // Every section the app can reach. This lives here rather than in main.js so that one list backs
@@ -25,7 +26,7 @@ const CUSTOM_CATEGORY_ROUTES = ROUTED_CATEGORIES
 export const ADD_VIEWS = ['add-search', 'add-series', 'add-creator', 'add-import', 'add-manual'];
 export const VIEWS = [
   'home', 'read', 'issue', 'library', 'add', 'catalog', 'young-readers', 'spotlights', 'progress',
-  'universes', 'universe',
+  'universes', 'universe', 'creators',
   ...PUBLISHING_CATEGORIES.map((category) => category.route),
   ...CUSTOM_CATEGORY_ROUTES,
   ...ADD_VIEWS,
@@ -305,6 +306,7 @@ export function formatRoute({
   if (canonical === 'universe') {
     return typeof universeId === 'string' && PATH_TOKEN.test(universeId) ? `${PREFIX}universe/${universeId}` : '';
   }
+  if (canonical === 'creators') return `${PREFIX}creators`;
   if (canonical === 'universes') {
     const query = new URLSearchParams();
     const text = ratedText(universeQuery);
@@ -396,6 +398,7 @@ export function parseRoute(hash) {
     if (parts.length !== 2 || !PATH_TOKEN.test(listId ?? '')) return null;
     return { view, universeId: listId };
   }
+  if (view === 'creators') return parts.length === 1 ? { view } : null;
   if (view === 'universes') {
     if (parts.length !== 1) return null;
     const params = new URLSearchParams(search);

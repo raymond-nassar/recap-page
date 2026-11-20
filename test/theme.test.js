@@ -481,7 +481,7 @@ test('the category cards on Home take different hues in every theme', () => {
     const bAxis = 0.0259040371 * l + 0.7827717662 * m - 0.8086757660 * s;
     return (Math.atan2(bAxis, a) * 180 / Math.PI + 360) % 360;
   };
-  assert.equal(HOME_CATEGORIES.length, 7);
+  assert.equal(HOME_CATEGORIES.length, 8);
   for (const selector of [DARK, LIGHT_ATTR, LIGHT_MEDIA]) {
     const tokens = tokensIn(css, selector);
     const cards = HOME_CATEGORIES.map(({ key }) => {
