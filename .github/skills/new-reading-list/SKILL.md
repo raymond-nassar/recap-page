@@ -18,8 +18,8 @@ request is a single owner guide or a batch, its intended surface, and the actual
 |---|---|
 | Owner-authored Markdown for an MCU Prep guide or an owner's young readers pick | [Owner Markdown delivery](../../../docs/READING_LIST_DELIVERY.md), the single-guide route. `docs/READING_LIST_DELIVERY.md:5-8` |
 | Multiple supplied lists in one agreed delivery | [Batch delivery](../../../docs/BATCH_READING_LIST_DELIVERY.md), which keeps list identities and source order separate. `docs/BATCH_READING_LIST_DELIVERY.md:1-3` |
-| Actual Comic Book Herald source | [Comic Book Herald packet](../../../docs/MAINTAINING.md#build-a-comic-book-herald-packet). `docs/MAINTAINING.md:577` |
-| Actual Comic Book Reading Orders source within a known historical release | [Historical Comic Book Reading Orders packet](../../../docs/MAINTAINING.md#build-a-comic-book-reading-orders-historical-event-packet). `docs/MAINTAINING.md:754` |
+| Actual Comic Book Herald source | [Comic Book Herald packet](../../../docs/MAINTAINING.md#build-a-comic-book-herald-packet). `docs/MAINTAINING.md:580` |
+| Actual Comic Book Reading Orders source within a known historical release | [Historical Comic Book Reading Orders packet](../../../docs/MAINTAINING.md#build-a-comic-book-reading-orders-historical-event-packet). `docs/MAINTAINING.md:757` |
 | Local curated source or another factual compilation | [Curated reading order](../../../docs/MAINTAINING.md#add-a-curated-reading-order). `docs/MAINTAINING.md:464` |
 
 Use the batch procedure only when several supplied lists are in one agreed delivery. A batch that
@@ -33,6 +33,7 @@ attribution or force an ambiguous request into a route. `docs/BATCH_READING_LIST
 
 ## Preserve the source while preparing delivery
 
+- After the final catalog rebuild, run the required [offline comic reading-link refresh](../../../docs/MAINTAINING.md#refresh-comic-reading-links); keep unmatched comics unlinked rather than inventing links.
 - Keep every source position, exact issue identity, source order, repeat, omission, and provenance
   explicit. Do not guess, substitute, or silently drop a row. `docs/READING_LIST_DELIVERY.md:102-112`
 - Publish exactly resolved rows when metadata is missing. Preserve each gap and failed lookup in
@@ -47,7 +48,7 @@ attribution or force an ambiguous request into a route. `docs/BATCH_READING_LIST
 - Propose a Universe placement from the list's own source, with evidence, and ask the owner only
   when it is unclear. An open placement question never blocks publication.
   [Universe placement](../../../docs/MAINTAINING.md#place-a-new-reading-list-in-a-universe).
-  `docs/MAINTAINING.md:1906`
+  `docs/MAINTAINING.md:1909`
 
 ## Completion
 

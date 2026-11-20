@@ -473,6 +473,9 @@ Vendoring fetches an order once for review and commit. The app reads that file i
 it from the metadata API during use. The command fills issue details, writes the order under
 `src/data`, and rebuilds `src/data/catalog.json`.
 
+After rebuilding the catalog, [refresh the comic reading links](#refresh-comic-reading-links)
+before delivery, including for a list whose comics were already in the catalog.
+
 Use exactly one source: `sourceUrl` fetches an upstream HTTPS checklist; `sourceFile` reads one
 committed under `src/data/orders`. Keep the `id` stable and unique. Provide a reader-facing name
 and description, order type and depth, discovery tags, source credit and license, and an expected
@@ -1927,3 +1930,43 @@ metadata provider has no reality data, so the placement comes from the list's ow
 
 Report the outcome in the delivery: the placement and its evidence, no association, or the open
 question for the owner.
+
+## Refresh comic reading links
+
+Every new reading list uses the shared Marvel Comics app link table, not addresses embedded in
+the list. After the route's final vendoring or catalog-only rebuild, run this offline step once
+for the combined catalog, before final checks. This applies to curated, owner-authored and batch
+deliveries, including Comic Book Herald and Comic Book Reading Orders lists.
+
+Use the owner's private `issues_export.csv` from outside the repository. Set `$exportPath` to its
+actual private location, then run in PowerShell:
+
+```powershell
+node scripts/marvel-comics-app-links.mjs --import "$exportPath" --new-catalog
+if ($LASTEXITCODE -ne 0) { throw 'Offline comic link matching failed.' }
+node scripts/marvel-comics-app-links.mjs
+if ($LASTEXITCODE -ne 0) { throw 'Comic link generation failed.' }
+node scripts/marvel-comics-app-links.mjs --check
+if ($LASTEXITCODE -ne 0) { throw 'Comic link tables are stale.' }
+node --test test/marvel-comics-app-links.test.js
+```
+
+The import verifies the file against the approved SHA-256 before matching. It uses the original
+series-title, issue-number and on-sale-year rules against the entire catalog, then selects only
+new catalog identities not already covered by viewer links or the frozen fallback approval and
+its exclusions. Earlier viewer links and fallback numbers are not revised. Repeated runs make
+no further changes unless the catalog or unresolved match changes.
+
+A unique exact match gets the export's viewer link. Ambiguous identities, conflicting numbers,
+year-shift matches and missing matches get no new app link. New unresolved identities are recorded
+as `unapprovedIssueIds` in the fallback input, not silently granted Marvel issue-number fallbacks.
+They retain the app's existing no-link behavior: Marvel Unlimited until December 7, 2026 where
+launchable, then the Marvel Comics website rather than a single-comic link.
+Comics already linked use their existing shared link. Missing app links alone never block publishing
+the resolved reading list; preserve the route's separate identity and metadata gap accounting.
+
+Commit changed selected inputs and generated tables with the list, but never the private CSV,
+unmatched source rows or private paths. Record matched and unresolved counts in delivery evidence.
+If the private file is unavailable, state that the refresh was not run and obtain the coordinator's
+disposition rather than claiming new comics have been matched. A different export needs a new
+source decision; do not edit the pinned fingerprint to make it pass.

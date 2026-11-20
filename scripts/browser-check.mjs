@@ -2368,7 +2368,7 @@ const SCENARIOS = [
   {
     id: 'notice-dismissal',
     title: 'Home notice dismisses locally with version, failure and keyboard safety',
-    run: (page, t) => dismissClosureNotice(page, t, { seedFixtureState, click }),
+    run: (page, t) => dismissClosureNotice(page, t, { seedFixtureState, click, savedStateDifference }),
   },
   {
     id: 'home-updates',
@@ -13192,7 +13192,8 @@ const SCENARIOS = [
         && created.listOrder.length === 2
         && created.lists[listId].name === 'Empty list 441'
         && created.lists[listId].itemIds.length === 0
-        && JSON.stringify(created.lists[original.active]) === JSON.stringify(original.lists[original.active]));
+        && JSON.stringify(created.lists[original.active]) === JSON.stringify(original.lists[original.active]),
+        stateDifference(original, created));
 
       const readingStatus = () => page.evaluate(() => ({
         empty: document.querySelector('#reading-empty')?.hidden === false,
@@ -13234,7 +13235,7 @@ const SCENARIOS = [
       t.check('rendering, Home navigation and reload do not add issues or mark progress',
         unchanged.active === listId && (await readingStatus()).empty
         && JSON.stringify(unchanged.lists) === JSON.stringify(created.lists)
-        && JSON.stringify(unchanged.read) === JSON.stringify(created.read));
+        && JSON.stringify(unchanged.read) === JSON.stringify(created.read), stateDifference(created, unchanged));
 
       await page.focus('#btn-empty-add');
       await page.keyboard.press('Enter');
@@ -13255,7 +13256,7 @@ const SCENARIOS = [
         && added.issues[ids[1]].title === 'Second manual issue 441'
         && added.listOrder.length === 2
         && JSON.stringify(added.lists[original.active]) === JSON.stringify(original.lists[original.active])
-        && JSON.stringify(added.read) === JSON.stringify(created.read));
+        && JSON.stringify(added.read) === JSON.stringify(created.read), stateDifference(created, added));
 
       await page.goBack();
       await page.waitForSelector('#view-add:not([hidden])');
@@ -13314,7 +13315,8 @@ const SCENARIOS = [
       t.check('removal and subsequent rendering preserve saved lists and global read history',
         final.active === listId && final.listOrder.length === 2 && final.lists[listId].itemIds.length === 0
         && JSON.stringify(final.read) === JSON.stringify(completedState.read)
-        && JSON.stringify(final.lists[original.active]) === JSON.stringify(original.lists[original.active]));
+        && JSON.stringify(final.lists[original.active]) === JSON.stringify(original.lists[original.active]),
+        stateDifference(original, final));
     },
   },
   {
@@ -17130,8 +17132,9 @@ SCENARIOS.push({
     });
     await click(page, '#form-manual button[type="submit"]');
     t.check('custom invalid URL uses the same associated focus contract', await fieldError('#manual-url'));
+    const afterInvalid = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
     t.check('invalid submissions and cancelled naming leave reading data byte-identical',
-      await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === before);
+      afterInvalid === before, JSON.stringify(savedStateDifference(before, afterInvalid)));
     await open(page, '/#/data');
     await page.$eval('#api-base', (input) => { input.value = 'https://'; });
     await page.$eval('#form-settings', (form) => form.requestSubmit());
@@ -17160,12 +17163,13 @@ SCENARIOS.push({
       input.value = 'Corrected draft';
       input.dispatchEvent(new Event('input', { bubbles: true }));
     });
+    const afterCorrection = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
     t.check('builder correction clears invalid state without saving',
       await page.evaluate(() => ['search', 'series', 'creator'].every((prefix) => {
         const input = document.querySelector(`#${prefix}-list-name`);
         return input.value === 'Corrected draft' && !input.hasAttribute('aria-invalid');
       }))
-        && await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === before);
+        && afterCorrection === before, JSON.stringify(savedStateDifference(before, afterCorrection)));
   },
 }, {
   id: 'ux04-context',
@@ -17224,8 +17228,9 @@ SCENARIOS.push({
         && /Selected/.test(document.querySelector('#manual-candidates').textContent)
         && /not saved/.test(document.querySelector('#manual-candidates').textContent)
         && document.querySelector('#manual-title').value === 'Fixture Vol 7 26'));
+    const afterChoice = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
     t.check('wiki selection alone leaves reading data byte-identical',
-      await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === saved);
+      afterChoice === saved, JSON.stringify(savedStateDifference(saved, afterChoice)));
     await open(page, '/#/add-import');
     await page.evaluate(() => {
       document.querySelector('#import-text').value = '- [ ] Unresolved fixture';
@@ -17495,7 +17500,9 @@ SCENARIOS.push({
         !remove.danger && remove.focus === 'ask-cancel' && JSON.stringify(remove.order) === order,
         JSON.stringify(remove));
     }
-    t.check('declining both questions leaves every list as it was', await lists() === before);
+    const after = await lists();
+    t.check('declining both questions leaves every list as it was', after === before,
+      JSON.stringify(savedStateDifference(before, after)));
   },
 });
 
@@ -17714,8 +17721,9 @@ SCENARIOS.push({
     const stressed = await measureLayout();
     t.check('320x900: unbroken titles, series names, notes and multiple badges wrap inside the row',
       !stressed.errors.length && !stressed.overflow, JSON.stringify(stressed));
+    const afterLayout = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
     t.check('layout and targeting leave saved reading progress and list contents untouched',
-      await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === savedState);
+      afterLayout === savedState, JSON.stringify(savedStateDifference(savedState, afterLayout)));
   },
 });
 
@@ -19579,7 +19587,38 @@ function savedStateDifference(beforeRaw, afterRaw, limit = 10) {
   return found.length ? found : [{ path: 'key order or spacing only' }];
 }
 
-async function seedFixtureState(page, { sidebarCollapsed = null, openRead = false } = {}) {
+// The same, as check detail, for two states a scenario already holds parsed.
+function stateDifference(before, after) {
+  return JSON.stringify(savedStateDifference(JSON.stringify(before), JSON.stringify(after)));
+}
+
+// The fixture is an older saved state, at schema 2 with issue descriptions, so startup rewrites it
+// with one migrating save once the tab lock answers, which can land after load. A baseline read
+// before that save differs from every later read although the scenario wrote nothing (#1278).
+// Three Windows release preparations each failed a different comparison of this kind, so the
+// seeding helpers wait for that save here rather than each scenario that compares. Every save
+// writes the write token and the current schema, which the fixture lacks.
+async function settleSeededState(page) {
+  try {
+    await page.waitForFunction((version) => {
+      let saved;
+      try {
+        saved = JSON.parse(localStorage.getItem('mrt.state.v2'));
+      } catch {
+        return false;
+      }
+      return typeof saved?.writeToken === 'string' && saved.schemaVersion === version
+        && !Object.values(saved.issues ?? {}).some((issue) => issue && Object.hasOwn(issue, 'description'));
+    }, { timeout: 15000 }, SCHEMA_VERSION);
+  } catch (error) {
+    const raw = await page.evaluate(() => localStorage.getItem('mrt.state.v2')).catch(() => null);
+    throw new Error(`startup never saved the seeded reading state (${error.message}): ${String(raw).slice(0, 200)}`, { cause: error });
+  }
+}
+
+// `settle: false` keeps the seeded state unsaved on return, for a scenario that observes startup's
+// own save of it.
+async function seedFixtureState(page, { sidebarCollapsed = null, openRead = false, settle = true } = {}) {
   await open(page, '/?catalog=browser-check');
   await page.evaluate((saved, collapsed, key) => {
     localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
@@ -19596,6 +19635,7 @@ async function seedFixtureState(page, { sidebarCollapsed = null, openRead = fals
     localStorage.removeItem(key);
   }, fixtureReadingState(), sidebarCollapsed, HOME_UPDATES_SEEN_KEY);
   await page.reload({ waitUntil: 'load' });
+  if (settle) await settleSeededState(page);
   if (openRead) {
     await click(page, '#list-nav .ri');
     await page.waitForSelector('#view-read:not([hidden])', { timeout: 15000 });
@@ -24094,6 +24134,7 @@ async function seedRemovalFixture(page, saved = fixtureReadingState()) {
     localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, filter: 'all' }));
   }, saved);
   await open(page, '/#/read/fixture?full=1');
+  await settleSeededState(page);
   await page.waitForSelector('#rows .row');
 }
 
@@ -24236,7 +24277,7 @@ SCENARIOS.push(
         && !Object.hasOwn(removed.lists.fixture.collectedIn, removedId));
       t.check('removal preserves shared maps and the other list',
         ['issues', 'read', 'notes', 'overrides'].every((key) => JSON.stringify(removed[key]) === JSON.stringify(before[key]))
-        && JSON.stringify(removed.lists.other) === JSON.stringify(before.lists.other));
+        && JSON.stringify(removed.lists.other) === JSON.stringify(before.lists.other), stateDifference(before, removed));
       let focus = await removalFocus(page);
       t.check('notice publication leaves the non-destructive successor visibly focused',
         focus.visible && focus.act === 'read' && focus.key === String(ids[15]), JSON.stringify(focus));
@@ -24801,7 +24842,8 @@ SCENARIOS.push({
     t.check('removing a trigger cleans up its detached hint', await page.$eval('#action-tip', (node) => node.hidden));
     t.check('the lifecycle scenario produces no page errors', errors.length === 0, errors.join(' / '));
     const after = await readState(page);
-    t.check('hint interactions leave saved reading progress unchanged', JSON.stringify(after) === JSON.stringify(saved));
+    t.check('hint interactions leave saved reading progress unchanged', JSON.stringify(after) === JSON.stringify(saved),
+      stateDifference(saved, after));
   },
 });
 

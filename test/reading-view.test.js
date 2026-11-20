@@ -848,6 +848,7 @@ test('stale source results and failures cannot paint or focus a different list; 
   const state = seededState();
   state.lists['list-b'].catalogId = null;
   state.lists['list-b'].description = '';
+  state.lists['list-b'].itemIds = [];
   for (const fail of [false, true]) {
     let settle;
     const h = harness({ state, loadCatalog: () => new Promise((resolve, reject) => {
