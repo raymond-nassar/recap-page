@@ -4214,6 +4214,22 @@ const SCENARIOS = [
         context.secondaryHeights.length > 1
         && Math.max(...context.secondaryHeights) - Math.min(...context.secondaryHeights) <= 1,
         JSON.stringify(context.secondaryHeights));
+      for (const width of [1440, 1280, 1024, 390]) {
+        await page.setViewport({ width, height: 900 });
+        await settleLayout();
+        const cards = await page.$$eval('#home-secondary-paths .home-path', (nodes) =>
+          nodes.map((node) => {
+            const { top, width, height } = node.getBoundingClientRect();
+            return { top: Math.round(top), width, height };
+          }));
+        t.check(`${width}px: Discover More keeps five equal cards ${width > 620 ? 'on one row' : 'in one column'}`,
+          cards.length === 5 && new Set(cards.map(({ top }) => top)).size === (width > 620 ? 1 : 5)
+          && Math.max(...cards.map(({ width }) => width)) - Math.min(...cards.map(({ width }) => width)) <= 1
+          && Math.max(...cards.map(({ height }) => height)) - Math.min(...cards.map(({ height }) => height)) <= 1,
+          JSON.stringify(cards));
+      }
+      await page.setViewport({ width: 1280, height: 900 });
+      await settleLayout();
       t.check('the gateway has no standing tile paragraphs or retired catalog wall',
         JSON.stringify(context.paragraphs) === JSON.stringify({ 'view-home': 0 })
         && context.retired === 0 && context.moreHidden === false,
@@ -4289,7 +4305,7 @@ const SCENARIOS = [
       // Held at every width and text size the Issue names, on Home's one gateway, in both themes and
       // forced colors: nothing overlaps, no line leaves the card's content box, and the page never
       // scrolls sideways.
-      const emblems = (view) => page.evaluate((id) => {
+      const emblems = (view, secondaryOnly) => page.evaluate(({ id, secondaryOnly }) => {
         const box = (node) => {
           const { left, right, top, bottom, width, height } = node.getBoundingClientRect();
           return { left, right, top, bottom, width, height };
@@ -4299,7 +4315,7 @@ const SCENARIOS = [
         return {
           overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
           root: parseFloat(getComputedStyle(document.documentElement).fontSize),
-          cards: [...document.querySelectorAll(`#view-${id} [data-category-gateway] .home-path`)].map((card) => {
+          cards: [...document.querySelectorAll(`#view-${id} ${secondaryOnly ? '#home-secondary-paths' : '[data-category-gateway]'} .home-path`)].map((card) => {
             const style = getComputedStyle(card);
             const outer = box(card);
             const content = {
@@ -4336,10 +4352,12 @@ const SCENARIOS = [
             };
           }),
         };
-      }, view);
+      }, { id: view, secondaryOnly });
       const emblemClient = await page.createCDPSession();
-      for (const width of [1280, 640, 390]) {
+      for (const width of [1440, 1280, 1024, 640, 390]) {
         await page.setViewport({ width, height: 900 });
+        const secondaryOnly = width === 1440 || width === 1024;
+        const cardCount = secondaryOnly ? 5 : 8;
         for (const text of ['100%', '200%']) {
           await page.evaluate((size) => { document.documentElement.style.fontSize = size === '100%' ? '' : size; }, text);
           const failures = [];
@@ -4353,16 +4371,16 @@ const SCENARIOS = [
                 features: theme === 'forced' ? [{ name: 'forced-colors', value: 'active' }] : [],
               });
               await settleLayout();
-              const { overflow, root, cards } = await emblems(view);
+              const { overflow, root, cards } = await emblems(view, secondaryOnly);
               const scale = root / 16;
               const wrong = cards.filter((card) => !card.topRight || !card.above || !card.arrowRight
                 || card.icon.width < 40 * scale || card.icon.height < 40 * scale
                 || card.overlaps.length || card.clipped.length);
-              if (overflow || cards.length !== 8 || new Set(cards.map(({ symbol }) => symbol)).size !== 8
+              if (overflow || cards.length !== cardCount || new Set(cards.map(({ symbol }) => symbol)).size !== cardCount
                 || wrong.length) failures.push({ view, theme, overflow, root, cards: wrong.length ? wrong : cards.length });
             }
           }
-          t.check(`${width}px at ${text} text: every Home category shows a large icon at its top right, in dark, light and forced colors, with nothing overlapping, clipped or overflowing`,
+          t.check(`${width}px at ${text} text: every ${secondaryOnly ? 'Discover More' : 'Home category'} card shows a large icon at its top right, in dark, light and forced colors, with nothing overlapping, clipped or overflowing`,
             failures.length === 0, JSON.stringify(failures));
         }
       }
