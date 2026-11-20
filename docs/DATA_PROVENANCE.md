@@ -419,13 +419,13 @@ orders: **null means nobody granted anything for this file, not that the file is
 Three hundred and forty-nine pinned reading-order payloads remain under
 [`src/data/`](../src/data): 346 active visible catalog files, one active noncatalog partition parent,
 and the retired No Way Home (18 originals) and withdrawn Marvel Multiverse (2 comics) payloads. The 347 active files hold
-33,049 issue records covering 20,317 distinct tracked identities. The visible files hold 32,562 of those records;
+33,050 issue records covering 20,317 distinct tracked identities. The visible files hold 32,563 of those records;
 the extra 487 are the retained Marvel Knights to Planet X parent whose ordinary children partition
 the same vector. Records use these fields:
 `issueId`, `title`,
 `number`, `url`, `seriesId`, `seriesName`, `onSale`, `mu`, `digitalId`, `pageCount`, a `cover`
-object of `path` and `ext`, and `creators` of `name` and `role`. Across the 347 active payloads, 28,147
-records carry a cover URL and 26,419 carry creator credits. The retired No Way Home payload remains byte-exact;
+object of `path` and `ext`, and `creators` of `name` and `role`. Across the 347 active payloads, 28,148
+records carry a cover URL and 26,420 carry creator credits. The retired No Way Home payload remains byte-exact;
 neither retired payload contributes to active discovery or this active census.
 
 `description` was the field to look at hardest and is now empty. The others are facts about a
@@ -4129,3 +4129,25 @@ from the site; any credit change and revised release-note total await the owner.
 No public lifetime guarantee for this route was found. The team's statement and
 the owner's checks are evidence of current behavior, not a promise that a comic
 is available or that the route will survive the Marvel Unlimited closure.
+
+## Ultimate Marvel introduction: Team-Up #9
+
+For [Issue #1454](https://github.com/raymond-nassar/recap-page/issues/1454), the owner decided in
+conversation on 19 November 2026 to include Ultimate Marvel Team-Up (2001) #9 at its existing
+source position, despite Comic Book Herald marking it out of continuity. The frozen Intro to the
+Ultimate U section now includes all 122 source positions. The comic is position 106, between
+Ultimate Fantastic Four #6 and Ultimate Spider-Man #33. The
+[correction record](../scripts/data/ultimate-marvel-intro-correction.json) retains the prior exclusion,
+the approved description change and the earlier publication digests.
+
+Identity 15783, series 2311, and its factual metadata were reused from the published Ultimate
+Spider-Man mapping and payload. No source page, metadata service or comic image was requested.
+Offline vendoring keeps all 121 earlier comic records unchanged, without
+adding book labels or changing their order. The description removes only the obsolete omission
+clause; placement and discovery tags stay unchanged.
+
+The coordinator reviewed the source boundary and all 268 current-library relationships under
+stronger-model authority, not human review. The one partial relationship with Ultimate Spider-Man
+contains 55 shared comics, including #9; neither list contains the other, and both stay whole.
+The other 267 relationships have no shared comic. Existing saved lists remain snapshots and are
+not silently replaced, and their reading progress, notes and ratings are unchanged.

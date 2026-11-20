@@ -31,6 +31,10 @@ import { beforeUltimateSelectionIssueIds } from './ultimate-spider-man-selection
 import { beforeHickmanInterleaveIssueIds, beforeThorCorrectionIssueIds } from './reading-list-correction-history.mjs';
 import { beforeIronManCoverCatalogEntry, beforeIronManCoverPayloadText } from './iron-man-cover-history.mjs';
 import { beforeXmenFirstClassIssueIds } from './xmen-first-class-history.mjs';
+import {
+  beforeUltimateIntroCatalogEntry, beforeUltimateIntroEntry, beforeUltimateIntroIssueIds,
+  beforeUltimateIntroPayloadText,
+} from './ultimate-marvel-intro-history.mjs';
 
 const root = fileURLToPath(new URL('../..', import.meta.url));
 const curatedGuideRegistry = JSON.parse(readFileSync(
@@ -94,6 +98,7 @@ function requireCurrentDescription(entry, revision) {
 
 // A copy revision is not a new source approval. Replay only its exact, checked inverse.
 export function historicalMcuDescriptionEntry(entry) {
+  entry = beforeUltimateIntroEntry(entry);
   entry = withoutDiscoveryTags(beforeMcuEditorialEntry(entry));
   const file = entry.out ?? entry.file;
   const revision = descriptions.get(entry.id) ?? descriptionFiles.get(file);
@@ -115,6 +120,7 @@ export function historicalMcuDescriptionManifest(manifest) {
 }
 
 export function historicalMcuDescriptionPayloadText(file, text) {
+  text = beforeUltimateIntroPayloadText(file, text);
   const current = JSON.parse(text);
   sourceCreditRevisions.assertLatest(current, file);
   text = `${JSON.stringify(sourceCreditRevisions.undo(current, file), null, 2)}\n`;
@@ -170,6 +176,7 @@ export function historicalReadingChoiceManifest(manifest) {
 }
 
 export function historicalReadingChoiceIssueIds(id, currentIds) {
+  if (id === 'ultimate-marvel-intro') return beforeUltimateIntroIssueIds(currentIds);
   if (id === 'xmen-claremont') return beforeXmenFirstClassIssueIds(currentIds);
   if (id === 'thor-best-of') return beforeThorCorrectionIssueIds(currentIds);
   if (id === 'hickman-full') return beforeHickmanInterleaveIssueIds(currentIds);
@@ -289,6 +296,7 @@ export function capturedReviewLibraryDigest(orders, expectedDigest) {
 }
 
 export function historicalReadingChoiceCatalogEntry(entry) {
+  entry = beforeUltimateIntroCatalogEntry(entry);
   entry = beforeIronManCoverCatalogEntry(beforeWolverineCorrectionCatalogEntry(entry));
   entry = beforeIdentityCatalogEntry(beforeAmazingSpiderManSupplementCatalogEntry(entry));
   if (entry.id === spiderRevision.manifestEntry.id) {
@@ -379,7 +387,8 @@ export async function loadBeforeAmazingSpiderManSupplementLibrary(currentManifes
         : entry.id === amazingSpiderManGuideId ? beforeAmazingSpiderManSupplementIssueIds(ids)
           : entry.id === 'wolverine-reading-order' ? beforeWolverineCorrectionIssueIds(ids)
             : entry.id === 'thor-best-of' ? beforeThorCorrectionIssueIds(ids)
-              : entry.id === 'hickman-full' ? beforeHickmanInterleaveIssueIds(ids) : ids;
+              : entry.id === 'hickman-full' ? beforeHickmanInterleaveIssueIds(ids)
+                : entry.id === 'ultimate-marvel-intro' ? beforeUltimateIntroIssueIds(ids) : ids;
     await writeFile(path.join(payloadDir, file), `${JSON.stringify({ issueIds })}\n`);
   }));
   return { ...await loadLibrarySnapshot({ manifest, payloadDir }), payloadDir };
@@ -401,7 +410,8 @@ export async function loadBeforeWolverineCorrectionLibrary() {
       : entry.id === 'ultimate-spider-man-reading-order' ? beforeUltimateSelectionIssueIds(ids)
         : entry.id === 'wolverine-reading-order' ? beforeWolverineCorrectionIssueIds(ids)
           : entry.id === 'thor-best-of' ? beforeThorCorrectionIssueIds(ids)
-            : entry.id === 'hickman-full' ? beforeHickmanInterleaveIssueIds(ids) : ids;
+            : entry.id === 'hickman-full' ? beforeHickmanInterleaveIssueIds(ids)
+              : entry.id === 'ultimate-marvel-intro' ? beforeUltimateIntroIssueIds(ids) : ids;
     await writeFile(path.join(payloadDir, file), `${JSON.stringify({ issueIds })}\n`);
   }));
   return { ...await loadLibrarySnapshot({ manifest, payloadDir }), payloadDir };
