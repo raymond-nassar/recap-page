@@ -22,7 +22,7 @@ const captainAmericaIds = [
 ];
 const eventIds = [...legacyEventIds, 'one-world-under-doom', ...captainAmericaIds, 'avengers-armageddon'];
 
-test('eight independent events remain on Timeline and Genres, not MCU Prep or the historical Storylines projection', async () => {
+test("the events remain in Genres, with Hell's Angel outside Timeline, MCU Prep and Storylines", async () => {
   assert.deepEqual(registeredEventContracts.map((entry) => entry.id), eventIds);
   const laterMcu = registeredOwnerAdditionContracts.filter((entry) => entry.surface === undefined).length - 2;
   // Young readers' owner picks and local curated guides join the rosters without becoming MCU Prep.
@@ -52,10 +52,9 @@ test('eight independent events remain on Timeline and Genres, not MCU Prep or th
   const timeline = modernTimelineLists(catalog.lists);
   assert.equal(timeline.length, currentReadingCensus.modernTimeline);
   assert.deepEqual(timeline.filter((entry) => entry.timeline === 2023).map((entry) => entry.id), legacyEventIds);
-  assert.deepEqual(timeline.slice(-5).map((entry) => [entry.id, entry.timeline]), [
+  assert.deepEqual(timeline.slice(-4).map((entry) => [entry.id, entry.timeline]), [
     ['captain-america-2025-our-secret-wars', 2025], ['one-world-under-doom', 2025],
-    ['captain-america-2025-dooms-shadow', 2025], ['captain-america-2025-hells-angel', 2026],
-    ['avengers-armageddon', 2026],
+    ['captain-america-2025-dooms-shadow', 2025], ['avengers-armageddon', 2026],
   ]);
   assert.ok(legacyEventIds.every((id) => timeline.findIndex((entry) => entry.id === id)
     < timeline.findIndex((entry) => entry.id === 'fall-house-x-rise-powers-x')));

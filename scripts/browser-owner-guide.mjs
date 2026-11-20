@@ -110,12 +110,14 @@ export function ownerGuideScenario(contract, { savedCopyOnly = false } = {}) {
   const expectedDescription = descriptionRevisions.afterEntry({
     id: contract.id, description: afterMcuEditorialEntry(contract).description,
   }).description;
-  const event = contract.surface === 'modern-timeline';
+  const inMarvelAges = contract.id === 'captain-america-2025-hells-angel';
+  const event = contract.surface === 'modern-timeline' && !inMarvelAges;
   // Young readers' lists are found on Young readers, the one screen #897 gave them, by name among
   // that shelf's other lists.
   const youngReaders = contract.surface === 'young-readers';
-  const category = event ? 'timeline' : youngReaders ? 'young-readers' : 'marvel-on-screen';
-  const results = event ? '#catalog-results' : youngReaders ? '#young-readers-results' : '#marvel-on-screen-results';
+  const category = event ? 'timeline' : inMarvelAges ? 'marvel-ages' : youngReaders ? 'young-readers' : 'marvel-on-screen';
+  const results = event ? '#catalog-results' : inMarvelAges ? '#age-current-results'
+    : youngReaders ? '#young-readers-results' : '#marvel-on-screen-results';
   const catalog = json('../src/data/catalog.json');
   const card = catalog.lists.find((entry) => entry.id === contract.id);
   assert.ok(card, 'The registered owner guide must be visible before browser validation.');
@@ -263,6 +265,10 @@ export function ownerGuideScenario(contract, { savedCopyOnly = false } = {}) {
       }, KEY, seed, LIST_HISTORY_KEY, history);
       const selector = `${results} [data-story="list:${contract.id}"]`;
       const findOnShelf = async () => {
+        if (inMarvelAges) {
+          await click(page, '#marvel-ages-modern-list [data-category="current"]');
+          return;
+        }
         if (!youngReaders) return;
         await page.waitForSelector('#young-readers-q');
         await page.$eval('#young-readers-q', (input, name) => {
@@ -319,7 +325,8 @@ export function ownerGuideScenario(contract, { savedCopyOnly = false } = {}) {
               .map((node) => node.dataset.story.replace(/^list:/, '')),
           }), contract.timeline);
           t.check(`Modern Timeline keeps the approved year and complete same-year sequence at ${width}px`,
-            isDeepStrictEqual(placement.sameYear, contract.sameYearOrder), JSON.stringify(placement));
+            isDeepStrictEqual(placement.sameYear, contract.sameYearOrder.filter((id) =>
+              id !== 'captain-america-2025-hells-angel')), JSON.stringify(placement));
         }
         const before = await readSaved(page);
         await click(page, `${selector} [data-act="preview"]`);

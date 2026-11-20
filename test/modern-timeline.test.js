@@ -258,7 +258,7 @@ test('the shipped Modern Timeline carries all chapters into the Avengers era', (
   const selectedStories = modernTimelineStories(stories);
   const sections = eraSections(selectedStories);
   const datedSections = sections.filter(({ span, fallback }) => span && !fallback);
-  const unplacedSection = sections.find(({ key }) => key === 'unplaced');
+  const latestSection = sections.find(({ key }) => key === 'doom-armageddon');
   const excluded = shelfLists(catalog.lists, 'catalog')
     .filter(({ id, timeline }) => (
       timeline >= MODERN_TIMELINE_START_YEAR
@@ -275,12 +275,11 @@ test('the shipped Modern Timeline carries all chapters into the Avengers era', (
   const chapters = selectedLists.filter(({ id }) => isModernTimelineChapterId(id));
   assert.equal(selectedLists.length, currentReadingCensus.modernTimeline);
   assert.equal(selectedStories.length, currentReadingCensus.modernTimelineStories);
-  assert.deepEqual(selectedLists.slice(-6).map(({ id, timeline }) => [id, timeline]), [
+  assert.deepEqual(selectedLists.slice(-5).map(({ id, timeline }) => [id, timeline]), [
     ['fall-house-x-rise-powers-x', 2024],
     ['captain-america-2025-our-secret-wars', 2025],
     ['one-world-under-doom', 2025],
     ['captain-america-2025-dooms-shadow', 2025],
-    ['captain-america-2025-hells-angel', 2026],
     ['avengers-armageddon', 2026],
   ]);
   const doomStory = selectedStories.find(({ key }) => key === 'list:one-world-under-doom');
@@ -292,10 +291,10 @@ test('the shipped Modern Timeline carries all chapters into the Avengers era', (
   assert.equal(doomStory.lists[0].description.includes(
     'Read Fantastic Four (2025) #1-3 together.',
   ), true);
-  assert.equal(unplacedSection?.heading, 'Not yet placed in an era');
+  assert.equal(latestSection?.heading, 'From Doom to Armageddon');
   assert.ok(['list:one-world-under-doom', 'list:captain-america-2025-our-secret-wars',
-    'list:captain-america-2025-dooms-shadow', 'list:captain-america-2025-hells-angel', 'list:avengers-armageddon']
-    .every((key) => unplacedSection.stories.some((story) => story.key === key)));
+    'list:captain-america-2025-dooms-shadow', 'list:avengers-armageddon']
+    .every((key) => latestSection.stories.some((story) => story.key === key)));
   assert.equal(olderEvents.length, 38);
   assert.deepEqual(
     selectedStories.slice(0, 2).map(({ lists: [first] }) => [first.name, first.timeline]),
@@ -342,6 +341,17 @@ test('the shipped Modern Timeline carries all chapters into the Avengers era', (
   assert.ok(datedSections.every(({ from, to, span }) => (
     from === span.from && to === span.to
   )), 'a rendered era includes empty years before its first or after its last selected story');
+});
+
+test("Hell's Angel stays in Marvel Ages and Genres without becoming a timeline stop", () => {
+  const id = 'captain-america-2025-hells-angel';
+  assert.ok(catalog.lists.some((entry) => entry.id === id));
+  assert.ok(!modernTimelineLists(catalog.lists).some((entry) => entry.id === id));
+  for (const age of ['modern', 'current']) {
+    assert.ok(publishingCategoryStories(stories, age)
+      .some(({ lists }) => lists.some((entry) => entry.id === id)), age);
+  }
+  assert.ok(shelfLists(catalog.lists, 'catalog').some((entry) => entry.id === id));
 });
 
 test('only Modern Timeline era descriptions opt out of the shared prose measure', () => {

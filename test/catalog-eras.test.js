@@ -80,26 +80,23 @@ test('an order dated outside every era is caught by name, rather than lost', () 
   }
 });
 
-// The approved 2025 and 2026 events are intentionally held here until a named era covers their
-// years. Pinning exact membership keeps later out-of-range orders from quietly joining them.
-test('the approved 2025 and 2026 events are the only shipped orders held in the fallback', () => {
+test('the 2025 to 2026 section carries the approved lists in order', () => {
+  const section = sections.find(({ key }) => key === 'doom-armageddon');
+  assert.ok(section);
+  assert.equal(section.heading, 'From Doom to Armageddon');
+  assert.equal(section.blurb, "The road from Doctor Doom's rule to Armageddon, alongside other events of the time. Dated 2025 to 2026.");
+  assert.deepEqual(section.stories.map(({ key }) => key), [
+    'list:captain-america-2025-our-secret-wars', 'list:one-world-under-doom',
+    'list:captain-america-2025-dooms-shadow', 'list:avengers-armageddon',
+  ]);
+});
+
+test('no shipped timeline order is held in the fallback', () => {
   const strays = events
     .filter((s) => eraKey(s) === fallback.key)
     .map((s) => `${s.name ?? s.lists[0].name} (${storyYear(s)})`);
-  assert.deepEqual(strays, [
-    'Captain America (2025) Vol. 1: Our Secret Wars (2025)',
-    'One World Under Doom (2025)',
-    "Captain America (2025) Vol. 2: Doom's Shadow (2025)",
-    "Captain America (2025) Vol. 3: Hell's Angel (2026)",
-    'Avengers: Armageddon (2026)',
-  ]);
-  const fallbackStories = sections.filter((section) => section.fallback)
-    .flatMap((section) => section.stories);
-  assert.deepEqual(fallbackStories.map((story) => story.key), [
-    'list:captain-america-2025-our-secret-wars', 'list:one-world-under-doom',
-    'list:captain-america-2025-dooms-shadow', 'list:captain-america-2025-hells-angel',
-    'list:avengers-armageddon',
-  ]);
+  assert.deepEqual(strays, []);
+  assert.equal(sections.some((section) => section.fallback), false);
 });
 
 // The fallback's rows share nothing but having been refused by every era, so a range over them would
@@ -179,6 +176,12 @@ test('every era is named after orders the catalog actually contains', () => {
     if (era.key === 'marvel-knights') {
       assert.equal(era.heading, 'Marvel Knights to Planet X');
       assert.equal(catalog.lists.filter(({ id }) => isModernTimelineChapterId(id)).length, 78);
+      continue;
+    }
+    if (era.key === 'doom-armageddon') {
+      assert.equal(era.heading, 'From Doom to Armageddon');
+      assert.ok(names.some((name) => name.includes('doom')));
+      assert.ok(names.some((name) => name.includes('armageddon')));
       continue;
     }
     // The heading names two orders, joined by "to", and both ends have to exist on the shelf.

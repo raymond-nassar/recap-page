@@ -913,6 +913,15 @@ test('attribution prefers the origin, and never goes blank while any credit exis
   assert.equal(sourceLabel({}), null);
 });
 
+test("Hell's Angel displays the approved team credit without changing other origins", () => {
+  const sourceOrigin = 'Selected by raymond-nassar for Modern Timeline';
+  assert.equal(sourceLabel({ id: 'captain-america-2025-hells-angel', sourceOrigin }),
+    'Selected by Recap Page team');
+  assert.equal(sourceLabel({ id: 'another-list', sourceOrigin }), sourceOrigin);
+  assert.equal(sourceLabel({ id: 'captain-america-2025-hells-angel', sourceOrigin: 'A later source' }),
+    'A later source');
+});
+
 // A licence and a credit are different claims, so they are read by different functions. Null is
 // the ordinary answer and means no licence was conveyed, not that the order is unencumbered.
 test('the licence is read separately from the credit, and is usually absent', () => {
