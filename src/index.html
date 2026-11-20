@@ -289,11 +289,18 @@
               <div>
                 <ul>
                   <li><a href="#/home" data-view="home">Home</a>: resume reading and explore.</li>
-                  <li><a href="#/catalog" data-view="catalog">Modern Timeline</a>: follow modern stories. <a href="#/genres" data-view="genres">Genres</a>: browse by genre or tone.</li>
-                  <li><a href="#/spotlights" data-view="spotlights">Character spotlights</a>: find people and teams. <a href="#/marvel-on-screen" data-view="marvel-on-screen">MCU Prep</a>: explore comics behind movies and shows.</li>
-                  <li><a href="#/marvel-ages" data-view="marvel-ages">Marvel Ages</a>: browse by publishing period. <a href="#/young-readers" data-view="young-readers">Young readers</a>: find stories for younger readers.</li>
-                  <li><a href="#/library" data-view="library">Library</a>: see saved lists and progress. <a href="#/add" data-view="add">Search</a>: find or add comics.</li>
-                  <li><a href="#/data" data-view="data">Backup &amp; settings</a>: manage your data and preferences. <a href="#/about" data-view="about">About</a>: see credits and privacy.</li>
+                  <li><a href="#/catalog" data-view="catalog">Modern Timeline</a>: follow modern stories.</li>
+                  <li><a href="#/genres" data-view="genres">Genres</a>: browse by genre or tone.</li>
+                  <li><a href="#/spotlights" data-view="spotlights">Character spotlights</a>: find people and teams.</li>
+                  <li><a href="#/marvel-on-screen" data-view="marvel-on-screen">MCU Prep</a>: explore comics behind movies and shows.</li>
+                  <li><a href="#/marvel-ages" data-view="marvel-ages">Marvel Ages</a>: browse by publishing period.</li>
+                  <li><a href="#/young-readers" data-view="young-readers">Young readers</a>: find stories for younger readers.</li>
+                  <li><a href="#/universes" data-view="universes">Universes</a>: browse realities.</li>
+                  <li><a href="#/creators" data-view="creators">Creators</a>: browse by creator.</li>
+                  <li><a href="#/library" data-view="library">Library</a>: see saved lists and progress.</li>
+                  <li><a href="#/add" data-view="add">Search</a>: find or add comics.</li>
+                  <li><a href="#/data" data-view="data">Backup &amp; settings</a>: manage your data and preferences.</li>
+                  <li><a href="#/about" data-view="about">About</a>: see credits and privacy.</li>
                   <li>Save a list. Read opens Marvel outside the app; Done records progress. The app does not contain comics.</li>
                 </ul>
               </div>
@@ -301,6 +308,11 @@
             <section class="card card-static guide-copy" aria-labelledby="guide-more-h">
               <h2 id="guide-more-h">Learn more</h2>
               <div>
+                <ul>
+                  <li><a href="https://www.marvelcomicsapp.com/" target="_blank" rel="noopener noreferrer">Subscribe to Marvel Comics</a></li>
+                  <li><a href="https://www.hoopladigital.com/search?kindId=10&amp;publisherName=Marvel" target="_blank" rel="noopener noreferrer">Search Marvel on hoopla</a></li>
+                  <li><a href="https://resources.overdrive.com/library/libby-features/comics-graphic-novels/" target="_blank" rel="noopener noreferrer">Comics &amp; Graphic Novels in Libby</a></li>
+                </ul>
                 <p>Basics adapted from the r/Marvel wiki.</p>
                 <ul>
                   <li><a href="https://www.reddit.com/r/Marvel/wiki/faq/#wiki_introduction_to_comics" target="_blank" rel="noopener noreferrer">Introduction to comics</a></li>
@@ -339,7 +351,6 @@
                   <p class="rail-hint" id="order-desc-text"></p>
                   <p class="rail-hint" id="order-book-note" hidden></p>
                   <div id="order-source"></div>
-                  <div id="order-app-link-credit"></div>
                 </details>
               </div>
               <div class="headright">
@@ -750,6 +761,18 @@
           </section>
 
           <!-- ---------------------------------------- universes -->
+          <section id="view-creators" class="view view-wide" hidden aria-labelledby="creators-h">
+            <div class="head"><div class="head-left"><h1 id="creators-h">Creators</h1></div></div>
+            <div id="creators-report" class="report"></div>
+            <section aria-labelledby="creator-runs-h">
+              <div class="sec-h"><h2 id="creator-runs-h">Creator runs</h2></div>
+              <p id="creators-status" class="rail-hint" role="status"></p>
+              <a id="creators-empty-home" href="#/browse" hidden>Home</a>
+              <div id="creator-filters" class="search-scopes" role="group" aria-labelledby="creator-runs-h"></div>
+              <ul id="creator-run-results" class="catalog-grid creator-run-cards" aria-live="polite" aria-relevant="additions"></ul>
+            </section>
+          </section>
+
           <section id="view-universes" class="view view-wide" hidden aria-labelledby="universes-h">
             <div class="head"><div class="head-left"><h1 id="universes-h">Universes</h1></div></div>
             <p class="rail-hint">Explore Marvel's realities and the Reading Lists connected to them.</p>
@@ -1416,6 +1439,13 @@
                 <a href="https://www.comicbookherald.com/" target="_blank" rel="noopener noreferrer">Comic Book Herald</a> and
                 <a href="https://comicbookreadingorders.com/" target="_blank" rel="noopener noreferrer">Comic Book Reading Orders</a> for the guides used to compile many bundled Reading Lists. Every externally guided list names and links to the exact source it follows.
                 Reading Lists assembled in this project come from Marvel series metadata or are compiled by hand.
+              </p>
+
+              <h3 id="about-comic-link-credits">Comic link credits</h3>
+              <p class="rail-hint">
+                Thank you to werhsdnas of the Continuity Guide Discord server and
+                <a href="https://comicbookreadingorders.com/" target="_blank" rel="noopener noreferrer">Comic Book Reading Orders</a>
+                for the links that open individual comics in the Marvel Comics app.
               </p>
 
               <h3>Keyboard shortcuts</h3>

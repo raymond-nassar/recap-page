@@ -65,6 +65,7 @@ import { isListRevisionVerificationPaused, saveListRevision } from './lib/listRe
 import { switchReadingOrder } from './lib/listCorrection.js';
 import { createBulkReadView } from './views/bulk-read.js';
 import { createHomeView } from './views/home.js';
+import { createCreatorsView } from './views/creators.js';
 import { homeUpdatesContent } from './lib/homeUpdatesContent.js';
 import { createHomeUpdatesSeen } from './lib/homeUpdatesSeen.js';
 import { createNoticeDismissal } from './lib/noticeDismissal.js';
@@ -418,7 +419,8 @@ const LOCAL_CONNECTION_STEPS = iosApp
     + 'start Recap Page from the copy you downloaded or installed from the Microsoft Store, then return here.';
 const generatedCategoryByRoute = new Map([
   ...PUBLISHING_CATEGORIES,
-  ...ROUTED_CATEGORIES.filter((category) => !category.shelf && category.kind !== 'universe-index'),
+  ...ROUTED_CATEGORIES.filter((category) => !category.shelf
+    && !['universe-index', 'creator-index'].includes(category.kind)),
 ].map((category) => [category.route, category]));
 
 // The stored API base is checked once at boot, so the complaint about a bad one is a single
@@ -903,6 +905,7 @@ function setCovers(on) {
   readingView.render();
   homeView.render();
   libraryView.render();
+  creatorsView.refreshCovers();
   void completionView.refreshRecommendations({ force: true });
   ratedView.renderShelf();
   if (view === 'library-rated') ratedView.renderBrowser();
@@ -1745,6 +1748,11 @@ function applyRoute(route, { focus, filterIfAbsent, aboutTraversal = false }) {
       if (focus) ratedView.restoreOpener(history.state?.issueFocusOpener);
       return;
     }
+    if (route.view === 'creators') {
+      readingView.endFilterRun({ commit: false });
+      showView('creators', { focus });
+      return;
+    }
     if (route.view === 'universes' || route.view === 'universe') {
       readingView.endFilterRun({ commit: false });
       if (route.view === 'universes') universeView.setIndex(route);
@@ -1774,7 +1782,7 @@ function applyRoute(route, { focus, filterIfAbsent, aboutTraversal = false }) {
     // Before showView, so the passive sync at the end of showView computes the address this route
     // already describes and returns early rather than writing one and being corrected a moment later.
     readingView.setFilterAddressed(route.filter !== null);
-    const filterFallback = view === 'universes' || view === 'universe'
+    const filterFallback = view === 'universes' || view === 'universe' || view === 'creators'
       ? readingView.currentFilter() : filterIfAbsent;
     readingView.setFilter(route.filter ?? filterFallback);
     // A traversal cannot span a navigation, and Back is a navigation. Discarded rather than committed,
@@ -1884,6 +1892,7 @@ function showView(next, { focus = true, push = false, at = null, capturePosition
   if (shelf) void catalogView.render(shelf.key);
   if (generatedCategoryByRoute.has(next)) renderPublishingCategory(next);
   if (next === 'home') homeView.render();
+  if (next === 'creators') void creatorsView.render();
   if (next === 'universes') universeView.renderIndex();
   if (next === 'universe') void universeView.renderDetail();
   if (next === 'library') renderLibraryHub();
@@ -3930,6 +3939,7 @@ const readingView = createReadingView({
   paintCover,
   paintHeroBackground,
   preservingFocus,
+  rateIssue: (item, options) => issueRatingView.rate(item, options),
   recordDirectProgressSave,
   readerPresentation,
   renderSaveEducation,
@@ -4347,6 +4357,32 @@ function loadMcuGuides() {
 function searchCover(url) {
   return searchThumb(el, settings.covers ? url : null);
 }
+
+const creatorsView = createCreatorsView({
+  clearCatalogNotice: () => {
+    clearNotice(CATALOG_LOAD);
+    $('#creators-report').replaceChildren();
+  },
+  el,
+  elements: () => ({
+    filters: $('#creator-filters'), results: $('#creator-run-results'),
+    status: $('#creators-status'), emptyHome: $('#creators-empty-home'),
+  }),
+  hueOf,
+  isCurrent: () => view === 'creators',
+  loadCatalog,
+  onLoadFailure: ({ error, isCurrent, retry }) => reportBundledLoadFailure({
+    report: '#creators-report',
+    failure: `The catalog could not be loaded: ${error.message}. Your lists are unchanged.`,
+    key: CATALOG_LOAD,
+    subject: 'the catalog',
+    retry,
+    isCurrent,
+  }),
+  onPreview: (list) => { void previewView.open(list); },
+  paintCoverUrl,
+  shortTitle,
+});
 
 const universeView = createUniversesView({
   el,

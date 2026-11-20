@@ -36,7 +36,7 @@ This plan is linked to the separate [colleague feedback record](UX_FEEDBACK.md) 
 
 ## 5. iOS restart reassurance
 
-**Outcome:** After iOS ends and reloads the page, show the saved-progress reassurance and slide it away after about five seconds. Do not show it on an ordinary launch. The current lifecycle sets a one-load restart flag (`packaging/ios/RecapPage/WebViewController.swift:421`) and reloads the app page (`packaging/ios/RecapPage/WebViewController.swift:432`).
+**Outcome:** After iOS ends and reloads the page, show the saved-progress reassurance and slide it away after about five seconds. Do not show it on an ordinary launch. The current lifecycle sets a one-load restart flag (`packaging/ios/RecapPage/WebViewController.swift:450`) and reloads the app page (`packaging/ios/RecapPage/WebViewController.swift:461`).
 
 **Dependencies:** Confirm the message's exact text, animation, and accessibility announcement. Respect reduced-motion settings and avoid hiding it before assistive technology can announce it.
 
@@ -52,7 +52,7 @@ This plan is linked to the separate [colleague feedback record](UX_FEEDBACK.md) 
 
 ## 7. MCU Prep labels
 
-**Outcome:** Resolved by owner decision in [#1297](https://github.com/raymond-nassar/recap-page/issues/1297). The labels did not filter and the owner did not want them to; they looked selectable and were removed from every generated browse page. Each page now carries one short description line instead, MCU Prep's from its category definition (`src/js/lib/catalog.js:1367`), rendered beneath the heading (`src/js/main.js:3230`).
+**Outcome:** Resolved by owner decision in [#1297](https://github.com/raymond-nassar/recap-page/issues/1297). The labels did not filter and the owner did not want them to; they looked selectable and were removed from every generated browse page. Each page now carries one short description line instead, MCU Prep's from its category definition (`src/js/lib/catalog.js:1368`), rendered beneath the heading (`src/js/main.js:3239`).
 
 **Dependencies:** None remaining.
 

@@ -2368,7 +2368,7 @@ const SCENARIOS = [
   {
     id: 'notice-dismissal',
     title: 'Home notice dismisses locally with version, failure and keyboard safety',
-    run: (page, t) => dismissClosureNotice(page, t, { seedFixtureState, click }),
+    run: (page, t) => dismissClosureNotice(page, t, { seedFixtureState, click, savedStateDifference }),
   },
   {
     id: 'home-updates',
@@ -4202,6 +4202,7 @@ const SCENARIOS = [
             title: 'Marvel Ages',
             count: '16 Reading Lists',
           }, { key: 'young-readers', label: 'Stories for kids', title: 'Young readers', count: '1 Reading List' }, { key: 'universes', label: 'Browse realities', title: 'Universes', count: '31 universes' },
+          { key: 'creators', label: 'Browse by creator', title: 'Creators', count: '2 Reading Lists' },
         ]),
         JSON.stringify(context.secondary));
       t.check('the primary paths remain equal choices on one desktop row',
@@ -4213,6 +4214,22 @@ const SCENARIOS = [
         context.secondaryHeights.length > 1
         && Math.max(...context.secondaryHeights) - Math.min(...context.secondaryHeights) <= 1,
         JSON.stringify(context.secondaryHeights));
+      for (const width of [1440, 1280, 1024, 390]) {
+        await page.setViewport({ width, height: 900 });
+        await settleLayout();
+        const cards = await page.$$eval('#home-secondary-paths .home-path', (nodes) =>
+          nodes.map((node) => {
+            const { top, width, height } = node.getBoundingClientRect();
+            return { top: Math.round(top), width, height };
+          }));
+        t.check(`${width}px: Discover More keeps five equal cards ${width > 620 ? 'on one row' : 'in one column'}`,
+          cards.length === 5 && new Set(cards.map(({ top }) => top)).size === (width > 620 ? 1 : 5)
+          && Math.max(...cards.map(({ width }) => width)) - Math.min(...cards.map(({ width }) => width)) <= 1
+          && Math.max(...cards.map(({ height }) => height)) - Math.min(...cards.map(({ height }) => height)) <= 1,
+          JSON.stringify(cards));
+      }
+      await page.setViewport({ width: 1280, height: 900 });
+      await settleLayout();
       t.check('the gateway has no standing tile paragraphs or retired catalog wall',
         JSON.stringify(context.paragraphs) === JSON.stringify({ 'view-home': 0 })
         && context.retired === 0 && context.moreHidden === false,
@@ -4221,15 +4238,15 @@ const SCENARIOS = [
         context.statuses.length === 1
         && context.statuses.every(({ role, hidden, visuallyHidden, text }) =>
           role === 'status' && !hidden && visuallyHidden
-          && text === '7 ways to read available.'),
+          && text === '8 ways to read available.'),
         JSON.stringify(context.statuses));
 
       // #872: MCU Prep, Marvel Ages and Young readers, which took Reading paths' place and hue in #897,
-      // each draw their edge, tint and icon from a hue of their own, so Home shows seven hues in both
+      // each draw their edge, tint and icon from a hue of their own, so Home shows eight hues in both
       // themes. Forced colors keep one system color for every edge, as before. Since #873 the top row's
       // icons take a darker or lighter ink of their card's hue to clear 3:1 on its tint, so the icon is
       // matched to its edge by OKLCH hue: the widest gap between an ink and its edge measured 4.7
-      // degrees, and the seven edges sit at least 30 degrees apart.
+      // degrees. Creators reuses the existing cyan channel as its eighth distinct edge.
       const accents = () => page.evaluate(() => {
         const hue = (color) => {
           const [r, g, b] = color.match(/[\d.]+/g).slice(0, 3).map((channel) => {
@@ -4256,8 +4273,8 @@ const SCENARIOS = [
         await page.evaluate((name) => { document.documentElement.dataset.theme = name; }, theme);
         const { home, elsewhere } = await accents();
         const purple = home.find(({ key }) => key === 'timeline')?.edge;
-        t.check(`${theme}: the seven Home cards show seven different hues, each icon in its own card's hue`,
-          home.length === 7 && new Set(home.map(({ edge }) => edge)).size === 7
+        t.check(`${theme}: the eight Home cards show eight different hues, each icon in its own card's hue`,
+          home.length === 8 && new Set(home.map(({ edge }) => edge)).size === 8
           && home.every(({ gap }) => gap <= 10),
           JSON.stringify(home));
         t.check(`${theme}: MCU Prep, Marvel Ages and Young readers leave the brand purple to Modern Timeline`,
@@ -4266,7 +4283,7 @@ const SCENARIOS = [
             return card && card.edge !== purple;
           }),
           JSON.stringify({ purple, home }));
-        t.check(`${theme}: Home's seven cards are the only category cards, so no second copy can drift from their hues`,
+        t.check(`${theme}: Home's eight cards are the only category cards, so no second copy can drift from their hues`,
           elsewhere === 0, String(elsewhere));
       }
       const forcedClient = await page.createCDPSession();
@@ -4275,7 +4292,7 @@ const SCENARIOS = [
       await forcedClient.send('Emulation.setEmulatedMedia', { features: [] });
       await forcedClient.detach();
       t.check('forced colors keep one system color for every card edge and every card icon',
-        forced.home.length === 7 && new Set(forced.home.map(({ edge }) => edge)).size === 1
+        forced.home.length === 8 && new Set(forced.home.map(({ edge }) => edge)).size === 1
         && new Set(forced.home.map(({ icon }) => icon)).size === 1,
         JSON.stringify(forced.home));
       await page.evaluate((value) => {
@@ -4288,7 +4305,7 @@ const SCENARIOS = [
       // Held at every width and text size the Issue names, on Home's one gateway, in both themes and
       // forced colors: nothing overlaps, no line leaves the card's content box, and the page never
       // scrolls sideways.
-      const emblems = (view) => page.evaluate((id) => {
+      const emblems = (view, secondaryOnly) => page.evaluate(({ id, secondaryOnly }) => {
         const box = (node) => {
           const { left, right, top, bottom, width, height } = node.getBoundingClientRect();
           return { left, right, top, bottom, width, height };
@@ -4298,7 +4315,7 @@ const SCENARIOS = [
         return {
           overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
           root: parseFloat(getComputedStyle(document.documentElement).fontSize),
-          cards: [...document.querySelectorAll(`#view-${id} [data-category-gateway] .home-path`)].map((card) => {
+          cards: [...document.querySelectorAll(`#view-${id} ${secondaryOnly ? '#home-secondary-paths' : '[data-category-gateway]'} .home-path`)].map((card) => {
             const style = getComputedStyle(card);
             const outer = box(card);
             const content = {
@@ -4335,10 +4352,12 @@ const SCENARIOS = [
             };
           }),
         };
-      }, view);
+      }, { id: view, secondaryOnly });
       const emblemClient = await page.createCDPSession();
-      for (const width of [1280, 640, 390]) {
+      for (const width of [1440, 1280, 1024, 640, 390]) {
         await page.setViewport({ width, height: 900 });
+        const secondaryOnly = width === 1440 || width === 1024;
+        const cardCount = secondaryOnly ? 5 : 8;
         for (const text of ['100%', '200%']) {
           await page.evaluate((size) => { document.documentElement.style.fontSize = size === '100%' ? '' : size; }, text);
           const failures = [];
@@ -4352,16 +4371,16 @@ const SCENARIOS = [
                 features: theme === 'forced' ? [{ name: 'forced-colors', value: 'active' }] : [],
               });
               await settleLayout();
-              const { overflow, root, cards } = await emblems(view);
+              const { overflow, root, cards } = await emblems(view, secondaryOnly);
               const scale = root / 16;
               const wrong = cards.filter((card) => !card.topRight || !card.above || !card.arrowRight
                 || card.icon.width < 40 * scale || card.icon.height < 40 * scale
                 || card.overlaps.length || card.clipped.length);
-              if (overflow || cards.length !== 7 || new Set(cards.map(({ symbol }) => symbol)).size !== 7
+              if (overflow || cards.length !== cardCount || new Set(cards.map(({ symbol }) => symbol)).size !== cardCount
                 || wrong.length) failures.push({ view, theme, overflow, root, cards: wrong.length ? wrong : cards.length });
             }
           }
-          t.check(`${width}px at ${text} text: every Home category shows a large icon at its top right, in dark, light and forced colors, with nothing overlapping, clipped or overflowing`,
+          t.check(`${width}px at ${text} text: every ${secondaryOnly ? 'Discover More' : 'Home category'} card shows a large icon at its top right, in dark, light and forced colors, with nothing overlapping, clipped or overflowing`,
             failures.length === 0, JSON.stringify(failures));
         }
       }
@@ -13191,7 +13210,8 @@ const SCENARIOS = [
         && created.listOrder.length === 2
         && created.lists[listId].name === 'Empty list 441'
         && created.lists[listId].itemIds.length === 0
-        && JSON.stringify(created.lists[original.active]) === JSON.stringify(original.lists[original.active]));
+        && JSON.stringify(created.lists[original.active]) === JSON.stringify(original.lists[original.active]),
+        stateDifference(original, created));
 
       const readingStatus = () => page.evaluate(() => ({
         empty: document.querySelector('#reading-empty')?.hidden === false,
@@ -13233,7 +13253,7 @@ const SCENARIOS = [
       t.check('rendering, Home navigation and reload do not add issues or mark progress',
         unchanged.active === listId && (await readingStatus()).empty
         && JSON.stringify(unchanged.lists) === JSON.stringify(created.lists)
-        && JSON.stringify(unchanged.read) === JSON.stringify(created.read));
+        && JSON.stringify(unchanged.read) === JSON.stringify(created.read), stateDifference(created, unchanged));
 
       await page.focus('#btn-empty-add');
       await page.keyboard.press('Enter');
@@ -13254,7 +13274,7 @@ const SCENARIOS = [
         && added.issues[ids[1]].title === 'Second manual issue 441'
         && added.listOrder.length === 2
         && JSON.stringify(added.lists[original.active]) === JSON.stringify(original.lists[original.active])
-        && JSON.stringify(added.read) === JSON.stringify(created.read));
+        && JSON.stringify(added.read) === JSON.stringify(created.read), stateDifference(created, added));
 
       await page.goBack();
       await page.waitForSelector('#view-add:not([hidden])');
@@ -13313,7 +13333,8 @@ const SCENARIOS = [
       t.check('removal and subsequent rendering preserve saved lists and global read history',
         final.active === listId && final.listOrder.length === 2 && final.lists[listId].itemIds.length === 0
         && JSON.stringify(final.read) === JSON.stringify(completedState.read)
-        && JSON.stringify(final.lists[original.active]) === JSON.stringify(original.lists[original.active]));
+        && JSON.stringify(final.lists[original.active]) === JSON.stringify(original.lists[original.active]),
+        stateDifference(original, final));
     },
   },
   {
@@ -14131,7 +14152,7 @@ const SCENARIOS = [
       }));
       t.check('Home leads to no retired page, and Young readers holds the place its card had',
         homeEntry.retired === 0
-        && homeEntry.secondary.join('|') === 'marvel-on-screen|marvel-ages|young-readers|universes'
+        && homeEntry.secondary.join('|') === 'marvel-on-screen|marvel-ages|young-readers|universes|creators'
         && homeEntry.title === 'Young readers' && homeEntry.count === '1 Reading List'
         && homeEntry.label === 'Stories for kids. Young readers. 1 Reading List.',
         JSON.stringify(homeEntry));
@@ -16899,6 +16920,37 @@ const SCENARIOS = [
 ];
 
 SCENARIOS.push({
+  id: 'reading-filter-removed',
+  title: 'a saved choice of a removed reading filter quietly returns to All',
+  async run(page, t) {
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    await page.setViewport({ width: 1280, height: 900 });
+    for (const removed of ['unlimited', 'pending']) {
+      await seedFixtureState(page);
+      await page.evaluate((value) => {
+        const prefs = JSON.parse(localStorage.getItem('mrt.settings'));
+        localStorage.setItem('mrt.settings', JSON.stringify({ ...prefs, filter: value }));
+      }, removed);
+      await page.reload({ waitUntil: 'load' });
+      await click(page, '#list-nav .ri');
+      await page.waitForSelector('#view-read:not([hidden])', { timeout: 15000 });
+      await openFullOrder(page);
+      const seen = await page.evaluate(() => ({
+        checked: document.querySelector('input[name="filter"]:checked')?.value ?? null,
+        saved: JSON.parse(localStorage.getItem('mrt.settings')).filter,
+        rows: document.querySelectorAll('#rows .row').length,
+        state: Boolean(localStorage.getItem('mrt.state.v2')),
+      }));
+      t.check(`a saved "${removed}" filter opens on All, saves All and shows every comic`,
+        seen.checked === 'all' && seen.saved === 'all' && seen.rows === ORDER.items.length && seen.state,
+        JSON.stringify(seen));
+    }
+    t.check('no page error while falling back', errors.length === 0, errors.join(' | '));
+  },
+});
+
+SCENARIOS.push({
   id: 'reading-state-clarity',
   title: 'saved comic actions and availability keep their exact meaning without interrupting reading',
   async run(page, t) {
@@ -16928,9 +16980,9 @@ SCENARIOS.push({
     await page.waitForFunction((title) => document.querySelector('#announcer').textContent
       === `Moved ${title} to position 2 of 3.`, {}, second.title);
 
-    const filter = await page.$eval('input[name="filter"][value="unlimited"]', (input) => input.parentElement.textContent.trim());
-    t.check('the unchanged availability filter predicate has a visibly hedged label',
-      filter === 'Past Unlimited date or marked available', filter);
+    const filters = await page.$$eval('input[name="filter"]', (inputs) => inputs.map((input) => input.parentElement.textContent.trim()));
+    t.check('the reading filters are All, Unread, Deferred and Read only (owner, 19 Nov 2026)',
+      filters.join('|') === 'All|Unread|Deferred|Read', filters.join('|'));
     for (const [act, badge, text] of [
       ['override-unavailable', 'override-unavailable', 'You marked it unavailable in Unlimited'],
       ['override-available', 'override-available', 'You marked it available in Unlimited'],
@@ -17098,8 +17150,9 @@ SCENARIOS.push({
     });
     await click(page, '#form-manual button[type="submit"]');
     t.check('custom invalid URL uses the same associated focus contract', await fieldError('#manual-url'));
+    const afterInvalid = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
     t.check('invalid submissions and cancelled naming leave reading data byte-identical',
-      await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === before);
+      afterInvalid === before, JSON.stringify(savedStateDifference(before, afterInvalid)));
     await open(page, '/#/data');
     await page.$eval('#api-base', (input) => { input.value = 'https://'; });
     await page.$eval('#form-settings', (form) => form.requestSubmit());
@@ -17128,12 +17181,13 @@ SCENARIOS.push({
       input.value = 'Corrected draft';
       input.dispatchEvent(new Event('input', { bubbles: true }));
     });
+    const afterCorrection = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
     t.check('builder correction clears invalid state without saving',
       await page.evaluate(() => ['search', 'series', 'creator'].every((prefix) => {
         const input = document.querySelector(`#${prefix}-list-name`);
         return input.value === 'Corrected draft' && !input.hasAttribute('aria-invalid');
       }))
-        && await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === before);
+        && afterCorrection === before, JSON.stringify(savedStateDifference(before, afterCorrection)));
   },
 }, {
   id: 'ux04-context',
@@ -17192,8 +17246,9 @@ SCENARIOS.push({
         && /Selected/.test(document.querySelector('#manual-candidates').textContent)
         && /not saved/.test(document.querySelector('#manual-candidates').textContent)
         && document.querySelector('#manual-title').value === 'Fixture Vol 7 26'));
+    const afterChoice = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
     t.check('wiki selection alone leaves reading data byte-identical',
-      await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === saved);
+      afterChoice === saved, JSON.stringify(savedStateDifference(saved, afterChoice)));
     await open(page, '/#/add-import');
     await page.evaluate(() => {
       document.querySelector('#import-text').value = '- [ ] Unresolved fixture';
@@ -17463,7 +17518,9 @@ SCENARIOS.push({
         !remove.danger && remove.focus === 'ask-cancel' && JSON.stringify(remove.order) === order,
         JSON.stringify(remove));
     }
-    t.check('declining both questions leaves every list as it was', await lists() === before);
+    const after = await lists();
+    t.check('declining both questions leaves every list as it was', after === before,
+      JSON.stringify(savedStateDifference(before, after)));
   },
 });
 
@@ -17664,8 +17721,9 @@ SCENARIOS.push({
         } finally {
           await page.keyboard.up('Shift');
         }
+        // Shift+Tab lands on the row's rating button, which sits after the note (owner, 19 Nov 2026).
         t.check(`${size} row ${index}: leaving the disclosure closes it without moving focus back`,
-          await page.$eval(row, (el) => document.activeElement === el.querySelector('.rnote')
+          await page.$eval(row, (el) => document.activeElement === el.querySelector('.rrate')
             && el.querySelector('.row-actions-toggle').getAttribute('aria-expanded') === 'false'));
       }
     }
@@ -17681,8 +17739,9 @@ SCENARIOS.push({
     const stressed = await measureLayout();
     t.check('320x900: unbroken titles, series names, notes and multiple badges wrap inside the row',
       !stressed.errors.length && !stressed.overflow, JSON.stringify(stressed));
+    const afterLayout = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
     t.check('layout and targeting leave saved reading progress and list contents untouched',
-      await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === savedState);
+      afterLayout === savedState, JSON.stringify(savedStateDifference(savedState, afterLayout)));
   },
 });
 
@@ -18437,11 +18496,15 @@ SCENARIOS.push({
             })),
             orientation: [...guide.querySelectorAll('[aria-labelledby="guide-app-h"] li a')].map((link) => ({
               view: link.dataset.view, href: link.getAttribute('href'), text: link.textContent.trim(),
+              linksInBullet: link.closest('li').querySelectorAll('a').length,
             })),
             credit: guide.textContent.includes('r/Marvel wiki'),
           };
         });
         const expected = [
+          'https://www.marvelcomicsapp.com/',
+          'https://www.hoopladigital.com/search?kindId=10&publisherName=Marvel',
+          'https://resources.overdrive.com/library/libby-features/comics-graphic-novels/',
           'https://www.reddit.com/r/Marvel/wiki/faq/#wiki_introduction_to_comics',
           'https://www.reddit.com/r/Marvel/wiki/faq#wiki_starter_recommendations',
           'https://www.reddit.com/r/Marvel/wiki/faq/#wiki_events.2Fcrossovers',
@@ -18468,10 +18531,11 @@ SCENARIOS.push({
             { id: 'marvels-1994', href: '#/preview/marvels-1994', text: 'Marvels (1994)' },
           ]), JSON.stringify(content.books));
         const pages = ['home', 'catalog', 'genres', 'spotlights', 'marvel-on-screen', 'marvel-ages',
-          'young-readers', 'library', 'add', 'data', 'about'];
+          'young-readers', 'universes', 'creators', 'library', 'add', 'data', 'about'];
         t.check('the concise orientation links every named page to its own route',
           JSON.stringify(content.orientation.map(({ view }) => view)) === JSON.stringify(pages)
-            && content.orientation.every(({ view, href, text }) => href === `#/${view}` && text),
+            && content.orientation.every(({ view, href, text, linksInBullet }) =>
+              href === `#/${view}` && text && linksInBullet === 1),
           JSON.stringify(content.orientation));
         const selector = '#view-new-to-comics a[href^="https://www.reddit.com/"]';
         const actual = await copy.$(selector);
@@ -19023,7 +19087,7 @@ SCENARIOS.push({
     });
     await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
     await open(page, '/');
-    await page.waitForFunction(() => document.querySelectorAll('.home-path-icon').length === 7);
+    await page.waitForFunction(() => document.querySelectorAll('.home-path-icon').length === 8);
     const inventory = await page.evaluate(() => [...document.querySelectorAll('.gi')].filter((icon) => !icon.closest('.mobile-link')).map((icon) => {
       const button = icon.closest('button, a[href]');
       return {
@@ -19043,9 +19107,9 @@ SCENARIOS.push({
         'Reading guides', 'Characters', 'Series', 'Creators', 'Genres', 'Marvel Ages', 'Universes',
         'Find a series', 'Find a creator',
       ]), JSON.stringify(inventory));
-    t.check('all 37 static and generated SVGs are decorative and cannot become keyboard stops',
-      inventory.length === 37 && inventory.every((i) => i.tag === 'svg' && i.decorative));
-    t.check('the one gateway preserves seven labelled category destinations and their icon/arrow pairs',
+    t.check('all 39 static and generated SVGs are decorative and cannot become keyboard stops',
+      inventory.length === 39 && inventory.every((i) => i.tag === 'svg' && i.decorative));
+    t.check('the one gateway preserves eight labelled category destinations and their icon/arrow pairs',
       await page.evaluate(() => [...document.querySelectorAll('[data-primary-paths], [data-secondary-paths]')]
         .flatMap((root) => [...root.querySelectorAll('a.home-path')])
         .filter((button) => button.getAttribute('aria-label')?.includes('Recommended start here')
@@ -19053,7 +19117,7 @@ SCENARIOS.push({
           || button.getAttribute('aria-label')?.includes('Movies and streaming')
           || button.getAttribute('aria-label')?.includes('Publication history')
           || button.getAttribute('aria-label')?.includes('Stories for kids'))
-        .filter((button) => button.querySelectorAll('svg.gi').length === 2).length === 7));
+        .filter((button) => button.querySelectorAll('svg.gi').length === 2).length === 8));
     t.check('all icon references stay local', inventory.every((i) => i.reference?.startsWith('./icons/ui.svg#')));
 
     const seen = new Set();
@@ -19546,7 +19610,38 @@ function savedStateDifference(beforeRaw, afterRaw, limit = 10) {
   return found.length ? found : [{ path: 'key order or spacing only' }];
 }
 
-async function seedFixtureState(page, { sidebarCollapsed = null, openRead = false } = {}) {
+// The same, as check detail, for two states a scenario already holds parsed.
+function stateDifference(before, after) {
+  return JSON.stringify(savedStateDifference(JSON.stringify(before), JSON.stringify(after)));
+}
+
+// The fixture is an older saved state, at schema 2 with issue descriptions, so startup rewrites it
+// with one migrating save once the tab lock answers, which can land after load. A baseline read
+// before that save differs from every later read although the scenario wrote nothing (#1278).
+// Three Windows release preparations each failed a different comparison of this kind, so the
+// seeding helpers wait for that save here rather than each scenario that compares. Every save
+// writes the write token and the current schema, which the fixture lacks.
+async function settleSeededState(page) {
+  try {
+    await page.waitForFunction((version) => {
+      let saved;
+      try {
+        saved = JSON.parse(localStorage.getItem('mrt.state.v2'));
+      } catch {
+        return false;
+      }
+      return typeof saved?.writeToken === 'string' && saved.schemaVersion === version
+        && !Object.values(saved.issues ?? {}).some((issue) => issue && Object.hasOwn(issue, 'description'));
+    }, { timeout: 15000 }, SCHEMA_VERSION);
+  } catch (error) {
+    const raw = await page.evaluate(() => localStorage.getItem('mrt.state.v2')).catch(() => null);
+    throw new Error(`startup never saved the seeded reading state (${error.message}): ${String(raw).slice(0, 200)}`, { cause: error });
+  }
+}
+
+// `settle: false` keeps the seeded state unsaved on return, for a scenario that observes startup's
+// own save of it.
+async function seedFixtureState(page, { sidebarCollapsed = null, openRead = false, settle = true } = {}) {
   await open(page, '/?catalog=browser-check');
   await page.evaluate((saved, collapsed, key) => {
     localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
@@ -19563,6 +19658,7 @@ async function seedFixtureState(page, { sidebarCollapsed = null, openRead = fals
     localStorage.removeItem(key);
   }, fixtureReadingState(), sidebarCollapsed, HOME_UPDATES_SEEN_KEY);
   await page.reload({ waitUntil: 'load' });
+  if (settle) await settleSeededState(page);
   if (openRead) {
     await click(page, '#list-nav .ri');
     await page.waitForSelector('#view-read:not([hidden])', { timeout: 15000 });
@@ -19661,6 +19757,7 @@ async function preparePage(page, origin, mutation, scenarioId = null) {
     ['/dev-faults.js', mutation?.rewriteFaults],
     ['/js/main.js', mutation?.rewriteMain],
     ['/js/views/home.js', mutation?.rewriteHome],
+    ['/js/views/creators.js', mutation?.rewriteCreators],
     ['/js/views/add.js', mutation?.rewriteAdd],
     ['/js/views/data.js', mutation?.rewriteData],
     ['/js/views/completion.js', mutation?.rewriteCompletion],
@@ -24060,6 +24157,7 @@ async function seedRemovalFixture(page, saved = fixtureReadingState()) {
     localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, filter: 'all' }));
   }, saved);
   await open(page, '/#/read/fixture?full=1');
+  await settleSeededState(page);
   await page.waitForSelector('#rows .row');
 }
 
@@ -24202,7 +24300,7 @@ SCENARIOS.push(
         && !Object.hasOwn(removed.lists.fixture.collectedIn, removedId));
       t.check('removal preserves shared maps and the other list',
         ['issues', 'read', 'notes', 'overrides'].every((key) => JSON.stringify(removed[key]) === JSON.stringify(before[key]))
-        && JSON.stringify(removed.lists.other) === JSON.stringify(before.lists.other));
+        && JSON.stringify(removed.lists.other) === JSON.stringify(before.lists.other), stateDifference(before, removed));
       let focus = await removalFocus(page);
       t.check('notice publication leaves the non-destructive successor visibly focused',
         focus.visible && focus.act === 'read' && focus.key === String(ids[15]), JSON.stringify(focus));
@@ -24767,7 +24865,8 @@ SCENARIOS.push({
     t.check('removing a trigger cleans up its detached hint', await page.$eval('#action-tip', (node) => node.hidden));
     t.check('the lifecycle scenario produces no page errors', errors.length === 0, errors.join(' / '));
     const after = await readState(page);
-    t.check('hint interactions leave saved reading progress unchanged', JSON.stringify(after) === JSON.stringify(saved));
+    t.check('hint interactions leave saved reading progress unchanged', JSON.stringify(after) === JSON.stringify(saved),
+      stateDifference(saved, after));
   },
 });
 
@@ -28956,6 +29055,244 @@ MUTATIONS.push({
   rewriteMain: (source) => source.replace(
     "if (focus && route.view === 'universes') restoreUniverseOpener(route.view);",
     "if (focus && route.view === 'universes') focusViewHeading(route.view);",
+  ),
+});
+
+SCENARIOS.push({
+  id: 'creator-runs',
+  title: 'One Home card opens Creators and its seven existing runs without changing saved reading data',
+  async run(page, t) {
+    const lists = ACTUAL_CATALOG.lists.filter((list) => list.type === 'creator-run').map((list) => ({
+      ...list, writers: list.writers.map((name) => name === "Mike O'sullivan" ? "Mike O'Sullivan" : name),
+    }));
+    const writers = [...new Set(lists.flatMap((list) => list.writers))];
+    page.__denyExternal = true;
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    await page.evaluateOnNewDocument(() => {
+      if (location.protocol !== 'http:') return;
+      if (!localStorage.getItem('mrt.settings')) {
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, theme: 'dark' }));
+      }
+    });
+    await open(page, '/?catalog=actual&local-health=ready#/home');
+    await page.waitForSelector('#home-primary-paths .home-path');
+    const gateway = '#home-more-paths [data-category="creators"]';
+    const present = await page.$(gateway);
+    t.check('Home has one Creators gateway under Discover More and no inline runs or filters', Boolean(present)
+      && await page.$eval('#view-home', (root) => root.querySelectorAll('[data-category="creators"]').length === 1
+        && !root.querySelector('[data-creator-run], #creator-filters, #home-creator-runs'))
+      && await page.$eval(gateway, (link) => link.getAttribute('href') === '#/creators'
+        && link.textContent.replace(/\s+/g, ' ').trim() === 'Browse by creator Creators 7 Reading Lists'));
+    if (!present) return;
+    const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+    const settingsBefore = await page.evaluate(() => localStorage.getItem('mrt.settings'));
+    await page.focus(gateway);
+    await page.keyboard.press('Enter');
+    await page.waitForSelector('#view-creators:not([hidden]) [data-creator-run]');
+    t.check('Creators has its own heading, document title and Home breadcrumb, with heading focus',
+      await page.evaluate(() => location.hash === '#/creators'
+        && document.title === 'Creators | Recap Page'
+        && document.activeElement === document.querySelector('#creators-h')
+        && document.querySelector('#view-creators .breadcrumb ol a')?.getAttribute('href') === '#/browse'));
+    await page.goBack();
+    await page.waitForSelector('#view-home:not([hidden])');
+    await page.goForward();
+    await page.waitForSelector('#view-creators:not([hidden])');
+    t.check('Back and Forward retain the dedicated page without writing saved reading data or settings',
+      await page.evaluate((saved, settings) => localStorage.getItem('mrt.state.v2') === saved
+        && localStorage.getItem('mrt.settings') === settings, before, settingsBefore));
+    const cards = () => page.$$eval('[data-creator-run]', (nodes) => nodes.map((node) => ({
+      id: node.dataset.creatorRun, href: node.getAttribute('href'),
+      name: node.querySelector('.catalog-card-title').textContent.trim(),
+      meta: node.querySelector('.catalog-card-meta').textContent,
+    })));
+    t.check('all seven creator lists retain their own names, credits, lengths and native preview destinations',
+      JSON.stringify(await cards()) === JSON.stringify(lists.map((list) => ({
+        id: list.id, href: `#/preview/${list.id}`, name: list.name,
+        meta: `${list.writers.join(', ')} · ${list.count} comics`,
+      }))));
+    t.check('every credited creator has a filter, including the coauthor',
+      JSON.stringify(await page.$$eval('#creator-filters button', (buttons) => buttons.map((button) => button.textContent)))
+        === JSON.stringify(['All creators', ...writers]));
+    for (const writer of writers) {
+      const index = writers.indexOf(writer) + 2;
+      const selector = `#creator-filters button:nth-child(${index})`;
+      await page.focus(selector);
+      await page.keyboard.press(index % 2 ? 'Enter' : 'Space');
+      t.check(`${writer} filters only the credited runs and keeps keyboard focus`,
+        JSON.stringify((await cards()).map((card) => card.id))
+          === JSON.stringify(lists.filter((list) => list.writers.includes(writer)).map((list) => list.id))
+        && await page.$eval(selector, (button) => document.activeElement === button
+          && button.getAttribute('aria-pressed') === 'true'
+          && document.querySelectorAll('#creator-filters [aria-pressed="true"]').length === 1));
+    }
+    await click(page, '#creator-filters button');
+    t.check('All creators restores the seven separate runs and filtering never writes reading progress',
+      (await cards()).length === 7
+      && await page.evaluate((saved) => localStorage.getItem('mrt.state.v2') === saved, before));
+
+    const layouts = [];
+    for (const theme of ['dark', 'light']) {
+      for (const [width, height] of [[1280, 900], [390, 844], [320, 720]]) {
+        await page.setViewport({ width, height });
+        await page.evaluate((value) => document.documentElement.setAttribute('data-theme', value), theme);
+        const layout = await page.$eval('#view-creators', (root) => {
+          const controls = [...root.querySelectorAll('#creator-filters button, [data-creator-run]')];
+          return {
+            overflow: document.documentElement.scrollWidth > innerWidth,
+            clipped: controls.some((node) => {
+              const rect = node.getBoundingClientRect();
+              return rect.left < 0 || rect.right > innerWidth + 1 || rect.width < 24 || rect.height < 24;
+            }),
+            cards: root.querySelectorAll('[data-creator-run]').length,
+            weight: getComputedStyle(root.querySelector('[aria-pressed="true"]')).fontWeight,
+            otherWeight: getComputedStyle(root.querySelector('[aria-pressed="false"]')).fontWeight,
+          };
+        });
+        layouts.push({ theme, width, ...layout });
+        if (process.env.MRT_CREATOR_EVIDENCE && !page.__mutation && width !== 320) {
+          await page.evaluate(async () => {
+            document.activeElement?.blur();
+            window.scrollTo(0, 0);
+            await Promise.all(document.getAnimations().map((animation) => animation.finished));
+          });
+          await page.screenshot({
+            path: join(process.env.MRT_CREATOR_EVIDENCE, `creators-page-${width}-${theme}.png`),
+            fullPage: true,
+          });
+          await page.evaluate(() => { location.hash = '#/home'; });
+          await page.waitForSelector('#view-home:not([hidden]) [data-category="creators"]');
+          await page.evaluate(async () => {
+            document.activeElement?.blur();
+            await Promise.all(document.getAnimations().map((animation) => animation.finished));
+          });
+          await page.screenshot({
+            path: join(process.env.MRT_CREATOR_EVIDENCE, `creators-home-${width}-${theme}.png`),
+            fullPage: true,
+          });
+          await click(page, gateway);
+          await page.waitForSelector('#view-creators:not([hidden])');
+        }
+      }
+    }
+    t.check('both themes wrap every card and filter at desktop and phone widths with no page overflow',
+      layouts.every((row) => !row.overflow && !row.clipped && row.cards === 7
+        && Number(row.weight) > Number(row.otherWeight)), JSON.stringify(layouts));
+    await page.evaluate(() => { document.documentElement.style.fontSize = '200%'; });
+    t.check('200 percent text preserves wrapping and pointer targets on the narrow phone',
+      await page.$eval('#view-creators', (root) => document.documentElement.scrollWidth <= innerWidth
+        && [...root.querySelectorAll('#creator-filters button, [data-creator-run]')].every((node) => {
+          const box = node.getBoundingClientRect();
+          return box.left >= 0 && box.right <= innerWidth + 1 && box.width >= 24 && box.height >= 24;
+        })));
+    await page.evaluate(() => { document.documentElement.style.fontSize = ''; });
+    await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
+    await page.focus('#creator-filters button');
+    await page.keyboard.press('Tab');
+    t.check('keyboard focus stays visibly outlined with reduced motion',
+      await page.evaluate(() => {
+        const target = document.activeElement;
+        return target.closest('#creator-filters')
+          && getComputedStyle(target).outlineStyle !== 'none';
+      }));
+    const cdp = await page.createCDPSession();
+    await cdp.send('Emulation.setEmulatedMedia', { features: [{ name: 'forced-colors', value: 'active' }] });
+    t.check('forced colors retains a distinct selected filter and focus outline',
+      await page.$eval('#creator-filters [aria-pressed="true"]', (button) =>
+        getComputedStyle(button).borderTopWidth === '2px'
+        && getComputedStyle(document.activeElement).outlineStyle !== 'none'));
+    await cdp.send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-color-scheme', value: 'light' }] });
+    await cdp.detach();
+    await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: 'light' }]);
+    await page.evaluate(() => document.documentElement.removeAttribute('data-theme'));
+    t.check('system light theme uses the same readable filter and card styles',
+      await page.$eval('#creator-filters button', (button) => {
+        const color = getComputedStyle(button).color;
+        return matchMedia('(prefers-color-scheme: light)').matches
+          && color !== getComputedStyle(button).backgroundColor;
+      }));
+    await page.setViewport({ width: 1280, height: 900 });
+    const opener = '[data-creator-run="marvels-1994"]';
+    await page.focus(opener);
+    await page.keyboard.press('Enter');
+    await page.waitForSelector('#preview[open]');
+    t.check('the card opens the existing list preview without saving a list',
+      await page.$eval('#preview-h', (heading) => heading.textContent.includes('Marvels'))
+      && await page.evaluate((saved) => localStorage.getItem('mrt.state.v2') === saved, before));
+    await page.keyboard.press('Escape');
+    await page.waitForSelector('#preview:not([open])');
+    t.check('Escape restores the creator card opener',
+      await page.$eval(opener, (link) => document.activeElement === link));
+    await page.keyboard.press('Enter');
+    await page.waitForSelector('#preview[open]');
+    await click(page, '#preview-add [data-act="main"]');
+    await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')?.textContent.includes('Open'));
+    await click(page, '#preview-close');
+    t.check('adding through Preview preserves the creator opener',
+      await page.$eval(opener, (link) => document.activeElement === link));
+    await page.keyboard.press('Enter');
+    await click(page, '#preview-add [data-act="main"]');
+    await page.waitForSelector('#view-read:not([hidden])');
+    t.check('the existing Preview Open reaches the saved four-comic run',
+      await page.evaluate(() => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        return state.lists[state.active]?.itemIds.length === 4;
+      }));
+    const savedAfterAdd = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+    await page.evaluate(() => {
+      document.querySelector('input[name="filter"][value="unread"]').click();
+      location.hash = '#/creators?filter=read';
+    });
+    await page.waitForSelector('#view-creators:not([hidden]) [data-creator-run]');
+    t.check('a direct Creators address preserves a saved list and filter despite unrelated filter queries',
+      await page.evaluate((saved) => localStorage.getItem('mrt.state.v2') === saved
+        && JSON.parse(localStorage.getItem('mrt.settings')).filter === 'unread'
+        && !document.querySelector('#view-creators').hidden, savedAfterAdd));
+    await page.evaluate(() => { location.hash = '#/home'; });
+    await page.waitForSelector('#view-home:not([hidden])');
+    t.check('leaving Creators through a bare route retains the existing unread preference',
+      await page.evaluate(() => JSON.parse(localStorage.getItem('mrt.settings')).filter === 'unread'));
+    await page.goBack();
+    await page.waitForSelector('#view-creators:not([hidden])');
+    await click(page, '#view-creators .breadcrumb ol a');
+    await page.waitForSelector('#view-home:not([hidden])');
+    t.check('the Home breadcrumb returns to the shared Explore cards',
+      await page.evaluate(() => location.hash.startsWith('#/browse')
+        && !document.querySelector('#home-categories').hidden
+        && JSON.parse(localStorage.getItem('mrt.settings')).filter === 'unread'));
+    await openFresh(page, '/?catalog=empty&local-health=ready#/home');
+    await page.waitForFunction(() => document.querySelector('#home-paths-status')?.textContent.includes('available.'));
+    t.check('an empty catalog hides the Creators gateway',
+      !await page.$('#view-home [data-category="creators"]'));
+    await page.evaluate(() => { location.hash = '#/creators'; });
+    await page.waitForFunction(() => document.querySelector('#creators-status')?.textContent.includes('No creator runs'));
+    t.check('the direct empty page has a truthful message and a Home destination without empty filters',
+      await page.evaluate(() => !document.querySelector('#creators-status').hidden
+        && !document.querySelector('#creators-empty-home').hidden
+        && document.querySelector('#creators-empty-home').getAttribute('href') === '#/browse'
+        && document.querySelectorAll('#creator-filters button, [data-creator-run]').length === 0));
+    t.check('the journey has no browser errors', errors.length === 0, JSON.stringify(errors));
+  },
+});
+
+MUTATIONS.push({
+  id: 'creator-filter-ignored',
+  breaks: 'creator-runs',
+  why: 'a creator selection must narrow the seven runs rather than only painting its button',
+  rewriteCreators: (source) => source.replace(
+    '.filter((list) => !creator || list.writers.includes(creator)).map(creatorCard)',
+    '.filter(() => true).map(creatorCard)',
+  ),
+});
+
+MUTATIONS.push({
+  id: 'creator-exit-resets-reading-filter',
+  breaks: 'creator-runs',
+  why: 'leaving the Creators page must preserve the reader\'s existing unread filter',
+  rewriteMain: (source) => source.replace(
+    " || view === 'creators'",
+    '',
   ),
 });
 

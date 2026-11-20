@@ -118,8 +118,11 @@ progress or backups.
   without one, before December 7, 2026, **Read** opens Marvel's web reader when its direct reader
   link is known. Otherwise it may look up the link or open the comic's details page. From the start
   of December 7 on your device's local clock, **Read** opens the general Marvel Comics website for a
-  comic without an app link, without looking up a reader link. On Android, **Read** opens your
-  installed browser. A comic with a Marvel Comics app link opens there.
+  comic without an app link, without looking up a reader link. On Android, for some comics,
+  **Read** tries to open the Marvel Comics app. If it cannot open an app, Read opens your browser
+  instead. Other comics open in your browser. On iPhone and iPad, for some comics, **Read** tries to
+  open the Marvel Comics app. If it cannot open an app, Read opens your browser instead. Other comics
+  open in your browser.
 
 Each service sees the request and your network address. How long it keeps them is up to that
 service.

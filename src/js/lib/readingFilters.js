@@ -13,45 +13,29 @@
 // without also adding the predicate it renders from.
 //
 // It lives under lib/ rather than beside the renderer because the predicates are the part worth
-// testing and nothing here touches the DOM. Constraint 6 is the reason that matters: `unlimited`
-// is the one filter that reads the five-state availability model, and a filter that quietly
-// degrades to All is a filter that has quietly stopped distinguishing those five states.
+// testing and nothing here touches the DOM.
+//
+// Two filters were removed at the owner's request on 19 Nov 2026, "Past Unlimited date or marked
+// available" and "Details pending", because they answered questions about the data rather than
+// about reading. A reader who had one chosen is returned to All: wireReading() admits only a value
+// the current radios offer, and a complete backup that names one restores as All
+// (LEGACY_READING_FILTERS below). The availability badge and its five states are untouched.
 
-import { availability, STATE } from './availability.js';
-
-// Order is display order: the two a reader reaches for most, then the two that answer a question
-// about an issue rather than about progress. `all` leads because it is the default and the way
-// back from any of the others.
+// Order is display order. `all` leads because it is the default and the way back from any of the
+// others.
 export const READING_FILTERS = [
   { value: 'all', label: 'All', match: () => true },
   { value: 'unread', label: 'Unread', match: (item) => !item.read },
   { value: 'deferred', label: 'Deferred', match: (item) => !item.read && Boolean(item.deferred) },
   { value: 'read', label: 'Read', match: (item) => Boolean(item.read) },
-  {
-    value: 'unlimited',
-    label: 'Past Unlimited date or marked available',
-    // Deliberately two of the five states and not a boolean. `expected` is the hedge the
-    // availability model exists for and `override-available` is the reader saying they checked;
-    // `scheduled`, `unknown` and `override-unavailable` each mean something different from each
-    // other, and none of them means yes.
-    match: (item) => {
-      const state = availability(item, { override: item.override }).state;
-      return state === STATE.EXPECTED || state === STATE.OVERRIDE_AVAILABLE;
-    },
-  },
-  {
-    value: 'pending',
-    label: 'Details pending',
-    // A manually added issue has no upstream record to wait for, so it is not pending anything
-    // and would otherwise sit in this list forever. The same is true of an issue the snapshot has
-    // no record of, for a different reason: that one was asked about and refused, so this list
-    // would offer the reader 34 issues whose details are never going to arrive.
-    match: (item) => !item.hydrated && !item.detailsRefused && item.source !== 'manual',
-  },
 ];
 
 // What a filter falls back to, and what the app starts on before anything is restored.
 export const DEFAULT_FILTER = 'all';
+
+// Values a build before 19 Nov 2026 could save. A complete backup naming one restores as the
+// default rather than being refused, so nothing a reader saved with an older build stops loading.
+export const LEGACY_READING_FILTERS = Object.freeze(['unlimited', 'pending']);
 
 export function readingFilter(value) {
   return READING_FILTERS.find((f) => f.value === value) ?? null;

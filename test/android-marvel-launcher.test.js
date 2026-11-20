@@ -259,7 +259,7 @@ test('950 Android opens a Marvel Comics app link before and after the cutoff wit
 
 test('950 the Android launch page note names the app link and the lookup in plain words', () => {
   const source = readFileSync(new URL('../packaging/android/web/launcher.js', import.meta.url), 'utf8');
-  assert.ok(source.includes("'Read opens your installed browser. A comic with a Marvel Comics app link opens there. "
+  assert.ok(source.includes("'For some comics, Read tries to open the Marvel Comics app. If it cannot open an app, Read opens your browser instead. Other comics open in your browser. "
     + 'Before December 7, 2026, Read may look up the Marvel Unlimited link online for a comic without one. '
     + 'From that date it opens the general Marvel Comics website without a lookup. '
     + "Lists, notes and reading progress are not sent.'"));

@@ -11,9 +11,8 @@ import { visitButton } from './shared/catalog-presentation.js';
 import { uiIcon } from '../lib/uiIcon.js';
 import { editionRelations } from '../lib/collectedEditions.js';
 import {
-  collectedEditionCredit, collectedEditionLabels, marvelComicsAppCredit,
+  collectedEditionCredit, collectedEditionLabels,
 } from './shared/collected-editions.js';
-import { appViewerFor } from '../lib/marvelComicsApp.js';
 import { gcdDetailsCredit, hasGcdDetails } from './shared/details-credit.js';
 
 const ADD_TEXT = '+ Add to library';
@@ -421,10 +420,6 @@ export function createPreviewView({
       const credit = order.items.some((item) => editionRelations(list.id, item).length)
         ? [collectedEditionCredit(el)] : [];
       if (hasGcdDetails(order.items)) credit.push(gcdDetailsCredit(el));
-      if (order.items.some((item) => appViewerFor(item.issueId))) {
-        nodes.source.append(marvelComicsAppCredit(el));
-        if (nodes.about) nodes.about.hidden = false;
-      }
       nodes.body.replaceChildren(...notice, ...credit, el('ol', { class: 'preview-list' }, rows));
     } catch (error) {
       if (loadToken !== token) return;

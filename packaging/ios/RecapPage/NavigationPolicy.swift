@@ -76,4 +76,39 @@ struct NavigationPolicy {
         if !opensNewWindow && isWebLink(url) { return .openExternally }
         return .refuse
     }
+
+    /// The Marvel Comics app's own reader address for one of its viewer links, or nil. Safari does
+    /// not hand these web links to the app, while the owner's iPad opened this custom address
+    /// straight into the reader on 2026-11-19. The address is not published by the app's makers,
+    /// so only the exact viewer shape the link table builds is translated.
+    static func marvelComicsAppAddress(for url: URL) -> URL? {
+        guard let parts = URLComponents(url: url, resolvingAgainstBaseURL: false),
+              parts.scheme == "https", parts.host == "www.marvelcomicsapp.com",
+              parts.port == nil, parts.user == nil, parts.password == nil,
+              parts.percentEncodedQuery == nil, parts.percentEncodedFragment == nil else { return nil }
+        let path = parts.percentEncodedPath
+        guard path.range(of: "^/viewer/[1-9][0-9]{0,8}$", options: .regularExpression) != nil else { return nil }
+        return URL(string: "marvelcomicsapp://viewer?issueId=\(path.dropFirst("/viewer/".count))")
+    }
+
+    /// Tries the app address first and the web link only when the app does not open, reporting just
+    /// the final outcome, so a missing app is not shown to the reader as a failed link.
+    static func openPreferringApp(
+        _ url: URL,
+        appAddress: URL?,
+        open: @escaping (URL, @escaping (Bool) -> Void) -> Void,
+        completion: @escaping (Bool) -> Void
+    ) {
+        guard let appAddress else {
+            open(url, completion)
+            return
+        }
+        open(appAddress) { opened in
+            if opened {
+                completion(true)
+            } else {
+                open(url, completion)
+            }
+        }
+    }
 }

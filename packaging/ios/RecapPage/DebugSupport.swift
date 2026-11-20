@@ -13,6 +13,7 @@ enum DebugSupport {
     static let presentationTestSeedKey = "RECAP_IOS_PRESENTATION_TEST_SEED"
     static let readHandoffTestKey = "RECAP_IOS_READ_HANDOFF_TEST"
     static let recordHandOffsKey = "RECAP_IOS_RECORD_HANDOFFS"
+    static let marvelComicsAppOpensKey = "RECAP_IOS_MARVEL_APP_OPENS"
     static let liveCorsCheckKey = "RECAP_IOS_LIVE_CORS_CHECK"
     static let dataLossStateResetKey = "RECAP_IOS_DATA_LOSS_RESET"
     static let clearReadingDataKey = "RECAP_IOS_CLEAR_READING_DATA"
@@ -77,6 +78,11 @@ enum DebugSupport {
 
     static var recordsHandOffs: Bool {
         environment[recordHandOffsKey] == "1"
+    }
+
+    /// Whether a recorded Marvel Comics app address counts as opened; otherwise Read falls back.
+    static var marvelComicsAppOpens: Bool {
+        environment[marvelComicsAppOpensKey] == "1"
     }
 
     static var readSheetStyleProbeEnabled: Bool {
