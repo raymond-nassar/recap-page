@@ -14,6 +14,8 @@ import java.util.regex.Pattern;
 
 final class NavigationPolicy {
     static final int MAX_SAVE_BYTES = 32 * 1024 * 1024;
+    static final String MARVEL_COMICS_APP_PACKAGE = "com.webtoon.marvelcomics";
+    private static final Pattern VIEWER_PATH = Pattern.compile("/viewer/([1-9][0-9]{0,8})");
     private static final Set<String> POPUP_ASSETS = new HashSet<>(Arrays.asList(
             "open.html", "open.js", "open.css", "js/lib/apiBase.js", "js/lib/issuePageUrl.js", "js/lib/readerDestination.js",
             "js/lib/marvelComicsAppUrl.js",
@@ -104,6 +106,19 @@ final class NavigationPolicy {
                     && uri.getRawQuery() == null && uri.getRawFragment() == null;
         }
         return host.equals("read.marvel.com") || host.equals("www.marvel.com") || host.equals("marvel.com");
+    }
+
+    // The Marvel Comics app claims none of its https addresses on Android, so a viewer link always
+    // reached the browser. Its own custom address opened the same comic in the reader on the owner's
+    // Pixel on 2026-11-19 (36887 and 1703). The address is unofficial and undocumented, so it is built
+    // here and nowhere else, only from an already approved /viewer/ link and never from a /mu/issues/
+    // one, whose numbers belong to Marvel rather than to the app.
+    String appReaderAddress(String value) {
+        if (!isOfficialReader(value)) return null;
+        URI uri = parse(value);
+        if (!"www.marvelcomicsapp.com".equals(uri.getHost())) return null;
+        Matcher viewer = VIEWER_PATH.matcher(uri.getRawPath());
+        return viewer.matches() ? "marvelcomicsapp://viewer?issueId=" + viewer.group(1) : null;
     }
 
     boolean isNetworkSubresource(String value) {

@@ -22,6 +22,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Instrumentation;
 import android.content.Context;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageInfo;
@@ -645,6 +646,7 @@ public final class NativeIntegrationTest {
         assertEquals("No Bifrost lookup on either side", 0, appLookups.get());
         assertSame("Both handoffs preserve the main native endpoint", nativeEndpoint, nativePort());
         assertFixture();
+        assertMarvelComicsHandoffs();
         String[] providers = {
                 "https://www.hoopladigital.com/title/123456789",
                 "https://share.libbyapp.com/title/123456",
@@ -711,6 +713,89 @@ public final class NativeIntegrationTest {
                 .put("providerHandoffs", providers.length)
                 .put("popupOpenerNull", true).put("nativeEndpointUnchanged", true)
                 .put("popupBridgeAssetStatus", 403);
+    }
+
+    // Read on a /viewer/ comic first asks the Marvel Comics app, by package, for its own reader address.
+    // A /mu/issues/ comic and an explicit Open in browser tap never try the app, and a missing app falls
+    // back to the same vetted browser path as before.
+    private void assertMarvelComicsHandoffs() throws Exception {
+        String[] links = {
+                "https://www.marvelcomicsapp.com/viewer/900000001",
+                "https://www.marvelcomicsapp.com/mu/issues/900000002",
+                "https://www.marvelcomicsapp.com/viewer/900000003"
+        };
+        String[] appAddresses = {
+                "marvelcomicsapp://viewer?issueId=900000001", null, "marvelcomicsapp://viewer?issueId=900000003"
+        };
+        String before = stateSummary();
+        intending(hasData(appAddresses[2])).respondWithFunction(intent -> {
+            throw new ActivityNotFoundException("Synthetic missing Marvel Comics app");
+        });
+        for (int index = 0; index < links.length; index++) {
+            String destination = links[index];
+            String appAddress = appAddresses[index];
+            String parameter = index == 1 ? "i=900000002&m=900000002" : "i=900000099&a=" + (900000001 + index);
+            assertTrue("A real tap opens the isolated launcher with a synthetic app link",
+                    (Boolean) asyncJs(web,
+                            "const b=document.createElement('button');b.id='native-app-read';b.textContent='Read';"
+                            + "Object.assign(b.style,{position:'fixed',top:'20px',left:'20px',zIndex:'10000'});"
+                            + "b.onclick=()=>window.open('/open.html?" + parameter
+                            + "','_blank','noopener');document.body.append(b);return true;"));
+            tap(web, "#native-app-read");
+            waitFor("Launcher hands the comic off", WAIT_MS, () -> Intents.getIntents().stream().anyMatch(intent ->
+                    destination.equals(intent.getDataString())
+                            || appAddress != null && appAddress.equals(intent.getDataString())));
+            waitFor("Accepted app or browser handoff closes its popup", WAIT_MS, () -> popupViews().isEmpty());
+            List<Intent> appAttempts = Intents.getIntents().stream()
+                    .filter(intent -> appAddress != null && appAddress.equals(intent.getDataString()))
+                    .collect(java.util.stream.Collectors.toList());
+            List<Intent> browserAttempts = Intents.getIntents().stream()
+                    .filter(intent -> destination.equals(intent.getDataString()))
+                    .collect(java.util.stream.Collectors.toList());
+            assertEquals("Only a viewer link tries the app, once", appAddress == null ? 0 : 1, appAttempts.size());
+            assertEquals("Only a link with no app attempt or a missing app reaches the browser",
+                    index == 0 ? 0 : 1, browserAttempts.size());
+            if (appAddress != null) {
+                Intent app = appAttempts.get(0);
+                assertEquals("App attempt is a view intent", Intent.ACTION_VIEW, app.getAction());
+                assertEquals("Only the Marvel Comics app may take the comic number",
+                        "com.webtoon.marvelcomics", app.getPackage());
+                assertNull("No explicit activity bypasses the app's own filters", app.getComponent());
+                assertTrue("App attempt is browsable", app.hasCategory(Intent.CATEGORY_BROWSABLE));
+            }
+            if (!browserAttempts.isEmpty()) {
+                assertEquals("The browser path keeps the vetted default browser", "com.android.chrome",
+                        browserAttempts.get(0).getPackage());
+            }
+            asyncJs(web, "document.querySelector('#native-app-read').remove();return true;");
+        }
+        assertTrue("The browser escape starts with a local, idle launcher",
+                (Boolean) asyncJs(web,
+                        "const b=document.createElement('button');b.id='native-app-read';b.textContent='Read';"
+                        + "Object.assign(b.style,{position:'fixed',top:'20px',left:'20px',zIndex:'10000'});"
+                        + "b.onclick=()=>window.open('/open.html','_blank','noopener');"
+                        + "document.body.append(b);return true;"));
+        tap(web, "#native-app-read");
+        waitFor("Idle launcher remains available", WAIT_MS, () -> popupViews().size() == 1);
+        WebView popup = popupViews().get(0);
+        waitFor("Idle launcher loads its fallback", WAIT_MS,
+                () -> truth(popup, "location.pathname==='/open.html' && !!document.querySelector('#fallback')"));
+        String escape = "https://www.marvelcomicsapp.com/viewer/900000004";
+        asyncJs(popup, "const a=document.querySelector('#fallback');a.href=" + quote(escape)
+                + ";a.hidden=false;return true;");
+        tap(popup, "#fallback");
+        waitFor("Explicit browser escape closes the popup", WAIT_MS, () -> popupViews().isEmpty());
+        assertEquals("Open in browser never tries the app", 0L, Intents.getIntents().stream()
+                .filter(intent -> "marvelcomicsapp://viewer?issueId=900000004".equals(intent.getDataString())).count());
+        List<Intent> escaped = Intents.getIntents().stream()
+                .filter(intent -> escape.equals(intent.getDataString())).collect(java.util.stream.Collectors.toList());
+        assertEquals("Open in browser opens the browser once", 1, escaped.size());
+        assertEquals("The browser escape remains pinned to the vetted browser", "com.android.chrome",
+                escaped.get(0).getPackage());
+        asyncJs(web, "document.querySelector('#native-app-read').remove();return true;");
+        assertEquals("App and browser handoffs do not change saved reading data", before, stateSummary());
+        measurements.put("marvelComicsAppAttempts", 2).put("marvelComicsAppFallbacks", 1)
+                .put("marvelComicsExplicitBrowserEscapes", 1);
     }
 
     @SuppressWarnings("deprecation")

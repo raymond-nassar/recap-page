@@ -224,6 +224,24 @@ public final class MainActivity extends Activity {
             if (!request.isForMainFrame()) return true;
             if (popup ? local.policy.isPopupPage(url) : local.policy.isAppPage(url)) return false;
             if (popup && local.policy.isPopupPage(view.getUrl()) && local.policy.isOfficialReader(url)) {
+                // An Open in browser tap carries a gesture and keeps going to the browser. Only the
+                // launcher's own automatic step tries the app, limited to its package so no other
+                // app can take the comic number.
+                String appAddress = request.hasGesture() ? null : local.policy.appReaderAddress(url);
+                if (appAddress != null) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(appAddress));
+                    intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                    intent.setPackage(NavigationPolicy.MARVEL_COMICS_APP_PACKAGE);
+                    try {
+                        startActivity(intent);
+                        closePopup(view);
+                        return true;
+                    } catch (ActivityNotFoundException noApp) {
+                        // Not installed, disabled, or no longer accepting the address.
+                    } catch (SecurityException error) {
+                        android.util.Log.w("RecapPage", "The Marvel Comics app refused the handoff; trying the browser.", error);
+                    }
+                }
                 openReaderBrowser(url, view);
                 return true;
             }
