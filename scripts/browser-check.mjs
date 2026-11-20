@@ -6088,6 +6088,8 @@ const SCENARIOS = [
         const chapterCards = cards.filter((card) => (
           /^list:marvel-knights-to-planet-x-\d{2}$/.test(card.dataset.story)
         ));
+        const latestEra = [...document.querySelectorAll('#catalog-results .timeline-era')]
+          .find((era) => era.querySelector('.shelf-section-title')?.textContent.trim() === 'From Doom to Armageddon');
         const spine = [...document.querySelectorAll('#catalog-results .timeline-year-marker')]
           .map((marker) => ({
             year: Number(
@@ -6143,6 +6145,11 @@ const SCENARIOS = [
           ).length,
           operationCards: cards.filter((card) => card.dataset.story === 'list:operation-zero-tolerance').length,
           avengersCards: cards.filter((card) => card.dataset.story === 'list:avengers-disassembled').length,
+          latestEra: {
+            copy: latestEra?.querySelector('.shelf-section-blurb')?.textContent.trim() ?? '',
+            cards: [...(latestEra?.querySelectorAll('.catalog-card') ?? [])].map((card) => card.dataset.story),
+          },
+          hellsAngel: cards.some((card) => card.dataset.story === 'list:captain-america-2025-hells-angel'),
         };
       });
       t.check('Modern Timeline shows the existing setup guide as one shared rich card',
@@ -6216,6 +6223,14 @@ const SCENARIOS = [
         && timeline.eras[1]?.copy.includes('final three Planet X bridge chapters share 2004')
         && timeline.operationCards === 0 && timeline.avengersCards === 1,
         JSON.stringify(timeline));
+      t.check("the Doom to Armageddon era shows the approved order without Hell's Angel",
+        timeline.latestEra.copy === "The road from Doctor Doom's rule to Armageddon, alongside other events of the time. Dated 2025 to 2026."
+        && JSON.stringify(timeline.latestEra.cards) === JSON.stringify([
+          'list:captain-america-2025-our-secret-wars', 'list:one-world-under-doom',
+          'list:captain-america-2025-dooms-shadow', 'list:avengers-armageddon',
+        ])
+        && !timeline.hellsAngel,
+        JSON.stringify(timeline.latestEra));
 
       const doomPreviewSelector =
         '#catalog-results [data-story="list:one-world-under-doom"] [data-act="preview"]';
@@ -6759,7 +6774,38 @@ const SCENARIOS = [
           && complete && naturalWidth > 0 && shown && fallback === 'none'
         )),
         JSON.stringify(coveredRoutes));
-      t.check('the setup-card journeys produce no console or page errors',
+      await page.evaluate(() => localStorage.setItem('mrt.settings', JSON.stringify({ covers: false })));
+      await open(page, '/?catalog=actual#/age-current');
+      const angelCard = '#age-current-results [data-story="list:captain-america-2025-hells-angel"]';
+      await page.waitForSelector(`${angelCard} [data-act="preview"]`, { timeout: 15000 });
+      await click(page, `${angelCard} [data-act="preview"]`);
+      await page.waitForFunction(() => document.querySelector('#preview')?.open);
+      const angelCredit = await page.$eval('#preview-source', (source) => source.textContent);
+      t.check("Hell's Angel remains in Marvel Ages with the approved team credit",
+        angelCredit.includes('Selected by Recap Page team'), angelCredit);
+      await click(page, '#preview-close');
+      await click(page, `${angelCard} [data-act="import"]`);
+      await page.waitForSelector('#view-read:not([hidden])');
+      await openFullOrder(page);
+      await click(page, '#rows [data-act="read"][data-key="130146"]');
+      await page.waitForFunction(() => Object.hasOwn(
+        JSON.parse(localStorage.getItem('mrt.state.v2')).read, '130146',
+      ));
+      const savedAngel = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      await open(page, '/?catalog=actual#/catalog');
+      await page.waitForSelector('#catalog-results .catalog-card', { timeout: 15000 });
+      const afterTimeline = await page.evaluate(() => ({
+        state: localStorage.getItem('mrt.state.v2'),
+        card: Boolean(document.querySelector(
+          '#catalog-results [data-story="list:captain-america-2025-hells-angel"]',
+        )),
+      }));
+      await open(page, '/?catalog=actual#/age-current');
+      await page.waitForSelector(`${angelCard} [data-act="open"]`, { timeout: 15000 });
+      const afterAge = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      t.check('browsing Timeline and Marvel Ages preserves the saved list and its reading mark',
+        !afterTimeline.card && afterTimeline.state === savedAngel && afterAge === savedAngel);
+      t.check('the timeline journeys produce no console or page errors',
         browserErrors.length === 0, browserErrors.join(' / '));
     },
   },

@@ -110,6 +110,7 @@ export function depthHint(depth) {
 }
 
 const str = (v) => (typeof v === 'string' && v.trim() ? v.trim() : null);
+const HELLS_ANGEL_ID = 'captain-america-2025-hells-angel';
 
 // Attribution is only trustworthy if the reader can follow it, and only safe if what we
 // render as a link is really a web address. Anything else (a bare name, a `javascript:` URL)
@@ -132,6 +133,10 @@ export function sourceLink(list) {
 // The fallback chain is widest last, so a list written before the split still shows something
 // rather than dropping the credit entirely.
 export function sourceLabel(list) {
+  // The displayed credit changed after the original selection was approved.
+  if (list?.id === HELLS_ANGEL_ID && list.sourceOrigin === 'Selected by raymond-nassar for Modern Timeline') {
+    return 'Selected by Recap Page team';
+  }
   return str(list?.sourceOrigin) ?? str(list?.sourceLicense) ?? str(list?.source);
 }
 
@@ -1001,6 +1006,7 @@ export function isModernTimelineChapterId(id) {
 }
 
 const isModernTimelineList = (list) => list?.type === 'event'
+  && list.id !== HELLS_ANGEL_ID
   && Number.isInteger(list.timeline)
   && (
     (isModernTimelineChapterId(list.id) && list.timeline >= MODERN_TIMELINE_START_YEAR)
@@ -1528,6 +1534,13 @@ export const CATALOG_ERAS = [
     blurb: 'The latest event cycle, from short line-wide crossovers through the end of the Krakoan age.',
     from: 2021,
     to: 2024,
+  },
+  {
+    key: 'doom-armageddon',
+    heading: 'From Doom to Armageddon',
+    blurb: 'The road from Doctor Doom\'s rule to Armageddon, alongside other events of the time.',
+    from: 2025,
+    to: 2026,
   },
   {
     key: 'undated',

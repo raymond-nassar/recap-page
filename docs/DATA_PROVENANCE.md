@@ -3067,13 +3067,13 @@ supplies the confirming actor, decision date, exact issue IDs, labels and URLs. 
 its original source position and provider 404 rather than turning owner evidence into a provider
 response.
 
-The three Captain America (2025) Modern Timeline lists use the same evidence kind for twelve
-owner-confirmed identities: issue #5 in Our Secret Wars, issues #6-11 in Doom's Shadow and issues
-#12-16 in Hell's Angel. Issues #1-4 resolve through the provider. The recorded
-[Captain America (2025) confirmation](https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832)
-supplies the confirming actor, exact issue IDs, labels and URLs, and the separate
-[gap Issue](https://github.com/raymond-nassar/recap-page/issues/1145) records each provider 404.
-Issue #6 is the same identity One World Under Doom already confirms, so the two lists share it.
+The three Captain America (2025) selections use the same evidence kind for twelve owner-confirmed
+identities: issue #5 in Our Secret Wars, #6-11 in Doom's Shadow and #12-16 in Hell's Angel. Issues #1-4 resolve through the provider.
+The [Captain America confirmation](https://github.com/raymond-nassar/recap-page/issues/1146#issuecomment-6696007832) records the exact identities; the
+[gap Issue](https://github.com/raymond-nassar/recap-page/issues/1145) records each provider 404. Issue #6 is also in One World Under Doom.
+Hell's Angel remains in Marvel Ages, not Modern Timeline; its visible source credit is
+"Selected by Recap Page team", as the owner directed in the
+[timeline decision](https://github.com/raymond-nassar/recap-page/issues/1543#issuecomment-7042912985). Original selection and approval records remain unchanged.
 
 The owner-guide contract requires a positive ID, exact matching owner-supplied Marvel URL, named
 confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:859-881`).
