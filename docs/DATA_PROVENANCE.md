@@ -3123,7 +3123,7 @@ The vendored item copies exactly those fields and adds `metadataSourceKind:
 owner-confirmed evidence kind, so the app still treats the comic as having no provider metadata and
 its availability stays unknown (constraints 6 and 7). The delivery contract holds every supplemented
 item to exactly what its mapping row records and every other owner-confirmed item to the old empty
-shape (`test/helpers/owner-delivery-contract.mjs:114-142`).
+shape (`test/helpers/owner-delivery-contract.mjs:115-143`).
 
 The app carries only the optional `identityEvidenceKind` marker in the existing normalized issue
 record so the reading view can distinguish an owner-confirmed identity from an ordinary missing

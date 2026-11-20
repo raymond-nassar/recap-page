@@ -36,6 +36,8 @@ export function beforeUltimateIntroIssueIds(value) {
 
 export function beforeUltimateIntroEntry(entry) {
   if (entry.id !== correction.id) return entry;
+  // A catalog card carries count rather than expect, and has its own exact reversal.
+  if (!Object.hasOwn(entry, 'expect') && Object.hasOwn(entry, 'count')) return beforeUltimateIntroCatalogEntry(entry);
   assert.ok([121, 122].includes(entry.expect), 'Unrecorded Intro expected count.');
   assert.ok([correction.beforeDescription, correction.afterDescription,
     earlierDescription].includes(entry.description),

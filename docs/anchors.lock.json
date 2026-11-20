@@ -5904,8 +5904,8 @@
     "fp": "c9b0963bf1293250",
     "head": "const { captureSha256, ...baseline } = JSON.parse(readFileSync("
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:265-291|0": {
-    "anchor": "test/helpers/owner-delivery-contract.mjs:265-291",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:278-304|0": {
+    "anchor": "test/helpers/owner-delivery-contract.mjs:278-304",
     "fp": "98a73dedad194b8f",
     "head": "async function assertRegisteredLaterPeer(id, later, { contracts, json }) {"
   },
@@ -5939,8 +5939,8 @@
     "fp": "1894fdf77af94db4",
     "head": "'owner-confirmed': {"
   },
-  "docs/DATA_PROVENANCE.md|owner-approved-external-supplement-for-owner-con|test/helpers/owner-delivery-contract.mjs:114-142|0": {
-    "anchor": "test/helpers/owner-delivery-contract.mjs:114-142",
+  "docs/DATA_PROVENANCE.md|owner-approved-external-supplement-for-owner-con|test/helpers/owner-delivery-contract.mjs:115-143|0": {
+    "anchor": "test/helpers/owner-delivery-contract.mjs:115-143",
     "fp": "dbe332822758972a",
     "head": "if (row.identityEvidenceKind === 'owner-confirmed-identity') {"
   },
