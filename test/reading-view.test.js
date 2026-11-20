@@ -715,7 +715,7 @@ test('About ignores inherited list records', () => {
   } finally { h.restore(); }
 });
 
-test('app link credit follows the whole saved list and retains focus across redraws', () => {
+test('individual comic links do not add a source credit or an empty list introduction', () => {
   let state = createEmptyState();
   state = createList(state, { id: 'linked', name: 'Linked' });
   state = createList(state, { id: 'unlinked', name: 'Unlinked' });
@@ -726,19 +726,16 @@ test('app link credit follows the whole saved list and retains focus across redr
   try {
     const saved = JSON.stringify(h.state());
     h.view.render();
-    assert.equal(h.nodes.orderDesc.hidden, false);
-    const link = h.nodes.orderAppLinkCredit.querySelector('a');
-    assert.equal(link.href, 'https://comicbookreadingorders.com/marvel/event-timeline/');
-    link.focus();
+    assert.equal(h.nodes.orderDesc.hidden, true);
+    assert.equal(h.nodes.orderAppLinkCredit.childNodes.length, 0);
+    h.nodes.orderName.focus();
     h.view.render();
-    assert.equal(h.nodes.orderAppLinkCredit.querySelector('a'), link);
-    assert.equal(globalThis.document.activeElement, link);
+    assert.equal(globalThis.document.activeElement, h.nodes.orderName);
     assert.equal(JSON.stringify(h.state()), saved);
     h.setActive('unlinked');
     h.view.render();
     assert.equal(h.nodes.orderAppLinkCredit.childNodes.length, 0);
     assert.equal(h.nodes.orderDesc.hidden, true);
-    assert.equal(globalThis.document.activeElement, h.nodes.orderName);
   } finally { h.restore(); }
 });
 
@@ -851,6 +848,7 @@ test('stale source results and failures cannot paint or focus a different list; 
   const state = seededState();
   state.lists['list-b'].catalogId = null;
   state.lists['list-b'].description = '';
+  state.lists['list-b'].itemIds = [];
   for (const fail of [false, true]) {
     let settle;
     const h = harness({ state, loadCatalog: () => new Promise((resolve, reject) => {
@@ -1997,7 +1995,7 @@ test('main constructs Reading once and delegates reading-owned work through the 
     /readingView\.currentFilter\(\)/,
     /readingView\.endFilterRun\(\{ commit: false \}\)/,
     /readingView\.setFilterAddressed\(route\.filter !== null\)/,
-    /const filterFallback = view === 'universes' \|\| view === 'universe'\s*\? readingView\.currentFilter\(\) : filterIfAbsent;\s*readingView\.setFilter\(route\.filter \?\? filterFallback\)/,
+    /const filterFallback = view === 'universes' \|\| view === 'universe' \|\| view === 'creators'\s*\? readingView\.currentFilter\(\) : filterIfAbsent;\s*readingView\.setFilter\(route\.filter \?\? filterFallback\)/,
     /readingView\.setFullOrderFromRoute\(openFromRoute\)/,
     /readingView\.renderHydration\(status\)/,
     /readingView\.renderSynopsis\(status\)/,

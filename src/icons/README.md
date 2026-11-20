@@ -23,7 +23,7 @@ this table, so reusing a glyph for something else fails it.
 | books | Library | `#/library` in the side menu and on the phone bar |
 | search | Searching | Search, `#/add`, in the side menu and on the phone bar; the three search submit buttons |
 | series | A series | The Series tile on Search, which presses the Series scope |
-| creator | A creator | The Creators tile on Search, which presses the Creators scope |
+| creator | A creator | The Creators tile on Search, which presses the Creators scope, and the Home card, `#/creators` |
 | settings | Backup & settings | `#/data` |
 | info | About | About this app, `#/about`, and About these results |
 | check | Everything read | `#/library-read` |

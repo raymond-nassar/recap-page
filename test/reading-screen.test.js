@@ -77,9 +77,10 @@ test('Reading List options have a quieter group with a larger spacing token than
   const groupGap = group.match(/margin-top: var\((--space-\d+)\)/)?.[1];
   assert.ok(rowGap && groupGap && parseFloat(tokens.get(groupGap)) > parseFloat(tokens.get(rowGap)));
   assert.match(trigger, /width: 100%/);
-  assert.match(trigger, /background: none/);
-  assert.match(trigger, /border-color: transparent/);
-  assert.match(trigger, /color: var\(--dim\)/);
+  // It opens a menu, so it wears a button's outline at rest rather than only under a pointer.
+  assert.match(trigger, /border-color: var\(--line-2\)/);
+  assert.doesNotMatch(trigger, /border-color: transparent|background: none/);
+  assert.match(trigger, /color: var\(--text\)/);
 });
 
 test('Reading List options use the same distinctive name in the page and mobile sheet', () => {

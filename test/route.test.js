@@ -165,15 +165,23 @@ test('guide links its optional books and every named app page to real destinatio
   const orientation = guide.slice(guide.indexOf('aria-labelledby="guide-app-h"'), guide.indexOf('</section>',
     guide.indexOf('aria-labelledby="guide-app-h"')));
   assert.match(orientation, /<ul>[\s\S]*<li>/, 'app orientation is a short list');
-  for (const [view, label] of [
+  const pages = [
     ['home', 'Home'], ['catalog', 'Modern Timeline'], ['genres', 'Genres'],
     ['spotlights', 'Character spotlights'], ['marvel-on-screen', 'MCU Prep'],
     ['marvel-ages', 'Marvel Ages'], ['young-readers', 'Young readers'],
+    ['universes', 'Universes'], ['creators', 'Creators'],
     ['library', 'Library'], ['add', 'Search'], ['data', 'Backup &amp; settings'], ['about', 'About'],
-  ]) {
+  ];
+  const bullets = [...orientation.matchAll(/<li>([\s\S]*?)<\/li>/g)].map(([, text]) => text);
+  assert.equal(bullets.length, pages.length + 1, 'each page has its own bullet plus the reading explanation');
+  for (const [index, [view, label]] of pages.entries()) {
     assert.ok(orientation.includes(`href="#/${view}" data-view="${view}">${label}</a>`),
       `${label} must link to its page`);
+    assert.equal([...bullets[index].matchAll(/<a\b/g)].length, 1, `${label} has its own bullet`);
+    assert.ok(bullets[index].includes(`href="#/${view}"`), `${label} stays in app order`);
   }
+  assert.equal(bullets.at(-1),
+    'Save a list. Read opens Marvel outside the app; Done records progress. The app does not contain comics.');
 });
 
 test('new-to-comics credits its sources and gives every external link a safe separate target', () => {
@@ -183,6 +191,9 @@ test('new-to-comics credits its sources and gives every external link a safe sep
   const guide = html.slice(start, html.indexOf('<!-- ---------------------------------------- reading view -->', start));
   const links = [...guide.matchAll(/<a\b([^>]*)>([^<]+)<\/a>/g)].map(([, attrs, label]) => ({ attrs, label }));
   const expected = [
+    'https://www.marvelcomicsapp.com/',
+    'https://www.hoopladigital.com/search?kindId=10&amp;publisherName=Marvel',
+    'https://resources.overdrive.com/library/libby-features/comics-graphic-novels/',
     'https://www.reddit.com/r/Marvel/wiki/faq/#wiki_introduction_to_comics',
     'https://www.reddit.com/r/Marvel/wiki/faq#wiki_starter_recommendations',
     'https://www.reddit.com/r/Marvel/wiki/faq/#wiki_events.2Fcrossovers',
@@ -195,6 +206,12 @@ test('new-to-comics credits its sources and gives every external link a safe sep
     assert.match(link.attrs, /rel="noopener noreferrer"/, `${link.label} disowns its opener`);
   }
   assert.match(guide, /r\/Marvel wiki/, 'the guide credits the r/Marvel wiki');
+  const credit = guide.indexOf('<p>Basics adapted from the r/Marvel wiki.</p>');
+  assert.ok(credit > 0 && guide.indexOf('Comics &amp; Graphic Novels in Libby</a>') > 0
+    && guide.indexOf('Comics &amp; Graphic Novels in Libby</a>') < credit,
+  'the new resources precede the wiki attribution');
+  assert.ok(guide.indexOf('Introduction to comics</a>') > credit,
+    'the original resources follow the wiki attribution');
   assert.match(guide, /optional/i, 'the suggested books are optional');
 });
 
@@ -219,6 +236,10 @@ test('completed breadcrumbs and rail selection are owned by Library', () => {
 test('every view the rail can reach survives a round trip', () => {
   for (const view of VIEWS.filter((name) => name !== 'issue' && name !== 'universe')) {
     const parsed = parseRoute(formatRoute({ view }));
+    if (view === 'creators') {
+      assert.deepEqual(parsed, { view });
+      continue;
+    }
     if (view === 'universes') {
       assert.deepEqual(parsed, { view, universeQuery: '', universeSort: 'publication-history' });
       continue;
@@ -232,6 +253,16 @@ test('every view the rail can reach survives a round trip', () => {
       } : {}),
     }, `round trip failed for ${view}`);
   }
+});
+
+test('Creators is a dedicated browse route, not a saved list or reading filter', () => {
+  assert.equal(formatRoute({ view: 'creators', listId: 'saved', filter: 'pending' }), '#/creators');
+  assert.deepEqual(parseRoute('#/creators?filter=pending'), { view: 'creators' });
+  assert.equal(parseRoute('#/creators/saved'), null);
+  assert.deepEqual(breadcrumbHierarchy({ view: 'creators' }), [
+    { label: 'Home', href: '#/browse' },
+    { label: 'Creators', current: true },
+  ]);
 });
 
 test('signed issue ids and one optional context survive a canonical round trip', () => {
@@ -370,6 +401,7 @@ test('every routable view has one stable hierarchy and Home has none', () => {
     ['genres', ['Home', 'Genres']],
     ['library-links', ['Home', 'Library links']],
     ['universes', ['Home', 'Universes']],
+    ['creators', ['Home', 'Creators']],
     ['universe', ['Home', 'Universes', 'Universe not found']],
     ['issue', ['Home', 'Comic details']],
   ]);
@@ -858,8 +890,8 @@ test('route application separates explicit disclosure intent from restored filte
     'opening derived from explicit parsed route fields');
   has(body, /readingView\.setFilterAddressed\(route\.filter !== null\);/,
     'route application remembering whether the effective filter was explicit');
-  has(body, /const filterFallback = view === 'universes' \|\| view === 'universe'\s*\? readingView\.currentFilter\(\) : filterIfAbsent;\s*readingView\.setFilter\(route\.filter \?\? filterFallback\);/,
-    'explicit filters taking precedence while Universe navigation preserves the existing filter');
+  has(body, /const filterFallback = view === 'universes' \|\| view === 'universe' \|\| view === 'creators'\s*\? readingView\.currentFilter\(\) : filterIfAbsent;\s*readingView\.setFilter\(route\.filter \?\? filterFallback\);/,
+    'explicit filters taking precedence while Universe and Creators navigation preserves the existing filter');
   has(body, /if \(route\.view === 'read'\)/, 'disclosure changes restricted to the reading route');
   has(main, /if \(!routeReady \|\| applyingRoute\) return;/,
     'history synchronization suppressed during route application');

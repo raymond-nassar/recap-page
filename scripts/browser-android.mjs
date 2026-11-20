@@ -2349,9 +2349,10 @@ async function readingAccessibility(page, result, id) {
   const phone = await page.evaluate(() => matchMedia('(max-width: 700px)').matches);
   // The visit button follows the list's introduction, ahead of About, on every Reading List.
   const visit = await page.$eval('#order-visit', (node) => !node.hidden && node.querySelector('a') ? ['#order-visit a'] : []);
-  const aboutLinks = await page.evaluate(() => ['#order-source a', '#order-app-link-credit a']
+  const aboutLinks = await page.evaluate(() => ['#order-source a']
     .filter((selector) => document.querySelector(selector)?.checkVisibility()));
-  check(aboutLinks.includes('#order-app-link-credit a'), `${id}: the link credit is in the open list introduction`);
+  check(await page.$$eval('#order-desc .app-link-credit', (nodes) => nodes.length === 0),
+    `${id}: the list introduction omits individual comic link credits`);
   const context = [...visit, '#order-desc > summary', ...aboutLinks];
   const expected = [...(phone ? [...controls, ...context] : [...context, ...controls]),
     ...result.listOptions.map((control) => control.selector)];

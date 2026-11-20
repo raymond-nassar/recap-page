@@ -35,7 +35,12 @@ keep running.
 Only the app page loads in the web view. Read and other web links are handed to iOS to open outside
 Recap Page. Depending on the link and your device settings, iOS may open your browser or an installed
 app, such as Marvel Unlimited. Recap Page does not choose which app receives the link or confirm that
-it opens the right comic. Other navigation inside the web view is refused.
+it opens the right comic. The one exception is a comic whose app link has the form
+`https://www.marvelcomicsapp.com/viewer/<number>`: Read first asks iOS to open
+`marvelcomicsapp://viewer?issueId=<number>`, which the owner confirmed opens that comic in the
+Marvel Comics app on an iPad on 19 November 2026. Marvel and WEBTOON do not document that address,
+and any app that claims the `marvelcomicsapp` scheme could receive it. If iOS cannot open it, Read
+hands the original web link to iOS as before. Other navigation inside the web view is refused.
 
 If iOS ends the page's process, which it can do to an app in the background, the app reloads the page and says that
 saved reading progress is retained: saved data lives outside that process.

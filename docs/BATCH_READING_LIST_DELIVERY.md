@@ -85,12 +85,12 @@ gap.
 
 For an ordinary addition, require genuine `event` classification and an integer `timeline` start
 year of at least 2004. Every variant in a story group must qualify. These are the current inclusion
-rules in `src/js/lib/catalog.js:991-1014`, not a classification to assign just to make a list appear.
+rules in `src/js/lib/catalog.js:992-1015`, not a classification to assign just to make a list appear.
 The fixed `marvel-knights-to-planet-x-01` through `-78` opening chapters have their own earlier
 boundary; do not reuse their IDs or the featured setup entry as exemptions.
 
 Review chronology from source evidence, not merely the earliest publication date. Equal years
-retain manifest order (`src/js/lib/catalog.js:292-298`), so approve an intentional insertion anchor
+retain manifest order (`src/js/lib/catalog.js:293-299`), so approve an intentional insertion anchor
 and review the order among same-year stories.
 
 | Hypothetical input | Placement decision |
@@ -309,6 +309,10 @@ follow [the cache contract](MAINTAINING.md#add-a-curated-reading-order). Cache-o
 exactly one source order (`scripts/vendor-orders.mjs:473-494`). Live `--only=id1,id2` can select
 multiple orders and share metadata requests, but is not a multi-ID offline mode. Do not refresh
 approved metadata silently. Prefer the serial path for varying providers and overlapping lists.
+
+After the final catalog rebuild, run the required offline
+[comic reading-link refresh](MAINTAINING.md#refresh-comic-reading-links) once for the combined batch.
+Record exact matches and unresolved additions; a missing exact link never blocks list publication.
 
 ## Validate the combined candidate
 
