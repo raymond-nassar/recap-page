@@ -3,7 +3,7 @@ import { RECORD_HEADING, RECORD_NOTE } from '../src/js/lib/availability.js';
 import { marvelComicsAppMuIssueIds } from '../src/data/marvelComicsAppMuIssues.js';
 import { HOME_UPDATES_SEEN_KEY } from '../src/js/lib/homeUpdatesSeen.js';
 
-export async function dismissClosureNotice(page, t, { seedFixtureState, click }) {
+export async function dismissClosureNotice(page, t, { seedFixtureState, click, savedStateDifference }) {
   await localClock(page);
   // A reload resets the injected clock to the day before the cutoff, so a later day that must
   // survive a reload is carried in session storage.
@@ -79,7 +79,9 @@ export async function dismissClosureNotice(page, t, { seedFixtureState, click })
   t.check('Enter hides the notice and orients focus without scrolling', await page.evaluate((y) =>
     document.querySelector('#reader-closure-notice').hidden && document.activeElement.id === 'home-h'
     && scrollY === y, scroll));
-  t.check('dismissal leaves saved reader facts unchanged', JSON.stringify(await snapshot()) === JSON.stringify(before));
+  const afterDismissal = await snapshot();
+  t.check('dismissal leaves saved reader facts unchanged', JSON.stringify(afterDismissal) === JSON.stringify(before),
+    JSON.stringify(savedStateDifference(JSON.stringify(before), JSON.stringify(afterDismissal))));
   await page.reload({ waitUntil: 'load' });
   t.check('dismissal survives reload', await page.$eval('#reader-closure-notice', (node) => node.hidden));
   t.check('a pre-cutoff dismissal is remembered under its own phase',
