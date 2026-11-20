@@ -692,8 +692,8 @@ above is listed separately because it is third-party material outside the usual 
 The validator in [`src/js/lib/curated.js`](../src/js/lib/curated.js) requires an SPDX expression
 instead of descriptive prose. It validates the format, not a hand-maintained list of licence names.
 
-The catalog reader makes one owner-approved spelling correction to a provider credit:
-`Mike O'sullivan` is displayed as `Mike O'Sullivan`. This changes the writer name used by the
+The catalog reader makes two owner-approved spelling corrections to provider credits:
+`Mike O'sullivan` is displayed as `Mike O'Sullivan`, and `Jed Mackay` as `Jed MacKay`. This changes the writer name used by the
 Creators filters and cards, not the bundled catalog, individual comic credits, issue identities
 or reading order.
 
@@ -1195,10 +1195,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes four independent Reading Paths with 104 stops: three
 authored paths with 10, 12 and 4 stops from the curated manifest at
-`src/data/curated-lists.json:11334-11385`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:11470-11521`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all four at
-`src/data/catalog.json:16883-17020`.
+`src/data/catalog.json:17082-17219`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -3083,7 +3083,7 @@ Issue #6 is the same identity One World Under Doom already confirms, so the two 
 The owner-guide contract requires a positive ID, exact matching owner-supplied Marvel URL, named
 confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:859-881`).
 The vendor excludes these entries from metadata lookup and creates no provider projection
-(`scripts/vendor-orders.mjs:507-511`, `scripts/vendor-orders.mjs:577-578`, `scripts/vendor-orders.mjs:622-623`).
+(`scripts/vendor-orders.mjs:558-562`, `scripts/vendor-orders.mjs:641-642`, `scripts/vendor-orders.mjs:692-693`).
 Unless a row carries the external supplement described below, the published rows carry only their
 confirmed identity, issue ID, URL and refusal state; optional provider details and covers remain
 empty. The ten One World Under Doom rows are of that kind. No comic image bytes are stored and no
@@ -4222,3 +4222,12 @@ viewer selections, approved fallback numbers and exclusions. New comics without 
 match stay without a new app link and are recorded separately from approved fallbacks, so a catalog
 addition cannot silently acquire an unapproved Marvel issue-number address. Repeating the command
 does not copy the CSV or its unmatched source rows into the repository.
+
+## Chip Zdarsky creator list: reused details
+
+The owner approved reusing Grand Comics Database details for nine comics already published in
+Avengers: Armageddon. The Chip Zdarsky data file and the creator-count evidence in its source
+ledger are adaptations under the same share-alike license as those published records. The
+original mapping retains each source address, and the reading list repeats the existing database
+and license notice. Twelve other comics reuse previously published non-database supplements;
+Avengers (2026) #1 has no published supplement and remains bare.

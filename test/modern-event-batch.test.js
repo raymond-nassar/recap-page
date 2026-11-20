@@ -28,9 +28,10 @@ test('eight independent events remain on Timeline and Genres, not MCU Prep or th
   // Young readers' owner picks and local curated guides join the rosters without becoming MCU Prep.
   const otherAdditions = registeredYoungReaderContracts.length + registeredCuratedGuides.length;
   const newcomerGuides = registeredCuratedGuides.filter((entry) => entry.surface === 'new-to-comics').length;
+  const creatorGuides = registeredCuratedGuides.filter((entry) => entry.surface === 'creators').length;
   assert.deepEqual([currentReadingCensus.sources, currentReadingCensus.visible, currentReadingCensus.allOrders],
     [224 + laterMcu + otherAdditions, 301 + laterMcu + otherAdditions, 302 + laterMcu + otherAdditions]);
-  assert.deepEqual([currentReadingCensus.mcu, currentReadingCensus.storylines], [19 + laterMcu, 50 + newcomerGuides]);
+  assert.deepEqual([currentReadingCensus.mcu, currentReadingCensus.storylines], [19 + laterMcu, 50 + newcomerGuides + creatorGuides]);
   const catalog = parseCatalog(await json('src/data/catalog.json'));
   assert.equal(catalog.dropped, 0);
   const doomIndex = catalog.lists.findIndex((entry) => entry.id === 'one-world-under-doom');

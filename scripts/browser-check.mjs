@@ -29060,10 +29060,10 @@ MUTATIONS.push({
 
 SCENARIOS.push({
   id: 'creator-runs',
-  title: 'One Home card opens Creators and its seven existing runs without changing saved reading data',
+  title: 'One Home card opens Creators and every catalog creator run without changing saved reading data',
   async run(page, t) {
     const lists = ACTUAL_CATALOG.lists.filter((list) => list.type === 'creator-run').map((list) => ({
-      ...list, writers: list.writers.map((name) => name === "Mike O'sullivan" ? "Mike O'Sullivan" : name),
+      ...list, writers: list.writers.map((name) => ({ "Mike O'sullivan": "Mike O'Sullivan", 'Jed Mackay': 'Jed MacKay' })[name] ?? name),
     }));
     const writers = [...new Set(lists.flatMap((list) => list.writers))];
     page.__denyExternal = true;
@@ -29082,8 +29082,8 @@ SCENARIOS.push({
     t.check('Home has one Creators gateway under Discover More and no inline runs or filters', Boolean(present)
       && await page.$eval('#view-home', (root) => root.querySelectorAll('[data-category="creators"]').length === 1
         && !root.querySelector('[data-creator-run], #creator-filters, #home-creator-runs'))
-      && await page.$eval(gateway, (link) => link.getAttribute('href') === '#/creators'
-        && link.textContent.replace(/\s+/g, ' ').trim() === 'Browse by creator Creators 7 Reading Lists'));
+      && await page.$eval(gateway, (link, label) => link.getAttribute('href') === '#/creators'
+        && link.textContent.replace(/\s+/g, ' ').trim() === label, `Browse by creator Creators ${lists.length} Reading Lists`));
     if (!present) return;
     const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
     const settingsBefore = await page.evaluate(() => localStorage.getItem('mrt.settings'));
@@ -29107,7 +29107,7 @@ SCENARIOS.push({
       name: node.querySelector('.catalog-card-title').textContent.trim(),
       meta: node.querySelector('.catalog-card-meta').textContent,
     })));
-    t.check('all seven creator lists retain their own names, credits, lengths and native preview destinations',
+    t.check('every creator list retains its own names, credits, lengths and native preview destinations',
       JSON.stringify(await cards()) === JSON.stringify(lists.map((list) => ({
         id: list.id, href: `#/preview/${list.id}`, name: list.name,
         meta: `${list.writers.join(', ')} · ${list.count} comics`,
@@ -29128,8 +29128,8 @@ SCENARIOS.push({
           && document.querySelectorAll('#creator-filters [aria-pressed="true"]').length === 1));
     }
     await click(page, '#creator-filters button');
-    t.check('All creators restores the seven separate runs and filtering never writes reading progress',
-      (await cards()).length === 7
+    t.check('All creators restores every separate run and filtering never writes reading progress',
+      (await cards()).length === lists.length
       && await page.evaluate((saved) => localStorage.getItem('mrt.state.v2') === saved, before));
 
     const layouts = [];
@@ -29177,7 +29177,7 @@ SCENARIOS.push({
       }
     }
     t.check('both themes wrap every card and filter at desktop and phone widths with no page overflow',
-      layouts.every((row) => !row.overflow && !row.clipped && row.cards === 7
+      layouts.every((row) => !row.overflow && !row.clipped && row.cards === lists.length
         && Number(row.weight) > Number(row.otherWeight)), JSON.stringify(layouts));
     await page.evaluate(() => { document.documentElement.style.fontSize = '200%'; });
     t.check('200 percent text preserves wrapping and pointer targets on the narrow phone',
@@ -29279,7 +29279,7 @@ SCENARIOS.push({
 MUTATIONS.push({
   id: 'creator-filter-ignored',
   breaks: 'creator-runs',
-  why: 'a creator selection must narrow the seven runs rather than only painting its button',
+  why: 'a creator selection must narrow the runs rather than only painting its button',
   rewriteCreators: (source) => source.replace(
     '.filter((list) => !creator || list.writers.includes(creator)).map(creatorCard)',
     '.filter(() => true).map(creatorCard)',

@@ -244,7 +244,11 @@ function normalizeEntry(raw) {
     storyTypes: knownTags(raw.storyTypes, STORY_TYPES, MAX_STORY_TYPES),
     tones: knownTags(raw.tones, STORY_TONES, MAX_STORY_TONES),
     writers: strings(raw.writers).slice(0, 3)
-      .map((name) => name === "Mike O'sullivan" ? "Mike O'Sullivan" : name),
+      .map((name) => {
+        if (name === "Mike O'sullivan") return "Mike O'Sullivan";
+        if (name === 'Jed Mackay') return 'Jed MacKay';
+        return name;
+      }),
     contains: strings(raw.contains),
     characters: strings(raw.characters),
     keywords: strings(raw.keywords),
