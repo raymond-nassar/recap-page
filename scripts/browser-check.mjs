@@ -18496,11 +18496,15 @@ SCENARIOS.push({
             })),
             orientation: [...guide.querySelectorAll('[aria-labelledby="guide-app-h"] li a')].map((link) => ({
               view: link.dataset.view, href: link.getAttribute('href'), text: link.textContent.trim(),
+              linksInBullet: link.closest('li').querySelectorAll('a').length,
             })),
             credit: guide.textContent.includes('r/Marvel wiki'),
           };
         });
         const expected = [
+          'https://www.marvelcomicsapp.com/',
+          'https://www.hoopladigital.com/search?kindId=10&publisherName=Marvel',
+          'https://resources.overdrive.com/library/libby-features/comics-graphic-novels/',
           'https://www.reddit.com/r/Marvel/wiki/faq/#wiki_introduction_to_comics',
           'https://www.reddit.com/r/Marvel/wiki/faq#wiki_starter_recommendations',
           'https://www.reddit.com/r/Marvel/wiki/faq/#wiki_events.2Fcrossovers',
@@ -18527,10 +18531,11 @@ SCENARIOS.push({
             { id: 'marvels-1994', href: '#/preview/marvels-1994', text: 'Marvels (1994)' },
           ]), JSON.stringify(content.books));
         const pages = ['home', 'catalog', 'genres', 'spotlights', 'marvel-on-screen', 'marvel-ages',
-          'young-readers', 'library', 'add', 'data', 'about'];
+          'young-readers', 'universes', 'creators', 'library', 'add', 'data', 'about'];
         t.check('the concise orientation links every named page to its own route',
           JSON.stringify(content.orientation.map(({ view }) => view)) === JSON.stringify(pages)
-            && content.orientation.every(({ view, href, text }) => href === `#/${view}` && text),
+            && content.orientation.every(({ view, href, text, linksInBullet }) =>
+              href === `#/${view}` && text && linksInBullet === 1),
           JSON.stringify(content.orientation));
         const selector = '#view-new-to-comics a[href^="https://www.reddit.com/"]';
         const actual = await copy.$(selector);
