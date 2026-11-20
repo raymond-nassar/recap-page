@@ -612,13 +612,15 @@ export const collectedEditions = {
     if (!await checkProviderTabs(page, t, monitor)) return;
     await page.$eval('#book-handoff-fixture', (node) => node.remove());
     t.check('edition display makes no external network requests', external.length === 0, JSON.stringify(external));
-    t.check('production DOM shows only owner-confirmed provider addresses from the bundled catalog',
+    t.check('production DOM keeps book addresses owner-confirmed and allows the approved guide search link',
       await page.evaluate(async () => {
         const { editionCatalog } = await import('./data/collectedEditionCatalog.js');
         const allowed = new Set(Object.values(editionCatalog.editions).flatMap((book) => book.destinations)
           .filter((destination) => destination.confirmedBy === 'owner').map((destination) => destination.url));
+        const guideSearch = document.querySelector('#view-new-to-comics [aria-labelledby="guide-more-h"] '
+          + 'ul > li > a[href="https://www.hoopladigital.com/search?kindId=10&publisherName=Marvel"]');
         return [...document.querySelectorAll('a[href*="hoopladigital"], a[href*="libbyapp"]')]
-          .every((link) => allowed.has(link.href));
+          .every((link) => link === guideSearch || allowed.has(link.href));
       }));
     await click(page, '.brand[data-view="home"]');
   },
