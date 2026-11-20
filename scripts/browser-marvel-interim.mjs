@@ -1,8 +1,9 @@
 import { readFile } from 'node:fs/promises';
 import { RECORD_HEADING, RECORD_NOTE } from '../src/js/lib/availability.js';
 import { marvelComicsAppMuIssueIds } from '../src/data/marvelComicsAppMuIssues.js';
+import { HOME_UPDATES_SEEN_KEY } from '../src/js/lib/homeUpdatesSeen.js';
 
-export async function dismissClosureNotice(page, t, { seedFixtureState, click }) {
+export async function dismissClosureNotice(page, t, { seedFixtureState, click, savedStateDifference }) {
   await localClock(page);
   // A reload resets the injected clock to the day before the cutoff, so a later day that must
   // survive a reload is carried in session storage.
@@ -78,7 +79,9 @@ export async function dismissClosureNotice(page, t, { seedFixtureState, click })
   t.check('Enter hides the notice and orients focus without scrolling', await page.evaluate((y) =>
     document.querySelector('#reader-closure-notice').hidden && document.activeElement.id === 'home-h'
     && scrollY === y, scroll));
-  t.check('dismissal leaves saved reader facts unchanged', JSON.stringify(await snapshot()) === JSON.stringify(before));
+  const afterDismissal = await snapshot();
+  t.check('dismissal leaves saved reader facts unchanged', JSON.stringify(afterDismissal) === JSON.stringify(before),
+    JSON.stringify(savedStateDifference(JSON.stringify(before), JSON.stringify(afterDismissal))));
   await page.reload({ waitUntil: 'load' });
   t.check('dismissal survives reload', await page.$eval('#reader-closure-notice', (node) => node.hidden));
   t.check('a pre-cutoff dismissal is remembered under its own phase',
@@ -201,6 +204,12 @@ async function iosClosureTargets(page, t) {
       await ios.setViewport({ width, height });
       await ios.goto(new URL('/#/home', page.url()).href, { waitUntil: 'load' });
       await ios.waitForSelector('#reader-closure-faq', { visible: true });
+      // The seed's empty first load can remember this batch after the fixture clears that record
+      // (#1447). About reveals the real control regardless of that earlier write.
+      await route(ios, '#/about', '#view-about:not([hidden])');
+      await ios.$eval('#about-whats-new', (node) => node.click());
+      await ios.waitForSelector('#view-home:not([hidden])');
+      await ios.$eval('#home-updates-close', (node) => node.click());
       await ios.evaluate((styles) => {
         document.adoptedStyleSheets = styles.map((text) => {
           const sheet = new CSSStyleSheet();
@@ -218,10 +227,12 @@ async function iosClosureTargets(page, t) {
         document.activeElement.blur();
         scrollTo(0, 0);
       });
-      const observed = await ios.evaluate(() => {
+      const observed = await ios.evaluate((seenKey) => {
         const faq = document.querySelector('#reader-closure-faq');
         const image = [...document.querySelectorAll('.home-wordmark')].find((node) => node.checkVisibility()).getBoundingClientRect();
-        const toggle = document.querySelector('#home-updates-toggle').getBoundingClientRect();
+        const updates = document.querySelector('#home-updates');
+        const toggleNode = document.querySelector('#home-updates-toggle');
+        const toggle = toggleNode.getBoundingClientRect();
         const hit = document.elementFromPoint((image.left + image.right) / 2, (image.top + image.bottom) / 2);
         return {
           adapted: faq.dataset.iosAccessibleTarget === 'true',
@@ -230,6 +241,11 @@ async function iosClosureTargets(page, t) {
           targetHeight: faq.getBoundingClientRect().height,
           lineHeight: parseFloat(getComputedStyle(faq).lineHeight),
           noOverlap: toggle.top >= image.bottom,
+          updatesVisible: toggleNode.checkVisibility() && toggle.width > 0 && toggle.height > 0,
+          updates: {
+            hidden: updates.hidden, open: updates.open, display: getComputedStyle(updates).display,
+            seen: localStorage.getItem(seenKey), aboutHidden: document.querySelector('#about-whats-new').hidden,
+          },
           toggleTop: toggle.top,
           imageBottom: image.bottom,
           boxes: ['.head', '.home-lockup', '#home-h', '#home-updates', '#home-updates-toggle'].map((selector) => {
@@ -246,13 +262,13 @@ async function iosClosureTargets(page, t) {
           hasFocus: document.hasFocus(),
           overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
         };
-      });
+      }, HOME_UPDATES_SEEN_KEY);
       const label = `iOS overlay ${width}x${height} ${largest ? 'largest' : 'default'} ${theme}`;
       t.check(`${label} exposes one named FAQ target with a 44pt text line`,
         observed.adapted && observed.name === "Marvel's FAQ" && observed.hiddenText
         && observed.targetHeight >= 44 && observed.lineHeight >= 44, JSON.stringify(observed));
       t.check(`${label} stacks updates clear of the wordmark without horizontal overflow`,
-        observed.noOverlap && observed.imageHit && !observed.overflow, JSON.stringify(observed));
+        observed.updatesVisible && observed.noOverlap && observed.imageHit && !observed.overflow, JSON.stringify(observed));
       await ios.focus('#reader-closure-faq');
       await ios.keyboard.press('Tab');
       t.check(`${label} retains FAQ-to-Dismiss keyboard order`,
@@ -774,9 +790,13 @@ async function muReadingOptions(page, t, { listId, sourceIssueId }) {
     await page.evaluate((before) => localStorage.getItem('mrt.state.v2') === before, saved));
 }
 
-export async function retiredReaderHelp(page, t, { seedFixtureState, click, openFullOrder, order }) {
+export async function retiredReaderHelp(page, t, { seedFixtureState, click, openFullOrder, order, savedStateDifference }) {
   await localClock(page);
   await seedFixtureState(page);
+  // Startup saves the seeded issues without their old descriptions after the tab lock answers.
+  // Delaying that answer 1.5 s reproduced #1278's comparison failure before any handoff.
+  await page.waitForFunction(() => Object.values(JSON.parse(localStorage.getItem('mrt.state.v2')).issues)
+    .every((issue) => !Object.prototype.hasOwnProperty.call(issue, 'description')));
   const first = order.items[0];
   const before = await page.evaluate(() => JSON.parse(localStorage.getItem('mrt.state.v2')));
   const read = async (selector, mode) => {
@@ -821,8 +841,9 @@ export async function retiredReaderHelp(page, t, { seedFixtureState, click, open
     )));
   }
   const after = await page.evaluate(() => JSON.parse(localStorage.getItem('mrt.state.v2')));
+  const savedFacts = (state) => JSON.stringify({ issues: state.issues, read: state.read, overrides: state.overrides });
   t.check('all handoffs leave saved references, overrides and reading progress unchanged',
-    JSON.stringify([before.issues, before.read, before.overrides]) === JSON.stringify([after.issues, after.read, after.overrides]));
+    savedFacts(before) === savedFacts(after), JSON.stringify(savedStateDifference(savedFacts(before), savedFacts(after))));
   await page.setViewport({ width: 390, height: 900 });
   t.check('the post-cutoff action and historical facts stay inside the phone viewport', await page.evaluate(() => {
     const node = document.querySelector('#btn-issue-read');
