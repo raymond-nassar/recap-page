@@ -119,6 +119,45 @@ export const issueRatings = {
     t.check('manual negative identities can save the minimum half-star', await page.evaluate(() =>
       JSON.parse(localStorage.getItem('mrt.state.v2')).ratings?.[-42] === 0.5));
 
+    // Owner, 19 Nov 2026: a comic can be rated from the reading list itself, through the same editor.
+    await page.goto(`${page.__origin}/#/read/ratings`, { waitUntil: 'load' });
+    await page.evaluate(() => { document.querySelector('#full').open = true; });
+    const rowRate = (id) => `#rows [data-act="rate"][data-key="${id}"]`;
+    await page.waitForSelector(rowRate(1001));
+    const rowStart = await page.evaluate((u, r) => ({
+      unrated: document.querySelector(u).textContent, unratedName: document.querySelector(u).getAttribute('aria-label'),
+      rated: document.querySelector(r).textContent, ratedName: document.querySelector(r).getAttribute('aria-label'),
+      starsHidden: [document.querySelector(u), document.querySelector(r)].every((node) => node.firstElementChild?.getAttribute('aria-hidden') === 'true'),
+      underNote: document.querySelector(u).previousElementSibling?.dataset.act === 'note',
+    }), rowRate(1001), rowRate(-42));
+    t.check('each list row offers rating under its note, in the details page words',
+      rowStart.unrated.endsWith('Rate this comic') && rowStart.unratedName === 'Rate this comic: Rating fixture #1'
+        && rowStart.rated.endsWith('Your rating: 0.5/5') && rowStart.ratedName === 'Your rating: 0.5/5. Edit rating for Print fixture.'
+        && rowStart.starsHidden && rowStart.underNote, JSON.stringify(rowStart));
+    const beforeRow = await page.evaluate(() => JSON.parse(localStorage.getItem('mrt.state.v2')));
+    await click(rowRate(1001));
+    t.check('the row opens the same rating editor for that comic', await page.evaluate(() =>
+      document.querySelector('#issue-rating-dialog').open
+      && document.querySelector('#issue-rating-comic').textContent === 'Rating fixture #1'));
+    await click('#issue-rating-stars [data-rating="4"]');
+    await click('#issue-rating-save');
+    await page.waitForFunction((u) => !document.querySelector('#issue-rating-dialog').open
+      && document.activeElement === document.querySelector(u), {}, rowRate(1001));
+    const afterRow = await page.evaluate(() => JSON.parse(localStorage.getItem('mrt.state.v2')));
+    t.check('a row rating saves only the rating and returns focus to the redrawn row',
+      afterRow.ratings?.[1001] === 4 && afterRow.ratings?.[-42] === 0.5
+        && ['read', 'overrides', 'notes', 'lists', 'listOrder', 'active', 'issues']
+          .every((key) => JSON.stringify(afterRow[key]) === JSON.stringify(beforeRow[key]))
+        && await page.$eval(rowRate(1001), (node) => document.activeElement === node && node.textContent.endsWith('Your rating: 4/5')));
+    await click(rowRate(1001));
+    await page.keyboard.press('Escape');
+    await page.waitForFunction((u) => !document.querySelector('#issue-rating-dialog').open
+      && document.activeElement === document.querySelector(u), {}, rowRate(1001));
+    t.check('Escape from a row rating keeps the score and returns to the row', await page.evaluate(() =>
+      JSON.parse(localStorage.getItem('mrt.state.v2')).ratings?.[1001] === 4));
+
+    await page.goto(`${page.__origin}/#/issue/-42?list=ratings`, { waitUntil: 'load' });
+    await page.waitForSelector('#issue-rating-root:not([hidden])');
     await click('#issue-rating-trigger');
     for (const [width, theme] of [[1280, 'dark'], [390, 'light'], [320, 'dark']]) {
       await page.setViewport({ width, height: 900 });

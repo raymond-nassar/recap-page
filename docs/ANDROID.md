@@ -107,6 +107,14 @@ Browser discovery requests all choices with a hostless HTTPS query, not the comi
 An approved app-link handler therefore cannot hide or replace browsers. The comic
 URL is attached only when launching the selected browser.
 
+A comic whose app link has the form `https://www.marvelcomicsapp.com/viewer/<number>` first asks
+the Marvel Comics app, by its package `com.webtoon.marvelcomics`, to open
+`marvelcomicsapp://viewer?issueId=<number>`, but only from the launcher's automatic step. That
+address is not documented by Marvel or WEBTOON; the owner confirmed it on a Pixel and an iPad on
+19 November 2026. If the app is missing, disabled or refuses, the same link goes to a verified
+browser exactly as above. Other app links, the explicit **Open in browser** choice and every other
+destination never try the app.
+
 Recap Page does not sign in to Marvel, embed comic pages or verify what the external site displays.
 Opening the browser or issue page does not prove the comic loaded. Record progress manually with
 **Done**. Desktop uses the same validated issue-page fallback without a redundant metadata

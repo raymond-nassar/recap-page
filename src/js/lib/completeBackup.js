@@ -23,7 +23,7 @@ import {
 } from './model.js';
 import { LIST_HISTORY_KEY, LIST_HISTORY_FORMAT, parseListHistory, prepareListHistoryRestore } from './listHistory.js';
 import { DRAFT_FORMAT, DRAFT_VERSION, sourceOccurrencesForValidation, validateImportDraft } from './importDraft.js';
-import { DEFAULT_FILTER, readingFilter } from './readingFilters.js';
+import { DEFAULT_FILTER, LEGACY_READING_FILTERS, readingFilter } from './readingFilters.js';
 import { THEMES, normaliseTheme } from './theme.js';
 import { isIosApp } from './platform.js';
 
@@ -122,8 +122,12 @@ function portableHistory(input) {
   return result;
 }
 
+// A filter removed on 19 Nov 2026 is admitted and kept as written, because the digest covers it,
+// and prepareSettingsRestore() writes it back as the default. Refusing it would lose a whole
+// backup over a choice the reader can no longer make.
 function portableSettings(input) {
-  if (!exactFields(input, SETTINGS_FIELDS) || !THEMES.includes(input.theme) || !readingFilter(input.filter)
+  if (!exactFields(input, SETTINGS_FIELDS) || !THEMES.includes(input.theme)
+    || !(readingFilter(input.filter) || LEGACY_READING_FILTERS.includes(input.filter))
     || ['covers', 'readingShortcut', 'hideDescriptions'].some((key) => typeof input[key] !== 'boolean')
     || ![null, true, false].includes(input.sidebarCollapsed)) {
     refuse('The settings in this file are not ones this version understands.');
@@ -354,7 +358,10 @@ export function completeBackupSummary(backup) {
 // The settings a restore writes: the stored object with the five portable fields replaced, so the
 // metadata service address and anything else the file does not carry stay as saved. Settings that the
 // file leaves as they are keep their exact stored bytes, so such a restore writes nothing there.
-export function prepareSettingsRestore(settings, beforeSettings, beforeSidebar) {
+export function prepareSettingsRestore(backupSettings, beforeSettings, beforeSidebar) {
+  const settings = LEGACY_READING_FILTERS.includes(backupSettings.filter)
+    ? { ...backupSettings, filter: DEFAULT_FILTER }
+    : backupSettings;
   let base = null;
   if (beforeSettings !== null) {
     try {

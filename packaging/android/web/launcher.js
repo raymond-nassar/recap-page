@@ -8,7 +8,7 @@ window.opener = null;
 
 const fallback = document.getElementById('fallback');
 const disclosure = document.createElement('p');
-disclosure.textContent = 'Read opens your installed browser. A comic with a Marvel Comics app link opens there. Before December 7, 2026, Read may look up the Marvel Unlimited link online for a comic without one. From that date it opens the general Marvel Comics website without a lookup. Lists, notes and reading progress are not sent.';
+disclosure.textContent = 'For some comics, Read tries to open the Marvel Comics app. If it cannot open an app, Read opens your browser instead. Other comics open in your browser. Before December 7, 2026, Read may look up the Marvel Unlimited link online for a comic without one. From that date it opens the general Marvel Comics website without a lookup. Lists, notes and reading progress are not sent.';
 document.querySelector('.box').append(disclosure);
 
 function readApiBase() {

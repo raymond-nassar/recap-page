@@ -234,7 +234,7 @@
   --cyan-line: 91 208 233;
   --jade-line: 78 208 182;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:844`; these pairs supply saturation and lightness where that local hue is
+     `src/js/main.js:846`; these pairs supply saturation and lightness where that local hue is
      consumed. Keeping the hue reference on the cover avoids resolving it before the cover exists. */
   --fallback-a: 42% 26%;
   --fallback-b: 38% 14%;
@@ -1249,6 +1249,17 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
 }
 .rnote:hover { color: var(--text); }
 .rnote.has-note { color: var(--text); border-left: var(--stroke-2) solid var(--line-2); padding-left: var(--space-4); }
+/* Rating from the list sits under the note in the note's own quiet register, so a row gains a line of
+   text rather than a second button outline. `display: flex` puts it on its own line below the note
+   whether or not a note is clamped beside it. */
+.rrate {
+  display: flex; gap: var(--space-2); align-items: center; width: fit-content;
+  margin-top: var(--space-1); padding: var(--space-1) 0; border: 0; background: none;
+  color: var(--muted); font: inherit; font-size: var(--t-caption); cursor: pointer;
+}
+.rrate:hover { color: var(--text); }
+.rrate.is-rated { color: var(--text); font-variant-numeric: tabular-nums; }
+.rrate:disabled { cursor: default; color: var(--muted); }
 
 .list-note {
   margin: 0 0 var(--space-6); padding: var(--space-4) var(--space-5); border-left: var(--stroke-2) solid var(--line);
@@ -2213,6 +2224,7 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 .home-path[data-category="marvel-ages"] { --home-path-line: var(--magenta-line); }
 .home-path[data-category="young-readers"] { --home-path-line: var(--green-line); }
 .home-path[data-category="universes"] { --home-path-line: var(--copper-line); }
+.home-path[data-category="creators"] { --home-path-line: var(--cyan-line); }
 .home-path:hover {
   transform: translateY(-2px); border-color: rgb(var(--home-path-line) / 68%);
   background:
@@ -2239,6 +2251,11 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 }
 .home-path-secondary { min-height: 8rem; border-radius: var(--radius-card); }
 .home-path-secondary .home-path-title { font-size: var(--t-title); }
+.creator-run-cards { list-style: none; margin: 0; padding: 0; }
+.creator-run-cards > li { display: flex; min-width: 0; }
+.creator-run-card { width: 100%; color: var(--text); text-decoration: none; }
+.creator-run-card:hover { border-color: var(--accent-text); background: var(--card-2); }
+.creator-run-card .catalog-card-title { text-decoration: underline; text-underline-offset: 3px; }
 /* In the Home and Browse gateways the icon is the card's emblem, large and at the top right (#873).
    The card's text joins the card's own grid so the eyebrow and title run the full width beneath the
    icon's row, which is what keeps their words whole at 200% text on a 320px phone; the count sits
@@ -2409,7 +2426,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .collected-editions { margin-top: var(--space-1); font-size: var(--t-caption); color: var(--muted); }
 .collected-edition { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2); overflow-wrap: anywhere; }
 .collected-edition a { display: inline-flex; align-items: center; min-height: var(--target); }
-.edition-credit, .app-link-credit { font-size: var(--t-caption); color: var(--muted); overflow-wrap: anywhere; margin: var(--space-2) 0; }
+.edition-credit { font-size: var(--t-caption); color: var(--muted); overflow-wrap: anywhere; margin: var(--space-2) 0; }
 .edition-attribution { list-style: none; }
 .preview-foot { display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; border-top: var(--stroke-1) solid var(--line); padding-top: var(--space-6); }
 .preview-foot .btn { min-height: var(--target); scroll-margin: var(--space-3); }
@@ -2600,10 +2617,12 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 #reading-list-options > .list-tools, #reading-list-options > .list-tools > .list-actions { width: 100%; }
 #reading-list-options :is(#android-list-options, #list-actions > summary) {
   box-sizing: border-box; width: 100%; min-height: var(--target-touch); justify-content: space-between;
-  background: none; color: var(--dim); border-color: transparent; font-weight: 600;
+  /* The ghost button's outline at rest (owner report, 19 Nov 2026): with the outline shown only on
+     hover, the row read as a label, and nothing said it opened a menu until a pointer found it. */
+  background: rgb(var(--tint-base) / 5.882%); color: var(--text); border-color: var(--line-2); font-weight: 600;
 }
 #reading-list-options :is(#android-list-options, #list-actions > summary):is(:hover, :focus-visible) {
-  color: var(--text); border-color: var(--line-2); filter: none;
+  border-color: var(--dim); filter: none;
 }
 #reading-list-options #android-list-options::after {
   content: "›"; content: "›" / ""; margin-left: auto; font-size: var(--t-body-lg); transform: rotate(90deg);
@@ -3260,8 +3279,12 @@ select, input[type="search"], input[type="text"], input[type="url"] {
 @container home-discovery (min-width: max(29rem, calc(40ch + 1rem))) {
   #home-secondary-paths { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
-@container home-discovery (min-width: max(59rem, calc(80ch + 3rem))) {
-  #home-secondary-paths { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (min-width: 1024px) {
+  @container home-discovery (min-width: max(44rem, calc(50ch + 4rem))) {
+    #home-secondary-paths { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    #home-secondary-paths .home-path { padding: var(--space-4); column-gap: var(--space-4); }
+    #home-secondary-paths .home-path-title { font-size: var(--t-subtitle); }
+  }
 }
 @media (max-width: 620px) {
   #home-secondary-paths { grid-template-columns: 1fr; }

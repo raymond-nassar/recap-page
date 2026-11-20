@@ -390,6 +390,22 @@ test('Android reader uses only a vetted hostless default before asking for a bro
   assert.match(launch, /if \(choices\.isEmpty\(\)\)/);
 });
 
+test('Android tries the Marvel Comics app only from the automatic launcher step, by package', async () => {
+  const activity = await readFile(new URL('../packaging/android/app/src/main/java/io/github/raymondnassar/recappage/prototype/MainActivity.java', import.meta.url), 'utf8');
+  const branch = activity.match(/if \(popup && local\.policy\.isPopupPage\(view\.getUrl\(\)\) && local\.policy\.isOfficialReader\(url\)\) \{([\s\S]*?)openReaderBrowser\(url, view\);/)?.[1];
+  assert.ok(branch, 'The app attempt stays inside the validated local popup boundary');
+  assert.match(branch, /request\.hasGesture\(\) \? null : local\.policy\.appReaderAddress\(url\)/);
+  assert.match(branch, /Intent\.ACTION_VIEW, Uri\.parse\(appAddress\)/);
+  assert.match(branch, /addCategory\(Intent\.CATEGORY_BROWSABLE\)/);
+  assert.match(branch, /setPackage\(NavigationPolicy\.MARVEL_COMICS_APP_PACKAGE\)/);
+  assert.doesNotMatch(branch, /setComponent|FLAG_ACTIVITY_REQUIRE_NON_BROWSER|SDK_INT/);
+  assert.match(branch, /startActivity\(intent\);\s*closePopup\(view\);\s*return true;/);
+  assert.match(branch, /catch \(ActivityNotFoundException noApp\)/);
+  assert.match(branch, /catch \(SecurityException error\)/);
+  const policy = await readFile(new URL('../packaging/android/app/src/main/java/io/github/raymondnassar/recappage/prototype/NavigationPolicy.java', import.meta.url), 'utf8');
+  assert.match(policy, /MARVEL_COMICS_APP_PACKAGE = "com\.webtoon\.marvelcomics";/);
+});
+
 test('Android export permits only bounded text files and basenames', () => {
   assert.doesNotThrow(() => validateExport(file));
   assert.doesNotThrow(() => validateExport({ filename: 'my-list.md', type: 'text/markdown', text: '' }));
@@ -608,7 +624,7 @@ test('Android assets preserve every catalog payload and the shared feature modul
     assert.ok(generated.indexOf('styles.css') < generated.indexOf('android/mobile.css'));
     assert.doesNotMatch(generated, /src="\.\/js\/app\.js"/);
     assert.doesNotMatch(await readFile(join('src', 'index.html'), 'utf8'), /android\/(?:mobile\.css|app\.js)/);
-    assert.match(generated, /A comic with a Marvel Comics app link opens there/);
+    assert.match(generated, /On Android, for some comics, Read tries to open the Marvel Comics app\. If it cannot open an app, Read opens your browser instead\. Other comics open in your browser\./);
     assert.match(generated, /general Marvel Comics website without a lookup/);
     assert.doesNotMatch(generated, /no longer contacts Bifrost/);
     const launcher = await readFile(join(output, 'open.html'), 'utf8');

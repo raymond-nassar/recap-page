@@ -268,6 +268,42 @@ test('UX-26 an unrated editor opens on the first radio with none checked, and a 
   assert.equal(h.nodes.input.value, '2.5');
 });
 
+test('a saved comic can be rated from a list row, and focus goes back to that row after saving or cancelling', () => {
+  // Owner, 19 Nov 2026: rating should not require opening the comic's details.
+  const h = harness({ score: 2 });
+  h.view.leave();
+  const row = { focus() { h.doc.activeElement = row; } };
+  assert.equal(h.view.rate(h.issue, { focusTarget: () => row }), true);
+  assert.equal(h.nodes.dialog.open, true);
+  assert.equal(h.nodes.comic.textContent, 'Comic');
+  assert.equal(h.nodes.input.value, '2');
+  h.click('increase');
+  h.submit();
+  assert.deepEqual(h.saves, [[42, 2.5]]);
+  assert.strictEqual(h.doc.activeElement, row);
+  assert.match(h.announcements[0], /saved: 2.5 out of 5/);
+  h.view.rate(h.issue, { focusTarget: () => row });
+  h.doc.activeElement = null;
+  h.click('cancel');
+  assert.strictEqual(h.doc.activeElement, row);
+  assert.equal(issueRating(h.state, 42), 2.5);
+});
+
+test('rating from a row is refused while blocked, for a comic that is not saved, or while the editor is open', () => {
+  const h = harness();
+  h.view.leave();
+  h.blocked = true;
+  assert.equal(h.view.rate(h.issue), false);
+  h.blocked = false;
+  assert.equal(h.view.rate({ ...h.issue, issueId: 7 }), false);
+  assert.equal(h.nodes.dialog.open, false);
+  assert.equal(h.view.rate(h.issue), true);
+  assert.equal(h.view.rate(h.issue), false);
+  h.state = { ...h.state, issues: {} };
+  h.view.refresh();
+  assert.equal(h.nodes.save.disabled, true, 'a row draft goes stale when its comic is removed');
+});
+
 test('UX-26 the star group is ten native radios from 0.5 to 5, each whole star the label of its own value', () => {
   const html = readFileSync(new URL('../src/index.html', import.meta.url), 'utf8');
   const group = html.match(/<div id="issue-rating-stars" class="rating-stars" role="radiogroup" aria-label="Choose a rating">([\s\S]*?)<\/div>/)?.[1];
