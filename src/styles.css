@@ -780,7 +780,8 @@ a { color: var(--blue); }
   #sidebar-panel .rail-foot { margin-top: var(--space-3); padding-top: 0; }
   main { padding-bottom: calc(var(--mobile-nav-height, 80px) + var(--space-6)); }
   html { scroll-padding-bottom: calc(var(--mobile-nav-height, 80px) + var(--space-6)); }
-  main :focus { scroll-margin-bottom: calc(var(--mobile-nav-height, 80px) + var(--space-6)); }
+  main { --nav-clearance-bottom: calc(var(--mobile-nav-height, 80px) + var(--space-6)); }
+  main :focus { scroll-margin-bottom: var(--nav-clearance-bottom); }
   body:has(dialog[open]:not(#more-sheet)) .rail-header { visibility: hidden; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -1720,7 +1721,10 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
   :root:has(.view:not([hidden]) .comic-builder:not([hidden])) {
     scroll-padding-bottom: calc(var(--mobile-nav-height, 80px) + var(--space-6) + var(--comic-selection-height, 0px));
   }
-  :root:has(.view:not([hidden]) .comic-builder:not([hidden])) main :focus { scroll-margin-bottom: 0; }
+  /* Cleared on `main` rather than by a rule ending in `main :focus`: a page-wide `:has()` in front of
+     a descendant `:focus` was matched against every element on the page whenever its styles were
+     recalculated, which with the 2,144-comic Spider-Man list open is over 100,000 elements. */
+  :root:has(.view:not([hidden]) .comic-builder:not([hidden])) main { --nav-clearance-bottom: 0px; }
 }
 /* A control inside the bar is in view wherever the page is scrolled, so it needs no clearance. Left
    in, the padding sent the page to its very end looking for room the bar can never leave. */
@@ -2688,7 +2692,12 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   position: sticky; top: 0; z-index: 1; background: var(--bg);
   margin: 0 0 var(--space-2); padding: var(--space-5) 0 var(--space-5);
 }
-/* The filter pills wrap with width and text size; their real height is the scroll obstruction. */
+/* The filter pills wrap with width and text size; their real height is the scroll obstruction.
+   Registered as not inherited because only the root reads it. The bar sits inside the closed list,
+   so its first real height arrives just after the rows are drawn, and an inherited value written on
+   the root restyled every element on the page: with the 2,144-comic Spider-Man list on a phone that
+   was a second pass of about a second. */
+@property --reading-filter-height { syntax: '<length>'; inherits: false; initial-value: 0px; }
 :root:has(#view-read:not([hidden]) #full[open] #rows :focus) {
   scroll-padding-top: var(--reading-filter-height, 0px);
 }

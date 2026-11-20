@@ -755,7 +755,7 @@ export async function catalogCardReadability({
       document.body.classList.remove('nocovers');
       const image = card.querySelector('.ocard-art img');
       image.src = new URL('/__catalog-cover.svg', location.href).href;
-      image.hidden = false;
+      image.style.removeProperty('display');
       card.querySelector('.cover-fallback').classList.remove('show');
       await image.decode();
     });

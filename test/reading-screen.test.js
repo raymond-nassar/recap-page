@@ -428,3 +428,24 @@ test('the sticky filters are scoped by id, because other fieldsets share the cla
   const others = ['progress-scope', 'catalog-filters'];
   for (const id of others) assert.match(html, new RegExp(`class="filters" id="${id}"`), `${id} is no longer a filters fieldset`);
 });
+
+// #1522. Opening the 2,144-comic Spider-Man list on a phone sized window with the processor slowed
+// four times took 8.7 to 10.7 seconds with covers unreachable, most of it the browser restyling the
+// whole page again and again. Each of these is one of those whole-page passes, and each would come
+// back without any visible change if it were undone.
+test('a failed cover is hidden without the hidden attribute that page-wide :has() rules watch', () => {
+  const paint = main.slice(main.indexOf('function paintCoverUrl'), main.indexOf('function applyCoversSetting'));
+  assert.doesNotMatch(paint, /img\.hidden/);
+  assert.match(paint, /img\.onerror = \(\) => \{ hideCoverImage\(img, true\);/);
+  assert.match(paint, /function hideCoverImage\(img, hide\) \{\s*if \(hide\) img\.style\.setProperty\('display', 'none'\);/);
+});
+
+test('the filter bar height written on the root does not restyle every element below it', () => {
+  assert.match(css, /@property --reading-filter-height \{ syntax: '<length>'; inherits: false; initial-value: 0px; \}/);
+});
+
+test('no page-wide :has() rule ends in a descendant :focus under main', () => {
+  assert.doesNotMatch(css, /:root:has\([^{]*\)\s+main\s+:focus\s*\{/);
+  assert.match(css, /main :focus \{ scroll-margin-bottom: var\(--nav-clearance-bottom\); \}/);
+  assert.match(css, /:root:has\(\.view:not\(\[hidden\]\) \.comic-builder:not\(\[hidden\]\)\) main \{ --nav-clearance-bottom: 0px; \}/);
+});
