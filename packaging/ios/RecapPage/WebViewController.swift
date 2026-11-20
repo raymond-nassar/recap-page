@@ -323,6 +323,35 @@ final class WebViewController: UIViewController, WKUIDelegate {
         }
     }
 
+    /// Read's own destination. A Marvel Comics app viewer link first tries the installed app, and
+    /// the web link opens only if that does not, as it always has.
+    func open(readerLink url: URL, completion: ((Bool) -> Void)? = nil) {
+        let appAddress = NavigationPolicy.marvelComicsAppAddress(for: url)
+        guard appAddress != nil else {
+            open(externally: url, completion: completion)
+            return
+        }
+        #if DEBUG
+        if DebugSupport.recordsHandOffs {
+            NavigationPolicy.openPreferringApp(url, appAddress: appAddress, open: { target, done in
+                DebugSupport.recordHandOff(target)
+                done(target.scheme == "https" || DebugSupport.marvelComicsAppOpens)
+            }, completion: { [weak self] success in
+                self?.reportExternalOpen(success: success)
+            })
+            return
+        }
+        #endif
+        NavigationPolicy.openPreferringApp(url, appAddress: appAddress, open: { target, done in
+            UIApplication.shared.open(target) { done($0) }
+        }, completion: { [weak self] success in
+            Task { @MainActor in
+                self?.reportExternalOpen(success: success)
+                completion?(success)
+            }
+        })
+    }
+
     func webView(
         _ webView: WKWebView,
         createWebViewWith configuration: WKWebViewConfiguration,
@@ -345,7 +374,7 @@ final class WebViewController: UIViewController, WKUIDelegate {
                     completion(false)
                     return
                 }
-                self.open(externally: url, completion: completion)
+                self.open(readerLink: url, completion: completion)
             },
             onClose: { [weak self] sheet in self?.closeReadSheet(sheet) })
         pendingReadSheets.append(sheet)

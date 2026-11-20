@@ -45,7 +45,7 @@ test('Android About distinguishes automatic requests, explicit export and privat
   assert.match(text, /clearing app data or uninstalling[^.]*removes/i);
   assert.match(text, /keep a backup outside the app/i);
   assert.doesNotMatch(text, /progress and your notes are never sent anywhere/i);
-  assert.ok(text.includes('On Android, Read opens your installed browser. A comic with a Marvel Comics app link opens there. Before December 7, 2026, Read may look up the Marvel Unlimited link online for a comic without one. From that date it opens the general Marvel Comics website without a lookup. The external service sees the requested address and your network address, not your saved lists, notes or read markers. Open in browser remains available if no browser opens.'));
+  assert.ok(text.includes('On Android, for some comics, Read tries to open the Marvel Comics app. If it cannot open an app, Read opens your browser instead. Other comics open in your browser. Before December 7, 2026, Read may look up the Marvel Unlimited link online for a comic without one. From that date it opens the general Marvel Comics website without a lookup. The external service sees the requested address and your network address, not your saved lists, notes or read markers. Open in browser remains available if no browser opens.'));
   assert.doesNotMatch(text, /no longer contacts Bifrost/);
   assert.doesNotMatch(text, /sends a known digital issue ID to Marvel's Bifrost/);
   assert.match(text, /Open in browser/);
@@ -129,6 +129,11 @@ test('public privacy policy names the Android, cloud, request and deletion bound
   assert.match(text, /iCloud Drive keeps deleted files in Recently Deleted for up to 30 days/i);
   assert.match(text, /settings remain, and so do any copies kept after a failed read/i);
   assert.match(text, /neither removes exported files/i);
+  const plain = text.replace(/\*\*/g, '');
+  for (const device of ['On Android', 'On iPhone and iPad']) {
+    assert.ok(plain.includes(`${device}, for some comics, Read tries to open the Marvel Comics app. If it cannot open an app, Read opens your browser instead. Other comics open in your browser.`), device);
+  }
+  assert.doesNotMatch(text, /A comic with a Marvel Comics app link opens there/);
   const android = prose(await readFile(new URL('../docs/ANDROID.md', import.meta.url), 'utf8'));
   assert.match(android, /no Node server, listening port or remote app host/i);
   assert.match(android, /the same address does not mean shared progress/i);

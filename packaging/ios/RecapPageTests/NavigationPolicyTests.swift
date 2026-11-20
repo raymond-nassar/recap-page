@@ -117,6 +117,67 @@ final class NavigationPolicyTests: XCTestCase {
         }
     }
 
+    func testOnlyExactViewerLinksGetTheMarvelComicsAppAddress() throws {
+        XCTAssertEqual(
+            NavigationPolicy.marvelComicsAppAddress(for: try url("https://www.marvelcomicsapp.com/viewer/1703"))?.absoluteString,
+            "marvelcomicsapp://viewer?issueId=1703")
+        XCTAssertEqual(
+            NavigationPolicy.marvelComicsAppAddress(for: try url("https://www.marvelcomicsapp.com/viewer/123456789"))?.absoluteString,
+            "marvelcomicsapp://viewer?issueId=123456789")
+        for refused in [
+            "https://www.marvelcomicsapp.com/mu/issues/10441",
+            "https://www.marvelcomicsapp.com/issues/36887",
+            "https://www.marvelcomicsapp.com/viewer/0",
+            "https://www.marvelcomicsapp.com/viewer/01703",
+            "https://www.marvelcomicsapp.com/viewer/1234567890",
+            "https://www.marvelcomicsapp.com/viewer/%31703",
+            "https://www.marvelcomicsapp.com/viewer/1703/",
+            "https://www.marvelcomicsapp.com/viewer/1703?x=1",
+            "https://www.marvelcomicsapp.com/viewer/1703#page",
+            "https://www.marvelcomicsapp.com:8443/viewer/1703",
+            "https://reader@www.marvelcomicsapp.com/viewer/1703",
+            "http://www.marvelcomicsapp.com/viewer/1703",
+            "https://marvelcomicsapp.com/viewer/1703",
+            "https://www.marvelcomicsapp.com.evil/viewer/1703",
+            "https://read.marvel.com/#/book/1703",
+            "marvelcomicsapp://viewer?issueId=1703",
+        ] {
+            XCTAssertNil(NavigationPolicy.marvelComicsAppAddress(for: try url(refused)), refused)
+        }
+    }
+
+    func testReadTriesTheAppFirstAndOpensTheWebLinkOnlyWhenTheAppDoesNot() throws {
+        let link = try url("https://www.marvelcomicsapp.com/viewer/1703")
+        let app = try XCTUnwrap(NavigationPolicy.marvelComicsAppAddress(for: link))
+        for appOpens in [true, false] {
+            var attempts: [String] = []
+            var results: [Bool] = []
+            NavigationPolicy.openPreferringApp(link, appAddress: app, open: { target, done in
+                attempts.append(target.absoluteString)
+                done(target == link || appOpens)
+            }, completion: { results.append($0) })
+            XCTAssertEqual(attempts, appOpens ? [app.absoluteString] : [app.absoluteString, link.absoluteString])
+            XCTAssertEqual(results, [true], "Only the final outcome is reported, once")
+        }
+        var attempts: [String] = []
+        var results: [Bool] = []
+        NavigationPolicy.openPreferringApp(link, appAddress: app, open: { target, done in
+            attempts.append(target.absoluteString)
+            done(false)
+        }, completion: { results.append($0) })
+        XCTAssertEqual(attempts, [app.absoluteString, link.absoluteString])
+        XCTAssertEqual(results, [false], "A failed web link still reports a failure")
+        attempts = []
+        results = []
+        let other = try url("https://www.marvelcomicsapp.com/mu/issues/10441")
+        NavigationPolicy.openPreferringApp(other, appAddress: nil, open: { target, done in
+            attempts.append(target.absoluteString)
+            done(true)
+        }, completion: { results.append($0) })
+        XCTAssertEqual(attempts, [other.absoluteString], "Without an app address only the web link opens")
+        XCTAssertEqual(results, [true])
+    }
+
     @MainActor
     func testLinkPreviewsAreDisabledOnAppAndLauncherWebViews() {
         let app = WKWebView(frame: .zero, configuration: WKWebViewConfiguration())

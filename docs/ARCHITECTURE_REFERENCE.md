@@ -224,7 +224,9 @@ Other unknown references retain the configured metadata lookup and use the pinne
 when the lookup cannot resolve a reader ID, at `src/open.js:139-183`. The launch page never
 reads or writes reading progress. From local December 7, it opens the general Marvel Comics website
 without a reader-link lookup. Android uses the same choice and validation in its generated launcher,
-then asks an installed browser to open the destination. It never calls Bifrost or opens the
+then asks an installed browser to open the destination, except that a `/viewer/` app link first
+asks the Marvel Comics app itself to open the comic. The iPhone and iPad app likewise tries the
+Marvel Comics app's own address before the web link. It never calls Bifrost or opens the
 Marvel Unlimited app.
 
 The launch tab reads display settings without saving them and follows explicit or system theme.
