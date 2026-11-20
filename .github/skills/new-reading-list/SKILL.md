@@ -24,12 +24,12 @@ request is a single owner guide or a batch, its intended surface, and the actual
 
 Use the batch procedure only when several supplied lists are in one agreed delivery. A batch that
 contains different sources also follows each selected source-specific procedure. The batch guide's
-source table defines these routes and stop conditions. `docs/BATCH_READING_LIST_DELIVERY.md:108-117`
+source table defines these routes and stop conditions. `docs/BATCH_READING_LIST_DELIVERY.md:109-118`
 
 Do not use the owner-Markdown route for Comic Book Herald, Comic Book Reading Orders, or non-MCU
 event lists when their documented route differs. If the provider, source boundary, or list shape is
 unclear, retain the original and request the smallest source decision. Never invent provider
-attribution or force an ambiguous request into a route. `docs/BATCH_READING_LIST_DELIVERY.md:108-117`
+attribution or force an ambiguous request into a route. `docs/BATCH_READING_LIST_DELIVERY.md:109-118`
 
 ## Preserve the source while preparing delivery
 

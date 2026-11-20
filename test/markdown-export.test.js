@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { serializeChecklist, readerIssueId, markdownFilename } from '../src/js/lib/markdown.js';
+import { serializeChecklist, serializeReadingOrder, readerIssueId, markdownFilename } from '../src/js/lib/markdown.js';
 
 const plain = {
   includeProgress: true,
@@ -24,6 +24,19 @@ const list = {
     { issueId: -3, title: 'Amazing Spider-Man (2018) #3', read: false },
   ],
 };
+
+test("the Hell's Angel order export uses the approved team source credit", () => {
+  const markdown = serializeReadingOrder({
+    name: "Hell's Angel",
+    items: [],
+    source: {
+      id: 'captain-america-2025-hells-angel',
+      sourceOrigin: 'Selected by raymond-nassar for Modern Timeline',
+    },
+  });
+  assert.match(markdown, /Source: Selected by Recap Page team/);
+  assert.doesNotMatch(markdown, /raymond-nassar/);
+});
 
 test('both Markdown exports fit the phone filename limit for a maximum-length list name', () => {
   for (const orderOnly of [false, true]) {
