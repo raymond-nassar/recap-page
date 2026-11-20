@@ -449,7 +449,7 @@ async function catalogPlaceholderAccessibility({ page, profile, catalog, rawCata
       const meaningful = item.meaningful;
       const title = entry.story.name ?? entry.list.name;
       const description = firstSentence(entry.list.description);
-      const metadata = [`${entry.list.count} issue${entry.list.count === 1 ? '' : 's'}`, ...catalogGapLabels(entry.list)].join(' \u00b7 ');
+      const metadata = [`${entry.list.count} comic${entry.list.count === 1 ? '' : 's'}`, ...catalogGapLabels(entry.list)].join(' \u00b7 ');
       const preview = shownName([title], 'Preview');
       const sourceName = entry.compactSource
         ? `Source of ${entry.list.name}: ${entry.compactSource}` : sourceLabel(entry.list);
