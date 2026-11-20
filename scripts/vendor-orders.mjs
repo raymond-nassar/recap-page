@@ -36,6 +36,7 @@ import { legacyIdentityChecked, legacyIdentityKeyFor, repairWolverineTitles } fr
 import { countOrderGaps } from '../src/js/lib/model.js';
 import { borrowedSupplement, supplementItemFields } from './lib/owner-external-supplement.mjs';
 import { OWNER_GCD_SUPPLEMENT } from '../src/js/lib/model.js';
+import { GCD_LICENSED_FILES } from './lib/gcd-issue-records.mjs';
 import {
   RATED_GUIDE_INDEX_FILE,
   buildRatedGuideIndex,
@@ -589,10 +590,13 @@ async function main() {
     let missingCover = 0;
     const { supplements, ownMappedIds } = await loadOwnerSupplements(order);
     const borrowed = [];
+    // The licence list, not a flag in the order, decides which payloads may hold share-alike details,
+    // so the data and the LICENSE paragraph that carves it out cannot drift apart.
+    const shareAlike = GCD_LICENSED_FILES.includes(`src/data/${order.out}`);
     const supplementFor = (issueId) => {
       const own = supplements.get(String(issueId));
       if (own) return own;
-      const result = borrowedSupplement(issueId, { ownMappedIds, mappings: allOwnerMappings });
+      const result = borrowedSupplement(issueId, { ownMappedIds, mappings: allOwnerMappings, shareAlike });
       if (result.reason === 'borrowed' || result.reason === 'conflict') borrowed.push({ issueId, ...result });
       return result.supplement;
     };

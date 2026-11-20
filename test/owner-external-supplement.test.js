@@ -155,8 +155,13 @@ test('a reused owner-confirmed comic borrows one agreed non-GCD supplement and n
   // One World Under Doom reviewed it bare, and its own review wins over any lender.
   assert.deepEqual(borrowedSupplement(123361, { ownMappedIds: new Set(['123361']), mappings }),
     { supplement: undefined, reason: 'own-mapping-row' });
-  // Grand Comics Database details are share-alike, so they are never lent.
+  // Grand Comics Database details are share-alike, so they are lent only to a licensed payload.
   assert.deepEqual(borrowedSupplement(134097, none), { supplement: undefined, reason: 'no-lender' });
+  const gcd = mappings.find((m) => m.listId === 'avengers-armageddon').rows.find((row) => row.selectedIssueId === 134097);
+  assert.deepEqual(borrowedSupplement(134097, { ...none, shareAlike: true }), {
+    supplement: supplementItemFields(gcd), reason: 'borrowed', lenders: ['avengers-armageddon'],
+  });
+  assert.equal(supplementItemFields(gcd).metadataSourceKind, 'owner-gcd-supplement');
   const altered = structuredClone(mappings[1].rows.find((row) => row.selectedIssueId === 123362));
   altered.externalMetadataSupplement.fields.pageCount += 1;
   const conflict = borrowedSupplement(123362, { ownMappedIds: new Set(), mappings: [...mappings, { listId: 'other', rows: [altered] }] });
