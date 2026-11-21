@@ -103,7 +103,15 @@ childProcess.execFileSync = function measure(file, args, options) {
     markers, status: result.status, signal: result.signal, error: result.error?.code ?? null,
   }));
   if (result.error || result.status !== 0 || result.signal) {
-    throw new Error(`Guard timing child failed: ${result.error?.code ?? 'nonzero exit'}, status=${result.status}, signal=${result.signal}`);
+    const childError = stderr.split(/\r?\n/)
+      .find((line) => line.trim() && !line.startsWith('GUARD-TIMING ') && !line.startsWith('GUARD-ENGINE '));
+    const message = result.error?.message ?? `Guard timing child exited with status ${result.status}, signal=${result.signal}`;
+    const failure = new Error(message);
+    Object.assign(failure, {
+      code: result.error?.code ?? null, status: result.status, signal: result.signal,
+      childError: childError?.length > 512 ? `${childError.slice(0, 512)} [truncated]` : childError ?? null,
+    });
+    throw failure;
   }
   assert.match(powershell ?? '', /^5\.1\./);
   for (const phase of ['started', 'input-read', 'dispatch', 'guards-done', 'returned']) {
