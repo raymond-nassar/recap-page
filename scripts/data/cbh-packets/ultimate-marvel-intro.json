@@ -6,24 +6,13 @@
   "sourceSection": "Intro to the Ultimate U",
   "sourceRetrievedAt": "2026-08-25",
   "sourceIssueBearingBlocksSha256": "635883453cc2e77167cf61c66ed58bb3973ed7af6735999d1dd95935003536fb",
-  "sourceBoundary": "The rows under The Ultimate Marvel Reading Order > Intro to the Ultimate U, ending before After the Ultimate War. Ultimate Marvel Team-Up #9 is preserved as an excluded source row because the source marks it out of continuity.",
-  "excludedSourceReferences": [
-    "Ultimate Marvel Team-Up #9"
-  ],
-  "excludedSourceRows": [
-    {
-      "sourcePosition": 106,
-      "sourceIssueReference": "Ultimate Marvel Team-Up #9",
-      "reason": "The source marks this Fantastic Four story out of continuity.",
-      "decisionScope": "Excluded from the Earth-1610 issue order while preserving the source occurrence."
-    }
-  ],
-  "sourceOccurrenceCount": 122,
-  "expectedCount": 121,
+  "sourceBoundary": "The rows under The Ultimate Marvel Reading Order > Intro to the Ultimate U, ending before After the Ultimate War. Includes Ultimate Marvel Team-Up #9 at source position 106, as the owner decided for Issue #1454.",
+  "excludedSourceReferences": [],
+  "expectedCount": 122,
   "proposedManifest": {
     "id": "ultimate-marvel-intro",
     "name": "Ultimate Marvel: Intro to the Ultimate U",
-    "description": "The opening Earth-1610 sequence from Ultimate Spider-Man through Ultimate War, preserving Comic Book Herald source order while excluding the one source-marked out-of-continuity issue.",
+    "description": "Earth-1610 gives Spider-Man, the X-Men, the Ultimates and the Fantastic Four fresh starts, building toward Ultimate War. Brian Michael Bendis's Ultimate Spider-Man runs alongside Mark Millar's Ultimate X-Men and Ultimates, with Ultimate Marvel Team-Up, Daredevil and Elektra, and Ultimate Iron Man along the way. The selection is not in publication order.",
     "type": "era",
     "depth": "complete",
     "beginner": true,
@@ -52,7 +41,7 @@
       "Ultimate X-Men",
       "Ultimate War"
     ],
-    "expect": 121,
+    "expect": 122,
     "timeline": 2000,
     "coverIssueId": 4372
   },
@@ -61,9 +50,9 @@
   },
   "sourceReview": {
     "authorityType": "stronger-model",
-    "authorityIdentity": "GPT-5.5",
-    "rationale": "The corrected Earth-1610-only boundary, visible section boundaries, excluded fast-track, trade, out-of-continuity, post-Secret-Wars, and 2023-continuity material, and the first release row set were reviewed against the fetched guide text before mapping.",
-    "reviewedAt": "2026-08-26T05:20:00Z"
+    "authorityIdentity": "Claude Opus 5.5 coordinator, source and relationship review for issue #1454",
+    "reviewedAt": "2026-11-20T02:41:49Z",
+    "rationale": "The owner decided to include Ultimate Marvel Team-Up #9 for Issue #1454 on 19 Nov 2026; the reviewer checked that the section boundary is otherwise unchanged, that the single excluded source row at position 106 is now included, and that identity 15783 matches the existing Ultimate Spider-Man mapping; the earlier source review was by GPT-5.5 on 2026-08-26."
   },
   "rows": [
     {
@@ -1117,6 +1106,16 @@
       "manualSeriesSelectionApproved": false
     },
     {
+      "sourceIssueReference": "Ultimate Marvel Team-Up #9",
+      "sourceRangeReference": "Ultimate Marvel Team-Up #9",
+      "normalizedSeriesTitle": "Ultimate Marvel Team-Up",
+      "seriesYear": 2001,
+      "issueNumber": "9",
+      "seriesId": 2311,
+      "candidateIssueId": 15783,
+      "manualSeriesSelectionApproved": false
+    },
+    {
       "sourceIssueReference": "Ultimate Spider-Man #33",
       "sourceRangeReference": "Ultimate Spider-Man #33 - #39",
       "normalizedSeriesTitle": "Ultimate Spider-Man",
@@ -1277,5 +1276,5 @@
       "manualSeriesSelectionApproved": false
     }
   ],
-  "packetDigest": "59b6f9e82438c07aa75d405fd6b2097c36bae2f294e725e52885bbfc07f93efc"
+  "packetDigest": "e6c9b717f9119bfb5e058651e2e5c404ff36d0d18ccd7bcc8b2ab226783520c0"
 }

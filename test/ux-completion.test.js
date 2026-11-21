@@ -131,7 +131,8 @@ test('product labels use Reading List while authored guide titles retain their o
     .replace(/Our mission is to make Marvel reading orders easier to follow/g, '')
     .match(/\breading (?:orders?|lists?)\b/gi) ?? [];
   assert.ok(terms.length > 0, 'the product no longer contains any Reading List labels to check');
-  assert.deepEqual([...new Set(terms)].sort(),   ['Reading List', 'Reading Lists', 'reading order']);
+  // "Reading order" names the switch between a list's two orders, a label the owner approved verbatim.
+  assert.deepEqual([...new Set(terms)].sort(),   ['Reading List', 'Reading Lists', 'Reading order', 'reading order']);
   assert.doesNotMatch(productCopy, /\breading\s+\$\{/i, 'a dynamic label can bypass the capitalization contract');
   assert.equal(
     [...library.matchAll(/['"]My Reading List['"]/g)].length,

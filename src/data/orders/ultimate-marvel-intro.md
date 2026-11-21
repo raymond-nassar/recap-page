@@ -110,6 +110,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Ultimate Fantastic Four (2003) #4](https://www.marvel.com/comics/issue/449/ultimate_fantastic_four_2003_4)
 - [ ] [Ultimate Fantastic Four (2003) #5](https://www.marvel.com/comics/issue/503/ultimate_fantastic_four_2003_5)
 - [ ] [Ultimate Fantastic Four (2003) #6](https://www.marvel.com/comics/issue/686/ultimate_fantastic_four_2003_6)
+- [ ] [Ultimate Marvel Team-Up (2001) #9](https://www.marvel.com/comics/issue/15783/ultimate_marvel_team-up_2001_9)
 - [ ] [Ultimate Spider-Man (2000) #33](https://www.marvel.com/comics/issue/14861/ultimate_spider-man_2000_33)
 - [ ] [Ultimate Spider-Man (2000) #34](https://www.marvel.com/comics/issue/14862/ultimate_spider-man_2000_34)
 - [ ] [Ultimate Spider-Man (2000) #35](https://www.marvel.com/comics/issue/14863/ultimate_spider-man_2000_35)

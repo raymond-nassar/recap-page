@@ -8,9 +8,11 @@
     "guideType": "era",
     "window": null,
     "disposition": "new-order",
-    "reason": "Shipped: approved 121-row mapping, complete zero-overlap report, and catalog entry; one source-marked out-of-continuity row is preserved as an exclusion.",
+    "reason": "Shipped source section revised for Issue #1454: all 122 source rows are included. Central review approved the single partial relationship with Ultimate Spider-Man; every other current-library relationship is none.",
     "sourceRetrievedAt": "2026-08-25",
-    "overlapIds": [],
+    "overlapIds": [
+      "ultimate-spider-man-reading-order"
+    ],
     "catalogIds": [
       "ultimate-marvel-intro"
     ],
@@ -20,10 +22,8 @@
     "sectionBoundaryStatus": "section-inventory-reviewed",
     "sourceRowCount": 122,
     "issueOccurrenceCount": 122,
-    "deliverableIssueCount": 121,
-    "excludedSourceReferences": [
-      "Ultimate Marvel Team-Up #9"
-    ],
+    "deliverableIssueCount": 122,
+    "excludedSourceReferences": [],
     "sourceReferences": [
       "Ultimate Spider-Man #1 - #13",
       "Ultimate Daredevil & Elektra #1 - #4",
