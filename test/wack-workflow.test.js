@@ -410,7 +410,7 @@ test('native producer outputs and job deadlines bind every package consumer', ()
         .filter(([, phase]) => known.includes(phase)).slice(0, known.length)
         .map(([, phase, at]) => `${phase}=+${Number(at) - startedAt}ms`);
       const childError = stderr.split(/\r?\n/).find((line) => line.trim() && !line.startsWith('GUARD-PHASE '))?.slice(0, 512);
-      // Deliberately no cause: Node's execFileSync error carries the command and full stderr.
+      // eslint-disable-next-line preserve-caught-error -- The cause exposes the command and full stderr.
       throw new Error([
         `Browser mode guard child failed after ${endedAt - startedAt}ms`,
         `code=${error.code ?? null} status=${error.status ?? null} signal=${error.signal ?? null}`,
