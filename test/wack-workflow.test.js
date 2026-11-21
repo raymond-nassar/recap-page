@@ -384,14 +384,40 @@ test('native producer outputs and job deadlines bind every package consumer', ()
         if (-not $rejected) { throw 'Invalid browser mode reached native setup.' }
       `}
     `).join('\n');
-    const output = execFileSync('powershell.exe', [
-      '-NoProfile', '-NonInteractive', '-Command', 'Invoke-Expression ([Console]::In.ReadToEnd())',
-    ], { input: `
-      $ErrorActionPreference = 'Stop';
-      $env:GITHUB_EVENT_NAME = 'workflow_dispatch';
-      ${cases}
-      Write-Output 'PASS browser-mode-guards cases=${modes.length + invalidModes.length}';
-    `, encoding: 'utf8', timeout: 15000 });
+    // Issue 527: a hosted run timed out here with empty output, so nothing showed which phase
+    // stalled. Markers go to stderr, which is captured and discarded on success and reported
+    // only when the child fails or reaches the unchanged deadline.
+    const mark = (phase) => `[Console]::Error.WriteLine('GUARD-PHASE ${phase} ' + [DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds()); [Console]::Error.Flush();`;
+    const startedAt = Date.now();
+    let output;
+    try {
+      output = execFileSync('powershell.exe', [
+        '-NoProfile', '-NonInteractive', '-Command',
+        `${mark('started')} $guardInput = [Console]::In.ReadToEnd(); ${mark('input-read')} Invoke-Expression $guardInput`,
+      ], { input: `
+        $ErrorActionPreference = 'Stop';
+        ${mark('dispatch')}
+        $env:GITHUB_EVENT_NAME = 'workflow_dispatch';
+        ${cases}
+        ${mark('guards-done')}
+        Write-Output 'PASS browser-mode-guards cases=${modes.length + invalidModes.length}';
+      `, encoding: 'utf8', timeout: 15000, stdio: 'pipe' });
+    } catch (error) {
+      const endedAt = Date.now();
+      const stderr = String(error.stderr ?? '');
+      const known = ['started', 'input-read', 'dispatch', 'guards-done'];
+      const phases = [...stderr.matchAll(/^GUARD-PHASE ([\w-]+) (\d+)\r?$/gm)]
+        .filter(([, phase]) => known.includes(phase)).slice(0, known.length)
+        .map(([, phase, at]) => `${phase}=+${Number(at) - startedAt}ms`);
+      const childError = stderr.split(/\r?\n/).find((line) => line.trim() && !line.startsWith('GUARD-PHASE '))?.slice(0, 512);
+      // eslint-disable-next-line preserve-caught-error -- The cause exposes the command and full stderr.
+      throw new Error([
+        `Browser mode guard child failed after ${endedAt - startedAt}ms`,
+        `code=${error.code ?? null} status=${error.status ?? null} signal=${error.signal ?? null}`,
+        `phases: ${phases.join(' ') || 'none'}`,
+        `child error: ${childError ?? 'none'}`,
+      ].join('\n'));
+    }
     assert.ok(output.includes(`PASS browser-mode-guards cases=${modes.length + invalidModes.length}`));
   }
   assert.match(browserDiagnostic, /runs-on: windows-2022/);
