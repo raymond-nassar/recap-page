@@ -173,6 +173,10 @@ shell. Refreshing replaces the earlier completed copy only after the new one is 
 that has not been prepared may be missing. Recap Page checks its local app connection and explains
 how to reconnect when an uncached Reading List needs the separate local copy.
 
+For an older saved X-Men Core or Expanded list that is no longer in the catalog, open **Reading List
+options** and choose **Make published order available offline** while connected. This saves the
+original published order for comparisons; it does not change your list or download comics.
+
 Leave the installed window open. If you installed Recap Page from the Microsoft Store, choose
 **Reconnect** in the window's notice and allow your browser to open Recap Page. Otherwise start Recap
 Page with **Start on Windows.cmd** or **Start on macOS.command**, return to the window and choose

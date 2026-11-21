@@ -1,4 +1,5 @@
 import { currentReadingCensus, registeredCatalogAdditionIds } from './helpers/current-reading-library.mjs';
+import { xmenEraPlaceholderDelta } from './helpers/xmen-era-history.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
@@ -304,7 +305,7 @@ test('the bundled catalog is valid and its counts match the vendored orders', as
     },
     {
       complete: currentReadingCensus.complete,
-      placeholders: 1130,
+      placeholders: 1130 + xmenEraPlaceholderDelta,
       emptyRecords: 221,
       total: currentReadingCensus.totalItems,
       placeholderEntries: 29,

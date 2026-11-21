@@ -1,4 +1,5 @@
 import { parseCatalog, safeFile } from './catalog.js';
+import { legacyReadingOrder } from './legacyReadingOrders.js';
 import { shellUrls } from './offline.js';
 // Load the resolver early so shell capture can observe its module graph.
 import './universes.js';
@@ -9,6 +10,7 @@ export const CONTENT_MAX_CONCURRENT = 4;
 
 const FORMAT = 'mrt-offline-content';
 const VERSION = 1;
+const CONTENT_READY_PATH = '/__mrt_offline_content__/ready.json';
 const CATALOG_PATH = '/data/catalog.json';
 const UNIVERSE_SHELL_PATHS = [
   '/data/universeCatalog.js',
@@ -125,6 +127,14 @@ function manifestUrl(origin) {
   return new URL(CONTENT_MANIFEST_PATH, origin).href;
 }
 
+function readyUrl(origin) {
+  return new URL(CONTENT_READY_PATH, origin).href;
+}
+
+function needsReadyMarker(name) {
+  return /-[0-9a-f]{32}$/.test(name);
+}
+
 function cacheKey(cache, url) {
   return cache.match(url);
 }
@@ -186,7 +196,9 @@ function usable(scope, caches, cryptoProvider) {
     return 'The app service worker must control this page before offline preparation is available.';
   }
   if (!caches?.open || !caches?.keys || !caches?.delete) return 'Browser offline storage is unavailable.';
-  if (!cryptoProvider?.subtle?.digest) return 'This browser cannot verify offline content.';
+  if (!cryptoProvider?.subtle?.digest || typeof cryptoProvider.getRandomValues !== 'function') {
+    return 'This browser cannot verify offline content.';
+  }
   return null;
 }
 
@@ -216,12 +228,16 @@ async function currentBase({ scope, fetchImpl, cryptoProvider, signal, onProgres
   };
 }
 
-function selectedList(lists, listId) {
+function selectedList(lists, listId, { legacy = false } = {}) {
   if (typeof listId !== 'string' || !listId.trim()) {
     throw new Error('Choose a Reading List before preparing offline content.');
   }
-  const list = lists.find((entry) => entry.id === listId);
-  if (!list) throw new Error('That Reading List is no longer in the catalog. Refresh and choose again.');
+  const list = legacy ? legacyReadingOrder(listId) : lists.find((entry) => entry.id === listId);
+  if (!list) {
+    throw new Error(legacy
+      ? 'The original published order is unavailable.'
+      : 'That Reading List is no longer in the catalog. Refresh and choose again.');
+  }
   const file = safeFile(list.file);
   if (!file) throw new Error('That Reading List does not have a safe bundled content file.');
   return { ...list, file };
@@ -291,9 +307,31 @@ async function cacheName(listId, contentDigest, cryptoProvider) {
   return `${CONTENT_CACHE_PREFIX}${idDigest.slice(0, 16)}-${contentDigest}`;
 }
 
+function stagingName(baseName, cryptoProvider) {
+  const suffix = [...cryptoProvider.getRandomValues(new Uint8Array(16))]
+    .map((part) => part.toString(16).padStart(2, '0')).join('');
+  return `${baseName}-${suffix}`;
+}
+
 function asResponse(scope, value) {
   const ResponseType = scope.Response ?? globalThis.Response;
   return new ResponseType(value, { headers: { 'content-type': 'application/json' } });
+}
+
+async function newestCompleted(caches, names, prefix, origin, listId) {
+  for (const name of [...names].reverse()) {
+    if (!name.startsWith(prefix)) continue;
+    const cache = await caches.open(name);
+    if (needsReadyMarker(name) && (await cache.match(readyUrl(origin)))?.status !== 200) continue;
+    const manifest = await cacheManifest(cache, origin);
+    if (manifest?.listId === listId) return { name, cache, manifest };
+  }
+  return null;
+}
+
+// Readers see one confirmation message for every post-completion check, so the cause is not guessed.
+function unconfirmed(message) {
+  return Object.assign(new Error(message), { code: 'unconfirmed' });
 }
 
 function abortResult(error) {
@@ -308,7 +346,7 @@ export function createOfflineContent({
   const cryptoProvider = scope.crypto ?? globalThis.crypto;
   let preparing = false;
 
-  async function prepare(listId, { signal, onProgress } = {}) {
+  async function prepare(listId, { signal, onProgress, legacy = false } = {}) {
     const unavailable = usable(scope, caches, cryptoProvider);
     if (unavailable) return { ok: false, state: 'unsupported', error: unavailable };
     if (preparing) return { ok: false, state: 'preparing', error: 'Offline preparation is already running.' };
@@ -317,7 +355,7 @@ export function createOfflineContent({
     try {
       checkAbort(signal);
       const base = await currentBase({ scope, fetchImpl, cryptoProvider, signal, onProgress });
-      const list = selectedList(base.lists, listId);
+      const list = selectedList(base.lists, listId, { legacy });
       const listUrl = new URL(`/data/${list.file}`, base.origin);
       const selected = await fetchResource({
         fetchImpl, url: listUrl, kind: 'selected', signal,
@@ -339,18 +377,18 @@ export function createOfflineContent({
       const sDigest = await sourceDigest(all, cryptoProvider);
       const cDigest = await digestInventory(all, cryptoProvider);
       const inventory = stableInventory(all);
-      const name = await cacheName(list.id, cDigest, cryptoProvider);
-      const cache = await caches.open(name);
-      const previousManifest = await cacheManifest(cache, base.origin);
-      if (previousManifest && previousManifest.contentDigest === cDigest
-        && await verifyBundle(cache, previousManifest, base.origin, cryptoProvider)) {
+      const baseName = await cacheName(list.id, cDigest, cryptoProvider);
+      const listPrefix = baseName.slice(0, -cDigest.length);
+      const previous = await newestCompleted(caches, await caches.keys(), listPrefix, base.origin, list.id);
+      if (previous?.manifest.contentDigest === cDigest
+        && await verifyBundle(previous.cache, previous.manifest, base.origin, cryptoProvider)) {
         return {
           ok: true, state: 'ready', listId: list.id, file: list.file,
-          cacheName: name, manifest: previousManifest,
+          cacheName: previous.name, manifest: previous.manifest,
         };
       }
+      const name = stagingName(baseName, cryptoProvider);
       stageName = name;
-      if (previousManifest) await caches.delete(name);
       const staging = await caches.open(name);
       await mapLimit(all, async (resource) => {
         checkAbort(signal);
@@ -375,14 +413,43 @@ export function createOfflineContent({
       const committed = await cacheManifest(staging, base.origin);
       if (!committed || JSON.stringify(committed) !== serialized
         || !await verifyBundle(staging, committed, base.origin, cryptoProvider)) {
-        throw new Error('The completed offline Reading List could not be confirmed.');
+        throw unconfirmed('The completed offline Reading List could not be confirmed.');
       }
-      const cleanupWarnings = [];
-      for (const otherName of await caches.keys()) {
+      const names = await caches.keys();
+      const ownIndex = names.indexOf(name);
+      if (ownIndex < 0) throw unconfirmed('The completed offline Reading List could not be confirmed.');
+      const superseded = [];
+      // Only a newer completed preparation can safely replace an older one in another tab.
+      for (const otherName of names.slice(0, ownIndex)) {
         if (!otherName.startsWith(CONTENT_CACHE_PREFIX) || otherName === name) continue;
         const other = await caches.open(otherName);
+        // An older unfinished preparation may still be active in another tab.
+        if (needsReadyMarker(otherName)
+          && (await other.match(readyUrl(base.origin)))?.status !== 200) continue;
         const otherManifest = await cacheManifest(other, base.origin);
         if (otherManifest?.listId !== list.id) continue;
+        superseded.push(otherName);
+      }
+      checkAbort(signal);
+      // Another tab can use the copy as soon as the marker is written, even if its read-back fails.
+      stageName = null;
+      await staging.put(readyUrl(base.origin), asResponse(scope, JSON.stringify({ complete: true })));
+      if ((await staging.match(readyUrl(base.origin)))?.status !== 200) {
+        throw unconfirmed('The completed offline Reading List could not be confirmed.');
+      }
+      const latest = await newestCompleted(caches, await caches.keys(), listPrefix, base.origin, list.id);
+      if (!latest || latest.manifest.contentDigest !== cDigest
+        || !await verifyBundle(latest.cache, latest.manifest, base.origin, cryptoProvider)) {
+        throw unconfirmed('Another tab prepared a different offline copy. Try again.');
+      }
+      if (latest.name !== name) {
+        return {
+          ok: true, state: 'ready', listId: list.id, file: list.file,
+          cacheName: latest.name, manifest: latest.manifest,
+        };
+      }
+      const cleanupWarnings = [];
+      for (const otherName of superseded) {
         try {
           if (!await caches.delete(otherName)) cleanupWarnings.push(otherName);
         } catch (error) {
@@ -406,6 +473,7 @@ export function createOfflineContent({
         ok: false,
         state: abortResult(error) ? 'cancelled' : 'failed',
         error: error.message,
+        ...(error?.code === 'unconfirmed' ? { code: 'unconfirmed' } : {}),
         cleanupError,
       };
     } finally {
@@ -413,29 +481,32 @@ export function createOfflineContent({
     }
   }
 
-  async function readiness(listId, { signal, onProgress } = {}) {
+  async function readiness(listId, { signal, onProgress, legacy = false } = {}) {
     const unavailable = usable(scope, caches, cryptoProvider);
     if (unavailable) return { ok: false, state: 'unsupported', error: unavailable };
     if (preparing) return { ok: false, state: 'preparing' };
     try {
       checkAbort(signal);
       const base = await currentBase({ scope, fetchImpl, cryptoProvider, signal, onProgress });
-      const list = selectedList(base.lists, listId);
+      const list = selectedList(base.lists, listId, { legacy });
       const candidates = [];
       let hasCandidate = false;
-      for (const name of await caches.keys()) {
+      for (const name of (await caches.keys()).reverse()) {
         if (!name.startsWith(CONTENT_CACHE_PREFIX)) continue;
         const cache = await caches.open(name);
+        if (needsReadyMarker(name)
+          && (await cache.match(readyUrl(base.origin)))?.status !== 200) continue;
         const manifest = await cacheManifest(cache, base.origin);
         if (manifest?.listId !== list.id) continue;
         hasCandidate = true;
-        if (!await verifyBundle(cache, manifest, base.origin, cryptoProvider)) continue;
+        if (!await verifyBundle(cache, manifest, base.origin, cryptoProvider)) break;
         const catalogEntry = manifest.resources.find((resource) => resource.kind === 'catalog');
         if (manifest.sourceDigest === await sourceDigest(base.shell, cryptoProvider)
           && catalogEntry?.sha256 === base.catalog.sha256
           && manifest.file === list.file) {
           candidates.push({ name, cache, manifest });
         }
+        break;
       }
       if (!candidates.length) {
         return {
@@ -473,5 +544,5 @@ export function createOfflineContent({
     }
   }
 
-  return { prepare, readiness };
+  return { prepare, readiness, available: () => !usable(scope, caches, cryptoProvider) };
 }

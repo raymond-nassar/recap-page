@@ -373,6 +373,8 @@
                 <button type="button" class="quiet" id="btn-cancel-hydrate" hidden>Stop</button>
                 <span id="synopsis-status" class="rail-hint" hidden></span>
                 <button type="button" class="quiet" id="btn-cancel-synopsis" hidden>Stop synopses</button>
+                <span id="list-offline-status" class="rail-hint" role="status" aria-live="polite" hidden></span>
+                <button type="button" class="quiet" id="list-offline-cancel" hidden>Cancel</button>
               </div>
 
               <!-- On a phone the list context moves below the comic, but remains above its rows. -->
@@ -508,6 +510,7 @@
                       <button type="button" class="quiet" id="btn-list-note">Note</button>
                       <button type="button" class="quiet" id="btn-duplicate-list">Duplicate</button>
                       <button type="button" class="quiet" id="list-revision-check">Compare with the latest published order</button>
+                      <button type="button" class="quiet" id="list-offline-action" hidden>Make published order available offline</button>
                       <button type="button" class="quiet" id="btn-mark-all-read">Mark All Read</button>
                       <details id="list-export">
                         <summary class="quiet">Export</summary>

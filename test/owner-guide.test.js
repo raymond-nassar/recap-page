@@ -776,3 +776,17 @@ test('Namor accepts a later Comic Book Herald guide only through its exact appro
     assert.throws(() => assertRelationshipReportExtension(previous, current, [], [weakened]));
   }
 });
+
+test('a sealed overlap with a retired guide is accepted only where its preserved payload reproduces it', () => {
+  const sealed = { orderId: 'retired-guide', relationship: 'partial', sharedCount: 1, sharedIds: ['12424'] };
+  const previous = { candidateId: 'earlier-guide', comparisons: [sealed] };
+  const current = { candidateId: 'earlier-guide', comparisons: [] };
+  const retired = (comparison) => new Map([[comparison.orderId, comparison]]);
+  assert.doesNotThrow(() => assertRelationshipReportExtension(previous, current, [], [], [], retired(sealed)));
+  assert.throws(() => assertRelationshipReportExtension(previous, current), /approved overlap with retired-guide/);
+  assert.throws(() => assertRelationshipReportExtension(previous, current, [], [], [],
+    retired({ ...sealed, sharedCount: 2, sharedIds: ['12424', '12425'] })), /no longer reproduces/);
+  assert.throws(() => assertRelationshipReportExtension(previous, {
+    ...current, comparisons: [{ ...sealed, sharedIds: ['99'] }],
+  }, [], [], [], retired(sealed)), /approved overlap with retired-guide/);
+});

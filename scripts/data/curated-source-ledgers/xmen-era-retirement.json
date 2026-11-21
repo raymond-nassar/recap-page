@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 1,
+  "id": "xmen-era-retirement",
+  "baselineCommit": "03b4b002e0da3072fc682173bbae778c2060cd25",
+  "insertionBefore": "shadow-king-reading-order",
+  "precededBy": "the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order",
+  "entries": [
+    {
+      "id": "xmen-claremont",
+      "name": "X-Men Core Reading Order: Silver Age to Claremont",
+      "description": "X-Men: First Class revisits the original team's beginnings before Giant-Size X-Men brings a new team together. Chris Claremont's years follow through Phoenix, Dark Phoenix, the Brood, Days of Future Past, God Loves Man Kills, New Mutants, X-Factor and the interleaved Mutant Massacre. The order ends before Fall of the Mutants and Inferno.",
+      "type": "character-run",
+      "spotlightKind": "other",
+      "depth": "essential",
+      "storyTypes": [
+        "science-fiction",
+        "political"
+      ],
+      "tones": [
+        "epic"
+      ],
+      "beginner": true,
+      "group": "xmen-claremont",
+      "groupName": "X-Men: Silver Age to Claremont",
+      "variant": "First Class origins, then Claremont",
+      "coverIssueId": 5144,
+      "sourceFile": "xmen-claremont.md",
+      "sourceOrigin": "Compiled for this project",
+      "sourceLicense": null,
+      "out": "xmen_claremont.json",
+      "characters": [
+        "X-Men",
+        "Professor X",
+        "Cyclops",
+        "Jean Grey",
+        "Wolverine",
+        "Storm",
+        "Nightcrawler",
+        "Colossus",
+        "Kitty Pryde",
+        "Magneto",
+        "New Mutants",
+        "X-Factor"
+      ],
+      "keywords": [
+        "Chris Claremont",
+        "Dark Phoenix Saga",
+        "Days of Future Past",
+        "Mutant Massacre",
+        "Brood Saga",
+        "Second Genesis",
+        "New Mutants",
+        "X-Factor",
+        "Silver Age",
+        "Comic Book Herald"
+      ],
+      "expect": 274,
+      "timeline": null
+    },
+    {
+      "id": "xmen-claremont-complete",
+      "name": "X-Men Expanded Reading Order: Silver Age to Claremont",
+      "description": "The X-Men's original Silver Age stories lead into the Claremont years, with guest appearances and modern retellings added. Compiled by hand from a reader's outline of Comic Book Herald's guides, the route includes Amazing Adventures, Spider-Man, the Hulk, the Avengers, Captain America, the Defenders and Giant-Size Fantastic Four. The Hidden Years, Grand Design, Season One and the whole of First Class revisit the early years. X-Men Annual #1 and #2 are listed without a link, because Marvel's metadata carries that series only from #3.",
+      "type": "character-run",
+      "spotlightKind": "other",
+      "depth": "complete",
+      "storyTypes": [
+        "science-fiction",
+        "political"
+      ],
+      "tones": [
+        "epic"
+      ],
+      "beginner": false,
+      "group": "xmen-claremont",
+      "groupName": "X-Men: Silver Age to Claremont",
+      "variant": "With the optional add-ons and retellings",
+      "coverIssueId": 12413,
+      "sourceFile": "xmen-claremont-complete.md",
+      "sourceOrigin": "Compiled for this project",
+      "sourceLicense": null,
+      "out": "xmen_claremont_complete.json",
+      "characters": [
+        "X-Men",
+        "Professor X",
+        "Cyclops",
+        "Jean Grey",
+        "Wolverine",
+        "Storm",
+        "Nightcrawler",
+        "Colossus",
+        "Kitty Pryde",
+        "Magneto",
+        "New Mutants",
+        "X-Factor"
+      ],
+      "keywords": [
+        "Chris Claremont",
+        "Dark Phoenix Saga",
+        "Days of Future Past",
+        "Mutant Massacre",
+        "The Hidden Years",
+        "Grand Design",
+        "First Class",
+        "Season One",
+        "Silver Age",
+        "Comic Book Herald"
+      ],
+      "expect": 404,
+      "timeline": null
+    }
+  ],
+  "originalPayloads": [
+    {
+      "path": "src/data/xmen_claremont.json",
+      "sha256": "dc7031e2bd534e1d2dc3d09d173ac35c8267f654eecd8d46616b911f10aed5c2",
+      "bytes": 224411,
+      "encoding": "UTF-8 with LF line endings"
+    },
+    {
+      "path": "src/data/xmen_claremont_complete.json",
+      "sha256": "bf85935acdcf1f10f91e318164ca1f41b8f2deea05e56d9b742b9a5e141fd250",
+      "bytes": 334944,
+      "encoding": "UTF-8 with LF line endings"
+    }
+  ],
+  "originalChecklists": [
+    {
+      "path": "src/data/orders/xmen-claremont.md",
+      "sha256": "dd63e26d96d13fb99d537173c773122cd0c57866da5475c3f6c9be831bb570f2",
+      "bytes": 28329,
+      "encoding": "UTF-8 with LF line endings"
+    },
+    {
+      "path": "src/data/orders/xmen-claremont-complete.md",
+      "sha256": "ad3359b246f620f3f550054c28dad5269d759b2df0f30a03f055e306898bb777",
+      "bytes": 42157,
+      "encoding": "UTF-8 with LF line endings"
+    }
+  ],
+  "previousCorrection": {
+    "path": "scripts/data/curated-source-ledgers/xmen-claremont-first-class.json",
+    "sha256": "5fc8b559f8757368be89879f7e86a977eed49680f1e0c8d84f5ed5fb30038e98",
+    "bytes": 15780,
+    "encoding": "UTF-8 with LF line endings"
+  },
+  "preservation": "Remove these entries from the active catalog only. Keep both original payloads and IDs available for saved lists and reconstruct them for reviews that recorded them. Do not migrate, redirect, or update saved lists.",
+  "genresStarter": "The owner selected the separately addable Claremont guide in the retiring Core slot; keep the other nine starters and do not add Silver Age as another starter.",
+  "publicDependencies": [
+    "src/data/xmen_claremont.json",
+    "src/data/xmen_claremont_complete.json",
+    "src/data/orders/xmen-claremont.md",
+    "src/data/orders/xmen-claremont-complete.md",
+    "scripts/data/curated-source-ledgers/xmen-claremont-first-class.json"
+  ]
+}

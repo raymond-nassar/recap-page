@@ -41,6 +41,7 @@ import {
 import { gcdDetailsCredit, hasGcdDetails } from './shared/details-credit.js';
 import { createReadingOptions, readingChoices } from './shared/reading-options.js';
 import { booksLeaveOut } from '../lib/readingOrderChoices.js';
+import { legacyReadingOrder } from '../lib/legacyReadingOrders.js';
 
 export const RING_CIRCUMFERENCE = 119.4; // 2πr for r=19, matching the SVG in index.html
 const UNDO_DELETE = 'undo-delete';
@@ -295,7 +296,8 @@ export function createReadingView({
       status.textContent = 'Loading source credit...';
       let catalog;
       try {
-        catalog = await loadCatalog();
+        const legacy = legacyReadingOrder(list.catalogId);
+        catalog = legacy ? { lists: [legacy] } : await loadCatalog();
       } catch (error) {
         if (!current()) return;
         request.pending = false;
