@@ -2163,6 +2163,14 @@ const SCENARIOS = [
       t.check('a collapsed About still shows the visit button under the introduction',
         !collapsed.open && collapsed.shown && collapsed.href === saved.href, JSON.stringify(collapsed));
       await page.setViewport({ width: 390, height: 844 });
+      // The phone move runs from a media-query change listener that may run after setViewport
+      // resolves, so sampling straight away can see Visit still in its desktop parent (#1434).
+      // Wait for the move itself, bounded, and let a move that never happens fail the exact
+      // parent check below with the state it left.
+      await page.waitForFunction(
+        () => document.querySelector('#order-visit').parentElement.id === 'reading-overview',
+        { timeout: 5000 },
+      ).catch((error) => { if (error.name !== 'TimeoutError') throw error; });
       t.check('phone reflow preserves the same collapsed disclosure',
         !(await page.$eval('#order-desc', (node) => node.open)));
       await page.focus('#order-visit .list-source-link');
