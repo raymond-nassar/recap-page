@@ -85,13 +85,13 @@ gap.
 
 For an ordinary addition, require genuine `event` classification and an integer `timeline` start
 year of at least 2004. Every variant in a story group must qualify. Hell's Angel is excluded from
-Modern Timeline by owner decision. These inclusion rules are in `src/js/lib/catalog.js:997-1021`,
+Modern Timeline by owner decision. These inclusion rules are in `src/js/lib/catalog.js:1001-1025`,
 not a classification to assign just to make a list appear.
 The fixed `marvel-knights-to-planet-x-01` through `-78` opening chapters have their own earlier
 boundary; do not reuse their IDs or the featured setup entry as exemptions.
 
 Review chronology from source evidence, not merely the earliest publication date. Equal years
-retain manifest order (`src/js/lib/catalog.js:298-304`), so approve an intentional insertion anchor
+retain manifest order (`src/js/lib/catalog.js:302-308`), so approve an intentional insertion anchor
 and review the order among same-year stories.
 
 | Hypothetical input | Placement decision |
@@ -133,7 +133,7 @@ a named release means that known complete set, not a new list assembled from arb
 ## Gate non-MCU regression compatibility early
 
 Before writing data, name the current roster, census and reciprocal relationship check owners in
-the actual delivery plan. `test/helpers/current-reading-library.mjs:13-110` retains the immutable
+the actual delivery plan. `test/helpers/current-reading-library.mjs:13-113` retains the immutable
 baseline, keeps owner deliveries distinct from local curated additions, and counts explicitly
 registered Modern Timeline events separately from MCU additions. Later owner-peer checks in
 `test/helpers/owner-delivery-contract.mjs:265-291` require registered contracts, current approval
@@ -307,7 +307,7 @@ if ($LASTEXITCODE -ne 0) { throw 'Selected-list vendoring failed; stop shared in
 
 The cache must contain genuine request-bound responses, not hand-built metadata projections;
 follow [the cache contract](MAINTAINING.md#add-a-curated-reading-order). Cache-only vending accepts
-exactly one source order (`scripts/vendor-orders.mjs:473-494`). Live `--only=id1,id2` can select
+exactly one source order (`scripts/vendor-orders.mjs:524-545`). Live `--only=id1,id2` can select
 multiple orders and share metadata requests, but is not a multi-ID offline mode. Do not refresh
 approved metadata silently. Prefer the serial path for varying providers and overlapping lists.
 

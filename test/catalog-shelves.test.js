@@ -36,7 +36,9 @@ import {
 } from '../src/js/lib/catalog.js';
 import { mcuPrepSections } from '../src/js/lib/mcuPrep.js';
 import { VIEWS, parseRoute } from '../src/js/lib/route.js';
-import { currentReadingCensus, registeredCuratedGuides } from './helpers/current-reading-library.mjs';
+import {
+  currentReadingCensus, registeredCreatorGuides, registeredCuratedGuides,
+} from './helpers/current-reading-library.mjs';
 
 // Internal shelves remain a partition even though discovery screens can overlap.
 
@@ -53,6 +55,12 @@ test('the retained Storylines classification preserves complete original groups 
     'marvel-knights-to-planet-x-02', 'marvel-knights-to-planet-x-78']) {
     assert.ok(ids.includes(id), `${id} missing from secondary discovery`);
     assert.equal(catalogListShelf(catalog.lists, id), 'catalog');
+  }
+  const creators = new Set(HOME_CATEGORIES.find(({ key }) => key === 'creators').select(stories)
+    .flatMap((story) => story.lists.map((list) => list.id)));
+  for (const { id } of registeredCreatorGuides) {
+    assert.ok(creators.has(id), `${id} is registered for Creators but does not appear there`);
+    assert.ok(ids.includes(id), `${id} left the retained Storylines classification`);
   }
   assert.equal(ids.length, currentReadingCensus.storylines);
   assert.equal(projected.length, currentReadingCensus.storylines - 6, 'existing variant groups keep their shared-card reduction');
