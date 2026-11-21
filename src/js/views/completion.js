@@ -517,7 +517,7 @@ export function createCompletionView({
       const result = await history.restore(text);
       if (result.ok) notify('#history-report', 'Completion history restored. Reading data is unchanged.', 'ok');
     } catch (error) {
-      if (replacementReached) notify('#history-report', `Completion-history restore did not finish (${error.message}). Check its saved value before retrying.`, 'error');
+      if (replacementReached) notify('#history-report', 'We couldn\'t confirm whether your completion history was restored. Check your saved history before trying again.', 'error');
       else historyValidation.fail(`Completion history is unchanged. Choose a completion-history JSON backup from this app and try again. ${error.message}`);
     } finally {
       restoring = false;

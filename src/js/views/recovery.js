@@ -212,9 +212,9 @@ export function createRecoveryView({
         if (text !== raw) return notify('#save-report', 'That file does not match the unreadable data. Nothing was cleared. Download this incident\'s copy and try again.', 'warn', 'recovery-copy');
         downloadedSalvage = raw;
         notify('#save-report', 'Verified the saved file matches this unreadable data. You can now start fresh.', 'ok', 'recovery-copy');
-      } catch (error) {
+      } catch {
         if (generation !== verificationGeneration) return;
-        notify('#save-report', `That file could not be verified (${error.message}). Nothing was cleared. Select the downloaded copy and try again.`, 'error', 'recovery-copy');
+        notify('#save-report', 'We couldn\'t check that file, and nothing was cleared. Select the downloaded copy and try again.', 'error', 'recovery-copy');
       } finally {
         if (generation === verificationGeneration) input.value = '';
       }

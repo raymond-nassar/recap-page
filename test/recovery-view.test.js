@@ -175,8 +175,13 @@ test('file verification grants permission only for exact locally readable incide
     await nodes.btnStartFresh._fire();
     assert.equal(starts.at(-1).verifiedCopyRaw, outcome === 'exact' ? 'original' : null, outcome);
     assert.equal(input.value, '', 'the same file can be selected for another check');
-    assert.equal(reports.at(-1)[2], outcome === 'exact' ? 'ok'
-      : ['invalid-utf8', 'unreadable'].includes(outcome) ? 'error' : 'warn');
+    const failed = ['invalid-utf8', 'unreadable'].includes(outcome);
+    const message = failed
+      ? 'We couldn\'t check that file, and nothing was cleared. Select the downloaded copy and try again.'
+      : outcome === 'exact'
+        ? 'Verified the saved file matches this unreadable data. You can now start fresh.'
+        : 'That file does not match the unreadable data. Nothing was cleared. Download this incident\'s copy and try again.';
+    assert.deepEqual(reports.at(-1), ['#save-report', message, outcome === 'exact' ? 'ok' : failed ? 'error' : 'warn', 'recovery-copy'], outcome);
   }
 });
 

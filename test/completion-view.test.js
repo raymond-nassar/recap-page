@@ -633,6 +633,37 @@ test('history controls separate backups, bound file reads and confirm only valid
   assert.equal(h.nodes.historyCopy.disabled, false);
 });
 
+test('history replacement exceptions distinguish pre-replacement and uncertain outcomes', async () => {
+  for (const phase of ['before', 'unchanged', 'changed']) {
+    const h = fixture();
+    h.current = 'data';
+    let savedHistory = 'before';
+    let restoreCalls = 0;
+    h.history.restore = async () => {
+      restoreCalls += 1;
+      if (phase === 'changed') savedHistory = 'after';
+      throw new Error('restore failed');
+    };
+    const input = h.nodes.historyRestore;
+    input.value = 'chosen';
+    input.files = [{
+      text: async () => {
+        if (phase === 'before') throw new Error('file read failed');
+        return JSON.stringify({ format: 'recap-page-list-history', version: 1, records: [] });
+      },
+    }];
+    input.listeners.change({ target: input });
+    await h.flush();
+    assert.equal(restoreCalls, phase === 'before' ? 0 : 1, phase);
+    assert.equal(savedHistory, phase === 'changed' ? 'after' : 'before', phase);
+    assert.equal(input.value, '', phase);
+    assert.equal(input.getAttribute('aria-invalid'), phase === 'before' ? 'true' : null, phase);
+    assert.deepEqual(h.calls.notify.at(-1), ['#history-report', phase === 'before'
+      ? 'Completion history is unchanged. Choose a completion-history JSON backup from this app and try again. file read failed'
+      : 'We couldn\'t confirm whether your completion history was restored. Check your saved history before trying again.', 'error'], phase);
+  }
+});
+
 // #858: a disabled button cannot keep focus, so a rating save in flight marks both rating buttons
 // unavailable with aria-disabled instead, and change() refuses a second press until it settles.
 test('858 a rating save in flight keeps both rating buttons focusable but unavailable, and ignores a second press', async () => {
