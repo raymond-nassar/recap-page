@@ -5,7 +5,7 @@ import { READING_ORDER_REVISIONS } from '../src/js/lib/readingOrderRevisions.js'
 import { bookOrderOf, READING_ORDER_CHOICES } from '../src/js/lib/readingOrderChoices.js';
 import { firstReleasedWolverineIssueOrders } from './helpers/wolverine-correction-history.mjs';
 
-function fixture({ catalogId = null, itemIds = [1], ask = null, loadOrder = null } = {}) {
+function fixture({ catalogId = null, itemIds = [1], ask = null, loadOrder = null, save = null } = {}) {
   const nodes = new Map();
   for (const id of [
     'list-revision-offer', 'list-revision-review', 'list-revision-check', 'list-revision-choose',
@@ -45,6 +45,7 @@ function fixture({ catalogId = null, itemIds = [1], ask = null, loadOrder = null
     askConfirm: async (options) => { question = options; return ask ? ask(options) : answer; },
     saveRevision: (_id, _signature, items) => {
       saves += 1;
+      if (save) return save(state, items);
       state.lists.saved.itemIds = items.map(({ issueId }) => issueId);
       view.render();
       return { ok: true };
@@ -241,7 +242,32 @@ test('a mismatched published payload is refused without saving', async () => {
     f.get('list-revision-check').click();
     await settle();
     assert.equal(f.getSaves(), 0);
-    assert.match(f.get('list-revision-status').textContent, /could not be verified/i);
+    assert.equal(f.get('list-revision-status').textContent,
+      'Could not compare the published order (The published order could not be verified.). Your list is unchanged.');
+  } finally {
+    delete globalThis.document;
+  }
+});
+
+test('published update exceptions report an uncertain result before or after a change', async () => {
+  try {
+    for (const changed of [false, true]) {
+      const f = fixture({
+        catalogId: 'linked',
+        save: (state, items) => {
+          if (changed) state.lists.saved.itemIds = items.map(({ issueId }) => issueId);
+          throw new Error('update failed');
+        },
+      });
+      f.setAnswer(true);
+      f.get('list-revision-check').click();
+      await settle();
+      assert.equal(f.getSaves(), 1);
+      assert.deepEqual(f.state.lists.saved.itemIds, changed ? [1, 2] : [1]);
+      assert.equal(f.get('list-revision-status').hidden, false);
+      assert.equal(f.get('list-revision-status').textContent,
+        'We couldn\'t confirm the list update. Reopen the app to check your list.');
+    }
   } finally {
     delete globalThis.document;
   }

@@ -132,8 +132,8 @@ export function createListRevisions({ $, el, getState, activeListId, isCurrent, 
       let result;
       try {
         result = saveRevision(held.id, held.signature, items);
-      } catch (error) {
-        status(`The update could not be verified (${error.message}). Reopen the app to check your list.`);
+      } catch {
+        status('We couldn\'t confirm the list update. Reopen the app to check your list.');
         return;
       } finally {
         held.applying = false;

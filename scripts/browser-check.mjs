@@ -10152,7 +10152,7 @@ const SCENARIOS = [
           await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === corrupt);
         await verify.uploadFile(savedPath);
         await page.waitForFunction(() => document.querySelector('#save-report').textContent.includes('Verified the saved file')
-          || document.querySelector('#save-report').textContent.includes('could not be verified')
+          || document.querySelector('#save-report').textContent.includes('We couldn\'t check that file')
           || document.querySelector('#save-report').textContent.includes('does not match'));
         const verificationReport = await page.$eval('#save-report', (el) => el.textContent);
         t.check('the saved file is explicitly verified before replacement',
