@@ -859,6 +859,7 @@ test('all ordinary native-export scenarios declare their complete context totals
     ['browser-check.mjs', 'reading-shortcut', 1],
     ['browser-markdown-export.mjs', 'readable-markdown-export', 6],
     ['browser-order-export.mjs', 'order-only-export', 6],
+    ['browser-order-export.mjs', 'legacy-order-export', 2],
   ]) {
     const text = readFileSync(new URL('../scripts/' + file, import.meta.url), 'utf8');
     assert.match(text, new RegExp("id: '" + id + "',\\s+nativeDownloads: " + count + ','));

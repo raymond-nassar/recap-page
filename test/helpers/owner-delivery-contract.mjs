@@ -26,6 +26,7 @@ import { beforeMcuEditorialEntry } from '../../scripts/lib/mcu-editorial.mjs';
 import { descriptionRevisions } from '../../scripts/lib/description-revisions.mjs';
 import { sourceCreditRevisions } from '../../scripts/lib/source-credit-revisions.mjs';
 import { recordedEditorialDigest, withRetiredOrders } from './mcu-editorial-history.mjs';
+import { assertXmenEraLaterPeer, beforeXmenEraManifest } from './xmen-era-history.mjs';
 import { beforeIdentityEntry, beforeIdentityJson, beforeIdentityOrders, beforeIdentityText, identityRevisions } from './owner-identity-history.mjs';
 import { assertCbhBaselinePayload } from '../../scripts/lib/owner-cbh-baseline.mjs';
 import { beforeUltimateIntroEntry, beforeUltimateIntroIssueIds } from './ultimate-marvel-intro-history.mjs';
@@ -41,6 +42,7 @@ const hash = (value) => createHash('sha256').update(value).digest('hex');
 // An owner review records every current path, including one naming the guide under review or a
 // peer reviewed beside it, so a rebuilt record drops only a path naming a list that review never saw.
 export function recordedOwnerManifest(manifest, recordedIds, { candidateId, peerIds = [] }) {
+  manifest = beforeXmenEraManifest(manifest, recordedIds);
   const lists = manifest.lists.filter((row) => recordedIds.has(row.id) && !peerIds.includes(row.id));
   return {
     ...manifest,
@@ -277,6 +279,7 @@ export async function assertOwnerDeliveryContract(contract, {
 // records the reciprocal relationship with this one.
 async function assertRegisteredLaterPeer(id, later, { contracts, json }) {
   if (registeredCuratedGuides.some((entry) => entry.id === later.orderId)) return;
+  if (assertXmenEraLaterPeer(id, later)) return;
   const laterContract = contracts.find((entry) => entry.id === later.orderId);
   assert.ok(laterContract, `${later.orderId}: unregistered later peers require a new bounded relationship review.`);
   const laterReport = await json(`scripts/data/owner-overlaps/${later.orderId}.json`);
@@ -353,7 +356,7 @@ async function assertCbhOwnerBaselineContract(contract, { root, text, json, peer
   const recordedIds = new Set(report.comparisons.map((entry) => entry.orderId));
   const { manifest: liveRecordedManifest, orders: liveRecordedOrders } = wolverineLibraryAtReview(
     recordedOwnerManifest(library.manifest, recordedIds, { candidateId: id }),
-    allOrders.filter((entry) => recordedIds.has(entry.orderId)),
+    withRetiredOrders(allOrders.filter((entry) => recordedIds.has(entry.orderId)), recordedIds),
     report.libraryDigest,
   );
   const liveVectors = liveRecordedOrders.map((entry) => ({ id: entry.orderId, issueIds: entry.issueIds.map(String) }));

@@ -5,6 +5,7 @@ import { readFileSync } from 'node:fs';
 import {
   beforeXmenFirstClassIssueIds, beforeXmenFirstClassPayloadText,
 } from './helpers/xmen-first-class-history.mjs';
+import { retiredXmenEntry } from './helpers/xmen-era-history.mjs';
 
 const base = '52a3fdec519973c761e8b1ec2816b8daa85bbf4c';
 const read = (file) => JSON.parse(readFileSync(file, 'utf8'));
@@ -35,19 +36,21 @@ test('the core starts with the three requested First Class series and preserves 
   assert.deepEqual(linkedIds, core.items.filter((item) => !item.placeholder).map(({ issueId }) => issueId));
 });
 
-test('expanded comics remain unchanged and both cards match their payloads', () => {
+test('expanded comics remain unchanged and both retired cards still match their payloads', () => {
   const expanded = read(expandedFile);
   const old = prior(expandedFile);
   assert.deepEqual({ ...expanded, description: old.description }, old);
   const manifest = read(manifestFile);
   const catalog = read(catalogFile);
   for (const id of ['xmen-claremont', 'xmen-claremont-complete']) {
-    const entry = manifest.lists.find((item) => item.id === id);
-    const card = catalog.lists.find((item) => item.id === id);
+    // Both guides left discovery for separately addable replacements; saved lists still open them.
+    assert.equal(manifest.lists.some((item) => item.id === id), false, `${id} left the manifest`);
+    assert.equal(catalog.lists.some((item) => item.id === id), false, `${id} left the catalog`);
+    const entry = retiredXmenEntry(id);
     const payload = id === expanded.id ? expanded : read(coreFile);
+    assert.equal(`src/data/${entry.out}`, id === expanded.id ? expandedFile : coreFile);
     assert.equal(entry.description, payload.description);
-    assert.equal(card.description, payload.description);
-    assert.equal(card.count, payload.items.length);
+    assert.equal(entry.expect, payload.items.length);
   }
   assert.doesNotMatch(expanded.description, /to the core reading order/i);
 });

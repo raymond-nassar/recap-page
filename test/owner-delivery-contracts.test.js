@@ -86,7 +86,7 @@ async function expandedReviewFixture(id) {
     identityRevisions.guides.filter((revision) => revision.placeholderReplacement
       && revision.publicationOrder > (publication?.publicationOrder ?? 0))) : library.orders;
   const selected = allOrders.filter(({ orderId }) => recordedIds.has(orderId));
-  const orders = cbh ? selected : withRetiredOrders(selected, recordedIds);
+  const orders = withRetiredOrders(selected, recordedIds);
   const manifest = recordedOwnerManifest(library.manifest, recordedIds, { candidateId: contract.id });
   report.libraryDigest = libraryDigestFor(manifest, orders.map(({ orderId, issueIds }) => ({
     id: orderId, issueIds: issueIds.map(String),

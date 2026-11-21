@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { assertXmenEraLaterPeer, beforeXmenEraManifest } from './helpers/xmen-era-history.mjs';
 import { beforeMcuEditorialEntry } from '../scripts/lib/mcu-editorial.mjs';
 import { withRetiredComparisons, withRetiredOrders } from './helpers/mcu-editorial-history.mjs';
 import assert from 'node:assert/strict';
@@ -189,7 +190,8 @@ test('original remaining MCU Prep train preserves its six guides, six gaps and r
     const recordedIds = new Set(report.comparisons.map((row) => row.orderId));
     const recordedOrders = withRetiredOrders(library.orders.filter((row) => recordedIds.has(row.orderId)), recordedIds);
     assert.equal(recordedOrders.length, recordedIds.size, `${id}: recorded peer missing from the current union`);
-    const recordedManifest = { ...manifest, lists: manifest.lists.filter((row) => recordedIds.has(row.id)) };
+    const recordedManifest = { ...manifest,
+      lists: beforeXmenEraManifest(manifest, recordedIds).lists.filter((row) => recordedIds.has(row.id)) };
     const recordedIssueIds = recordedOrders.map((row) => ({
       id: row.orderId, issueIds: row.issueIds.map(String),
     }));
@@ -212,6 +214,7 @@ test('original remaining MCU Prep train preserves its six guides, six gaps and r
     }
     for (const later of current.comparisons.filter((row) => !recordedIds.has(row.orderId))) {
       if (registeredCuratedGuides.some((entry) => entry.id === later.orderId)) continue;
+      if (assertXmenEraLaterPeer(id, later)) continue;
       const reviewed = allEvidence.get(later.orderId);
       assert.ok(reviewed, `${id}: later peer ${later.orderId} needs actual current authority`);
       validateMappingDigest(reviewed.mapping);

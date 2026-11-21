@@ -1,14 +1,17 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import {
   applyListRevision, compareListOrders, matchesEarlierPublishedOrder, publishedRevisionItems, revisedOrderKeepingExtras,
 } from '../src/js/lib/listCorrection.js';
 import {
-  addIssuesToList, createEmptyState, createList, markRead, setDeferred, setIssueNote,
-  setIssueRating, setListNote, setOverride,
+  addIssuesToList, createEmptyState, createList, isDeferred, issueNote, issueRating, listProgress,
+  markRead, setDeferred, setIssueNote, setIssueRating, setListNote, setOverride,
 } from '../src/js/lib/model.js';
 import { READING_ORDER_REVISIONS } from '../src/js/lib/readingOrderRevisions.js';
+import { legacyReadingOrder } from '../src/js/lib/legacyReadingOrders.js';
+import { placeholderId } from '../scripts/lib/placeholder-id.mjs';
 import { beforeWolverineCorrectionIssueIds, firstReleasedWolverineIssueOrders } from './helpers/wolverine-correction-history.mjs';
 
 test('a list update comparison preserves the identity and order of each side', () => {
@@ -138,6 +141,144 @@ test('updating the actual earlier Wolverine list retains retired comics and thei
 
 const readJson = (path) => JSON.parse(readFileSync(new URL(path, import.meta.url)));
 
+test('legacy X-Men identities resolve to unchanged payloads with the approved live credit', () => {
+  for (const [id, file, hash] of [
+    ['xmen-claremont', 'xmen_claremont.json', 'dc7031e2bd534e1d2dc3d09d173ac35c8267f654eecd8d46616b911f10aed5c2'],
+    ['xmen-claremont-complete', 'xmen_claremont_complete.json', 'bf85935acdcf1f10f91e318164ca1f41b8f2deea05e56d9b742b9a5e141fd250'],
+  ]) {
+    const entry = legacyReadingOrder(id);
+    const text = readFileSync(new URL(`../src/data/${file}`, import.meta.url), 'utf8').replace(/\r\n/g, '\n');
+    const payload = JSON.parse(text);
+    assert.equal(createHash('sha256').update(text).digest('hex'), hash);
+    assert.equal(entry.file, file);
+    for (const key of ['id', 'name']) {
+      assert.equal(entry[key], payload[key], `${id}: ${key}`);
+    }
+    assert.equal(entry.source, 'https://www.comicbookherald.com/chris-claremont-era-x-men-reading-order-guide/');
+    assert.equal(entry.sourceOrigin, "Based on a reader's outline and Comic Book Herald's guide");
+    assert.equal(entry.sourceLicense, null);
+  }
+  assert.equal(legacyReadingOrder('__proto__'), null);
+});
+
+for (const [guideId, title] of [
+  ['xmen-silver-age', 'X-Men Annual (1970) #2'],
+  ['xmen-claremont-era', 'Power Pack (1984) #27'],
+  ['xmen-claremont-era', 'Power Pack (1984) #28'],
+]) {
+  test(`new X-Men guides share the Expanded comic record for ${title}`, () => {
+    const expanded = readJson('../src/data/xmen_claremont_complete.json');
+    const core = readJson('../src/data/xmen_claremont.json');
+    const old = expanded.items.find((item) => item.title === title);
+    const coreItems = core.items.filter((item) => item.title.startsWith('Power Pack (1984) #'));
+    assert.ok(old?.placeholder);
+    assert.equal(coreItems.length, 2);
+    const newId = placeholderId(guideId, title);
+    assert.equal(newId, old.issueId, title);
+    assert.notEqual(placeholderId(guideId, title, 'other-occurrence'), old.issueId);
+    assert.notEqual(placeholderId('unrelated-guide', title), old.issueId);
+
+    let state = createList(createEmptyState(), { id: 'expanded', name: 'Expanded' });
+    state = createList(state, { id: 'core', name: 'Core' });
+    state = addIssuesToList(state, 'expanded', [old]).state;
+    state = addIssuesToList(state, 'core', coreItems).state;
+    for (const [index, item] of coreItems.entries()) {
+      assert.equal(placeholderId(core.id, item.title), item.issueId);
+      assert.notEqual(item.issueId, old.issueId);
+      state = markRead(state, item.issueId, true, 100 + index);
+      state = setIssueNote(state, item.issueId, `Core ${index}`);
+      state = setIssueRating(state, item.issueId, 2 + index);
+      state = setOverride(state, item.issueId, 'unavailable');
+      state = setDeferred(state, 'core', item.issueId);
+    }
+    state = markRead(state, old.issueId, true, 200);
+    state = setIssueNote(state, old.issueId, 'Expanded note');
+    state = setIssueRating(state, old.issueId, 3);
+    state = setOverride(state, old.issueId, 'unavailable');
+    state = setDeferred(state, 'expanded', old.issueId);
+    const before = {
+      expandedList: JSON.stringify(state.lists.expanded),
+      coreList: JSON.stringify(state.lists.core),
+      comic: JSON.stringify(state.issues[old.issueId]),
+      read: JSON.stringify(state.read),
+      notes: JSON.stringify(state.notes),
+      ratings: JSON.stringify(state.ratings),
+      overrides: JSON.stringify(state.overrides),
+    };
+
+    state = createList(state, { id: 'new', name: 'New', catalogId: guideId });
+    state = addIssuesToList(state, 'new', [{
+      ...old, issueId: newId,
+      ...(guideId === 'xmen-silver-age' ? { collectedIn: 'Optional guest appearances and annuals' } : {}),
+    }]).state;
+    assert.equal(JSON.stringify(state.lists.expanded), before.expandedList);
+    assert.equal(JSON.stringify(state.lists.core), before.coreList);
+    assert.equal(JSON.stringify(state.issues[old.issueId]), before.comic);
+    for (const key of ['read', 'notes', 'ratings', 'overrides']) {
+      assert.equal(JSON.stringify(state[key]), before[key]);
+    }
+    assert.deepEqual(listProgress(state, 'new'), { read: 1, total: 1 });
+    assert.equal(issueNote(state, newId), 'Expanded note');
+    assert.equal(issueRating(state, newId), 3);
+    assert.equal(state.overrides[newId], 'unavailable');
+    assert.equal(isDeferred(state, 'expanded', old.issueId), true);
+    assert.equal(isDeferred(state, 'new', newId), false);
+
+    state = markRead(state, newId, false);
+    state = setIssueNote(state, newId, 'New note');
+    state = setIssueRating(state, newId, 4.5);
+    state = setOverride(state, newId, 'available');
+    state = setDeferred(state, 'new', newId);
+    assert.deepEqual(listProgress(state, 'expanded'), { read: 0, total: 1 });
+    assert.equal(issueNote(state, old.issueId), 'New note');
+    assert.equal(issueRating(state, old.issueId), 4.5);
+    assert.equal(state.overrides[old.issueId], 'available');
+    state = setDeferred(state, 'expanded', old.issueId, false);
+    assert.equal(isDeferred(state, 'new', newId), true);
+    assert.equal(isDeferred(state, 'expanded', old.issueId), false);
+    state = setDeferred(state, 'new', newId, false);
+    state = setDeferred(state, 'expanded', old.issueId);
+    assert.equal(isDeferred(state, 'new', newId), false);
+    assert.equal(isDeferred(state, 'expanded', old.issueId), true);
+
+    state = markRead(state, old.issueId, true, 300);
+    state = setIssueNote(state, old.issueId, 'Changed in Expanded');
+    state = setIssueRating(state, old.issueId, 1.5);
+    state = setOverride(state, old.issueId, 'unavailable');
+    assert.deepEqual(listProgress(state, 'new'), { read: 1, total: 1 });
+    assert.equal(issueNote(state, newId), 'Changed in Expanded');
+    assert.equal(issueRating(state, newId), 1.5);
+    assert.equal(state.overrides[newId], 'unavailable');
+    assert.equal(isDeferred(state, 'new', newId), false);
+    assert.equal(JSON.stringify(state.lists.core), before.coreList);
+    for (const [index, item] of coreItems.entries()) {
+      assert.equal(state.read[item.issueId], 100 + index);
+      assert.equal(issueNote(state, item.issueId), `Core ${index}`);
+      assert.equal(issueRating(state, item.issueId), 2 + index);
+      assert.equal(state.overrides[item.issueId], 'unavailable');
+      assert.equal(isDeferred(state, 'core', item.issueId), true);
+    }
+    for (const item of coreItems) {
+      state = markRead(state, item.issueId, false);
+      state = setIssueNote(state, item.issueId, 'Changed in Core');
+      state = setIssueRating(state, item.issueId, 5);
+      state = setOverride(state, item.issueId, 'available');
+      assert.deepEqual(listProgress(state, 'new'), { read: 1, total: 1 });
+      assert.equal(issueNote(state, newId), 'Changed in Expanded');
+      assert.equal(issueRating(state, newId), 1.5);
+      assert.equal(state.overrides[newId], 'unavailable');
+    }
+  });
+}
+
+test('new X-Men guides do not reuse other Expanded placeholder identities', () => {
+  const expanded = readJson('../src/data/xmen_claremont_complete.json');
+  assert.notEqual(placeholderId('xmen-silver-age', 'Power Pack (1984) #27'),
+    expanded.items.find((item) => item.title === 'Power Pack (1984) #27').issueId);
+  assert.notEqual(placeholderId('xmen-claremont-era', 'X-Men Annual (1970) #2'),
+    expanded.items.find((item) => item.title === 'X-Men Annual (1970) #2').issueId);
+});
+
 // The earlier orders are rebuilt from the ledgers each correction committed, so a registry entry
 // that drifts from what was actually published before fails here rather than offering nothing.
 const ledgerEarlierOrders = {
@@ -183,7 +324,7 @@ test('each registered revision records the published order before it and the ord
   assert.deepEqual(READING_ORDER_REVISIONS.map(({ catalogId }) => catalogId).sort(),
     ['hickman-full', 'thor-best-of', 'wolverine-reading-order', 'xmen-claremont']);
   for (const { catalogId, previousOrders, revisedOrder } of READING_ORDER_REVISIONS) {
-    const entry = (catalog.lists ?? catalog).find(({ id }) => id === catalogId);
+    const entry = (catalog.lists ?? catalog).find(({ id }) => id === catalogId) ?? legacyReadingOrder(catalogId);
     const payload = readJson(`../src/data/${entry.file}`);
     const revised = payload.items.map(({ issueId }) => issueId);
     assert.deepEqual(revisedOrder, revised, catalogId);

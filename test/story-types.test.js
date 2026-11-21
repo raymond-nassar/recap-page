@@ -49,7 +49,7 @@ test('the Genres card counts every tagged list outside MCU Prep', () => {
 test('#1060: the ten starting lists all exist and show as the exact versions the owner chose', () => {
   const expected = [
     'spider-man-best-of', 'iron-man-reading-order', 'captain-america-best-of', 'planet-hulk',
-    'thor-best-of', 'marvel-knights-to-planet-x-10', 'xmen-claremont', 'essential-avengers',
+    'thor-best-of', 'marvel-knights-to-planet-x-10', 'xmen-claremont-era', 'essential-avengers',
     'black-panther-reading-order', 'deadpool-best-of',
   ];
   assert.deepEqual([...STORY_TYPE_STARTERS], expected);
@@ -60,8 +60,9 @@ test('#1060: the ten starting lists all exist and show as the exact versions the
   const shown = storyTypeStarters(catalogEntries(catalog.lists));
   assert.deepEqual(shown.map((story) => story.lists[0].id), expected);
   for (const story of shown) assert.equal(storyTypeStories([story]).length, 1, `${story.lists[0].id} can appear on Genres`);
-  const claremont = shown.find((story) => story.lists[0].id === 'xmen-claremont');
-  assert.equal(claremont.lists[0].count, 274);
+  const claremont = shown.find((story) => story.lists[0].id === 'xmen-claremont-era');
+  assert.deepEqual(claremont.lists.map(({ count }) => count), [258]);
+  assert.equal(shown.some((story) => story.lists.some(({ id }) => id === 'xmen-silver-age')), false);
 });
 
 test('#1060: a starting list that leaves the catalog or Genres is skipped', () => {

@@ -10,6 +10,7 @@ import {
 import {
   beforeWolverineCorrectionManifest, beforeWolverineCorrectionOrders,
 } from './wolverine-correction-history.mjs';
+import { withRetiredXmenComparisons, withRetiredXmenOrders } from './xmen-era-history.mjs';
 
 const archived = JSON.parse(readFileSync(new URL('../../src/data/marvel_multiverse.json', import.meta.url), 'utf8'));
 const retiredId = mcuEditorial.withdrawal.manifestEntry.id;
@@ -17,12 +18,14 @@ assert.equal(archived.id, retiredId);
 const archivedIds = issueIdsFromValue(archived);
 
 export function withRetiredOrders(orders, recordedIds) {
+  orders = withRetiredXmenOrders(orders, recordedIds);
   if (!recordedIds.has(retiredId) || orders.some((row) => (row.id ?? row.orderId) === retiredId)) return orders;
   return [...orders, { id: retiredId, orderId: retiredId, issueIds: archivedIds }]
     .sort((left, right) => (left.id ?? left.orderId).localeCompare(right.id ?? right.orderId));
 }
 
 export function withRetiredComparisons(comparisons, candidateIds, report) {
+  comparisons = withRetiredXmenComparisons(comparisons, candidateIds, report);
   if (!report.comparisons.some(({ orderId }) => orderId === retiredId)
     || comparisons.some(({ orderId }) => orderId === retiredId)) return comparisons;
   return [...comparisons, ...buildComparisonReport({

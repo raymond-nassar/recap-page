@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 
 import { VIEWS } from '../src/js/lib/route.js';
 import { HOME_CATEGORIES, LIBRARY_LINKS_ROUTE, ROUTED_CATEGORIES } from '../src/js/lib/catalog.js';
+import { legacyReadingOrder } from '../src/js/lib/legacyReadingOrders.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (path) => readFileSync(join(ROOT, path), 'utf8');
@@ -124,7 +125,9 @@ test('the narrow single column stays the width of the screen whatever the menu h
 
 test('product labels use Reading List while authored guide titles retain their own wording', () => {
   const guides = JSON.parse(read('src/data/catalog.json')).lists;
-  const labels = guides.reduce((copy, { name }) => copy.split(name).join(''), productCopy);
+  // Retired guides keep their authored titles for saved lists, outside the live catalog.
+  const retired = ['xmen-claremont', 'xmen-claremont-complete'].map((id) => legacyReadingOrder(id));
+  const labels = [...guides, ...retired].reduce((copy, { name }) => copy.split(name).join(''), productCopy);
   const terms = labels
     .replace(/Comic Book Reading Orders/g, '')
     // The owner-approved mission in docs/BRAND_GUIDELINES.md is quoted verbatim on About.

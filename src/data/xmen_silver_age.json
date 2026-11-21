@@ -1,0 +1,5248 @@
+{
+  "id": "xmen-silver-age",
+  "name": "X-Men: Silver Age Reading Order",
+  "description": "Jean Grey barely has time to meet her four new classmates before Magneto seizes a missile base. Welcome to Xavier's school.",
+  "source": "https://www.comicbookherald.com/60s-x-men-comics-reading-order/",
+  "sectionKind": "reading-blocks",
+  "sourceOrigin": "Based on a reader's outline and Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-11-21T08:17:12.502Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 157,
+  "collections": 0,
+  "placeholders": 1,
+  "unresolved": [
+    {
+      "title": "X-Men Annual (1970) #2",
+      "url": null,
+      "read": false,
+      "index": 97,
+      "section": "Optional guest appearances and annuals"
+    }
+  ],
+  "items": [
+    {
+      "issueId": 12413,
+      "title": "Uncanny X-Men (1963) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/12413/uncanny_x-men_1963_1",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1963-09-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 259,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/589ddfc222e9c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Paul Reinman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12466,
+      "title": "Uncanny X-Men (1963) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/12466/uncanny_x-men_1963_2",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1963-11-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 1315,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/c0/589de0deb7afc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Paul Reinman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12477,
+      "title": "Uncanny X-Men (1963) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/12477/uncanny_x-men_1963_3",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1964-01-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4903,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/589de2c6a0bb6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Paul Reinman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12488,
+      "title": "Uncanny X-Men (1963) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/12488/uncanny_x-men_1963_4",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1964-03-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 1319,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/60/589de3be4c9d8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Paul Reinman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12499,
+      "title": "Uncanny X-Men (1963) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/12499/uncanny_x-men_1963_5",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1964-05-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 1323,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/30/589de49c80029",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Paul Reinman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12510,
+      "title": "Uncanny X-Men (1963) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/12510/uncanny_x-men_1963_6",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1964-07-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4540,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/c0/589de6a985d8c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chic Stone",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12521,
+      "title": "Uncanny X-Men (1963) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/12521/uncanny_x-men_1963_7",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1964-09-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4548,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/50/589de7d53f750",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chic Stone",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12532,
+      "title": "Uncanny X-Men (1963) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/12532/uncanny_x-men_1963_8",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1964-11-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4549,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/10/589de8ee8dc00",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chic Stone",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12543,
+      "title": "Uncanny X-Men (1963) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/12543/uncanny_x-men_1963_9",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1965-01-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4550,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/20/589de9b9a4aa7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chic Stone",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12414,
+      "title": "Uncanny X-Men (1963) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/12414/uncanny_x-men_1963_10",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1965-03-01T00:00:00+0000",
+      "mu": "2009-04-08T00:00:00+0000",
+      "digitalId": 4469,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/590783cee643a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chic Stone",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12425,
+      "title": "Uncanny X-Men (1963) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/12425/uncanny_x-men_1963_11",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1965-05-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 1308,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/4d49e144c4e0d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chic Stone",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12436,
+      "title": "Uncanny X-Men (1963) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/12436/uncanny_x-men_1963_12",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1965-07-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4485,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/4d49e226c7d51",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Vince Colletta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Toth",
+          "role": "penciler"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12447,
+      "title": "Uncanny X-Men (1963) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/12447/uncanny_x-men_1963_13",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1965-09-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4493,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/4d49e19e06f5a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12458,
+      "title": "Uncanny X-Men (1963) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/12458/uncanny_x-men_1963_14",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1965-11-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4501,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/4d49e28fe2a3c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Vince Colletta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12461,
+      "title": "Uncanny X-Men (1963) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/12461/uncanny_x-men_1963_15",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1965-12-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4503,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/4d49e09b91dd1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dick Ayers",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12462,
+      "title": "Uncanny X-Men (1963) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/12462/uncanny_x-men_1963_16",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1966-01-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4504,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/4d49e11f8e30e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dick Ayers",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12463,
+      "title": "Uncanny X-Men (1963) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/12463/uncanny_x-men_1963_17",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1966-02-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4505,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/60/589b6da28f3f9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dick Ayers",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12464,
+      "title": "Uncanny X-Men (1963) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/12464/uncanny_x-men_1963_18",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1966-03-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4506,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/f0/589b8483e9890",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dick Ayers",
+          "role": "cover artist"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12465,
+      "title": "Uncanny X-Men (1963) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/12465/uncanny_x-men_1963_19",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1966-04-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4507,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/04/589b8ecd5e3ee",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dick Ayers",
+          "role": "cover artist"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12467,
+      "title": "Uncanny X-Men (1963) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/12467/uncanny_x-men_1963_20",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1966-05-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4508,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/90/589c789dd2ff1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dick Ayers",
+          "role": "cover artist"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12468,
+      "title": "Uncanny X-Men (1963) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/12468/uncanny_x-men_1963_21",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1966-06-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4509,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/58a20e65c1179",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dick Ayers",
+          "role": "cover artist"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12469,
+      "title": "Uncanny X-Men (1963) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/12469/uncanny_x-men_1963_22",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1966-07-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 1316,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/e0/58a20f540551c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dick Ayers",
+          "role": "cover artist"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12470,
+      "title": "Uncanny X-Men (1963) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/12470/uncanny_x-men_1963_23",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1966-08-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4510,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/e0/58a21f53872e8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dick Ayers",
+          "role": "cover artist"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12471,
+      "title": "Uncanny X-Men (1963) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/12471/uncanny_x-men_1963_24",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1966-09-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4511,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/d0/58a220a71b870",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dick Ayers",
+          "role": "cover artist"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12472,
+      "title": "Uncanny X-Men (1963) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/12472/uncanny_x-men_1963_25",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1966-10-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4512,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/f0/58a22156b34f1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dick Ayers",
+          "role": "cover artist"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12473,
+      "title": "Uncanny X-Men (1963) #26",
+      "number": "26",
+      "url": "https://www.marvel.com/comics/issue/12473/uncanny_x-men_1963_26",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1966-11-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4513,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/00/58a222bd93324",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dick Ayers",
+          "role": "cover artist"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12474,
+      "title": "Uncanny X-Men (1963) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/12474/uncanny_x-men_1963_27",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1966-12-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4514,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/e0/58a2237195576",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dick Ayers",
+          "role": "cover artist"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12475,
+      "title": "Uncanny X-Men (1963) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/12475/uncanny_x-men_1963_28",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1967-01-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4515,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/58a30d7b76545",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dick Ayers",
+          "role": "cover artist"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12476,
+      "title": "Uncanny X-Men (1963) #29",
+      "number": "29",
+      "url": "https://www.marvel.com/comics/issue/12476/uncanny_x-men_1963_29",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1967-02-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4516,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/58a30e694e3d5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12478,
+      "title": "Uncanny X-Men (1963) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/12478/uncanny_x-men_1963_30",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1967-03-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4517,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/58a30f5c962c2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12479,
+      "title": "Uncanny X-Men (1963) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/12479/uncanny_x-men_1963_31",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1967-04-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4518,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/58a1bfd03474e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12480,
+      "title": "Uncanny X-Men (1963) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/12480/uncanny_x-men_1963_32",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1967-05-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 1318,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/58a1c07fb6761",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12481,
+      "title": "Uncanny X-Men (1963) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/12481/uncanny_x-men_1963_33",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1967-06-10T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4519,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/5372d274ae693",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gil Kane",
+          "role": "penciler"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12482,
+      "title": "Uncanny X-Men (1963) #34",
+      "number": "34",
+      "url": "https://www.marvel.com/comics/issue/12482/uncanny_x-men_1963_34",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1967-07-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4520,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/5372d1fe355f0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Adkins",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12483,
+      "title": "Uncanny X-Men (1963) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/12483/uncanny_x-men_1963_35",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1967-08-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4521,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/70/5372cd0d114bb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Adkins",
+          "role": "cover artist"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12484,
+      "title": "Uncanny X-Men (1963) #36",
+      "number": "36",
+      "url": "https://www.marvel.com/comics/issue/12484/uncanny_x-men_1963_36",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1967-09-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4522,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/b0/5372cc62be11b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "George Roussos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ross Andru",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12485,
+      "title": "Uncanny X-Men (1963) #37",
+      "number": "37",
+      "url": "https://www.marvel.com/comics/issue/12485/uncanny_x-men_1963_37",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1967-10-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4523,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/03/5372cc3575459",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Don Heck",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ross Andru",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12486,
+      "title": "Uncanny X-Men (1963) #38",
+      "number": "38",
+      "url": "https://www.marvel.com/comics/issue/12486/uncanny_x-men_1963_38",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1967-11-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4524,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/5372cbe08b628",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "George Roussos",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Verpoorten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Don Heck",
+          "role": "penciler"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12487,
+      "title": "Uncanny X-Men (1963) #39",
+      "number": "39",
+      "url": "https://www.marvel.com/comics/issue/12487/uncanny_x-men_1963_39",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1967-12-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4525,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/5372cb587cbcd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Verpoorten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Vince Colletta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Don Heck",
+          "role": "penciler"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12489,
+      "title": "Uncanny X-Men (1963) #40",
+      "number": "40",
+      "url": "https://www.marvel.com/comics/issue/12489/uncanny_x-men_1963_40",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1968-01-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4526,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/e0/5372cb0164b46",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "George Tuska",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Verpoorten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Don Heck",
+          "role": "penciler"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12490,
+      "title": "Uncanny X-Men (1963) #41",
+      "number": "41",
+      "url": "https://www.marvel.com/comics/issue/12490/uncanny_x-men_1963_41",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1968-02-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4527,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/c0/5372cad6d21cb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "George Tuska",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Verpoorten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Don Heck",
+          "role": "penciler"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12491,
+      "title": "Uncanny X-Men (1963) #42",
+      "number": "42",
+      "url": "https://www.marvel.com/comics/issue/12491/uncanny_x-men_1963_42",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1968-03-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4528,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/5372ca84416c7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "George Tuska",
+          "role": "cover artist"
+        },
+        {
+          "name": "Herb Trimpe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Don Heck",
+          "role": "penciler"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12492,
+      "title": "Uncanny X-Men (1963) #43",
+      "number": "43",
+      "url": "https://www.marvel.com/comics/issue/12492/uncanny_x-men_1963_43",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1968-04-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 1320,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/5372c9fa5d098",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Verpoorten",
+          "role": "cover artist"
+        },
+        {
+          "name": "George Tuska",
+          "role": "penciler"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12493,
+      "title": "Uncanny X-Men (1963) #44",
+      "number": "44",
+      "url": "https://www.marvel.com/comics/issue/12493/uncanny_x-men_1963_44",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1968-05-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4529,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/5372c9c72e315",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Verpoorten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Don Heck",
+          "role": "penciler"
+        },
+        {
+          "name": "George Tuska",
+          "role": "penciler"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Gary Friedrich",
+          "role": "writer"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12494,
+      "title": "Uncanny X-Men (1963) #45",
+      "number": "45",
+      "url": "https://www.marvel.com/comics/issue/12494/uncanny_x-men_1963_45",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1968-06-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4530,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/5372c77c83d3b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Verpoorten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Don Heck",
+          "role": "penciler"
+        },
+        {
+          "name": "George Tuska",
+          "role": "penciler"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Gary Friedrich",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 7303,
+      "title": "Avengers (1963) #53",
+      "number": "53",
+      "url": "https://www.marvel.com/comics/issue/7303/avengers_1963_53",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1968-06-01T00:00:00+0000",
+      "mu": "1968-06-01T00:00:00+0000",
+      "digitalId": 4871,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/d0/5866720842525",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 65346,
+      "title": "Not Brand Echh (1967) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/65346/not_brand_echh_1967_4",
+      "seriesId": 23791,
+      "seriesName": "Not Brand Echh (1967 - 1969)",
+      "onSale": "1967-11-01T00:00:00+0000",
+      "mu": "1967-11-01T00:00:00+0000",
+      "digitalId": 46842,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/59cbf7a619b0e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marie Severin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Sutton",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gene Colan",
+          "role": "penciler"
+        },
+        {
+          "name": "Gary Friedrich",
+          "role": "writer"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 65350,
+      "title": "Not Brand Echh (1967) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/65350/not_brand_echh_1967_8",
+      "seriesId": 23791,
+      "seriesName": "Not Brand Echh (1967 - 1969)",
+      "onSale": "1968-06-01T00:00:00+0000",
+      "mu": "1968-06-01T00:00:00+0000",
+      "digitalId": 46845,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/d0/59cedcc89689d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Verpoorten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Sutton",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gene Colan",
+          "role": "penciler"
+        },
+        {
+          "name": "Marie Severin",
+          "role": "penciler"
+        },
+        {
+          "name": "Gary Friedrich",
+          "role": "writer"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12495,
+      "title": "Uncanny X-Men (1963) #46",
+      "number": "46",
+      "url": "https://www.marvel.com/comics/issue/12495/uncanny_x-men_1963_46",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1968-07-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4531,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/5372c6e4171d5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Don Heck",
+          "role": "penciler"
+        },
+        {
+          "name": "George Tuska",
+          "role": "penciler"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Gary Friedrich",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12496,
+      "title": "Uncanny X-Men (1963) #47",
+      "number": "47",
+      "url": "https://www.marvel.com/comics/issue/12496/uncanny_x-men_1963_47",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1968-08-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 1321,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/20/5372c6b1a9523",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Verpoorten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Don Heck",
+          "role": "penciler"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Arnold Drake",
+          "role": "writer"
+        },
+        {
+          "name": "Gary Friedrich",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12497,
+      "title": "Uncanny X-Men (1963) #48",
+      "number": "48",
+      "url": "https://www.marvel.com/comics/issue/12497/uncanny_x-men_1963_48",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1968-09-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4532,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/03/5372c62361c36",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Verpoorten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Don Heck",
+          "role": "penciler"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Arnold Drake",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12498,
+      "title": "Uncanny X-Men (1963) #49",
+      "number": "49",
+      "url": "https://www.marvel.com/comics/issue/12498/uncanny_x-men_1963_49",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1968-10-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4907,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/03/5372c5f168190",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Verpoorten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Don Heck",
+          "role": "penciler"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Arnold Drake",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12500,
+      "title": "Uncanny X-Men (1963) #50",
+      "number": "50",
+      "url": "https://www.marvel.com/comics/issue/12500/uncanny_x-men_1963_50",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1968-11-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 1324,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/20/5372c556be877",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Verpoorten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Steranko",
+          "role": "penciler"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Arnold Drake",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12501,
+      "title": "Uncanny X-Men (1963) #51",
+      "number": "51",
+      "url": "https://www.marvel.com/comics/issue/12501/uncanny_x-men_1963_51",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1968-12-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 1325,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/5372c524da628",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Steranko",
+          "role": "penciler"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Arnold Drake",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12502,
+      "title": "Uncanny X-Men (1963) #52",
+      "number": "52",
+      "url": "https://www.marvel.com/comics/issue/12502/uncanny_x-men_1963_52",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1969-01-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4533,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/5372c484cf36b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Verpoorten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Don Heck",
+          "role": "penciler"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Arnold Drake",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12503,
+      "title": "Uncanny X-Men (1963) #53",
+      "number": "53",
+      "url": "https://www.marvel.com/comics/issue/12503/uncanny_x-men_1963_53",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1969-02-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4534,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/80/5372c453030d0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Barry Windsor-Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Arnold Drake",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12504,
+      "title": "Uncanny X-Men (1963) #54",
+      "number": "54",
+      "url": "https://www.marvel.com/comics/issue/12504/uncanny_x-men_1963_54",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1969-03-10T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4909,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/5372c3e7c7137",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Vince Colletta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Barry Windsor-Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Don Heck",
+          "role": "penciler"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Arnold Drake",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12505,
+      "title": "Uncanny X-Men (1963) #55",
+      "number": "55",
+      "url": "https://www.marvel.com/comics/issue/12505/uncanny_x-men_1963_55",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1969-04-10T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4535,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/5372bf5639e9a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Vince Colletta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Barry Windsor-Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Don Heck",
+          "role": "penciler"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12506,
+      "title": "Uncanny X-Men (1963) #56",
+      "number": "56",
+      "url": "https://www.marvel.com/comics/issue/12506/uncanny_x-men_1963_56",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1969-05-10T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4536,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/80/5372bebcbcb30",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Neal Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12507,
+      "title": "Uncanny X-Men (1963) #57",
+      "number": "57",
+      "url": "https://www.marvel.com/comics/issue/12507/uncanny_x-men_1963_57",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1969-06-10T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4537,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/5372be8a9b72c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Neal Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Werner Roth",
+          "role": "penciler"
+        },
+        {
+          "name": "Linda Fite",
+          "role": "writer"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12508,
+      "title": "Uncanny X-Men (1963) #58",
+      "number": "58",
+      "url": "https://www.marvel.com/comics/issue/12508/uncanny_x-men_1963_58",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1969-07-10T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4538,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/58a48efbd28a8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Neal Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12509,
+      "title": "Uncanny X-Men (1963) #59",
+      "number": "59",
+      "url": "https://www.marvel.com/comics/issue/12509/uncanny_x-men_1963_59",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1969-08-10T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4539,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/58a4903ce3c6d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Neal Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12511,
+      "title": "Uncanny X-Men (1963) #60",
+      "number": "60",
+      "url": "https://www.marvel.com/comics/issue/12511/uncanny_x-men_1963_60",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1969-09-10T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4541,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/58a4917b22c3e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Neal Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12512,
+      "title": "Uncanny X-Men (1963) #61",
+      "number": "61",
+      "url": "https://www.marvel.com/comics/issue/12512/uncanny_x-men_1963_61",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1969-10-10T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4542,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/03/58a492438b063",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Neal Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12513,
+      "title": "Uncanny X-Men (1963) #62",
+      "number": "62",
+      "url": "https://www.marvel.com/comics/issue/12513/uncanny_x-men_1963_62",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1969-11-10T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4543,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/58a493069ae5e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Neal Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12514,
+      "title": "Uncanny X-Men (1963) #63",
+      "number": "63",
+      "url": "https://www.marvel.com/comics/issue/12514/uncanny_x-men_1963_63",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1969-12-10T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4544,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/58a4945fed480",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Neal Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12515,
+      "title": "Uncanny X-Men (1963) #64",
+      "number": "64",
+      "url": "https://www.marvel.com/comics/issue/12515/uncanny_x-men_1963_64",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1970-01-10T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4545,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/80/58a4a8ac9cb8b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Don Heck",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12516,
+      "title": "Uncanny X-Men (1963) #65",
+      "number": "65",
+      "url": "https://www.marvel.com/comics/issue/12516/uncanny_x-men_1963_65",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1970-02-10T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4546,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/58a4a9af76561",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marie Severin",
+          "role": "penciler"
+        },
+        {
+          "name": "Neal Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Dennis Oneil",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 12517,
+      "title": "Uncanny X-Men (1963) #66",
+      "number": "66",
+      "url": "https://www.marvel.com/comics/issue/12517/uncanny_x-men_1963_66",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1970-03-10T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4547,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/c0/58a4aaa7b21d6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Sam Grainger",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 50919,
+      "title": "Ka-Zar (1970) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/50919/ka-zar_1970_2",
+      "seriesId": 19064,
+      "seriesName": "Ka-Zar (1970 - 1971)",
+      "onSale": "1970-12-01T00:00:00+0000",
+      "mu": "2017-02-13T00:00:00+0000",
+      "digitalId": 34512,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/60/5890d9072a888",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "George Tuska",
+          "role": "penciler"
+        },
+        {
+          "name": "Marie Severin",
+          "role": "penciler"
+        },
+        {
+          "name": "Jerry Siegel",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 50920,
+      "title": "Ka-Zar (1970) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/50920/ka-zar_1970_3",
+      "seriesId": 19064,
+      "seriesName": "Ka-Zar (1970 - 1971)",
+      "onSale": "1971-03-01T00:00:00+0000",
+      "mu": "2017-02-13T00:00:00+0000",
+      "digitalId": 34513,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/5890dbf0ca720",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "George Tuska",
+          "role": "penciler"
+        },
+        {
+          "name": "Marie Severin",
+          "role": "penciler"
+        },
+        {
+          "name": "Jerry Siegel",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 50921,
+      "title": "Marvel Tales (1966) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/50921/marvel_tales_1966_30",
+      "seriesId": 19065,
+      "seriesName": "Marvel Tales (1966 - 1994)",
+      "onSale": "1971-04-01T00:00:00+0000",
+      "mu": "2014-07-29T00:00:00+0000",
+      "digitalId": 34514,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/20/57fbdc0bda8be",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Romita Sr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Marie Severin",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The original X-Men"
+    },
+    {
+      "issueId": 23247,
+      "title": "Amazing Adventures (1970) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/23247/amazing_adventures_1970_11",
+      "seriesId": 6666,
+      "seriesName": "Amazing Adventures (1970 - 1976)",
+      "onSale": "1972-03-01T00:00:00+0000",
+      "mu": "1972-03-01T00:00:00+0000",
+      "digitalId": 20545,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/70/5ed6abbe592bf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Syd Shores",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Sutton",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional guest appearances and annuals"
+    },
+    {
+      "issueId": 23248,
+      "title": "Amazing Adventures (1970) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/23248/amazing_adventures_1970_12",
+      "seriesId": 6666,
+      "seriesName": "Amazing Adventures (1970 - 1976)",
+      "onSale": "1972-05-01T00:00:00+0000",
+      "mu": "1972-05-01T00:00:00+0000",
+      "digitalId": 11912,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/50/4bb53ab5bd79f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Ploog",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Sutton",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional guest appearances and annuals"
+    },
+    {
+      "issueId": 23249,
+      "title": "Amazing Adventures (1970) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/23249/amazing_adventures_1970_13",
+      "seriesId": 6666,
+      "seriesName": "Amazing Adventures (1970 - 1976)",
+      "onSale": "1972-07-01T00:00:00+0000",
+      "mu": "1972-07-01T00:00:00+0000",
+      "digitalId": 11913,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/a0/4bb53c4c253e0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Giacoia",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Sutton",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional guest appearances and annuals"
+    },
+    {
+      "issueId": 23250,
+      "title": "Amazing Adventures (1970) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/23250/amazing_adventures_1970_14",
+      "seriesId": 6666,
+      "seriesName": "Amazing Adventures (1970 - 1976)",
+      "onSale": "1972-09-01T00:00:00+0000",
+      "mu": "1972-09-01T00:00:00+0000",
+      "digitalId": 11914,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/20/4bb53c3ecc9a6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Sutton",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional guest appearances and annuals"
+    },
+    {
+      "issueId": 23251,
+      "title": "Amazing Adventures (1970) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/23251/amazing_adventures_1970_15",
+      "seriesId": 6666,
+      "seriesName": "Amazing Adventures (1970 - 1976)",
+      "onSale": "1972-11-01T00:00:00+0000",
+      "mu": "1972-11-01T00:00:00+0000",
+      "digitalId": 11915,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/80/4bb59cad73f3f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Giacoia",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Sutton",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional guest appearances and annuals"
+    },
+    {
+      "issueId": 23252,
+      "title": "Amazing Adventures (1970) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/23252/amazing_adventures_1970_16",
+      "seriesId": 6666,
+      "seriesName": "Amazing Adventures (1970 - 1976)",
+      "onSale": "1973-01-01T00:00:00+0000",
+      "mu": "1973-01-01T00:00:00+0000",
+      "digitalId": 11916,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/a0/4bb53aad3b08f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Mclaughlin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bob Brown",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional guest appearances and annuals"
+    },
+    {
+      "issueId": 23253,
+      "title": "Amazing Adventures (1970) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/23253/amazing_adventures_1970_17",
+      "seriesId": 6666,
+      "seriesName": "Amazing Adventures (1970 - 1976)",
+      "onSale": "1973-03-01T00:00:00+0000",
+      "mu": "1973-03-01T00:00:00+0000",
+      "digitalId": 11917,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/80/4bb4deae9574c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional guest appearances and annuals"
+    },
+    {
+      "issueId": 6915,
+      "title": "The Amazing Spider-Man (1963) #92",
+      "number": "92",
+      "url": "https://www.marvel.com/comics/issue/6915/the_amazing_spider-man_1963_92",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1971-01-01T00:00:00+0000",
+      "mu": "1971-01-01T00:00:00+0000",
+      "digitalId": 5045,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/57b1c9d0c3be3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Romita Sr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gil Kane",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional guest appearances and annuals"
+    },
+    {
+      "issueId": 8961,
+      "title": "Incredible Hulk (1962) #150",
+      "number": "150",
+      "url": "https://www.marvel.com/comics/issue/8961/incredible_hulk_1962_150",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1972-04-01T00:00:00+0000",
+      "mu": "2009-06-05T00:00:00+0000",
+      "digitalId": 11944,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/80/4bb540823b50b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Severin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Herb Trimpe",
+          "role": "penciler"
+        },
+        {
+          "name": "Archie Goodwin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional guest appearances and annuals"
+    },
+    {
+      "issueId": 8972,
+      "title": "Incredible Hulk (1962) #161",
+      "number": "161",
+      "url": "https://www.marvel.com/comics/issue/8972/incredible_hulk_1962_161",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1973-03-01T00:00:00+0000",
+      "mu": "2009-07-03T00:00:00+0000",
+      "digitalId": 11946,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/70/4bb53c30aef22",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sal Trapani",
+          "role": "cover artist"
+        },
+        {
+          "name": "Herb Trimpe",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional guest appearances and annuals"
+    },
+    {
+      "issueId": 8983,
+      "title": "Incredible Hulk (1962) #172",
+      "number": "172",
+      "url": "https://www.marvel.com/comics/issue/8983/incredible_hulk_1962_172",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1974-02-01T00:00:00+0000",
+      "mu": "2011-07-29T00:00:00+0000",
+      "digitalId": 20535,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/30/5b76cac875775",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jack Abel",
+          "role": "cover artist"
+        },
+        {
+          "name": "Herb Trimpe",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        },
+        {
+          "name": "Tony Isabella",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional guest appearances and annuals"
+    },
+    {
+      "issueId": 8991,
+      "title": "Incredible Hulk (1962) #180",
+      "number": "180",
+      "url": "https://www.marvel.com/comics/issue/8991/incredible_hulk_1962_180",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1974-10-01T00:00:00+0000",
+      "mu": "2011-07-29T00:00:00+0000",
+      "digitalId": 21461,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5b772c24ce070",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jack Abel",
+          "role": "cover artist"
+        },
+        {
+          "name": "Herb Trimpe",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional guest appearances and annuals"
+    },
+    {
+      "issueId": 17198,
+      "title": "Incredible Hulk (1962) #181",
+      "number": "181",
+      "url": "https://www.marvel.com/comics/issue/17198/incredible_hulk_1962_181",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1974-11-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 4467,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5b75a65ed20e6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Optional guest appearances and annuals"
+    },
+    {
+      "issueId": 8993,
+      "title": "Incredible Hulk (1962) #182",
+      "number": "182",
+      "url": "https://www.marvel.com/comics/issue/8993/incredible_hulk_1962_182",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1974-12-01T00:00:00+0000",
+      "mu": "2011-09-02T00:00:00+0000",
+      "digitalId": 21462,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/e0/5b75beef538ce",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Herb Trimpe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional guest appearances and annuals"
+    },
+    {
+      "issueId": 19659,
+      "title": "Marvel Team-Up (1972) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/19659/marvel_team-up_1972_4",
+      "seriesId": 3716,
+      "seriesName": "Marvel Team-Up (1972 - 1985)",
+      "onSale": "1972-09-01T00:00:00+0000",
+      "mu": "1972-09-01T00:00:00+0000",
+      "digitalId": 12306,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/90/4bb50ec2bbbef",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Steve Mitchell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gil Kane",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional guest appearances and annuals"
+    },
+    {
+      "issueId": 19641,
+      "title": "Marvel Team-Up (1972) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/19641/marvel_team-up_1972_23",
+      "seriesId": 3716,
+      "seriesName": "Marvel Team-Up (1972 - 1985)",
+      "onSale": "1974-07-01T00:00:00+0000",
+      "mu": "1974-07-01T00:00:00+0000",
+      "digitalId": 48457,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/5afdde3a66552",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gil Kane",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional guest appearances and annuals"
+    },
+    {
+      "issueId": 6965,
+      "title": "Avengers (1963) #110",
+      "number": "110",
+      "url": "https://www.marvel.com/comics/issue/6965/avengers_1963_110",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1973-04-01T00:00:00+0000",
+      "mu": "1973-04-01T00:00:00+0000",
+      "digitalId": 20048,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/58764db368bf2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Giacoia",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Don Heck",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional guest appearances and annuals"
+    },
+    {
+      "issueId": 6966,
+      "title": "Avengers (1963) #111",
+      "number": "111",
+      "url": "https://www.marvel.com/comics/issue/6966/avengers_1963_111",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1973-05-01T00:00:00+0000",
+      "mu": "2012-06-12T00:00:00+0000",
+      "digitalId": 20050,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/03/587655a18335a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Don Heck",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional guest appearances and annuals"
+    },
+    {
+      "issueId": 7553,
+      "title": "Captain America (1968) #172",
+      "number": "172",
+      "url": "https://www.marvel.com/comics/issue/7553/captain_america_1968_172",
+      "seriesId": 1996,
+      "seriesName": "Captain America (1968 - 1996)",
+      "onSale": "1974-04-01T00:00:00+0000",
+      "mu": "1974-04-01T00:00:00+0000",
+      "digitalId": 5367,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/4bb6f95c921c6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Vince Colletta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Friedrich",
+          "role": "writer"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional guest appearances and annuals"
+    },
+    {
+      "issueId": 7554,
+      "title": "Captain America (1968) #173",
+      "number": "173",
+      "url": "https://www.marvel.com/comics/issue/7554/captain_america_1968_173",
+      "seriesId": 1996,
+      "seriesName": "Captain America (1968 - 1996)",
+      "onSale": "1974-05-01T00:00:00+0000",
+      "mu": "1974-05-01T00:00:00+0000",
+      "digitalId": 5368,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/4bb6f9425e24b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Vince Colletta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional guest appearances and annuals"
+    },
+    {
+      "issueId": 7555,
+      "title": "Captain America (1968) #174",
+      "number": "174",
+      "url": "https://www.marvel.com/comics/issue/7555/captain_america_1968_174",
+      "seriesId": 1996,
+      "seriesName": "Captain America (1968 - 1996)",
+      "onSale": "1974-06-01T00:00:00+0000",
+      "mu": "1974-06-01T00:00:00+0000",
+      "digitalId": 5369,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/b0/4bb6f93d001b3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Vince Colletta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional guest appearances and annuals"
+    },
+    {
+      "issueId": 7556,
+      "title": "Captain America (1968) #175",
+      "number": "175",
+      "url": "https://www.marvel.com/comics/issue/7556/captain_america_1968_175",
+      "seriesId": 1996,
+      "seriesName": "Captain America (1968 - 1996)",
+      "onSale": "1974-07-01T00:00:00+0000",
+      "mu": "1974-07-01T00:00:00+0000",
+      "digitalId": 5370,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/4bb6f9378e65a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Vince Colletta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Englehart",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional guest appearances and annuals"
+    },
+    {
+      "issueId": 20318,
+      "title": "Defenders (1972) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/20318/defenders_1972_15",
+      "seriesId": 3743,
+      "seriesName": "Defenders (1972 - 1986)",
+      "onSale": "1974-09-01T00:00:00+0000",
+      "mu": "1974-09-01T00:00:00+0000",
+      "digitalId": 24022,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/50adc680d463d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional guest appearances and annuals"
+    },
+    {
+      "issueId": 20322,
+      "title": "Defenders (1972) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/20322/defenders_1972_16",
+      "seriesId": 3743,
+      "seriesName": "Defenders (1972 - 1986)",
+      "onSale": "1974-10-01T00:00:00+0000",
+      "mu": "1974-10-01T00:00:00+0000",
+      "digitalId": 24023,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/0/03/50b431e417393",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Esposito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional guest appearances and annuals"
+    },
+    {
+      "issueId": 22451,
+      "title": "Giant-Size Fantastic Four (1974) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/22451/giant-size_fantastic_four_1974_4",
+      "seriesId": 6070,
+      "seriesName": "Giant-Size Fantastic Four (1974 - 1975)",
+      "onSale": "1975-02-01T00:00:00+0000",
+      "mu": "1975-02-01T00:00:00+0000",
+      "digitalId": 10204,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/e0/4bb69358c3934",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chic Stone",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional guest appearances and annuals"
+    },
+    {
+      "issueId": -2095259119,
+      "title": "X-Men Annual (1970) #2",
+      "number": "2",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Optional guest appearances and annuals"
+    },
+    {
+      "issueId": 65863,
+      "title": "X-Men the Hidden Years (1999) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/65863/x-men_the_hidden_years_1999_1",
+      "seriesId": 23797,
+      "seriesName": "X-Men the Hidden Years (1999 - 2001)",
+      "onSale": "1999-12-01T00:00:00+0000",
+      "mu": "1999-12-01T00:00:00+0000",
+      "digitalId": 46995,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/5a56923bca522",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: The Hidden Years"
+    },
+    {
+      "issueId": 65864,
+      "title": "X-Men the Hidden Years (1999) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/65864/x-men_the_hidden_years_1999_2",
+      "seriesId": 23797,
+      "seriesName": "X-Men the Hidden Years (1999 - 2001)",
+      "onSale": "2000-01-01T00:00:00+0000",
+      "mu": "2000-01-01T00:00:00+0000",
+      "digitalId": 46996,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/70/5a5695f7e77f1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: The Hidden Years"
+    },
+    {
+      "issueId": 65865,
+      "title": "X-Men the Hidden Years (1999) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/65865/x-men_the_hidden_years_1999_3",
+      "seriesId": 23797,
+      "seriesName": "X-Men the Hidden Years (1999 - 2001)",
+      "onSale": "2000-02-01T00:00:00+0000",
+      "mu": "2000-02-01T00:00:00+0000",
+      "digitalId": 46997,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/5a5695ca212dd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: The Hidden Years"
+    },
+    {
+      "issueId": 65866,
+      "title": "X-Men the Hidden Years (1999) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/65866/x-men_the_hidden_years_1999_4",
+      "seriesId": 23797,
+      "seriesName": "X-Men the Hidden Years (1999 - 2001)",
+      "onSale": "2000-03-01T00:00:00+0000",
+      "mu": "2000-03-01T00:00:00+0000",
+      "digitalId": 46998,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/5a569649acb22",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: The Hidden Years"
+    },
+    {
+      "issueId": 65867,
+      "title": "X-Men the Hidden Years (1999) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/65867/x-men_the_hidden_years_1999_5",
+      "seriesId": 23797,
+      "seriesName": "X-Men the Hidden Years (1999 - 2001)",
+      "onSale": "2000-04-01T00:00:00+0000",
+      "mu": "2000-04-01T00:00:00+0000",
+      "digitalId": 46999,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/5a5696603acad",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: The Hidden Years"
+    },
+    {
+      "issueId": 65868,
+      "title": "X-Men the Hidden Years (1999) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/65868/x-men_the_hidden_years_1999_6",
+      "seriesId": 23797,
+      "seriesName": "X-Men the Hidden Years (1999 - 2001)",
+      "onSale": "2000-05-01T00:00:00+0000",
+      "mu": "2000-05-01T00:00:00+0000",
+      "digitalId": 47000,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/5a569643c6a15",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: The Hidden Years"
+    },
+    {
+      "issueId": 65869,
+      "title": "X-Men the Hidden Years (1999) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/65869/x-men_the_hidden_years_1999_7",
+      "seriesId": 23797,
+      "seriesName": "X-Men the Hidden Years (1999 - 2001)",
+      "onSale": "2000-06-01T00:00:00+0000",
+      "mu": "2000-06-01T00:00:00+0000",
+      "digitalId": 47001,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/03/5a56960f24383",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: The Hidden Years"
+    },
+    {
+      "issueId": 65870,
+      "title": "X-Men the Hidden Years (1999) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/65870/x-men_the_hidden_years_1999_8",
+      "seriesId": 23797,
+      "seriesName": "X-Men the Hidden Years (1999 - 2001)",
+      "onSale": "2000-07-01T00:00:00+0000",
+      "mu": "2000-07-01T00:00:00+0000",
+      "digitalId": 47002,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/a0/5a5695fc598fe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: The Hidden Years"
+    },
+    {
+      "issueId": 65871,
+      "title": "X-Men the Hidden Years (1999) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/65871/x-men_the_hidden_years_1999_9",
+      "seriesId": 23797,
+      "seriesName": "X-Men the Hidden Years (1999 - 2001)",
+      "onSale": "2000-08-01T00:00:00+0000",
+      "mu": "2000-08-01T00:00:00+0000",
+      "digitalId": 47003,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/00/5a569718ca494",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: The Hidden Years"
+    },
+    {
+      "issueId": 65872,
+      "title": "X-Men the Hidden Years (1999) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/65872/x-men_the_hidden_years_1999_10",
+      "seriesId": 23797,
+      "seriesName": "X-Men the Hidden Years (1999 - 2001)",
+      "onSale": "2000-09-01T00:00:00+0000",
+      "mu": "2000-09-01T00:00:00+0000",
+      "digitalId": 47004,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/03/5a569612902d1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: The Hidden Years"
+    },
+    {
+      "issueId": 65873,
+      "title": "X-Men the Hidden Years (1999) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/65873/x-men_the_hidden_years_1999_11",
+      "seriesId": 23797,
+      "seriesName": "X-Men the Hidden Years (1999 - 2001)",
+      "onSale": "2000-10-01T00:00:00+0000",
+      "mu": "2000-10-01T00:00:00+0000",
+      "digitalId": 47005,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/00/5a569736192b7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: The Hidden Years"
+    },
+    {
+      "issueId": 65874,
+      "title": "X-Men the Hidden Years (1999) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/65874/x-men_the_hidden_years_1999_12",
+      "seriesId": 23797,
+      "seriesName": "X-Men the Hidden Years (1999 - 2001)",
+      "onSale": "2000-11-01T00:00:00+0000",
+      "mu": "2000-11-01T00:00:00+0000",
+      "digitalId": 47006,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/b0/5a56975e69394",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: The Hidden Years"
+    },
+    {
+      "issueId": 65368,
+      "title": "X-Men the Hidden Years (1999) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/65368/x-men_the_hidden_years_1999_13",
+      "seriesId": 23797,
+      "seriesName": "X-Men the Hidden Years (1999 - 2001)",
+      "onSale": "2000-12-01T00:00:00+0000",
+      "mu": "2000-12-01T00:00:00+0000",
+      "digitalId": 46970,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/5a569731adced",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: The Hidden Years"
+    },
+    {
+      "issueId": 65369,
+      "title": "X-Men the Hidden Years (1999) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/65369/x-men_the_hidden_years_1999_14",
+      "seriesId": 23797,
+      "seriesName": "X-Men the Hidden Years (1999 - 2001)",
+      "onSale": "2001-01-01T00:00:00+0000",
+      "mu": "2001-01-01T00:00:00+0000",
+      "digitalId": 46971,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/00/5a56972505020",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: The Hidden Years"
+    },
+    {
+      "issueId": 65370,
+      "title": "X-Men the Hidden Years (1999) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/65370/x-men_the_hidden_years_1999_15",
+      "seriesId": 23797,
+      "seriesName": "X-Men the Hidden Years (1999 - 2001)",
+      "onSale": "2001-02-01T00:00:00+0000",
+      "mu": "2001-02-01T00:00:00+0000",
+      "digitalId": 46972,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/90/5a569677828b6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: The Hidden Years"
+    },
+    {
+      "issueId": 65371,
+      "title": "X-Men the Hidden Years (1999) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/65371/x-men_the_hidden_years_1999_16",
+      "seriesId": 23797,
+      "seriesName": "X-Men the Hidden Years (1999 - 2001)",
+      "onSale": "2001-03-01T00:00:00+0000",
+      "mu": "2001-03-01T00:00:00+0000",
+      "digitalId": 46973,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/5a5696e00225e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: The Hidden Years"
+    },
+    {
+      "issueId": 65372,
+      "title": "X-Men the Hidden Years (1999) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/65372/x-men_the_hidden_years_1999_17",
+      "seriesId": 23797,
+      "seriesName": "X-Men the Hidden Years (1999 - 2001)",
+      "onSale": "2001-03-14T00:00:00+0000",
+      "mu": "2001-02-07T00:00:00+0000",
+      "digitalId": 46974,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/b0/5a5696ed8ff58",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: The Hidden Years"
+    },
+    {
+      "issueId": 65373,
+      "title": "X-Men the Hidden Years (1999) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/65373/x-men_the_hidden_years_1999_18",
+      "seriesId": 23797,
+      "seriesName": "X-Men the Hidden Years (1999 - 2001)",
+      "onSale": "2001-03-28T00:00:00+0000",
+      "mu": "2001-03-28T00:00:00+0000",
+      "digitalId": 46975,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/5a56978f1cb8b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: The Hidden Years"
+    },
+    {
+      "issueId": 65374,
+      "title": "X-Men the Hidden Years (1999) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/65374/x-men_the_hidden_years_1999_19",
+      "seriesId": 23797,
+      "seriesName": "X-Men the Hidden Years (1999 - 2001)",
+      "onSale": "2001-04-11T00:00:00+0000",
+      "mu": "2001-04-11T00:00:00+0000",
+      "digitalId": 46976,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/60/5a56977a6c7c9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: The Hidden Years"
+    },
+    {
+      "issueId": 65375,
+      "title": "X-Men the Hidden Years (1999) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/65375/x-men_the_hidden_years_1999_20",
+      "seriesId": 23797,
+      "seriesName": "X-Men the Hidden Years (1999 - 2001)",
+      "onSale": "2001-05-02T00:00:00+0000",
+      "mu": "2001-05-02T00:00:00+0000",
+      "digitalId": 46977,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/5a58c833a8db7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: The Hidden Years"
+    },
+    {
+      "issueId": 65376,
+      "title": "X-Men the Hidden Years (1999) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/65376/x-men_the_hidden_years_1999_21",
+      "seriesId": 23797,
+      "seriesName": "X-Men the Hidden Years (1999 - 2001)",
+      "onSale": "2001-06-06T00:00:00+0000",
+      "mu": "2001-06-06T00:00:00+0000",
+      "digitalId": 46978,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/40/5a58c89961b6d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: The Hidden Years"
+    },
+    {
+      "issueId": 65377,
+      "title": "X-Men the Hidden Years (1999) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/65377/x-men_the_hidden_years_1999_22",
+      "seriesId": 23797,
+      "seriesName": "X-Men the Hidden Years (1999 - 2001)",
+      "onSale": "2001-07-18T00:00:00+0000",
+      "mu": "2001-07-18T00:00:00+0000",
+      "digitalId": 46979,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/5a58d5d1a595f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: The Hidden Years"
+    },
+    {
+      "issueId": 60890,
+      "title": "X-Men: Grand Design (2017) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/60890/x-men_grand_design_2017_1",
+      "seriesId": 22465,
+      "seriesName": "X-Men: Grand Design (2017 - 2018)",
+      "onSale": "2017-12-20T00:00:00+0000",
+      "mu": "2018-06-25T00:00:00+0000",
+      "digitalId": 46684,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/5a31738f6cfeb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Ed Piskor",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Daron Jensen",
+          "role": "writer"
+        },
+        {
+          "name": "Jeph York",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Grand Design and later eras"
+    },
+    {
+      "issueId": 60891,
+      "title": "X-Men: Grand Design (2017) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/60891/x-men_grand_design_2017_2",
+      "seriesId": 22465,
+      "seriesName": "X-Men: Grand Design (2017 - 2018)",
+      "onSale": "2018-01-03T00:00:00+0000",
+      "mu": "2018-07-09T00:00:00+0000",
+      "digitalId": 47028,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/5ddbf17056504",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Ed Piskor",
+          "role": "penciler"
+        },
+        {
+          "name": "Daron Jensen",
+          "role": "writer"
+        },
+        {
+          "name": "Jeph York",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Grand Design and later eras"
+    },
+    {
+      "issueId": 60892,
+      "title": "X-Men: Grand Design - Second Genesis (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/60892/x-men_grand_design_-_second_genesis_2018_1",
+      "seriesId": 22466,
+      "seriesName": "X-Men: Grand Design - Second Genesis (2018)",
+      "onSale": "2018-07-25T00:00:00+0000",
+      "mu": "2019-01-28T00:00:00+0000",
+      "digitalId": 48625,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/5b5226c53e7e9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Ed Piskor",
+          "role": "penciler"
+        },
+        {
+          "name": "Daron Jensen",
+          "role": "writer"
+        },
+        {
+          "name": "Jeph York",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Grand Design and later eras"
+    },
+    {
+      "issueId": 60893,
+      "title": "X-Men: Grand Design - Second Genesis (2018) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/60893/x-men_grand_design_-_second_genesis_2018_2",
+      "seriesId": 22466,
+      "seriesName": "X-Men: Grand Design - Second Genesis (2018)",
+      "onSale": "2018-08-29T00:00:00+0000",
+      "mu": "2019-03-04T00:00:00+0000",
+      "digitalId": 48927,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/5b7ed74fd912f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Ed Piskor",
+          "role": "penciler"
+        },
+        {
+          "name": "Daron Jensen",
+          "role": "writer"
+        },
+        {
+          "name": "Jeph York",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Grand Design and later eras"
+    },
+    {
+      "issueId": 60894,
+      "title": "X-Men: Grand Design - X-Tinction (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/60894/x-men_grand_design_-_x-tinction_2019_1",
+      "seriesId": 22467,
+      "seriesName": "X-Men: Grand Design - X-Tinction (2019)",
+      "onSale": "2019-05-29T00:00:00+0000",
+      "mu": "2019-12-02T00:00:00+0000",
+      "digitalId": 51389,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/80/5ce40df302b4a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Ed Piskor",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Daron Jensen",
+          "role": "writer"
+        },
+        {
+          "name": "Jeph York",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Grand Design and later eras"
+    },
+    {
+      "issueId": 60895,
+      "title": "X-Men: Grand Design - X-Tinction (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/60895/x-men_grand_design_-_x-tinction_2019_2",
+      "seriesId": 22467,
+      "seriesName": "X-Men: Grand Design - X-Tinction (2019)",
+      "onSale": "2019-06-19T00:00:00+0000",
+      "mu": "2019-12-23T00:00:00+0000",
+      "digitalId": 51702,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/5d0130ef7cef2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Ed Piskor",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Daron Jensen",
+          "role": "writer"
+        },
+        {
+          "name": "Jeph York",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Grand Design and later eras"
+    },
+    {
+      "issueId": 39385,
+      "title": "X-Men: Season One (2011) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/39385/x-men_season_one_2011_1",
+      "seriesId": 14340,
+      "seriesName": "X-Men: Season One (2011)",
+      "onSale": "2012-03-14T00:00:00+0000",
+      "mu": "2016-09-05T00:00:00+0000",
+      "digitalId": 39371,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/57c751d7258ab",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 136,
+      "creators": [
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Dennis \"Hopeless\" Hallum",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Season One and First Class"
+    },
+    {
+      "issueId": 5144,
+      "title": "X-Men: First Class (2006) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/5144/x-men_first_class_2006_1",
+      "seriesId": 1132,
+      "seriesName": "X-Men: First Class (2006)",
+      "onSale": "2006-09-20T00:00:00+0000",
+      "mu": "2006-09-20T00:00:00+0000",
+      "digitalId": 2872,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/5cd46f47a38eb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roger Cruz",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Season One and First Class"
+    },
+    {
+      "issueId": 5296,
+      "title": "X-Men: First Class (2006) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/5296/x-men_first_class_2006_2",
+      "seriesId": 1132,
+      "seriesName": "X-Men: First Class (2006)",
+      "onSale": "2006-10-18T00:00:00+0000",
+      "mu": "2006-10-18T00:00:00+0000",
+      "digitalId": 7839,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/5cd4763a9469b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roger Cruz",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Season One and First Class"
+    },
+    {
+      "issueId": 5606,
+      "title": "X-Men: First Class (2006) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/5606/x-men_first_class_2006_3",
+      "seriesId": 1132,
+      "seriesName": "X-Men: First Class (2006)",
+      "onSale": "2006-11-15T00:00:00+0000",
+      "mu": "2006-11-15T00:00:00+0000",
+      "digitalId": 7840,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/5c3f6b88d2e03",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roger Cruz",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Season One and First Class"
+    },
+    {
+      "issueId": 5722,
+      "title": "X-Men: First Class (2006) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/5722/x-men_first_class_2006_4",
+      "seriesId": 1132,
+      "seriesName": "X-Men: First Class (2006)",
+      "onSale": "2006-12-20T00:00:00+0000",
+      "mu": "2006-12-20T00:00:00+0000",
+      "digitalId": 7841,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/5cd487e094c3f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roger Cruz",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Season One and First Class"
+    },
+    {
+      "issueId": 5862,
+      "title": "X-Men: First Class (2006) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/5862/x-men_first_class_2006_5",
+      "seriesId": 1132,
+      "seriesName": "X-Men: First Class (2006)",
+      "onSale": "2007-01-17T00:00:00+0000",
+      "mu": "2007-01-17T00:00:00+0000",
+      "digitalId": 8843,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/40/5cd48f87f18be",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Cruz",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Season One and First Class"
+    },
+    {
+      "issueId": 6012,
+      "title": "X-Men: First Class (2006) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/6012/x-men_first_class_2006_6",
+      "seriesId": 1132,
+      "seriesName": "X-Men: First Class (2006)",
+      "onSale": "2007-02-21T00:00:00+0000",
+      "mu": "2007-02-21T00:00:00+0000",
+      "digitalId": 8845,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/d0/5cd57bcf03b40",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Cruz",
+          "role": "penciler"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Season One and First Class"
+    },
+    {
+      "issueId": 6151,
+      "title": "X-Men: First Class (2006) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/6151/x-men_first_class_2006_7",
+      "seriesId": 1132,
+      "seriesName": "X-Men: First Class (2006)",
+      "onSale": "2007-03-21T00:00:00+0000",
+      "mu": "2007-03-21T00:00:00+0000",
+      "digitalId": 8847,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/5cd58a515f4b5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roger Cruz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Season One and First Class"
+    },
+    {
+      "issueId": 6299,
+      "title": "X-Men: First Class (2006) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/6299/x-men_first_class_2006_8",
+      "seriesId": 1132,
+      "seriesName": "X-Men: First Class (2006)",
+      "onSale": "2007-04-25T00:00:00+0000",
+      "mu": "2007-04-25T00:00:00+0000",
+      "digitalId": 8849,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/5cd58cfb021b9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roger Cruz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Season One and First Class"
+    },
+    {
+      "issueId": 13500,
+      "title": "X-Men: First Class (2007) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/13500/x-men_first_class_2007_1",
+      "seriesId": 2432,
+      "seriesName": "X-Men: First Class (2007 - 2008)",
+      "onSale": "2007-06-27T00:00:00+0000",
+      "mu": "2007-06-27T00:00:00+0000",
+      "digitalId": 9910,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/5cf675b864b1c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roger Cruz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Eric Nguyen",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Season One and First Class"
+    },
+    {
+      "issueId": 15998,
+      "title": "X-Men: First Class (2007) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/15998/x-men_first_class_2007_2",
+      "seriesId": 2432,
+      "seriesName": "X-Men: First Class (2007 - 2008)",
+      "onSale": "2007-07-25T00:00:00+0000",
+      "mu": "2007-07-25T00:00:00+0000",
+      "digitalId": 9911,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/5cf682639c7ae",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Eric Nguyen",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Cruz",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Season One and First Class"
+    },
+    {
+      "issueId": 16182,
+      "title": "X-Men: First Class (2007) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/16182/x-men_first_class_2007_3",
+      "seriesId": 2432,
+      "seriesName": "X-Men: First Class (2007 - 2008)",
+      "onSale": "2007-08-22T00:00:00+0000",
+      "mu": "2007-08-22T00:00:00+0000",
+      "digitalId": 9912,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/5cf68ab2967a0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Eric Nguyen",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roger Cruz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Colleen Coover",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Season One and First Class"
+    },
+    {
+      "issueId": 16583,
+      "title": "X-Men: First Class (2007) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/16583/x-men_first_class_2007_4",
+      "seriesId": 2432,
+      "seriesName": "X-Men: First Class (2007 - 2008)",
+      "onSale": "2007-09-26T00:00:00+0000",
+      "mu": "2007-09-26T00:00:00+0000",
+      "digitalId": 9913,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/a0/5cf69974682a7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Eric Nguyen",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Justice",
+          "role": "cover artist"
+        },
+        {
+          "name": "Julia Bacellar",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Season One and First Class"
+    },
+    {
+      "issueId": 16584,
+      "title": "X-Men: First Class (2007) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/16584/x-men_first_class_2007_5",
+      "seriesId": 2432,
+      "seriesName": "X-Men: First Class (2007 - 2008)",
+      "onSale": "2007-10-24T00:00:00+0000",
+      "mu": "2007-10-24T00:00:00+0000",
+      "digitalId": 8844,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/20/4f6a0c4ae8ad6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Cruz",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Season One and First Class"
+    },
+    {
+      "issueId": 20816,
+      "title": "X-MEN: FIRST CLASS SPECIAL 1 (2007) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/20816/x-men_first_class_special_1_2007_1",
+      "seriesId": 3918,
+      "seriesName": "X-MEN: FIRST CLASS SPECIAL 1 (2007)",
+      "onSale": "2007-05-16T00:00:00+0000",
+      "mu": "2007-05-16T00:00:00+0000",
+      "digitalId": 8850,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/f0/4bb8845eec952",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Michael Allred",
+          "role": "cover artist"
+        },
+        {
+          "name": "Colleen Coover",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Dragotta",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Kilislian",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Season One and First Class"
+    },
+    {
+      "issueId": 17280,
+      "title": "X-Men: First Class (2007) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/17280/x-men_first_class_2007_6",
+      "seriesId": 2432,
+      "seriesName": "X-Men: First Class (2007 - 2008)",
+      "onSale": "2007-11-28T00:00:00+0000",
+      "mu": "2007-11-28T00:00:00+0000",
+      "digitalId": 8846,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/50/5cf6c64794e73",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roger Cruz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Season One and First Class"
+    },
+    {
+      "issueId": 17413,
+      "title": "X-Men: First Class (2007) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/17413/x-men_first_class_2007_7",
+      "seriesId": 2432,
+      "seriesName": "X-Men: First Class (2007 - 2008)",
+      "onSale": "2007-12-26T00:00:00+0000",
+      "mu": "2007-12-26T00:00:00+0000",
+      "digitalId": 8848,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/d0/5cf6c6dcd8de3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roger Cruz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Season One and First Class"
+    },
+    {
+      "issueId": 17650,
+      "title": "X-Men: First Class (2007) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/17650/x-men_first_class_2007_8",
+      "seriesId": 2432,
+      "seriesName": "X-Men: First Class (2007 - 2008)",
+      "onSale": "2008-01-23T00:00:00+0000",
+      "mu": "2008-01-23T00:00:00+0000",
+      "digitalId": 11860,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/60/5cf6ceb31cc85",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roger Cruz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Season One and First Class"
+    },
+    {
+      "issueId": 20694,
+      "title": "X-Men: First Class (2007) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/20694/x-men_first_class_2007_9",
+      "seriesId": 2432,
+      "seriesName": "X-Men: First Class (2007 - 2008)",
+      "onSale": "2008-02-27T00:00:00+0000",
+      "mu": "2008-02-27T00:00:00+0000",
+      "digitalId": 11861,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/553a477b24f0e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Terry Pallot",
+          "role": "cover artist"
+        },
+        {
+          "name": "Julia Bacellar",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Cruz",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Season One and First Class"
+    },
+    {
+      "issueId": 20888,
+      "title": "X-Men: First Class (2007) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/20888/x-men_first_class_2007_10",
+      "seriesId": 2432,
+      "seriesName": "X-Men: First Class (2007 - 2008)",
+      "onSale": "2008-03-26T00:00:00+0000",
+      "mu": "2008-03-26T00:00:00+0000",
+      "digitalId": 11862,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/5cf7d0cfd6046",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Craig Rousseau",
+          "role": "penciler"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Season One and First Class"
+    },
+    {
+      "issueId": 21019,
+      "title": "X-Men: First Class (2007) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/21019/x-men_first_class_2007_11",
+      "seriesId": 2432,
+      "seriesName": "X-Men: First Class (2007 - 2008)",
+      "onSale": "2008-04-23T00:00:00+0000",
+      "mu": "2008-04-23T00:00:00+0000",
+      "digitalId": 11863,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/4db09a77e815f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jeffrey Huet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nick Dragotta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Season One and First Class"
+    },
+    {
+      "issueId": 21233,
+      "title": "X-Men: First Class (2007) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/21233/x-men_first_class_2007_12",
+      "seriesId": 2432,
+      "seriesName": "X-Men: First Class (2007 - 2008)",
+      "onSale": "2008-05-28T00:00:00+0000",
+      "mu": "2008-05-28T00:00:00+0000",
+      "digitalId": 11864,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/d0/5cf7eb08b2103",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jeffrey Huet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roger Cruz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Colleen Coover",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Season One and First Class"
+    },
+    {
+      "issueId": 21376,
+      "title": "X-Men: First Class (2007) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/21376/x-men_first_class_2007_13",
+      "seriesId": 2432,
+      "seriesName": "X-Men: First Class (2007 - 2008)",
+      "onSale": "2008-06-25T00:00:00+0000",
+      "mu": "2008-06-25T00:00:00+0000",
+      "digitalId": 11865,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/5cf7ec1339964",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roger Cruz",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Season One and First Class"
+    },
+    {
+      "issueId": 21552,
+      "title": "X-Men: First Class (2007) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/21552/x-men_first_class_2007_14",
+      "seriesId": 2432,
+      "seriesName": "X-Men: First Class (2007 - 2008)",
+      "onSale": "2008-07-30T00:00:00+0000",
+      "mu": "2008-07-30T00:00:00+0000",
+      "digitalId": 11866,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/5cf7f46d41d2b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jeffrey Huet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roger Cruz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Season One and First Class"
+    },
+    {
+      "issueId": 21747,
+      "title": "X-Men: First Class (2007) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/21747/x-men_first_class_2007_15",
+      "seriesId": 2432,
+      "seriesName": "X-Men: First Class (2007 - 2008)",
+      "onSale": "2008-08-20T00:00:00+0000",
+      "mu": "2008-08-20T00:00:00+0000",
+      "digitalId": 11867,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/5cf80bb75483c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jeffrey Huet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Karl Kesel",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Season One and First Class"
+    },
+    {
+      "issueId": 21981,
+      "title": "X-Men: First Class (2007) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/21981/x-men_first_class_2007_16",
+      "seriesId": 2432,
+      "seriesName": "X-Men: First Class (2007 - 2008)",
+      "onSale": "2008-09-17T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 11868,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/5cf81de6918d0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Craig Yeung",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jeffrey Huet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Patrick Scherberger",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Season One and First Class"
+    },
+    {
+      "issueId": 22389,
+      "title": "X-MEN: FIRST CLASS GIANT-SIZE SPECIAL 1 (2008) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/22389/x-men_first_class_giant-size_special_1_2008_1",
+      "seriesId": 6006,
+      "seriesName": "X-MEN: FIRST CLASS GIANT-SIZE SPECIAL 1 (2008)",
+      "onSale": "2008-10-29T00:00:00+0000",
+      "mu": "2008-10-29T00:00:00+0000",
+      "digitalId": 11869,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/5a94652a46b93",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Dean Haspiel",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin Nowlan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "David a. Williams",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Kilislian",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Langridge",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Season One and First Class"
+    },
+    {
+      "issueId": 23651,
+      "title": "X-Men: First Class Finals (2008) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/23651/x-men_first_class_finals_2008_1",
+      "seriesId": 6799,
+      "seriesName": "X-Men: First Class Finals (2008 - 2009)",
+      "onSale": "2009-02-04T00:00:00+0000",
+      "mu": "2009-02-04T00:00:00+0000",
+      "digitalId": 21741,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/20/65f1c5393dc89",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roger Cruz",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Season One and First Class"
+    },
+    {
+      "issueId": 23817,
+      "title": "X-Men: First Class Finals (2008) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/23817/x-men_first_class_finals_2008_2",
+      "seriesId": 6799,
+      "seriesName": "X-Men: First Class Finals (2008 - 2009)",
+      "onSale": "2009-03-04T00:00:00+0000",
+      "mu": "2009-03-04T00:00:00+0000",
+      "digitalId": 21743,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/65f1c53a2684b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Amilcar Pinna",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Cruz",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Season One and First Class"
+    },
+    {
+      "issueId": 24009,
+      "title": "X-Men: First Class Finals (2008) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/24009/x-men_first_class_finals_2008_3",
+      "seriesId": 6799,
+      "seriesName": "X-Men: First Class Finals (2008 - 2009)",
+      "onSale": "2009-04-01T00:00:00+0000",
+      "mu": "2009-04-01T00:00:00+0000",
+      "digitalId": 15765,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/d0/65f1c53b2faca",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Amilcar Pinna",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Cruz",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Season One and First Class"
+    },
+    {
+      "issueId": 24214,
+      "title": "X-Men: First Class Finals (2008) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/24214/x-men_first_class_finals_2008_4",
+      "seriesId": 6799,
+      "seriesName": "X-Men: First Class Finals (2008 - 2009)",
+      "onSale": "2009-05-06T00:00:00+0000",
+      "mu": "2009-05-06T00:00:00+0000",
+      "digitalId": 14791,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/65f1c53b93e49",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roger Cruz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Amilcar Pinna",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Optional: Season One and First Class"
+    }
+  ]
+}

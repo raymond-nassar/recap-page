@@ -30,6 +30,7 @@ const CACHE_PREFIX = 'mrt-offline-';
 const CACHE = `${CACHE_PREFIX}v2`;
 const CONTENT_CACHE_PREFIX = 'mrt-offline-content-v1-';
 const CONTENT_MANIFEST_PATH = '/__mrt_offline_content__/manifest.json';
+const CONTENT_READY_PATH = '/__mrt_offline_content__/ready.json';
 
 self.addEventListener('install', () => {
   // Nothing is fetched here on purpose. A precache is a list of files somebody has to keep
@@ -131,6 +132,12 @@ async function offlineContentResponse(request) {
     if (!name.startsWith(CONTENT_CACHE_PREFIX)) continue;
     const cache = await self.caches.open(name).catch(() => null);
     if (!cache) continue;
+    if (/-[0-9a-f]{32}$/.test(name)) {
+      const ready = await cache.match(
+        new URL(CONTENT_READY_PATH, self.location.origin).href,
+      ).catch(() => null);
+      if (ready?.status !== 200) continue;
+    }
     const manifestResponse = await cache.match(
       new URL(CONTENT_MANIFEST_PATH, self.location.origin).href,
     ).catch(() => null);

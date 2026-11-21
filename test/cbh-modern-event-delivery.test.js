@@ -16,6 +16,7 @@ import { parseChecklist } from '../src/js/lib/markdown.js';
 import {
   beforeWolverineCorrectionManifest, beforeWolverineCorrectionOrders,
 } from './helpers/wolverine-correction-history.mjs';
+import { beforeXmenEraManifest, beforeXmenEraOrders } from './helpers/xmen-era-history.mjs';
 import { loadBeforeWolverineCorrectionLibrary } from './helpers/reading-choice-history.mjs';
 
 const readJson = async (file) => JSON.parse(await readFile(new URL(`../${file}`, import.meta.url), 'utf8'));
@@ -77,13 +78,15 @@ test('the signed comparisons cover the complete reviewed library and both mapped
   const library = await loadCurrentOwnerLibrary(ids[0]);
   const reviewedIds = new Set(contract.orderIds);
   assert.equal(reviewedIds.size, 341);
+  // The review predates the X-Men era replacement, so the retired pair takes its slot back.
   const orders = beforeWolverineCorrectionOrders(
-    library.orders.filter((order) => reviewedIds.has(order.orderId)),
+    beforeXmenEraOrders(library.orders)
+      .sort((left, right) => left.orderId.localeCompare(right.orderId)).filter((order) => reviewedIds.has(order.orderId)),
   );
   assert.deepEqual(orders.map((order) => order.orderId), contract.orderIds);
   const manifest = beforeWolverineCorrectionManifest({
     ...library.manifest,
-    lists: library.manifest.lists.filter((entry) => reviewedIds.has(entry.id)),
+    lists: beforeXmenEraManifest(library.manifest).lists.filter((entry) => reviewedIds.has(entry.id)),
     paths: library.manifest.paths.filter((entry) => reviewedPathIds.has(entry.id)),
   });
   assert.equal(libraryDigestFor(manifest, orders.map((order) => ({

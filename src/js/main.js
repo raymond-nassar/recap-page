@@ -11,6 +11,7 @@ import {
 } from './lib/model.js';
 import { chooseMarkdownExport } from './views/markdown-export.js';
 import { serializeReadingOrder, markdownFilename } from './lib/markdown.js';
+import { legacyReadingOrder } from './lib/legacyReadingOrders.js';
 import { DEFAULT_LIST_NAME, LIBRARY_VIEWS } from './lib/library.js';
 import {
   parseCatalog, catalogEntries,
@@ -3880,11 +3881,12 @@ const bulkReadView = createBulkReadView({
   },
 });
 
+const offlineContent = createOfflineContent();
 const listRevisions = createListRevisions({
   $, el, getState: () => store.state, activeListId, isCurrent: () => view === 'read',
   canSave: () => completeRestore.writable() && !store.blocked && Boolean(store.storage),
   getDatasetEpoch: () => temporaryReaderLinks.epoch,
-  loadCatalog, loadOrder: loadBundledOrder, askConfirm,
+  loadCatalog, loadOrder: loadBundledOrder, askConfirm, offlineContent,
   saveRevision: (id, signature, items) => saveListRevision(store, id, signature, items),
 });
 
@@ -4517,7 +4519,6 @@ const catalogView = createCatalogView({
   presentation: catalogPresentation,
 });
 
-const offlineContent = createOfflineContent();
 const previewView = createPreviewView({
   captureFocus,
   el,
@@ -4707,7 +4708,8 @@ async function exportReadingOrder() {
   const id = activeListId();
   const list = store.state.lists[id];
   if (!list) return notify('#app-report', 'No list is selected.', 'warn', 'order-export');
-  const source = catalogSnapshot?.lists.find((entry) => entry.id === list.catalogId) ?? null;
+  const source = legacyReadingOrder(list.catalogId)
+    ?? catalogSnapshot?.lists.find((entry) => entry.id === list.catalogId) ?? null;
   try {
     const md = serializeReadingOrder({ name: list.name, items: listItems(store.state, id), source });
     const yes = await askConfirm({

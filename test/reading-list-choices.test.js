@@ -8,6 +8,7 @@ import { createCatalogView, modernTimelinePosition } from '../src/js/views/catal
 import { createCatalogPresentation } from '../src/js/views/shared/catalog-presentation.js';
 import { createPreviewView } from '../src/js/views/preview.js';
 import { createStoryTypesView } from '../src/js/views/story-types.js';
+import { retiredXmenEntry } from './helpers/xmen-era-history.mjs';
 import { beforeHickmanInterleaveIssueIds } from './helpers/reading-list-correction-history.mjs';
 
 const data = (file) => JSON.parse(readFileSync(new URL(`../src/data/${file}`, import.meta.url), 'utf8'));
@@ -25,6 +26,8 @@ const titles = new Map([
   ['secret-invasion-essential', 'Secret Invasion: Main Series Only'],
   ['xmen-claremont', 'X-Men Core Reading Order: Silver Age to Claremont'],
   ['xmen-claremont-complete', 'X-Men Expanded Reading Order: Silver Age to Claremont'],
+  ['xmen-silver-age', 'X-Men: Silver Age Reading Order'],
+  ['xmen-claremont-era', 'X-Men: Claremont Reading Order'],
   ['avengers-doomsday-secret-wars', 'Avengers: Doomsday & Avengers: Secret Wars'],
 ]);
 const sections = [
@@ -316,12 +319,14 @@ test('all existing choices and the MCU counterpart have their distinctive import
   const manifest = data('curated-lists.json');
   const published = data('catalog.json');
   for (const [id, title] of titles) {
-    const spec = manifest.lists.find((list) => list.id === id);
-    const list = published.lists.find((list) => list.id === id);
-    assert.ok(spec && list, `Missing named list ${id}`);
+    // A retired guide leaves discovery but keeps its title in its retirement record and saved payload.
+    const retired = retiredXmenEntry(id);
+    const spec = retired ?? manifest.lists.find((list) => list.id === id);
+    const list = retired ? null : published.lists.find((list) => list.id === id);
+    assert.ok(spec && (retired || list), `Missing named list ${id}`);
     assert.equal(spec.name, title, id);
-    assert.equal(list.name, title, id);
-    assert.equal(data(list.file).name, title, id);
+    if (list) assert.equal(list.name, title, id);
+    assert.equal(data(retired?.out ?? list.file).name, title, id);
   }
   assert.equal(new Set(titles.values()).size, titles.size);
 });

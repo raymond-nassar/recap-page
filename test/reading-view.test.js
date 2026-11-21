@@ -782,6 +782,32 @@ test('About resolves exact catalog identity for source-only lists without changi
   } finally { h.restore(); }
 });
 
+test('hidden legacy X-Men lists show the approved source credit without changing saved data', async () => {
+  for (const catalogId of ['xmen-claremont', 'xmen-claremont-complete']) {
+    const state = seededState();
+    state.lists['list-a'].catalogId = catalogId;
+    state.lists['list-a'].description = '';
+    const shared = createCatalogPresentation({ el: element });
+    const h = harness({
+      state,
+      loadCatalog: async () => ({ lists: [] }),
+      listAttribution: shared.attributionLine,
+    });
+    try {
+      const before = JSON.stringify(h.state());
+      h.view.render();
+      await new Promise(setImmediate);
+      const link = h.nodes.orderSource.querySelector('a');
+      const source = 'https://www.comicbookherald.com/chris-claremont-era-x-men-reading-order-guide/';
+      assert.equal(heldText(link), "Based on a reader's outline and Comic Book Herald's guide");
+      assert.equal(link.href, source);
+      assert.equal(h.nodes.orderVisit.querySelector('a').href, source);
+      assert.equal(h.nodes.orderDesc.hidden, false);
+      assert.equal(JSON.stringify(h.state()), before);
+    } finally { h.restore(); }
+  }
+});
+
 test('saved catalog lists show reviewed Universe scope while custom lists remain unclassified', async () => {
   const state = seededState();
   state.lists['list-b'].catalogId = null;

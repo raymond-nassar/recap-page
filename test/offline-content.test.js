@@ -25,6 +25,10 @@ const ORDER = { id: LIST_ID, items: [{ issueId: 2092 }] };
 const UNIVERSE_FILES = [
   '/data/universeCatalog.js', '/js/lib/universeSchema.js', '/js/lib/universes.js',
 ];
+const LEGACY = [
+  ['xmen-claremont', 'xmen_claremont.json'],
+  ['xmen-claremont-complete', 'xmen_claremont_complete.json'],
+];
 
 function makeResponse(url, body, contentType = 'application/json', status = 200) {
   const bytes = body instanceof Uint8Array
@@ -154,6 +158,346 @@ function makeWorld({ catalog = CATALOG, order = ORDER, caches = makeCaches() } =
 function controller(world) {
   return createOfflineContent({ scope: world.scope, caches: world.caches });
 }
+
+function addLegacyPayloads(world) {
+  for (const [, file] of LEGACY) {
+    const body = readFileSync(new URL(`../src/data/${file}`, import.meta.url), 'utf8');
+    world.scope.bodies.set(`${ORIGIN}/data/${file}`, [body, 'application/json']);
+  }
+}
+
+test('a saved hidden legacy order can be explicitly prepared and served offline without catalog discovery', async () => {
+  const world = makeWorld();
+  addLegacyPayloads(world);
+  const offline = controller(world);
+  for (const [id, file] of LEGACY) {
+    const ordinary = await offline.prepare(id);
+    assert.equal(ordinary.ok, false);
+    assert.match(ordinary.error, /no longer in the catalog/);
+
+    const prepared = await offline.prepare(id, { legacy: true });
+    assert.equal(prepared.ok, true, prepared.error);
+    assert.equal(prepared.manifest.file, file);
+    assert.equal(prepared.manifest.listId, id);
+    assert.equal((await offline.readiness(id, { legacy: true })).state, 'ready');
+    const stored = await (await world.caches.open(prepared.cacheName)).match(`${ORIGIN}/data/${file}`);
+    assert.deepEqual(await stored.json(), JSON.parse(world.scope.bodies.get(`${ORIGIN}/data/${file}`)[0]));
+  }
+  assert.equal(world.caches.stores.size, 2, 'only the two deliberately requested bundles were created');
+  assert.deepEqual(world.storageCalls, []);
+
+  const listeners = new Map();
+  runInNewContext(readFileSync(new URL('../src/sw.js', import.meta.url), 'utf8'), {
+    URL,
+    self: {
+      location: { origin: ORIGIN }, caches: world.caches,
+      addEventListener: (name, handler) => listeners.set(name, handler),
+      fetch: async () => { throw new Error('offline'); },
+    },
+  });
+  for (const [id, file] of LEGACY) {
+    let response;
+    listeners.get('fetch')({
+      request: { url: `${ORIGIN}/data/${file}`, method: 'GET' },
+      respondWith: (promise) => { response = promise; },
+    });
+    assert.equal((await (await response).json()).id, id);
+  }
+});
+
+test('explicit legacy preparation pins its old file even if a catalog id collides', async () => {
+  const [id, file] = LEGACY[0];
+  const collision = { id, name: 'Different order', file: 'collision.json', count: 1, placeholderCount: 0, emptyRecordCount: 0 };
+  const world = makeWorld({ catalog: { lists: [collision, ...CATALOG.lists] } });
+  addLegacyPayloads(world);
+  world.scope.bodies.set(`${ORIGIN}/data/collision.json`, [JSON.stringify({ id, items: [{ issueId: 7 }] }), 'application/json']);
+  const offline = controller(world);
+  const prepared = await offline.prepare(id, { legacy: true });
+  assert.equal(prepared.ok, true, prepared.error);
+  assert.equal(prepared.file, file);
+  assert.equal(world.calls.some(({ url }) => url.endsWith('/data/collision.json')), false);
+  const unknown = await offline.prepare(LIST_ID, { legacy: true });
+  assert.equal(unknown.ok, false);
+  assert.match(unknown.error, /legacy|original|published/i);
+});
+
+test('failed legacy refreshes keep the last verified copy, including when another manifest cannot be read', async () => {
+  const [id, file] = LEGACY[1];
+  const world = makeWorld();
+  addLegacyPayloads(world);
+  const offline = controller(world);
+  const initial = await offline.prepare(id, { legacy: true });
+  assert.equal(initial.ok, true, initial.error);
+  const name = initial.cacheName;
+
+  world.scope.bodies.set(`${ORIGIN}/styles.css`, ['body { color: red; }', 'text/css']);
+  world.caches.failNextPut((candidate) => candidate !== name);
+  const quota = await offline.prepare(id, { legacy: true });
+  assert.equal(quota.state, 'failed');
+  assert.match(quota.error, /synthetic quota refusal/);
+  assert.equal(quota.code, undefined, 'a write failure is not reported as an unconfirmed completed copy');
+  assert.ok(world.caches.stores.has(name), 'a failed replacement removed the prior copy');
+
+  world.caches.failNextPut((_candidate, url) => url.endsWith('/ready.json'));
+  const marker = await offline.prepare(id, { legacy: true });
+  assert.equal(marker.state, 'failed');
+  assert.ok(world.caches.stores.has(name), 'a failed completion marker removed the prior copy');
+
+  world.caches.lieOnNextPut((_candidate, url) => url.endsWith('/ready.json'));
+  const missingMarker = await offline.prepare(id, { legacy: true });
+  assert.equal(missingMarker.state, 'failed', 'a missing completion marker was accepted');
+  assert.equal(missingMarker.code, 'unconfirmed');
+  assert.ok(world.caches.stores.has(name), 'an uncommitted replacement removed the prior copy');
+
+  const corrupt = await world.caches.open(`${CONTENT_CACHE_PREFIX}unreadable`);
+  await corrupt.put(`${ORIGIN}${CONTENT_MANIFEST_PATH}`, makeResponse(`${ORIGIN}${CONTENT_MANIFEST_PATH}`, '{'));
+  const failure = await offline.prepare(id, { legacy: true });
+  assert.equal(failure.state, 'failed');
+  assert.match(failure.error, /manifest could not be read/);
+  assert.ok(world.caches.stores.has(name), 'a later cleanup failure removed the prior copy');
+  const saved = await (await world.caches.open(name)).match(`${ORIGIN}/data/${file}`);
+  assert.equal((await saved.json()).id, id);
+  assert.deepEqual(world.storageCalls, []);
+});
+
+test('cancelling one legacy preparation cannot remove a copy completed in another tab', async () => {
+  const [id, file] = LEGACY[0];
+  const world = makeWorld();
+  addLegacyPayloads(world);
+  const open = world.caches.open.bind(world.caches);
+  let release;
+  let reportBlocked;
+  const blocked = new Promise((resolve) => { reportBlocked = resolve; });
+  const wait = new Promise((resolve) => { release = resolve; });
+  let pauseFirstWrite = true;
+  world.caches.open = async (name) => {
+    const cache = await open(name);
+    return {
+      match: cache.match,
+      async put(key, response) {
+        if (pauseFirstWrite && name.startsWith(CONTENT_CACHE_PREFIX)) {
+          pauseFirstWrite = false;
+          reportBlocked();
+          await wait;
+        }
+        return cache.put(key, response);
+      },
+    };
+  };
+  const abort = new AbortController();
+  const first = controller(world).prepare(id, { legacy: true, signal: abort.signal });
+  await blocked;
+  const second = await controller(world).prepare(id, { legacy: true });
+  assert.equal(second.state, 'ready', second.error);
+  abort.abort();
+  release();
+  assert.equal((await first).state, 'cancelled');
+  assert.ok(world.caches.stores.has(second.cacheName), 'cancellation removed the completed copy');
+  const saved = await (await world.caches.open(second.cacheName)).match(`${ORIGIN}/data/${file}`);
+  assert.equal((await saved.json()).id, id);
+
+  const writes = world.caches.calls.put.length;
+  const reused = await controller(world).prepare(id, { legacy: true });
+  assert.equal(reused.cacheName, second.cacheName);
+  assert.equal(world.caches.calls.put.length, writes, 'an unchanged completed copy was rewritten');
+
+  world.scope.bodies.set(`${ORIGIN}/styles.css`, ['body { color: red; }', 'text/css']);
+  let written = 0;
+  let releaseManifests;
+  const manifests = new Promise((resolve) => { releaseManifests = resolve; });
+  let snapshots = 0;
+  let releaseSnapshots;
+  const cleanup = new Promise((resolve) => { releaseSnapshots = resolve; });
+  const keys = world.caches.keys.bind(world.caches);
+  world.caches.keys = async () => {
+    const names = await keys();
+    if (written === 2) {
+      snapshots += 1;
+      if (snapshots === 2) releaseSnapshots();
+      await cleanup;
+    }
+    return names;
+  };
+  world.caches.open = async (name) => {
+    const cache = await open(name);
+    return {
+      match: cache.match,
+      async put(key, response) {
+        await cache.put(key, response);
+        if (key === `${ORIGIN}${CONTENT_MANIFEST_PATH}`) {
+          written += 1;
+          if (written === 2) releaseManifests();
+          await manifests;
+        }
+      },
+    };
+  };
+  const simultaneous = await Promise.all([
+    controller(world).prepare(id, { legacy: true }),
+    controller(world).prepare(id, { legacy: true }),
+  ]);
+  assert.deepEqual(simultaneous.map(({ state }) => state), ['ready', 'ready']);
+  const remaining = await controller(world).readiness(id, { legacy: true });
+  assert.equal(remaining.state, 'ready', 'concurrent cleanup removed both completed copies');
+});
+
+test('a concurrent refresh cannot hide an unfinished verified copy in another tab', async () => {
+  const [id, file] = LEGACY[0];
+  const caches = makeCaches();
+  const newer = makeWorld({ caches });
+  const older = makeWorld({ caches });
+  addLegacyPayloads(newer);
+  addLegacyPayloads(older);
+  newer.scope.bodies.set(`${ORIGIN}/styles.css`, ['body { color: red; }', 'text/css']);
+  const payload = JSON.parse(newer.scope.bodies.get(`${ORIGIN}/data/${file}`)[0]);
+  payload.items[0].title = 'Synthetic updated title';
+  newer.scope.bodies.set(`${ORIGIN}/data/${file}`, [JSON.stringify(payload), 'application/json']);
+
+  const open = caches.open.bind(caches);
+  let release;
+  let reportBlocked;
+  const blocked = new Promise((resolve) => { reportBlocked = resolve; });
+  const wait = new Promise((resolve) => { release = resolve; });
+  let pauseFirstMarker = true;
+  let pausedName;
+  caches.open = async (name) => {
+    const cache = await open(name);
+    return {
+      match: cache.match,
+      async put(key, response) {
+        if (pauseFirstMarker && key === `${ORIGIN}/__mrt_offline_content__/ready.json`) {
+          pauseFirstMarker = false;
+          pausedName = name;
+          reportBlocked();
+          await wait;
+        }
+        return cache.put(key, response);
+      },
+    };
+  };
+  const first = controller(newer).prepare(id, { legacy: true });
+  await blocked;
+  const second = await controller(older).prepare(id, { legacy: true });
+  assert.equal(second.state, 'ready', second.error);
+  assert.ok(caches.stores.has(pausedName), 'another tab removed an unfinished copy');
+  release();
+  const result = await first;
+  assert.equal(result.state, 'failed');
+  assert.match(result.error, /another tab/i);
+  assert.equal(result.code, 'unconfirmed', 'readers are not told another tab caused a failed confirmation');
+  assert.notEqual((await controller(newer).readiness(id, { legacy: true })).state, 'ready');
+  const retry = await controller(newer).prepare(id, { legacy: true });
+  assert.equal(retry.state, 'ready', retry.error);
+  assert.equal((await controller(newer).readiness(id, { legacy: true })).state, 'ready');
+  const listeners = new Map();
+  runInNewContext(readFileSync(new URL('../src/sw.js', import.meta.url), 'utf8'), {
+    URL,
+    self: {
+      location: { origin: ORIGIN }, caches,
+      addEventListener: (name, handler) => listeners.set(name, handler),
+      fetch: async () => { throw new Error('offline'); },
+    },
+  });
+  let response;
+  listeners.get('fetch')({
+    request: { url: `${ORIGIN}/data/${file}`, method: 'GET' },
+    respondWith: (promise) => { response = promise; },
+  });
+  assert.equal((await (await response).json()).items[0].title, 'Synthetic updated title');
+});
+
+test('a failed same-content refresh retains an earlier copy after a temporary cache miss', async () => {
+  const [id, file] = LEGACY[0];
+  const world = makeWorld();
+  addLegacyPayloads(world);
+  const offline = controller(world);
+  const initial = await offline.prepare(id, { legacy: true });
+  assert.equal(initial.state, 'ready', initial.error);
+  const open = world.caches.open.bind(world.caches);
+  let missOnce = true;
+  world.caches.open = async (name) => {
+    const cache = await open(name);
+    return {
+      put: cache.put,
+      async match(key) {
+        if (name === initial.cacheName && key === `${ORIGIN}/data/${file}` && missOnce) {
+          missOnce = false;
+          return null;
+        }
+        return cache.match(key);
+      },
+    };
+  };
+  world.caches.failNextPut(() => true);
+  const failed = await offline.prepare(id, { legacy: true });
+  assert.equal(failed.state, 'failed');
+  assert.ok(world.caches.stores.has(initial.cacheName), 'a failed refresh removed the completed copy');
+  const saved = await (await world.caches.open(initial.cacheName)).match(`${ORIGIN}/data/${file}`);
+  assert.equal((await saved.json()).id, id);
+});
+
+test('an unfinished legacy refresh cannot replace a completed copy for offline readers', async () => {
+  const [id] = LEGACY[0];
+  const world = makeWorld();
+  addLegacyPayloads(world);
+  const offline = controller(world);
+  const initial = await offline.prepare(id, { legacy: true });
+  assert.equal(initial.state, 'ready', initial.error);
+  const originalName = initial.cacheName.replace(/-[0-9a-f]{32}$/, '');
+  assert.notEqual(originalName, initial.cacheName);
+  const originalCache = world.caches.stores.get(initial.cacheName);
+  originalCache.delete(`${ORIGIN}/__mrt_offline_content__/ready.json`);
+  world.caches.stores.delete(initial.cacheName);
+  world.caches.stores.set(originalName, originalCache);
+  assert.equal((await controller(world).readiness(id, { legacy: true })).state, 'ready');
+  world.scope.bodies.set(`${ORIGIN}/styles.css`, ['body { color: red; }', 'text/css']);
+  const open = world.caches.open.bind(world.caches);
+  let release;
+  let reportBlocked;
+  const blocked = new Promise((resolve) => { reportBlocked = resolve; });
+  const wait = new Promise((resolve) => { release = resolve; });
+  world.caches.open = async (name) => {
+    const cache = await open(name);
+    return {
+      match: cache.match,
+      async put(key, response) {
+        await cache.put(key, response);
+        if (key === `${ORIGIN}${CONTENT_MANIFEST_PATH}`) {
+          reportBlocked();
+          await wait;
+        }
+      },
+    };
+  };
+  const pending = offline.prepare(id, { legacy: true });
+  await blocked;
+  let snapshot;
+  try {
+    const readiness = await controller(world).readiness(id, { legacy: true });
+    const listeners = new Map();
+    runInNewContext(readFileSync(new URL('../src/sw.js', import.meta.url), 'utf8'), {
+      URL,
+      self: {
+        location: { origin: ORIGIN }, caches: world.caches,
+        addEventListener: (name, handler) => listeners.set(name, handler),
+        fetch: async () => { throw new Error('offline'); },
+      },
+    });
+    let response;
+    listeners.get('fetch')({
+      request: { url: `${ORIGIN}/styles.css`, method: 'GET' },
+      respondWith: (promise) => { response = promise; },
+    });
+    snapshot = {
+      readiness: readiness.state,
+      css: new TextDecoder().decode(await (await response).arrayBuffer()),
+    };
+  } finally {
+    release();
+    await pending;
+  }
+  assert.deepEqual(snapshot, { readiness: 'stale', css: 'body { color: black; }' });
+});
 
 test('Universe modules are required, verified and served offline without admitting other data modules', async () => {
   const world = makeWorld();
