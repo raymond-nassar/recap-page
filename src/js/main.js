@@ -880,14 +880,25 @@ function paintCoverUrl(img, fb, url, hue, fallbackName = '') {
   // the body class also makes the gate independent of whether the class has been applied yet.
   if (!url || !settings.covers) {
     img.removeAttribute('src');
-    img.hidden = true;
+    hideCoverImage(img, true);
     fb.classList.add('show');
     return;
   }
-  img.hidden = false;
+  hideCoverImage(img, false);
   fb.classList.remove('show');
-  img.onerror = () => { img.hidden = true; fb.classList.add('show'); };
+  img.onerror = () => { hideCoverImage(img, true); fb.classList.add('show'); };
   img.src = url;
+}
+
+// Hidden through the style object rather than the `hidden` attribute. Several page-wide `:has()`
+// rules test `[hidden]`, so every attribute change made the browser match them across the whole
+// page again, and covers that fail to load (offline, or a dead address) fail in their hundreds, one
+// error at a time. In Edge at 390x844 with the processor slowed four times and covers unreachable,
+// a trace of opening the 2,144-comic Spider-Man list showed one such whole-page pass per failed
+// cover; with this and the two style changes for the same list (#1522), it took 5.7s, not 8.7 to 10.7s.
+function hideCoverImage(img, hide) {
+  if (hide) img.style.setProperty('display', 'none');
+  else img.style.removeProperty('display');
 }
 
 function applyCoversSetting() {

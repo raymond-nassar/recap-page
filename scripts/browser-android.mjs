@@ -4288,7 +4288,7 @@ async function homeContinueCheck(page, label, viewport) {
   const cardAt = tree.findIndex((node) => node.role === 'heading' && node.name === cardName);
   const noticeAt = tree.findIndex((node) => node.name === notice.text);
   check(cardAt >= 0 && noticeAt >= 0 && (viewport.desktop ? noticeAt < cardAt : cardAt < noticeAt)
-    && notice.className === 'notice notice-warn' && notice.text.startsWith('Marvel Unlimited ends'),
+    && notice.className === 'notice notice-warn' && notice.text.startsWith('Read now opens comics'),
   `${name}: the accessibility tree reads ${viewport.desktop ? 'the closure notice, then Continue reading' : 'Continue reading, then the closure notice'} ${JSON.stringify({ cardAt, noticeAt, ...notice })}`);
   // #998: a word in the list's name longer than the line overflowed the heading and widened the page,
   // "presentation" to a 479px scroll width in a 317px heading at iOS's largest text in Edge. The

@@ -628,7 +628,7 @@ export const completionRecommendations = {
     await page.emulateMediaFeatures([]);
     await page.$eval('#list-suggestions img', (image) => image.dispatchEvent(new Event('error')));
     t.check('a failed cover uses the existing typographic fallback without changing reading data',
-      await page.$eval('#list-suggestions .recommendation-cover', (node) => node.querySelector('img').hidden
+      await page.$eval('#list-suggestions .recommendation-cover', (node) => getComputedStyle(node.querySelector('img')).display === 'none'
         && node.querySelector('.cover-fallback').classList.contains('show'))
       && await raw(page) === allRead && !(await history(page)).records.length);
     t.check('recommendations have no uncaught browser errors', page.__completionErrors.length === 0, page.__completionErrors.join('; '));

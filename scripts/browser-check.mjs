@@ -6138,7 +6138,7 @@ const SCENARIOS = [
             act: button.dataset.act,
           })),
           featureImageSrc: featureImage?.getAttribute('src') ?? null,
-          featureImageHidden: featureImage?.hidden ?? null,
+          featureImageHidden: featureImage instanceof HTMLImageElement && getComputedStyle(featureImage).display === 'none',
           featureFallbackDisplay: featureFallback ? getComputedStyle(featureFallback).display : '',
           oldPlainAction: Boolean(document.querySelector('#btn-modern-timeline-feature')),
           cards: cards.length,
@@ -6598,7 +6598,7 @@ const SCENARIOS = [
             act: button.dataset.act,
           })),
           imageSrc: image?.getAttribute('src') ?? null,
-          imageHidden: image?.hidden ?? null,
+          imageHidden: image instanceof HTMLImageElement && getComputedStyle(image).display === 'none',
           fallbackDisplay: fallback ? getComputedStyle(fallback).display : '',
           inResults: Boolean(document.querySelector(
             '#age-marvel-knights-heroes-return-results [data-story="list:setup-to-modern-timeline"]',
