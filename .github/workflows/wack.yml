@@ -24,6 +24,11 @@ on:
         options: [console-wack, handles, f01-smoke, ordinary-browser, ordinary-browser-context-isolation, ordinary-browser-download-completion, ordinary-browser-export-acceptance, ordinary-browser-recovery-completion, ordinary-browser-ratings-acceptance, ordinary-browser-interaction-acceptance]
         required: false
         default: console-wack
+      guard_timing:
+        description: Measure the Windows mode guards without running the browser
+        type: boolean
+        required: false
+        default: false
   pull_request:
     branches: [main]
     paths:
@@ -1067,7 +1072,7 @@ jobs:
           }
 
   browser-diagnostic:
-    name: Ordinary browser diagnostic (not release qualification)
+    name: ${{ inputs.guard_timing == true && 'Windows guard timing (not release qualification)' || 'Ordinary browser diagnostic (not release qualification)' }}
     if: ${{ github.event_name == 'workflow_dispatch' && (inputs.diagnostic_target == 'ordinary-browser' || inputs.diagnostic_target == 'ordinary-browser-context-isolation' || inputs.diagnostic_target == 'ordinary-browser-download-completion' || inputs.diagnostic_target == 'ordinary-browser-export-acceptance' || inputs.diagnostic_target == 'ordinary-browser-recovery-completion' || inputs.diagnostic_target == 'ordinary-browser-ratings-acceptance' || inputs.diagnostic_target == 'ordinary-browser-interaction-acceptance') }}
     runs-on: windows-2022
     timeout-minutes: 60
@@ -1095,7 +1100,15 @@ jobs:
         timeout-minutes: 4
         with:
           node-version: '24'
+      - name: Measure the Windows guard fixture without qualification
+        if: ${{ inputs.guard_timing == true }}
+        timeout-minutes: 2
+        shell: pwsh
+        run: |
+          node --test '--test-name-pattern=^native.producer.outputs.and.job.deadlines.bind.every.package.consumer$' scripts\diagnose-wack-guard.mjs
+          if ($LASTEXITCODE -ne 0) { throw 'Windows guard timing failed.' }
       - name: Install the isolated locked browser driver
+        if: ${{ inputs.guard_timing != true }}
         id: browser-driver
         timeout-minutes: 4
         shell: pwsh
@@ -1108,6 +1121,7 @@ jobs:
           if (-not (Test-Path -LiteralPath $entry -PathType Leaf)) { throw 'The diagnostic browser driver is missing.' }
           "MRT_PUPPETEER=$root" >> $env:GITHUB_ENV
       - name: Record nonqualifying source and driver identity
+        if: ${{ inputs.guard_timing != true }}
         timeout-minutes: 2
         shell: pwsh
         env:
@@ -1139,6 +1153,7 @@ jobs:
           '@ | node --input-type=module
           if ($LASTEXITCODE -ne 0) { throw 'Diagnostic identity could not be established.' }
       - name: Run the ordinary browser suite without qualification
+        if: ${{ inputs.guard_timing != true }}
         timeout-minutes: 40
         shell: pwsh
         env:
