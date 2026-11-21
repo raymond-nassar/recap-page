@@ -9,6 +9,7 @@ import { wolverineCorrectionItemDelta } from './wolverine-correction-history.mjs
 import { thorCorrectionItemDelta } from './reading-list-correction-history.mjs';
 import { ultimateSelectionDelta, ultimateSelectionEmptyDelta } from '../../scripts/lib/ultimate-spider-man-selection.mjs';
 import { xmenFirstClassDelta } from './xmen-first-class-history.mjs';
+import { ultimateIntroCorrectionDelta } from './ultimate-marvel-intro-history.mjs';
 
 const { captureSha256, ...baseline } = JSON.parse(readFileSync(
   new URL('../fixtures/reading-library-baseline.json', import.meta.url), 'utf8',
@@ -40,8 +41,8 @@ export const registeredCuratedGuides = curatedGuideRegistry.guides.map((entry) =
     'id,insertionAnchor,rowCount', 'id,insertionAnchor,placeholderRowCount,rowCount',
     'id,insertionAnchor,rowCount,surface', 'id,insertionAnchor,placeholderRowCount,rowCount,surface',
   ].includes(keys.join(',')));
-  assert.ok(!Object.hasOwn(entry, 'surface') || ['modern-timeline', 'new-to-comics'].includes(entry.surface),
-    'A curated addition may explicitly join Modern Timeline or the newcomer guide.');
+  assert.ok(!Object.hasOwn(entry, 'surface') || ['modern-timeline', 'new-to-comics', 'creators'].includes(entry.surface),
+    'A curated addition may explicitly join Modern Timeline, the newcomer guide or Creators.');
   assert.ok(typeof entry.id === 'string' && entry.id);
   assert.ok(Number.isInteger(entry.rowCount) && entry.rowCount > 0);
   assert.ok(!Object.hasOwn(entry, 'placeholderRowCount')
@@ -85,6 +86,9 @@ const curatedEventCount = registeredCuratedGuides
   .filter((guide) => guide.surface === 'modern-timeline').length;
 const curatedNewcomerCount = registeredCuratedGuides
   .filter((guide) => guide.surface === 'new-to-comics').length;
+// Creator-run lists stay in the retained Storylines projection, which keeps every creator run.
+export const registeredCreatorGuides = registeredCuratedGuides
+  .filter((guide) => guide.surface === 'creators');
 export const registeredYoungReaderContracts = registeredOwnerAdditionContracts
   .filter((contract) => contract.surface === 'young-readers');
 const rosterAdditionCount = registeredOwnerAdditionIds.length + registeredCuratedGuides.length;
@@ -95,17 +99,17 @@ export const currentReadingCensus = Object.freeze({
   peers: new Set([...baseline.sourceIds, ...baseline.catalogIds]).size + rosterAdditionCount - 2,
   mcu: baseline.mcuEntries.length + mcuContracts.length - 1,
   // Retained internal classification, not a browse screen; includes the four CBRO additions.
-  storylines: 50 + curatedNewcomerCount,
+  storylines: 50 + curatedNewcomerCount + registeredCreatorGuides.length,
   modernTimeline: 148 + registeredEventContracts.length + curatedEventCount - 1,
   modernTimelineStories: 144 + registeredEventContracts.length + curatedEventCount - 1,
   complete: baseline.payloadCounts.complete + addedRows - addedPlaceholderRows + spiderManSelectionItemDelta
     + amazingSpiderManSupplementDelta + wolverineCorrectionItemDelta + thorCorrectionItemDelta
-    + ultimateSelectionDelta - ultimateSelectionEmptyDelta + xmenFirstClassDelta - 2
+    + ultimateSelectionDelta - ultimateSelectionEmptyDelta + xmenFirstClassDelta + ultimateIntroCorrectionDelta - 2
     + identityRevisions.guides.filter((entry) => entry.placeholderReplacement)
       .reduce((total, entry) => total + entry.issueIds.length, 0),
   totalItems: baseline.payloadCounts.total + addedRows + spiderManSelectionItemDelta
     + amazingSpiderManSupplementDelta + wolverineCorrectionItemDelta + thorCorrectionItemDelta
-    + ultimateSelectionDelta + xmenFirstClassDelta - 2,
+    + ultimateSelectionDelta + xmenFirstClassDelta + ultimateIntroCorrectionDelta - 2,
   itemFiles: 297 + rosterAdditionCount,
 });
 

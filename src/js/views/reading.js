@@ -40,6 +40,7 @@ import {
 } from './shared/collected-editions.js';
 import { gcdDetailsCredit, hasGcdDetails } from './shared/details-credit.js';
 import { createReadingOptions, readingChoices } from './shared/reading-options.js';
+import { booksLeaveOut } from '../lib/readingOrderChoices.js';
 
 export const RING_CIRCUMFERENCE = 119.4; // 2πr for r=19, matching the SVG in index.html
 const UNDO_DELETE = 'undo-delete';
@@ -233,6 +234,18 @@ export function createReadingView({
     return heroOptions;
   }
 
+  // Approved by the owner (2026-11-19): a comic only a collected book holds is named here rather
+  // than added, so both reading orders keep exactly the same comics.
+  function renderBookNote(list) {
+    const note = $('#order-book-note');
+    const missing = list ? booksLeaveOut(list) : [];
+    note.textContent = missing.length
+      ? `The collected books also hold comics this list leaves out: ${missing.join(', ')}. Switching to book by book does not add them.`
+      : '';
+    note.hidden = !missing.length;
+    return missing.length > 0;
+  }
+
   function renderAbout({ arrival = false, open } = {}) {
     const lists = getState().lists;
     const id = activeListId();
@@ -248,6 +261,7 @@ export function createReadingView({
     const changed = aboutListId !== list?.id || aboutCatalogId !== list?.catalogId;
     description.textContent = list?.description || '';
     description.hidden = !list?.description;
+    const hasBookNote = renderBookNote(list);
     if (changed) {
       aboutListId = list?.id ?? null;
       aboutCatalogId = list?.catalogId ?? null;
@@ -259,7 +273,7 @@ export function createReadingView({
     }
     if (typeof open === 'boolean') disclosure.open = open;
     else if (changed || arrival) disclosure.open = true;
-    disclosure.hidden = !list?.description && !aboutHasSource;
+    disclosure.hidden = !list?.description && !aboutHasSource && !hasBookNote;
     if (!list?.catalogId || !loadCatalog || (!changed && !arrival)) return;
     if (aboutRequest?.pending) return;
 
@@ -301,8 +315,8 @@ export function createReadingView({
       source.replaceChildren(...content);
       showVisit(visitButton(el, entry, createIcon));
       aboutHasSource = content.length > 0;
-      disclosure.hidden = !getState().lists[list.id]?.description && !aboutHasSource;
-      // Retry asked for the source, so focus lands on the button that now leads to it.
+      disclosure.hidden = !getState().lists[list.id]?.description && !aboutHasSource
+        && !booksLeaveOut(getState().lists[list.id]).length;      // Retry asked for the source, so focus lands on the button that now leads to it.
       if (held) visit.querySelector('a').focus();
     }
     request.ready = load();
@@ -349,7 +363,7 @@ export function createReadingView({
     if (phoneOverview.matches) {
       overview.append(...moved);
     } else {
-      $('#view-read > .head > .head-left').append(sub, visit, description);
+      $('#view-read > .head > .head-left').append(sub, visit, $('#reading-order'), description);
       $('#view-read > .head > .headright').append(ring);
       $('#hero-reader-temporary').after(progress);
       $('#reading-body > .list-work').after(note);

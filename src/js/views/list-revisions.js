@@ -1,4 +1,14 @@
-import { compareListOrders, earlierPublishedOrders, matchesEarlierPublishedOrder, publishedRevisionItems } from '../lib/listCorrection.js';
+import { compareListOrders, earlierPublishedOrders, matchesEarlierPublishedOrder, publishedRevisionItems, readingOrderArrangement } from '../lib/listCorrection.js';
+import { currentReadingOrder, readingOrderChoiceFor } from '../lib/readingOrderChoices.js';
+
+// A list switched to book by book compares against the published order arranged the same way, or a
+// check for updates would quietly put it back issue by issue under its book headings.
+function inReadingOrder(list, items) {
+  const choice = readingOrderChoiceFor(list);
+  if (!choice || currentReadingOrder(list, choice) !== 'book') return items;
+  const byId = new Map(items.map((item) => [item.issueId, item]));
+  return readingOrderArrangement({ itemIds: [...byId.keys()] }, choice, 'book').itemIds.map((id) => byId.get(id));
+}
 
 export function createListRevisions({ $, el, getState, activeListId, isCurrent, canSave, getDatasetEpoch, loadCatalog, loadOrder, askConfirm, saveRevision }) {
   let request = null;
@@ -100,7 +110,7 @@ export function createListRevisions({ $, el, getState, activeListId, isCurrent, 
     try {
       order = await loadOrder(entry.file, { signal: held.controller.signal });
       if (!valid(held)) return;
-      const items = publishedRevisionItems(entry, order);
+      const items = inReadingOrder(currentList(), publishedRevisionItems(entry, order));
       const difference = compareListOrders(currentList().itemIds, items.map(({ issueId }) => issueId));
       const added = difference.added.length;
       if (!added && !difference.reordered) {
@@ -122,8 +132,8 @@ export function createListRevisions({ $, el, getState, activeListId, isCurrent, 
       let result;
       try {
         result = saveRevision(held.id, held.signature, items);
-      } catch (error) {
-        status(`The update could not be verified (${error.message}). Reopen the app to check your list.`);
+      } catch {
+        status('We couldn\'t confirm the list update. Reopen the app to check your list.');
         return;
       } finally {
         held.applying = false;

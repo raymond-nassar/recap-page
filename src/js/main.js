@@ -60,7 +60,9 @@ import { createFeedback, watchNoticeOverflow } from './views/shared/feedback.js'
 import { createIssueView } from './views/issue.js';
 import { createReadingView, synopsisFallback } from './views/reading.js';
 import { createListRevisions } from './views/list-revisions.js';
+import { createReadingOrderSwitch } from './views/reading-order-switch.js';
 import { isListRevisionVerificationPaused, saveListRevision } from './lib/listRevisionSave.js';
+import { switchReadingOrder } from './lib/listCorrection.js';
 import { createBulkReadView } from './views/bulk-read.js';
 import { createHomeView } from './views/home.js';
 import { createCreatorsView } from './views/creators.js';
@@ -1879,6 +1881,7 @@ function showView(next, { focus = true, push = false, at = null, capturePosition
   view = next;
   addView.enter(next);
   listRevisions.render();
+  readingOrderSwitch.render();
   if (next === 'add' || next === 'add-search') void searchListsView.update($('#search-q')?.value ?? '');
   for (const name of VIEWS) {
     const panel = $(`#view-${name}`);
@@ -2967,6 +2970,7 @@ function renderCompleteRestore(state) {
   completeBackupView.render(state);
   bulkReadView.render();
   listRevisions.render();
+  readingOrderSwitch.render();
   if (state.phase === 'paused' && state.message && state.message !== RESTORE_MESSAGES.working) {
     notify('#save-report', state.message, 'warn', COMPLETE_RESTORE_NOTICE);
   } else clearNotice(COMPLETE_RESTORE_NOTICE);
@@ -3504,6 +3508,7 @@ function renderAll() {
   renderRail();
   readingView.render();
   listRevisions.render();
+  readingOrderSwitch.render();
   completionView.render();
   homeView.render();
   renderLibraryHub();
@@ -3594,6 +3599,7 @@ export function boot() {
   recoveryView.wire();
   readingView.wire();
   listRevisions.wire();
+  readingOrderSwitch.wire();
   $('#order-desc').addEventListener('toggle', rememberAbout);
   for (const shelf of CATALOG_SHELVES) {
     if (VIEWS.includes(shelf.key)) catalogView.wire(shelf.key);
@@ -3893,6 +3899,13 @@ const listRevisions = createListRevisions({
   saveRevision: (id, signature, items) => saveListRevision(store, id, signature, items),
 });
 
+const readingOrderSwitch = createReadingOrderSwitch({
+  $, getState: () => store.state, activeListId, isCurrent: () => view === 'read',
+  canSave: () => completeRestore.writable() && !store.blocked && Boolean(store.storage),
+  getDatasetEpoch: () => temporaryReaderLinks.epoch, askConfirm,
+  saveSwitch: (id, signature, order) => saveListRevision(store, id, signature, order, switchReadingOrder),
+});
+
 const readingView = createReadingView({
   $,
   activeListId,
@@ -3967,6 +3980,7 @@ const readerLinkView = createReaderLinkView({
   announce,
   onChange: () => {
     listRevisions.render();
+    readingOrderSwitch.render();
     readingView.refreshReader();
     homeView.refreshReader();
     issueView.refreshReader();

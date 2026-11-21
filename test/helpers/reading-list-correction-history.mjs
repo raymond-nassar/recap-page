@@ -5,6 +5,10 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { READING_ORDER_REVISIONS } from '../../src/js/lib/readingOrderRevisions.js';
+import {
+  beforeUltimateIntroCatalogEntry, beforeUltimateIntroEntry, beforeUltimateIntroIssueIds,
+  beforeUltimateIntroPayloadText,
+} from './ultimate-marvel-intro-history.mjs';
 
 const root = fileURLToPath(new URL('../..', import.meta.url));
 const read = (file) => JSON.parse(readFileSync(path.join(root, file), 'utf8'));
@@ -96,6 +100,7 @@ export function beforeThorCorrectionIssueIds(ids) {
 }
 
 export function beforeReadingListCorrectionEntry(entry) {
+  entry = beforeUltimateIntroEntry(entry);
   entry = beforeHickmanInterleaveEntry(entry);
   if (entry.id !== thorCorrection.id) return entry;
   assert.ok([131, 144].includes(entry.expect), 'Unrecorded Thor expected count.');
@@ -105,6 +110,7 @@ export function beforeReadingListCorrectionEntry(entry) {
 export function beforeReadingListCorrectionOrders(orders) {
   return orders.map((order) => {
     const id = order.id ?? order.orderId;
+    if (id === 'ultimate-marvel-intro') return { ...order, issueIds: beforeUltimateIntroIssueIds(order.issueIds) };
     if (id === thorCorrection.id) return { ...order, issueIds: beforeThorCorrectionIssueIds(order.issueIds) };
     if (id === hickman.id) return { ...order, issueIds: beforeHickmanInterleaveIssueIds(order.issueIds) };
     return order;
@@ -112,6 +118,7 @@ export function beforeReadingListCorrectionOrders(orders) {
 }
 
 export function beforeReadingListCorrectionCatalogEntry(entry) {
+  entry = beforeUltimateIntroCatalogEntry(entry);
   if (entry.id === hickman.id) {
     const { catalog } = hickmanBaseline();
     assert.equal(entry.count, catalog.count, 'The Hickman interleave keeps every issue.');
@@ -124,6 +131,7 @@ export function beforeReadingListCorrectionCatalogEntry(entry) {
 }
 
 export function beforeReadingListCorrectionPayloadText(file, text) {
+  text = beforeUltimateIntroPayloadText(path.basename(file), text);
   if (path.basename(file) === 'thor_best_of.json') {
     const payload = JSON.parse(text);
     assert.ok([thorCorrection.priorPayloadSha256, thorCorrection.correctedPayloadSha256].includes(digest(payload)),

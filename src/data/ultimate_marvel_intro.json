@@ -1,14 +1,14 @@
 {
   "id": "ultimate-marvel-intro",
   "name": "Ultimate Marvel: Intro to the Ultimate U",
-  "description": "Earth-1610 gives Spider-Man, the X-Men, the Ultimates and the Fantastic Four fresh starts, building toward Ultimate War. Brian Michael Bendis's Ultimate Spider-Man runs alongside Mark Millar's Ultimate X-Men and Ultimates, with Ultimate Marvel Team-Up, Daredevil and Elektra, and Ultimate Iron Man along the way. The selection is not in publication order and omits an entry marked out of continuity.",
+  "description": "Earth-1610 gives Spider-Man, the X-Men, the Ultimates and the Fantastic Four fresh starts, building toward Ultimate War. Brian Michael Bendis's Ultimate Spider-Man runs alongside Mark Millar's Ultimate X-Men and Ultimates, with Ultimate Marvel Team-Up, Daredevil and Elektra, and Ultimate Iron Man along the way. The selection is not in publication order.",
   "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/ultimate-marvel-universe-reading-order/",
   "sourceSection": "Intro to the Ultimate U",
   "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
   "sourceLicense": null,
-  "generatedAt": "2026-08-26T05:12:20.429Z",
+  "generatedAt": "2026-11-20T02:44:21.601Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 121,
+  "count": 122,
   "collections": 0,
   "placeholders": 0,
   "unresolved": [],
@@ -3290,6 +3290,33 @@
         },
         {
           "name": "Mark Millar",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15783,
+      "title": "Ultimate Marvel Team-Up (2001) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/15783/ultimate_marvel_team-up_2001_9",
+      "seriesId": 2311,
+      "seriesName": "Ultimate Marvel Team-Up (2001 - 2002)",
+      "onSale": "2001-12-01T00:00:00+0000",
+      "mu": "2001-12-01T00:00:00+0000",
+      "digitalId": 3541,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/5aa67d27d57e2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mahfood",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
           "role": "writer"
         }
       ]

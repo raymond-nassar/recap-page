@@ -56,16 +56,16 @@ export function createBulkReadView({
     let error;
     try {
       if (canonicalReaderValue(store.storage.getItem(KEY), state, store.seenToken)) return { ok: true, state };
-      error = 'Saved progress did not match the requested change.';
-    } catch (failure) {
-      error = `Saved progress could not be checked (${failure.message}).`;
+      error = 'Saved progress did not match the requested change. The outcome could not be verified. Review your saved progress before trying again.';
+    } catch {
+      error = 'We couldn\'t confirm whether your progress was saved. Review your saved progress before trying again.';
     }
     // load() does not emit onChange. Repaint the adopted value or recovery state, not the
     // optimistic result that update() displayed before this verification failed.
     store.load();
     store.lastUpdateOk = false;
     reconcile();
-    return { ok: false, error: `${error} The outcome could not be verified. Review your saved progress before trying again.` };
+    return { ok: false, error };
   }
 
   function offer(record, failed = false, error = null) {

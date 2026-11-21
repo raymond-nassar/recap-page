@@ -33,8 +33,10 @@ Their attribution, source records and modification notices accompany the data.
 
 The MIT grant above also does not cover the Grand Comics Database-derived release
 dates and credits in scripts/data/owner-gcd/issues.json,
-scripts/data/owner-mappings/avengers-armageddon.json and
-src/data/avengers_armageddon.json. Those files are adaptations of Grand Comics
+scripts/data/owner-mappings/avengers-armageddon.json,
+scripts/data/curated-source-ledgers/chip-zdarsky-reading-list.json,
+src/data/avengers_armageddon.json and src/data/chip_zdarsky_reading_list.json.
+Those files are adaptations of Grand Comics
 Database data (https://www.comics.org/) licensed under Creative Commons
 Attribution-ShareAlike 4.0 International:
 https://creativecommons.org/licenses/by-sa/4.0/
@@ -44,3 +46,5 @@ date and writer, penciler and cover artist credits. Cover images, prose and note
 never recorded. The records file carries the attribution and each record's source
 address and retrieval date, the mapping names the source address beside each field it
 supplies, and the app credits the Grand Comics Database on each comic it supplies.
+The Chip Zdarsky list reuses nine of those records, and its source ledger includes
+writer counts derived from their credits.
