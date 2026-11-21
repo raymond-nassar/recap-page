@@ -1381,7 +1381,7 @@ async function storyTypesDropdowns(page, profile, label) {
   assert.equal(starters.length, 10, 'All ten starting lists are in the bundled catalog');
   const expectedStarterIds = [
     'spider-man-best-of', 'iron-man-reading-order', 'captain-america-best-of', 'planet-hulk',
-    'thor-best-of', 'marvel-knights-to-planet-x-10', 'xmen-claremont', 'essential-avengers',
+    'thor-best-of', 'marvel-knights-to-planet-x-10', 'xmen-claremont-era', 'essential-avengers',
     'black-panther-reading-order', 'deadpool-best-of',
   ].map((id) => `list:${id}`);
   const starterTitles = starters.map((story) => story.lists[0].name);

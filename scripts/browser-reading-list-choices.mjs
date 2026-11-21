@@ -14,7 +14,7 @@ const eligibleEvents = [
   'secret-invasion', 'secret-invasion-essential',
 ];
 const wanted = new Set([
-  ...retainedOrders, ...eligibleEvents, 'xmen-claremont', 'xmen-claremont-complete',
+  ...retainedOrders, ...eligibleEvents, 'xmen-silver-age', 'xmen-claremont-era',
 ]);
 const lists = catalog.lists.filter(({ id }) => wanted.has(id));
 const expectedGenres = new Set(lists

@@ -31,7 +31,7 @@ export const catalogCardProfiles = [
   })),
   { id: 'M10', width: 360, height: 800, route: 'age-silver', list: AMAZING, theme: 'dark', textScale: 1.5 },
   { id: 'M11', width: 320, height: 740, route: 'catalog', theme: 'dark', textScale: 2 },
-  { id: 'M12', width: 412, height: 915, route: 'spotlights', list: 'xmen-claremont', theme: 'light', textScale: 2 },
+  { id: 'M12', width: 412, height: 915, route: 'spotlights', list: 'xmen-claremont-era', theme: 'light', textScale: 2 },
   { id: 'M13', width: 360, height: 800, route: 'genres', list: 'hickman-minimal', theme: 'dark', textScale: 1.5 },
   { id: 'M14', width: 800, height: 360, route: 'age-silver', list: AMAZING, theme: 'light' },
   { id: 'M15', width: 1280, height: 900, route: 'catalog', theme: 'light' },
@@ -767,8 +767,8 @@ export async function catalogCardReadability({
   }
 
   const selectors = [primary];
-  if (profile.route === 'age-silver' && compact && await page.$(selectorFor('xmen-claremont'))) {
-    selectors.push(selectorFor('xmen-claremont'));
+  if (profile.route === 'age-silver' && compact && await page.$(selectorFor('xmen-silver-age'))) {
+    selectors.push(selectorFor('xmen-silver-age'));
   }
   if (profile.route === 'genres' && profile.list !== 'hickman-minimal') selectors.push(selectorFor('hickman-minimal'));
   if (profile.id === 'M11') selectors.push(
