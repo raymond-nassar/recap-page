@@ -1558,13 +1558,15 @@ async function storyTypesDropdowns(page, profile, label) {
     return { id: node.id, color: style.color, background: style.backgroundColor,
       adjustment: style.forcedColorAdjust };
   }));
+  const expectedSelects = JSON.stringify([
+    'catalog-path', 'catalog-path-jump', 'genres-tone', 'genres-type',
+    'opt-theme', 'rated-character', 'rated-min', 'rated-sort', 'universes-sort',
+  ]);
+  const measuredSelects = (colors) => JSON.stringify(colors.map(({ id }) => id).sort());
   for (const theme of ['dark', 'light']) {
     await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
     const colors = await readColors();
-    check(JSON.stringify(colors.map(({ id }) => id).sort()) === JSON.stringify([
-      'catalog-path', 'catalog-path-jump', 'genres-tone', 'genres-type',
-      'opt-theme', 'rated-character', 'rated-min', 'rated-sort',
-    ]), `${label}: every shared styled select is measured in ${theme}`);
+    check(measuredSelects(colors) === expectedSelects, `${label}: every shared styled select is measured in ${theme}`);
     for (const entry of colors) {
       const channels = (color) => color.match(/[\d.]+/g).map(Number);
       const measured = ratio(channels(entry.color), channels(entry.background));
@@ -1584,7 +1586,7 @@ async function storyTypesDropdowns(page, profile, label) {
     return colors;
   });
   const forced = await readColors();
-  check(forced.length === 8 && forced.every((entry) => entry.adjustment === 'auto'
+  check(measuredSelects(forced) === expectedSelects && forced.every((entry) => entry.adjustment === 'auto'
     && entry.color === system.color && entry.background === system.background),
   `${label}: all shared selects retain system FieldText/Field in forced colors ${JSON.stringify({ forced, system })}`);
   await cdp.send('Emulation.setEmulatedMedia', { features: [{ name: 'forced-colors', value: 'none' }] });
