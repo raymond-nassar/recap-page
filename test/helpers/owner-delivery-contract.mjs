@@ -28,6 +28,7 @@ import { sourceCreditRevisions } from '../../scripts/lib/source-credit-revisions
 import { recordedEditorialDigest, withRetiredOrders } from './mcu-editorial-history.mjs';
 import { beforeIdentityEntry, beforeIdentityJson, beforeIdentityOrders, beforeIdentityText, identityRevisions } from './owner-identity-history.mjs';
 import { assertCbhBaselinePayload } from '../../scripts/lib/owner-cbh-baseline.mjs';
+import { beforeUltimateIntroEntry, beforeUltimateIntroIssueIds } from './ultimate-marvel-intro-history.mjs';
 import {
   beforeAmazingSpiderManSupplementManifest, beforeAmazingSpiderManSupplementOrders,
 } from './amazing-spider-man-history.mjs';
@@ -203,17 +204,29 @@ export async function assertOwnerDeliveryContract(contract, {
     }
     return peer;
   }));
-  const wolverineLibrary = wolverineLibraryAtReview(
-    recordedOwnerManifest(library.manifest, recordedIds, { candidateId: id, peerIds }),
-    withRetiredOrders(library.orders.filter((row) =>
-      recordedIds.has(row.orderId) && !peerIds.includes(row.orderId)), recordedIds),
-    report.libraryDigest,
-  );
-  const { manifest: liveRecordedManifest, orders: liveRecordedOrders } = wolverineLibrary;
+  const reviewedManifest = recordedOwnerManifest(library.manifest, recordedIds, { candidateId: id, peerIds });
+  const reviewedOrders = withRetiredOrders(library.orders.filter((row) =>
+    recordedIds.has(row.orderId) && !peerIds.includes(row.orderId)), recordedIds);
   const vectorsFor = (orders) => orders.map((row) => ({ id: row.orderId, issueIds: row.issueIds.map(String) }));
-  const liveRecordedDigest = libraryDigestFor(liveRecordedManifest, vectorsFor(liveRecordedOrders));
-  const descriptionRecordedManifest = descriptionRevisions.undoManifest(liveRecordedManifest);
-  const descriptionRecordedDigest = libraryDigestFor(descriptionRecordedManifest, vectorsFor(liveRecordedOrders));
+  const reviewedLibrary = (manifest, orders) => {
+    const at = wolverineLibraryAtReview(manifest, orders, report.libraryDigest);
+    const live = libraryDigestFor(at.manifest, vectorsFor(at.orders));
+    const undone = descriptionRevisions.undoManifest(at.manifest);
+    return { at, live, undone, undoneDigest: libraryDigestFor(undone, vectorsFor(at.orders)) };
+  };
+  // Every review recorded before Team-Up #9 joined the Intro saw the 121-comic Intro. Today's Intro
+  // is used only when the report's own digest names it, as a review made after the change would.
+  const today = reviewedLibrary(reviewedManifest, reviewedOrders);
+  const review = [today.live, today.undoneDigest].includes(report.libraryDigest) ? today : reviewedLibrary(
+    { ...reviewedManifest, lists: reviewedManifest.lists.map(beforeUltimateIntroEntry) },
+    reviewedOrders.map((row) => (row.orderId === 'ultimate-marvel-intro'
+      ? { ...row, issueIds: beforeUltimateIntroIssueIds(row.issueIds) } : row)),
+  );
+  const wolverineLibrary = review.at;
+  const { manifest: liveRecordedManifest, orders: liveRecordedOrders } = wolverineLibrary;
+  const liveRecordedDigest = review.live;
+  const descriptionRecordedManifest = review.undone;
+  const descriptionRecordedDigest = review.undoneDigest;
   const expandedReview = [liveRecordedDigest, descriptionRecordedDigest].includes(report.libraryDigest);
   const recordedOrders = expandedReview ? liveRecordedOrders : beforeAmazingSpiderManSupplementOrders(liveRecordedOrders);
   const recordedManifest = expandedReview

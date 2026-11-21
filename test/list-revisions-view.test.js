@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createListRevisions } from '../src/js/views/list-revisions.js';
 import { READING_ORDER_REVISIONS } from '../src/js/lib/readingOrderRevisions.js';
+import { bookOrderOf, READING_ORDER_CHOICES } from '../src/js/lib/readingOrderChoices.js';
 import { firstReleasedWolverineIssueOrders } from './helpers/wolverine-correction-history.mjs';
 
 function fixture({ catalogId = null, itemIds = [1], ask = null, loadOrder = null, save = null } = {}) {
@@ -480,6 +481,22 @@ test('background state updates keep an unchanged list review and chooser usable'
     chooser.get('list-revision-choose').click();
     await settle();
     assert.ok(chooser.getQuestion());
+  } finally {
+    delete globalThis.document;
+  }
+});
+
+test('a list switched to book by book is already up to date with its published order', async () => {
+  try {
+    const [choice] = READING_ORDER_CHOICES;
+    const order = { id: choice.catalogId, count: choice.issueOrder.length, items: choice.issueOrder.map((issueId) => ({ issueId })) };
+    const f = fixture({ catalogId: choice.catalogId, itemIds: bookOrderOf(choice), loadOrder: async () => order });
+    f.get('list-revision-check').click();
+    await settle();
+    await settle();
+    assert.equal(f.getQuestion(), undefined);
+    assert.equal(f.get('list-revision-status').textContent, 'Your list already includes this published order. Your list is unchanged.');
+    assert.equal(f.getSaves(), 0);
   } finally {
     delete globalThis.document;
   }

@@ -1,5 +1,6 @@
 import { addIssuesToList, exportBackup, MAX_BACKUP_BYTES, MAX_ISSUES, validateBackup } from './model.js';
 import { READING_ORDER_REVISIONS } from './readingOrderRevisions.js';
+import { bookNamesOf, currentReadingOrder, orderIdsFor, readingOrderChoiceFor } from './readingOrderChoices.js';
 
 function checkedOrder(ids, label) {
   if (!Array.isArray(ids) || ids.length > MAX_ISSUES || (label === 'published' && !ids.length)) {
@@ -85,11 +86,75 @@ export function revisedOrderKeepingExtras(saved, revised) {
   return result.concat(trailing.reverse());
 }
 
-export function applyListRevision(state, listId, expectedList, items) {
+function checkedCandidate(candidate) {
+  const backup = exportBackup(candidate);
+  const checked = validateBackup(backup);
+  if (!checked.ok) throw new Error(`The updated list cannot be backed up: ${checked.errors.join(' ')}`);
+  const text = JSON.stringify(backup, null, 2);
+  if (text.length > MAX_BACKUP_BYTES || new TextEncoder().encode(text).length > MAX_BACKUP_BYTES) {
+    throw Object.assign(new Error('The updated reading data exceeds the backup limit. Nothing was changed.'), { reason: 'too-large' });
+  }
+  return candidate;
+}
+
+function heldList(state, listId, expectedList) {
   const list = Object.hasOwn(state.lists, listId) ? state.lists[listId] : null;
   if (!list || typeof expectedList !== 'string' || JSON.stringify(list) !== expectedList) {
     throw new Error('The saved list changed. Review the update again.');
   }
+  return list;
+}
+
+// The list re-sorted into one of its published reading orders, over the comics it holds now. Nothing
+// is added, so a comic the reader removed stays removed, and a comic they added by hand stays just
+// before the comic it was before. Read state, notes and ratings belong to comics rather than to the
+// list, so a re-sort cannot touch them. Only the book names of the order's own comics change.
+export function readingOrderArrangement(list, choice, target) {
+  const order = orderIdsFor(choice, target);
+  checkedOrder(list.itemIds, 'saved');
+  const held = new Set(list.itemIds);
+  const itemIds = revisedOrderKeepingExtras(list.itemIds, order.filter((id) => held.has(id)));
+  const deferred = new Set(list.deferredIssueIds ?? []);
+  return {
+    ...list, itemIds, collectedIn: bookLabels(list.collectedIn, itemIds, choice, target),
+    deferredIssueIds: itemIds.filter((id) => deferred.has(id)),
+  };
+}
+
+// Book names belong to the order's own comics only while the list is book by book; every other
+// arrangement shows none of them, so the headings never split a book or scatter through the story.
+function bookLabels(labels, itemIds, choice, target) {
+  const held = new Set(itemIds);
+  const names = target === 'book' ? bookNamesOf(choice) : new Map();
+  const collectedIn = { ...(labels ?? {}) };
+  for (const id of choice.issueOrder) {
+    if (names.has(id) && held.has(id)) collectedIn[id] = names.get(id);
+    else delete collectedIn[id];
+  }
+  return collectedIn;
+}
+
+export function sameArrangement(a, b) {
+  const labels = a.collectedIn ?? {};
+  const others = b.collectedIn ?? {};
+  return a.itemIds.length === b.itemIds.length && a.itemIds.every((id, index) => id === b.itemIds[index])
+    && Object.keys(labels).length === Object.keys(others).length
+    && Object.keys(labels).every((id) => labels[id] === others[id]);
+}
+
+export function switchReadingOrder(state, listId, expectedList, target) {
+  const list = heldList(state, listId, expectedList);
+  const choice = readingOrderChoiceFor(list);
+  if (!choice) throw new Error('This list has only one reading order.');
+  const arranged = readingOrderArrangement(list, choice, target);
+  if (sameArrangement(arranged, list)) return state;
+  const lists = Object.assign(Object.create(null), state.lists);
+  lists[listId] = arranged;
+  return checkedCandidate({ ...state, lists });
+}
+
+export function applyListRevision(state, listId, expectedList, items) {
+  const list = heldList(state, listId, expectedList);
   if (!Array.isArray(items) || items.some((item) => !item || typeof item !== 'object'
     || (item.title != null && (typeof item.title !== 'string' || !item.title.trim())))) {
     throw new Error('The published order has an invalid comic.');
@@ -108,13 +173,12 @@ export function applyListRevision(state, listId, expectedList, items) {
     itemIds: order,
     deferredIssueIds: order.filter((id) => deferred.has(id)),
   };
-  const candidate = { ...added.state, lists };
-  const backup = exportBackup(candidate);
-  const checked = validateBackup(backup);
-  if (!checked.ok) throw new Error(`The updated list cannot be backed up: ${checked.errors.join(' ')}`);
-  const text = JSON.stringify(backup, null, 2);
-  if (text.length > MAX_BACKUP_BYTES || new TextEncoder().encode(text).length > MAX_BACKUP_BYTES) {
-    throw new Error('The updated reading data exceeds the backup limit. Nothing was changed.');
+  // A book by book list was compared against the books, so it stays book by book; any other list
+  // was given the published order and keeps no book names.
+  const choice = readingOrderChoiceFor(list);
+  if (choice) {
+    const target = currentReadingOrder(list, choice) === 'book' ? 'book' : 'issue';
+    lists[listId].collectedIn = bookLabels(merged.collectedIn, order, choice, target);
   }
-  return candidate;
+  return checkedCandidate({ ...added.state, lists });
 }

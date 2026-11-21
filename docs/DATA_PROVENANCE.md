@@ -419,13 +419,13 @@ orders: **null means nobody granted anything for this file, not that the file is
 Three hundred and fifty-three pinned reading-order payloads remain under
 [`src/data/`](../src/data): 350 active visible catalog files, one active noncatalog partition parent,
 and the retired No Way Home (18 originals) and withdrawn Marvel Multiverse (2 comics) payloads. The 351 active files hold
-34,037 issue records covering 20,584 distinct tracked identities. The visible files hold 33,550 of those records;
+34,038 issue records covering 20,584 distinct tracked identities. The visible files hold 33,551 of those records;
 the extra 487 are the retained Marvel Knights to Planet X parent whose ordinary children partition
 the same vector. Records use these fields:
 `issueId`, `title`,
 `number`, `url`, `seriesId`, `seriesName`, `onSale`, `mu`, `digitalId`, `pageCount`, a `cover`
-object of `path` and `ext`, and `creators` of `name` and `role`. Across the 351 active payloads, 29,134
-records carry a cover URL and 27,378 carry creator credits. The retired No Way Home payload remains byte-exact;
+object of `path` and `ext`, and `creators` of `name` and `role`. Across the 351 active payloads, 29,135
+records carry a cover URL and 27,379 carry creator credits. The retired No Way Home payload remains byte-exact;
 neither retired payload contributes to active discovery or this active census.
 
 `description` was the field to look at hardest and is now empty. The others are facts about a
@@ -1024,7 +1024,7 @@ The first is that displaying a description and shipping a copy of one are differ
 those terms rather than two degrees of one act. Using Content inside an App is what the licence is
 for, on a condition the attribution page states plainly: "You must attribute Marvel as the source
 of data whenever you display any results from the Marvel Comics API". The app now names both the
-Marvel origin and its actual route in About at `src/index.html:1414-1418`. Redistributing Content outside an App, and sublicensing it onward, are the
+Marvel origin and its actual route in About at `src/index.html:1427-1431`. Redistributing Content outside an App, and sublicensing it onward, are the
 two things sections 4 and 5 name. An MIT grant is a sublicence to everyone who receives a copy, and
 offers them "sublicense, and/or sell".
 
@@ -1069,9 +1069,9 @@ app encounters that state rather than hypothetically. At removal, 606 carried a 
 id and 69 held neither. Neither metadata shape proves that a synopsis request has completed.
 The interface now distinguishes a summary that has not been loaded from a completed request with
 no synopsis and from prose held only in memory after explicit consent. The shared presentation
-reaches the interface in the reading hero at `src/js/views/reading.js:744` and the issue-details view at
+reaches the interface in the reading hero at `src/js/views/reading.js:758` and the issue-details view at
 `src/js/views/issue.js:108`. The function behind both already answers for the absence at
-`src/js/views/reading.js:107-118`, with a test asserting the sentence it returns. It is also reversible:
+`src/js/views/reading.js:108-119`, with a test asserting the sentence it returns. It is also reversible:
 the project this repository fetched from still serves the field,
 the contract check having run on 2026-08-15 with 33 of 33 assumptions holding, so the vendoring
 script can fetch it again if a review comes back permissive.
@@ -3123,12 +3123,12 @@ The vendored item copies exactly those fields and adds `metadataSourceKind:
 owner-confirmed evidence kind, so the app still treats the comic as having no provider metadata and
 its availability stays unknown (constraints 6 and 7). The delivery contract holds every supplemented
 item to exactly what its mapping row records and every other owner-confirmed item to the old empty
-shape (`test/helpers/owner-delivery-contract.mjs:114-142`).
+shape (`test/helpers/owner-delivery-contract.mjs:115-143`).
 
 The app carries only the optional `identityEvidenceKind` marker in the existing normalized issue
 record so the reading view can distinguish an owner-confirmed identity from an ordinary missing
 provider record after import and reload (`src/js/lib/model.js:270-279`,
-`src/js/views/reading.js:64-67`, `src/js/views/reading.js:78-89`). It keeps `metadataSourceKind` the
+`src/js/views/reading.js:65-68`, `src/js/views/reading.js:79-90`). It keeps `metadataSourceKind` the
 same way, only as one of the closed values and only beside an owner-confirmed identity, so a
 supplemented comic's badge hint, gap sentence and catalog label credit marvel.com and whichever
 outside source supplied its details instead of claiming it has no cover. The actor, date, URL and confirmation
@@ -4222,6 +4222,28 @@ viewer selections, approved fallback numbers and exclusions. New comics without 
 match stay without a new app link and are recorded separately from approved fallbacks, so a catalog
 addition cannot silently acquire an unapproved Marvel issue-number address. Repeating the command
 does not copy the CSV or its unmatched source rows into the repository.
+
+## Ultimate Marvel introduction: Team-Up #9
+
+For [Issue #1454](https://github.com/raymond-nassar/recap-page/issues/1454), the owner decided in
+conversation on 19 November 2026 to include Ultimate Marvel Team-Up (2001) #9 at its existing
+source position, despite Comic Book Herald marking it out of continuity. The frozen Intro to the
+Ultimate U section now includes all 122 source positions. The comic is position 106, between
+Ultimate Fantastic Four #6 and Ultimate Spider-Man #33. The
+[correction record](../scripts/data/ultimate-marvel-intro-correction.json) retains the prior exclusion,
+the approved description change and the earlier publication digests.
+
+Identity 15783, series 2311, and its factual metadata were reused from the published Ultimate
+Spider-Man mapping and payload. No source page, metadata service or comic image was requested.
+Offline vendoring keeps all 121 earlier comic records unchanged, without
+adding book labels or changing their order. The description removes only the obsolete omission
+clause; placement and discovery tags stay unchanged.
+
+The coordinator reviewed the source boundary and all 268 current-library relationships under
+stronger-model authority, not human review. The one partial relationship with Ultimate Spider-Man
+contains 55 shared comics, including #9; neither list contains the other, and both stay whole.
+The other 267 relationships have no shared comic. Existing saved lists remain snapshots and are
+not silently replaced, and their reading progress, notes and ratings are unchanged.
 
 ## Chip Zdarsky creator list: reused details
 

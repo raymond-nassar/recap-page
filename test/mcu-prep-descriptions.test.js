@@ -12,6 +12,7 @@ import { sourceCreditRevisions } from '../scripts/lib/source-credit-revisions.mj
 import { refreshMcuDescriptions } from '../scripts/refresh-mcu-descriptions.mjs';
 import { parseCatalog } from '../src/js/lib/catalog.js';
 import { firstSentence } from '../src/js/lib/catalog.js';
+import { beforeUltimateIntroEntry } from './helpers/ultimate-marvel-intro-history.mjs';
 import {
   mcuEditorial, afterMcuEditorialEntry, beforeMcuEditorialEntry, beforeMcuEditorialManifest,
   beforeMcuEditorialPayloadText,
@@ -135,7 +136,8 @@ test('MCU description history inverts only exact current copy and preserves ever
   assert.deepEqual(reconstructed.paths, manifest.paths);
   assert.ok(reconstructed.lists.some((row) => row.id === 'avengers-doomsday-secret-wars'));
   for (const entry of manifest.lists.filter((row) => !expectedIds.includes(row.id))) {
-    assert.deepEqual(historicalMcuDescriptionEntry(entry), withoutDiscoveryTags(beforeMcuEditorialEntry(entry)),
+    assert.deepEqual(historicalMcuDescriptionEntry(entry),
+      withoutDiscoveryTags(beforeMcuEditorialEntry(beforeUltimateIntroEntry(entry))),
       `${entry.id}: only its recorded later copy can differ`);
   }
   assert.equal((await json('src/data/hickman_minimal.json')).count, 69);
