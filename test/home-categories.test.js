@@ -1,4 +1,4 @@
-import { currentReadingCensus } from './helpers/current-reading-library.mjs';
+import { currentReadingCensus, registeredCreatorGuides } from './helpers/current-reading-library.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -91,7 +91,8 @@ test('Creators adds one dedicated gateway without putting its runs on Home or mo
   const categories = availableHomeCategories(stories);
   const creators = categories.find(({ key }) => key === 'creators');
   assert.ok(creators);
-  assert.equal(creators.count, 7);
+  // Seven creator runs predate the writer batch; each integrated writer guide registers for Creators.
+  assert.equal(creators.count, 7 + registeredCreatorGuides.length);
   assert.equal(creators.route, 'creators');
   assert.equal(creators.tier, 'secondary');
   assert.ok(!markup.includes('id="home-creator-runs"'));
@@ -109,6 +110,10 @@ test('creator display credits correct the approved spelling without changing pro
   const parsed = catalog.lists.find((list) => list.id === raw.id);
   assert.deepEqual(parsed.writers, ['Mark Waid', "Mike O'Sullivan"]);
   assert.deepEqual(raw.writers, ['Mark Waid', "Mike O'sullivan"]);
+  const source = { ...raw, writers: ['Jed Mackay', 'Other Writer'] };
+  const result = parseCatalog({ lists: [source] }).lists[0];
+  assert.deepEqual(result.writers, ['Jed MacKay', 'Other Writer']);
+  assert.deepEqual(source.writers, ['Jed Mackay', 'Other Writer']);
 });
 
 test('the current gateway offers three primary modes and five secondary gateways', () => {

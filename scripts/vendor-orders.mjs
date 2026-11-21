@@ -19,7 +19,7 @@
 // and so we are not exposed to upstream `main` changing under us.
 
 import {
-  readFile, writeFile, mkdir, rename, rm,
+  readFile, readdir, writeFile, mkdir, rename, rm,
 } from 'node:fs/promises';
 import { createHash, randomUUID } from 'node:crypto';
 import { dirname, join, resolve } from 'node:path';
@@ -34,8 +34,9 @@ import { RateLimiter } from '../src/js/lib/limiter.js';
 import { placeholderId } from './lib/placeholder-id.mjs';
 import { legacyIdentityChecked, legacyIdentityKeyFor, repairWolverineTitles } from './lib/wolverine-title-repairs.mjs';
 import { countOrderGaps } from '../src/js/lib/model.js';
-import { supplementItemFields } from './lib/owner-external-supplement.mjs';
+import { borrowedSupplement, supplementItemFields } from './lib/owner-external-supplement.mjs';
 import { OWNER_GCD_SUPPLEMENT } from '../src/js/lib/model.js';
+import { GCD_LICENSED_FILES } from './lib/gcd-issue-records.mjs';
 import {
   RATED_GUIDE_INDEX_FILE,
   buildRatedGuideIndex,
@@ -48,6 +49,7 @@ import {
   validateStorylinesChildren, chapterFile,
 } from './lib/chapter-orders.mjs';
 import { sourceCreditRevisions } from './lib/source-credit-revisions.mjs';
+import { digestCanonicalJson } from './lib/cbh-inventory.mjs';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const API = 'https://marvel.emreparker.com/v1';
 const MANIFEST = join(ROOT, 'src', 'data', 'curated-lists.json');
@@ -99,15 +101,64 @@ async function loadOwnerSupplements(order) {
   try {
     mapping = JSON.parse(await readFile(join(SCRIPT_DATA_DIR, 'owner-mappings', `${order.id}.json`), 'utf8'));
   } catch (error) {
-    if (error.code === 'ENOENT') return new Map();
+    if (error.code === 'ENOENT') return { supplements: new Map(), ownMappedIds: new Set() };
     throw error;
   }
   const supplements = new Map();
+  const ownMappedIds = new Set();
   for (const row of mapping.rows ?? []) {
+    if (row.selectedIssueId != null) ownMappedIds.add(String(row.selectedIssueId));
     if (!Object.hasOwn(row, 'externalMetadataSupplement')) continue;
     supplements.set(String(row.selectedIssueId), supplementItemFields(row));
   }
-  return supplements;
+  return { supplements, ownMappedIds };
+}
+
+// Every reviewed owner mapping, read once, so a list reusing an owner-confirmed comic can borrow
+// the details another list's review already published for it. See borrowedSupplement.
+async function loadAllOwnerMappings() {
+  const dir = join(SCRIPT_DATA_DIR, 'owner-mappings');
+  const names = (await readdir(dir)).filter((name) => name.endsWith('.json')).sort();
+  const mappings = [];
+  for (const name of names) {
+    const mapping = JSON.parse(await readFile(join(dir, name), 'utf8'));
+    mappings.push({ listId: name.slice(0, -'.json'.length), rows: mapping.rows ?? [] });
+  }
+  return mappings;
+}
+
+async function loadDateCorrections(order, entries) {
+  let ledger;
+  try {
+    ledger = JSON.parse(await readFile(join(SCRIPT_DATA_DIR, 'curated-source-ledgers', `${order.id}.json`), 'utf8'));
+  } catch (error) {
+    if (error.code === 'ENOENT') return new Map();
+    throw error;
+  }
+  const corrections = ledger.source?.dateCorrections;
+  if (corrections === undefined) return new Map();
+  const factualLedger = { ...ledger };
+  delete factualLedger.ledgerDigest;
+  delete factualLedger.relationshipReview;
+  if (ledger.id !== order.id || ledger.ledgerDigest !== digestCanonicalJson(factualLedger) || !Array.isArray(corrections)) {
+    throw new Error(`Invalid date correction ledger for ${order.id}`);
+  }
+  const dateIsValid = (date) => typeof date === 'string' && /^\d{4}-\d{2}-\d{2}$/u.test(date)
+    && Number.isFinite(Date.parse(date)) && new Date(date).toISOString().slice(0, 10) === date;
+  const result = new Map();
+  for (const correction of corrections) {
+    const { issueId, providerDate, correctedDate, wikiUrl, independentSource } = correction;
+    if (!Number.isSafeInteger(issueId) || issueId <= 0 || result.has(issueId)
+      || !dateIsValid(providerDate) || !dateIsValid(correctedDate) || providerDate === correctedDate
+      || !/^https:\/\/[^ ]+\?oldid=\d+$/u.test(wikiUrl ?? '')
+      || !/^https:\/\/[^ ]+$/u.test(independentSource ?? '')
+      || !entries.some((entry) => entry.issueId === issueId
+        && entry.identityEvidenceKind !== 'owner-confirmed-identity')) {
+      throw new Error(`Invalid date correction for ${order.id}, issue ${issueId}`);
+    }
+    result.set(issueId, correction);
+  }
+  return result;
 }
 
 async function loadPartitionLedgers(orders) {
@@ -530,6 +581,7 @@ async function main() {
   }
 
   const generatedAt = new Date().toISOString();
+  const allOwnerMappings = await loadAllOwnerMappings();
   const summary = [];
   const catalogById = new Map();
   const payloadByCatalogId = new Map();
@@ -571,18 +623,35 @@ async function main() {
     const { entries, unresolved } = parsedOrder;
     let missingDigital = 0;
     let missingCover = 0;
-    const supplements = await loadOwnerSupplements(order);
+    const { supplements, ownMappedIds } = await loadOwnerSupplements(order);
+    const dateCorrections = await loadDateCorrections(order, entries);
+    const borrowed = [];
+    // The licence list, not a flag in the order, decides which payloads may hold share-alike details,
+    // so the data and the LICENSE paragraph that carves it out cannot drift apart.
+    const shareAlike = GCD_LICENSED_FILES.includes(`src/data/${order.out}`);
+    const supplementFor = (issueId) => {
+      const own = supplements.get(String(issueId));
+      if (own) return own;
+      const result = borrowedSupplement(issueId, { ownMappedIds, mappings: allOwnerMappings, shareAlike });
+      if (result.reason === 'borrowed' || result.reason === 'conflict') borrowed.push({ issueId, ...result });
+      return result.supplement;
+    };
 
     const issueItems = entries.map((e) => {
       const ownerConfirmed = e.identityEvidenceKind === 'owner-confirmed-identity';
       const d = ownerConfirmed ? {} : (meta.get(e.issueId) ?? {});
-      const supplement = ownerConfirmed ? supplements.get(String(e.issueId)) : undefined;
+      const supplement = ownerConfirmed ? supplementFor(e.issueId) : undefined;
       if (d.digitalId == null) missingDigital += 1;
       const cover = supplement ? supplement.cover : coverBase(d.cover);
       if (!cover) missingCover += 1;
       const metadataTitle = cleanText(d.title ?? e.title);
       const metadataNumber = parseIssueNumber(metadataTitle);
       const checklistNumber = parseIssueNumber(e.title);
+      const correction = dateCorrections.get(e.issueId);
+      if (correction && ![correction.providerDate, correction.correctedDate]
+        .includes(typeof d.onSaleDate === 'string' ? d.onSaleDate.slice(0, 10) : null)) {
+        throw new Error(`Unexpected provider date for ${order.id}, issue ${e.issueId}`);
+      }
       return {
         at: e.index,
         item: {
@@ -596,7 +665,8 @@ async function main() {
           url: d.detailUrl ?? e.url,
           seriesId: d.seriesId ?? null,
           seriesName: d.seriesName == null ? null : cleanText(d.seriesName),
-          onSale: supplement ? supplement.onSale : (d.onSaleDate ?? null),
+          onSale: correction ? `${correction.correctedDate}T00:00:00+0000`
+            : (supplement ? supplement.onSale : (d.onSaleDate ?? null)),
           mu: d.unlimitedDate ?? null,
           digitalId: d.digitalId ?? null,
           cover,
@@ -675,6 +745,10 @@ async function main() {
     }
     if (dupes.size) {
       console.warn(`  ! ${order.id}: ${dupes.size} duplicate issue id(s) in the order; importing will collapse them: ${[...dupes].join(', ')}`);
+    }
+    for (const entry of borrowed) {
+      if (entry.reason === 'borrowed') console.log(`  ${order.id}: issue ${entry.issueId} borrows its details from ${entry.lenders.join(', ')}`);
+      else console.warn(`  ! ${order.id}: issue ${entry.issueId} stays bare; ${entry.lenders.join(', ')} hold different details`);
     }
 
     const payload = repairWolverineTitles(sourceCreditRevisions.apply({

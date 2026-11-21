@@ -141,6 +141,79 @@ function gcdMarkers(value, found = new Set()) {
   return found;
 }
 
+// A source ledger can hold a database fact without any of those markers: a reused comic's row
+// records the on-sale date it took from a lender list, as a bare date beside the lender's mapping.
+// The date alone cannot tell a copied fact from a coincidence, so this follows it to the lender and
+// counts the row only when that mapping's supplement for the same issue takes its on-sale date from
+// a gcd-issue source and states the same day. A lender whose date came from anywhere else does not
+// count, however well the dates agree.
+// The lender path is read from the ledger, so it is resolved only against the tracked owner
+// mappings, and a lender that cannot be read fails the test. Counting an unreadable lender as
+// non-database would let a broken or mistyped reference quietly clear the licence check.
+const ownerMappingFiles = new Set(execFileSync('git', ['-c', 'core.quotePath=false', 'ls-files', '-z', '--', 'scripts/data/owner-mappings'],
+  { cwd: repoRoot, encoding: 'utf8' }).split('\u0000').filter((file) => /^scripts\/data\/owner-mappings\/[^/]+\.json$/.test(file)));
+
+async function gcdDerivedLedgerIssues(value, known = ownerMappingFiles) {
+  const mappings = new Map();
+  const mapping = async (file) => {
+    if (!known.has(file)) throw new Error(`A ledger names lender ${file}, which is not a tracked owner mapping`);
+    if (!mappings.has(file)) {
+      let parsed;
+      try {
+        parsed = JSON.parse(await readFile(path.join(repoRoot, file), 'utf8'));
+      } catch (error) {
+        throw new Error(`Lender ${file} could not be read: ${error.message}`, { cause: error });
+      }
+      if (!Array.isArray(parsed?.rows)) throw new Error(`Lender ${file} has no rows`);
+      mappings.set(file, parsed);
+    }
+    return mappings.get(file);
+  };
+  const derived = new Set();
+  for (const row of Array.isArray(value?.sourceRows) ? value.sourceRows : []) {
+    const lenders = row?.identityEvidence?.publishedIn;
+    if (!Number.isInteger(row?.selectedIssueId) || !Array.isArray(lenders)) continue;
+    for (const lender of lenders) {
+      if (typeof lender?.mapping !== 'string' || typeof lender.supplementOnSale !== 'string') continue;
+      const lent = (await mapping(lender.mapping)).rows
+        .find((entry) => entry?.selectedIssueId === row.selectedIssueId)?.externalMetadataSupplement;
+      const fromGcd = (lent?.sources ?? []).some((source) => source?.kind === 'gcd-issue'
+        && Array.isArray(source.fields) && source.fields.includes('onSale'));
+      if (fromGcd && lent.fields?.onSale?.slice(0, 10) === lender.supplementOnSale) derived.add(row.selectedIssueId);
+    }
+  }
+  return derived;
+}
+
+test('a ledger counts as holding database details only for dates its lenders took from the database', async () => {
+  const ledger = JSON.parse(await readFile(path.join(repoRoot, 'scripts/data/curated-source-ledgers/chip-zdarsky-reading-list.json'), 'utf8'));
+  const payload = JSON.parse(await readFile(path.join(repoRoot, 'src/data/chip_zdarsky_reading_list.json'), 'utf8'));
+  const kindOf = new Map(payload.items.map((item) => [item.issueId, item.metadataSourceKind ?? null]));
+  const derived = [...await gcdDerivedLedgerIssues(ledger)].sort((a, b) => a - b);
+  const fromGcd = payload.items.filter((item) => item.metadataSourceKind === 'owner-gcd-supplement')
+    .map((item) => item.issueId).sort((a, b) => a - b);
+  assert.equal(fromGcd.length, 9, 'The list no longer shows the nine comics with database details.');
+  assert.deepEqual(derived, fromGcd);
+
+  // The controls: reused rows whose lender dates agree but came from elsewhere, and the one left bare.
+  const reused = ledger.sourceRows.filter((row) => row.identityEvidence?.publishedIn?.some((lender) => 'supplementOnSale' in lender));
+  const otherSource = reused.filter((row) => kindOf.get(row.selectedIssueId) === 'owner-external-supplement');
+  assert.equal(otherSource.length, 12);
+  assert.ok(otherSource.every((row) => !derived.includes(row.selectedIssueId)));
+  assert.equal(kindOf.get(130523), null);
+  assert.ok(!derived.includes(130523));
+});
+
+test('a ledger lender that is not a readable tracked owner mapping fails rather than counting as non-database', async () => {
+  const missing = 'scripts/data/owner-mappings/no-such-reviewed-mapping.json';
+  const ledger = { sourceRows: [{ selectedIssueId: 1, identityEvidence: { publishedIn: [{ mapping: missing, supplementOnSale: '2025-01-01' }] } }] };
+  await assert.rejects(gcdDerivedLedgerIssues(ledger), /not a tracked owner mapping/);
+  // Even when listed as known, a mapping that is absent from disk is an error, not a clean lender.
+  await assert.rejects(gcdDerivedLedgerIssues(ledger, new Set([missing])), /could not be read/);
+  const outside = { sourceRows: [{ selectedIssueId: 1, identityEvidence: { publishedIn: [{ mapping: 'package.json', supplementOnSale: '2025-01-01' }] } }] };
+  await assert.rejects(gcdDerivedLedgerIssues(outside), /not a tracked owner mapping/);
+});
+
 test('every tracked file holding Grand Comics Database issue details is named outside the MIT grant', async () => {
   const tracked = execFileSync('git', ['-c', 'core.quotePath=false', 'ls-files', '-z'], { cwd: repoRoot, encoding: 'utf8' })
     .split('\u0000').filter((file) => file.endsWith('.json'));
@@ -153,13 +226,22 @@ test('every tracked file holding Grand Comics Database issue details is named ou
   const carved = (file) => named.has(file) || [...named].some((token) => token.endsWith('/') && file.startsWith(token));
   const holders = [];
   const uncarved = [];
+  const derivedHolders = [];
   for (const file of tracked) {
-    const found = gcdMarkers(JSON.parse(await readFile(path.join(repoRoot, file), 'utf8')));
+    const value = JSON.parse(await readFile(path.join(repoRoot, file), 'utf8'));
+    const found = gcdMarkers(value);
+    if ((await gcdDerivedLedgerIssues(value)).size > 0) {
+      found.add('on-sale date taken from a database lender');
+      derivedHolders.push(file);
+    }
     if (found.size === 0) continue;
     holders.push(file);
     if (!carved(file)) uncarved.push(`${file}: ${[...found].sort().join(', ')}`);
   }
   assert.deepEqual(uncarved, [], 'Grand Comics Database data sits in a file LICENSE leaves under the MIT grant');
+  // The owner route declares every file its reviewed lenders' database dates reach.
+  assert.deepEqual(derivedHolders.filter((file) => !GCD_LICENSED_FILES.includes(file)), [],
+    'A ledger holds dates taken from Grand Comics Database lenders but the owner route does not declare it');
 
   // The owner route's own list is held exactly in the other direction too: a listed file that holds
   // nothing means LICENSE carves out a file the data has left, so the list has gone stale.

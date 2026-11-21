@@ -139,6 +139,38 @@
         "beforeId": "miles-morales-spider-man-reading-order"
       },
       "rowCount": 187
+    },
+    {
+      "id": "jed-mackay-reading-list",
+      "insertionAnchor": {
+        "beforeId": "mcu-prep-daredevil-born-again"
+      },
+      "rowCount": 243,
+      "surface": "creators"
+    },
+    {
+      "id": "al-ewing-reading-list",
+      "insertionAnchor": {
+        "beforeId": "mcu-prep-daredevil-born-again"
+      },
+      "rowCount": 222,
+      "surface": "creators"
+    },
+    {
+      "id": "chip-zdarsky-reading-list",
+      "insertionAnchor": {
+        "beforeId": "mcu-prep-daredevil-born-again"
+      },
+      "rowCount": 176,
+      "surface": "creators"
+    },
+    {
+      "id": "dan-slott-reading-list",
+      "insertionAnchor": {
+        "beforeId": "mcu-prep-daredevil-born-again"
+      },
+      "rowCount": 347,
+      "surface": "creators"
     }
   ]
 }

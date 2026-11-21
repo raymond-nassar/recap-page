@@ -17,6 +17,9 @@ export const GCD_LICENSED_FILES = Object.freeze([
   GCD_RECORDS_PATH,
   'scripts/data/owner-mappings/avengers-armageddon.json',
   'src/data/avengers_armageddon.json',
+  'src/data/chip_zdarsky_reading_list.json',
+  // Its source rows record, as their ordering date, the on-sale date a lender took from the database.
+  'scripts/data/curated-source-ledgers/chip-zdarsky-reading-list.json',
 ]);
 export const GCD_ISSUE_URL = /^https:\/\/www\.comics\.org\/issue\/([1-9]\d*)\/$/;
 export const GCD_LICENSE = Object.freeze({

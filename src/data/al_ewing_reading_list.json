@@ -1,0 +1,7269 @@
+{
+  "id": "al-ewing-reading-list",
+  "name": "Al Ewing Reading List",
+  "description": "Read Al Ewing's Marvel comics in the order they came out, including Immortal Hulk, Loki, X-Men Red, Immortal Thor and the Ultimates. Some comics include stories by other writers.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/1507",
+  "sourceOrigin": "Selected by the Recap Page team",
+  "sourceLicense": null,
+  "generatedAt": "2026-11-20T15:38:11.786Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 222,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 48316,
+      "title": "Mighty Avengers (2013) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/48316/mighty_avengers_2013_1",
+      "seriesId": 18309,
+      "seriesName": "Mighty Avengers (2013 - 2014)",
+      "onSale": "2013-09-11T00:00:00+0000",
+      "mu": "2014-03-09T00:00:00+0000",
+      "digitalId": 31630,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/5214b3482d88f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 48317,
+      "title": "Mighty Avengers (2013) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/48317/mighty_avengers_2013_2",
+      "seriesId": 18309,
+      "seriesName": "Mighty Avengers (2013 - 2014)",
+      "onSale": "2013-10-02T00:00:00+0000",
+      "mu": "2014-04-07T00:00:00+0000",
+      "digitalId": 31668,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/20/523b616953689",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 48318,
+      "title": "Mighty Avengers (2013) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/48318/mighty_avengers_2013_3",
+      "seriesId": 18309,
+      "seriesName": "Mighty Avengers (2013 - 2014)",
+      "onSale": "2013-11-06T00:00:00+0000",
+      "mu": "2014-05-05T00:00:00+0000",
+      "digitalId": 31982,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/527005c5a6d6b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 48319,
+      "title": "Mighty Avengers (2013) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/48319/mighty_avengers_2013_4",
+      "seriesId": 18309,
+      "seriesName": "Mighty Avengers (2013 - 2014)",
+      "onSale": "2013-12-11T00:00:00+0000",
+      "mu": "2013-06-16T00:00:00+0000",
+      "digitalId": 32467,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/80/52a60ec2900cc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 48320,
+      "title": "Mighty Avengers (2013) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/48320/mighty_avengers_2013_5",
+      "seriesId": 18309,
+      "seriesName": "Mighty Avengers (2013 - 2014)",
+      "onSale": "2014-01-22T00:00:00+0000",
+      "mu": "2014-07-21T00:00:00+0000",
+      "digitalId": 32823,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/52d7f39b27a34",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 48514,
+      "title": "Loki: Agent of Asgard (2014) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/48514/loki_agent_of_asgard_2014_1",
+      "seriesId": 18340,
+      "seriesName": "Loki: Agent of Asgard (2014 - 2015)",
+      "onSale": "2014-02-05T00:00:00+0000",
+      "mu": "2014-08-04T00:00:00+0000",
+      "digitalId": 32973,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/b0/52e6bb43c1144",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jenny Frison",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 48321,
+      "title": "Mighty Avengers (2013) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/48321/mighty_avengers_2013_6",
+      "seriesId": 18309,
+      "seriesName": "Mighty Avengers (2013 - 2014)",
+      "onSale": "2014-02-05T00:00:00+0000",
+      "mu": "2014-08-04T00:00:00+0000",
+      "digitalId": 32978,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/c0/52e6c1ee3033b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 48322,
+      "title": "Mighty Avengers (2013) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/48322/mighty_avengers_2013_7",
+      "seriesId": 18309,
+      "seriesName": "Mighty Avengers (2013 - 2014)",
+      "onSale": "2014-02-26T00:00:00+0000",
+      "mu": "2014-08-25T00:00:00+0000",
+      "digitalId": 33043,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/b0/530b9cb312f60",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 48515,
+      "title": "Loki: Agent of Asgard (2014) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/48515/loki_agent_of_asgard_2014_2",
+      "seriesId": 18340,
+      "seriesName": "Loki: Agent of Asgard (2014 - 2015)",
+      "onSale": "2014-03-05T00:00:00+0000",
+      "mu": "2014-09-01T00:00:00+0000",
+      "digitalId": 33331,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/d0/530e492b2d0dd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jenny Frison",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 48323,
+      "title": "Mighty Avengers (2013) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/48323/mighty_avengers_2013_8",
+      "seriesId": 18309,
+      "seriesName": "Mighty Avengers (2013 - 2014)",
+      "onSale": "2014-03-12T00:00:00+0000",
+      "mu": "2014-09-08T00:00:00+0000",
+      "digitalId": 33355,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/5316257fc5dc6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 48516,
+      "title": "Loki: Agent of Asgard (2014) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/48516/loki_agent_of_asgard_2014_3",
+      "seriesId": 18340,
+      "seriesName": "Loki: Agent of Asgard (2014 - 2015)",
+      "onSale": "2014-04-02T00:00:00+0000",
+      "mu": "2014-10-06T00:00:00+0000",
+      "digitalId": 33484,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/03/533457070c6e7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jenny Frison",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 48324,
+      "title": "Mighty Avengers (2013) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/48324/mighty_avengers_2013_9",
+      "seriesId": 18309,
+      "seriesName": "Mighty Avengers (2013 - 2014)",
+      "onSale": "2014-04-09T00:00:00+0000",
+      "mu": "2014-10-13T00:00:00+0000",
+      "digitalId": 33514,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/5343ffda19095",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 48517,
+      "title": "Loki: Agent of Asgard (2014) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/48517/loki_agent_of_asgard_2014_4",
+      "seriesId": 18340,
+      "seriesName": "Loki: Agent of Asgard (2014 - 2015)",
+      "onSale": "2014-05-07T00:00:00+0000",
+      "mu": "2014-11-03T00:00:00+0000",
+      "digitalId": 33768,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/535ff9303bd1e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jenny Frison",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 48325,
+      "title": "Mighty Avengers (2013) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/48325/mighty_avengers_2013_10",
+      "seriesId": 18309,
+      "seriesName": "Mighty Avengers (2013 - 2014)",
+      "onSale": "2014-05-28T00:00:00+0000",
+      "mu": "2014-11-24T00:00:00+0000",
+      "digitalId": 33957,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/10/53751cebcbd7a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 48518,
+      "title": "Loki: Agent of Asgard (2014) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/48518/loki_agent_of_asgard_2014_5",
+      "seriesId": 18340,
+      "seriesName": "Loki: Agent of Asgard (2014 - 2015)",
+      "onSale": "2014-06-04T00:00:00+0000",
+      "mu": "2014-12-01T00:00:00+0000",
+      "digitalId": 34034,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/20/5388a6485c5b7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jenny Frison",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 48326,
+      "title": "Mighty Avengers (2013) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/48326/mighty_avengers_2013_11",
+      "seriesId": 18309,
+      "seriesName": "Mighty Avengers (2013 - 2014)",
+      "onSale": "2014-06-11T00:00:00+0000",
+      "mu": "2014-12-08T00:00:00+0000",
+      "digitalId": 33844,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/20/538f7e6e266db",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 48327,
+      "title": "Mighty Avengers (2013) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/48327/mighty_avengers_2013_12",
+      "seriesId": 18309,
+      "seriesName": "Mighty Avengers (2013 - 2014)",
+      "onSale": "2014-07-23T00:00:00+0000",
+      "mu": "2015-01-26T00:00:00+0000",
+      "digitalId": 34140,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/f0/53c4305344b55",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 49854,
+      "title": "Mighty Avengers (2013) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/49854/mighty_avengers_2013_13",
+      "seriesId": 18309,
+      "seriesName": "Mighty Avengers (2013 - 2014)",
+      "onSale": "2014-08-20T00:00:00+0000",
+      "mu": "2015-02-16T00:00:00+0000",
+      "digitalId": 34615,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/53f34bad335d2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 48519,
+      "title": "Loki: Agent of Asgard (2014) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/48519/loki_agent_of_asgard_2014_6",
+      "seriesId": 18340,
+      "seriesName": "Loki: Agent of Asgard (2014 - 2015)",
+      "onSale": "2014-09-24T00:00:00+0000",
+      "mu": "2015-03-30T00:00:00+0000",
+      "digitalId": 34798,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/f0/54173810e414c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lee Garbett",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 49855,
+      "title": "Mighty Avengers (2013) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/49855/mighty_avengers_2013_14",
+      "seriesId": 18309,
+      "seriesName": "Mighty Avengers (2013 - 2014)",
+      "onSale": "2014-09-24T00:00:00+0000",
+      "mu": "2015-03-30T00:00:00+0000",
+      "digitalId": 34804,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/03/5417414e8f346",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 50715,
+      "title": "Loki: Agent of Asgard (2014) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/50715/loki_agent_of_asgard_2014_7",
+      "seriesId": 18340,
+      "seriesName": "Loki: Agent of Asgard (2014 - 2015)",
+      "onSale": "2014-10-15T00:00:00+0000",
+      "mu": "2015-04-13T00:00:00+0000",
+      "digitalId": 34878,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/60/54342455458c1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lee Garbett",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 51078,
+      "title": "Loki: Agent of Asgard (2014) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/51078/loki_agent_of_asgard_2014_8",
+      "seriesId": 18340,
+      "seriesName": "Loki: Agent of Asgard (2014 - 2015)",
+      "onSale": "2014-11-19T00:00:00+0000",
+      "mu": "2015-05-18T00:00:00+0000",
+      "digitalId": 35450,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/03/5464f135f0154",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lee Garbett",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 51170,
+      "title": "Loki: Agent of Asgard (2014) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/51170/loki_agent_of_asgard_2014_9",
+      "seriesId": 18340,
+      "seriesName": "Loki: Agent of Asgard (2014 - 2015)",
+      "onSale": "2014-12-24T00:00:00+0000",
+      "mu": "2015-06-29T00:00:00+0000",
+      "digitalId": 35869,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/03/54982cb083551",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": []
+    },
+    {
+      "issueId": 52044,
+      "title": "Loki: Agent of Asgard (2014) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/52044/loki_agent_of_asgard_2014_10",
+      "seriesId": 18340,
+      "seriesName": "Loki: Agent of Asgard (2014 - 2015)",
+      "onSale": "2015-01-21T00:00:00+0000",
+      "mu": "2015-07-20T00:00:00+0000",
+      "digitalId": 36373,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/20/54b56778519cc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lee Garbett",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 52045,
+      "title": "Loki: Agent of Asgard (2014) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/52045/loki_agent_of_asgard_2014_11",
+      "seriesId": 18340,
+      "seriesName": "Loki: Agent of Asgard (2014 - 2015)",
+      "onSale": "2015-02-18T00:00:00+0000",
+      "mu": "2015-08-24T00:00:00+0000",
+      "digitalId": 36727,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/20/54d8f4928e24d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lee Garbett",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 52046,
+      "title": "Loki: Agent of Asgard (2014) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/52046/loki_agent_of_asgard_2014_12",
+      "seriesId": 18340,
+      "seriesName": "Loki: Agent of Asgard (2014 - 2015)",
+      "onSale": "2015-03-18T00:00:00+0000",
+      "mu": "2015-09-21T00:00:00+0000",
+      "digitalId": 36950,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/55019fb1d4a66",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lee Garbett",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 52047,
+      "title": "Loki: Agent of Asgard (2014) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/52047/loki_agent_of_asgard_2014_13",
+      "seriesId": 18340,
+      "seriesName": "Loki: Agent of Asgard (2014 - 2015)",
+      "onSale": "2015-04-15T00:00:00+0000",
+      "mu": "2015-10-12T00:00:00+0000",
+      "digitalId": 37665,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/03/5526db7254191",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lee Garbett",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 52048,
+      "title": "Loki: Agent of Asgard (2014) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/52048/loki_agent_of_asgard_2014_14",
+      "seriesId": 18340,
+      "seriesName": "Loki: Agent of Asgard (2014 - 2015)",
+      "onSale": "2015-05-20T00:00:00+0000",
+      "mu": "2015-11-23T00:00:00+0000",
+      "digitalId": 38427,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/5554f17e53bf8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lee Garbett",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 52049,
+      "title": "Loki: Agent of Asgard (2014) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/52049/loki_agent_of_asgard_2014_15",
+      "seriesId": 18340,
+      "seriesName": "Loki: Agent of Asgard (2014 - 2015)",
+      "onSale": "2015-06-24T00:00:00+0000",
+      "mu": "2015-12-21T00:00:00+0000",
+      "digitalId": 39072,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/50/5580692c36768",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lee Garbett",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 52050,
+      "title": "Loki: Agent of Asgard (2014) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/52050/loki_agent_of_asgard_2014_16",
+      "seriesId": 18340,
+      "seriesName": "Loki: Agent of Asgard (2014 - 2015)",
+      "onSale": "2015-07-22T00:00:00+0000",
+      "mu": "2016-01-18T00:00:00+0000",
+      "digitalId": 39395,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/55abdd1370742",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lee Garbett",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 52051,
+      "title": "Loki: Agent of Asgard (2014) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/52051/loki_agent_of_asgard_2014_17",
+      "seriesId": 18340,
+      "seriesName": "Loki: Agent of Asgard (2014 - 2015)",
+      "onSale": "2015-08-19T00:00:00+0000",
+      "mu": "2016-02-22T00:00:00+0000",
+      "digitalId": 39736,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/f0/55d1ef3a330b8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57030,
+      "title": "New Avengers (2015) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/57030/new_avengers_2015_1",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2015-10-14T00:00:00+0000",
+      "mu": "2016-04-18T00:00:00+0000",
+      "digitalId": 40246,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/561bd355cf546",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gerardo Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57034,
+      "title": "New Avengers (2015) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/57034/new_avengers_2015_2",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2015-10-28T00:00:00+0000",
+      "mu": "2016-04-25T00:00:00+0000",
+      "digitalId": 40345,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/56268059e4adf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gerardo Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57251,
+      "title": "Ultimates (2015) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/57251/ultimates_2015_1",
+      "seriesId": 20890,
+      "seriesName": "Ultimates (2015 - 2016)",
+      "onSale": "2015-11-11T00:00:00+0000",
+      "mu": "2016-05-16T00:00:00+0000",
+      "digitalId": 40473,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/60/5640d596c5967",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kenneth Rocafort",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 58371,
+      "title": "New Avengers (2015) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/58371/new_avengers_2015_3",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2015-11-18T00:00:00+0000",
+      "mu": "2016-05-23T00:00:00+0000",
+      "digitalId": 40515,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/5649dd48115b2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gerardo Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57255,
+      "title": "Ultimates (2015) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/57255/ultimates_2015_2",
+      "seriesId": 20890,
+      "seriesName": "Ultimates (2015 - 2016)",
+      "onSale": "2015-12-09T00:00:00+0000",
+      "mu": "2016-06-13T00:00:00+0000",
+      "digitalId": 40665,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/5665d4f25441a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kenneth Rocafort",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57529,
+      "title": "New Avengers (2015) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/57529/new_avengers_2015_4",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2015-12-23T00:00:00+0000",
+      "mu": "2016-06-27T00:00:00+0000",
+      "digitalId": 40726,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/70/56780942e396f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gerardo Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57257,
+      "title": "Ultimates (2015) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/57257/ultimates_2015_3",
+      "seriesId": 20890,
+      "seriesName": "Ultimates (2015 - 2016)",
+      "onSale": "2016-01-13T00:00:00+0000",
+      "mu": "2016-07-18T00:00:00+0000",
+      "digitalId": 40865,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/567ac421b37b5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kenneth Rocafort",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57530,
+      "title": "New Avengers (2015) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/57530/new_avengers_2015_5",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-01-20T00:00:00+0000",
+      "mu": "2016-07-18T00:00:00+0000",
+      "digitalId": 40923,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5682dfa16a5d4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gerardo Sandoval",
+          "role": "cover artist"
+        },
+        {
+          "name": "Oscar Garrido",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57258,
+      "title": "Ultimates (2015) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/57258/ultimates_2015_4",
+      "seriesId": 20890,
+      "seriesName": "Ultimates (2015 - 2016)",
+      "onSale": "2016-02-10T00:00:00+0000",
+      "mu": "2016-08-08T00:00:00+0000",
+      "digitalId": 41132,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/56ab890238a7a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kenneth Rocafort",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57611,
+      "title": "New Avengers (2015) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/57611/new_avengers_2015_6",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-02-10T00:00:00+0000",
+      "mu": "2016-08-08T00:00:00+0000",
+      "digitalId": 41124,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/56b50eac1c169",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gerardo Sandoval",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Matt Rhodes",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57612,
+      "title": "New Avengers (2015) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/57612/new_avengers_2015_7",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-02-24T00:00:00+0000",
+      "mu": "2016-08-29T00:00:00+0000",
+      "digitalId": 41226,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/56c748a77c5b5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joshua Cassara",
+          "role": "cover artist"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57259,
+      "title": "Ultimates (2015) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/57259/ultimates_2015_5",
+      "seriesId": 20890,
+      "seriesName": "Ultimates (2015 - 2016)",
+      "onSale": "2016-03-23T00:00:00+0000",
+      "mu": "2016-09-26T00:00:00+0000",
+      "digitalId": 41428,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/56e71cfe4ce05",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kenneth Rocafort",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 58372,
+      "title": "New Avengers (2015) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/58372/new_avengers_2015_8",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-03-23T00:00:00+0000",
+      "mu": "2016-09-26T00:00:00+0000",
+      "digitalId": 41458,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/50/56e70cd4d9687",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jeff Dekal",
+          "role": "penciler"
+        },
+        {
+          "name": "Marcus to",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 58373,
+      "title": "New Avengers (2015) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/58373/new_avengers_2015_9",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-04-06T00:00:00+0000",
+      "mu": "2016-10-03T00:00:00+0000",
+      "digitalId": 41658,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/60/56fec3bc36fda",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Marcus to",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 58374,
+      "title": "New Avengers (2015) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/58374/new_avengers_2015_10",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-04-20T00:00:00+0000",
+      "mu": "2016-10-24T00:00:00+0000",
+      "digitalId": 41898,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/570e7bf06781e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Declan Shalvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Marcus to",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57260,
+      "title": "Ultimates (2015) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/57260/ultimates_2015_6",
+      "seriesId": 20890,
+      "seriesName": "Ultimates (2015 - 2016)",
+      "onSale": "2016-04-27T00:00:00+0000",
+      "mu": "2016-10-31T00:00:00+0000",
+      "digitalId": 41961,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/571a8fbab5287",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Christian Ward",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 59419,
+      "title": "New Avengers (2015) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/59419/new_avengers_2015_11",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-05-04T00:00:00+0000",
+      "mu": "2016-11-07T00:00:00+0000",
+      "digitalId": 41525,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/03/571e7b3366175",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Declan Shalvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerardo Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57261,
+      "title": "Ultimates (2015) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/57261/ultimates_2015_7",
+      "seriesId": 20890,
+      "seriesName": "Ultimates (2015 - 2016)",
+      "onSale": "2016-05-11T00:00:00+0000",
+      "mu": "2016-11-14T00:00:00+0000",
+      "digitalId": 41560,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/5727ae7b32592",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Al Ewing",
+          "role": "penciler"
+        },
+        {
+          "name": "Kenneth Rocafort",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 59420,
+      "title": "New Avengers (2015) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/59420/new_avengers_2015_12",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-06-08T00:00:00+0000",
+      "mu": "2016-12-12T00:00:00+0000",
+      "digitalId": 41778,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/5750637f03f7b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57262,
+      "title": "Ultimates (2015) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/57262/ultimates_2015_8",
+      "seriesId": 20890,
+      "seriesName": "Ultimates (2015 - 2016)",
+      "onSale": "2016-06-22T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 41861,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/03/575b329c01147",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kenneth Rocafort",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 60134,
+      "title": "New Avengers (2015) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/60134/new_avengers_2015_13",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-07-13T00:00:00+0000",
+      "mu": "2017-01-16T00:00:00+0000",
+      "digitalId": 42079,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/70/577fbbe22fcc4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57263,
+      "title": "Ultimates (2015) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/57263/ultimates_2015_9",
+      "seriesId": 20890,
+      "seriesName": "Ultimates (2015 - 2016)",
+      "onSale": "2016-07-20T00:00:00+0000",
+      "mu": "2017-01-23T00:00:00+0000",
+      "digitalId": 42085,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/03/578905c5306c3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kenneth Rocafort",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 60135,
+      "title": "New Avengers (2015) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/60135/new_avengers_2015_14",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-07-27T00:00:00+0000",
+      "mu": "2017-01-30T00:00:00+0000",
+      "digitalId": 42124,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/70/57927b85d76ce",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57264,
+      "title": "Ultimates (2015) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/57264/ultimates_2015_10",
+      "seriesId": 20890,
+      "seriesName": "Ultimates (2015 - 2016)",
+      "onSale": "2016-08-17T00:00:00+0000",
+      "mu": "2017-02-20T00:00:00+0000",
+      "digitalId": 42291,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/57a8cfa53fa84",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kenneth Rocafort",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 60136,
+      "title": "New Avengers (2015) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/60136/new_avengers_2015_15",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-08-24T00:00:00+0000",
+      "mu": "2017-02-27T00:00:00+0000",
+      "digitalId": 42322,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/57b370850fca8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57265,
+      "title": "Ultimates (2015) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/57265/ultimates_2015_11",
+      "seriesId": 20890,
+      "seriesName": "Ultimates (2015 - 2016)",
+      "onSale": "2016-09-28T00:00:00+0000",
+      "mu": "2017-04-03T00:00:00+0000",
+      "digitalId": 42707,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/57dc38b281434",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Djibril Morissette-Phan",
+          "role": "penciler"
+        },
+        {
+          "name": "Kenneth Rocafort",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 60137,
+      "title": "New Avengers (2015) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/60137/new_avengers_2015_16",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-09-28T00:00:00+0000",
+      "mu": "2017-04-03T00:00:00+0000",
+      "digitalId": 42697,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/57dc35b1a40f4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57266,
+      "title": "Ultimates (2015) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/57266/ultimates_2015_12",
+      "seriesId": 20890,
+      "seriesName": "Ultimates (2015 - 2016)",
+      "onSale": "2016-10-26T00:00:00+0000",
+      "mu": "2017-05-01T00:00:00+0000",
+      "digitalId": 42839,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/580a5920b2ff8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Christian Ward",
+          "role": "penciler"
+        },
+        {
+          "name": "Kenneth Rocafort",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61035,
+      "title": "New Avengers (2015) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/61035/new_avengers_2015_17",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-10-26T00:00:00+0000",
+      "mu": "2017-05-01T00:00:00+0000",
+      "digitalId": 42832,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/d0/58014ed534302",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57267,
+      "title": "Ultimates 2 (2016) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/57267/ultimates_2_2016_1",
+      "seriesId": 22929,
+      "seriesName": "Ultimates 2 (2016 - 2017)",
+      "onSale": "2016-11-23T00:00:00+0000",
+      "mu": "2017-05-29T00:00:00+0000",
+      "digitalId": 43251,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/90/582f7d798eee1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Travel Foreman",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61036,
+      "title": "New Avengers (2015) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/61036/new_avengers_2015_18",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-11-30T00:00:00+0000",
+      "mu": "2017-06-05T00:00:00+0000",
+      "digitalId": 43274,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/90/582c951505382",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Carlo Barberi",
+          "role": "penciler"
+        },
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 62432,
+      "title": "Ultimates 2 (2016) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/62432/ultimates_2_2016_2",
+      "seriesId": 22929,
+      "seriesName": "Ultimates 2 (2016 - 2017)",
+      "onSale": "2016-12-21T00:00:00+0000",
+      "mu": "2017-06-26T00:00:00+0000",
+      "digitalId": 43533,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/a0/584b200f030ef",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Travel Foreman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Christian Ward",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 62512,
+      "title": "Ultimates 2 (2016) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/62512/ultimates_2_2016_3",
+      "seriesId": 22929,
+      "seriesName": "Ultimates 2 (2016 - 2017)",
+      "onSale": "2017-01-18T00:00:00+0000",
+      "mu": "2017-07-24T00:00:00+0000",
+      "digitalId": 43895,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/f0/58750d512b1a5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Christian Ward",
+          "role": "penciler"
+        },
+        {
+          "name": "Travel Foreman",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 62588,
+      "title": "Ultimates 2 (2016) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/62588/ultimates_2_2016_4",
+      "seriesId": 22929,
+      "seriesName": "Ultimates 2 (2016 - 2017)",
+      "onSale": "2017-02-15T00:00:00+0000",
+      "mu": "2017-08-21T00:00:00+0000",
+      "digitalId": 44150,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/e0/589dec4ee61ea",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Christian Ward",
+          "role": "penciler"
+        },
+        {
+          "name": "Travel Foreman",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 62646,
+      "title": "Ultimates 2 (2016) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/62646/ultimates_2_2016_5",
+      "seriesId": 22929,
+      "seriesName": "Ultimates 2 (2016 - 2017)",
+      "onSale": "2017-03-22T00:00:00+0000",
+      "mu": "2017-09-25T00:00:00+0000",
+      "digitalId": 44361,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/03/58cc000685965",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Travel Foreman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Christian Ward",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 62718,
+      "title": "Ultimates 2 (2016) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/62718/ultimates_2_2016_6",
+      "seriesId": 22929,
+      "seriesName": "Ultimates 2 (2016 - 2017)",
+      "onSale": "2017-04-26T00:00:00+0000",
+      "mu": "2017-10-30T00:00:00+0000",
+      "digitalId": 44568,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/58fa5c1c1e369",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Travel Foreman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Christian Ward",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61665,
+      "title": "Rocket (2017) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/61665/rocket_2017_1",
+      "seriesId": 22651,
+      "seriesName": "Rocket (2017)",
+      "onSale": "2017-05-10T00:00:00+0000",
+      "mu": "2017-11-13T00:00:00+0000",
+      "digitalId": 44770,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/20/5908c648e1e6e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adam Gorham",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Mayhew",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 62845,
+      "title": "Ultimates 2 (2016) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/62845/ultimates_2_2016_7",
+      "seriesId": 22929,
+      "seriesName": "Ultimates 2 (2016 - 2017)",
+      "onSale": "2017-05-17T00:00:00+0000",
+      "mu": "2017-11-20T00:00:00+0000",
+      "digitalId": 44835,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/591220939deb0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Aud Koch",
+          "role": "cover artist"
+        },
+        {
+          "name": "Christian Ward",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61666,
+      "title": "Rocket (2017) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/61666/rocket_2017_2",
+      "seriesId": 22651,
+      "seriesName": "Rocket (2017)",
+      "onSale": "2017-06-07T00:00:00+0000",
+      "mu": "2017-12-11T00:00:00+0000",
+      "digitalId": 44991,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/593061de5e199",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adam Gorham",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Mayhew",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 63204,
+      "title": "Ultimates 2 (2016) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/63204/ultimates_2_2016_8",
+      "seriesId": 22929,
+      "seriesName": "Ultimates 2 (2016 - 2017)",
+      "onSale": "2017-06-21T00:00:00+0000",
+      "mu": "2017-12-25T00:00:00+0000",
+      "digitalId": 45659,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/40/5941a986d855b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Aud Koch",
+          "role": "cover artist"
+        },
+        {
+          "name": "Christian Ward",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61667,
+      "title": "Rocket (2017) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/61667/rocket_2017_3",
+      "seriesId": 22651,
+      "seriesName": "Rocket (2017)",
+      "onSale": "2017-07-12T00:00:00+0000",
+      "mu": "2018-01-15T00:00:00+0000",
+      "digitalId": 45256,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/595ea853b3360",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adam Gorham",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Mayhew",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 63863,
+      "title": "Ultimates 2 (2016) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/63863/ultimates_2_2016_9",
+      "seriesId": 22929,
+      "seriesName": "Ultimates 2 (2016 - 2017)",
+      "onSale": "2017-07-19T00:00:00+0000",
+      "mu": "2018-01-22T00:00:00+0000",
+      "digitalId": 45320,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/f0/5967f5d999ccc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Travel Foreman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Christian Ward",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61668,
+      "title": "Rocket (2017) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/61668/rocket_2017_4",
+      "seriesId": 22651,
+      "seriesName": "Rocket (2017)",
+      "onSale": "2017-08-09T00:00:00+0000",
+      "mu": "2018-02-12T00:00:00+0000",
+      "digitalId": 45457,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/00/597796f7a1500",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adam Gorham",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Mayhew",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 64221,
+      "title": "Ultimates 2 (2016) #100",
+      "number": "100",
+      "url": "https://www.marvel.com/comics/issue/64221/ultimates_2_2016_100",
+      "seriesId": 22929,
+      "seriesName": "Ultimates 2 (2016 - 2017)",
+      "onSale": "2017-08-16T00:00:00+0000",
+      "mu": "2018-02-19T00:00:00+0000",
+      "digitalId": 45484,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/597bbd98b1a80",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Filipe Andrade",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Travel Foreman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marco Lorenzana",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61669,
+      "title": "Rocket (2017) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/61669/rocket_2017_5",
+      "seriesId": 22651,
+      "seriesName": "Rocket (2017)",
+      "onSale": "2017-09-13T00:00:00+0000",
+      "mu": "2018-03-19T00:00:00+0000",
+      "digitalId": 45736,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/60/59b04dd0052b0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adam Gorham",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Mayhew",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61670,
+      "title": "Rocket (2017) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/61670/rocket_2017_6",
+      "seriesId": 22651,
+      "seriesName": "Rocket (2017)",
+      "onSale": "2017-10-11T00:00:00+0000",
+      "mu": "2018-04-16T00:00:00+0000",
+      "digitalId": 45992,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/30/59d53e273e8d6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adam Gorham",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Mayhew",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 68616,
+      "title": "Immortal Hulk (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/68616/immortal_hulk_2018_1",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2018-06-06T00:00:00+0000",
+      "mu": "2018-12-10T00:00:00+0000",
+      "digitalId": 48246,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/5b0f16d976240",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 68618,
+      "title": "Immortal Hulk (2018) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/68618/immortal_hulk_2018_2",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2018-07-04T00:00:00+0000",
+      "mu": "2019-01-07T00:00:00+0000",
+      "digitalId": 48544,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/5b34084f2d067",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 67134,
+      "title": "Immortal Hulk (2018) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/67134/immortal_hulk_2018_3",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2018-07-18T00:00:00+0000",
+      "mu": "2019-01-21T00:00:00+0000",
+      "digitalId": 48545,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/10/5b46744682079",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leonardo Romero",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Garry Brown",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Marguerite Sauvage",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Hornschemeier",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 67135,
+      "title": "Immortal Hulk (2018) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/67135/immortal_hulk_2018_4",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2018-08-01T00:00:00+0000",
+      "mu": "2019-02-04T00:00:00+0000",
+      "digitalId": 48940,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/5b58d1dc83727",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 67136,
+      "title": "Immortal Hulk (2018) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/67136/immortal_hulk_2018_5",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2018-09-05T00:00:00+0000",
+      "mu": "2019-03-11T00:00:00+0000",
+      "digitalId": 49114,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/10/5b8829c57f898",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 67137,
+      "title": "Immortal Hulk (2018) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/67137/immortal_hulk_2018_6",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2018-09-19T00:00:00+0000",
+      "mu": "2019-03-25T00:00:00+0000",
+      "digitalId": 49115,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/5b999d138b33b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lee Garbett",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 67138,
+      "title": "Immortal Hulk (2018) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/67138/immortal_hulk_2018_7",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2018-10-10T00:00:00+0000",
+      "mu": "2019-04-15T00:00:00+0000",
+      "digitalId": 49485,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/e0/5bb530c4eab58",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 67139,
+      "title": "Immortal Hulk (2018) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/67139/immortal_hulk_2018_8",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2018-11-07T00:00:00+0000",
+      "mu": "2019-05-13T00:00:00+0000",
+      "digitalId": 49724,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/5bdb658da3c63",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 67140,
+      "title": "Immortal Hulk (2018) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/67140/immortal_hulk_2018_9",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2018-11-21T00:00:00+0000",
+      "mu": "2019-05-27T00:00:00+0000",
+      "digitalId": 49725,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/60/5becad462e9dc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 67141,
+      "title": "Immortal Hulk (2018) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/67141/immortal_hulk_2018_10",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2018-12-05T00:00:00+0000",
+      "mu": "2019-06-10T00:00:00+0000",
+      "digitalId": 50001,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/5bff080719340",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lebeau Underwood",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rafael Fonteriz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 67142,
+      "title": "Immortal Hulk (2018) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/67142/immortal_hulk_2018_11",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2019-01-02T00:00:00+0000",
+      "mu": "2019-07-08T00:00:00+0000",
+      "digitalId": 50330,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/90/5c23ed9d6a3ef",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 67143,
+      "title": "Immortal Hulk (2018) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/67143/immortal_hulk_2018_12",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2019-01-23T00:00:00+0000",
+      "mu": "2019-07-29T00:00:00+0000",
+      "digitalId": 50331,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/5c3f94137e13b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Eric Nguyen",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73817,
+      "title": "Immortal Hulk (2018) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/73817/immortal_hulk_2018_13",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2019-02-06T00:00:00+0000",
+      "mu": "2019-08-12T00:00:00+0000",
+      "digitalId": 50577,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/5c523b9e674c4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Belardino Brabo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rafael Fonteriz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73818,
+      "title": "Immortal Hulk (2018) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/73818/immortal_hulk_2018_14",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2019-03-06T00:00:00+0000",
+      "mu": "2019-09-09T00:00:00+0000",
+      "digitalId": 50876,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/5c76fa3c251eb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kyle Hotz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73819,
+      "title": "Immortal Hulk (2018) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/73819/immortal_hulk_2018_15",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2019-03-20T00:00:00+0000",
+      "mu": "2019-09-23T00:00:00+0000",
+      "digitalId": 50877,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/5c881288ac10a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73820,
+      "title": "Immortal Hulk (2018) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/73820/immortal_hulk_2018_16",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2019-04-03T00:00:00+0000",
+      "mu": "2019-10-07T00:00:00+0000",
+      "digitalId": 51085,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/5c9bfbb7a5286",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joe Bennett",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73821,
+      "title": "Immortal Hulk (2018) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/73821/immortal_hulk_2018_17",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2019-05-15T00:00:00+0000",
+      "mu": "2019-11-18T00:00:00+0000",
+      "digitalId": 51424,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/5cd446a3e137c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73822,
+      "title": "Immortal Hulk (2018) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/73822/immortal_hulk_2018_18",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2019-05-29T00:00:00+0000",
+      "mu": "2019-12-02T00:00:00+0000",
+      "digitalId": 51425,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/5ce4014d5df5c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73823,
+      "title": "Immortal Hulk (2018) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/73823/immortal_hulk_2018_19",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2019-06-12T00:00:00+0000",
+      "mu": "2019-12-16T00:00:00+0000",
+      "digitalId": 51722,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/50/5cf7db2626cdb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Belardino Brabo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73824,
+      "title": "Immortal Hulk (2018) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/73824/immortal_hulk_2018_20",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2019-07-03T00:00:00+0000",
+      "mu": "2020-01-06T00:00:00+0000",
+      "digitalId": 51886,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/5d126deb7369c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Belardino Brabo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marc Deering",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Level",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73825,
+      "title": "Immortal Hulk (2018) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/73825/immortal_hulk_2018_21",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2019-07-17T00:00:00+0000",
+      "mu": "2020-01-20T00:00:00+0000",
+      "digitalId": 51887,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/5d25ef63f0e68",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ryan Bodenheim",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73826,
+      "title": "Immortal Hulk (2018) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/73826/immortal_hulk_2018_22",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2019-08-07T00:00:00+0000",
+      "mu": "2020-02-10T00:00:00+0000",
+      "digitalId": 52317,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/03/5d404f3035383",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Belardino Brabo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Land",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 75125,
+      "title": "Marvel Comics (2019) #1000",
+      "number": "1000",
+      "url": "https://www.marvel.com/comics/issue/75125/marvel_comics_2019_1000",
+      "seriesId": 27020,
+      "seriesName": "Marvel Comics (2019)",
+      "onSale": "2019-08-28T00:00:00+0000",
+      "mu": "2020-03-02T00:00:00+0000",
+      "digitalId": 52319,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/04/5d5d4cbf869ff",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 96,
+      "creators": [
+        {
+          "name": "Brett Breeding",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Baldeon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jen Bartel",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "cover artist"
+        },
+        {
+          "name": "Michael Allred",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nick Bradshaw",
+          "role": "cover artist"
+        },
+        {
+          "name": "Doug Braithwaite",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Azaceta",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        },
+        {
+          "name": "Kareem Abdul-Jabbar",
+          "role": "writer"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73827,
+      "title": "Immortal Hulk (2018) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/73827/immortal_hulk_2018_23",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2019-09-04T00:00:00+0000",
+      "mu": "2020-03-09T00:00:00+0000",
+      "digitalId": 52493,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/10/5d63e474792a7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Belardino Brabo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73828,
+      "title": "Immortal Hulk (2018) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/73828/immortal_hulk_2018_24",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2019-10-02T00:00:00+0000",
+      "mu": "2020-04-06T00:00:00+0000",
+      "digitalId": 52494,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/5d8a2ad3781f5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Belardino Brabo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marc Deering",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roberto Poggi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 75126,
+      "title": "Marvel Comics (2019) #1001",
+      "number": "1001",
+      "url": "https://www.marvel.com/comics/issue/75126/marvel_comics_2019_1001",
+      "seriesId": 27020,
+      "seriesName": "Marvel Comics (2019)",
+      "onSale": "2019-10-02T00:00:00+0000",
+      "mu": "2020-04-06T00:00:00+0000",
+      "digitalId": 52587,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/5d8a2ac09c7d0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "A CO",
+          "role": "cover artist"
+        },
+        {
+          "name": "Amanda Conner",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bob Budiansky",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Bachalo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Howard Chaykin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andre Lima Araujo",
+          "role": "penciler"
+        },
+        {
+          "name": "Derek Charm",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Kaare Andrews",
+          "role": "writer"
+        },
+        {
+          "name": "Scott Aukerman",
+          "role": "writer"
+        },
+        {
+          "name": "Vita Ayala",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77339,
+      "title": "Immortal Hulk (2018) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/77339/immortal_hulk_2018_25",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2019-10-23T00:00:00+0000",
+      "mu": "2020-04-27T00:00:00+0000",
+      "digitalId": 52802,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/5da4ca1385fa7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "German Garcia",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77340,
+      "title": "Immortal Hulk (2018) #26",
+      "number": "26",
+      "url": "https://www.marvel.com/comics/issue/77340/immortal_hulk_2018_26",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2019-11-06T00:00:00+0000",
+      "mu": "2020-05-11T00:00:00+0000",
+      "digitalId": 52997,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/c0/5db841e6ddc7f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77341,
+      "title": "Immortal Hulk (2018) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/77341/immortal_hulk_2018_27",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2019-11-20T00:00:00+0000",
+      "mu": "2020-05-25T00:00:00+0000",
+      "digitalId": 52998,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/5dc98aaa12f92",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Belardino Brabo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marc Deering",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sean Parsons",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77342,
+      "title": "Immortal Hulk (2018) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/77342/immortal_hulk_2018_28",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2019-12-11T00:00:00+0000",
+      "mu": "2020-06-15T00:00:00+0000",
+      "digitalId": 53262,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/04/5de549bed4f8c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Tom Reilly",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matias Bergara",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77343,
+      "title": "Immortal Hulk (2018) #29",
+      "number": "29",
+      "url": "https://www.marvel.com/comics/issue/77343/immortal_hulk_2018_29",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2020-01-08T00:00:00+0000",
+      "mu": "2020-07-13T00:00:00+0000",
+      "digitalId": 53559,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/5e0a6686b7e29",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Belardino Brabo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Cam Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 78683,
+      "title": "Guardians of the Galaxy (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/78683/guardians_of_the_galaxy_2020_1",
+      "seriesId": 28042,
+      "seriesName": "Guardians of the Galaxy (2020 - 2021)",
+      "onSale": "2020-01-22T00:00:00+0000",
+      "mu": "2020-07-27T00:00:00+0000",
+      "digitalId": 53556,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/5e1c8c88ea5a9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Juann Cabal",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77344,
+      "title": "Immortal Hulk (2018) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/77344/immortal_hulk_2018_30",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2020-01-29T00:00:00+0000",
+      "mu": "2020-08-03T00:00:00+0000",
+      "digitalId": 53560,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/5e2890a59e121",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Belardino Brabo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Cam Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77345,
+      "title": "Immortal Hulk (2018) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/77345/immortal_hulk_2018_31",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2020-02-12T00:00:00+0000",
+      "mu": "2020-08-17T00:00:00+0000",
+      "digitalId": 53980,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/5e3b3600ec922",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 78684,
+      "title": "Guardians of the Galaxy (2020) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/78684/guardians_of_the_galaxy_2020_2",
+      "seriesId": 28042,
+      "seriesName": "Guardians of the Galaxy (2020 - 2021)",
+      "onSale": "2020-02-19T00:00:00+0000",
+      "mu": "2020-08-24T00:00:00+0000",
+      "digitalId": 53977,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/80/5e28a2bcbaccb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juann Cabal",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ivan Shavrin",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77346,
+      "title": "Immortal Hulk (2018) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/77346/immortal_hulk_2018_32",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2020-03-11T00:00:00+0000",
+      "mu": "2020-09-14T00:00:00+0000",
+      "digitalId": 54269,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/5e5835ed7caf5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alvaro Lopez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Belardino Brabo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Javier Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 78685,
+      "title": "Guardians of the Galaxy (2020) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/78685/guardians_of_the_galaxy_2020_3",
+      "seriesId": 28042,
+      "seriesName": "Guardians of the Galaxy (2020 - 2021)",
+      "onSale": "2020-03-18T00:00:00+0000",
+      "mu": "2020-09-21T00:00:00+0000",
+      "digitalId": 54265,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/c0/5e67bd7569883",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juann Cabal",
+          "role": "cover artist"
+        },
+        {
+          "name": "Karl Story",
+          "role": "cover artist"
+        },
+        {
+          "name": "Belen Ortega",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Sprouse",
+          "role": "penciler"
+        },
+        {
+          "name": "Ivan Shavrin",
+          "role": "penciler"
+        },
+        {
+          "name": "Nina Vakueva",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77347,
+      "title": "Immortal Hulk (2018) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/77347/immortal_hulk_2018_33",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2020-03-25T00:00:00+0000",
+      "mu": "2020-09-28T00:00:00+0000",
+      "digitalId": 54270,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/5e62aca662972",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Belardino Brabo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marc Deering",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nicholas Pitarra",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77348,
+      "title": "Immortal Hulk (2018) #34",
+      "number": "34",
+      "url": "https://www.marvel.com/comics/issue/77348/immortal_hulk_2018_34",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2020-06-24T00:00:00+0000",
+      "mu": "2020-10-12T00:00:00+0000",
+      "digitalId": 54623,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/5e8653ebba47f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Butch Guice",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77349,
+      "title": "Immortal Hulk (2018) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/77349/immortal_hulk_2018_35",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2020-07-15T00:00:00+0000",
+      "mu": "2020-10-19T00:00:00+0000",
+      "digitalId": 54898,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/20/5f0cbcd3464ed",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Hawthorne",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 78686,
+      "title": "Guardians of the Galaxy (2020) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/78686/guardians_of_the_galaxy_2020_4",
+      "seriesId": 28042,
+      "seriesName": "Guardians of the Galaxy (2020 - 2021)",
+      "onSale": "2020-07-15T00:00:00+0000",
+      "mu": "2020-10-19T00:00:00+0000",
+      "digitalId": 54618,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/5e9e0777e20d3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juann Cabal",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ivan Shavrin",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 78687,
+      "title": "Guardians of the Galaxy (2020) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/78687/guardians_of_the_galaxy_2020_5",
+      "seriesId": 28042,
+      "seriesName": "Guardians of the Galaxy (2020 - 2021)",
+      "onSale": "2020-08-05T00:00:00+0000",
+      "mu": "2020-11-09T00:00:00+0000",
+      "digitalId": 54893,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/e0/5f1f310de3cec",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juann Cabal",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ivan Shavrin",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77350,
+      "title": "Immortal Hulk (2018) #36",
+      "number": "36",
+      "url": "https://www.marvel.com/comics/issue/77350/immortal_hulk_2018_36",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2020-08-12T00:00:00+0000",
+      "mu": "2020-11-16T00:00:00+0000",
+      "digitalId": 54899,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/5f2c347dc6cf8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 78688,
+      "title": "Guardians of the Galaxy (2020) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/78688/guardians_of_the_galaxy_2020_6",
+      "seriesId": 28042,
+      "seriesName": "Guardians of the Galaxy (2020 - 2021)",
+      "onSale": "2020-09-02T00:00:00+0000",
+      "mu": "2020-12-07T00:00:00+0000",
+      "digitalId": 55090,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/60/5f3d368aac3df",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marcio Takara",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rafael Albuquerque",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77351,
+      "title": "Immortal Hulk (2018) #37",
+      "number": "37",
+      "url": "https://www.marvel.com/comics/issue/77351/immortal_hulk_2018_37",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2020-09-16T00:00:00+0000",
+      "mu": "2020-12-21T00:00:00+0000",
+      "digitalId": 55094,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/5f594309d0eb5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Belardino Brabo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77352,
+      "title": "Immortal Hulk (2018) #38",
+      "number": "38",
+      "url": "https://www.marvel.com/comics/issue/77352/immortal_hulk_2018_38",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2020-10-14T00:00:00+0000",
+      "mu": "2021-01-18T00:00:00+0000",
+      "digitalId": 55555,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/5f3ee08a68a7a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Belardino Brabo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 78689,
+      "title": "Guardians of the Galaxy (2020) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/78689/guardians_of_the_galaxy_2020_7",
+      "seriesId": 28042,
+      "seriesName": "Guardians of the Galaxy (2020 - 2021)",
+      "onSale": "2020-10-21T00:00:00+0000",
+      "mu": "2021-01-25T00:00:00+0000",
+      "digitalId": 55553,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/5f3ee08a695cc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marcio Takara",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Landini",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rafael Albuquerque",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 77353,
+      "title": "Immortal Hulk (2018) #39",
+      "number": "39",
+      "url": "https://www.marvel.com/comics/issue/77353/immortal_hulk_2018_39",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2020-10-28T00:00:00+0000",
+      "mu": "2021-02-01T00:00:00+0000",
+      "digitalId": 55556,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/601967f0db2e3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Belardino Brabo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 78690,
+      "title": "Guardians of the Galaxy (2020) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/78690/guardians_of_the_galaxy_2020_8",
+      "seriesId": 28042,
+      "seriesName": "Guardians of the Galaxy (2020 - 2021)",
+      "onSale": "2020-11-04T00:00:00+0000",
+      "mu": "2021-02-08T00:00:00+0000",
+      "digitalId": 55689,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/601af77f6d29b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marcio Takara",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rafael Albuquerque",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 79395,
+      "title": "Immortal Hulk (2018) #40",
+      "number": "40",
+      "url": "https://www.marvel.com/comics/issue/79395/immortal_hulk_2018_40",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2020-11-18T00:00:00+0000",
+      "mu": "2021-02-22T00:00:00+0000",
+      "digitalId": 55691,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/601af70944b56",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Belardino Brabo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 90340,
+      "title": "S.W.O.R.D. (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/90340/sword_2020_1",
+      "seriesId": 31083,
+      "seriesName": "S.W.O.R.D. (2020 - 2021)",
+      "onSale": "2020-12-09T00:00:00+0000",
+      "mu": "2021-03-15T00:00:00+0000",
+      "digitalId": 55822,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/5fcfb8a75b665",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 78691,
+      "title": "Guardians of the Galaxy (2020) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/78691/guardians_of_the_galaxy_2020_9",
+      "seriesId": 28042,
+      "seriesName": "Guardians of the Galaxy (2020 - 2021)",
+      "onSale": "2020-12-09T00:00:00+0000",
+      "mu": "2021-03-15T00:00:00+0000",
+      "digitalId": 55800,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/70/5fbd36ae179bc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juann Cabal",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rafael Albuquerque",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 79396,
+      "title": "Immortal Hulk (2018) #41",
+      "number": "41",
+      "url": "https://www.marvel.com/comics/issue/79396/immortal_hulk_2018_41",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2020-12-16T00:00:00+0000",
+      "mu": "2021-03-22T00:00:00+0000",
+      "digitalId": 55803,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/c0/5fcfb88a1bd49",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Belardino Brabo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 78692,
+      "title": "Guardians of the Galaxy (2020) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/78692/guardians_of_the_galaxy_2020_10",
+      "seriesId": 28042,
+      "seriesName": "Guardians of the Galaxy (2020 - 2021)",
+      "onSale": "2021-01-06T00:00:00+0000",
+      "mu": "2021-04-12T00:00:00+0000",
+      "digitalId": 56018,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/e0/5ff32d1092124",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juann Cabal",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rafael Albuquerque",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 89658,
+      "title": "Immortal Hulk (2018) #42",
+      "number": "42",
+      "url": "https://www.marvel.com/comics/issue/89658/immortal_hulk_2018_42",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2021-01-13T00:00:00+0000",
+      "mu": "2021-04-19T00:00:00+0000",
+      "digitalId": 55804,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/c0/5ff32d6c030c2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adam Gorham",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Lins",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rachael Stott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 90341,
+      "title": "S.W.O.R.D. (2020) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/90341/sword_2020_2",
+      "seriesId": 31083,
+      "seriesName": "S.W.O.R.D. (2020 - 2021)",
+      "onSale": "2021-01-13T00:00:00+0000",
+      "mu": "2021-04-19T00:00:00+0000",
+      "digitalId": 56039,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/5ff8cf2fedf7e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 89659,
+      "title": "Immortal Hulk (2018) #43",
+      "number": "43",
+      "url": "https://www.marvel.com/comics/issue/89659/immortal_hulk_2018_43",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2021-02-03T00:00:00+0000",
+      "mu": "2021-05-10T00:00:00+0000",
+      "digitalId": 56020,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/6009e1e7e7ad7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Belardino Brabo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 90342,
+      "title": "S.W.O.R.D. (2020) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/90342/sword_2020_3",
+      "seriesId": 31083,
+      "seriesName": "S.W.O.R.D. (2020 - 2021)",
+      "onSale": "2021-02-10T00:00:00+0000",
+      "mu": "2021-05-17T00:00:00+0000",
+      "digitalId": 56172,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/80/601970086239d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Bernard Chang",
+          "role": "penciler"
+        },
+        {
+          "name": "Nico Leon",
+          "role": "penciler"
+        },
+        {
+          "name": "Ray-Anthony Height",
+          "role": "penciler"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 78693,
+      "title": "Guardians of the Galaxy (2020) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/78693/guardians_of_the_galaxy_2020_11",
+      "seriesId": 28042,
+      "seriesName": "Guardians of the Galaxy (2020 - 2021)",
+      "onSale": "2021-02-17T00:00:00+0000",
+      "mu": "2021-05-24T00:00:00+0000",
+      "digitalId": 56149,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/a0/6026d1a63810c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juann Cabal",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rafael Albuquerque",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 89660,
+      "title": "Immortal Hulk (2018) #44",
+      "number": "44",
+      "url": "https://www.marvel.com/comics/issue/89660/immortal_hulk_2018_44",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2021-03-10T00:00:00+0000",
+      "mu": "2021-06-14T00:00:00+0000",
+      "digitalId": 56151,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/603d21e7aa99c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Belardino Brabo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 90343,
+      "title": "S.W.O.R.D. (2020) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/90343/sword_2020_4",
+      "seriesId": 31083,
+      "seriesName": "S.W.O.R.D. (2020 - 2021)",
+      "onSale": "2021-03-17T00:00:00+0000",
+      "mu": "2021-06-21T00:00:00+0000",
+      "digitalId": 56416,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/60464e1719bbd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 78694,
+      "title": "Guardians of the Galaxy (2020) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/78694/guardians_of_the_galaxy_2020_12",
+      "seriesId": 28042,
+      "seriesName": "Guardians of the Galaxy (2020 - 2021)",
+      "onSale": "2021-03-24T00:00:00+0000",
+      "mu": "2021-06-28T00:00:00+0000",
+      "digitalId": 56401,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/605cee7f4e1c0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juann Cabal",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rafael Albuquerque",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 89661,
+      "title": "Immortal Hulk (2018) #45",
+      "number": "45",
+      "url": "https://www.marvel.com/comics/issue/89661/immortal_hulk_2018_45",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2021-04-07T00:00:00+0000",
+      "mu": "2021-07-12T00:00:00+0000",
+      "digitalId": 56502,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/605cee09c6523",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Belardino Brabo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 92234,
+      "title": "Guardians of the Galaxy (2020) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/92234/guardians_of_the_galaxy_2020_13",
+      "seriesId": 28042,
+      "seriesName": "Guardians of the Galaxy (2020 - 2021)",
+      "onSale": "2021-04-14T00:00:00+0000",
+      "mu": "2021-07-19T00:00:00+0000",
+      "digitalId": 56501,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/a0/606610600dc5d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Adelso Corona",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juan Frigeri",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brett Booth",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 90344,
+      "title": "S.W.O.R.D. (2020) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/90344/sword_2020_5",
+      "seriesId": 31083,
+      "seriesName": "S.W.O.R.D. (2020 - 2021)",
+      "onSale": "2021-04-21T00:00:00+0000",
+      "mu": "2021-07-26T00:00:00+0000",
+      "digitalId": 56512,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/607717d63e2e7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 89662,
+      "title": "Immortal Hulk (2018) #46",
+      "number": "46",
+      "url": "https://www.marvel.com/comics/issue/89662/immortal_hulk_2018_46",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2021-05-05T00:00:00+0000",
+      "mu": "2021-08-09T00:00:00+0000",
+      "digitalId": 56806,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/f0/608990cbba22b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Belardino Brabo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 92235,
+      "title": "Guardians of the Galaxy (2020) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/92235/guardians_of_the_galaxy_2020_14",
+      "seriesId": 28042,
+      "seriesName": "Guardians of the Galaxy (2020 - 2021)",
+      "onSale": "2021-05-12T00:00:00+0000",
+      "mu": "2021-08-16T00:00:00+0000",
+      "digitalId": 56795,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/6087319c790bc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adelso Corona",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juan Frigeri",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brett Booth",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 89663,
+      "title": "Immortal Hulk (2018) #47",
+      "number": "47",
+      "url": "https://www.marvel.com/comics/issue/89663/immortal_hulk_2018_47",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2021-06-02T00:00:00+0000",
+      "mu": "2021-09-06T00:00:00+0000",
+      "digitalId": 56897,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/60afe2a391d91",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Belardino Brabo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 90345,
+      "title": "S.W.O.R.D. (2020) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/90345/sword_2020_6",
+      "seriesId": 31083,
+      "seriesName": "S.W.O.R.D. (2020 - 2021)",
+      "onSale": "2021-06-23T00:00:00+0000",
+      "mu": "2021-09-27T00:00:00+0000",
+      "digitalId": 56908,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/60d5eb388ca05",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 92236,
+      "title": "Guardians of the Galaxy (2020) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/92236/guardians_of_the_galaxy_2020_15",
+      "seriesId": 28042,
+      "seriesName": "Guardians of the Galaxy (2020 - 2021)",
+      "onSale": "2021-06-23T00:00:00+0000",
+      "mu": "2021-09-27T00:00:00+0000",
+      "digitalId": 56886,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/60cd0f44b862d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adelso Corona",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juan Frigeri",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brett Booth",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 89664,
+      "title": "Immortal Hulk (2018) #48",
+      "number": "48",
+      "url": "https://www.marvel.com/comics/issue/89664/immortal_hulk_2018_48",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2021-07-07T00:00:00+0000",
+      "mu": "2021-10-11T00:00:00+0000",
+      "digitalId": 57052,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/40/60e72aacce57f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Belardino Brabo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 92237,
+      "title": "Guardians of the Galaxy (2020) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/92237/guardians_of_the_galaxy_2020_16",
+      "seriesId": 28042,
+      "seriesName": "Guardians of the Galaxy (2020 - 2021)",
+      "onSale": "2021-07-21T00:00:00+0000",
+      "mu": "2021-10-25T00:00:00+0000",
+      "digitalId": 57050,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/60fad3864b875",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adelso Corona",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juan Frigeri",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brett Booth",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 94676,
+      "title": "S.W.O.R.D. (2020) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/94676/sword_2020_7",
+      "seriesId": 31083,
+      "seriesName": "S.W.O.R.D. (2020 - 2021)",
+      "onSale": "2021-07-28T00:00:00+0000",
+      "mu": "2021-11-01T00:00:00+0000",
+      "digitalId": 57061,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/60/60fad30f41a14",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Stefano Caselli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 89665,
+      "title": "Immortal Hulk (2018) #49",
+      "number": "49",
+      "url": "https://www.marvel.com/comics/issue/89665/immortal_hulk_2018_49",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2021-08-04T00:00:00+0000",
+      "mu": "2021-11-08T00:00:00+0000",
+      "digitalId": 57178,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/60/610411e244beb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Belardino Brabo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 90367,
+      "title": "Guardians Of The Galaxy Annual (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/90367/guardians_of_the_galaxy_annual_2021_1",
+      "seriesId": 31090,
+      "seriesName": "Guardians Of The Galaxy Annual (2021)",
+      "onSale": "2021-08-04T00:00:00+0000",
+      "mu": "2021-11-08T00:00:00+0000",
+      "digitalId": 57176,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/50/610411ed31046",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "F Flaviano",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juan Ferreyra",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Mckone",
+          "role": "penciler"
+        },
+        {
+          "name": "Natacha Bustos",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84120,
+      "title": "Defenders (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/84120/defenders_2021_1",
+      "seriesId": 29643,
+      "seriesName": "Defenders (2021)",
+      "onSale": "2021-08-11T00:00:00+0000",
+      "mu": "2021-11-15T00:00:00+0000",
+      "digitalId": 56497,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/610411f8776bc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alvaro Lopez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Javier Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 92238,
+      "title": "Guardians of the Galaxy (2020) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/92238/guardians_of_the_galaxy_2020_17",
+      "seriesId": 28042,
+      "seriesName": "Guardians of the Galaxy (2020 - 2021)",
+      "onSale": "2021-08-18T00:00:00+0000",
+      "mu": "2021-11-22T00:00:00+0000",
+      "digitalId": 57175,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/60e5e1a39a5c8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adelso Corona",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juan Frigeri",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brett Booth",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84121,
+      "title": "Defenders (2021) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/84121/defenders_2021_2",
+      "seriesId": 29643,
+      "seriesName": "Defenders (2021)",
+      "onSale": "2021-09-08T00:00:00+0000",
+      "mu": "2021-12-13T00:00:00+0000",
+      "digitalId": 57655,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/612e8dfdcb290",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Javier Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 92239,
+      "title": "Guardians of the Galaxy (2020) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/92239/guardians_of_the_galaxy_2020_18",
+      "seriesId": 28042,
+      "seriesName": "Guardians of the Galaxy (2020 - 2021)",
+      "onSale": "2021-09-22T00:00:00+0000",
+      "mu": "2021-12-27T00:00:00+0000",
+      "digitalId": 57665,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/e0/6142604c0c808",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adelso Corona",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juan Frigeri",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brett Booth",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 94677,
+      "title": "S.W.O.R.D. (2020) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/94677/sword_2020_8",
+      "seriesId": 31083,
+      "seriesName": "S.W.O.R.D. (2020 - 2021)",
+      "onSale": "2021-09-29T00:00:00+0000",
+      "mu": "2022-01-03T00:00:00+0000",
+      "digitalId": 57678,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/614b3ff33e382",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Guiu Vilanova",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84122,
+      "title": "Defenders (2021) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/84122/defenders_2021_3",
+      "seriesId": 29643,
+      "seriesName": "Defenders (2021)",
+      "onSale": "2021-10-06T00:00:00+0000",
+      "mu": "2022-01-10T00:00:00+0000",
+      "digitalId": 57780,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/614b3fd483ae2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Javier Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 89666,
+      "title": "Immortal Hulk (2018) #50",
+      "number": "50",
+      "url": "https://www.marvel.com/comics/issue/89666/immortal_hulk_2018_50",
+      "seriesId": 24278,
+      "seriesName": "Immortal Hulk (2018 - 2021)",
+      "onSale": "2021-10-13T00:00:00+0000",
+      "mu": "2022-01-17T00:00:00+0000",
+      "digitalId": 57786,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/60/6160b65827451",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 96,
+      "creators": [
+        {
+          "name": "Belardino Brabo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ruy Jose",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 94678,
+      "title": "S.W.O.R.D. (2020) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/94678/sword_2020_9",
+      "seriesId": 31083,
+      "seriesName": "S.W.O.R.D. (2020 - 2021)",
+      "onSale": "2021-10-27T00:00:00+0000",
+      "mu": "2022-01-31T00:00:00+0000",
+      "digitalId": 57800,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/00/6169ef255359a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jacopo Camagni",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 95879,
+      "title": "Venom (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/95879/venom_2021_1",
+      "seriesId": 32870,
+      "seriesName": "Venom (2021 - Present)",
+      "onSale": "2021-11-10T00:00:00+0000",
+      "mu": "2022-02-14T00:00:00+0000",
+      "digitalId": 57819,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/6169eecb78c4c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Andrew Currie",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Ram. V.",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 94679,
+      "title": "S.W.O.R.D. (2020) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/94679/sword_2020_10",
+      "seriesId": 31083,
+      "seriesName": "S.W.O.R.D. (2020 - 2021)",
+      "onSale": "2021-11-17T00:00:00+0000",
+      "mu": "2022-02-21T00:00:00+0000",
+      "digitalId": 57920,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/90/6214faf01aa6e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jacopo Camagni",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 95880,
+      "title": "Venom (2021) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/95880/venom_2021_2",
+      "seriesId": 32870,
+      "seriesName": "Venom (2021 - Present)",
+      "onSale": "2021-12-01T00:00:00+0000",
+      "mu": "2022-03-07T00:00:00+0000",
+      "digitalId": 57939,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/e0/618ea4f584382",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Currie",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Ram. V.",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84123,
+      "title": "Defenders (2021) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/84123/defenders_2021_4",
+      "seriesId": 29643,
+      "seriesName": "Defenders (2021)",
+      "onSale": "2021-12-15T00:00:00+0000",
+      "mu": "2022-03-21T00:00:00+0000",
+      "digitalId": 57898,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/d0/61ae2a7d6640a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Javier Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 96239,
+      "title": "S.W.O.R.D. (2020) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/96239/sword_2020_11",
+      "seriesId": 31083,
+      "seriesName": "S.W.O.R.D. (2020 - 2021)",
+      "onSale": "2021-12-22T00:00:00+0000",
+      "mu": "2022-03-28T00:00:00+0000",
+      "digitalId": 58191,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/61ae1ce771d18",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jacopo Camagni",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 95881,
+      "title": "Venom (2021) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/95881/venom_2021_3",
+      "seriesId": 32870,
+      "seriesName": "Venom (2021 - Present)",
+      "onSale": "2021-12-22T00:00:00+0000",
+      "mu": "2022-03-28T00:00:00+0000",
+      "digitalId": 58208,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/61d4c4f955b19",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Currie",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Ram. V.",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 95882,
+      "title": "Venom (2021) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/95882/venom_2021_4",
+      "seriesId": 32870,
+      "seriesName": "Venom (2021 - Present)",
+      "onSale": "2022-01-19T00:00:00+0000",
+      "mu": "2022-04-25T00:00:00+0000",
+      "digitalId": 58555,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/61cf40196ce39",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Currie",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Ram. V.",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 84124,
+      "title": "Defenders (2021) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/84124/defenders_2021_5",
+      "seriesId": 29643,
+      "seriesName": "Defenders (2021)",
+      "onSale": "2022-01-19T00:00:00+0000",
+      "mu": "2022-04-25T00:00:00+0000",
+      "digitalId": 58513,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/e0/61d4c3fba6e1c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Javier Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 95883,
+      "title": "Venom (2021) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/95883/venom_2021_5",
+      "seriesId": 32870,
+      "seriesName": "Venom (2021 - Present)",
+      "onSale": "2022-02-16T00:00:00+0000",
+      "mu": "2022-05-23T00:00:00+0000",
+      "digitalId": 58659,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/6201552f5dcc4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Currie",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 95884,
+      "title": "Venom (2021) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/95884/venom_2021_6",
+      "seriesId": 32870,
+      "seriesName": "Venom (2021 - Present)",
+      "onSale": "2022-03-09T00:00:00+0000",
+      "mu": "2022-06-13T00:00:00+0000",
+      "digitalId": 58844,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/30/622780321347e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Currie",
+          "role": "cover artist"
+        },
+        {
+          "name": "Wade Von Grawbadger",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Ram. V.",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 96265,
+      "title": "X-Men Red (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/96265/x-men_red_2022_1",
+      "seriesId": 32962,
+      "seriesName": "X-Men Red (2022 - Present)",
+      "onSale": "2022-04-06T00:00:00+0000",
+      "mu": "2022-07-11T00:00:00+0000",
+      "digitalId": 59185,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/62432e4f27fcd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Stefano Caselli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Russell Dauterman",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 95885,
+      "title": "Venom (2021) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/95885/venom_2021_7",
+      "seriesId": 32870,
+      "seriesName": "Venom (2021 - Present)",
+      "onSale": "2022-04-13T00:00:00+0000",
+      "mu": "2022-07-18T00:00:00+0000",
+      "digitalId": 59176,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/20/6241c67051383",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Currie",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Ram. V.",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 96266,
+      "title": "X-Men Red (2022) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/96266/x-men_red_2022_2",
+      "seriesId": 32962,
+      "seriesName": "X-Men Red (2022 - Present)",
+      "onSale": "2022-05-18T00:00:00+0000",
+      "mu": "2022-08-22T00:00:00+0000",
+      "digitalId": 59186,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/62b9e20b6cd5c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Stefano Caselli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Russell Dauterman",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 95886,
+      "title": "Venom (2021) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/95886/venom_2021_8",
+      "seriesId": 32870,
+      "seriesName": "Venom (2021 - Present)",
+      "onSale": "2022-06-08T00:00:00+0000",
+      "mu": "2022-09-12T00:00:00+0000",
+      "digitalId": 59391,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/62b9e1650e2d6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Currie",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Owens",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 96267,
+      "title": "X-Men Red (2022) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/96267/x-men_red_2022_3",
+      "seriesId": 32962,
+      "seriesName": "X-Men Red (2022 - Present)",
+      "onSale": "2022-06-15T00:00:00+0000",
+      "mu": "2022-09-19T00:00:00+0000",
+      "digitalId": 59402,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/c0/62b9e125af2b0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Stefano Caselli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Russell Dauterman",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 96268,
+      "title": "X-Men Red (2022) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/96268/x-men_red_2022_4",
+      "seriesId": 32962,
+      "seriesName": "X-Men Red (2022 - Present)",
+      "onSale": "2022-06-29T00:00:00+0000",
+      "mu": "2022-10-03T00:00:00+0000",
+      "digitalId": 59662,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/62b9e09030efb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andres Genolet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juann Cabal",
+          "role": "cover artist"
+        },
+        {
+          "name": "Michael Sta. Maria",
+          "role": "cover artist"
+        },
+        {
+          "name": "Russell Dauterman",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 100036,
+      "title": "Defenders: Beyond (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/100036/defenders_beyond_2022_1",
+      "seriesId": 34393,
+      "seriesName": "Defenders: Beyond (2022)",
+      "onSale": "2022-07-20T00:00:00+0000",
+      "mu": "2022-10-24T00:00:00+0000",
+      "digitalId": 59598,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/62d04547ad771",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Javier Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 95887,
+      "title": "Venom (2021) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/95887/venom_2021_9",
+      "seriesId": 32870,
+      "seriesName": "Venom (2021 - Present)",
+      "onSale": "2022-07-27T00:00:00+0000",
+      "mu": "2022-10-31T00:00:00+0000",
+      "digitalId": 59651,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/e0/62dab2a9a5cb7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Currie",
+          "role": "cover artist"
+        },
+        {
+          "name": "Wade Von Grawbadger",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 96269,
+      "title": "X-Men Red (2022) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/96269/x-men_red_2022_5",
+      "seriesId": 32962,
+      "seriesName": "X-Men Red (2022 - Present)",
+      "onSale": "2022-08-03T00:00:00+0000",
+      "mu": "2022-11-07T00:00:00+0000",
+      "digitalId": 60038,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/40/62dab23aad018",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Stefano Caselli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Russell Dauterman",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 100037,
+      "title": "Defenders: Beyond (2022) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/100037/defenders_beyond_2022_2",
+      "seriesId": 34393,
+      "seriesName": "Defenders: Beyond (2022)",
+      "onSale": "2022-08-24T00:00:00+0000",
+      "mu": "2022-11-28T00:00:00+0000",
+      "digitalId": 59991,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/6305076f5bc77",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Javier Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 102552,
+      "title": "X-Men Red (2022) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/102552/x-men_red_2022_6",
+      "seriesId": 32962,
+      "seriesName": "X-Men Red (2022 - Present)",
+      "onSale": "2022-09-14T00:00:00+0000",
+      "mu": "2022-12-19T00:00:00+0000",
+      "digitalId": 60227,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/631b39c241d6d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Stefano Caselli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Russell Dauterman",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 95888,
+      "title": "Venom (2021) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/95888/venom_2021_10",
+      "seriesId": 32870,
+      "seriesName": "Venom (2021 - Present)",
+      "onSale": "2022-09-14T00:00:00+0000",
+      "mu": "2022-12-19T00:00:00+0000",
+      "digitalId": 60028,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/631b39e3d1bb4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Currie",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 100038,
+      "title": "Defenders: Beyond (2022) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/100038/defenders_beyond_2022_3",
+      "seriesId": 34393,
+      "seriesName": "Defenders: Beyond (2022)",
+      "onSale": "2022-09-28T00:00:00+0000",
+      "mu": "2023-01-02T00:00:00+0000",
+      "digitalId": 60176,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/60/631b354bbb21d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Javier Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 102553,
+      "title": "X-Men Red (2022) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/102553/x-men_red_2022_7",
+      "seriesId": 32962,
+      "seriesName": "X-Men Red (2022 - Present)",
+      "onSale": "2022-10-05T00:00:00+0000",
+      "mu": "2023-01-09T00:00:00+0000",
+      "digitalId": 60600,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/20/633cefa05cbd8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Madibek Musabekov",
+          "role": "cover artist"
+        },
+        {
+          "name": "Russell Dauterman",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 100039,
+      "title": "Defenders: Beyond (2022) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/100039/defenders_beyond_2022_4",
+      "seriesId": 34393,
+      "seriesName": "Defenders: Beyond (2022)",
+      "onSale": "2022-10-19T00:00:00+0000",
+      "mu": "2023-01-23T00:00:00+0000",
+      "digitalId": 60562,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/634f64a93bbca",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Javier Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 102554,
+      "title": "X-Men Red (2022) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/102554/x-men_red_2022_8",
+      "seriesId": 32962,
+      "seriesName": "X-Men Red (2022 - Present)",
+      "onSale": "2022-11-02T00:00:00+0000",
+      "mu": "2023-02-06T00:00:00+0000",
+      "digitalId": 60788,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/e0/63613a08bddfa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Madibek Musabekov",
+          "role": "cover artist"
+        },
+        {
+          "name": "Russell Dauterman",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 100040,
+      "title": "Defenders: Beyond (2022) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/100040/defenders_beyond_2022_5",
+      "seriesId": 34393,
+      "seriesName": "Defenders: Beyond (2022)",
+      "onSale": "2022-11-23T00:00:00+0000",
+      "mu": "2023-02-27T00:00:00+0000",
+      "digitalId": 60736,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/20/63755f7ee092e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Javier Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 102555,
+      "title": "X-Men Red (2022) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/102555/x-men_red_2022_9",
+      "seriesId": 32962,
+      "seriesName": "X-Men Red (2022 - Present)",
+      "onSale": "2022-12-07T00:00:00+0000",
+      "mu": "2023-03-13T00:00:00+0000",
+      "digitalId": 61095,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/63863ccca33b1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Stefano Caselli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Russell Dauterman",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 102556,
+      "title": "X-Men Red (2022) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/102556/x-men_red_2022_10",
+      "seriesId": 32962,
+      "seriesName": "X-Men Red (2022 - Present)",
+      "onSale": "2023-01-04T00:00:00+0000",
+      "mu": "2023-01-04T00:00:00+0000",
+      "digitalId": 61267,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/50/63b477d68497a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jacopo Camagni",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Russell Dauterman",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 107694,
+      "title": "X-Men Red (2022) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/107694/x-men_red_2022_11",
+      "seriesId": 32962,
+      "seriesName": "X-Men Red (2022 - Present)",
+      "onSale": "2023-05-10T00:00:00+0000",
+      "mu": "2023-08-14T00:00:00+0000",
+      "digitalId": 62559,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/03/6451109f198d1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jacopo Camagni",
+          "role": "cover artist"
+        },
+        {
+          "name": "Russell Dauterman",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 107696,
+      "title": "X-Men Red (2022) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/107696/x-men_red_2022_12",
+      "seriesId": 32962,
+      "seriesName": "X-Men Red (2022 - Present)",
+      "onSale": "2023-06-14T00:00:00+0000",
+      "mu": "2023-06-02T10:11:00+0000",
+      "digitalId": 62810,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/20/648736624f8ad",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jacopo Camagni",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 107697,
+      "title": "X-Men Red (2022) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/107697/x-men_red_2022_13",
+      "seriesId": 32962,
+      "seriesName": "X-Men Red (2022 - Present)",
+      "onSale": "2023-07-19T00:00:00+0000",
+      "mu": "2023-06-30T09:36:00+0000",
+      "digitalId": 63039,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/64b04dcb17356",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jacopo Camagni",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 107698,
+      "title": "X-Men Red (2022) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/107698/x-men_red_2022_14",
+      "seriesId": 32962,
+      "seriesName": "X-Men Red (2022 - Present)",
+      "onSale": "2023-08-16T00:00:00+0000",
+      "mu": "2023-07-27T09:36:00+0000",
+      "digitalId": 63204,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/b0/64ecae44e5ce8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Yildiray Cinar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 109000,
+      "title": "Immortal Thor (2023) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/109000/immortal_thor_2023_1",
+      "seriesId": 37429,
+      "seriesName": "Immortal Thor (2023 - Present)",
+      "onSale": "2023-08-23T00:00:00+0000",
+      "mu": "2023-08-14T08:31:00+0000",
+      "digitalId": 63159,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/10/64ecae233fbfb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Martin Coccolo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 107699,
+      "title": "X-Men Red (2022) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/107699/x-men_red_2022_15",
+      "seriesId": 32962,
+      "seriesName": "X-Men Red (2022 - Present)",
+      "onSale": "2023-09-13T00:00:00+0000",
+      "mu": "2023-08-30T09:36:00+0000",
+      "digitalId": 63704,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/652990af7f630",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Yildiray Cinar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 109001,
+      "title": "Immortal Thor (2023) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/109001/immortal_thor_2023_2",
+      "seriesId": 37429,
+      "seriesName": "Immortal Thor (2023 - Present)",
+      "onSale": "2023-09-27T00:00:00+0000",
+      "mu": "2023-09-14T13:13:00+0000",
+      "digitalId": 63663,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/03/65299043f1a45",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Martin Coccolo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 109819,
+      "title": "X-Men Red (2022) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/109819/x-men_red_2022_16",
+      "seriesId": 32962,
+      "seriesName": "X-Men Red (2022 - Present)",
+      "onSale": "2023-10-11T00:00:00+0000",
+      "mu": "2023-09-25T15:00:00+0000",
+      "digitalId": 63868,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/60/65298f6e13f6f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Marcelo Costa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Yildiray Cinar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Carolina Munhoz",
+          "role": "writer"
+        },
+        {
+          "name": "Raphael Draccon",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 109002,
+      "title": "Immortal Thor (2023) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/109002/immortal_thor_2023_3",
+      "seriesId": 37429,
+      "seriesName": "Immortal Thor (2023 - Present)",
+      "onSale": "2023-10-25T00:00:00+0000",
+      "mu": "2023-10-05T09:48:00+0000",
+      "digitalId": 63830,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/654bb155d64d0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Martin Coccolo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 109820,
+      "title": "X-Men Red (2022) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/109820/x-men_red_2022_17",
+      "seriesId": 32962,
+      "seriesName": "X-Men Red (2022 - Present)",
+      "onSale": "2023-11-08T00:00:00+0000",
+      "mu": "2023-11-02T00:00:00+0000",
+      "digitalId": 64149,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/b0/654bb0a6c3d15",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Yildiray Cinar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 109003,
+      "title": "Immortal Thor (2023) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/109003/immortal_thor_2023_4",
+      "seriesId": 37429,
+      "seriesName": "Immortal Thor (2023 - Present)",
+      "onSale": "2023-11-15T00:00:00+0000",
+      "mu": "2023-11-02T00:00:00+0000",
+      "digitalId": 64097,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/654bb06c2396e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Martin Coccolo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 109004,
+      "title": "Immortal Thor (2023) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/109004/immortal_thor_2023_5",
+      "seriesId": 37429,
+      "seriesName": "Immortal Thor (2023 - Present)",
+      "onSale": "2023-12-13T00:00:00+0000",
+      "mu": "2023-11-29T00:00:00+0000",
+      "digitalId": 64318,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/6596e26b0f153",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Martin Coccolo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 109821,
+      "title": "X-Men Red (2022) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/109821/x-men_red_2022_18",
+      "seriesId": 32962,
+      "seriesName": "X-Men Red (2022 - Present)",
+      "onSale": "2023-12-13T00:00:00+0000",
+      "mu": "2023-11-29T00:00:00+0000",
+      "digitalId": 64361,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/6596e240bd30a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Yildiray Cinar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 109005,
+      "title": "Immortal Thor (2023) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/109005/immortal_thor_2023_6",
+      "seriesId": 37429,
+      "seriesName": "Immortal Thor (2023 - Present)",
+      "onSale": "2024-01-24T00:00:00+0000",
+      "mu": "2024-01-11T00:00:00+0000",
+      "digitalId": 64511,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/65a93b2d5f249",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Martin Coccolo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 109006,
+      "title": "Immortal Thor (2023) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/109006/immortal_thor_2023_7",
+      "seriesId": 37429,
+      "seriesName": "Immortal Thor (2023 - Present)",
+      "onSale": "2024-02-28T00:00:00+0000",
+      "mu": "2024-02-08T00:00:00+0000",
+      "digitalId": 64794,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/f0/65ca4d4f0d207",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Martin Coccolo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 109007,
+      "title": "Immortal Thor (2023) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/109007/immortal_thor_2023_8",
+      "seriesId": 37429,
+      "seriesName": "Immortal Thor (2023 - Present)",
+      "onSale": "2024-03-13T00:00:00+0000",
+      "mu": "2024-02-28T00:00:00+0000",
+      "digitalId": 65677,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/90/65e739558771d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ibraim Roberson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 109008,
+      "title": "Immortal Thor (2023) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/109008/immortal_thor_2023_9",
+      "seriesId": 37429,
+      "seriesName": "Immortal Thor (2023 - Present)",
+      "onSale": "2024-04-03T00:00:00+0000",
+      "mu": "2024-03-20T00:00:00+0000",
+      "digitalId": 66120,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/90/6601d30843867",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ibraim Roberson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 109009,
+      "title": "Immortal Thor (2023) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/109009/immortal_thor_2023_10",
+      "seriesId": 37429,
+      "seriesName": "Immortal Thor (2023 - Present)",
+      "onSale": "2024-05-01T00:00:00+0000",
+      "mu": "2024-04-17T00:00:00+0000",
+      "digitalId": 66614,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/65d73ab3b52d9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Carlos Magno",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 109657,
+      "title": "Immortal Thor (2023) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/109657/immortal_thor_2023_11",
+      "seriesId": 37429,
+      "seriesName": "Immortal Thor (2023 - Present)",
+      "onSale": "2024-05-22T00:00:00+0000",
+      "mu": "2024-05-09T00:00:00+0000",
+      "digitalId": 66615,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/663e5c3bcf57b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Valentina Pinti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 109658,
+      "title": "Immortal Thor (2023) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/109658/immortal_thor_2023_12",
+      "seriesId": 37429,
+      "seriesName": "Immortal Thor (2023 - Present)",
+      "onSale": "2024-06-19T00:00:00+0000",
+      "mu": "2024-06-07T00:00:00+0000",
+      "digitalId": 67020,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/50/66634dee659e4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Valentina Pinti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 109659,
+      "title": "Immortal Thor (2023) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/109659/immortal_thor_2023_13",
+      "seriesId": 37429,
+      "seriesName": "Immortal Thor (2023 - Present)",
+      "onSale": "2024-07-31T00:00:00+0000",
+      "mu": "2024-07-24T00:00:00+0000",
+      "digitalId": 67847,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/66212be9a28b0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jan Bazaldua",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 109660,
+      "title": "Immortal Thor (2023) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/109660/immortal_thor_2023_14",
+      "seriesId": 37429,
+      "seriesName": "Immortal Thor (2023 - Present)",
+      "onSale": "2024-08-14T00:00:00+0000",
+      "mu": "2024-08-07T00:00:00+0000",
+      "digitalId": 67983,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/664ccf31c5b27",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jan Bazaldua",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 114530,
+      "title": "Immortal Thor (2023) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/114530/immortal_thor_2023_15",
+      "seriesId": 37429,
+      "seriesName": "Immortal Thor (2023 - Present)",
+      "onSale": "2024-09-04T00:00:00+0000",
+      "mu": "2024-08-29T00:00:00+0000",
+      "digitalId": 68491,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/66d08294bedcc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jan Bazaldua",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 119404,
+      "title": "Immortal Thor (2023) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/119404/immortal_thor_2023_16",
+      "seriesId": 37429,
+      "seriesName": "Immortal Thor (2023 - Present)",
+      "onSale": "2024-10-02T00:00:00+0000",
+      "mu": "2024-09-10T00:00:00+0000",
+      "digitalId": 68915,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/66fc08ab89580",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jan Bazaldua",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 119405,
+      "title": "Immortal Thor (2023) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/119405/immortal_thor_2023_17",
+      "seriesId": 37429,
+      "seriesName": "Immortal Thor (2023 - Present)",
+      "onSale": "2024-11-20T00:00:00+0000",
+      "mu": "2024-10-16T00:00:00+0000",
+      "digitalId": 69135,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/90/6733708566113",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jan Bazaldua",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 119406,
+      "title": "Immortal Thor (2023) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/119406/immortal_thor_2023_18",
+      "seriesId": 37429,
+      "seriesName": "Immortal Thor (2023 - Present)",
+      "onSale": "2024-12-18T00:00:00+0000",
+      "mu": "2024-12-05T00:00:00+0000",
+      "digitalId": 69903,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/40/676039c38c76f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jan Bazaldua",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 119407,
+      "title": "Immortal Thor (2023) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/119407/immortal_thor_2023_19",
+      "seriesId": 37429,
+      "seriesName": "Immortal Thor (2023 - Present)",
+      "onSale": "2025-01-15T00:00:00+0000",
+      "mu": "2025-01-07T00:00:00+0000",
+      "digitalId": 71103,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/03/67803740b56a7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brett Breeding",
+          "role": "cover artist"
+        },
+        {
+          "name": "C Cafu",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Baldeon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gavin Guidry",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gleb Melnikov",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jan Bazaldua",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jorge Fornes",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juann Cabal",
+          "role": "cover artist"
+        },
+        {
+          "name": "Karen Darboe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Lee Garbett",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leonard Kirk",
+          "role": "cover artist"
+        },
+        {
+          "name": "Martin Coccolo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Jurgens",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 119408,
+      "title": "Immortal Thor (2023) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/119408/immortal_thor_2023_20",
+      "seriesId": 37429,
+      "seriesName": "Immortal Thor (2023 - Present)",
+      "onSale": "2025-02-12T00:00:00+0000",
+      "mu": "2025-01-30T00:00:00+0000",
+      "digitalId": 69478,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/67ab71c268c44",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jan Bazaldua",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 119409,
+      "title": "Immortal Thor (2023) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/119409/immortal_thor_2023_21",
+      "seriesId": 37429,
+      "seriesName": "Immortal Thor (2023 - Present)",
+      "onSale": "2025-03-05T00:00:00+0000",
+      "mu": "2025-02-20T00:00:00+0000",
+      "digitalId": 71511,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/a0/67b74aea5cefe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jan Bazaldua",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 119410,
+      "title": "Immortal Thor (2023) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/119410/immortal_thor_2023_22",
+      "seriesId": 37429,
+      "seriesName": "Immortal Thor (2023 - Present)",
+      "onSale": "2025-04-02T00:00:00+0000",
+      "mu": "2025-03-18T00:00:00+0000",
+      "digitalId": 72710,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/67d9a067abc07",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jan Bazaldua",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 119411,
+      "title": "Immortal Thor (2023) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/119411/immortal_thor_2023_23",
+      "seriesId": 37429,
+      "seriesName": "Immortal Thor (2023 - Present)",
+      "onSale": "2025-05-14T00:00:00+0000",
+      "mu": "2025-05-01T00:00:00+0000",
+      "digitalId": 73110,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/10/680f872571257",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jan Bazaldua",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 119412,
+      "title": "Immortal Thor (2023) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/119412/immortal_thor_2023_24",
+      "seriesId": 37429,
+      "seriesName": "Immortal Thor (2023 - Present)",
+      "onSale": "2025-06-04T00:00:00+0000",
+      "mu": "2025-05-22T00:00:00+0000",
+      "digitalId": 74020,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/6841c9feb5d23",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jan Bazaldua",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 119413,
+      "title": "Immortal Thor (2023) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/119413/immortal_thor_2023_25",
+      "seriesId": 37429,
+      "seriesName": "Immortal Thor (2023 - Present)",
+      "onSale": "2025-07-02T00:00:00+0000",
+      "mu": "2025-07-02T00:00:00+0000",
+      "digitalId": 74426,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/685c541490d2e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Jan Bazaldua",
+          "role": "cover artist"
+        },
+        {
+          "name": "Justin Greenwood",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pasqual Ferry",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}
