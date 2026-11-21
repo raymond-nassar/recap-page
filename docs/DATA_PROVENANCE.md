@@ -416,16 +416,16 @@ orders: **null means nobody granted anything for this file, not that the file is
 
 ### Reading orders, pinned
 
-Three hundred and forty-nine pinned reading-order payloads remain under
-[`src/data/`](../src/data): 346 active visible catalog files, one active noncatalog partition parent,
-and the retired No Way Home (18 originals) and withdrawn Marvel Multiverse (2 comics) payloads. The 347 active files hold
-33,050 issue records covering 20,317 distinct tracked identities. The visible files hold 32,563 of those records;
+Three hundred and fifty-three pinned reading-order payloads remain under
+[`src/data/`](../src/data): 350 active visible catalog files, one active noncatalog partition parent,
+and the retired No Way Home (18 originals) and withdrawn Marvel Multiverse (2 comics) payloads. The 351 active files hold
+34,038 issue records covering 20,584 distinct tracked identities. The visible files hold 33,551 of those records;
 the extra 487 are the retained Marvel Knights to Planet X parent whose ordinary children partition
 the same vector. Records use these fields:
 `issueId`, `title`,
 `number`, `url`, `seriesId`, `seriesName`, `onSale`, `mu`, `digitalId`, `pageCount`, a `cover`
-object of `path` and `ext`, and `creators` of `name` and `role`. Across the 347 active payloads, 28,148
-records carry a cover URL and 26,420 carry creator credits. The retired No Way Home payload remains byte-exact;
+object of `path` and `ext`, and `creators` of `name` and `role`. Across the 351 active payloads, 29,135
+records carry a cover URL and 27,379 carry creator credits. The retired No Way Home payload remains byte-exact;
 neither retired payload contributes to active discovery or this active census.
 
 `description` was the field to look at hardest and is now empty. The others are facts about a
@@ -692,8 +692,8 @@ above is listed separately because it is third-party material outside the usual 
 The validator in [`src/js/lib/curated.js`](../src/js/lib/curated.js) requires an SPDX expression
 instead of descriptive prose. It validates the format, not a hand-maintained list of licence names.
 
-The catalog reader makes one owner-approved spelling correction to a provider credit:
-`Mike O'sullivan` is displayed as `Mike O'Sullivan`. This changes the writer name used by the
+The catalog reader makes two owner-approved spelling corrections to provider credits:
+`Mike O'sullivan` is displayed as `Mike O'Sullivan`, and `Jed Mackay` as `Jed MacKay`. This changes the writer name used by the
 Creators filters and cards, not the bundled catalog, individual comic credits, issue identities
 or reading order.
 
@@ -1195,10 +1195,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes four independent Reading Paths with 104 stops: three
 authored paths with 10, 12 and 4 stops from the curated manifest at
-`src/data/curated-lists.json:11334-11385`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:11470-11521`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all four at
-`src/data/catalog.json:16883-17020`.
+`src/data/catalog.json:17082-17219`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -3083,7 +3083,7 @@ Hell's Angel remains in Marvel Ages, not Modern Timeline; its visible source cre
 The owner-guide contract requires a positive ID, exact matching owner-supplied Marvel URL, named
 confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:859-881`).
 The vendor excludes these entries from metadata lookup and creates no provider projection
-(`scripts/vendor-orders.mjs:507-511`, `scripts/vendor-orders.mjs:577-578`, `scripts/vendor-orders.mjs:622-623`).
+(`scripts/vendor-orders.mjs:558-562`, `scripts/vendor-orders.mjs:641-642`, `scripts/vendor-orders.mjs:692-693`).
 Unless a row carries the external supplement described below, the published rows carry only their
 confirmed identity, issue ID, URL and refusal state; optional provider details and covers remain
 empty. The ten One World Under Doom rows are of that kind. No comic image bytes are stored and no
@@ -4244,3 +4244,12 @@ stronger-model authority, not human review. The one partial relationship with Ul
 contains 55 shared comics, including #9; neither list contains the other, and both stay whole.
 The other 267 relationships have no shared comic. Existing saved lists remain snapshots and are
 not silently replaced, and their reading progress, notes and ratings are unchanged.
+
+## Chip Zdarsky creator list: reused details
+
+The owner approved reusing Grand Comics Database details for nine comics already published in
+Avengers: Armageddon. The Chip Zdarsky data file and the creator-count evidence in its source
+ledger are adaptations under the same share-alike license as those published records. The
+original mapping retains each source address, and the reading list repeats the existing database
+and license notice. Twelve other comics reuse previously published non-database supplements;
+Avengers (2026) #1 has no published supplement and remains bare.

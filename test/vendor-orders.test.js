@@ -531,6 +531,58 @@ globalThis.fetch = async () => {
   assert.equal(payload.items[0].digitalId, 101);
 });
 
+test('a reviewed list-specific print date replaces only its matching provider date', (t) => {
+  const fixture = mkdtempSync(path.join(os.tmpdir(), 'mrt-vendor-print-date-'));
+  t.after(() => rmSync(fixture, { recursive: true, force: true }));
+  writeFixture(fixture);
+  setFixtureCoverIssue(fixture, 1);
+  const cache = writeMetadataCache(fixture, { 1: cachedAtomicIssue() });
+  const ledgerPath = path.join(fixture, 'scripts', 'data', 'curated-source-ledgers', 'atomic-order.json');
+  const correction = {
+    issueId: 1,
+    providerDate: '2026-01-01',
+    correctedDate: '2026-01-07',
+    wikiUrl: 'https://example.test/wiki?oldid=123',
+    independentSource: 'https://example.test/first-print',
+  };
+  const unsigned = { id: 'atomic-order', source: { dateCorrections: [correction] } };
+  writeFileSync(ledgerPath, JSON.stringify({ ...unsigned, ledgerDigest: digestCanonicalJson(unsigned) }));
+  const run = (id = 'atomic-order') => spawnSync(process.execPath,
+    ['scripts/vendor-orders.mjs', `--only=${id}`, `--metadata-cache=${cache}`],
+    { cwd: fixture, encoding: 'utf8' });
+
+  const result = run();
+  assert.equal(result.status, 0, result.stderr);
+  const payloadPath = path.join(fixture, 'src', 'data', 'atomic_order.json');
+  const payload = JSON.parse(readFileSync(payloadPath, 'utf8'));
+  assert.equal(payload.items[0].onSale, '2026-01-07T00:00:00+0000');
+
+  const changedProvider = cachedAtomicIssue();
+  changedProvider.onSaleDate = '2026-01-02T00:00:00+0000';
+  writeMetadataCache(fixture, { 1: changedProvider });
+  const changed = run();
+  assert.notEqual(changed.status, 0, 'An unexpected new provider date requires review');
+  assert.match(changed.stderr, /provider date/i);
+  assert.equal(JSON.parse(readFileSync(payloadPath, 'utf8')).items[0].onSale, '2026-01-07T00:00:00+0000');
+
+  writeMetadataCache(fixture, { 1: cachedAtomicIssue() });
+  const manifestPath = path.join(fixture, 'src', 'data', 'curated-lists.json');
+  const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
+  manifest.lists[0].id = 'other-order';
+  writeFileSync(manifestPath, JSON.stringify(manifest));
+  const other = run('other-order');
+  assert.equal(other.status, 0, other.stderr);
+  assert.equal(JSON.parse(readFileSync(payloadPath, 'utf8')).items[0].onSale, '2026-01-01T00:00:00+0000');
+
+  manifest.lists[0].id = 'atomic-order';
+  writeFileSync(manifestPath, JSON.stringify(manifest));
+  correction.correctedDate = '2026-01-08';
+  writeFileSync(ledgerPath, JSON.stringify({ ...unsigned, ledgerDigest: 'stale' }));
+  const stale = run();
+  assert.notEqual(stale.status, 0);
+  assert.match(stale.stderr, /invalid date correction ledger/i);
+});
+
 test('gap-tolerant CBH authoring vendors only exact issues without placeholders', (t) => {
   const fixture = mkdtempSync(path.join(os.tmpdir(), 'mrt-vendor-cbh-gap-'));
   t.after(() => rmSync(fixture, { recursive: true, force: true }));

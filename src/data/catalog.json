@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T02:44:21.601Z",
+  "generatedAt": "2026-11-20T16:49:21.954Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -16375,6 +16375,205 @@
       "sourceOrigin": "Compiled for this project from the original four-issue series",
       "sourceLicense": null,
       "updatedAt": "2026-11-07T09:24:07.640Z"
+    },
+    {
+      "id": "jed-mackay-reading-list",
+      "file": "jed_mackay_reading_list.json",
+      "name": "Jed MacKay Reading List",
+      "description": "Read Jed MacKay's Marvel comics in the order they came out, including Moon Knight, Black Cat, Doctor Strange, Avengers and X-Men. Some comics include stories by other writers. Some comics are not included yet.",
+      "type": "creator-run",
+      "depth": "selected",
+      "storyTypes": [
+        "magic-supernatural",
+        "crime-noir",
+        "science-fiction"
+      ],
+      "tones": [
+        "dark"
+      ],
+      "writers": [
+        "Jed Mackay"
+      ],
+      "contains": [
+        "infinite-destinies"
+      ],
+      "count": 243,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 0,
+      "characters": [
+        "Moon Knight",
+        "Black Cat",
+        "Doctor Strange",
+        "Avengers",
+        "X-Men"
+      ],
+      "keywords": [
+        "Jed MacKay"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 36180,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/10/562558b66e734",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/1484",
+      "sourceOrigin": "Selected by the Recap Page team",
+      "sourceLicense": null,
+      "updatedAt": "2026-11-20T08:55:05.556Z"
+    },
+    {
+      "id": "al-ewing-reading-list",
+      "file": "al_ewing_reading_list.json",
+      "name": "Al Ewing Reading List",
+      "description": "Read Al Ewing's Marvel comics in the order they came out, including Immortal Hulk, Loki, X-Men Red, Immortal Thor and the Ultimates. Some comics include stories by other writers.",
+      "type": "creator-run",
+      "depth": "selected",
+      "storyTypes": [
+        "horror",
+        "myth-fantasy",
+        "space-opera"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ],
+      "writers": [
+        "Al Ewing"
+      ],
+      "count": 222,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 0,
+      "characters": [
+        "Hulk",
+        "Loki",
+        "X-Men",
+        "Thor",
+        "Ultimates"
+      ],
+      "keywords": [
+        "Al Ewing"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 48316,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/5214b3482d88f",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/1507",
+      "sourceOrigin": "Selected by the Recap Page team",
+      "sourceLicense": null,
+      "updatedAt": "2026-11-20T15:38:11.786Z"
+    },
+    {
+      "id": "chip-zdarsky-reading-list",
+      "file": "chip_zdarsky_reading_list.json",
+      "name": "Chip Zdarsky Reading List",
+      "description": "Read Chip Zdarsky's Marvel comics in the order they came out, including Daredevil, Spider-Man, Howard the Duck and the Fantastic Four. Some comics include stories by other writers. Some comics are not included yet.",
+      "type": "creator-run",
+      "depth": "selected",
+      "storyTypes": [
+        "crime-noir",
+        "political",
+        "comedy"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ],
+      "writers": [
+        "Chip Zdarsky"
+      ],
+      "contains": [
+        "captain-america-2025-our-secret-wars",
+        "captain-america-2025-dooms-shadow",
+        "captain-america-2025-hells-angel"
+      ],
+      "count": 176,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "ownerConfirmedIdentityCount": 22,
+      "ownerSupplementedCount": 21,
+      "ownerGcdSupplementedCount": 9,
+      "collections": 0,
+      "characters": [
+        "Daredevil",
+        "Spider-Man",
+        "Fantastic Four"
+      ],
+      "keywords": [
+        "Chip Zdarsky"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 51951,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/e0/54fa07aceed22",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/1514",
+      "sourceOrigin": "Selected by the Recap Page team",
+      "sourceLicense": null,
+      "updatedAt": "2026-11-20T16:43:37.186Z"
+    },
+    {
+      "id": "dan-slott-reading-list",
+      "file": "dan_slott_reading_list.json",
+      "name": "Dan Slott Reading List",
+      "description": "Read Dan Slott's Marvel comics in the order they came out, including Spider-Man, She-Hulk, Silver Surfer, the Fantastic Four and Spider-Boy. Some comics include stories by other writers.",
+      "type": "creator-run",
+      "depth": "selected",
+      "storyTypes": [
+        "everyday-life",
+        "comedy",
+        "science-fiction"
+      ],
+      "tones": [
+        "street-level",
+        "lighthearted"
+      ],
+      "writers": [
+        "Dan Slott"
+      ],
+      "count": 347,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 0,
+      "characters": [
+        "Spider-Man",
+        "She-Hulk",
+        "Silver Surfer",
+        "Fantastic Four"
+      ],
+      "keywords": [
+        "Dan Slott"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 409,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/50/4babed3c773ef",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/1516",
+      "sourceOrigin": "Selected by the Recap Page team",
+      "sourceLicense": null,
+      "updatedAt": "2026-11-20T16:49:21.954Z"
     },
     {
       "id": "mcu-prep-daredevil-born-again",

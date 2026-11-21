@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { createHomeView } from '../src/js/views/home.js';
 import { createCreatorsView } from '../src/js/views/creators.js';
 import { createCatalogPresentation } from '../src/js/views/shared/catalog-presentation.js';
+import { registeredCreatorGuides } from './helpers/current-reading-library.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 beforeEach((t) => t.mock.timers.enable({ apis: ['Date'], now: new Date(2026, 10, 1, 12) }));
@@ -226,9 +227,9 @@ test('Creators includes every existing run without grouping away variants or cha
   const expected = bundled.lists.filter((list) => list.type === 'creator-run');
   const original = JSON.stringify(h.catalog);
   await h.view.render();
-  assert.equal(expected.length, 7);
+  assert.equal(expected.length, 7 + registeredCreatorGuides.length);
   assert.equal(h.nodes.status.hidden, true);
-  assert.equal(h.nodes.results.children.length, 7);
+  assert.equal(h.nodes.results.children.length, 7 + registeredCreatorGuides.length);
   assert.deepEqual(h.nodes.results.children.map((row) => row.children[0].dataset.creatorRun),
     expected.map((list) => list.id));
   assert.equal(JSON.stringify(h.catalog), original);

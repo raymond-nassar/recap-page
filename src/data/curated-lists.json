@@ -10936,6 +10936,142 @@
       "coverIssueId": 10280
     },
     {
+      "id": "jed-mackay-reading-list",
+      "name": "Jed MacKay Reading List",
+      "description": "Read Jed MacKay's Marvel comics in the order they came out, including Moon Knight, Black Cat, Doctor Strange, Avengers and X-Men. Some comics include stories by other writers. Some comics are not included yet.",
+      "type": "creator-run",
+      "depth": "selected",
+      "beginner": false,
+      "sourceFile": "jed-mackay-reading-list.md",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/1484",
+      "sourceOrigin": "Selected by the Recap Page team",
+      "sourceLicense": null,
+      "out": "jed_mackay_reading_list.json",
+      "characters": [
+        "Moon Knight",
+        "Black Cat",
+        "Doctor Strange",
+        "Avengers",
+        "X-Men"
+      ],
+      "keywords": [
+        "Jed MacKay"
+      ],
+      "expect": 243,
+      "timeline": null,
+      "coverIssueId": null,
+      "storyTypes": [
+        "magic-supernatural",
+        "crime-noir",
+        "science-fiction"
+      ],
+      "tones": [
+        "dark"
+      ]
+    },
+    {
+      "id": "al-ewing-reading-list",
+      "name": "Al Ewing Reading List",
+      "description": "Read Al Ewing's Marvel comics in the order they came out, including Immortal Hulk, Loki, X-Men Red, Immortal Thor and the Ultimates. Some comics include stories by other writers.",
+      "type": "creator-run",
+      "depth": "selected",
+      "beginner": false,
+      "sourceFile": "al-ewing-reading-list.md",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/1507",
+      "sourceOrigin": "Selected by the Recap Page team",
+      "sourceLicense": null,
+      "out": "al_ewing_reading_list.json",
+      "characters": [
+        "Hulk",
+        "Loki",
+        "X-Men",
+        "Thor",
+        "Ultimates"
+      ],
+      "keywords": [
+        "Al Ewing"
+      ],
+      "expect": 222,
+      "timeline": null,
+      "coverIssueId": null,
+      "storyTypes": [
+        "horror",
+        "myth-fantasy",
+        "space-opera"
+      ],
+      "tones": [
+        "epic",
+        "dark"
+      ]
+    },
+    {
+      "id": "chip-zdarsky-reading-list",
+      "name": "Chip Zdarsky Reading List",
+      "description": "Read Chip Zdarsky's Marvel comics in the order they came out, including Daredevil, Spider-Man, Howard the Duck and the Fantastic Four. Some comics include stories by other writers. Some comics are not included yet.",
+      "type": "creator-run",
+      "depth": "selected",
+      "beginner": false,
+      "sourceFile": "chip-zdarsky-reading-list.md",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/1514",
+      "sourceOrigin": "Selected by the Recap Page team",
+      "sourceLicense": null,
+      "out": "chip_zdarsky_reading_list.json",
+      "characters": [
+        "Daredevil",
+        "Spider-Man",
+        "Fantastic Four"
+      ],
+      "keywords": [
+        "Chip Zdarsky"
+      ],
+      "expect": 176,
+      "timeline": null,
+      "coverIssueId": null,
+      "storyTypes": [
+        "crime-noir",
+        "political",
+        "comedy"
+      ],
+      "tones": [
+        "street-level",
+        "dark"
+      ]
+    },
+    {
+      "id": "dan-slott-reading-list",
+      "name": "Dan Slott Reading List",
+      "description": "Read Dan Slott's Marvel comics in the order they came out, including Spider-Man, She-Hulk, Silver Surfer, the Fantastic Four and Spider-Boy. Some comics include stories by other writers.",
+      "type": "creator-run",
+      "depth": "selected",
+      "beginner": false,
+      "sourceFile": "dan-slott-reading-list.md",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/1516",
+      "sourceOrigin": "Selected by the Recap Page team",
+      "sourceLicense": null,
+      "out": "dan_slott_reading_list.json",
+      "characters": [
+        "Spider-Man",
+        "She-Hulk",
+        "Silver Surfer",
+        "Fantastic Four"
+      ],
+      "keywords": [
+        "Dan Slott"
+      ],
+      "expect": 347,
+      "timeline": null,
+      "coverIssueId": null,
+      "storyTypes": [
+        "everyday-life",
+        "comedy",
+        "science-fiction"
+      ],
+      "tones": [
+        "street-level",
+        "lighthearted"
+      ]
+    },
+    {
       "id": "mcu-prep-daredevil-born-again",
       "name": "MCU Prep: Daredevil: Born Again",
       "description": "Read Born Again to understand Kingpin's assault on Matt Murdock's life and the Daredevil story behind the show's title. The Man Without Fear introduces Matt's beginnings, then later runs test his exposed identity, conscience and place in Hell's Kitchen. The reading offers character background rather than a scene-by-scene guide to the series.",
