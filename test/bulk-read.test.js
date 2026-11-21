@@ -194,11 +194,52 @@ test('refused, silent and unknown writes never report success, and recovered sta
       assert.deepEqual(h.store.state.read, { 1: 123 });
       assert.deepEqual(h.calls.paints.at(-1), { blocked: false, read: { 1: 123 } });
       assert.equal(h.calls.reconciles, 1);
+      assert.equal(h.notice().message, 'Saved progress did not match the requested change. The outcome could not be verified. Review your saved progress before trying again.');
     }
     if (mode === 'unknown') {
       assert.equal(h.store.blocked, true);
       assert.equal(h.calls.paints.at(-1).blocked, true);
       assert.equal(h.control.disabled, true);
+    }
+  }
+});
+
+test('post-save verification exceptions report an uncertain result for mark and Undo', async (t) => {
+  for (const operation of ['mark', 'undo']) {
+    for (const persisted of [true, false]) {
+      await t.test(`post-save verification ${operation}, saved value ${persisted ? 'changed' : 'unchanged'}`, async (t) => {
+        const h = harness(t);
+        if (operation === 'undo') await h.view.markAllRead();
+        const previous = h.data.get(KEY);
+        h.storage.mode = persisted ? null : 'silent';
+        const update = h.store.update.bind(h.store);
+        const getItem = h.storage.getItem.bind(h.storage);
+        let failNextRead = false;
+        let failures = 0;
+        h.storage.getItem = (key) => {
+          if (key === KEY && failNextRead) {
+            failNextRead = false;
+            failures += 1;
+            throw new Error('read unavailable');
+          }
+          return getItem(key);
+        };
+        h.store.update = (updater) => {
+          const result = update(updater);
+          if (h.store.lastUpdateOk) failNextRead = true;
+          return result;
+        };
+        if (operation === 'mark') await h.view.markAllRead();
+        else h.notice().action.onClick();
+        assert.equal(failures, 1);
+        assert.equal(h.data.get(KEY) !== previous, persisted);
+        assert.deepEqual(h.store.state.read, JSON.parse(h.data.get(KEY)).read);
+        assert.equal(h.store.lastUpdateOk, false);
+        assert.equal(h.calls.reconciles, 1);
+        assert.equal(h.notice().kind, 'error');
+        assert.equal(h.notice().action?.label ?? null, operation === 'undo' && !persisted ? 'Try Undo again' : null);
+        assert.equal(h.notice().message, 'We couldn\'t confirm whether your progress was saved. Review your saved progress before trying again.');
+      });
     }
   }
 });
@@ -244,7 +285,9 @@ test('failed Undo retains a safe retry and silent Undo repaints saved progress',
     } else {
       assert.equal(Object.keys(h.calls.paints.at(-1).read).length, 3);
       assert.equal(h.notice().action.label, 'Try Undo again');
-      if (mode === 'silent') assert.match(h.notice().message, /The outcome could not be verified/);
+      if (mode === 'silent') {
+        assert.equal(h.notice().message, 'Saved progress did not match the requested change. The outcome could not be verified. Review your saved progress before trying again.');
+      }
       h.storage.mode = null;
       h.notice().action.onClick();
       assert.deepEqual(h.store.state.read, { 1: 123 });
