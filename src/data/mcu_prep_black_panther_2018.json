@@ -3,12 +3,12 @@
   "name": "MCU Prep: Black Panther (2018)",
   "description": "Explore T'Challa's rule and Killmonger's rebellion to understand the struggle over Wakanda at the heart of Black Panther. Who Is the Black Panther? introduces the king and his nation, while Panther's Rage pits him against Killmonger. Later runs deepen Wakanda's politics and the tensions between royal duty and responsibility to its people.",
   "source": "https://github.com/raymond-nassar/recap-page/issues/766",
-  "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+  "sourceOrigin": "Reading list selected by Recap Page team",
   "sourceLicense": null,
   "generatedAt": "2026-10-09T18:27:08.744Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 54,
-  "collections": 5,
+  "count": 56,
+  "collections": 6,
   "placeholders": 0,
   "unresolved": [],
   "items": [
@@ -1803,6 +1803,54 @@
         }
       ],
       "collectedIn": "Black Panther by Ta-Nehisi Coates Vol. 4: Avengers of the New World Part 1"
+    },
+    {
+      "issueId": 64930,
+      "title": "Marvel's Black Panther Prelude (2017) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/64930/marvels_black_panther_prelude_2017_1",
+      "seriesId": 23639,
+      "seriesName": "Marvel's Black Panther Prelude (2017)",
+      "onSale": "2017-10-18T00:00:00+0000",
+      "mu": "2018-04-23T00:00:00+0000",
+      "digitalId": 46069,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/59dfd98402c09",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Annapaola Martello",
+          "role": "cover artist"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
+    },
+    {
+      "issueId": 65084,
+      "title": "Marvel's Black Panther Prelude (2017) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/65084/marvels_black_panther_prelude_2017_2",
+      "seriesId": 23639,
+      "seriesName": "Marvel's Black Panther Prelude (2017)",
+      "onSale": "2017-11-15T00:00:00+0000",
+      "mu": "2018-05-21T00:00:00+0000",
+      "digitalId": 46396,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/5a03498f8a355",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Annapaola Martello",
+          "role": "cover artist"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
     }
   ]
 }

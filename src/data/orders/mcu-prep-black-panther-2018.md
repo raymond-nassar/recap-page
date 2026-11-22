@@ -69,3 +69,8 @@ See [data provenance](../../../docs/DATA_PROVENANCE.md) for the publication boun
 - [ ] [Black Panther (2016) #16 <!-- mrt:source-occurrence=52 -->](https://www.marvel.com/comics/issue/60932/black_panther_2016_16)
 - [ ] [Black Panther (2016) #17 <!-- mrt:source-occurrence=53 -->](https://www.marvel.com/comics/issue/60933/black_panther_2016_17)
 - [ ] [Black Panther (2016) #18 <!-- mrt:source-occurrence=54 -->](https://www.marvel.com/comics/issue/60934/black_panther_2016_18)
+
+## Official MCU tie-ins
+
+- [ ] [Marvel's Black Panther Prelude (2017) #1](https://www.marvel.com/comics/issue/64930/marvels_black_panther_prelude_2017_1)
+- [ ] [Marvel's Black Panther Prelude (2017) #2](https://www.marvel.com/comics/issue/65084/marvels_black_panther_prelude_2017_2)

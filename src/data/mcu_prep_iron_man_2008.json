@@ -3,12 +3,12 @@
   "name": "MCU Prep: Iron Man (2008)",
   "description": "Read Iron Monger and Armor Wars to understand Tony Stark's fight to keep his technology out of the wrong hands. Obadiah Stane's campaign against Tony gives context to the film's armored rival, while Armor Wars explores the consequences of stolen designs. These are battles over Tony's legacy, not a retelling of his origin.",
   "source": "https://github.com/raymond-nassar/recap-page/issues/761",
-  "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+  "sourceOrigin": "Reading list selected by Recap Page team",
   "sourceLicense": null,
   "generatedAt": "2026-10-09T15:21:01.409Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 16,
-  "collections": 2,
+  "count": 18,
+  "collections": 3,
   "placeholders": 0,
   "unresolved": [],
   "items": [
@@ -555,6 +555,78 @@
         }
       ],
       "collectedIn": "Iron Man: Armor Wars"
+    },
+    {
+      "issueId": 29613,
+      "title": "Iron Man: I Am Iron Man! (2010) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/29613/iron_man_i_am_iron_man_2010_1",
+      "seriesId": 9192,
+      "seriesName": "Iron Man: I Am Iron Man! (2010)",
+      "onSale": "2010-01-27T00:00:00+0000",
+      "mu": "2010-08-03T00:00:00+0000",
+      "digitalId": 13720,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/5a79f04390e43",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adi Granov",
+          "role": "penciler"
+        },
+        {
+          "name": "Sean Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
+    },
+    {
+      "issueId": 29967,
+      "title": "Iron Man: I Am Iron Man! (2010) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/29967/iron_man_i_am_iron_man_2010_2",
+      "seriesId": 9192,
+      "seriesName": "Iron Man: I Am Iron Man! (2010)",
+      "onSale": "2010-02-24T00:00:00+0000",
+      "mu": "2010-08-17T00:00:00+0000",
+      "digitalId": 13939,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/5a7a02e55c572",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adi Granov",
+          "role": "penciler"
+        },
+        {
+          "name": "Sean Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
     }
   ]
 }

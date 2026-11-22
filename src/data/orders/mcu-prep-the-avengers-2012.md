@@ -26,3 +26,11 @@ See [data provenance](../../../docs/DATA_PROVENANCE.md) for the publication boun
 - [ ] [Avengers (1998) #502 <!-- mrt:source-occurrence=13 -->](https://www.marvel.com/comics/issue/845/avengers_1998_502)
 - [ ] [Avengers (1998) #503 <!-- mrt:source-occurrence=14 -->](https://www.marvel.com/comics/issue/923/avengers_1998_503)
 - [ ] [AVENGERS FINALE 1 (2004) #1 <!-- mrt:source-occurrence=15 -->](https://www.marvel.com/comics/issue/90/avengers_finale_1_2004_1)
+
+## Official MCU tie-ins
+
+- [ ] [Marvel's the Avengers: Black Widow Strikes (2012) #1](https://www.marvel.com/comics/issue/43003/marvels_the_avengers_black_widow_strikes_2012_1)
+- [ ] [Marvel's the Avengers: Black Widow Strikes (2012) #2](https://www.marvel.com/comics/issue/43004/marvels_the_avengers_black_widow_strikes_2012_2)
+- [ ] [Marvel's the Avengers: Black Widow Strikes (2012) #3](https://www.marvel.com/comics/issue/43005/marvels_the_avengers_black_widow_strikes_2012_3)
+- [ ] [Marvel's the Avengers (2014) #1](https://www.marvel.com/comics/issue/52202/marvels_the_avengers_2014_1)
+- [ ] [Marvel's the Avengers (2014) #2](https://www.marvel.com/comics/issue/52203/marvels_the_avengers_2014_2)

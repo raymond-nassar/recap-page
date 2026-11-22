@@ -3,12 +3,12 @@
   "name": "MCU Prep: Thor (2011)",
   "description": "Meet Thor and Loki in the comics to understand the family rivalry and questions of worthiness behind Thor's first film. Season One revisits Thor's beginnings, Blood Brothers gives Loki's perspective, and the early Simonson issues introduce Beta Ray Bill, another wielder of Thor's power. Bill broadens the mythology rather than appearing in the film.",
   "source": "https://github.com/raymond-nassar/recap-page/issues/761",
-  "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+  "sourceOrigin": "Reading list selected by Recap Page team",
   "sourceLicense": null,
   "generatedAt": "2026-10-09T15:22:08.282Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 14,
-  "collections": 3,
+  "count": 16,
+  "collections": 4,
   "placeholders": 0,
   "unresolved": [],
   "items": [
@@ -371,6 +371,62 @@
         }
       ],
       "collectedIn": "Thor Visionaries: Walter Simonson Vol. 1"
+    },
+    {
+      "issueId": 46303,
+      "title": "Marvel's Thor Adaptation (2013) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/46303/marvels_thor_adaptation_2013_1",
+      "seriesId": 17490,
+      "seriesName": "Marvel's Thor Adaptation (2013)",
+      "onSale": "2013-01-16T00:00:00+0000",
+      "mu": "2013-07-15T00:00:00+0000",
+      "digitalId": 28399,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/20/50e4a9999c7ac",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Don Ho",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Haberlin",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
+    },
+    {
+      "issueId": 46304,
+      "title": "Marvel's Thor Adaptation (2013) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/46304/marvels_thor_adaptation_2013_2",
+      "seriesId": 17490,
+      "seriesName": "Marvel's Thor Adaptation (2013)",
+      "onSale": "2013-02-20T00:00:00+0000",
+      "mu": "2013-08-19T00:00:00+0000",
+      "digitalId": 28570,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/c0/51114c8d903b2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
     }
   ]
 }

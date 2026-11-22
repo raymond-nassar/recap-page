@@ -3,12 +3,12 @@
   "name": "MCU Prep: Captain America: Civil War (2016)",
   "description": "Read Civil War to understand the comics' clash over superhero registration behind the film's divided Avengers. Captain America's surrounding issues follow the build-up, Steve Rogers' resistance and the conflict's aftermath. The comics involve a much wider superhero community than the film.",
   "source": "https://github.com/raymond-nassar/recap-page/issues/766",
-  "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+  "sourceOrigin": "Reading list selected by Recap Page team",
   "sourceLicense": null,
   "generatedAt": "2026-10-09T18:27:04.324Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 23,
-  "collections": 4,
+  "count": 26,
+  "collections": 5,
   "placeholders": 0,
   "unresolved": [],
   "items": [
@@ -604,6 +604,82 @@
         }
       ],
       "collectedIn": "Death of Captain America: Captain America: The Death of Captain America Book 1"
+    },
+    {
+      "issueId": 61300,
+      "title": "Marvel's Spider-Man: Homecoming Prelude (2017) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/61300/marvels_spider-man_homecoming_prelude_2017_1",
+      "seriesId": 22534,
+      "seriesName": "Marvel's Spider-Man: Homecoming Prelude (2017)",
+      "onSale": "2017-03-01T00:00:00+0000",
+      "mu": "2017-09-04T00:00:00+0000",
+      "digitalId": 44318,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/a0/58b0b8c6b6fde",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Todd Nauck",
+          "role": "cover artist"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
+    },
+    {
+      "issueId": 61301,
+      "title": "Marvel's Spider-Man: Homecoming Prelude (2017) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/61301/marvels_spider-man_homecoming_prelude_2017_2",
+      "seriesId": 22534,
+      "seriesName": "Marvel's Spider-Man: Homecoming Prelude (2017)",
+      "onSale": "2017-04-05T00:00:00+0000",
+      "mu": "2017-10-09T00:00:00+0000",
+      "digitalId": 44473,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/58da93b7b6cc0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Todd Nauck",
+          "role": "cover artist"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
+    },
+    {
+      "issueId": 65916,
+      "title": "Marvel's Avengers: Infinity War Prelude (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/65916/marvels_avengers_infinity_war_prelude_2018_1",
+      "seriesId": 23909,
+      "seriesName": "Marvel's Avengers: Infinity War Prelude (2018)",
+      "onSale": "2018-01-24T00:00:00+0000",
+      "mu": "2018-07-30T00:00:00+0000",
+      "digitalId": 47122,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/d0/5a611024ea639",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Tigh Walker",
+          "role": "cover artist"
+        },
+        {
+          "name": "Will Corona Pilgrim",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
     }
   ]
 }

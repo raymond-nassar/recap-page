@@ -18,7 +18,9 @@ const cases = [
     'Latest Additions:', "Compiled for this project from the owner's selected Comic Book Herald excerpt"],
   ['marvel-on-screen', 'marvel-on-screen', 'mcu-prep-doctor-strange-2016', 'Comic Book Herald',
     'https://www.comicbookherald.com/the-best-comics-to-read-with-doctor-strange-multiverse-of-madness/',
-    null, 'Selected by raymond-nassar for MCU Prep'],
+    null, 'Reading list selected by Recap Page team'],
+  ['marvel-on-screen', 'marvel-on-screen', 'mcu-prep-ant-man-2015', 'Recap Page',
+    null, null, 'Reading list selected by Recap Page team'],
 ];
 const lists = cases.map(([, , id]) => {
   const list = catalog.lists.find((entry) => entry.id === id);

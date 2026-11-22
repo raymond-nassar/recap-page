@@ -7,6 +7,7 @@ import { launchUrl } from '../src/js/reader.js';
 import { sourceCountsForPacket } from '../scripts/lib/cbh-inventory.mjs';
 import { registeredOwnerContracts } from './helpers/current-reading-library.mjs';
 import { beforeIdentityJson, identityRevisions } from './helpers/owner-identity-history.mjs';
+import { beforeTieInPayload } from './helpers/mcu-tie-in-history.mjs';
 
 const json = (file) => identityRevisions.guides.some(({ id }) =>
   file.includes(id) || file.includes(id.replaceAll('-', '_')))
@@ -29,7 +30,10 @@ const counts = [16, 12, 29, 14, 4, 15, 24];
 const occurrenceCounts = [22, 13, 29, 14, 9, 15, 24];
 const source = (id) => json(`scripts/data/owner-selections/${id}.json`);
 const packet = (id) => json(`scripts/data/owner-packets/${id}.json`);
-const payload = (id) => json(`src/data/${id.replaceAll('-', '_')}.json`);
+// The identity inverse already reads an earlier commit, so only a live payload sheds its tie-ins.
+const payload = (id) => (identityRevisions.guides.some((entry) => entry.id === id)
+  ? json(`src/data/${id.replaceAll('-', '_')}.json`)
+  : beforeTieInPayload(json(`src/data/${id.replaceAll('-', '_')}.json`)));
 
 test('original seven-film publication retains independently accepted vectors and source position accounting', () => {
   const totals = { included: 0, gap: 0, 'owner-excluded': 0 };

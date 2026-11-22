@@ -330,3 +330,55 @@ test('saved catalog Open is a native actual-list destination while Add and Previ
   const unsaved = descendants(presentation.catalogCard({ key: 'spider-man', lists: [list] }));
   assert.equal(unsaved.find((node) => node.dataset?.act === 'import').tag, 'button');
 });
+
+test('expanded MCU guides render the team credit without changing source links or compact site labels', () => {
+  const project = 'https://github.com/raymond-nassar/recap-page/issues/';
+  const herald = 'https://www.comicbookherald.com/the-best-comics-to-read-with-doctor-strange-multiverse-of-madness/';
+  const expected = [
+    ['mcu-prep-ant-man-2015', `${project}765#ant-man-2015`],
+    ['mcu-prep-avengers-infinity-war-endgame', `${project}766`],
+    ['mcu-prep-black-panther-2018', `${project}766`],
+    ['mcu-prep-captain-america-civil-war-2016', `${project}766`],
+    ['mcu-prep-captain-america-the-first-avenger-2011', `${project}761`],
+    ['mcu-prep-captain-america-the-winter-soldier-2014', `${project}765#captain-america-the-winter-soldier-2014`],
+    ['mcu-prep-doctor-strange-2016', herald],
+    ['mcu-prep-guardians-of-the-galaxy', `${project}700`],
+    ['mcu-prep-iron-man-2-2010', `${project}761`],
+    ['mcu-prep-iron-man-2008', `${project}761`],
+    ['mcu-prep-iron-man-3-2013', `${project}761`],
+    ['mcu-prep-the-avengers-2012', `${project}761`],
+    ['mcu-prep-the-incredible-hulk-2008', `${project}761`],
+    ['mcu-prep-thor-2011', `${project}761`],
+    ['mcu-prep-thor-the-dark-world-2013', `${project}765#thor-the-dark-world-2013`],
+  ];
+  const credit = 'Reading list selected by Recap Page team';
+  const data = (file) => JSON.parse(readFileSync(new URL(`../src/data/${file}`, import.meta.url), 'utf8'));
+  const manifest = data('curated-lists.json');
+  const catalog = data('catalog.json');
+  const expectedIds = expected.map(([id]) => id).sort();
+  for (const lists of [manifest.lists, catalog.lists]) {
+    assert.deepEqual(lists.filter(({ sourceOrigin }) => sourceOrigin === credit).map(({ id }) => id).sort(), expectedIds);
+  }
+  for (const [id, href] of expected) {
+    const entry = manifest.lists.find((item) => item.id === id);
+    const card = catalog.lists.find((item) => item.id === id);
+    const payload = data(entry.out);
+    assert.equal(entry.sourcePage, id === 'mcu-prep-doctor-strange-2016' ? `${project}766` : href, id);
+    for (const value of [entry, payload, card]) {
+      assert.equal(value.sourceOrigin, credit, id);
+      assert.equal(value.sourceSection ?? null, null, id);
+      assert.equal(value.sourceLicense ?? null, null, id);
+    }
+    assert.equal(payload.source, href, id);
+    assert.equal(card.source, href, id);
+    const full = presentation.attributionLine(card);
+    const fullLink = descendants(full).find((node) => node.tag === 'a');
+    assert.equal(fullLink.href, href, id);
+    assert.equal(text(fullLink), credit, id);
+    assert.ok(text(full).includes(`Snapshot taken ${updatedLabel(card)}`), id);
+    const renderedCard = presentation.catalogCard({ key: `list:${id}`, lists: [card] });
+    const compact = descendants(renderedCard).find((node) => node.class === 'result-meta result-source');
+    assert.equal(text(compact), `Source: ${href === herald ? 'Comic Book Herald' : 'Recap Page'}`, id);
+    assert.equal(descendants(compact).find((node) => node.tag === 'a').href, href, id);
+  }
+});

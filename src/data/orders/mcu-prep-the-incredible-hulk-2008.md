@@ -25,3 +25,7 @@ See [data provenance](../../../docs/DATA_PROVENANCE.md) for the publication boun
 - [ ] [Hulk (1999) #37 <!-- mrt:source-occurrence=11 -->](https://www.marvel.com/comics/issue/14437/hulk_1999_37)
 - [ ] [Hulk (1999) #38 <!-- mrt:source-occurrence=12 -->](https://www.marvel.com/comics/issue/14438/hulk_1999_38)
 - [ ] [Hulk (1999) #39 <!-- mrt:source-occurrence=13 -->](https://www.marvel.com/comics/issue/14439/hulk_1999_39)
+
+## Official MCU tie-ins
+
+- [ ] [Marvel's Thor: Ragnarok Prelude (2017) #1](https://www.marvel.com/comics/issue/63378/marvels_thor_ragnarok_prelude_2017_1)

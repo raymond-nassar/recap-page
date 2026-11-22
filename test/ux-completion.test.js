@@ -53,7 +53,7 @@ const productCopy = [
   read('src/js/lib/catalog.js').replace(/^\s*\/\/.*$/gm, ''),
   library.replace(/^\s*\/\/.*$/gm, ''),
   ...filesUnder('src/data', '.json').map((path) => (
-    JSON.stringify(JSON.parse(read(path)), (key, value) => key === 'sourceSection' ? undefined : value)
+    JSON.stringify(JSON.parse(read(path)), productJson)
   )),
   ...filesUnder(join('src', 'data', 'orders'), '.md').map(read),
 ].join('\n');
@@ -375,3 +375,14 @@ test('completion destinations are links that leave modifier clicks to the browse
   }
   assert.match(source, /el\('a', \{\s*class: 'btn btn-g',\s*href: formatRoute\(\{ view: 'completed' \}\),\s*text: 'View completed lists',/);
 });
+
+// The tie-in credit is an attribution the owner approved verbatim, not the app's Reading List
+// label, so only that exact value in that field of the approved guides leaves the label scan.
+// Declared last and hoisted, so the evidence cited above keeps its lines.
+function productJson(key, value) {
+  if (key === 'sourceSection') return undefined;
+  if (key !== 'sourceOrigin') return value;
+  const revisions = JSON.parse(read('scripts/data/mcu-prep-tie-in-revisions.json'));
+  const approved = revisions.guides.some(({ id }) => id === this.id);
+  return approved && value === revisions.credit.after ? undefined : value;
+}

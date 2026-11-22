@@ -31,6 +31,7 @@ import { beforeUltimateSelectionIssueIds } from './ultimate-spider-man-selection
 import { beforeHickmanInterleaveIssueIds, beforeThorCorrectionIssueIds } from './reading-list-correction-history.mjs';
 import { beforeIronManCoverCatalogEntry, beforeIronManCoverPayloadText } from './iron-man-cover-history.mjs';
 import { beforeXmenFirstClassIssueIds } from './xmen-first-class-history.mjs';
+import { beforeTieInIssueIds, beforeTieInManifest } from './mcu-tie-in-history.mjs';
 import {
   beforeUltimateIntroCatalogEntry, beforeUltimateIntroEntry, beforeUltimateIntroIssueIds,
   beforeUltimateIntroPayloadText,
@@ -375,7 +376,7 @@ export async function loadHistoricalReadingChoiceLibrary(options = {}) {
 
 export async function loadBeforeAmazingSpiderManSupplementLibrary(currentManifest) {
   const manifest = beforeWolverineCorrectionManifest(beforeAmazingSpiderManSupplementManifest(
-    beforeXmenEraManifest(currentManifest)));
+    beforeXmenEraManifest(beforeTieInManifest(currentManifest))));
   const dir = await mkdtemp(path.join(os.tmpdir(), 'amazing-spider-man-history-'));
   tempDirs.add(dir);
   const payloadDir = path.join(dir, 'payloads');
@@ -384,7 +385,7 @@ export async function loadBeforeAmazingSpiderManSupplementLibrary(currentManifes
     const file = entry.out || `${entry.id}.json`;
     if (path.basename(file) !== file) throw new Error(`Unsafe historical payload filename: ${file}`);
     const payload = JSON.parse(await readFile(path.join(root, 'src', 'data', file), 'utf8'));
-    const ids = issueIdsFromValue(payload);
+    const ids = beforeTieInIssueIds(entry.id, issueIdsFromValue(payload));
     const issueIds = entry.id === 'xmen-claremont' ? beforeXmenFirstClassIssueIds(ids)
       : entry.id === 'ultimate-spider-man-reading-order' ? beforeUltimateSelectionIssueIds(ids)
         : entry.id === amazingSpiderManGuideId ? beforeAmazingSpiderManSupplementIssueIds(ids)
@@ -399,7 +400,7 @@ export async function loadBeforeAmazingSpiderManSupplementLibrary(currentManifes
 
 export async function loadBeforeWolverineCorrectionLibrary() {
   const live = JSON.parse(await readFile(path.join(root, 'src', 'data', 'curated-lists.json'), 'utf8'));
-  const manifest = beforeWolverineCorrectionManifest(beforeXmenEraManifest(live));
+  const manifest = beforeWolverineCorrectionManifest(beforeXmenEraManifest(beforeTieInManifest(live)));
   const dir = await mkdtemp(path.join(os.tmpdir(), 'wolverine-history-'));
   tempDirs.add(dir);
   const payloadDir = path.join(dir, 'payloads');
@@ -408,7 +409,7 @@ export async function loadBeforeWolverineCorrectionLibrary() {
     const file = entry.out || `${entry.id}.json`;
     if (path.basename(file) !== file) throw new Error(`Unsafe historical payload filename: ${file}`);
     const payload = JSON.parse(await readFile(path.join(root, 'src', 'data', file), 'utf8'));
-    const ids = issueIdsFromValue(payload);
+    const ids = beforeTieInIssueIds(entry.id, issueIdsFromValue(payload));
     const issueIds = entry.id === 'xmen-claremont' ? beforeXmenFirstClassIssueIds(ids)
       : entry.id === 'ultimate-spider-man-reading-order' ? beforeUltimateSelectionIssueIds(ids)
         : entry.id === 'wolverine-reading-order' ? beforeWolverineCorrectionIssueIds(ids)

@@ -37,3 +37,8 @@ See [data provenance](../../../docs/DATA_PROVENANCE.md) for the publication boun
 ## Doctor Strange: What Is It That Disturbs You, Stephen?
 
 - [ ] [Dr. Strange: What Is It That Disturbs You, Stephen? (1997) <!-- mrt:source-occurrence=18 --> <!-- mrt:identity-evidence=owner-confirmed-identity -->](https://www.marvel.com/comics/issue/62446/doctor_strange_what_is_it_that_disturbs_you_stephen_1997)
+
+## Official MCU tie-ins
+
+- [ ] [Marvel's Doctor Strange Prelude (2016) #1](https://www.marvel.com/comics/issue/57945/marvels_doctor_strange_prelude_2016_1)
+- [ ] [Marvel's Doctor Strange Prelude (2016) #2](https://www.marvel.com/comics/issue/57947/marvels_doctor_strange_prelude_2016_2)

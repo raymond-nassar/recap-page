@@ -3,12 +3,12 @@
   "name": "MCU Prep: Ant-Man (2015)",
   "description": "Get to know Scott Lang's second-chance heroics and the Ant-Man legacy behind the film's shrinking suit. Hank Pym and Janet van Dyne's beginnings lead into Scott's struggles with work, crime and fatherhood. The Irredeemable Ant-Man introduces a different suit-wearer, Eric O'Grady, rather than another Scott Lang adventure.",
   "source": "https://github.com/raymond-nassar/recap-page/issues/765#ant-man-2015",
-  "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+  "sourceOrigin": "Reading list selected by Recap Page team",
   "sourceLicense": null,
   "generatedAt": "2026-10-09T17:20:41.889Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 22,
-  "collections": 5,
+  "count": 26,
+  "collections": 6,
   "placeholders": 0,
   "unresolved": [],
   "items": [
@@ -695,6 +695,105 @@
         }
       ],
       "collectedIn": "Astonishing Ant-Man Vol. 3: The Trial of Ant-Man"
+    },
+    {
+      "issueId": 52196,
+      "title": "Marvel's Ant-Man Prelude (2015) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/52196/marvels_ant-man_prelude_2015_1",
+      "seriesId": 19571,
+      "seriesName": "Marvel's Ant-Man Prelude (2015)",
+      "onSale": "2015-02-04T00:00:00+0000",
+      "mu": "2015-08-03T00:00:00+0000",
+      "digitalId": 36594,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/90/54c2aeb32a18c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Official MCU tie-ins"
+    },
+    {
+      "issueId": 52198,
+      "title": "Marvel's Ant-Man Prelude (2015) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/52198/marvels_ant-man_prelude_2015_2",
+      "seriesId": 19571,
+      "seriesName": "Marvel's Ant-Man Prelude (2015)",
+      "onSale": "2015-03-04T00:00:00+0000",
+      "mu": "2015-09-07T00:00:00+0000",
+      "digitalId": 36850,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/d0/54f0d84bdcf9e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Corona Pilgrim",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
+    },
+    {
+      "issueId": 66444,
+      "title": "Marvel's Ant-Man and the Wasp Prelude (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/66444/marvels_ant-man_and_the_wasp_prelude_2018_1",
+      "seriesId": 24069,
+      "seriesName": "Marvel's Ant-Man and the Wasp Prelude (2018)",
+      "onSale": "2018-03-07T00:00:00+0000",
+      "mu": "2018-03-07T00:00:00+0000",
+      "digitalId": 47480,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/5a97296aa2e7c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roberto Poggi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Allen",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
+    },
+    {
+      "issueId": 66693,
+      "title": "Marvel's Ant-Man and the Wasp Prelude (2018) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/66693/marvels_ant-man_and_the_wasp_prelude_2018_2",
+      "seriesId": 24069,
+      "seriesName": "Marvel's Ant-Man and the Wasp Prelude (2018)",
+      "onSale": "2018-04-04T00:00:00+0000",
+      "mu": "2018-10-08T00:00:00+0000",
+      "digitalId": 47699,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/d0/5abd63fc06071",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Roberto Poggi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Christopher Allen",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
     }
   ]
 }

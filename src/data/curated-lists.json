@@ -2805,7 +2805,7 @@
       "sourceFile": "mcu-prep-iron-man-2008.md",
       "out": "mcu_prep_iron_man_2008.json",
       "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/761",
-      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceOrigin": "Reading list selected by Recap Page team",
       "sourceLicense": null,
       "group": null,
       "groupName": null,
@@ -2817,7 +2817,7 @@
         "iron-man"
       ],
       "coverIssueId": 9431,
-      "expect": 16
+      "expect": 18
     },
     {
       "id": "mcu-prep-the-incredible-hulk-2008",
@@ -2838,7 +2838,7 @@
       "sourceFile": "mcu-prep-the-incredible-hulk-2008.md",
       "out": "mcu_prep_the_incredible_hulk_2008.json",
       "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/761",
-      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceOrigin": "Reading list selected by Recap Page team",
       "sourceLicense": null,
       "group": null,
       "groupName": null,
@@ -2851,7 +2851,7 @@
         "the-incredible-hulk"
       ],
       "coverIssueId": 365,
-      "expect": 13
+      "expect": 14
     },
     {
       "id": "mcu-prep-iron-man-2-2010",
@@ -2868,7 +2868,7 @@
       "sourceFile": "mcu-prep-iron-man-2-2010.md",
       "out": "mcu_prep_iron_man_2_2010.json",
       "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/761",
-      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceOrigin": "Reading list selected by Recap Page team",
       "sourceLicense": null,
       "group": null,
       "groupName": null,
@@ -2882,7 +2882,7 @@
         "iron-man-2"
       ],
       "coverIssueId": 9351,
-      "expect": 29
+      "expect": 35
     },
     {
       "id": "mcu-prep-thor-2011",
@@ -2901,7 +2901,7 @@
       "sourceFile": "mcu-prep-thor-2011.md",
       "out": "mcu_prep_thor_2011.json",
       "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/761",
-      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceOrigin": "Reading list selected by Recap Page team",
       "sourceLicense": null,
       "group": null,
       "groupName": null,
@@ -2914,7 +2914,7 @@
         "thor"
       ],
       "coverIssueId": 46516,
-      "expect": 14
+      "expect": 16
     },
     {
       "id": "mcu-prep-captain-america-the-first-avenger-2011",
@@ -2930,7 +2930,7 @@
       "sourceFile": "mcu-prep-captain-america-the-first-avenger-2011.md",
       "out": "mcu_prep_captain_america_the_first_avenger_2011.json",
       "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/761",
-      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceOrigin": "Reading list selected by Recap Page team",
       "sourceLicense": null,
       "group": null,
       "groupName": null,
@@ -2943,7 +2943,7 @@
         "captain-america-the-first-avenger"
       ],
       "coverIssueId": 38423,
-      "expect": 4
+      "expect": 6
     },
     {
       "id": "mcu-prep-the-avengers-2012",
@@ -2962,7 +2962,7 @@
       "sourceFile": "mcu-prep-the-avengers-2012.md",
       "out": "mcu_prep_the_avengers_2012.json",
       "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/761",
-      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceOrigin": "Reading list selected by Recap Page team",
       "sourceLicense": null,
       "group": null,
       "groupName": null,
@@ -2974,7 +2974,7 @@
         "the-avengers"
       ],
       "coverIssueId": 47697,
-      "expect": 15
+      "expect": 20
     },
     {
       "id": "mcu-prep-iron-man-3-2013",
@@ -2991,7 +2991,7 @@
       "sourceFile": "mcu-prep-iron-man-3-2013.md",
       "out": "mcu_prep_iron_man_3_2013.json",
       "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/761",
-      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceOrigin": "Reading list selected by Recap Page team",
       "sourceLicense": null,
       "group": null,
       "groupName": null,
@@ -3004,7 +3004,7 @@
         "iron-man-3"
       ],
       "coverIssueId": 92,
-      "expect": 24
+      "expect": 28
     },
     {
       "id": "mcu-prep-thor-the-dark-world-2013",
@@ -3023,7 +3023,7 @@
       "sourceFile": "mcu-prep-thor-the-dark-world-2013.md",
       "out": "mcu_prep_thor_the_dark_world_2013.json",
       "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/765#thor-the-dark-world-2013",
-      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceOrigin": "Reading list selected by Recap Page team",
       "sourceLicense": null,
       "group": null,
       "groupName": null,
@@ -3037,7 +3037,7 @@
         "thor-the-dark-world"
       ],
       "coverIssueId": 33865,
-      "expect": 14
+      "expect": 18
     },
     {
       "id": "mcu-prep-captain-america-the-winter-soldier-2014",
@@ -3057,7 +3057,7 @@
       "sourceFile": "mcu-prep-captain-america-the-winter-soldier-2014.md",
       "out": "mcu_prep_captain_america_the_winter_soldier_2014.json",
       "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/765#captain-america-the-winter-soldier-2014",
-      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceOrigin": "Reading list selected by Recap Page team",
       "sourceLicense": null,
       "group": null,
       "groupName": null,
@@ -3070,7 +3070,7 @@
         "captain-america-the-winter-soldier"
       ],
       "coverIssueId": 34994,
-      "expect": 18
+      "expect": 20
     },
     {
       "id": "mcu-prep-avengers-age-of-ultron-2015",
@@ -3124,7 +3124,7 @@
       "sourceFile": "mcu-prep-ant-man-2015.md",
       "out": "mcu_prep_ant_man_2015.json",
       "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/765#ant-man-2015",
-      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceOrigin": "Reading list selected by Recap Page team",
       "sourceLicense": null,
       "group": null,
       "groupName": null,
@@ -3139,7 +3139,7 @@
         "ant-man"
       ],
       "coverIssueId": 32680,
-      "expect": 22
+      "expect": 26
     },
     {
       "id": "mcu-prep-captain-america-civil-war-2016",
@@ -3158,7 +3158,7 @@
       "sourceFile": "mcu-prep-captain-america-civil-war-2016.md",
       "out": "mcu_prep_captain_america_civil_war_2016.json",
       "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/766",
-      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceOrigin": "Reading list selected by Recap Page team",
       "sourceLicense": null,
       "group": null,
       "groupName": null,
@@ -3173,7 +3173,7 @@
         "Captain America: Civil War"
       ],
       "coverIssueId": 3503,
-      "expect": 23
+      "expect": 26
     },
     {
       "id": "mcu-prep-thor-ragnarok-2017",
@@ -3227,7 +3227,7 @@
       "sourceFile": "mcu-prep-black-panther-2018.md",
       "out": "mcu_prep_black_panther_2018.json",
       "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/766",
-      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceOrigin": "Reading list selected by Recap Page team",
       "sourceLicense": null,
       "group": null,
       "groupName": null,
@@ -3241,7 +3241,7 @@
         "Black Panther"
       ],
       "coverIssueId": 1637,
-      "expect": 54
+      "expect": 56
     },
     {
       "id": "mcu-prep-avengers-infinity-war-endgame",
@@ -3261,7 +3261,7 @@
       "sourceFile": "mcu-prep-avengers-infinity-war-endgame.md",
       "out": "mcu_prep_avengers_infinity_war_endgame.json",
       "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/766",
-      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceOrigin": "Reading list selected by Recap Page team",
       "sourceLicense": null,
       "group": null,
       "groupName": null,
@@ -3276,7 +3276,7 @@
         "Avengers: Endgame"
       ],
       "coverIssueId": 46880,
-      "expect": 19
+      "expect": 24
     },
     {
       "id": "mcu-prep-captain-marvel-2019",
@@ -3326,7 +3326,7 @@
       "sourceFile": "mcu-prep-doctor-strange-2016.md",
       "out": "mcu_prep_doctor_strange_2016.json",
       "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/766",
-      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceOrigin": "Reading list selected by Recap Page team",
       "sourceLicense": null,
       "group": null,
       "groupName": null,
@@ -3338,7 +3338,7 @@
         "Doctor Strange"
       ],
       "coverIssueId": 5235,
-      "expect": 18
+      "expect": 20
     },
     {
       "id": "doctor-strange-multiverse-of-madness",
@@ -3911,7 +3911,7 @@
       "sourceFile": "mcu-prep-guardians-of-the-galaxy.md",
       "out": "mcu_prep_guardians_of_the_galaxy.json",
       "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/700",
-      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceOrigin": "Reading list selected by Recap Page team",
       "sourceLicense": null,
       "group": null,
       "groupName": null,
@@ -3935,7 +3935,7 @@
         "Al Ewing"
       ],
       "coverIssueId": 21268,
-      "expect": 28
+      "expect": 32
     },
     {
       "id": "mcu-prep-agatha-all-along",

@@ -9,6 +9,9 @@ import {
 } from '../src/js/lib/model.js';
 import { LIST_HISTORY_FORMAT, LIST_HISTORY_KEY } from '../src/js/lib/listHistory.js';
 import { KEY } from '../src/js/storage.js';
+import {
+  isPreTieInOwnerApproval, tieInRevisionFor, tieInRevisions,
+} from '../test/helpers/mcu-tie-in-history.mjs';
 
 const json = (file) => JSON.parse(readFileSync(new URL(file, import.meta.url), 'utf8'));
 const click = async (page, selector) => {
@@ -104,6 +107,39 @@ export function ownerGuideSource(contract, card, payload, revisions = sourceCred
   return chain.at(-1).after.source;
 }
 
+export function ownerGuideExpectedRows(contract, payload) {
+  assert.equal(payload.id, contract.id, 'Owner scenario payload identity changed.');
+  const expected = contract.rows.map((row, index) => ({
+    position: index + 1, issueId: row[1], title: row[2],
+    group: row[3] == null ? null : contract.groups[row[3]],
+  }));
+  assert.ok(expected.length);
+  const revision = tieInRevisionFor(contract.id);
+  if (revision && isPreTieInOwnerApproval(contract)) {
+    assert.equal(expected.length, revision.originalCount, `${contract.id}: original count changed`);
+    const added = payload.items.slice(revision.originalCount);
+    assert.deepEqual(added.map(({ issueId }) => issueId), revision.additionIssueIds,
+      `${contract.id}: tie-in additions changed`);
+    assert.ok(added.every(({ collectedIn }) => collectedIn === tieInRevisions.heading),
+      `${contract.id}: tie-in additions need their recorded heading`);
+    expected.push(...added.map((item, index) => ({
+      position: revision.originalCount + index + 1,
+      issueId: item.issueId,
+      title: item.title,
+      group: tieInRevisions.heading,
+    })));
+  }
+  assert.deepEqual(payload.items.map(({ issueId }) => issueId), expected.map(({ issueId }) => issueId),
+    `${contract.id}: current guide differs from its recorded rows`);
+  return expected;
+}
+
+export function ownerGuideSavedCopyItems(payload, contract) {
+  const revision = tieInRevisionFor(contract.id);
+  const count = revision && isPreTieInOwnerApproval(contract) ? revision.originalCount : payload.items.length;
+  return payload.items.slice(0, count).filter((item) => item.identityEvidenceKind !== 'owner-confirmed-identity');
+}
+
 export function ownerGuideScenario(contract, { savedCopyOnly = false } = {}) {
   // The accepted copy predates the recorded description revisions, so the preview is held to the
   // revised side of that record rather than to a second hand-typed copy of it.
@@ -123,12 +159,7 @@ export function ownerGuideScenario(contract, { savedCopyOnly = false } = {}) {
   assert.ok(card, 'The registered owner guide must be visible before browser validation.');
   const payload = json(`../src/data/${card.file}`);
   const expectedSource = ownerGuideSource(contract, card, payload);
-  const expected = contract.rows.map((row, index) => ({
-    position: index + 1, issueId: row[1], title: row[2],
-    group: row[3] == null ? null : contract.groups[row[3]],
-  }));
-  assert.ok(expected.length);
-  assert.deepEqual(payload.items.map((entry) => entry.issueId), expected.map((entry) => entry.issueId));
+  const expected = ownerGuideExpectedRows(contract, payload);
   const houseCard = catalog.lists.find((entry) => entry.id === 'house-of-m');
   const house = json(`../src/data/${houseCard.file}`);
   let seed = createList(createEmptyState(), {
@@ -221,7 +252,7 @@ export function ownerGuideScenario(contract, { savedCopyOnly = false } = {}) {
       if (savedCopyOnly) {
         const savedId = 'saved-owner-guide';
         const savedName = `My saved ${contract.name}`;
-        const previousItems = payload.items.filter((item) => !ownerIdentityIds.includes(item.issueId));
+        const previousItems = ownerGuideSavedCopyItems(payload, contract);
         assert.ok(ownerIdentityIds.length > 0 && previousItems.length >= 4);
         let previous = createList(createEmptyState(), {
           id: savedId, catalogId: contract.id, name: savedName,
