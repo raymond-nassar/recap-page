@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T16:49:21.954Z",
+  "generatedAt": "2026-11-21T08:17:12.502Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -7337,12 +7337,61 @@
       "updatedAt": "2026-10-22T22:50:39.538Z"
     },
     {
-      "id": "xmen-claremont",
-      "file": "xmen_claremont.json",
-      "name": "X-Men Core Reading Order: Silver Age to Claremont",
-      "description": "X-Men: First Class revisits the original team's beginnings before Giant-Size X-Men brings a new team together. Chris Claremont's years follow through Phoenix, Dark Phoenix, the Brood, Days of Future Past, God Loves Man Kills, New Mutants, X-Factor and the interleaved Mutant Massacre. The order ends before Fall of the Mutants and Inferno.",
+      "id": "xmen-silver-age",
+      "file": "xmen_silver_age.json",
+      "name": "X-Men: Silver Age Reading Order",
+      "description": "Jean Grey barely has time to meet her four new classmates before Magneto seizes a missile base. Welcome to Xavier's school.",
       "type": "character-run",
-      "depth": "essential",
+      "depth": "selected",
+      "spotlightKind": "other",
+      "storyTypes": [
+        "science-fiction",
+        "political"
+      ],
+      "tones": [
+        "epic"
+      ],
+      "count": 157,
+      "placeholderCount": 1,
+      "emptyRecordCount": 0,
+      "collections": 0,
+      "characters": [
+        "X-Men",
+        "Professor X",
+        "Cyclops",
+        "Jean Grey",
+        "Magneto"
+      ],
+      "keywords": [
+        "Silver Age",
+        "The Hidden Years",
+        "Grand Design",
+        "Season One",
+        "First Class",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1963,
+      "coverIssueId": 12413,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/589ddfc222e9c",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/60s-x-men-comics-reading-order/",
+      "sourceOrigin": "Based on a reader's outline and Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-11-21T08:17:12.502Z"
+    },
+    {
+      "id": "xmen-claremont-era",
+      "file": "xmen_claremont_era.json",
+      "name": "X-Men: Claremont Reading Order",
+      "description": "Storm, Nightcrawler and Wolverine join forces to rescue the X-Men from a living island. But when Jean Grey becomes Dark Phoenix, who can save her?",
+      "type": "character-run",
+      "depth": "selected",
       "spotlightKind": "other",
       "storyTypes": [
         "science-fiction",
@@ -7360,7 +7409,7 @@
         "days-of-future-past",
         "mutant-massacre"
       ],
-      "count": 274,
+      "count": 258,
       "placeholderCount": 2,
       "emptyRecordCount": 0,
       "collections": 0,
@@ -7387,92 +7436,22 @@
         "Second Genesis",
         "New Mutants",
         "X-Factor",
-        "Silver Age",
         "Comic Book Herald"
       ],
-      "group": "xmen-claremont",
-      "groupName": "X-Men: Silver Age to Claremont",
-      "variant": "First Class origins, then Claremont",
+      "group": null,
+      "groupName": null,
+      "variant": null,
       "beginner": true,
       "timeline": null,
-      "coverIssueId": 5144,
+      "coverIssueId": 8797,
       "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/5cd46f47a38eb",
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/5b314996e924c",
         "ext": "jpg"
       },
-      "source": null,
-      "sourceOrigin": "Compiled for this project",
+      "source": "https://www.comicbookherald.com/chris-claremont-era-x-men-reading-order-guide/",
+      "sourceOrigin": "Based on a reader's outline and Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-08-15T07:57:51.550Z"
-    },
-    {
-      "id": "xmen-claremont-complete",
-      "file": "xmen_claremont_complete.json",
-      "name": "X-Men Expanded Reading Order: Silver Age to Claremont",
-      "description": "The X-Men's original Silver Age stories lead into the Claremont years, with guest appearances and modern retellings added. Compiled by hand from a reader's outline of Comic Book Herald's guides, the route includes Amazing Adventures, Spider-Man, the Hulk, the Avengers, Captain America, the Defenders and Giant-Size Fantastic Four. The Hidden Years, Grand Design, Season One and the whole of First Class revisit the early years. X-Men Annual #1 and #2 are listed without a link, because Marvel's metadata carries that series only from #3.",
-      "type": "character-run",
-      "depth": "complete",
-      "spotlightKind": "other",
-      "storyTypes": [
-        "science-fiction",
-        "political"
-      ],
-      "tones": [
-        "epic"
-      ],
-      "writers": [
-        "Chris Claremont"
-      ],
-      "contains": [
-        "phoenix-saga",
-        "dark-phoenix-saga",
-        "days-of-future-past",
-        "mutant-massacre"
-      ],
-      "count": 404,
-      "placeholderCount": 4,
-      "emptyRecordCount": 0,
-      "collections": 0,
-      "characters": [
-        "X-Men",
-        "Professor X",
-        "Cyclops",
-        "Jean Grey",
-        "Wolverine",
-        "Storm",
-        "Nightcrawler",
-        "Colossus",
-        "Kitty Pryde",
-        "Magneto",
-        "New Mutants",
-        "X-Factor"
-      ],
-      "keywords": [
-        "Chris Claremont",
-        "Dark Phoenix Saga",
-        "Days of Future Past",
-        "Mutant Massacre",
-        "The Hidden Years",
-        "Grand Design",
-        "First Class",
-        "Season One",
-        "Silver Age",
-        "Comic Book Herald"
-      ],
-      "group": "xmen-claremont",
-      "groupName": "X-Men: Silver Age to Claremont",
-      "variant": "With the optional add-ons and retellings",
-      "beginner": false,
-      "timeline": null,
-      "coverIssueId": 12413,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/589ddfc222e9c",
-        "ext": "jpg"
-      },
-      "source": null,
-      "sourceOrigin": "Compiled for this project",
-      "sourceLicense": null,
-      "updatedAt": "2026-08-15T07:57:51.563Z"
+      "updatedAt": "2026-11-21T08:17:12.502Z"
     },
     {
       "id": "shadow-king-reading-order",

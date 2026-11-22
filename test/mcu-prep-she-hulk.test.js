@@ -1,3 +1,4 @@
+import { beforeXmenEraManifest, beforeXmenEraOrders } from './helpers/xmen-era-history.mjs';
 import { beforeMcuEditorialEntry } from '../scripts/lib/mcu-editorial.mjs';
 import { withRetiredComparisons } from './helpers/mcu-editorial-history.mjs';
 import test from 'node:test';
@@ -131,9 +132,10 @@ test('She-Hulk binds post-refresh approval to every current-library peer', async
   assert.ok(peerIds.includes('marvel-knights-to-planet-x'));
   assert.ok(!peerIds.includes('spider-man-no-way-home-owner-selected'));
   const recordedIds = new Set(report.comparisons.map((row) => row.orderId));
-  const recordedOrders = library.orders.filter((row) => recordedIds.has(row.orderId));
+  // Reviews before the X-Men era replacement recorded the retired pair, so it is restored for them alone.
+  const recordedOrders = beforeXmenEraOrders(library.orders).filter((row) => recordedIds.has(row.orderId));
   const recordedManifest = {
-    ...library.manifest, lists: library.manifest.lists.filter((row) => recordedIds.has(row.id)),
+    ...library.manifest, lists: beforeXmenEraManifest(library.manifest).lists.filter((row) => recordedIds.has(row.id)),
   };
   const recordedDigest = historicalSpiderManSelectionLibraryDigest(recordedManifest, recordedOrders.map((row) => ({
     id: row.orderId, issueIds: row.issueIds.map(String),

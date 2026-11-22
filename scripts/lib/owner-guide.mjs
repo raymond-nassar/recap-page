@@ -19,6 +19,7 @@ import {
   withPublishedDiscoveryTags,
 } from './cbh-inventory.mjs';
 import { resolveRow } from './cbh-resolution.mjs';
+import { buildComparisonReport, issueIdsFromValue } from './cbh-overlap.mjs';
 import { buildCurrentOwnerOverlap, loadCurrentOwnerLibrary } from './owner-current-library.mjs';
 import { OWNER_YOUNG_READERS_PROVIDER, ownerGuideProvider, readOwnerGuideRegistry } from './owner-guide-registry.mjs';
 import {
@@ -44,6 +45,26 @@ const THUNDERBOLTS_MISMATCH = Object.freeze({
   confirmationSource: 'https://github.com/raymond-nassar/recap-page/issues/687#issuecomment-6336250562',
 });
 const hash = (value) => createHash('sha256').update(value).digest('hex');
+const RETIREMENT_RECORD = 'scripts/data/curated-source-ledgers/xmen-era-retirement.json';
+
+// Overlaps with retired guides, recomputed from the exact payload bytes the signed retirement record
+// pins. A guide still in the manifest is compared as a live peer instead, which is how a manifest from
+// before the retirement must be read.
+function retiredOrderComparisons(record, inputs, root, manifest, candidateIds) {
+  const listed = new Set(manifest.lists.map(({ id }) => id));
+  const orders = record.entries.filter(({ id }) => !listed.has(id)).map(({ id, out }) => {
+    const file = `src/data/${out}`;
+    const pinned = record.originalPayloads.find(({ path: pinnedPath }) => pinnedPath === file);
+    assert.ok(pinned, `Retired guide ${id} has no pinned payload.`);
+    const bytes = inputs.contents.get(file);
+    assert.ok(bytes, `Retired guide ${id} payload was not part of the preflight.`);
+    assert.equal(hash(bytes.toString('utf8').replace(/\r\n/g, '\n')), pinned.sha256,
+      `Retired guide ${id} payload differs from its pinned bytes.`);
+    return { orderId: id, issueIds: issueIdsFromValue(inputs.json(path.join(root, file))) };
+  });
+  return new Map(buildComparisonReport({ candidateIds, orders }).comparisons
+    .map((comparison) => [comparison.orderId, comparison]));
+}
 const jsonText = (value) => `${JSON.stringify(value, null, 2)}\n`;
 const same = (left, right, reason) => assert.equal(canonicalJson(left), canonicalJson(right), reason);
 const positiveId = (id) => Number.isSafeInteger(id) && id > 0;
@@ -1072,6 +1093,7 @@ function assertLaterCuratedReciprocal(current, entry, ledger) {
 
 export function assertRelationshipReportExtension(
   previous, current, laterGuides = [], laterCbhGuides = [], laterCuratedGuides = [],
+  retiredComparisons = new Map(),
 ) {
   for (const field of [
     'candidateId', 'packetDigest', 'mappingDigest', 'peerDigests', 'sourceCounts', 'candidateCount',
@@ -1085,6 +1107,13 @@ export function assertRelationshipReportExtension(
       && comparison.orderId === mcuEditorial.withdrawal.manifestEntry.id
       && comparison.relationship === 'none' && comparison.sharedCount === 0
       && comparison.sharedIds.length === 0) continue;
+    // A retired guide leaves the current library but keeps its payload for saved lists, so the sealed
+    // overlap stays checkable against those preserved bytes rather than being waved through.
+    if (!currentById.has(comparison.orderId) && retiredComparisons.has(comparison.orderId)) {
+      assert.equal(canonicalJson(retiredComparisons.get(comparison.orderId)), canonicalJson(comparison),
+        `Retired guide ${comparison.orderId} no longer reproduces its approved overlap.`);
+      continue;
+    }
     assert.equal(canonicalJson(currentById.get(comparison.orderId)), canonicalJson(comparison),
       `Current relationship report changed approved overlap with ${comparison.orderId}.`);
   }
@@ -1184,6 +1213,11 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
       return await exists(ledger) ? { id, ledger } : null;
     }))).filter(Boolean);
   const targetPaths = Object.values(paths).map((name) => path.join(root, name));
+  const retirementFile = path.join(root, ...RETIREMENT_RECORD.split('/'));
+  const retirementForPaths = await exists(retirementFile)
+    ? JSON.parse(await readFile(retirementFile, 'utf8')) : null;
+  const retiredPayloadPaths = (retirementForPaths?.originalPayloads ?? [])
+    .map(({ path: file }) => path.join(root, ...file.split('/')));
   const payloadFile = path.join(root, 'src', 'data', `${request.id.replaceAll('-', '_')}.json`);
   const thunderboltsSourcePath = path.join(root, 'scripts', 'data', 'mcu-prep-thunderbolts-source.json');
   const inputPaths = [
@@ -1192,6 +1226,7 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
     ...laterGuidePaths.flatMap(({ contract, mapping, report }) => [contract, mapping, report]),
     ...laterCbhPaths.flatMap(({ mapping, report }) => [mapping, report]),
     ...laterCuratedPaths.map(({ ledger }) => ledger),
+    ...(retirementForPaths ? [retirementFile, ...retiredPayloadPaths] : []),
     ...currentLibrary.descriptors.map((entry) => path.join(root, 'src', 'data', entry.file)),
   ];
   const inputs = await readPublicationInputs({ root, paths: inputPaths });
@@ -1258,7 +1293,9 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
     registeredId: entry.id, mapping: inputs.json(entry.mapping), report: inputs.json(entry.report),
   })), laterCuratedPaths.map((entry) => ({
     registeredId: entry.id, ledger: inputs.json(entry.ledger),
-  })));
+  })), retirementForPaths ? retiredOrderComparisons(
+    inputs.json(retirementFile), inputs, root, manifest, mapping.rows.map((row) => row.selectedIssueId),
+  ) : new Map());
 
   const gapByPosition = new Map((packet.sourceGaps ?? []).map((gap) => [gap.sourcePosition, gap]));
   const existingIds = new Set(mapping.rows.map((row) => Number(row.selectedIssueId)));

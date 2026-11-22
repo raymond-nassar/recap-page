@@ -127,7 +127,7 @@ test('Character Spotlight taxonomy accounts for every reading and preserves grou
   const spotlights = shelfLists(catalog.lists, 'spotlights');
   // #897: the fifteen young readers' lists moved to their own screen, so they are counted there.
   assert.equal(spotlights.length, 73);
-  assert.equal(groupCatalog(spotlights).length, 72);
+  assert.equal(groupCatalog(spotlights).length, 73);
   assert.equal(spotlights.some((list) => list.audience === 'young-readers'), false);
 
 
@@ -137,7 +137,7 @@ test('Character Spotlight taxonomy accounts for every reading and preserves grou
   const expected = [
     ['best-of', 10, 10],
     ['complete-guide', 38, 38],
-    ['other', 25, 24],
+    ['other', 25, 25],
 
   ];
   for (const [kind, readingCount, storyCount] of expected) {
@@ -146,9 +146,11 @@ test('Character Spotlight taxonomy accounts for every reading and preserves grou
     assert.equal(groupCatalog(filtered).length, storyCount, `${kind} story count drifted`);
   }
 
-  const xMen = groupCatalog(other)
-    .find((story) => story.key === 'xmen-claremont');
-  assert.equal(xMen.lists.length, 2, 'the grouped X-Men readings were split');
+  // The two X-Men guides are separately addable, so neither joins the other as a variant.
+  const xMen = ['xmen-silver-age', 'xmen-claremont-era']
+    .map((id) => groupCatalog(other).find((story) => story.lists.some((list) => list.id === id)));
+  assert.deepEqual(xMen.map((story) => story.lists.length), [1, 1]);
+  assert.equal(other.some((list) => ['xmen-claremont', 'xmen-claremont-complete'].includes(list.id)), false);
 
   const rocket = spotlights.find((list) => list.id === 'rocket-raccoon-reading-order');
   assert.ok(completeGuide.includes(rocket));

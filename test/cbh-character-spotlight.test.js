@@ -1,3 +1,4 @@
+import { beforeXmenEraManifest } from './helpers/xmen-era-history.mjs';
 import { currentReadingCensus } from './helpers/current-reading-library.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -2319,8 +2320,9 @@ test('the Doctor Strange guide preserves its complete source ledger through publ
   assert.equal(manifest.lists[doctorIndex + 3].id, magnetoCandidateId);
   assert.equal(manifest.lists[doctorIndex + 4].id,
     'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order');
-  assert.equal(manifest.lists[doctorIndex + 5].id, 'xmen-claremont');
-  assert.equal(manifest.lists[doctorIndex + 6].id, 'xmen-claremont-complete');
+  // The retired X-Men pair's slot passed to its two separately addable replacements.
+  assert.equal(manifest.lists[doctorIndex + 5].id, 'xmen-silver-age');
+  assert.equal(manifest.lists[doctorIndex + 6].id, 'xmen-claremont-era');
   assert.equal(manifest.lists[doctorIndex + 7].id, 'shadow-king-reading-order');
   assert.equal(manifest.lists[doctorIndex + 8].id, 'professor-x-reading-order');
   assert.equal(manifest.lists[doctorIndex + 9].id, captainMarvelCandidateId);
@@ -4420,7 +4422,7 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
     generated.items.map((item) => String(item.issueId)),
     mapping.rows.map((row) => String(row.selectedIssueId)),
   );
-  const starLordChronology = manifest.lists.filter((entry) => !['best-ultron-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'spider-man-2099-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order', 'thunderbolts-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel', 'mcu-prep-captain-america-brave-new-world', 'mcu-prep-deadpool-and-wolverine', 'spider-man-no-way-home-owner-selected'].includes(entry.id));
+  const starLordChronology = beforeXmenEraManifest(manifest).lists.filter((entry) => !['best-ultron-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'spider-man-2099-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order', 'thunderbolts-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel', 'mcu-prep-captain-america-brave-new-world', 'mcu-prep-deadpool-and-wolverine', 'spider-man-no-way-home-owner-selected'].includes(entry.id));
 
   const starLordIndex = starLordChronology.findIndex((entry) => entry.id === starLordCandidateId);
   assert.equal(starLordChronology[starLordIndex - 1].id, grootCandidateId);
@@ -4757,7 +4759,8 @@ test('the first character batch stays exact through evidence, catalog, and gener
   assert.equal(catalog.lists.length, currentReadingCensus.visible);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
   assert.equal(characterRuns.length, 88);
-  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 87);
+  // The retired X-Men pair shared one group; its replacements are two separately addable guides.
+  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 88);
 
 });
 

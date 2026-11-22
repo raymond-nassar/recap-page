@@ -28,7 +28,7 @@ import { TILE_PARTS, decodePng, tileContrast } from './lib/painted-contrast.mjs'
 import { escapeShellDialog, measureShellDialog, shellVerdicts } from './lib/dialog-shell.mjs';
 import { touchFeedbackCheck } from './lib/touch-feedback.mjs';
 import { androidPhoneProfiles, phoneLayoutScenarios } from './browser-phone-layout.mjs';
-import { listRevisions } from './browser-list-revisions.mjs';
+import { legacyPackagedOrders, listRevisions } from './browser-list-revisions.mjs';
 import {
   catalogFacets, defaultPath, filterByFacet, filterBySpotlightKind,
   parseCatalog, searchCatalog, shelfLists, sortSpotlightStories,
@@ -42,7 +42,7 @@ const allowedModes = new Set([
   'done-hint', 'completion-focus', 'long-list-name', 'selection-bar', 'milestones', 'save-notice', 'home-continue',
   'progress-glance',
   'confirmations', 'issue-poster',
-  'story-types', 'touch-feedback', 'phone-layout', 'universes', 'list-revisions', 'collected-editions',
+  'story-types', 'touch-feedback', 'phone-layout', 'universes', 'list-revisions', 'legacy-offline', 'collected-editions',
 ]);
 if (onlyArgs.length > 1 || (onlyArgs.length && !allowedModes.has(onlyArgs[0].slice('--only='.length)))) {
   throw new Error('Choose one exact supported Android --only selector; comma selections are not supported');
@@ -1381,7 +1381,7 @@ async function storyTypesDropdowns(page, profile, label) {
   assert.equal(starters.length, 10, 'All ten starting lists are in the bundled catalog');
   const expectedStarterIds = [
     'spider-man-best-of', 'iron-man-reading-order', 'captain-america-best-of', 'planet-hulk',
-    'thor-best-of', 'marvel-knights-to-planet-x-10', 'xmen-claremont', 'essential-avengers',
+    'thor-best-of', 'marvel-knights-to-planet-x-10', 'xmen-claremont-era', 'essential-avengers',
     'black-panther-reading-order', 'deadpool-best-of',
   ].map((id) => `list:${id}`);
   const starterTitles = starters.map((story) => story.lists[0].name);
@@ -1558,13 +1558,15 @@ async function storyTypesDropdowns(page, profile, label) {
     return { id: node.id, color: style.color, background: style.backgroundColor,
       adjustment: style.forcedColorAdjust };
   }));
+  const expectedSelects = JSON.stringify([
+    'catalog-path', 'catalog-path-jump', 'genres-tone', 'genres-type',
+    'opt-theme', 'rated-character', 'rated-min', 'rated-sort', 'universes-sort',
+  ]);
+  const measuredSelects = (colors) => JSON.stringify(colors.map(({ id }) => id).sort());
   for (const theme of ['dark', 'light']) {
     await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
     const colors = await readColors();
-    check(JSON.stringify(colors.map(({ id }) => id).sort()) === JSON.stringify([
-      'catalog-path', 'catalog-path-jump', 'genres-tone', 'genres-type',
-      'opt-theme', 'rated-character', 'rated-min', 'rated-sort',
-    ]), `${label}: every shared styled select is measured in ${theme}`);
+    check(measuredSelects(colors) === expectedSelects, `${label}: every shared styled select is measured in ${theme}`);
     for (const entry of colors) {
       const channels = (color) => color.match(/[\d.]+/g).map(Number);
       const measured = ratio(channels(entry.color), channels(entry.background));
@@ -1584,7 +1586,7 @@ async function storyTypesDropdowns(page, profile, label) {
     return colors;
   });
   const forced = await readColors();
-  check(forced.length === 8 && forced.every((entry) => entry.adjustment === 'auto'
+  check(measuredSelects(forced) === expectedSelects && forced.every((entry) => entry.adjustment === 'auto'
     && entry.color === system.color && entry.background === system.background),
   `${label}: all shared selects retain system FieldText/Field in forced colors ${JSON.stringify({ forced, system })}`);
   await cdp.send('Emulation.setEmulatedMedia', { features: [{ name: 'forced-colors', value: 'none' }] });
@@ -5592,7 +5594,12 @@ try {
     page.__revisionViewport = { width: 360, height: 800, isMobile: true, hasTouch: true, deviceScaleFactor: 1 };
     await listRevisions.run(page, { check: (name, ok, detail) => check(ok, `${name} ${detail ?? ''}`) });
   }
-  let viewports = ['--only=phone-layout', '--only=list-revisions', '--only=collected-editions'].includes(onlyArgs[0]) ? []
+  if (onlyArgs[0] === '--only=legacy-offline') {
+    const page = await browser.newPage();
+    page.__origin = origin;
+    await legacyPackagedOrders.run(page, { check: (name, ok, detail) => check(ok, `${name} ${detail ?? ''}`) });
+  }
+  let viewports = ['--only=phone-layout', '--only=list-revisions', '--only=legacy-offline', '--only=collected-editions'].includes(onlyArgs[0]) ? []
     : [{ width: 360, height: 800 }, { width: 412, height: 915 }, { width: 800, height: 360 }];
   if (mobileUi) viewports.push({ width: 360, height: 800, textScale: 1.3 }, { width: 1280, height: 900 });
   if (phoneHeader) viewports = [
@@ -5771,7 +5778,7 @@ try {
   if (onlyViewport) viewports = viewports.filter((viewport) => (
     `${viewport.width}x${viewport.height}${viewport.textScale ? `@${viewport.textScale}` : ''}` === onlyViewport
   ));
-  assert.ok(viewports.length || ['--only=phone-layout', '--only=list-revisions', '--only=collected-editions'].includes(onlyArgs[0]), `Unknown viewport: ${onlyViewport}`);
+  assert.ok(viewports.length || ['--only=phone-layout', '--only=list-revisions', '--only=legacy-offline', '--only=collected-editions'].includes(onlyArgs[0]), `Unknown viewport: ${onlyViewport}`);
   if (placeholderAx) assert.deepEqual(viewports.map((profile) => profile.id), ['M11', 'M16'],
     'Placeholder AX proof requires exactly M11 and M16');
   for (const viewport of viewports) {
