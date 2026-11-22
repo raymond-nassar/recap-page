@@ -19,6 +19,14 @@ export const RECENT_RELEASES = 5;
 // new release note cannot publish without someone deciding what its label should say.
 export const PLATFORM_LABELS = new Map([
   [
+    "On supported browsers, save an earlier X-Men guide's original published order for offline comparison.",
+    'Offline comparison: supported browsers.',
+  ],
+  [
+    'Read can take you straight to the reading screen for thousands more comics. In the Recap Page app on phones and iPads, Read tries the Marvel Comics app first for many comics. If your device cannot open the app link, it opens the web link instead.',
+    'Direct reading links: every platform. Marvel Comics app first: Android, iPhone and iPad.',
+  ],
+  [
     'When OneDrive backup is on, Recap Page can offer progress from another device when your reading progress differs: comics marked read, your lists, ratings and finished lists. Choose which progress to use, or dismiss the notice to keep yours; the app never merges backups.',
     'OneDrive progress offer: Windows, Android, iPhone and iPad. iCloud keeps its existing backup and manual restore.',
   ],
