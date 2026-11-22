@@ -7,6 +7,7 @@ import { parseChecklist, serializeReadingOrder } from '../src/js/lib/markdown.js
 import { launchUrl } from '../src/js/reader.js';
 import { sourceCountsForPacket } from '../scripts/lib/cbh-inventory.mjs';
 import { registeredOwnerContracts } from './helpers/current-reading-library.mjs';
+import { beforeTieInPayload } from './helpers/mcu-tie-in-history.mjs';
 
 const json = (file) => JSON.parse(readFileSync(new URL(`../${file}`, import.meta.url), 'utf8'));
 const hash = (value) => createHash('sha256').update(value).digest('hex');
@@ -30,7 +31,7 @@ const descriptions = [
 ];
 const source = (id) => json(`scripts/data/owner-selections/${id}.json`);
 const mapping = (id) => json(`scripts/data/owner-mappings/${id}.json`);
-const payload = (id) => json(`src/data/${id.replaceAll('-', '_')}.json`);
+const payload = (id) => beforeTieInPayload(json(`src/data/${id.replaceAll('-', '_')}.json`));
 
 test('four Phase Two guides preserve all 79 supplied positions, exact descriptions and independent vectors', () => {
   let total = 0;

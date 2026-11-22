@@ -23,3 +23,10 @@ See [data provenance](../../../docs/DATA_PROVENANCE.md) for the publication boun
 - [ ] [Thor (1966) #343 <!-- mrt:source-occurrence=12 -->](https://www.marvel.com/comics/issue/11671/thor_1966_343)
 - [ ] [Thor (1966) #344 <!-- mrt:source-occurrence=13 -->](https://www.marvel.com/comics/issue/11672/thor_1966_344)
 - [ ] [Thor (1966) #345 <!-- mrt:source-occurrence=14 -->](https://www.marvel.com/comics/issue/11673/thor_1966_345)
+
+## Official MCU tie-ins
+
+- [ ] [Marvel's Thor: The Dark World Prelude 2 (2012) #1](https://www.marvel.com/comics/issue/42667/marvels_thor_the_dark_world_prelude_2_2012_1)
+- [ ] [Marvel's Thor: The Dark World Prelude 2 (2012) #2](https://www.marvel.com/comics/issue/42668/marvels_thor_the_dark_world_prelude_2_2012_2)
+- [ ] [Marvel's Thor: Ragnarok Prelude (2017) #3](https://www.marvel.com/comics/issue/63981/marvels_thor_ragnarok_prelude_2017_3)
+- [ ] [Marvel's Thor: Ragnarok Prelude (2017) #4](https://www.marvel.com/comics/issue/64212/marvels_thor_ragnarok_prelude_2017_4)

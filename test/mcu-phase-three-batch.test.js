@@ -6,6 +6,7 @@ import { parseChecklist, serializeReadingOrder } from '../src/js/lib/markdown.js
 import { launchUrl } from '../src/js/reader.js';
 import { sourceCountsForPacket } from '../scripts/lib/cbh-inventory.mjs';
 import { registeredOwnerContracts } from './helpers/current-reading-library.mjs';
+import { beforeTieInPayload } from './helpers/mcu-tie-in-history.mjs';
 
 const json = (file) => JSON.parse(readFileSync(new URL(`../${file}`, import.meta.url), 'utf8'));
 const ids = [
@@ -26,7 +27,7 @@ const supplied = [23, 30, 54, 19, 24, 18];
 const blocks = [[7, 3, 3, 4, 6], [1, 9, 6, 14], [6, 13, 17, 12, 6], [5, 2, 6, 6], [9, 6, 5, 4], [1, 5, 5, 6, 1]];
 const source = (id) => json(`scripts/data/owner-selections/${id}.json`);
 const packet = (id) => json(`scripts/data/owner-packets/${id}.json`);
-const payload = (id) => json(`src/data/${id.replaceAll('-', '_')}.json`);
+const payload = (id) => beforeTieInPayload(json(`src/data/${id.replaceAll('-', '_')}.json`));
 
 test('six Phase Three guides retain independent exact vectors and all168 source positions', () => {
   const totals = { included: 0, gap: 0 };

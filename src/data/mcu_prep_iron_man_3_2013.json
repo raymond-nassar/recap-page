@@ -3,12 +3,12 @@
   "name": "MCU Prep: Iron Man 3 (2013)",
   "description": "Read Extremis to understand the dangerous technology adapted for Iron Man 3 and the questions it raises about Tony Stark. Enter the Mandarin introduces a very different version of his enemy, while The Five Nightmares and Stark Disassembled test Tony's inventions, identity and resilience. The film reshapes these ideas rather than following every comics plot.",
   "source": "https://github.com/raymond-nassar/recap-page/issues/761",
-  "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+  "sourceOrigin": "Reading list selected by Recap Page team",
   "sourceLicense": null,
   "generatedAt": "2026-10-09T15:22:14.578Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 24,
-  "collections": 4,
+  "count": 28,
+  "collections": 5,
   "placeholders": 0,
   "unresolved": [],
   "items": [
@@ -675,6 +675,102 @@
         }
       ],
       "collectedIn": "Invincible Iron Man Vol. 4: Stark Disassembled"
+    },
+    {
+      "issueId": 42669,
+      "title": "Marvel's Iron Man 3 Prelude (2012) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/42669/marvels_iron_man_3_prelude_2012_1",
+      "seriesId": 16279,
+      "seriesName": "Marvel's Iron Man 3 Prelude (2012 - 2013)",
+      "onSale": "2013-01-02T00:00:00+0000",
+      "mu": "2013-07-01T00:00:00+0000",
+      "digitalId": 28299,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/60/53862e4debafb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
+    },
+    {
+      "issueId": 42670,
+      "title": "Marvel's Iron Man 3 Prelude (2012) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/42670/marvels_iron_man_3_prelude_2012_2",
+      "seriesId": 16279,
+      "seriesName": "Marvel's Iron Man 3 Prelude (2012 - 2013)",
+      "onSale": "2013-02-06T00:00:00+0000",
+      "mu": "2013-08-05T00:00:00+0000",
+      "digitalId": 28542,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/03/53862e57410f3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
+    },
+    {
+      "issueId": 57724,
+      "title": "Marvel's Captain America: Civil War Prelude (2015) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/57724/marvels_captain_america_civil_war_prelude_2015_1",
+      "seriesId": 21018,
+      "seriesName": "Marvel's Captain America: Civil War Prelude (2015 - 2016)",
+      "onSale": "2015-12-16T00:00:00+0000",
+      "mu": "2016-06-20T00:00:00+0000",
+      "digitalId": 40686,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/566ed9eb7e3b3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Corona Pilgrim",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
+    },
+    {
+      "issueId": 57725,
+      "title": "Marvel's Captain America: Civil War Prelude (2015) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/57725/marvels_captain_america_civil_war_prelude_2015_2",
+      "seriesId": 21018,
+      "seriesName": "Marvel's Captain America: Civil War Prelude (2015 - 2016)",
+      "onSale": "2015-12-30T00:00:00+0000",
+      "mu": "2016-06-27T00:00:00+0000",
+      "digitalId": 40781,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/5682c1fa46114",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Szymon Kudranski",
+          "role": "cover artist"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
     }
   ]
 }

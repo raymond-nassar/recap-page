@@ -10,6 +10,7 @@ import {
 } from '../src/js/lib/catalog.js';
 import { assertOwnerDeliveryContract } from './helpers/owner-delivery-contract.mjs';
 import { beforeIdentityJson, beforeIdentityText } from './helpers/owner-identity-history.mjs';
+import { tieInRevisions } from './helpers/mcu-tie-in-history.mjs';
 import {
   currentReadingCensus, registeredCuratedGuides, registeredEventContracts, registeredOwnerAdditionContracts,
   registeredOwnerContracts, registeredYoungReaderContracts,
@@ -166,6 +167,8 @@ test('the common event contract rejects a changed current peer mapping even when
 
 test('the historical earlier-owner contract rejects missing meaningful reciprocal authority for a new event', async () => {
   const agatha = beforeIdentityJson('test/fixtures/owner-delivery/mcu-prep-agatha-all-along.json');
+  // This earlier approval predates the tie-in extension, so it is named beside the captured registry.
+  assert.equal(tieInRevisions.supersededPreExtensionApprovalDigests[agatha.id], agatha.approvalDigest);
   const historicalJson = (file) => ['src/data/curated-lists.json', 'src/data/catalog.json'].includes(file)
     || file.includes(agatha.id) || file.includes(agatha.id.replaceAll('-', '_'))
     ? Promise.resolve(beforeIdentityJson(file)) : json(file);

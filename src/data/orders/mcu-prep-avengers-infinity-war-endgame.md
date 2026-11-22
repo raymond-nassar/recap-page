@@ -32,3 +32,11 @@ See [data provenance](../../../docs/DATA_PROVENANCE.md) for the publication boun
 - [ ] [Infinity War (1992) #4 <!-- mrt:source-occurrence=17 -->](https://www.marvel.com/comics/issue/9295/infinity_war_1992_4)
 - [ ] [Infinity War (1992) #5 <!-- mrt:source-occurrence=18 -->](https://www.marvel.com/comics/issue/9296/infinity_war_1992_5)
 - [ ] [Infinity War (1992) #6 <!-- mrt:source-occurrence=19 -->](https://www.marvel.com/comics/issue/9297/infinity_war_1992_6)
+
+## Official MCU tie-ins
+
+- [ ] [Marvel's Avengers: Infinity War Prelude (2018) #1](https://www.marvel.com/comics/issue/65916/marvels_avengers_infinity_war_prelude_2018_1)
+- [ ] [Marvel's Avengers: Infinity War Prelude (2018) #2](https://www.marvel.com/comics/issue/66287/marvels_avengers_infinity_war_prelude_2018_2)
+- [ ] [Marvel's Avengers: Endgame Prelude (2018) #1](https://www.marvel.com/comics/issue/71574/marvels_avengers_endgame_prelude_2018_1)
+- [ ] [Marvel's Avengers: Endgame Prelude (2018) #2](https://www.marvel.com/comics/issue/71575/marvels_avengers_endgame_prelude_2018_2)
+- [ ] [Marvel's Avengers: Endgame Prelude (2018) #3](https://www.marvel.com/comics/issue/74050/marvels_avengers_endgame_prelude_2018_3)

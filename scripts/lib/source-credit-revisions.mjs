@@ -35,7 +35,7 @@ const credit = (value, label) => {
 };
 const same = (left, right) => left.source === right.source && left.section === right.section;
 
-export function createSourceCreditRevisions(record, lock, pinned = REVIEWED_CREDIT_DIGESTS) {
+export function createSourceCreditRevisions(record, lock, pinned = REVIEWED_CREDIT_DIGESTS, currentOrigins = new Map()) {
   keys(record, ['schemaVersion', 'entries'], 'Credit revisions');
   keys(lock, ['schemaVersion', 'digests'], 'Credit revision lock');
   assert.equal(record.schemaVersion, 1);
@@ -85,6 +85,14 @@ export function createSourceCreditRevisions(record, lock, pinned = REVIEWED_CRED
     byId.set(entry.id, chain);
     byFile.set(entry.file, entry.id);
   }
+  for (const [id, current] of currentOrigins) {
+    const chain = byId.get(id);
+    assert.ok(chain, `${id}: current origin needs a recorded credit`);
+    assert.equal(current.file, chain[0].file, `${id}: current origin file changed`);
+    assert.equal(current.before, chain[0].sourceOrigin, `${id}: historical origin changed`);
+    text(current.after, `${id} current origin`);
+    assert.notEqual(current.after, current.before, `${id}: current origin changes nothing`);
+  }
 
   function revisionFor(value, file) {
     const chain = byId.get(value.id);
@@ -104,7 +112,10 @@ export function createSourceCreditRevisions(record, lock, pinned = REVIEWED_CRED
       text(value.sourceSection, `${value.id} published section`);
       publishedSection = value.sourceSection;
     }
-    assert.equal(value.sourceOrigin, chain[0].sourceOrigin, `${value.id}: credit origin changed`);
+    const currentOrigin = currentOrigins.get(value.id)?.after;
+    const recordedOrigin = value.sourceOrigin === chain[0].sourceOrigin
+      || (currentOrigin !== undefined && value.sourceOrigin === currentOrigin);
+    assert.ok(recordedOrigin, `${value.id}: credit origin changed`);
     assert.equal(value.sourceLicense, chain[0].sourceLicense, `${value.id}: credit licence changed`);
     return { source: value.source, section: publishedSection };
   }
@@ -149,7 +160,8 @@ export function createSourceCreditRevisions(record, lock, pinned = REVIEWED_CRED
       assert.equal(matches.length, 1, `${id}: revised list is missing or duplicated`);
       const order = matches[0];
       assert.equal(order.out, chain[0].file, `${id}: manifest output changed`);
-      assert.equal(order.sourceOrigin, chain[0].sourceOrigin, `${id}: manifest origin changed`);
+      assert.equal(order.sourceOrigin, currentOrigins.get(id)?.after ?? chain[0].sourceOrigin,
+        `${id}: manifest origin changed`);
       assert.equal(order.sourceLicense, chain[0].sourceLicense, `${id}: manifest licence changed`);
       assert.ok(same({ source: order.sourcePage, section: order.sourceSection ?? null }, chain[0].before),
         `${id}: manifest is not the original approved credit`);
@@ -162,6 +174,15 @@ export function createSourceCreditRevisions(record, lock, pinned = REVIEWED_CRED
 }
 
 const read = (file) => JSON.parse(readFileSync(new URL(`../data/${file}`, import.meta.url), 'utf8'));
+const tieInRevisions = read('mcu-prep-tie-in-revisions.json');
+const strange = tieInRevisions.guides.filter(({ id }) => id === 'mcu-prep-doctor-strange-2016');
+assert.equal(strange.length, 1, 'Doctor Strange tie-in credit needs exactly one guide');
+const creditRecord = read('source-credit-revisions.json');
+// Vendoring fixtures replace the pinned record with their own. The real record cannot drop Doctor
+// Strange without failing the pins above, so binding only a recorded guide loosens nothing here.
 export const sourceCreditRevisions = createSourceCreditRevisions(
-  read('source-credit-revisions.json'), read('source-credit-revisions.lock.json'),
+  creditRecord, read('source-credit-revisions.lock.json'),
+  REVIEWED_CREDIT_DIGESTS,
+  new Map(creditRecord.entries.some(({ id }) => id === strange[0].id)
+    ? [[strange[0].id, { file: strange[0].file, ...tieInRevisions.credit }]] : []),
 );

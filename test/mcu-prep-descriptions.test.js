@@ -13,6 +13,7 @@ import { refreshMcuDescriptions } from '../scripts/refresh-mcu-descriptions.mjs'
 import { parseCatalog } from '../src/js/lib/catalog.js';
 import { firstSentence } from '../src/js/lib/catalog.js';
 import { beforeUltimateIntroEntry } from './helpers/ultimate-marvel-intro-history.mjs';
+import { beforeTieInPayload } from './helpers/mcu-tie-in-history.mjs';
 import {
   mcuEditorial, afterMcuEditorialEntry, beforeMcuEditorialEntry, beforeMcuEditorialManifest,
   beforeMcuEditorialPayloadText,
@@ -150,7 +151,7 @@ test('all thirty recommendations identify the reading benefit with exact current
   for (const edit of mcuEditorial.entries) {
     const entry = descriptionRevisions.undoEntry(manifest.lists.find(({ id }) => id === edit.id));
     const card = descriptionRevisions.undoEntry(catalog.lists.find(({ id }) => id === edit.id));
-    const rawPayload = await json(`src/data/${edit.file}`);
+    const rawPayload = beforeTieInPayload(await json(`src/data/${edit.file}`));
     sourceCreditRevisions.assertLatest(rawPayload, edit.file);
     const currentPayload = descriptionRevisions.undoEntry(sourceCreditRevisions.undo(rawPayload, edit.file));
     const { description, ...payload } = beforeIdentityPayload(edit.file, currentPayload);
@@ -182,7 +183,7 @@ test('MCU description emitter preserves reviewed credits and rejects changed pay
     const entry = manifest.lists.find(({ id }) => id === edit.id);
     assert.ok(entry, edit.id);
     entry.description = edit.before;
-    const published = await json(`src/data/${edit.file}`);
+    const published = beforeTieInPayload(await json(`src/data/${edit.file}`));
     sourceCreditRevisions.assertLatest(published, edit.file);
     const historical = beforeIdentityPayload(edit.file, descriptionRevisions.undoEntry(
       sourceCreditRevisions.undo(published, edit.file),

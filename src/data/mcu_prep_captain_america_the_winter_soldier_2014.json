@@ -3,12 +3,12 @@
   "name": "MCU Prep: Captain America: The Winter Soldier (2014)",
   "description": "A mysterious assassin called the Winter Soldier emerges in the comics storyline behind the film. Man Out of Time first explores Steve Rogers' adjustment to the present, then the Winter Soldier arc turns that assassin into a personal crisis for Steve. Expect a different conspiracy from the film's.",
   "source": "https://github.com/raymond-nassar/recap-page/issues/765#captain-america-the-winter-soldier-2014",
-  "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+  "sourceOrigin": "Reading list selected by Recap Page team",
   "sourceLicense": null,
   "generatedAt": "2026-10-09T17:20:35.736Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 18,
-  "collections": 3,
+  "count": 20,
+  "collections": 4,
   "placeholders": 0,
   "unresolved": [],
   "items": [
@@ -571,6 +571,54 @@
         }
       ],
       "collectedIn": "Captain America: Winter Soldier Vol. 2"
+    },
+    {
+      "issueId": 58287,
+      "title": "Marvel's Captain America: Civil War Prelude (2015) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/58287/marvels_captain_america_civil_war_prelude_2015_3",
+      "seriesId": 21018,
+      "seriesName": "Marvel's Captain America: Civil War Prelude (2015 - 2016)",
+      "onSale": "2016-01-06T00:00:00+0000",
+      "mu": "2016-07-04T00:00:00+0000",
+      "digitalId": 40800,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/b0/567b048424565",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Corona Pilgrim",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
+    },
+    {
+      "issueId": 58211,
+      "title": "Marvel's Captain America: Civil War Prelude (2015) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/58211/marvels_captain_america_civil_war_prelude_2015_4",
+      "seriesId": 21018,
+      "seriesName": "Marvel's Captain America: Civil War Prelude (2015 - 2016)",
+      "onSale": "2016-01-27T00:00:00+0000",
+      "mu": "2016-07-25T00:00:00+0000",
+      "digitalId": 41003,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/50/568ff16cd768b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lee Ferguson",
+          "role": "cover artist"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
     }
   ]
 }

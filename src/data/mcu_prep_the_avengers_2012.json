@@ -3,12 +3,12 @@
   "name": "MCU Prep: The Avengers (2012)",
   "description": "Explore how the Avengers come together in the comics to understand the uneasy teamwork behind their first film. Season One revisits their beginnings, the Kree/Skrull War tests them on a cosmic scale, and Disassembled shows how fragile their unity can be. These later crises broaden the team's background rather than retelling the film.",
   "source": "https://github.com/raymond-nassar/recap-page/issues/761",
-  "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+  "sourceOrigin": "Reading list selected by Recap Page team",
   "sourceLicense": null,
   "generatedAt": "2026-10-09T15:22:12.441Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 15,
-  "collections": 3,
+  "count": 20,
+  "collections": 4,
   "placeholders": 0,
   "unresolved": [],
   "items": [
@@ -526,6 +526,157 @@
         }
       ],
       "collectedIn": "Avengers Disassembled"
+    },
+    {
+      "issueId": 43003,
+      "title": "Marvel's the Avengers: Black Widow Strikes (2012) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/43003/marvels_the_avengers_black_widow_strikes_2012_1",
+      "seriesId": 16362,
+      "seriesName": "Marvel's the Avengers: Black Widow Strikes (2012)",
+      "onSale": "2012-05-02T00:00:00+0000",
+      "mu": "2012-05-02T00:00:00+0000",
+      "digitalId": 26300,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/5176bbbb51f7d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Magyar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Neil Edwards",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Kurth",
+          "role": "penciler"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
+    },
+    {
+      "issueId": 43004,
+      "title": "Marvel's the Avengers: Black Widow Strikes (2012) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/43004/marvels_the_avengers_black_widow_strikes_2012_2",
+      "seriesId": 16362,
+      "seriesName": "Marvel's the Avengers: Black Widow Strikes (2012)",
+      "onSale": "2012-05-16T00:00:00+0000",
+      "mu": "2012-05-16T00:00:00+0000",
+      "digitalId": 26432,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/5176bbce2f7e6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jaime Mendoza",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adi Granov",
+          "role": "penciler"
+        },
+        {
+          "name": "Agustin Padilla",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
+    },
+    {
+      "issueId": 43005,
+      "title": "Marvel's the Avengers: Black Widow Strikes (2012) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/43005/marvels_the_avengers_black_widow_strikes_2012_3",
+      "seriesId": 16362,
+      "seriesName": "Marvel's the Avengers: Black Widow Strikes (2012)",
+      "onSale": "2012-06-06T00:00:00+0000",
+      "mu": "2013-04-08T16:20:23+0000",
+      "digitalId": 26669,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/40/5176bbdcbf6e2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
+    },
+    {
+      "issueId": 52202,
+      "title": "Marvel's the Avengers (2014) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/52202/marvels_the_avengers_2014_1",
+      "seriesId": 19576,
+      "seriesName": "Marvel's the Avengers (2014 - 2015)",
+      "onSale": "2014-12-24T00:00:00+0000",
+      "mu": "2014-12-24T00:00:00+0000",
+      "digitalId": 35980,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/03/54982b4953b05",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marcio Henrique",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
+    },
+    {
+      "issueId": 52203,
+      "title": "Marvel's the Avengers (2014) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/52203/marvels_the_avengers_2014_2",
+      "seriesId": 19576,
+      "seriesName": "Marvel's the Avengers (2014 - 2015)",
+      "onSale": "2015-01-07T00:00:00+0000",
+      "mu": "2015-07-06T00:00:00+0000",
+      "digitalId": 36166,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/54a1bc9066765",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Official MCU tie-ins"
     }
   ]
 }

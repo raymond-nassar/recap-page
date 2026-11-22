@@ -17,13 +17,14 @@ import { catalogEntries, HOME_CATEGORIES, parseCatalog } from '../src/js/lib/cat
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import {
   assertCurrentReadingRoster, currentReadingCensus, registeredOwnerAdditionIds, registeredOwnerIds,
-  registeredCuratedGuides,
+  registeredCuratedGuides, registeredOwnerContracts,
 } from './helpers/current-reading-library.mjs';
 import { assertFirstStepsMsMarvelReciprocal } from './helpers/first-steps-ms-marvel-reciprocal.mjs';
 import {
   capturedReviewLibraryDigest, historicalSpiderManSelectionLibraryDigest,
 } from './helpers/reading-choice-history.mjs';
 import { beforeIdentityText, identityRevisions } from './helpers/owner-identity-history.mjs';
+import { tieInChecklistAtApproval, tieInOrdersAtApproval, tieInPayloadAtApproval } from './helpers/mcu-tie-in-history.mjs';
 
 const text = (file) => {
   const revision = identityRevisions.guides.find(({ id }) => id !== 'mcu-prep-thunderbolts'
@@ -108,6 +109,8 @@ test('original remaining MCU Prep train preserves its six guides, six gaps and r
 
   for (const [index, fixture] of fixtures.entries()) {
     const { id, rows, groups } = fixture;
+    const contract = registeredOwnerContracts.find((entry) => entry.id === id);
+    const reviewOrders = tieInOrdersAtApproval(library.orders, contract);
     const { source, packet, mapping, report } = allEvidence.get(id);
     const expectedIds = rows.map((row) => row[1]);
     const expectedPositions = rows.map((row) => row[0]);
@@ -144,7 +147,8 @@ test('original remaining MCU Prep train preserves its six guides, six gaps and r
     assert.equal(cards.length, 1, `${id}: exactly one visible card`);
     assert.equal(mcu.filter((choice) => choice.key === `list:${id}`).length, 1, `${id}: exactly one MCU Prep choice`);
     const [payload, markdown] = await Promise.all([
-      json(`src/data/${entries[0].out}`), text(`src/data/orders/${entries[0].sourceFile}`),
+      json(`src/data/${entries[0].out}`).then((value) => tieInPayloadAtApproval(value, contract)), text(`src/data/orders/${entries[0].sourceFile}`)
+        .then((value) => tieInChecklistAtApproval(id, value, contract)),
     ]);
     const checklist = parseChecklist(markdown);
     assert.deepEqual(checklist.unresolved, []);
@@ -184,11 +188,11 @@ test('original remaining MCU Prep train preserves its six guides, six gaps and r
 
     const peerIds = union.filter((peerId) => peerId !== id);
     const current = buildComparisonReport({
-      candidateIds: expectedIds, orders: library.orders.filter((row) => row.orderId !== id),
+      candidateIds: expectedIds, orders: reviewOrders.filter((row) => row.orderId !== id),
     });
     assert.deepEqual(current.comparisons.map((row) => row.orderId).sort(), peerIds);
     const recordedIds = new Set(report.comparisons.map((row) => row.orderId));
-    const recordedOrders = withRetiredOrders(library.orders.filter((row) => recordedIds.has(row.orderId)), recordedIds);
+    const recordedOrders = withRetiredOrders(reviewOrders.filter((row) => recordedIds.has(row.orderId)), recordedIds);
     assert.equal(recordedOrders.length, recordedIds.size, `${id}: recorded peer missing from the current union`);
     const recordedManifest = { ...manifest,
       lists: beforeXmenEraManifest(manifest, recordedIds).lists.filter((row) => recordedIds.has(row.id)) };

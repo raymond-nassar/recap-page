@@ -18,6 +18,7 @@ import {
 } from './helpers/wolverine-correction-history.mjs';
 import { beforeXmenEraManifest, beforeXmenEraOrders } from './helpers/xmen-era-history.mjs';
 import { loadBeforeWolverineCorrectionLibrary } from './helpers/reading-choice-history.mjs';
+import { beforeTieInManifest, beforeTieInOrders } from './helpers/mcu-tie-in-history.mjs';
 
 const readJson = async (file) => JSON.parse(await readFile(new URL(`../${file}`, import.meta.url), 'utf8'));
 const contract = await readJson('test/fixtures/cbh-modern-event-review.json');
@@ -78,17 +79,19 @@ test('the signed comparisons cover the complete reviewed library and both mapped
   const library = await loadCurrentOwnerLibrary(ids[0]);
   const reviewedIds = new Set(contract.orderIds);
   assert.equal(reviewedIds.size, 341);
-  // The review predates the X-Men era replacement, so the retired pair takes its slot back.
-  const orders = beforeWolverineCorrectionOrders(
+  // The review predates the X-Men era replacement, so the retired pair takes its slot back. The
+  // other inverses are exact: each refuses anything but its own recorded change, so the signed
+  // library comes back only when the suffixes are precisely the reviewed additions.
+  const orders = beforeWolverineCorrectionOrders(beforeTieInOrders(
     beforeXmenEraOrders(library.orders)
       .sort((left, right) => left.orderId.localeCompare(right.orderId)).filter((order) => reviewedIds.has(order.orderId)),
-  );
+  ));
   assert.deepEqual(orders.map((order) => order.orderId), contract.orderIds);
-  const manifest = beforeWolverineCorrectionManifest({
+  const manifest = beforeWolverineCorrectionManifest(beforeTieInManifest({
     ...library.manifest,
     lists: beforeXmenEraManifest(library.manifest).lists.filter((entry) => reviewedIds.has(entry.id)),
     paths: library.manifest.paths.filter((entry) => reviewedPathIds.has(entry.id)),
-  });
+  }));
   assert.equal(libraryDigestFor(manifest, orders.map((order) => ({
     id: order.orderId, issueIds: order.issueIds.map(String),
   }))), contract.libraryDigest);

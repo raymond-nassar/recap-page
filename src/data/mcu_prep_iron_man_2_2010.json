@@ -3,12 +3,12 @@
   "name": "MCU Prep: Iron Man 2 (2010)",
   "description": "Explore Tony Stark's vulnerabilities and meet Whiplash, Black Widow and War Machine in comics that add context to Iron Man 2. Demon in a Bottle tests Tony beyond the armor, Deadly Origin explores Natasha's past, and the War Machine issues develop Rhodey's armored role. Iron Man vs. Whiplash offers a comics take on the villain rather than the film's exact story.",
   "source": "https://github.com/raymond-nassar/recap-page/issues/761",
-  "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+  "sourceOrigin": "Reading list selected by Recap Page team",
   "sourceLicense": null,
   "generatedAt": "2026-10-09T15:22:06.162Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 29,
-  "collections": 4,
+  "count": 35,
+  "collections": 5,
   "placeholders": 0,
   "unresolved": [],
   "items": [
@@ -971,6 +971,194 @@
         }
       ],
       "collectedIn": "Iron Man: War Machine"
+    },
+    {
+      "issueId": 32406,
+      "title": "Iron Man 2: Public Identity (2010) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/32406/iron_man_2_public_identity_2010_1",
+      "seriesId": 9332,
+      "seriesName": "Iron Man 2: Public Identity (2010)",
+      "onSale": "2010-04-28T00:00:00+0000",
+      "mu": "2011-01-20T00:00:00+0000",
+      "digitalId": 14415,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/5b61fe391d7b8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Barry Kitson",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Peterson",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Casey",
+          "role": "writer"
+        },
+        {
+          "name": "Justin Theroux",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
+    },
+    {
+      "issueId": 32408,
+      "title": "Iron Man 2: Public Identity (2010) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/32408/iron_man_2_public_identity_2010_2",
+      "seriesId": 9332,
+      "seriesName": "Iron Man 2: Public Identity (2010)",
+      "onSale": "2010-05-05T00:00:00+0000",
+      "mu": "2011-01-25T00:00:00+0000",
+      "digitalId": 14479,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/5b6204645fb3e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Barry Kitson",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Peterson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Casey",
+          "role": "writer"
+        },
+        {
+          "name": "Justin Theroux",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
+    },
+    {
+      "issueId": 32410,
+      "title": "Iron Man 2: Public Identity (2010) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/32410/iron_man_2_public_identity_2010_3",
+      "seriesId": 9332,
+      "seriesName": "Iron Man 2: Public Identity (2010)",
+      "onSale": "2010-05-12T00:00:00+0000",
+      "mu": "2011-02-01T00:00:00+0000",
+      "digitalId": 14591,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/5b6209d72d6b8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Barry Kitson",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Peterson",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Casey",
+          "role": "writer"
+        },
+        {
+          "name": "Justin Theroux",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
+    },
+    {
+      "issueId": 36442,
+      "title": "Iron Man 2: Agents of S.H.I.E.L.D. (2010) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/36442/iron_man_2_agents_of_shield_2010_1",
+      "seriesId": 12893,
+      "seriesName": "Iron Man 2: Agents of S.H.I.E.L.D. (2010)",
+      "onSale": "2010-09-01T00:00:00+0000",
+      "mu": "2013-06-02T00:00:00+0000",
+      "digitalId": 15926,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/40/4f68d7c4ad578",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joe Casey",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
+    },
+    {
+      "issueId": 44053,
+      "title": "Marvel's Iron Man 2 Adaptation (2012) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/44053/marvels_iron_man_2_adaptation_2012_1",
+      "seriesId": 16670,
+      "seriesName": "Marvel's Iron Man 2 Adaptation (2012)",
+      "onSale": "2012-11-07T00:00:00+0000",
+      "mu": "2013-05-06T00:00:00+0000",
+      "digitalId": 27972,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/50/5c4b2b3ca5d20",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
+    },
+    {
+      "issueId": 45164,
+      "title": "Marvel's Iron Man 2 Adaptation (2012) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/45164/marvels_iron_man_2_adaptation_2012_2",
+      "seriesId": 16670,
+      "seriesName": "Marvel's Iron Man 2 Adaptation (2012)",
+      "onSale": "2012-12-05T00:00:00+0000",
+      "mu": "2013-06-03T00:00:00+0000",
+      "digitalId": 28163,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/5c4b3db292392",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
     }
   ]
 }

@@ -38,3 +38,9 @@ See [data provenance](../../../docs/DATA_PROVENANCE.md) for the publication boun
 - [ ] [Captain America (2004) #28 <!-- mrt:source-occurrence=21 -->](https://www.marvel.com/comics/issue/15941/captain_america_2004_28)
 - [ ] [Captain America (2004) #29 <!-- mrt:source-occurrence=22 -->](https://www.marvel.com/comics/issue/16125/captain_america_2004_29)
 - [ ] [Captain America (2004) #30 <!-- mrt:source-occurrence=23 -->](https://www.marvel.com/comics/issue/16475/captain_america_2004_30)
+
+## Official MCU tie-ins
+
+- [ ] [Marvel's Spider-Man: Homecoming Prelude (2017) #1](https://www.marvel.com/comics/issue/61300/marvels_spider-man_homecoming_prelude_2017_1)
+- [ ] [Marvel's Spider-Man: Homecoming Prelude (2017) #2](https://www.marvel.com/comics/issue/61301/marvels_spider-man_homecoming_prelude_2017_2)
+- [ ] [Marvel's Avengers: Infinity War Prelude (2018) #1](https://www.marvel.com/comics/issue/65916/marvels_avengers_infinity_war_prelude_2018_1)
