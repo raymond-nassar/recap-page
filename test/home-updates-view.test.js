@@ -74,22 +74,16 @@ test('iOS projects platform-specific highlights without changing the generated s
   h.view.wire();
   const text = walk(h.nodes.content).map((item) => item.textContent).join(' ');
   const features = walk(h.nodes.content).find((item) => item.dataset.homeUpdatesSection === 'features');
-  const omitted = sourceFeatures.filter((feature) => IOS_OMITTED_FEATURES.has(feature));
-  assert.deepEqual(omitted, [sourceFeatures[8]], 'only the reviewed Windows-only line is left out');
-  assert.equal(walk(features).filter((item) => item.tag === 'li').length, sourceFeatures.length - omitted.length,
-    'every other real feature needs reviewed iOS copy, not omission');
-  assert.match(text, /Over 19,000 comics have a link for the Marvel Comics app by WEBTOON/);
-  assert.match(text, /Universes is still under construction/);
-  assert.match(text, /On iPhone and iPad, restoring a large reading backup needs less room/);
-  assert.match(text, /If cloud backup pauses because it finds too many devices/);
+  const rendered = walk(features).filter((item) => item.tag === 'li').map((item) => item.textContent);
+  assert.deepEqual(rendered, sourceFeatures, 'all 4.8.0 highlights apply on iPhone and iPad');
+  assert.match(text, /Read tries the Marvel Comics app first for many comics/);
+  assert.match(text, /official tie-in comics at the end of 15 MCU Prep guides/);
   assert.doesNotMatch(text, /\b(?:Android|Windows|Edge|Google(?: Drive| Play)?|Microsoft Store)\b/);
   assert.deepEqual(homeUpdatesContent.batch.features, sourceFeatures);
   const web = harness({ content: homeUpdatesContent });
   web.view.wire();
   const webText = walk(web.nodes.content).map((item) => item.textContent).join(' ');
-  assert.match(webText, /Universes is still under construction/);
-  assert.match(webText, /On Windows, Recap Page can open in its own window/,
-    'other platforms see the Windows feature');
+  assert.match(webText, /Read tries the Marvel Comics app first for many comics/);
 });
 
 test('iOS retains the historical iCloud and Windows release-copy projections', () => {
@@ -97,6 +91,7 @@ test('iOS retains the historical iCloud and Windows release-copy projections', (
     'Back up automatically to your own OneDrive on Windows and Android, or move your reading data with one complete backup file.',
     'Use clearer phone layouts and screen reader labels, and install the app from Edge when offered.',
     'iPhone and iPad: you can now back up your reading progress to your own iCloud Drive. Open the backup card, choose Connect iCloud and turn on automatic backup; backups appear in a Recap Page folder in the Files app. Recap Page uploads nothing until you turn it on, and the project never receives your backups. If iCloud has not finished uploading a backup, checking for or restoring that backup says so and asks you to try again once iCloud has uploaded it.',
+    ...IOS_OMITTED_FEATURES,
   ];
   const content = { version: '4.4.0', batch: { ...batch, features, listIds: [] } };
   const ios = harness({ content, isIos: true });

@@ -13,6 +13,75 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+## 4.8.0
+
+### What's new for readers
+
+- Choose an X-Men guide for the original team or the Claremont years. If you saved an earlier X-Men list, your list and reading progress stay as they are. Three comics stay in their intended places while their details are still being checked.
+- On supported browsers, save an earlier X-Men guide's original published order for offline comparison.
+- Find official tie-in comics at the end of 15 MCU Prep guides. Your saved lists and reading progress stay as they are.
+- Find reading lists for Jed MacKay, Al Ewing, Chip Zdarsky and Dan Slott from the Creators card on Home.
+- Follow War of the Realms issue by issue or book by book. Your progress, notes and ratings stay with you when you switch.
+- Read can take you straight to the reading screen for thousands more comics. In the Recap Page app on phones and iPads, Read tries the Marvel Comics app first for many comics. If your device cannot open the app link, it opens the web link instead.
+- Rate a comic from the full reading list and spot Reading List options more easily.
+- The "Past Unlimited date..." and "Details pending" filters have been removed. If you had either selected, your list now shows All.
+- Explore From Doom to Armageddon in the Modern Timeline. Hell's Angel is still in Marvel Ages.
+- Find Ultimate Marvel Team-Up #9 in the Ultimate Marvel introduction. Existing saved copies keep their comics and progress.
+- The beginner guide has clearer page descriptions and links to Marvel Comics, hoopla and Libby. Very long reading lists should open faster, especially when covers cannot load.
+
+### Saved data and upgrading
+
+You don’t need to change your saved lists or backups for this update. No migration or extra backup
+step is required for the changes described here. Saved lists remain snapshots; a catalog change
+does not silently replace their comics or progress.
+
+Earlier saved X-Men lists keep their order, progress and notes. Their original published orders
+can be saved separately for offline comparison on supported browsers. An offline copy may need a
+refresh after the app or catalog changes.
+
+Switching the War of the Realms order rearranges the comics already in the list and keeps read
+status, notes, ratings and deferred comics. Older builds read the switched list as an ordinary
+list in the saved order.
+
+The two removed reading filters fall back to All when selected in saved settings or a restored
+complete backup. Comics, progress, notes and ratings are unchanged by that fallback.
+
+Earlier builds do not contain the new creator or X-Men guides and do not have the new offline
+handling. Restoring newly saved creator or X-Men guides, or using a newly prepared offline copy,
+in an earlier build has not been verified.
+
+Versions before 4.0.0 cannot edit saved data or restore backups from this version. If you are
+upgrading from one of those versions, keep an independent backup and read the
+[4.0.0 compatibility guidance](#400). Cloud backup retains the
+[4.5.0 limitations](#450) for older builds.
+
+### Maintainer compatibility and platform preparation
+
+Reading-data schema 4, saved-data keys and backup formats are unchanged by the merged changes
+described here. Earlier builds do not contain the new creator or X-Men guides and do not have the
+new offline handling. Restoring newly saved creator or X-Men guides, or using a newly prepared
+offline copy in an earlier build, has not been verified.
+
+This record prepares the shared app and Windows Store version 4.8.0.0. It does not announce
+store availability or approve publication. Android and iOS build allocation, exact-artifact
+checks, device acceptance and action-specific approvals remain separate.
+
+### Reading and reading lists
+
+- Read has direct links to the reading screen for thousands more comics, and several links that previously opened the wrong issue have been corrected. On Android, iPhone and iPad, the Recap Page app first tries the Marvel Comics app for supported direct links. If the device cannot open the app link, it uses the web link instead. If the Marvel Comics app opens but does not show the comic, Recap Page cannot detect that or switch to the web link automatically. Website and Windows Read routing remain unchanged. (#1527, #1538)
+- The original team's Silver Age and the Claremont years now have separate X-Men guides. The Claremont guide is the recommended starting point for new readers. Three comics remain in their intended places while their details are checked. Saved copies of the earlier guides are not replaced. (#1579)
+- Fifteen MCU Prep guides now end with official MCU tie-in comics. Their existing comics remain in order, and saved copies are not silently replaced. Titles that could not be matched to individual issues remain tracked separately. (#1580)
+- Open Creators under Discover More on Home to find creator reading orders. New lists follow selected Marvel comics by Jed MacKay, Al Ewing, Chip Zdarsky and Dan Slott in release order. Some comics are not included yet; their gaps remain recorded. (#1535, #1568)
+- Choose Issue by issue or Book by book at the top of War of the Realms. Switching rearranges the comics already in the list. The app asks before a switch that would change the next comic or undo a hand-arranged order. The list's About section names comics that appear only in the books and are not added by the switch. (#1545)
+- The Modern Timeline's From Doom to Armageddon section brings Avengers: Armageddon together with other existing lists from that period. Hell's Angel remains available under Marvel Ages. (#1560)
+- The Ultimate Marvel introduction includes Ultimate Marvel Team-Up #9 in its source order. Existing saved copies are not silently replaced. (#1545)
+
+### Reading screen and guidance
+
+- Rate a comic from the full reading list with Rate this comic. Reading List options has an outline to make it easier to find. Comic link credits are now in About; curated reading-list credits remain with their lists. The Past Unlimited date and Details pending filters have been removed, and an earlier selection of either falls back to All. (#1535)
+- The beginner guide gives each major page its own description and includes links to Marvel Comics, hoopla and Libby. (#1535)
+- Very long reading lists should open faster, particularly when covers cannot load. The improvement was measured in a simulated slower-phone test, not on a physical phone; a noticeable pause may remain. (#1570)
+
 ## 4.7.0
 
 ### What's new for readers
