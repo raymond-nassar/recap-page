@@ -1336,13 +1336,16 @@ public final class NativeIntegrationTest {
                 if (!delivered.complete()) return false;
                 assertTrue("Delivered touchscreen interval must stay shorter than a long press: " + lastTapRecord,
                         delivered.shorterThan(longPressThreshold));
+                if (!onMain(() -> target.isAttachedToWindow())) return true;
                 return truth(target, "window.__nativeTap.events.some(e=>e.type==='click' && e.trusted && e.onTarget)");
             });
-            assertTrue("Real pointer DOWN and UP reach " + selector, truth(target,
-                    "['pointerdown','pointerup'].every(type=>window.__nativeTap.events.some("
-                            + "e=>e.type===type && e.trusted && e.onTarget))"));
-            assertFalse("A short tap must not open text selection", truth(target,
-                    "window.__nativeTap.events.some(e=>e.type==='contextmenu')"));
+            if (onMain(() -> target.isAttachedToWindow())) {
+                assertTrue("Real pointer DOWN and UP reach " + selector, truth(target,
+                        "['pointerdown','pointerup'].every(type=>window.__nativeTap.events.some("
+                                + "e=>e.type===type && e.trusted && e.onTarget))"));
+                assertFalse("A short tap must not open text selection", truth(target,
+                        "window.__nativeTap.events.some(e=>e.type==='contextmenu')"));
+            }
         } catch (Exception | Error error) {
             failure = error;
             throw error;

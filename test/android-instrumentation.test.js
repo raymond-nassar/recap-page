@@ -327,6 +327,14 @@ grep -Fx 'Pkg.Revision = 37.1.11' "$SDK/emulator/source.properties"
     }
   });
 
+test('native tap tolerates intentional popup destruction after real touch delivery', () => {
+  const source = readFileSync(new URL('../packaging/android/app/src/androidTest/java/io/github/raymondnassar/recappage/prototype/NativeIntegrationTest.java', import.meta.url), 'utf8');
+  const tap = source.slice(source.indexOf('private void tap(WebView'), source.indexOf('private JSONObject tapGeometry('));
+  assert.match(tap, /if \(!onMain\(\(\) -> target\.isAttachedToWindow\(\)\)\) return true;/);
+  assert.match(tap, /if \(onMain\(\(\) -> target\.isAttachedToWindow\(\)\)\) \{/);
+  assert.match(tap, /Delivered touchscreen interval must stay shorter than a long press/);
+});
+
 test('derived native mode observes installed packages and probes before any ordinary reseeding', async (t) => {
   const root = '../packaging/android/app/src/androidTest/java/io/github/raymondnassar/recappage/prototype/';
   const source = readFileSync(new URL(`${root}NativeIntegrationTest.java`, import.meta.url), 'utf8');
