@@ -37,3 +37,10 @@ See [data provenance](../../../docs/DATA_PROVENANCE.md) for the publication boun
 - [ ] [Invincible Iron Man (2008) #22 <!-- mrt:source-occurrence=22 -->](https://www.marvel.com/comics/issue/28334/invincible_iron_man_2008_22)
 - [ ] [Invincible Iron Man (2008) #23 <!-- mrt:source-occurrence=23 -->](https://www.marvel.com/comics/issue/28335/invincible_iron_man_2008_23)
 - [ ] [Invincible Iron Man (2008) #24 <!-- mrt:source-occurrence=24 -->](https://www.marvel.com/comics/issue/30442/invincible_iron_man_2008_24)
+
+## Official MCU tie-ins
+
+- [ ] [Marvel's Iron Man 3 Prelude (2012) #1](https://www.marvel.com/comics/issue/42669/marvels_iron_man_3_prelude_2012_1)
+- [ ] [Marvel's Iron Man 3 Prelude (2012) #2](https://www.marvel.com/comics/issue/42670/marvels_iron_man_3_prelude_2012_2)
+- [ ] [Marvel's Captain America: Civil War Prelude (2015) #1](https://www.marvel.com/comics/issue/57724/marvels_captain_america_civil_war_prelude_2015_1)
+- [ ] [Marvel's Captain America: Civil War Prelude (2015) #2](https://www.marvel.com/comics/issue/57725/marvels_captain_america_civil_war_prelude_2015_2)

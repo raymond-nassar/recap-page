@@ -3,12 +3,12 @@
   "name": "MCU Prep: Captain America: The First Avenger (2011)",
   "description": "Read First Vengeance, the film's comics prelude, to meet the people who shape Steve Rogers' path to becoming Captain America. These four chapters add background to the allies, enemies and wartime experiences surrounding the First Avenger.",
   "source": "https://github.com/raymond-nassar/recap-page/issues/761",
-  "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+  "sourceOrigin": "Reading list selected by Recap Page team",
   "sourceLicense": null,
   "generatedAt": "2026-10-09T15:22:10.370Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 4,
-  "collections": 1,
+  "count": 6,
+  "collections": 2,
   "placeholders": 0,
   "unresolved": [],
   "items": [
@@ -147,6 +147,54 @@
         }
       ],
       "collectedIn": "Captain America: First Vengeance"
+    },
+    {
+      "issueId": 48313,
+      "title": "Marvel's Captain America: The First Avenger Adaptation (2013) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/48313/marvels_captain_america_the_first_avenger_adaptation_2013_1",
+      "seriesId": 18308,
+      "seriesName": "Marvel's Captain America: The First Avenger Adaptation (2013)",
+      "onSale": "2013-11-06T00:00:00+0000",
+      "mu": "2014-05-05T00:00:00+0000",
+      "digitalId": 31981,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/03/5270044e1c957",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
+    },
+    {
+      "issueId": 48314,
+      "title": "Marvel's Captain America: The First Avenger Adaptation (2013) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/48314/marvels_captain_america_the_first_avenger_adaptation_2013_2",
+      "seriesId": 18308,
+      "seriesName": "Marvel's Captain America: The First Avenger Adaptation (2013)",
+      "onSale": "2013-12-11T00:00:00+0000",
+      "mu": "2014-06-09T00:00:00+0000",
+      "digitalId": 32724,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/52a6074a347da",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
     }
   ]
 }

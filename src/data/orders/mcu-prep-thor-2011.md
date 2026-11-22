@@ -25,3 +25,8 @@ See [data provenance](../../../docs/DATA_PROVENANCE.md) for the publication boun
 - [ ] [Thor (1966) #343 <!-- mrt:source-occurrence=12 -->](https://www.marvel.com/comics/issue/11671/thor_1966_343)
 - [ ] [Thor (1966) #344 <!-- mrt:source-occurrence=13 -->](https://www.marvel.com/comics/issue/11672/thor_1966_344)
 - [ ] [Thor (1966) #345 <!-- mrt:source-occurrence=14 -->](https://www.marvel.com/comics/issue/11673/thor_1966_345)
+
+## Official MCU tie-ins
+
+- [ ] [Marvel's Thor Adaptation (2013) #1](https://www.marvel.com/comics/issue/46303/marvels_thor_adaptation_2013_1)
+- [ ] [Marvel's Thor Adaptation (2013) #2](https://www.marvel.com/comics/issue/46304/marvels_thor_adaptation_2013_2)

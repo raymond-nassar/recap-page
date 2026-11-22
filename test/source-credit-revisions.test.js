@@ -62,7 +62,7 @@ function assertPublishedChains(revisions, valuesFor) {
       hasCredit(value, chain.at(-1).after);
       const original = revisions.undo(value, chain[0].file);
       hasCredit(original, chain[0].before);
-      assert.equal(original.sourceOrigin, chain[0].sourceOrigin);
+      assert.equal(original.sourceOrigin, value.sourceOrigin);
     }
   }
 }
@@ -86,6 +86,7 @@ test('approved credit replays and reverses exact chains without changing selecti
     assert.throws(() => sourceCreditRevisions.apply({ ...original, sourceSection: null }, entry.file));
     assert.throws(() => sourceCreditRevisions.apply({ ...original, source: entry.after.source, sourceSection: 'Unrecorded' }, entry.file));
     assert.throws(() => sourceCreditRevisions.apply({ ...original, sourceOrigin: 'Changed' }, entry.file));
+    assert.throws(() => sourceCreditRevisions.apply({ ...original, sourceOrigin: undefined }, entry.file));
     assert.throws(() => sourceCreditRevisions.apply({ ...original, id: 'another-list' }, entry.file));
   }
 });
@@ -118,6 +119,29 @@ test('manifest validation rejects missing identities and filename collisions', (
   assert.throws(() => revisions.validateOrders([order, { ...order, id: 'another' }]), /collision/);
   assert.throws(() => revisions.validateOrders([order], [entry.file]), /collision/);
   assert.throws(() => revisions.validateOrders([{ ...order, sourcePage: entry.after.source }]), /original approved credit/);
+});
+
+test('Doctor Strange accepts the current team display without changing its pinned historical credit', () => {
+  const entry = ledger.entries.find(({ id }) => id === 'mcu-prep-doctor-strange-2016');
+  assert.equal(entry.sourceOrigin, 'Selected by raymond-nassar for MCU Prep');
+  const current = {
+    ...payload(entry, entry.after), sourceOrigin: 'Reading list selected by Recap Page team',
+  };
+  sourceCreditRevisions.assertLatest(current, entry.file);
+  const original = sourceCreditRevisions.undo(current, entry.file);
+  assert.equal(original.source, entry.before.source);
+  assert.equal(original.sourceOrigin, current.sourceOrigin);
+  assert.throws(() => sourceCreditRevisions.assertLatest({ ...current, sourceOrigin: 'Unrecorded credit' }, entry.file),
+    /credit origin changed/);
+  assert.throws(() => sourceCreditRevisions.assertLatest({ ...current, sourceOrigin: undefined }, entry.file),
+    /credit origin changed/);
+  assert.throws(() => sourceCreditRevisions.assertLatest({ ...current, source: entry.before.source }, entry.file),
+    /not latest/);
+  const manifest = JSON.parse(readFileSync(new URL('../src/data/curated-lists.json', import.meta.url), 'utf8'));
+  sourceCreditRevisions.validateOrders(manifest.lists);
+  const oldDisplay = manifest.lists.map((order) => order.id === entry.id
+    ? { ...order, sourceOrigin: entry.sourceOrigin } : order);
+  assert.throws(() => sourceCreditRevisions.validateOrders(oldDisplay), /manifest origin changed/);
 });
 
 test('distinct selections can credit the same external guide without sharing an output', () => {

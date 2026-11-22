@@ -3546,10 +3546,10 @@
         "Dennis O'neil",
         "Bob Layton"
       ],
-      "count": 16,
+      "count": 18,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
-      "collections": 2,
+      "collections": 3,
       "characters": [
         "Iron Man"
       ],
@@ -3567,7 +3567,7 @@
         "ext": "jpg"
       },
       "source": "https://github.com/raymond-nassar/recap-page/issues/761",
-      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceOrigin": "Reading list selected by Recap Page team",
       "sourceLicense": null,
       "updatedAt": "2026-10-09T15:21:01.409Z"
     },
@@ -3593,11 +3593,11 @@
       "contains": [
         "marvel-knights-to-planet-x-17"
       ],
-      "count": 13,
+      "count": 14,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
       "ownerConfirmedIdentityCount": 1,
-      "collections": 3,
+      "collections": 4,
       "characters": [
         "Hulk",
         "Betty Ross"
@@ -3616,7 +3616,7 @@
         "ext": "jpg"
       },
       "source": "https://github.com/raymond-nassar/recap-page/issues/761",
-      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceOrigin": "Reading list selected by Recap Page team",
       "sourceLicense": null,
       "updatedAt": "2026-10-22T08:26:00.000Z"
     },
@@ -3635,10 +3635,10 @@
         "Len Kaminski",
         "David Michelinie"
       ],
-      "count": 29,
+      "count": 35,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
-      "collections": 4,
+      "collections": 5,
       "characters": [
         "Iron Man",
         "War Machine",
@@ -3658,7 +3658,7 @@
         "ext": "jpg"
       },
       "source": "https://github.com/raymond-nassar/recap-page/issues/761",
-      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceOrigin": "Reading list selected by Recap Page team",
       "sourceLicense": null,
       "updatedAt": "2026-10-09T15:22:06.162Z"
     },
@@ -3678,10 +3678,10 @@
       "writers": [
         "Rob Rodi"
       ],
-      "count": 14,
+      "count": 16,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
-      "collections": 3,
+      "collections": 4,
       "characters": [
         "Thor",
         "Loki"
@@ -3700,7 +3700,7 @@
         "ext": "jpg"
       },
       "source": "https://github.com/raymond-nassar/recap-page/issues/761",
-      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceOrigin": "Reading list selected by Recap Page team",
       "sourceLicense": null,
       "updatedAt": "2026-10-09T15:22:08.282Z"
     },
@@ -3715,12 +3715,13 @@
         "war"
       ],
       "writers": [
-        "Fred Van Lente"
+        "Fred Van Lente",
+        "Peter David"
       ],
-      "count": 4,
+      "count": 6,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
-      "collections": 1,
+      "collections": 2,
       "characters": [
         "Captain America",
         "Bucky Barnes"
@@ -3739,7 +3740,7 @@
         "ext": "jpg"
       },
       "source": "https://github.com/raymond-nassar/recap-page/issues/761",
-      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceOrigin": "Reading list selected by Recap Page team",
       "sourceLicense": null,
       "updatedAt": "2026-10-09T15:22:10.370Z"
     },
@@ -3757,17 +3758,16 @@
         "epic"
       ],
       "writers": [
-        "Roy Thomas",
-        "Brian Michael Bendis"
+        "Roy Thomas"
       ],
       "contains": [
         "kree-skrull-war",
         "avengers-disassembled"
       ],
-      "count": 15,
+      "count": 20,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
-      "collections": 3,
+      "collections": 4,
       "characters": [
         "Avengers"
       ],
@@ -3785,7 +3785,7 @@
         "ext": "jpg"
       },
       "source": "https://github.com/raymond-nassar/recap-page/issues/761",
-      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceOrigin": "Reading list selected by Recap Page team",
       "sourceLicense": null,
       "updatedAt": "2026-10-09T15:22:12.441Z"
     },
@@ -3801,14 +3801,12 @@
         "thriller"
       ],
       "writers": [
-        "Matt Fraction",
-        "Joe Casey",
-        "Warren Ellis"
+        "Matt Fraction"
       ],
-      "count": 24,
+      "count": 28,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
-      "collections": 4,
+      "collections": 5,
       "characters": [
         "Iron Man",
         "Mandarin"
@@ -3827,7 +3825,7 @@
         "ext": "jpg"
       },
       "source": "https://github.com/raymond-nassar/recap-page/issues/761",
-      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceOrigin": "Reading list selected by Recap Page team",
       "sourceLicense": null,
       "updatedAt": "2026-10-09T15:22:14.578Z"
     },
@@ -3847,10 +3845,10 @@
       "writers": [
         "Bryan J.L. Glass"
       ],
-      "count": 14,
+      "count": 18,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
-      "collections": 2,
+      "collections": 3,
       "characters": [
         "Thor",
         "Loki",
@@ -3870,7 +3868,7 @@
         "ext": "jpg"
       },
       "source": "https://github.com/raymond-nassar/recap-page/issues/765#thor-the-dark-world-2013",
-      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceOrigin": "Reading list selected by Recap Page team",
       "sourceLicense": null,
       "updatedAt": "2026-10-09T17:20:33.062Z"
     },
@@ -3892,10 +3890,10 @@
         "Ed Brubaker",
         "Mark Waid"
       ],
-      "count": 18,
+      "count": 20,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
-      "collections": 3,
+      "collections": 4,
       "characters": [
         "Captain America",
         "Winter Soldier"
@@ -3914,7 +3912,7 @@
         "ext": "jpg"
       },
       "source": "https://github.com/raymond-nassar/recap-page/issues/765#captain-america-the-winter-soldier-2014",
-      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceOrigin": "Reading list selected by Recap Page team",
       "sourceLicense": null,
       "updatedAt": "2026-10-09T17:20:35.736Z"
     },
@@ -3977,13 +3975,12 @@
         "lighthearted"
       ],
       "writers": [
-        "Nick Spencer",
-        "Robert Kirkman"
+        "Nick Spencer"
       ],
-      "count": 22,
+      "count": 26,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
-      "collections": 5,
+      "collections": 6,
       "characters": [
         "Ant-Man",
         "Wasp",
@@ -4004,7 +4001,7 @@
         "ext": "jpg"
       },
       "source": "https://github.com/raymond-nassar/recap-page/issues/765#ant-man-2015",
-      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceOrigin": "Reading list selected by Recap Page team",
       "sourceLicense": null,
       "updatedAt": "2026-10-09T17:20:41.889Z"
     },
@@ -4028,10 +4025,10 @@
         "civil-war-essential",
         "captain-america-reading-order-modern-marvel-era"
       ],
-      "count": 23,
+      "count": 26,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
-      "collections": 4,
+      "collections": 5,
       "characters": [
         "Captain America",
         "Winter Soldier",
@@ -4052,7 +4049,7 @@
         "ext": "jpg"
       },
       "source": "https://github.com/raymond-nassar/recap-page/issues/766",
-      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceOrigin": "Reading list selected by Recap Page team",
       "sourceLicense": null,
       "updatedAt": "2026-10-09T18:27:04.324Z"
     },
@@ -4118,10 +4115,10 @@
         "Ta-Nehisi Coates",
         "Christopher Priest"
       ],
-      "count": 54,
+      "count": 56,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
-      "collections": 5,
+      "collections": 6,
       "characters": [
         "Black Panther",
         "T'Challa",
@@ -4141,7 +4138,7 @@
         "ext": "jpg"
       },
       "source": "https://github.com/raymond-nassar/recap-page/issues/766",
-      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceOrigin": "Reading list selected by Recap Page team",
       "sourceLicense": null,
       "updatedAt": "2026-10-09T18:27:08.744Z"
     },
@@ -4160,13 +4157,12 @@
         "dark"
       ],
       "writers": [
-        "Jim Starlin",
-        "Jason Aaron"
+        "Jim Starlin"
       ],
-      "count": 19,
+      "count": 24,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
-      "collections": 4,
+      "collections": 5,
       "characters": [
         "Thanos",
         "Avengers",
@@ -4187,7 +4183,7 @@
         "ext": "jpg"
       },
       "source": "https://github.com/raymond-nassar/recap-page/issues/766",
-      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceOrigin": "Reading list selected by Recap Page team",
       "sourceLicense": null,
       "updatedAt": "2026-10-09T18:27:11.060Z"
     },
@@ -4253,11 +4249,11 @@
         "Jason Aaron",
         "Brian K. Vaughan"
       ],
-      "count": 18,
+      "count": 20,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
       "ownerConfirmedIdentityCount": 2,
-      "collections": 5,
+      "collections": 6,
       "characters": [
         "Doctor Strange"
       ],
@@ -4275,7 +4271,7 @@
         "ext": "jpg"
       },
       "source": "https://www.comicbookherald.com/the-best-comics-to-read-with-doctor-strange-multiverse-of-madness/",
-      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceOrigin": "Reading list selected by Recap Page team",
       "sourceLicense": null,
       "updatedAt": "2026-10-22T12:00:00.000Z"
     },
@@ -5010,10 +5006,10 @@
         "Andy Lanning",
         "Dan Abnett"
       ],
-      "count": 28,
+      "count": 32,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
-      "collections": 4,
+      "collections": 5,
       "characters": [
         "Guardians of the Galaxy",
         "Star-Lord",
@@ -5043,7 +5039,7 @@
         "ext": "jpg"
       },
       "source": "https://github.com/raymond-nassar/recap-page/issues/700",
-      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceOrigin": "Reading list selected by Recap Page team",
       "sourceLicense": null,
       "updatedAt": "2026-10-07T13:27:16.994Z"
     },
@@ -5965,9 +5961,6 @@
       "tones": [
         "epic"
       ],
-      "contains": [
-        "mcu-prep-black-panther-2018"
-      ],
       "count": 364,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
@@ -6219,8 +6212,6 @@
       ],
       "contains": [
         "generations",
-        "mcu-prep-iron-man-2008",
-        "mcu-prep-iron-man-3-2013",
         "marvel-knights-to-planet-x-68"
       ],
       "count": 811,
@@ -6385,8 +6376,7 @@
         "comedy"
       ],
       "contains": [
-        "civil-war-essential",
-        "mcu-prep-ant-man-2015"
+        "civil-war-essential"
       ],
       "count": 389,
       "placeholderCount": 0,
@@ -6440,7 +6430,6 @@
         "house-of-m-essential",
         "civil-war-essential",
         "secret-invasion-essential",
-        "mcu-prep-captain-america-civil-war-2016",
         "captain-america-reading-order-modern-marvel-era"
       ],
       "count": 484,
@@ -6939,7 +6928,6 @@
         "myth-fantasy"
       ],
       "contains": [
-        "mcu-prep-thor-the-dark-world-2013",
         "avengers-defenders-war"
       ],
       "count": 656,
@@ -7703,7 +7691,6 @@
         "Ed Brubaker"
       ],
       "contains": [
-        "mcu-prep-captain-america-the-winter-soldier-2014",
         "captain-america-reading-order-modern-marvel-era"
       ],
       "count": 114,
@@ -13680,7 +13667,6 @@
       "contains": [
         "house-of-m-essential",
         "civil-war-essential",
-        "mcu-prep-captain-america-civil-war-2016",
         "captain-america-reading-order-modern-marvel-era"
       ],
       "count": 494,

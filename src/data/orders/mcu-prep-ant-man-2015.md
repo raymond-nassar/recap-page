@@ -37,3 +37,10 @@ See [data provenance](../../../docs/DATA_PROVENANCE.md) for the publication boun
 - [ ] [The Astonishing Ant-Man (2015) #12 <!-- mrt:source-occurrence=20 -->](https://www.marvel.com/comics/issue/55344/the_astonishing_ant-man_2015_12)
 - [ ] [The Astonishing Ant-Man (2015) #13 <!-- mrt:source-occurrence=21 -->](https://www.marvel.com/comics/issue/55345/the_astonishing_ant-man_2015_13)
 - [ ] [Guardians Team-Up (2015) #7 <!-- mrt:source-occurrence=22 -->](https://www.marvel.com/comics/issue/51933/guardians_team-up_2015_7)
+
+## Official MCU tie-ins
+
+- [ ] [Marvel's Ant-Man Prelude (2015) #1](https://www.marvel.com/comics/issue/52196/marvels_ant-man_prelude_2015_1)
+- [ ] [Marvel's Ant-Man Prelude (2015) #2](https://www.marvel.com/comics/issue/52198/marvels_ant-man_prelude_2015_2)
+- [ ] [Marvel's Ant-Man and the Wasp Prelude (2018) #1](https://www.marvel.com/comics/issue/66444/marvels_ant-man_and_the_wasp_prelude_2018_1)
+- [ ] [Marvel's Ant-Man and the Wasp Prelude (2018) #2](https://www.marvel.com/comics/issue/66693/marvels_ant-man_and_the_wasp_prelude_2018_2)

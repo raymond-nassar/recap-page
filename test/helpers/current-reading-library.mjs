@@ -10,6 +10,7 @@ import { thorCorrectionItemDelta } from './reading-list-correction-history.mjs';
 import { ultimateSelectionDelta, ultimateSelectionEmptyDelta } from '../../scripts/lib/ultimate-spider-man-selection.mjs';
 import { xmenFirstClassDelta } from './xmen-first-class-history.mjs';
 import { ultimateIntroCorrectionDelta } from './ultimate-marvel-intro-history.mjs';
+import { tieInRevisions } from './mcu-tie-in-history.mjs';
 
 const { captureSha256, ...baseline } = JSON.parse(readFileSync(
   new URL('../fixtures/reading-library-baseline.json', import.meta.url), 'utf8',
@@ -86,6 +87,7 @@ const curatedEventCount = registeredCuratedGuides
   .filter((guide) => guide.surface === 'modern-timeline').length;
 const curatedNewcomerCount = registeredCuratedGuides
   .filter((guide) => guide.surface === 'new-to-comics').length;
+const tieInRows = tieInRevisions.guides.reduce((total, guide) => total + guide.additionIssueIds.length, 0);
 // Creator-run lists stay in the retained Storylines projection, which keeps every creator run.
 export const registeredCreatorGuides = registeredCuratedGuides
   .filter((guide) => guide.surface === 'creators');
@@ -104,12 +106,12 @@ export const currentReadingCensus = Object.freeze({
   modernTimelineStories: 144 + registeredEventContracts.length + curatedEventCount - 1,
   complete: baseline.payloadCounts.complete + addedRows - addedPlaceholderRows + spiderManSelectionItemDelta
     + amazingSpiderManSupplementDelta + wolverineCorrectionItemDelta + thorCorrectionItemDelta
-    + ultimateSelectionDelta - ultimateSelectionEmptyDelta + xmenFirstClassDelta + ultimateIntroCorrectionDelta - 2
+    + ultimateSelectionDelta - ultimateSelectionEmptyDelta + xmenFirstClassDelta + ultimateIntroCorrectionDelta + tieInRows - 2
     + identityRevisions.guides.filter((entry) => entry.placeholderReplacement)
       .reduce((total, entry) => total + entry.issueIds.length, 0),
   totalItems: baseline.payloadCounts.total + addedRows + spiderManSelectionItemDelta
     + amazingSpiderManSupplementDelta + wolverineCorrectionItemDelta + thorCorrectionItemDelta
-    + ultimateSelectionDelta + xmenFirstClassDelta + ultimateIntroCorrectionDelta - 2,
+    + ultimateSelectionDelta + xmenFirstClassDelta + ultimateIntroCorrectionDelta + tieInRows - 2,
   itemFiles: 297 + rosterAdditionCount,
 });
 

@@ -3,12 +3,12 @@
   "name": "MCU Prep: Doctor Strange (2016)",
   "description": "Explore Doctor Strange's origins and life as a sorcerer to understand the magical responsibilities behind the film's hero. Season One introduces his beginnings, while The Oath tests his duties as a doctor and protector. The Way of the Weird, The Last Days of Magic and What Is It That Disturbs You, Stephen? explore the cost of defending a magical world.",
   "source": "https://www.comicbookherald.com/the-best-comics-to-read-with-doctor-strange-multiverse-of-madness/",
-  "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+  "sourceOrigin": "Reading list selected by Recap Page team",
   "sourceLicense": null,
   "generatedAt": "2026-10-22T12:00:00.000Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 18,
-  "collections": 5,
+  "count": 20,
+  "collections": 6,
   "placeholders": 0,
   "unresolved": [],
   "items": [
@@ -559,6 +559,62 @@
       "detailsRefused": true,
       "identityEvidenceKind": "owner-confirmed-identity",
       "collectedIn": "Doctor Strange: What Is It That Disturbs You, Stephen?"
+    },
+    {
+      "issueId": 57945,
+      "title": "Marvel's Doctor Strange Prelude (2016) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/57945/marvels_doctor_strange_prelude_2016_1",
+      "seriesId": 21120,
+      "seriesName": "Marvel's Doctor Strange Prelude (2016)",
+      "onSale": "2016-07-06T00:00:00+0000",
+      "mu": "2017-01-09T00:00:00+0000",
+      "digitalId": 42051,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/577532e62eb2f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jorge Fornes",
+          "role": "penciler"
+        },
+        {
+          "name": "Will Corona Pilgrim",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
+    },
+    {
+      "issueId": 57947,
+      "title": "Marvel's Doctor Strange Prelude (2016) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/57947/marvels_doctor_strange_prelude_2016_2",
+      "seriesId": 21120,
+      "seriesName": "Marvel's Doctor Strange Prelude (2016)",
+      "onSale": "2016-08-24T00:00:00+0000",
+      "mu": "2017-02-27T00:00:00+0000",
+      "digitalId": 42321,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/57b36bb692f71",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jorge Fornes",
+          "role": "penciler"
+        },
+        {
+          "name": "Will Corona Pilgrim",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
     }
   ]
 }

@@ -41,3 +41,10 @@ See [data provenance](../../../docs/DATA_PROVENANCE.md) for the publication boun
 - [ ] [Guardians of the Galaxy (2020) #3 <!-- mrt:source-occurrence=26 -->](https://www.marvel.com/comics/issue/78685/guardians_of_the_galaxy_2020_3)
 - [ ] [Guardians of the Galaxy (2020) #4 <!-- mrt:source-occurrence=27 -->](https://www.marvel.com/comics/issue/78686/guardians_of_the_galaxy_2020_4)
 - [ ] [Guardians of the Galaxy (2020) #5 <!-- mrt:source-occurrence=28 -->](https://www.marvel.com/comics/issue/78687/guardians_of_the_galaxy_2020_5)
+
+## Official MCU tie-ins
+
+- [ ] [Marvel's Guardians of the Galaxy Prelude (2014) #1](https://www.marvel.com/comics/issue/49059/marvels_guardians_of_the_galaxy_prelude_2014_1)
+- [ ] [Marvel's Guardians of the Galaxy Prelude (2014) #2](https://www.marvel.com/comics/issue/49060/marvels_guardians_of_the_galaxy_prelude_2014_2)
+- [ ] [Marvel's Guardians of the Galaxy Vol. 2 Prelude (2017) #1](https://www.marvel.com/comics/issue/60666/marvels_guardians_of_the_galaxy_vol_2_prelude_2017_1)
+- [ ] [Marvel's Guardians of the Galaxy Vol. 2 Prelude (2017) #2](https://www.marvel.com/comics/issue/60667/marvels_guardians_of_the_galaxy_vol_2_prelude_2017_2)

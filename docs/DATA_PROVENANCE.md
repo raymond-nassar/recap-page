@@ -419,13 +419,13 @@ orders: **null means nobody granted anything for this file, not that the file is
 Three hundred and fifty-three pinned reading-order payloads remain under
 [`src/data/`](../src/data): 350 active visible catalog files, one active noncatalog partition parent,
 and the retired No Way Home (18 originals) and withdrawn Marvel Multiverse (2 comics) payloads. The 351 active files hold
-34,038 issue records covering 20,584 distinct tracked identities. The visible files hold 33,551 of those records;
+34,086 issue records covering 20,631 distinct tracked identities. The visible files hold 33,599 of those records;
 the extra 487 are the retained Marvel Knights to Planet X parent whose ordinary children partition
 the same vector. Records use these fields:
 `issueId`, `title`,
 `number`, `url`, `seriesId`, `seriesName`, `onSale`, `mu`, `digitalId`, `pageCount`, a `cover`
-object of `path` and `ext`, and `creators` of `name` and `role`. Across the 351 active payloads, 29,135
-records carry a cover URL and 27,379 carry creator credits. The retired No Way Home payload remains byte-exact;
+object of `path` and `ext`, and `creators` of `name` and `role`. Across the 351 active payloads, 29,183
+records carry a cover URL and 27,425 carry creator credits. The retired No Way Home payload remains byte-exact;
 neither retired payload contributes to active discovery or this active census.
 
 `description` was the field to look at hardest and is now empty. The others are facts about a
@@ -1198,7 +1198,7 @@ authored paths with 10, 12 and 4 stops from the curated manifest at
 `src/data/curated-lists.json:11470-11521`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all four at
-`src/data/catalog.json:17082-17219`.
+`src/data/catalog.json:17068-17205`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -2851,6 +2851,33 @@ in either direction; search includes ordinary catalog
 titles and characters. Multi-release guides retain one identity and expose every associated title.
 The catalog, comic vectors, source credit, imported list fields, progress and backups remain unchanged.
 
+## Official MCU tie-ins in MCU Prep guides
+
+The owner set the selection rule: official MCU-continuity comics and official screen adaptations,
+digital-only works included, are appended to existing guides under "Official MCU tie-ins". Every
+original comic keeps its position, so each original list is an unchanged prefix of the new one.
+[Revision 1382264625 of the MCU tie-in comics index](https://en.wikipedia.org/w/index.php?oldid=1382264625),
+read once on 2026-11-21, was used only to discover candidate titles; no article prose was copied.
+Each added issue was confirmed by an exact lookup in the metadata API described above. The
+approved offline export supplied exact app viewer links for 43 of the 47 added issues.
+
+Fifteen guides gained 48 placements of 47 distinct issues. Infinity War Prelude #1 is in both the
+Civil War and the Infinity War and Endgame guides, because it opens inside Civil War before turning
+to that film's aftermath. Captain America: The First Avenger already held First Vengeance #1 to #4,
+which stay where they were. The other four added issues have no exact app link and keep the
+ordinary website fallback. The owner-assigned follow-ups keep three kinds of gap apart: edition decisions,
+lookups that returned an empty result, and a title found only as a collected edition. They are
+[#1576](https://github.com/raymond-nassar/recap-page/issues/1576) for Fury's Big Week,
+[#1577](https://github.com/raymond-nassar/recap-page/issues/1577) for six other held issue records,
+and [#1578](https://github.com/raymond-nassar/recap-page/issues/1578) for nine unmatched titles.
+
+Projects without a current guide gain no new guide. The Avengers Initiative is licensed but only
+inspired by the films, and The Wizard is not yet released, so neither is added. Each expanded
+guide keeps its source link and compact label unchanged. Only its expanded-guide credit changes,
+to "Reading list selected by Recap Page team", so the credit does not imply that the original
+selector chose these additions. Scope and
+dispositions are in [#1575](https://github.com/raymond-nassar/recap-page/issues/1575).
+
 ## Owner-selected Modern Timeline events
 
 The [three-list delivery](https://github.com/raymond-nassar/recap-page/issues/759) preserves
@@ -3123,7 +3150,7 @@ The vendored item copies exactly those fields and adds `metadataSourceKind:
 owner-confirmed evidence kind, so the app still treats the comic as having no provider metadata and
 its availability stays unknown (constraints 6 and 7). The delivery contract holds every supplemented
 item to exactly what its mapping row records and every other owner-confirmed item to the old empty
-shape (`test/helpers/owner-delivery-contract.mjs:115-143`).
+shape (`test/helpers/owner-delivery-contract.mjs:124-152`).
 
 The app carries only the optional `identityEvidenceKind` marker in the existing normalized issue
 record so the reading view can distinguish an owner-confirmed identity from an ordinary missing

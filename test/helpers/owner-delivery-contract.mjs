@@ -28,6 +28,9 @@ import { sourceCreditRevisions } from '../../scripts/lib/source-credit-revisions
 import { recordedEditorialDigest, withRetiredOrders } from './mcu-editorial-history.mjs';
 import { beforeIdentityEntry, beforeIdentityJson, beforeIdentityOrders, beforeIdentityText, identityRevisions } from './owner-identity-history.mjs';
 import { assertCbhBaselinePayload } from '../../scripts/lib/owner-cbh-baseline.mjs';
+import {
+  tieInChecklistAtApproval, tieInManifestAtApproval, tieInOrdersAtApproval, tieInPayloadAtApproval,
+} from './mcu-tie-in-history.mjs';
 import { beforeUltimateIntroEntry, beforeUltimateIntroIssueIds } from './ultimate-marvel-intro-history.mjs';
 import {
   beforeAmazingSpiderManSupplementManifest, beforeAmazingSpiderManSupplementOrders,
@@ -37,6 +40,11 @@ import {
 } from './wolverine-correction-history.mjs';
 
 const hash = (value) => createHash('sha256').update(value).digest('hex');
+const libraryAtTieInApproval = (library, contract) => ({
+  ...library,
+  manifest: tieInManifestAtApproval(library.manifest, contract),
+  orders: tieInOrdersAtApproval(library.orders, contract),
+});
 
 // An owner review records every current path, including one naming the guide under review or a
 // peer reviewed beside it, so a rebuilt record drops only a path naming a list that review never saw.
@@ -70,10 +78,11 @@ export async function assertOwnerDeliveryContract(contract, {
   const [sourceText, packet, mapping, report, manifest, catalog, markdown] = await Promise.all([
     text(`scripts/data/owner-selections/${id}.json`), json(`scripts/data/owner-packets/${id}.json`),
     json(`scripts/data/owner-mappings/${id}.json`), json(`scripts/data/owner-overlaps/${id}.json`),
-    json('src/data/curated-lists.json'), json('src/data/catalog.json'), text(`src/data/orders/${id}.md`),
+    json('src/data/curated-lists.json'), json('src/data/catalog.json'),
+    text(`src/data/orders/${id}.md`).then((value) => tieInChecklistAtApproval(id, value, contract)),
   ]);
   const source = JSON.parse(sourceText);
-  const currentPayload = await json(`src/data/${packet.proposedManifest.out}`);
+  const currentPayload = tieInPayloadAtApproval(await json(`src/data/${packet.proposedManifest.out}`), contract);
   const currentCatalog = catalog.lists.find((row) => row.id === id);
   sourceCreditRevisions.assertLatest(currentPayload, packet.proposedManifest.out);
   sourceCreditRevisions.assertLatest(currentCatalog, packet.proposedManifest.out);
@@ -167,7 +176,10 @@ export async function assertOwnerDeliveryContract(contract, {
     assert.equal(payload.sourceSection, contract.sourceSection);
     assert.deepEqual(source.rows.map((row) => row.annotation), contract.annotations);
   }
-  const currentEntry = withoutDiscoveryTags(descriptionRevisions.undoEntry(manifest.lists.find((row) => row.id === id)));
+  const approvalManifest = tieInManifestAtApproval(manifest, contract);
+  const currentEntry = withoutDiscoveryTags(descriptionRevisions.undoEntry(
+    approvalManifest.lists.find((row) => row.id === id),
+  ));
   assert.deepEqual(currentEntry.description === packet.proposedManifest.description
     ? currentEntry : beforeMcuEditorialEntry(currentEntry), packet.proposedManifest);
   assert.equal(catalog.lists.filter((row) => row.id === id).length, 1);
@@ -186,7 +198,7 @@ export async function assertOwnerDeliveryContract(contract, {
       && supplementItemKind(row) === OWNER_GCD_SUPPLEMENT).length,
   );
 
-  const library = await loadCurrentOwnerLibrary(id, { root });
+  const library = libraryAtTieInApproval(await loadCurrentOwnerLibrary(id, { root }), contract);
   const current = buildComparisonReport({ candidateIds: expectedIds, orders: library.orders });
   const recordedIds = new Set(report.comparisons.map((row) => row.orderId));
   const peerIds = contract.peerIds ?? [];
@@ -311,7 +323,7 @@ async function assertCbhOwnerBaselineContract(contract, { root, text, json, peer
     json(`scripts/data/owner-packets/${id}.json`),
     json(`scripts/data/owner-mappings/${id}.json`),
     json(`scripts/data/owner-overlaps/${id}.json`),
-    text(`src/data/orders/${id}.md`),
+    text(`src/data/orders/${id}.md`).then((value) => tieInChecklistAtApproval(id, value, contract)),
     json('src/data/curated-lists.json'), json('src/data/catalog.json'),
   ]);
   const payload = await json(`src/data/${packet.proposedManifest.out}`);
@@ -335,13 +347,16 @@ async function assertCbhOwnerBaselineContract(contract, { root, text, json, peer
   assert.equal(descriptionRevisions.undoEntry(payload).description, contract.description);
   assert.equal(payload.sourceOrigin, contract.sourceOrigin);
   assert.equal(contract.sourceOrigin, CBH_SOURCE_PROVIDER.sourceOrigin);
-  assert.deepEqual(withoutDiscoveryTags(descriptionRevisions.undoEntry(manifest.lists.find((entry) => entry.id === id))),
-    packet.proposedManifest);
+  const approvalManifest = tieInManifestAtApproval(manifest, contract);
+  const approvalEntry = withoutDiscoveryTags(descriptionRevisions.undoEntry(
+    approvalManifest.lists.find((entry) => entry.id === id),
+  ));
+  assert.deepEqual(approvalEntry, packet.proposedManifest);
   assert.equal(catalog.lists.filter((entry) => entry.id === id).length, 1);
   for (const [file, digest] of Object.entries(contract.cbhBaseline.files)) {
     assert.equal(hash(beforeIdentityText(file, contract.cbhBaseline.sourceCommit).replace(/\r\n/g, '\n')), digest, file);
   }
-  const library = await loadCurrentOwnerLibrary(id, { root });
+  const library = libraryAtTieInApproval(await loadCurrentOwnerLibrary(id, { root }), contract);
   const publication = identityRevisions.guides.filter((revision) =>
     revision.id === id && revision.placeholderReplacement).at(-1);
   if (publication) assert.equal(mapping.relationshipReview.reviewedAt, publication.generatedAt);

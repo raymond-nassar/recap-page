@@ -1,0 +1,227 @@
+{
+  "baselineCommit": "ad0360073ed8d2c16f6736e5813f6655c984c30d",
+  "heading": "Official MCU tie-ins",
+  "reviewStatus": "independently-reviewed",
+  "credit": {
+    "before": "Selected by raymond-nassar for MCU Prep",
+    "after": "Reading list selected by Recap Page team"
+  },
+  "preExtensionApprovalDigests": {
+    "mcu-prep-guardians-of-the-galaxy": "aa5470bc385aa6261b4d940ae9eb9b26d628c056d7166e91b18924ac35e7692c",
+    "mcu-prep-agatha-all-along": "1f6521f1f18dadf8530410d2658b7a524debe20080ab5085a99402d0798d84a5",
+    "the-death-of-ms-marvel": "39da7a32d79a018b7cc8936d15b75afbb286a2887fd1ce43388dae4ac5e59fad",
+    "contest-of-chaos": "366231c32a102433f973c08781054f7f9cfe7e30e2218af6d3788b18eaa01f28",
+    "gang-war": "ae8cd92891e5d52ece89fb51fde51bdc75393bd82d6b0c0781ded21f096f9ebb",
+    "one-world-under-doom": "08e0d22e7defa1a957820a231c571654324e072ee813091dc9c402617d3099f1",
+    "mcu-prep-iron-man-2008": "3747032d35f8f3cb4ae8d6c30b7632bb5f50c3230445542861dad8830d4abb99",
+    "mcu-prep-the-incredible-hulk-2008": "999117caa779fb36af30213bdadaf2847f868c3c2823da11580523b80364b820",
+    "mcu-prep-iron-man-2-2010": "eb2f037cc5391ac4405fd704e947bf225cf5ca59ef33397f2637cc3932462582",
+    "mcu-prep-thor-2011": "08841328a8fb593b9aa4d392a441546ffa12900481c6cc3c32215fcd6ea5267b",
+    "mcu-prep-captain-america-the-first-avenger-2011": "208e553883ee69c566b009f0a951ad64f30bedcd11bfd613d9703e6cabdd0abd",
+    "mcu-prep-the-avengers-2012": "3f9b10ee7ac2dd63cf851b809e267642e1a25913f4b8a7382dc5d0b5831f7edd",
+    "mcu-prep-iron-man-3-2013": "b235038c119e24ecab9d856e62f90c9edccb5be310fdccd135e7fc4a018db2ea",
+    "mcu-prep-thor-the-dark-world-2013": "c7541aa42a31dae10a20e110c891dd5417f59d4ec2f850fc76ad489c550d207d",
+    "mcu-prep-captain-america-the-winter-soldier-2014": "c032b20e8cedcf3f07e5cb3d9c4cc26c0e8b757490cdba08cac33df93133e97a",
+    "mcu-prep-avengers-age-of-ultron-2015": "2ed191fd091b8406b29412274fae9f023b65fe27aba36c232bff808c37067bc6",
+    "mcu-prep-ant-man-2015": "f9d4fb356104d0ad5b05e744e4c3f1b7bfd48b51eb960ae167909904a8358674",
+    "mcu-prep-captain-america-civil-war-2016": "e09d793757c8bd8321feffc7df6cf1b0c5815bfd32a30b9794271124374792db",
+    "mcu-prep-thor-ragnarok-2017": "38099ce8cfd036fa47a3e1487a1e079125e6b2bcb5cc5340fd01a8394b1daa7d",
+    "mcu-prep-black-panther-2018": "95c6e9f2fb26f55b1f317fa09867be8a68e58edc5188e0578854c7de22e70dc6",
+    "mcu-prep-avengers-infinity-war-endgame": "f7ad7801add6b761a0285035d5130975a6097b05b2d1ccb44534d6587293c5b0",
+    "mcu-prep-captain-marvel-2019": "2203447b1507943127a60ea21d4341badcf7cb1dce74163621c6a9ad1f17d565",
+    "mcu-prep-doctor-strange-2016": "4a4b514c64e4935893f79bf5c55f8f32c14b889eb2005bd008506511115ac6a0",
+    "mcu-prep-visionquest": "93cc65ca1e5995f293d7ebceb99b49c68e393bf69f2d8e28e31eeb8eeafdc88d",
+    "mcu-prep-spider-man-brand-new-day": "5496fb4e80a865ac9090f92524f020c65748fa2888ba58378f38fb5267e9404f",
+    "mcu-prep-thunderbolts": "50d7d37fa382f0448c9447ab259456a153be584e080d06012efe8fe80db296b8",
+    "shang-chi-master-of-kung-fu-reading-order": "8bed2e6c9c9bcfc3d7b1e696c7b1189b4d1446f05b6d8ca2d829ca10c8d1dd0a",
+    "the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order": "b230ceabf40454ba72cbe4c5bfcd18afbb57c4dc17bedda542eeb1624bb74ae3",
+    "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order": "e8ce5770bb605d0a072f2c2b505e49d3a4cf2cc0c881c37315eca032c7014f45",
+    "iron-fist-reading-order": "abd07a6ea0515f33391ce1e47aa535e05b1c0c150c56437b9f15e55d60e5e6f6",
+    "namor-sub-mariner-reading-order": "a4d7c655e7a853afc270c5f4705556ac88fdf9dfd831116b17bd4cf1aaadb279",
+    "marvel-rising": "25dc3ba49bdb75d8cc1f7d48dc01132d5e2681340f147f7da49615e0e73f6046",
+    "marvel-action-avengers": "12e48fed061cb7717bb40dda5cebcbdb30ad063b32694cd38d281280e71014da",
+    "marvel-action-spider-man": "bdc531ca9d1ff8ec788e13e8c1d544fcc4e5d01b56710be7e3c6d3433c61bf0e",
+    "marvel-action-black-panther": "cde146300102c9a60e3de3b6f3483a5058ebe4aa076ed51913240cb5a1b7e722",
+    "marvel-action-captain-marvel": "a9af1aa7cb825a25623cae10789ecd328fd1165f720cc5b9d26fb0a171403461",
+    "marvel-super-hero-adventures": "170f6de3f6044c7e3bcd5a6327d543f5dd862481400e51b2ada53c00bf766406",
+    "marvel-universe-guardians-of-the-galaxy-infinite-comic": "0e3dc5f4e16eec1785d98c308f792a305af46ea6b17329943e52d6af3fbbfd0a",
+    "fantastic-four-and-power-pack": "34a92cad9450ec3a02e2715225ec1f5b9c66eae73c6063fcc0159c3c0ab0cf9e",
+    "captain-america-2025-our-secret-wars": "77c63b2d98980da0c17d5ede9d8cb0f3c294898a5687060d60e767788ab9599d",
+    "captain-america-2025-dooms-shadow": "f1a592f37ae2a09c1c8a3ddb6aaa1b7155b5dd5a6ef7e05f6f9546f97fe6f097",
+    "captain-america-2025-hells-angel": "ef917ef8d718dbe06806900c334084365d4c4da952c7008a7c3be00972d28e11",
+    "avengers-armageddon": "0e513a677830b3fd553aee7d788833bc0d1630c1d3ba0e661485bf99db7343af"
+  },
+  "supersededPreExtensionApprovalDigests": {
+    "mcu-prep-agatha-all-along": "4453058f04062fc4215b530d7a41bac9b84b4b18346fffa4e10d8a590d8e987b"
+  },
+  "guides": [
+    {
+      "id": "mcu-prep-iron-man-2008",
+      "file": "mcu_prep_iron_man_2008.json",
+      "originalCount": 16,
+      "originalIssueIdsSha256": "87753dfe488390f94792aa96a87aa13ccb2f6290999fdcdef84b044f82a3e761",
+      "additionIssueIds": [
+        29613,
+        29967
+      ]
+    },
+    {
+      "id": "mcu-prep-the-incredible-hulk-2008",
+      "file": "mcu_prep_the_incredible_hulk_2008.json",
+      "originalCount": 13,
+      "originalIssueIdsSha256": "c13d46166e995897c8158af06ae74f6ccce6cb69ab0d2accabc85999359139ad",
+      "additionIssueIds": [
+        63378
+      ]
+    },
+    {
+      "id": "mcu-prep-iron-man-2-2010",
+      "file": "mcu_prep_iron_man_2_2010.json",
+      "originalCount": 29,
+      "originalIssueIdsSha256": "c9ccc10a14367f280eb694fd1e3e3aba86b29709479c81bc1cb91559c62ab7ce",
+      "additionIssueIds": [
+        32406,
+        32408,
+        32410,
+        36442,
+        44053,
+        45164
+      ]
+    },
+    {
+      "id": "mcu-prep-thor-2011",
+      "file": "mcu_prep_thor_2011.json",
+      "originalCount": 14,
+      "originalIssueIdsSha256": "201243e084283e9d8e88dcabb42d9fe882296ee04682b81d3b3005c9656a59c3",
+      "additionIssueIds": [
+        46303,
+        46304
+      ]
+    },
+    {
+      "id": "mcu-prep-captain-america-the-first-avenger-2011",
+      "file": "mcu_prep_captain_america_the_first_avenger_2011.json",
+      "originalCount": 4,
+      "originalIssueIdsSha256": "16d7b1d828171fff3df06f6c019a90a42a3dc392885e56a100bc8d253f132912",
+      "additionIssueIds": [
+        48313,
+        48314
+      ]
+    },
+    {
+      "id": "mcu-prep-the-avengers-2012",
+      "file": "mcu_prep_the_avengers_2012.json",
+      "originalCount": 15,
+      "originalIssueIdsSha256": "06f2965f57c106415a26c7ed259f9e3ff9001530fafc2a7b1eed2adef5880bc5",
+      "additionIssueIds": [
+        43003,
+        43004,
+        43005,
+        52202,
+        52203
+      ]
+    },
+    {
+      "id": "mcu-prep-iron-man-3-2013",
+      "file": "mcu_prep_iron_man_3_2013.json",
+      "originalCount": 24,
+      "originalIssueIdsSha256": "3347c7173e402d3e07518cdc7addb2bb0a72d842ffc60dbf32d9809c09113382",
+      "additionIssueIds": [
+        42669,
+        42670,
+        57724,
+        57725
+      ]
+    },
+    {
+      "id": "mcu-prep-thor-the-dark-world-2013",
+      "file": "mcu_prep_thor_the_dark_world_2013.json",
+      "originalCount": 14,
+      "originalIssueIdsSha256": "74e6ad572a2f9fc653a8cfbc0d55916660916de5b2fc47ea6cac48ea086a2b30",
+      "additionIssueIds": [
+        42667,
+        42668,
+        63981,
+        64212
+      ]
+    },
+    {
+      "id": "mcu-prep-captain-america-the-winter-soldier-2014",
+      "file": "mcu_prep_captain_america_the_winter_soldier_2014.json",
+      "originalCount": 18,
+      "originalIssueIdsSha256": "c8fb14222049e6ef98dbf81bc83841f4e79135868edaee751cca8bfb2a4bce80",
+      "additionIssueIds": [
+        58287,
+        58211
+      ]
+    },
+    {
+      "id": "mcu-prep-ant-man-2015",
+      "file": "mcu_prep_ant_man_2015.json",
+      "originalCount": 22,
+      "originalIssueIdsSha256": "943d7177f237f7c71d9800a5bae9f4c5d5bcf6c78ddfc9d6b0eeef0c69e4c8ad",
+      "additionIssueIds": [
+        52196,
+        52198,
+        66444,
+        66693
+      ]
+    },
+    {
+      "id": "mcu-prep-captain-america-civil-war-2016",
+      "file": "mcu_prep_captain_america_civil_war_2016.json",
+      "originalCount": 23,
+      "originalIssueIdsSha256": "6c3bfa09b684b729337efa6869e406224191ece3bd79416636f6bd6db5ee4868",
+      "additionIssueIds": [
+        61300,
+        61301,
+        65916
+      ]
+    },
+    {
+      "id": "mcu-prep-black-panther-2018",
+      "file": "mcu_prep_black_panther_2018.json",
+      "originalCount": 54,
+      "originalIssueIdsSha256": "378fdc66c136947fcfd8c1b733ca0722d8030632dcfebccd3067094f8808d64d",
+      "additionIssueIds": [
+        64930,
+        65084
+      ]
+    },
+    {
+      "id": "mcu-prep-avengers-infinity-war-endgame",
+      "file": "mcu_prep_avengers_infinity_war_endgame.json",
+      "originalCount": 19,
+      "originalIssueIdsSha256": "6733138250cdd482d3d34ed27c6983082ae8743a36b477106887df3280dd04f2",
+      "additionIssueIds": [
+        65916,
+        66287,
+        71574,
+        71575,
+        74050
+      ]
+    },
+    {
+      "id": "mcu-prep-doctor-strange-2016",
+      "file": "mcu_prep_doctor_strange_2016.json",
+      "originalCount": 18,
+      "originalIssueIdsSha256": "144021e3ba9416216cae87bce3578045828c5b02b56aa228a997d5c1c3809243",
+      "additionIssueIds": [
+        57945,
+        57947
+      ]
+    },
+    {
+      "id": "mcu-prep-guardians-of-the-galaxy",
+      "file": "mcu_prep_guardians_of_the_galaxy.json",
+      "originalCount": 28,
+      "originalIssueIdsSha256": "46ce28e9a41a3dd2b7a9eafbee240e5ac14b50e05becd6586963b387cee55760",
+      "additionIssueIds": [
+        49059,
+        49060,
+        60666,
+        60667
+      ]
+    }
+  ]
+}

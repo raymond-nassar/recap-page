@@ -25,3 +25,8 @@ See [data provenance](../../../docs/DATA_PROVENANCE.md) for the publication boun
 - [ ] [Iron Man (1968) #230 <!-- mrt:source-occurrence=20 -->](https://www.marvel.com/comics/issue/9473/iron_man_1968_230)
 - [ ] [Iron Man (1968) #231 <!-- mrt:source-occurrence=21 -->](https://www.marvel.com/comics/issue/9474/iron_man_1968_231)
 - [ ] [Iron Man (1968) #232 <!-- mrt:source-occurrence=22 -->](https://www.marvel.com/comics/issue/9475/iron_man_1968_232)
+
+## Official MCU tie-ins
+
+- [ ] [Iron Man: I Am Iron Man! (2010) #1](https://www.marvel.com/comics/issue/29613/iron_man_i_am_iron_man_2010_1)
+- [ ] [Iron Man: I Am Iron Man! (2010) #2](https://www.marvel.com/comics/issue/29967/iron_man_i_am_iron_man_2010_2)

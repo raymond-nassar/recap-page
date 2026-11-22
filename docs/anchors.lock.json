@@ -5899,13 +5899,13 @@
     "fp": "3a6bffed9d7bfbb0",
     "head": "export function sortCatalog(lists) {"
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/current-reading-library.mjs:14-114|0": {
-    "anchor": "test/helpers/current-reading-library.mjs:14-114",
-    "fp": "4c1615638f461b84",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/current-reading-library.mjs:15-116|0": {
+    "anchor": "test/helpers/current-reading-library.mjs:15-116",
+    "fp": "a069f5c2f17fba77",
     "head": "const { captureSha256, ...baseline } = JSON.parse(readFileSync("
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:278-304|0": {
-    "anchor": "test/helpers/owner-delivery-contract.mjs:278-304",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:290-316|0": {
+    "anchor": "test/helpers/owner-delivery-contract.mjs:290-316",
     "fp": "98a73dedad194b8f",
     "head": "async function assertRegisteredLaterPeer(id, later, { contracts, json }) {"
   },
@@ -5939,8 +5939,8 @@
     "fp": "1894fdf77af94db4",
     "head": "'owner-confirmed': {"
   },
-  "docs/DATA_PROVENANCE.md|owner-approved-external-supplement-for-owner-con|test/helpers/owner-delivery-contract.mjs:115-143|0": {
-    "anchor": "test/helpers/owner-delivery-contract.mjs:115-143",
+  "docs/DATA_PROVENANCE.md|owner-approved-external-supplement-for-owner-con|test/helpers/owner-delivery-contract.mjs:124-152|0": {
+    "anchor": "test/helpers/owner-delivery-contract.mjs:124-152",
     "fp": "dbe332822758972a",
     "head": "if (row.identityEvidenceKind === 'owner-confirmed-identity') {"
   },
@@ -5984,8 +5984,8 @@
     "fp": "ff9ba71742d8b8c0",
     "head": "\"chapterCount\": 78,"
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:17082-17219|0": {
-    "anchor": "src/data/catalog.json:17082-17219",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:17068-17205|0": {
+    "anchor": "src/data/catalog.json:17068-17205",
     "fp": "364a367730afd192",
     "head": "\"paths\": ["
   },

@@ -42,3 +42,12 @@ See [data provenance](../../../docs/DATA_PROVENANCE.md) for the publication boun
 - [ ] [Iron Man (1968) #289 <!-- mrt:source-occurrence=27 -->](https://www.marvel.com/comics/issue/9537/iron_man_1968_289)
 - [ ] [Iron Man (1968) #290 <!-- mrt:source-occurrence=28 -->](https://www.marvel.com/comics/issue/9539/iron_man_1968_290)
 - [ ] [Iron Man (1968) #291 <!-- mrt:source-occurrence=29 -->](https://www.marvel.com/comics/issue/9540/iron_man_1968_291)
+
+## Official MCU tie-ins
+
+- [ ] [Iron Man 2: Public Identity (2010) #1](https://www.marvel.com/comics/issue/32406/iron_man_2_public_identity_2010_1)
+- [ ] [Iron Man 2: Public Identity (2010) #2](https://www.marvel.com/comics/issue/32408/iron_man_2_public_identity_2010_2)
+- [ ] [Iron Man 2: Public Identity (2010) #3](https://www.marvel.com/comics/issue/32410/iron_man_2_public_identity_2010_3)
+- [ ] [Iron Man 2: Agents of S.H.I.E.L.D. (2010) #1](https://www.marvel.com/comics/issue/36442/iron_man_2_agents_of_shield_2010_1)
+- [ ] [Marvel's Iron Man 2 Adaptation (2012) #1](https://www.marvel.com/comics/issue/44053/marvels_iron_man_2_adaptation_2012_1)
+- [ ] [Marvel's Iron Man 2 Adaptation (2012) #2](https://www.marvel.com/comics/issue/45164/marvels_iron_man_2_adaptation_2012_2)

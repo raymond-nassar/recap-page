@@ -3,12 +3,12 @@
   "name": "MCU Prep: Guardians of the Galaxy",
   "description": "Discover the Guardians' comics formation and unlikely friendships for context on the films' found family. Annihilation: Conquest and Legacy bring the modern team together, followed by Rocket's solo misadventures and a later Guardians lineup. The comics' origins and team history differ from the films.",
   "source": "https://github.com/raymond-nassar/recap-page/issues/700",
-  "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+  "sourceOrigin": "Reading list selected by Recap Page team",
   "sourceLicense": null,
   "generatedAt": "2026-10-07T13:27:16.994Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 28,
-  "collections": 4,
+  "count": 32,
+  "collections": 5,
   "placeholders": 0,
   "unresolved": [],
   "items": [
@@ -979,6 +979,114 @@
         }
       ],
       "collectedIn": "Guardians of the Galaxy by Al Ewing Vol. 1: Then It's Us"
+    },
+    {
+      "issueId": 49059,
+      "title": "Marvel's Guardians of the Galaxy Prelude (2014) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/49059/marvels_guardians_of_the_galaxy_prelude_2014_1",
+      "seriesId": 18460,
+      "seriesName": "Marvel's Guardians of the Galaxy Prelude (2014)",
+      "onSale": "2014-04-02T00:00:00+0000",
+      "mu": "2014-11-24T00:00:00+0000",
+      "digitalId": 33483,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/90/533470a2d151d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
+    },
+    {
+      "issueId": 49060,
+      "title": "Marvel's Guardians of the Galaxy Prelude (2014) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/49060/marvels_guardians_of_the_galaxy_prelude_2014_2",
+      "seriesId": 18460,
+      "seriesName": "Marvel's Guardians of the Galaxy Prelude (2014)",
+      "onSale": "2014-05-28T00:00:00+0000",
+      "mu": "2014-11-24T00:00:00+0000",
+      "digitalId": 33981,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/30/53750887ebe74",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
+    },
+    {
+      "issueId": 60666,
+      "title": "Marvel's Guardians of the Galaxy Vol. 2 Prelude (2017) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/60666/marvels_guardians_of_the_galaxy_vol_2_prelude_2017_1",
+      "seriesId": 22415,
+      "seriesName": "Marvel's Guardians of the Galaxy Vol. 2 Prelude (2017)",
+      "onSale": "2017-01-04T00:00:00+0000",
+      "mu": "2017-07-10T00:00:00+0000",
+      "digitalId": 44250,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/585c0f81bae17",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Will Corona Pilgrim",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
+    },
+    {
+      "issueId": 60667,
+      "title": "Marvel's Guardians of the Galaxy Vol. 2 Prelude (2017) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/60667/marvels_guardians_of_the_galaxy_vol_2_prelude_2017_2",
+      "seriesId": 22415,
+      "seriesName": "Marvel's Guardians of the Galaxy Vol. 2 Prelude (2017)",
+      "onSale": "2017-02-01T00:00:00+0000",
+      "mu": "2017-08-07T00:00:00+0000",
+      "digitalId": 44137,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/588bd4aaca569",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Christopher Allen",
+          "role": "penciler"
+        },
+        {
+          "name": "Will Corona Pilgrim",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Official MCU tie-ins"
     }
   ]
 }

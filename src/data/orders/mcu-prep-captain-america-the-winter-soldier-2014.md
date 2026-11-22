@@ -29,3 +29,8 @@ See [data provenance](../../../docs/DATA_PROVENANCE.md) for the publication boun
 - [ ] [Captain America (2004) #12 <!-- mrt:source-occurrence=16 -->](https://www.marvel.com/comics/issue/2422/captain_america_2004_12)
 - [ ] [Captain America (2004) #13 <!-- mrt:source-occurrence=17 -->](https://www.marvel.com/comics/issue/3084/captain_america_2004_13)
 - [ ] [Captain America (2004) #14 <!-- mrt:source-occurrence=18 -->](https://www.marvel.com/comics/issue/3188/captain_america_2004_14)
+
+## Official MCU tie-ins
+
+- [ ] [Marvel's Captain America: Civil War Prelude (2015) #3](https://www.marvel.com/comics/issue/58287/marvels_captain_america_civil_war_prelude_2015_3)
+- [ ] [Marvel's Captain America: Civil War Prelude (2015) #4](https://www.marvel.com/comics/issue/58211/marvels_captain_america_civil_war_prelude_2015_4)
