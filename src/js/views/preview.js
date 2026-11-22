@@ -14,6 +14,7 @@ import {
   collectedEditionCredit, collectedEditionLabels,
 } from './shared/collected-editions.js';
 import { gcdDetailsCredit, hasGcdDetails } from './shared/details-credit.js';
+import { offlineActionLabel, offlineStatusText } from './shared/offline-status.js';
 
 const ADD_TEXT = '+ Add to library';
 const OPEN_TEXT = 'Open list';
@@ -148,48 +149,11 @@ export function createPreviewView({
         : el('span', { class: 'rail-hint', role: 'status', text: 'In library' })].filter(Boolean);
   }
 
-  function offlineActionLabel(state) {
-    if (state === 'checking') return 'Checking offline availability...';
-    if (state === 'preparing') return offlineState?.cancelling ? 'Cancelling...' : 'Preparing offline copy...';
-    if (state === 'ready') return 'Refresh offline copy';
-    if (state === 'stale') return 'Update offline copy';
-    if (state === 'failed' || state === 'cancelled') return 'Try again';
-    if (state === 'unsupported') return 'Offline preparation unavailable';
-    return 'Make available offline';
-  }
-
-  function offlineStatusText() {
-    if (!offlineState) return '';
-    if (offlineState.state === 'checking') return 'Checking whether this Reading List is ready offline.';
-    if (offlineState.state === 'preparing') {
-      const progress = offlineState.progress;
-      if (offlineState.cancelling) return 'Cancelling offline preparation...';
-      if (!progress) return 'Preparing and verifying this Reading List for offline use.';
-      const verb = progress.phase === 'write' ? 'Verified' : 'Fetched';
-      return `${verb} ${progress.completed} of ${progress.total} offline files.`;
-    }
-    if (offlineState.state === 'ready') return 'Offline copy verified and ready on this device.';
-    if (offlineState.state === 'stale') {
-      return offlineState.reason || 'The offline copy needs an update.';
-    }
-    if (offlineState.state === 'unsupported') {
-      if (isIos) return 'Offline preparation is not available in this app.';
-      return offlineState.error || `Offline preparation is not supported in ${isIos ? 'this app' : 'this browser'}.`;
-    }
-    if (offlineState.state === 'cancelled') {
-      return 'Preparation cancelled. Any earlier completed offline copy is unchanged.';
-    }
-    if (offlineState.state === 'failed') {
-      return `Offline preparation failed: ${offlineState.error || 'The copy could not be verified.'}`;
-    }
-    return 'This Reading List is not saved for offline use.';
-  }
-
   function syncOffline() {
     if (!offlineControls) return;
     const { action, cancel, status } = offlineControls;
     const state = offlineState?.state || 'idle';
-    const label = offlineActionLabel(state);
+    const label = offlineActionLabel(offlineState);
     action.textContent = label;
     action.setAttribute('aria-label', labelledName(label, previewList.name));
     action.dataset.state = state;
@@ -197,7 +161,7 @@ export function createPreviewView({
     cancel.hidden = state !== 'preparing';
     cancel.disabled = Boolean(offlineState?.cancelling);
     cancel.textContent = offlineState?.cancelling ? 'Cancelling...' : 'Cancel';
-    status.textContent = offlineStatusText();
+    status.textContent = offlineStatusText(offlineState, { isIos });
   }
 
   function createOfflineControls(list) {

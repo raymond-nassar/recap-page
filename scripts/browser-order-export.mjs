@@ -78,6 +78,7 @@ export const orderOnlyExport = {
         }
         return response;
       };
+
     }, state, sourceUrl);
 
     await page.goto(`${page.__origin}/#/home`, { waitUntil: 'networkidle0' });
@@ -254,5 +255,71 @@ export const orderOnlyExport = {
     t.check('no selected list produces an explicit notice instead of an invented export',
       await page.evaluate(() => document.querySelector('#app-report').textContent.includes('No list is selected.')
         && window.__mrtDownloads.length === 0 && !document.querySelector('#ask').open));
+  },
+};
+
+export const legacyOrderExport = {
+  id: 'legacy-order-export',
+  nativeDownloads: 2,
+  title: 'retired X-Men lists include the approved attribution in order-only exports',
+  async run(page, t) {
+    let legacy = createList(createEmptyState(), {
+      id: 'saved-core', name: 'Saved core', catalogId: 'xmen-claremont',
+    });
+    legacy = addIssuesToList(legacy, 'saved-core', [items[0]]).state;
+    legacy = createList(legacy, {
+      id: 'saved-expanded', name: 'Saved expanded', catalogId: 'xmen-claremont-complete',
+    });
+    legacy = addIssuesToList(legacy, 'saved-expanded', [items[3]]).state;
+    await page.evaluateOnNewDocument((seed) => {
+      if (location.protocol === 'about:') return;
+      if (!sessionStorage.getItem('legacy-export-seeded')) {
+        localStorage.setItem('mrt.state.v2', JSON.stringify(seed));
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+        sessionStorage.setItem('legacy-export-seeded', 'yes');
+      }
+      const real = window.fetch.bind(window);
+      window.fetch = async (input, init) => {
+        const url = new URL(typeof input === 'string' ? input : input.url, location.href);
+        const response = await real(input, init);
+        if (url.pathname.endsWith('/catalog.json')) {
+          const catalog = await response.json();
+          return new Response(JSON.stringify({
+            ...catalog,
+            lists: catalog.lists.filter((entry) => !['xmen-claremont', 'xmen-claremont-complete'].includes(entry.id)),
+          }));
+        }
+        return response;
+      };
+    }, legacy);
+    await page.goto(`${page.__origin}/#/read/saved-core`, { waitUntil: 'load' });
+    for (const [id, number] of [['saved-core', 1], ['saved-expanded', 2]]) {
+      await page.evaluate((listId) => { location.hash = `#/read/${listId}`; }, id);
+      await page.waitForFunction((listId) => location.hash === `#/read/${listId}`
+        && document.querySelector('#order-name').textContent.trim() === (listId === 'saved-core' ? 'Saved core' : 'Saved expanded'), {}, id);
+      await page.waitForFunction(() => document.querySelector('#order-source a'));
+      t.check(`${id}: About shows the approved linked source`,
+        await page.evaluate(() => {
+          const link = document.querySelector('#order-source a');
+          return link.textContent === "Based on a reader's outline and Comic Book Herald's guide"
+            && link.href === 'https://www.comicbookherald.com/chris-claremont-era-x-men-reading-order-guide/';
+        }));
+      await page.evaluate(() => {
+        document.querySelector('#list-actions').open = true;
+        document.querySelector('#list-export').open = true;
+      });
+      const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      await click(page, '#btn-export-order');
+      await page.waitForSelector('#ask[open]');
+      t.check(`${id}: export tells the reader that credit is included`,
+        /Available source credit is included/.test(await page.$eval('#ask-body', (node) => node.textContent)));
+      await activateExport(page, '#ask-ok');
+      const markdown = await downloaded(page, number);
+      t.check(`${id}: export includes the approved source credit and link`,
+        /^Source: Based on a reader's outline and Comic Book Herald's guide$/m.test(markdown)
+        && /^Source link: <https:\/\/www\.comicbookherald\.com\/chris-claremont-era-x-men-reading-order-guide\/>$/m.test(markdown), markdown);
+      t.check(`${id}: exporting does not change saved data`,
+        await page.evaluate((raw) => localStorage.getItem('mrt.state.v2') === raw, before));
+    }
   },
 };

@@ -5712,12 +5712,55 @@
       ]
     },
     {
-      "id": "xmen-claremont",
-      "name": "X-Men Core Reading Order: Silver Age to Claremont",
-      "description": "X-Men: First Class revisits the original team's beginnings before Giant-Size X-Men brings a new team together. Chris Claremont's years follow through Phoenix, Dark Phoenix, the Brood, Days of Future Past, God Loves Man Kills, New Mutants, X-Factor and the interleaved Mutant Massacre. The order ends before Fall of the Mutants and Inferno.",
+      "id": "xmen-silver-age",
+      "name": "X-Men: Silver Age Reading Order",
+      "description": "Jean Grey barely has time to meet her four new classmates before Magneto seizes a missile base. Welcome to Xavier's school.",
       "type": "character-run",
       "spotlightKind": "other",
-      "depth": "essential",
+      "depth": "selected",
+      "storyTypes": [
+        "science-fiction",
+        "political"
+      ],
+      "tones": [
+        "epic"
+      ],
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "coverIssueId": 12413,
+      "sourceFile": "xmen-silver-age.md",
+      "sourceOrigin": "Based on a reader's outline and Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "xmen_silver_age.json",
+      "characters": [
+        "X-Men",
+        "Professor X",
+        "Cyclops",
+        "Jean Grey",
+        "Magneto"
+      ],
+      "keywords": [
+        "Silver Age",
+        "The Hidden Years",
+        "Grand Design",
+        "Season One",
+        "First Class",
+        "Comic Book Herald"
+      ],
+      "expect": 157,
+      "timeline": 1963,
+      "sourcePage": "https://www.comicbookherald.com/60s-x-men-comics-reading-order/",
+      "sectionKind": "reading-blocks"
+    },
+    {
+      "id": "xmen-claremont-era",
+      "name": "X-Men: Claremont Reading Order",
+      "description": "Storm, Nightcrawler and Wolverine join forces to rescue the X-Men from a living island. But when Jean Grey becomes Dark Phoenix, who can save her?",
+      "type": "character-run",
+      "spotlightKind": "other",
+      "depth": "selected",
       "storyTypes": [
         "science-fiction",
         "political"
@@ -5726,14 +5769,14 @@
         "epic"
       ],
       "beginner": true,
-      "group": "xmen-claremont",
-      "groupName": "X-Men: Silver Age to Claremont",
-      "variant": "First Class origins, then Claremont",
-      "coverIssueId": 5144,
-      "sourceFile": "xmen-claremont.md",
-      "sourceOrigin": "Compiled for this project",
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "coverIssueId": 8797,
+      "sourceFile": "xmen-claremont-era.md",
+      "sourceOrigin": "Based on a reader's outline and Comic Book Herald's guide",
       "sourceLicense": null,
-      "out": "xmen_claremont.json",
+      "out": "xmen_claremont_era.json",
       "characters": [
         "X-Men",
         "Professor X",
@@ -5757,63 +5800,11 @@
         "Second Genesis",
         "New Mutants",
         "X-Factor",
-        "Silver Age",
         "Comic Book Herald"
       ],
-      "expect": 274,
-      "timeline": null
-    },
-    {
-      "id": "xmen-claremont-complete",
-      "name": "X-Men Expanded Reading Order: Silver Age to Claremont",
-      "description": "The X-Men's original Silver Age stories lead into the Claremont years, with guest appearances and modern retellings added. Compiled by hand from a reader's outline of Comic Book Herald's guides, the route includes Amazing Adventures, Spider-Man, the Hulk, the Avengers, Captain America, the Defenders and Giant-Size Fantastic Four. The Hidden Years, Grand Design, Season One and the whole of First Class revisit the early years. X-Men Annual #1 and #2 are listed without a link, because Marvel's metadata carries that series only from #3.",
-      "type": "character-run",
-      "spotlightKind": "other",
-      "depth": "complete",
-      "storyTypes": [
-        "science-fiction",
-        "political"
-      ],
-      "tones": [
-        "epic"
-      ],
-      "beginner": false,
-      "group": "xmen-claremont",
-      "groupName": "X-Men: Silver Age to Claremont",
-      "variant": "With the optional add-ons and retellings",
-      "coverIssueId": 12413,
-      "sourceFile": "xmen-claremont-complete.md",
-      "sourceOrigin": "Compiled for this project",
-      "sourceLicense": null,
-      "out": "xmen_claremont_complete.json",
-      "characters": [
-        "X-Men",
-        "Professor X",
-        "Cyclops",
-        "Jean Grey",
-        "Wolverine",
-        "Storm",
-        "Nightcrawler",
-        "Colossus",
-        "Kitty Pryde",
-        "Magneto",
-        "New Mutants",
-        "X-Factor"
-      ],
-      "keywords": [
-        "Chris Claremont",
-        "Dark Phoenix Saga",
-        "Days of Future Past",
-        "Mutant Massacre",
-        "The Hidden Years",
-        "Grand Design",
-        "First Class",
-        "Season One",
-        "Silver Age",
-        "Comic Book Herald"
-      ],
-      "expect": 404,
-      "timeline": null
+      "expect": 258,
+      "timeline": null,
+      "sourcePage": "https://www.comicbookherald.com/chris-claremont-era-x-men-reading-order-guide/"
     },
     {
       "id": "shadow-king-reading-order",

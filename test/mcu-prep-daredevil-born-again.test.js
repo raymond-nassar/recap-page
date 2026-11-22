@@ -1,3 +1,4 @@
+import { beforeXmenEraCatalogLists, retiredXmenIds } from './helpers/xmen-era-history.mjs';
 import { currentReadingCensus, legacyOwnerPeers } from './helpers/current-reading-library.mjs';
 import test from 'node:test';
 import { mcuEditorial } from '../scripts/lib/mcu-editorial.mjs';
@@ -137,6 +138,8 @@ test('owner Daredevil frozen approvals remain valid across the complete current 
   ]);
   const byId = new Map(catalog.lists.map((entry) => [entry.id, entry]));
   byId.set('marvel-multiverse', mcuEditorial.withdrawal.catalogEntry);
+  // The review predates the X-Men era replacement; its retired pair is restored from the baseline.
+  for (const entry of beforeXmenEraCatalogLists(catalog.lists)) if (!byId.has(entry.id)) byId.set(entry.id, entry);
   const visible = ledger.libraryReview.visibleOrderIds.map((orderId) => {
     const entry = byId.get(orderId);
     assert.ok(entry, `reviewed visible order ${orderId} is missing`);
@@ -199,13 +202,14 @@ test('owner Daredevil frozen approvals remain valid across the complete current 
     issueIds: issueIdsFromValue(await json(`src/data/${entry.file}`)),
   })));
   const current = buildComparisonReport({ candidateIds: expectedIds,
-    orders: [...currentReviewedOrders, ...laterOrders].filter((row) => row.orderId !== 'marvel-multiverse') });
+    orders: [...currentReviewedOrders, ...laterOrders].filter((row) => row.orderId !== 'marvel-multiverse' && !retiredXmenIds.includes(row.orderId)) });
   assert.equal(current.comparisonCount, currentReadingCensus.peers);
   const activePeerIds = [...new Set([...manifest.lists, ...catalog.lists].map((entry) => entry.id))]
     .filter((peerId) => peerId !== id).sort();
   assert.deepEqual(current.comparisons.map((entry) => entry.orderId).sort(), activePeerIds);
   assert.equal(activePeerIds.includes('spider-man-no-way-home-owner-selected'), false);
-  assert.equal(legacyOwnerPeers(current.comparisons).filter((entry) => entry.relationship === 'none').length, 287);
+  assert.equal(legacyOwnerPeers(current.comparisons).filter((entry) => entry.relationship === 'none').length,
+    287 - retiredXmenIds.length);
   assert.deepEqual(legacyOwnerPeers(current.comparisons).filter((entry) => entry.relationship !== 'none'),
     report.comparisons.filter((entry) => entry.relationship !== 'none'));
   assert.deepEqual(legacyOwnerPeers(current.comparisons).filter((entry) => later.some((peer) => peer.id === entry.orderId))

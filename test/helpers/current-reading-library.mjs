@@ -11,6 +11,7 @@ import { ultimateSelectionDelta, ultimateSelectionEmptyDelta } from '../../scrip
 import { xmenFirstClassDelta } from './xmen-first-class-history.mjs';
 import { ultimateIntroCorrectionDelta } from './ultimate-marvel-intro-history.mjs';
 import { tieInRevisions } from './mcu-tie-in-history.mjs';
+import { xmenEraItemDelta, xmenEraPlaceholderDelta, xmenEraReplacements } from './xmen-era-history.mjs';
 
 const { captureSha256, ...baseline } = JSON.parse(readFileSync(
   new URL('../fixtures/reading-library-baseline.json', import.meta.url), 'utf8',
@@ -107,16 +108,20 @@ export const currentReadingCensus = Object.freeze({
   complete: baseline.payloadCounts.complete + addedRows - addedPlaceholderRows + spiderManSelectionItemDelta
     + amazingSpiderManSupplementDelta + wolverineCorrectionItemDelta + thorCorrectionItemDelta
     + ultimateSelectionDelta - ultimateSelectionEmptyDelta + xmenFirstClassDelta + ultimateIntroCorrectionDelta + tieInRows - 2
+    + xmenEraItemDelta - xmenEraPlaceholderDelta
     + identityRevisions.guides.filter((entry) => entry.placeholderReplacement)
       .reduce((total, entry) => total + entry.issueIds.length, 0),
   totalItems: baseline.payloadCounts.total + addedRows + spiderManSelectionItemDelta
     + amazingSpiderManSupplementDelta + wolverineCorrectionItemDelta + thorCorrectionItemDelta
-    + ultimateSelectionDelta + xmenFirstClassDelta + ultimateIntroCorrectionDelta + tieInRows - 2,
-  itemFiles: 297 + rosterAdditionCount,
+    + ultimateSelectionDelta + xmenFirstClassDelta + ultimateIntroCorrectionDelta + tieInRows - 2 + xmenEraItemDelta,
+  // The X-Men era guides replace the retired pair in discovery, but both retired payloads stay on
+  // disk for saved lists, so each replacement adds an item file.
+  itemFiles: 297 + rosterAdditionCount + xmenEraReplacements.size,
 });
 
 function expectedRosters(contracts, curatedGuides = registeredCuratedGuides) {
-  const expectedSources = baseline.sourceIds.filter((id) => id !== 'marvel-multiverse');
+  const expectedSources = baseline.sourceIds.filter((id) => id !== 'marvel-multiverse')
+    .map((id) => xmenEraReplacements.get(id) ?? id);
   for (const contract of [...contracts, ...curatedGuides]) {
     if (baselineOwnerIds.has(contract.id)) continue;
     const at = expectedSources.indexOf(contract.insertionAnchor?.beforeId);
@@ -139,8 +144,11 @@ export function assertCurrentReadingRoster(
     'Current visible roster must retain generated children and omit hidden parents.');
 }
 
+// The X-Men era replacements are later additions in the retired pair's slot, not legacy peers.
+const laterAdditionIds = new Set([...registeredCatalogAdditionIds, ...xmenEraReplacements.values()]);
+
 export function legacyOwnerPeers(entries) {
-  return entries.filter((entry) => !registeredCatalogAdditionIds.includes(
+  return entries.filter((entry) => !laterAdditionIds.has(
     typeof entry === 'string' ? entry : entry.id ?? entry.orderId,
   ));
 }

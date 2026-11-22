@@ -13,6 +13,7 @@ import { sourceCreditRevisions } from '../scripts/lib/source-credit-revisions.mj
 import {
   beforeUltimateSelectionEntry, beforeUltimateSelectionCatalogEntry, beforeUltimateSelectionPayloadText,
 } from './helpers/ultimate-spider-man-selection-history.mjs';
+import { retiredXmenEntry } from './helpers/xmen-era-history.mjs';
 
 const json = async (file) => JSON.parse(await readFile(new URL(`../${file}`, import.meta.url), 'utf8'));
 const text = (file) => readFile(new URL(`../${file}`, import.meta.url), 'utf8');
@@ -33,11 +34,20 @@ test('the committed description revision record is sealed and matches published 
   const manifest = await json('src/data/curated-lists.json');
   const catalog = await json('src/data/catalog.json');
   for (const edit of descriptionRevisions.entries) {
-    const entry = beforeUltimateSelectionEntry(manifest.lists.find(({ id }) => id === edit.id));
     const payload = JSON.parse(beforeUltimateSelectionPayloadText(edit.file, await text(`src/data/${edit.file}`)));
+    assert.equal(payload.description, edit.after, `${edit.id}: payload copy`);
+    const retired = retiredXmenEntry(edit.id);
+    if (retired) {
+      // A retired guide keeps its manifest copy in its retirement record, off discovery.
+      assert.equal(retired.out, edit.file, `${edit.id}: retired file`);
+      assert.equal(beforeUltimateSelectionEntry(retired).description, edit.after, `${edit.id}: retired manifest copy`);
+      assert.equal(manifest.lists.some(({ id }) => id === edit.id), false, `${edit.id}: retired from the manifest`);
+      assert.equal(catalog.lists.some(({ id }) => id === edit.id), false, `${edit.id}: retired from the catalog`);
+      continue;
+    }
+    const entry = beforeUltimateSelectionEntry(manifest.lists.find(({ id }) => id === edit.id));
     const card = beforeUltimateSelectionCatalogEntry(catalog.lists.find(({ id }) => id === edit.id));
     assert.equal(entry.description, edit.after, `${edit.id}: manifest copy`);
-    assert.equal(payload.description, edit.after, `${edit.id}: payload copy`);
     assert.equal(card.description, edit.after, `${edit.id}: catalog copy`);
   }
 });

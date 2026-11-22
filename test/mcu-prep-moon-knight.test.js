@@ -1,3 +1,4 @@
+import { beforeXmenEraCatalogLists, beforeXmenEraOrders } from './helpers/xmen-era-history.mjs';
 import test from 'node:test';
 import { mcuEditorial } from '../scripts/lib/mcu-editorial.mjs';
 import { legacyOwnerPeers, registeredCatalogAdditionIds } from './helpers/current-reading-library.mjs';
@@ -258,7 +259,7 @@ test('Moon Knight preserves human-approved snapshots and checks the complete cur
   const library = await loadLibrarySnapshot();
   const historicalLibrary = await loadHistoricalReadingChoiceLibrary();
   const catalog = await readJson('src', 'data', 'catalog.json');
-  const entries = catalog.lists.filter((entry) => entry.id !== id);
+  const entries = beforeXmenEraCatalogLists(catalog.lists).filter((entry) => entry.id !== id);
   const visibleOrders = await Promise.all(entries.map(async (entry) => ({
     id: entry.id, issueIds: issueIdsFromValue(await readJson('src', 'data', entry.file)).map(String),
   })));
@@ -294,7 +295,7 @@ test('Moon Knight preserves human-approved snapshots and checks the complete cur
       currentLibraryDigest: libraryDigestExcludingOrders(historicalLibrary, [id, ...laterIds]),
       expectedOrderIds: historicalLibrary.lists.filter((entry) => entry.id !== id && !laterIds.includes(entry.id))
         .map((entry) => entry.id),
-      currentOrders: library.orders.filter((order) => order.orderId !== id),
+      currentOrders: beforeXmenEraOrders(library.orders).filter((order) => order.orderId !== id),
       count: 203,
     },
     {

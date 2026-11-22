@@ -6,6 +6,7 @@ import { assertApprovedRelationshipReview } from '../scripts/author-cbh-packet.m
 import { CBH_SOURCE_PROVIDER, libraryDigestExcludingOrders, validateFrozenPacket } from '../scripts/lib/cbh-inventory.mjs';
 import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
 import { readOwnerGuideRegistry } from '../scripts/lib/owner-guide-registry.mjs';
+import { beforeXmenEraManifest, beforeXmenEraOrders } from './helpers/xmen-era-history.mjs';
 import { loadLibrarySnapshot } from '../scripts/report-order-overlap.mjs';
 import { parseCatalog } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
@@ -156,9 +157,11 @@ test('the Comic Book Herald inventory, packets and relationship approvals stay c
   const reviewedDigest = libraryDigestExcludingOrders({
     ...library,
     manifest: descriptionRevisions.undoManifest(
-      beforeWolverineCorrectionManifest(beforeAmazingSpiderManSupplementManifest(library.manifest)),
+      beforeWolverineCorrectionManifest(beforeAmazingSpiderManSupplementManifest(beforeXmenEraManifest(library.manifest))),
     ),
-    orderIssueIds: beforeWolverineCorrectionOrders(beforeAmazingSpiderManSupplementOrders(library.orderIssueIds)),
+    // These approvals predate the X-Men era replacement, so the retired pair is restored in its slot.
+    orderIssueIds: beforeWolverineCorrectionOrders(beforeAmazingSpiderManSupplementOrders(
+      beforeXmenEraOrders(library.orderIssueIds))),
   }, [...cbhIds, ...ownerIds, ...later, ...laterModernTimelineIds]);
   const mappings = Object.fromEntries(await Promise.all(cbhIds.map(async (id) => [id,
     await readJson(`scripts/data/cbh-mappings/${id}.json`)])));

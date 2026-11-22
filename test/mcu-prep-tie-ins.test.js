@@ -199,7 +199,12 @@ test('tie-in reader links keep the exact matched viewers and preserve every earl
   ]);
   assert.ok(selected.every(({ basis, source }) =>
     basis === 'exact' && source === 'continuity-guide-discord-2026-11-19'));
-  const previous = links.links.filter(({ issueId }) => !additions.has(issueId));
+  // The X-Men era delivery added these three links independently; keeping them out of the frozen
+  // set lets the digest still prove that no earlier link moved under either change.
+  const xmenEra = new Map([[12363, 6891], [19872, 19401], [23510, 19719]]);
+  assert.ok([...xmenEra].every(([issueId, viewer]) => !additions.has(issueId)
+    && links.links.some((link) => link.issueId === issueId && link.viewer === viewer)));
+  const previous = links.links.filter(({ issueId }) => !additions.has(issueId) && !xmenEra.has(issueId));
   assert.equal(previous.length, 17663);
   assert.equal(digest(previous), '0bec147ce327f7287cd5d6a02f6c303295a5f51c78da9f43a9a3be6e981d219f');
   const { unapprovedIssueIds, ...frozenMu } = mu;

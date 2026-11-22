@@ -36,6 +36,7 @@ import {
   beforeUltimateIntroCatalogEntry, beforeUltimateIntroEntry, beforeUltimateIntroIssueIds,
   beforeUltimateIntroPayloadText,
 } from './ultimate-marvel-intro-history.mjs';
+import { beforeXmenEraManifest } from './xmen-era-history.mjs';
 
 const root = fileURLToPath(new URL('../..', import.meta.url));
 const curatedGuideRegistry = JSON.parse(readFileSync(
@@ -150,6 +151,7 @@ export function pathsWithinLists(paths, lists, presentIds = []) {
 
 // Source approvals bind the original names and vectors, not the later catalog's renamed choices.
 export function historicalReadingChoiceManifest(manifest) {
+  manifest = beforeXmenEraManifest(manifest);
   const beforeSupplement = {
     ...manifest, lists: manifest.lists.map((entry) =>
       beforeWolverineCorrectionEntry(beforeAmazingSpiderManSupplementEntry(entry))),
@@ -373,7 +375,8 @@ export async function loadHistoricalReadingChoiceLibrary(options = {}) {
 }
 
 export async function loadBeforeAmazingSpiderManSupplementLibrary(currentManifest) {
-  const manifest = beforeWolverineCorrectionManifest(beforeAmazingSpiderManSupplementManifest(beforeTieInManifest(currentManifest)));
+  const manifest = beforeWolverineCorrectionManifest(beforeAmazingSpiderManSupplementManifest(
+    beforeXmenEraManifest(beforeTieInManifest(currentManifest))));
   const dir = await mkdtemp(path.join(os.tmpdir(), 'amazing-spider-man-history-'));
   tempDirs.add(dir);
   const payloadDir = path.join(dir, 'payloads');
@@ -397,7 +400,7 @@ export async function loadBeforeAmazingSpiderManSupplementLibrary(currentManifes
 
 export async function loadBeforeWolverineCorrectionLibrary() {
   const live = JSON.parse(await readFile(path.join(root, 'src', 'data', 'curated-lists.json'), 'utf8'));
-  const manifest = beforeWolverineCorrectionManifest(beforeTieInManifest(live));
+  const manifest = beforeWolverineCorrectionManifest(beforeXmenEraManifest(beforeTieInManifest(live)));
   const dir = await mkdtemp(path.join(os.tmpdir(), 'wolverine-history-'));
   tempDirs.add(dir);
   const payloadDir = path.join(dir, 'payloads');

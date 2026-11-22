@@ -6,6 +6,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { modernTimelinePosition } from '../src/js/views/catalog.js';
 import { currentReadingCensus } from './helpers/current-reading-library.mjs';
+import { retiredXmenEntry, retiredXmenIds } from './helpers/xmen-era-history.mjs';
 import { compareIssueSets, issueIdsFromValue } from '../scripts/lib/cbh-overlap.mjs';
 import { curatedLedgerDigestFor, curatedRelationshipReportDigestFor } from '../scripts/lib/owner-guide.mjs';
 import { validateApprovalDigest } from '../scripts/lib/cbh-inventory.mjs';
@@ -120,6 +121,10 @@ test('Siege retains exact source accounting and human authority for the complete
   }
   for (const entry of catalog.lists) if (entry.id !== ledger.id) {
     peers.set(entry.id, JSON.parse(readFileSync(join(ROOT, 'src', 'data', entry.file), 'utf8')));
+  }
+  // The sealed report predates the X-Men era replacement; its retired peers keep their payloads.
+  for (const id of retiredXmenIds) if (!peers.has(id)) {
+    peers.set(id, JSON.parse(readFileSync(join(ROOT, 'src', 'data', retiredXmenEntry(id).out), 'utf8')));
   }
   assert.equal(report.comparisonCount, 340);
   assert.equal(report.comparisons.length, report.comparisonCount);

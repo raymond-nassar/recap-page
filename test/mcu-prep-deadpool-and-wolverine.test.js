@@ -1,6 +1,7 @@
 import { currentReadingCensus, legacyOwnerPeers } from './helpers/current-reading-library.mjs';
 import test from 'node:test';
 import { withRetiredOrders } from './helpers/mcu-editorial-history.mjs';
+import { beforeXmenEraCatalogLists, beforeXmenEraOrders, retiredXmenIds } from './helpers/xmen-era-history.mjs';
 import { mcuEditorial } from '../scripts/lib/mcu-editorial.mjs';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
@@ -234,7 +235,7 @@ test('approved relationships cover the complete library including generated chil
   assert.deepEqual(legacyOwnerPeers(addedPeerIds), ['mcu-prep-shang-chi-and-the-legend-of-the-ten-rings',
     'mcu-prep-moon-knight', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel', 'mcu-prep-captain-america-brave-new-world', 'avengers-doomsday-secret-wars', 'mcu-prep-daredevil-born-again']);
   assert.deepEqual(recorded.comparisons.filter((entry) => !activePeerIds.has(entry.orderId))
-    .map((entry) => entry.orderId), ['marvel-multiverse', 'spider-man-no-way-home-owner-selected']);
+    .map((entry) => entry.orderId), ['marvel-multiverse', 'spider-man-no-way-home-owner-selected', ...retiredXmenIds]);
   assert.deepEqual(current.comparisons.filter((entry) => recordedPeerIds.has(entry.orderId)),
     recorded.comparisons.filter((entry) => activePeerIds.has(entry.orderId)));
   assert.deepEqual(legacyOwnerPeers(current.comparisons).filter((entry) => !recordedPeerIds.has(entry.orderId))
@@ -261,7 +262,9 @@ test('approved relationships cover the complete library including generated chil
   const reviewed = buildComparisonReport({ candidateIds: expectedVector.map(String), orders: reviewedPeers });
   assert.deepEqual(report.comparisons, reviewed.comparisons);
   const archived = mcuEditorial.withdrawal.catalogEntry;
-  const historicalEntries = [...completeManifest.lists];
+  // The review predates the X-Men era replacement, so its digest holds the retired pair in place.
+  const historicalEntries = beforeXmenEraCatalogLists(completeManifest.lists)
+    .map((entry) => ({ ...entry, out: entry.out ?? entry.file }));
   const archivedPosition = historicalEntries.findIndex(({ id }) => id === mcuEditorial.withdrawal.beforeId);
   assert.ok(archivedPosition >= 0);
   historicalEntries.splice(archivedPosition, 0, { ...archived, out: archived.file });
@@ -271,7 +274,7 @@ test('approved relationships cover the complete library including generated chil
       ...historicalReadingChoiceCatalogEntry(entry), out: entry.out,
     })),
   };
-  const historicalOrders = orders.map((order) => ({
+  const historicalOrders = beforeXmenEraOrders(orders).map((order) => ({
     ...order, issueIds: historicalReadingChoiceIssueIds(order.id, order.issueIds),
   }));
   historicalOrders.splice(archivedPosition, 0, {

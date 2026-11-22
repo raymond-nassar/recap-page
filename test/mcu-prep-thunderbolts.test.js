@@ -1,3 +1,4 @@
+import { beforeXmenEraCatalogLists, retiredXmenIds } from './helpers/xmen-era-history.mjs';
 import { currentReadingCensus, legacyOwnerPeers } from './helpers/current-reading-library.mjs';
 import test from 'node:test';
 import { beforeMcuEditorialEntry, mcuEditorial } from '../scripts/lib/mcu-editorial.mjs';
@@ -308,7 +309,16 @@ test('Thunderbolts preserves frozen approval and rechecks the complete current v
   const publicationPeers = new Set(report.comparisons.map((entry) => entry.orderId));
   const currentDescriptorsBefore = structuredClone(currentOrders.map((entry) => entry.descriptor));
   const archived = mcuEditorial.withdrawal.catalogEntry;
-  const publicationOrders = [...currentOrders, {
+  // Publication predates the X-Men era replacement, so the retired pair's baseline card and payload
+  // take back the slot their replacements hold now.
+  const historicalDescriptors = beforeXmenEraCatalogLists(currentOrders.map((entry) => entry.descriptor));
+  const publicationOrders = [...await Promise.all(currentOrders.map(async (entry, index) => {
+    const descriptor = historicalDescriptors[index];
+    return descriptor === entry.descriptor ? entry : {
+      orderId: descriptor.id, file: descriptor.file, descriptor,
+      issueIds: (await readJson(`src/data/${descriptor.file}`)).items.map((item) => String(item.issueId)),
+    };
+  })), {
     orderId: archived.id, file: archived.file, descriptor: archived,
     issueIds: (await readJson(`src/data/${archived.file}`)).items.map((item) => String(item.issueId)),
   }].sort((left, right) => left.orderId.localeCompare(right.orderId));
@@ -360,7 +370,8 @@ test('Thunderbolts preserves frozen approval and rechecks the complete current v
     .map((entry) => entry.orderId), ['avengers-doomsday-secret-wars', 'mcu-prep-captain-america-brave-new-world', 'mcu-prep-daredevil-born-again', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-moon-knight',
     'mcu-prep-ms-marvel', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-she-hulk', 'mcu-prep-spider-man-brand-new-day']);
   assert.deepEqual(recorded.comparisons.filter((entry) => !activePeerIds.has(entry.orderId))
-    .map((entry) => entry.orderId), ['marvel-multiverse', 'spider-man-no-way-home-owner-selected']);
+    // The retired X-Men pair stays recorded although it has left the active library.
+    .map((entry) => entry.orderId), ['marvel-multiverse', 'spider-man-no-way-home-owner-selected', ...retiredXmenIds]);
   assert.deepEqual(recorded.comparisons.filter((entry) => activePeerIds.has(entry.orderId)),
     current.comparisons.filter((entry) => recordedPeerIds.has(entry.orderId)));
   assert.equal(recorded.comparisonCount, 284);

@@ -216,8 +216,9 @@ test('AoA published checklist preserves 262 positions under factual section head
   const chosen = parsed.entries.find((entry) => entry.sourceKey === '275');
   assert.match(chosen.section, /Older-edition companion: The Chosen/);
   assert.equal(manifest.lists.length, currentReadingCensus.sources);
+  // The retired X-Men pair's slot passed to its separately addable replacements.
   assert.equal(manifest.lists[manifest.lists.findIndex((entry) => entry.id === id) + 1].id,
-    'xmen-claremont');
+    'xmen-silver-age');
   assert.deepEqual(withoutDiscoveryTags(descriptionRevisions.undoEntry(manifest.lists.find((entry) => entry.id === id))), packet.proposedManifest);
   assert.doesNotThrow(() => validateInventoryState(inventory));
 });

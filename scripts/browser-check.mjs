@@ -3597,7 +3597,7 @@ const SCENARIOS = [
           await starter.waitForSelector('#view-new-to-comics:not([hidden])');
           const ids = [
             'spider-man-best-of', 'iron-man-reading-order', 'captain-america-best-of', 'planet-hulk',
-            'thor-best-of', 'marvel-knights-to-planet-x-10', 'xmen-claremont', 'essential-avengers',
+            'thor-best-of', 'marvel-knights-to-planet-x-10', 'xmen-claremont-era', 'essential-avengers',
             'black-panther-reading-order', 'deadpool-best-of',
           ].map((id) => `list:${id}`);
           const snapshot = () => starter.evaluate(() => ({
@@ -4644,7 +4644,7 @@ const SCENARIOS = [
       };
       // #897 moved the fifteen young readers' lists from All to Young readers; #981 adds a Best of.
       t.check('desktop All, Complete, and Best of counts classify Adam exactly once',
-        desktop.all.readings === 73 && desktop.all.stories === 72
+        desktop.all.readings === 73 && desktop.all.stories === 73
         && desktop.all.cards === 73 && desktop.all.adamCards === 1
         && desktop.complete.readings === 38 && desktop.complete.stories === 38
         && desktop.complete.cards === 38 && desktop.complete.adamCards === 1
@@ -4660,7 +4660,7 @@ const SCENARIOS = [
         overflow: await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),
       };
       t.check('narrow All, Complete, and Best of counts preserve Adam without horizontal overflow',
-        narrow.all.readings === 73 && narrow.all.stories === 72
+        narrow.all.readings === 73 && narrow.all.stories === 73
         && narrow.all.cards === 73 && narrow.all.adamCards === 1
         && narrow.complete.readings === 38 && narrow.complete.stories === 38
         && narrow.complete.cards === 38 && narrow.complete.adamCards === 1
@@ -24993,12 +24993,14 @@ const deferral = await import('./browser-defer.mjs');
 const orderedImport = await import('./browser-ordered-import.mjs');
 SCENARIOS.push(...orderedImport.importScenarios({ preparePage }));
 MUTATIONS.push(...orderedImport.importMutations);
-SCENARIOS.push((await import('./browser-list-revisions.mjs')).listRevisions);
+const revisions = await import('./browser-list-revisions.mjs');
+SCENARIOS.push(revisions.listRevisions, revisions.legacyOffline);
 SCENARIOS.push(deferral.deferNext, deferral.deferLifecycle, deferral.deferPersistence);
 const completion = await import('./browser-completion.mjs');
 SCENARIOS.push(completion.completionLifecycle, completion.completionKeyboard, completion.completionRecommendations, completion.completionPersistence, completion.completionRatingFocus, completion.completionCommandFocus, completion.completionHomes, completion.completionEnjoymentOffer, completion.completionDestinationLinks);
 MUTATIONS.push(...completion.completionMutations);
-SCENARIOS.push((await import('./browser-order-export.mjs')).orderOnlyExport);
+const orderExports = await import('./browser-order-export.mjs');
+SCENARIOS.push(orderExports.orderOnlyExport, orderExports.legacyOrderExport);
 SCENARIOS.push((await import('./browser-bulk-read.mjs')).bulkRead);
 const doneUndo = await import('./browser-done-undo.mjs');
 SCENARIOS.push(doneUndo.doneUndo, doneUndo.doneDescription, doneUndo.doneHome, doneUndo.doneHint, doneUndo.readDoneHints, doneUndo.sidebarOptionsHints);
