@@ -191,6 +191,141 @@ test('native Back journey reveals auto-hidden navigation before the trusted More
   assert.match(back, /device\.pressBack\(\);[\s\S]*Navigation dismissal does not consume history/);
 });
 
+const INSTRUMENTATION_SOURCE = new URL('../packaging/android/app/src/androidTest/java/io/github/raymondnassar/recappage/prototype/NativeIntegrationTest.java', import.meta.url);
+const ACTIVITY_SOURCE = new URL('../packaging/android/app/src/main/java/io/github/raymondnassar/recappage/prototype/MainActivity.java', import.meta.url);
+
+function between(source, start, end) {
+  const from = source.indexOf(start);
+  if (from < 0) return null;
+  const to = source.indexOf(end, from + start.length);
+  return to < 0 ? null : source.slice(from, to);
+}
+
+// Candidate 44984763193 failed when the generic tap helper asked a popup the tap had just closed whether
+// it saw a click: a destroyed WebView never answers. These checks keep the expected close confined to
+// the two browser handoffs that cause it, and keep every other tap proving its click from the page.
+function popupHandoffFindings(java, activity) {
+  const findings = [];
+  const require = (ok, finding) => { if (!ok) findings.push(finding); };
+  const tapBody = between(java, 'private void tap(WebView target, String selector, PopupHandoff handoff)',
+    'private void recordDeliveredTap(');
+  const verify = between(java, 'private void verifyPopupHandoff(', 'private void tap(WebView target, String selector, PopupHandoff handoff)');
+  const closingTap = between(java, 'private void tapClosingPopup(', 'private void observePopupNavigations(');
+  const observer = between(java, 'private void observePopupNavigations(', 'private void verifyPopupHandoff(');
+  const diagnostics = between(java, 'private void captureTapDiagnostics()', '\n    }\n');
+  if (!tapBody || !verify || !closingTap || !observer || !diagnostics) return ['closing-tap helpers are missing'];
+  const poll = between(tapBody, 'waitFor(handoff == null', '\n            });');
+  const after = between(tapBody, 'if (handoff == null) {', '} catch (Exception | Error error)');
+  const ordinary = after && after.slice(0, after.indexOf('} else {'));
+  const closing = after && after.slice(after.indexOf('} else {'));
+  if (!poll || !ordinary || !closing || !after.includes('} else {')) {
+    return ['tap does not separate ordinary taps from the popup-closing handoff'];
+  }
+
+  require(/private void tap\(WebView target, String selector\) throws Exception \{\s*tap\(target, selector, null\);\s*\}/.test(java),
+    'ordinary taps do not take the ordinary path');
+  // Both kinds of tap must first prove one short touchscreen DOWN and UP. Only then may a closing tap
+  // look for its popup to go, and every other tap must still hear a trusted click from the page.
+  require(/recordDeliveredTap\(delivered\);\s*if \(!delivered\.complete\(\)\) return false;\s*assertTrue\([^;]*delivered\.shorterThan\(longPressThreshold\)\);\s*if \(handoff != null\) return !popupViews\(\)\.contains\(target\);\s*return truth\(target, "window\.__nativeTap\.events\.some\(e=>e\.type==='click' && e\.trusted && e\.onTarget\)"\);\s*$/.test(poll),
+    'the tap wait no longer proves delivery before the closing check and a trusted click otherwise');
+  require(/assertTrue\("Real pointer DOWN and UP reach " \+ selector, truth\(target,\s*"\['pointerdown','pointerup'\]\.every\(type=>window\.__nativeTap\.events\.some\("\s*\+ "e=>e\.type===type && e\.trusted && e\.onTarget\)\)"\)\);/.test(ordinary),
+    'ordinary taps no longer require trusted pointer DOWN and UP');
+  require(/assertFalse\("A short tap must not open text selection", truth\(target,\s*"window\.__nativeTap\.events\.some\(e=>e\.type==='contextmenu'\)"\)\);/.test(ordinary),
+    'ordinary taps no longer reject a context menu');
+  require(!/isAttachedToWindow/.test(tapBody), 'the tap accepts a detached WebView in place of evidence');
+  require(!/return true;/.test(poll), 'a tap can succeed without evidence');
+  require((tapBody.match(/setSource\(InputDevice\.SOURCE_TOUCHSCREEN\)/g) || []).length === 2
+    && /injectInputEvent\(down, false\)/.test(tapBody) && /injectInputEvent\(up, false\)/.test(tapBody)
+    && /MotionEvent\.obtain\(downTime, upTime, MotionEvent\.ACTION_UP, x, y, 0\)/.test(tapBody),
+  'the tap no longer injects one touchscreen DOWN and UP at the measured point');
+  require(/^\} else \{\s*verifyPopupHandoff\(target, handoff, delivered\);\s*\}\s*$/.test(closing)
+    && !/\b(evaluate|truth|asyncJs|text)\(/.test(verify),
+  'the closing tap questions a WebView it has closed or skips the handoff check');
+  const verifyChecks = [
+    [/assertEquals\([^;]*1, seen\.size\(\)\)/, 'exactly one navigation'],
+    [/assertEquals\([^;]*handoff\.url, navigation\.url\)/, 'the exact navigation address'],
+    [/assertTrue\([^;]*navigation\.mainFrame\)/, 'a main-frame navigation'],
+    [/assertTrue\([^;]*navigation\.gesture\)/, 'the user gesture of a trusted tap'],
+    [/navigation\.at >= delivered\.snapshot\(\)\[1\]/, 'a navigation after the delivered UP'],
+    [/assertEquals\([^;]*1, added\.size\(\)\)/, 'exactly one new intent'],
+    [/assertEquals\([^;]*Intent\.ACTION_VIEW, intent\.getAction\(\)\)/, 'a view intent'],
+    [/assertEquals\([^;]*handoff\.url, intent\.getDataString\(\)\)/, 'the exact handed-off address'],
+    [/assertEquals\([^;]*handoff\.browserPackage, intent\.getPackage\(\)\)/, 'the expected browser package'],
+    [/assertNull\([^;]*intent\.getComponent\(\)\)/, 'no explicit app component'],
+    [/assertTrue\([^;]*intent\.hasCategory\(Intent\.CATEGORY_BROWSABLE\)\)/, 'a browsable intent'],
+    [/assertFalse\([^;]*popupViews\(\)\.contains\(popup\)\)/, 'a closed popup'],
+    [/assertFalse\([^;]*popup\.isAttachedToWindow\(\)\)/, 'a detached popup'],
+    [/assertEquals\([^;]*handoff\.stateBefore, stateSummary\(\)\)/, 'unchanged saved reading data'],
+  ];
+  for (const [pattern, what] of verifyChecks) require(pattern.test(verify), `the handoff check no longer requires ${what}`);
+  const order = ['assertTrue("A closing tap starts on a live popup", popupViews().contains(popup));',
+    'observePopupNavigations(popup, handoff.navigations);', 'handoff.intentsBefore = Intents.getIntents().size();',
+    'handoff.stateBefore = stateSummary();', 'tap(popup, selector, handoff);'].map((step) => closingTap.indexOf(step));
+  require(order.every((at, i) => at >= 0 && (i === 0 || at > order[i - 1])),
+    'the closing tap does not record its baseline on a live popup before tapping');
+  const client = between(activity, 'private final class AssetClient extends WebViewClient', '\n    }\n');
+  const overrides = [...(client || '').matchAll(/@Override\s+public \w+ (\w+)\(/g)].map((match) => match[1]);
+  require(overrides.length > 0, 'the production WebView client was not found');
+  for (const name of overrides) {
+    require(new RegExp(`public \\w+ ${name}\\([\\s\\S]*?delegate\\.${name}\\(view, `).test(observer),
+      `the navigation observer does not forward ${name}`);
+  }
+  require(/seen\.add\(new PopupNavigation\(request\)\);\s*return delegate\.shouldOverrideUrlLoading\(view, request\);/.test(observer),
+    'the navigation observer does not record the navigation before the app decides it');
+  require(tapBody.includes('if (handoff != null) lastTapRecord.put("closesPopupTo", handoff.url);'),
+    'diagnostics cannot tell a closing tap from an ordinary one');
+  const quietDiagnostics = between(diagnostics, 'if (lastTapRecord.has("closesPopupTo")) {', '} else if (onMain(() -> lastTapTarget.isAttachedToWindow())) {');
+  require(quietDiagnostics !== null && !/\bevaluate\(/.test(quietDiagnostics),
+    'diagnostics question a popup the tap closed');
+  const threeArgumentTaps = [...java.matchAll(/\btap\(\w+, \w+, \w+\);/g)].map((match) => match[0]).sort();
+  require(JSON.stringify(threeArgumentTaps) === JSON.stringify(['tap(popup, selector, handoff);', 'tap(target, selector, null);']),
+    `only the closing helper may pass a handoff: ${threeArgumentTaps.join(' ')}`);
+  const closingCalls = [...java.matchAll(/(?<!void )\btapClosingPopup\(([^;{]*)\);/g)].map((match) => match[1]);
+  require(JSON.stringify(closingCalls) === JSON.stringify([
+    'popup, "#fallback", "https://read.marvel.com/#/book/900000099", defaultBrowser',
+    'popup, "#fallback", escape, "com.android.chrome"',
+  ]), `exactly the two browser fallbacks may close their popup: ${closingCalls.join(' | ')}`);
+  require(!/\btap\(popup, "#fallback"\)/.test(java), 'a browser fallback still uses an ordinary tap');
+  return findings;
+}
+
+test('only the two browser fallbacks may close the popup they tap, and they prove the handoff natively', () => {
+  const java = readFileSync(INSTRUMENTATION_SOURCE, 'utf8').replace(/\r\n/g, '\n');
+  const activity = readFileSync(ACTIVITY_SOURCE, 'utf8').replace(/\r\n/g, '\n');
+  assert.deepEqual(popupHandoffFindings(java, activity), []);
+  const mutate = (from, to) => {
+    assert.ok(java.includes(from), `mutation anchor is missing: ${from}`);
+    return java.replace(from, to);
+  };
+  const ordinaryClick = 'return truth(target, "window.__nativeTap.events.some(e=>e.type===\'click\' && e.trusted && e.onTarget)");';
+  const broken = {
+    // The shape of fc077e8c: any detached WebView counts as a delivered click.
+    'detachment blessed': mutate('                if (!delivered.complete()) return false;\n                assertTrue(',
+      '                if (!delivered.complete()) return false;\n                if (!onMain(() -> target.isAttachedToWindow())) return true;\n                assertTrue('),
+    'ordinary click unproved': mutate(ordinaryClick, 'return true;'),
+    'closing tap questions the page': mutate('if (handoff != null) return !popupViews().contains(target);',
+      'if (handoff != null) return truth(target, "true") && !popupViews().contains(target);'),
+    'closing check before delivery': mutate('                if (!delivered.complete()) return false;\n',
+      '                if (handoff != null) return !popupViews().contains(target);\n                if (!delivered.complete()) return false;\n'),
+    'closing tap skips the handoff check': mutate('verifyPopupHandoff(target, handoff, delivered);\n            }', '}'),
+    'ordinary pointers unchecked': mutate('assertTrue("Real pointer DOWN and UP reach " + selector, truth(target,', 'assertTrue("Real pointer DOWN and UP reach " + selector, true || truth(target,'),
+    'gesture unchecked': mutate('assertTrue("The navigation carries the user gesture of a trusted tap", navigation.gesture);', ''),
+    'any intent count': mutate('1, added.size());', 'added.size(), added.size());'),
+    'package unchecked': mutate('assertEquals("The handoff is pinned to the expected browser", handoff.browserPackage, intent.getPackage());', ''),
+    'state unchecked': mutate('assertEquals("The handoff does not change saved reading data", handoff.stateBefore, stateSummary());', ''),
+    'fallback tapped ordinarily': mutate('tapClosingPopup(popup, "#fallback", escape, "com.android.chrome");', 'tap(popup, "#fallback");'),
+    'another tap may close': mutate('tap(web, "#native-app-read");', 'tapClosingPopup(web, "#native-app-read", escape, "com.android.chrome");'),
+    'render loss not forwarded': mutate('return delegate.onRenderProcessGone(view, detail);', 'return false;'),
+    'diagnostics question the closed popup': mutate('lastTapRecord.put("targetAttached", onMain(() -> lastTapTarget.isAttachedToWindow()));',
+      'lastTapRecord.put("observed", evaluate(lastTapTarget, "1"));'),
+    'no baseline before the tap': mutate('        handoff.intentsBefore = Intents.getIntents().size();\n        handoff.stateBefore = stateSummary();\n        tap(popup, selector, handoff);',
+      '        tap(popup, selector, handoff);\n        handoff.intentsBefore = Intents.getIntents().size();\n        handoff.stateBefore = stateSummary();'),
+  };
+  for (const [name, source] of Object.entries(broken)) {
+    assert.notDeepEqual(popupHandoffFindings(source, activity), [], name);
+  }
+});
+
 test('Android CI stays explicitly opt-in and uses real offline Android with bounded evidence', () => {
   const workflow = readFileSync(new URL('../.github/workflows/ci.yml', import.meta.url), 'utf8');
   const runner = readFileSync(new URL('../scripts/android-emulator-ci.sh', import.meta.url), 'utf8');

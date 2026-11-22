@@ -43,6 +43,7 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.WindowInsets;
 import android.view.inspector.WindowInspector;
+import android.webkit.RenderProcessGoneDetail;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebResourceRequest;
@@ -592,7 +593,7 @@ public final class NativeIntegrationTest {
             assertEquals("Chrome is restored as the default browser",
                     Collections.singletonList("com.android.chrome"), browserRoleHolders());
             defaultBrowser = "com.android.chrome";
-            tap(popup, "#fallback");
+            tapClosingPopup(popup, "#fallback", "https://read.marvel.com/#/book/900000099", defaultBrowser);
         } else {
             defaultBrowser = afterClear.get(0);
             ResolveInfo restored = onMain(() -> MainActivity.defaultReaderBrowser(activity.getPackageManager(),
@@ -783,7 +784,7 @@ public final class NativeIntegrationTest {
         String escape = "https://www.marvelcomicsapp.com/viewer/900000004";
         asyncJs(popup, "const a=document.querySelector('#fallback');a.href=" + quote(escape)
                 + ";a.hidden=false;return true;");
-        tap(popup, "#fallback");
+        tapClosingPopup(popup, "#fallback", escape, "com.android.chrome");
         waitFor("Explicit browser escape closes the popup", WAIT_MS, () -> popupViews().isEmpty());
         assertEquals("Open in browser never tries the app", 0L, Intents.getIntents().stream()
                 .filter(intent -> "marvelcomicsapp://viewer?issueId=900000004".equals(intent.getDataString())).count());
@@ -1243,7 +1244,128 @@ public final class NativeIntegrationTest {
         }
     }
 
+    private static final class PopupNavigation {
+        final String url;
+        final boolean gesture;
+        final boolean mainFrame;
+        final long at;
+
+        PopupNavigation(WebResourceRequest request) {
+            url = request.getUrl().toString();
+            gesture = request.hasGesture();
+            mainFrame = request.isForMainFrame();
+            at = SystemClock.uptimeMillis();
+        }
+
+        JSONObject json() throws Exception {
+            return new JSONObject().put("url", url).put("gesture", gesture).put("mainFrame", mainFrame).put("at", at);
+        }
+    }
+
+    private static final class PopupHandoff {
+        final String url;
+        final String browserPackage;
+        final List<PopupNavigation> navigations = Collections.synchronizedList(new ArrayList<>());
+        int intentsBefore;
+        String stateBefore;
+
+        PopupHandoff(String url, String browserPackage) {
+            this.url = url;
+            this.browserPackage = browserPackage;
+        }
+    }
+
     private void tap(WebView target, String selector) throws Exception {
+        tap(target, selector, null);
+    }
+
+    // Only a tap whose own handler hands the comic to a browser may close the WebView it lands on.
+    // The production client dismisses the popup as part of that handoff, so the page cannot be asked
+    // afterwards whether it saw a trusted click: a closed WebView never answers. The gesture is
+    // proved natively instead, by the navigation request the click itself produces.
+    private void tapClosingPopup(WebView popup, String selector, String url, String browserPackage) throws Exception {
+        PopupHandoff handoff = new PopupHandoff(url, browserPackage);
+        assertTrue("A closing tap starts on a live popup", popupViews().contains(popup));
+        observePopupNavigations(popup, handoff.navigations);
+        handoff.intentsBefore = Intents.getIntents().size();
+        handoff.stateBefore = stateSummary();
+        tap(popup, selector, handoff);
+    }
+
+    private void observePopupNavigations(WebView popup, List<PopupNavigation> seen) throws Exception {
+        onMain(() -> {
+            WebViewClient delegate = popup.getWebViewClient();
+            popup.setWebViewClient(new WebViewClient() {
+                @Override
+                public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
+                    return delegate.shouldInterceptRequest(view, request);
+                }
+
+                @Override
+                public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                    seen.add(new PopupNavigation(request));
+                    return delegate.shouldOverrideUrlLoading(view, request);
+                }
+
+                @Override
+                public void onPageStarted(WebView view, String url, android.graphics.Bitmap icon) {
+                    delegate.onPageStarted(view, url, icon);
+                }
+
+                @Override
+                public void onPageFinished(WebView view, String url) {
+                    delegate.onPageFinished(view, url);
+                }
+
+                @Override
+                public void doUpdateVisitedHistory(WebView view, String url, boolean reload) {
+                    delegate.doUpdateVisitedHistory(view, url, reload);
+                }
+
+                @Override
+                public boolean onRenderProcessGone(WebView view, RenderProcessGoneDetail detail) {
+                    return delegate.onRenderProcessGone(view, detail);
+                }
+            });
+            return null;
+        });
+    }
+
+    private void verifyPopupHandoff(WebView popup, PopupHandoff handoff, DeliveredTap delivered) throws Exception {
+        JSONArray navigations = new JSONArray();
+        List<PopupNavigation> seen;
+        synchronized (handoff.navigations) {
+            seen = new ArrayList<>(handoff.navigations);
+        }
+        for (PopupNavigation navigation : seen) navigations.put(navigation.json());
+        lastTapRecord.put("navigations", navigations);
+        assertEquals("The tap produces exactly one popup navigation: " + navigations, 1, seen.size());
+        PopupNavigation navigation = seen.get(0);
+        assertEquals("The tap navigates to its exact destination", handoff.url, navigation.url);
+        assertTrue("The navigation is the popup's main frame", navigation.mainFrame);
+        assertTrue("The navigation carries the user gesture of a trusted tap", navigation.gesture);
+        assertTrue("The navigation follows the delivered touchscreen UP: " + lastTapRecord,
+                navigation.at >= delivered.snapshot()[1]);
+        List<Intent> all = Intents.getIntents();
+        List<Intent> added = new ArrayList<>(all.subList(handoff.intentsBefore, all.size()));
+        List<String> addedData = new ArrayList<>();
+        for (Intent intent : added) addedData.add(intent.getAction() + " " + intent.getDataString() + " " + intent.getPackage());
+        lastTapRecord.put("handoffIntents", new JSONArray(addedData));
+        assertEquals("The tap dispatches exactly one intent, to the browser and never to an app: " + addedData,
+                1, added.size());
+        Intent intent = added.get(0);
+        assertEquals("The handoff is a view intent", Intent.ACTION_VIEW, intent.getAction());
+        assertEquals("The handoff carries the exact destination", handoff.url, intent.getDataString());
+        assertEquals("The handoff is pinned to the expected browser", handoff.browserPackage, intent.getPackage());
+        assertNull("No explicit activity bypasses the browser's own filters", intent.getComponent());
+        assertTrue("The handoff is browsable", intent.hasCategory(Intent.CATEGORY_BROWSABLE));
+        assertFalse("The handed-off popup is closed", popupViews().contains(popup));
+        assertFalse("The handed-off popup is detached", onMain(() -> popup.isAttachedToWindow()));
+        assertNotNull("The main WebView stays attached", onMain(() -> web.getParent()));
+        assertEquals("The handoff does not change saved reading data", handoff.stateBefore, stateSummary());
+    }
+
+    private void tap(WebView target, String selector, PopupHandoff handoff) throws Exception {
         long preparationStarted = SystemClock.uptimeMillis();
         waitFor("Touchable DOM control " + selector, WAIT_MS, () -> truth(target,
                 "(() => {const e=document.querySelector(" + quote(selector) + ");"
@@ -1265,6 +1387,7 @@ public final class NativeIntegrationTest {
                 + ").scrollIntoView({block:'center',inline:'nearest',behavior:'instant'});return true;})()");
         lastTapTarget = target;
         lastTapRecord = new JSONObject().put("selector", selector).put("preparationStarted", preparationStarted);
+        if (handoff != null) lastTapRecord.put("closesPopupTo", handoff.url);
         tapDiagnostics.put(lastTapRecord);
         DeliveredTap delivered = new DeliveredTap();
         boolean observing = false;
@@ -1331,18 +1454,24 @@ public final class NativeIntegrationTest {
             }
             long longPressThreshold = ViewConfiguration.getLongPressTimeout();
             lastTapRecord.put("longPressThresholdMs", longPressThreshold);
-            waitFor("Trusted click reaches " + selector, WAIT_MS, () -> {
+            waitFor(handoff == null ? "Trusted click reaches " + selector
+                    : "Trusted tap on " + selector + " hands off and closes its popup", WAIT_MS, () -> {
                 recordDeliveredTap(delivered);
                 if (!delivered.complete()) return false;
                 assertTrue("Delivered touchscreen interval must stay shorter than a long press: " + lastTapRecord,
                         delivered.shorterThan(longPressThreshold));
+                if (handoff != null) return !popupViews().contains(target);
                 return truth(target, "window.__nativeTap.events.some(e=>e.type==='click' && e.trusted && e.onTarget)");
             });
-            assertTrue("Real pointer DOWN and UP reach " + selector, truth(target,
-                    "['pointerdown','pointerup'].every(type=>window.__nativeTap.events.some("
-                            + "e=>e.type===type && e.trusted && e.onTarget))"));
-            assertFalse("A short tap must not open text selection", truth(target,
-                    "window.__nativeTap.events.some(e=>e.type==='contextmenu')"));
+            if (handoff == null) {
+                assertTrue("Real pointer DOWN and UP reach " + selector, truth(target,
+                        "['pointerdown','pointerup'].every(type=>window.__nativeTap.events.some("
+                                + "e=>e.type===type && e.trusted && e.onTarget))"));
+                assertFalse("A short tap must not open text selection", truth(target,
+                        "window.__nativeTap.events.some(e=>e.type==='contextmenu')"));
+            } else {
+                verifyPopupHandoff(target, handoff, delivered);
+            }
         } catch (Exception | Error error) {
             failure = error;
             throw error;
@@ -1387,7 +1516,10 @@ public final class NativeIntegrationTest {
 
     private void captureTapDiagnostics() throws Exception {
         if (lastTapTarget == null || lastTapRecord == null) return;
-        if (onMain(() -> lastTapTarget.isAttachedToWindow())) {
+        if (lastTapRecord.has("closesPopupTo")) {
+            // Asking a popup that may be mid-dismissal would hang on a callback that never comes.
+            lastTapRecord.put("targetAttached", onMain(() -> lastTapTarget.isAttachedToWindow()));
+        } else if (onMain(() -> lastTapTarget.isAttachedToWindow())) {
             lastTapRecord.put("observed", evaluate(lastTapTarget,
                     "({events:window.__nativeTap?.events ?? [],selection:String(window.getSelection()).slice(0,80),"
                             + "activation:navigator.userActivation.isActive})"));
