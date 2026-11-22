@@ -1144,6 +1144,19 @@ test('the current release uses the in-app What\'s new content when published', (
   assertCurrentReleaseMatchesApp(changelog, releaseDates, homeUpdatesContent, releaseContent.html);
 });
 
+test('the 4.8.0 release distinguishes offline comparison and mobile app-first reading', () => {
+  const page = releasesPage(changelog, new Map([['4.8.0', '2030-01-02']])).html;
+  const items = releaseItems('4.8.0', page);
+  assert.match(
+    items.find((item) => item.includes('original published order')),
+    /^<strong>Offline comparison: supported browsers\.<\/strong> /,
+  );
+  assert.match(
+    items.find((item) => item.includes('Read can take you straight')),
+    /^<strong>Direct reading links: every platform\. Marvel Comics app first: Android, iPhone and iPad\.<\/strong> /,
+  );
+});
+
 test('platform-bound release notes name their platforms and nothing claims iPhone or iPad backup', () => {
   const historical = releasesPage(changelog, new Map([
     ['4.3.0', releaseDates.get('4.3.0')],

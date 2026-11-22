@@ -810,7 +810,10 @@ test('iOS About states private app storage, device backups and what the requests
   const requestDetails = details(page);
   assert.match(requestDetails, /What leaves this device, request by request/);
   assert.match(prose(requestDetails), /What leaves this device is the ordinary business/);
-  assert.doesNotMatch(prose(requestDetails), /Android|OneDrive|Microsoft|browser|cloud backup/i);
+  const requestText = prose(requestDetails);
+  const readSentence = 'When a comic has a Marvel Comics app link, pressing Read opens that link in the Marvel Comics app or in your browser.';
+  assert.equal(requestText.split(readSentence).length - 1, 1, 'the approved Read sentence appears exactly once');
+  assert.doesNotMatch(requestText.replace(readSentence, ''), /Android|OneDrive|Microsoft|browser|cloud backup/i);
   const hasSplitWordComment = (html) => {
     let cursor = 0;
     while (true) {

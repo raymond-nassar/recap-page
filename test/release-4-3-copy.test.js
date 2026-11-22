@@ -63,14 +63,14 @@ test('approved field extraction preserves trailing whitespace and blank lines', 
 // https://github.com/raymond-nassar/recap-page/issues/1158#issuecomment-6713935238
 // The collected-book link wording was approved on #1203:
 // https://github.com/raymond-nassar/recap-page/issues/1203#issuecomment-6842253465
-// The Read wording was subsequently approved on 18 November 2026.
+// The shared Read sentence was revised again with the owner's approval on 19 November 2026.
 // The Android, iPhone and iPad Read wording for the Marvel Comics app was approved word for word on
 // 19 November 2026.
 test('the privacy policy preserves its approved wording', () => {
   const privacy = read('PRIVACY.md');
   assert.match(privacy, /It normally backs up no more than once every five\s+minutes\./);
   assert.match(privacy, /after a progress check confirms that\s+this device's data needs backing up\./);
-  assert.equal(digest(privacy), '0fa0ee150447ec3e88e928a887558a4ae7864fa7e50a20a8c95e068b6c98e675');
+  assert.equal(digest(privacy), 'c2081ece23494aaf640c9bec367cba9a810155c48d4f4d471f6114b50263259f');
 });
 
 test('the Microsoft Store packet fields are the approved text', () => {
