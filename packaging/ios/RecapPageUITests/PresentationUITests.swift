@@ -2224,7 +2224,7 @@ final class PresentationUITests: XCTestCase {
             let app = launch(category: category, emptyHomeTest: true)
             _ = try probeResult(of: app)
             // First-run Home no longer has its own introduction or Search shortcut: the owner moved
-            // the first step onto the Modern Timeline category tile, marked "Recommended start here",
+            // the first step onto the Modern Timeline category tile, marked "Start here",
             // and left global Search to the bottom bar (docs/UX_IMPROVEMENT_PLAN.md). These are the
             // two targets a first-time reader is offered, so both are checked as one native target.
             let firstRun = app.webViews.firstMatch.otherElements.matching(
@@ -2241,7 +2241,7 @@ final class PresentationUITests: XCTestCase {
                     XCTAssertEqual(link.label, "Search", "Search keeps its full native label")
                     assertNoSeparateTextTarget(["Search"], in: app.webViews.firstMatch, within: link, for: key)
                 } else {
-                    let prefix = "Recommended start here. Modern Timeline. "
+                    let prefix = "Start here. Modern Timeline. "
                     link = firstRun.links.matching(NSPredicate(format: "label BEGINSWITH %@", prefix)).firstMatch
                     XCTAssertTrue(link.waitForExistence(timeout: 30), "the recommended tile is one native link target")
                     revealNativeTarget(link, in: app, precise: true)
@@ -2252,7 +2252,7 @@ final class PresentationUITests: XCTestCase {
                                   "the tile's full native label is its three drawn pieces")
                     XCTAssertNotNil(count.range(of: #"^[1-9][0-9]* Reading Lists?$"#, options: .regularExpression),
                                     "the tile's native label ends in its Reading List count, not \(count)")
-                    assertNoSeparateTextTarget(["Recommended start here", "Modern Timeline", count],
+                    assertNoSeparateTextTarget(["Start here", "Modern Timeline", count],
                                                in: firstRun, within: link, for: key)
                     assertNoSeparateTextTarget([link.label], in: app.webViews.firstMatch, within: link, for: key)
                 }

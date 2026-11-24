@@ -4500,7 +4500,7 @@ const startingPointView = createStartingPointView({
   announce,
   clearLoadNotice: () => clearNotice(CATALOG_LOAD),
   onLoadFailure: ({ error, isCurrent, retry }) => reportBundledLoadFailure({
-    report: '#guide-preview-report',
+    report: '#guide-start-report',
     failure: `The catalog could not be loaded: ${error.message}. Your lists are unchanged.`,
     key: CATALOG_LOAD,
     subject: 'the catalog',

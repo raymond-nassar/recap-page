@@ -81,7 +81,7 @@ shared `--target` token for a 44-point hit region, and the standalone Read links
 and hides its presentation-only text wrapper from assistive technology, so the link target is not
 represented by a smaller nested text element. First-run Home no longer has its own Start with
 Modern Timeline and Search links. A first-time reader is offered the Modern Timeline category tile,
-marked Recommended start here, and the Search link in the navigation. The tile's name comes from
+marked Start here, and the Search link in the navigation. The tile's name comes from
 the app's own label rather than from this native naming, whose list still names the two removed
 Home links and does not include category tiles. The empty-Home native scenario checks, at the
 default and largest text sizes, that each of the two targets has its full name, is at least 44

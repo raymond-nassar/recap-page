@@ -31,7 +31,7 @@ export const SCREENSHOTS = [
     route: '#/home',
     view: 'view-home',
     wait: '#home-primary-paths .home-path',
-    text: ['Explore', 'New to Marvel Comics?', 'Modern Timeline', 'Young readers'],
+    text: ['Explore', 'New to comics?', 'Modern Timeline', 'Young readers'],
     state: 'empty',
     dismissNotice: true,
   },

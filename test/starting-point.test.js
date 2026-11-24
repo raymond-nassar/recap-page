@@ -64,17 +64,43 @@ function harness({ load = async () => catalog } = {}) {
   };
 }
 
-test('the favorite question offers No preference and then every Character spotlight, most popular first', async () => {
+test('the favorite question names each character or team once, most popular first', async () => {
   const h = harness();
   await h.view.render();
   const options = h.nodes.favorite.children;
   assert.deepEqual([options[0].value, options[0].text], ['', 'No preference']);
-  assert.equal(options.length, 74, 'No preference plus the 73 Character spotlights in the current catalog');
-  assert.deepEqual(options.slice(1, 4).map(({ text }) => text),
-    ['10 Best Spider-Man (Peter Parker) Comics Reading List', 'Wolverine', 'Iron Man']);
+  assert.deepEqual(options.slice(1, 5).map(({ text }) => text),
+    ['Spider-Man (Peter Parker)', 'Wolverine', 'Iron Man', 'Captain America']);
+  const names = options.slice(1).map(({ text }) => text);
+  assert.equal(new Set(names).size, names.length, 'each subject is offered once');
+  assert.equal(names.length, 68, 'the 73 Character spotlights name 68 different subjects');
+  for (const name of names) {
+    assert.doesNotMatch(name, /Reading (List|Order)|\bBest\b|Comics|Essential|Primer|Fast Track|Only Doom/,
+      `${name} is a subject, not a guide title`);
+  }
   const ids = new Set(catalog.lists.map(({ id }) => id));
   for (const { value } of options.slice(1)) assert.ok(ids.has(value), `${value} is a real catalog list`);
   assert.equal(h.nodes.favorite.value, '');
+});
+
+test('a chosen subject recommends its guide under the guide\'s own title', async () => {
+  const h = harness();
+  await h.view.render();
+  const byName = new Map(h.nodes.favorite.children.map(({ text, value }) => [text, value]));
+  const title = (id) => catalog.lists.find((list) => list.id === id).name;
+  for (const [subject, id, heard] of [
+    ['Spider-Man (Peter Parker)', 'spider-man-best-of', '10 Best Spider-Man (Peter Parker) Comics Reading List'],
+    ['Deadpool', 'deadpool-best-of', 'The Best Deadpool Comics To Start With!'],
+    ['Doctor Doom', 'doctor-doom-primer', 'There is Only Doom'],
+    ['X-Men', 'xmen-silver-age', 'X-Men: Silver Age Reading Order'],
+    ['Miles Morales', 'miles-morales-best-of', 'Best Miles Morales Comics Reading List'],
+  ]) {
+    assert.equal(byName.get(subject), id, `${subject} leads to its first guide`);
+    h.answer.favorite(id);
+    assert.deepEqual(h.nodes.match.children, [{ card: id }]);
+    assert.equal(title(id), heard);
+    assert.equal(h.calls.announce.at(-1), heard, 'the result is announced by its guide title');
+  }
 });
 
 test('each pair of answers shows exactly one result', async () => {
@@ -143,7 +169,7 @@ test('a catalog that cannot load keeps both no-preference results and recovers o
   h.setLoader(async () => catalog);
   await h.calls.failures[0].retry();
   assert.equal(h.calls.cleared, 1);
-  assert.equal(h.nodes.favorite.children.length, 74);
+  assert.equal(h.nodes.favorite.children.length, 69);
   assert.deepEqual(h.shown(), ['timeline'], 'the answer given while offline is kept');
 });
 
@@ -154,7 +180,7 @@ test('the guide asks both questions with the approved words above its one result
   assert.match(section, /<legend class="filter-legend">How familiar are you with Marvel comics\?<\/legend>/);
   const radios = [...section.matchAll(/<input type="radio" name="guide-start-familiarity" value="([a-z]+)" \/>\s*<span>([^<]+)<\/span>/g)]
     .map(([, value, label]) => [value, label]);
-  assert.deepEqual(radios, [['new', "I'm new"], ['experienced', "I've read Marvel comics before"]]);
+  assert.deepEqual(radios, [['new', 'I\u2019m new'], ['experienced', 'I\u2019ve read Marvel comics before']]);
   assert.doesNotMatch(section, /checked/, 'no answer is chosen for the reader');
   assert.match(section, /<label for="guide-start-favorite" class="story-type-label">Who would you like to read about\?<\/label>/);
   assert.match(section, /<select id="guide-start-favorite"><option value="">No preference<\/option><\/select>/);
@@ -171,7 +197,7 @@ test('the app paints the starting point whenever the guide page shows', () => {
   assert.notEqual(start, -1);
   const body = mainSource.slice(start, mainSource.indexOf('});', start));
   assert.match(body, /isCurrent: \(\) => view === 'new-to-comics'/);
-  assert.match(body, /report: '#guide-preview-report'/);
+  assert.match(body, /report: '#guide-start-report'/);
   assert.match(body, /key: CATALOG_LOAD/);
   assert.doesNotMatch(body, /store\.|localStorage|syncHash/);
 });

@@ -1859,16 +1859,16 @@ async function checkOfflineHomeUpdates(browser, origin, t) {
     await page.goto(`${origin}/#/home`, { waitUntil: 'load' });
     await page.waitForSelector('#home-cat-report .notice button', { timeout: 15000 });
     const offlineGuide = await page.evaluate(() => {
-      const link = document.querySelector('#home-categories a[href="#/new-to-comics"]');
+      const link = document.querySelector('#home-new-reader a[href="#/new-to-comics"]');
       return { visible: Boolean(link?.checkVisibility()), text: link?.textContent.trim() ?? null,
         catalogCards: document.querySelectorAll('#home-primary-paths .home-path').length };
     });
     const available = responses.get('/') === true && offlineGuide.visible
-      && offlineGuide.text === 'New to Marvel Comics?';
+      && offlineGuide.text === 'Find a starting point.';
     t.check('a worker-served shell exposes the guide with its catalog unavailable',
       available, JSON.stringify({ offlineGuide, responses: [...responses] }));
     if (available) {
-      await click(page, '#home-categories a[href="#/new-to-comics"]');
+      await click(page, '#home-new-reader a[href="#/new-to-comics"]');
       await page.waitForSelector('#view-new-to-comics:not([hidden])');
       await click(page, '#view-new-to-comics a[href="#/genres"]');
       await page.waitForSelector('#genres-report .notice button', { timeout: 15000 });
@@ -3511,13 +3511,13 @@ const SCENARIOS = [
           t.check('reloading the guide retains the route without forcing heading focus',
             reloaded.visible && reloaded.focus !== 'new-to-comics-h'
               && parseRoute(reloaded.hash)?.view === 'new-to-comics', JSON.stringify(reloaded));
-          const card = await direct.$('#home-categories a[href="#/new-to-comics"]');
+          const card = await direct.$('#home-new-reader a[href="#/new-to-comics"]');
           t.check('the Home guide entry exists for a deliberate navigation', Boolean(card));
           if (card) {
             await card.dispose();
             await click(direct, '#view-new-to-comics .breadcrumb a');
             await direct.waitForSelector('#view-home:not([hidden])');
-            await direct.focus('#home-categories a[href="#/new-to-comics"]');
+            await direct.focus('#home-new-reader a[href="#/new-to-comics"]');
             await direct.keyboard.press('Enter');
             const arrived = await direct.evaluate(() => ({
               visible: document.querySelector('#view-new-to-comics')?.hidden === false,
@@ -3658,11 +3658,11 @@ const SCENARIOS = [
         await saved.waitForFunction(() => location.hash.includes('filter=unread'));
         const before = await saved.evaluate(() => localStorage.getItem('mrt.state.v2'));
         await click(saved, '.brand[data-view="home"]');
-        const card = await saved.$('#home-categories a[href="#/new-to-comics"]');
+        const card = await saved.$('#home-new-reader a[href="#/new-to-comics"]');
         t.check('the same-list reading fixture can reach the Home guide entry', Boolean(card));
         if (card) {
           await card.dispose();
-          await click(saved, '#home-categories a[href="#/new-to-comics"]');
+          await click(saved, '#home-new-reader a[href="#/new-to-comics"]');
           await saved.waitForSelector('#view-new-to-comics:not([hidden])');
           const entered = await saved.evaluate(() => ({ hash: location.hash,
             state: localStorage.getItem('mrt.state.v2'), settings: JSON.parse(localStorage.getItem('mrt.settings')) }));
@@ -4026,38 +4026,36 @@ const SCENARIOS = [
         await preparePage(guidePage, page.__origin, page.__mutation, 'home-category-gateway');
         const inspectGuide = async () => {
           const rendered = await guidePage.evaluate(() => {
-            const links = [...document.querySelectorAll('#home-categories a[href="#/new-to-comics"]')];
+            const links = [...document.querySelectorAll('#home-new-reader a[href="#/new-to-comics"]')];
             const link = links[0];
-            const headingRow = link?.closest('.sec-h');
-            const heading = headingRow?.querySelector('#home-cat-h');
+            const card = document.querySelector('#home-new-reader');
+            const heading = card?.querySelector('#home-new-reader-h');
             const headingBox = heading?.getBoundingClientRect();
             const linkBox = link?.getBoundingClientRect();
-            const rowBox = headingRow?.getBoundingClientRect();
+            const explore = document.querySelector('#home-categories');
             return { count: links.length, visible: Boolean(link?.checkVisibility()),
               text: link?.textContent.trim() ?? null, tag: link?.tagName ?? null,
-              className: link?.className ?? null,
               heading: heading?.textContent.trim() ?? null,
+              body: card?.querySelector('p')?.textContent.trim() ?? null,
               headingVisible: Boolean(heading?.checkVisibility() && !heading.closest('.visually-hidden')
                 && headingBox && headingBox.width > 1 && headingBox.height > 1),
-              headingWidth: headingBox?.width ?? 0, headingHeight: headingBox?.height ?? 0,
-              sameRow: Boolean(rowBox && linkBox && headingBox && Math.abs(linkBox.top - rowBox.top) < 1
-                && linkBox.right <= rowBox.right + 1 && headingBox.right <= linkBox.left + 1
-                && headingBox.bottom > linkBox.top && linkBox.bottom > headingBox.top),
-              linkWidth: linkBox?.width ?? 0, rowWidth: rowBox?.width ?? 0,
+              beforeExplore: Boolean(card && explore
+                && card.compareDocumentPosition(explore) & Node.DOCUMENT_POSITION_FOLLOWING),
+              otherEntries: document.querySelectorAll('#home-categories a[href="#/new-to-comics"]').length,
               linkHeight: linkBox?.height ?? 0,
               category: Boolean(link?.closest('#home-primary-paths, #home-more-paths')),
               icons: link?.querySelectorAll('svg').length ?? 0 };
           });
-          const node = await guidePage.$('#home-categories a[href="#/new-to-comics"]');
+          const node = await guidePage.$('#home-new-reader a[href="#/new-to-comics"]');
           const accessible = node ? await guidePage.accessibility.snapshot({ root: node }) : null;
           if (node) await node.dispose();
           return { ...rendered, name: accessible?.name ?? null };
         };
         const valid = (card) => card.count === 1 && card.visible && card.tag === 'A'
-          && card.text === 'New to Marvel Comics?' && card.name === card.text
-          && card.className === 'home-guide-link' && card.heading === 'Explore'
-          && card.headingVisible && card.sameRow && card.linkHeight >= 44
-          && card.linkWidth > 0 && card.linkWidth < card.rowWidth / 2
+          && card.text === 'Find a starting point.' && card.name === card.text
+          && card.heading === 'New to comics?'
+          && card.body === 'Find a first read, with or without a favorite character.'
+          && card.headingVisible && card.beforeExplore && card.otherEntries === 0 && card.linkHeight >= 44
           && !card.category && card.icons === 0;
         await open(guidePage, '/?local-catalog=pending#/home');
         await guidePage.waitForFunction(() => window.__mrtLocalPending.catalog.length === 1);
@@ -4077,7 +4075,7 @@ const SCENARIOS = [
         t.check('catalog retry restores category paths without duplicating the guide entry',
           valid(retried), JSON.stringify(retried));
         if (valid(retried)) {
-          const selector = '#home-categories a[href="#/new-to-comics"]';
+          const selector = '#home-new-reader a[href="#/new-to-comics"]';
           const press = [];
           const client = await guidePage.createCDPSession();
           try {
@@ -4111,13 +4109,13 @@ const SCENARIOS = [
             await guidePage.emulateMediaFeatures([]);
             await client.detach();
           }
-          t.check('the Home guide link gives held touch feedback without moving or activating',
+          t.check('the Home guide button gives held touch feedback without moving or activating',
             press.every(({ forced, before, held, cancelled }) => held.marked
               && (forced ? held.outline === 'solid' && held.width === '3px' && held.offset === '-3px'
                 : held.shadow.includes('inset') && held.shadow !== before.shadow)
               && held.tap === before.tap && held.box.every((value, i) => Math.abs(value - before.box[i]) < 0.5)
               && !cancelled.marked && cancelled.hash === before.hash), JSON.stringify(press));
-          await guidePage.focus('#home-categories a[href="#/new-to-comics"]');
+          await guidePage.focus('#home-new-reader a[href="#/new-to-comics"]');
           await guidePage.keyboard.press('Enter');
           t.check('the Home guide entry activates with the keyboard',
             await guidePage.evaluate(() => document.querySelector('#view-new-to-comics')?.hidden === false
@@ -4191,7 +4189,7 @@ const SCENARIOS = [
         JSON.stringify(context.sectionHeadings));
       t.check('the three current paths carry compact labels and content counts',
         JSON.stringify(context.paths) === JSON.stringify([
-          { key: 'timeline', label: 'Recommended start here', title: 'Modern Timeline', count: '14 Reading Lists' },
+          { key: 'timeline', label: 'Start here', title: 'Modern Timeline', count: '14 Reading Lists' },
           { key: 'genres', label: 'Browse by genre and tone', title: 'Genres', count: '32 Reading Lists' },
           { key: 'character-spotlights', label: 'Browse heroes and teams', title: 'Character spotlights', count: '14 Reading Lists' },
         ]),
@@ -5811,6 +5809,100 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'home-starting-point',
+    title: 'the New to comics? card leads to one result per answer, kept only for the visit',
+    async run(page, t) {
+      await openFresh(page, '/?catalog=actual');
+      await page.waitForSelector('#home-new-reader a[href="#/new-to-comics"]', { timeout: 15000 });
+      const saved = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      const answers = () => page.evaluate(() => {
+        const visible = (id) => !document.getElementById(id).hidden;
+        const select = document.querySelector('#guide-start-favorite');
+        return {
+          familiarity: document.querySelector('input[name="guide-start-familiarity"]:checked')?.value ?? null,
+          favorite: select.value,
+          subject: select.selectedOptions[0]?.textContent.trim(),
+          starters: visible('guide-start-starters'),
+          timeline: visible('guide-start-timeline'),
+          match: visible('guide-start-match'),
+          card: document.querySelector('#guide-start-match')?.textContent.replace(/\s+/g, ' ').trim() ?? '',
+          cards: document.querySelectorAll('#guide-start-match > *').length,
+        };
+      });
+
+      await page.focus('#home-new-reader a[href="#/new-to-comics"]');
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => location.hash === '#/new-to-comics'
+        && document.activeElement?.id === 'new-to-comics-h');
+      await page.waitForFunction(() => document.querySelectorAll('#guide-start-favorite option').length > 1);
+      t.check('the Home card opens the guide by keyboard with nothing preselected and the starter picks shown',
+        JSON.stringify(await answers()) === JSON.stringify({ familiarity: null, favorite: '', subject: 'No preference',
+          starters: true, timeline: false, match: false, card: '', cards: 0 }), JSON.stringify(await answers()));
+
+      await page.focus('input[name="guide-start-familiarity"][value="new"]');
+      await page.keyboard.press('Space');
+      await page.keyboard.press('ArrowDown');
+      const experienced = await answers();
+      t.check('an experienced reader with no preference is offered Start the Modern Timeline alone',
+        experienced.familiarity === 'experienced' && experienced.timeline && !experienced.starters && !experienced.match,
+        JSON.stringify(experienced));
+
+      const value = await page.$$eval('#guide-start-favorite option', (options) => options
+        .find((node) => node.textContent.trim() === 'Spider-Man (Peter Parker)')?.value ?? null);
+      const spider = { value, name: ACTUAL_CATALOG.lists.find((list) => list.id === value)?.name ?? null };
+      await page.select('#guide-start-favorite', spider.value);
+      const matched = await answers();
+      t.check('choosing the subject Spider-Man (Peter Parker) recommends one guide under that guide\'s own title',
+        !!spider.name && spider.name !== 'Spider-Man (Peter Parker)' && matched.subject === 'Spider-Man (Peter Parker)'
+        && matched.match && !matched.starters && !matched.timeline && matched.cards === 1
+        && matched.card.includes(spider.name), JSON.stringify({ spider, matched }));
+
+      await page.evaluate(() => history.back());
+      await page.waitForFunction(() => location.hash === '#/home' && document.activeElement?.id === 'home-h');
+      t.check('Back from the guide restores Home and heading focus', true);
+      await page.evaluate(() => history.forward());
+      await page.waitForFunction(() => location.hash === '#/new-to-comics'
+        && document.activeElement?.id === 'new-to-comics-h');
+      t.check('returning to the guide in the same visit keeps both answers and the result',
+        JSON.stringify(await answers()) === JSON.stringify(matched), JSON.stringify(await answers()));
+
+      const stored = await page.evaluate(() => ({
+        state: localStorage.getItem('mrt.state.v2'),
+        leaks: [...Object.keys(localStorage).map((key) => [key, localStorage.getItem(key)]),
+          ...Object.keys(sessionStorage).map((key) => [key, sessionStorage.getItem(key)])]
+          .filter(([key, value]) => /guide-start|familiarity|experienced/.test(key + value)).map(([key]) => key),
+        hash: location.hash,
+      }));
+      t.check('the answers reach no saved library, storage or address',
+        stored.state === saved && stored.leaks.length === 0 && stored.hash === '#/new-to-comics',
+        JSON.stringify({ ...stored, saved }));
+
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForFunction(() => document.querySelectorAll('#guide-start-favorite option').length > 1);
+      const reloaded = await answers();
+      t.check('a reload starts the questions again',
+        reloaded.familiarity === null && reloaded.favorite === '' && reloaded.starters && !reloaded.match,
+        JSON.stringify(reloaded));
+
+      const tab = await page.browserContext().newPage();
+      await preparePage(tab, page.__origin, page.__mutation);
+      await tab.setViewport({ width: 1280, height: 900 });
+      await open(tab, '/?catalog=actual#/new-to-comics');
+      await tab.waitForFunction(() => !document.querySelector('#view-new-to-comics').hidden
+        && document.querySelectorAll('#guide-start-favorite option').length > 1, { timeout: 15000 });
+      const fresh = await tab.evaluate(() => ({
+        heading: document.querySelector('#new-to-comics-h').textContent.trim(),
+        familiarity: document.querySelector('input[name="guide-start-familiarity"]:checked')?.value ?? null,
+        favorite: document.querySelector('#guide-start-favorite').value,
+        starters: !document.getElementById('guide-start-starters').hidden,
+      }));
+      await tab.close();
+      t.check('a new tab opened at the guide shows it with no earlier answers',
+        fresh.heading === 'New to comics?' && fresh.familiarity === null && fresh.favorite === '' && fresh.starters,
+        JSON.stringify(fresh));
+    },
+  },
+  {
     id: 'home-first-run-wayfinding',
     title: 'empty Home makes the first useful reading path obvious',
     async run(page, t) {
@@ -5830,7 +5922,7 @@ const SCENARIOS = [
         recommendation: document.querySelector('#home-primary-paths [data-category="timeline"] .home-path-label')?.textContent.trim(),
       }));
       t.check('clean Home recommends Modern Timeline without redundant introduction or global Search',
-        !initial.intro && !initial.search && initial.recommendation === 'Recommended start here',
+        !initial.intro && !initial.search && initial.recommendation === 'Start here',
         JSON.stringify(initial));
 
       await page.setViewport({ width: 390, height: 844 });
@@ -5839,7 +5931,7 @@ const SCENARIOS = [
       // reached the page by the time Search had been pressed, so the app was still in its desktop
       // layout ("Collapse sidebar", expanded) at 390 pixels. A phone starts narrow and keeps rendering.
       await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
-      await page.$eval('#home-primary-paths [data-category="timeline"]', (node) => node.scrollIntoView({ block: 'center' }));
+      await page.$eval('#home-primary-paths [data-category="timeline"]', (node) => node.scrollIntoView({ block: 'nearest' }));
       // The narrow bar reacts to scrolling, so the card is measured once the scroll has painted.
       await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
       const intermediate = await page.evaluate(() => {
@@ -5858,7 +5950,7 @@ const SCENARIOS = [
         };
       });
       t.check('at 390 pixels Modern Timeline and bottom-bar Search are visible without opening Navigation',
-        intermediate.browseName.includes('Recommended start here. Modern Timeline.')
+        intermediate.browseName.includes('Start here. Modern Timeline.')
         && intermediate.addName === 'Search'
         && [intermediate.browse, intermediate.add].every((rect) => rect
           && rect.top >= 0 && rect.bottom <= 844 && rect.left >= 0 && rect.right <= 390
@@ -5924,7 +6016,7 @@ const SCENARIOS = [
         t.check(`${theme} first-run actions retain visible boundaries and names`,
           await page.$eval('#home-primary-paths [data-category="timeline"]', (button) => {
             const style = getComputedStyle(button);
-            return !button.hidden && button.textContent.includes('Recommended start here')
+            return !button.hidden && button.textContent.includes('Start here')
               && style.borderStyle !== 'none' && style.borderWidth !== '0px';
           }));
       }
@@ -6021,7 +6113,7 @@ const SCENARIOS = [
         const categories = document.querySelector('#home-categories');
         return {
           firstRunHidden: !firstRun,
-          recommended: document.querySelector('#home-primary-paths [data-category="timeline"]')?.textContent.includes('Recommended start here'),
+          recommended: document.querySelector('#home-primary-paths [data-category="timeline"]')?.textContent.includes('Start here'),
           continueHidden: continued.hidden,
           yoursHidden: yours.hidden,
           order: [continued, yours, categories].map((node) => Math.round(node.getBoundingClientRect().top)),
@@ -19166,7 +19258,7 @@ SCENARIOS.push({
     t.check('the one gateway preserves eight labelled category destinations and their icon/arrow pairs',
       await page.evaluate(() => [...document.querySelectorAll('[data-primary-paths], [data-secondary-paths]')]
         .flatMap((root) => [...root.querySelectorAll('a.home-path')])
-        .filter((button) => button.getAttribute('aria-label')?.includes('Recommended start here')
+        .filter((button) => button.getAttribute('aria-label')?.includes('Start here')
           || button.getAttribute('aria-label')?.includes('Browse')
           || button.getAttribute('aria-label')?.includes('Movies and streaming')
           || button.getAttribute('aria-label')?.includes('Publication history')
@@ -20596,7 +20688,7 @@ SCENARIOS.push(
       await page.waitForSelector('#home-primary-paths [data-category="timeline"]');
       const first = await page.evaluate(() => {
         const browse = document.querySelector('#home-primary-paths [data-category="timeline"]');
-        return { href: browse?.getAttribute('href'), recommended: browse?.textContent.includes('Recommended start here'),
+        return { href: browse?.getAttribute('href'), recommended: browse?.textContent.includes('Start here'),
           search: !!document.querySelector('#view-home [data-view="add"], #btn-home-add') };
       });
       t.check('first-run Home recommends the actual Timeline and leaves global Search to the bottom bar',
@@ -21045,13 +21137,11 @@ SCENARIOS.push(responsiveOwner({
               forced: matchMedia('(forced-colors: active)').matches,
               overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
               homeEntry: (() => {
-                const link = document.querySelector('#home-categories a.home-guide-link[href="#/new-to-comics"]');
+                const link = document.querySelector('#home-new-reader a[href="#/new-to-comics"]');
                 const box = link?.getBoundingClientRect();
-                const headingRow = link?.closest('.sec-h');
-                const row = headingRow?.getBoundingClientRect();
-                const heading = headingRow?.querySelector('#home-cat-h');
+                const heading = document.querySelector('#home-new-reader-h');
                 const headingBox = heading?.getBoundingClientRect();
-                if (!link || !heading || !box || !row || !headingBox) return false;
+                if (!link || !heading || !box || !headingBox) return false;
                 // Lines a text run occupies, and whether any single word was split across lines.
                 const lineTops = (node, start = 0, end = node.length) => {
                   const range = document.createRange();
@@ -21067,24 +21157,15 @@ SCENARIOS.push(responsiveOwner({
                     return ok;
                   });
                 };
-                const saved = link.getAttribute('style');
-                link.style.whiteSpace = 'nowrap'; link.style.maxWidth = 'none';
-                const natural = link.getBoundingClientRect().width;
-                if (saved === null) link.removeAttribute('style'); else link.setAttribute('style', saved);
-                const gap = parseFloat(getComputedStyle(headingRow).columnGap) || 0;
-                const besideFits = headingBox.width + gap + natural <= row.width + 0.5;
-                const beside = headingBox.bottom > box.top && box.bottom > headingBox.top && headingBox.right <= box.left + 1;
-                const below = box.top >= headingBox.bottom - 1 && box.left >= row.left - 1;
                 return Boolean(link.checkVisibility() && heading.checkVisibility()
                   && !heading.closest('.visually-hidden')
                   && headingBox.width > 1 && headingBox.height > 1 && heading.scrollWidth <= heading.clientWidth + 1
                   && lineTops(heading.firstChild) === 1
-                  && (besideFits ? beside : below)
-                  && (natural > row.width + 0.5 || lineTops(link.firstChild) === 1)
+                  && box.top >= headingBox.bottom - 1
                   && wordsWhole(link)
                   && box.width > 0 && box.height >= 44
                   && box.left >= 0 && box.right <= innerWidth
-                  && heading.textContent.trim() === 'Explore');
+                  && heading.textContent.trim() === 'New to comics?');
               })(),
             })));
           }
@@ -21107,7 +21188,7 @@ SCENARIOS.push(responsiveOwner({
               forced: matchMedia('(forced-colors: active)').matches,
               overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
               heading: document.querySelector('#new-to-comics-h')?.checkVisibility() ?? false,
-              links: [...document.querySelectorAll('#view-new-to-comics a')].every((link) => {
+              links: [...document.querySelectorAll('#view-new-to-comics a')].filter((link) => !link.closest('[hidden]')).every((link) => {
                 const box = link.getBoundingClientRect();
                 return link.checkVisibility() && box.width > 0 && box.height > 0
                   && box.left >= 0 && box.right <= innerWidth;
@@ -21122,7 +21203,7 @@ SCENARIOS.push(responsiveOwner({
         overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth }));
       await cdp.send('Emulation.setPageScaleFactor', { pageScaleFactor: 1 });
       await cdp.detach();
-      t.check('Home guide entry stays whole beside Explore when both fit, else below it, with a comfortable target across themes and widths',
+      t.check('Home guide button sits whole below its heading with a comfortable target across themes and widths',
         homeMeasurements.every((entry) => entry.homeEntry && !entry.overflow), JSON.stringify(homeMeasurements));
       t.check('guide content remains visible without overflow across themes, forced colors and reduced motion',
         guideMeasurements.every((entry) => entry.heading && entry.links && !entry.overflow), JSON.stringify(guideMeasurements));

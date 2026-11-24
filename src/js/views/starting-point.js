@@ -1,6 +1,47 @@
-import { catalogEntries, shelfStories, sortSpotlightStories } from '../lib/catalog.js';
+import {
+  catalogEntries, shelfStories, sortSpotlightStories, spotlightRankForStory, SPOTLIGHT_POPULARITY_RANKS,
+} from '../lib/catalog.js';
 
 const FAMILIARITY = new Set(['new', 'experienced']);
+
+const RANKED_SUBJECTS = new Map(SPOTLIGHT_POPULARITY_RANKS.map(({ rank, label }) => [rank, label]));
+
+// The question asks who to read about, so each choice is named for its subject rather than its
+// guide. A ranked guide takes the owner's ranking label; the rest of the spotlight titles already
+// read as a name, except these, each checked by hand against the guide's own title and the
+// headline character it lists first. Nothing here is guessed from a character the guide merely
+// includes.
+const SUBJECT_BY_LIST = new Map([
+  ['amazing-spider-man-reading-order-modern-marvel-era', 'Spider-Man (Peter Parker)'],
+  ['nightcrawler-best-of', 'Nightcrawler'],
+  ['miles-morales-best-of', 'Miles Morales'],
+  ['miles-morales-spider-man-reading-order', 'Miles Morales'],
+  ['question-of-the-week-do-you-have-a-hulk-reading-order', 'Hulk'],
+  ['modern-x-men-fast-track', 'X-Men'],
+  ['the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'Apocalypse'],
+  ['captain-america-reading-order-modern-marvel-era', 'Captain America'],
+  ['doctor-doom-primer', 'Doctor Doom'],
+  ['deadpool-best-of', 'Deadpool'],
+]);
+
+function subjectOf(story) {
+  const list = story.lists[0];
+  return RANKED_SUBJECTS.get(spotlightRankForStory(story)) ?? SUBJECT_BY_LIST.get(list.id) ?? list.name;
+}
+
+// One choice per subject, in the spotlights' popularity order. A subject with several guides
+// offers the first of them, so every choice still leads to exactly one result.
+export function favoriteChoices(stories) {
+  const seen = new Set();
+  const choices = [];
+  for (const story of stories) {
+    const subject = subjectOf(story);
+    if (seen.has(subject)) continue;
+    seen.add(subject);
+    choices.push({ value: story.lists[0].id, subject, story });
+  }
+  return choices;
+}
 
 // The two answers live only in this closure, so they last for the visit and never reach the saved
 // library, progress, a backup, storage or the address (the owner's rule for this guide). A reload
@@ -16,11 +57,13 @@ export function createStartingPointView({
   let wired = false;
 
   function favorites() {
-    return catalog ? sortSpotlightStories(shelfStories(catalogEntries(catalog.lists), 'spotlights'), 'popularity') : [];
+    return catalog
+      ? favoriteChoices(sortSpotlightStories(shelfStories(catalogEntries(catalog.lists), 'spotlights'), 'popularity'))
+      : [];
   }
 
   function chosenStory() {
-    return favorite ? favorites().find((story) => story.lists[0].id === favorite) ?? null : null;
+    return favorite ? favorites().find((choice) => choice.value === favorite)?.story ?? null : null;
   }
 
   function outcome() {
@@ -32,12 +75,12 @@ export function createStartingPointView({
   function paintAnswers() {
     const nodes = elements();
     for (const radio of nodes.familiarity) radio.checked = radio.value === familiarity;
-    const stories = favorites();
+    const choices = favorites();
     nodes.favorite.replaceChildren(
       el('option', { value: '', text: 'No preference' }),
-      ...stories.map((story) => el('option', { value: story.lists[0].id, text: story.lists[0].name })),
+      ...choices.map((choice) => el('option', { value: choice.value, text: choice.subject })),
     );
-    nodes.favorite.value = stories.some((story) => story.lists[0].id === favorite) ? favorite : '';
+    nodes.favorite.value = choices.some((choice) => choice.value === favorite) ? favorite : '';
   }
 
   function paintResult() {
