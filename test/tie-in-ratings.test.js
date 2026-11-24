@@ -8,7 +8,7 @@ import { tieInRatingCredit, tieInRatingLabels } from '../src/js/views/shared/tie
 const el = (tag, props, children = []) => ({ tag, ...props, children: [].concat(children).filter(Boolean) });
 const words = (node) => (node ? [node.text, ...node.children.flatMap(words)].filter(Boolean) : []);
 const EVENT = SECRET_WARS_2015_EVENT_ID;
-// Real issues the guide lists: a withheld Favorite, one from each confirmed group, the main event,
+// Real issues the guide lists: one from each group, the main event,
 // Howard the Duck, which the
 // article lists while saying it is not a tie-in, and Secret Wars (1984) #1, an unranked series.
 const favorite = { issueId: 52509, seriesId: 18310 }; // Silver Surfer #13
@@ -30,13 +30,12 @@ test('an average-rated tie-in shows its group without Optional', () => {
   assert.equal(tieInRating(EVENT, average).optional, false);
 });
 
-test('a group the retained capture does not show is withheld, so its tie-ins carry no label', () => {
-  // Silver Surfer was recorded as a Favorite, and Punisher #19 as average, beyond where the retained
-  // capture of the article stops; neither is confirmed, so neither is labelled.
-  for (const item of [favorite, { issueId: 52778, seriesId: 18572 }]) {
-    assert.equal(tieInRating(EVENT, item), null, JSON.stringify(item));
-  }
-  assert.equal(hasTieInRatings(EVENT, [mainEvent, favorite]), false);
+test('a favorite tie-in shows its group without Optional, and later average series are rated too', () => {
+  assert.deepEqual(words(tieInRatingLabels(el, EVENT, favorite)), ['Favorite']);
+  assert.match(tieInRatingLabels(el, EVENT, favorite).children[0].class, /\brating-favorite\b/);
+  assert.equal(tieInRating(EVENT, favorite).optional, false);
+  assert.deepEqual(words(tieInRatingLabels(el, EVENT, { issueId: 52778, seriesId: 18572 })), ['Average to good']);
+  assert.equal(hasTieInRatings(EVENT, [mainEvent, favorite]), true);
 });
 
 test('the main event, unranked series and Howard the Duck carry no label at all', () => {
