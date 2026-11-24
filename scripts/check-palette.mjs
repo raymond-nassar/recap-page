@@ -103,6 +103,9 @@ export const PAIRS = [
   ['--teal', '--card-2', BODY, 'the Already in your library badge on a search result row'],
   ['--amber', '--bg', BODY, 'the scheduled badge on the page'],
   ['--amber', '--card', BODY, 'the scheduled badge on a card'],
+  ['--text', '--rating-favorite-bg', BODY, 'the Favorite tie-in label in the Secret Wars (2015) event-and-tie-ins reading'],
+  ['--text', '--rating-average-bg', BODY, 'the Average to good tie-in label in the same reading'],
+  ['--text', '--rating-lower-bg', BODY, 'the Lower rated tie-in label in the same reading'],
   ['--on-accent', '--accent', BODY, 'the label of a primary button, and the knob of the cover-art switch in its on state'],
   ['--line-2', '--bg', LARGE, 'the boundary of a bordered control'],
   ['--line-2', '--card', LARGE, 'the boundary of a button on a card, such as the hero, and the outline of a progress bar on a card (#876, UX-27)'],
@@ -151,8 +154,8 @@ export const PAIRS = [
   // own fixed palette, leaving this pair to describe the skip link alone.
   //
   // The accent bar is deliberately not on that entry. `.ri[aria-current]`
-  // sets its own background at `src/styles.css:589`, a tint over the rail, and the bar at
-  // `src/styles.css:593` is its `::before`, so it can only ever land on the tint. It reads 3.44 and
+  // sets its own background at `src/styles.css:609`, a tint over the rail, and the bar at
+  // `src/styles.css:613` is its `::before`, so it can only ever land on the tint. It reads 3.44 and
   // 5.35. Putting it on `--rail` with the other two would have read 4.09 and 6.37, overstating it
   // by 0.65 in the dark theme and 1.02 in the light one, which is the mistake hit testing was for.
   ['--accent', '--rail', LARGE, 'the skip link when focused on the rail'],
@@ -171,7 +174,7 @@ export const PAIRS = [
   ['--blue', 'the Visit button on the page on hover', BODY, 'the same label while the pointer rests on it'],
   ['--blue', 'the Visit button in Preview', BODY, 'the label and glyph of the Visit button in Preview'],
   ['--blue', 'the Visit button in Preview on hover', BODY, 'the same label in Preview while the pointer rests on it'],
-  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:2594`'],
+  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:2642`'],
 
   // Each category card's icon is measured on its card's tint at rest and on hover, the two surfaces it
   // is ever drawn on (#872, #873). Its 3:1 is a request rather than a WCAG duty, since the icon is
@@ -227,13 +230,13 @@ export const SURFACES = {
     // 228 in blue. The ghost button below already carries the same correction.
     fraction: 20 / 255,
     on: '--rail',
-    css: 'rgb(var(--tint-base) / 8%) over the rail, at `src/styles.css:589`',
+    css: 'rgb(var(--tint-base) / 8%) over the rail, at `src/styles.css:609`',
   },
   'the unreadable-data banner': {
     layer: '--warn',
     fraction: 0.12,
     on: '--panel',
-    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:2570`',
+    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:2618`',
   },
   // Built on a surface rather than a token, which is the case the first version of this could not
   // express. A ghost button is a tint over whatever it is dropped onto, so on the banner it is a
@@ -243,7 +246,7 @@ export const SURFACES = {
     layer: '--tint-base',
     fraction: 0.05882,
     on: 'the unreadable-data banner',
-    css: 'rgb(var(--tint-base) / 5.882%) over the banner, at `src/styles.css:1028`',
+    css: 'rgb(var(--tint-base) / 5.882%) over the banner, at `src/styles.css:1048`',
   },
   // color-mix toward transparent lays the blue down at that alpha, quantized to eight bits as above:
   // 12% is 31/255 and 18% is 46/255.
@@ -253,8 +256,8 @@ export const SURFACES = {
   'the Visit button in Preview on hover': { layer: '--blue', fraction: 46 / 255, on: '--card', css: '--blue at 18% over the card' },
   // A category card's tint is a gradient that fades from its first stop, so each card is resolved at
   // that stop, which is where the tint is strongest and the icon has the least contrast: 13% over the
-  // card at rest (`src/styles.css:2217-2219`) and 19% over the raised card on hover
-  // (`src/styles.css:2237-2239`).
+  // card at rest (`src/styles.css:2250-2252`) and 19% over the raised card on hover
+  // (`src/styles.css:2270-2272`).
   ...Object.fromEntries(CATEGORY_CARDS.flatMap(([card, channel]) => [
     [card, { layer: channel, fraction: 0.13, on: '--card', css: `${channel} at 13% over the card` }],
     [`${card} on hover`, { layer: channel, fraction: 0.19, on: '--card-2', css: `${channel} at 19% over the raised card` }],
@@ -300,6 +303,9 @@ const INTENTIONAL_THEME_TOKENS = new Map([
   ['--card-line', 'channel source for translucent card boundaries'],
   ['--cheer-stroke', 'decorative outline on the All read line, whose fill carries the large text floor'],
   ['--line', 'decorative hairlines with no contrast floor'],
+  ['--rating-average-dot', 'decorative dot and edge of the Average to good tie-in label, whose words carry the group'],
+  ['--rating-favorite-dot', 'decorative dot and edge of the Favorite tie-in label, whose words carry the group'],
+  ['--rating-lower-dot', 'decorative dot and edge of the Lower rated tie-in label, whose words carry the group'],
   ['--red-line', 'channel source for translucent danger paints'],
   ['--shadow-rgb', 'channel source for decorative shadows'],
   ['--teal-line', 'channel source for translucent available-state paints'],

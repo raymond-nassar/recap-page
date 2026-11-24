@@ -282,7 +282,7 @@ sequenceDiagram
     end
 ```
 
-**The transform is pure; the Store writes.** The shared read action at `src/js/views/reading.js:1326-1344` passes
+**The transform is pure; the Store writes.** The shared read action at `src/js/views/reading.js:1335-1353` passes
 a function to the Store. That transform returns new state without side effects at
 `src/js/lib/model.js:788-790`. The write, result, and notification are handled together at
 `src/js/storage.js:795-822`.
@@ -298,7 +298,7 @@ The UI restores the row and shows a notice rather than making an unsaved change 
 offered only after the mark is saved. The next Done, a change of view, and ten seconds
 (`DONE_RESULT_MS`) without the pointer on the message or keyboard focus in it each retire it. The
 offer records the view it was made in, the list's membership and deferral arrays by reference, the
-comic's read timestamp and the list's queue, at `src/js/views/reading.js:1683-1697`. The first
+comic's read timestamp and the list's queue, at `src/js/views/reading.js:1692-1706`. The first
 repaint that changes any of them withdraws it, as does a switch of list, completion, blocked storage
 or another tab's save, while a rename or a note keeps it. Undo checks the same record inside its own
 transaction, so a change that arrives without a repaint is refused rather than written over. Nothing
@@ -313,9 +313,9 @@ synchronization. Catalog and generated publishing panels render when their route
 the reading view, each row is compared against a cache key built from the whole item and its node is
 reused when nothing changed, while the full order is skipped entirely when its container is closed.
 Focus is captured before a rebuild and restored by identity afterwards, at
-`src/js/views/reading.js:890`, which is what keeps the keyboard where the reader left it. The row list is
+`src/js/views/reading.js:892`, which is what keeps the keyboard where the reader left it. The row list is
 committed by moving nodes rather than replacing the container, at
-`src/js/views/reading.js:50-58`.
+`src/js/views/reading.js:52-60`.
 
 **Background updates use the same path.** Hydration calls `update` at `src/js/hydrate.js:59`.
 Not every state replacement goes through that method, though: boot loads state at
@@ -1054,7 +1054,7 @@ architecture and must rewrite the relevant section rather than merely re-aim its
 Reading Paths add no second content or persistence model. Build-time authoring emits path
 descriptions and ordered Reading List ids into `catalog.json`; the browser treats the paths in that
 parsed generated catalog as the complete authority. `resolveReadingPaths()` resolves every path
-independently against the same catalog stories at `src/js/lib/catalog.js:1707-1760`, including paths
+independently against the same catalog stories at `src/js/lib/catalog.js:1757-1810`, including paths
 emitted from a partition ledger rather than declared in the ordinary curated manifest, at
 `scripts/lib/chapter-orders.mjs:406-416`.
 
@@ -1066,7 +1066,7 @@ paths remains a separate stop in each sequence.
 Modern Timeline follows a path rather than a page of its own, since #897 retired the Reading paths
 page. Its follow control lists the resolved paths; choosing one narrows the Timeline to that path's
 stops in the path's own order, each led by the reading the path names, at
-`src/js/views/catalog.js:100-112`. The controller gives the catalog view the control's elements and
+`src/js/views/catalog.js:101-113`. The controller gives the catalog view the control's elements and
 its history effects rather than those concrete owners, at `src/js/main.js:4501-4507` and
 `src/js/main.js:4528-4529`. The followed id lives only in the validated `path` query of the
 Timeline's hash route, not in saved reader state, at `src/js/lib/route.js:336-338`. The retired
@@ -1074,26 +1074,26 @@ page's addresses parse to the Timeline following the path they name, with the fi
 page's own fallback, at `src/js/lib/route.js:388-394`.
 
 The catalog view owns the followed path with the rest of its narrowing, under the async generation
-that rejects stale or hidden continuations at `src/js/views/catalog.js:421-424`. It lets a path that
+that rejects stale or hidden continuations at `src/js/views/catalog.js:422-425`. It lets a path that
 no longer resolves go, follows the first path for a retired address naming none, and asks the
-controller to canonically replace that route at `src/js/views/catalog.js:465-479`. A deliberate
-choice instead asks the controller to push history, at `src/js/views/catalog.js:679-689`.
+controller to canonically replace that route at `src/js/views/catalog.js:466-480`. A deliberate
+choice instead asks the controller to push history, at `src/js/views/catalog.js:699-709`.
 
 Progress is a projection of reader state and completion onto each stop, by the Timeline's own rule:
 a stop is finished when the saved copy it is counted by is marked completed or read in full, so
 unread or deferred comics never finish one. Each stop is counted and drawn by the imported list
 whose catalog id exactly matches the stop, then the first imported sibling in catalog order, then
-the reading the path names, at `src/js/views/catalog.js:42-56` and `src/js/views/catalog.js:76-98`. The
+the reading the path names, at `src/js/views/catalog.js:43-57` and `src/js/views/catalog.js:77-99`. The
 place and the path's own progress are repainted in place by the Timeline's position-only refresh,
 which every Store-driven render calls at `src/js/main.js:3519`, preserving the selector, the stops
 and their DOM identities.
 
 Each stop is the Timeline's own card, with its Preview and its Add or Open. A followed path keeps the
 retired page's jump, to any stop by name or to **Next unfinished stop**, which is the stop marked
-**You are here**, at `src/js/views/catalog.js:382-406`; a jump opens, saves and marks nothing.
+**You are here**, at `src/js/views/catalog.js:383-407`; a jump opens, saves and marks nothing.
 Opening or previewing a stop records the path and that control in the current history entry, after
 any selection has settled, while its source address is retained, at `src/js/main.js:4268-4287`. After Back renders that path,
-focus returns to the control and brings it into view at `src/js/views/catalog.js:408-419`; there is
+focus returns to the control and brings it into view at `src/js/views/catalog.js:409-420`; there is
 no scroll position in saved reading data. Shared history-entry positions yield to this explicit
 opener so the focused control remains in view.
 
@@ -1112,7 +1112,7 @@ rendering and focus work.
 
 Modern Timeline stores no cursor. Its catalog view builds one first-match index from the saved
 Reading Lists' catalog identities, walks the canonical unfiltered story order and stops at the first
-representative list that is absent or neither explicitly completed nor wholly read, at `src/js/views/catalog.js:31-73`. Grouped
+representative list that is absent or neither explicitly completed nor wholly read, at `src/js/views/catalog.js:32-74`. Grouped
 stories retain their shallowest-owned representative for logical stop completion, but each
 alternative has its own card and the marker belongs to that specific list. A catalog with a
 dropped entry reports the position as unavailable because the parser no longer has enough identity
@@ -1120,13 +1120,13 @@ or order information to place that gap.
 
 Filtering changes only the visible list keys. The view retains canonical stories and visible keys
 from the current successful render, derives position from live Store state, and rejects marker
-refresh while a newer catalog render is pending, at `src/js/views/catalog.js:212-269`. A hidden
+refresh while a newer catalog render is pending, at `src/js/views/catalog.js:213-270`. A hidden
 current story is named rather than replaced, full completion sits after the unfiltered spine, and
 filtered completion is stated before the narrowed results.
 
 The shared presentation contract removes the previous positional state and paints exactly one
 current label, hidden message, completion state or unavailable message at
-`src/js/views/shared/catalog-presentation.js:230-294`. Only the visible current list receives
+`src/js/views/shared/catalog-presentation.js:280-344`. Only the visible current list receives
 `aria-current="step"`. The controller injects live state and current-view knowledge at
 `src/js/main.js:4486-4530`, while the existing Store-driven render path calls the position-only
 refresh at `src/js/main.js:3508-3537`. That refresh leaves cards, controls, focus and scroll

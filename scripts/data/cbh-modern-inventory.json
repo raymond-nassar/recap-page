@@ -639,14 +639,21 @@
     "id": "secret-wars",
     "title": "Secret Wars: From The Original to Present Day",
     "url": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/secret-wars-reading-order/",
+    "childSources": [
+      {
+        "id": "secret-wars-2015-event-tie-ins",
+        "url": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/secret-wars-reading-order/battleworld-warzone-last-days-checklists/",
+        "retrievedAt": "2026-11-24"
+      }
+    ],
     "guideType": "event",
     "window": "Q4",
-    "disposition": "deferred",
-    "reason": "Multi-era source and shipped Hickman overlap require adjudication",
+    "disposition": "grouped-variant",
+    "reason": "Only the annotated 2015 event-and-tie-ins child is registered for preparation; the 1984, 1985 and other multi-era portions stay deferred, and its source boundary and Hickman overlaps still require independent review",
     "sourceRetrievedAt": "2026-08-20",
     "overlapIds": [],
     "catalogIds": [],
-    "deliveryStatus": "not-applicable"
+    "deliveryStatus": "ready"
   },
   {
     "position": 41,

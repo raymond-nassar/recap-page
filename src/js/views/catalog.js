@@ -12,6 +12,7 @@ import {
   groupCatalog,
   modernTimelineFeaturedCard,
   modernTimelineLists,
+  modernTimelinePlacements,
   pathPlacements,
   resolveReadingPaths,
   searchCatalog,
@@ -480,10 +481,14 @@ export function createCatalogView({
     if (key === 'catalog') paintFollowControl(paths, followed);
     const followedStories = followed ? followedPathStories(followed) : null;
     const owned = (list) => Boolean(listForCatalogId(getState(), list.id));
+    // A placement is a pointer to readings that already have a home, so it is drawn at its year but
+    // is never a stop: the timeline's position and "X of N" count it nowhere.
+    const placements = key === 'catalog' && !followed ? modernTimelinePlacements(catalog.lists) : [];
+    const placedIds = new Set(placements.flatMap((placement) => placement.options.map((option) => option.list.id)));
     const mine = followed
       ? followedStories.map((story) => defaultPath(story, owned))
       : key === 'catalog'
-        ? modernTimelineLists(catalog.lists)
+        ? modernTimelineLists(catalog.lists).filter((list) => !placedIds.has(list.id))
         : shelfLists(catalog.lists, key);
     const canonicalTimelineStories = key === 'catalog' ? followedStories ?? groupCatalog(mine) : null;
     nodes.results.replaceChildren();
@@ -534,15 +539,28 @@ export function createCatalogView({
     const links = linkFilter ? linkFilter.current(key) : { ...DEFAULT_LINK_FILTER };
     const linking = links.coverage !== 'off';
     const linkCount = (list) => storyCoverage([list], links.provider);
-    const searched = searchCatalog(filterByFacet(inSpotlight, state.facet), state.query);
-    const shown = linking ? searched.filter((list) => coverageMatches(linkCount(list), links.coverage)) : searched;
+    const narrow = (lists) => {
+      const searched = searchCatalog(filterByFacet(lists, state.facet), state.query);
+      return linking ? searched.filter((list) => coverageMatches(linkCount(list), links.coverage)) : searched;
+    };
+    const shown = narrow(inSpotlight);
+    // A reading stays on its placement when the reader's narrowing would keep the list itself, or
+    // when the search names the placement or the reading as the card shows them.
+    const placed = placements.map((placement) => ({
+      ...placement,
+      options: placement.options.filter((option) => narrow([{
+        ...option.list,
+        keywords: [...(option.list.keywords ?? []), placement.name, option.label],
+      }]).length),
+    })).filter((placement) => placement.options.length)
+      .map((placement) => ({ ...placement, lists: placement.options.map((option) => option.list) }));
     const linkWhere = linkNarrowing(links);
     const narrowed = state.facet !== 'all' || Boolean(state.query) || linking;
     const linkText = linking ? (story) => coverageText(linkCount(story.lists[0]), links.provider) : null;
     const sortSentence = key === 'spotlights'
       ? ` Sorted by ${spotlightSortLabel(state.sort).toLowerCase()}.`
       : '';
-    if (!shown.length) {
+    if (!shown.length && !placed.length) {
       const where = narrowingLabel(key, mine, state);
       const message = linking
         ? followed
@@ -575,14 +593,16 @@ export function createCatalogView({
       return;
     }
 
-    const stories = key === 'spotlights'
+    const listed = key === 'spotlights'
       ? sortSpotlightStories(catalogEntries(shown), state.sort)
       : catalogEntries(shown);
+    const stories = [...listed, ...placed];
+    const shownLists = listed.length + placed.reduce((sum, placement) => sum + placement.options.length, 0);
     // Paths live on Modern Timeline since #897, so only it says where one starts. Elsewhere the
     // sentence named a path the page offers no way to follow (UX-14, #830).
     const firstStops = followed || key !== 'catalog'
       ? []
-      : visibleFirstStopGuides(stories, pathPlacements(catalog.paths, catalog.lists), presentation.chosenPath);
+      : visibleFirstStopGuides(listed, pathPlacements(catalog.paths, catalog.lists), presentation.chosenPath);
     if (firstStops.length) {
       const startsByPath = new Map();
       for (const { guide, placement } of firstStops) {
@@ -643,7 +663,7 @@ export function createCatalogView({
         narrowed,
         root: nodes.results,
         stories: canonicalTimelineStories,
-        visibleStories: stories,
+        visibleStories: listed,
       })
       : null;
     if (cards && opener) restoreStopOpener(opener, followed, cards);
@@ -653,7 +673,7 @@ export function createCatalogView({
       const total = followed?.stops.length;
       const lead = followed
         ? `${shelf.heading} follows ${followed.name}: ${stories.length === total ? `${total} stops` : `${stories.length} of ${total} stops`}${match}${where}${linkWhere}.`
-        : `${shelf.heading} shows ${stories.length} ${stories.length === 1 ? 'Reading List' : 'Reading Lists'}${match}${where}${linkWhere}.`;
+        : `${shelf.heading} shows ${shownLists} ${shownLists === 1 ? 'Reading List' : 'Reading Lists'}${match}${where}${linkWhere}.`;
       announceResult(
         `${lead}${sortSentence}${position?.message ? ` ${position.message}` : ''}`,
         key,

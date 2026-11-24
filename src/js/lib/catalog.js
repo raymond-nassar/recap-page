@@ -1033,6 +1033,54 @@ export function modernTimelineLists(lists) {
   return (Array.isArray(lists) ? lists : []).filter((list) => selected.has(list));
 }
 
+// The 2015 event-and-tie-ins reading, kept separate from the Hickman guide's two readings because
+// its contents differ from both of them rather than extending either.
+export const SECRET_WARS_2015_EVENT_ID = 'secret-wars-2015-event-tie-ins';
+
+// A timeline card for an event whose readings are dated elsewhere. The owner placed Secret Wars
+// (2015) at 2015 on 2026-11-24 and chose a card offering its readings rather than a new list: the
+// Hickman guide starts in 2012 and is a creator run, so the timeline never reached it. Readings are
+// named by id, never copied, so saved lists, the guide's own shelf and the path stop keep the
+// identities they already have. A saved MCU Prep copy of the fast track continues that option.
+export const MODERN_TIMELINE_PLACEMENTS = Object.freeze([
+  Object.freeze({
+    key: 'placement:secret-wars-2015',
+    name: 'Secret Wars (2015)',
+    year: 2015,
+    options: Object.freeze([
+      Object.freeze({ id: SECRET_WARS_2015_EVENT_ID, label: 'Event and tie-ins', savedAs: Object.freeze([]) }),
+      Object.freeze({ id: 'hickman-minimal', label: 'Fast track', savedAs: Object.freeze(['avengers-doomsday-secret-wars']) }),
+      Object.freeze({ id: 'hickman-full', label: 'Hickman saga', savedAs: Object.freeze([]) }),
+    ]),
+  }),
+]);
+
+// The placements whose readings this catalog holds, each option resolved to its list. An option
+// whose reading is absent is left out rather than shown as a dead choice, and a placement with no
+// reading left is not drawn at all.
+export function modernTimelinePlacements(lists) {
+  const byId = new Map((Array.isArray(lists) ? lists : [])
+    .filter((list) => typeof list?.id === 'string')
+    .map((list) => [list.id, list]));
+  return MODERN_TIMELINE_PLACEMENTS.flatMap((placement) => {
+    const options = placement.options
+      .filter((option) => byId.has(option.id))
+      .map((option) => ({
+        label: option.label,
+        list: byId.get(option.id),
+        savedAs: option.savedAs.map((id) => byId.get(id)).filter(Boolean),
+      }));
+    return options.length ? [{
+      key: placement.key,
+      name: placement.name,
+      year: placement.year,
+      placement: true,
+      options,
+      lists: options.map((option) => option.list),
+    }] : [];
+  });
+}
+
 export function modernTimelineFeaturedList(lists) {
   return (Array.isArray(lists) ? lists : [])
     .find((list) => list?.id === MODERN_TIMELINE_FEATURED_ID) ?? null;
@@ -1576,6 +1624,8 @@ export const CATALOG_ERAS = [
 // earliest is the same answer the year sort already gives it, because the sort is stable and the
 // readings of a story are adjacent.
 export function storyYear(story) {
+  // A placement states its own year, because its readings are dated where they begin.
+  if (story?.placement && Number.isInteger(story.year)) return story.year;
   const years = (Array.isArray(story?.lists) ? story.lists : [])
     .map((list) => list?.timeline)
     .filter((year) => Number.isInteger(year));

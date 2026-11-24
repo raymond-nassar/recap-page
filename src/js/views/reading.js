@@ -39,6 +39,8 @@ import {
   collectedEditionCredit, collectedEditionLabels,
 } from './shared/collected-editions.js';
 import { gcdDetailsCredit, hasGcdDetails } from './shared/details-credit.js';
+import { tieInRatingCredit, tieInRatingLabels } from './shared/tie-in-ratings.js';
+import { hasTieInRatings } from '../lib/tieInRatings.js';
 import { createReadingOptions, readingChoices } from './shared/reading-options.js';
 import { booksLeaveOut } from '../lib/readingOrderChoices.js';
 import { legacyReadingOrder } from '../lib/legacyReadingOrders.js';
@@ -938,6 +940,12 @@ export function createReadingView({
         }
         desired.push(rowCache.get('gcd-credit').node);
       }
+      if (hasTieInRatings(list.catalogId, items)) {
+        if (!rowCache.has('rating-credit')) {
+          rowCache.set('rating-credit', { node: el('li', { class: 'edition-attribution' }, [tieInRatingCredit(el)]) });
+        }
+        desired.push(rowCache.get('rating-credit').node);
+      }
       const hiddenGaps = linksOnly ? all.filter((item) => !linked.has(item.issueId)).length : 0;
       linksHidden = hiddenGaps;
       if (hiddenGaps) {
@@ -1056,6 +1064,7 @@ export function createReadingView({
               item.deferred ? el('span', { class: 'badge badge-unknown' }, item.read
                 ? 'Read; deferral kept if marked unread' : 'Deferred in this list') : null,
               item.seriesName ? el('span', { text: seriesOnly(item.seriesName) }) : null,
+              tieInRatingLabels(el, list.catalogId, item),
               el('span', { class: `badge availability-record ${badgeClass}` }, [
                 describe(item, { override, today }),
               ]),

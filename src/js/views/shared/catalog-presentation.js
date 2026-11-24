@@ -30,8 +30,16 @@ export function createCatalogPresentation({
     return defaultPath(story, (list) => isInLibrary(list.id));
   }
 
-  function primaryButton(list, reportTarget) {
-    const saved = isInLibrary(list.id);
+  // `savedAs` names other catalog lists whose saved copy continues this one, so a reading saved
+  // under another name opens that copy instead of offering a second one.
+  function primaryButton(list, reportTarget, { savedAs = [] } = {}) {
+    let opens = list;
+    let saved = isInLibrary(list.id);
+    for (const alias of savedAs) {
+      if (saved) break;
+      saved = isInLibrary(alias.id);
+      opens = alias;
+    }
     if (saved) {
       const text = 'Open →';
       return el('a', {
@@ -42,7 +50,7 @@ export function createCatalogPresentation({
         onclick: (event) => {
           if (!isPlainNavigation(event)) return;
           event?.preventDefault();
-          onOpen(list, saved, reportTarget);
+          onOpen(opens, saved, reportTarget);
         },
       }, text);
     }
@@ -199,6 +207,48 @@ export function createCatalogPresentation({
         ]),
       ]),
       el('div', { class: 'catalog-card-actions' }, primaryButton(list, reportTarget)),
+    ]);
+  }
+
+  // One timeline stop with several readings (owner decision, 2026-11-24): each reading keeps its own
+  // Preview and its own Open or Add, so choosing one never adds or changes another. The heading is
+  // plain text because no single list stands behind it.
+  function placementCard(story, {
+    surface = 'catalog',
+    report = null,
+    level = 'h3',
+    linkText = null,
+  } = {}) {
+    const reportTarget = report ?? `#${surface}-report`;
+    const year = storyYear(story);
+    return el('article', {
+      class: 'catalog-card placement-card',
+      dataset: { story: story.key, year: year ?? '' },
+    }, [
+      el('div', { class: 'catalog-card-text' }, [
+        el(level, { class: 'catalog-card-title', text: story.name }),
+        el('ul', { class: 'placement-options' }, story.options.map((option) => el('li', {
+          class: 'placement-option',
+          dataset: { key: option.list.id },
+        }, [
+          el('div', { class: 'placement-option-text' }, [
+            el('button', {
+              class: 'catalog-card-preview placement-option-title',
+              type: 'button',
+              'aria-label': shownName([option.label], `Preview ${option.list.name}`),
+              dataset: { key: `${story.key}:${option.list.id}`, act: 'preview' },
+              onclick: () => onPreview(option.list),
+            }, el('span', { text: option.label })),
+            el('p', { class: 'catalog-card-meta', text: catalogMeta(option.list) }),
+            ...(linkText ? [el('p', {
+              class: 'catalog-card-links',
+              text: linkText({ ...story, lists: [option.list] }),
+            })] : []),
+          ]),
+          el('div', { class: 'catalog-card-actions' },
+            primaryButton(option.list, reportTarget, { savedAs: option.savedAs })),
+        ]))),
+      ]),
     ]);
   }
 
@@ -369,7 +419,7 @@ export function createCatalogPresentation({
         const yearId = `${idPrefix}-year-${year}`;
         const grid = el('div', { class: 'catalog-grid timeline-year-cards' });
         for (const story of yearStories) {
-          grid.append(catalogCard(story, {
+          grid.append((story.placement ? placementCard : catalogCard)(story, {
             ...cardOptions,
             level: cardLevel,
           }));
@@ -463,6 +513,7 @@ export function createCatalogPresentation({
     ensureSetupGuideFeature,
     setSetupGuideVisibility,
     paintTimelinePosition,
+    placementCard,
     renderTimelineSections,
     resolver,
     issueUniverseLines,

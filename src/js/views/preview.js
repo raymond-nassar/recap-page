@@ -14,6 +14,8 @@ import {
   collectedEditionCredit, collectedEditionLabels,
 } from './shared/collected-editions.js';
 import { gcdDetailsCredit, hasGcdDetails } from './shared/details-credit.js';
+import { tieInRatingCredit, tieInRatingLabels } from './shared/tie-in-ratings.js';
+import { hasTieInRatings } from '../lib/tieInRatings.js';
 import { offlineActionLabel, offlineStatusText } from './shared/offline-status.js';
 
 const ADD_TEXT = '+ Add to library';
@@ -378,12 +380,13 @@ export function createPreviewView({
             surface: 'preview',
             className: 'preview-issue-link',
             children: item.title || 'Untitled comic',
-          }), collectedEditionLabels(el, list.id, item)]),
+          }), tieInRatingLabels(el, list.id, item), collectedEditionLabels(el, list.id, item)]),
         ]));
       });
       const credit = order.items.some((item) => editionRelations(list.id, item).length)
         ? [collectedEditionCredit(el)] : [];
       if (hasGcdDetails(order.items)) credit.push(gcdDetailsCredit(el));
+      if (hasTieInRatings(list.id, order.items)) credit.push(tieInRatingCredit(el));
       nodes.body.replaceChildren(...notice, ...credit, el('ol', { class: 'preview-list' }, rows));
     } catch (error) {
       if (loadToken !== token) return;

@@ -1072,9 +1072,9 @@ app encounters that state rather than hypothetically. At removal, 606 carried a 
 id and 69 held neither. Neither metadata shape proves that a synopsis request has completed.
 The interface now distinguishes a summary that has not been loaded from a completed request with
 no synopsis and from prose held only in memory after explicit consent. The shared presentation
-reaches the interface in the reading hero at `src/js/views/reading.js:760` and the issue-details view at
+reaches the interface in the reading hero at `src/js/views/reading.js:762` and the issue-details view at
 `src/js/views/issue.js:108`. The function behind both already answers for the absence at
-`src/js/views/reading.js:109-120`, with a test asserting the sentence it returns. It is also reversible:
+`src/js/views/reading.js:111-122`, with a test asserting the sentence it returns. It is also reversible:
 the project this repository fetched from still serves the field,
 the contract check having run on 2026-08-15 with 33 of 33 assumptions holding, so the vendoring
 script can fetch it again if a review comes back permissive.
@@ -3158,7 +3158,7 @@ shape (`test/helpers/owner-delivery-contract.mjs:126-154`).
 The app carries only the optional `identityEvidenceKind` marker in the existing normalized issue
 record so the reading view can distinguish an owner-confirmed identity from an ordinary missing
 provider record after import and reload (`src/js/lib/model.js:270-279`,
-`src/js/views/reading.js:66-69`, `src/js/views/reading.js:80-91`). It keeps `metadataSourceKind` the
+`src/js/views/reading.js:68-71`, `src/js/views/reading.js:82-93`). It keeps `metadataSourceKind` the
 same way, only as one of the closed values and only beside an owner-confirmed identity, so a
 supplemented comic's badge hint, gap sentence and catalog label credit marvel.com and whichever
 outside source supplied its details instead of claiming it has no cover. The actor, date, URL and confirmation
