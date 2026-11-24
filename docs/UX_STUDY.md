@@ -252,7 +252,7 @@ Notable passes, recorded because a reader would reasonably expect them to fail:
 * 3.2.2 On Input passes, overturning a tool result. HTML_CodeSniffer flagged `#form-catalog-search`
   under H32.2 for having no submit button on both scanned surfaces. The form is search-as-you-type
   and calls `preventDefault` on submit, results update in place, and no change of context occurs,
-  so the criterion is met. Evidence: `src/index.html:861-867`, `src/js/views/catalog.js:684-728`.
+  so the criterion is met. Evidence: `src/index.html:861-867`, `src/js/views/catalog.js:700-744`.
 
 #### UX-A-001: The primary call to action and the accent text fall below 4.5:1
 

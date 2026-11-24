@@ -30,16 +30,21 @@ export function createCatalogPresentation({
     return defaultPath(story, (list) => isInLibrary(list.id));
   }
 
+  // The reading a card stands for: the first of the list and its `savedAs` continuations that is
+  // saved, else the list itself. Preview and Open both take it, so a reading saved only under
+  // another name is previewed as that saved copy rather than offered for adding a second time.
+  function savedReading(list, savedAs = []) {
+    for (const candidate of [list, ...savedAs]) {
+      const saved = isInLibrary(candidate.id);
+      if (saved) return { list: candidate, saved };
+    }
+    return { list, saved: null };
+  }
+
   // `savedAs` names other catalog lists whose saved copy continues this one, so a reading saved
   // under another name opens that copy instead of offering a second one.
   function primaryButton(list, reportTarget, { savedAs = [] } = {}) {
-    let opens = list;
-    let saved = isInLibrary(list.id);
-    for (const alias of savedAs) {
-      if (saved) break;
-      saved = isInLibrary(alias.id);
-      opens = alias;
-    }
+    const { list: opens, saved } = savedReading(list, savedAs);
     if (saved) {
       const text = 'Open →';
       return el('a', {
@@ -223,7 +228,7 @@ export function createCatalogPresentation({
     const year = storyYear(story);
     return el('article', {
       class: 'catalog-card placement-card',
-      dataset: { story: story.key, year: year ?? '' },
+      dataset: { story: story.stopKey ?? story.key, placement: story.key, year: year ?? '' },
     }, [
       el('div', { class: 'catalog-card-text' }, [
         el(level, { class: 'catalog-card-title', text: story.name }),
@@ -237,7 +242,7 @@ export function createCatalogPresentation({
               type: 'button',
               'aria-label': shownName([option.label], `Preview ${option.list.name}`),
               dataset: { key: `${story.key}:${option.list.id}`, act: 'preview' },
-              onclick: () => onPreview(option.list),
+              onclick: () => onPreview(savedReading(option.list, option.savedAs).list),
             }, el('span', { text: option.label })),
             el('p', { class: 'catalog-card-meta', text: catalogMeta(option.list) }),
             ...(linkText ? [el('p', {

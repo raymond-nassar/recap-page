@@ -1077,7 +1077,7 @@ The catalog view owns the followed path with the rest of its narrowing, under th
 that rejects stale or hidden continuations at `src/js/views/catalog.js:422-425`. It lets a path that
 no longer resolves go, follows the first path for a retired address naming none, and asks the
 controller to canonically replace that route at `src/js/views/catalog.js:466-480`. A deliberate
-choice instead asks the controller to push history, at `src/js/views/catalog.js:699-709`.
+choice instead asks the controller to push history, at `src/js/views/catalog.js:715-725`.
 
 Progress is a projection of reader state and completion onto each stop, by the Timeline's own rule:
 a stop is finished when the saved copy it is counted by is marked completed or read in full, so
@@ -1126,7 +1126,7 @@ filtered completion is stated before the narrowed results.
 
 The shared presentation contract removes the previous positional state and paints exactly one
 current label, hidden message, completion state or unavailable message at
-`src/js/views/shared/catalog-presentation.js:280-344`. Only the visible current list receives
+`src/js/views/shared/catalog-presentation.js:285-349`. Only the visible current list receives
 `aria-current="step"`. The controller injects live state and current-view knowledge at
 `src/js/main.js:4486-4530`, while the existing Store-driven render path calls the position-only
 refresh at `src/js/main.js:3508-3537`. That refresh leaves cards, controls, focus and scroll

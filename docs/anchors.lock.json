@@ -2049,8 +2049,8 @@
     "fp": "da02c5953a2ee9c2",
     "head": "// One index preserves listForCatalogId's first-listOrder answer without repeating its linear scan"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|modern-timeline-position-is-a-store-projection|src/js/views/shared/catalog-presentation.js:280-344|0": {
-    "anchor": "src/js/views/shared/catalog-presentation.js:280-344",
+  "docs/ARCHITECTURE_REFERENCE.md|modern-timeline-position-is-a-store-projection|src/js/views/shared/catalog-presentation.js:285-349|0": {
+    "anchor": "src/js/views/shared/catalog-presentation.js:285-349",
     "fp": "05f4154b07f5f4eb",
     "head": "function paintTimelinePosition(root, position, {"
   },
@@ -2144,8 +2144,8 @@
     "fp": "7dacc66641a02fed",
     "head": "// Following a bundled path narrows the Modern Timeline to that path's stops, every one of them"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/views/catalog.js:699-709|0": {
-    "anchor": "src/js/views/catalog.js:699-709",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/views/catalog.js:715-725|0": {
+    "anchor": "src/js/views/catalog.js:715-725",
     "fp": "db874268d2673038",
     "head": "// Focus stays on the choice, and the narrowed result is announced as the other narrowing is. A"
   },
@@ -6349,8 +6349,8 @@
     "fp": "ed4359c1c4354a5b",
     "head": "<form id=\"form-catalog-search\" class=\"stack\" role=\"search\">"
   },
-  "docs/UX_STUDY.md|sweep-result|src/js/views/catalog.js:684-728|0": {
-    "anchor": "src/js/views/catalog.js:684-728",
+  "docs/UX_STUDY.md|sweep-result|src/js/views/catalog.js:700-744|0": {
+    "anchor": "src/js/views/catalog.js:700-744",
     "fp": "d915b82bc5b029f7",
     "head": "function wire(key) {"
   },

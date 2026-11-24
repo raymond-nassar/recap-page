@@ -481,15 +481,16 @@ export function createCatalogView({
     if (key === 'catalog') paintFollowControl(paths, followed);
     const followedStories = followed ? followedPathStories(followed) : null;
     const owned = (list) => Boolean(listForCatalogId(getState(), list.id));
-    // A placement is a pointer to readings that already have a home, so it is drawn at its year but
-    // is never a stop: the timeline's position and "X of N" count it nowhere.
+    // A placement points at readings that already have a home, so those count as no stop here. An
+    // option that is itself a timeline event stays the stop it is: the card is drawn in its place
+    // and carries its key, so the position and "X of N" still wait for it to be read.
     const placements = key === 'catalog' && !followed ? modernTimelinePlacements(catalog.lists) : [];
-    const placedIds = new Set(placements.flatMap((placement) => placement.options.map((option) => option.list.id)));
     const mine = followed
       ? followedStories.map((story) => defaultPath(story, owned))
       : key === 'catalog'
-        ? modernTimelineLists(catalog.lists).filter((list) => !placedIds.has(list.id))
+        ? modernTimelineLists(catalog.lists)
         : shelfLists(catalog.lists, key);
+    const timelineStopIds = new Set(key === 'catalog' && !followed ? mine.map((list) => list.id) : []);
     const canonicalTimelineStories = key === 'catalog' ? followedStories ?? groupCatalog(mine) : null;
     nodes.results.replaceChildren();
     if (!mine.length) {
@@ -553,7 +554,17 @@ export function createCatalogView({
         keywords: [...(option.list.keywords ?? []), placement.name, option.label],
       }]).length),
     })).filter((placement) => placement.options.length)
-      .map((placement) => ({ ...placement, lists: placement.options.map((option) => option.list) }));
+      .map((placement) => {
+        const stop = placement.options.find((option) => timelineStopIds.has(option.list.id))?.list;
+        return {
+          ...placement,
+          lists: placement.options.map((option) => option.list),
+          ...(stop ? { stopKey: catalogEntryKey(stop) } : {}),
+        };
+      });
+    const placedStopIds = new Set(placed.flatMap((placement) => placement.options
+      .filter((option) => timelineStopIds.has(option.list.id))
+      .map((option) => option.list.id)));
     const linkWhere = linkNarrowing(links);
     const narrowed = state.facet !== 'all' || Boolean(state.query) || linking;
     const linkText = linking ? (story) => coverageText(linkCount(story.lists[0]), links.provider) : null;
@@ -593,9 +604,11 @@ export function createCatalogView({
       return;
     }
 
+    const entries = catalogEntries(shown)
+      .filter((story) => !story.lists.some((list) => placedStopIds.has(list.id)));
     const listed = key === 'spotlights'
-      ? sortSpotlightStories(catalogEntries(shown), state.sort)
-      : catalogEntries(shown);
+      ? sortSpotlightStories(entries, state.sort)
+      : entries;
     const stories = [...listed, ...placed];
     const shownLists = listed.length + placed.reduce((sum, placement) => sum + placement.options.length, 0);
     // Paths live on Modern Timeline since #897, so only it says where one starts. Elsewhere the
@@ -663,7 +676,10 @@ export function createCatalogView({
         narrowed,
         root: nodes.results,
         stories: canonicalTimelineStories,
-        visibleStories: listed,
+        visibleStories: [
+          ...listed,
+          ...placed.filter((placement) => placement.stopKey).map((placement) => ({ key: placement.stopKey })),
+        ],
       })
       : null;
     if (cards && opener) restoreStopOpener(opener, followed, cards);

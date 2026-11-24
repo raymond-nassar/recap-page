@@ -203,11 +203,11 @@
   /* Comic Book Herald's three tie-in groups, as stoplight tints (owner, 2026-11-24). The words on
      them are ordinary text; the tint and dot only repeat the group. */
   --rating-favorite-bg: #253a2b;
-  --rating-favorite-dot: #84d765;
+  --rating-favorite-dot: #84d765; --rating-favorite-line: #84d765;
   --rating-average-bg: #40371f;
-  --rating-average-dot: #f4ce37;
+  --rating-average-dot: #f4ce37; --rating-average-line: #f4ce37;
   --rating-lower-bg: #45313a;
-  --rating-lower-dot: #ff9d9d;
+  --rating-lower-dot: #ff9d9d; --rating-lower-line: #ff9d9d;
   --blue: #7fb3ff;
   /* The brand's decorative blue and red (#1208), the two colors the purple was mixed from. They decorate
      and never report: `--blue` stays the color of links, focus and the current place, and the status
@@ -283,11 +283,11 @@
   --teal: #12695f;
   --amber: #6d4e08;
   --rating-favorite-bg: #e5f2df;
-  --rating-favorite-dot: #3b7b1f;
+  --rating-favorite-dot: #3b7b1f; --rating-favorite-line: #3b7b1f;
   --rating-average-bg: #fff3bc;
-  --rating-average-dot: #89701d;
+  --rating-average-dot: #f4ce37; --rating-average-line: #89701d;
   --rating-lower-bg: #fce6e6;
-  --rating-lower-dot: #aa645f;
+  --rating-lower-dot: #ed9898; --rating-lower-line: #aa645f;
   --blue: #17509c;
   --brand-blue: #1d4ed8;
   --brand-red: #c8102e;
@@ -338,11 +338,11 @@
     --teal: #12695f;
     --amber: #6d4e08;
     --rating-favorite-bg: #e5f2df;
-    --rating-favorite-dot: #3b7b1f;
+    --rating-favorite-dot: #3b7b1f; --rating-favorite-line: #3b7b1f;
     --rating-average-bg: #fff3bc;
-    --rating-average-dot: #89701d;
+    --rating-average-dot: #f4ce37; --rating-average-line: #89701d;
     --rating-lower-bg: #fce6e6;
-    --rating-lower-dot: #aa645f;
+    --rating-lower-dot: #ed9898; --rating-lower-line: #aa645f;
     --blue: #17509c;
     --brand-blue: #1d4ed8;
     --brand-red: #c8102e;
@@ -2473,11 +2473,11 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .rating-badge { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--text); }
 .rating-badge::before {
   content: ""; flex: none; width: .6em; height: .6em; border-radius: var(--radius-pill);
-  background: var(--rating-dot);
+  background: var(--rating-dot); border: var(--stroke-1) solid var(--rating-line);
 }
-.rating-favorite { --rating-dot: var(--rating-favorite-dot); background: var(--rating-favorite-bg); border-color: var(--rating-favorite-dot); }
-.rating-average { --rating-dot: var(--rating-average-dot); background: var(--rating-average-bg); border-color: var(--rating-average-dot); }
-.rating-lower { --rating-dot: var(--rating-lower-dot); background: var(--rating-lower-bg); border-color: var(--rating-lower-dot); }
+.rating-favorite { --rating-dot: var(--rating-favorite-dot); --rating-line: var(--rating-favorite-line); background: var(--rating-favorite-bg); border-color: var(--rating-favorite-line); }
+.rating-average { --rating-dot: var(--rating-average-dot); --rating-line: var(--rating-average-line); background: var(--rating-average-bg); border-color: var(--rating-average-line); }
+.rating-lower { --rating-dot: var(--rating-lower-dot); --rating-line: var(--rating-lower-line); background: var(--rating-lower-bg); border-color: var(--rating-lower-line); }
 .badge-optional { color: var(--text); border-style: dashed; border-color: var(--line-2); }
 @media (forced-colors: active) {
   .rating-badge::before { display: none; }

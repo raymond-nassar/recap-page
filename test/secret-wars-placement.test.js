@@ -59,8 +59,7 @@ function node(props = {}, children = []) {
 
 const element = (tag, props = {}, children = []) => node({ tagName: tag.toUpperCase(), ...props }, children);
 
-function harness(catalog = actual) {
-  const state = { lists: {}, listOrder: [], read: {} };
+function harness(catalog = actual, { state = { lists: {}, listOrder: [], read: {} }, isCompleted = () => false } = {}) {
   const shelf = { clear: node(), filters: node(), query: node(), results: node(), search: node() };
   const follow = { wrap: node(), select: element('select'), about: node(), description: node(), source: node() };
   const sections = [];
@@ -76,7 +75,7 @@ function harness(catalog = actual) {
     },
     getState: () => state,
     isCurrent: (key) => key === 'catalog',
-    isCompleted: () => false,
+    isCompleted,
     loadCatalog: () => Promise.resolve(catalog),
     notifyDropped: () => {},
     onLoadFailure: ({ error }) => { throw error; },
@@ -139,7 +138,30 @@ test('the default timeline draws the card at 2015 without counting it as a stop'
   await event.view.render('catalog');
   assert.equal(event.stories().filter((story) => story.lists.some((list) => list.id === SECRET_WARS_2015_EVENT_ID)).length, 1,
     'an event list offered on the card is not drawn a second time as its own stop');
-  assert.deepEqual(event.paints.at(-1), placed.paints.at(-1), 'and it is never counted as a stop');
+  const eventCard = event.stories().find((story) => story.key === PLACEMENT);
+  assert.equal(eventCard.stopKey, `list:${SECRET_WARS_2015_EVENT_ID}`, 'the card stands in for the event stop');
+});
+
+test('a genuinely new event offered on the card stays a timeline stop until it is read', async () => {
+  const stops = groupCatalog(modernTimelineLists(withEvent.lists));
+  const at = stops.findIndex((story) => story.lists.some((list) => list.id === SECRET_WARS_2015_EVENT_ID));
+  assert.ok(at > 0, 'the event is one of the timeline stops');
+  assert.equal(stops.length, groupCatalog(modernTimelineLists(actual.lists)).length + 1);
+  const state = { lists: {}, listOrder: [], read: {} };
+  for (const list of modernTimelineLists(withEvent.lists)) {
+    state.lists[`saved-${list.id}`] = { id: `saved-${list.id}`, catalogId: list.id, name: list.name, itemIds: [] };
+    state.listOrder.push(`saved-${list.id}`);
+  }
+  const unread = harness(withEvent, { state, isCompleted: (_state, id) => id !== `saved-${SECRET_WARS_2015_EVENT_ID}` });
+  await unread.view.render('catalog');
+  assert.deepEqual(
+    [unread.paints.at(-1).kind, unread.paints.at(-1).storyKey, unread.paints.at(-1).completed, unread.paints.at(-1).total],
+    ['current', `list:${SECRET_WARS_2015_EVENT_ID}`, at, stops.length],
+    'every other stop read leaves the reader at the event, not at the end',
+  );
+  const read = harness(withEvent, { state, isCompleted: () => true });
+  await read.view.render('catalog');
+  assert.equal(read.paints.at(-1).kind, 'complete');
 });
 
 test('a search keeps only the readings it names, and an unrelated search drops the card', async (t) => {
@@ -213,6 +235,9 @@ test('each reading on the card opens its own saved copy, a saved MCU Prep copy c
   assert.deepEqual(alias.calls, [['open', 'avengers-doomsday-secret-wars', 'mcu-copy']],
     'the saved MCU Prep copy opens rather than a second fast track being offered');
   assert.equal(saga.dataset.act, 'import', 'the saga is a different reading and is still offered on its own');
+  for (const preview of all(alias.card).filter((node) => node.dataset?.act === 'preview')) preview.onclick();
+  assert.deepEqual(alias.calls.slice(1), [['preview', 'avengers-doomsday-secret-wars'], ['preview', 'hickman-full']],
+    'Preview shows the saved MCU Prep copy, so it offers Open rather than adding the fast track again');
 
   const both = present({ 'hickman-minimal': { id: 'own-copy' }, 'avengers-doomsday-secret-wars': { id: 'mcu-copy' } });
   actions(both.card)[0].onclick({ button: 0, preventDefault() {} });
