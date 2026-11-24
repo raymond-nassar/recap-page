@@ -325,6 +325,30 @@ async function universesCheck(page, label) {
   check(JSON.stringify(primary.links) === JSON.stringify(['#/catalog', '#/marvel-ages']) && primary.sections,
     `${label}: Marvel Universe contains the two approved browsing destinations, not fragments`);
   await fit('universe');
+  // Universes and Creators wear their Home card's color as a top bar over a soft wash, as every
+  // other Home category page does, in both themes and at the phone's own width.
+  const original = await page.evaluate(() => document.documentElement.getAttribute('data-theme'));
+  for (const name of ['dark', 'light']) {
+    await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, name);
+    for (const view of ['universes', 'creators']) {
+      await route(page, 'home');
+      const channel = await page.$eval(`#view-home .home-path[data-category="${view}"]`, (card) =>
+        getComputedStyle(card).getPropertyValue('--home-path-line').trim().split(/\s+/).join(', '));
+      await route(page, view);
+      const head = await page.$eval(`#view-${view} > .head`, (node) => ({
+        edge: getComputedStyle(node, '::before').backgroundColor,
+        wash: getComputedStyle(node).backgroundImage,
+        title: getComputedStyle(node.querySelector('h1')).color === getComputedStyle(document.body).color,
+        overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
+      }));
+      check(channel && head.edge === `rgb(${channel})` && head.wash.includes(`rgba(${channel}, 0.13)`) && head.title
+        && !head.overflow, `${label} ${name} ${view}: header wears its Home card's color ${JSON.stringify({ channel, ...head })}`);
+    }
+  }
+  await page.evaluate((value) => {
+    if (value === null) document.documentElement.removeAttribute('data-theme');
+    else document.documentElement.dataset.theme = value;
+  }, original);
   check(JSON.stringify(await saved()) === JSON.stringify(before),
     `${label}: Universe discovery leaves every saved-data byte unchanged`);
 }

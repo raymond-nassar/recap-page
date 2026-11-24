@@ -3280,14 +3280,16 @@ select, input[type="search"], input[type="text"], input[type="url"] {
 #view-marvel-on-screen { --page-line: var(--azure-line); }
 #view-marvel-ages { --page-line: var(--magenta-line); }
 #view-young-readers { --page-line: var(--green-line); }
-:is(#view-catalog, #view-genres, #view-spotlights, #view-marvel-on-screen, #view-marvel-ages, #view-young-readers) > .head {
+#view-universes { --page-line: var(--copper-line); }
+#view-creators { --page-line: var(--cyan-line); }
+:is(#view-catalog, #view-genres, #view-spotlights, #view-marvel-on-screen, #view-marvel-ages, #view-young-readers, #view-universes, #view-creators) > .head {
   position: relative; padding: var(--space-6) var(--space-6) var(--space-5); border-radius: var(--radius-feature);
   /* Bleeds into the page gutter, never narrower than this padding, so the title keeps the left
      edge every other view's heading starts at (UX-21). */
   margin-inline: calc(-1 * var(--space-6));
   background: linear-gradient(145deg, rgb(var(--page-line) / 13%), transparent 10rem);
 }
-:is(#view-catalog, #view-genres, #view-spotlights, #view-marvel-on-screen, #view-marvel-ages, #view-young-readers) > .head::before {
+:is(#view-catalog, #view-genres, #view-spotlights, #view-marvel-on-screen, #view-marvel-ages, #view-young-readers, #view-universes, #view-creators) > .head::before {
   content: ""; position: absolute; inset: 0 0 auto; height: 4px;
   border-radius: var(--radius-feature) var(--radius-feature) 0 0; background: rgb(var(--page-line));
 }
@@ -3321,8 +3323,8 @@ select, input[type="search"], input[type="text"], input[type="url"] {
   #view-data .setgroup > h2, #view-about .card-static h3 { border-inline-start-color: CanvasText; }
   .empty-state { border-color: CanvasText; }
   .empty-state .empty-glyph { color: CanvasText; }
-  :is(#view-catalog, #view-genres, #view-spotlights, #view-marvel-on-screen, #view-marvel-ages, #view-young-readers) > .head { background: none; }
-  :is(#view-catalog, #view-genres, #view-spotlights, #view-marvel-on-screen, #view-marvel-ages, #view-young-readers) > .head::before { background: CanvasText; }
+  :is(#view-catalog, #view-genres, #view-spotlights, #view-marvel-on-screen, #view-marvel-ages, #view-young-readers, #view-universes, #view-creators) > .head { background: none; }
+  :is(#view-catalog, #view-genres, #view-spotlights, #view-marvel-on-screen, #view-marvel-ages, #view-young-readers, #view-universes, #view-creators) > .head::before { background: CanvasText; }
   /* The full selector, because a shorter one loses to the band's own rule and leaves its gradient,
      which forced colors compute to none. */
   #list-wrap-up:has(#list-wrap-up-cheer:not([hidden])):not(:has(#list-completion-status:not([hidden])))::before { background: CanvasText; }
