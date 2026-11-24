@@ -197,6 +197,71 @@ export const categoryWashContrast = {
   },
 };
 
+// What each Home category card's own page paints in its header, beside the channel the card wears.
+// The cards are read first and their links followed, so a card added later is held to the same rule.
+async function pageHeaders(page) {
+  await show(page, 'home', '#view-home .home-path');
+  const cards = await page.$$eval('#view-home .home-path', (nodes) => nodes.map((card) => ({
+    key: card.dataset.category,
+    href: card.getAttribute('href'),
+    channel: getComputedStyle(card).getPropertyValue('--home-path-line').trim().split(/\s+/).join(', '),
+  })));
+  const rows = [];
+  for (const card of cards) {
+    const view = `view-${card.href.replace(/^#\//, '')}`;
+    await page.evaluate((href) => { location.hash = href; }, card.href);
+    await page.waitForFunction((id) => document.getElementById(id)?.hidden === false, { timeout: 15000 }, view);
+    rows.push({ ...card, view, ...(await page.evaluate((id) => {
+      const head = document.querySelector(`#${id} > .head`);
+      const edge = getComputedStyle(head, '::before');
+      return {
+        edge: edge.content === 'none' ? 'none' : edge.backgroundColor,
+        edgeHeight: edge.height,
+        wash: getComputedStyle(head).backgroundImage,
+        title: getComputedStyle(head.querySelector('h1')).color,
+        text: getComputedStyle(document.body).color,
+        overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+      };
+    }, view)) });
+  }
+  return rows;
+}
+
+export const categoryPageHeaders = {
+  id: 'category-page-headers',
+  title: 'every Home category page, Universes and Creators included, wears its card\'s color as a top bar over a soft wash',
+  async run(page, t) {
+    for (const width of [1280, 390]) {
+      await open(page, { width });
+      for (const name of ['dark', 'light']) {
+        await theme(page, name);
+        const rows = await pageHeaders(page);
+        const keys = rows.map(({ key }) => key);
+        t.check(`${width}px ${name}: Universes and Creators are among the Home category pages checked`,
+          rows.length === 8 && keys.includes('universes') && keys.includes('creators'), JSON.stringify(keys));
+        const wrong = rows.filter(({ channel, edge, edgeHeight, wash }) => !channel
+          || edge !== `rgb(${channel})` || edgeHeight !== '4px' || !wash.includes(`rgba(${channel}, 0.13)`));
+        t.check(`${width}px ${name}: each category page draws its top bar and wash from its own card's color`,
+          wrong.length === 0, JSON.stringify(wrong));
+        t.check(`${width}px ${name}: the eight category pages show eight different top bars`,
+          new Set(rows.map(({ edge }) => edge)).size === rows.length, JSON.stringify(rows.map(({ key, edge }) => [key, edge])));
+        t.check(`${width}px ${name}: every category page title keeps the text color`,
+          rows.every(({ title, text }) => title === text), JSON.stringify(rows.map(({ key, title, text }) => [key, title, text])));
+        t.check(`${width}px ${name}: no category page scrolls sideways`,
+          rows.every(({ overflow }) => !overflow), JSON.stringify(rows.filter(({ overflow }) => overflow).map(({ key }) => key)));
+      }
+    }
+
+    await open(page, { width: 1280, forced: true });
+    const forced = await pageHeaders(page);
+    t.check('forced colors give every category page header one system color for its top bar and no wash',
+      forced.length === 8 && new Set(forced.map(({ edge }) => edge)).size === 1 && forced[0].edge !== 'none'
+      && forced.every(({ wash }) => wash === 'none'),
+      JSON.stringify(forced.map(({ key, edge, wash }) => ({ key, edge, wash }))));
+    await open(page, { width: 1280 });
+  },
+};
+
 // Each script is handed to the page as source text, so it carries its rules inside it: a closure over a
 // variable here would arrive in the page without that variable. It also runs on the blank page every
 // scenario here opens from, which has no stylesheet to change.
@@ -233,6 +298,18 @@ export const categoryAccentMutations = [
         if (!sheet) return;
         sheet.insertRule('.home-path { background: linear-gradient(145deg, rgb(var(--home-path-line) / 13%), transparent 62%), var(--card); }', sheet.cssRules.length);
         sheet.insertRule('.home-path:hover { background: linear-gradient(145deg, rgb(var(--home-path-line) / 19%), transparent 68%), var(--card-2); }', sheet.cssRules.length);
+      });
+    },
+  },
+  {
+    id: 'category-page-headers-swapped', breaks: 'category-page-headers',
+    why: 'the Universes and Creators pages wear each other\'s card color',
+    script: () => {
+      addEventListener('load', () => {
+        const sheet = [...document.styleSheets].find((entry) => entry.href?.endsWith('styles.css'));
+        if (!sheet) return;
+        sheet.insertRule('#view-universes { --page-line: var(--cyan-line) !important; }', sheet.cssRules.length);
+        sheet.insertRule('#view-creators { --page-line: var(--copper-line) !important; }', sheet.cssRules.length);
       });
     },
   },
