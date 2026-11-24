@@ -6354,8 +6354,8 @@
     "fp": "d915b82bc5b029f7",
     "head": "function wire(key) {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:2530-2532|0": {
-    "anchor": "src/styles.css:2530-2532",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:2533-2535|0": {
+    "anchor": "src/styles.css:2533-2535",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -6379,8 +6379,8 @@
     "fp": "3cbc7d76b21e95fa",
     "head": "// Generated from src/data/hickman_full.json - real issues and real covers. The synopses this"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2530-2532|0": {
-    "anchor": "src/styles.css:2530-2532",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2533-2535|0": {
+    "anchor": "src/styles.css:2533-2535",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -6434,8 +6434,8 @@
     "fp": "67a2685668e86539",
     "head": ".cb {"
   },
-  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2995-2996|0": {
-    "anchor": "src/styles.css:2995-2996",
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:2998-2999|0": {
+    "anchor": "src/styles.css:2998-2999",
     "fp": "50a15115f9d51e98",
     "head": ".row { grid-template-columns: var(--target) 44px minmax(0, 1fr) auto; }"
   },
@@ -6504,8 +6504,8 @@
     "fp": "53b9bb8e0988cf2b",
     "head": "color-scheme: dark;"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2530-2532|0": {
-    "anchor": "src/styles.css:2530-2532",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2533-2535|0": {
+    "anchor": "src/styles.css:2533-2535",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -6684,23 +6684,23 @@
     "fp": "955a5533014388f9",
     "head": ".btn-g { background: rgb(var(--tint-base) / 5.882%); color: var(--text); border-color: var(--line-2)"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2217-2219|0": {
-    "anchor": "src/styles.css:2217-2219",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2220-2222|0": {
+    "anchor": "src/styles.css:2220-2222",
     "fp": "bf510b9aee0c8441",
     "head": "background:"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2237-2239|0": {
-    "anchor": "src/styles.css:2237-2239",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2240-2242|0": {
+    "anchor": "src/styles.css:2240-2242",
     "fp": "5dbffdc9196107f3",
     "head": "background:"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2570|0": {
-    "anchor": "src/styles.css:2570",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2573|0": {
+    "anchor": "src/styles.css:2573",
     "fp": "3a5c838f7187d084",
     "head": "background: color-mix(in srgb, var(--warn) 12%, var(--panel));"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2594|0": {
-    "anchor": "src/styles.css:2594",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2597|0": {
+    "anchor": "src/styles.css:2597",
     "fp": "1eef54d530f1e5d5",
     "head": ".blocked .btn-g { border-color: var(--muted); }"
   },

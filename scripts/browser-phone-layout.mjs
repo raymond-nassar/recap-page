@@ -1404,24 +1404,57 @@ function guideLayout() {
       && document.documentElement.scrollWidth <= document.documentElement.clientWidth };
 }
 
-async function guidePillContrast(page, hover) {
-  await page.$eval('#home-new-reader a[href="#/new-to-comics"]', (node) => node.scrollIntoView({ block: 'center' }));
-  const box = await page.$eval('#home-new-reader a[href="#/new-to-comics"]', (node) => {
+const guideButton = '#home-new-reader a[href="#/new-to-comics"]';
+
+async function paintedPixel(page, x, y) {
+  const scroll = await page.evaluate(() => ({ x: scrollX, y: scrollY }));
+  const shot = decodePng(await page.screenshot({ clip: { x: Math.round(x) + scroll.x, y: Math.round(y) + scroll.y, width: 1, height: 1 } }));
+  return shot.pixel(0, 0);
+}
+
+// Each mode is a state a reader can put the button in: at rest, under the pointer, and reached by Tab.
+// Focus is reached by a real Tab from a throwaway stop just before the button, so the ring measured is
+// the one :focus-visible paints for keyboard users. The ring is sampled in the gap-plus-half-width band
+// below the button and compared with the same pixel unfocused, which is what it has to stand out from.
+async function guidePillContrast(page, mode) {
+  await page.$eval(guideButton, (node) => node.scrollIntoView({ block: 'center' }));
+  const box = await page.$eval(guideButton, (node) => {
     const rect = node.getBoundingClientRect();
     const range = document.createRange();
     range.selectNodeContents(node);
     const text = [...range.getClientRects()].find((part) => part.width && part.height);
-    return { left: rect.left, top: rect.top, width: rect.width, height: rect.height, textLeft: text.left, textTop: text.top };
+    const css = getComputedStyle(document.documentElement);
+    const ring = parseFloat(css.getPropertyValue('--focus-offset')) + parseFloat(css.getPropertyValue('--focus-width')) / 2;
+    return { left: rect.left, top: rect.top, width: rect.width, height: rect.height, textLeft: text.left, textTop: text.top, ring };
   });
-  await page.mouse.move(hover ? box.left + box.width / 2 : 0, hover ? box.top + box.height / 2 : 0);
+  const ringPoint = { x: box.left + box.width / 2, y: box.top + box.height + box.ring };
+  const unfocusedRing = mode === 'focus' ? await paintedPixel(page, ringPoint.x, ringPoint.y) : null;
+  await page.mouse.move(mode === 'hover' ? box.left + box.width / 2 : 0, mode === 'hover' ? box.top + box.height / 2 : 0);
+  let focus = null;
+  if (mode === 'focus') {
+    await page.$eval(guideButton, (node) => {
+      const stop = document.createElement('button');
+      stop.id = 'guide-focus-stop';
+      stop.style.cssText = 'position: fixed; left: 0; top: 0; width: 1px; height: 1px; opacity: 0;';
+      node.before(stop);
+      stop.focus();
+    });
+    await page.keyboard.press('Tab');
+    focus = await page.$eval(guideButton, (node) => ({ active: document.activeElement === node,
+      visible: node.matches(':focus-visible'), outline: getComputedStyle(node).outlineStyle }));
+  }
   await settle(page);
-  const colour = await page.$eval('#home-new-reader a[href="#/new-to-comics"]', (node) => getComputedStyle(node).color);
-  const clip = { x: Math.round(box.textLeft) - 3, y: Math.round(box.textTop) + 1, width: 1, height: 1 };
-  const shot = decodePng(await page.screenshot({ clip: { ...clip, x: clip.x + await page.evaluate(() => scrollX), y: clip.y + await page.evaluate(() => scrollY) } }));
-  const background = shot.pixel(0, 0);
+  const colour = await page.$eval(guideButton, (node) => getComputedStyle(node).color);
+  const background = await paintedPixel(page, box.textLeft - 3, box.textTop + 1);
   const text = colour.match(/\d+/g).slice(0, 3).map(Number);
+  const row = { mode, text, background, ratio: Math.round(ratio(text, background) * 100) / 100 };
+  if (mode === 'focus') {
+    const ring = await paintedPixel(page, ringPoint.x, ringPoint.y);
+    Object.assign(row, { focus, ring, unfocusedRing, ringRatio: Math.round(ratio(ring, unfocusedRing) * 100) / 100 });
+    await page.evaluate(() => { document.activeElement?.blur(); document.getElementById('guide-focus-stop')?.remove(); });
+  }
   await page.mouse.move(0, 0);
-  return { hover, text, background, ratio: Math.round(ratio(text, background) * 100) / 100 };
+  return row;
 }
 
 export const guideLinkPill = {
@@ -1458,13 +1491,16 @@ export const guideLinkPill = {
         && style.every((link) => link.background === link.want.background && link.color === link.want.color
           && link.border === link.want.border && link.borderWidth === '1px' && link.radius >= 999 && link.underline === 'none')
         && style.filter((link) => link.rendered).every((link) => link.height >= target), style);
-      const contrast = [await guidePillContrast(page, false)];
-      if (profile.platform === 'desktop') contrast.push(await guidePillContrast(page, true));
+      const contrast = [await guidePillContrast(page, 'rest')];
+      if (profile.platform === 'desktop') contrast.push(await guidePillContrast(page, 'hover'), await guidePillContrast(page, 'focus'));
       console.log(`GUIDE-PILL-CONTRAST ${JSON.stringify({ ...profile, theme, contrast })}`);
-      // Hover is logged, not asserted: this is an ordinary primary button, and its hover brightening is
-      // the app-wide button rule, measured at 4.05:1 in dark desktop, which no single card should fork.
-      checked(t, `${label}: painted guide button text contrast at rest is at least 4.5:1`,
-        contrast.filter((row) => !row.hover).every((row) => row.ratio >= 4.5), contrast);
+      checked(t, `${label}: painted guide button text contrast is at least 4.5:1 at rest${profile.platform === 'desktop' ? ', under the pointer and on keyboard focus' : ''}`,
+        contrast.every((row) => row.ratio >= 4.5), contrast);
+      if (profile.platform === 'desktop') {
+        const focused = contrast.find((row) => row.mode === 'focus');
+        checked(t, `${label}: Tab reaches the guide button with a painted focus ring at least 3:1 against the card`,
+          focused.focus.active && focused.focus.visible && focused.focus.outline !== 'none' && focused.ringRatio >= 3, focused);
+      }
       const layout = await page.evaluate(guideLayout);
       checked(t, `${label}: the guide button sits whole below its heading and the heading is never squeezed`,
         layout.ok, layout);
