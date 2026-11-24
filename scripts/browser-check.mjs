@@ -25035,7 +25035,7 @@ const selectionBar = await import('./browser-selection-bar.mjs');
 SCENARIOS.push(selectionBar.selectionBar);
 MUTATIONS.push(...selectionBar.selectionBarMutations);
 const categoryAccents = await import('./browser-category-accents.mjs');
-SCENARIOS.push(categoryAccents.eraAccents, categoryAccents.categoryWashContrast);
+SCENARIOS.push(categoryAccents.eraAccents, categoryAccents.categoryWashContrast, categoryAccents.categoryPageHeaders);
 MUTATIONS.push(...categoryAccents.categoryAccentMutations);
 const themeColor = await import('./browser-theme-color.mjs');
 SCENARIOS.push(themeColor.themeColor);
