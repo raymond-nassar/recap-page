@@ -151,19 +151,23 @@ test('new-to-comics has a named static panel and a native Genres destination', (
   has(guide, /<a\b[^>]*href="#\/genres"[^>]*>[^<]+<\/a>/, 'native Genres starter destination');
 });
 
-test('guide links every named app page to its real destination', () => {
+test('About explains how to get around and links to the other app pages', () => {
   const html = read('src/index.html');
   const start = html.indexOf('<section id="view-new-to-comics"');
   const guide = html.slice(start, html.indexOf('<!-- ---------------------------------------- reading view -->', start));
-  const orientation = guide.slice(guide.indexOf('aria-labelledby="guide-app-h"'), guide.indexOf('</section>',
-    guide.indexOf('aria-labelledby="guide-app-h"')));
+  const aboutStart = html.indexOf('<section id="view-about"');
+  const about = html.slice(aboutStart, html.indexOf('<section id="view-completed"', aboutStart));
+  assert.match(about, /<h2 id="guide-app-h">Getting around Recap Page<\/h2>/, 'About has the Getting around card');
+  assert.doesNotMatch(guide, /Getting around Recap Page/, 'the guide no longer repeats the card');
+  const sectionStart = about.indexOf('aria-labelledby="guide-app-h"');
+  const orientation = about.slice(sectionStart, about.indexOf('</section>', sectionStart));
   assert.match(orientation, /<ul>[\s\S]*<li>/, 'app orientation is a short list');
   const pages = [
     ['home', 'Home'], ['catalog', 'Modern Timeline'], ['genres', 'Genres'],
     ['spotlights', 'Character spotlights'], ['marvel-on-screen', 'MCU Prep'],
     ['marvel-ages', 'Marvel Ages'], ['young-readers', 'Young readers'],
     ['universes', 'Universes'], ['creators', 'Creators'],
-    ['library', 'Library'], ['add', 'Search'], ['data', 'Backup &amp; settings'], ['about', 'About'],
+    ['library', 'Library'], ['add', 'Search'], ['data', 'Backup &amp; settings'],
   ];
   const bullets = [...orientation.matchAll(/<li>([\s\S]*?)<\/li>/g)].map(([, text]) => text);
   assert.equal(bullets.length, pages.length + 1, 'each page has its own bullet plus the reading explanation');

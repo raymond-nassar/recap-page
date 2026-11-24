@@ -3560,15 +3560,6 @@ const SCENARIOS = [
           && Boolean(document.querySelector('#view-new-to-comics a[href="#/genres"]')));
         t.check('the filtered Genres visit can reach the guide and its starter link', guideReady);
         if (guideReady) {
-          await click(starter, '[aria-labelledby="guide-app-h"] a[data-view="genres"]');
-          await starter.waitForSelector('#view-genres:not([hidden])');
-          const orientation = await starter.evaluate(() => ({
-            type: document.querySelector('#genres-type').value, tone: document.querySelector('#genres-tone').value,
-          }));
-          t.check('the orientation link retains Genres choices rather than acting as the starter reset',
-            orientation.type === 'espionage' && orientation.tone === 'dark', JSON.stringify(orientation));
-          await starter.goBack();
-          await starter.waitForSelector('#view-new-to-comics:not([hidden])');
           const nativeStarters = await starter.evaluate(() => {
             const link = document.querySelector('#view-new-to-comics a[href="#/genres"]');
             const results = ['ctrlKey', 'metaKey', 'shiftKey', 'altKey'].map((key) => {
@@ -3584,15 +3575,24 @@ const SCENARIOS = [
             link.dispatchEvent(event);
             return { results, middle };
           });
-          await click(starter, '[aria-labelledby="guide-app-h"] a[data-view="genres"]');
+          await starter.evaluate(() => { location.hash = '#/about'; });
+          await starter.waitForSelector('#view-about:not([hidden])');
+          await starter.focus('#view-about [aria-labelledby="guide-app-h"] a[data-view="genres"]');
+          await starter.keyboard.press('Enter');
           await starter.waitForSelector('#view-genres:not([hidden])');
           const retainedChoices = await starter.evaluate(() => ({
             type: document.querySelector('#genres-type').value, tone: document.querySelector('#genres-tone').value,
+            headingFocused: document.activeElement === document.querySelector('#view-genres h1'),
           }));
+          t.check('the About Genres link focuses the destination and retains both filters',
+            retainedChoices.headingFocused && retainedChoices.type === 'espionage' && retainedChoices.tone === 'dark',
+            JSON.stringify(retainedChoices));
           t.check('modified or middle activation of the starter link stays native without resetting filters',
             nativeStarters.results.every(Boolean) && nativeStarters.middle
               && retainedChoices.type === 'espionage' && retainedChoices.tone === 'dark',
             JSON.stringify({ ...nativeStarters, ...retainedChoices }));
+          await starter.goBack();
+          await starter.waitForSelector('#view-about:not([hidden])');
           await starter.goBack();
           await starter.waitForSelector('#view-new-to-comics:not([hidden])');
           const ids = [
@@ -18653,10 +18653,7 @@ SCENARIOS.push({
               href: link.getAttribute('href'), text: link.textContent.trim(), target: link.target,
               rel: link.rel, optional: /optional/i.test(link.closest('section')?.textContent ?? ''),
             })),
-            orientation: [...guide.querySelectorAll('[aria-labelledby="guide-app-h"] li a')].map((link) => ({
-              view: link.dataset.view, href: link.getAttribute('href'), text: link.textContent.trim(),
-              linksInBullet: link.closest('li').querySelectorAll('a').length,
-            })),
+            hasOrientation: Boolean(guide.querySelector('[aria-labelledby="guide-app-h"]')),
             credit: guide.textContent.includes('r/Marvel wiki'),
           };
         });
@@ -18682,13 +18679,7 @@ SCENARIOS.push({
             && content.links.every((link) => link.text && link.target === '_blank'
               && link.rel.split(/\s+/).includes('noopener') && link.rel.split(/\s+/).includes('noreferrer')),
           JSON.stringify(content.links));
-        const pages = ['home', 'catalog', 'genres', 'spotlights', 'marvel-on-screen', 'marvel-ages',
-          'young-readers', 'universes', 'creators', 'library', 'add', 'data', 'about'];
-        t.check('the concise orientation links every named page to its own route',
-          JSON.stringify(content.orientation.map(({ view }) => view)) === JSON.stringify(pages)
-            && content.orientation.every(({ view, href, text, linksInBullet }) =>
-              href === `#/${view}` && text && linksInBullet === 1),
-          JSON.stringify(content.orientation));
+        t.check('the starting-point guide no longer repeats the app orientation', !content.hasOrientation);
         const selector = '#view-new-to-comics a[href^="https://www.reddit.com/"]';
         const actual = await copy.$(selector);
         t.check('a representative actual external guide anchor exists for activation', Boolean(actual));
@@ -18714,6 +18705,30 @@ SCENARIOS.push({
           if (openedPage) await openedPage.close();
         }
       }
+      await copy.setViewport({ width: 360, height: 800, isMobile: true, hasTouch: true });
+      await open(copy, '/#/about');
+      await copy.waitForSelector('#view-about:not([hidden])');
+      const orientation = await copy.evaluate(() => {
+        const card = document.querySelector('#view-about [aria-labelledby="guide-app-h"]');
+        const list = card?.querySelector('ul');
+        return {
+          title: card?.querySelector('h2')?.textContent,
+          visible: card?.checkVisibility(),
+          fits: document.documentElement.scrollWidth <= innerWidth,
+          indent: list ? Number.parseFloat(getComputedStyle(list).paddingInlineStart) : 0,
+          links: [...(list?.querySelectorAll('li a') ?? [])].map((link) => ({
+            view: link.dataset.view, href: link.getAttribute('href'), text: link.textContent.trim(),
+            linksInBullet: link.closest('li').querySelectorAll('a').length,
+          })),
+        };
+      });
+      const pages = ['home', 'catalog', 'genres', 'spotlights', 'marvel-on-screen', 'marvel-ages',
+        'young-readers', 'universes', 'creators', 'library', 'add', 'data'];
+      t.check('About shows the orientation card at phone width with a separate native link per destination',
+        orientation.title === 'Getting around Recap Page' && orientation.visible && orientation.fits && orientation.indent >= 16
+          && JSON.stringify(orientation.links.map(({ view }) => view)) === JSON.stringify(pages)
+          && orientation.links.every(({ view, href, text, linksInBullet }) => href === `#/${view}` && text && linksInBullet === 1),
+        JSON.stringify(orientation));
     } finally {
       await copyContext.close();
     }
