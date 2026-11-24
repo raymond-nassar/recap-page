@@ -18636,6 +18636,12 @@ SCENARIOS.push({
     try {
       const copy = await copyContext.newPage();
       copy.__denyExternal = true;
+      const videoRequests = [];
+      copy.on('request', (request) => {
+        if (/^https:\/\/(?:www\.)?youtube\.com\/|^https:\/\/i\.ytimg\.com\//.test(request.url())) {
+          videoRequests.push(request.url());
+        }
+      });
       await preparePage(copy, page.__origin, page.__mutation, 'semantic-destinations');
       await open(copy, '/#/new-to-comics');
       const panel = await copy.$('#view-new-to-comics:not([hidden])');
@@ -18652,9 +18658,14 @@ SCENARIOS.push({
             links: [...guide.querySelectorAll('a[href^="https:"]')].map((link) => ({
               href: link.getAttribute('href'), text: link.textContent.trim(), target: link.target,
               rel: link.rel, optional: /optional/i.test(link.closest('section')?.textContent ?? ''),
+              itemText: link.closest('li')?.textContent.replace(/\s+/g, ' ').trim(),
             })),
             hasOrientation: Boolean(guide.querySelector('[aria-labelledby="guide-app-h"]')),
-            credit: guide.textContent.includes('r/Marvel wiki'),
+            guideCredit: guide.textContent.includes('Basics adapted from the r/Marvel wiki.'),
+            aboutCredit: document.querySelector('#view-about')?.textContent.includes('Basics adapted from the r/Marvel wiki.'),
+            videoMedia: [...guide.querySelectorAll('img, iframe, video')]
+              .filter((node) => /youtube|ytimg/i.test(node.src || node.getAttribute('src') || ''))
+              .map((node) => node.getAttribute('src')),
           };
         });
         const expected = [
@@ -18665,6 +18676,7 @@ SCENARIOS.push({
           'https://www.reddit.com/r/Marvel/wiki/faq#wiki_starter_recommendations',
           'https://www.reddit.com/r/Marvel/wiki/faq/#wiki_events.2Fcrossovers',
           'https://www.youtube.com/watch?v=FYnkpCfKuDw',
+          'https://www.youtube.com/watch?v=XnBG7-4-k00',
         ];
         console.log(`GUIDE_COPY ${JSON.stringify({ basics: content.basics, whole: content.whole })}`);
         t.check('guide basics and complete reader-facing copy meet their word targets',
@@ -18674,11 +18686,19 @@ SCENARIOS.push({
         t.check('each guide bullet list keeps its markers inside the card',
           indents.every((indent) => indent >= 16), JSON.stringify(indents));
         t.check('guide external links have the expected destinations, names and safe attributes',
-          content.credit && content.links.length === expected.length
+          content.links.length === expected.length
             && expected.every((href) => content.links.some((link) => link.href === href))
             && content.links.every((link) => link.text && link.target === '_blank'
-              && link.rel.split(/\s+/).includes('noopener') && link.rel.split(/\s+/).includes('noreferrer')),
+              && link.rel.split(/\s+/).includes('noopener') && link.rel.split(/\s+/).includes('noreferrer'))
+            && content.links.some((link) => link.href === 'https://www.youtube.com/watch?v=XnBG7-4-k00'
+              && link.text === 'Where To Start With Marvel Comics Right Now! (2025!)'
+              && link.itemText === 'Where To Start With Marvel Comics Right Now! (2025!), a video by Comic Book Herald'),
           JSON.stringify(content.links));
+        t.check('the basics attribution is in About, not the guide',
+          !content.guideCredit && content.aboutCredit, JSON.stringify(content));
+        t.check('the video link loads no YouTube media or requests on page load',
+          content.videoMedia.length === 0 && videoRequests.length === 0,
+          JSON.stringify({ media: content.videoMedia, requests: videoRequests }));
         t.check('the starting-point guide no longer repeats the app orientation', !content.hasOrientation);
         const selector = '#view-new-to-comics a[href^="https://www.reddit.com/"]';
         const actual = await copy.$(selector);
@@ -18711,9 +18731,12 @@ SCENARIOS.push({
       const orientation = await copy.evaluate(() => {
         const card = document.querySelector('#view-about [aria-labelledby="guide-app-h"]');
         const list = card?.querySelector('ul');
+        const attribution = [...document.querySelectorAll('#view-about p')]
+          .find((paragraph) => paragraph.textContent.trim() === 'Basics adapted from the r/Marvel wiki.');
         return {
           title: card?.querySelector('h2')?.textContent,
           visible: card?.checkVisibility(),
+          attribution: attribution?.checkVisibility() ?? false,
           fits: document.documentElement.scrollWidth <= innerWidth,
           indent: list ? Number.parseFloat(getComputedStyle(list).paddingInlineStart) : 0,
           links: [...(list?.querySelectorAll('li a') ?? [])].map((link) => ({
@@ -18729,6 +18752,9 @@ SCENARIOS.push({
           && JSON.stringify(orientation.links.map(({ view }) => view)) === JSON.stringify(pages)
           && orientation.links.every(({ view, href, text, linksInBullet }) => href === `#/${view}` && text && linksInBullet === 1),
         JSON.stringify(orientation));
+      t.check('About shows the relocated guide attribution at phone width',
+        orientation.attribution && videoRequests.length === 0,
+        JSON.stringify({ attribution: orientation.attribution, videoRequests }));
     } finally {
       await copyContext.close();
     }

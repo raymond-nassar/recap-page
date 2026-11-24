@@ -2204,8 +2204,8 @@
     "fp": "0c6537943c08c527",
     "head": "<script type=\"module\" src=\"./dev-faults.js\"></script>"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|the-three-entry-points|src/index.html:1781|0": {
-    "anchor": "src/index.html:1781",
+  "docs/ARCHITECTURE_REFERENCE.md|the-three-entry-points|src/index.html:1782|0": {
+    "anchor": "src/index.html:1782",
     "fp": "9f74c3a9fa356fa2",
     "head": "<script type=\"module\" src=\"./js/app.js\"></script>"
   },
@@ -6584,8 +6584,8 @@
     "fp": "355fcaaa3ff55b6c",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:1466-1477|0": {
-    "anchor": "src/index.html:1466-1477",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:1467-1478|0": {
+    "anchor": "src/index.html:1467-1478",
     "fp": "06889f6018b854e0",
     "head": "<h3>Keyboard shortcuts</h3>"
   },

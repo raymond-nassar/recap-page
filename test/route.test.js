@@ -181,7 +181,7 @@ test('About explains how to get around and links to the other app pages', () => 
     'Save a list. Read opens Marvel outside the app; Done records progress. The app does not contain comics.');
 });
 
-test('new-to-comics credits its sources and gives every external link a safe separate target', () => {
+test('new-to-comics links its sources safely and credits the basics in About', () => {
   const html = read('src/index.html');
   const start = html.indexOf('<section id="view-new-to-comics"');
   assert.notEqual(start, -1, 'guide exists before its external links are inspected');
@@ -195,6 +195,7 @@ test('new-to-comics credits its sources and gives every external link a safe sep
     'https://www.reddit.com/r/Marvel/wiki/faq#wiki_starter_recommendations',
     'https://www.reddit.com/r/Marvel/wiki/faq/#wiki_events.2Fcrossovers',
     'https://www.youtube.com/watch?v=FYnkpCfKuDw',
+    'https://www.youtube.com/watch?v=XnBG7-4-k00',
   ];
   for (const href of expected) {
     const link = links.find(({ attrs }) => attrs.includes(`href="${href}"`));
@@ -202,13 +203,15 @@ test('new-to-comics credits its sources and gives every external link a safe sep
     assert.match(link.attrs, /target="_blank"/, `${link.label} opens separately`);
     assert.match(link.attrs, /rel="noopener noreferrer"/, `${link.label} disowns its opener`);
   }
-  assert.match(guide, /r\/Marvel wiki/, 'the guide credits the r/Marvel wiki');
-  const credit = guide.indexOf('<p>Basics adapted from the r/Marvel wiki.</p>');
-  assert.ok(credit > 0 && guide.indexOf('Comics &amp; Graphic Novels in Libby</a>') > 0
-    && guide.indexOf('Comics &amp; Graphic Novels in Libby</a>') < credit,
-  'the new resources precede the wiki attribution');
-  assert.ok(guide.indexOf('Introduction to comics</a>') > credit,
-    'the original resources follow the wiki attribution');
+  assert.ok(guide.includes(
+    '<li><a href="https://www.youtube.com/watch?v=XnBG7-4-k00" target="_blank" rel="noopener noreferrer">Where To Start With Marvel Comics Right Now! (2025!)</a>, a video by Comic Book Herald</li>',
+  ), 'the requested video keeps its approved title and byline');
+  assert.doesNotMatch(guide, /Basics adapted from the r\/Marvel wiki/,
+    'the guide no longer carries its attribution');
+  const aboutStart = html.indexOf('<section id="view-about"');
+  const about = html.slice(aboutStart, html.indexOf('<section id="view-completed"', aboutStart));
+  assert.ok(about.includes('<p class="rail-hint">Basics adapted from the r/Marvel wiki.</p>'),
+    'About carries the original attribution');
   assert.match(guide, /optional/i, 'the suggested books are optional');
 });
 
