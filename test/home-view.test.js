@@ -344,26 +344,31 @@ test('Home gateways and Continue expose native destinations without changing rea
   assert.equal(typeof h.nodes.continueRead.listeners.click, 'function');
 });
 
-test('Home Explore has one compact inline guide link beside its visible heading', () => {
+test('Home offers the newcomer guide as its own card after saved lists and before Explore', () => {
   const html = readFileSync(join(ROOT, 'src/index.html'), 'utf8');
-  const start = html.indexOf('<section class="sec home-categories"');
-  const end = html.indexOf('<!-- ---------------------------------------- reading view -->', start);
-  assert.ok(start >= 0 && end > start, 'Home Explore markup exists');
+  const start = html.indexOf('<section id="view-home"');
+  const end = html.indexOf('<section id="view-new-to-comics"', start);
+  assert.ok(start >= 0 && end > start, 'Home markup exists');
   const home = html.slice(start, end);
+  const order = ['id="home-continue"', 'id="home-yours"', 'id="home-new-reader"', 'id="home-categories"']
+    .map((marker) => home.indexOf(marker));
+  assert.ok(order.every((at, index) => at >= 0 && (index === 0 || at > order[index - 1])),
+    'Continue reading, Your Reading Lists, the guide card, then Explore');
+  const cardStart = home.indexOf('<section class="sec" id="home-new-reader"');
+  const card = home.slice(cardStart, home.indexOf('</section>', cardStart));
+  assert.doesNotMatch(card, /\shidden\b/, 'the card shows for new and returning readers alike');
+  assert.match(card, /aria-labelledby="home-new-reader-h"/);
+  assert.match(card, /<h2 id="home-new-reader-h">New to comics\?<\/h2>/);
+  assert.match(card, /<p>Find a first read, with or without a favorite character\.<\/p>/);
   const links = [...home.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/g)]
     .filter(([, attrs]) => /href="#\/new-to-comics"/.test(attrs));
-  assert.equal(links.length, 1, 'exactly one guide link belongs to Home Explore');
-  const [, attrs, text] = links[0];
-  assert.equal(text.trim(), 'New to Marvel Comics?', 'the complete visible guide-card text');
-  assert.match(attrs, /class="home-guide-link"/);
-  assert.match(attrs, /data-view="new-to-comics"/);
-  assert.doesNotMatch(attrs, /home-path|aria-label=/);
-  const headingRow = home.match(/<div class="sec-h[^"]*">([\s\S]*?)<\/div>/)?.[1] ?? '';
-  assert.match(headingRow, /<h2 id="home-cat-h">Explore<\/h2>/, 'Explore is a visible section heading');
-  assert.ok(headingRow.includes(links[0][0]), 'the link shares the heading row');
-  assert.ok(home.indexOf(links[0][0]) < home.indexOf('id="home-primary-paths"'),
-    'the guide is outside the catalog-owned path lists');
-  assert.doesNotMatch(links[0][0], /<svg\b/);
+  assert.equal(links.length, 1, 'the card replaces the small link beside Explore');
+  assert.ok(card.includes(links[0][0]), 'the one guide link is the card button');
+  assert.equal(links[0][2].trim(), 'Find a starting point');
+  assert.match(links[0][1], /class="btn primary"/);
+  assert.match(links[0][1], /data-view="new-to-comics"/);
+  const explore = home.slice(home.indexOf('id="home-categories"'));
+  assert.match(explore, /<div class="sec-h">\s*<h2 id="home-cat-h">Explore<\/h2>\s*<\/div>/);
 });
 
 test('the no-list Library state owns the guide link, not an empty saved list', () => {
@@ -399,12 +404,12 @@ test('Home view owns focused first-run choices, saved lists, and shared gateways
   }
   const tile = h.nodes.gateways[0].nodes.primary.children[0].children[0];
   // #905: the eyebrow, title and count in the order the card shows them.
-  assert.equal(tile.attributes['aria-label'], 'Recommended start here. Modern Timeline. 2 Reading Lists.');
+  assert.equal(tile.attributes['aria-label'], 'Start here. Modern Timeline. 2 Reading Lists.');
   // And the card's own text keeps them apart as words, which a reader of the text, the axe rules
   // pass among them, would otherwise run together as "Browse by yearModern Timeline2 Reading Lists".
   const text = (part) => (typeof part === 'string' ? part : part.textContent || part.children.map(text).join(''));
   const copy = tile.children.find((child) => child.classList?.contains('home-path-copy'));
-  assert.equal(text(copy), 'Recommended start here Modern Timeline 2 Reading Lists');
+  assert.equal(text(copy), 'Start here Modern Timeline 2 Reading Lists');
   tile.onclick();
   assert.deepEqual(h.calls.navigate, ['catalog']);
 

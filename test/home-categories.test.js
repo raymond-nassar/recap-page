@@ -258,7 +258,7 @@ test('Home is a category gateway rather than another copy of the catalog', () =>
 });
 
 test('Home recommends its existing Timeline destination without an introduction or Search shortcut', () => {
-  assert.match(homeSource, /category\.key === 'timeline' \? 'Recommended start here' : category\.label/);
+  assert.match(homeSource, /category\.key === 'timeline' \? 'Start here' : category\.label/);
   assert.doesNotMatch(homeSource, /home-first-run|btn-home-add|Where do you want to start/);
 });
 

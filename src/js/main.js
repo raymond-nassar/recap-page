@@ -76,6 +76,7 @@ import { createCatalogView } from './views/catalog.js';
 import { createLibraryLinkFilter, linkNarrower } from './views/shared/library-link-filter.js';
 import { createMcuPrepView } from './views/mcu-prep.js';
 import { createStoryTypesView } from './views/story-types.js';
+import { createStartingPointView } from './views/starting-point.js';
 import { createPreviewView } from './views/preview.js';
 import { createSearchListsView, searchThumb } from './views/search-lists.js';
 import { createUniversesView } from './views/universes.js';
@@ -1904,6 +1905,7 @@ function showView(next, { focus = true, push = false, at = null, capturePosition
   if (shelf) void catalogView.render(shelf.key);
   if (generatedCategoryByRoute.has(next)) renderPublishingCategory(next);
   if (next === 'home') homeView.render();
+  if (next === 'new-to-comics') void startingPointView.render();
   if (next === 'creators') void creatorsView.render();
   if (next === 'universes') universeView.renderIndex();
   if (next === 'universe') void universeView.renderDetail();
@@ -4481,6 +4483,30 @@ const storyTypesView = createStoryTypesView({
   presentation: catalogPresentation,
   linkChoice: () => libraryLinkFilter.current('genres'),
   onNavigate: ({ push }) => syncHash({ push }),
+});
+
+const startingPointView = createStartingPointView({
+  el,
+  elements: () => ({
+    familiarity: document.querySelectorAll('input[name="guide-start-familiarity"]'),
+    favorite: $('#guide-start-favorite'),
+    starters: $('#guide-start-starters'),
+    timeline: $('#guide-start-timeline'),
+    match: $('#guide-start-match'),
+  }),
+  isCurrent: () => view === 'new-to-comics',
+  loadCatalog,
+  presentation: catalogPresentation,
+  announce,
+  clearLoadNotice: () => clearNotice(CATALOG_LOAD),
+  onLoadFailure: ({ error, isCurrent, retry }) => reportBundledLoadFailure({
+    report: '#guide-preview-report',
+    failure: `The catalog could not be loaded: ${error.message}. Your lists are unchanged.`,
+    key: CATALOG_LOAD,
+    subject: 'the catalog',
+    retry,
+    isCurrent,
+  }),
 });
 
 const catalogView = createCatalogView({
