@@ -36,6 +36,7 @@ import {
 } from '../src/js/lib/catalog.js';
 import { mcuPrepSections } from '../src/js/lib/mcuPrep.js';
 import { VIEWS, parseRoute } from '../src/js/lib/route.js';
+import { isOptionalGuideList } from '../src/js/views/starting-point.js';
 import {
   currentReadingCensus, registeredCreatorGuides, registeredCuratedGuides,
 } from './helpers/current-reading-library.mjs';
@@ -306,11 +307,8 @@ test('every bundled Reading List remains reachable without the retired Storyline
     const start = markup.indexOf('<section id="view-new-to-comics"');
     const end = markup.indexOf('<!-- ---------------------------------------- reading view -->', start);
     assert.ok(start >= 0 && end > start, 'The newcomer guide has a visible route and bounded markup.');
-    const links = [...markup.slice(start, end).matchAll(/<a\s+href="([^"]+)"\s+data-preview-id="([^"]+)"/g)];
     for (const { id } of newcomerGuides) {
-      const link = links.find(([, , previewId]) => previewId === id);
-      assert.ok(link, `${id} has no newcomer guide link`);
-      assert.deepEqual(parseRoute(link[1]), { view: 'new-to-comics', previewId: id });
+      assert.ok(isOptionalGuideList(id), `${id} has no newcomer guide card`);
       assert.ok(catalog.lists.some((list) => list.id === id), `${id} has no catalog entry`);
       reachable.add(id);
     }

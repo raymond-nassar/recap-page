@@ -1392,7 +1392,7 @@ function guideLayout() {
   const head = heading.getBoundingClientRect();
   const cardBox = card.getBoundingClientRect();
   const below = box.top >= head.bottom - 1;
-  const wholeFits = natural <= cardBox.width + 0.5;
+  const wholeFits = natural <= link.parentElement.clientWidth + 0.5;
   const text = heading.firstChild;
   const headingWordSplit = [...text.data.matchAll(/\S+/g)].some((word) => lines(text, word.index, word.index + word[0].length) > 1);
   return { natural: Math.round(natural), card: Math.round(cardBox.width), heading: Math.round(head.width), below,
@@ -1486,6 +1486,14 @@ export const guideLinkPill = {
       const target = profile.platform === 'android' ? 48 : 44;
       const button = await page.$eval('#home-new-reader a[href="#/new-to-comics"]', (node) => node.getBoundingClientRect().height);
       checked(t, `${label}: the New to comics? button is target-sized`, button >= target, { button, target });
+      const cue = await page.$eval(guideButton, (node) => {
+        const icon = node.querySelector('svg[aria-hidden="true"]');
+        const bounds = icon?.getBoundingClientRect();
+        return { href: icon?.querySelector('use')?.getAttribute('href'),
+          width: bounds?.width, right: bounds?.right, inside: node.getBoundingClientRect().right };
+      });
+      checked(t, `${label}: the guide button includes a visible forward arrow inside the same link`,
+        cue.href?.endsWith('#arrow-right') && cue.width > 0 && cue.right <= cue.inside, cue);
       checked(t, `${label}: the empty Library guide link is an accent-tint pill without underline`,
         style.length === 1 && style[0].id === 'library-empty'
         && style.every((link) => link.background === link.want.background && link.color === link.want.color

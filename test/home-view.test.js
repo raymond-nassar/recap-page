@@ -364,8 +364,8 @@ test('Home offers the newcomer guide as its own card after saved lists and befor
     .filter(([, attrs]) => /href="#\/new-to-comics"/.test(attrs));
   assert.equal(links.length, 1, 'the card replaces the small link beside Explore');
   assert.ok(card.includes(links[0][0]), 'the one guide link is the card button');
-  assert.equal(links[0][2].trim(), 'Find a starting point.');
-  assert.match(links[0][1], /class="btn primary"/);
+  assert.equal(links[0][2].replace(/<svg\b[\s\S]*?<\/svg>/, '').trim(), 'Find a starting point.');
+  assert.match(links[0][1], /class="btn primary\b/);
   assert.match(links[0][1], /data-view="new-to-comics"/);
   const explore = home.slice(home.indexOf('id="home-categories"'));
   assert.match(explore, /<div class="sec-h">\s*<h2 id="home-cat-h">Explore<\/h2>\s*<\/div>/);

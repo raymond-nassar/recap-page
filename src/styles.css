@@ -2198,9 +2198,15 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 @media (forced-colors: active) {
   .home-guide-link { border-color: LinkText; color: LinkText; background: Canvas; }
 }
-/* The shared button hover brightens the fill, which in the dark theme took this card's white label to
-   a painted 4.05:1. Darkening keeps the same fill-change cue and raises the label instead. */
-#home-new-reader .btn:hover { filter: brightness(.9); }
+#home-new-reader .btn { max-inline-size: 100%; }
+#home-new-reader .btn .gi {
+  box-sizing: content-box; padding-inline-start: var(--space-4);
+  border-inline-start: var(--stroke-1) solid currentColor;
+}
+/* Darken only the fill: the shared brightness filter also changes the label and arrow. */
+#home-new-reader .btn:hover { background: color-mix(in srgb, var(--accent) 90%, black); filter: none; }
+.guide-familiarity { flex-direction: column; align-items: flex-start; }
+.guide-familiarity .filter-legend { float: none; margin-block-end: var(--space-3); }
 .home-paths {
   list-style: none; margin: var(--space-5) 0 0; padding: 0;
   display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6);

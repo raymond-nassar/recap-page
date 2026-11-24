@@ -1480,6 +1480,12 @@ async function storyTypesDropdowns(page, profile, label) {
   check(guideReady, `${label}: filtered Genres reaches the guide and its starter link`);
   if (guideReady) {
     const savedBefore = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+    const rows = await page.$$eval('input[name="guide-start-familiarity"]', (inputs) =>
+      inputs.map((input) => input.closest('label').getBoundingClientRect().toJSON()));
+    check(rows.length === 2 && rows[0].height > 0 && rows[1].height > 0 && rows[0].bottom < rows[1].top,
+      `${label}: both experience answers have their own row`);
+    await click(page, 'label:has(input[name="guide-start-familiarity"][value="new"])');
+    await page.waitForSelector('#guide-start-optional .catalog-card-preview');
     for (const [id, ids] of [
       ['history-of-the-marvel-universe-2019', [75119, 75120, 75121, 75122, 75123, 75124]],
       ['marvels-1994', [10280, 10281, 10282, 10283]],
@@ -1559,7 +1565,7 @@ async function storyTypesDropdowns(page, profile, label) {
       adjustment: style.forcedColorAdjust };
   }));
   const expectedSelects = JSON.stringify([
-    'catalog-path', 'catalog-path-jump', 'genres-tone', 'genres-type',
+    'catalog-path', 'catalog-path-jump', 'genres-tone', 'genres-type', 'guide-start-favorite',
     'opt-theme', 'rated-character', 'rated-min', 'rated-sort', 'universes-sort',
   ]);
   const measuredSelects = (colors) => JSON.stringify(colors.map(({ id }) => id).sort());

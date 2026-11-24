@@ -30,6 +30,8 @@ function harness({ load = async () => catalog } = {}) {
     starters: control({ textContent: 'Explore the ten starter picks' }),
     timeline: control({ textContent: 'Start the Modern Timeline', hidden: true }),
     match: control({ hidden: true }),
+    optional: control({ hidden: true }),
+    optionalCards: control(),
   };
   const calls = { announce: [], failures: [], cleared: 0, cards: [] };
   let loader = load;
@@ -130,6 +132,27 @@ test('each pair of answers shows exactly one result', async () => {
   assert.deepEqual(h.nodes.match.children, []);
 });
 
+test('only an explicit new reader without a favorite gets both optional catalog cards', async () => {
+  const h = harness();
+  await h.view.render();
+  const cards = () => h.nodes.optional.hidden ? [] : h.nodes.optionalCards.children;
+  const expected = [{ card: 'history-of-the-marvel-universe-2019' }, { card: 'marvels-1994' }];
+  assert.deepEqual(cards(), [], 'no cards before readers choose their experience');
+  h.answer.familiarity('new');
+  assert.deepEqual(cards(), expected);
+  assert.deepEqual(h.calls.cards.map(({ previewHref }) => previewHref),
+    expected.map(({ card }) => `#/preview/${card}`), 'the standard cards keep the two exact bookmarkable URLs');
+  assert.deepEqual(h.shown(), ['starters'], 'the optional books supplement the starter picks');
+  h.answer.favorite('wolverine-reading-order');
+  assert.deepEqual(cards(), []);
+  assert.deepEqual(h.shown(), ['match']);
+  h.answer.favorite('');
+  assert.deepEqual(cards(), expected, 'clearing a favorite brings both cards back');
+  h.answer.familiarity('experienced');
+  assert.deepEqual(cards(), []);
+  assert.deepEqual(h.shown(), ['timeline']);
+});
+
 test('answers last for the visit only and never touch storage or the address', async (t) => {
   const forbidden = (name) => new Proxy({}, { get() { throw new Error(`${name} was used`); } });
   for (const name of ['localStorage', 'sessionStorage', 'location', 'history']) {
@@ -189,6 +212,7 @@ test('the guide asks both questions with the approved words above its one result
   assert.match(result, /<p id="guide-start-starters"><a href="#\/genres" class="btn primary" data-view="genres" data-guide-starters>Explore the ten starter picks<\/a><\/p>/);
   assert.match(result, /<p id="guide-start-timeline" hidden><a href="#\/catalog" class="btn primary" data-view="catalog">Start the Modern Timeline<\/a><\/p>/);
   assert.match(result, /<div id="guide-start-match" class="catalog-grid publishing-grid" hidden><\/div>/);
+  assert.match(result, /<div id="guide-start-optional" hidden>/);
 });
 
 test('the app paints the starting point whenever the guide page shows', () => {

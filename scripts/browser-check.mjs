@@ -4056,7 +4056,7 @@ const SCENARIOS = [
           && card.heading === 'New to comics?'
           && card.body === 'Find a first read, with or without a favorite character.'
           && card.headingVisible && card.beforeExplore && card.otherEntries === 0 && card.linkHeight >= 44
-          && !card.category && card.icons === 0;
+          && !card.category && card.icons === 1;
         await open(guidePage, '/?local-catalog=pending#/home');
         await guidePage.waitForFunction(() => window.__mrtLocalPending.catalog.length === 1);
         const pending = await inspectGuide();
@@ -5825,6 +5825,8 @@ const SCENARIOS = [
           starters: visible('guide-start-starters'),
           timeline: visible('guide-start-timeline'),
           match: visible('guide-start-match'),
+          optional: [...document.querySelectorAll('#guide-start-optional:not([hidden]) .catalog-card')]
+            .map((card) => card.querySelector('.catalog-card-preview').getAttribute('href')),
           card: document.querySelector('#guide-start-match')?.textContent.replace(/\s+/g, ' ').trim() ?? '',
           cards: document.querySelectorAll('#guide-start-match > *').length,
         };
@@ -5837,14 +5839,25 @@ const SCENARIOS = [
       await page.waitForFunction(() => document.querySelectorAll('#guide-start-favorite option').length > 1);
       t.check('the Home card opens the guide by keyboard with nothing preselected and the starter picks shown',
         JSON.stringify(await answers()) === JSON.stringify({ familiarity: null, favorite: '', subject: 'No preference',
-          starters: true, timeline: false, match: false, card: '', cards: 0 }), JSON.stringify(await answers()));
+          starters: true, timeline: false, match: false, optional: [], card: '', cards: 0 }), JSON.stringify(await answers()));
+
+      const familiarityRows = await page.$$eval('input[name="guide-start-familiarity"]', (inputs) =>
+        inputs.map((input) => input.closest('label').getBoundingClientRect().toJSON()));
+      t.check('the two experience answers each have their own row on desktop',
+        familiarityRows.length === 2 && familiarityRows[0].height > 0 && familiarityRows[1].height > 0
+          && familiarityRows[0].bottom < familiarityRows[1].top, JSON.stringify(familiarityRows));
 
       await page.focus('input[name="guide-start-familiarity"][value="new"]');
       await page.keyboard.press('Space');
+      const newReader = await answers();
+      t.check('a new reader with no preference gets both standard optional cards alongside the starter picks',
+        newReader.starters && !newReader.timeline && !newReader.match && isDeepStrictEqual(newReader.optional,
+          ['#/preview/history-of-the-marvel-universe-2019', '#/preview/marvels-1994']), JSON.stringify(newReader));
       await page.keyboard.press('ArrowDown');
       const experienced = await answers();
       t.check('an experienced reader with no preference is offered Start the Modern Timeline alone',
-        experienced.familiarity === 'experienced' && experienced.timeline && !experienced.starters && !experienced.match,
+        experienced.familiarity === 'experienced' && experienced.timeline && !experienced.starters && !experienced.match
+          && experienced.optional.length === 0,
         JSON.stringify(experienced));
 
       const value = await page.$$eval('#guide-start-favorite option', (options) => options
@@ -5855,7 +5868,7 @@ const SCENARIOS = [
       t.check('choosing the subject Spider-Man (Peter Parker) recommends one guide under that guide\'s own title',
         !!spider.name && spider.name !== 'Spider-Man (Peter Parker)' && matched.subject === 'Spider-Man (Peter Parker)'
         && matched.match && !matched.starters && !matched.timeline && matched.cards === 1
-        && matched.card.includes(spider.name), JSON.stringify({ spider, matched }));
+        && matched.optional.length === 0 && matched.card.includes(spider.name), JSON.stringify({ spider, matched }));
 
       await page.evaluate(() => history.back());
       await page.waitForFunction(() => location.hash === '#/home' && document.activeElement?.id === 'home-h');
@@ -5881,7 +5894,8 @@ const SCENARIOS = [
       await page.waitForFunction(() => document.querySelectorAll('#guide-start-favorite option').length > 1);
       const reloaded = await answers();
       t.check('a reload starts the questions again',
-        reloaded.familiarity === null && reloaded.favorite === '' && reloaded.starters && !reloaded.match,
+        reloaded.familiarity === null && reloaded.favorite === '' && reloaded.starters && !reloaded.match
+          && reloaded.optional.length === 0,
         JSON.stringify(reloaded));
 
       const tab = await page.browserContext().newPage();
@@ -5895,10 +5909,12 @@ const SCENARIOS = [
         familiarity: document.querySelector('input[name="guide-start-familiarity"]:checked')?.value ?? null,
         favorite: document.querySelector('#guide-start-favorite').value,
         starters: !document.getElementById('guide-start-starters').hidden,
+        optional: !document.getElementById('guide-start-optional').hidden,
       }));
       await tab.close();
       t.check('a new tab opened at the guide shows it with no earlier answers',
-        fresh.heading === 'New to comics?' && fresh.familiarity === null && fresh.favorite === '' && fresh.starters,
+        fresh.heading === 'New to comics?' && fresh.familiarity === null && fresh.favorite === '' && fresh.starters
+          && !fresh.optional,
         JSON.stringify(fresh));
     },
   },
@@ -18637,9 +18653,6 @@ SCENARIOS.push({
               href: link.getAttribute('href'), text: link.textContent.trim(), target: link.target,
               rel: link.rel, optional: /optional/i.test(link.closest('section')?.textContent ?? ''),
             })),
-            books: [...guide.querySelectorAll('[data-preview-id]')].map((link) => ({
-              id: link.dataset.previewId, href: link.getAttribute('href'), text: link.textContent.trim(),
-            })),
             orientation: [...guide.querySelectorAll('[aria-labelledby="guide-app-h"] li a')].map((link) => ({
               view: link.dataset.view, href: link.getAttribute('href'), text: link.textContent.trim(),
               linksInBullet: link.closest('li').querySelectorAll('a').length,
@@ -18667,15 +18680,8 @@ SCENARIOS.push({
           content.credit && content.links.length === expected.length
             && expected.every((href) => content.links.some((link) => link.href === href))
             && content.links.every((link) => link.text && link.target === '_blank'
-              && link.rel.split(/\s+/).includes('noopener') && link.rel.split(/\s+/).includes('noreferrer'))
-            && content.books.length === 2,
+              && link.rel.split(/\s+/).includes('noopener') && link.rel.split(/\s+/).includes('noreferrer')),
           JSON.stringify(content.links));
-        t.check('both optional books have their exact bookmarkable preview addresses',
-          JSON.stringify(content.books) === JSON.stringify([
-            { id: 'history-of-the-marvel-universe-2019', href: '#/preview/history-of-the-marvel-universe-2019',
-              text: 'History of the Marvel Universe (2019)' },
-            { id: 'marvels-1994', href: '#/preview/marvels-1994', text: 'Marvels (1994)' },
-          ]), JSON.stringify(content.books));
         const pages = ['home', 'catalog', 'genres', 'spotlights', 'marvel-on-screen', 'marvel-ages',
           'young-readers', 'universes', 'creators', 'library', 'add', 'data', 'about'];
         t.check('the concise orientation links every named page to its own route',
@@ -18739,7 +18745,22 @@ SCENARIOS.push({
           raw: localStorage.getItem('mrt.state.v2'),
           filter: JSON.parse(localStorage.getItem('mrt.settings')).filter,
         }));
+        await bookPage.focus('input[name="guide-start-familiarity"][value="new"]');
+        await bookPage.keyboard.press('Space');
         const selector = `[data-preview-id="${expectedBooks[0].id}"]`;
+        await bookPage.waitForSelector(`#guide-start-optional .catalog-card ${selector}`);
+        const books = await bookPage.$$eval('#guide-start-optional .catalog-card', (cards) =>
+          cards.map((card) => {
+            const link = card.querySelector('a.catalog-card-preview');
+            return { id: link.dataset.previewId, href: link.getAttribute('href'), text: link.textContent.trim(),
+              add: card.querySelector('.catalog-card-actions [data-act="import"]')?.dataset.key };
+          }));
+        t.check('both optional books use standard cards with their exact bookmarkable preview addresses and explicit Add',
+          isDeepStrictEqual(books, [
+            { id: 'history-of-the-marvel-universe-2019', href: '#/preview/history-of-the-marvel-universe-2019',
+              text: 'History of the Marvel Universe (2019)', add: 'history-of-the-marvel-universe-2019' },
+            { id: 'marvels-1994', href: '#/preview/marvels-1994', text: 'Marvels (1994)', add: 'marvels-1994' },
+          ]), JSON.stringify(books));
         const native = await bookPage.$eval(selector, (link) => {
           const modifiers = ['ctrlKey', 'metaKey', 'shiftKey', 'altKey'].map((key) => {
             const event = new MouseEvent('click', { bubbles: true, cancelable: true, button: 0, [key]: true });
@@ -18821,7 +18842,12 @@ SCENARIOS.push({
         });
         await t.step('close-saved-preview', async () => {
           await click(bookPage, '#preview-close');
-          await bookPage.waitForSelector('#view-new-to-comics:not([hidden])');
+          await bookPage.waitForFunction(() => location.hash.startsWith('#/new-to-comics')
+            && !document.querySelector('#preview').open);
+          const openLink = await bookPage.$eval('#guide-start-optional .catalog-card-actions a[data-act="open"]',
+            (node) => node.getAttribute('href'));
+          t.check('the saved optional card now offers Open for the same saved copy',
+            parseRoute(openLink)?.listId === imported.list.id, openLink);
         });
         await t.step('open-second-preview', async () => {
           await click(bookPage, `[data-preview-id="${expectedBooks[1].id}"]`);
@@ -18953,27 +18979,35 @@ SCENARIOS.push({
         const guide = await fault.evaluate(() => ({
           length: history.length, saved: localStorage.getItem('mrt.state.v2'),
         }));
-        await click(fault, `#view-new-to-comics [data-preview-id="${id}"]`);
+        await fault.focus('input[name="guide-start-familiarity"][value="new"]');
+        await fault.keyboard.press('Space');
         if (mode === 'pending') {
-          await fault.waitForFunction(() => window.__mrtLocalPending.catalog.length > 0
-            && !document.querySelector('#guide-preview-status').hidden);
+          await fault.waitForFunction(() => window.__mrtLocalPending.catalog.length > 0);
         } else {
-          await fault.waitForSelector('#guide-preview-report .notice button');
-          await fault.evaluate(() => { window.__mrtLocalModes.catalog = 'ready'; });
+          await fault.waitForSelector('#guide-start-report .notice button');
         }
-        const first = await fault.evaluate(() => ({
-          length: history.length, depth: history.state.readingPosition.depth,
-        }));
-        await click(fault, `#view-new-to-comics [data-preview-id="${id}"]`);
-        const repeated = await fault.evaluate(() => ({
-          length: history.length, depth: history.state.readingPosition.depth,
-          parent: history.state.guidePreviewParent, hash: location.hash,
-        }));
-        t.check(`repeating a ${mode} book preview retains exactly one history entry`,
-          first.length === guide.length + 1 && repeated.length === first.length
-            && repeated.depth === first.depth && repeated.parent === id && repeated.hash === `#/preview/${id}`,
-          JSON.stringify({ guide, first, repeated }));
-        if (mode === 'pending') await fault.evaluate(() => window.__mrtSettleLocalRequest('catalog'));
+        t.check(`a ${mode} catalog keeps starter picks available without showing unresolved book cards`,
+          await fault.evaluate(() => !document.getElementById('guide-start-starters').hidden
+            && document.getElementById('guide-start-optional').hidden));
+        if (mode === 'pending') {
+          await fault.evaluate(() => window.__mrtSettleLocalRequest('catalog'));
+        } else {
+          await fault.evaluate(() => { window.__mrtLocalModes.catalog = 'ready'; });
+          await click(fault, '#guide-start-report .notice button');
+        }
+        const selector = `#guide-start-optional [data-preview-id="${id}"]`;
+        await fault.waitForSelector(selector);
+        const repeated = await fault.evaluate((target) => {
+          document.querySelector(target).click();
+          const first = { length: history.length, depth: history.state.readingPosition.depth };
+          document.querySelector(target).click();
+          return { first, length: history.length, depth: history.state.readingPosition.depth,
+            parent: history.state.guidePreviewParent, hash: location.hash };
+        }, selector);
+        t.check(`repeating a book preview after ${mode} catalog recovery retains exactly one history entry`,
+          repeated.first.length === guide.length + 1 && repeated.length === repeated.first.length
+            && repeated.depth === repeated.first.depth && repeated.parent === id && repeated.hash === `#/preview/${id}`,
+          JSON.stringify({ guide, repeated }));
         await fault.waitForSelector('#preview[open] .preview-issue-link');
         await click(fault, '#preview-close');
         await fault.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
@@ -19245,16 +19279,16 @@ SCENARIOS.push({
         reference: icon.querySelector('use')?.getAttribute('href'),
       };
     }));
-    t.check('all 23 static controls retain their meaningful names', JSON.stringify(inventory.filter((i) => !i.gateway).map((i) => i.name))
+    t.check('all 24 static controls retain their meaningful names', JSON.stringify(inventory.filter((i) => !i.gateway).map((i) => i.name))
       === JSON.stringify([
-        'Collapse sidebar', 'Library', 'Search', 'Backup & settings', 'About this app',
+        'Collapse sidebar', 'Library', 'Search', 'Backup & settings', 'About this app', 'Find a starting point.',
         'Enjoyed', 'Did not enjoy',
         'Everything read', 'Progress by series', 'Added by hand', 'Your ratings', 'Modern Timeline', 'Marvel Ages', 'Look up comics',
         'Reading guides', 'Characters', 'Series', 'Creators', 'Genres', 'Marvel Ages', 'Universes',
         'Find a series', 'Find a creator',
       ]), JSON.stringify(inventory));
-    t.check('all 39 static and generated SVGs are decorative and cannot become keyboard stops',
-      inventory.length === 39 && inventory.every((i) => i.tag === 'svg' && i.decorative));
+    t.check('all 40 static and generated SVGs are decorative and cannot become keyboard stops',
+      inventory.length === 40 && inventory.every((i) => i.tag === 'svg' && i.decorative));
     t.check('the one gateway preserves eight labelled category destinations and their icon/arrow pairs',
       await page.evaluate(() => [...document.querySelectorAll('[data-primary-paths], [data-secondary-paths]')]
         .flatMap((root) => [...root.querySelectorAll('a.home-path')])

@@ -151,17 +151,10 @@ test('new-to-comics has a named static panel and a native Genres destination', (
   has(guide, /<a\b[^>]*href="#\/genres"[^>]*>[^<]+<\/a>/, 'native Genres starter destination');
 });
 
-test('guide links its optional books and every named app page to real destinations', () => {
+test('guide links every named app page to its real destination', () => {
   const html = read('src/index.html');
   const start = html.indexOf('<section id="view-new-to-comics"');
   const guide = html.slice(start, html.indexOf('<!-- ---------------------------------------- reading view -->', start));
-  for (const [id, label] of [
-    ['history-of-the-marvel-universe-2019', 'History of the Marvel Universe (2019)'],
-    ['marvels-1994', 'Marvels (1994)'],
-  ]) {
-    assert.ok(guide.includes(`href="#/preview/${id}" data-preview-id="${id}">${label}</a>`),
-      `${label} must link to its exact catalog preview`);
-  }
   const orientation = guide.slice(guide.indexOf('aria-labelledby="guide-app-h"'), guide.indexOf('</section>',
     guide.indexOf('aria-labelledby="guide-app-h"')));
   assert.match(orientation, /<ul>[\s\S]*<li>/, 'app orientation is a short list');

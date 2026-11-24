@@ -1,8 +1,15 @@
 import {
   catalogEntries, shelfStories, sortSpotlightStories, spotlightRankForStory, SPOTLIGHT_POPULARITY_RANKS,
 } from '../lib/catalog.js';
+import { formatRoute } from '../lib/route.js';
 
 const FAMILIARITY = new Set(['new', 'experienced']);
+const OPTIONAL_GUIDES = ['history-of-the-marvel-universe-2019', 'marvels-1994'];
+const GUIDE_CARD = { surface: 'new-to-comics', report: '#guide-preview-report', level: 'h3' };
+
+export function isOptionalGuideList(id) {
+  return OPTIONAL_GUIDES.includes(id);
+}
 
 const RANKED_SUBJECTS = new Map(SPOTLIGHT_POPULARITY_RANKS.map(({ rank, label }) => [rank, label]));
 
@@ -90,10 +97,17 @@ export function createStartingPointView({
     nodes.timeline.hidden = result.kind !== 'timeline';
     nodes.match.hidden = result.kind !== 'match';
     nodes.match.replaceChildren(...(result.kind === 'match'
-      ? [presentation.catalogCard(result.story, {
-        surface: 'new-to-comics', report: '#guide-preview-report', level: 'h3',
-      })]
+      ? [presentation.catalogCard(result.story, GUIDE_CARD)]
       : []));
+    const optionalLists = catalog && familiarity === 'new' && !favorite
+      ? OPTIONAL_GUIDES.map((id) => catalog.lists.find((list) => list.id === id)).filter(Boolean)
+      : [];
+    nodes.optional.hidden = optionalLists.length === 0;
+    nodes.optionalCards.replaceChildren(...catalogEntries(optionalLists).map((story) =>
+      presentation.catalogCard(story, {
+        ...GUIDE_CARD,
+        previewHref: formatRoute({ view: 'new-to-comics', previewId: story.lists[0].id }),
+      })));
     return result;
   }
 
@@ -139,6 +153,8 @@ export function createStartingPointView({
     }
     if (!live()) return;
     clearLoadNotice();
+    // Repainting a cached catalog would remove the original link after Back restores its focus.
+    if (catalog === next) return;
     catalog = next;
     paintAnswers();
     paintResult();

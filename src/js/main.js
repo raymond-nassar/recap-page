@@ -76,7 +76,7 @@ import { createCatalogView } from './views/catalog.js';
 import { createLibraryLinkFilter, linkNarrower } from './views/shared/library-link-filter.js';
 import { createMcuPrepView } from './views/mcu-prep.js';
 import { createStoryTypesView } from './views/story-types.js';
-import { createStartingPointView } from './views/starting-point.js';
+import { createStartingPointView, isOptionalGuideList } from './views/starting-point.js';
 import { createPreviewView } from './views/preview.js';
 import { createSearchListsView, searchThumb } from './views/search-lists.js';
 import { createUniversesView } from './views/universes.js';
@@ -1537,13 +1537,12 @@ function wireNav() {
     });
   }
 
-  for (const link of document.querySelectorAll('[data-preview-id]')) {
-    link.addEventListener('click', (event) => {
-      if (!isPlainNavigation(event)) return;
-      event.preventDefault();
-      navigateToGuidePreview(link.dataset.previewId);
-    });
-  }
+  $('#view-new-to-comics').addEventListener('click', (event) => {
+    const link = event.target.closest('a[data-preview-id]');
+    if (!link || !isPlainNavigation(event)) return;
+    event.preventDefault();
+    navigateToGuidePreview(link.dataset.previewId);
+  });
 
   $('#btn-new-list').addEventListener('click', newEmptyList);
 }
@@ -4017,7 +4016,7 @@ const issueView = createIssueView({
   decorateResult: (result, { catalog }) => ({
     ...result,
     breadcrumbShelf: result.contextStatus === 'valid' && result.context?.kind === 'order'
-      ? guidePreviewLink(result.context.id) ? 'new-to-comics' : catalogListBrowseRoute(catalog?.lists, result.context.id)
+      ? isOptionalGuideList(result.context.id) ? 'new-to-comics' : catalogListBrowseRoute(catalog?.lists, result.context.id)
       : null,
   }),
   elements: () => ({
@@ -4493,6 +4492,8 @@ const startingPointView = createStartingPointView({
     starters: $('#guide-start-starters'),
     timeline: $('#guide-start-timeline'),
     match: $('#guide-start-match'),
+    optional: $('#guide-start-optional'),
+    optionalCards: $('#guide-start-optional-cards'),
   }),
   isCurrent: () => view === 'new-to-comics',
   loadCatalog,
