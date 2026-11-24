@@ -1833,7 +1833,7 @@ async function categoryLabelReadability(page, label, viewport) {
       const category = categories[index];
       const count = `${category.count} ${category.count === 1
         ? (category.singular ?? 'Reading List') : (category.plural ?? 'Reading Lists')}`;
-      const categoryLabel = category.key === 'timeline' ? 'Start here' : category.label;
+      const categoryLabel = category.key === 'timeline' ? 'Marvel Knights to Present Day' : category.label;
       check(card.key === category.key && card.name === `${categoryLabel}. ${category.heading}. ${count}.`
         && JSON.stringify(card.parts.map((part) => part.text.trim())) === JSON.stringify([categoryLabel, category.heading, count]),
       `${label} ${view}: ${category.key}: exact wording, order and accessible name`);
@@ -3294,7 +3294,7 @@ async function mobileLayout(page, label, narrow) {
     await page.waitForSelector('#home-primary-paths [data-category="timeline"]');
   }
   const home = await page.$eval('#view-home', (region) => ({
-    recommended: region.querySelector('[data-category="timeline"]')?.textContent.includes('Start here'),
+    recommended: region.querySelector('[data-category="timeline"]')?.textContent.includes('Marvel Knights to Present Day'),
     intro: !!region.querySelector('#home-first-run'),
     search: !!region.querySelector('[data-view="add"], #btn-home-add'),
   }));
@@ -6057,7 +6057,7 @@ try {
       const sharedCopy = await page.evaluate(() => {
         const footer = document.querySelector('.app-footer');
         return {
-          recommendation: !!document.querySelector('#view-home [data-category="timeline"]')?.textContent.includes('Start here'),
+          recommendation: !!document.querySelector('#view-home [data-category="timeline"]')?.textContent.includes('Marvel Knights to Present Day'),
           // Home's start actions and the footer About became native hash links so browser
           // navigation gestures work, so both are found as links; buttons are still collected
           // so an extra start action of either kind is reported.

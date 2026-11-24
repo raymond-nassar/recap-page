@@ -2204,8 +2204,8 @@
     "fp": "0c6537943c08c527",
     "head": "<script type=\"module\" src=\"./dev-faults.js\"></script>"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|the-three-entry-points|src/index.html:1782|0": {
-    "anchor": "src/index.html:1782",
+  "docs/ARCHITECTURE_REFERENCE.md|the-three-entry-points|src/index.html:1781|0": {
+    "anchor": "src/index.html:1781",
     "fp": "9f74c3a9fa356fa2",
     "head": "<script type=\"module\" src=\"./js/app.js\"></script>"
   },
@@ -6009,8 +6009,8 @@
     "fp": "4facbee243e08cfd",
     "head": "description: synopsisFallback(issue, getSynopsis(issue.issueId), noSynopsisMarker),"
   },
-  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1443-1447|0": {
-    "anchor": "src/index.html:1443-1447",
+  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1442-1446|0": {
+    "anchor": "src/index.html:1442-1446",
     "fp": "fcca1b9ce2478dad",
     "head": "Comic, series, and creator metadata comes from the community"
   },
@@ -6209,8 +6209,8 @@
     "fp": "182990f15d2fff5a",
     "head": "el('p', { class: 'sub publishing-description', text: category.description }),"
   },
-  "docs/UX_STUDY.md|as-is-journey-map#checking-progress|src/index.html:703-706|0": {
-    "anchor": "src/index.html:703-706",
+  "docs/UX_STUDY.md|as-is-journey-map#checking-progress|src/index.html:702-705|0": {
+    "anchor": "src/index.html:702-705",
     "fp": "304cd20dbf0268d7",
     "head": "<div class=\"head\"><div class=\"head-left\"><h1 id=\"progress-h\">Progress by series</h1></div></div>"
   },
@@ -6224,8 +6224,8 @@
     "fp": "3377f80fe0c004ac",
     "head": "<nav id=\"sidebar-nav\" aria-label=\"Main\">"
   },
-  "docs/UX_STUDY.md|information-architecture-review|src/index.html:653-699|0": {
-    "anchor": "src/index.html:653-699",
+  "docs/UX_STUDY.md|information-architecture-review|src/index.html:652-698|0": {
+    "anchor": "src/index.html:652-698",
     "fp": "4bf6e9f8eefa237d",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },
@@ -6249,23 +6249,23 @@
     "fp": "badbe02e0efe6f8d",
     "head": "test('one shared renderer integrates Back with breadcrumbs without adding it to dialogs', () => {"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:398-453|0": {
-    "anchor": "src/index.html:398-453",
+  "docs/UX_STUDY.md|job-stories|src/index.html:397-452|0": {
+    "anchor": "src/index.html:397-452",
     "fp": "8e4d88d09bb5707b",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:422-423|0": {
-    "anchor": "src/index.html:422-423",
+  "docs/UX_STUDY.md|job-stories|src/index.html:421-422|0": {
+    "anchor": "src/index.html:421-422",
     "fp": "04989906fb44dcf9",
     "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Mark as read an"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:703-706|0": {
-    "anchor": "src/index.html:703-706",
+  "docs/UX_STUDY.md|job-stories|src/index.html:702-705|0": {
+    "anchor": "src/index.html:702-705",
     "fp": "304cd20dbf0268d7",
     "head": "<div class=\"head\"><div class=\"head-left\"><h1 id=\"progress-h\">Progress by series</h1></div></div>"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:705-709|0": {
-    "anchor": "src/index.html:705-709",
+  "docs/UX_STUDY.md|job-stories|src/index.html:704-708|0": {
+    "anchor": "src/index.html:704-708",
     "fp": "2318f8472fc086b9",
     "head": "<fieldset class=\"filters\" id=\"progress-scope\" aria-describedby=\"progress-subject\">"
   },
@@ -6304,8 +6304,8 @@
     "fp": "3383e9c2fa49b423",
     "head": "Repository Constraint 3 forbids accounts, cloud services, analytics and telemetry, because the"
   },
-  "docs/UX_STUDY.md|proto-persona#reading-style|src/index.html:398-453|0": {
-    "anchor": "src/index.html:398-453",
+  "docs/UX_STUDY.md|proto-persona#reading-style|src/index.html:397-452|0": {
+    "anchor": "src/index.html:397-452",
     "fp": "8e4d88d09bb5707b",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
@@ -6344,8 +6344,8 @@
     "fp": "e4a8a4c444dd83ef",
     "head": "<!-- Shown only when saved data could not be read. Saving stays paused until the"
   },
-  "docs/UX_STUDY.md|sweep-result|src/index.html:874-880|0": {
-    "anchor": "src/index.html:874-880",
+  "docs/UX_STUDY.md|sweep-result|src/index.html:873-879|0": {
+    "anchor": "src/index.html:873-879",
     "fp": "ed4359c1c4354a5b",
     "head": "<form id=\"form-catalog-search\" class=\"stack\" role=\"search\">"
   },
@@ -6389,8 +6389,8 @@
     "fp": "96a32dd5d332b179",
     "head": "#ring-arc { transition: stroke-dashoffset var(--motion-progress) ease; }"
   },
-  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/index.html:419-421|0": {
-    "anchor": "src/index.html:419-421",
+  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/index.html:418-420|0": {
+    "anchor": "src/index.html:418-420",
     "fp": "b22251e455876ddc",
     "head": "<button type=\"button\" class=\"btn btn-lg has-tooltip\" id=\"btn-hero-read\" data-tooltip=\"Keyboard short"
   },
@@ -6419,8 +6419,8 @@
     "fp": "6ba162a32bf16415",
     "head": ".row.is-read img { opacity: .5; }"
   },
-  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/index.html:398-453|0": {
-    "anchor": "src/index.html:398-453",
+  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/index.html:397-452|0": {
+    "anchor": "src/index.html:397-452",
     "fp": "8e4d88d09bb5707b",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
@@ -6454,8 +6454,8 @@
     "fp": "2d25420743119414",
     "head": ".row-actions { position: relative; justify-self: end; text-align: right; }"
   },
-  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/index.html:1016|0": {
-    "anchor": "src/index.html:1016",
+  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/index.html:1015|0": {
+    "anchor": "src/index.html:1015",
     "fp": "7a1f8a1e2c6321e7",
     "head": "<div id=\"search-results\" class=\"results\"></div>"
   },
@@ -6484,8 +6484,8 @@
     "fp": "c94e8fe441020686",
     "head": "function notify(sel, msg, kind = 'ok', key = sel, action = null, dismiss = null) {"
   },
-  "docs/UX_STUDY.md|ux-a-007-the-first-run-dom-ships-an-empty-headin|src/index.html:398-453|0": {
-    "anchor": "src/index.html:398-453",
+  "docs/UX_STUDY.md|ux-a-007-the-first-run-dom-ships-an-empty-headin|src/index.html:397-452|0": {
+    "anchor": "src/index.html:397-452",
     "fp": "8e4d88d09bb5707b",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
@@ -6524,8 +6524,8 @@
     "fp": "ba4d0e152f725f15",
     "head": "@media (max-width: 880px) {"
   },
-  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/index.html:422-423|0": {
-    "anchor": "src/index.html:422-423",
+  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/index.html:421-422|0": {
+    "anchor": "src/index.html:421-422",
     "fp": "04989906fb44dcf9",
     "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Mark as read an"
   },
@@ -6584,13 +6584,13 @@
     "fp": "355fcaaa3ff55b6c",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:1467-1478|0": {
-    "anchor": "src/index.html:1467-1478",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:1466-1477|0": {
+    "anchor": "src/index.html:1466-1477",
     "fp": "06889f6018b854e0",
     "head": "<h3>Keyboard shortcuts</h3>"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:422-423|0": {
-    "anchor": "src/index.html:422-423",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:421-422|0": {
+    "anchor": "src/index.html:421-422",
     "fp": "04989906fb44dcf9",
     "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Mark as read an"
   },
@@ -6619,8 +6619,8 @@
     "fp": "4b2c34e3e004c761",
     "head": "<h3>Library</h3>"
   },
-  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/index.html:653-699|0": {
-    "anchor": "src/index.html:653-699",
+  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/index.html:652-698|0": {
+    "anchor": "src/index.html:652-698",
     "fp": "4bf6e9f8eefa237d",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },

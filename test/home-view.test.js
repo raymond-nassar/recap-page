@@ -359,7 +359,8 @@ test('Home offers the newcomer guide as its own card after saved lists and befor
   assert.doesNotMatch(card, /\shidden\b/, 'the card shows for new and returning readers alike');
   assert.match(card, /aria-labelledby="home-new-reader-h"/);
   assert.match(card, /<h2 id="home-new-reader-h">New to comics\?<\/h2>/);
-  assert.match(card, /<p>Find a first read, with or without a favorite character\.<\/p>/);
+  assert.equal((card.match(/<p>/g) ?? []).length, 1, 'the only paragraph holds the button; no body sentence');
+  assert.match(card, /<p><a href="#\/new-to-comics"/);
   const links = [...home.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/g)]
     .filter(([, attrs]) => /href="#\/new-to-comics"/.test(attrs));
   assert.equal(links.length, 1, 'the card replaces the small link beside Explore');
@@ -404,12 +405,12 @@ test('Home view owns focused first-run choices, saved lists, and shared gateways
   }
   const tile = h.nodes.gateways[0].nodes.primary.children[0].children[0];
   // #905: the eyebrow, title and count in the order the card shows them.
-  assert.equal(tile.attributes['aria-label'], 'Start here. Modern Timeline. 2 Reading Lists.');
+  assert.equal(tile.attributes['aria-label'], 'Marvel Knights to Present Day. Modern Timeline. 2 Reading Lists.');
   // And the card's own text keeps them apart as words, which a reader of the text, the axe rules
   // pass among them, would otherwise run together as "Browse by yearModern Timeline2 Reading Lists".
   const text = (part) => (typeof part === 'string' ? part : part.textContent || part.children.map(text).join(''));
   const copy = tile.children.find((child) => child.classList?.contains('home-path-copy'));
-  assert.equal(text(copy), 'Start here Modern Timeline 2 Reading Lists');
+  assert.equal(text(copy), 'Marvel Knights to Present Day Modern Timeline 2 Reading Lists');
   tile.onclick();
   assert.deepEqual(h.calls.navigate, ['catalog']);
 

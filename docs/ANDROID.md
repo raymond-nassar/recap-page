@@ -38,7 +38,7 @@ It is an image rather than text drawn in Android's system font, with an accessib
 for assistive technology and forced colors.
 
 Home's **New to comics?** card comes before **Explore** and opens a short starting-point guide.
-**Explore** marks **Modern Timeline** with **Start here**, beside **Genres** and **Character
+**Explore** marks **Modern Timeline** with **Marvel Knights to Present Day**, beside **Genres** and **Character
 spotlights**, followed by a **Discover More** group for MCU Prep, Marvel Ages and Young readers.
 Search is in the navigation
 bar. The existing Setup guide remains on Modern Timeline and the other browse pages.

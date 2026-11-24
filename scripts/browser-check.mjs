@@ -4036,7 +4036,7 @@ const SCENARIOS = [
             return { count: links.length, visible: Boolean(link?.checkVisibility()),
               text: link?.textContent.trim() ?? null, tag: link?.tagName ?? null,
               heading: heading?.textContent.trim() ?? null,
-              body: card?.querySelector('p')?.textContent.trim() ?? null,
+              paragraphs: card?.querySelectorAll('p').length ?? 0,
               headingVisible: Boolean(heading?.checkVisibility() && !heading.closest('.visually-hidden')
                 && headingBox && headingBox.width > 1 && headingBox.height > 1),
               beforeExplore: Boolean(card && explore
@@ -4054,7 +4054,7 @@ const SCENARIOS = [
         const valid = (card) => card.count === 1 && card.visible && card.tag === 'A'
           && card.text === 'Find a starting point.' && card.name === card.text
           && card.heading === 'New to comics?'
-          && card.body === 'Find a first read, with or without a favorite character.'
+          && card.paragraphs === 1
           && card.headingVisible && card.beforeExplore && card.otherEntries === 0 && card.linkHeight >= 44
           && !card.category && card.icons === 1;
         await open(guidePage, '/?local-catalog=pending#/home');
@@ -4189,7 +4189,7 @@ const SCENARIOS = [
         JSON.stringify(context.sectionHeadings));
       t.check('the three current paths carry compact labels and content counts',
         JSON.stringify(context.paths) === JSON.stringify([
-          { key: 'timeline', label: 'Start here', title: 'Modern Timeline', count: '14 Reading Lists' },
+          { key: 'timeline', label: 'Marvel Knights to Present Day', title: 'Modern Timeline', count: '14 Reading Lists' },
           { key: 'genres', label: 'Browse by genre and tone', title: 'Genres', count: '32 Reading Lists' },
           { key: 'character-spotlights', label: 'Browse heroes and teams', title: 'Character spotlights', count: '14 Reading Lists' },
         ]),
@@ -5938,7 +5938,7 @@ const SCENARIOS = [
         recommendation: document.querySelector('#home-primary-paths [data-category="timeline"] .home-path-label')?.textContent.trim(),
       }));
       t.check('clean Home recommends Modern Timeline without redundant introduction or global Search',
-        !initial.intro && !initial.search && initial.recommendation === 'Start here',
+        !initial.intro && !initial.search && initial.recommendation === 'Marvel Knights to Present Day',
         JSON.stringify(initial));
 
       await page.setViewport({ width: 390, height: 844 });
@@ -5966,7 +5966,7 @@ const SCENARIOS = [
         };
       });
       t.check('at 390 pixels Modern Timeline and bottom-bar Search are visible without opening Navigation',
-        intermediate.browseName.includes('Start here. Modern Timeline.')
+        intermediate.browseName.includes('Marvel Knights to Present Day. Modern Timeline.')
         && intermediate.addName === 'Search'
         && [intermediate.browse, intermediate.add].every((rect) => rect
           && rect.top >= 0 && rect.bottom <= 844 && rect.left >= 0 && rect.right <= 390
@@ -6032,7 +6032,7 @@ const SCENARIOS = [
         t.check(`${theme} first-run actions retain visible boundaries and names`,
           await page.$eval('#home-primary-paths [data-category="timeline"]', (button) => {
             const style = getComputedStyle(button);
-            return !button.hidden && button.textContent.includes('Start here')
+            return !button.hidden && button.textContent.includes('Marvel Knights to Present Day')
               && style.borderStyle !== 'none' && style.borderWidth !== '0px';
           }));
       }
@@ -6129,7 +6129,7 @@ const SCENARIOS = [
         const categories = document.querySelector('#home-categories');
         return {
           firstRunHidden: !firstRun,
-          recommended: document.querySelector('#home-primary-paths [data-category="timeline"]')?.textContent.includes('Start here'),
+          recommended: document.querySelector('#home-primary-paths [data-category="timeline"]')?.textContent.includes('Marvel Knights to Present Day'),
           continueHidden: continued.hidden,
           yoursHidden: yours.hidden,
           order: [continued, yours, categories].map((node) => Math.round(node.getBoundingClientRect().top)),
@@ -19307,7 +19307,7 @@ SCENARIOS.push({
     t.check('the one gateway preserves eight labelled category destinations and their icon/arrow pairs',
       await page.evaluate(() => [...document.querySelectorAll('[data-primary-paths], [data-secondary-paths]')]
         .flatMap((root) => [...root.querySelectorAll('a.home-path')])
-        .filter((button) => button.getAttribute('aria-label')?.includes('Start here')
+        .filter((button) => button.getAttribute('aria-label')?.includes('Marvel Knights to Present Day')
           || button.getAttribute('aria-label')?.includes('Browse')
           || button.getAttribute('aria-label')?.includes('Movies and streaming')
           || button.getAttribute('aria-label')?.includes('Publication history')
@@ -20737,7 +20737,7 @@ SCENARIOS.push(
       await page.waitForSelector('#home-primary-paths [data-category="timeline"]');
       const first = await page.evaluate(() => {
         const browse = document.querySelector('#home-primary-paths [data-category="timeline"]');
-        return { href: browse?.getAttribute('href'), recommended: browse?.textContent.includes('Start here'),
+        return { href: browse?.getAttribute('href'), recommended: browse?.textContent.includes('Marvel Knights to Present Day'),
           search: !!document.querySelector('#view-home [data-view="add"], #btn-home-add') };
       });
       t.check('first-run Home recommends the actual Timeline and leaves global Search to the bottom bar',
@@ -21197,14 +21197,19 @@ SCENARIOS.push(responsiveOwner({
                   range.setStart(node, start); range.setEnd(node, end);
                   return new Set([...range.getClientRects()].filter((r) => r.width > 0).map((r) => Math.round(r.top))).size;
                 };
+                // The label shares the link with an arrow icon, so its text spans several nodes:
+                // measure each word inside the text node that actually holds it.
                 const wordsWhole = (el) => {
-                  const node = el.firstChild;
-                  let at = 0;
-                  return el.textContent.split(' ').every((word) => {
-                    const ok = !word || lineTops(node, at, at + word.length) === 1;
-                    at += word.length + 1;
-                    return ok;
-                  });
+                  const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+                  const words = [];
+                  for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+                    for (const match of node.data.matchAll(/\S+/g)) {
+                      words.push({ word: match[0], lines: lineTops(node, match.index, match.index + match[0].length) });
+                    }
+                  }
+                  return words.length > 0
+                    && words.map(({ word }) => word).join(' ') === el.textContent.trim().split(/\s+/).join(' ')
+                    && words.every(({ lines }) => lines === 1);
                 };
                 return Boolean(link.checkVisibility() && heading.checkVisibility()
                   && !heading.closest('.visually-hidden')
