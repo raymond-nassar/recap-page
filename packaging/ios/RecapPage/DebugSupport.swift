@@ -491,45 +491,21 @@ enum DebugSupport {
 
     static let readHandoffTestScript = #"""
     (() => {
-      const addButtons = () => {
-        for (const [label, suffix] of [['Open Read test', ''], ['Open failing Read test', '&recapTestFail=1']]) {
-          if (location.pathname !== '/open.html') {
-            const button = document.createElement('button');
-            button.type = 'button';
-            button.id = `recap-ios-${suffix ? 'failing-' : ''}read-test`;
-            button.textContent = label;
-            button.addEventListener('click', () => {
-              window.open(`${location.origin}/open.html?i=6482&t=Read%20test${suffix}`, '_blank', 'noopener');
-            });
-            document.body.prepend(button);
-          }
-        }
+      // #1601: the launcher no longer looks anything up, so there is no failing lookup to stage. A
+      // comic number without a viewer link opens the Marvel Comics website straight away.
+      const addButton = () => {
+        if (location.pathname === '/open.html') return;
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.id = 'recap-ios-read-test';
+        button.textContent = 'Open Read test';
+        button.addEventListener('click', () => {
+          window.open(`${location.origin}/open.html?i=6482&t=Read%20test`, '_blank', 'noopener');
+        });
+        document.body.prepend(button);
       };
-      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addButtons, { once: true });
-      else addButtons();
-
-      if (new URLSearchParams(location.search).has('recapTestFail')) {
-        const schedule = window.setTimeout.bind(window);
-        window.setTimeout = (handler, delay, ...args) =>
-          delay === 1400 ? 0 : schedule(handler, delay, ...args);
-      }
-
-      const originalFetch = window.fetch.bind(window);
-      window.fetch = async (input, init) => {
-        const requestUrl = typeof input === 'string' || input instanceof URL ? input : input.url;
-        const url = new URL(requestUrl, location.href);
-        if (url.pathname.endsWith('/issues/6482')) {
-          if (new URLSearchParams(location.search).has('recapTestFail')) {
-            return new Response('unavailable', { status: 503 });
-          }
-          await new Promise((resolve) => setTimeout(resolve, 500));
-          return new Response(JSON.stringify({ digitalId: '987654321' }), {
-            status: 200,
-            headers: { 'content-type': 'application/json' },
-          });
-        }
-        return originalFetch(input, init);
-      };
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addButton, { once: true });
+      else addButton();
     })();
     """#
 

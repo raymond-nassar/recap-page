@@ -72,7 +72,6 @@ import org.junit.runner.Description;
 import org.junit.runner.RunWith;
 
 import java.io.File;
-import java.io.ByteArrayInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.lang.reflect.Field;
@@ -88,7 +87,6 @@ import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Pattern;
 
 @RunWith(AndroidJUnit4.class)
@@ -492,78 +490,63 @@ public final class NativeIntegrationTest {
     public void readerPopupAndExternalIntent() throws Exception {
         configureBrowserPreferences();
         server = new FixtureMetadataServer();
+        // The comic up next has no saved digital ID. Before #1601 the launcher looked one up in the
+        // popup; now nothing may ask the metadata server, so a lookup here is a regression.
         seed(true);
         route("read");
         assertReadingProgress();
         Object nativeEndpoint = nativePort();
         assertNotNull("The main document has its native endpoint", nativeEndpoint);
-        assertEquals("The main page observes the injected pre-cutoff local date", "2026-12-06",
-                evaluateRequiredValue(web, "(() => {"
-                        + "globalThis.Date = class extends Date { constructor(...a) { super(...(a.length ? a : [2026, 11, 6, 12])); } };"
-                        + "dispatchEvent(new Event('focus'));"
-                        + "const d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),"
-                        + "String(d.getDate()).padStart(2,'0')].join('-');})()"));
-        waitFor("Pre-cutoff Read label follows the injected clock", WAIT_MS,
-                () -> "Read".equals(text(web, "document.querySelector('#btn-hero-read').textContent")));
-        tap(web, "#btn-hero-read");
+        String website = "https://marvel.webtoon.com/";
+        waitFor("A comic with no verified viewer offers the Marvel Comics website", WAIT_MS,
+                () -> "Find on Marvel Comics".equals(text(web, "document.querySelector('#btn-hero-read').textContent")));
+        assertTrue("An idle launcher is opened by a real tap",
+                (Boolean) asyncJs(web,
+                        "const b=document.createElement('button');b.id='native-idle-launcher';b.textContent='Launcher';"
+                        + "Object.assign(b.style,{position:'fixed',top:'20px',left:'20px',zIndex:'10000'});"
+                        + "b.onclick=()=>window.open('/open.html','_blank','noopener');"
+                        + "document.body.append(b);return true;"));
+        tap(web, "#native-idle-launcher");
         waitFor("A real user gesture creates one child WebView", 5000, () -> popupViews().size() == 1);
-        WebView popup = popupViews().get(0);
+        WebView idle = popupViews().get(0);
         waitFor("The real launcher executes with its opener severed", 4000,
-                () -> truth(popup, "location.pathname === '/open.html' && window.opener === null"
-                        + " && document.querySelector('#p')?.textContent.includes('Looking up')"));
-        assertTrue("Unknown digital ID is resolved in the popup, not before opening it",
-                server.lookupStarted.await(1, TimeUnit.SECONDS));
-        assertEquals("Exactly one synthetic lookup", 1, server.issueRequests.get());
-        assertEquals("No outgoing intent precedes the completed lookup", 0, countIntents(Intent.ACTION_VIEW));
+                () -> truth(idle, "location.pathname === '/open.html' && window.opener === null"
+                        + " && document.querySelector('#p')?.textContent.includes('missing a valid issue reference')"));
+        assertEquals("An idle launcher dispatches nothing", 0, countIntents(Intent.ACTION_VIEW));
         assertSame("Creating the child must not replace the main native endpoint", nativeEndpoint, nativePort());
         assertTrue("Launcher loads only its isolated Android entry, not the app or native bridge",
-                truth(popup, "[...document.scripts].some(s => s.src.endsWith('/android/launcher.js'))"
+                truth(idle, "[...document.scripts].some(s => s.src.endsWith('/android/launcher.js'))"
                         + " && [...document.scripts].every(s => !/\\/android\\/(app|bridge)\\.js$/.test(s.src))"
                         + " && !document.querySelector('#android-report')"));
         assertTrue("Popup cannot fetch the native bridge from the local asset boundary",
-                (Boolean) asyncJs(popup, "const r=await fetch('/android/bridge.js');return r.status===403;"));
+                (Boolean) asyncJs(idle, "const r=await fetch('/android/bridge.js');return r.status===403;"));
         screenshot("isolated-popup");
-        String appUrl = "marvelunlimited://issue/drn:src:marvel:unison::prod:"
+        // #1601 retired every Marvel Unlimited destination. None may leave the app from any caller,
+        // including a popup on the launcher page, where an official reader would be handed off.
+        String unlimited = "marvelunlimited://issue/drn:src:marvel:unison::prod:"
                 + "00000000-0000-4000-8000-000000000099";
-        AtomicInteger appLookups = new AtomicInteger();
+        String[] retired = {
+                unlimited,
+                "https://read.marvel.com/#/book/900000099",
+                "https://www.marvelcomicsapp.com/mu/issues/900000002",
+        };
         onMain(() -> {
-            WebViewClient delegate = popup.getWebViewClient();
-            assertTrue(web.getWebViewClient().shouldOverrideUrlLoading(web, readerRequest(appUrl, true)));
-            assertTrue(delegate.shouldOverrideUrlLoading(popup, readerRequest(appUrl, false)));
-            assertTrue(delegate.shouldOverrideUrlLoading(web, readerRequest(appUrl, true)));
-            popup.setWebViewClient(new WebViewClient() {
-                @Override
-                public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
-                    if (!request.isForMainFrame() && request.getMethod().equals("GET")
-                            && request.getUrl().toString().equals(
-                                    "https://bifrost.marvel.com/unison/legacy?digitalId=900000099")) {
-                        appLookups.incrementAndGet();
-                        String body = "{}";
-                        return new WebResourceResponse("application/json", "UTF-8", 200, "OK",
-                                Map.of("Access-Control-Allow-Origin", ORIGIN, "Cache-Control", "no-store"),
-                                new ByteArrayInputStream(body.getBytes(StandardCharsets.UTF_8)));
-                    }
-                    return delegate.shouldInterceptRequest(view, request);
-                }
-
-                @Override
-                public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-                    return delegate.shouldOverrideUrlLoading(view, request);
-                }
-
-                @Override
-                public void onPageStarted(WebView view, String url, android.graphics.Bitmap icon) {
-                    delegate.onPageStarted(view, url, icon);
-                }
-
-                @Override
-                public void onPageFinished(WebView view, String url) {
-                    delegate.onPageFinished(view, url);
-                }
-            });
+            WebViewClient delegate = idle.getWebViewClient();
+            assertTrue(web.getWebViewClient().shouldOverrideUrlLoading(web, readerRequest(unlimited, true)));
+            assertTrue(delegate.shouldOverrideUrlLoading(web, readerRequest(unlimited, true)));
+            for (String address : retired) {
+                assertTrue(delegate.shouldOverrideUrlLoading(idle, readerRequest(address, false)));
+                assertTrue(delegate.shouldOverrideUrlLoading(idle, readerRequest(address, true)));
+            }
             return null;
         });
-        assertEquals("Valid URI is rejected from every disallowed caller context", 0, countIntents(Intent.ACTION_VIEW));
+        assertEquals("Retired addresses are refused from every caller context", 0, countIntents(Intent.ACTION_VIEW));
+        onMain(() -> {
+            ((android.app.Dialog) idle.getTag()).dismiss();
+            return null;
+        });
+        waitFor("The idle launcher closes without a handoff", WAIT_MS, () -> popupViews().isEmpty());
+        asyncJs(web, "document.querySelector('#native-idle-launcher').remove();return true;");
         device.executeShellCommand("cmd role clear-role-holders --user 0 android.app.role.BROWSER");
         // The role controller re-adds a fallback holder when exactly one browser, or exactly one
         // system browser, qualifies (BrowserRoleBehavior.getFallbackHolderAsUser, AOSP Permission
@@ -572,18 +555,19 @@ public final class NativeIntegrationTest {
         List<String> afterClear = browserRoleHolders();
         assertTrue("Clearing leaves at most one browser holder", afterClear.size() <= 1);
         boolean pickerReachable = afterClear.isEmpty();
-        intending(allOf(hasAction(Intent.ACTION_VIEW), hasData("https://read.marvel.com/#/book/900000099")))
+        intending(allOf(hasAction(Intent.ACTION_VIEW), hasData(website)))
                 .respondWith(new Instrumentation.ActivityResult(Activity.RESULT_OK, null));
         String defaultBrowser;
         if (pickerReachable) {
             assertNull("A resolver is not a vetted browser default", onMain(() ->
                     MainActivity.defaultReaderBrowser(activity.getPackageManager(),
                             MainActivity.readerBrowsers(activity.getPackageManager()))));
-            server.releaseLookup.countDown();
+            tap(web, "#btn-hero-read");
+            waitFor("Find on Marvel Comics opens one launcher", 5000, () -> popupViews().size() == 1);
+            WebView popup = popupViews().get(0);
             UiObject2 firstChoices = device.wait(Until.findObject(By.clazz("android.widget.ListView")), 5000);
-            assertNotNull("Without a default, Read asks for an installed browser", firstChoices);
+            assertNotNull("Without a default, the website handoff asks for an installed browser", firstChoices);
             assertNotNull("The second browser is present", firstChoices.findObject(By.text("Recap browser fixture")));
-            assertEquals("No Bifrost lookup", 0, appLookups.get());
             assertEquals("No outgoing intent before the browser choice", 0, countIntents(Intent.ACTION_VIEW));
             device.pressBack();
             waitFor("Cancel returns a visible browser failure and usable fallback", WAIT_MS,
@@ -593,7 +577,7 @@ public final class NativeIntegrationTest {
             assertEquals("Chrome is restored as the default browser",
                     Collections.singletonList("com.android.chrome"), browserRoleHolders());
             defaultBrowser = "com.android.chrome";
-            tapClosingPopup(popup, "#fallback", "https://read.marvel.com/#/book/900000099", defaultBrowser);
+            tapClosingPopup(popup, "#fallback", "https://marvel.webtoon.com/", defaultBrowser);
         } else {
             defaultBrowser = afterClear.get(0);
             ResolveInfo restored = onMain(() -> MainActivity.defaultReaderBrowser(activity.getPackageManager(),
@@ -601,52 +585,39 @@ public final class NativeIntegrationTest {
             assertNotNull("The restored fallback holder is a vetted browser default", restored);
             assertEquals("The vetted default is the restored role holder",
                     defaultBrowser, restored.activityInfo.packageName);
-            server.releaseLookup.countDown();
+            tap(web, "#btn-hero-read");
         }
+        waitFor("Find on Marvel Comics dispatches the website", WAIT_MS, () ->
+                Intents.getIntents().stream().anyMatch(intent -> website.equals(intent.getDataString())));
         waitFor("Default browser handoff closes popup without another choice", WAIT_MS, () -> popupViews().isEmpty());
         assertNull("The app does not show a browser picker for a verified default",
                 device.findObject(By.text("Open in browser")));
-        assertEquals("No Bifrost lookup before the handoff", 0, appLookups.get());
-        Intent browserIntent = Intents.getIntents().stream()
-                .filter(intent -> "https://read.marvel.com/#/book/900000099".equals(intent.getDataString()))
-                .findFirst().orElseThrow();
-        assertNotNull("Fallback explicitly targets a browser package", browserIntent.getPackage());
-        assertEquals("The actual comic goes to the default browser, not its domain handler",
+        List<Intent> websiteIntents = Intents.getIntents().stream()
+                .filter(intent -> website.equals(intent.getDataString()))
+                .collect(java.util.stream.Collectors.toList());
+        assertEquals("The website is handed off exactly once", 1, websiteIntents.size());
+        Intent browserIntent = websiteIntents.get(0);
+        assertNotNull("The website handoff explicitly targets a browser package", browserIntent.getPackage());
+        assertEquals("The website goes to the default browser, not its domain handler",
                 defaultBrowser, browserIntent.getPackage());
         assertTrue("Selected package is a general web browser", onMain(() ->
                 MainActivity.readerBrowsers(activity.getPackageManager()).stream()
                         .anyMatch(info -> info.filter != null && info.filter.countDataAuthorities() == 0
                                 && info.activityInfo.packageName.equals(browserIntent.getPackage()))));
+        assertEquals("A comic with no verified viewer never tries the Marvel Comics app", 0L,
+                Intents.getIntents().stream().filter(intent ->
+                        "com.webtoon.marvelcomics".equals(intent.getPackage())).count());
+        assertEquals("No Marvel Unlimited destination is ever dispatched", 0L,
+                Intents.getIntents().stream().filter(intent -> {
+                    String data = String.valueOf(intent.getDataString());
+                    return data.startsWith("marvelunlimited:") || data.contains("read.marvel.com")
+                            || data.contains("/mu/issues/") || data.contains("bifrost.marvel.com");
+                }).count());
+        assertEquals("Read makes no metadata lookup", 0, server.issueRequests.get());
         assertSame("Main native endpoint survives the child lifecycle", nativeEndpoint, nativePort());
         assertFixture();
         assertNotNull("Main WebView remains attached", onMain(() -> web.getParent()));
         assertTrue("Loopback fixture server completed cleanly", server.failure == null);
-        assertEquals("The main page observes the injected post-cutoff local date", "2026-12-07",
-                evaluateRequiredValue(web, "(() => {"
-                        + "globalThis.Date = class extends Date { constructor(...a) { super(...(a.length ? a : [2026, 11, 7])); } };"
-                        + "dispatchEvent(new Event('focus'));"
-                        + "const d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),"
-                        + "String(d.getDate()).padStart(2,'0')].join('-');})()"));
-        waitFor("Post-cutoff Read label follows the injected clock", WAIT_MS,
-                () -> "Find on Marvel Comics".equals(text(web, "document.querySelector('#btn-hero-read').textContent")));
-        intending(allOf(hasAction(Intent.ACTION_VIEW), hasData("https://marvel.webtoon.com/")))
-                .respondWith(new Instrumentation.ActivityResult(Activity.RESULT_OK, null));
-        tap(web, "#btn-hero-read");
-        waitFor("Post-cutoff Read dispatches the new destination", WAIT_MS, () ->
-                Intents.getIntents().stream().anyMatch(intent ->
-                        "https://marvel.webtoon.com/".equals(intent.getDataString())));
-        waitFor("Post-cutoff browser handoff closes popup", WAIT_MS, () -> popupViews().isEmpty());
-        assertNull("The default also bypasses the picker after the cutoff",
-                device.findObject(By.text("Open in browser")));
-        Intent generalIntent = Intents.getIntents().stream()
-                .filter(intent -> "https://marvel.webtoon.com/".equals(intent.getDataString()))
-                .findFirst().orElseThrow();
-        assertEquals("The general website goes only to the default browser",
-                "com.android.chrome", generalIntent.getPackage());
-        assertEquals("No metadata lookup after the cutoff", 1, server.issueRequests.get());
-        assertEquals("No Bifrost lookup on either side", 0, appLookups.get());
-        assertSame("Both handoffs preserve the main native endpoint", nativeEndpoint, nativePort());
-        assertFixture();
         assertMarvelComicsHandoffs();
         String[] providers = {
                 "https://www.hoopladigital.com/title/123456789",
@@ -706,10 +677,11 @@ public final class NativeIntegrationTest {
         }
         assertSame("Provider handoffs preserve the main native endpoint", nativeEndpoint, nativePort());
         assertFixture();
-        measurements.put("popupCount", 1).put("syntheticMetadataLookups", server.issueRequests.get())
-                .put("syntheticAppLookups", appLookups.get()).put("appDispatchAttempts", 0)
-                .put("browserFallbackAttempts", 1).put("externalBrowserRendered", false)
-                .put("destination", browserIntent.getDataString()).put("afterCutoffDestination", generalIntent.getDataString())
+        measurements.put("popupCount", 2).put("syntheticMetadataLookups", server.issueRequests.get())
+                .put("appDispatchAttempts", 0).put("websiteHandoffs", websiteIntents.size())
+                .put("externalBrowserRendered", false).put("pickerReachable", pickerReachable)
+                .put("refusedRetiredAddresses", retired.length)
+                .put("destination", browserIntent.getDataString())
                 .put("browserPackage", browserIntent.getPackage())
                 .put("providerHandoffs", providers.length)
                 .put("popupOpenerNull", true).put("nativeEndpointUnchanged", true)
@@ -717,12 +689,12 @@ public final class NativeIntegrationTest {
     }
 
     // Read on a /viewer/ comic first asks the Marvel Comics app, by package, for its own reader address.
-    // A /mu/issues/ comic and an explicit Open in browser tap never try the app, and a missing app falls
-    // back to the same vetted browser path as before.
+    // An explicit Open in browser tap never tries the app, and a missing app falls back to the same
+    // vetted browser path. An old Marvel Unlimited launch link (#1601) opens the website instead.
     private void assertMarvelComicsHandoffs() throws Exception {
         String[] links = {
                 "https://www.marvelcomicsapp.com/viewer/900000001",
-                "https://www.marvelcomicsapp.com/mu/issues/900000002",
+                "https://marvel.webtoon.com/",
                 "https://www.marvelcomicsapp.com/viewer/900000003"
         };
         String[] appAddresses = {
@@ -736,6 +708,7 @@ public final class NativeIntegrationTest {
             String destination = links[index];
             String appAddress = appAddresses[index];
             String parameter = index == 1 ? "i=900000002&m=900000002" : "i=900000099&a=" + (900000001 + index);
+            int earlier = Intents.getIntents().size();
             assertTrue("A real tap opens the isolated launcher with a synthetic app link",
                     (Boolean) asyncJs(web,
                             "const b=document.createElement('button');b.id='native-app-read';b.textContent='Read';"
@@ -743,19 +716,22 @@ public final class NativeIntegrationTest {
                             + "b.onclick=()=>window.open('/open.html?" + parameter
                             + "','_blank','noopener');document.body.append(b);return true;"));
             tap(web, "#native-app-read");
-            waitFor("Launcher hands the comic off", WAIT_MS, () -> Intents.getIntents().stream().anyMatch(intent ->
-                    destination.equals(intent.getDataString())
+            waitFor("Launcher hands the comic off", WAIT_MS, () -> Intents.getIntents().stream().skip(earlier)
+                    .anyMatch(intent -> destination.equals(intent.getDataString())
                             || appAddress != null && appAddress.equals(intent.getDataString())));
             waitFor("Accepted app or browser handoff closes its popup", WAIT_MS, () -> popupViews().isEmpty());
-            List<Intent> appAttempts = Intents.getIntents().stream()
+            List<Intent> handed = Intents.getIntents().subList(earlier, Intents.getIntents().size());
+            List<Intent> appAttempts = handed.stream()
                     .filter(intent -> appAddress != null && appAddress.equals(intent.getDataString()))
                     .collect(java.util.stream.Collectors.toList());
-            List<Intent> browserAttempts = Intents.getIntents().stream()
+            List<Intent> browserAttempts = handed.stream()
                     .filter(intent -> destination.equals(intent.getDataString()))
                     .collect(java.util.stream.Collectors.toList());
             assertEquals("Only a viewer link tries the app, once", appAddress == null ? 0 : 1, appAttempts.size());
             assertEquals("Only a link with no app attempt or a missing app reaches the browser",
                     index == 0 ? 0 : 1, browserAttempts.size());
+            assertEquals("Each launch hands off only its own destinations",
+                    appAttempts.size() + browserAttempts.size(), handed.size());
             if (appAddress != null) {
                 Intent app = appAttempts.get(0);
                 assertEquals("App attempt is a view intent", Intent.ACTION_VIEW, app.getAction());
@@ -796,7 +772,7 @@ public final class NativeIntegrationTest {
         asyncJs(web, "document.querySelector('#native-app-read').remove();return true;");
         assertEquals("App and browser handoffs do not change saved reading data", before, stateSummary());
         measurements.put("marvelComicsAppAttempts", 2).put("marvelComicsAppFallbacks", 1)
-                .put("marvelComicsExplicitBrowserEscapes", 1);
+                .put("marvelComicsExplicitBrowserEscapes", 1).put("retiredLaunchLinksToWebsite", 1);
     }
 
     @SuppressWarnings("deprecation")
@@ -811,12 +787,15 @@ public final class NativeIntegrationTest {
             return browsers.stream().anyMatch(info -> info.activityInfo.packageName.equals(fixturePackage))
                     && browsers.stream().anyMatch(info -> info.activityInfo.packageName.equals("com.android.chrome"));
         }));
-        device.executeShellCommand("pm set-app-links --package " + fixturePackage + " 2 read.marvel.com");
+        // Find on Marvel Comics hands this website to an explicit browser package (#1601), so a verified
+        // handler for its host is the one that could take it from the browser. A viewer link tries the
+        // Marvel Comics app first by design, which makes its host the weaker proof.
+        device.executeShellCommand("pm set-app-links --package " + fixturePackage + " 2 marvel.webtoon.com");
         assertTrue("Domain approval was set locally without contacting Marvel",
                 device.executeShellCommand("pm get-app-links " + fixturePackage)
-                        .contains("read.marvel.com: approved"));
+                        .contains("marvel.webtoon.com: approved"));
         List<ResolveInfo> domainResults = onMain(() -> activity.getPackageManager().queryIntentActivities(
-                new Intent(Intent.ACTION_VIEW, Uri.parse("https://read.marvel.com/#/book/900000099"))
+                new Intent(Intent.ACTION_VIEW, Uri.parse("https://marvel.webtoon.com/"))
                         .addCategory(Intent.CATEGORY_BROWSABLE),
                 PackageManager.MATCH_DEFAULT_ONLY | PackageManager.GET_RESOLVED_FILTER));
         assertTrue("The destination-bound query reproduces browser suppression",

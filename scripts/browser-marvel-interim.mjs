@@ -1,7 +1,8 @@
 import { readFile } from 'node:fs/promises';
 import { RECORD_HEADING, RECORD_NOTE } from '../src/js/lib/availability.js';
-import { marvelComicsAppMuIssueIds } from '../src/data/marvelComicsAppMuIssues.js';
 import { HOME_UPDATES_SEEN_KEY } from '../src/js/lib/homeUpdatesSeen.js';
+
+const APPROVED_NOTICE = 'Read opens a comic directly in the Marvel Comics app. If there\u2019s no direct link, use Find on Marvel Comics to open the website.';
 
 export async function dismissClosureNotice(page, t, { seedFixtureState, click, savedStateDifference }) {
   await localClock(page);
@@ -22,25 +23,19 @@ export async function dismissClosureNotice(page, t, { seedFixtureState, click, s
   }));
   const before = await snapshot();
   const key = 'mrt.readerClosure.dismissed.v1';
-  const identity = 'marvel-comics-app-unlimited';
+  const identity = 'marvel-comics-app-viewer';
   const ax = await page.createCDPSession();
   const { nodes } = await ax.send('Accessibility.getFullAXTree');
   await ax.detach();
   t.check('screen-reader tree names one button without speaking the decorative glyph',
     nodes.filter((node) => !node.ignored && node.role?.value === 'button'
-      && node.name?.value === 'Dismiss the Marvel Unlimited notice').length === 1);
-  const faq = '#reader-closure-faq';
-  const faqHref = 'https://help.marvel.com/article/marvel-whats-happening-to-marvel-unlimited';
-  t.check('the short notice keeps one descriptive external FAQ link in the screen-reader tree',
-    nodes.filter((node) => !node.ignored && node.role?.value === 'link' && node.name?.value === "Marvel's FAQ").length === 1
-    && await page.$eval(faq, (node, href) => node.href === href && node.target === '_blank'
-      && node.rel === 'noopener noreferrer', faqHref));
-  t.check('the pre-cutoff notice is announced with the app and Reading options',
+      && node.name?.value === 'Dismiss reading link notice').length === 1);
+  t.check('the notice no longer exposes the retired Marvel FAQ link',
+    await page.$(button) !== null && await page.$('#reader-closure-faq') === null);
+  t.check('the approved notice is announced with the app and Find on Marvel Comics',
     nodes.some((node) => !node.ignored && node.role?.value === 'StaticText'
-      && node.name?.value === 'Read now opens comics in the Marvel Comics app when we have a link. Marvel Unlimited ends December 7, 2026. Until then you can still choose it under Reading options.'));
-  await page.focus(faq);
-  await page.keyboard.press('Tab');
-  t.check('the FAQ precedes Dismiss in keyboard order', await page.$eval(button, (node) => node === document.activeElement));
+      && node.name?.value === APPROVED_NOTICE));
+  await page.focus(button);
   for (const theme of ['light', 'dark', 'system']) {
     for (const width of [1280, 320]) {
       await page.setViewport({ width, height: 900 });
@@ -53,10 +48,9 @@ export async function dismissClosureNotice(page, t, { seedFixtureState, click, s
           const box = node.getBoundingClientRect(), notice = node.parentElement.getBoundingClientRect();
           const prose = document.createRange();
           prose.selectNodeContents(document.querySelector('#reader-closure-text'));
-          const faq = document.querySelector('#reader-closure-faq');
           return box.left >= notice.left && box.right <= notice.right && box.top >= notice.top
             && box.bottom <= notice.bottom && box.width >= 44 && box.height >= 44
-            && [...prose.getClientRects(), ...faq.getClientRects()].every((rect) =>
+            && [...prose.getClientRects()].every((rect) =>
               rect.right <= box.left || rect.top >= box.bottom || rect.bottom <= box.top)
             && document.documentElement.scrollWidth <= innerWidth;
         }));
@@ -73,7 +67,7 @@ export async function dismissClosureNotice(page, t, { seedFixtureState, click, s
       width: box.width, height: box.height, hint: node.dataset.tooltip };
   });
   t.check('keyboard focus and target size use shared icon-button conventions',
-    focus.ring && focus.width >= 24 && focus.height >= 24 && focus.hint === 'Dismiss the Marvel Unlimited notice', JSON.stringify(focus));
+    focus.ring && focus.width >= 24 && focus.height >= 24 && focus.hint === 'Dismiss reading link notice', JSON.stringify(focus));
   const scroll = await page.evaluate(() => scrollY);
   await page.keyboard.press('Enter');
   t.check('Enter hides the notice and orients focus without scrolling', await page.evaluate((y) =>
@@ -84,26 +78,30 @@ export async function dismissClosureNotice(page, t, { seedFixtureState, click, s
     JSON.stringify(savedStateDifference(JSON.stringify(before), JSON.stringify(afterDismissal))));
   await page.reload({ waitUntil: 'load' });
   t.check('dismissal survives reload', await page.$eval('#reader-closure-notice', (node) => node.hidden));
-  t.check('a pre-cutoff dismissal is remembered under its own phase',
+  t.check('the dismissal is remembered under the approved notice identity',
     await page.evaluate((key) => localStorage.getItem(key), key) === identity);
-  const shown = () => page.$eval('#reader-closure-notice', (node) => !node.hidden
-    && node.querySelector('#reader-closure-text').textContent === 'Marvel Unlimited has ended. Read opens the comic in the Marvel Comics app when we have a link, and the Marvel Comics website otherwise.');
+  const shown = () => page.$eval('#reader-closure-notice', (node, text) => !node.hidden
+    && node.querySelector('#reader-closure-text').textContent === text, APPROVED_NOTICE);
+  // #1601: the notice no longer changes on December 7, 2026, so a dismissal holds across that day.
   await page.evaluate(() => {
     window.__marvelClock = new Date(2026, 11, 7).getTime();
     dispatchEvent(new Event('focus'));
   });
-  t.check('a page left open across the cutoff shows the new notice without a reload', await shown());
-  t.check('the phase refresh retains the FAQ link', await page.$eval(faq, (node, href) => node.href === href, faqHref));
+  t.check('a page left open across the old cutoff keeps the dismissed notice hidden',
+    await page.$eval('#reader-closure-notice', (node) => node.hidden));
   await page.evaluate(() => sessionStorage.setItem('marvel-clock', String(new Date(2026, 11, 7).getTime())));
   await page.reload({ waitUntil: 'load' });
-  t.check('a pre-cutoff dismissal does not hide the post-cutoff notice after reload', await shown());
-  await click(page, button);
-  await page.reload({ waitUntil: 'load' });
-  t.check('a post-cutoff dismissal stays hidden after reload', await page.$eval('#reader-closure-notice', (node) => node.hidden)
-    && await page.evaluate((key) => localStorage.getItem(key), key) === 'marvel-comics-app-comics');
+  t.check('the dismissal still hides the notice after the old cutoff and a reload',
+    await page.$eval('#reader-closure-notice', (node) => node.hidden)
+    && await page.evaluate((key) => localStorage.getItem(key), key) === identity);
   await page.evaluate(() => sessionStorage.removeItem('marvel-clock'));
-  await page.reload({ waitUntil: 'load' });
-  t.check('a different notice identity cannot hide this notice', await page.$eval('#reader-closure-notice', (node) => !node.hidden));
+  // Both identities the phased notice stored dismissed different words, so neither hides this one.
+  for (const legacy of ['marvel-comics-app-unlimited', 'marvel-comics-app-comics']) {
+    await page.evaluate((key, value) => localStorage.setItem(key, value), key, legacy);
+    await page.reload({ waitUntil: 'load' });
+    t.check(`a legacy ${legacy} dismissal cannot hide the approved notice`, await shown());
+    t.check('the notice refresh still has no FAQ link', await page.$('#reader-closure-faq') === null);
+  }
   await page.evaluate((key) => localStorage.setItem(key, '{malformed'), key);
   await page.reload({ waitUntil: 'load' });
   t.check('malformed dismissal shows the notice', await page.$eval('#reader-closure-notice', (node) => !node.hidden));
@@ -185,8 +183,8 @@ export async function dismissClosureNotice(page, t, { seedFixtureState, click, s
   await page.evaluate((key) => localStorage.removeItem(key), key);
   await iosClosureTargets(page, t);
   await route(page, '#/about', '#view-about:not([hidden])');
-  t.check('About keeps the cutoff explanation independently', await page.$eval('#view-about',
-    (node) => node.textContent.includes('December 7, 2026') && node.textContent.includes('not a single-comic link')));
+  t.check('About keeps the approved reading-link notice without a cutoff date', await page.$eval('#view-about',
+    (node, text) => node.textContent.includes(text) && !node.textContent.includes('December 7, 2026'), APPROVED_NOTICE));
 }
 
 async function iosClosureTargets(page, t) {
@@ -203,7 +201,7 @@ async function iosClosureTargets(page, t) {
     ]) {
       await ios.setViewport({ width, height });
       await ios.goto(new URL('/#/home', page.url()).href, { waitUntil: 'load' });
-      await ios.waitForSelector('#reader-closure-faq', { visible: true });
+      await ios.waitForSelector('#reader-closure-notice', { visible: true });
       // The seed's empty first load can remember this batch after the fixture clears that record
       // (#1447). About reveals the real control regardless of that earlier write.
       await route(ios, '#/about', '#view-about:not([hidden])');
@@ -228,18 +226,16 @@ async function iosClosureTargets(page, t) {
         scrollTo(0, 0);
       });
       const observed = await ios.evaluate((seenKey) => {
-        const faq = document.querySelector('#reader-closure-faq');
+        const dismiss = document.querySelector('#reader-closure-dismiss');
         const image = [...document.querySelectorAll('.home-wordmark')].find((node) => node.checkVisibility()).getBoundingClientRect();
         const updates = document.querySelector('#home-updates');
         const toggleNode = document.querySelector('#home-updates-toggle');
         const toggle = toggleNode.getBoundingClientRect();
         const hit = document.elementFromPoint((image.left + image.right) / 2, (image.top + image.bottom) / 2);
         return {
-          adapted: faq.dataset.iosAccessibleTarget === 'true',
-          name: faq.getAttribute('aria-label'),
-          hiddenText: [...faq.children].every((child) => child.getAttribute('aria-hidden') === 'true'),
-          targetHeight: faq.getBoundingClientRect().height,
-          lineHeight: parseFloat(getComputedStyle(faq).lineHeight),
+          dismissName: dismiss.getAttribute('aria-label'),
+          dismissWidth: dismiss.getBoundingClientRect().width,
+          dismissHeight: dismiss.getBoundingClientRect().height,
           noOverlap: toggle.top >= image.bottom,
           updatesVisible: toggleNode.checkVisibility() && toggle.width > 0 && toggle.height > 0,
           updates: {
@@ -264,15 +260,11 @@ async function iosClosureTargets(page, t) {
         };
       }, HOME_UPDATES_SEEN_KEY);
       const label = `iOS overlay ${width}x${height} ${largest ? 'largest' : 'default'} ${theme}`;
-      t.check(`${label} exposes one named FAQ target with a 44pt text line`,
-        observed.adapted && observed.name === "Marvel's FAQ" && observed.hiddenText
-        && observed.targetHeight >= 44 && observed.lineHeight >= 44, JSON.stringify(observed));
+      t.check(`${label} keeps the reading-link dismissal named and large enough to use`,
+        observed.dismissName === 'Dismiss reading link notice'
+          && observed.dismissWidth >= 24 && observed.dismissHeight >= 24, JSON.stringify(observed));
       t.check(`${label} stacks updates clear of the wordmark without horizontal overflow`,
         observed.updatesVisible && observed.noOverlap && observed.imageHit && !observed.overflow, JSON.stringify(observed));
-      await ios.focus('#reader-closure-faq');
-      await ios.keyboard.press('Tab');
-      t.check(`${label} retains FAQ-to-Dismiss keyboard order`,
-        await ios.$eval('#reader-closure-dismiss', (node) => node === document.activeElement));
     }
   } finally {
     await ios.close();
@@ -300,27 +292,57 @@ async function route(page, hash, selector) {
   await page.waitForSelector(selector);
 }
 
-async function listReadingOptions(page, t, { listId, sourceIssueId }) {
-  const heroToggle = '#btn-hero-reading-options';
-  const heroList = '#hero-reading-options-list';
-  const rowMore = '#rows [data-key="12459"][data-act="more"]';
-  const rowToggle = '#rows [data-key="12459"][data-act="reading-options"]';
-  const rowList = '#row-reading-options-list-12459';
-  const options = ['Marvel Comics app', 'Marvel Unlimited, until December 7, 2026'];
+// #1601: a comic whose only place is its Marvel Comics app link needs no disclosure, because Read
+// already goes there. Reading options appear only beside a verified library book.
+async function singlePlaceReadingOptions(page, t, { listId, unlinkedId }) {
   await route(page, `#/read/${encodeURIComponent(listId)}`, '#view-read:not([hidden])');
   await page.waitForFunction(() => document.querySelector('#hero-title')?.textContent === 'Linked browser fixture');
   const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+  t.check('a comic with only its app link shows Read and no Reading options in the hero',
+    await page.evaluate(() => document.querySelector('#hero-reading-options').hidden
+      && document.querySelector('#btn-hero-read').textContent === 'Read'
+      && document.querySelector('#btn-hero-read').getAttribute('aria-label')
+        === 'Read Linked browser fixture in the Marvel Comics app'));
+  await page.$eval('#btn-hero-read', (node) => node.click());
+  t.check('hero Read opens the bundled viewer in a fresh window',
+    await page.evaluate(() => {
+      const call = window.__marvelOpens.at(-1), url = new URL(call[0]);
+      return url.searchParams.get('a') === '18255' && url.searchParams.get('r') === 'comics'
+        && call[1] === '_blank' && call[2] === 'noopener';
+    }));
+  await page.$eval('#full > summary', (node) => { if (!node.parentElement.open) node.click(); });
+  await page.waitForSelector('#rows [data-key="12459"][data-act="more"]');
+  t.check('linked and unlinked rows without a library book add no Reading options',
+    await page.evaluate((unlinked) => [12459, unlinked].every((id) => document.querySelector(`#rows [data-key="${id}"]`)
+      && !document.querySelector(`#rows [data-key="${id}"][data-act="reading-options"]`)), unlinkedId));
+  t.check('single-place Read leaves saved data unchanged',
+    await page.evaluate((saved) => localStorage.getItem('mrt.state.v2') === saved, before));
+}
+
+async function listReadingOptions(page, t, { listId, unlinkedId }) {
+  const key = 71308;
+  const title = 'Asgardians fixture';
+  const heroToggle = '#btn-hero-reading-options';
+  const heroList = '#hero-reading-options-list';
+  const rowMore = `#rows [data-key="${key}"][data-act="more"]`;
+  const rowToggle = `#rows [data-key="${key}"][data-act="reading-options"]`;
+  const rowList = `#row-reading-options-list-${key}`;
+  const options = ['Marvel Comics app'];
+  await route(page, `#/read/${encodeURIComponent(listId)}`, '#view-read:not([hidden])');
+  await page.waitForFunction((title) => document.querySelector('#hero-title')?.textContent === title, {}, title);
+  const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
   t.check('the hero offers a closed Reading options disclosure in its primary actions',
-    await page.$eval(heroToggle, (node) => !node.parentElement.hidden
+    await page.$eval(heroToggle, (node, title) => !node.parentElement.hidden
       && node.closest('#hero-primary-actions') !== null && !node.closest('[data-tooltip-group]')
       && node.getAttribute('aria-expanded') === 'false'
       && node.getAttribute('aria-controls') === 'hero-reading-options-list'
-      && node.getAttribute('aria-label') === 'Reading options for Linked browser fixture'));
+      && node.getAttribute('aria-label') === `Reading options for ${title}`, title));
   await page.focus(heroToggle);
   await page.keyboard.press('Enter');
-  t.check('hero Enter reveals the two approved places in order',
+  t.check('hero Enter reveals the app choice before the two library books',
     await page.$$eval(`${heroList} button`, (nodes) => nodes.map((node) => node.textContent))
-      .then((labels) => JSON.stringify(labels) === JSON.stringify(options)));
+      .then((labels) => JSON.stringify(labels) === JSON.stringify(options))
+      && await page.$$eval(`${heroList} li > *`, (nodes) => nodes.map((node) => node.tagName).join() === 'BUTTON,A,A'));
   const ax = await page.createCDPSession();
   async function accessibleButton(selector, name) {
     const { root } = await ax.send('DOM.getDocument');
@@ -329,29 +351,21 @@ async function listReadingOptions(page, t, { listId, sourceIssueId }) {
     return result.nodes.some((node) => !node.ignored && node.role?.value === 'button' && node.name?.value === name);
   }
   t.check('the hero button has its comic-specific name in the browser accessibility tree',
-    await accessibleButton(heroToggle, 'Reading options for Linked browser fixture'));
+    await accessibleButton(heroToggle, `Reading options for ${title}`));
   await page.keyboard.press('Tab');
   t.check('hero Tab reaches the named Marvel Comics app choice',
-    await page.evaluate(() => document.activeElement?.dataset.readingOption === 'app'
-      && document.activeElement.getAttribute('aria-label') === 'Read Linked browser fixture in the Marvel Comics app'));
+    await page.evaluate((title) => document.activeElement?.dataset.readingOption === 'app'
+      && document.activeElement.getAttribute('aria-label') === `Read ${title} in the Marvel Comics app`, title));
   await page.keyboard.press('Enter');
   t.check('hero app choice opens the bundled viewer in a fresh window',
     await page.evaluate(() => {
       const call = window.__marvelOpens.at(-1), url = new URL(call[0]);
-      return url.searchParams.get('a') === '18255' && call[1] === '_blank' && call[2] === 'noopener';
+      return url.searchParams.get('a') === '30068' && call[1] === '_blank' && call[2] === 'noopener';
     }));
   await page.keyboard.press('Tab');
-  t.check('hero Tab reaches the named Unlimited choice',
-    await page.evaluate(() => document.activeElement?.dataset.readingOption === 'unlimited'
-      && document.activeElement.getAttribute('aria-label')
-        === 'Read Linked browser fixture in Marvel Unlimited, until December 7, 2026'));
-  await page.keyboard.press('Enter');
-  t.check('hero Unlimited choice bypasses the bundled app destination',
-    await page.evaluate(() => {
-      const url = new URL(window.__marvelOpens.at(-1)[0]);
-      return url.searchParams.get('r') === 'unlimited' && !url.searchParams.has('a')
-        && url.searchParams.get('d') === '700001';
-    }));
+  t.check('hero Tab then reaches the first library book',
+    await page.evaluate(() => document.activeElement?.tagName === 'A'
+      && document.activeElement.closest('#hero-reading-options-list') !== null));
   await page.keyboard.press('Escape');
   t.check('hero Escape closes the list and returns focus to its button',
     await page.evaluate(() => document.querySelector('#hero-reading-options-list').hidden
@@ -364,7 +378,7 @@ async function listReadingOptions(page, t, { listId, sourceIssueId }) {
   for (const width of [1280, 320, 360]) {
     await page.setViewport({ width, height: 900, isMobile: width === 360, hasTouch: width === 360 });
     await route(page, `#/read/${encodeURIComponent(listId)}`, '#view-read:not([hidden])');
-    await page.waitForFunction(() => document.querySelector('#hero-title')?.textContent === 'Linked browser fixture');
+    await page.waitForFunction((title) => document.querySelector('#hero-title')?.textContent === title, {}, title);
     if (await page.$eval(heroList, (node) => node.hidden)) await page.$eval(heroToggle, (node) => node.click());
     const geometry = await page.evaluate(() => {
       const read = document.querySelector('#btn-hero-read').getBoundingClientRect();
@@ -385,7 +399,7 @@ async function listReadingOptions(page, t, { listId, sourceIssueId }) {
       };
     });
     t.check(`hero options fit at ${width}px and follow Read and Done on phones`,
-      geometry.controls.length === 3 && geometry.page <= geometry.viewport
+      geometry.controls.length === 4 && geometry.page <= geometry.viewport
         && (width > 700 ? geometry.besidePair : geometry.followsPair && (width < 360 || geometry.paired))
         && geometry.controls.every((node) => node.height >= geometry.minimum && node.scroll <= node.client),
       JSON.stringify(geometry));
@@ -398,39 +412,40 @@ async function listReadingOptions(page, t, { listId, sourceIssueId }) {
   await page.keyboard.press('Enter');
   await page.waitForSelector(rowToggle, { visible: true });
   t.check('row Reading options belongs to its Open group and starts closed',
-    await page.$eval(rowToggle, (node) => node.closest('[role="group"]')?.getAttribute('aria-label') === 'Open'
-      && node.getAttribute('aria-label') === 'Reading options for Linked browser fixture'
-      && node.getAttribute('aria-controls') === 'row-reading-options-list-12459'
-      && node.getAttribute('aria-expanded') === 'false'));
+    await page.$eval(rowToggle, (node, title) => node.closest('[role="group"]')?.getAttribute('aria-label') === 'Open'
+      && node.getAttribute('aria-label') === `Reading options for ${title}`
+      && node.getAttribute('aria-controls') === 'row-reading-options-list-71308'
+      && node.getAttribute('aria-expanded') === 'false', title));
   t.check('the row button has its comic-specific name in the browser accessibility tree',
-    await accessibleButton(rowToggle, 'Reading options for Linked browser fixture'));
+    await accessibleButton(rowToggle, `Reading options for ${title}`));
   await ax.detach();
   await page.focus(rowToggle);
   await page.keyboard.press('Enter');
   t.check('row Enter reveals the same ordered options',
     await page.$$eval(`${rowList} button`, (nodes) => nodes.map((node) => node.textContent))
-      .then((labels) => JSON.stringify(labels) === JSON.stringify(options)));
+      .then((labels) => JSON.stringify(labels) === JSON.stringify(options))
+      && await page.$$eval(`${rowList} a`, (nodes) => nodes.length === 2));
   await page.keyboard.press('Tab');
   t.check('row Tab reaches the comic-specific app choice',
-    await page.evaluate(() => document.activeElement?.dataset.readingOption === 'app'
-      && document.activeElement.getAttribute('aria-label') === 'Read Linked browser fixture in the Marvel Comics app'));
+    await page.evaluate((title) => document.activeElement?.dataset.readingOption === 'app'
+      && document.activeElement.getAttribute('aria-label') === `Read ${title} in the Marvel Comics app`, title));
   await page.evaluate(() => {
     window.__marvelClock = new Date(2026, 11, 5, 12).getTime();
     dispatchEvent(new Event('focus'));
   });
   t.check('a row rebuild keeps both disclosures open and preserves the focused choice',
     await page.evaluate(() => document.activeElement?.dataset.readingOption === 'app'
-      && document.querySelector('#rows [data-key="12459"][data-act="reading-options"]').getAttribute('aria-expanded') === 'true'
-      && document.querySelector('#rows [data-key="12459"][data-act="more"]').getAttribute('aria-expanded') === 'true'));
+      && document.querySelector('#rows [data-key="71308"][data-act="reading-options"]').getAttribute('aria-expanded') === 'true'
+      && document.querySelector('#rows [data-key="71308"][data-act="more"]').getAttribute('aria-expanded') === 'true'));
   await page.keyboard.press('Escape');
   t.check('the first Escape closes only the nested disclosure and restores its toggle',
-    await page.evaluate(() => document.querySelector('#row-reading-options-list-12459').hidden
+    await page.evaluate(() => document.querySelector('#row-reading-options-list-71308').hidden
       && document.activeElement?.dataset.act === 'reading-options'
-      && document.querySelector('#rows [data-key="12459"][data-act="more"]').getAttribute('aria-expanded') === 'true'));
+      && document.querySelector('#rows [data-key="71308"][data-act="more"]').getAttribute('aria-expanded') === 'true'));
   await page.keyboard.press('Escape');
   t.check('the second Escape closes More actions and restores its button',
     await page.evaluate(() => document.activeElement?.dataset.act === 'more'
-      && document.activeElement?.dataset.key === '12459'
+      && document.activeElement?.dataset.key === '71308'
       && document.activeElement.getAttribute('aria-expanded') === 'false'));
   await page.$eval(rowMore, (node) => node.click());
   await page.focus(rowToggle);
@@ -439,33 +454,15 @@ async function listReadingOptions(page, t, { listId, sourceIssueId }) {
   await page.keyboard.press('Enter');
   t.check('row app choice opens the bundled viewer', await page.evaluate(() => {
     const url = new URL(window.__marvelOpens.at(-1)[0]);
-    return url.searchParams.get('a') === '18255';
+    return url.searchParams.get('a') === '30068' && url.searchParams.get('r') === 'comics';
   }));
-  await page.focus(`${rowList} [data-reading-option="unlimited"]`);
-  await page.keyboard.press('Enter');
-  t.check('row Unlimited choice bypasses the app link', await page.evaluate(() => {
-    const url = new URL(window.__marvelOpens.at(-1)[0]);
-    return url.searchParams.get('r') === 'unlimited' && !url.searchParams.has('a');
-  }));
-  await page.focus('#rows [data-key="12459"][data-act="info"]');
+  await page.focus('#rows [data-key="71308"][data-act="info"]');
   t.check('moving within More actions closes only Reading options', await page.evaluate(() =>
-    document.querySelector('#row-reading-options-list-12459').hidden
-      && document.querySelector('#rows [data-key="12459"][data-act="more"]').getAttribute('aria-expanded') === 'true'));
-  t.check('an unlinked row, shelf tiles and the Continue card add no Reading options',
-    await page.evaluate((sourceId) => !document.querySelector(`#rows [data-key="${sourceId}"][data-act="reading-options"]`)
-      && !document.querySelector('#shelf .reading-options, #home-continue .reading-options'), sourceIssueId));
-
-  await page.$eval(rowToggle, (node) => node.click());
-  await page.focus(`${rowList} [data-reading-option="unlimited"]`);
-  await page.evaluate(() => {
-    window.__marvelClock = new Date(2026, 11, 7).getTime();
-    dispatchEvent(new Event('focus'));
-  });
-  t.check('the cutoff removes single-choice hero and row disclosures without losing row focus',
-    await page.evaluate(() => document.querySelector('#hero-reading-options').hidden
-      && !document.querySelector('#rows [data-key="12459"][data-act="reading-options"]')
-      && document.activeElement?.dataset.key === '12459'
-      && document.activeElement?.dataset.act === 'more'));
+    document.querySelector('#row-reading-options-list-71308').hidden
+      && document.querySelector('#rows [data-key="71308"][data-act="more"]').getAttribute('aria-expanded') === 'true'));
+  t.check('rows without a library book, shelf tiles and the Continue card add no Reading options',
+    await page.evaluate((unlinked) => [12459, unlinked].every((id) => !document.querySelector(`#rows [data-key="${id}"][data-act="reading-options"]`))
+      && !document.querySelector('#shelf .reading-options, #home-continue .reading-options'), unlinkedId));
   t.check('list options and handoffs preserve saved data',
     await page.evaluate((saved) => localStorage.getItem('mrt.state.v2') === saved, before));
   await page.evaluate(() => {
@@ -521,73 +518,22 @@ export async function linkedReadingOptions(page, t, { listId, sourceIssueId }) {
     localStorage.setItem('mrt.state.v2', JSON.stringify(state));
   }, { listId, sourceIssueId, unlinkedId });
   await page.reload({ waitUntil: 'load' });
-  await listReadingOptions(page, t, { listId, sourceIssueId: unlinkedId });
+  await singlePlaceReadingOptions(page, t, { listId, unlinkedId });
   await route(page, '#/issue/12459', '#issue-focus-card:not([hidden])');
   await page.waitForFunction(() => document.querySelector('#issue-focus-h').textContent === 'Linked browser fixture');
   const saved = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
   const toggle = '#btn-issue-reading-options';
   const list = '#issue-reading-options-list';
   const read = '#btn-issue-read';
-  t.check('linked comic offers Reading options with the list initially closed',
-    await page.evaluate(() => {
-      const button = document.querySelector('#btn-issue-reading-options');
-      return !button.parentElement.hidden && button.getAttribute('aria-expanded') === 'false'
-        && button.getAttribute('aria-controls') === 'issue-reading-options-list'
-        && document.querySelector('#issue-reading-options-list').hidden;
-    }));
-  await page.focus(toggle);
-  await page.keyboard.press('Enter');
-  t.check('keyboard opens the app and Unlimited options in the approved order',
-    await page.$$eval(`${list} button`, (buttons) => (
-      JSON.stringify(buttons.map((button) => button.textContent)) === JSON.stringify([
-        'Marvel Comics app', 'Marvel Unlimited, until December 7, 2026',
-      ])
-    )) && await page.$eval(toggle, (node) => node.getAttribute('aria-expanded') === 'true'));
-  await page.keyboard.press('Tab');
-  t.check('Tab reaches the first option with a comic-specific accessible name',
-    await page.evaluate(() => document.activeElement?.dataset.readingOption === 'app'
-      && document.activeElement.getAttribute('aria-label') === 'Read Linked browser fixture in the Marvel Comics app'));
-  await page.keyboard.press('Escape');
-  t.check('Escape closes Reading options and returns focus to its button',
-    await page.evaluate(() => document.querySelector('#issue-reading-options-list').hidden
-      && document.activeElement?.id === 'btn-issue-reading-options'
-      && document.activeElement.getAttribute('aria-expanded') === 'false'));
-  await page.keyboard.press('Enter');
-  await page.$eval(`${list} [data-reading-option="unlimited"]`, (node) => node.click());
-  t.check('choosing Unlimited opens its launcher without the app destination',
-    await page.evaluate(() => {
-      const url = new URL(window.__marvelOpens.at(-1)[0]);
-      return url.searchParams.get('r') === 'unlimited' && !url.searchParams.has('a')
-        && url.searchParams.get('d') === '700001';
-    }));
-  await page.focus(read);
-  t.check('moving focus outside closes the disclosure', await page.$eval(list, (node) => node.hidden));
-  await page.$eval(read, (node) => node.click());
-  t.check('Read opens the linked comic through the synchronous app launcher',
-    await page.evaluate(() => new URL(window.__marvelOpens.at(-1)[0]).searchParams.get('a') === '18255'));
-  for (const width of [320, 360]) {
-    await page.setViewport({ width, height: 800, isMobile: width === 360, hasTouch: width === 360 });
-    await page.$eval(toggle, (node) => node.click());
-    t.check(`Reading options fit at ${width}px with full-size targets`, await page.evaluate(() => {
-      const nodes = [...document.querySelectorAll('#issue-reading-options button')];
-      return document.documentElement.scrollWidth <= innerWidth
-        && nodes.every((node) => node.getBoundingClientRect().height >= 44);
-    }));
-    await page.$eval(toggle, (node) => node.click());
-  }
-  await page.evaluate(() => {
-    window.__marvelClock = new Date(2026, 11, 7).getTime();
-    dispatchEvent(new Event('focus'));
-  });
-  t.check('after the cutoff a single app destination needs no disclosure',
+  t.check('a comic whose only place is its app link needs no disclosure on Comic details',
     await page.$eval('#issue-reading-options', (node) => node.hidden));
   await page.$eval(read, (node) => node.click());
-  t.check('after the cutoff Read still selects the same comic app link',
+  t.check('Read opens the linked comic through the synchronous app launcher',
     await page.evaluate(() => {
       const url = new URL(window.__marvelOpens.at(-1)[0]);
       return url.searchParams.get('a') === '18255' && url.searchParams.get('r') === 'comics';
     }));
-  t.check('Reading options and both handoffs leave saved data unchanged',
+  t.check('single-place Comic details Read leaves saved data unchanged',
     await page.evaluate((before) => localStorage.getItem('mrt.state.v2') === before, saved));
 
   await page.evaluate(({ listId, sourceIssueId }) => {
@@ -602,8 +548,55 @@ export async function linkedReadingOptions(page, t, { listId, sourceIssueId }) {
     localStorage.setItem('mrt.state.v2', JSON.stringify(state));
   }, { listId, sourceIssueId });
   await page.reload({ waitUntil: 'load' });
+  await listReadingOptions(page, t, { listId, unlinkedId });
   await route(page, `#/issue/71308?list=${encodeURIComponent(listId)}`, '#issue-focus-card:not([hidden])');
   await page.waitForFunction(() => document.querySelector('#issue-focus-h').textContent === 'Asgardians fixture');
+  const linkedSaved = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+  t.check('a linked comic with library books offers Reading options with the list initially closed',
+    await page.evaluate(() => {
+      const button = document.querySelector('#btn-issue-reading-options');
+      return !button.parentElement.hidden && button.getAttribute('aria-expanded') === 'false'
+        && button.getAttribute('aria-controls') === 'issue-reading-options-list'
+        && document.querySelector('#issue-reading-options-list').hidden;
+    }));
+  await page.focus(toggle);
+  await page.keyboard.press('Enter');
+  t.check('keyboard opens the app option before the library books',
+    await page.$$eval(`${list} button`, (buttons) => (
+      JSON.stringify(buttons.map((button) => button.textContent)) === JSON.stringify(['Marvel Comics app'])
+    )) && await page.$$eval(`${list} a`, (links) => links.length === 2)
+      && await page.$eval(toggle, (node) => node.getAttribute('aria-expanded') === 'true'));
+  await page.keyboard.press('Tab');
+  t.check('Tab reaches the first option with a comic-specific accessible name',
+    await page.evaluate(() => document.activeElement?.dataset.readingOption === 'app'
+      && document.activeElement.getAttribute('aria-label') === 'Read Asgardians fixture in the Marvel Comics app'));
+  await page.keyboard.press('Escape');
+  t.check('Escape closes Reading options and returns focus to its button',
+    await page.evaluate(() => document.querySelector('#issue-reading-options-list').hidden
+      && document.activeElement?.id === 'btn-issue-reading-options'
+      && document.activeElement.getAttribute('aria-expanded') === 'false'));
+  await page.keyboard.press('Enter');
+  await page.$eval(`${list} [data-reading-option="app"]`, (node) => node.click());
+  t.check('choosing the app option opens the bundled viewer',
+    await page.evaluate(() => {
+      const url = new URL(window.__marvelOpens.at(-1)[0]);
+      return url.searchParams.get('a') === '30068' && url.searchParams.get('r') === 'comics';
+    }));
+  await page.focus(read);
+  t.check('moving focus outside closes the disclosure', await page.$eval(list, (node) => node.hidden));
+  for (const width of [320, 360]) {
+    await page.setViewport({ width, height: 800, isMobile: width === 360, hasTouch: width === 360 });
+    await page.$eval(toggle, (node) => node.click());
+    t.check(`Reading options fit at ${width}px with full-size targets`, await page.evaluate(() => {
+      const nodes = [...document.querySelectorAll('#issue-reading-options button')];
+      return document.documentElement.scrollWidth <= innerWidth
+        && nodes.every((node) => node.getBoundingClientRect().height >= 44);
+    }));
+    await page.$eval(toggle, (node) => node.click());
+  }
+  t.check('Reading options and the app handoff leave saved data unchanged',
+    await page.evaluate((before) => localStorage.getItem('mrt.state.v2') === before, linkedSaved));
+  await page.setViewport({ width: 1280, height: 900 });
   await page.$eval(toggle, (node) => node.click());
   const title = 'Asgardians of the Galaxy Vol. 1: The Infinity Armada';
   t.check('library options visibly name their book and retain their accessible labels',
@@ -707,87 +700,15 @@ export async function linkedReadingOptions(page, t, { listId, sourceIssueId }) {
   });
   await media.send('Emulation.setEmulatedMedia', { features: [] });
   await media.detach();
-  await page.focus('#row-reading-options-list-71308 [data-reading-option="unlimited"]');
   await page.evaluate(() => {
     window.__marvelClock = new Date(2026, 11, 7).getTime();
     dispatchEvent(new Event('focus'));
   });
-  t.check('after the cutoff both list placements retain the app and verified library choices',
+  t.check('a later date keeps both list placements on the app and verified library choices',
     await page.evaluate(() => ['#hero-reading-options-list', '#row-reading-options-list-71308'].every((selector) => {
       const list = document.querySelector(selector);
-      return list && list.querySelector('[data-reading-option="app"]')
-        && !list.querySelector('[data-reading-option="unlimited"]') && list.querySelectorAll('a').length === 2;
+      return list && list.querySelector('[data-reading-option="app"]') && list.querySelectorAll('a').length === 2;
     })));
-  t.check('when Unlimited disappears the row restores focus to its remaining options',
-    await page.evaluate(() => document.activeElement?.dataset.key === '71308'
-      && document.activeElement?.dataset.act === 'reading-options'
-      && document.activeElement.getAttribute('aria-expanded') === 'true'));
-  await muReadingOptions(page, t, { listId, sourceIssueId });
-}
-
-async function muReadingOptions(page, t, { listId, sourceIssueId }) {
-  if (!marvelComicsAppMuIssueIds.length) {
-    console.log("SKIP MU Reading options: awaiting the owner's approved number set");
-    return;
-  }
-  const issueId = marvelComicsAppMuIssueIds.includes(10441) ? 10441 : marvelComicsAppMuIssueIds[0];
-  await page.evaluate(({ listId, sourceIssueId, issueId }) => {
-    const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
-    state.issues[issueId] = {
-      ...state.issues[sourceIssueId], issueId, title: 'MU address fixture',
-      digitalId: 700001, url: `https://www.marvel.com/comics/issue/${issueId}/fixture`,
-    };
-    state.lists[listId].catalogId = null;
-    state.lists[listId].itemIds = [issueId];
-    delete state.read[issueId];
-    localStorage.setItem('mrt.state.v2', JSON.stringify(state));
-    sessionStorage.removeItem('marvel-clock');
-  }, { listId, sourceIssueId, issueId });
-  await page.reload({ waitUntil: 'load' });
-  await route(page, `#/read/${encodeURIComponent(listId)}`, '#view-read:not([hidden])');
-  await page.waitForFunction(() => document.querySelector('#hero-title')?.textContent === 'MU address fixture');
-  const saved = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
-  const chosen = (key) => page.evaluate((id, key) => {
-    const call = window.__marvelOpens.at(-1);
-    if (!call) return false;
-    const query = new URL(call[0]).searchParams;
-    return query.get('i') === String(id) && !query.has('a')
-      && (key === 'app' ? query.get('m') === String(id) : !query.has('m') && query.get('r') === 'unlimited')
-      && call[1] === '_blank' && call[2] === 'noopener';
-  }, issueId, key);
-  await page.$eval('#btn-hero-read', (node) => node.click());
-  t.check('MU-address hero Read opens the same comic synchronously', await chosen('app'));
-  await page.$eval('#full > summary', (node) => { if (!node.parentElement.open) node.click(); });
-  const row = `#rows [data-key="${issueId}"]`;
-  await page.waitForSelector(`${row}[data-act="more"]`);
-  await page.$eval(`${row}[data-act="more"]`, (node) => node.click());
-  for (const [label, toggle, list] of [
-    ['hero', '#btn-hero-reading-options', '#hero-reading-options-list'],
-    ['row', `${row}[data-act="reading-options"]`, `#row-reading-options-list-${issueId}`],
-  ]) {
-    await page.$eval(toggle, (node) => node.click());
-    await page.$eval(`${list} [data-reading-option="app"]`, (node) => node.click());
-    t.check(`MU-address ${label} app choice opens the same comic`, await chosen('app'));
-    await page.$eval(`${list} [data-reading-option="unlimited"]`, (node) => node.click());
-    t.check(`MU-address ${label} Unlimited choice bypasses the app link`, await chosen('unlimited'));
-  }
-  await route(page, `#/issue/${issueId}?list=${encodeURIComponent(listId)}`, '#issue-focus-card:not([hidden])');
-  await page.waitForFunction(() => document.querySelector('#issue-focus-h')?.textContent === 'MU address fixture');
-  await page.$eval('#btn-issue-read', (node) => node.click());
-  t.check('MU-address issue Read opens the same comic', await chosen('app'));
-  await page.$eval('#btn-issue-reading-options', (node) => node.click());
-  await page.$eval('#issue-reading-options-list [data-reading-option="app"]', (node) => node.click());
-  t.check('MU-address issue app choice opens the same comic', await chosen('app'));
-  await page.$eval('#issue-reading-options-list [data-reading-option="unlimited"]', (node) => node.click());
-  t.check('MU-address issue Unlimited choice bypasses the app link', await chosen('unlimited'));
-  await page.evaluate(() => {
-    window.__marvelClock = new Date(2026, 11, 7).getTime();
-    dispatchEvent(new Event('focus'));
-  });
-  await page.$eval('#btn-issue-read', (node) => node.click());
-  t.check('after the cutoff MU-address Read still opens the same comic', await chosen('app'));
-  t.check('MU-address handoffs do not change saved data',
-    await page.evaluate((before) => localStorage.getItem('mrt.state.v2') === before, saved));
 }
 
 export async function retiredReaderHelp(page, t, { seedFixtureState, click, openFullOrder, order, savedStateDifference }) {
@@ -799,41 +720,43 @@ export async function retiredReaderHelp(page, t, { seedFixtureState, click, open
     .every((issue) => !Object.prototype.hasOwnProperty.call(issue, 'description')));
   const first = order.items[0];
   const before = await page.evaluate(() => JSON.parse(localStorage.getItem('mrt.state.v2')));
-  const read = async (selector, mode) => {
+  // #1601: these fixture comics have no Marvel Comics app link, so every placement offers the
+  // website before and after the former December 7, 2026 cutoff alike.
+  const read = async (selector) => {
     const label = await page.$eval(selector, (node) => ({ text: node.textContent, name: node.getAttribute('aria-label') }));
-    t.check(`${selector} has the date-appropriate visible and accessible destination`,
-      mode === 'unlimited' ? label.text === 'Read' && label.name.includes('reading ends December 7, 2026')
-        : label.text === 'Find on Marvel Comics' && label.name.includes('not a single-comic link'), JSON.stringify(label));
+    t.check(`${selector} names the website as its visible and accessible destination`,
+      label.text === 'Find on Marvel Comics' && label.name.includes('not a single-comic link'), JSON.stringify(label));
     await click(page, selector);
     const opened = await page.evaluate(() => window.__marvelOpens.at(-1));
-    t.check(`${selector} selects ${mode} before a fresh noopener window`,
-      new URL(opened[0]).searchParams.get('r') === mode && opened[1] === '_blank' && opened[2] === 'noopener',
+    const query = new URL(opened[0]).searchParams;
+    t.check(`${selector} selects the website before a fresh noopener window`,
+      query.get('r') === 'comics' && !query.has('a') && !query.has('d') && !query.has('i')
+        && opened[1] === '_blank' && opened[2] === 'noopener',
       JSON.stringify(opened));
   };
-  for (const mode of ['unlimited', 'comics']) {
-    if (mode === 'comics') {
+  for (const date of ['before', 'after']) {
+    if (date === 'after') {
       await page.evaluate(() => {
         window.__marvelClock = new Date(2026, 11, 7).getTime();
         dispatchEvent(new Event('focus'));
       });
     }
     await route(page, '#/home', '#view-home:not([hidden])');
-    await read('#btn-chero-read', mode);
-    t.check('Home shows the concise phase-appropriate notice and Marvel FAQ', await page.$eval('#reader-closure-notice',
-      (node, mode) => node.querySelector('#reader-closure-text').textContent === (mode === 'unlimited'
-        ? 'Read now opens comics in the Marvel Comics app when we have a link. Marvel Unlimited ends December 7, 2026. Until then you can still choose it under Reading options.'
-        : 'Marvel Unlimited has ended. Read opens the comic in the Marvel Comics app when we have a link, and the Marvel Comics website otherwise.')
-        && node.querySelector('#reader-closure-faq').href === 'https://help.marvel.com/article/marvel-whats-happening-to-marvel-unlimited', mode));
+    await read('#btn-chero-read');
+    t.check(`Home shows the approved notice without the old FAQ ${date} the former cutoff`, await page.$eval('#reader-closure-notice',
+      (node, text) => node.querySelector('#reader-closure-text').textContent === text
+        && node.querySelector('#reader-closure-dismiss').getAttribute('aria-label') === 'Dismiss reading link notice'
+        && !node.querySelector('#reader-closure-faq'), APPROVED_NOTICE));
     await route(page, '#/read/fixture', '#view-read:not([hidden])');
-    await read('#btn-hero-read', mode);
+    await read('#btn-hero-read');
     await openFullOrder(page);
     const more = `#rows [data-key="${first.issueId}"][data-act="more"]`;
     if (await page.$eval(more, (node) => node.getAttribute('aria-expanded') !== 'true')) await click(page, more);
-    await read(`#rows [data-key="${first.issueId}"][data-act="open"]`, mode);
+    await read(`#rows [data-key="${first.issueId}"][data-act="open"]`);
     const shelf = '#shelf [data-act="open"]';
-    await read(shelf, mode);
+    await read(shelf);
     await route(page, `#/issue/${first.issueId}`, '#issue-focus-card:not([hidden])');
-    await read('#btn-issue-read', mode);
+    await read('#btn-issue-read');
     await click(page, '#reader-link-heading');
     t.check('reader help exposes no retired editor or report action', await page.evaluate(() => (
       !document.querySelector('[id^="reader-link-"] input, #reader-link-form, #reader-link-edit, #reader-link-reportLink')
@@ -845,7 +768,7 @@ export async function retiredReaderHelp(page, t, { seedFixtureState, click, open
   t.check('all handoffs leave saved references, overrides and reading progress unchanged',
     savedFacts(before) === savedFacts(after), JSON.stringify(savedStateDifference(savedFacts(before), savedFacts(after))));
   await page.setViewport({ width: 390, height: 900 });
-  t.check('the post-cutoff action and historical facts stay inside the phone viewport', await page.evaluate(() => {
+  t.check('the website action and historical facts stay inside the phone viewport', await page.evaluate(() => {
     const node = document.querySelector('#btn-issue-read');
     const rect = node.getBoundingClientRect();
     return rect.width > 0 && rect.left >= 0 && rect.right <= innerWidth && document.documentElement.scrollWidth <= innerWidth;

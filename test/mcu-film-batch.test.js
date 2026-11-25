@@ -109,8 +109,10 @@ test('standalone film selections preserve unnumbered titles, exact metadata and 
     assert.equal(item.url, metadata.detailUrl);
     assert.equal(item.digitalId, digitalId);
     const dispatch = new URL(launchUrl(item, 'http://127.0.0.1:8787'));
-    assert.equal(dispatch.searchParams.get('d'), String(digitalId));
-    assert.equal(dispatch.searchParams.get('i'), String(issueId));
+    // #1601: the saved book id stays on the item but no longer reaches the launch, which has no app
+    // link for these films and so sends only the website route and the title.
+    assert.deepEqual([...dispatch.searchParams.keys()], ['r', 't']);
+    assert.equal(dispatch.searchParams.get('r'), 'comics');
     const exported = parseChecklist(serializeReadingOrder({ name: id, items: [item] }));
     assert.deepEqual(exported.entries.map((row) => row.issueId), [issueId]);
     assert.deepEqual(exported.unresolved, []);

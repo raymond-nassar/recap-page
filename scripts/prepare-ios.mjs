@@ -232,12 +232,8 @@ function iosStaticCopy(html, iCloudBackup, oneDrive) {
       'Undo is offered once, until you close and reopen the app; after that, download the saved copy instead.'],
     ['What leaves this machine, request by request', 'What leaves this device, request by request'],
     ['What does leave this machine is the ordinary business', 'What leaves this device is the ordinary business'],
-    ['Otherwise the launch tab asks', 'Otherwise Recap Page asks'],
-    ['opens the web reader if found', 'opens Marvel\'s reader if found'],
   ];
   for (const [source, replacement] of copy) index = replaceIosCopy(index, source, replacement);
-  index = replaceIosPattern(index, /Android uses your installed browser, not the Marvel Unlimited app, on both sides\s+of that date\./g,
-    '', 'iOS static copy changed');
   index = replaceIosPattern(index, /<p id="local-connection-help" class="rail-hint">[\s\S]*?<\/p>/g,
     '<p id="local-connection-help" class="rail-hint">Your saved data is safe. Restart the app and check again.</p>',
     'iOS local connection help changed');

@@ -45,10 +45,12 @@ test('Android About distinguishes automatic requests, explicit export and privat
   assert.match(text, /clearing app data or uninstalling[^.]*removes/i);
   assert.match(text, /keep a backup outside the app/i);
   assert.doesNotMatch(text, /progress and your notes are never sent anywhere/i);
-  assert.ok(text.includes('On Android, for some comics, Read tries to open the Marvel Comics app. If it cannot open an app, Read opens your browser instead. Other comics open in your browser. Before December 7, 2026, Read may look up the Marvel Unlimited link online for a comic without one. From that date it opens the general Marvel Comics website without a lookup. The external service sees the requested address and your network address, not your saved lists, notes or read markers. Open in browser remains available if no browser opens.'));
+  assert.ok(text.includes('Read opens a comic directly in the Marvel Comics app. If there’s no direct link, use Find on Marvel Comics to open the website.'));
+  assert.ok(text.includes('Opening a comic or the website does not send your lists, notes or reading progress to Marvel.'));
   assert.doesNotMatch(text, /no longer contacts Bifrost/);
   assert.doesNotMatch(text, /sends a known digital issue ID to Marvel's Bifrost/);
-  assert.match(text, /Open in browser/);
+  assert.ok(text.includes('Comic links can open in the Marvel Comics app or your browser. Find on Marvel Comics opens the website.'));
+  assert.doesNotMatch(text, /Before December 7, 2026|Marvel Unlimited link online/);
   assert.match(text, /Searching for comics sends what you typed/);
   assert.match(text, /series or creators is answered from files already on this machine/);
   assert.match(text, /only when you press the lookup button/);
@@ -62,17 +64,17 @@ test('Android About distinguishes automatic requests, explicit export and privat
   assert.doesNotMatch(links[0][0], /onclick=|data-view=/);
 });
 
-test('web privacy explains which Read route applies to linked and unlinked comics', () => {
+test('web privacy explains comic destinations and what those links send', () => {
   const text = prose(yourData(desktop));
-  assert.ok(text.includes('When a comic has a Marvel Comics app link, pressing Read opens that link in the Marvel Comics app or in your browser. For a comic without one, before December 7, 2026, pressing Read opens Marvel\'s web reader when its direct reader link is known.'));
-  assert.ok(text.includes('From the start of December 7 on your device\'s local clock, Read opens the general Marvel Comics website for a comic without an app link, with no reader-link lookup.'));
+  assert.ok(text.includes('Read opens a comic directly in the Marvel Comics app. If there’s no direct link, use Find on Marvel Comics to open the website.'));
+  assert.ok(text.includes('Opening a comic or the website does not send your lists, notes or reading progress to Marvel.'));
   assert.doesNotMatch(text, /no longer contacts Bifrost/);
 });
 
 test('About explains app links and the fallback on web and Android', () => {
   for (const html of [desktop, generated]) {
     const text = prose(html);
-    assert.ok(text.includes('When a comic has a Marvel Comics app link, Read opens that link in the Marvel Comics app or in your browser. For other comics, before that date Read uses the web reader when a link is recorded, with your own subscription. From that date, Read opens the general Marvel Comics website for those comics, not a single-comic link.'));
+    assert.ok(text.includes('Read opens a comic directly in the Marvel Comics app. If there’s no direct link, use Find on Marvel Comics to open the website.'));
   }
 });
 
@@ -130,10 +132,9 @@ test('public privacy policy names the Android, cloud, request and deletion bound
   assert.match(text, /settings remain, and so do any copies kept after a failed read/i);
   assert.match(text, /neither removes exported files/i);
   const plain = text.replace(/\*\*/g, '');
-  for (const device of ['On Android', 'On iPhone and iPad']) {
-    assert.ok(plain.includes(`${device}, for some comics, Read tries to open the Marvel Comics app. If it cannot open an app, Read opens your browser instead. Other comics open in your browser.`), device);
-  }
-  assert.doesNotMatch(text, /A comic with a Marvel Comics app link opens there/);
+  assert.ok(plain.includes('Read opens a comic directly in the Marvel Comics app. If there’s no direct link, use Find on Marvel Comics to open the website.'));
+  assert.ok(plain.includes('Opening a comic or the website does not send your lists, notes or reading progress to Marvel.'));
+  assert.doesNotMatch(text, /December 7, 2026|Marvel's web reader|reader link/);
   const android = prose(await readFile(new URL('../docs/ANDROID.md', import.meta.url), 'utf8'));
   assert.match(android, /no Node server, listening port or remote app host/i);
   assert.match(android, /the same address does not mean shared progress/i);

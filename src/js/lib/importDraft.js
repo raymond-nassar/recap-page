@@ -1,5 +1,6 @@
 import { parseChecklist, readerIssueId, sourceDisplayTitle } from './markdown.js';
 import { MAX_BACKUP_BYTES, MAX_ISSUES, MAX_NAME, normalizeIssue } from './model.js';
+import { taggedViewer } from './marvelComicsAppUrl.js';
 
 export const DRAFT_FORMAT = 'recap-import-draft';
 export const DRAFT_VERSION = 1;
@@ -40,9 +41,11 @@ export function occurrenceIssue(entry) {
   if (entry.choice) return { ...entry.choice, collectedIn: entry.section ?? null };
   if (entry.issueId == null) return null;
   const readerOnly = readerIssueId(entry.digitalId) === entry.issueId;
+  const appViewer = taggedViewer(entry);
   return {
     issueId: entry.issueId, title: sourceDisplayTitle(entry.title), url: readerOnly ? null : entry.url,
     digitalId: entry.digitalId ?? null, source: readerOnly ? 'manual' : 'import',
+    ...(appViewer ? { appViewer } : {}),
     hydrated: readerOnly, collectedIn: entry.section ?? null,
   };
 }

@@ -348,15 +348,11 @@ export function catalogGapLabels(list) {
   const out = [];
   if (list?.placeholderCount > 0) {
     const count = list.placeholderCount;
-    out.push(
-      `${count} ${count === 1 ? 'comic has no Marvel Unlimited link' : 'comics have no Marvel Unlimited links'} yet and cannot be opened`,
-    );
+    out.push(`${count} ${count === 1 ? 'comic is' : 'comics are'} listed by title only`);
   }
   if (list?.emptyRecordCount > 0) {
     const count = list.emptyRecordCount;
-    out.push(
-      `${count} ${count === 1 ? 'comic has no details, cover, or Unlimited link' : 'comics have no details, covers, or Unlimited links'}`,
-    );
+    out.push(`${count} ${count === 1 ? 'comic has' : 'comics have'} limited details`);
   }
   // Plain wording approved by the owner on 2026-11-16, recorded on #1427. Each label counts the
   // hand-checked comics whose details came from one place, so the three always add up to the

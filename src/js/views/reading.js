@@ -166,7 +166,7 @@ export function createReadingView({
   preservingFocus,
   rateIssue = () => false,
   recordDirectProgressSave,
-  readerPresentation = (issue) => ({ launchable: !!issuePresentation(issue)?.launchable, temporary: false }),
+  readerPresentation = (issue) => ({ launchable: !!issuePresentation(issue)?.launchable }),
   renderSaveEducation,
   renderBulkRead = () => {},
   retireReaderHelp,
@@ -369,7 +369,7 @@ export function createReadingView({
     } else {
       $('#view-read > .head > .head-left').append(sub, visit, $('#reading-order'), description);
       $('#view-read > .head > .headright').append(ring);
-      $('#hero-reader-temporary').after(progress);
+      $('#hero-primary-actions').after(progress);
       $('#reading-body > .list-work').after(note);
       note.after(similarHint);
     }
@@ -802,18 +802,15 @@ export function createReadingView({
   }
 
   function refreshHeroReader(issue = upNext(getState(), activeListId())) {
-    const reader = issue ? readerPresentation(issue, 'saved') : { launchable: false, temporary: false };
+    const reader = issue ? readerPresentation(issue, 'saved') : { launchable: false };
     const button = $('#btn-hero-read');
     button.hidden = !issue || isCompleted(getState(), activeListId()) || !reader.launchable;
-    const app = Boolean(issue && appLinkFor(issue.issueId));
+    const app = Boolean(issue && appLinkFor(issue));
     button.textContent = readerAction(new Date(), { app });
     button.setAttribute('aria-label', issue ? readerName(issue.title, new Date(), { app })
       : labelledName(readerAction(), ''));
     const catalogId = ownList(activeListId())?.catalogId ?? null;
     getHeroOptions().paint(issue, readingChoices(issue, catalogId, { launchable: !button.hidden, app }));
-    const temporary = $('#hero-reader-temporary');
-    temporary.hidden = button.hidden || !reader.temporary;
-    temporary.textContent = temporary.hidden ? '' : 'Using a temporary reader link.';
   }
 
   function refreshReader() {
@@ -846,7 +843,7 @@ export function createReadingView({
         const year = ymd(item.onSale).slice(0, 4);
         const label = [short, year].filter(Boolean).join(' ');
         const reader = readerPresentation(item, 'saved');
-        const app = Boolean(appLinkFor(item.issueId));
+        const app = Boolean(appLinkFor(item));
         const readName = readerName(label, new Date(), { app });
         const context = { kind: 'list', id };
 
@@ -863,9 +860,6 @@ export function createReadingView({
               ]),
             ],
           }),
-          ...(reader.temporary ? [el('span', {
-            class: 'lab', dataset: { readerTemporary: 'true' }, text: 'Temporary reader link',
-          })] : []),
           el('button', {
             type: 'button',
             class: 'tile-read',
@@ -1176,7 +1170,7 @@ export function createReadingView({
       text: 'More actions', dataset: { key: item.issueId, act: 'more' },
     });
     const reader = readerPresentation(item, 'saved');
-    const app = Boolean(appLinkFor(item.issueId));
+    const app = Boolean(appLinkFor(item));
     const choices = readingChoices(item, ownList(listId)?.catalogId ?? null, { launchable: reader.launchable, app });
     let options = null;
     let optionsRoot = null;
@@ -1222,9 +1216,6 @@ export function createReadingView({
           onclick: (e) => launch(item, e),
         }, readerAction(new Date(), { app })),
         optionsRoot,
-        ...(reader.temporary ? [el('span', {
-          class: 'rail-hint', dataset: { readerTemporary: 'true' }, text: 'Temporary reader link',
-        })] : []),
         detailUrl(item)
           ? el('a', {
             class: 'mini has-tooltip',

@@ -42,7 +42,8 @@ public final class NavigationPolicyTest {
         check(!policy.isPopupAsset("index.html"), "No popup main app");
         check((origin + "/").equals(policy.restoredRoute("https://evil.example/#settings")), "Untrusted restore");
         check((origin + "/#data").equals(policy.restoredRoute(origin + "/index.html#data")), "Restore hash only");
-        check(policy.isOfficialReader("https://read.marvel.com/#/book/1"), "Reader handoff");
+        check(!policy.isOfficialReader("https://read.marvel.com/#/book/1"), "#1601: no Marvel Unlimited reader handoff");
+        check(policy.isOfficialReader("https://www.marvel.com/comics/issue/6482"), "Info page handoff kept");
         check(!policy.isOfficialReader("https://read.marvel.com.evil/#/book/1"), "Reader lookalike");
         check(!policy.isOfficialReader("https://user@read.marvel.com/"), "Reader credentials");
         check(!policy.isOfficialReader("http://read.marvel.com/"), "No plain HTTP handoff");
@@ -51,7 +52,7 @@ public final class NavigationPolicyTest {
         check(!policy.isOfficialReader(marvelIssue), "Marvel Unlimited app links are retired");
         check(policy.isOfficialReader("https://marvel.webtoon.com/"), "Exact general Marvel Comics website");
         check(policy.isOfficialReader("https://www.marvelcomicsapp.com/viewer/4879"), "Marvel Comics app comic");
-        check(policy.isOfficialReader("https://www.marvelcomicsapp.com/mu/issues/10441"), "Marvel Unlimited issue in new app");
+        check(!policy.isOfficialReader("https://www.marvelcomicsapp.com/mu/issues/10441"), "#1601: no Marvel Unlimited issue route");
         check("marvelcomicsapp://viewer?issueId=4879".equals(
                 policy.appReaderAddress("https://www.marvelcomicsapp.com/viewer/4879")), "Viewer link maps to the app's reader");
         check("marvelcomicsapp://viewer?issueId=123456789".equals(

@@ -31,7 +31,8 @@ import { RateLimiter } from './lib/limiter.js';
 import { Hydrator } from './hydrate.js';
 import { NO_SYNOPSIS, SessionSynopsis, SynopsisRunner } from './synopsis.js';
 import { openIssue as openIssueTab, detailUrl, isLaunchable } from './reader.js';
-import { readerClosureNotice } from './lib/readerDestination.js';
+import { readerAction, readerClosureNotice } from './lib/readerDestination.js';
+import { guardIdentityImport } from './lib/identityReconcile.js';
 import { createTemporaryReaderLinks } from './lib/temporaryReaderLink.js';
 import { createReaderLinkView } from './views/reader-link.js';
 import { APP_VERSION } from './lib/version.js';
@@ -2239,7 +2240,8 @@ export function hydrationAnnouncement(status) {
 
 function readerPresentation(issue, source) {
   const resolved = temporaryReaderLinks.resolve(store.state, issue, { source });
-  return { launchable: resolved.ok && isLaunchable(resolved.issue), temporary: resolved.ok && resolved.temporary };
+  // #1601: Read no longer opens Marvel Unlimited, so a saved temporary link is kept but never used.
+  return { launchable: resolved.ok && isLaunchable(resolved.issue) };
 }
 
 // The hint was one paragraph above every view that the first Read revealed and nothing hid again, so
@@ -2251,17 +2253,13 @@ function retireReaderHelp() {
   document.getElementById('reader-handoff-help')?.remove();
 }
 
-// After the control's own button group, so nothing above the control moves. A row's Read sits in a
-// panel of other commands, so the hint follows Read itself and any temporary-link note it carries.
-// A Coming up tile is too narrow to hold a sentence, so its hint goes under the shelf.
+// After the control's own button group, so nothing above the control moves. A Coming up tile is
+// too narrow to hold a sentence, so the hint goes under the shelf.
 function readerHelpAnchor(control) {
   if (typeof control?.closest !== 'function') return null;
   const shelf = control.closest('.shelf');
   if (shelf) return shelf;
-  if (control.closest('.ract')) {
-    const note = control.nextElementSibling;
-    return note?.dataset?.readerTemporary ? note : control;
-  }
+  if (control.closest('.ract')) return control;
   return control.closest('.cta') ?? control;
 }
 
@@ -2284,23 +2282,11 @@ function openInReader(issue, event, source, control = event?.currentTarget, { ap
     return;
   }
   if (res.target === 'app') announce('Taking you to this comic in the Marvel Comics app.');
-  else announce(res.target === 'comics'
-    ? `Opening the Marvel Comics website to find ${issue.title}. This is not a single-comic link.`
-    : iosApp
-      ? res.target === 'reader'
-        ? `Opening ${issue.title} in Marvel Unlimited. Reading ends December 7, 2026.`
-        : res.target === 'page'
-          ? `Opening the Marvel comic page for ${issue.title}.`
-          : `Opening ${issue.title} and looking up its Unlimited link.`
-      : res.target === 'reader'
-        ? `Opening ${issue.title} in Marvel Unlimited in a new tab. Reading ends December 7, 2026.`
-        : res.target === 'page'
-          ? `Opening the Marvel comic page for ${issue.title} in a new tab.`
-          : `Opening ${issue.title} in a new tab and looking up its Unlimited link.`);
+  else announce(`Opening the Marvel Comics website to find ${issue.title}. This is not a single-comic link.`);
+  const action = readerAction(new Date(), { app: res.target === 'app' });
   showHelp(iosApp
-    ? 'If the comic does not open, choose Read again. Opening a comic does not mark it read.'
-    : "If no new tab appears, check your browser's popup controls for this site, "
-      + 'then choose Read again. Opening a comic does not mark it read.');
+    ? `If nothing opens, choose ${action} again.`
+    : `If nothing opens, allow pop-ups for this site and choose ${action} again.`);
 }
 
 // ------------------------------------------------------------------ synopsis fetching
@@ -2453,6 +2439,16 @@ async function importCurated(list, btn, {
     const order = await res.json();
 
     let added = 0;
+    // #1601: an order is added already moved to this release's identities, so a fresh copy and a
+    // library saved before the update hold one checkmark for one comic. A change that would leave
+    // two usable checkmarks for the same comic is refused whole, and nothing is written.
+    let conflict = false;
+    const settle = (before, after) => {
+      if (conflict) return before;
+      const guarded = guardIdentityImport(before, after);
+      if (guarded.conflict) conflict = true;
+      return guarded.state;
+    };
     const addCuratedIssues = (s, id) => {
       // No `hydrated: true` here. It was asserted over the whole file, which is right for the 688
       // items that carry metadata and a false statement about the 63 that carry none. normalizeIssue
@@ -2463,22 +2459,35 @@ async function importCurated(list, btn, {
       const r = addIssuesToList(s, id, order.items.map((i) => ({ ...i, source: 'curated' })), {
         preserveExisting: asCopy,
       });
+      if (r.collisions?.length) conflict = true;
       added = r.added;
       return r.state;
     };
-    const created = store.update((s) => {
-      const next = createList(s, {
-        name: asCopy ? copyName(s, order.name) : order.name, description: order.description, catalogId,
-      });
-      return asCopy ? addCuratedIssues(next, next.listOrder[next.listOrder.length - 1]) : next;
+    const shell = (s) => createList(s, {
+      name: asCopy ? copyName(s, order.name) : order.name, description: order.description, catalogId,
     });
+    const whole = (s) => {
+      const next = shell(s);
+      return addCuratedIssues(next, next.listOrder[next.listOrder.length - 1]);
+    };
+    const refuseConflict = () => {
+      notify(report, `${order.name} could not be saved, so nothing was imported.`, 'error', importKey);
+      return null;
+    };
+    // Checked on the whole order before the list record is written, because the two writes below
+    // would otherwise leave a list shell behind a refusal of its comics.
+    settle(store.state, whole(store.state));
+    if (conflict) return refuseConflict();
+    const created = store.update((s) => (asCopy ? settle(s, whole(s)) : shell(s)));
+    if (conflict) return refuseConflict();
     if (!store.lastUpdateOk) {
       notify(report, `${order.name} could not be saved, so nothing was imported.`, 'error', importKey);
       return null;
     }
     const listId = created.listOrder[created.listOrder.length - 1];
-    if (!asCopy) store.update((s) => addCuratedIssues(s, listId));
-    if (!asCopy && !store.lastUpdateOk) {
+    if (!asCopy) store.update((s) => settle(s, addCuratedIssues(s, listId)));
+    // A collision found only now still leaves the shell, which the cleanup below removes.
+    if (!asCopy && (conflict || !store.lastUpdateOk)) {
       // The list record is written before its issues, so a failure here leaves a shell claiming
       // the catalog entry with nothing in it. That is not merely untidy: it blocks the undo offer
       // for a deleted copy of the same order, and `undoDelete` would then discard the reader's
@@ -3671,6 +3680,12 @@ export function boot() {
     // A page that has to reload because another tab changed saved data writes nothing first.
     void completeRestore.settled.then(() => { if (!completeRestore.state.reloading) startRoute(); });
   } else startRoute();
+  // #1601: saved comics move to this release's identities once saving is open, before cloud backup
+  // compares anything. A restore that is about to reload the page writes nothing first.
+  void completeRestore.settled.then(() => {
+    const { phase, reloading } = completeRestore.state;
+    if ((phase === 'open' || phase === 'unavailable') && !reloading) store.reconcileIdentities();
+  });
   // The deferred journal read, after the first render, so a start with nothing pending never waits.
   void completeRestore.settled.then(() => completeRestore.inspect());
   // Cloud backup goes on only where this browser already agreed, once saving is open and the page is
@@ -3740,7 +3755,7 @@ export function boot() {
   if (settings.rejectedApiBase) {
     notify(
       '#app-report',
-      `The saved API URL ${settings.rejectedApiBase} is not usable. The tracker is using ${DEFAULT_BASE} for this session, and any issue without a stored Marvel Unlimited link will open on marvel.com rather than in the reader. Set a usable URL under Backup & settings: use https, or http against localhost.`,
+      'Recap Page is using the default address for comic details. You can change it in Backup & settings.',
       'warn',
       API_BASE_REJECTED,
     );

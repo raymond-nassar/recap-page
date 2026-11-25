@@ -210,7 +210,6 @@ export const decorativeGeneratedText = {
     const notice = '#reader-closure-notice';
     const original = await page.$eval(notice, (element) => ({
       className: element.className, words: element.querySelector('#reader-closure-text').textContent,
-      faq: element.querySelector('#reader-closure-faq').textContent,
     }));
     const variants = [
       ['notice notice-warn', '.notice-warn::before', '\u25b2'],
@@ -243,7 +242,7 @@ export const decorativeGeneratedText = {
         const words = className === 'pill-held' ? PILL_WORDS : original.words;
         await page.$eval('#reader-closure-text', (element, value) => { element.textContent = value; }, words);
         const label = `${mode.name} ${rule}`;
-        await checkText(page, t, notice, `${words} ${original.faq}`, glyph, label);
+        await checkText(page, t, notice, words, glyph, label);
         if (rule === '.notice-warn::before') {
           const { nodes } = await client.send('Accessibility.getFullAXTree');
           t.check(`${mode.name}: Home exposes no triangle node`,

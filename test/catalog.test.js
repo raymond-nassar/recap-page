@@ -144,16 +144,16 @@ test('gap counts are required nonnegative integers', () => {
 test('catalog gap labels omit zero and preserve singular and plural meanings', () => {
   assert.deepEqual(catalogGapLabels({ placeholderCount: 0, emptyRecordCount: 0 }), []);
   assert.deepEqual(catalogGapLabels({ placeholderCount: 1, emptyRecordCount: 0 }), [
-    '1 comic has no Marvel Unlimited link yet and cannot be opened',
+    '1 comic is listed by title only',
   ]);
   assert.deepEqual(catalogGapLabels({ placeholderCount: 2, emptyRecordCount: 0 }), [
-    '2 comics have no Marvel Unlimited links yet and cannot be opened',
+    '2 comics are listed by title only',
   ]);
   assert.deepEqual(catalogGapLabels({ placeholderCount: 0, emptyRecordCount: 1 }), [
-    '1 comic has no details, cover, or Unlimited link',
+    '1 comic has limited details',
   ]);
   assert.deepEqual(catalogGapLabels({ placeholderCount: 0, emptyRecordCount: 2 }), [
-    '2 comics have no details, covers, or Unlimited links',
+    '2 comics have limited details',
   ]);
   assert.deepEqual(catalogGapLabels({ ownerConfirmedIdentityCount: 1 }), [
     '1 comic checked by hand, with no cover or details yet',
@@ -188,8 +188,8 @@ test('catalog gap labels omit zero and preserve singular and plural meanings', (
   assert.equal(readGcd({ ownerSupplementedCount: 1, ownerGcdSupplementedCount: 2 }), 1,
     'never more Grand Comics Database comics than supplemented ones');
   assert.deepEqual(catalogGapLabels({ placeholderCount: 1, emptyRecordCount: 2 }), [
-    '1 comic has no Marvel Unlimited link yet and cannot be opened',
-    '2 comics have no details, covers, or Unlimited links',
+    '1 comic is listed by title only',
+    '2 comics have limited details',
   ]);
 });
 

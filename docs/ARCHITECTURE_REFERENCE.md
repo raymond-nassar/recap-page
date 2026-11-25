@@ -214,14 +214,17 @@ sends normalized factual metadata through the same Store boundary as a reader ed
 instead end in the tab-memory map and disappear when the tab closes.
 
 A Read press opens the same-origin launch page synchronously so popup permission is not lost,
-at `src/js/reader.js:91-115`. The synchronous device-local date choice is carried into that tab.
+at `src/js/reader.js:102-126`. The synchronous device-local date choice is carried into that tab.
 A comic with a bundled Marvel Comics app link opens that link on both sides of the date, with no
 lookup, as described in the data provenance record.
+A comic known only by its app viewer number is stored under a reserved negative key, so it can
+never share a checkmark with the unrelated comic whose old catalog number happens to be equal, and
+its launch carries the viewer number alone.
 Before December 7, 2026, a known digital ID redirects straight to the Marvel Unlimited web reader.
 Without one, a pinned exact issue page and an already refused metadata lookup open that page
 directly; the same strict HTTPS same-issue validator runs before and after opening the tab.
 Other unknown references retain the configured metadata lookup and use the pinned issue page
-when the lookup cannot resolve a reader ID, at `src/open.js:139-183`. The launch page never
+when the lookup cannot resolve a reader ID, at `src/open.js:139-185`. The launch page never
 reads or writes reading progress. From local December 7, it opens the general Marvel Comics website
 without a reader-link lookup. Android uses the same choice and validation in its generated launcher,
 then asks an installed browser to open the destination, except that a `/viewer/` app link first

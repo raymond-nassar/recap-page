@@ -468,9 +468,10 @@ test('453 Home refresh uses effective launchability and saved provenance without
   h.view.refreshReader();
   assert.equal(h.nodes.continueRead.hidden, false);
   assert.equal(h.nodes.continueRead.disabled, false);
-  assert.equal(h.nodes.continueRead.textContent, 'Read');
-  assert.equal(h.nodes.continueRead.attributes['aria-label'], 'Read: Manual comic in Marvel Unlimited (reading ends December 7, 2026)');
-  assert.equal(h.nodes.continueNext.textContent, 'Next: Manual comic (temporary reader link)');
+  assert.equal(h.nodes.continueRead.textContent, 'Find on Marvel Comics');
+  assert.equal(h.nodes.continueRead.attributes['aria-label'], 'Find on Marvel Comics: Marvel Comics website to find Manual comic (not a single-comic link)');
+  assert.doesNotMatch(h.nodes.continueRead.attributes['aria-label'], /Unlimited|December/);
+  assert.equal(h.nodes.continueNext.textContent, 'Next: Manual comic');
   h.nodes.continueRead.listeners.click({});
   assert.equal(h.calls.read.at(-1)[2], 'saved');
   assert.equal(h.calls.read.at(-1)[0].digitalId, undefined);
@@ -499,10 +500,25 @@ test('Home view paints populated Continue details and accessible actions', () =>
   assert.equal(h.nodes.continueNext.textContent, 'Next: Next issue');
   assert.equal(h.nodes.continueSeries.textContent, 'Series');
   assert.equal(h.nodes.continueNumber.textContent, '#3');
-  assert.equal(h.nodes.continueRead.textContent, 'Read');
-  assert.equal(h.nodes.continueRead.attributes['aria-label'], 'Read: Next issue in Marvel Unlimited (reading ends December 7, 2026)');
+  assert.equal(h.nodes.continueRead.textContent, 'Find on Marvel Comics');
+  assert.equal(h.nodes.continueRead.attributes['aria-label'], 'Find on Marvel Comics: Marvel Comics website to find Next issue (not a single-comic link)');
   assert.equal(h.nodes.continueOpen.attributes['aria-label'], 'Open Reading List: Alpha order');
   assert.equal(h.calls.covers.length, 1);
+
+  // #1601: a comic the bundled table links, or a viewer-tagged comic, keeps the plain Read label.
+  for (const nextIssue of [
+    { issueId: 52447, title: 'Linked issue', seriesName: 'Series', number: '1' },
+    { issueId: -(8e15 + 4879), appViewer: 4879, title: 'Viewer issue', seriesName: 'Series', number: '1' },
+  ]) {
+    const linked = harness({ populated: true, nextIssue });
+    linked.view.render();
+    assert.equal(linked.nodes.continueRead.textContent, 'Read', nextIssue.title);
+    assert.equal(linked.nodes.continueRead.attributes['aria-label'], `Read ${nextIssue.title} in the Marvel Comics app`);
+  }
+  // An untagged key in the viewer range is not decoded into a viewer.
+  const untagged = harness({ populated: true, nextIssue: { issueId: -8000000000012618, title: 'Old comic', seriesName: '' } });
+  untagged.view.render();
+  assert.equal(untagged.nodes.continueRead.textContent, 'Find on Marvel Comics');
 });
 
 test('446 Setup stays on contextual browse pages without gating direct entry from Home', async () => {
