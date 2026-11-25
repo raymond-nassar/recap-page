@@ -114,8 +114,10 @@ test('Phase Three corrections preserve source identities, approved copy and stan
   assert.equal(thor.number, null);
   assert.doesNotMatch(thor.title, /#\d/);
   const dispatch = new URL(launchUrl(thor, 'http://127.0.0.1:8787'));
-  assert.equal(dispatch.searchParams.get('i'), '46516');
-  assert.equal(dispatch.searchParams.get('d'), String(thor.digitalId));
+  // #1601: the saved book id stays on the item but is not sent; with no app link the launch is the website.
+  assert.ok(Number.isSafeInteger(thor.digitalId) && thor.digitalId > 0);
+  assert.deepEqual([...dispatch.searchParams.keys()], ['r', 't']);
+  assert.equal(dispatch.searchParams.get('r'), 'comics');
   const exported = parseChecklist(serializeReadingOrder({ name: ids[1], items: [thor] }));
   assert.deepEqual(exported.entries.map((row) => row.issueId), [46516]);
   const report = json(`scripts/data/owner-overlaps/${ids[1]}.json`);

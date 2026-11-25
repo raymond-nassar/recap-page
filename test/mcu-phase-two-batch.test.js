@@ -105,8 +105,10 @@ test('Rage of Ultron remains one unnumbered whole work with exact reader and exp
   assert.equal(row.metadataIssueNumber, '0');
   assert.match(source(ids[2]).rows[13].suppliedReference, /#1$/);
   const url = new URL(launchUrl(item, 'http://127.0.0.1:8787'));
-  assert.equal(url.searchParams.get('i'), '50076');
-  assert.equal(url.searchParams.get('d'), String(item.digitalId));
+  // #1601: the saved book id stays on the item but is not sent; with no app link the launch is the website.
+  assert.ok(Number.isSafeInteger(item.digitalId) && item.digitalId > 0);
+  assert.deepEqual([...url.searchParams.keys()], ['r', 't']);
+  assert.equal(url.searchParams.get('r'), 'comics');
   const exported = parseChecklist(serializeReadingOrder({ name: ids[2], items: [item] }));
   assert.deepEqual(exported.entries.map((entry) => entry.issueId), [50076]);
   assert.deepEqual(exported.unresolved, []);

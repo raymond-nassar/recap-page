@@ -1071,7 +1071,7 @@ test('the counts come from the items, not from the order payload that claims the
   assert.deepEqual(countOrderGaps(noItems), { placeholders: 0, empty: 0, ownerConfirmed: 0 });
 });
 
-test('both gaps are disclosed, and the second sentence does not repeat what the first one promises', () => {
+test('title-only and limited-detail gaps use the approved singular wording', () => {
   const order = {
     items: [
       { issueId: 1, seriesId: 10, digitalId: 100 },
@@ -1081,12 +1081,8 @@ test('both gaps are disclosed, and the second sentence does not repeat what the 
   };
   const said = orderGapSentences(order);
   assert.equal(said.length, 2);
-  assert.match(said[0], /^1 of them has no Marvel Unlimited link yet and cannot be opened\.$/);
-  assert.match(said[1], /^1 of them came with no details at all, so it shows no cover and has no Unlimited link\.$/);
-  // An item that came back empty carries a real, positive issue id, so the app does open a tab
-  // for it and the lookup fails there. Claiming it cannot be opened would be false in the
-  // opposite direction from the silence this replaces.
-  assert.ok(!said[1].includes('cannot be opened'));
+  assert.equal(said[0], '1 comic is listed by title only.');
+  assert.equal(said[1], '1 comic has limited details.');
 });
 
 test('owner-confirmed identity is distinct from missing metadata and makes no availability claim', () => {
@@ -1193,11 +1189,11 @@ test('the external supplement marker survives only as the closed value beside an
 test('a gap of one is not described in the plural', () => {
   const one = orderGapSentences({ items: [{ issueId: 1, seriesId: null, digitalId: null }] });
   assert.equal(one.length, 1);
-  assert.ok(one[0].startsWith('1 of them came with no details at all, so it shows'));
+  assert.equal(one[0], '1 comic has limited details.');
   const two = orderGapSentences({
     items: [{ issueId: 1, seriesId: null, digitalId: null }, { issueId: 2, seriesId: null, digitalId: null }],
   });
-  assert.ok(two[0].startsWith('2 of them came with no details at all, so they show'));
+  assert.equal(two[0], '2 comics have limited details.');
 });
 
 test('nebula keeps the 2014 guardians original at source position 39', () => {

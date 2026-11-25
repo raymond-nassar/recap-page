@@ -99,13 +99,15 @@ final class NavigationPolicy {
         if (host.equals("marvel.webtoon.com")) {
             return "/".equals(uri.getRawPath()) && uri.getRawQuery() == null && uri.getRawFragment() == null;
         }
-        // Only the two approved single-comic routes, never a general redirect.
+        // Only the approved single-comic viewer route, never a general redirect. #1601 retired the
+        // Marvel Unlimited routes: /mu/issues/ and read.marvel.com are no longer handed off.
         if (host.equals("www.marvelcomicsapp.com")) {
             String path = uri.getRawPath();
-            return path != null && path.matches("/(?:viewer|mu/issues)/[1-9][0-9]{0,8}")
+            return path != null && path.matches("/viewer/[1-9][0-9]{0,8}")
                     && uri.getRawQuery() == null && uri.getRawFragment() == null;
         }
-        return host.equals("read.marvel.com") || host.equals("www.marvel.com") || host.equals("marvel.com");
+        // The Info link opens the comic's marvel.com page, which is not a reader.
+        return host.equals("www.marvel.com") || host.equals("marvel.com");
     }
 
     // The Marvel Comics app claims none of its https addresses on Android, so a viewer link always

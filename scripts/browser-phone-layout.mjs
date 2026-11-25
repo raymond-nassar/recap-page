@@ -394,7 +394,7 @@ export const phoneContinue = {
       });
       console.log(`PHONE-HOME-BAND ${JSON.stringify({ ...profile, theme, ...homeBand })}`);
       checked(t, `${label}: Home notices and Continue have token spacing`, homeBand.headGap >= 7 && homeBand.noticeGap >= 7, homeBand);
-      if (profile.platform !== 'desktop') checked(t, `${label}: Read clears the bar with the Marvel Unlimited notice shown`,
+      if (profile.platform !== 'desktop') checked(t, `${label}: Read clears the bar with the reading-link notice shown`,
         homeBand.noticeVisible && homeBand.readBottom <= homeBand.fold, homeBand);
       await page.$eval('#home-continue', (node) => node.scrollIntoView({ block: 'center' }));
       const card = await page.evaluate((target) => {

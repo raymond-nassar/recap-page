@@ -9,7 +9,7 @@ import {
 } from '../scripts/marvel-comics-app-links.mjs';
 import { matchExportCsv, parseExportCsv } from '../scripts/lib/marvel-comics-app-export.mjs';
 import { appLinkFor, appViewerFor } from '../src/js/lib/marvelComicsApp.js';
-import { appLaunchUrl, appMuIssuesUrl, appViewerUrl, viewerNumber } from '../src/js/lib/marvelComicsAppUrl.js';
+import { appLaunchUrl, appViewerUrl, viewerNumber } from '../src/js/lib/marvelComicsAppUrl.js';
 import { marvelComicsAppMuIssueIds } from '../src/data/marvelComicsAppMuIssues.js';
 
 // Rows written for this project in the shape of the offline match file; no site markup is used.
@@ -242,19 +242,16 @@ test('950 viewer numbers only ever rebuild the published link shape', () => {
   }
 });
 
-test('950 MU addresses use only a checked issue number and cannot change the comic in the launch query', () => {
-  const expected = 'https://www.marvelcomicsapp.com/mu/issues/10441';
-  assert.equal(appMuIssuesUrl(10441), expected);
-  assert.equal(appMuIssuesUrl('10441'), expected);
-  for (const value of [0, -5, '012', '1234567890', '12a', '', null, undefined, {}, '12/', '%31']) {
-    assert.equal(appMuIssuesUrl(value), null, String(value));
-  }
-  assert.equal(appLaunchUrl(new URLSearchParams('m=10441&i=10441')), expected);
-  assert.equal(appLaunchUrl(new URLSearchParams('a=18255&m=10441&i=10441')), viewer(18255));
-  for (const query of ['m=10441', 'm=10441&i=42', 'm=10441&m=10441&i=10441',
+test('1601 the launch builds no Marvel Unlimited address, whatever the query carries', () => {
+  // #950 used to turn a checked m number into a marvelcomicsapp.com/mu/issues address. That route is
+  // retired, so an m-only query launches nothing in the app and only a single a still opens a viewer.
+  for (const query of ['m=10441&i=10441', 'm=10441', 'm=10441&i=42', 'm=10441&m=10441&i=10441',
     'm=10441&i=10441&i=42', 'm=012&i=012', 'm=0&i=0']) {
     assert.equal(appLaunchUrl(new URLSearchParams(query)), null, query);
   }
+  assert.equal(appLaunchUrl(new URLSearchParams('a=18255&m=10441&i=10441')), viewer(18255));
+  assert.equal(appLaunchUrl(new URLSearchParams('a=18255&a=18255')), null, 'a repeated viewer is refused');
+  assert.equal(appLaunchUrl(new URLSearchParams('a=012')), null);
 });
 
 test('950 MU selection freezes only approved positive unlinked comics and refuses other inputs', () => {
@@ -285,7 +282,7 @@ test('950 MU selection freezes only approved positive unlinked comics and refuse
   assert.throws(() => buildMuModule({ ...approved, approvedGroups: ['unreviewed'] }, items, links), /group/);
 });
 
-test('950 the bundled MU set is current, frozen to its approval record and never replaces viewer links', () => {
+test('950 the bundled MU set is current and frozen to its approval record, but gives no comic a link', () => {
   const approval = JSON.parse(readFileSync(MU_INPUT_PATH, 'utf8'));
   const input = JSON.parse(readFileSync(INPUT_PATH, 'utf8'));
   assert.equal(readFileSync(MU_MODULE_PATH, 'utf8').replace(/\r\n/g, '\n'),
@@ -294,9 +291,11 @@ test('950 the bundled MU set is current, frozen to its approval record and never
   assert.equal(approval.issueIds.length, 1781);
   assert.deepEqual(approval.excludedIssueIds, [11185]);
   assert.equal(appLinkFor(11185), null);
+  // #1601: an MU-only comic is not a direct link any more, so it shows Find on Marvel Comics.
   for (const id of approval.issueIds) {
     assert.equal(appViewerFor(id), null);
-    assert.equal(appLinkFor(String(id)), appMuIssuesUrl(id));
+    assert.equal(appLinkFor(id), null);
+    assert.equal(appLinkFor(String(id)), null);
   }
   for (const link of input.links) assert.equal(appLinkFor(link.issueId), viewer(link.viewer));
   for (const id of [-1001, 999999999, '010441', undefined, {}]) assert.equal(appLinkFor(id), null);

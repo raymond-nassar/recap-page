@@ -4776,7 +4776,7 @@ const SCENARIOS = [
       t.check('the Hope card exposes the exact count, gap disclosure, source, and add action',
         card.title === 'Hope Summers'
         && card.text.includes('261 comics')
-        && card.text.includes('6 comics have no Marvel Unlimited links yet and cannot be opened')
+        && card.text.includes('6 comics are listed by title only')
         && card.addName === 'Add to library: Hope Summers'
         && card.sourceName === 'Source of Hope Summers: Comic Book Herald'
         && card.sourceHref === 'https://www.comicbookherald.com/hope-summers-reading-order/',
@@ -4939,7 +4939,7 @@ const SCENARIOS = [
       t.check('both Hawkeyes are discoverable with a 663-issue source credit and one visible gap',
         card.name === 'Hawkeye (Clint Barton and Kate Bishop)'
         && card.text.includes('663 comics')
-        && card.text.includes('1 comic has no Marvel Unlimited link yet and cannot be opened')
+        && card.text.includes('1 comic is listed by title only')
         && card.sourceHref === 'https://www.comicbookherald.com/hawkeye-reading-order/'
         && card.addName === 'Add to library: Hawkeye (Clint Barton and Kate Bishop)',
         JSON.stringify(card));
@@ -5093,7 +5093,7 @@ const SCENARIOS = [
       }));
       t.check('Kamala is discoverable with the exact count, five-gap disclosure and source credit',
         card.name === 'Ms. Marvel (Kamala Khan)' && card.text.includes('192 comics')
-        && card.text.includes('5 comics have no Marvel Unlimited links yet and cannot be opened')
+        && card.text.includes('5 comics are listed by title only')
         && card.sourceName === 'Source of Ms. Marvel (Kamala Khan): Comic Book Herald'
         && card.sourceHref === 'https://www.comicbookherald.com/ms-marvel-kamala-khan-reading-order/'
         && card.addName === 'Add to library: Ms. Marvel (Kamala Khan)', JSON.stringify(card));
@@ -5221,7 +5221,7 @@ const SCENARIOS = [
       }));
       t.check('Laura Kinney discovers the credited 291-issue X-23 guide without gap disclosure',
         card.name === 'X-23 (Laura Kinney)' && card.text.includes('291 comics')
-        && !card.text.includes('comics have no Marvel Unlimited links yet')
+        && !card.text.includes('comics are listed by title only')
         && card.sourceName === 'Source of X-23 (Laura Kinney): Comic Book Herald'
         && card.sourceHref === 'https://www.comicbookherald.com/x-23-reading-order/'
         && card.addName === 'Add to library: X-23 (Laura Kinney)', JSON.stringify(card));
@@ -5370,7 +5370,7 @@ const SCENARIOS = [
       }));
       t.check('Nova card credits the exact source, 371 issues and two visible metadata gaps',
         card.name === 'Nova' && card.text.includes('371 comics')
-        && card.text.includes('2 comics have no Marvel Unlimited links yet and cannot be opened')
+        && card.text.includes('2 comics are listed by title only')
         && card.source === 'https://www.comicbookherald.com/nova-reading-order/',
         JSON.stringify(card));
       await click(page, `${cardSelector} [data-act="preview"]`);
@@ -5510,7 +5510,7 @@ const SCENARIOS = [
       }));
       t.check('the Horror genre discovers one credited partial guide with three disclosed gaps',
         card.name === 'Marvel Zombies' && card.genre === 'Horror'
-        && card.meta === '94 comics · 3 comics have no Marvel Unlimited links yet and cannot be opened'
+        && card.meta === '94 comics · 3 comics are listed by title only'
         && card.addName === 'Add to library: Marvel Zombies'
         && card.sourceName === 'Source of Marvel Zombies: Comic Book Herald'
         && card.sourceHref === 'https://www.comicbookherald.com/marvel-zombies-reading-order/',
@@ -5534,7 +5534,7 @@ const SCENARIOS = [
       t.check('Preview keeps five visible universe labels and the source and gap disclosure',
         sections.every((section) => preview.headings.some((heading) => heading.startsWith(section)))
         && preview.source.includes('Comic Book Herald')
-        && preview.meta.includes('3 comics have no Marvel Unlimited links yet'),
+        && preview.meta.includes('3 comics are listed by title only'),
         JSON.stringify({ headings: preview.headings, source: preview.source, meta: preview.meta }));
 
       await click(page, '#preview-add [data-act="main"]');
@@ -5667,7 +5667,7 @@ const SCENARIOS = [
       }));
       t.check('Silk is discoverable with 74 positions, seven gaps and Comic Book Herald credit',
         card.name === 'Silk / Cindy Moon' && card.text.includes('74 comics')
-        && card.text.includes('7 comics have no Marvel Unlimited links yet and cannot be opened')
+        && card.text.includes('7 comics are listed by title only')
         && card.sourceName === 'Source of Silk / Cindy Moon: Comic Book Herald'
         && card.sourceHref === 'https://www.comicbookherald.com/silk-cindy-moon-reading-order/'
         && card.addName === 'Add to library: Silk / Cindy Moon', JSON.stringify(card));
@@ -8714,14 +8714,14 @@ const SCENARIOS = [
       t.check(
         'cards omit zero and use truthful singular and plural gap labels',
         zero === '3 comics'
-          && one === '3 comics · 1 comic has no Marvel Unlimited link yet and cannot be opened'
-          && many === '3 comics · 2 comics have no details, covers, or Unlimited links',
+          && one === '3 comics · 1 comic is listed by title only'
+          && many === '3 comics · 2 comics have limited details',
         JSON.stringify({ zero, one, many }),
       );
       t.check(
         'each guide card shows its own essential or complete gap disclosure',
-        shortBefore === '3 comics · 1 comic has no Marvel Unlimited link yet and cannot be opened'
-          && longBefore === '3 comics · 2 comics have no details, covers, or Unlimited links',
+        shortBefore === '3 comics · 1 comic is listed by title only'
+          && longBefore === '3 comics · 2 comics have limited details',
         JSON.stringify({ shortBefore, longBefore }),
       );
 
@@ -8733,14 +8733,14 @@ const SCENARIOS = [
       await click(page, '#catalog-results [data-story="list:browser-check-three-main"] [data-act="preview"]');
       await page.waitForFunction(() => (
         document.querySelector('#preview')?.open && document.querySelector('#preview-meta')?.textContent
-          .includes('2 comics have no details, covers, or Unlimited links')
+          .includes('2 comics have limited details')
       ));
       const previewAfter = await page.$eval('#preview-meta', (node) => node.textContent.trim());
       t.check(
         'each explicitly opened Preview shows its own singular or plural disclosure',
-        previewBefore.includes('1 comic has no Marvel Unlimited link yet and cannot be opened')
+        previewBefore.includes('1 comic is listed by title only')
           && !previewBefore.includes('no details')
-          && previewAfter.includes('2 comics have no details, covers, or Unlimited links')
+          && previewAfter.includes('2 comics have limited details')
           && !previewAfter.includes('cannot be opened'),
         JSON.stringify({ previewBefore, previewAfter }),
       );
@@ -8774,7 +8774,7 @@ const SCENARIOS = [
       });
       t.check(
         'plural disclosure stays inside its card without horizontal overflow at narrow width',
-        narrow.text.includes('2 comics have no details, covers, or Unlimited links')
+        narrow.text.includes('2 comics have limited details')
           && narrow.inside && narrow.overflow <= 1,
         JSON.stringify(narrow),
       );
@@ -8937,7 +8937,7 @@ const SCENARIOS = [
         JSON.stringify(rows.filter((r) => r.disclosures || r.otherLinks)));
       t.check('the first stop credits its source website by name alone',
         first?.source === 'Source: example.com', JSON.stringify(first?.source));
-      t.check('the compact card keeps the issue count and gap disclosure', first?.meta === '3 comics · 1 comic has no Marvel Unlimited link yet and cannot be opened', JSON.stringify(first?.meta));
+      t.check('the compact card keeps the issue count and gap disclosure', first?.meta === '3 comics · 1 comic is listed by title only', JSON.stringify(first?.meta));
       t.check('a dated order carries its year as the Timeline destination', first?.year === '2004', JSON.stringify(first?.year));
 
       const offer = await page.evaluate(() => ({
@@ -10373,28 +10373,31 @@ const SCENARIOS = [
         raw: localStorage.getItem('mrt.state.v2'),
       }));
       page.__ux11Step = 'after-known-dispatch';
-      const helpCopy = "If no new tab appears, check your browser's popup controls for this site, then choose Read again. Opening a comic does not mark it read.";
+      const helpCopy = 'If nothing opens, allow pop-ups for this site and choose Find on Marvel Comics again.';
       ux11Receipt(page, t, 'H03/H05/H06:conditional-help', { text: helpCopy, visible: true,
         focused: '900001', raw: beforeHandoff.raw }, feedback,
       { exactCopy: feedback.text === helpCopy, rendered: feedback.visible,
         focusRetained: feedback.focused === '900001', rawUnchanged: feedback.raw === beforeHandoff.raw });
       const native = opened.length === 1 ? new URL(opened[0].url, page.__origin) : null;
+      // #1601: a comic with no verified Marvel Comics app viewer opens the website, so the launch carries
+      // its destination and title and no Marvel Unlimited book or issue number, even when one is recorded.
+      const websiteOnly = (u) => u !== null && u.searchParams.get('r') === 'comics'
+        && ['d', 'i', 'a', 'u', 'p', 'm'].every((key) => !u.searchParams.has(key));
       ux11Receipt(page, t, 'H01:exact-native-intent', { origin: page.__origin, path: '/open.html',
-        d: '700001', i: '900001', target: '_blank', features: 'noopener' }, opened,
+        r: 'comics', t: 'Browser Check (2026) #1', target: '_blank', features: 'noopener' }, opened,
       { count: opened.length === 1, duringGesture: opened[0]?.dispatching === true,
         origin: native?.origin === page.__origin, path: native?.pathname === '/open.html',
-        digitalId: native?.searchParams.get('d') === '700001', issueId: native?.searchParams.get('i') === '900001',
+        websiteOnly: websiteOnly(native), title: native?.searchParams.get('t') === 'Browser Check (2026) #1',
         target: opened[0]?.target === '_blank', features: opened[0]?.features === 'noopener' });
       t.check('clicking Read opens exactly one tab', opened.length === 1, `${opened.length} call(s)`);
       t.check('and it opens during the click itself, with no await in between', opened[0]?.dispatching === true);
 
       const url = opened[0]?.url ?? '';
       t.check('the tab goes to our own launcher, not straight to Marvel', url.includes('/open.html?'), url);
-      t.check('carrying the reference we already hold', url.includes('d=700001'), url);
+      t.check('carrying the website destination rather than the recorded Unlimited book', websiteOnly(native), url);
       t.check('and opened without handing over a window reference', (opened[0]?.features ?? '').includes('noopener'), opened[0]?.features);
 
-      // The second issue has no digitalId, so the launcher has to resolve one. It must still open
-      // synchronously: waiting for the lookup is what loses the user activation.
+      // The second issue has no digitalId. It must still open synchronously, the same way.
       await page.evaluate(() => {
         window.__opened = [];
         const btn = document.querySelector('button.mini[data-act="open"][data-key="900002"]');
@@ -10404,17 +10407,15 @@ const SCENARIOS = [
       });
       const second = await page.evaluate(() => window.__opened);
       const secondUrl = second.length === 1 ? new URL(second[0].url, page.__origin) : null;
-      ux11Receipt(page, t, 'H02:lookup-native-intent', { i: '900002', d: null, target: '_blank', features: 'noopener' },
+      ux11Receipt(page, t, 'H02:website-native-intent', { r: 'comics', d: null, i: null, target: '_blank', features: 'noopener' },
         second, { count: second.length === 1, synchronous: second[0]?.dispatching === true,
-          issueId: secondUrl?.searchParams.get('i') === '900002', noBook: secondUrl !== null && !secondUrl.searchParams.has('d'),
+          websiteOnly: websiteOnly(secondUrl),
           target: second[0]?.target === '_blank', features: second[0]?.features === 'noopener' });
       t.check('an issue with no reference still opens a tab at once', second.length === 1 && second[0].dispatching === true, JSON.stringify(second));
       // Require the record before reading it. A bare negated substring reports this as satisfied
       // when nothing was opened at all, which is the one case it is meant to catch, and it reads
       // the parameter rather than the string so a title containing "d=" cannot decide it.
-      const asks = second.length === 1
-        && !new URL(second[0].url, page.__origin).searchParams.has('d');
-      t.check('and asks the launcher to resolve it', asks, JSON.stringify(second.map((o) => o.url)));
+      t.check('and asks the launcher for the website, not a lookup', websiteOnly(secondUrl), JSON.stringify(second.map((o) => o.url)));
 
       // #825: the hint used to be one paragraph above every view, so after one Read it stayed on
       // every screen until reload and pushed the page down as it appeared. It now goes after the
@@ -10460,11 +10461,11 @@ const SCENARIOS = [
       // Announcements raised within one 30ms tick are joined, and the two row Reads above are, so
       // theirs has to land before the hero's can be compared on its own.
       await page.waitForFunction(() => document.querySelector('#announcer')?.textContent
-        .endsWith('Opening Browser Check (2026) #2 in a new tab and looking up its Unlimited link.'), { timeout: 5000 });
+        .endsWith('Opening the Marvel Comics website to find Browser Check (2026) #2. This is not a single-comic link.'), { timeout: 5000 });
       placed('hero Read', await press('#btn-hero-read', '#hero-primary-actions'));
       await page.waitForFunction(() => document.querySelector('#announcer')?.textContent
-        === 'Opening Browser Check (2026) #1 in Marvel Unlimited in a new tab. Reading ends December 7, 2026.', { timeout: 5000 });
-      t.check('the spoken announcement includes the approved reading deadline', true);
+        === 'Opening the Marvel Comics website to find Browser Check (2026) #1. This is not a single-comic link.', { timeout: 5000 });
+      t.check('the spoken announcement says the website is not a single-comic link', true);
       await page.evaluate(() => document.querySelector('#btn-hero-done').click());
       await page.waitForFunction(() => document.querySelector('#hero-title')?.textContent === 'Browser Check (2026) #2');
       t.check('Done retires the hint', await hintCount() === 0);
@@ -14102,7 +14103,7 @@ const SCENARIOS = [
       }));
       t.check('an unowned single stop opens preview with its source and missing-link disclosure',
         single.title === 'Browser Check Order' && single.choices === 0
-        && single.meta.includes('1 comic has no Marvel Unlimited link')
+        && single.meta.includes('1 comic is listed by title only')
         && single.source.includes('Fixture section')
         && single.href === 'https://example.com/shared-page', JSON.stringify(single));
       await page.keyboard.press('Escape');
@@ -14121,7 +14122,7 @@ const SCENARIOS = [
       }));
       t.check('an unowned grouped stop directly previews its authored short guide and exact metadata',
         short.title === 'Third Stop: The Short Way'
-        && short.meta.includes('1 comic has no Marvel Unlimited link')
+        && short.meta.includes('1 comic is listed by title only')
         && short.source.includes('Essential fixture source')
         && short.choices === 0 && short.add === 'browser-check-three-short',
         JSON.stringify(short));
@@ -14143,7 +14144,7 @@ const SCENARIOS = [
       t.check('Back from preview comic details restores the followed path and exact authored guide without a chooser',
         returned.path === 'bc-path' && returned.choices === 0
         && returned.title === 'Third Stop: The Short Way' && returned.add === 'browser-check-three-short'
-        && returned.meta.includes('1 comic has no Marvel Unlimited link'), JSON.stringify(returned));
+        && returned.meta.includes('1 comic is listed by title only'), JSON.stringify(returned));
       await page.keyboard.press('Escape');
       await page.waitForFunction((selector) => !document.querySelector('#preview').open
         && document.activeElement === document.querySelector(selector), {}, last);
@@ -14596,7 +14597,7 @@ const SCENARIOS = [
       }));
       t.check('choosing the whole timeline restores its start sentence, issue counts and gap disclosure',
         shelf.sentence === 'Start The Fixture Path with Browser Check Order.' && shelf.stops === 0
-        && shelf.meta === '3 comics · 1 comic has no Marvel Unlimited link yet and cannot be opened · Saved copy: 1 comic',
+        && shelf.meta === '3 comics · 1 comic is listed by title only · Saved copy: 1 comic',
         JSON.stringify(shelf));
     },
   },
@@ -26250,50 +26251,23 @@ async function ux11Preload(page, fixture) {
       const record = { delay, at: now(), fired: null, cleared: false };
       const id = realTimeout(() => { record.fired = now(); fn(...args); }, delay);
       clock.set(id, record);
-      if ([8000, 1400].includes(delay)) state.timers.push(record);
+      // #1601: the launcher holds no lookup deadline or fallback delay any more, so any timer it
+      // starts is recorded and the rows expect none.
+      state.timers.push(record);
       return id;
     };
     window.clearTimeout = (id) => {
       if (clock.has(id)) clock.get(id).cleared = true;
       realClear(id);
     };
-    // #854: settled-clock compared the time Node saw the fallback request with this page's clock, and
-    // those are two clocks. In the full run that failed L12 and L13, Node's clock put four of the five
-    // fallback requests before this page's own record of the timer firing that sent them. One clock is
-    // not exact either: it is clamped to 100 microseconds, and measured in Edge 155, 22 of 3,000 timers
-    // appeared to fire 0.1 ms before their delay. So the not-early bounds ask the page which came first.
-    // A timer never runs before its delay, so a navigation or abort that begins once its timer has fired
-    // is not early at any resolution, and every early one begins before it. That is stricter than timing:
-    // a navigation another timer started after the delay would fail too, and the launcher has no such path.
-    const timerFired = (delay) => state.timers.some((timer) => timer.delay === delay && timer.fired !== null);
     window.navigation?.addEventListener('navigate', (event) => {
-      state.navigations.push({ url: event.destination.url, at: now(), afterFallback: timerFired(1400) });
+      state.navigations.push({ url: event.destination.url, at: now() });
     });
     window.fetch = (input, init) => {
       const url = new URL(typeof input === 'string' ? input : input.url, location.href);
       if (url.origin === location.origin) return originalFetch(input, init);
-      if (url.href !== (f.expectedLookup ?? 'https://marvel.emreparker.com/v1/issues/900002')) {
-        throw new Error(`Unexpected synthetic metadata request ${url.href}`);
-      }
-      state.calls.push({ url: url.href, cache: init?.cache, accept: init?.headers?.accept,
-        signal: init?.signal instanceof AbortSignal, at: now() });
-      return new Promise((resolve, reject) => {
-        const finish = () => {
-          state.settled = now();
-          if (f.mode === 'network') reject(new TypeError('Synthetic offline'));
-          else if (f.mode === 'json') resolve({ ok: true, json: async () => { throw new SyntaxError('Synthetic JSON'); } });
-          else resolve(new Response(JSON.stringify({ digitalId: f.mode === 'missing' ? null : 700002 }),
-            { status: f.mode === 'http' ? 503 : 200, headers: { 'content-type': 'application/json' } }));
-        };
-        state.release = finish;
-        init.signal.addEventListener('abort', () => {
-          state.aborted = now();
-          state.abortedAfterDeadline = timerFired(8000);
-          state.settled = state.aborted;
-          reject(new DOMException('Synthetic deadline', 'AbortError'));
-        }, { once: true });
-        if (!['hold', 'timeout'].includes(f.mode)) finish();
-      });
+      state.calls.push({ url: url.href, cache: init?.cache, accept: init?.headers?.accept, at: now() });
+      return Promise.reject(new TypeError('Synthetic: the launcher makes no metadata request'));
     };
     window.__ux11Tap = (url) => {
       const node = (id) => document.getElementById(id);
@@ -26312,49 +26286,41 @@ async function ux11Preload(page, fixture) {
 }
 
 const UX11_TITLES = {
-  pending: 'Looking up reader link', resolved: 'Opening Marvel Unlimited web reader',
-  comics: 'Opening Marvel Comics website',
-  page: 'Opening Marvel comic page', 'no-reader-link': 'No direct reader link',
-  'lookup-error': 'Reader lookup failed', timeout: 'Reader lookup timed out',
-  'lookup-unavailable': 'Reader lookup unavailable', 'missing-reference': 'Nothing to open',
+  app: 'Opening the Marvel Comics app', comics: 'Opening Marvel Comics website',
+  'missing-reference': 'Nothing to open',
 };
 const UX11_CAPTIONS = {
-  pending: 'Looking up the Marvel Unlimited link for this comic. Reading ends December 7, 2026.',
-  resolved: 'Opening the recorded reader link. Reading ends December 7, 2026. Reading progress has not changed.',
+  app: 'Taking you to this comic in the Marvel Comics app.',
   comics: 'Find this comic on the Marvel Comics website. This is not a single-comic link. Reading progress has not changed.',
-  page: 'Opening the Marvel comic page. Reading progress has not changed.',
-  'no-reader-link': 'No direct reader link is recorded. Opening the Marvel comic page instead.',
-  'lookup-error': 'The metadata lookup failed. Opening the Marvel comic page instead.',
-  timeout: 'The metadata lookup timed out. Opening the Marvel comic page instead.',
-  'lookup-unavailable': 'Saved lookup settings could not be used. Opening the Marvel comic page instead.',
   'missing-reference': 'This link was missing an issue reference.',
 };
 
 async function runReaderLauncherFeedback(page, t) {
   page.__ux11Owner = 'reader-launcher-feedback';
   const slug = 'https://www.marvel.com/comics/issue/900002/browser_check_2';
-  const canonical = 'https://www.marvel.com/comics/issue/900002/';
-  const book = 'https://read.marvel.com/#/book/700002';
+  const viewer = 'https://www.marvelcomicsapp.com/viewer/18255';
+  const website = 'https://marvel.webtoon.com/';
+  // #1601: the launcher opens the Marvel Comics app for a viewer link and the website otherwise, with
+  // no lookup. Older bookmarks still carry a book, an issue, a page or an Unlimited destination, and
+  // each of those now lands on the website rather than on anything Marvel Unlimited served.
   const fixtures = [
-    { id: 'L06', query: 'd=700001&i=900001&t=Browser%20Check%20%282026%29%20%232', state: 'resolved',
-      intended: 'https://read.marvel.com/#/book/700001' },
+    { id: 'L06', query: 'a=18255&r=comics&t=Browser%20Check%20%282026%29%20%232', state: 'app',
+      heading: 'Opening Browser Check (2026) #2...', intended: viewer },
     { id: 'L01', theme: 'light', system: 'dark' }, { id: 'L02', theme: 'dark' },
     { id: 'L03', theme: 'system' }, { id: 'L04', theme: 'system', system: 'dark' },
     { id: 'L05', theme: 'unexpected' },
-    { id: 'L07', query: `i=900002&u=${encodeURIComponent(slug)}&p=1`, state: 'page', intended: slug },
-    { id: 'L08', mode: 'hold', state: 'resolved', intended: book },
-    { id: 'L09', mode: 'missing', state: 'no-reader-link', intended: slug },
-    { id: 'L10', mode: 'http', state: 'lookup-error', intended: slug },
-    { id: 'L11', mode: 'network', query: 'i=900002', state: 'lookup-error', intended: canonical },
-    { id: 'L12', mode: 'json', state: 'lookup-error', intended: slug },
-    { id: 'L13', mode: 'timeout', query: 'i=900002', state: 'timeout', intended: canonical },
-    { id: 'L14', state: 'lookup-unavailable', intended: slug, apiBase: 'ftp://127.0.0.1/v1' },
-    { id: 'L15', mode: 'hold', state: 'resolved', intended: book, reduce: true },
-    { id: 'L16', readDenied: true, theme: 'system', state: 'lookup-unavailable', intended: slug },
-    { id: 'L17', theme: 'unexpected', mode: 'hold', state: 'resolved', intended: book,
-      apiBase: 'https://ux11-api.invalid/v1', expectedLookup: 'https://ux11-api.invalid/v1/issues/900002' },
-    { id: 'L18', query: 'd=700001&r=comics', state: 'comics', intended: 'https://marvel.webtoon.com/' },
-    { id: 'L19', query: 'i=900002&r=comics', state: 'comics', intended: 'https://marvel.webtoon.com/' },
+    { id: 'L07', query: `i=900002&u=${encodeURIComponent(slug)}&p=1&r=unlimited`, state: 'comics', intended: website },
+    { id: 'L08', query: 'd=700002&i=900002&r=unlimited', state: 'comics', intended: website },
+    { id: 'L09', query: 'i=900002', state: 'comics', intended: website },
+    { id: 'L10', query: 'a=018255&r=comics', state: 'comics', intended: website },
+    { id: 'L11', query: 'a=18255&a=18256&r=comics', state: 'comics', intended: website },
+    { id: 'L14', query: 'i=900002&r=comics', state: 'comics', intended: website, apiBase: 'ftp://127.0.0.1/v1' },
+    { id: 'L15', query: 'a=18255&r=comics', state: 'app', intended: viewer, reduce: true },
+    { id: 'L16', query: 'a=18255&r=comics', readDenied: true, theme: 'system', state: 'app', intended: viewer },
+    { id: 'L17', query: 'i=900002&r=comics', theme: 'unexpected', state: 'comics', intended: website,
+      apiBase: 'https://ux11-api.invalid/v1' },
+    { id: 'L18', query: 'd=700001&r=comics', state: 'comics', intended: website },
+    { id: 'L19', query: 'i=900002&r=comics', state: 'comics', intended: website },
   ];
   const rawState = {};
   let useTap = false;
@@ -26380,8 +26346,7 @@ async function runReaderLauncherFeedback(page, t) {
     Object.assign(rawState, await page.evaluate(() => ({ raw: localStorage.getItem('mrt.state.v2'),
       selected: localStorage.getItem('mrt.selectedList') })));
     for (const f of fixtures) {
-      const baseQuery = f.query ?? (f.intended ? `i=900002&u=${encodeURIComponent(slug)}` : '');
-      const query = baseQuery.includes('r=comics') ? baseQuery : `${baseQuery}&r=unlimited`;
+      const query = f.query ?? '';
       const nonce = `${f.id}-${Date.now()}`;
       const expectedUrl = `${page.__origin}/open.html?${query}`;
       page.__ux11Visit = { ...f, nonce, network: f.intended ? f.intended.split('#')[0] : null,
@@ -26400,8 +26365,8 @@ async function runReaderLauncherFeedback(page, t) {
       let snapshot = await loadVisit();
       if (!snapshot.oldNodes || snapshot.nonce !== nonce) throw new Error(`${f.id}: original launcher fixture failed`);
       if (f.id === 'L06') {
-        await page.waitForFunction(() => document.getElementById('fallback')?.href === 'https://read.marvel.com/#/book/700001',
-          { timeout: 2000 });
+        await page.waitForFunction((href) => document.getElementById('fallback')?.href === href,
+          { timeout: 2000 }, f.intended);
         snapshot = await ux11Snapshot(page);
         if (snapshot.url !== expectedUrl || !snapshot.oldNodes) {
           console.error(`UX11-RETENTION-FAIL ${JSON.stringify({ expectedUrl, snapshot, requests: page.__ux11Visit.requests })}`);
@@ -26422,40 +26387,17 @@ async function runReaderLauncherFeedback(page, t) {
       }
       page.__ux11Step = `${f.id}:post-setup`;
       const measurePresentation = (actual, state) => ux11Receipt(page, t, `${f.id}:presentation`,
-        { state, title: `${UX11_TITLES[state]} - Recap Page`, caption: UX11_CAPTIONS[state],
-          animation: state === 'pending' && !f.reduce ? 'pulse' : 'none',
+        { state, title: `${UX11_TITLES[state]} - Recap Page`, heading: f.heading ?? UX11_TITLES[state],
+          caption: UX11_CAPTIONS[state], animation: 'none',
           main: { count: 1, label: 'h', contains: true }, status: ['status', 'polite', 'true'] }, actual,
         { state: actual.state === state, title: actual.title === `${UX11_TITLES[state]} - Recap Page`,
-          caption: actual.caption === UX11_CAPTIONS[state],
-          animation: state === 'pending' && !f.reduce ? actual.animation !== 'none' : actual.animation === 'none',
+          heading: actual.heading === (f.heading ?? UX11_TITLES[state]),
+          caption: actual.caption === UX11_CAPTIONS[state], animation: actual.animation === 'none',
           mainCount: actual.main.count === 1, mainName: actual.main.label === 'h', mainContains: actual.main.contains,
           statusRole: actual.status[0] === 'status', live: actual.status[1] === 'polite', atomic: actual.status[2] === 'true' });
-      if (['hold', 'timeout'].includes(f.mode)) {
-        await page.waitForFunction(() => window.__ux11.calls.length === 1, { timeout: 2000 });
-        snapshot = await ux11Snapshot(page);
-        measurePresentation(snapshot, 'pending');
-        const expectedLookup = f.expectedLookup ?? 'https://marvel.emreparker.com/v1/issues/900002';
-        ux11Receipt(page, t, `${f.id}:pending-request`, { url: expectedLookup,
-          accept: 'application/json', cache: 'no-store', delay: 8000, fallback: f.query === 'i=900002' ? canonical : slug },
-        snapshot, { count: snapshot.fixture.calls.length === 1,
-          exactUrl: snapshot.fixture.calls[0].url === expectedLookup,
-          accept: snapshot.fixture.calls[0].accept === 'application/json', cache: snapshot.fixture.calls[0].cache === 'no-store',
-          signal: snapshot.fixture.calls[0].signal, abortDelay: snapshot.fixture.timers[0]?.delay === 8000,
-          fallback: snapshot.fallback.href === (f.query === 'i=900002' ? canonical : slug),
-          noEarlyNativeIntent: page.__ux11Visit.requests.length === 0 });
-        if (f.mode === 'hold') {
-          if (f.id === 'L15') {
-            await page.focus('#fallback');
-            await page.keyboard.press('Tab');
-            await page.keyboard.down('Shift');
-            try { await page.keyboard.press('Tab'); } finally { await page.keyboard.up('Shift'); }
-          }
-          await page.evaluate(() => window.__ux11.release());
-        }
-      }
       if (f.intended) {
         page.__ux11Step = `${f.id}:native-settlement`;
-        const deadline = f.mode === 'timeout' ? 12000 : 2500;
+        const deadline = 2500;
         const start = Date.now();
         while (!page.__ux11Visit.requests.length && Date.now() - start < deadline) {
           await new Promise((resolve) => setTimeout(resolve, 20));
@@ -26488,28 +26430,9 @@ async function runReaderLauncherFeedback(page, t) {
           navigation: requests[0]?.navigation === true, nonce: requests[0]?.nonce === nonce,
           count: requests.length === 1, accepted: requests.every((r) => r.accepted),
           opener: snapshot.openerNull, rawBytes: snapshot.raw === rawState.raw });
-        if (f.mode) {
-          const timers = snapshot.fixture.timers;
-          const fallbackTimer = timers.find((timer) => timer.delay === 1400);
-          const abort = timers.find((timer) => timer.delay === 8000);
-          // Every bound reads the page's own records, and the two not-early ones its order rather than
-          // its clock (#854, see ux11Preload). The first navigation is the one timed, so an early one
-          // cannot hide behind a later correct one.
-          const navigation = snapshot.fixture.navigations[0];
-          ux11Receipt(page, t, `${f.id}:settled-clock`, { abort: 8000, fallback: ['hold'].includes(f.mode) ? null : 1400 },
-            { timers, fixture: snapshot.fixture, requests }, {
-              clearedAbort: abort?.cleared === true,
-              fallbackPolicy: f.mode === 'hold' ? !fallbackTimer : fallbackTimer?.delay === 1400,
-              notEarly: !fallbackTimer || navigation?.afterFallback === true,
-              boundedDelay: !fallbackTimer || (navigation !== undefined && navigation.at <= fallbackTimer.at + 2000),
-              realAbort: f.mode !== 'timeout' || snapshot.fixture.abortedAfterDeadline === true,
-              boundedAbort: f.mode !== 'timeout' || snapshot.fixture.aborted <= abort.at + 10000,
-              retainedFocus: f.id !== 'L15' || snapshot.focus === 'fallback',
-            });
-        } else {
-          ux11Receipt(page, t, `${f.id}:skip-lookup`, { calls: 0, timers: 0 }, snapshot.fixture,
-            { noFetch: snapshot.fixture.calls.length === 0, noTimers: snapshot.fixture.timers.length === 0 });
-        }
+        ux11Receipt(page, t, `${f.id}:skip-lookup`, { calls: 0, timers: 0, fallback: f.intended }, snapshot.fixture,
+          { noFetch: snapshot.fixture.calls.length === 0, noTimers: snapshot.fixture.timers.length === 0,
+            retainedFallback: snapshot.fallback.href === f.intended && snapshot.fallback.visible });
         await new Promise((resolve) => setTimeout(resolve, 2000));
         ux11Receipt(page, t, `${f.id}:no-duplicate`, 1, page.__ux11Visit.requests,
           { one: page.__ux11Visit.requests.length === 1 });
@@ -26587,10 +26510,9 @@ MUTATIONS.push(
       "const chosenTheme = 'dark';", 'launcher-force-dark') },
   { id: 'launcher-terminal-pending', title: 'missing reference still looks pending', breaks: 'reader-launcher-feedback',
     rewriteOpen: (source) => ux11Splice(source, "present('missing-reference');", "present('pending');", 'launcher-terminal-pending') },
-  { id: 'launcher-early-fallback', breaks: 'reader-launcher-feedback',
-    why: 'the fallback page opens as soon as the lookup ends, while the 1400 ms timer still stands (#854)',
-    rewriteOpen: (source) => ux11Splice(source, 'setTimeout(() => go(page), 1400);',
-      'setTimeout(() => {}, 1400); go(page);', 'launcher-early-fallback') },
+  { id: 'launcher-viewer-ignored', breaks: 'reader-launcher-feedback',
+    why: 'a verified viewer link opens the website instead of the Marvel Comics app (#1601)',
+    rewriteOpen: (source) => ux11Splice(source, 'if (appUrl) {', 'if (false) {', 'launcher-viewer-ignored') },
 );
 
 SCENARIOS.push({

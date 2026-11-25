@@ -106,10 +106,12 @@ export const youngReadersActualData = {
         source: [...node.querySelectorAll('a')].find((link) => link.href === url)?.getAttribute('aria-label'),
         add: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
       }), GUIDE);
+      const gapLabel = guide.gaps === 1
+        ? '1 comic is listed by title only' : `${guide.gaps} comics are listed by title only`;
       t.check(`${guide.name} is found on Young readers with ${total} comics and Comic Book Herald credit`,
         card.name === guide.name && card.text.includes(`${total} comics`)
         && card.source === `Source of ${guide.name}: Comic Book Herald` && card.add === `Add to library: ${guide.name}`
-        && card.text.includes('no Marvel Unlimited links yet') === (guide.gaps > 0), JSON.stringify({ ...card, text: undefined }));
+        && card.text.includes(gapLabel) === (guide.gaps > 0), JSON.stringify({ ...card, text: undefined }));
 
       await click(page, `${selector} [data-act="preview"]`);
       await page.waitForFunction((count) =>

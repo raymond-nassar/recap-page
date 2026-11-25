@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { MARVEL_COMICS_URL } from '../src/js/lib/readerDestination.js';
 import { issuePageUrl } from '../src/js/lib/issuePageUrl.js';
 import { launchUrl, openIssue } from '../src/js/reader.js';
 import { addIssuesToList, createEmptyState, createList, exportBackup, markRead } from '../src/js/lib/model.js';
@@ -12,8 +13,12 @@ const order = JSON.parse(readFileSync(new URL('../src/data/new_ultimate_universe
 const sibling = JSON.parse(readFileSync(new URL('../src/data/new_ultimate_universe.json', import.meta.url)));
 const missing = order.items.filter((item) => item.digitalId == null && item.detailsRefused === true);
 const page = 'https://www.marvel.com/comics/issue/129224/ultimate_endgame_2025_1';
+const afterCutoff = new Date(2026, 11, 8, 12);
+const websiteCaption = 'Find this comic on the Marvel Comics website. This is not a single-comic link. Reading progress has not changed.';
+// #1601: no launch may reach Marvel Unlimited or a marvel.com issue page any more.
+const retired = /read\.marvel\.com|marvel\.com\/comics\/issue|marvelcomicsapp\.com\/mu\//;
 
-test('all 29 owner-confirmed originals launch their unchanged exact issue-page URLs', () => {
+test('1601 all 29 owner-confirmed originals keep their exact issue pages in data but launch the website', () => {
   assert.equal(order.items.length, 132);
   assert.equal(new Set(order.items.map((item) => item.collectedIn)).size, 23);
   assert.equal(sibling.items.length, 138);
@@ -22,13 +27,14 @@ test('all 29 owner-confirmed originals launch their unchanged exact issue-page U
   for (const item of missing) {
     assert.equal(issuePageUrl(item.url, item.issueId), item.url, item.title);
     assert.equal(siblings.get(item.issueId)?.url, item.url, item.title);
-    const launch = new URL(launchUrl(item, origin));
-    assert.equal(launch.origin, origin);
-    assert.equal(launch.pathname, '/open.html');
-    assert.equal(launch.searchParams.get('i'), String(item.issueId));
-    assert.equal(launch.searchParams.get('u'), item.url, item.title);
-    assert.equal(launch.searchParams.get('p'), '1');
-    assert.equal(launch.searchParams.has('d'), false);
+    for (const now of [beforeCutoff, afterCutoff]) {
+      const launch = new URL(launchUrl(item, origin, { now }));
+      assert.equal(launch.origin, origin);
+      assert.equal(launch.pathname, '/open.html');
+      assert.deepEqual([...launch.searchParams.keys()].sort(), ['r', 't'], item.title);
+      assert.equal(launch.searchParams.get('r'), 'comics');
+      assert.doesNotMatch(launch.href, retired, item.title);
+    }
     assert.match(originalReaderDescription(item), /opens the Marvel comic page/);
     assert.match(readerLinkReport(item), new RegExp(`Comic page: ${item.url.replaceAll('.', '\\.')}`));
   }
@@ -62,30 +68,26 @@ test('issue-page validator rejects other originals, open redirects and URL parse
   assert.equal(issuePageUrl(page, 129224), page);
 });
 
-test('known book IDs and tab-only corrections retain priority; popup stays synchronous', () => {
+test('1601 saved book IDs, issue pages and the old lookup no longer steer Read; popup stays synchronous', () => {
   const prior = globalThis.window;
   const calls = [];
   globalThis.window = { open(...args) { calls.push(args); return null; } };
   try {
     const source = { ...missing[0] };
-    assert.equal(openIssue(source, { origin, now: beforeCutoff }).target, 'app');
-    assert.equal(openIssue(source, { origin, now: beforeCutoff, app: false }).target, 'page');
-    calls.shift();
-    assert.equal(calls.length, 1);
-    assert.equal(calls[0][1], '_blank');
-    assert.equal(calls[0][2], 'noopener');
-    assert.equal(new URL(calls[0][0]).searchParams.get('u'), source.url);
-    for (const digitalId of [38811, 77777]) {
-      const result = openIssue({ ...source, digitalId }, { origin, now: beforeCutoff, app: false });
-      assert.equal(result.target, 'reader');
-      const launch = new URL(calls.at(-1)[0]);
-      assert.equal(launch.searchParams.get('d'), String(digitalId));
-      assert.equal(launch.searchParams.has('u'), false);
-      assert.equal(launch.searchParams.has('p'), false);
+    const cases = [source, { ...source, digitalId: 38811 }, { ...source, digitalId: 77777 },
+      { ...source, detailsRefused: false }];
+    for (const issue of cases) {
+      for (const options of [{ now: beforeCutoff }, { now: beforeCutoff, app: false }, { now: afterCutoff }]) {
+        const before = JSON.stringify(issue);
+        assert.deepEqual(openIssue(issue, { origin, ...options }).target, 'comics');
+        assert.equal(JSON.stringify(issue), before, 'a launch leaves saved fields untouched');
+        const launch = new URL(calls.at(-1)[0]);
+        assert.deepEqual([...launch.searchParams.keys()].sort(), ['r', 't']);
+        assert.doesNotMatch(launch.href, retired);
+      }
     }
-    const unknown = openIssue({ ...source, detailsRefused: false }, { origin, now: beforeCutoff, app: false });
-    assert.equal(unknown.target, 'lookup');
-    assert.equal(new URL(calls.at(-1)[0]).searchParams.get('u'), source.url);
+    assert.equal(calls.length, cases.length * 3);
+    assert.ok(calls.every((call) => call[1] === '_blank' && call[2] === 'noopener'));
   } finally {
     globalThis.window = prior;
   }
@@ -111,8 +113,8 @@ test('synthetic saved progress and shared issue identities do not change on laun
 
 let desktopCase = 0;
 async function desktopLauncher(search, fetchImpl, { settings = null, readError = false, exercise = null } = {}) {
+  // #1601: the query is passed as written, so an old bookmark without a destination is tested as one.
   const query = new URLSearchParams(search);
-  if (!query.has('r')) query.set('r', 'unlimited');
   const previous = Object.fromEntries(['window', 'location', 'document', 'localStorage', 'fetch',
     'setTimeout', 'clearTimeout'].map((key) => [key, Object.getOwnPropertyDescriptor(globalThis, key)]));
   const navigations = [];
@@ -184,19 +186,18 @@ async function desktopLauncher(search, fetchImpl, { settings = null, readError =
   }
 }
 
-test('desktop launcher revalidates and opens exact known-refused URL without lookup or delay', async () => {
+test('1601 desktop launcher opens the website for a refused issue page or a book ID, without lookup or delay', async () => {
   const search = new URL(launchUrl(missing.find((item) => item.issueId === 129224), origin,
     { now: beforeCutoff, app: false })).search;
-  const f = await desktopLauncher(search, () => assert.fail('Known-refused page must not fetch'));
-  assert.deepEqual(f.navigations, [page]);
-  assert.equal(f.nodes.fallback.href, page);
-  assert.equal(f.requests.length, 0);
-  assert.equal(f.timers.length, 0);
-  assert.match(f.nodes.p.textContent, /comic page/);
-
-  const direct = await desktopLauncher(`?d=38811&i=129224&u=${encodeURIComponent(page)}&p=1`,
-    () => assert.fail('Known book ID must not fetch'));
-  assert.deepEqual(direct.navigations, ['https://read.marvel.com/#/book/38811']);
+  for (const query of [search, `?d=38811&i=129224&u=${encodeURIComponent(page)}&p=1`,
+    `?r=unlimited&d=38811&i=129224&u=${encodeURIComponent(page)}&p=1`]) {
+    const f = await desktopLauncher(query, () => assert.fail('A launch must not fetch'));
+    assert.deepEqual(f.navigations, [MARVEL_COMICS_URL], query);
+    assert.equal(f.nodes.fallback.href, MARVEL_COMICS_URL);
+    assert.equal(f.requests.length, 0);
+    assert.equal(f.timers.length, 0);
+    assert.equal(f.nodes.p.textContent, websiteCaption);
+  }
 });
 
 const ux11Page = 'https://www.marvel.com/comics/issue/900002/browser_check_2';
@@ -209,117 +210,63 @@ function launcherMeasure(rows, name, expected, actual) {
 function launcherResult(rows) {
   assert.ok(rows.every((row) => row.ok), JSON.stringify(rows.filter((row) => !row.ok)));
 }
-test('launcher held pending resolves with truthful title and cleared exact abort timer', async () => {
-  let release;
+test('1601 launcher opens the website for an issue number at once, with no pending lookup', async () => {
   const rows = [];
-  await desktopLauncher('?i=900002', () => new Promise((resolve) => { release = resolve; }), {
-    exercise: async ({ doc, nodes, timers, navigations }) => {
-      launcherMeasure(rows, 'pending title', 'Looking up reader link - Recap Page', doc.title);
-      launcherMeasure(rows, 'pending state', 'pending', doc.documentElement.attrs['data-state'] ?? null);
-      launcherMeasure(rows, 'abort deadline', 8000, timers[0]?.delay);
-      launcherMeasure(rows, 'pending no navigation', [], navigations);
-      release({ ok: true, json: async () => ({ digitalId: 700002 }) });
-      await new Promise(setImmediate);
-      launcherMeasure(rows, 'resolved title', 'Opening Marvel Unlimited web reader - Recap Page', doc.title);
-      launcherMeasure(rows, 'exact reader', ['https://read.marvel.com/#/book/700002'], navigations);
-      launcherMeasure(rows, 'cleared abort', true, timers[0].cleared === true);
-      launcherMeasure(rows, 'no duplicate timer', 1, timers.length);
-      launcherMeasure(rows, 'exact fallback', 'https://read.marvel.com/#/book/700002', nodes.fallback.href);
+  await desktopLauncher('?i=900002', () => assert.fail('An issue number must not fetch'), {
+    exercise: async ({ doc, nodes, timers, navigations, requests }) => {
+      launcherMeasure(rows, 'title', 'Opening Marvel Comics website - Recap Page', doc.title);
+      launcherMeasure(rows, 'state', 'comics', doc.documentElement.attrs['data-state'] ?? null);
+      launcherMeasure(rows, 'no timers', [], timers);
+      launcherMeasure(rows, 'no requests', [], requests);
+      launcherMeasure(rows, 'website', [MARVEL_COMICS_URL], navigations);
+      launcherMeasure(rows, 'fallback', MARVEL_COMICS_URL, nodes.fallback.href);
     },
   });
   launcherResult(rows);
 });
-test('launcher settled no-link and failure reasons retain exact safe fallback and routing policy', async () => {
+test('1601 launcher lookup settings no longer cause a request, while display limitations stay visible', async () => {
   const rows = [];
-  for (const [kind, fetchImpl, settings, expectedState, requests] of [
-    ['missing', async () => ({ ok: true, json: async () => ({ digitalId: null }) }), null, 'no-reader-link', 1],
-    ['http', async () => ({ ok: false, status: 503 }), null, 'lookup-error', 1],
-    ['network', async () => { throw new TypeError('Synthetic offline'); }, null, 'lookup-error', 1],
-    ['json', async () => ({ ok: true, json: async () => { throw new SyntaxError('Synthetic JSON'); } }), null, 'lookup-error', 1],
-    ['unsafe', async () => assert.fail('No unsafe lookup'), '{"apiBase":"ftp://127.0.0.1/v1"}', 'lookup-unavailable', 0],
-    ['malformed', async () => assert.fail('No malformed lookup'), '{', 'lookup-unavailable', 0],
-    ['null', async () => assert.fail('No null lookup'), 'null', 'lookup-unavailable', 0],
-    ['scalar', async () => ({ ok: true, json: async () => ({ digitalId: null }) }), '3', 'no-reader-link', 1],
+  for (const [kind, settings, limitation] of [
+    ['default', null, false],
+    ['configured', '{"apiBase":"https://ux11-api.invalid/v1"}', false],
+    ['unsafe', '{"apiBase":"ftp://127.0.0.1/v1"}', false],
+    ['malformed', '{', true],
+    ['null', 'null', true],
+    ['scalar', '3', true],
   ]) {
-    await desktopLauncher(`?i=900002&u=${encodeURIComponent(ux11Page)}`, fetchImpl, { settings,
-      exercise: async ({ doc, timers, navigations, requests: actualRequests, nodes }) => {
-        launcherMeasure(rows, `${kind} state`, expectedState, doc.documentElement.attrs['data-state'] ?? null);
-        launcherMeasure(rows, `${kind} fetch count`, requests, actualRequests.length);
-        if (requests) {
-          launcherMeasure(rows, `${kind} cache`, 'no-store', actualRequests[0][1].cache);
-          launcherMeasure(rows, `${kind} delay`, 1400, timers[1]?.delay);
-          launcherMeasure(rows, `${kind} no early navigation`, [], navigations);
-          if (timers[1]) timers[1].fn();
-        }
-        launcherMeasure(rows, `${kind} safe destination`, [ux11Page], navigations);
-        if (['malformed', 'null', 'scalar'].includes(kind)) {
-          launcherMeasure(rows, `${kind} visible limitation`, true,
-            Boolean(nodes['settings-status'] && !nodes['settings-status'].hidden && nodes['settings-status'].textContent));
-        }
+    await desktopLauncher(`?i=900002&u=${encodeURIComponent(ux11Page)}`, () => assert.fail('No lookup'), { settings,
+      exercise: async ({ doc, timers, navigations, requests, nodes }) => {
+        launcherMeasure(rows, `${kind} state`, 'comics', doc.documentElement.attrs['data-state'] ?? null);
+        launcherMeasure(rows, `${kind} fetch count`, 0, requests.length);
+        launcherMeasure(rows, `${kind} timers`, 0, timers.length);
+        launcherMeasure(rows, `${kind} website, never the page`, [MARVEL_COMICS_URL], navigations);
+        launcherMeasure(rows, `${kind} visible limitation`, limitation,
+          Boolean(nodes['settings-status'] && !nodes['settings-status'].hidden && nodes['settings-status'].textContent));
       } });
   }
   for (const denied of [true, false]) {
     const kind = denied ? 'read-denied-valid-issue' : 'unknown-theme-valid-issue';
-    let release;
-    await desktopLauncher(`?i=900002&u=${encodeURIComponent(ux11Page)}`,
-      () => new Promise((resolve) => { release = resolve; }), {
-        readError: denied, settings: '{"theme":"unexpected","apiBase":"https://ux11-api.invalid/v1"}',
-        exercise: async ({ doc, root, meta, nodes, requests, timers, navigations, settingsReads, writes }) => {
-          const measure = (name, expected, actual) => launcherMeasure(rows, `${kind} ${name}`, expected, actual);
-          measure('settings read', [{ key: 'mrt.settings', denied }], settingsReads);
-          measure('system attribute', null, root.attrs['data-theme'] ?? null);
-          measure('system meta', 'dark light', meta.attrs.content);
-          measure('exact limitation', denied
-            ? 'Saved display settings could not be read. Using the system theme.'
-            : 'Saved theme is not recognized. Using the system theme.', nodes['settings-status'].textContent);
-          measure('limitation visible', false, nodes['settings-status'].hidden);
-          if (denied) {
-            measure('state', 'lookup-unavailable', root.attrs['data-state']);
-            measure('title', 'Reader lookup unavailable - Recap Page', doc.title);
-            measure('requests', [], requests);
-            measure('timers', [], timers);
-            measure('immediate destination', [ux11Page], navigations);
-            measure('fallback', ux11Page, nodes.fallback.href);
-          } else {
-            measure('pending state', 'pending', root.attrs['data-state']);
-            measure('pending title', 'Looking up reader link - Recap Page', doc.title);
-            measure('configured request', 'https://ux11-api.invalid/v1/issues/900002', requests[0]?.[0]);
-            measure('request count', 1, requests.length);
-            measure('cache', 'no-store', requests[0]?.[1].cache);
-            measure('accept', 'application/json', requests[0]?.[1].headers.accept);
-            measure('abort signal', true, requests[0]?.[1].signal instanceof AbortSignal);
-            measure('abort deadline', [8000], timers.map((timer) => timer.delay));
-            measure('no early navigation', [], navigations);
-            if (release) release({ ok: true, json: async () => ({ digitalId: 700002 }) });
-            await new Promise(setImmediate);
-            measure('resolved state', 'resolved', root.attrs['data-state']);
-            measure('reader destination', ['https://read.marvel.com/#/book/700002'], navigations);
-            measure('only cleared abort', [{ delay: 8000, cleared: true }],
-              timers.map(({ delay, cleared }) => ({ delay, cleared: cleared === true })));
-          }
-          measure('no writes', [], writes);
-        },
-      });
+    await desktopLauncher(`?i=900002&u=${encodeURIComponent(ux11Page)}`, () => assert.fail('No lookup'), {
+      readError: denied, settings: '{"theme":"unexpected","apiBase":"https://ux11-api.invalid/v1"}',
+      exercise: async ({ doc, root, meta, nodes, requests, timers, navigations, settingsReads, writes }) => {
+        const measure = (name, expected, actual) => launcherMeasure(rows, `${kind} ${name}`, expected, actual);
+        measure('settings read', [{ key: 'mrt.settings', denied }], settingsReads);
+        measure('system attribute', null, root.attrs['data-theme'] ?? null);
+        measure('system meta', 'dark light', meta.attrs.content);
+        measure('exact limitation', denied
+          ? 'Saved display settings could not be read. Using the system theme.'
+          : 'Saved theme is not recognized. Using the system theme.', nodes['settings-status'].textContent);
+        measure('limitation visible', false, nodes['settings-status'].hidden);
+        measure('state', 'comics', root.attrs['data-state']);
+        measure('title', 'Opening Marvel Comics website - Recap Page', doc.title);
+        measure('requests', [], requests);
+        measure('timers', [], timers);
+        measure('immediate destination', [MARVEL_COMICS_URL], navigations);
+        measure('fallback', MARVEL_COMICS_URL, nodes.fallback.href);
+        measure('no writes', [], writes);
+      },
+    });
   }
-  launcherResult(rows);
-});
-test('launcher actual abort settles timeout then schedules only the exact fallback delay', async () => {
-  const rows = [];
-  await desktopLauncher('?i=900002', (_url, init) => new Promise((_resolve, reject) => {
-    init.signal.addEventListener('abort', () => reject(new DOMException('Synthetic deadline', 'AbortError')), { once: true });
-  }), { exercise: async ({ timers, navigations, doc }) => {
-    launcherMeasure(rows, 'before 8000 no intent', [], navigations);
-    launcherMeasure(rows, 'abort scheduled 8000', 8000, timers[0].delay);
-    timers[0].fn();
-    await new Promise(setImmediate);
-    launcherMeasure(rows, 'actual timeout state', 'timeout', doc.documentElement.attrs['data-state'] ?? null);
-    launcherMeasure(rows, 'timeout title', 'Reader lookup timed out - Recap Page', doc.title);
-    launcherMeasure(rows, 'fallback scheduled 1400', 1400, timers[1]?.delay);
-    launcherMeasure(rows, 'before fallback no intent', [], navigations);
-    if (timers[1]) timers[1].fn();
-    launcherMeasure(rows, 'canonical fallback', ['https://www.marvel.com/comics/issue/900002/'], navigations);
-    launcherMeasure(rows, 'abort cleared', true, timers[0].cleared === true);
-  } });
   launcherResult(rows);
 });
 test('launcher missing references and display settings surface limitations without navigation or writes', async () => {
@@ -372,47 +319,20 @@ test('the launch page gives an installed window\'s title bar the chosen theme, a
   launcherResult(rows);
 });
 
-test('desktop forged pages fall back safely while unknown pages retain the metadata lookup', async () => {
-  const hostile = [
+test('1601 desktop forged, unknown and valid issue pages all open the website, never the page or a lookup', async () => {
+  for (const search of [
     `?i=129225&u=${encodeURIComponent(page)}&p=1`,
     `?i=129224&u=${encodeURIComponent('https://evil.example/comics/issue/129224/x')}&p=1`,
     `?i=129224&u=${encodeURIComponent(page)}&u=${encodeURIComponent(page)}&p=1`,
-  ];
-  for (const search of hostile) {
-    const f = await desktopLauncher(search, async () => ({ ok: false, status: 404 }));
-    assert.equal(f.requests.length, 1);
-    const issueId = new URLSearchParams(search).get('i');
-    assert.equal(f.requests[0][0], `https://marvel.emreparker.com/v1/issues/${issueId}`);
-    assert.equal(f.requests[0][1].cache, 'no-store');
-    assert.deepEqual(f.navigations, []);
-    assert.equal(f.timers.length, 2);
-    assert.equal(f.timers[1].delay, 1400);
-    f.fireFallback();
-    assert.deepEqual(f.navigations, [`https://www.marvel.com/comics/issue/${issueId}/`]);
-  }
-  const unknown = await desktopLauncher(`?i=129224&u=${encodeURIComponent(page)}`,
-    async () => ({ ok: true, json: async () => ({ digitalId: 38811 }) }));
-  assert.equal(unknown.requests.length, 1);
-  assert.deepEqual(unknown.navigations, ['https://read.marvel.com/#/book/38811']);
-  assert.equal(unknown.nodes.fallback.href, 'https://read.marvel.com/#/book/38811');
-});
-
-test('desktop valid page without refusal flag keeps exact slug after unresolved lookup', async () => {
-  const search = `?i=129224&u=${encodeURIComponent(page)}`;
-  for (const result of [
-    { ok: false, status: 404 },
-    { ok: true, json: async () => ({ digitalId: null }) },
+    `?i=129224&u=${encodeURIComponent(page)}`,
+    `?i=129224&u=${encodeURIComponent(page)}&p=1`,
   ]) {
-    const f = await desktopLauncher(search, async () => result);
-    assert.deepEqual(f.requests.map(([url]) => url), ['https://marvel.emreparker.com/v1/issues/129224']);
-    assert.equal(f.requests[0][1].cache, 'no-store');
-    assert.equal(f.nodes.fallback.href, page);
-    assert.deepEqual(f.navigations, [], 'valid page without refusal flag still waits for lookup');
-    assert.equal(f.timers.length, 2);
-    assert.equal(f.timers[0].delay, 8000);
-    assert.equal(f.timers[1].delay, 1400);
-    f.fireFallback();
-    assert.deepEqual(f.navigations, [page], 'fallback retains the original slug');
+    const f = await desktopLauncher(search, () => assert.fail('No lookup'));
+    assert.equal(f.requests.length, 0, search);
+    assert.equal(f.timers.length, 0, search);
+    assert.deepEqual(f.navigations, [MARVEL_COMICS_URL], search);
+    assert.equal(f.nodes.fallback.href, MARVEL_COMICS_URL);
+    assert.notEqual(f.nodes.fallback.href, page);
   }
 });
 
@@ -420,11 +340,13 @@ test('desktop valid page without refusal flag keeps exact slug after unresolved 
 const linked = { issueId: 12459, digitalId: 38811, title: 'Linked comic', url: 'https://www.marvel.com/comics/issue/12459/x' };
 const appLink = 'https://www.marvelcomicsapp.com/viewer/18255';
 
-test('950 Read carries the app link from today and Marvel Unlimited can still be chosen', () => {
-  const afterCutoff = new Date(2026, 11, 8, 12);
+test('1601 Read carries the app link on both sides of December 7 and offers no Marvel Unlimited bypass', () => {
   for (const now of [beforeCutoff, afterCutoff]) {
-    assert.equal(new URL(launchUrl(linked, origin, { now })).searchParams.get('a'), '18255');
-    assert.equal(new URL(launchUrl(linked, origin, { now, app: false })).searchParams.has('a'), false);
+    for (const app of [true, false]) {
+      const launch = new URL(launchUrl(linked, origin, { now, app }));
+      assert.deepEqual([...launch.searchParams.keys()].sort(), ['a', 'r', 't']);
+      assert.equal(launch.searchParams.get('a'), '18255');
+    }
   }
   assert.equal(new URL(launchUrl({ ...linked, issueId: 42 }, origin, { now: beforeCutoff })).searchParams.has('a'), false);
   const prior = globalThis.window;
@@ -432,9 +354,12 @@ test('950 Read carries the app link from today and Marvel Unlimited can still be
   globalThis.window = { open(...args) { calls.push(args); return null; } };
   try {
     assert.equal(openIssue(linked, { origin, now: beforeCutoff }).target, 'app');
-    assert.equal(openIssue(linked, { origin, now: beforeCutoff, app: false }).target, 'reader');
-    assert.equal(calls.length, 2);
-    assert.deepEqual(calls.map((call) => call.slice(1)), [['_blank', 'noopener'], ['_blank', 'noopener']]);
+    assert.equal(openIssue(linked, { origin, now: beforeCutoff, app: false }).target, 'app');
+    assert.equal(openIssue({ ...linked, issueId: 42 }, { origin, now: beforeCutoff }).target, 'comics');
+    assert.equal(calls.length, 3);
+    assert.ok(calls.every((call) => call[1] === '_blank' && call[2] === 'noopener'));
+    assert.ok(calls.every((call) => !retired.test(call[0])));
+    assert.equal(linked.digitalId, 38811, 'the saved book ID stays in the record');
   } finally {
     globalThis.window = prior;
   }
@@ -448,58 +373,56 @@ test('950 desktop launcher opens the app link without a lookup and rebuilds it f
     assert.equal(f.nodes.p.textContent, 'Taking you to this comic in the Marvel Comics app.');
     assert.equal(f.requests.length, 0);
   }
+  // #1601: a rejected viewer falls back to the website, not to the book ID beside it.
   for (const a of ['0', '012', '12/3', 'https://evil.example/', '1234567890']) {
     const f = await desktopLauncher(`?a=${encodeURIComponent(a)}&d=38811&i=12459`, () => assert.fail('no fetch'));
-    assert.deepEqual(f.navigations, ['https://read.marvel.com/#/book/38811'], a);
+    assert.deepEqual(f.navigations, [MARVEL_COMICS_URL], a);
   }
   const twice = await desktopLauncher('?a=18255&a=1&d=38811&i=12459', () => assert.fail('no fetch'));
-  assert.deepEqual(twice.navigations, ['https://read.marvel.com/#/book/38811']);
+  assert.deepEqual(twice.navigations, [MARVEL_COMICS_URL]);
   // #1601: a viewer number alone opens, since a viewer-only comic has nothing else to send.
   const bare = await desktopLauncher('?a=18255', () => assert.fail('no fetch'));
   assert.deepEqual(bare.navigations, [appLink]);
 });
 
-test('950 desktop launcher opens the MU address without lookup and ignores mismatched or repeated references', async () => {
-  const expected = 'https://www.marvelcomicsapp.com/mu/issues/10441';
+test('1601 desktop launcher never opens a Marvel Unlimited address, whatever the query carries', async () => {
   for (const r of ['unlimited', 'comics']) {
-    const f = await desktopLauncher(`?r=${r}&m=10441&i=10441`, () => assert.fail('An app link must not fetch'));
-    assert.deepEqual(f.navigations, [expected]);
-    assert.equal(f.nodes.fallback.href, expected);
-    assert.equal(f.nodes.p.textContent, 'Taking you to this comic in the Marvel Comics app.');
+    const f = await desktopLauncher(`?r=${r}&m=10441&i=10441`, () => assert.fail('no fetch'));
+    assert.deepEqual(f.navigations, [MARVEL_COMICS_URL]);
+    assert.equal(f.nodes.fallback.href, MARVEL_COMICS_URL);
+    assert.equal(f.nodes.p.textContent, websiteCaption);
     assert.equal(f.requests.length, 0);
   }
   for (const query of ['m=10442&i=10441', 'm=012&i=012', 'm=0&i=0', 'm=1234567890&i=1234567890',
     'm=12%2F3&i=12%2F3', 'm=10441&m=10441&i=10441', 'm=10441&i=10441&i=42']) {
     const f = await desktopLauncher(`?${query}&d=38811&r=unlimited`, () => assert.fail('no fetch'));
-    assert.deepEqual(f.navigations, ['https://read.marvel.com/#/book/38811'], query);
+    assert.deepEqual(f.navigations, [MARVEL_COMICS_URL], query);
   }
   const both = await desktopLauncher('?a=18255&m=10441&i=10441', () => assert.fail('no fetch'));
   assert.deepEqual(both.navigations, [appLink], 'published viewer link wins');
   const bare = await desktopLauncher('?m=10441', () => assert.fail('no fetch'));
-  assert.deepEqual(bare.navigations, []);
+  assert.deepEqual(bare.navigations, [], 'an MU number alone is not a reference');
 });
 
-test('950 MU Read carries its own issue number, stays synchronous and can be bypassed for Unlimited', () => {
+test('1601 a comic on the old Marvel Unlimited app list launches the website and keeps its saved fields', () => {
   const issueId = marvelComicsAppMuIssueIds[0];
   const comic = { issueId, digitalId: 38811, title: 'Approved MU comic' };
+  const saved = JSON.stringify(comic);
   const prior = globalThis.window;
   const calls = [];
   globalThis.window = { open(...args) { calls.push(args); return null; } };
   try {
-    for (const now of [beforeCutoff, new Date(2026, 11, 8, 12)]) {
-      const url = new URL(launchUrl(comic, origin, { now }));
-      assert.equal(url.searchParams.get('m'), String(issueId));
-      assert.equal(url.searchParams.has('a'), false);
+    for (const now of [beforeCutoff, afterCutoff]) {
+      for (const app of [true, false]) {
+        const url = new URL(launchUrl(comic, origin, { now, app }));
+        assert.deepEqual([...url.searchParams.keys()].sort(), ['r', 't']);
+        assert.equal(openIssue(comic, { origin, now, app }).target, 'comics');
+      }
       assert.equal(new URL(launchUrl(linked, origin, { now })).searchParams.has('m'), false);
-      assert.equal(openIssue(comic, { origin, now }).target, 'app');
-      const bypass = new URL(launchUrl(comic, origin, { now, app: false }));
-      assert.equal(bypass.searchParams.has('m'), false);
-      assert.equal(bypass.searchParams.has('a'), false);
-      assert.equal(openIssue(comic, { origin, now, app: false }).target,
-        now === beforeCutoff ? 'reader' : 'comics');
     }
     assert.equal(calls.length, 4);
-    assert.ok(calls.every((call) => call[1] === '_blank' && call[2] === 'noopener'));
+    assert.ok(calls.every((call) => call[1] === '_blank' && call[2] === 'noopener' && !retired.test(call[0])));
+    assert.equal(JSON.stringify(comic), saved);
   } finally {
     globalThis.window = prior;
   }

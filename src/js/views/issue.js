@@ -260,7 +260,7 @@ export function createIssueView({
     nodes.context.textContent = issueContextText(currentResult.context, currentResult.issue.issueId);
     const focused = nodes.read.ownerDocument?.activeElement === nodes.read && nodes.read.getClientRects().length > 0;
     const { launchable } = readerPresentation(currentResult.issue, currentResult.source);
-    const app = Boolean(appLinkFor(currentResult.issue.issueId));
+    const app = Boolean(appLinkFor(currentResult.issue));
     nodes.read.hidden = !launchable;
     nodes.read.textContent = readerAction(new Date(), { app });
     nodes.read.setAttribute('aria-label', readerName(currentResult.issue.title, new Date(), { app }));

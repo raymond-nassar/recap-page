@@ -16,6 +16,7 @@ import { SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE } from '../src/js/lib/saveEduc
 import { issuePresentation } from '../src/js/lib/issueFocus.js';
 import { linkedReadingOptions, manualLinkFeedback } from './browser-marvel-interim.mjs';
 import { appLinkFor } from '../src/js/lib/marvelComicsApp.js';
+import { editionRelations } from '../src/js/lib/collectedEditions.js';
 import { homeUpdatesContent } from '../src/js/lib/homeUpdatesContent.js';
 import { HOME_UPDATES_SEEN_KEY } from '../src/js/lib/homeUpdatesSeen.js';
 import { availableHomeCategories, catalogEntries, groupCatalog, HOME_CATEGORIES, publishingAgeGroups } from '../src/js/lib/catalog.js';
@@ -2263,9 +2264,11 @@ async function readingEvidence(page, profile, id = profile.id) {
     `${id}: measured text/control containment ${JSON.stringify({ clipped: result.clipped, overlaps: result.overlaps })}`);
   // Reading List options moved below the card in #1250; the comic's six controls remain inside it.
   // M05 loads a summary, which before #1061 also brought a Hide button.
-  // Before December 7 a comic with an app link also offers Marvel Unlimited, so the hero adds its
-  // Reading options disclosure; every comic of this list gained a link with the MU-number route.
-  const heroOptions = appLinkFor(readingIssue.issueId) && Date.now() < new Date(2026, 11, 7).getTime()
+  // #1601: Reading options need two places, so an app link alone adds no disclosure; only a
+  // verified library book beside it, counted here as the product counts it, brings one.
+  const libraryLinks = editionRelations(state.lists[READING_LIST].catalogId ?? null, state.issues[readingIssue.issueId])
+    .reduce((count, edition) => count + edition.links.length, 0);
+  const heroOptions = (appLinkFor(readingIssue.issueId) ? 1 : 0) + libraryLinks >= 2
     ? ['#btn-hero-reading-options'] : [];
   check(JSON.stringify(result.controls.map(({ selector }) => selector)) === JSON.stringify([
     '#btn-hero-read', '#btn-hero-done', ...heroOptions, '#btn-hero-inspect', '#hero-more-actions > summary',
@@ -4330,7 +4333,7 @@ async function homeContinueCheck(page, label, viewport) {
   const cardAt = tree.findIndex((node) => node.role === 'heading' && node.name === cardName);
   const noticeAt = tree.findIndex((node) => node.name === notice.text);
   check(cardAt >= 0 && noticeAt >= 0 && (viewport.desktop ? noticeAt < cardAt : cardAt < noticeAt)
-    && notice.className === 'notice notice-warn' && notice.text.startsWith('Read now opens comics'),
+    && notice.className === 'notice notice-warn' && notice.text === 'Read opens a comic directly in the Marvel Comics app. If there\u2019s no direct link, use Find on Marvel Comics to open the website.',
   `${name}: the accessibility tree reads ${viewport.desktop ? 'the closure notice, then Continue reading' : 'Continue reading, then the closure notice'} ${JSON.stringify({ cardAt, noticeAt, ...notice })}`);
   // #998: a word in the list's name longer than the line overflowed the heading and widened the page,
   // "presentation" to a 479px scroll width in a 317px heading at iOS's largest text in Edge. The
@@ -4821,7 +4824,9 @@ async function readingActionWrapCheck(page) {
       for (const [name, value] of tokens) root.style.setProperty(name, value);
       root.dataset.iosLargestText = largest ? 'true' : 'false';
     }, profile);
-    for (const [day, expected] of [[6, 'Read'], [7, 'Find on Marvel Comics']]) {
+    // #1601: this comic has no app link, so the longer website action shows on both sides of the
+    // old December 7, 2026 date; the date no longer changes the label.
+    for (const [day, expected] of [[6, 'Find on Marvel Comics'], [7, 'Find on Marvel Comics']]) {
       await page.evaluate((date) => {
         window.__actionWrapClock = new Date(2026, 11, date, 12).getTime();
         window.dispatchEvent(new Event('focus'));
@@ -4868,7 +4873,7 @@ async function readingActionWrapCheck(page) {
         && (measured.stacked || (done.box.left >= read.box.right - 0.5 && Math.abs(done.box.top - read.box.top) < 0.5))
         && !measured.overflow,
       `${profile.name} ${expected}: every action word stays whole and inside a reachable button ${JSON.stringify(measured)}`);
-      if ((day === 7 && profile.stackLong) || profile.largest) {
+      if (profile.stackLong || profile.largest) {
         check(measured.stacked, `${profile.name} ${expected}: the action row stacks rather than splitting a word ${JSON.stringify(measured)}`);
       }
       console.log(`CHECKED ${profile.name} ${expected}: ${JSON.stringify(measured)}`);
@@ -6272,11 +6277,14 @@ try {
     }
     if (launcherOnly) {
       const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      // #1601: only a verified app viewer leaves for one comic; every other reference, an old
+      // Marvel Unlimited bookmark included, opens the website without a metadata lookup.
       for (const [mode, query, expected, lookups] of [
-        ['before-known', 'd=38811&r=unlimited', 'https://read.marvel.com/#/book/38811', 0],
-        ['before-lookup', 'i=52986&r=unlimited', 'https://read.marvel.com/#/book/38811', 1],
-        ['after-known', 'd=38811&r=comics', 'https://marvel.webtoon.com/', 0],
-        ['after-unknown', 'i=52986&r=comics', 'https://marvel.webtoon.com/', 0],
+        ['app', 'a=18255&r=comics', 'https://www.marvelcomicsapp.com/viewer/18255', 0],
+        ['legacy-known', 'd=38811&r=unlimited', 'https://marvel.webtoon.com/', 0],
+        ['legacy-lookup', 'i=52986&r=unlimited', 'https://marvel.webtoon.com/', 0],
+        ['known', 'd=38811&r=comics', 'https://marvel.webtoon.com/', 0],
+        ['unknown', 'i=52986&r=comics', 'https://marvel.webtoon.com/', 0],
       ]) {
         browserIntents.length = 0;
         metadataLookups = 0;
@@ -6287,29 +6295,29 @@ try {
         await handoff;
         check(new URL(page.url()).pathname === '/open.html', `${label} ${mode}: intercepted handoff retains launcher for observation`);
         check(await page.$eval('#fallback', (node, url) => node.href === url
-          && node.textContent === 'Open in browser' && node.getBoundingClientRect().height >= 48, expected),
+          && node.textContent === 'Continue manually' && node.getBoundingClientRect().height >= 48, expected),
         `${label} ${mode}: intended full browser URL and accessible fallback are exact`);
         check(browserIntents.length === 1 && browserIntents[0] === expected,
           `${label} ${mode}: one intercepted browser navigation preserves the destination ${JSON.stringify(browserIntents)}`);
         check(metadataLookups === lookups, `${label} ${mode}: metadata lookups ${metadataLookups}, expected ${lookups}`);
         // The shared launch page has offered "Back to Recap Page" since d6a995d1. It is a same-origin
-        // route to Home, not a Marvel Unlimited action, so it is allowed only in exactly that form.
+        // route to Home, not a comic destination, so it is allowed only in exactly that form.
         const links = await page.$$eval('a', (nodes) => nodes.filter((node) => node.getClientRects().length)
           .map((node) => ({ id: node.id, href: node.href, target: node.target })));
         check(links.every((link) => link.id === 'fallback'
           || (link.id === 'return' && link.href === `${origin}/#/home` && !link.target)),
-        `${label} ${mode}: no Marvel Unlimited app action ${JSON.stringify(links)}`);
+        `${label} ${mode}: no extra comic destination ${JSON.stringify(links)}`);
         check(await page.$eval('#h', (node, pre) => (pre ? node.textContent.includes('<img>')
-          : node.textContent === 'Opening Marvel Comics website') && !node.querySelector('img'), mode.startsWith('before')),
+          : node.textContent === 'Opening Marvel Comics website') && !node.querySelector('img'), mode === 'app'),
         `${label} ${mode}: title remains text, not markup`);
         check(await page.evaluate(() => window.opener === null && !document.querySelector('#android-report')),
           `${label} ${mode}: isolated launcher disowns opener and has no main app bridge`);
         check(await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === before,
           `${label} ${mode}: no progress or schema write`);
       }
-      check(appLookups === 0, `${label}: no Bifrost requests on either side of the cutoff`);
+      check(appLookups === 0, `${label}: no Bifrost requests for any launch`);
       check(errors.length === 0, `${label}: no uncaught launcher errors`);
-      console.log(`CHECKED ${label}: browser-only launcher cutoff/fallback/identity/privacy DOM`);
+      console.log(`CHECKED ${label}: browser-only launcher app/website/fallback/identity/privacy DOM`);
       await context.close();
       continue;
     }

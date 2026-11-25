@@ -183,7 +183,7 @@
               </details>
             </div>
 
-            <p id="reader-closure-notice" class="notice notice-warn"><span id="reader-closure-text">Read now opens comics in the Marvel Comics app when we have a link. Marvel Unlimited ends December 7, 2026. Until then you can still choose it under Reading options.</span> <a id="reader-closure-faq" href="https://help.marvel.com/article/marvel-whats-happening-to-marvel-unlimited" target="_blank" rel="noopener noreferrer">Marvel's FAQ</a><button id="reader-closure-dismiss" type="button" class="btn btn-g btn-icon notice-dismiss has-tooltip" aria-label="Dismiss the Marvel Unlimited notice" data-tooltip="Dismiss the Marvel Unlimited notice"><span aria-hidden="true">&times;</span></button></p>
+            <p id="reader-closure-notice" class="notice notice-warn"><span id="reader-closure-text">Read opens a comic directly in the Marvel Comics app. If there’s no direct link, use Find on Marvel Comics to open the website.</span> <button id="reader-closure-dismiss" type="button" class="btn btn-g btn-icon notice-dismiss has-tooltip" aria-label="Dismiss reading link notice" data-tooltip="Dismiss reading link notice"><span aria-hidden="true">&times;</span></button></p>
 
             <!-- #1412: Windows readers in Edge or Chrome are invited once to open Recap Page in its own
                  window; Firefox, Brave and Opera readers are told how. install.js decides which, if either, shows. -->
@@ -427,7 +427,6 @@
                         <ul class="reading-options-list" id="hero-reading-options-list" hidden></ul>
                       </div>
                     </div>
-                    <p id="hero-reader-temporary" class="rail-hint" hidden></p>
                     <!-- The ring reads progress once. This visual row moves with it on a phone. -->
                     <div class="glance" id="hero-progress" aria-hidden="true">
                       <p class="glance-count" id="hero-progress-count"></p>
@@ -1425,11 +1424,8 @@
               <h3>Metadata and links only</h3>
               <p class="rail-hint">
                 No comic content is stored, copied, proxied, or served. The app tracks which comics you
-                have read and links out to Marvel's own services. Reading in Marvel Unlimited ends
-                December 7, 2026. When a comic has a Marvel Comics app link, Read opens that link
-                                in the Marvel Comics app or in your browser. For other comics, before that date Read uses the web reader when
-                a link is recorded, with your own subscription. From that date, Read opens the
-                general Marvel Comics website for those comics, not a single-comic link.
+                have read and links out to Marvel's own services. Read opens a comic directly in the
+                Marvel Comics app. If there’s no direct link, use Find on Marvel Comics to open the website.
                 Access is determined by Marvel, not this tracker.
                 Availability badges are historical Marvel Unlimited records, not proof of access
                 to Marvel Comics. Cover images load directly from Marvel's own servers,
@@ -1509,16 +1505,8 @@
                   comics are on screen; switching cover art off stops them being requested at all.
                   Those are the only servers a cover is ever asked of: an address the metadata API
                   reports on any other host is refused before anything is fetched.
-                  When a comic has a Marvel Comics app link, pressing Read opens that link in the Marvel Comics app or in your browser.
-                  For a comic without one, before December 7, 2026, pressing Read opens Marvel's web reader
-                  when its direct reader link is known. With a matching comic-page link but a refused reader-ID lookup,
-                  Read opens the exact Marvel comic page directly. Otherwise the launch tab asks
-                  the metadata API for a missing reader link and opens the web reader if found,
-                  or the comic page if not. From the start of December 7 on your device's local
-                  clock, Read opens the general Marvel Comics website for a comic without an app link,
-                  with no reader-link lookup.
-                  Android uses your installed browser, not the Marvel Unlimited app, on both sides
-                  of that date.
+                  Read opens a comic directly in the Marvel Comics app. If there’s no direct link, use Find on Marvel Comics to open the website.
+                  Opening a comic or the website does not send your lists, notes or reading progress to Marvel.
                   Adding a comic by hand sends the words in the title box to the Marvel Fandom wiki
                   only when you press the lookup button; the wiki sees that title, but no picture is fetched.
                   These requests include no part of your lists, progress, or notes.

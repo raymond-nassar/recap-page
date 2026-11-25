@@ -624,8 +624,7 @@ test('Android assets preserve every catalog payload and the shared feature modul
     assert.ok(generated.indexOf('styles.css') < generated.indexOf('android/mobile.css'));
     assert.doesNotMatch(generated, /src="\.\/js\/app\.js"/);
     assert.doesNotMatch(await readFile(join('src', 'index.html'), 'utf8'), /android\/(?:mobile\.css|app\.js)/);
-    assert.match(generated, /On Android, for some comics, Read tries to open the Marvel Comics app\. If it cannot open an app, Read opens your browser instead\. Other comics open in your browser\./);
-    assert.match(generated, /general Marvel Comics website without a lookup/);
+    assert.ok(generated.includes('Comic links can open in the Marvel Comics app or your browser. Find on Marvel Comics opens the website.'));
     assert.doesNotMatch(generated, /no longer contacts Bifrost/);
     const launcher = await readFile(join(output, 'open.html'), 'utf8');
     assert.match(launcher, /src="\.\/android\/launcher\.js"/);
@@ -648,7 +647,8 @@ test('Android assets preserve every catalog payload and the shared feature modul
       await assert.doesNotReject(readFile(join(output, 'android', match[1])),
         `generated launcher import must resolve: ${match[1]}`);
     }
-    assert.match(launcherModule, /import \{ issuePageUrl \} from '\.\.\/js\/lib\/issuePageUrl\.js'/);
+    assert.match(launcherModule, /import \{ launchDestination, MARVEL_COMICS_URL \} from '\.\.\/js\/lib\/readerDestination\.js'/);
+    assert.match(launcherModule, /import \{ appLaunchUrl \} from '\.\.\/js\/lib\/marvelComicsAppUrl\.js'/);
     await assert.rejects(readFile(join(output, 'dev-faults.html')), { code: 'ENOENT' });
   } finally {
     await rm(scratch, { recursive: true, force: true });

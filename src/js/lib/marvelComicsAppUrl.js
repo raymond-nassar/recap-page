@@ -17,6 +17,12 @@ export function appViewerUrl(value) {
   return n ? `${MARVEL_COMICS_APP_VIEWER}${n}` : null;
 }
 
+export function appViewerFromUrl(url) {
+  if (typeof url !== 'string' || !url.startsWith(MARVEL_COMICS_APP_VIEWER)) return null;
+  const viewer = url.slice(MARVEL_COMICS_APP_VIEWER.length);
+  return appViewerUrl(viewer) === url ? viewer : null;
+}
+
 // #1601: a comic known only by its Marvel Comics app viewer number is saved under a reserved negative
 // key, never under the bare viewer number. 5,438 old catalog numbers equal some viewer number
 // (viewer 12618 is Runaways #1, catalog 12618 is Black Panther #49), so the two must not share a
@@ -30,20 +36,17 @@ export function viewerKey(value) {
   return n ? -(VIEWER_KEY_OFFSET + Number(n)) : null;
 }
 
-export function viewerFromKey(key) {
-  if (!Number.isSafeInteger(key) || key >= 0) return null;
-  return viewerNumber(String(-key - VIEWER_KEY_OFFSET));
-}
-
-export function appMuIssuesUrl(value) {
-  const n = viewerNumber(value);
-  return n ? `https://www.marvelcomicsapp.com/mu/issues/${n}` : null;
+// The key alone never names a viewer. A record says which viewer it is in its own `appViewer` field,
+// and that is believed only when the key is the one derived from it. No release before this wrote
+// either half, and an older build drops the unknown field when it saves, so a saved or restored
+// record in this range without the field stays an ordinary unopenable comic rather than being read
+// as somebody else's viewer number: -8000000000012618 with an unrelated title is not Runaways #1.
+export function taggedViewer(issue) {
+  if (!issue || typeof issue !== 'object') return null;
+  const n = viewerNumber(issue.appViewer);
+  return n && viewerKey(n) === issue.issueId ? n : null;
 }
 
 export function appLaunchUrl(query) {
-  const viewer = query.getAll('a').length === 1 ? appViewerUrl(query.get('a')) : null;
-  if (viewer) return viewer;
-  if (query.getAll('m').length !== 1 || query.getAll('i').length !== 1
-    || query.get('m') !== query.get('i')) return null;
-  return appMuIssuesUrl(query.get('m'));
+  return query.getAll('a').length === 1 ? appViewerUrl(query.get('a')) : null;
 }

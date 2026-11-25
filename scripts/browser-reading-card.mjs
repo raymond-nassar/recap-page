@@ -16,7 +16,7 @@ const KEY = 'mrt.state.v2';
 const catalog = JSON.parse(readFileSync(new URL('../src/data/catalog.json', import.meta.url), 'utf8'));
 const order = JSON.parse(readFileSync(new URL(`../src/data/${catalog.lists.find((list) => list.id === 'hickman-minimal').file}`, import.meta.url), 'utf8'));
 const next = order.items[3].title;
-const heroReadingOptions = !!appLinkFor(order.items[3].issueId) && Date.now() < new Date(2026, 11, 7).getTime();
+const heroReadingOptions = !!appLinkFor(order.items[3].issueId);
 
 function fixture(note = '', other = false, { empty = false, single = false, chosen = null } = {}) {
   let state = createList(createEmptyState(), { id: 'card', name: order.name, description: order.description, catalogId: order.id, note });
@@ -659,8 +659,8 @@ export const readingCardUndo = {
     for (const [width, height] of phoneSizes) {
       for (const note of ['', 'Read the Avengers issues first.']) {
         // After moving the context below the card, the two shortest profiles still cover the offer.
-        // While the next comic has an app link before December 7, the hero's full-width Reading
-        // options row sits above Done and every profile covers it, as the Android owner expects.
+        // With a verified app link, the hero's full-width Reading options row sits above Done and
+        // every profile covers it, as the Android owner expects.
         await checkPhoneUndo(page, t, { width, height, note, opensClear: height > 800 && !heroReadingOptions });
       }
     }
