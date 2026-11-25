@@ -14,6 +14,7 @@
 
 import { issuePageUrl } from './lib/issuePageUrl.js';
 import { appLinkFor, appViewerFor } from './lib/marvelComicsApp.js';
+import { viewerFromKey } from './lib/marvelComicsAppUrl.js';
 import { readerDestination } from './lib/readerDestination.js';
 
 export const READER_PREFIX = 'https://read.marvel.com/#/book/';
@@ -55,9 +56,11 @@ function isSafeMarvelUrl(url) {
   return host === 'marvel.com' || host === 'www.marvel.com' || host === 'read.marvel.com';
 }
 
-// True when we hold enough of a reference to open anything at all.
+// True when we hold enough of a reference to open anything at all. A viewer-only key (#1601) opens
+// its viewer address and nothing else.
 export function isLaunchable(issue) {
-  return referenceId(issue?.issueId) !== null || referenceId(issue?.digitalId) !== null;
+  return referenceId(issue?.issueId) !== null || referenceId(issue?.digitalId) !== null
+    || viewerFromKey(issue?.issueId) !== null;
 }
 
 // Builds the same-origin launch URL. A known book ID skips lookup; a previously refused
@@ -68,6 +71,14 @@ export function isLaunchable(issue) {
 export function launchUrl(issue, origin = location.origin, { now = new Date(), app = true } = {}) {
   const params = new URLSearchParams();
   params.set('r', readerDestination(now));
+  // A viewer-only comic has no old number, book ID or page to fall back on, so it always carries
+  // its viewer number, and only that, whichever reader was chosen.
+  const keyed = viewerFromKey(issue?.issueId);
+  if (keyed) {
+    params.set('a', keyed);
+    if (issue?.title) params.set('t', String(issue.title).slice(0, 120));
+    return `${origin}/open.html?${params.toString()}`;
+  }
   const digitalId = referenceId(issue?.digitalId);
   const issueId = referenceId(issue?.issueId);
   const viewer = app && issueId ? appViewerFor(issueId) : null;

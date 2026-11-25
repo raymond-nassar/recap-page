@@ -454,8 +454,9 @@ test('950 desktop launcher opens the app link without a lookup and rebuilds it f
   }
   const twice = await desktopLauncher('?a=18255&a=1&d=38811&i=12459', () => assert.fail('no fetch'));
   assert.deepEqual(twice.navigations, ['https://read.marvel.com/#/book/38811']);
+  // #1601: a viewer number alone opens, since a viewer-only comic has nothing else to send.
   const bare = await desktopLauncher('?a=18255', () => assert.fail('no fetch'));
-  assert.deepEqual(bare.navigations, []);
+  assert.deepEqual(bare.navigations, [appLink]);
 });
 
 test('950 desktop launcher opens the MU address without lookup and ignores mismatched or repeated references', async () => {

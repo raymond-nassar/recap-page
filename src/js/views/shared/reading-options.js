@@ -1,5 +1,6 @@
 import { labelledName } from '../../lib/accname.js';
 import { editionRelations } from '../../lib/collectedEditions.js';
+import { viewerFromKey } from '../../lib/marvelComicsAppUrl.js';
 import { MARVEL_UNLIMITED_CHOICE, readerDestination, readerName } from '../../lib/readerDestination.js';
 
 export function readingChoices(issue, catalogId, { launchable, app, now = new Date() }) {
@@ -11,7 +12,8 @@ export function readingChoices(issue, catalogId, { launchable, app, now = new Da
       read: { app: true },
     });
   }
-  if (launchable && readerDestination(now) === 'unlimited') {
+  // A viewer-only comic (#1601) was never in Marvel Unlimited's numbering, so it has no such choice.
+  if (launchable && readerDestination(now) === 'unlimited' && viewerFromKey(issue.issueId) === null) {
     choices.push({
       key: 'unlimited', text: MARVEL_UNLIMITED_CHOICE, name: `Read ${issue.title} in ${MARVEL_UNLIMITED_CHOICE}`,
       read: { app: false },

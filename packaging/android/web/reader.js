@@ -33,7 +33,8 @@ export function createAndroidReader({
   const readerUrl = (id) => `https://read.marvel.com/#/book/${id}`;
   const detailUrl = (id) => `https://www.marvel.com/comics/issue/${id}/`;
   // #950: a comic with a bundled Marvel Comics app link opens it before and after December 7.
-  const appUrl = (digitalId || issueId) ? appUrlFor(query) : null;
+  // #1601: the viewer address alone is enough, since a viewer-only comic has no other reference.
+  const appUrl = appUrlFor(query);
   fallback.textContent = 'Open in browser';
   fallback.href = appUrl || (destination === 'comics' ? comicsUrl
     : digitalId ? readerUrl(digitalId) : pageUrl || (issueId ? detailUrl(issueId) : comicsUrl));
@@ -65,7 +66,7 @@ export function createAndroidReader({
   });
 
   async function start() {
-    if (!digitalId && !issueId) {
+    if (!digitalId && !issueId && !appUrl) {
       heading.textContent = 'Nothing to open';
       status.textContent = 'This link was missing a valid issue reference.';
       return;

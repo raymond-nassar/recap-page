@@ -17,6 +17,24 @@ export function appViewerUrl(value) {
   return n ? `${MARVEL_COMICS_APP_VIEWER}${n}` : null;
 }
 
+// #1601: a comic known only by its Marvel Comics app viewer number is saved under a reserved negative
+// key, never under the bare viewer number. 5,438 old catalog numbers equal some viewer number
+// (viewer 12618 is Runaways #1, catalog 12618 is Black Panther #49), so the two must not share a
+// range. The offset sits far below catalog placeholders (about -2.1e9) and hand-added comics
+// (-Date.now(), about -1.8e12) and stays a safe integer, and the key depends on the viewer alone,
+// so one comic keeps one checkmark in every guide that lists it.
+export const VIEWER_KEY_OFFSET = 8_000_000_000_000_000;
+
+export function viewerKey(value) {
+  const n = viewerNumber(value);
+  return n ? -(VIEWER_KEY_OFFSET + Number(n)) : null;
+}
+
+export function viewerFromKey(key) {
+  if (!Number.isSafeInteger(key) || key >= 0) return null;
+  return viewerNumber(String(-key - VIEWER_KEY_OFFSET));
+}
+
 export function appMuIssuesUrl(value) {
   const n = viewerNumber(value);
   return n ? `https://www.marvelcomicsapp.com/mu/issues/${n}` : null;

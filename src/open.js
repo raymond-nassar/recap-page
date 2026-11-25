@@ -167,7 +167,9 @@ async function resolveAndGo(id, page = detailUrl(id)) {
   setTimeout(() => go(page), 1400);
 }
 
-if (appUrl && (digitalId || issueId)) {
+// A viewer address alone is enough (#1601): it is rebuilt from digits under a fixed prefix, and a
+// comic known only by its viewer number has no other reference to send.
+if (appUrl) {
   present('app');
   go(appUrl);
 } else if (launchDestination(q) === 'comics' && (digitalId || issueId)) {

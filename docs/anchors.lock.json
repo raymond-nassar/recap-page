@@ -1924,14 +1924,14 @@
     "fp": "cb1b4832836576a0",
     "head": "function loadCatalog({ refresh = false } = {}) {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|how-reading-content-reaches-the-browser|src/js/reader.js:91-115|0": {
-    "anchor": "src/js/reader.js:91-115",
+  "docs/ARCHITECTURE_REFERENCE.md|how-reading-content-reaches-the-browser|src/js/reader.js:102-126|0": {
+    "anchor": "src/js/reader.js:102-126",
     "fp": "4413a2c0330e969f",
     "head": "// Must be called synchronously from a user gesture, or the browser will block the tab."
   },
-  "docs/ARCHITECTURE_REFERENCE.md|how-reading-content-reaches-the-browser|src/open.js:139-183|0": {
-    "anchor": "src/open.js:139-183",
-    "fp": "162c0b66babb5dfa",
+  "docs/ARCHITECTURE_REFERENCE.md|how-reading-content-reaches-the-browser|src/open.js:139-185|0": {
+    "anchor": "src/open.js:139-185",
+    "fp": "5634489b8975b866",
     "head": "async function resolveAndGo(id, page = detailUrl(id)) {"
   },
   "docs/ARCHITECTURE_REFERENCE.md|marking-one-issue-read|src/js/api.js:197-234|0": {

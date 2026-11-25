@@ -249,9 +249,10 @@ test('950 Android opens a Marvel Comics app link before and after the cutoff wit
     await f.launch.start();
     assert.deepEqual(f.navigations, [exactReader], search);
   }
+  // #1601: a viewer number alone opens, since a viewer-only comic has nothing else to send.
   const bare = fixture('?a=4879', () => assert.fail('no fetch'), undefined, before, appLaunchUrl);
   await bare.launch.start();
-  assert.deepEqual(bare.navigations, []);
+  assert.deepEqual(bare.navigations, [appLink]);
   const unwired = fixture('?a=4879&d=38811', () => assert.fail('no fetch'));
   await unwired.launch.start();
   assert.deepEqual(unwired.navigations, [exactReader]);
