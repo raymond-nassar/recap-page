@@ -3297,8 +3297,11 @@ select, input[type="search"], input[type="text"], input[type="url"] {
 @container home-discovery (min-width: max(29rem, calc(40ch + 1rem))) {
   #home-secondary-paths { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+/* Five across needs about 15.6ch a card, plus the four 1rem gaps (#1565). Measured in Edge at 1280px,
+   the widest whole word needs 15.0ch of card at 200% text and 15.4ch at 150%. At 50ch, 200% text kept
+   five 180px cards and clipped "Publication", which needs 226px, so larger text now falls back to two. */
 @media (min-width: 1024px) {
-  @container home-discovery (min-width: max(44rem, calc(50ch + 4rem))) {
+  @container home-discovery (min-width: max(44rem, calc(78ch + 4rem))) {
     #home-secondary-paths { grid-template-columns: repeat(5, minmax(0, 1fr)); }
     #home-secondary-paths .home-path { padding: var(--space-4); column-gap: var(--space-4); }
     #home-secondary-paths .home-path-title { font-size: var(--t-subtitle); }
