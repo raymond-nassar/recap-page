@@ -127,7 +127,7 @@ async function loadAllOwnerMappings() {
   return mappings;
 }
 
-async function loadDateCorrections(order, entries) {
+export async function loadDateCorrections(order, entries) {
   let ledger;
   try {
     ledger = JSON.parse(await readFile(join(SCRIPT_DATA_DIR, 'curated-source-ledgers', `${order.id}.json`), 'utf8'));
@@ -373,6 +373,67 @@ export function cleanText(s) {
 function coverBase(cover) {
   if (!cover?.path || !cover?.extension) return null;
   return { path: String(cover.path).replace(/^http:/, 'https:'), ext: cover.extension };
+}
+
+export function vendorIssueItem(entry, detail, {
+  orderId, supplement, correction, refused = false,
+} = {}) {
+  const ownerConfirmed = entry.identityEvidenceKind === 'owner-confirmed-identity';
+  const metadataTitle = cleanText(detail.title ?? entry.title);
+  const metadataNumber = parseIssueNumber(metadataTitle);
+  const number = parseIssueNumber(entry.title) ?? metadataNumber;
+  if (correction && ![correction.providerDate, correction.correctedDate]
+    .includes(typeof detail.onSaleDate === 'string' ? detail.onSaleDate.slice(0, 10) : null)) {
+    throw new Error(`Unexpected provider date for ${orderId}, issue ${entry.issueId}`);
+  }
+  return {
+    issueId: entry.issueId,
+    title: reconcileIssueTitleNumber(metadataTitle, metadataNumber, number),
+    number,
+    url: detail.detailUrl ?? entry.url,
+    seriesId: detail.seriesId ?? null,
+    seriesName: detail.seriesName == null ? null : cleanText(detail.seriesName),
+    onSale: correction ? `${correction.correctedDate}T00:00:00+0000`
+      : (supplement ? supplement.onSale : (detail.onSaleDate ?? null)),
+    mu: detail.unlimitedDate ?? null,
+    digitalId: detail.digitalId ?? null,
+    cover: supplement ? supplement.cover : coverBase(detail.cover),
+    // Not vendored, deliberately. This is the one copied field that is Marvel's own prose
+    // reproduced verbatim rather than a fact about a publication, which is why the provenance
+    // record names it as the field to look at hardest. Dropping it removed 151,840 characters
+    // across 798 of 1,473 records and cost one sentence on one screen: the field reached the
+    // interface through a single consumer, and `synopsisFallback` already answered for its
+    // absence for the 675 records that never had one. The lookup above still requests it, and
+    // `npm run contract` still asserts the service returns it, so this stays reversible by
+    // changing this one line back rather than by rebuilding anything.
+    description: null,
+    pageCount: supplement ? supplement.pageCount : (detail.pageCount ?? null),
+    creators: supplement ? supplement.creators.map((c) => ({ name: c.name, role: c.role })) : (Array.isArray(detail.creators)
+      ? detail.creators.filter((c) => /writer|penciler|artist/i.test(c.role ?? '')).map((c) => ({ name: c.name, role: c.role }))
+      : []),
+    // The one thing this run learned that the item cannot otherwise show. An issue the
+    // service answered 404 for is recorded here as refused, so the app is reading what the
+    // lookup was told instead of inferring it from every field being empty. Written only
+    // when it is true, so an order with nothing refused re-vendors with no per-item change
+    // at all. The file still differs, because generatedAt is a fresh wall clock on every
+    // run, so an empty diff is not the thing to check a run against.
+    ...(refused || ownerConfirmed ? { detailsRefused: true } : {}),
+    ...(ownerConfirmed ? { identityEvidenceKind: 'owner-confirmed-identity' } : {}),
+    // Which outside sources filled an owner-confirmed comic is recorded on the mapping row;
+    // the item carries only the closed kind, so the app can say truthfully where the cover
+    // and credits came from while every provider field stays null.
+    ...(supplement ? { metadataSourceKind: supplement.metadataSourceKind } : {}),
+    // The collected edition this issue belongs to, taken from the checklist's own
+    // sub-headings. It is the curator's grouping, not Marvel's: the metadata API carries
+    // no collection record for anything published after 2023, so there is nothing
+    // upstream to derive it from. Omitted entirely for an order with no sub-headings, so
+    // the orders that predate trade orders re-vendor to the same items they had before.
+    ...(entry.section ? { collectedIn: cleanText(entry.section) } : {}),
+  };
+}
+
+export function applyVendorPayloadRevisions(payload, output) {
+  return repairWolverineTitles(sourceCreditRevisions.apply(payload, output));
 }
 
 // The card art for a reading order. `coverIssueId` names the issue an order should be
@@ -640,69 +701,15 @@ async function main() {
     const issueItems = entries.map((e) => {
       const ownerConfirmed = e.identityEvidenceKind === 'owner-confirmed-identity';
       const d = ownerConfirmed ? {} : (meta.get(e.issueId) ?? {});
-      const supplement = ownerConfirmed ? supplementFor(e.issueId) : undefined;
-      if (d.digitalId == null) missingDigital += 1;
-      const cover = supplement ? supplement.cover : coverBase(d.cover);
-      if (!cover) missingCover += 1;
-      const metadataTitle = cleanText(d.title ?? e.title);
-      const metadataNumber = parseIssueNumber(metadataTitle);
-      const checklistNumber = parseIssueNumber(e.title);
-      const correction = dateCorrections.get(e.issueId);
-      if (correction && ![correction.providerDate, correction.correctedDate]
-        .includes(typeof d.onSaleDate === 'string' ? d.onSaleDate.slice(0, 10) : null)) {
-        throw new Error(`Unexpected provider date for ${order.id}, issue ${e.issueId}`);
-      }
-      return {
-        at: e.index,
-        item: {
-          issueId: e.issueId,
-          title: reconcileIssueTitleNumber(
-            metadataTitle,
-            metadataNumber,
-            checklistNumber ?? metadataNumber,
-          ),
-          number: checklistNumber ?? metadataNumber,
-          url: d.detailUrl ?? e.url,
-          seriesId: d.seriesId ?? null,
-          seriesName: d.seriesName == null ? null : cleanText(d.seriesName),
-          onSale: correction ? `${correction.correctedDate}T00:00:00+0000`
-            : (supplement ? supplement.onSale : (d.onSaleDate ?? null)),
-          mu: d.unlimitedDate ?? null,
-          digitalId: d.digitalId ?? null,
-          cover,
-          // Not vendored, deliberately. This is the one copied field that is Marvel's own prose
-          // reproduced verbatim rather than a fact about a publication, which is why the provenance
-          // record names it as the field to look at hardest. Dropping it removed 151,840 characters
-          // across 798 of 1,473 records and cost one sentence on one screen: the field reached the
-          // interface through a single consumer, and `synopsisFallback` already answered for its
-          // absence for the 675 records that never had one. The lookup above still requests it, and
-          // `npm run contract` still asserts the service returns it, so this stays reversible by
-          // changing this one line back rather than by rebuilding anything.
-          description: null,
-          pageCount: supplement ? supplement.pageCount : (d.pageCount ?? null),
-          creators: supplement ? supplement.creators.map((c) => ({ name: c.name, role: c.role })) : (Array.isArray(d.creators)
-            ? d.creators.filter((c) => /writer|penciler|artist/i.test(c.role ?? '')).map((c) => ({ name: c.name, role: c.role }))
-            : []),
-          // The one thing this run learned that the item cannot otherwise show. An issue the
-          // service answered 404 for is recorded here as refused, so the app is reading what the
-          // lookup was told instead of inferring it from every field being empty. Written only
-          // when it is true, so an order with nothing refused re-vendors with no per-item change
-          // at all. The file still differs, because generatedAt is a fresh wall clock on every
-          // run, so an empty diff is not the thing to check a run against.
-          ...(refused.has(e.issueId) || ownerConfirmed ? { detailsRefused: true } : {}),
-          ...(ownerConfirmed ? { identityEvidenceKind: 'owner-confirmed-identity' } : {}),
-          // Which outside sources filled an owner-confirmed comic is recorded on the mapping row;
-          // the item carries only the closed kind, so the app can say truthfully where the cover
-          // and credits came from while every provider field stays null.
-          ...(supplement ? { metadataSourceKind: supplement.metadataSourceKind } : {}),
-          // The collected edition this issue belongs to, taken from the checklist's own
-          // sub-headings. It is the curator's grouping, not Marvel's: the metadata API carries
-          // no collection record for anything published after 2023, so there is nothing
-          // upstream to derive it from. Omitted entirely for an order with no sub-headings, so
-          // the orders that predate trade orders re-vendor to the same items they had before.
-          ...(e.section ? { collectedIn: cleanText(e.section) } : {}),
-        },
-      };
+      const item = vendorIssueItem(e, d, {
+        orderId: order.id,
+        supplement: ownerConfirmed ? supplementFor(e.issueId) : undefined,
+        correction: dateCorrections.get(e.issueId),
+        refused: refused.has(e.issueId),
+      });
+      if (item.digitalId == null) missingDigital += 1;
+      if (!item.cover) missingCover += 1;
+      return { at: e.index, item };
     });
 
     const placeholderItems = unresolved.map((u) => ({
@@ -751,7 +758,7 @@ async function main() {
       else console.warn(`  ! ${order.id}: issue ${entry.issueId} stays bare; ${entry.lenders.join(', ')} hold different details`);
     }
 
-    const payload = repairWolverineTitles(sourceCreditRevisions.apply({
+    const payload = applyVendorPayloadRevisions({
       id: order.id,
       name: order.name,
       description: order.description,
@@ -767,7 +774,7 @@ async function main() {
       placeholders: placeholderItems.length,
       unresolved,
       items,
-    }, order.out));
+    }, order.out);
 
     outputs.push({
       path: join(DATA_DIR, order.out),

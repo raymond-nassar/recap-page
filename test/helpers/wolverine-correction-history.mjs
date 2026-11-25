@@ -4,7 +4,9 @@ import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { libraryDigestFor, sourcePositionsForPacket } from '../../scripts/lib/cbh-inventory.mjs';
+import {
+  digestCanonicalJson, libraryDigestFor, packetDigestFor, sourcePositionsForPacket,
+} from '../../scripts/lib/cbh-inventory.mjs';
 import { descriptionRevisions } from '../../scripts/lib/description-revisions.mjs';
 import {
   beforeUltimateSelectionEntry, beforeUltimateSelectionOrders,
@@ -15,9 +17,20 @@ const root = fileURLToPath(new URL('../..', import.meta.url));
 const read = (file) => JSON.parse(readFileSync(path.join(root, file), 'utf8'));
 const ledger = read('scripts/data/cbh-source-ledgers/wolverine-reading-order-series-correction.json');
 const prior = ledger.priorPublication;
-const show = (file) => execFileSync('git', ['show', `${prior.commit}:${file}`], {
+const successorDir = 'scripts/data/cbh-source-ledgers/wolverine-reading-order-identity-correction-v1';
+export const wolverineSuccessorLedger = read(`${successorDir}/correction-ledger.json`);
+const { planDigest, ...plan } = read(`${successorDir}/gap-delta-plan.json`);
+assert.equal(digestCanonicalJson(plan), planDigest);
+assert.equal(planDigest, wolverineSuccessorLedger.planDigest);
+export const wolverineGapResolutions = plan.replacements;
+export const wolverineSeriesCorrectionReviewCommit = '81103a52e66eed50ce5b7d52ca8f1b2121d1489f';
+const show = (file, commit = prior.commit) => execFileSync('git', ['show', `${commit}:${file}`], {
   cwd: root, encoding: 'utf8', maxBuffer: 64 << 20,
 });
+
+export function readPreSuccessorWolverinePublication(file) {
+  return show(file, wolverineSuccessorLedger.priorPublication.commit);
+}
 
 export function firstReleasedWolverineIssueOrders() {
   const unique = new Map();
@@ -40,7 +53,8 @@ function correctionHistory() {
   assert.equal(createHash('sha256').update(originalText).digest('hex'), prior.payloadSha256);
   const original = JSON.parse(originalText);
   const originalIds = original.items.map(({ issueId }) => String(issueId));
-  const packet = read(prior.files.packet);
+  const packet = JSON.parse(show(prior.files.packet, wolverineSeriesCorrectionReviewCommit));
+  assert.equal(packetDigestFor(packet), ledger.correctionReview.packetDigest);
   const positions = sourcePositionsForPacket(packet);
   const rows = packet.rows.map((row, index) => ({
     position: positions[index], id: String(row.candidateIssueId),
@@ -53,7 +67,14 @@ function correctionHistory() {
   }))].sort((a, b) => a.position - b.position).map(({ id }) => id);
   assert.equal(currentIds.length, ledger.correctionReview.sourceCounts.sourceIdentityCount);
   assert.equal(currentIds.length - originalIds.length, wolverineCorrectionItemDelta);
-  history = { originalText, originalIds, currentIds };
+  assert.equal(digestCanonicalJson(currentIds.map(Number)), wolverineSuccessorLedger.priorPublication.vectorDigest);
+  const successorIds = currentIds.slice();
+  for (const { index, previousIssueId, issueId } of wolverineGapResolutions) {
+    assert.equal(successorIds[index], String(previousIssueId));
+    successorIds[index] = String(issueId);
+  }
+  assert.equal(digestCanonicalJson(successorIds.map(Number)), wolverineSuccessorLedger.correctedCandidate.vectorDigest);
+  history = { originalText, originalIds, currentIds, successorIds };
   return history;
 }
 
@@ -70,11 +91,10 @@ export function beforeWolverineCorrectionManifest(manifest) {
 }
 
 export function beforeWolverineCorrectionIssueIds(ids) {
-  const { originalIds, currentIds } = correctionHistory();
-  const actual = ids.map(String);
-  assert.ok(JSON.stringify(actual) === JSON.stringify(originalIds)
-    || JSON.stringify(actual) === JSON.stringify(currentIds),
-  'Wolverine history accepts only the captured prior vector or the exact reviewed correction.');
+  const { originalIds, currentIds, successorIds } = correctionHistory();
+  const actual = JSON.stringify(ids.map(String));
+  assert.ok([originalIds, currentIds, successorIds].some((order) => JSON.stringify(order) === actual),
+    'Wolverine history accepts only the captured prior vector or the exact reviewed correction.');
   return [...originalIds];
 }
 

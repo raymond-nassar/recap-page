@@ -5,7 +5,7 @@ import { readOwnerGuideRegistry } from '../../scripts/lib/owner-guide-registry.m
 import { spiderManSelectionItemDelta } from './reading-choice-history.mjs';
 import { identityRevisions } from './owner-identity-history.mjs';
 import { amazingSpiderManSupplementDelta } from './amazing-spider-man-history.mjs';
-import { wolverineCorrectionItemDelta } from './wolverine-correction-history.mjs';
+import { wolverineCorrectionItemDelta, wolverineGapResolutions } from './wolverine-correction-history.mjs';
 import { thorCorrectionItemDelta } from './reading-list-correction-history.mjs';
 import { ultimateSelectionDelta, ultimateSelectionEmptyDelta } from '../../scripts/lib/ultimate-spider-man-selection.mjs';
 import { xmenFirstClassDelta } from './xmen-first-class-history.mjs';
@@ -108,7 +108,7 @@ export const currentReadingCensus = Object.freeze({
   complete: baseline.payloadCounts.complete + addedRows - addedPlaceholderRows + spiderManSelectionItemDelta
     + amazingSpiderManSupplementDelta + wolverineCorrectionItemDelta + thorCorrectionItemDelta
     + ultimateSelectionDelta - ultimateSelectionEmptyDelta + xmenFirstClassDelta + ultimateIntroCorrectionDelta + tieInRows - 2
-    + xmenEraItemDelta - xmenEraPlaceholderDelta
+    + xmenEraItemDelta - xmenEraPlaceholderDelta + wolverineGapResolutions.length
     + identityRevisions.guides.filter((entry) => entry.placeholderReplacement)
       .reduce((total, entry) => total + entry.issueIds.length, 0),
   totalItems: baseline.payloadCounts.total + addedRows + spiderManSelectionItemDelta

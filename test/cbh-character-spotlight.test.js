@@ -1,5 +1,6 @@
 import { beforeXmenEraManifest } from './helpers/xmen-era-history.mjs';
 import { currentReadingCensus } from './helpers/current-reading-library.mjs';
+import { readPreSuccessorWolverinePublication } from './helpers/wolverine-correction-history.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
@@ -3310,18 +3311,16 @@ test('Iron Man ships with its exact boundary and generated surfaces', async () =
   assert.equal(generated.items.length, 811);
 });
 
-test('Wolverine settles every reviewed gap without substitution or boundary widening', async () => {
-  const inventory = await readJson('scripts/data/cbh-character-inventory.json');
-  const manifest = await readJson('src/data/curated-lists.json');
-  const catalog = await readJson('src/data/catalog.json');
-  const packet = await readJson(`scripts/data/cbh-packets/${wolverineCandidateId}.json`);
-  const mapping = await readJson(`scripts/data/cbh-mappings/${wolverineCandidateId}.json`);
-  const report = await readJson(`scripts/data/cbh-overlaps/${wolverineCandidateId}.json`);
-  const generated = await readJson('src/data/wolverine_reading_order.json');
-  const markdown = await readFile(
-    path.join(root, `src/data/orders/${wolverineCandidateId}.md`),
-    'utf8',
-  );
+test('Wolverine original gap settlement preserves its reviewed boundary and exact results', () => {
+  const readPublished = (file) => JSON.parse(readPreSuccessorWolverinePublication(file));
+  const inventory = readPublished('scripts/data/cbh-character-inventory.json');
+  const manifest = readPublished('src/data/curated-lists.json');
+  const catalog = readPublished('src/data/catalog.json');
+  const packet = readPublished(`scripts/data/cbh-packets/${wolverineCandidateId}.json`);
+  const mapping = readPublished(`scripts/data/cbh-mappings/${wolverineCandidateId}.json`);
+  const report = readPublished(`scripts/data/cbh-overlaps/${wolverineCandidateId}.json`);
+  const generated = readPublished('src/data/wolverine_reading_order.json');
+  const markdown = readPreSuccessorWolverinePublication(`src/data/orders/${wolverineCandidateId}.md`);
   const parsed = parseChecklist(markdown, { legacyIdentityKeys: true });
   const record = inventory.find((candidate) => candidate.id === wolverineCandidateId);
   const manifestEntry = manifest.lists.find((entry) => entry.id === wolverineCandidateId);

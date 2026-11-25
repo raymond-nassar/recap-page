@@ -529,6 +529,20 @@ HTTP 404 this way. Missing records, unbound or corrupt responses, other HTTP err
 transport failures abort before any output changes. Retain genuine successful records and
 retry only missing requests under the existing vendoring rate limit.
 
+For a reviewed correction that replaces only exact gaps in an already-published Comic Book Herald
+order, use the bounded gap-delta projector rather than inventing cache responses for unchanged
+issues. It requires the mapping's approved relationship review and binds its report and approval
+digests alongside the prior payload bytes, issue vector, checklist, mapping and transition ledger.
+It reads genuine request-bound detail records only for the replacement issues and uses the same
+issue-item transformation as normal vendoring. It fails on stale inputs, missing or mismatched
+detail records, or any changed checklist line or payload item outside the approved slots. This
+prepares a local candidate only; source, relationship and saved-progress reviews plus the normal
+publication gates still apply before any catalog output is activated.
+
+For the Wolverine correction, run the reviewed authoring check in a disposable copy. It requires
+the entire published manifest to stay unchanged, including the description and discovery tags.
+Use the bounded projector, not the full author output, for the delivered checklist.
+
 A local source can be a partition parent. Give it a `partitionFile`, set `catalog` to `false`,
 and keep the checked ledger under `scripts/data`. Before writing anything, the vendor validates
 source-position coverage, the pinned parent issue vector, child metadata, derived years, path order

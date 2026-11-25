@@ -1,4 +1,5 @@
 import { currentReadingCensus, registeredCatalogAdditionIds } from './helpers/current-reading-library.mjs';
+import { wolverineGapResolutions } from './helpers/wolverine-correction-history.mjs';
 import { xmenEraPlaceholderDelta } from './helpers/xmen-era-history.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -305,7 +306,7 @@ test('the bundled catalog is valid and its counts match the vendored orders', as
     },
     {
       complete: currentReadingCensus.complete,
-      placeholders: 1130 + xmenEraPlaceholderDelta,
+      placeholders: 1130 + xmenEraPlaceholderDelta - wolverineGapResolutions.length,
       emptyRecords: 221,
       total: currentReadingCensus.totalItems,
       placeholderEntries: 29,

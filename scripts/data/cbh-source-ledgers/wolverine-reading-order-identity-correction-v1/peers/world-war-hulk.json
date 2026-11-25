@@ -1,0 +1,204 @@
+{
+  "id": "world-war-hulk",
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "selectedIssueId": 13426,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 2,
+      "selectedIssueId": 13507,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 3,
+      "selectedIssueId": 15873,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 4,
+      "selectedIssueId": 15850,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 5,
+      "selectedIssueId": 15825,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 6,
+      "selectedIssueId": 15807,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 7,
+      "selectedIssueId": 15879,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 8,
+      "selectedIssueId": 15889,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 9,
+      "selectedIssueId": 15950,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 10,
+      "selectedIssueId": 16006,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 11,
+      "selectedIssueId": 15984,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 12,
+      "selectedIssueId": 15988,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 13,
+      "selectedIssueId": 15976,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 14,
+      "selectedIssueId": 15960,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 15,
+      "selectedIssueId": 15999,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 16,
+      "selectedIssueId": 15853,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 17,
+      "selectedIssueId": 15963,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 18,
+      "selectedIssueId": 15942,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 19,
+      "selectedIssueId": 15925,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 20,
+      "selectedIssueId": 16168,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 21,
+      "selectedIssueId": 16173,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 22,
+      "selectedIssueId": 16107,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 23,
+      "selectedIssueId": 16189,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 24,
+      "selectedIssueId": 16183,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 25,
+      "selectedIssueId": 16162,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 26,
+      "selectedIssueId": 16448,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 27,
+      "selectedIssueId": 16148,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 28,
+      "selectedIssueId": 16596,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 29,
+      "selectedIssueId": 16557,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 30,
+      "selectedIssueId": 16174,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 31,
+      "selectedIssueId": 16569,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 32,
+      "selectedIssueId": 16514,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 33,
+      "selectedIssueId": 16515,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 34,
+      "selectedIssueId": 16516,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 35,
+      "selectedIssueId": 16597,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 36,
+      "selectedIssueId": 16449,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 37,
+      "selectedIssueId": 16560,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 38,
+      "selectedIssueId": 16570,
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 39,
+      "selectedIssueId": 17231,
+      "resolutionStatus": "exact"
+    }
+  ],
+  "mappingDigest": "cec2d70f86c1e789c336dc116615a36300a9590b9eea3baf3e23d692d9ec2885",
+  "publicSource": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/world-war-hulk/",
+  "sourceEvidenceSha256": "7124e55c39b3e40bb816e7338bc8c02675170ecf1fc4c8449dcdaa60bfb8a8b7",
+  "peerEvidenceSha256": "67e7ee6ac1f7ebe1b50d6dda2742d45767e744f7cff41249cc44347ed30eade3"
+}

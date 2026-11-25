@@ -3,6 +3,7 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { isDeepStrictEqual } from 'node:util';
 import { parseManifest } from '../src/js/lib/curated.js';
 import { escapeLinkText } from '../src/js/lib/markdown.js';
 import {
@@ -16,8 +17,10 @@ import {
   sourceCountsForPacket,
   validateSourceExpansion,
   validateSourceIdentities,
+  withPublishedDiscoveryTags,
 } from './lib/cbh-inventory.mjs';
 import { CBH_LATER_ORDER_IDS } from './lib/cbro-evidence.mjs';
+import { descriptionRevisions } from './lib/description-revisions.mjs';
 import { loadLibrarySnapshot } from './report-order-overlap.mjs';
 import { preflightPublicationWrites, readPublicationInputs } from './check-publication.mjs';
 import { selectedUltimateRows, ultimateSelection } from './lib/ultimate-spider-man-selection.mjs';
@@ -28,6 +31,18 @@ const OVERLAPS_DIR = path.join(ROOT, 'scripts', 'data', 'cbh-overlaps');
 const PACKETS_DIR = path.join(ROOT, 'scripts', 'data', 'cbh-packets');
 const ORDERS_DIR = path.join(ROOT, 'src', 'data', 'orders');
 const MANIFEST_PATH = path.join(ROOT, 'src', 'data', 'curated-lists.json');
+const WOLVERINE_18_PEER_IDS = Object.freeze([
+  'civil-war-to-secret-invasion',
+  'world-war-hulk',
+  'secret-wars-2015-event-tie-ins',
+]);
+const WOLVERINE_18_PEER_EVIDENCE_DIRECTORY = path.join(
+  'scripts',
+  'data',
+  'cbh-source-ledgers',
+  'wolverine-reading-order-identity-correction-v1',
+  'peers',
+);
 const TYPHOGRAPHIC_DASHES = /[\u2013\u2014]/g;
 const LEGACY_UNREGISTERED_PACKET = Object.freeze({
   id: 'modern-x-men-fast-track',
@@ -251,6 +266,10 @@ function checklistTitleForRow(row) {
     : `${title} #${issueNumber}`;
 }
 
+export function mappedIssueCheckbox(row) {
+  return `- [ ] [${escapeLinkText(checklistTitleForRow(row))} <!-- mrt:source-occurrence=${row.sourcePosition} -->](${row.marvelIssueUrl})`;
+}
+
 export function buildMarkdown(mapping) {
   const manifest = manifestEntryForMapping(mapping);
   selectedIssueIds(mapping);
@@ -306,7 +325,7 @@ export function buildMarkdown(mapping) {
         : [];
       currentGroup = sourceGroup;
       if (entry.kind === 'exact') {
-        return [...heading, `- [ ] [${escapeLinkText(checklistTitleForRow(entry.value))} <!-- mrt:source-occurrence=${entry.value.sourcePosition} -->](${entry.value.marvelIssueUrl})`];
+        return [...heading, mappedIssueCheckbox(entry.value)];
       }
       const sourceKey = placeholderIdentityMode === 'source-occurrence'
         ? String(entry.value.sourcePosition)
@@ -484,6 +503,26 @@ export function mergePacketEntries(existing, entries, insertionAnchors = {}) {
   return merged;
 }
 
+export function mergePublishedWolverineCorrection(current, entry, insertionAnchor) {
+  const published = current.lists.find((candidate) => candidate.id === entry.id);
+  assert(published, `${entry.id} has no published manifest entry to correct`);
+  assert(typeof insertionAnchor?.beforeId === 'string' && insertionAnchor.beforeId,
+    `${entry.id} correction requires the reviewed chronology anchor`);
+  const tagged = withPublishedDiscoveryTags(entry, published);
+  const preimage = descriptionRevisions.beforeEntry(published);
+  assert(isDeepStrictEqual(published, descriptionRevisions.afterEntry(published))
+    && isDeepStrictEqual(tagged, preimage), `${entry.id} differs from its published manifest preimage`);
+
+  const existing = existingEntriesForPacket(current.lists, [entry.id]);
+  const revised = descriptionRevisions.redoEntry(tagged);
+  const next = {
+    ...current,
+    lists: mergePacketEntries(existing, [revised], { [entry.id]: insertionAnchor }),
+  };
+  assert(isDeepStrictEqual(next, current), `${entry.id} published manifest has changed`);
+  return next;
+}
+
 export function laterOrderIdsForAuthor(includeLater = false) {
   return includeLater ? [] : CBH_LATER_ORDER_IDS;
 }
@@ -496,6 +535,7 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
   manifestFile = MANIFEST_PATH,
   payloadDir = path.dirname(MANIFEST_PATH),
   peerIds = [],
+  wolverine18PeerEvidence = false,
   includeLater = false,
   publicationRoot = ROOT,
   inventoryPaths = [
@@ -512,15 +552,24 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
   for (const peerId of peerIds) {
     assert(!packetIdSet.has(peerId), `${peerId} cannot be both authored and an external peer`);
   }
+  if (wolverine18PeerEvidence) {
+    assert(includeLater, 'Wolverine 18 peer evidence requires the approved --include-later scope');
+  }
+  const peerEvidencePaths = wolverine18PeerEvidence
+    ? wolverine18PeerMappingPaths(peerIds, { packetIds, root: publicationRoot })
+    : new Map();
+  const mappingPath = (id) => path.join(mappingsDir, `${id}.json`);
+  const peerMappingPath = (id) => peerEvidencePaths.get(id) ?? mappingPath(id);
   const initialPaths = [
     manifestFile,
-    ...[...packetIds, ...peerIds].map((id) => path.join(mappingsDir, `${id}.json`)),
+    ...packetIds.map(mappingPath),
+    ...peerIds.map(peerMappingPath),
   ];
   const initialInputs = await readPublicationInputs({ root: publicationRoot, paths: initialPaths });
   const initialManifest = initialInputs.json(manifestFile);
   assert(parseManifest(initialManifest).errors.length === 0, 'The existing manifest is invalid before authoring');
   const hasFrozenPacket = packetIds.some((id) => (
-    initialInputs.json(path.join(mappingsDir, `${id}.json`)).packetDigest
+    initialInputs.json(mappingPath(id)).packetDigest
   ));
   if (hasFrozenPacket) {
     assert(Array.isArray(inventoryPaths) && inventoryPaths.length > 0,
@@ -562,12 +611,12 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
     !externalPeerIdSet.has(entry.id) && !laterOrderIdSet.has(entry.id)
   ));
   const externalPeerMappings = await Promise.all(peerIds.map(async (id) => {
-    const mapping = inputs.json(path.join(mappingsDir, `${id}.json`));
+    const mapping = inputs.json(peerMappingPath(id));
     assert(mapping.id === id, `${id} external peer mapping id changed`);
     return mapping;
   }));
   const mappings = await Promise.all(packetIds.map(async (id) => {
-    const mapping = inputs.json(path.join(mappingsDir, `${id}.json`));
+    const mapping = inputs.json(mappingPath(id));
     const report = inputs.json(path.join(overlapsDir, `${id}.json`));
     const packet = mapping.packetDigest
       ? inputs.json(path.join(packetsDir, `${id}.json`))
@@ -649,10 +698,9 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
     assert(!existingSourceFiles.has(entry.sourceFile), `${entry.id} duplicates a shipped source file`);
   }
 
-  const nextManifest = {
-    ...current,
-    lists: mergePacketEntries(existing, entries, insertionAnchors),
-  };
+  const nextManifest = wolverine18PeerEvidence
+    ? mergePublishedWolverineCorrection(current, entries[0], insertionAnchors[entries[0].id])
+    : { ...current, lists: mergePacketEntries(existing, entries, insertionAnchors) };
   const parsed = parseManifest(nextManifest);
   assert(parsed.errors.length === 0, `Authored manifest is invalid:\n${parsed.errors.join('\n')}`);
   assert(parsed.entries.length === existing.length + packetIds.length, 'Authored manifest lost an order');
@@ -698,11 +746,36 @@ export function peerIdsFromArgs(args) {
   return ids;
 }
 
+export function wolverine18PeerEvidenceFromArgs(args) {
+  const evidenceArgs = args.filter((arg) => arg === '--wolverine-18-peer-evidence');
+  if (evidenceArgs.length > 1) throw new Error('Use --wolverine-18-peer-evidence at most once');
+  return evidenceArgs.length === 1;
+}
+
+export function wolverine18PeerMappingPaths(peerIds, {
+  packetIds,
+  root = ROOT,
+} = {}) {
+  assertNoDuplicates(peerIds, 'external peer id');
+  assert(packetIds?.length === 1 && packetIds[0] === 'wolverine-reading-order',
+    'Wolverine 18 peer evidence is only valid for wolverine-reading-order');
+  assert(canonicalJson([...peerIds].sort()) === canonicalJson([...WOLVERINE_18_PEER_IDS].sort()),
+    'Wolverine 18 peer evidence requires its exact approved peer set');
+  const rootPath = path.resolve(root);
+  const directory = path.resolve(rootPath, WOLVERINE_18_PEER_EVIDENCE_DIRECTORY);
+  const relativeDirectory = path.relative(rootPath, directory);
+  assert(relativeDirectory && relativeDirectory !== '..'
+    && !relativeDirectory.startsWith(`..${path.sep}`) && !path.isAbsolute(relativeDirectory),
+  'Wolverine 18 peer evidence must remain inside the publication root');
+  return new Map(peerIds.map((id) => [id, path.join(directory, `${id}.json`)]));
+}
+
 export function includeLaterFromArgs(args) {
   const includeLaterArgs = args.filter((arg) => arg === '--include-later');
   if (includeLaterArgs.length > 1) throw new Error('Use --include-later at most once');
   const unknown = args.filter((arg) => (
     arg !== '--include-later'
+    && arg !== '--wolverine-18-peer-evidence'
     && !arg.startsWith('--only=')
     && !arg.startsWith('--peer=')
   ));
@@ -715,6 +788,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(thisFile))
   const args = process.argv.slice(2);
   authorPacket(authorIdsFromArgs(args), {
     peerIds: peerIdsFromArgs(args),
+    wolverine18PeerEvidence: wolverine18PeerEvidenceFromArgs(args),
     includeLater: includeLaterFromArgs(args),
   }).then((summary) => {
     console.log(`Authored ${summary.guides} guides with ${summary.rows} rows; manifest now has ${summary.manifestEntries} entries.`);

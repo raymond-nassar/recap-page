@@ -1514,13 +1514,13 @@
     "fp": "8b1350d747d08b62",
     "head": "export const KEY = 'mrt.state.v2';"
   },
-  ".github/skills/new-reading-list/SKILL.md|classify-the-request-before-authoring#actual-comic-book-herald-source|docs/MAINTAINING.md:580|0": {
-    "anchor": "docs/MAINTAINING.md:580",
+  ".github/skills/new-reading-list/SKILL.md|classify-the-request-before-authoring#actual-comic-book-herald-source|docs/MAINTAINING.md:594|0": {
+    "anchor": "docs/MAINTAINING.md:594",
     "fp": "e68c1d5b4a58f20e",
     "head": "## Build a Comic Book Herald packet"
   },
-  ".github/skills/new-reading-list/SKILL.md|classify-the-request-before-authoring#actual-comic-book-reading-orders-source-within-a|docs/MAINTAINING.md:757|0": {
-    "anchor": "docs/MAINTAINING.md:757",
+  ".github/skills/new-reading-list/SKILL.md|classify-the-request-before-authoring#actual-comic-book-reading-orders-source-within-a|docs/MAINTAINING.md:771|0": {
+    "anchor": "docs/MAINTAINING.md:771",
     "fp": "d8181dc2cde63c63",
     "head": "## Build a Comic Book Reading Orders historical event packet"
   },
@@ -1559,8 +1559,8 @@
     "fp": "6fde7f377cd6f228",
     "head": "Finish reads GitHub; it never requests a merge. It requires an actual merge event and the published"
   },
-  ".github/skills/new-reading-list/SKILL.md|preserve-the-source-while-preparing-delivery|docs/MAINTAINING.md:1909|0": {
-    "anchor": "docs/MAINTAINING.md:1909",
+  ".github/skills/new-reading-list/SKILL.md|preserve-the-source-while-preparing-delivery|docs/MAINTAINING.md:1923|0": {
+    "anchor": "docs/MAINTAINING.md:1923",
     "fp": "bc5ae9fc4df20cc3",
     "head": "## Place a new reading list in a Universe"
   },
@@ -1594,8 +1594,8 @@
     "fp": "6fde7f377cd6f228",
     "head": "Finish reads GitHub; it never requests a merge. It requires an actual merge event and the published"
   },
-  ".github/skills/prepare-release/SKILL.md|classify-the-request|docs/MAINTAINING.md:1072-1078|0": {
-    "anchor": "docs/MAINTAINING.md:1072-1078",
+  ".github/skills/prepare-release/SKILL.md|classify-the-request|docs/MAINTAINING.md:1086-1092|0": {
+    "anchor": "docs/MAINTAINING.md:1086-1092",
     "fp": "69038f7c150c0982",
     "head": "## Cutting a release"
   },
@@ -1909,8 +1909,8 @@
     "fp": "ef88d015edeffa21",
     "head": "await this.journal.begin(record);"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|how-reading-content-reaches-the-browser|scripts/vendor-orders.mjs:787-880|0": {
-    "anchor": "scripts/vendor-orders.mjs:787-880",
+  "docs/ARCHITECTURE_REFERENCE.md|how-reading-content-reaches-the-browser|scripts/vendor-orders.mjs:794-887|0": {
+    "anchor": "scripts/vendor-orders.mjs:794-887",
     "fp": "aaa2d5e8eabc1354",
     "head": "// Lists we did not rebuild still have to appear in the catalog, so their entries are derived"
   },
@@ -2164,8 +2164,8 @@
     "fp": "7e0b7835caeba5d1",
     "head": "export const ADD_VIEWS = ['add-search', 'add-series', 'add-creator', 'add-import', 'add-manual'];"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|the-module-graph-drawn-as-ownership|scripts/author-cbh-packet.mjs:6|0": {
-    "anchor": "scripts/author-cbh-packet.mjs:6",
+  "docs/ARCHITECTURE_REFERENCE.md|the-module-graph-drawn-as-ownership|scripts/author-cbh-packet.mjs:7|0": {
+    "anchor": "scripts/author-cbh-packet.mjs:7",
     "fp": "2691c5a6c7db0bcf",
     "head": "import { parseManifest } from '../src/js/lib/curated.js';"
   },
@@ -5901,7 +5901,7 @@
   },
   "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/current-reading-library.mjs:16-120|0": {
     "anchor": "test/helpers/current-reading-library.mjs:16-120",
-    "fp": "8b983f7997b7016f",
+    "fp": "c78f2430678b1cbe",
     "head": "const { captureSha256, ...baseline } = JSON.parse(readFileSync("
   },
   "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:292-319|0": {
@@ -5909,8 +5909,8 @@
     "fp": "2100318718f733b2",
     "head": "async function assertRegisteredLaterPeer(id, later, { contracts, json }) {"
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|integrate-serially-against-fresh-evidence|scripts/vendor-orders.mjs:524-545|0": {
-    "anchor": "scripts/vendor-orders.mjs:524-545",
+  "docs/BATCH_READING_LIST_DELIVERY.md|integrate-serially-against-fresh-evidence|scripts/vendor-orders.mjs:585-606|0": {
+    "anchor": "scripts/vendor-orders.mjs:585-606",
     "fp": "a134aada39ad4af0",
     "head": "if (metadataCacheDir && (catalogOnly || only.size === 0)) {"
   },
@@ -5949,20 +5949,20 @@
     "fp": "ceccab946c09b48f",
     "head": "function ownerIdentityParts(identity) {"
   },
-  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:558-562|0": {
-    "anchor": "scripts/vendor-orders.mjs:558-562",
+  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:378-421|0": {
+    "anchor": "scripts/vendor-orders.mjs:378-421",
+    "fp": "29fcabe8e528fff1",
+    "head": "export function vendorIssueItem(entry, detail, {"
+  },
+  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:619-623|0": {
+    "anchor": "scripts/vendor-orders.mjs:619-623",
     "fp": "b5164475feb84ad2",
     "head": "const ids = [...new Set(parsed.flatMap(({ parsedOrder }) => ("
   },
-  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:641-642|0": {
-    "anchor": "scripts/vendor-orders.mjs:641-642",
-    "fp": "c089d2cbfead089a",
-    "head": "const ownerConfirmed = e.identityEvidenceKind === 'owner-confirmed-identity';"
-  },
-  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:692-693|0": {
-    "anchor": "scripts/vendor-orders.mjs:692-693",
-    "fp": "7b74eea9291f2eae",
-    "head": "...(refused.has(e.issueId) || ownerConfirmed ? { detailsRefused: true } : {}),"
+  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:703-706|0": {
+    "anchor": "scripts/vendor-orders.mjs:703-706",
+    "fp": "1369480b892e9e15",
+    "head": "const d = ownerConfirmed ? {} : (meta.get(e.issueId) ?? {});"
   },
   "docs/DATA_PROVENANCE.md|owner-selected-shang-chi-compilation|scripts/data/mcu-prep-source-ledgers/mcu-prep-shang-chi-and-the-legend-of-the-ten-rings.json:578-583|0": {
     "anchor": "scripts/data/mcu-prep-source-ledgers/mcu-prep-shang-chi-and-the-legend-of-the-ten-rings.json:578-583",

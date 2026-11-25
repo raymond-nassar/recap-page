@@ -22,7 +22,10 @@ import {
   laterOrderIdsForAuthor,
   manifestEntryForMapping,
   mergePacketEntries,
+  mergePublishedWolverineCorrection,
   peerIdsFromArgs,
+  wolverine18PeerEvidenceFromArgs,
+  wolverine18PeerMappingPaths,
 } from '../scripts/author-cbh-packet.mjs';
 import {
   approvalDigestFor,
@@ -1420,13 +1423,66 @@ test('the original authored packet keeps its identities, sequence, and pre-publi
   }
 });
 
+test('Wolverine reauthoring preserves the exact published manifest and rejects drift', async () => {
+  const id = 'wolverine-reading-order';
+  const published = await readJson(path.join(dataDir, 'curated-lists.json'));
+  const mapping = await readJson(path.join(mappingsDir, `${id}.json`));
+  const entry = manifestEntryForMapping(mapping);
+  const anchor = { beforeId: 'hope-summers-reading-order' };
+
+  assert.deepEqual(mergePublishedWolverineCorrection(published, entry, anchor), published);
+  assert.throws(() => mergePublishedWolverineCorrection(published, entry, { beforeId: 'xmen-claremont' }),
+    /catalog chronology anchor xmen-claremont is missing/);
+  assert.throws(() => mergePublishedWolverineCorrection(published, entry,
+    { beforeId: 'winter-soldier-bucky-barnes-reading-order' }), /published manifest has changed/i);
+  assert.throws(() => mergePublishedWolverineCorrection(published, { ...entry, name: 'Changed' }, anchor),
+    /published manifest preimage/i);
+  assert.throws(() => mergePublishedWolverineCorrection(published, {
+    ...entry, description: descriptionRevisions.afterEntry(entry).description,
+  }, anchor), /published manifest preimage/i);
+});
+
 test('approved generic evidence stays current through named chronology insertion', () => {
   const evidence = genericEvidence();
   assert.doesNotThrow(() => assertApprovedRelationshipReview(evidence));
   assert.deepEqual(authorIdsFromArgs(['--only=future-event']), ['future-event']);
   assert.deepEqual(peerIdsFromArgs(['--peer=peer-event']), ['peer-event']);
+  assert.equal(wolverine18PeerEvidenceFromArgs(['--wolverine-18-peer-evidence']), true);
+  assert.equal(wolverine18PeerEvidenceFromArgs([]), false);
+  assert.throws(
+    () => wolverine18PeerEvidenceFromArgs(['--wolverine-18-peer-evidence', '--wolverine-18-peer-evidence']),
+    /at most once/i,
+  );
+  const wolverinePeers = [
+    'civil-war-to-secret-invasion',
+    'world-war-hulk',
+    'secret-wars-2015-event-tie-ins',
+  ];
+  const peerPaths = wolverine18PeerMappingPaths(wolverinePeers, {
+    packetIds: ['wolverine-reading-order'],
+    root: path.resolve('.'),
+  });
+  assert.deepEqual([...peerPaths.keys()], wolverinePeers);
+  assert.ok([...peerPaths.values()].every((file) => (
+    path.relative(path.resolve('.'), file).startsWith(path.join('scripts', 'data', 'cbh-source-ledgers'))
+  )));
+  assert.throws(
+    () => wolverine18PeerMappingPaths(wolverinePeers.slice(1), {
+      packetIds: ['wolverine-reading-order'],
+      root: path.resolve('.'),
+    }),
+    /exact approved peer set/i,
+  );
+  assert.throws(
+    () => wolverine18PeerMappingPaths(wolverinePeers, {
+      packetIds: ['other-guide'],
+      root: path.resolve('.'),
+    }),
+    /only valid/i,
+  );
   assert.equal(includeLaterFromArgs(['--only=future-event']), false);
   assert.equal(includeLaterFromArgs(['--only=future-event', '--include-later']), true);
+  assert.equal(includeLaterFromArgs(['--only=wolverine-reading-order', '--wolverine-18-peer-evidence']), false);
   assert.deepEqual(laterOrderIdsForAuthor(true), []);
   assert.equal(laterOrderIdsForAuthor(false), CBH_LATER_ORDER_IDS);
   assert.throws(

@@ -3112,12 +3112,12 @@ Hell's Angel remains in Marvel Ages, not Modern Timeline; its visible source cre
 
 The owner-guide contract requires a positive ID, exact matching owner-supplied Marvel URL, named
 confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:880-902`).
-The vendor excludes these entries from metadata lookup and creates no provider projection
-(`scripts/vendor-orders.mjs:558-562`, `scripts/vendor-orders.mjs:641-642`, `scripts/vendor-orders.mjs:692-693`).
+The vendor excludes these entries from metadata lookup and passes an empty detail object to the
+item mapper (`scripts/vendor-orders.mjs:619-623`, `scripts/vendor-orders.mjs:703-706`).
 Unless a row carries the external supplement described below, the published rows carry only their
 confirmed identity, issue ID, URL and refusal state; optional provider details and covers remain
-empty. The ten One World Under Doom rows are of that kind. No comic image bytes are stored and no
-Unlimited availability is inferred.
+empty (`scripts/vendor-orders.mjs:378-421`). The ten One World Under Doom rows are of that kind.
+No comic image bytes are stored and no Unlimited availability is inferred.
 
 ### Owner-approved external supplement for owner-confirmed comics
 

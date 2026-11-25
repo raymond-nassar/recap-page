@@ -3,29 +3,33 @@ import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
-import { assertApprovedRelationshipReview } from '../scripts/author-cbh-packet.mjs';
 import {
-  approvalDigestFor, mappingDigestFor, packetDigestFor, sourceCountsForPacket,
+  assertApprovedRelationshipReview, manifestEntryForMapping, mergePublishedWolverineCorrection,
+} from '../scripts/author-cbh-packet.mjs';
+import {
+  approvalDigestFor, digestCanonicalJson, mappingDigestFor, packetDigestFor, sourceCountsForPacket,
   sourcePositionsForPacket,
 } from '../scripts/lib/cbh-inventory.mjs';
-import { beforeWolverineCorrectionIssueIds } from './helpers/wolverine-correction-history.mjs';
+import {
+  beforeWolverineCorrectionIssueIds, readPreSuccessorWolverinePublication, wolverineGapResolutions,
+  wolverineSeriesCorrectionReviewCommit, wolverineSuccessorLedger,
+} from './helpers/wolverine-correction-history.mjs';
 import {
   registeredLegacyIdentityKey, repairWolverineChecklist, repairWolverineTitles, wolverineTitleRepairs,
 } from '../scripts/lib/wolverine-title-repairs.mjs';
+import { marvelComicsAppLinkPairs } from '../src/data/marvelComicsAppLinks.js';
 
 const id = 'wolverine-reading-order';
 const readJson = async (file) => JSON.parse(await readFile(file, 'utf8'));
-const [packet, mapping, report, payload, ledger] = await Promise.all([
-  readJson(`scripts/data/cbh-packets/${id}.json`),
-  readJson(`scripts/data/cbh-mappings/${id}.json`),
-  readJson(`scripts/data/cbh-overlaps/${id}.json`),
-  readJson('src/data/wolverine_reading_order.json'),
-  readJson(`scripts/data/cbh-source-ledgers/${id}-series-correction.json`),
-]);
+const ledger = await readJson(`scripts/data/cbh-source-ledgers/${id}-series-correction.json`);
 const prior = ledger.priorPublication;
-const show = (file) => execFileSync('git', ['show', `${prior.commit}:${file}`], {
+const show = (file, commit = prior.commit) => execFileSync('git', ['show', `${commit}:${file}`], {
   encoding: 'utf8', maxBuffer: 64 << 20,
 });
+const packet = JSON.parse(show(prior.files.packet, wolverineSeriesCorrectionReviewCommit));
+const mapping = JSON.parse(show(prior.files.mapping, wolverineSeriesCorrectionReviewCommit));
+const report = JSON.parse(show(prior.files.report, wolverineSeriesCorrectionReviewCommit));
+const payload = JSON.parse(readPreSuccessorWolverinePublication(prior.files.payload));
 const priorPacket = JSON.parse(show(prior.files.packet));
 const priorMapping = JSON.parse(show(prior.files.mapping));
 const priorReport = JSON.parse(show(prior.files.report));
@@ -91,8 +95,8 @@ test('Wolverine title overlay is repeatable and rejects unknown text or identity
   assert.throws(() => repairWolverineTitles(missing), /one unresolved label/);
 });
 
-test('Wolverine checklist overlay keeps each repaired line one registered identity key from its source', async () => {
-  const shipped = (await readFile(`src/data/orders/${id}.md`, 'utf8')).replace(/\r\n/g, '\n');
+test('Wolverine checklist overlay keeps each repaired line one registered identity key from its source', () => {
+  const shipped = readPreSuccessorWolverinePublication(`src/data/orders/${id}.md`);
   const legacy = repairWolverineChecklist(shipped, { undo: true });
   assert.equal(repairWolverineChecklist(legacy), shipped);
   assert.equal(repairWolverineChecklist(shipped), shipped);
@@ -186,7 +190,7 @@ test('the corrected rows reach the published payload in source order', () => {
     .filter((item) => item.placeholder), priorPlaceholders);
 });
 
-test('the correction review approves the current Wolverine publication', () => {
+test('the correction review binds the published 95-position Wolverine correction', () => {
   const review = ledger.correctionReview;
   assert.equal(review.packetDigest, packet.packetDigest);
   assert.equal(review.mappingDigest, mapping.mappingDigest);
@@ -209,4 +213,89 @@ test('historical replay rejects issue vectors outside the reviewed correction', 
   changed[0] = 1;
   assert.throws(() => beforeWolverineCorrectionIssueIds(changed), /exact reviewed correction/);
   assert.throws(() => beforeWolverineCorrectionIssueIds(currentIds.slice(1)), /exact reviewed correction/);
+});
+
+test('the Wolverine successor resolves only the 18 reviewed slots and links each exact viewer', async () => {
+  const checklistFile = `src/data/orders/${id}.md`;
+  const [nextText, checklistText, nextSource] = await Promise.all([
+    readFile(prior.files.payload, 'utf8'),
+    readFile(checklistFile, 'utf8'),
+    readJson(prior.files.packet),
+  ]);
+  const next = JSON.parse(nextText);
+  const expected = wolverineSuccessorLedger.correctedCandidate;
+  const sha256 = (text) => createHash('sha256').update(text.replace(/\r\n/g, '\n')).digest('hex');
+  assert.equal(sha256(nextText), expected.payloadSha256);
+  assert.equal(sha256(checklistText), expected.checklistSha256);
+  const transitions = new Map(wolverineGapResolutions.map((entry) => [entry.index, entry]));
+  assert.equal(transitions.size, 18);
+  const before = occurrences(packet);
+  const after = occurrences(nextSource);
+  assert.equal(after.size, before.size);
+  const byPosition = new Map(wolverineGapResolutions.map((entry) => [entry.sourcePosition, entry]));
+  for (const [position, was] of before) {
+    const transition = byPosition.get(position);
+    if (!transition) {
+      assert.deepEqual(after.get(position), was, `Source position ${position}`);
+    } else {
+      assert.equal(was.representation, 'gap');
+      assert.equal(after.get(position).representation, 'row');
+      assert.equal(after.get(position).issueId, transition.issueId);
+    }
+  }
+  const viewers = new Map(marvelComicsAppLinkPairs);
+  for (const [index, item] of payload.items.entries()) {
+    const transition = transitions.get(index);
+    if (!transition) {
+      assert.deepEqual(next.items[index], item, `Item ${index}`);
+    } else {
+      assert.equal(item.issueId, transition.previousIssueId);
+      assert.equal(item.placeholder, true);
+      assert.equal(next.items[index].issueId, transition.issueId);
+      assert.notEqual(next.items[index].placeholder, true);
+      assert.equal(String(viewers.get(transition.issueId)), transition.appViewer);
+    }
+  }
+  assert.equal(next.items.length, payload.items.length);
+  assert.equal(next.placeholders, payload.placeholders - transitions.size);
+  const beforeLines = readPreSuccessorWolverinePublication(checklistFile).split('\n');
+  const afterLines = checklistText.split(/\r?\n/);
+  assert.equal(afterLines.length, beforeLines.length);
+  assert.equal(afterLines.filter((line, index) => line !== beforeLines[index]).length, transitions.size);
+  assert.equal(repairWolverineChecklist(checklistText), checklistText);
+  assert.deepEqual(repairWolverineTitles(next), next);
+  assert.deepEqual(beforeWolverineCorrectionIssueIds(next.items.map(({ issueId }) => issueId)),
+    JSON.parse(priorPayloadText).items.map(({ issueId }) => String(issueId)));
+});
+
+test('the Wolverine successor binds fresh reviews without changing the published manifest', async () => {
+  const completeFile = `scripts/data/cbh-overlaps/${id}-complete-catalog.json`;
+  const dispositionFile = `scripts/data/cbh-source-ledgers/${id}-complete-catalog-dispositions.json`;
+  const [nextPacket, nextMapping, active, completeText, dispositionText, manifest] = await Promise.all([
+    readJson(prior.files.packet), readJson(prior.files.mapping), readJson(prior.files.report),
+    readFile(completeFile, 'utf8'), readFile(dispositionFile, 'utf8'), readJson('src/data/curated-lists.json'),
+  ]);
+  const { correctionReview, transitionLedgerDigest, readerCatalog } = wolverineSuccessorLedger;
+  assert.equal(packetDigestFor(nextPacket), correctionReview.packetDigest);
+  assert.equal(mappingDigestFor(nextMapping), correctionReview.mappingDigest);
+  assert.equal(active.reportDigest, correctionReview.reportDigest);
+  assert.equal(active.comparisonCount, 275);
+  assert.equal(approvalDigestFor(nextMapping.relationshipReview), correctionReview.approvalDigest);
+  assert.equal(digestCanonicalJson(nextPacket.sourceGapResolutions), transitionLedgerDigest);
+  assert.deepEqual(sourceCountsForPacket(nextPacket), wolverineSuccessorLedger.sourceCounts);
+  assert.deepEqual(manifest, JSON.parse(readPreSuccessorWolverinePublication('src/data/curated-lists.json')));
+  assert.deepEqual(mergePublishedWolverineCorrection(manifest, manifestEntryForMapping(nextMapping),
+    nextPacket.insertionAnchor), manifest);
+
+  const { reportDigest, ...completeBody } = JSON.parse(completeText);
+  const { approvalDigest, ...dispositions } = JSON.parse(dispositionText);
+  assert.equal(digestCanonicalJson(completeBody), readerCatalog.reportDigest);
+  assert.equal(reportDigest, readerCatalog.reportDigest);
+  assert.equal(completeBody.comparisonCount, 352);
+  assert.equal(completeBody.catalog.payloadPins.length, 349);
+  assert.equal(digestCanonicalJson(dispositions), approvalDigest);
+  assert.equal(dispositions.reportDigest, reportDigest);
+  const sha256 = (text) => createHash('sha256').update(text.replace(/\r\n/g, '\n')).digest('hex');
+  assert.equal(sha256(completeText), readerCatalog.reportFileSha256);
+  assert.equal(sha256(dispositionText), readerCatalog.dispositionFileSha256);
 });
