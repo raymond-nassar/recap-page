@@ -139,7 +139,7 @@ export function createHomeView({
   }
 
   function categoryTile(category) {
-    const label = category.key === 'timeline' ? 'Recommended start here' : category.label;
+    const label = category.key === 'timeline' ? 'Marvel Knights to Present Day' : category.label;
     const count = `${category.count} ${category.count === 1
       ? (category.singular ?? 'Reading List')
       : (category.plural ?? 'Reading Lists')}`;

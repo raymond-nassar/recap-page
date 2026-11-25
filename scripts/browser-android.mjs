@@ -1504,6 +1504,12 @@ async function storyTypesDropdowns(page, profile, label) {
   check(guideReady, `${label}: filtered Genres reaches the guide and its starter link`);
   if (guideReady) {
     const savedBefore = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+    const rows = await page.$$eval('input[name="guide-start-familiarity"]', (inputs) =>
+      inputs.map((input) => input.closest('label').getBoundingClientRect().toJSON()));
+    check(rows.length === 2 && rows[0].height > 0 && rows[1].height > 0 && rows[0].bottom < rows[1].top,
+      `${label}: both experience answers have their own row`);
+    await click(page, 'label:has(input[name="guide-start-familiarity"][value="new"])');
+    await page.waitForSelector('#guide-start-optional .catalog-card-preview');
     for (const [id, ids] of [
       ['history-of-the-marvel-universe-2019', [75119, 75120, 75121, 75122, 75123, 75124]],
       ['marvels-1994', [10280, 10281, 10282, 10283]],
@@ -1583,7 +1589,7 @@ async function storyTypesDropdowns(page, profile, label) {
       adjustment: style.forcedColorAdjust };
   }));
   const expectedSelects = JSON.stringify([
-    'catalog-path', 'catalog-path-jump', 'genres-tone', 'genres-type',
+    'catalog-path', 'catalog-path-jump', 'genres-tone', 'genres-type', 'guide-start-favorite',
     'opt-theme', 'rated-character', 'rated-min', 'rated-sort', 'universes-sort',
   ]);
   const measuredSelects = (colors) => JSON.stringify(colors.map(({ id }) => id).sort());
@@ -1830,7 +1836,7 @@ async function categoryLabelReadability(page, label, viewport) {
       const category = categories[index];
       const count = `${category.count} ${category.count === 1
         ? (category.singular ?? 'Reading List') : (category.plural ?? 'Reading Lists')}`;
-      const categoryLabel = category.key === 'timeline' ? 'Recommended start here' : category.label;
+      const categoryLabel = category.key === 'timeline' ? 'Marvel Knights to Present Day' : category.label;
       check(card.key === category.key && card.name === `${categoryLabel}. ${category.heading}. ${count}.`
         && JSON.stringify(card.parts.map((part) => part.text.trim())) === JSON.stringify([categoryLabel, category.heading, count]),
       `${label} ${view}: ${category.key}: exact wording, order and accessible name`);
@@ -3253,49 +3259,36 @@ async function focusedActionHiddenBeforeMediaCallback(page, label) {
 async function mobileLayout(page, label, narrow) {
   await page.waitForSelector('#home-primary-paths [data-category="timeline"]');
   const guideEntry = await page.evaluate(() => {
-    const link = document.querySelector('#home-categories a[href="#/new-to-comics"]');
+    const link = document.querySelector('#home-new-reader a[href="#/new-to-comics"]');
     if (!link) return null;
     const box = link.getBoundingClientRect();
-    const row = link.closest('.sec-h');
-    const rowBox = row?.getBoundingClientRect();
-    const heading = row?.querySelector('#home-cat-h');
+    const heading = document.querySelector('#home-new-reader-h');
     const headingBox = heading?.getBoundingClientRect();
     const lines = (node) => {
       const range = document.createRange();
       range.selectNodeContents(node);
       return new Set([...range.getClientRects()].filter((r) => r.width > 0).map((r) => Math.round(r.top))).size;
     };
-    // The owner chose the pill's natural one-line width over a half-row cap, which split its
-    // label on a 393 px iPhone (91edc66f). It sits beside Explore only when both fit.
-    const saved = link.getAttribute('style');
-    link.style.whiteSpace = 'nowrap'; link.style.maxWidth = 'none';
-    const natural = link.getBoundingClientRect().width;
-    if (saved === null) link.removeAttribute('style'); else link.setAttribute('style', saved);
-    const gap = row ? parseFloat(getComputedStyle(row).columnGap) || 0 : 0;
     return { text: link.textContent.trim(), visible: link.checkVisibility(),
-      width: box.width, height: box.height, rowWidth: rowBox?.width ?? 0, natural,
+      width: box.width, height: box.height,
       heading: heading?.textContent.trim() ?? null,
       headingVisible: Boolean(heading?.checkVisibility() && !heading.closest('.visually-hidden')
         && headingBox && headingBox.width > 1 && headingBox.height > 1),
       headingWhole: Boolean(heading && lines(heading) === 1 && heading.scrollWidth <= heading.clientWidth + 1),
-      besideFits: Boolean(headingBox && rowBox && headingBox.width + gap + natural <= rowBox.width + 0.5),
-      beside: Boolean(headingBox && headingBox.right <= box.left + 1
-        && headingBox.bottom > box.top && box.bottom > headingBox.top),
       below: Boolean(headingBox && box.top >= headingBox.bottom - 1),
-      pillLines: lines(link),
+      beforeExplore: Boolean(document.querySelector('#home-new-reader + #home-categories')),
       left: box.left, right: box.right,
       viewportWidth: innerWidth,
       overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth };
   });
-  const guideUsable = guideEntry?.visible && guideEntry.text === 'New to Marvel Comics?'
-    && guideEntry.heading === 'Explore' && guideEntry.headingVisible && guideEntry.headingWhole
-    && (guideEntry.besideFits ? guideEntry.beside : guideEntry.below)
-    && (guideEntry.natural > guideEntry.rowWidth + 0.5 || guideEntry.pillLines === 1)
+  const guideUsable = guideEntry?.visible && guideEntry.text === 'Find a starting point.'
+    && guideEntry.heading === 'New to comics?' && guideEntry.headingVisible && guideEntry.headingWhole
+    && guideEntry.below && guideEntry.beforeExplore
     && guideEntry.width > 0 && guideEntry.height >= 44
     && guideEntry.left >= 0 && guideEntry.right <= guideEntry.viewportWidth && !guideEntry.overflow;
-  check(guideUsable, `${label}: guide link stays whole beside Explore when both fit, else on its own line, and is usable ${JSON.stringify(guideEntry)}`);
+  check(guideUsable, `${label}: the New to comics? card sits before Explore with its button usable ${JSON.stringify(guideEntry)}`);
   if (guideUsable) {
-    await click(page, '#home-categories a[href="#/new-to-comics"]');
+    await click(page, '#home-new-reader a[href="#/new-to-comics"]');
     await page.waitForSelector('#view-new-to-comics:not([hidden])');
     const guide = await page.evaluate(() => ({
       focus: document.activeElement?.id,
@@ -3308,7 +3301,7 @@ async function mobileLayout(page, label, narrow) {
     await page.waitForSelector('#home-primary-paths [data-category="timeline"]');
   }
   const home = await page.$eval('#view-home', (region) => ({
-    recommended: region.querySelector('[data-category="timeline"]')?.textContent.includes('Recommended start here'),
+    recommended: region.querySelector('[data-category="timeline"]')?.textContent.includes('Marvel Knights to Present Day'),
     intro: !!region.querySelector('#home-first-run'),
     search: !!region.querySelector('[data-view="add"], #btn-home-add'),
   }));
@@ -6090,7 +6083,7 @@ try {
       const sharedCopy = await page.evaluate(() => {
         const footer = document.querySelector('.app-footer');
         return {
-          recommendation: !!document.querySelector('#view-home [data-category="timeline"]')?.textContent.includes('Recommended start here'),
+          recommendation: !!document.querySelector('#view-home [data-category="timeline"]')?.textContent.includes('Marvel Knights to Present Day'),
           // Home's start actions and the footer About became native hash links so browser
           // navigation gestures work, so both are found as links; buttons are still collected
           // so an extra start action of either kind is reported.

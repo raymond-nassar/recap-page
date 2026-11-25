@@ -2224,7 +2224,7 @@ final class PresentationUITests: XCTestCase {
             let app = launch(category: category, emptyHomeTest: true)
             _ = try probeResult(of: app)
             // First-run Home no longer has its own introduction or Search shortcut: the owner moved
-            // the first step onto the Modern Timeline category tile, marked "Recommended start here",
+            // the first step onto the Modern Timeline category tile, marked "Marvel Knights to Present Day",
             // and left global Search to the bottom bar (docs/UX_IMPROVEMENT_PLAN.md). These are the
             // two targets a first-time reader is offered, so both are checked as one native target.
             let firstRun = app.webViews.firstMatch.otherElements.matching(
@@ -2241,7 +2241,7 @@ final class PresentationUITests: XCTestCase {
                     XCTAssertEqual(link.label, "Search", "Search keeps its full native label")
                     assertNoSeparateTextTarget(["Search"], in: app.webViews.firstMatch, within: link, for: key)
                 } else {
-                    let prefix = "Recommended start here. Modern Timeline. "
+                    let prefix = "Marvel Knights to Present Day. Modern Timeline. "
                     link = firstRun.links.matching(NSPredicate(format: "label BEGINSWITH %@", prefix)).firstMatch
                     XCTAssertTrue(link.waitForExistence(timeout: 30), "the recommended tile is one native link target")
                     revealNativeTarget(link, in: app, precise: true)
@@ -2252,7 +2252,7 @@ final class PresentationUITests: XCTestCase {
                                   "the tile's full native label is its three drawn pieces")
                     XCTAssertNotNil(count.range(of: #"^[1-9][0-9]* Reading Lists?$"#, options: .regularExpression),
                                     "the tile's native label ends in its Reading List count, not \(count)")
-                    assertNoSeparateTextTarget(["Recommended start here", "Modern Timeline", count],
+                    assertNoSeparateTextTarget(["Marvel Knights to Present Day", "Modern Timeline", count],
                                                in: firstRun, within: link, for: key)
                     assertNoSeparateTextTarget([link.label], in: app.webViews.firstMatch, within: link, for: key)
                 }
@@ -2279,6 +2279,57 @@ final class PresentationUITests: XCTestCase {
                 }
             }
             capture(app, named: "t03-first-run-\(category.rawValue)")
+            app.terminate()
+        }
+    }
+
+    // The New to comics? button drew a 144x19 native link with a same-sized text child on the iPad
+    // audit, so the page's text run became two undersized targets (#1600). Its card is on Home for
+    // every reader, so empty Home is enough to reach it at both sizes.
+    // The card is pinned by the link it must hold. The hidden guide view is titled the same, and an
+    // iOS 18.5 issue-route snapshot exposes a childless 390x10 "New to comics?, region" where iOS
+    // 26.5 exposes none. On the iPhone 16e and SE the loosely named card existed but held no such
+    // link for 30 s, while iOS 26.5 passed; which candidate that query chose was never recorded.
+    func testHomeStartingPointLinkIsOneNativeTargetAtDefaultAndLargestTextSizes() throws {
+        let name = "Find a starting point."
+        let named = NSPredicate(format: "label == %@", name)
+        let cardName = NSPredicate(format: "label == %@ OR label == %@", "New to comics?", "New to comics?, region")
+        for category in [UIContentSizeCategory.large, .accessibilityExtraExtraExtraLarge] {
+            let app = launch(category: category, emptyHomeTest: true)
+            _ = try probeResult(of: app)
+            let webView = app.webViews.firstMatch
+            let card = webView.otherElements.matching(cardName).containing(.link, identifier: name).firstMatch
+            let found = card.waitForExistence(timeout: 30)
+            // Recorded before the assertions so a failure says whether the link is missing or the
+            // named regions are what changed. Hidden views expose few regions, so the list is short.
+            let namedRegions = webView.otherElements.matching(cardName).allElementsBoundByIndex
+            let namedLinks = webView.links.matching(named).allElementsBoundByIndex
+            try record("t03-starting-point-lookup-\(category.rawValue)", [
+                "found": found,
+                "regions": namedRegions.map { region -> [String: Any] in [
+                    "label": region.label, "frame": NSCoder.string(for: region.frame),
+                    "namedLinks": region.links.matching(named).count,
+                ] },
+                "links": namedLinks.map { NSCoder.string(for: $0.frame) },
+            ])
+            XCTAssertEqual(namedLinks.count, 1, "Home draws exactly one guide button")
+            XCTAssertTrue(found, "the New to comics? card holds the guide button")
+            let link = card.links.matching(named).firstMatch
+            XCTAssertTrue(link.waitForExistence(timeout: 30), "the guide button is one native link")
+            revealNativeTarget(link, in: app, precise: true)
+            XCTAssertEqual(link.label, name, "the guide button keeps its visible words as its native label")
+            assertNoSeparateTextTarget([name], in: app.webViews.firstMatch, within: link, for: "starting-point")
+            XCTAssertGreaterThanOrEqual(link.frame.width, 44, "the guide button retains its native target width")
+            XCTAssertGreaterThanOrEqual(link.frame.height, 44, "the guide button retains its native target height")
+            XCTAssertTrue(link.isHittable, "the guide button is reachable")
+            try record("t03-starting-point-\(category.rawValue)", [
+                "label": link.label, "frame": NSCoder.string(for: link.frame),
+            ])
+            capture(app, named: "t03-starting-point-\(category.rawValue)-before-tap")
+            link.tap()
+            let question = app.webViews.firstMatch.descendants(matching: .any).matching(
+                NSPredicate(format: "label == %@", "How familiar are you with Marvel comics?")).firstMatch
+            XCTAssertTrue(question.waitForExistence(timeout: 30), "the guide button opens the starting-point questions")
             app.terminate()
         }
     }
