@@ -1386,10 +1386,13 @@ export function assertGapTransition(previousPacket, proposedPacket, proposedMapp
       previousSeriesYear: previous.seriesYear,
       previousIssueNumber: String(previous.issueNumber),
     };
-    const serviceResolution = resolution?.resolutionKind === 'exact-service-issue'
+    const service = serviceIdentityFor(mappingRow);
+    const serviceResolution = service && resolution?.resolutionKind === 'exact-service-issue'
       && canonicalJson(resolution.serviceIdentity) === canonicalJson(mappingRow.serviceIdentity)
-      && serviceIdentityFor(mappingRow)
       && Object.entries(previousIdentity).every(([field, value]) => resolution[field] === value);
+    if (service && !serviceResolution) {
+      throw new Error(`Open source gap at position ${previous.sourcePosition} requires exact service resolution evidence`);
+    }
     const evidenceBoundIdentityChange = serviceResolution || ['exact-issue', 'owner-confirmed-identity']
       .includes(resolution?.resolutionKind)
       && resolution.selectedIssueId === Number(mappingRow.selectedIssueId)

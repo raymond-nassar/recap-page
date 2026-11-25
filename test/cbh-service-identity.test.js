@@ -5,6 +5,7 @@ import path from 'node:path';
 import test from 'node:test';
 import { buildMarkdown, selectedIssueIds } from '../scripts/author-cbh-packet.mjs';
 import { resolveMapping } from '../scripts/resolve-cbh-order.mjs';
+import { prepareServiceMappingRow } from '../scripts/prepare-cbh-batch.mjs';
 import { buildReportForMapping } from '../scripts/report-order-overlap.mjs';
 import {
   assertMappingMatchesPacketOccurrences, mappingDigestFor, packetDigestFor, validateFrozenPacket,
@@ -67,7 +68,12 @@ test('service-only source rows pass the real packet, mapping, checklist and offl
   const { packet, mapping } = await fixture();
   validateFrozenPacket(packet);
   assertMappingMatchesPacketOccurrences(packet, mapping);
-  const resolved = await resolveMapping({ rows: [serviceRow()] }, {
+  const { resolvedIssueTitle, resolutionStatus, ...sourceRow } = serviceRow();
+  const prepared = prepareServiceMappingRow(sourceRow, 2);
+  assert.equal(prepared.resolvedIssueTitle, resolvedIssueTitle);
+  assert.equal(prepared.resolutionStatus, resolutionStatus);
+  assert.deepEqual(prepared.serviceIdentity, sourceRow.serviceIdentity);
+  const resolved = await resolveMapping({ rows: [prepared] }, {
     metadataLookup: () => { throw new Error('A viewer must never be looked up as a provider issue'); },
   });
   assert.equal(resolved.rows[0].selectedIssueId, null);
@@ -168,6 +174,9 @@ test('service gap transitions bind the exact reviewed evidence without supplying
   previous.sourceGaps = [gap];
   previous.packetDigest = packetDigestFor(previous);
   assertGapTransition(previous, packet, mapping);
+  const withoutResolution = await fixture();
+  assert.throws(() => assertGapTransition(previous, withoutResolution.packet, withoutResolution.mapping),
+    /requires exact service resolution evidence/);
   const changed = structuredClone(packet);
   changed.sourceGapResolutions[0].serviceIdentity.evidenceSha256 = 'c'.repeat(64);
   changed.packetDigest = packetDigestFor(changed);

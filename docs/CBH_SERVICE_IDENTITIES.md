@@ -18,7 +18,8 @@ the frozen row and its mapping carry the same `serviceIdentity` object:
 The row has `seriesId: null` and `candidateIssueId: null`, no selected provider ID or Marvel issue
 URL, and no provider candidate or selection array entries. A service series number is not a
 provider series ID. The mapping uses `resolutionStatus: "exact"` and a factual
-`resolvedIssueTitle`.
+`resolvedIssueTitle`. `cbh:prepare` carries the frozen identity directly into the mapping without
+requesting a provider series for it. Refresh cannot carry prior approval onto changed evidence.
 
 A previously open source gap uses an `exact-service-issue` resolution with the same
 `serviceIdentity`, the existing previous/resolved source identity fields, checked date, audit
