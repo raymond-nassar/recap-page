@@ -5916,6 +5916,56 @@ const SCENARIOS = [
         fresh.heading === 'New to comics?' && fresh.familiarity === null && fresh.favorite === '' && fresh.starters
           && !fresh.optional,
         JSON.stringify(fresh));
+
+      // The iPad audit read this button as a 144x19 link with a same-sized text child (#1600). Run the
+      // shipping iOS adaptation here so its DOM half and keyboard route are held; Apple's audit in CI
+      // remains the native proof.
+      const controller = readFileSync(new URL('../packaging/ios/RecapPage/WebViewController.swift', import.meta.url), 'utf8');
+      const adapter = controller.match(/private static let accessibleTargetScript = #"""([\s\S]*?)"""#/)?.[1];
+      if (!adapter) throw new Error('Missing iOS accessible target adaptation');
+      const styles = [
+        readFileSync(new URL('../packaging/android/web/mobile.css', import.meta.url), 'utf8'),
+        readFileSync(new URL('../packaging/ios/web/ios.css', import.meta.url), 'utf8'),
+      ];
+      const ios = await page.browserContext().newPage();
+      await preparePage(ios, page.__origin, page.__mutation);
+      await ios.setViewport({ width: 390, height: 844 });
+      await open(ios, '/?catalog=actual#/home');
+      await ios.waitForSelector('#home-new-reader a[href="#/new-to-comics"]', { visible: true, timeout: 15000 });
+      await ios.evaluate((sheets) => {
+        document.adoptedStyleSheets = [...document.adoptedStyleSheets, ...sheets.map((css) => {
+          const sheet = new CSSStyleSheet();
+          sheet.replaceSync(css);
+          return sheet;
+        })];
+      }, styles);
+      await ios.evaluate(adapter);
+      for (const scale of ['1', String(53 / 17)]) {
+        await ios.evaluate((value) => document.documentElement.style.setProperty('--ios-text-scale', value), scale);
+        const target = await ios.$eval('#home-new-reader a[href="#/new-to-comics"]', (link) => ({
+          adapted: link.dataset.iosAccessibleTarget === 'true',
+          name: link.getAttribute('aria-label'),
+          text: link.textContent.trim(),
+          hiddenChildren: link.children.length > 0 && [...link.childNodes].every((node) => node.nodeType === Node.ELEMENT_NODE
+            ? node.getAttribute('aria-hidden') === 'true' : !node.textContent.trim()),
+          width: link.getBoundingClientRect().width,
+          height: link.getBoundingClientRect().height,
+        }));
+        const handle = await ios.$('#home-new-reader a[href="#/new-to-comics"]');
+        const ax = await ios.accessibility.snapshot({ root: handle });
+        await handle.dispose();
+        t.check(`on iOS the guide button is one 44px link named by its words at ${scale === '1' ? 'default' : 'largest'} text`,
+          target.adapted && target.name === 'Find a starting point.' && target.text === 'Find a starting point.'
+            && target.hiddenChildren && target.width >= 44 && target.height >= 44
+            && ax?.role === 'link' && ax.name === target.name && !ax.children?.length,
+          JSON.stringify({ target, ax }));
+      }
+      await ios.focus('#home-new-reader a[href="#/new-to-comics"]');
+      await ios.keyboard.press('Enter');
+      await ios.waitForFunction(() => location.hash === '#/new-to-comics'
+        && document.activeElement?.id === 'new-to-comics-h');
+      t.check('on iOS the adapted guide button still opens the guide by keyboard', true);
+      await ios.close();
     },
   },
   {

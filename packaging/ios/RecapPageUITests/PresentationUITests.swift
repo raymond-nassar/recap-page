@@ -2283,6 +2283,37 @@ final class PresentationUITests: XCTestCase {
         }
     }
 
+    // The New to comics? button drew a 144x19 native link with a same-sized text child on the iPad
+    // audit, so the page's text run became two undersized targets (#1600). Its card is on Home for
+    // every reader, so empty Home is enough to reach it at both sizes.
+    func testHomeStartingPointLinkIsOneNativeTargetAtDefaultAndLargestTextSizes() throws {
+        let name = "Find a starting point."
+        for category in [UIContentSizeCategory.large, .accessibilityExtraExtraExtraLarge] {
+            let app = launch(category: category, emptyHomeTest: true)
+            _ = try probeResult(of: app)
+            let card = app.webViews.firstMatch.otherElements.matching(
+                NSPredicate(format: "label == %@ OR label == %@", "New to comics?", "New to comics?, region")).firstMatch
+            XCTAssertTrue(card.waitForExistence(timeout: 30), "the New to comics? card is on Home")
+            let link = card.links.matching(NSPredicate(format: "label == %@", name)).firstMatch
+            XCTAssertTrue(link.waitForExistence(timeout: 30), "the guide button is one native link")
+            revealNativeTarget(link, in: app, precise: true)
+            XCTAssertEqual(link.label, name, "the guide button keeps its visible words as its native label")
+            assertNoSeparateTextTarget([name], in: app.webViews.firstMatch, within: link, for: "starting-point")
+            XCTAssertGreaterThanOrEqual(link.frame.width, 44, "the guide button retains its native target width")
+            XCTAssertGreaterThanOrEqual(link.frame.height, 44, "the guide button retains its native target height")
+            XCTAssertTrue(link.isHittable, "the guide button is reachable")
+            try record("t03-starting-point-\(category.rawValue)", [
+                "label": link.label, "frame": NSCoder.string(for: link.frame),
+            ])
+            capture(app, named: "t03-starting-point-\(category.rawValue)-before-tap")
+            link.tap()
+            let question = app.webViews.firstMatch.descendants(matching: .any).matching(
+                NSPredicate(format: "label == %@", "How familiar are you with Marvel comics?")).firstMatch
+            XCTAssertTrue(question.waitForExistence(timeout: 30), "the guide button opens the starting-point questions")
+            app.terminate()
+        }
+    }
+
     // Each piece a link draws must be read only as part of that link. A static text with the same
     // words is a second, smaller native target, whatever its frame, so absence is asserted rather
     // than containment. The trailing-space form is matched too because the tile's pieces end in one.

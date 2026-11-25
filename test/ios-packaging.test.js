@@ -2040,9 +2040,11 @@ test('iOS web controls expose one accessible target without changing visible lay
   assert.match(tests, /NSPredicate\(format: "label BEGINSWITH\[c\] %@", "What's new"\)/);
   assert.match(tests, /XCTAssertGreaterThanOrEqual\(updatesToggle\.frame\.height,\s*44/);
   assert.match(tests, /func testFirstRunHomeLinksHaveNativeTargetsAtDefaultAndLargestTextSizes/);
+  assert.match(tests, /func testHomeStartingPointLinkIsOneNativeTargetAtDefaultAndLargestTextSizes/);
   assert.match(tests, /let displacement = frame\.midY - usableFrame\.midY/);
   assert.match(tests, /press\(forDuration: 0\.1, thenDragTo: end\)/);
-  for (const selector of ['#sidebar-nav a.ri[data-view=', '#btn-chero-open', '.app-footer > a[data-view=', '.home-guide-link', '#reader-closure-faq']) {
+  for (const selector of ['#sidebar-nav a.ri[data-view=', '#btn-chero-open', '.app-footer > a[data-view=', '.home-guide-link',
+    '#home-new-reader a[href="#/new-to-comics"]', '#reader-closure-faq']) {
     assert.ok(controller.includes(selector), `reviewed parent control ${selector}`);
   }
 });
