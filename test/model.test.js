@@ -1318,8 +1318,9 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // Spidey keeps the six Spidey: School's Out positions as distinct source-position placeholders.
   // The X-Men era replacement leaves the Core's own Power Pack pair and the owner-excluded X-Men
   // Annual (1970) #1 only in the retired payloads, which are no longer active.
-  assert.equal(claimed, 1130 + xmenEraPlaceholderDelta, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1130 + xmenEraPlaceholderDelta, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
+  // The Wolverine identity correction replaces 18 placeholders with exact provider records.
+  assert.equal(claimed, 1112 + xmenEraPlaceholderDelta, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1112 + xmenEraPlaceholderDelta, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
   assert.equal(empty, 221);
   assert.equal(affected, 22);
 });
@@ -1574,8 +1575,9 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // Avengers: Armageddon adds 24 owner-confirmed identities without provider details. Captain
   // America (2025) #6-16, The Will of Doom #1 and Ultimate Impact: Reborn #1 were already counted,
   // so the distinct refused total rises by eleven. The X-Men era replacement retires the same three
-  // placeholders counted above.
-  assert.equal(refused.length, 1424 + xmenEraPlaceholderDelta);
+  // placeholders counted above. The Wolverine identity correction retires 18 refused placeholders
+  // in favor of exact provider records that carry their details.
+  assert.equal(refused.length, 1406 + xmenEraPlaceholderDelta);
   const infinity = JSON.parse(readFileSync(join(dataDir,
     'marvels_infinity_saga_gauntlet_wars_crusade_reading_order.json'), 'utf8'));
   assert.equal(infinity.items.filter((item) => item.detailsRefused && item.issueId > 0).length, 11);
