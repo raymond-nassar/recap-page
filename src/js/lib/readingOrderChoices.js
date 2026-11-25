@@ -5,7 +5,8 @@
 //
 // `issueOrder` is the published list file's order. The book order is every book's comics in the
 // order the source lists its books, then `unbooked`: the comics no listed book collects, kept
-// together by series, each series where it first appears in the issue order.
+// together by series, each series where it first appears in the issue order. A choice that declares
+// `bookSteps` gives its book order explicitly instead, as described at `declaredBookOrder`.
 export const READING_ORDER_CHOICES = [
   {
     catalogId: 'war-of-the-realms',
@@ -53,7 +54,36 @@ export function readingOrderChoiceFor(list) {
   return READING_ORDER_CHOICES.find((choice) => choice.catalogId === list.catalogId) ?? null;
 }
 
+// A source can place a comic no book collects before, between or after its books, and appending
+// every such comic after the last book would move it out of the place the source gives it. So a
+// choice may declare `bookSteps` instead of `unbooked`: its full book order as `{ book: name }` and
+// `{ issueId }` entries. The declaration must name every book once and every comic exactly once,
+// because a comic left out or repeated would add or drop a comic on a switch.
+function declaredBookOrder(choice) {
+  if (choice.unbooked !== undefined) throw new Error(`${choice.catalogId} declares both bookSteps and unbooked.`);
+  const books = new Map(choice.books.map((book) => [book.name, book.issueIds]));
+  if (books.size !== choice.books.length) throw new Error(`${choice.catalogId} names a book twice.`);
+  const placed = new Set();
+  const order = [];
+  for (const step of choice.bookSteps) {
+    const isBook = Object.hasOwn(step ?? {}, 'book');
+    if (isBook === Object.hasOwn(step ?? {}, 'issueId')) throw new Error(`${choice.catalogId} has a book step that is neither one book nor one comic.`);
+    if (isBook && !books.has(step.book)) throw new Error(`${choice.catalogId} places a book it does not list: ${step.book}.`);
+    if (isBook && placed.has(step.book)) throw new Error(`${choice.catalogId} places a book twice: ${step.book}.`);
+    if (isBook) placed.add(step.book);
+    order.push(...(isBook ? books.get(step.book) : [step.issueId]));
+  }
+  const missing = choice.books.find((book) => !placed.has(book.name));
+  if (missing) throw new Error(`${choice.catalogId} does not place the book ${missing.name}.`);
+  const known = new Set(choice.issueOrder);
+  if (new Set(order).size !== order.length || order.length !== known.size || order.some((id) => !known.has(id))) {
+    throw new Error(`${choice.catalogId} book order does not hold each of its comics exactly once.`);
+  }
+  return order;
+}
+
 export function bookOrderOf(choice) {
+  if (choice.bookSteps !== undefined) return declaredBookOrder(choice);
   return choice.books.flatMap((book) => book.issueIds).concat(choice.unbooked);
 }
 
