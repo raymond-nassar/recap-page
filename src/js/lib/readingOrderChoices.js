@@ -6,7 +6,7 @@
 // `issueOrder` is the published list file's order. The book order is every book's comics in the
 // order the source lists its books, then `unbooked`: the comics no listed book collects, kept
 // together by series, each series where it first appears in the issue order. A choice that declares
-// `bookSteps` gives its book order explicitly instead, as described at `declaredBookOrder`.
+// `bookSteps` gives its book order explicitly instead, as described at `declaredBookSections`.
 export const READING_ORDER_CHOICES = [
   {
     catalogId: 'war-of-the-realms',
@@ -56,11 +56,16 @@ export function readingOrderChoiceFor(list) {
 
 // A source can place a comic no book collects before, between or after its books, and appending
 // every such comic after the last book would move it out of the place the source gives it. So a
-// choice may declare `bookSteps` instead of `unbooked`: its full book order as `{ book: name }` and
-// `{ issueId }` entries. The declaration must name every book once and every comic exactly once,
-// because a comic left out or repeated would add or drop a comic on a switch.
-function declaredBookOrder(choice) {
+// choice may declare `bookSteps` instead of `unbooked`: its book order as `{ book: name }` and
+// `{ issueId }` entries. A source can also give a comic a place in its issue order and none among
+// its books, and putting that comic after the finale would claim a place the source never gave
+// it, so such comics go in `issueOrderOnly`, kept in issue order and apart from the book steps.
+// Together the two must name every book once and every comic exactly once, because a comic left
+// out or repeated would add or drop a comic on a switch.
+function declaredBookSections(choice) {
   if (choice.unbooked !== undefined) throw new Error(`${choice.catalogId} declares both bookSteps and unbooked.`);
+  const known = new Set(choice.issueOrder);
+  if (known.size !== choice.issueOrder.length) throw new Error(`${choice.catalogId} lists a comic twice in its issue order.`);
   const books = new Map(choice.books.map((book) => [book.name, book.issueIds]));
   if (books.size !== choice.books.length) throw new Error(`${choice.catalogId} names a book twice.`);
   const placed = new Set();
@@ -75,16 +80,33 @@ function declaredBookOrder(choice) {
   }
   const missing = choice.books.find((book) => !placed.has(book.name));
   if (missing) throw new Error(`${choice.catalogId} does not place the book ${missing.name}.`);
-  const known = new Set(choice.issueOrder);
-  if (new Set(order).size !== order.length || order.length !== known.size || order.some((id) => !known.has(id))) {
+  const issueOrderOnly = choice.issueOrderOnly ?? [];
+  const all = order.concat(issueOrderOnly);
+  if (new Set(all).size !== all.length || all.length !== known.size || all.some((id) => !known.has(id))) {
     throw new Error(`${choice.catalogId} book order does not hold each of its comics exactly once.`);
   }
-  return order;
+  const unplaced = new Set(issueOrderOnly);
+  if (choice.issueOrder.filter((id) => unplaced.has(id)).some((id, index) => id !== issueOrderOnly[index])) {
+    throw new Error(`${choice.catalogId} does not keep its issue order only comics in issue order.`);
+  }
+  return { placed: order, issueOrderOnly };
 }
 
+// The book order in two parts: `placed`, the books and single comics in the order the source sets
+// them, and `issueOrderOnly`, the comics it places only in its issue order.
+export function bookSectionsOf(choice) {
+  if (choice.bookSteps !== undefined) return declaredBookSections(choice);
+  if (choice.issueOrderOnly !== undefined) throw new Error(`${choice.catalogId} declares issueOrderOnly without bookSteps.`);
+  return { placed: choice.books.flatMap((book) => book.issueIds).concat(choice.unbooked), issueOrderOnly: [] };
+}
+
+// A saved list holds one order, and no single order can keep comics apart from the books without
+// saying they come before or after them, so a choice with issue order only comics has no book order
+// to save until a layout carries the second part.
 export function bookOrderOf(choice) {
-  if (choice.bookSteps !== undefined) return declaredBookOrder(choice);
-  return choice.books.flatMap((book) => book.issueIds).concat(choice.unbooked);
+  const { placed, issueOrderOnly } = bookSectionsOf(choice);
+  if (issueOrderOnly.length) throw new Error(`${choice.catalogId} has comics placed only in its issue order, so it has no single book order.`);
+  return placed;
 }
 
 // The comic id to book name map the book order gives its comics.

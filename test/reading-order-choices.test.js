@@ -165,8 +165,37 @@ test('a declared book order that would add, drop or repeat a comic or a book is 
     'a step that is both': { ...stepped, bookSteps: [{ ...first, book: book.book }, ...stepped.bookSteps.slice(1)] },
     'a step that is neither': { ...stepped, bookSteps: [{}, ...stepped.bookSteps] },
     'a book named twice': { ...stepped, books: [...stepped.books, stepped.books[0]] },
+    'a comic listed twice in the issue order': {
+      catalogId: 'repeat', issueOrder: [901, 901, 902], books: [{ name: 'Book', issueIds: [902] }],
+      bookSteps: [{ issueId: 901 }, { book: 'Book' }],
+    },
   };
   for (const [name, entry] of Object.entries(invalid)) assert.throws(() => bookOrderOf(entry), Error, name);
+});
+
+test('comics a source places only in its issue order stay apart from the book order, in issue order', async () => {
+  const { bookSectionsOf } = await import('../src/js/lib/readingOrderChoices.js');
+  assert.equal(typeof bookSectionsOf, 'function');
+  const stepped = steppedChoice();
+  const [opening, between] = choice.unbooked;
+  const kept = new Set([opening, between, ...choice.books.flatMap(({ issueIds }) => issueIds)]);
+  const issueOrderOnly = choice.issueOrder.filter((id) => !kept.has(id));
+  const split = { ...stepped, bookSteps: stepped.bookSteps.filter((step) => !Object.hasOwn(step, 'issueId') || kept.has(step.issueId)), issueOrderOnly };
+  const { placed, issueOrderOnly: unplaced } = bookSectionsOf(split);
+  assert.deepEqual(placed, bookOrderOf(steppedChoice()).filter((id) => kept.has(id)));
+  assert.deepEqual(unplaced, issueOrderOnly);
+  assert.deepEqual([...placed, ...unplaced].sort((a, b) => a - b), [...choice.issueOrder].sort((a, b) => a - b));
+  // No single saved order can say where those comics fall among the books, so none is offered.
+  assert.throws(() => bookOrderOf(split), /no single book order/);
+  assert.deepEqual(bookSectionsOf(choice), { placed: bookOrderOf(choice), issueOrderOnly: [] });
+  assert.deepEqual(bookSectionsOf({ ...split, issueOrderOnly: [], bookSteps: stepped.bookSteps }).issueOrderOnly, []);
+  const invalid = {
+    'out of issue order': { ...split, issueOrderOnly: [...issueOrderOnly].reverse() },
+    'also placed': { ...split, issueOrderOnly: [opening, ...issueOrderOnly] },
+    'left out': { ...split, issueOrderOnly: issueOrderOnly.slice(1) },
+    'without book steps': { ...choice, issueOrderOnly: [] },
+  };
+  for (const [name, entry] of Object.entries(invalid)) assert.throws(() => bookSectionsOf(entry), Error, name);
 });
 
 test('the book order moves a fresh reader to the event\'s first book', () => {
