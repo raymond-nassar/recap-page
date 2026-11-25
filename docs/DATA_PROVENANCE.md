@@ -3113,10 +3113,10 @@ Hell's Angel remains in Marvel Ages, not Modern Timeline; its visible source cre
 The owner-guide contract requires a positive ID, exact matching owner-supplied Marvel URL, named
 confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:880-902`).
 The vendor excludes these entries from metadata lookup and passes an empty detail object to the
-item mapper (`scripts/vendor-orders.mjs:619-623`, `scripts/vendor-orders.mjs:703-706`).
+item mapper (`scripts/vendor-orders.mjs:379-388`, `scripts/vendor-orders.mjs:725-728`).
 Unless a row carries the external supplement described below, the published rows carry only their
 confirmed identity, issue ID, URL and refusal state; optional provider details and covers remain
-empty (`scripts/vendor-orders.mjs:378-421`). The ten One World Under Doom rows are of that kind.
+empty (`scripts/vendor-orders.mjs:407-447`). The ten One World Under Doom rows are of that kind.
 No comic image bytes are stored and no Unlimited availability is inferred.
 
 ### Owner-approved external supplement for owner-confirmed comics
@@ -3145,7 +3145,7 @@ URL and the wiki source is a pinned revision, and only when the cover is on the 
 Grand Comics Database source, approved on 2026-11-16 and described below, may supply only the
 on-sale date and credits, never alongside a wiki source, and only values equal to its pinned record
 (`scripts/lib/owner-external-supplement.mjs:47-123`). The inventory refuses a supplement anywhere
-else (`scripts/lib/cbh-inventory.mjs:1196-1202`).
+else (`scripts/lib/cbh-inventory.mjs:1251-1257`).
 
 The vendored item copies exactly those fields and adds `metadataSourceKind:
 "owner-external-supplement"`, a closed value recorded per comic. It still keeps `seriesId`,

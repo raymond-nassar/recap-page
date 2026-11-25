@@ -2,6 +2,7 @@ import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { normalizeTitle } from '../../src/js/lib/markdown.js';
 import { validateOwnerExternalSupplement } from './owner-external-supplement.mjs';
+import { serviceIdentityFor } from './cbh-service-identity.mjs';
 
 export const GUIDE_TYPES = Object.freeze([
   'event',
@@ -193,6 +194,7 @@ const SOURCE_GAP_RESOLUTION_FIELDS = new Set([
   'auditBasis',
   'evidenceSources',
   'identityEvidence',
+  'serviceIdentity',
   'evidenceDigest',
 ]);
 const SOURCE_GAP_RESOLUTION_REQUIRED_FIELDS = new Set([
@@ -313,9 +315,12 @@ function assertPacketRow(row, index) {
   if (row.metadataIssueNumber != null) {
     assertNonEmptyString(String(row.metadataIssueNumber), `${label} metadataIssueNumber`);
   }
+  serviceIdentityFor(row);
 }
 
 function packetRowIdentity(row) {
+  const service = serviceIdentityFor(row);
+  if (service) return `viewer:${service.appViewer}`;
   const issueNumber = String(row.metadataIssueNumber ?? row.issueNumber ?? '').trim();
   if (row.candidateIssueId != null) return `issue:${row.candidateIssueId}`;
   if (row.seriesId != null) return `series:${row.seriesId}#${issueNumber}`;
@@ -527,6 +532,7 @@ function assertSourceGapResolution(
     'canonical-repeat',
     'canonical-gap-repeat',
     'exact-issue',
+    'exact-service-issue',
     'owner-confirmed-identity',
     'source-exclusion',
   ]);
@@ -551,6 +557,9 @@ function assertSourceGapResolution(
     throw new Error(`${label} checkedAt must be a YYYY-MM-DD date`);
   }
   assertEvidenceSources(resolution.evidenceSources, label);
+  if (resolution.resolutionKind !== 'exact-service-issue' && Object.hasOwn(resolution, 'serviceIdentity')) {
+    throw new Error(`${label} service identity requires an exact-service-issue resolution`);
+  }
   if (resolution.resolutionKind === 'canonical-repeat') {
     if (!Number.isInteger(resolution.canonicalRow)
       || resolution.canonicalRow < 1
@@ -625,6 +634,26 @@ function assertSourceGapResolution(
         String(resolution.resolvedIssueNumber ?? ''),
         `${label} resolvedIssueNumber`,
       );
+    }
+  } else if (resolution.resolutionKind === 'exact-service-issue') {
+    if (Object.hasOwn(resolution, 'selectedIssueId')
+      || Object.hasOwn(resolution, 'canonicalRow')
+      || Object.hasOwn(resolution, 'canonicalGapPosition')
+      || Object.hasOwn(resolution, 'identityEvidence')
+      || Object.hasOwn(resolution, 'exclusionReason')
+      || Object.hasOwn(resolution, 'decisionScope')) {
+      throw new Error(`${label} service identity contains unsupported disposition fields`);
+    }
+    const service = serviceIdentityFor({
+      serviceIdentity: resolution.serviceIdentity,
+      candidateIssueId: null,
+      seriesId: null,
+      normalizedSeriesTitle: resolution.resolvedNormalizedSeriesTitle,
+      seriesYear: resolution.resolvedSeriesYear,
+      issueNumber: resolution.resolvedIssueNumber,
+    });
+    if (!resolution.evidenceSources.some((source) => source.kind === 'service-viewer' && source.url === service.url)) {
+      throw new Error(`${label} service viewer is not in evidenceSources`);
     }
   } else if (resolution.resolutionKind === 'owner-confirmed-identity') {
     if (!Number.isInteger(resolution.selectedIssueId) || resolution.selectedIssueId < 1) {
@@ -1054,6 +1083,21 @@ export function assertMappingMatchesPacketOccurrences(packet, mapping) {
     if (row?.sourcePosition !== expectedPosition) {
       throw new Error(`${packetId} mapping row ${index + 1} sourcePosition differs from its frozen packet`);
     }
+    const service = serviceIdentityFor(row);
+    if (service) {
+      const frozenRow = packet.rows[index];
+      serviceIdentityFor(frozenRow);
+      if (row.resolutionStatus !== 'exact'
+        || canonicalJson(row.serviceIdentity) !== canonicalJson(frozenRow.serviceIdentity)
+        || ['sourceIssueReference', 'sourceRangeReference', 'normalizedSeriesTitle', 'seriesYear', 'issueNumber']
+          .some((field) => canonicalJson(row[field] ?? null) !== canonicalJson(frozenRow[field] ?? null))) {
+        throw new Error(`${packetId} service identity differs from its frozen packet row`);
+      }
+      continue;
+    }
+    if (Object.hasOwn(packet.rows[index], 'serviceIdentity')) {
+      throw new Error(`${packetId} service identity disappeared from its mapping`);
+    }
     if (row.resolutionStatus !== 'exact'
       || row.selectedIssueId == null
       || !Number.isInteger(Number(row.selectedIssueId))) {
@@ -1140,6 +1184,17 @@ export function assertMappingMatchesPacketOccurrences(packet, mapping) {
         || String(candidate.issueNumber) !== String(resolution.resolvedIssueNumber)) {
         throw new Error(`${packetId} exact source gap resolution at position ${resolution.sourcePosition} has no matching candidate metadata`);
       }
+    } else if (resolution.resolutionKind === 'exact-service-issue') {
+      const row = mappingRows.find((entry) => entry.sourcePosition === resolution.sourcePosition);
+      if (!row || canonicalJson(row.serviceIdentity) !== canonicalJson(resolution.serviceIdentity)
+        || row.normalizedSeriesTitle !== resolution.resolvedNormalizedSeriesTitle
+        || row.seriesYear !== resolution.resolvedSeriesYear
+        || row.issueNumber !== resolution.resolvedIssueNumber
+        || row.sourceIssueReference !== resolution.previousSourceIssueReference
+        || (row.sourceRangeReference ?? null) !== (resolution.previousSourceRangeReference ?? null)) {
+        throw new Error(`${packetId} service resolution differs from its packet and mapping identity`);
+      }
+      serviceIdentityFor(row);
     } else if (resolution.resolutionKind === 'owner-confirmed-identity') {
       const index = mappingRows.findIndex((row) => row.sourcePosition === resolution.sourcePosition);
       const confirmedMapping = mappingRows[index];
@@ -1331,7 +1386,11 @@ export function assertGapTransition(previousPacket, proposedPacket, proposedMapp
       previousSeriesYear: previous.seriesYear,
       previousIssueNumber: String(previous.issueNumber),
     };
-    const evidenceBoundIdentityChange = ['exact-issue', 'owner-confirmed-identity']
+    const serviceResolution = resolution?.resolutionKind === 'exact-service-issue'
+      && canonicalJson(resolution.serviceIdentity) === canonicalJson(mappingRow.serviceIdentity)
+      && serviceIdentityFor(mappingRow)
+      && Object.entries(previousIdentity).every(([field, value]) => resolution[field] === value);
+    const evidenceBoundIdentityChange = serviceResolution || ['exact-issue', 'owner-confirmed-identity']
       .includes(resolution?.resolutionKind)
       && resolution.selectedIssueId === Number(mappingRow.selectedIssueId)
       && Object.entries(previousIdentity).every(([field, value]) => resolution[field] === value);

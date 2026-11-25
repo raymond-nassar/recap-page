@@ -27,6 +27,7 @@ import { fileURLToPath } from 'node:url';
 import { createJsonFetcher } from './lib/fetch-json.mjs';
 import { lookupIssues } from './lib/lookup-issues.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
+import { taggedViewer, appViewerFromUrl } from '../src/js/lib/marvelComicsAppUrl.js';
 import { parseCatalog } from '../src/js/lib/catalog.js';
 import { parseManifest } from '../src/js/lib/curated.js';
 import { parseIssueNumber, reconcileIssueTitleNumber } from './lib/issue-number.mjs';
@@ -375,9 +376,34 @@ function coverBase(cover) {
   return { path: String(cover.path).replace(/^http:/, 'https:'), ext: cover.extension };
 }
 
+export function providerIssueIdsFor(entries) {
+  for (const entry of entries) {
+    if (entry.appViewer != null && (!taggedViewer(entry) || appViewerFromUrl(entry.url) !== entry.appViewer)) {
+      throw new Error('Service-only comic has conflicting identity or provider metadata');
+    }
+  }
+  return [...new Set(entries
+    .filter((entry) => entry.identityEvidenceKind !== 'owner-confirmed-identity' && !taggedViewer(entry))
+    .map((entry) => entry.issueId))];
+}
+
 export function vendorIssueItem(entry, detail, {
   orderId, supplement, correction, refused = false,
 } = {}) {
+  const viewer = taggedViewer(entry);
+  if (entry.appViewer != null) {
+    if (!viewer || appViewerFromUrl(entry.url) !== viewer
+      || Object.keys(detail).length || supplement || correction || refused) {
+      throw new Error('Service-only comic has conflicting identity or provider metadata');
+    }
+    return {
+      issueId: entry.issueId, appViewer: viewer, title: cleanText(entry.title),
+      number: parseIssueNumber(entry.title), url: entry.url,
+      seriesId: null, seriesName: null, onSale: null, mu: null, digitalId: null,
+      cover: null, description: null, pageCount: null, creators: [],
+      ...(entry.section ? { collectedIn: cleanText(entry.section) } : {}),
+    };
+  }
   const ownerConfirmed = entry.identityEvidenceKind === 'owner-confirmed-identity';
   const metadataTitle = cleanText(detail.title ?? entry.title);
   const metadataNumber = parseIssueNumber(metadataTitle);
@@ -616,11 +642,7 @@ async function main() {
     parsed.push({ order, parsedOrder });
   }
 
-  const ids = [...new Set(parsed.flatMap(({ parsedOrder }) => (
-    parsedOrder.entries
-      .filter((entry) => entry.identityEvidenceKind !== 'owner-confirmed-identity')
-      .map((entry) => entry.issueId)
-  )))];
+  const ids = providerIssueIdsFor(parsed.flatMap(({ parsedOrder }) => parsedOrder.entries));
   if (ids.length) {
     console.log(metadataCacheDir
       ? `Reading ${ids.length} unique issues from the metadata cache only...`
@@ -700,7 +722,7 @@ async function main() {
 
     const issueItems = entries.map((e) => {
       const ownerConfirmed = e.identityEvidenceKind === 'owner-confirmed-identity';
-      const d = ownerConfirmed ? {} : (meta.get(e.issueId) ?? {});
+      const d = ownerConfirmed || taggedViewer(e) ? {} : (meta.get(e.issueId) ?? {});
       const item = vendorIssueItem(e, d, {
         orderId: order.id,
         supplement: ownerConfirmed ? supplementFor(e.issueId) : undefined,

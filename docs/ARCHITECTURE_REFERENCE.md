@@ -116,7 +116,7 @@ response cache. The three independent refusal points are recorded at `src/js/syn
 normalization drops prose, API cache writes strip it, and the request uses `no-store`.
 
 **Curated authoring is Node-only.** `src/js/lib/curated.js` parses the manifest for
-`scripts/vendor-orders.mjs:31` and `scripts/author-cbh-packet.mjs:7`. These never run in the browser.
+`scripts/vendor-orders.mjs:32` and `scripts/author-cbh-packet.mjs:7`. These never run in the browser.
 The Node-only `scripts/lib/chapter-orders.mjs` turns a noncatalog source order into ordinary child
 payloads, catalog entries, a reading path, and overlap evidence. The browser needs no partition
 model. Every other module under `src/js/lib/` is browser-reachable.
@@ -203,7 +203,7 @@ flowchart TD
 
 Targeted vendoring reuses pinned payloads for skipped orders, derives the full catalog, then writes
 the complete output batch atomically, including `catalog.json` and generated overlap artifacts,
-at `scripts/vendor-orders.mjs:794-887`. Runtime shares the same-origin catalog load and permits
+at `scripts/vendor-orders.mjs:816-909`. Runtime shares the same-origin catalog load and permits
 an explicit retry at `src/js/main.js:2397-2416`, independently of the metadata service.
 
 Series and creator names are searched in vendored indexes. Browsing a matching name pages its comics

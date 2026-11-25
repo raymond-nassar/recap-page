@@ -24,6 +24,7 @@ import { descriptionRevisions } from './lib/description-revisions.mjs';
 import { loadLibrarySnapshot } from './report-order-overlap.mjs';
 import { preflightPublicationWrites, readPublicationInputs } from './check-publication.mjs';
 import { selectedUltimateRows, ultimateSelection } from './lib/ultimate-spider-man-selection.mjs';
+import { mappedTrackingId, serviceIdentityFor } from './lib/cbh-service-identity.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const MAPPINGS_DIR = path.join(ROOT, 'scripts', 'data', 'cbh-mappings');
@@ -236,6 +237,12 @@ export function selectedIssueIds(mapping) {
   const rows = Array.isArray(mapping?.rows) ? mapping.rows : [];
   return rows.map((row, index) => {
     assert(row?.resolutionStatus === 'exact', `${mapping.id} row ${index + 1} is not exact`);
+    const service = serviceIdentityFor(row);
+    if (service) {
+      assert(typeof row.resolvedIssueTitle === 'string' && row.resolvedIssueTitle.trim(),
+        `${mapping.id} row ${index + 1} has no resolved title`);
+      return String(mappedTrackingId(row));
+    }
     assert(Number.isInteger(Number(row.selectedIssueId)), `${mapping.id} row ${index + 1} has no selected issue id`);
     const issueUrlMatch = String(row.marvelIssueUrl).match(
       /^https:\/\/www\.marvel\.com\/comics\/issue\/(\d+)(?:\/|$)/,
@@ -267,7 +274,8 @@ function checklistTitleForRow(row) {
 }
 
 export function mappedIssueCheckbox(row) {
-  return `- [ ] [${escapeLinkText(checklistTitleForRow(row))} <!-- mrt:source-occurrence=${row.sourcePosition} -->](${row.marvelIssueUrl})`;
+  const url = serviceIdentityFor(row)?.url ?? row.marvelIssueUrl;
+  return `- [ ] [${escapeLinkText(checklistTitleForRow(row))} <!-- mrt:source-occurrence=${row.sourcePosition} -->](${url})`;
 }
 
 export function buildMarkdown(mapping) {
