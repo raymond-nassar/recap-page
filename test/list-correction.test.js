@@ -3,8 +3,11 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import {
-  applyListRevision, compareListOrders, matchesEarlierPublishedOrder, publishedRevisionItems, revisedOrderKeepingExtras,
+  applyListRevision, compareListOrders, matchesEarlierPublishedOrder, offersSafeRevision, publishedRevisionItems,
+  revisedOrderKeepingExtras,
 } from '../src/js/lib/listCorrection.js';
+import { identityCorrections } from '../src/data/identityCorrections.js';
+import { reconcileIdentities } from '../src/js/lib/identityReconcile.js';
 import {
   addIssuesToList, createEmptyState, createList, isDeferred, issueNote, issueRating, listProgress,
   markRead, setDeferred, setIssueNote, setIssueRating, setListNote, setOverride,
@@ -97,17 +100,46 @@ test('a revision retains list and comic data by identity and rejects a stale rev
   assert.equal(withoutTitle.issues[5].title, 'Issue 5');
 });
 
+const wolverinePayload = () => JSON.parse(readFileSync(new URL('../src/data/wolverine_reading_order.json', import.meta.url)));
+const wolverineMoves = () => identityCorrections.filter(({ catalogId }) => catalogId === 'wolverine-reading-order');
+
+// Saved the way an earlier release wrote it: the old numbers, each corrected comic under the title
+// that release gave it, so reconciliation sees exactly what a returning reader's library holds.
+function earlierWolverineList(state, listId, saved, payload, catalogId = payload.id) {
+  const current = new Map(payload.items.map((item) => [item.issueId, item]));
+  const legacy = new Map(wolverineMoves().map(({ from, legacyTitle }) => [from, legacyTitle]));
+  state = createList(state, { id: listId, name: 'Wolverine', catalogId });
+  return addIssuesToList(state, listId, saved.map((issueId) => current.get(issueId)
+    ?? (legacy.has(issueId) ? { issueId, title: legacy.get(issueId) } : { issueId }))).state;
+}
+
 test('the Wolverine revision comparison uses identities, including reordered shared comics', () => {
-  const payload = JSON.parse(readFileSync(new URL('../src/data/wolverine_reading_order.json', import.meta.url)));
+  const payload = wolverinePayload();
   const revised = payload.items.map(({ issueId }) => issueId);
   const saved = beforeWolverineCorrectionIssueIds(revised).map(Number);
-  const diff = compareListOrders(saved, revised);
+  const moves = wolverineMoves();
+  assert.equal(moves.length, 18);
+  assert.ok(moves.every(({ from, to }) => saved.includes(from) && !saved.includes(to) && revised.includes(to)));
+  const loaded = reconcileIdentities(earlierWolverineList(createEmptyState(), 'wolverine', saved, payload)).lists.wolverine;
+  assert.deepEqual(loaded.itemIds, saved.map((id) => moves.find(({ from }) => from === id)?.to ?? id));
+  const diff = compareListOrders(loaded.itemIds, revised);
   assert.equal(diff.added.length, 69);
   assert.equal(diff.retained.length, 4);
   assert.equal(diff.reordered, true);
   assert.deepEqual(compareListOrders(revised, revised), { added: [], retained: [], reordered: false });
   assert.equal(matchesEarlierPublishedOrder({ catalogId: 'wolverine-reading-order', itemIds: saved }), true);
   assert.equal(matchesEarlierPublishedOrder({ catalogId: null, itemIds: saved }), true);
+  assert.equal(matchesEarlierPublishedOrder(loaded), true);
+  assert.equal(offersSafeRevision(loaded), true);
+  // Only a copy of the guide is moved on load, so only a copy of the guide matches the moved form.
+  assert.equal(matchesEarlierPublishedOrder({ catalogId: null, itemIds: loaded.itemIds }), false);
+  assert.equal(matchesEarlierPublishedOrder({ catalogId: 'another-list', itemIds: loaded.itemIds }), false);
+  assert.equal(matchesEarlierPublishedOrder({ catalogId: 'wolverine-reading-order', itemIds: loaded.itemIds.slice(1) }), false);
+  const swapped = loaded.itemIds.slice();
+  [swapped[0], swapped[1]] = [swapped[1], swapped[0]];
+  assert.equal(matchesEarlierPublishedOrder({ catalogId: 'wolverine-reading-order', itemIds: swapped }), false);
+  const partly = loaded.itemIds.map((id) => (id === moves[0].to ? moves[0].from : id));
+  assert.equal(matchesEarlierPublishedOrder({ catalogId: 'wolverine-reading-order', itemIds: partly }), false);
   assert.equal(matchesEarlierPublishedOrder({ catalogId: 'wolverine-reading-order', itemIds: revised }), false);
   assert.equal(matchesEarlierPublishedOrder({ catalogId: 'wolverine-reading-order', itemIds: saved.slice(1) }), false);
   assert.equal(matchesEarlierPublishedOrder({ catalogId: 'another-list', itemIds: saved }), false);
@@ -117,26 +149,60 @@ test('the Wolverine revision comparison uses identities, including reordered sha
   assert.throws(() => publishedRevisionItems({ id: payload.id }, { ...payload, count: 1 }), /verified/);
 });
 
-test('updating the actual earlier Wolverine list retains retired comics and their data', () => {
-  const payload = JSON.parse(readFileSync(new URL('../src/data/wolverine_reading_order.json', import.meta.url)));
+test('updating the actual earlier Wolverine list after load retains retired comics and their data', () => {
+  const payload = wolverinePayload();
   const revised = payload.items.map(({ issueId }) => issueId);
   const saved = beforeWolverineCorrectionIssueIds(revised).map(Number);
   const current = new Map(payload.items.map((item) => [item.issueId, item]));
-  const retired = saved.filter((id) => !current.has(id));
-  let state = createList(createEmptyState(), { id: 'wolverine', name: 'Wolverine', catalogId: payload.id });
-  state = addIssuesToList(state, 'wolverine', saved.map((issueId) => current.get(issueId) ?? { issueId })).state;
-  state = markRead(state, retired[0], true, 123);
-  state = setIssueNote(state, retired[0], 'My note');
-  state = setOverride(state, retired[0], 'unavailable');
-  state = setDeferred(state, 'wolverine', retired[0]);
+  const [moved] = wolverineMoves();
+  const retired = saved.filter((id) => !current.has(id) && !wolverineMoves().some(({ from }) => from === id));
+  assert.equal(retired.length, 4);
+  let old = earlierWolverineList(createEmptyState(), 'wolverine', saved, payload);
+  old = markRead(old, retired[0], true, 123);
+  old = setIssueNote(old, retired[0], 'My note');
+  old = setOverride(old, retired[0], 'unavailable');
+  old = setDeferred(old, 'wolverine', retired[0]);
+  old = markRead(old, moved.from, true, 456);
+  old = setListNote(old, 'wolverine', 'List note');
+  const state = reconcileIdentities(old);
+  assert.equal(state.read[moved.to], 456);
+  assert.equal(offersSafeRevision(state.lists.wolverine), true);
   const updated = applyListRevision(state, 'wolverine', JSON.stringify(state.lists.wolverine), payload.items);
   assert.equal(updated.lists.wolverine.itemIds.length, 1276);
   assert.deepEqual(updated.lists.wolverine.itemIds.filter((id) => current.has(id)), revised);
-  assert.ok(retired.every((id) => updated.lists.wolverine.itemIds.includes(id)));
+  assert.deepEqual(updated.lists.wolverine.itemIds.filter((id) => !current.has(id)), retired);
+  assert.ok(wolverineMoves().every(({ from }) => !updated.lists.wolverine.itemIds.includes(from)));
   assert.equal(updated.read[retired[0]], 123);
+  assert.equal(updated.read[moved.to], 456);
   assert.equal(updated.notes[retired[0]], 'My note');
   assert.equal(updated.overrides[retired[0]], 'unavailable');
+  assert.equal(updated.lists.wolverine.note, 'List note');
   assert.ok(updated.lists.wolverine.deferredIssueIds.includes(retired[0]));
+  assert.equal(offersSafeRevision(updated.lists.wolverine), false);
+});
+
+test('an earlier Wolverine list that load could not move is not offered the update and refuses it', () => {
+  const payload = wolverinePayload();
+  const saved = beforeWolverineCorrectionIssueIds(payload.items.map(({ issueId }) => issueId)).map(Number);
+  // A custom copy holding the same comics keeps load from moving either list, since moving only one
+  // would split one comic across two numbers.
+  let old = earlierWolverineList(createEmptyState(), 'wolverine', saved, payload);
+  old = earlierWolverineList(old, 'copy', saved, payload, null);
+  old = markRead(old, wolverineMoves()[0].from, true, 456);
+  const state = reconcileIdentities(old);
+  for (const id of ['wolverine', 'copy']) {
+    const list = state.lists[id];
+    assert.deepEqual(list.itemIds, saved, id);
+    assert.equal(matchesEarlierPublishedOrder(list), true, id);
+    assert.equal(offersSafeRevision(list), false, id);
+    const before = JSON.stringify(state);
+    assert.throws(() => applyListRevision(state, id, JSON.stringify(list), payload.items), /not saved/, id);
+    assert.equal(JSON.stringify(state), before, id);
+  }
+  // The same custom copy on its own is refused too: its corrected comics carry their earlier titles.
+  const alone = reconcileIdentities(earlierWolverineList(createEmptyState(), 'copy', saved, payload, null));
+  assert.equal(offersSafeRevision(alone.lists.copy), false);
+  assert.throws(() => applyListRevision(alone, 'copy', JSON.stringify(alone.lists.copy), payload.items), /not saved/);
 });
 
 const readJson = (path) => JSON.parse(readFileSync(new URL(path, import.meta.url)));
@@ -344,17 +410,18 @@ test('updating the first released Wolverine order adds 83 comics and retains all
   for (const saved of firstReleasedWolverineIssueOrders()) {
     assert.equal(saved.length, 1222);
     assert.equal(matchesEarlierPublishedOrder({ catalogId: payload.id, itemIds: saved }), true);
-    const difference = compareListOrders(saved, [...current.keys()]);
+    const state = reconcileIdentities(earlierWolverineList(createEmptyState(), 'first', saved, payload));
+    const loaded = state.lists.first;
+    assert.equal(offersSafeRevision(loaded), true);
+    const difference = compareListOrders(loaded.itemIds, [...current.keys()]);
     assert.equal(difference.added.length, 83);
     assert.equal(difference.retained.length, 33);
-    let state = createList(createEmptyState(), { id: 'first', name: 'First release', catalogId: payload.id });
-    state = addIssuesToList(state, 'first', saved.map((issueId) => current.get(issueId) ?? { issueId })).state;
-    state = markRead(state, difference.retained[0], true, 123);
-    const updated = applyListRevision(state, 'first', JSON.stringify(state.lists.first), payload.items);
+    const marked = markRead(state, difference.retained[0], true, 123);
+    const updated = applyListRevision(marked, 'first', JSON.stringify(marked.lists.first), payload.items);
     assert.equal(updated.lists.first.itemIds.length, 1305);
-    assert.ok(saved.every((id) => updated.lists.first.itemIds.includes(id)));
+    assert.ok(loaded.itemIds.every((id) => updated.lists.first.itemIds.includes(id)));
     assert.deepEqual(updated.lists.first.itemIds.filter((id) => current.has(id)), [...current.keys()]);
-    assert.deepEqual(updated.read, state.read);
+    assert.deepEqual(updated.read, marked.read);
   }
 });
 
