@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createReadingOrderSwitch } from '../src/js/views/reading-order-switch.js';
-import { bookOrderOf, READING_ORDER_CHOICES } from '../src/js/lib/readingOrderChoices.js';
+import { bookOrderOf, bookSectionsOf, currentReadingOrder, READING_ORDER_CHOICES } from '../src/js/lib/readingOrderChoices.js';
 import { readingOrderArrangement } from '../src/js/lib/listCorrection.js';
 
 const [choice] = READING_ORDER_CHOICES;
@@ -77,6 +77,43 @@ test('the switch shows only on a list with both orders and marks the order the l
     f.setWritable(false);
     assert.equal(f.nodes['reading-order-book'].disabled, true);
   } finally { delete globalThis.document; }
+});
+
+test('a valid sectional order leaves the issue view usable without offering a two-way switch', async () => {
+  const { unbooked, ...base } = choice;
+  const split = {
+    ...base, catalogId: 'sectional-switch-test',
+    bookSteps: base.books.map(({ name }) => ({ book: name })),
+    issueOrderOnly: base.issueOrder.filter((id) => unbooked.includes(id)),
+  };
+  READING_ORDER_CHOICES.push(split);
+  try {
+    assert.equal(bookSectionsOf(split).issueOrderOnly.length, unbooked.length);
+    assert.equal(currentReadingOrder({ itemIds: split.issueOrder }, split), null);
+    const f = fixture({ catalogId: split.catalogId, itemIds: split.issueOrder });
+    assert.equal(f.nodes['reading-order'].hidden, true);
+    f.nodes['reading-order-book'].focus();
+    f.view.render();
+    assert.equal(globalThis.document.activeElement, f.nodes['order-name']);
+    f.nodes['reading-order-book'].click();
+    f.nodes['reading-order-issue'].click();
+    await settle();
+    assert.equal(f.questions().length, 0);
+    assert.equal(f.saves.length, 0);
+    assert.deepEqual(f.state().lists.wotr.itemIds, split.issueOrder);
+    assert.throws(() => bookOrderOf(split), /no single book order/);
+    for (const invalid of [
+      { ...split, issueOrder: [...split.issueOrder, split.issueOrder[0]] },
+      { ...split, issueOrderOnly: split.issueOrderOnly.slice(1) },
+      { ...split, issueOrderOnly: [...split.issueOrderOnly].reverse() },
+      { ...base, issueOrderOnly: [] },
+    ]) {
+      assert.throws(() => currentReadingOrder({ itemIds: [split.issueOrder[0]] }, invalid), Error);
+    }
+  } finally {
+    READING_ORDER_CHOICES.splice(READING_ORDER_CHOICES.indexOf(split), 1);
+    delete globalThis.document;
+  }
 });
 
 test('a switch that leaves the next comic in place saves without asking', async () => {

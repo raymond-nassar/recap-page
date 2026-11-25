@@ -128,6 +128,11 @@ export function orderIdsFor(choice, order) {
 // on what is left of a list, and then the book headings decide, because they are what a reader sees.
 export function currentReadingOrder(list, choice = readingOrderChoiceFor(list)) {
   if (!choice || !Array.isArray(list?.itemIds)) return null;
+  // Validate before hiding a split projection: malformed declarations still need to fail, but a
+  // valid second section cannot be represented by this saved list's two-way order switch.
+  if (choice.bookSteps !== undefined || choice.issueOrderOnly !== undefined) {
+    if (bookSectionsOf(choice).issueOrderOnly.length) return null;
+  }
   const held = new Set(list.itemIds);
   // A list left with one of the order's comics has nothing to arrange.
   if (choice.issueOrder.filter((id) => held.has(id)).length < 2) return null;
