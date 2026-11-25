@@ -76,6 +76,7 @@ import { createCatalogView } from './views/catalog.js';
 import { createLibraryLinkFilter, linkNarrower } from './views/shared/library-link-filter.js';
 import { createMcuPrepView } from './views/mcu-prep.js';
 import { createStoryTypesView } from './views/story-types.js';
+import { createStartingPointView, isOptionalGuideList } from './views/starting-point.js';
 import { createPreviewView } from './views/preview.js';
 import { createSearchListsView, searchThumb } from './views/search-lists.js';
 import { createUniversesView } from './views/universes.js';
@@ -1536,13 +1537,12 @@ function wireNav() {
     });
   }
 
-  for (const link of document.querySelectorAll('[data-preview-id]')) {
-    link.addEventListener('click', (event) => {
-      if (!isPlainNavigation(event)) return;
-      event.preventDefault();
-      navigateToGuidePreview(link.dataset.previewId);
-    });
-  }
+  $('#view-new-to-comics').addEventListener('click', (event) => {
+    const link = event.target.closest('a[data-preview-id]');
+    if (!link || !isPlainNavigation(event)) return;
+    event.preventDefault();
+    navigateToGuidePreview(link.dataset.previewId);
+  });
 
   $('#btn-new-list').addEventListener('click', newEmptyList);
 }
@@ -1904,6 +1904,7 @@ function showView(next, { focus = true, push = false, at = null, capturePosition
   if (shelf) void catalogView.render(shelf.key);
   if (generatedCategoryByRoute.has(next)) renderPublishingCategory(next);
   if (next === 'home') homeView.render();
+  if (next === 'new-to-comics') void startingPointView.render();
   if (next === 'creators') void creatorsView.render();
   if (next === 'universes') universeView.renderIndex();
   if (next === 'universe') void universeView.renderDetail();
@@ -4015,7 +4016,7 @@ const issueView = createIssueView({
   decorateResult: (result, { catalog }) => ({
     ...result,
     breadcrumbShelf: result.contextStatus === 'valid' && result.context?.kind === 'order'
-      ? guidePreviewLink(result.context.id) ? 'new-to-comics' : catalogListBrowseRoute(catalog?.lists, result.context.id)
+      ? isOptionalGuideList(result.context.id) ? 'new-to-comics' : catalogListBrowseRoute(catalog?.lists, result.context.id)
       : null,
   }),
   elements: () => ({
@@ -4481,6 +4482,32 @@ const storyTypesView = createStoryTypesView({
   presentation: catalogPresentation,
   linkChoice: () => libraryLinkFilter.current('genres'),
   onNavigate: ({ push }) => syncHash({ push }),
+});
+
+const startingPointView = createStartingPointView({
+  el,
+  elements: () => ({
+    familiarity: document.querySelectorAll('input[name="guide-start-familiarity"]'),
+    favorite: $('#guide-start-favorite'),
+    starters: $('#guide-start-starters'),
+    timeline: $('#guide-start-timeline'),
+    match: $('#guide-start-match'),
+    optional: $('#guide-start-optional'),
+    optionalCards: $('#guide-start-optional-cards'),
+  }),
+  isCurrent: () => view === 'new-to-comics',
+  loadCatalog,
+  presentation: catalogPresentation,
+  announce,
+  clearLoadNotice: () => clearNotice(CATALOG_LOAD),
+  onLoadFailure: ({ error, isCurrent, retry }) => reportBundledLoadFailure({
+    report: '#guide-start-report',
+    failure: `The catalog could not be loaded: ${error.message}. Your lists are unchanged.`,
+    key: CATALOG_LOAD,
+    subject: 'the catalog',
+    retry,
+    isCurrent,
+  }),
 });
 
 const catalogView = createCatalogView({

@@ -242,7 +242,7 @@
   --cyan-line: 91 208 233;
   --jade-line: 78 208 182;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:849`; these pairs supply saturation and lightness where that local hue is
+     `src/js/main.js:850`; these pairs supply saturation and lightness where that local hue is
      consumed. Keeping the hue reference on the cover avoids resolving it before the cover exists. */
   --fallback-a: 42% 26%;
   --fallback-b: 38% 14%;
@@ -2231,6 +2231,15 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 @media (forced-colors: active) {
   .home-guide-link { border-color: LinkText; color: LinkText; background: Canvas; }
 }
+#home-new-reader .btn { max-inline-size: 100%; }
+#home-new-reader .btn .gi {
+  box-sizing: content-box; padding-inline-start: var(--space-4);
+  border-inline-start: var(--stroke-1) solid currentColor;
+}
+/* Darken only the fill: the shared brightness filter also changes the label and arrow. */
+#home-new-reader .btn:hover { background: color-mix(in srgb, var(--accent) 90%, black); filter: none; }
+.guide-familiarity { flex-direction: column; align-items: flex-start; }
+.guide-familiarity .filter-legend { float: none; margin-block-end: var(--space-3); }
 .home-paths {
   list-style: none; margin: var(--space-5) 0 0; padding: 0;
   display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6);
@@ -3336,8 +3345,11 @@ select, input[type="search"], input[type="text"], input[type="url"] {
 @container home-discovery (min-width: max(29rem, calc(40ch + 1rem))) {
   #home-secondary-paths { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+/* Five across needs about 15.6ch a card, plus the four 1rem gaps (#1565). Measured in Edge at 1280px,
+   the widest whole word needs 15.0ch of card at 200% text and 15.4ch at 150%. At 50ch, 200% text kept
+   five 180px cards and clipped "Publication", which needs 226px, so larger text now falls back to two. */
 @media (min-width: 1024px) {
-  @container home-discovery (min-width: max(44rem, calc(50ch + 4rem))) {
+  @container home-discovery (min-width: max(44rem, calc(78ch + 4rem))) {
     #home-secondary-paths { grid-template-columns: repeat(5, minmax(0, 1fr)); }
     #home-secondary-paths .home-path { padding: var(--space-4); column-gap: var(--space-4); }
     #home-secondary-paths .home-path-title { font-size: var(--t-subtitle); }

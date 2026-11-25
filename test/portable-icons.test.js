@@ -10,7 +10,7 @@ const html = read('../src/index.html');
 const css = read('../src/styles.css');
 const sprite = read('../src/icons/ui.svg');
 const expected = [
-  'menu', 'books', 'search', 'settings', 'info',
+  'menu', 'books', 'search', 'settings', 'info', 'arrow-right',
   'check', 'progress', 'edit', 'star', 'timeline', 'ages', 'search',
   'timeline', 'characters', 'series', 'creator', 'story-types', 'ages', 'universes', 'search', 'search',
 ];
@@ -20,7 +20,7 @@ test('all navigation/search glyphs use the selected local symbols, not font char
   const mobile = [...html.matchAll(/<a href="#\/(?:library|add)" class="mobile-link"[^>]*>[\s\S]*?<use href="\.\/icons\/ui\.svg#([\w-]+)"\/>/g)]
     .map(([, name]) => name);
   assert.deepEqual(mobile, ['books', 'search']);
-  assert.equal(icons.length, 23);
+  assert.equal(icons.length, expected.length + mobile.length);
   assert.deepEqual(icons.map(([, , content]) => {
     const match = /^<use href="\.\/icons\/ui\.svg#([\w-]+)"\/>$/.exec(content);
     assert.ok(match, 'each icon contains only a local symbol reference');

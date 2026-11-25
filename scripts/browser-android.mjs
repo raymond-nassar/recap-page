@@ -1504,6 +1504,12 @@ async function storyTypesDropdowns(page, profile, label) {
   check(guideReady, `${label}: filtered Genres reaches the guide and its starter link`);
   if (guideReady) {
     const savedBefore = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+    const rows = await page.$$eval('input[name="guide-start-familiarity"]', (inputs) =>
+      inputs.map((input) => input.closest('label').getBoundingClientRect().toJSON()));
+    check(rows.length === 2 && rows[0].height > 0 && rows[1].height > 0 && rows[0].bottom < rows[1].top,
+      `${label}: both experience answers have their own row`);
+    await click(page, 'label:has(input[name="guide-start-familiarity"][value="new"])');
+    await page.waitForSelector('#guide-start-optional .catalog-card-preview');
     for (const [id, ids] of [
       ['history-of-the-marvel-universe-2019', [75119, 75120, 75121, 75122, 75123, 75124]],
       ['marvels-1994', [10280, 10281, 10282, 10283]],
@@ -1583,7 +1589,7 @@ async function storyTypesDropdowns(page, profile, label) {
       adjustment: style.forcedColorAdjust };
   }));
   const expectedSelects = JSON.stringify([
-    'catalog-path', 'catalog-path-jump', 'genres-tone', 'genres-type',
+    'catalog-path', 'catalog-path-jump', 'genres-tone', 'genres-type', 'guide-start-favorite',
     'opt-theme', 'rated-character', 'rated-min', 'rated-sort', 'universes-sort',
   ]);
   const measuredSelects = (colors) => JSON.stringify(colors.map(({ id }) => id).sort());
@@ -1748,6 +1754,9 @@ async function categoryLabelReadability(page, label, viewport) {
   const categories = availableHomeCategories(catalogEntries(catalog.lists), HOME_CATEGORIES);
   assert.equal(categories.length, HOME_CATEGORIES.length, 'Bundled fixture must expose every Home category');
   const scale = viewport.textScale || 1;
+  // Measured in Edge at 1280px, the 964px Discover More container keeps five across up to 150% text,
+  // which needs 947px, and falls back to two columns at 200%, which needs 1241px (#1565).
+  const fiveAcross = viewport.width === 1280 && scale <= 1.5;
   for (const view of ['home']) {
     await route(page, view);
     await page.waitForFunction((id, count) => document.querySelectorAll(`#view-${id} .home-path`).length === count,
@@ -1827,14 +1836,18 @@ async function categoryLabelReadability(page, label, viewport) {
       const category = categories[index];
       const count = `${category.count} ${category.count === 1
         ? (category.singular ?? 'Reading List') : (category.plural ?? 'Reading Lists')}`;
-      const categoryLabel = category.key === 'timeline' ? 'Recommended start here' : category.label;
+      const categoryLabel = category.key === 'timeline' ? 'Marvel Knights to Present Day' : category.label;
       check(card.key === category.key && card.name === `${categoryLabel}. ${category.heading}. ${count}.`
         && JSON.stringify(card.parts.map((part) => part.text.trim())) === JSON.stringify([categoryLabel, category.heading, count]),
       `${label} ${view}: ${category.key}: exact wording, order and accessible name`);
       const caption = (viewport.desktop ? 12 : 14) * scale;
       // Since #1181 the primary title's floor is the subtitle token, so it grows with the reader's text
-      // as the caption does; only the desktop's 1.8rem cap at normal text sits above that floor.
-      const title = category.tier === 'secondary' ? 28 * scale : Math.max(20 * scale, viewport.desktop ? 28.8 : 0);
+      // as the caption does; only the desktop's 1.8rem cap at normal text sits above that floor, and
+      // its 2.4vw middle term wins only between the two, as at 1280px with 150% text (30.72px).
+      // Since #1535 the five Discover More cards across a desktop row take the subtitle size; once
+      // text is too large for five they fall back to two columns (#1565) and keep the full title size.
+      const title = category.tier === 'secondary' ? (fiveAcross ? 20 : 28) * scale
+        : Math.min(Math.max(20 * scale, viewport.width * 0.024), Math.max(28 * scale, 28.8));
       check(card.parts[0].font === caption && Math.abs(card.parts[1].font - title) < 0.01
         && card.parts[2].font === caption && card.parts.every((part) => part.family === card.parts[0].family),
       `${label} ${view}: ${category.key}: existing computed type sizes ${JSON.stringify(card.parts)}`);
@@ -1869,8 +1882,8 @@ async function categoryLabelReadability(page, label, viewport) {
         rows.set(top, (rows.get(top) ?? 0) + 1);
       }
       const counts = [...rows.values()];
-      // Equal rows alone would accept a fall from four across to two by two, so pin each measured layout.
-      const expected = viewport.width === 1280 && scale === 1 ? [4] : [2, 2];
+      // Equal rows alone would accept a fall from five across to two by two, so pin each measured layout.
+      const expected = fiveAcross ? [5] : [2, 2, 1];
       check(JSON.stringify(counts) === JSON.stringify(expected),
         `${label} ${view}: Discover More rows ${JSON.stringify(counts)} match ${JSON.stringify(expected)}`);
       console.log(`HOME_ROWS ${label}: ${JSON.stringify(counts)}`);
@@ -3246,49 +3259,36 @@ async function focusedActionHiddenBeforeMediaCallback(page, label) {
 async function mobileLayout(page, label, narrow) {
   await page.waitForSelector('#home-primary-paths [data-category="timeline"]');
   const guideEntry = await page.evaluate(() => {
-    const link = document.querySelector('#home-categories a[href="#/new-to-comics"]');
+    const link = document.querySelector('#home-new-reader a[href="#/new-to-comics"]');
     if (!link) return null;
     const box = link.getBoundingClientRect();
-    const row = link.closest('.sec-h');
-    const rowBox = row?.getBoundingClientRect();
-    const heading = row?.querySelector('#home-cat-h');
+    const heading = document.querySelector('#home-new-reader-h');
     const headingBox = heading?.getBoundingClientRect();
     const lines = (node) => {
       const range = document.createRange();
       range.selectNodeContents(node);
       return new Set([...range.getClientRects()].filter((r) => r.width > 0).map((r) => Math.round(r.top))).size;
     };
-    // The owner chose the pill's natural one-line width over a half-row cap, which split its
-    // label on a 393 px iPhone (91edc66f). It sits beside Explore only when both fit.
-    const saved = link.getAttribute('style');
-    link.style.whiteSpace = 'nowrap'; link.style.maxWidth = 'none';
-    const natural = link.getBoundingClientRect().width;
-    if (saved === null) link.removeAttribute('style'); else link.setAttribute('style', saved);
-    const gap = row ? parseFloat(getComputedStyle(row).columnGap) || 0 : 0;
     return { text: link.textContent.trim(), visible: link.checkVisibility(),
-      width: box.width, height: box.height, rowWidth: rowBox?.width ?? 0, natural,
+      width: box.width, height: box.height,
       heading: heading?.textContent.trim() ?? null,
       headingVisible: Boolean(heading?.checkVisibility() && !heading.closest('.visually-hidden')
         && headingBox && headingBox.width > 1 && headingBox.height > 1),
       headingWhole: Boolean(heading && lines(heading) === 1 && heading.scrollWidth <= heading.clientWidth + 1),
-      besideFits: Boolean(headingBox && rowBox && headingBox.width + gap + natural <= rowBox.width + 0.5),
-      beside: Boolean(headingBox && headingBox.right <= box.left + 1
-        && headingBox.bottom > box.top && box.bottom > headingBox.top),
       below: Boolean(headingBox && box.top >= headingBox.bottom - 1),
-      pillLines: lines(link),
+      beforeExplore: Boolean(document.querySelector('#home-new-reader + #home-categories')),
       left: box.left, right: box.right,
       viewportWidth: innerWidth,
       overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth };
   });
-  const guideUsable = guideEntry?.visible && guideEntry.text === 'New to Marvel Comics?'
-    && guideEntry.heading === 'Explore' && guideEntry.headingVisible && guideEntry.headingWhole
-    && (guideEntry.besideFits ? guideEntry.beside : guideEntry.below)
-    && (guideEntry.natural > guideEntry.rowWidth + 0.5 || guideEntry.pillLines === 1)
+  const guideUsable = guideEntry?.visible && guideEntry.text === 'Find a starting point.'
+    && guideEntry.heading === 'New to comics?' && guideEntry.headingVisible && guideEntry.headingWhole
+    && guideEntry.below && guideEntry.beforeExplore
     && guideEntry.width > 0 && guideEntry.height >= 44
     && guideEntry.left >= 0 && guideEntry.right <= guideEntry.viewportWidth && !guideEntry.overflow;
-  check(guideUsable, `${label}: guide link stays whole beside Explore when both fit, else on its own line, and is usable ${JSON.stringify(guideEntry)}`);
+  check(guideUsable, `${label}: the New to comics? card sits before Explore with its button usable ${JSON.stringify(guideEntry)}`);
   if (guideUsable) {
-    await click(page, '#home-categories a[href="#/new-to-comics"]');
+    await click(page, '#home-new-reader a[href="#/new-to-comics"]');
     await page.waitForSelector('#view-new-to-comics:not([hidden])');
     const guide = await page.evaluate(() => ({
       focus: document.activeElement?.id,
@@ -3301,7 +3301,7 @@ async function mobileLayout(page, label, narrow) {
     await page.waitForSelector('#home-primary-paths [data-category="timeline"]');
   }
   const home = await page.$eval('#view-home', (region) => ({
-    recommended: region.querySelector('[data-category="timeline"]')?.textContent.includes('Recommended start here'),
+    recommended: region.querySelector('[data-category="timeline"]')?.textContent.includes('Marvel Knights to Present Day'),
     intro: !!region.querySelector('#home-first-run'),
     search: !!region.querySelector('[data-view="add"], #btn-home-add'),
   }));
@@ -3536,7 +3536,18 @@ async function mobileLayout(page, label, narrow) {
       name: control.textContent.trim(),
       card: [card.left, card.right, card.bottom], control: [box.left, box.right, box.top, box.height],
       gap: parseFloat(getComputedStyle(row).columnGap), background: style.backgroundColor,
-      border: style.borderColor, colour: style.color, dim: getComputedStyle(document.querySelector('#hero-by')).color,
+      border: style.borderColor, colour: style.color,
+      // Since #1535 the control wears the ghost button's outline and tint at rest, so it reads as a
+      // button; the expected colors come from the same tokens, resolved by a probe in this theme.
+      ...(() => {
+        const probe = document.createElement('span');
+        probe.style.cssText = 'background: rgb(var(--tint-base) / 5.882%); border: 1px solid var(--line-2); color: var(--text)';
+        group.append(probe);
+        const token = getComputedStyle(probe);
+        const resting = { tint: token.backgroundColor, line: token.borderTopColor, text: token.color };
+        probe.remove();
+        return resting;
+      })(),
     };
   }, narrow);
   check(placement.outsideHero && placement.placed,
@@ -3546,9 +3557,10 @@ async function mobileLayout(page, label, narrow) {
   check(Math.abs(placement.control[0] - placement.card[0]) <= 1
     && Math.abs(placement.control[1] - placement.card[1]) <= 1
     && placement.control[2] - placement.card[2] > placement.gap && placement.control[3] >= 48
-    && placement.background === 'rgba(0, 0, 0, 0)' && placement.border === 'rgba(0, 0, 0, 0)'
-    && placement.colour === placement.dim,
-  `${label}: the quieter Reading List options group aligns with the card's edges and has a larger gap ${JSON.stringify(placement)}`);
+    && placement.background === placement.tint && placement.border === placement.line
+    && placement.colour === placement.text && placement.border !== 'rgba(0, 0, 0, 0)'
+    && !/^rgba\(.*, 0\)$/.test(placement.background),
+  `${label}: the Reading List options button aligns with the card's edges, has a larger gap and shows its outline at rest ${JSON.stringify(placement)}`);
   if (!narrow) {
     check(!await trigger.isVisible() && await page.$eval('#btn-rename-list', (node) => !!node.getClientRects().length),
       `${label}: wide list actions remain inline`);
@@ -3585,10 +3597,16 @@ async function mobileLayout(page, label, narrow) {
     const completeRule = node.querySelector('#btn-complete-list')?.nextElementSibling;
     return {
       names: buttons.map((button) => button.textContent.trim()),
-      expected: ['#btn-complete-list', '#btn-rename-list', '#btn-list-note', '#btn-duplicate-list', '#btn-mark-all-read', '#btn-export-md',
+      expected: ['#btn-complete-list', '#btn-rename-list', '#btn-list-note', '#btn-duplicate-list', '#list-revision-check',
+        '#list-offline-action', '#btn-mark-all-read', '#btn-export-md',
         '#btn-export-order', '#btn-hydrate', '#btn-synopsis', '#btn-delete-list']
-        .map((selector) => node.querySelector(selector)).filter((button) => button && !button.hidden)
-        .map((button) => button.textContent.trim()),
+        // #1400's Compare always shows, so its absence must fail rather than drop out of the list.
+        .map((selector) => {
+          const button = node.querySelector(selector);
+          return selector === '#list-revision-check' && (!button || button.hidden) ? `missing ${selector}` : button;
+        })
+        .filter((button) => typeof button === 'string' || (button && !button.hidden))
+        .map((button) => typeof button === 'string' ? button : button.textContent.trim()),
       summaries: [...node.querySelectorAll('summary')].filter(shown).map((summary) => summary.textContent.trim()),
       closed: [...node.querySelectorAll('details')].filter((details) => !details.open).map((details) => details.id),
       small: buttons.filter((button) => button.getBoundingClientRect().height < 47.5).map((button) => button.id),
@@ -5664,6 +5682,7 @@ try {
     { width: 800, height: 360 },
     { width: 800, height: 360, textScale: 2 },
     { width: 1280, height: 900, desktop: true },
+    { width: 1280, height: 900, desktop: true, textScale: 1.5 },
     { width: 1280, height: 900, desktop: true, textScale: 2 },
   ];
   if (universesOnly) viewports = [
@@ -6064,7 +6083,7 @@ try {
       const sharedCopy = await page.evaluate(() => {
         const footer = document.querySelector('.app-footer');
         return {
-          recommendation: !!document.querySelector('#view-home [data-category="timeline"]')?.textContent.includes('Recommended start here'),
+          recommendation: !!document.querySelector('#view-home [data-category="timeline"]')?.textContent.includes('Marvel Knights to Present Day'),
           // Home's start actions and the footer About became native hash links so browser
           // navigation gestures work, so both are found as links; buttons are still collected
           // so an extra start action of either kind is reported.

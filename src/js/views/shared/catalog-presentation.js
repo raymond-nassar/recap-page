@@ -170,6 +170,7 @@ export function createCatalogPresentation({
     level = 'h3',
     titleId = null,
     linkText = null,
+    previewHref = null,
   } = {}) {
     const reportTarget = report ?? `#${surface}-report`;
     const list = story.lists[0];
@@ -183,6 +184,14 @@ export function createCatalogPresentation({
     const source = attributionLine(list, { compact: true });
 
     const year = storyYear(story);
+    const previewData = { key: story.key, act: 'preview' };
+    const preview = el(previewHref ? 'a' : 'button', {
+      class: 'catalog-card-preview',
+      'aria-label': shownName([title], 'Preview'),
+      ...(previewHref
+        ? { href: previewHref, dataset: { ...previewData, previewId: list.id } }
+        : { type: 'button', dataset: previewData, onclick: () => onPreview(list) }),
+    }, el('span', { id: titleId, text: title }));
     return el('article', {
       class: 'catalog-card',
       dataset: { story: story.key, year: year ?? '' },
@@ -190,13 +199,7 @@ export function createCatalogPresentation({
       el('div', { class: 'catalog-card-main' }, [
         el('div', { class: 'ocard-art' }, [img, fallback]),
         el('div', { class: 'catalog-card-text' }, [
-          el(level, { class: 'catalog-card-title' }, el('button', {
-            class: 'catalog-card-preview',
-            type: 'button',
-            'aria-label': shownName([title], 'Preview'),
-            dataset: { key: story.key, act: 'preview' },
-            onclick: () => onPreview(list),
-          }, el('span', { id: titleId, text: title }))),
+          el(level, { class: 'catalog-card-title' }, preview),
           desc ? el('p', { class: 'catalog-card-desc', text: desc }) : el('p', { class: 'catalog-card-desc', hidden: true }),
           el('p', {
             class: 'catalog-card-meta',
