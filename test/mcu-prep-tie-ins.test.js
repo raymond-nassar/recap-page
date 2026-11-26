@@ -231,8 +231,35 @@ test('tie-in reader links keep the exact matched viewers and preserve every earl
   assert.deepEqual(links.links.filter(({ issueId, viewer }) => issueId === fcbd || viewer === 12467), [{
     issueId: fcbd, viewer: 12467, basis: 'exact', source: 'continuity-guide-discord-2026-11-19',
   }]);
+  const modernTimeline189 = new Set([
+    5242, 5544, 5666, 5804, 5967, 6002, 6030, 6111, 6129, 6192, 6267,
+    6290, 6340, 13431, 13433, 13475, 15813, 15814, 15854, 15879, 15889, 15931,
+    15964, 15988, 15999, 16006, 16149, 16173, 16174, 16183, 16189, 16569, 16570,
+    16596, 16597, 17653, 20665, 20698, 20860, 20890, 20995, 21022, 21023, 21207,
+    21237, 21351, 21379, 21532, 21556, 21731, 21751, 21752, 21963, 21987, 22286,
+    22311, 22312, 22493, 22516, 22898, 22923, 22924, 23104, 23121, 23599, 23615,
+    23760, 23958, 24158, 25289, 25290, 25291, 25292, 25293, 25294, 51198, 51199,
+    51200, 51201, 51208, 51211, 51212, 51213, 51214, 51538, 51539, 51573, 51574,
+    51575, 51576, 51579, 51580, 51712, 51714, 51715, 51716, 51802, 51803, 51804,
+    51808, 51810, 51811, 51812, 51835, 51837, 51838, 51839, 51840, 51935, 51936,
+    51937, 51938, 51939, 51947, 51948, 51949, 51950, 51961, 51971, 51972, 51973,
+    51974, 51975, 51994, 51996, 51997, 51998, 51999, 52055, 52056, 52057, 52058,
+    52059, 52072, 52074, 52075, 52076, 52240, 52241, 52242, 52243, 52303, 52307,
+    52308, 52309, 52327, 52328, 52329, 52330, 52333, 52335, 52336, 52337, 52338,
+    52486, 52487, 52488, 52489, 52575, 52578, 52579, 52580, 52593, 52595, 52596,
+    52597, 52824, 52825, 52826, 52827, 52891, 52892, 52893, 52894, 52968, 52971,
+    52972, 52973, 52974, 53702, 53704, 53705, 53706, 54775, 54777, 54778, 55847,
+    56004, 57531,
+  ]);
+  const modernLinks = links.links.filter(({ issueId }) => modernTimeline189.has(issueId));
+  assert.equal(modernLinks.length, 189);
+  assert.equal(digest(modernLinks.map(({ issueId, viewer }) => [issueId, viewer])),
+    '9806b905fe4c769b52845adc9b872c8a040d314538931ca7a99948498590bd72');
+  assert.ok(modernLinks.every(({ issueId, basis, source }) => !additions.has(issueId) && !xmenEra.has(issueId)
+    && !reviewed2025.has(issueId) && !wolverine18.has(issueId) && issueId !== fcbd
+    && basis === 'exact' && source === 'continuity-guide-discord-2026-11-19'));
   const previous = links.links.filter(({ issueId }) => !additions.has(issueId) && !xmenEra.has(issueId)
-    && !reviewed2025.has(issueId) && !wolverine18.has(issueId) && issueId !== fcbd);
+    && !reviewed2025.has(issueId) && !wolverine18.has(issueId) && issueId !== fcbd && !modernTimeline189.has(issueId));
   assert.equal(previous.length, 17663);
   assert.equal(digest(previous), '0bec147ce327f7287cd5d6a02f6c303295a5f51c78da9f43a9a3be6e981d219f');
   const { unapprovedIssueIds, ...frozenMu } = mu;
@@ -245,9 +272,22 @@ test('tie-in reader links keep the exact matched viewers and preserve every earl
     ...frozenMu, issueIds: [...mu.issueIds, ...reviewed2025.keys(), fcbd].sort((a, b) => a - b),
   };
   assert.equal(digest(previousMu), '9fc9fe6d314b2786e16c6b6772e0104091efaa6defd59142b91f5521388e4e55');
-  assert.deepEqual(unapprovedIssueIds, [
+  const installmentRows = read('catalog.json').lists.filter(({ id }) =>
+    id === 'world-war-hulk' || id === 'secret-wars-2015-event-tie-ins' || /^civil-war-to-secret-invasion-part-\d+$/.test(id))
+    .flatMap(({ file }) => read(file).items);
+  const installmentIds = new Set(installmentRows.map(({ issueId }) => issueId));
+  const modernPending = unapprovedIssueIds.filter((id) => installmentIds.has(id));
+  assert.equal(digest(modernPending), 'cc476d8503549aa3411db8603c92dba8a122ba5fa08c65a2ba1c017fa8499725');
+  assert.deepEqual(unapprovedIssueIds.filter((id) => !installmentIds.has(id)), [
     17293, 42667, 42668, 51951, 51955, 55498, 55499, 60666, 60667, 62843, 101513, 101520, 129237,
   ]);
+  const held = installmentRows.filter(({ findOnly }) => findOnly === true);
+  assert.deepEqual(held.map(({ issueId }) => issueId).sort((a, b) => a - b), [
+    51403, 51405, 51406, 51407, 51408, 51855, 51856, 51857, 51858, 52466, 52467, 52964, 52965,
+    52966, 52967, 52977, 52978, 52979, 52980, 53633, 53634, 53635, 56003, 56306, 56326,
+  ]);
+  const linked = new Set([...links.links.map(({ issueId }) => issueId), ...mu.issueIds]);
+  assert.ok(held.every(({ issueId, url }) => url === null && !linked.has(issueId) && modernPending.includes(issueId)));
   for (const id of [42667, 42668, 60666, 60667]) {
     assert.ok(!links.links.some(({ issueId }) => issueId === id));
     assert.ok(!mu.issueIds.includes(id));

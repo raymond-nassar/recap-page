@@ -2006,9 +2006,14 @@ viewer matches for catalog identities that do not already have a viewer link. A 
 match supersedes any matching legacy number approval or exclusion: the source approval stays
 intact, but its generated number list omits that comic. Earlier viewer links are not revised, and
 the runtime reads only the verified viewer table, not the legacy number list
-(`scripts/marvel-comics-app-links.mjs:221-244`, `scripts/marvel-comics-app-links.mjs:343-419`,
+(`scripts/marvel-comics-app-links.mjs:217-244`, `scripts/marvel-comics-app-links.mjs:370-429`,
 `src/js/lib/marvelComicsApp.js:8-24`). Repeated runs make no further changes unless the catalog
 or unresolved match changes.
+
+An explicitly marked Find-only comic still participates in matching and collision checks.
+Do not add it to either link table, even when the export has an exact match. The importer keeps
+this hold if any catalog appearance marks that comic Find-only; the table check rejects a link
+that would bypass the hold. A later exact match does not, by itself, lift the approved hold.
 
 A unique exact match gets the export's viewer link. Ambiguous identities, conflicting numbers,
 year-shift matches and missing matches get no new app link. A new unresolved identity outside the

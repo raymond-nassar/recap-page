@@ -218,10 +218,11 @@ export function importNewCatalog(input, muInput, items, rows) {
   const knownViewerIds = new Set(input.links.map((link) => link.issueId));
   const newIds = new Set(items.filter((item) => validId(item.issueId) && !knownViewerIds.has(item.issueId))
     .map((item) => item.issueId));
+  const findOnlyIds = new Set(items.filter((item) => item.findOnly === true).map((item) => item.issueId));
   // Match against the entire catalog before filtering: an older comic can make a new one ambiguous.
   const selection = selectLinks({ source: EXPORT_SOURCE, rows });
   if (Object.values(selection.refused).some((n) => n > 0)) throw new Error('Refusing invalid export rows');
-  const added = selection.links.filter((link) => newIds.has(link.issueId));
+  const added = selection.links.filter((link) => newIds.has(link.issueId) && !findOnlyIds.has(link.issueId));
   const merged = added.length ? mergeExportInput(input, {
     source: EXPORT_SOURCE, generatedAt: EXPORT_PROVENANCE.receivedAt,
     rows: added.map((link) => ({
@@ -333,6 +334,7 @@ export function catalogComics() {
       else {
         if (!current.mu && item.mu) current.mu = item.mu;
         if (current.digitalId == null && item.digitalId != null) current.digitalId = item.digitalId;
+        if (item.findOnly === true) current.findOnly = true;
       }
     }
   }
@@ -360,6 +362,11 @@ export function muInputFrom(items, viewerLinks, approvedGroups, asOf, excludedIs
   };
 }
 
+function assertFindOnlyUnlinked(items, linkedIds) {
+  const held = items.find((item) => item.findOnly === true && linkedIds.has(item.issueId));
+  if (held) throw new Error(`Find-only comic ${held.issueId} must not have a reading-link table entry`);
+}
+
 export function buildMuModule(input, items, viewerLinks) {
   const fail = (message) => { throw new Error(`Refusing Marvel Unlimited app addresses: ${message}`); };
   if (!['awaiting-owner-handcheck', 'owner-approved'].includes(input?.status)
@@ -375,6 +382,7 @@ export function buildMuModule(input, items, viewerLinks) {
   }
   const comics = new Map(items.map((item) => [item.issueId, item]));
   const viewers = new Set(viewerLinks.map((link) => link.issueId));
+  assertFindOnlyUnlinked(items, new Set([...viewers, ...input.issueIds]));
   const unapprovedIssueIds = input.unapprovedIssueIds ?? [];
   if (!Array.isArray(unapprovedIssueIds)) fail('invalid unapproved population');
   let previousUnapproved = 0;
@@ -455,6 +463,7 @@ function main(args) {
       : inputFrom(matches);
     const problems = validateInput(input);
     if (problems.length) throw new Error(problems.join('\n'));
+    assertFindOnlyUnlinked(catalogComics(), new Set(input.links.map((link) => link.issueId)));
     writeFileSync(INPUT_PATH, serializeInput(input));
     console.log(`Wrote ${input.counts.total} links (${input.counts.exact} exact, ${input.counts.coverYearShift} one year apart).`);
     return 0;

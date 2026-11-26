@@ -169,6 +169,24 @@ test('new catalog import refuses a different private export before matching', ()
     /SHA-256 differs/);
 });
 
+test('new catalog import does not turn a Find-only comic into a direct or legacy link', () => {
+  const base = inputFrom({ rows: [row(1, 'exact', [101])] });
+  const items = [{ issueId: 1 }, { issueId: 2 }, { issueId: 3 }, { issueId: 4 }, { issueId: 2, findOnly: true }];
+  const mu = { status: 'owner-approved', asOf: '2026-11-18',
+    approvedGroups: ['unknown-unlimited'], issueIds: [] };
+  const rows = [exportRow(2, 'exact', [102]), exportRow(3, 'exact', [103]), exportRow(4, 'exact', [102])];
+  const result = importNewCatalog(base, mu, items, rows);
+  assert.deepEqual(result.input.links.map(({ issueId, viewer: number }) => [issueId, number]),
+    [[1, 101], [3, 103]], 'the held match still participates in collision detection');
+  assert.deepEqual(result.muInput.unapprovedIssueIds, [2, 4]);
+  const verifiedHold = rows.slice(0, 2);
+  assert.deepEqual(importNewCatalog(result.input, result.muInput, items, verifiedHold), { ...result, added: 0 });
+  const invalid = mergeExportInput(base, { source: EXPORT_SOURCE, rows: verifiedHold });
+  assert.throws(() => buildMuModule(result.muInput, items, invalid.links), /Find-only comic 2/);
+  assert.throws(() => buildMuModule({ ...mu, issueIds: [2], unapprovedIssueIds: [4] }, items, result.input.links),
+    /Find-only comic 2/);
+});
+
 test('private export merges exact selections without extending the year-shift approval', () => {
   const base = inputFrom({ rows: [row(1, 'exact', [101]), row(2, 'exact', [102])] });
   const matches = {

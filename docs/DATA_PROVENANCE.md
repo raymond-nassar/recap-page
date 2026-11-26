@@ -1072,9 +1072,9 @@ app encounters that state rather than hypothetically. At removal, 606 carried a 
 id and 69 held neither. Neither metadata shape proves that a synopsis request has completed.
 The interface now distinguishes a summary that has not been loaded from a completed request with
 no synopsis and from prose held only in memory after explicit consent. The shared presentation
-reaches the interface in the reading hero at `src/js/views/reading.js:762` and the issue-details view at
+reaches the interface in the reading hero at `src/js/views/reading.js:776` and the issue-details view at
 `src/js/views/issue.js:108`. The function behind both already answers for the absence at
-`src/js/views/reading.js:111-122`, with a test asserting the sentence it returns. It is also reversible:
+`src/js/views/reading.js:114-125`, with a test asserting the sentence it returns. It is also reversible:
 the project this repository fetched from still serves the field,
 the contract check having run on 2026-08-15 with 33 of 33 assumptions holding, so the vendoring
 script can fetch it again if a review comes back permissive.
@@ -1198,10 +1198,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes four independent Reading Paths with 104 stops: three
 authored paths with 10, 12 and 4 stops from the curated manifest at
-`src/data/curated-lists.json:11461-11512`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:11514-11565`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all four at
-`src/data/catalog.json:17047-17184`.
+`src/data/catalog.json:18570-18707`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -3113,10 +3113,10 @@ Hell's Angel remains in Marvel Ages, not Modern Timeline; its visible source cre
 The owner-guide contract requires a positive ID, exact matching owner-supplied Marvel URL, named
 confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:880-902`).
 The vendor excludes these entries from metadata lookup and passes an empty detail object to the
-item mapper (`scripts/vendor-orders.mjs:379-388`, `scripts/vendor-orders.mjs:725-728`).
+item mapper (`scripts/vendor-orders.mjs:446-455`, `scripts/vendor-orders.mjs:838-846`).
 Unless a row carries the external supplement described below, the published rows carry only their
 confirmed identity, issue ID, URL and refusal state; optional provider details and covers remain
-empty (`scripts/vendor-orders.mjs:407-447`). The ten One World Under Doom rows are of that kind.
+empty (`scripts/vendor-orders.mjs:474-519`). The ten One World Under Doom rows are of that kind.
 No comic image bytes are stored and no Unlimited availability is inferred.
 
 ### Owner-approved external supplement for owner-confirmed comics
@@ -3145,7 +3145,7 @@ URL and the wiki source is a pinned revision, and only when the cover is on the 
 Grand Comics Database source, approved on 2026-11-16 and described below, may supply only the
 on-sale date and credits, never alongside a wiki source, and only values equal to its pinned record
 (`scripts/lib/owner-external-supplement.mjs:47-123`). The inventory refuses a supplement anywhere
-else (`scripts/lib/cbh-inventory.mjs:1251-1257`).
+else (`scripts/lib/cbh-inventory.mjs:1374-1380`).
 
 The vendored item copies exactly those fields and adds `metadataSourceKind:
 "owner-external-supplement"`, a closed value recorded per comic. It still keeps `seriesId`,
@@ -3153,12 +3153,12 @@ The vendored item copies exactly those fields and adds `metadataSourceKind:
 owner-confirmed evidence kind, so the app still treats the comic as having no provider metadata and
 its availability stays unknown (constraints 6 and 7). The delivery contract holds every supplemented
 item to exactly what its mapping row records and every other owner-confirmed item to the old empty
-shape (`test/helpers/owner-delivery-contract.mjs:126-154`).
+shape (`test/helpers/owner-delivery-contract.mjs:124-152`).
 
 The app carries only the optional `identityEvidenceKind` marker in the existing normalized issue
 record so the reading view can distinguish an owner-confirmed identity from an ordinary missing
 provider record after import and reload (`src/js/lib/model.js:267-269`,
-`src/js/views/reading.js:70-73`, `src/js/views/reading.js:84-95`). It keeps `metadataSourceKind` the
+`src/js/views/reading.js:71-74`, `src/js/views/reading.js:85-96`). It keeps `metadataSourceKind` the
 same way, only as one of the closed values and only beside an owner-confirmed identity, so a
 supplemented comic's badge hint, gap sentence and catalog label credit marvel.com and whichever
 outside source supplied its details instead of claiming it has no cover. The actor, date, URL and confirmation
@@ -4322,3 +4322,16 @@ source position 84 and displayed position 83. All guide payloads, unrelated view
 unrelated fallback links stay unchanged. Saved data, availability states and native launch logic
 are unchanged. This is a bounded increment, not completion of the broader link sweep or proof
 of an installed Marvel Comics app handoff.
+
+## First Modern Timeline installment: comic reading links
+
+World War Hulk, Secret Wars (2015) and the Civil War to Secret Invasion parts add 189 ordinary
+direct viewer pairs from the same credited offline export. Independent review checked the series,
+issue number, dates and unique viewer for each pair. The SHA-256 of the sorted JSON array of
+`[issueId, viewer]` pairs is `9806b905fe4c769b52845adc9b872c8a040d314538931ca7a99948498590bd72`.
+Earlier direct links and the frozen Marvel Unlimited number list are unchanged.
+
+The 25 explicitly held Secret Wars comics still use Find and have no classic issue address or
+entry in either reading-link table. The hold reflects the approved reading choice, not a claim
+that the export lacks matching viewers. Eight explicitly identified reader records are separate
+from the 189 ordinary matches.
