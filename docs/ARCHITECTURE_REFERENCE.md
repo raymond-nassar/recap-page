@@ -1119,7 +1119,7 @@ filtered completion is stated before the narrowed results.
 
 The shared presentation contract removes the previous positional state and paints exactly one
 current label, hidden message, completion state or unavailable message at
-`src/js/views/shared/catalog-presentation.js:233-297`. Only the visible current list receives
+`src/js/views/shared/catalog-presentation.js:234-298`. Only the visible current list receives
 `aria-current="step"`. The controller injects live state and current-view knowledge at
 `src/js/main.js:4528-4572`, while the existing Store-driven render path calls the position-only
 refresh at `src/js/main.js:3518-3547`. That refresh leaves cards, controls, focus and scroll

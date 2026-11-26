@@ -2069,8 +2069,8 @@
     "fp": "da02c5953a2ee9c2",
     "head": "// One index preserves listForCatalogId's first-listOrder answer without repeating its linear scan"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|modern-timeline-position-is-a-store-projection|src/js/views/shared/catalog-presentation.js:233-297|0": {
-    "anchor": "src/js/views/shared/catalog-presentation.js:233-297",
+  "docs/ARCHITECTURE_REFERENCE.md|modern-timeline-position-is-a-store-projection|src/js/views/shared/catalog-presentation.js:234-298|0": {
+    "anchor": "src/js/views/shared/catalog-presentation.js:234-298",
     "fp": "05f4154b07f5f4eb",
     "head": "function paintTimelinePosition(root, position, {"
   },

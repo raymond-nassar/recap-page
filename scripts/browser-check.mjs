@@ -995,10 +995,10 @@ const MUTATIONS = [
   {
     id: 'catalog-gap-disclosure-off',
     breaks: 'catalog-gaps',
-    why: 'both catalog surfaces omit the generated gap disclosure',
-    rewriteMain: (source) => source.replace(
-      /^\s*\.\.\.catalogGapLabels\(list\),\r?\n/gm,
-      '',
+    why: 'Preview omits the generated gap disclosure',
+    rewriteCatalog: (source) => source.replace(
+      'export function catalogGapLabels(list) {',
+      'export function catalogGapLabels(list) {\n  if (list) return [];',
     ),
   },
   {
@@ -8692,7 +8692,7 @@ const SCENARIOS = [
   },
   {
     id: 'catalog-gaps',
-    title: 'independent catalog cards and Preview disclose their own guide gaps',
+    title: 'catalog cards show only the comic count while Preview discloses its own guide gaps',
     async run(page, t) {
       const cardMeta = (title) => page.$$eval(
         '#catalog-results .catalog-card',
@@ -8712,17 +8712,10 @@ const SCENARIOS = [
       const shortBefore = await cardMeta('Third Stop: The Short Way');
       const longBefore = await cardMeta('Third Stop: The Long Way');
       t.check(
-        'cards omit zero and use truthful singular and plural gap labels',
-        zero === '3 comics'
-          && one === '3 comics · 1 comic is listed by title only'
-          && many === '3 comics · 2 comics have limited details',
-        JSON.stringify({ zero, one, many }),
-      );
-      t.check(
-        'each guide card shows its own essential or complete gap disclosure',
-        shortBefore === '3 comics · 1 comic is listed by title only'
-          && longBefore === '3 comics · 2 comics have limited details',
-        JSON.stringify({ shortBefore, longBefore }),
+        'cards show the comic count with no developer gap notes',
+        zero === '3 comics' && one === '3 comics' && many === '3 comics'
+          && shortBefore === '3 comics' && longBefore === '3 comics',
+        JSON.stringify({ zero, one, many, shortBefore, longBefore }),
       );
 
       await click(page, '#catalog-results [data-story="list:browser-check-three-short"] [data-act="preview"]');
@@ -8750,7 +8743,7 @@ const SCENARIOS = [
       const shortAfter = await cardMeta('Third Stop: The Short Way');
       const longAfter = await cardMeta('Third Stop: The Long Way');
       t.check(
-        'closing Preview cannot change the other guide card or its gap disclosure',
+        'closing Preview leaves both guide cards showing only their counts',
         shortAfter === shortBefore && longAfter === longBefore,
         JSON.stringify({ shortAfter, longAfter }),
       );
@@ -8773,8 +8766,8 @@ const SCENARIOS = [
         };
       });
       t.check(
-        'plural disclosure stays inside its card without horizontal overflow at narrow width',
-        narrow.text.includes('2 comics have limited details')
+        'the count stays inside its card without horizontal overflow at narrow width',
+        narrow.text === '3 comics'
           && narrow.inside && narrow.overflow <= 1,
         JSON.stringify(narrow),
       );

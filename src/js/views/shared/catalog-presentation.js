@@ -3,7 +3,6 @@ import { formatRoute, isPlainNavigation } from '../../lib/route.js';
 import { BROWSE_ONLY_UNIVERSE_ID, universeResolver } from '../../lib/universes.js';
 import {
   catalogCoverUrl,
-  catalogGapLabels,
   defaultPath,
   firstSentence,
   sourceLabel,
@@ -55,12 +54,14 @@ export function createCatalogPresentation({
     }, CATALOG_ADD);
   }
 
+  // Readers want the description and how many comics a guide covers. The gap and hand-check counts
+  // served only the guide's maintainer, so the owner asked for them off every card and search row
+  // (#1601); Preview still states them for a reader who opens a guide's details.
   function catalogMeta(list) {
     const saved = isInLibrary(list.id);
     const savedCount = Array.isArray(saved?.itemIds) ? saved.itemIds.length : null;
     return [
       `${list.count} comic${list.count === 1 ? '' : 's'}`,
-      ...catalogGapLabels(list),
       ...(savedCount != null && savedCount !== list.count
         ? [`Saved copy: ${savedCount} comic${savedCount === 1 ? '' : 's'}`] : []),
     ].join(' · ');

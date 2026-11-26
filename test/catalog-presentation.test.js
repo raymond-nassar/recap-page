@@ -239,6 +239,28 @@ test('cards and search rows distinguish a saved copy with a different comic coun
   assert.doesNotMatch(text(matching.catalogCard({ key: 'spider-man', lists: [list] })), /Saved copy:/);
 });
 
+test('cards and search rows show the comic count without developer gap notes', () => {
+  const gappy = {
+    ...list,
+    count: 157,
+    placeholderCount: 1,
+    emptyRecordCount: 2,
+    ownerConfirmedIdentityCount: 3,
+    ownerSupplementedCount: 2,
+    ownerGcdSupplementedCount: 1,
+  };
+  for (const surface of [
+    presentation.catalogCard({ key: 'spider-man', lists: [gappy] }),
+    presentation.catalogRow(gappy, { report: '#catalog-report' }),
+  ]) {
+    const meta = descendants(surface).find((node) =>
+      node.tag === 'p' && (node.class === 'catalog-card-meta' || node.class === 'result-meta'));
+    assert.equal(text(meta), '157 comics');
+  }
+  const card = presentation.catalogCard({ key: 'spider-man', lists: [gappy] });
+  assert.equal(text(descendants(card).find((node) => node.class === 'catalog-card-desc')), gappy.description);
+});
+
 test('a card has three keyboard stops with a linked source and two without one', () => {
   const linked = controls(presentation.catalogCard({ key: 'spider-man', lists: [list] }));
   assert.deepEqual(linked.map((node) => node.dataset?.act ?? 'source'), ['preview', 'source', 'import']);

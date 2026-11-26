@@ -6,7 +6,7 @@ import { join } from 'node:path';
 import { isDeepStrictEqual } from 'node:util';
 import { labelledName, labelWords, shownName } from '../src/js/lib/accname.js';
 import {
-  catalogCoverUrl, catalogEntryKey, catalogGapLabels, defaultPath, filterBySpotlightKind, firstSentence, groupCatalog,
+  catalogCoverUrl, catalogEntryKey, defaultPath, filterBySpotlightKind, firstSentence, groupCatalog,
   modernTimelineFeaturedCard, modernTimelineLists, parseCatalog, searchCatalog,
   shelfLists, sortSpotlightStories, sourceLabel, sourceLink,
 } from '../src/js/lib/catalog.js';
@@ -449,7 +449,7 @@ async function catalogPlaceholderAccessibility({ page, profile, catalog, rawCata
       const meaningful = item.meaningful;
       const title = entry.story.name ?? entry.list.name;
       const description = firstSentence(entry.list.description);
-      const metadata = [`${entry.list.count} comic${entry.list.count === 1 ? '' : 's'}`, ...catalogGapLabels(entry.list)].join(' \u00b7 ');
+      const metadata = `${entry.list.count} comic${entry.list.count === 1 ? '' : 's'}`;
       const preview = shownName([title], 'Preview');
       const sourceName = entry.compactSource
         ? `Source of ${entry.list.name}: ${entry.compactSource}` : sourceLabel(entry.list);
@@ -797,8 +797,8 @@ export async function catalogCardReadability({
     check(item.android === !profile.desktop && item.body === (profile.desktop ? 14 : 16 * scale)
       && item.theme === profile.theme, `${name}: actual entry, theme and text-token scale`);
     check(item.title === title && desc.text === firstSentence(list.description)
-      && meta.text === [`${list.count} comic${list.count === 1 ? '' : 's'}`, ...catalogGapLabels(list)].join(' \u00b7 '),
-    `${name}: exact title, description, count and gap text retained`);
+      && meta.text === `${list.count} comic${list.count === 1 ? '' : 's'}`,
+    `${name}: exact title, description and count retained, with no gap notes`);
     if (list.id === 'fall-of-the-hulks') {
       check(desc.text.includes('MODOK one-shot is not included'), `${name}: omitted comic is disclosed before Add`);
     }
