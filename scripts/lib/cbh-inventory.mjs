@@ -97,6 +97,7 @@ const PACKET_FIELDS = new Set([
   'sourceGapResolutions',
   'expectedCount',
   'proposedManifest',
+  'sectionalGuide',
   'insertionAnchor',
   'sourceReview',
   'rows',
@@ -1772,6 +1773,18 @@ export function validatePacketProposal(packet, {
     throw new Error(`${packet.id} expectedCount must equal its row count`);
   }
   assertManifestProposal(packet, provider);
+  if (Object.hasOwn(packet, 'sectionalGuide')) {
+    const guide = packet.sectionalGuide;
+    const entry = packet.proposedManifest;
+    if (provider.id !== CBH_SOURCE_PROVIDER.id || !isPlainObject(guide)
+      || guide.id !== packet.id || guide.name !== entry.name
+      || !Number.isInteger(guide.year) || guide.year !== entry.timeline
+      || entry.catalog !== false || entry.sectionKind !== 'reading-blocks'
+      || packet.sourceSection != null || guide.layout?.guideId !== packet.id
+      || guide.layout.positionCount !== packet.expectedCount) {
+      throw new Error(`${packet.id} has an inconsistent sectional guide and manifest proposal`);
+    }
+  }
   if (!isPlainObject(packet.insertionAnchor)
     || Object.keys(packet.insertionAnchor).length !== 1
     || typeof packet.insertionAnchor.beforeId !== 'string'

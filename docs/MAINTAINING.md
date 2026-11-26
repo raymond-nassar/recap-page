@@ -571,6 +571,10 @@ the app's presentation of the source and does not get its own upstream source se
 For a Comic Book Herald sectional guide, pin the approved parent packet and mapping and compare
 every derived part against the reviewed library and actual peer mappings before authoring.
 A source approval for the parent does not replace the required relationship reviews.
+Put the complete `sectionalGuide` spec in the frozen parent packet so the source digest covers
+the layout, collections, copy and issue vectors. Give the author the exact derived part mappings
+as relationship peers. The author validates the hidden parent and the spec together, then
+replaces the manifest with both in one write.
 
 A generated child ID resolves to its partition parent, keeping the family together. Review all
 generated files as one batch. Do not hand-edit a child payload or the overlap matrix.

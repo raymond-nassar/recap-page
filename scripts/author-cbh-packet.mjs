@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-import { mkdir, writeFile } from 'node:fs/promises';
+import { randomUUID } from 'node:crypto';
+import { mkdir, rename, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
@@ -10,6 +11,7 @@ import {
   assertFindOnlySourcePositions,
   assertMappingMatchesPacketOccurrences,
   canonicalJson,
+  containedChildSourceIds,
   libraryDigestExcludingOrders,
   validateApprovalDigest,
   validateFrozenPacket,
@@ -27,6 +29,8 @@ import { preflightPublicationWrites, readPublicationInputs } from './check-publi
 import { selectedUltimateRows, ultimateSelection } from './lib/ultimate-spider-man-selection.mjs';
 import { mappedTrackingId, serviceIdentityFor } from './lib/cbh-service-identity.mjs';
 import { checklistTitleForRow, findOnlyChecklistLine } from './lib/cbh-checklist-title.mjs';
+import { deriveSectionalPartMappings } from './lib/cbh-sectional-parts.mjs';
+import { buildSectionalFamily } from './lib/sectional-orders.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const MAPPINGS_DIR = path.join(ROOT, 'scripts', 'data', 'cbh-mappings');
@@ -213,7 +217,7 @@ function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
 
-export function manifestEntryForMapping(mapping) {
+export function manifestEntryForMapping(mapping, { sectional = false } = {}) {
   assert(mapping?.reviewStatus === 'approved', `${mapping?.id ?? 'mapping'} is not approved`);
   assert(mapping?.packetReview, `${mapping.id} has no packet review`);
   const approved = mapping.approvedManifest;
@@ -222,7 +226,8 @@ export function manifestEntryForMapping(mapping) {
   const entry = { ...approved };
   delete entry.coverSourcePosition;
   delete entry.coverSourceReference;
-  const unexpected = Object.keys(entry).filter((key) => !MANIFEST_FIELDS.has(key));
+  const unexpected = Object.keys(entry).filter((key) => !MANIFEST_FIELDS.has(key)
+    && !(sectional && (key === 'catalog' || key === 'sectionKind')));
   assert(unexpected.length === 0, `${mapping.id} has unsupported manifest fields: ${unexpected.join(', ')}`);
   assert(entry.sourceOrigin === "Compiled for this project from Comic Book Herald's guide", `${mapping.id} has the wrong source origin`);
   assert(entry.sourceLicense === null, `${mapping.id} must keep sourceLicense null`);
@@ -233,6 +238,35 @@ export function manifestEntryForMapping(mapping) {
     || entry.expect === mapping.rows.length + (mapping.sourceGaps?.length ?? 0),
   `${mapping.id} expected count differs from its published mapping or published mapping and gaps`);
   return entry;
+}
+
+function validateSectionalAuthoring(packet, mapping, order, issueIds, peers) {
+  const guide = packet.sectionalGuide;
+  const items = issueIds.map((issueId) => ({ issueId: Number(issueId) }));
+  buildSectionalFamily({
+    order, guide,
+    parentPayload: { id: order.id, source: order.sourcePage, items, count: items.length },
+  });
+  const parts = deriveSectionalPartMappings({
+    packet, mapping, layout: guide.layout, parts: guide.parts, protectedRanges: guide.protectedRanges,
+  });
+  const peersById = new Map(peers.map((peer) => [peer.id, peer]));
+  for (const { mapping: part } of parts) {
+    assert(guide.parts[part.sectionalPart.number - 1].description === part.proposedManifest.description,
+      `${part.id} description differs from the reviewed endpoint titles`);
+    assert(peersById.get(part.id)?.mappingDigest === part.mappingDigest,
+      `${part.id} requires its exact derived relationship peer`);
+  }
+}
+
+async function writeSectionalManifest({ file, content }) {
+  const temporary = `${file}.${randomUUID()}.tmp`;
+  try {
+    await writeFile(temporary, content, { encoding: 'utf8', flag: 'wx' });
+    await rename(temporary, file);
+  } finally {
+    await rm(temporary, { force: true });
+  }
 }
 
 export function selectedIssueIds(mapping) {
@@ -274,8 +308,8 @@ export function mappedIssueCheckbox(row, { findOnly = false } = {}) {
   return `- [ ] [${escapeLinkText(checklistTitleForRow(row))} ${annotation}](${url})`;
 }
 
-export function buildMarkdown(mapping) {
-  const manifest = manifestEntryForMapping(mapping);
+export function buildMarkdown(mapping, options) {
+  const manifest = manifestEntryForMapping(mapping, options);
   selectedIssueIds(mapping);
   const findOnly = new Set(assertFindOnlySourcePositions(mapping));
   const placeholderIdentityMode = mapping.placeholderIdentityMode ?? 'source-occurrence';
@@ -578,14 +612,22 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
   const hasFrozenPacket = packetIds.some((id) => (
     initialInputs.json(mappingPath(id)).packetDigest
   ));
+  const sectionalSourcePages = new Set(packetIds.flatMap((id) => {
+    const entry = initialInputs.json(mappingPath(id)).proposedManifest;
+    return entry?.catalog === false && typeof entry.sourcePage === 'string' ? [entry.sourcePage] : [];
+  }));
+  const possibleContainedMappings = initialManifest.lists
+    .filter((entry) => !packetIdSet.has(entry.id) && sectionalSourcePages.has(entry.sourcePage))
+    .map((entry) => mappingPath(entry.id));
   if (hasFrozenPacket) {
     assert(Array.isArray(inventoryPaths) && inventoryPaths.length > 0,
       'Frozen packet authoring requires maintained inventories');
   }
   const inputs = await readPublicationInputs({
     root: publicationRoot,
-    paths: [
+    paths: [...new Set([
       ...initialPaths,
+      ...possibleContainedMappings,
       ...(hasFrozenPacket ? inventoryPaths : []),
       ...initialManifest.lists.map((entry) => path.join(payloadDir, entry.out || `${entry.id}.json`)),
       ...packetIds.flatMap((id) => [
@@ -593,7 +635,7 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
         ...(initialInputs.json(path.join(mappingsDir, `${id}.json`)).packetDigest
           ? [path.join(packetsDir, `${id}.json`)] : []),
       ]),
-    ],
+    ])],
   });
   assert(canonicalJson(inputs.json(manifestFile)) === canonicalJson(initialManifest),
     'The public manifest changed while preparing authoring inputs');
@@ -634,6 +676,8 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
   const entries = [];
   const issueIds = [];
   const insertionAnchors = {};
+  const sectionalGuides = new Map();
+  const containedByParent = new Map();
 
   for (const { id, mapping, report, packet } of mappings) {
     assert(mapping.id === id, `${id} mapping id changed`);
@@ -669,6 +713,25 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
         .filter((peerId) => peerId !== id)
         .map((peerId) => mappingById.get(peerId))
         .concat(externalPeerMappings);
+      let packetValidation = inventoryRecord ? { inventoryRecord } : {};
+      if (packet.sectionalGuide) {
+        const containedChildMappings = existing
+          .filter((entry) => entry.sourcePage === packet.sourceUrl)
+          .map((entry) => inputs.json(mappingPath(entry.id)));
+        packetValidation = { inventoryRecord, catalogEntries: existing, containedChildMappings };
+        const contained = containedChildSourceIds(packet, {
+          ...packetValidation, childMappings: containedChildMappings,
+        });
+        for (const child of containedChildMappings) {
+          const shipped = library.orderIssueIds.find((entry) => entry.id === child.id);
+          assert(shipped && isDeepStrictEqual(shipped.issueIds, selectedIssueIds(child)),
+            `${id} contained child ${child.id} differs from its shipped issue vector`);
+        }
+        containedByParent.set(id, contained);
+        const entry = manifestEntryForMapping(mapping, { sectional: true });
+        validateSectionalAuthoring(packet, mapping, entry, ids, peerMappings);
+        sectionalGuides.set(id, packet.sectionalGuide);
+      }
       assertApprovedRelationshipReview({
         packet,
         mapping,
@@ -676,7 +739,7 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
         currentLibraryDigest: reviewedLibraryDigest,
         peerMappings,
         expectedOrderIds,
-        packetValidation: inventoryRecord ? { inventoryRecord } : {},
+        packetValidation,
       });
       insertionAnchors[id] = packet.insertionAnchor;
     } else {
@@ -686,13 +749,17 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
         expectedOrderIds,
       });
     }
-    entries.push(manifestEntryForMapping(mapping));
+    entries.push(manifestEntryForMapping(mapping, { sectional: sectionalGuides.has(id) }));
     issueIds.push(...ids);
   }
 
   assertNoDuplicates(issueIds, 'packet issue id');
   assertNoDuplicates(entries.map((entry) => entry.id), 'packet catalog id');
-  validateSourceIdentities(entries, existing);
+  validateSourceIdentities(entries);
+  for (const entry of entries) {
+    const contained = containedByParent.get(entry.id);
+    validateSourceIdentities([entry], contained ? existing.filter(({ id }) => !contained.has(id)) : existing);
+  }
   assertNoDuplicates(entries.map((entry) => entry.out), 'packet output');
   assertNoDuplicates(entries.map((entry) => entry.sourceFile), 'packet source file');
 
@@ -708,18 +775,30 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
   const nextManifest = wolverine18PeerEvidence
     ? mergePublishedWolverineCorrection(current, entries[0], insertionAnchors[entries[0].id])
     : { ...current, lists: mergePacketEntries(existing, entries, insertionAnchors) };
+  if (sectionalGuides.size) {
+    nextManifest.sectionalGuides = [
+      ...(current.sectionalGuides ?? []).filter(({ id }) => !sectionalGuides.has(id)),
+      ...sectionalGuides.values(),
+    ];
+  }
   const parsed = parseManifest(nextManifest);
   assert(parsed.errors.length === 0, `Authored manifest is invalid:\n${parsed.errors.join('\n')}`);
   assert(parsed.entries.length === existing.length + packetIds.length, 'Authored manifest lost an order');
 
   const outputs = mappings.map(({ mapping }) => {
     const entry = entries.find((candidate) => candidate.id === mapping.id);
-    return { file: path.join(ordersDir, entry.sourceFile), content: buildMarkdown(mapping) };
+    return {
+      file: path.join(ordersDir, entry.sourceFile),
+      content: buildMarkdown(mapping, { sectional: sectionalGuides.has(mapping.id) }),
+    };
   });
   outputs.push({ file: manifestFile, content: `${JSON.stringify(nextManifest, null, 2)}\n` });
   await preflightPublicationWrites({ root: publicationRoot, inputs, outputs });
   await mkdir(ordersDir, { recursive: true });
-  for (const output of outputs) await writeFile(output.file, output.content, 'utf8');
+  for (const output of outputs) {
+    if (output.file === manifestFile && sectionalGuides.size) await writeSectionalManifest(output);
+    else await writeFile(output.file, output.content, 'utf8');
+  }
   return {
     guides: mappings.length,
     rows: issueIds.length,
