@@ -213,6 +213,14 @@ test('the generated catalog replaces the parent with every child and the owner-o
   assert.equal(manifestRaw.lists.length, currentReadingCensus.sources);
   assert.equal(raw.lists.length, currentReadingCensus.visible);
   assert.equal(catalog.lists.length, currentReadingCensus.visible);
+  for (const id of ['civil-war-to-secret-invasion', 'world-war-hulk', 'secret-wars-2015-event-tie-ins']) {
+    assert.equal(manifestRaw.lists.filter((entry) => entry.id === id).length, 1);
+  }
+  assert.equal(catalog.lists.some(({ id }) => id === 'civil-war-to-secret-invasion'), false);
+  assert.deepEqual(
+    catalog.lists.filter(({ id }) => id.startsWith('civil-war-to-secret-invasion-part-')).map(({ id }) => id),
+    Array.from({ length: 14 }, (_, index) => `civil-war-to-secret-invasion-part-${index + 1}`),
+  );
 
   assert.equal(catalog.lists.some((entry) => entry.id === parentId), false);
   assert.equal(children.length, 78);

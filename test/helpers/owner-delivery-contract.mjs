@@ -37,6 +37,7 @@ import {
   beforeAmazingSpiderManSupplementManifest, beforeAmazingSpiderManSupplementOrders,
 } from './amazing-spider-man-history.mjs';
 import { wolverineLibraryAtReview } from './wolverine-correction-history.mjs';
+import { assertInstallmentLaterPeer, beforeInstallmentOwnerManifest } from './modern-timeline-installment-history.mjs';
 
 const hash = (value) => createHash('sha256').update(value).digest('hex');
 const libraryAtTieInApproval = (library, contract) => ({
@@ -48,6 +49,7 @@ const libraryAtTieInApproval = (library, contract) => ({
 // An owner review records every current path, including one naming the guide under review or a
 // peer reviewed beside it, so a rebuilt record drops only a path naming a list that review never saw.
 export function recordedOwnerManifest(manifest, recordedIds, { candidateId, peerIds = [] }) {
+  manifest = beforeInstallmentOwnerManifest(manifest, recordedIds);
   manifest = beforeXmenEraManifest(manifest, recordedIds);
   const lists = manifest.lists.filter((row) => recordedIds.has(row.id) && !peerIds.includes(row.id));
   return {
@@ -82,7 +84,8 @@ export async function assertOwnerDeliveryContract(contract, {
     text(`src/data/orders/${id}.md`).then((value) => tieInChecklistAtApproval(id, value, contract)),
   ]);
   const source = JSON.parse(sourceText);
-  const currentPayload = tieInPayloadAtApproval(await json(`src/data/${packet.proposedManifest.out}`), contract);
+  const publishedPayload = await json(`src/data/${packet.proposedManifest.out}`);
+  const currentPayload = tieInPayloadAtApproval(publishedPayload, contract);
   const currentCatalog = catalog.lists.find((row) => row.id === id);
   sourceCreditRevisions.assertLatest(currentPayload, packet.proposedManifest.out);
   sourceCreditRevisions.assertLatest(currentCatalog, packet.proposedManifest.out);
@@ -279,14 +282,18 @@ export async function assertOwnerDeliveryContract(contract, {
   });
   for (const later of (registeredOwnerBaselineRows.has(id)
     ? [] : current.comparisons.filter((row) => !recordedIds.has(row.orderId)))) {
-    await assertRegisteredLaterPeer(id, later, { contracts, json });
+    await assertRegisteredLaterPeer(id, later, {
+      contracts, json, candidateIds: expectedIds,
+      currentCandidateIds: publishedPayload.items.map(({ issueId }) => issueId),
+    });
   }
 }
 
-// A list published after a guide was reviewed is not in that guide's recorded comparisons. It is
-// accepted only as a registered curated addition, or as a registered owner guide whose own authority
-// records the reciprocal relationship with this one.
-async function assertRegisteredLaterPeer(id, later, { contracts, json }) {
+// Later publications cannot change an earlier guide's frozen report. Check their new relationships
+// against the later source's approval, including the parent approval for a derived bridge part,
+// except for curated additions whose roster and counts are registered separately.
+async function assertRegisteredLaterPeer(id, later, { contracts, json, candidateIds, currentCandidateIds }) {
+  if (await assertInstallmentLaterPeer(id, later, { json, candidateIds, currentCandidateIds })) return;
   if (registeredCuratedGuides.some((entry) => entry.id === later.orderId)) return;
   if (assertXmenEraLaterPeer(id, later)) return;
   const laterContract = contracts.find((entry) => entry.id === later.orderId);
@@ -392,7 +399,10 @@ async function assertCbhOwnerBaselineContract(contract, { root, text, json, peer
   const full = buildComparisonReport({ candidateIds: mapping.rows.map((row) => row.selectedIssueId), orders: allOrders });
   assert.equal(full.comparisonCount, peerCount);
   for (const later of full.comparisons.filter((entry) => !recordedIds.has(entry.orderId))) {
-    await assertRegisteredLaterPeer(id, later, { contracts, json });
+    await assertRegisteredLaterPeer(id, later, {
+      contracts, json, candidateIds: mapping.rows.map((row) => row.selectedIssueId),
+      currentCandidateIds: payload.items.map(({ issueId }) => issueId),
+    });
   }
   assert.equal(contract.proposalDigest, mapping.relationshipReview.proposalDigest);
   assert.equal(contract.approvalDigest, mapping.relationshipReview.approvalDigest);

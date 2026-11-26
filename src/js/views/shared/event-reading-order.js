@@ -24,27 +24,31 @@ export function eventBookRows(el, layout, items, {
   catalogId, heading, groupClass, issueRow, openPosition,
 }) {
   const titleRow = (title, tag = heading) => el('li', { class: groupClass }, [el(tag, { text: title })]);
+  const positionLink = (position, label) => el('a', {
+    href: formatRoute({ view: 'new-to-comics', previewId: catalogId, previewPosition: position }),
+    dataset: { act: 'event-position', key: position },
+    onclick: (event) => {
+      if (!isPlainNavigation(event)) return;
+      if (openPosition(position)) event.preventDefault();
+    },
+  }, label);
   const rows = [];
   for (const phase of layout.phases) {
     if (phase.title) rows.push(titleRow(phase.title));
-    for (const { title, position, positions } of phase.steps) {
+    for (const { title, position, positions, references } of phase.steps) {
       if (title) rows.push(positions
         ? titleRow(title, phase.title ? (heading === 'h3' ? 'h4' : 'h5') : heading)
         : el('li', { class: `${groupClass} rail-hint`, text: title }));
       for (const index of positions ?? (position ? [position] : [])) {
         rows.push(issueRow(items[index - 1], index));
       }
+      for (const index of references ?? []) {
+        rows.push(el('li', { class: groupClass }, [positionLink(index, items[index - 1].title)]));
+      }
     }
   }
   const links = layout.linked.map((position) => el('li', {}, [
-    el('a', {
-      href: formatRoute({ view: 'new-to-comics', previewId: catalogId, previewPosition: position }),
-      dataset: { act: 'event-position', key: position },
-      onclick: (event) => {
-        if (!isPlainNavigation(event)) return;
-        if (openPosition(position)) event.preventDefault();
-      },
-    }, `${position}. ${items[position - 1].title}`),
+    positionLink(position, `${position}. ${items[position - 1].title}`),
   ]));
   rows.push(el('li', { class: groupClass }, [
     el('details', { open: true }, [

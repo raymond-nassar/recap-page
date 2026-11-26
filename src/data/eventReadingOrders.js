@@ -78,7 +78,7 @@ export const eventReadingOrders = {
         { title: 'X-Men: Years of Future Past', positions: [49, 91, 113, 148, 196] },
         { title: 'X-Tinction Agenda', positions: [50, 90, 153, 197] },
         { title: 'Giant-Size Little Marvel: AvX', positions: [51, 93, 134, 183] },
-        { title: 'Future Imperfect', positions: [52, 92, 121, 133, 218] },
+        { title: 'Future Imperfect', positions: [52, 92, 121, 133, 218], references: [138] },
         { title: 'Spider-Man: Renew Your Vows', positions: [53, 101, 131, 158, 178] },
         { title: 'Armor Wars', positions: [54, 77, 110, 159, 191] },
         { title: 'Marvel Zombies: Battleworld', positions: [58, 118, 162, 207] },

@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 import { createPreviewView } from '../src/js/views/preview.js';
+import { eventBookRows } from '../src/js/views/shared/event-reading-order.js';
 import { createCatalogPresentation, PROJECT_HOME } from '../src/js/views/shared/catalog-presentation.js';
 import { SECTIONAL_GUIDE_COPY } from '../src/js/lib/sectionalGuide.js';
 import { eventReadingOrders } from '../src/data/eventReadingOrders.js';
@@ -72,6 +73,35 @@ test('event Preview uses distinct book placements and links to the exact issue p
   assert.equal(controls().children[0]['aria-pressed'], 'true');
   assert.equal(positions.at(-1), '[data-sectional-position="2"] a');
   assert.equal(JSON.stringify(items), initial);
+});
+
+test('Future Imperfect cross-references Battleworld #4 without counting a second comic', () => {
+  const catalogId = 'secret-wars-2015-event-tie-ins';
+  const layout = eventReadingOrders[catalogId];
+  const title = 'Secret Wars: Battleworld (2015) #4';
+  const items = layout.issueOrder.map((issueId) => ({ issueId, title: issueId === 52489 ? title : `Comic ${issueId}` }));
+  const opened = [];
+  const rows = eventBookRows(element, layout, items, {
+    catalogId, heading: 'h3', groupClass: 'book-group',
+    issueRow: (item) => element('li', { issueId: item.issueId }),
+    openPosition: (position) => { opened.push(position); return true; },
+  });
+  const start = rows.findIndex((row) => row.children[0]?.text === 'Future Imperfect');
+  const end = rows.findIndex((row) => row.children[0]?.text === 'Spider-Man: Renew Your Vows');
+  assert.ok(start >= 0 && end > start);
+  const bookRows = rows.slice(start + 1, end);
+  assert.equal(bookRows.filter((row) => row.issueId).length, 5);
+  assert.equal(rows.filter((row) => row.issueId === 52489).length, 1);
+  assert.equal(rows.at(-1).children[0].children[1].children.length, 43);
+  const link = bookRows.find((row) => row.children.length)?.children[0];
+  assert.equal(link?.children[0], title);
+  assert.equal(link.href, '#/preview/secret-wars-2015-event-tie-ins?position=138');
+  link.onclick({ button: 0, ctrlKey: true, preventDefault: () => assert.fail('modified click intercepted') });
+  assert.deepEqual(opened, []);
+  let intercepted = false;
+  link.onclick({ button: 0, preventDefault: () => { intercepted = true; } });
+  assert.deepEqual(opened, [138]);
+  assert.equal(intercepted, true);
 });
 
 test('sectional Preview follows the exact part position and retains the current guide on failure', async (t) => {

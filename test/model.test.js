@@ -1319,10 +1319,12 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // The X-Men era replacement leaves the Core's own Power Pack pair and the owner-excluded X-Men
   // Annual (1970) #1 only in the retired payloads, which are no longer active.
   // The Wolverine identity correction replaces 18 placeholders with exact provider records.
+  // Secret Wars adds two viewer-only comics and Civil War to Secret Invasion Part 13 adds
+  // the six Captain America: The Chosen comics. They have reader links, not provider details.
   assert.equal(claimed, 1112 + xmenEraPlaceholderDelta, 'the payload placeholder total moved; re-derive the figures in the record');
   assert.equal(placeholders, 1112 + xmenEraPlaceholderDelta, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
-  assert.equal(empty, 221);
-  assert.equal(affected, 22);
+  assert.equal(empty, 229);
+  assert.equal(affected, 24);
 });
 
 // Every check above passes with the import path reverted, because they all call the counter
@@ -1577,7 +1579,9 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // so the distinct refused total rises by eleven. The X-Men era replacement retires the same three
   // placeholders counted above. The Wolverine identity correction retires 18 refused placeholders
   // in favor of exact provider records that carry their details.
-  assert.equal(refused.length, 1406 + xmenEraPlaceholderDelta);
+  // Runaways and Korvac Saga #1 plus Captain America: The Chosen #1-6 add eight distinct
+  // tagged viewer identities without provider details, not unresolved comic identities.
+  assert.equal(refused.length, 1414 + xmenEraPlaceholderDelta);
   const infinity = JSON.parse(readFileSync(join(dataDir,
     'marvels_infinity_saga_gauntlet_wars_crusade_reading_order.json'), 'utf8'));
   assert.equal(infinity.items.filter((item) => item.detailsRefused && item.issueId > 0).length, 11);

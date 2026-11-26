@@ -15,24 +15,19 @@ import { createCatalogPresentation } from '../src/js/views/shared/catalog-presen
 // The owner placed Secret Wars (2015) at 2015 on Modern Timeline as one card offering its readings
 // (2026-11-24). These checks hold the parts that protect saved reading: the card points at the
 // readings that already exist, a saved MCU Prep copy continues the fast track, and nothing about the
-// timeline's stops or the Modern Avengers path moves. Run against the shipped catalog.
+// existing timeline stops or the Modern Avengers path moves. The separate event reading adds
+// one stop, represented by the chooser rather than duplicated beside it.
 
 const actual = parseCatalog(JSON.parse(readFileSync(new URL('../src/data/catalog.json', import.meta.url), 'utf8')));
 const PLACEMENT = 'placement:secret-wars-2015';
-const eventList = {
-  ...actual.lists.find((list) => list.id === 'hickman-minimal'),
-  id: SECRET_WARS_2015_EVENT_ID,
-  name: 'Secret Wars (2015) Event and Tie-ins',
-  type: 'event',
-  group: undefined,
-  groupName: undefined,
-  variant: undefined,
-  timeline: 2015,
+const withEvent = actual;
+const beforeEvent = {
+  ...actual,
+  lists: actual.lists.filter((list) => list.id !== SECRET_WARS_2015_EVENT_ID),
 };
-const withEvent = { ...actual, lists: [...actual.lists, eventList] };
 const withoutReadings = {
   ...actual,
-  lists: actual.lists.filter((list) => !['hickman-minimal', 'hickman-full'].includes(list.id)),
+  lists: actual.lists.filter((list) => ![SECRET_WARS_2015_EVENT_ID, 'hickman-minimal', 'hickman-full'].includes(list.id)),
 };
 
 function node(props = {}, children = []) {
@@ -102,11 +97,14 @@ test('the placement resolves existing readings by id, in the owner order, and le
   assert.equal(placement.key, PLACEMENT);
   assert.equal(placement.year, 2015);
   assert.deepEqual(placement.options.map((option) => [option.label, option.list.id, option.savedAs.map((list) => list.id)]),
-    [['Fast track', 'hickman-minimal', ['avengers-doomsday-secret-wars']], ['Hickman saga', 'hickman-full', []]]);
-  assert.equal(placement.options[0].list, actual.lists.find((list) => list.id === 'hickman-minimal'),
+    [['Event and tie-ins', SECRET_WARS_2015_EVENT_ID, []],
+      ['Fast track', 'hickman-minimal', ['avengers-doomsday-secret-wars']], ['Hickman saga', 'hickman-full', []]]);
+  assert.equal(placement.options[1].list, actual.lists.find((list) => list.id === 'hickman-minimal'),
     'the option is the catalog list itself, so its saved identity is the one already in use');
   assert.deepEqual(modernTimelinePlacements(withEvent.lists)[0].options.map((option) => option.label),
     ['Event and tie-ins', 'Fast track', 'Hickman saga']);
+  assert.deepEqual(modernTimelinePlacements(beforeEvent.lists)[0].options.map((option) => option.label),
+    ['Fast track', 'Hickman saga']);
   assert.deepEqual(modernTimelinePlacements(withoutReadings.lists), [], 'no reading, no card');
   const timelineIds = new Set(modernTimelineLists(actual.lists).map((list) => list.id));
   for (const id of ['hickman-minimal', 'hickman-full', 'avengers-doomsday-secret-wars']) {
@@ -122,17 +120,30 @@ test('the default timeline draws the card at 2015 without counting it as a stop'
   assert.ok(card, 'the placement is drawn on the default timeline');
   const era = placed.sections.at(-1).find((section) => section.stories.includes(card));
   assert.ok(era.from <= 2015 && era.to >= 2015, 'it sits in the era holding 2015');
-  assert.deepEqual(card.options.map((option) => option.list.id), ['hickman-minimal', 'hickman-full']);
+  assert.deepEqual(card.options.map((option) => option.list.id), [SECRET_WARS_2015_EVENT_ID, 'hickman-minimal', 'hickman-full']);
 
   const bare = harness(withoutReadings);
   await bare.view.render('catalog');
   assert.equal(bare.stories().some((story) => story.key === PLACEMENT), false);
-  assert.deepEqual(placed.paints.at(-1), bare.paints.at(-1), 'the timeline position is the same with or without it');
+  assert.equal(placed.paints.at(-1).total, bare.paints.at(-1).total + 1,
+    'only the actual event reading adds a stop; neither chooser nor its other options adds one');
+  assert.deepEqual(
+    groupCatalog(modernTimelineLists(actual.lists)).filter(({ lists }) =>
+      !lists.some(({ id }) => id === SECRET_WARS_2015_EVENT_ID)),
+    groupCatalog(modernTimelineLists(withoutReadings.lists)),
+    'every pre-existing timeline stop stays unchanged',
+  );
   assert.equal(placed.stories().length, bare.stories().length + 1);
   t.mock.timers.tick(600);
   const shown = modernTimelineLists(actual.lists).length;
-  assert.match(placed.announced.at(-1), new RegExp(`shows ${shown + 2} Reading Lists. .* 0 of ${groupCatalog(modernTimelineLists(actual.lists)).length} timeline stops`),
+  assert.match(placed.announced.at(-1), new RegExp(`shows ${shown + 2 + 14} Reading Lists. .* 0 of ${groupCatalog(modernTimelineLists(actual.lists)).length} timeline stops`),
     'each reading the card offers is counted as a Reading List shown');
+  const sectionalCards = placed.stories().filter(({ sectional }) => sectional);
+  assert.equal(sectionalCards.length, 1, 'the sectional parent is one non-addable chooser');
+  assert.equal(sectionalCards[0].options.length, 14);
+  const shownIds = placed.stories().flatMap(({ lists }) => lists.map(({ id }) => id));
+  assert.equal(new Set(shownIds).size, shownIds.length, 'each addable child is shown once');
+  assert.equal(shownIds.includes('civil-war-to-secret-invasion'), false);
 
   const event = harness(withEvent);
   await event.view.render('catalog');
@@ -146,7 +157,7 @@ test('a genuinely new event offered on the card stays a timeline stop until it i
   const stops = groupCatalog(modernTimelineLists(withEvent.lists));
   const at = stops.findIndex((story) => story.lists.some((list) => list.id === SECRET_WARS_2015_EVENT_ID));
   assert.ok(at > 0, 'the event is one of the timeline stops');
-  assert.equal(stops.length, groupCatalog(modernTimelineLists(actual.lists)).length + 1);
+  assert.equal(stops.length, groupCatalog(modernTimelineLists(beforeEvent.lists)).length + 1);
   const state = { lists: {}, listOrder: [], read: {} };
   for (const list of modernTimelineLists(withEvent.lists)) {
     state.lists[`saved-${list.id}`] = { id: `saved-${list.id}`, catalogId: list.id, name: list.name, itemIds: [] };
@@ -177,7 +188,8 @@ test('a search keeps only the readings it names, and an unrelated search drops t
   h.shelf.query.value = 'Secret Wars (2015)';
   h.shelf.query.listeners.input();
   await h.view.render('catalog');
-  assert.equal(h.stories().find((story) => story.key === PLACEMENT)?.options.length, 2);
+  assert.deepEqual(h.stories().find((story) => story.key === PLACEMENT)?.options.map(({ label }) => label),
+    ['Event and tie-ins', 'Fast track', 'Hickman saga']);
   h.shelf.query.value = 'zzzz no such reading';
   h.shelf.query.listeners.input();
   await h.view.render('catalog');
@@ -222,13 +234,14 @@ test('each reading on the card opens its own saved copy, a saved MCU Prep copy c
   const unsaved = present();
   assert.equal(all(unsaved.card).find((node) => node.class === 'catalog-card-title').text, 'Secret Wars (2015)');
   assert.deepEqual(actions(unsaved.card).map((node) => [node.dataset.act, node.dataset.key]),
-    [['import', 'hickman-minimal'], ['import', 'hickman-full']]);
+    [['import', SECRET_WARS_2015_EVENT_ID], ['import', 'hickman-minimal'], ['import', 'hickman-full']]);
   assert.deepEqual(unsaved.calls, [], 'drawing the card adds nothing');
   for (const preview of all(unsaved.card).filter((node) => node.dataset?.act === 'preview')) preview.onclick();
-  assert.deepEqual(unsaved.calls, [['preview', 'hickman-minimal'], ['preview', 'hickman-full']]);
+  assert.deepEqual(unsaved.calls, [['preview', SECRET_WARS_2015_EVENT_ID], ['preview', 'hickman-minimal'], ['preview', 'hickman-full']]);
 
   const alias = present({ 'avengers-doomsday-secret-wars': { id: 'mcu-copy' } });
-  const [fast, saga] = actions(alias.card);
+  const [event, fast, saga] = actions(alias.card);
+  assert.equal(event.dataset.act, 'import', 'the event is an independent reading, not a saved fast-track alias');
   assert.equal(fast.dataset.act, 'open');
   assert.equal(fast.href, '#/read/mcu-copy');
   fast.onclick({ button: 0, preventDefault() {} });
@@ -236,10 +249,13 @@ test('each reading on the card opens its own saved copy, a saved MCU Prep copy c
     'the saved MCU Prep copy opens rather than a second fast track being offered');
   assert.equal(saga.dataset.act, 'import', 'the saga is a different reading and is still offered on its own');
   for (const preview of all(alias.card).filter((node) => node.dataset?.act === 'preview')) preview.onclick();
-  assert.deepEqual(alias.calls.slice(1), [['preview', 'avengers-doomsday-secret-wars'], ['preview', 'hickman-full']],
+  assert.deepEqual(alias.calls.slice(1), [['preview', SECRET_WARS_2015_EVENT_ID], ['preview', 'avengers-doomsday-secret-wars'], ['preview', 'hickman-full']],
     'Preview shows the saved MCU Prep copy, so it offers Open rather than adding the fast track again');
 
   const both = present({ 'hickman-minimal': { id: 'own-copy' }, 'avengers-doomsday-secret-wars': { id: 'mcu-copy' } });
-  actions(both.card)[0].onclick({ button: 0, preventDefault() {} });
+  actions(both.card)[1].onclick({ button: 0, preventDefault() {} });
   assert.deepEqual(both.calls, [['open', 'hickman-minimal', 'own-copy']], 'a copy saved as the fast track itself comes first');
+  const savedEvent = present({ [SECRET_WARS_2015_EVENT_ID]: { id: 'event-copy' } });
+  actions(savedEvent.card)[0].onclick({ button: 0, preventDefault() {} });
+  assert.deepEqual(savedEvent.calls, [['open', SECRET_WARS_2015_EVENT_ID, 'event-copy']]);
 });

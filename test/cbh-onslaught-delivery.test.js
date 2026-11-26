@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
+import { beforeFirstInstallmentManifest } from './helpers/first-installment-history.mjs';
 
 import {
   assertMappingMatchesPacketOccurrences, digestCanonicalJson, libraryDigestFor, validateFrozenPacket,
@@ -158,7 +159,7 @@ test('Onslaught approved full-library report preserves all 200 peers at its publ
       && entry.id !== 'iron-fist-reading-order' && entry.id !== 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings' && entry.id !== 'mcu-prep-daredevil-born-again' && entry.id !== 'mcu-prep-moon-knight' && entry.id !== 'mcu-prep-deadpool-and-wolverine' && entry.id !== 'mcu-prep-eternals' && entry.id !== 'mcu-prep-fantastic-four-first-steps' && entry.id !== 'mcu-prep-spider-man-brand-new-day' && entry.id !== 'mcu-prep-she-hulk' && entry.id !== 'mcu-prep-ms-marvel' && entry.id !== 'mcu-prep-captain-america-brave-new-world' && entry.id !== 'spider-man-no-way-home-owner-selected' && entry.id !== 'mcu-prep-thunderbolts');
   assert.equal(existing.length, 200);
   const existingManifest = {
-    ...manifest,
+    ...beforeFirstInstallmentManifest(manifest),
     lists: existing,
     ...(Array.isArray(manifest.paths)
       ? { paths: manifest.paths.filter((entry) =>

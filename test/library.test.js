@@ -398,8 +398,23 @@ test('a cached row is keyed by the whole item, not by a list of fields', () => {
 test('the row cache is invalidated, not merely populated', () => {
   assert.match(
     reading,
-    /if \(cached && cached\.key === rowKey\) \{ desired\.push\(cached\.node\); continue; \}/,
+    /if \(cached && cached\.key === rowKey\) \{\s*addIssueRow\(item, cached\.node\);\s*continue;\s*\}/,
     'a cached row is no longer compared against its key, so every row is reused whatever changed',
+  );
+  assert.match(
+    reading,
+    /const cached = entry\?\.readerKey === readerKey && entry\.catalogId === list\.catalogId \? entry : null;/,
+    'a cached row no longer checks its reader presentation and catalog binding before reuse',
+  );
+  assert.match(
+    reading,
+    /const addIssueRow = \(item, node\) => \{\s*if \(bookMode\) eventRows\.set\(item\.issueId, node\);\s*else desired\.push\(node\);\s*\};/,
+    'cached and rebuilt rows no longer reach the ordinary list or the event book row map',
+  );
+  assert.match(
+    reading,
+    /issueRow: \(item\) => eventRows\.get\(item\.issueId\)/,
+    'event book rendering no longer consumes the collected issue nodes',
   );
   assert.match(
     reading,
@@ -408,7 +423,7 @@ test('the row cache is invalidated, not merely populated', () => {
   );
   assert.match(
     reading,
-    /if \(id !== rowCacheListId\) \{ rowCache = new Map\(\); rowCacheListId = id; \}/,
+    /if \(id !== rowCacheListId\) \{\s*rowCache = new Map\(\);\s*rowCacheListId = id;/,
     'the cache no longer resets between lists, so rows leak across lists with the wrong list id bound',
   );
 });

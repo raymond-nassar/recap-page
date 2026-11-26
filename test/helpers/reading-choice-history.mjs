@@ -37,6 +37,7 @@ import {
   beforeUltimateIntroPayloadText,
 } from './ultimate-marvel-intro-history.mjs';
 import { beforeXmenEraManifest } from './xmen-era-history.mjs';
+import { beforeFirstInstallmentManifest, beforeFirstInstallmentOrders } from './first-installment-history.mjs';
 
 const root = fileURLToPath(new URL('../..', import.meta.url));
 const curatedGuideRegistry = JSON.parse(readFileSync(
@@ -115,6 +116,7 @@ export function historicalMcuDescriptionEntry(entry) {
 }
 
 export function historicalMcuDescriptionManifest(manifest) {
+  manifest = beforeFirstInstallmentManifest(manifest);
   const original = beforeMcuEditorialManifest({
     ...manifest, lists: manifest.lists.map((entry) => beforeIdentityEntry(entry)),
   }, { restoreWithdrawal: true });
@@ -151,7 +153,7 @@ export function pathsWithinLists(paths, lists, presentIds = []) {
 
 // Source approvals bind the original names and vectors, not the later catalog's renamed choices.
 export function historicalReadingChoiceManifest(manifest) {
-  manifest = beforeXmenEraManifest(manifest);
+  manifest = beforeXmenEraManifest(beforeFirstInstallmentManifest(manifest));
   const beforeSupplement = {
     ...manifest, lists: manifest.lists.map((entry) =>
       beforeWolverineCorrectionEntry(beforeAmazingSpiderManSupplementEntry(entry))),
@@ -200,8 +202,8 @@ export function historicalReadingChoiceIssueIds(id, currentIds) {
 }
 
 export function historicalSpiderManSelectionLibraryDigest(manifest, orders, { presentIds = [] } = {}) {
-  manifest = beforeWolverineCorrectionManifest(manifest);
-  orders = beforeWolverineCorrectionOrders(orders);
+  manifest = beforeWolverineCorrectionManifest(beforeFirstInstallmentManifest(manifest));
+  orders = beforeWolverineCorrectionOrders(beforeFirstInstallmentOrders(orders));
   manifest = {
     ...manifest,
     lists: manifest.lists.map((entry) => beforeIdentityEntry(beforeAmazingSpiderManSupplementEntry(entry))),
@@ -376,7 +378,7 @@ export async function loadHistoricalReadingChoiceLibrary(options = {}) {
 
 export async function loadBeforeAmazingSpiderManSupplementLibrary(currentManifest) {
   const manifest = beforeWolverineCorrectionManifest(beforeAmazingSpiderManSupplementManifest(
-    beforeXmenEraManifest(beforeTieInManifest(currentManifest))));
+    beforeXmenEraManifest(beforeTieInManifest(beforeFirstInstallmentManifest(currentManifest)))));
   const dir = await mkdtemp(path.join(os.tmpdir(), 'amazing-spider-man-history-'));
   tempDirs.add(dir);
   const payloadDir = path.join(dir, 'payloads');
@@ -400,7 +402,7 @@ export async function loadBeforeAmazingSpiderManSupplementLibrary(currentManifes
 
 export async function loadBeforeWolverineCorrectionLibrary() {
   const live = JSON.parse(await readFile(path.join(root, 'src', 'data', 'curated-lists.json'), 'utf8'));
-  const manifest = beforeWolverineCorrectionManifest(beforeXmenEraManifest(beforeTieInManifest(live)));
+  const manifest = beforeWolverineCorrectionManifest(beforeXmenEraManifest(beforeTieInManifest(beforeFirstInstallmentManifest(live))));
   const dir = await mkdtemp(path.join(os.tmpdir(), 'wolverine-history-'));
   tempDirs.add(dir);
   const payloadDir = path.join(dir, 'payloads');

@@ -277,12 +277,18 @@ test('saved event book view opens the exact linked comic without saving or chang
     assert.ok(book, 'exact saved issue order has a book presentation');
     assert.equal(find((entry) => entry.dataset?.issueId === String(targetId)), undefined);
     book.fire('click');
-    const links = [];
-    walk(h.nodes.rows, (entry) => { if (entry.dataset?.act === 'event-position') links.push(entry); });
+    const positions = [];
+    walk(h.nodes.rows, (entry) => { if (entry.dataset?.act === 'event-position') positions.push(entry); });
+    const [reference, ...links] = positions;
+    assert.equal(reference.dataset.key, 138);
     assert.equal(links.length, 43);
     assert.deepEqual(links.map((entry) => entry.dataset.key), linked);
     links[0].fire('click', { button: 0, preventDefault() {} });
     assert.equal(globalThis.document.activeElement.dataset.issueId, String(targetId));
+    find((entry) => entry.dataset?.act === 'event-order' && entry.dataset.key === 'book').fire('click');
+    find((entry) => entry.dataset?.act === 'event-position' && entry.dataset.key === 138)
+      .fire('click', { button: 0, preventDefault() {} });
+    assert.equal(globalThis.document.activeElement.dataset.issueId, '52489');
     assert.equal(h.state(), state);
     assert.equal(h.calls.saveSettings, 0);
     h.view.setFilter('read');

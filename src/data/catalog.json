@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-26T01:43:15.505Z",
+  "generatedAt": "2026-11-26T02:22:33.795Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -598,7 +598,68 @@
       "placeholderCount": 0,
       "emptyRecordCount": 2,
       "collections": 52,
-      "characters": [],
+      "characters": [
+        "Deadpool's Secret Secret Wars",
+        "Howard the Duck",
+        "Captain America & the Mighty Avengers",
+        "Spider-Woman",
+        "Black Widow",
+        "FREE COMIC BOOK DAY 2015 0",
+        "Secret Wars",
+        "Loki: Agent of Asgard",
+        "Ms. Marvel",
+        "Magneto",
+        "The Punisher",
+        "ANT-MAN: LAST DAYS 1",
+        "Silk",
+        "Silver Surfer",
+        "Ultimate End",
+        "Secret Wars: Battleworld",
+        "Master of Kung Fu",
+        "A-Force",
+        "Planet Hulk",
+        "Spider-Verse",
+        "Inhumans: Attilan Rising",
+        "M.O.D.O.K. Assassin",
+        "Infinity Gauntlet",
+        "Old Man Logan",
+        "Inferno",
+        "Secret Wars 2099",
+        "Secret Wars Journal",
+        "Where Monsters Dwell",
+        "Years of Future Past",
+        "X-Tinction Agenda",
+        "Giant-Size Little Marvel: AVX",
+        "Future Imperfect",
+        "Amazing Spider-Man: Renew Your Vows",
+        "Armor Wars",
+        "Marvel Zombies",
+        "Ghost Racers",
+        "Weirdworld",
+        "1602 Witch Hunter Angela",
+        "Captain Marvel & The Carol Corps",
+        "Mrs. Deadpool and the Howling Commandos",
+        "Thors",
+        "Runaways",
+        "Squadron Sinister",
+        "Age of Ultron Vs. Zombies",
+        "E Is for Extinction",
+        "Korvac Saga",
+        "Red Skull",
+        "1872",
+        "Civil War",
+        "Age of Apocalypse",
+        "Secret Wars: Secret Love",
+        "Siege",
+        "Captain Britain and the Mighty Defenders",
+        "Guardians of Knowhere",
+        "Hail Hydra",
+        "Star-Lord and Kitty Pryde",
+        "House of M",
+        "Howard the Human",
+        "Hank Johnson, Agent of Hydra",
+        "Secret Wars: Agents of Atlas"
+      ],
       "keywords": [],
       "group": null,
       "groupName": null,
@@ -15173,7 +15234,14 @@
       "placeholderCount": 0,
       "emptyRecordCount": 0,
       "collections": 2,
-      "characters": [],
+      "characters": [
+        "Hulk",
+        "GIANT-SIZE HULK 1",
+        "The Invincible Iron Man",
+        "Fallen Son: The Death of Captain America",
+        "Captain America",
+        "The Mighty Avengers"
+      ],
       "keywords": [],
       "group": null,
       "groupName": null,
@@ -15188,7 +15256,7 @@
       "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-comics-from-civil-war-to-secret-invasion/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-11-26T01:43:15.505Z"
+      "updatedAt": "2026-11-26T02:22:33.795Z"
     },
     {
       "id": "civil-war-to-secret-invasion-part-2",
@@ -15201,7 +15269,16 @@
       "placeholderCount": 0,
       "emptyRecordCount": 0,
       "collections": 1,
-      "characters": [],
+      "characters": [
+        "Avengers: The Initiative",
+        "The Order",
+        "Amazing Spider-Man",
+        "Friendly Neighborhood Spider-Man",
+        "The Sensational Spider-Man",
+        "New Avengers",
+        "New Avengers Annual",
+        "Thunderbolts"
+      ],
       "keywords": [],
       "group": null,
       "groupName": null,
@@ -15216,7 +15293,7 @@
       "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-comics-from-civil-war-to-secret-invasion/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-11-26T01:43:15.505Z"
+      "updatedAt": "2026-11-26T02:22:33.795Z"
     },
     {
       "id": "civil-war-to-secret-invasion-part-3",
@@ -15229,7 +15306,14 @@
       "placeholderCount": 0,
       "emptyRecordCount": 0,
       "collections": 0,
-      "characters": [],
+      "characters": [
+        "Punisher War Journal",
+        "The Irredeemable Ant-Man",
+        "Uncanny X-Men",
+        "Iron Man: Hypervelocity",
+        "Newuniversal",
+        "Ms. Marvel"
+      ],
       "keywords": [],
       "group": null,
       "groupName": null,
@@ -15244,7 +15328,7 @@
       "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-comics-from-civil-war-to-secret-invasion/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-11-26T01:43:15.505Z"
+      "updatedAt": "2026-11-26T02:22:33.795Z"
     },
     {
       "id": "civil-war-to-secret-invasion-part-4",
@@ -15260,7 +15344,14 @@
       "placeholderCount": 0,
       "emptyRecordCount": 0,
       "collections": 0,
-      "characters": [],
+      "characters": [
+        "Runaways",
+        "Wonder Man",
+        "New X-Men",
+        "White Tiger",
+        "Wolverine Origins",
+        "Agents of Atlas"
+      ],
       "keywords": [],
       "group": null,
       "groupName": null,
@@ -15275,7 +15366,7 @@
       "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-comics-from-civil-war-to-secret-invasion/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-11-26T01:43:15.505Z"
+      "updatedAt": "2026-11-26T02:22:33.795Z"
     },
     {
       "id": "civil-war-to-secret-invasion-part-5",
@@ -15288,7 +15379,14 @@
       "placeholderCount": 0,
       "emptyRecordCount": 0,
       "collections": 0,
-      "characters": [],
+      "characters": [
+        "Amazing Spider-Girl",
+        "Blade",
+        "New Excalibur",
+        "Spider-Man: Reign",
+        "Cable & Deadpool",
+        "Exiles"
+      ],
       "keywords": [],
       "group": null,
       "groupName": null,
@@ -15303,7 +15401,7 @@
       "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-comics-from-civil-war-to-secret-invasion/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-11-26T01:43:15.505Z"
+      "updatedAt": "2026-11-26T02:22:33.795Z"
     },
     {
       "id": "civil-war-to-secret-invasion-part-6",
@@ -15319,7 +15417,12 @@
       "placeholderCount": 0,
       "emptyRecordCount": 0,
       "collections": 0,
-      "characters": [],
+      "characters": [
+        "Ghost Rider",
+        "Ghost Riders: Heaven's on Fire",
+        "She-Hulk",
+        "Moon Knight"
+      ],
       "keywords": [],
       "group": null,
       "groupName": null,
@@ -15334,7 +15437,7 @@
       "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-comics-from-civil-war-to-secret-invasion/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-11-26T01:43:15.505Z"
+      "updatedAt": "2026-11-26T02:22:33.795Z"
     },
     {
       "id": "civil-war-to-secret-invasion-part-7",
@@ -15350,7 +15453,15 @@
       "placeholderCount": 0,
       "emptyRecordCount": 0,
       "collections": 0,
-      "characters": [],
+      "characters": [
+        "Wolverine",
+        "Wolverine: Old Man Logan Giant-Size",
+        "X-Men: Phoenix - Warsong",
+        "X-Factor",
+        "Heroes for Hire",
+        "Silent War",
+        "World War Hulk Prologue: World Breaker"
+      ],
       "keywords": [],
       "group": null,
       "groupName": null,
@@ -15365,7 +15476,7 @@
       "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-comics-from-civil-war-to-secret-invasion/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-11-26T01:43:15.505Z"
+      "updatedAt": "2026-11-26T02:22:33.795Z"
     },
     {
       "id": "civil-war-to-secret-invasion-part-8",
@@ -15378,19 +15489,26 @@
       "placeholderCount": 0,
       "emptyRecordCount": 0,
       "collections": 1,
-      "characters": [],
+      "characters": [
+        "Incredible Hercules",
+        "Hulk",
+        "Uncanny X-Men"
+      ],
       "keywords": [],
       "group": null,
       "groupName": null,
       "variant": null,
       "beginner": false,
       "timeline": null,
-      "coverIssueId": null,
-      "cover": null,
+      "coverIssueId": 23067,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/90/5c36325318269",
+        "ext": "jpg"
+      },
       "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-comics-from-civil-war-to-secret-invasion/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-11-26T01:43:15.505Z"
+      "updatedAt": "2026-11-26T02:22:33.795Z"
     },
     {
       "id": "civil-war-to-secret-invasion-part-9",
@@ -15403,7 +15521,14 @@
       "placeholderCount": 0,
       "emptyRecordCount": 0,
       "collections": 0,
-      "characters": [],
+      "characters": [
+        "X-Men",
+        "Uncanny X-Men",
+        "X-Men Legacy",
+        "Cable",
+        "X-Force",
+        "Daredevil"
+      ],
       "keywords": [],
       "group": null,
       "groupName": null,
@@ -15418,7 +15543,7 @@
       "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-comics-from-civil-war-to-secret-invasion/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-11-26T01:43:15.505Z"
+      "updatedAt": "2026-11-26T02:22:33.795Z"
     },
     {
       "id": "civil-war-to-secret-invasion-part-10",
@@ -15431,7 +15556,12 @@
       "placeholderCount": 0,
       "emptyRecordCount": 0,
       "collections": 0,
-      "characters": [],
+      "characters": [
+        "Nextwave: Agents of H.a.T.E.",
+        "The Immortal Iron Fist",
+        "Spider-Man Family",
+        "Fantastic Four"
+      ],
       "keywords": [],
       "group": null,
       "groupName": null,
@@ -15446,7 +15576,7 @@
       "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-comics-from-civil-war-to-secret-invasion/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-11-26T01:43:15.505Z"
+      "updatedAt": "2026-11-26T02:22:33.795Z"
     },
     {
       "id": "civil-war-to-secret-invasion-part-11",
@@ -15459,19 +15589,30 @@
       "placeholderCount": 0,
       "emptyRecordCount": 0,
       "collections": 2,
-      "characters": [],
+      "characters": [
+        "Amazing Spider-Man",
+        "AMAZING SPIDER-MAN ANNUAL 1",
+        "Black Panther",
+        "Omega Flight",
+        "Spider-Man and the Fantastic Four",
+        "X-Men: First Class",
+        "Silver Surfer: Requiem"
+      ],
       "keywords": [],
       "group": null,
       "groupName": null,
       "variant": null,
       "beginner": false,
       "timeline": null,
-      "coverIssueId": null,
-      "cover": null,
+      "coverIssueId": 17338,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/4d24e46ee23ad",
+        "ext": "jpg"
+      },
       "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-comics-from-civil-war-to-secret-invasion/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-11-26T01:43:15.505Z"
+      "updatedAt": "2026-11-26T02:22:33.795Z"
     },
     {
       "id": "civil-war-to-secret-invasion-part-12",
@@ -15484,19 +15625,27 @@
       "placeholderCount": 0,
       "emptyRecordCount": 0,
       "collections": 0,
-      "characters": [],
+      "characters": [
+        "New Warriors",
+        "Sub-Mariner",
+        "Thor",
+        "Nova"
+      ],
       "keywords": [],
       "group": null,
       "groupName": null,
       "variant": null,
       "beginner": false,
       "timeline": null,
-      "coverIssueId": null,
-      "cover": null,
+      "coverIssueId": 15886,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/03/5b328740456f0",
+        "ext": "jpg"
+      },
       "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-comics-from-civil-war-to-secret-invasion/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-11-26T01:43:15.505Z"
+      "updatedAt": "2026-11-26T02:22:33.795Z"
     },
     {
       "id": "civil-war-to-secret-invasion-part-13",
@@ -15509,19 +15658,37 @@
       "placeholderCount": 0,
       "emptyRecordCount": 6,
       "collections": 0,
-      "characters": [],
+      "characters": [
+        "Guardians of the Galaxy",
+        "Super-Villain Team-Up/Modok's 11",
+        "Captain America: The Chosen",
+        "Shanna the She Devil: Survival of the Fittest",
+        "Iron Man: Enter the Mandarin",
+        "X-Men: Emperor Vulcan",
+        "Penance: Relentless",
+        "Omega: The Unknown",
+        "Howard the Duck",
+        "Marvel Zombies 2",
+        "X-Men: Die by the Sword",
+        "Silver Surfer: In Thy Name",
+        "Captain Marvel",
+        "The Twelve"
+      ],
       "keywords": [],
       "group": null,
       "groupName": null,
       "variant": null,
       "beginner": false,
       "timeline": null,
-      "coverIssueId": null,
-      "cover": null,
+      "coverIssueId": 21268,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/517ad3738f6a1",
+        "ext": "jpg"
+      },
       "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-comics-from-civil-war-to-secret-invasion/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-11-26T01:43:15.505Z"
+      "updatedAt": "2026-11-26T02:22:33.795Z"
     },
     {
       "id": "civil-war-to-secret-invasion-part-14",
@@ -15537,7 +15704,18 @@
       "placeholderCount": 0,
       "emptyRecordCount": 0,
       "collections": 0,
-      "characters": [],
+      "characters": [
+        "New Exiles",
+        "Clandestine",
+        "Logan",
+        "The Last Defenders",
+        "X-FACTOR: THE QUICK AND THE DEAD 1",
+        "Avengers/Invaders",
+        "Invincible Iron Man",
+        "Angel: Revelations",
+        "Skaar: Son of Hulk",
+        "New Avengers: Illuminati"
+      ],
       "keywords": [],
       "group": null,
       "groupName": null,
@@ -15552,7 +15730,7 @@
       "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-comics-from-civil-war-to-secret-invasion/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-11-26T01:43:15.505Z"
+      "updatedAt": "2026-11-26T02:22:33.795Z"
     },
     {
       "id": "silent-war",
@@ -15612,7 +15790,21 @@
       "placeholderCount": 0,
       "emptyRecordCount": 0,
       "collections": 0,
-      "characters": [],
+      "characters": [
+        "Hulk",
+        "World War Hulk Prologue: World Breaker",
+        "World War Hulk",
+        "Ghost Rider",
+        "The Invincible Iron Man",
+        "World War Hulk: Front Line",
+        "World War Hulk: X-Men",
+        "The Irredeemable Ant-Man",
+        "World War Hulk: Gamma Corps",
+        "Avengers: The Initiative",
+        "Heroes for Hire",
+        "Punisher War Journal",
+        "WORLD WAR HULK: AFTERSMASH 1"
+      ],
       "keywords": [],
       "group": null,
       "groupName": null,

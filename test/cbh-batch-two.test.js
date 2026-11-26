@@ -1,6 +1,8 @@
 import { currentReadingCensus } from './helpers/current-reading-library.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -121,6 +123,7 @@ test('batch two preserves the approved queue, exact substitutions, and catalog c
       'annihilation',
       'civil-war-avengers',
       'silent-war',
+      'world-war-hulk',
       'annihilation-conquest',
       'messiah-complex',
       'world-war-hulk-aftersmash',
@@ -394,7 +397,12 @@ test('batch two has no aggregate identity, source, sequence, or pre-publication 
 test('batch two retains its historical blocker evidence', async () => {
   const decimation = await readJson(path.join(mappingsDir, 'decimation.json'));
   const realm = await readJson(path.join(root, 'test', 'fixtures', 'cbh-batch-two-realm-overlap.json'));
-  const worldWarHulk = await readJson(path.join(overlapsDir, 'world-war-hulk.json'));
+  const priorHulkReport = execFileSync('git', [
+    'show', '173b4efa9df259b35fb44bde766b2c67a79b7dc9:scripts/data/cbh-overlaps/world-war-hulk.json',
+  ], { cwd: root });
+  assert.equal(createHash('sha256').update(priorHulkReport).digest('hex'),
+    '2f46ffba64355cef5b3d74b9a5b44dcdd16f44b0e2008334603da5ef72a9d241');
+  const worldWarHulk = JSON.parse(priorHulkReport);
 
   assert.equal(decimation.rows.length, 57);
   assert.deepEqual(

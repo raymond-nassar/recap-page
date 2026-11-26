@@ -1,4 +1,5 @@
 import { readFileSync } from 'node:fs';
+import { identityCorrections } from '../src/data/identityCorrections.js';
 import {
   addIssuesToList, createEmptyState, createList, exportBackup, markRead, setIssueNote, setListNote,
 } from '../src/js/lib/model.js';
@@ -69,6 +70,9 @@ export const listRevisions = {
     const payload = JSON.parse(readFileSync(new URL('../src/data/wolverine_reading_order.json', import.meta.url)));
     const byId = new Map(payload.items.map((item) => [item.issueId, item]));
     const old = record.previousOrders[0];
+    const corrected = new Map(identityCorrections.filter(({ catalogId }) => catalogId === record.catalogId)
+      .map(({ from, to }) => [from, to]));
+    const migrated = old.map((id) => corrected.get(id) ?? id);
     let initial = createList(createEmptyState(), { id: 'saved', name: 'Wolverine', catalogId: record.catalogId });
     initial = addIssuesToList(initial, 'saved', old.map((issueId) => byId.get(issueId) ?? { issueId, title: `Issue ${issueId}` })).state;
     const retired = old.find((id) => !record.revisedOrder.includes(id));
@@ -169,13 +173,16 @@ export const listRevisions = {
     await page.reload({ waitUntil: 'load' });
     await page.waitForSelector('#list-revision-offer:not([hidden])');
 
+    const beforeFault = await page.evaluate((key) => localStorage.getItem(key), KEY);
+    t.check('reopening migrates the approved identities before a list update',
+      JSON.stringify(JSON.parse(beforeFault).lists.saved.itemIds) === JSON.stringify(migrated));
     await page.evaluate(() => { window.__revisionFault = 'silent'; });
     await click(page, '#list-revision-review');
     await page.waitForSelector('#ask[open]');
     await click(page, '#ask-ok');
     await page.waitForFunction(() => document.querySelector('#list-revision-status').textContent.includes('not saved'));
     t.check('a silent failed save does not claim success or change storage',
-      await page.evaluate((key, original) => localStorage.getItem(key) === original, KEY, before));
+      await page.evaluate((key, original) => localStorage.getItem(key) === original, KEY, beforeFault));
     await page.evaluate(() => { window.__revisionFault = null; });
 
     await page.$eval('#list-revision-review', (node) => node.focus());
@@ -184,8 +191,8 @@ export const listRevisions = {
     await click(page, '#ask-ok');
     await page.waitForFunction(() => document.querySelector('#list-revision-status').textContent.includes('updated'));
     const saved = await page.evaluate((key) => JSON.parse(localStorage.getItem(key)), KEY);
-    const expected = revisedOrderKeepingExtras(old, record.revisedOrder);
-    t.check('updated order retains every old comic and the corrected published order',
+    const expected = revisedOrderKeepingExtras(migrated, record.revisedOrder);
+    t.check('updated order retains every original after identity migration and follows the published order',
       JSON.stringify(saved.lists.saved.itemIds) === JSON.stringify(expected));
     t.check('read progress remains on the retired identity', saved.read[retired] === 123);
     t.check('the automatic offer is withdrawn and focus has a visible successor', await page.evaluate(() => (

@@ -57,16 +57,22 @@ const visible = ({ position, issueId, title, section }) => ({ position, issueId,
 const expectedVisible = expected.map(visible);
 const groups = expected.filter((row, index) => index === 0 || row.section !== expected[index - 1].section)
   .map((row) => row.section);
+const correctedGapId = -1027689073;
 const persistedExpected = expected.map((row) => ({
   ...row, section: row.section?.slice(0, MAX_COLLECTION) ?? null,
+  ...(row.issueId === correctedGapId ? {
+    issueId: 52986, title: 'FREE COMIC BOOK DAY 2015 0 (2015)', placeholder: false, detailsRefused: false,
+  } : {}),
 }));
 const persistedVisible = persistedExpected.map(visible);
 const persistedGroups = groups.map((group) => group?.slice(0, MAX_COLLECTION) ?? null);
 assert.equal(new Set(persistedGroups).size, groups.length);
 const gapIds = expected.filter((row) => row.placeholder).map((row) => row.issueId);
+const persistedGapIds = gapIds.filter((issueId) => issueId !== correctedGapId);
 assert.deepEqual(refusedIds, [56327, 64259, 64285]);
 assert.deepEqual([...gapByPosition.keys()], [153, 339, 340, 341, 342, 369, 626, 663]);
 assert.equal(gapIds.length, 8);
+assert.equal(persistedGapIds.length, 7);
 
 function checkVector(t, label, actual, wanted) {
   const mismatches = actual.flatMap((row, index) => (
@@ -204,9 +210,9 @@ export const namorActualData = {
         issueId: Number(node.dataset.issueId),
         action: node.closest('.row')?.querySelector('.ract button[data-act="open"]:not([hidden])')?.textContent.trim(),
         hasInfo: Boolean(node.closest('.row')?.querySelector('.ract a[data-act="info"]')),
-      })), gapIds);
-    t.check('all eight unresolved Reading List rows offer Find on Marvel Comics but no fabricated issue page',
-      JSON.stringify(gapActions.map((row) => row.issueId)) === JSON.stringify(gapIds)
+      })), persistedGapIds);
+    t.check('the seven remaining Reading List gaps offer Find on Marvel Comics but no fabricated issue page',
+      JSON.stringify(gapActions.map((row) => row.issueId)) === JSON.stringify(persistedGapIds)
         && gapActions.every((row) => row.action === 'Find on Marvel Comics' && !row.hasInfo),
       JSON.stringify(gapActions));
     t.check('Reading List retains every source group',
@@ -222,9 +228,9 @@ export const namorActualData = {
     const persisted = await savedRows(page);
     checkVector(t, 'reload persists all original identities, group and refusal flags',
       persisted.rows, persistedExpected);
-    t.check('all eight unresolved originals remain placeholders rather than invented issue links',
+    t.check('reload retains exactly the seven unresolved originals as placeholders',
       JSON.stringify(persisted.rows.filter((row) => row.placeholder).map((row) => row.issueId))
-        === JSON.stringify(gapIds), JSON.stringify(gapIds));
+        === JSON.stringify(persistedGapIds), JSON.stringify(persistedGapIds));
     t.check('the complete actual-data journey makes no external request or browser error',
       externalRequests.length === 0 && errors.length === 0,
       JSON.stringify({ externalRequests: externalRequests.slice(0, 3), errors: errors.slice(0, 3) }));

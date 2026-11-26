@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { assertInstallmentLaterPeer } from './helpers/modern-timeline-installment-history.mjs';
 import { assertXmenEraLaterPeer, beforeXmenEraManifest } from './helpers/xmen-era-history.mjs';
 import { beforeMcuEditorialEntry } from '../scripts/lib/mcu-editorial.mjs';
 import { withRetiredComparisons, withRetiredOrders } from './helpers/mcu-editorial-history.mjs';
@@ -95,7 +96,8 @@ test('original remaining MCU Prep train preserves its six guides, six gaps and r
   assert.deepEqual(library.orders.map((row) => row.orderId).sort(), union);
   assert.equal(union.length, currentReadingCensus.allOrders);
   assert.equal(library.descriptors.filter((row) => /^marvel-knights-to-planet-x-\d{2}$/.test(row.id)).length, 78);
-  assert.deepEqual(library.descriptors.filter((row) => !row.visible).map((row) => row.id), ['marvel-knights-to-planet-x']);
+  assert.deepEqual(library.descriptors.filter((row) => !row.visible).map((row) => row.id).sort(),
+    ['civil-war-to-secret-invasion', 'marvel-knights-to-planet-x']);
   const parsedCatalog = parseCatalog(catalog);
   assert.equal(parsedCatalog.dropped, 0);
   const choices = catalogEntries(parsedCatalog.lists);
@@ -217,6 +219,9 @@ test('original remaining MCU Prep train preserves its six guides, six gaps and r
       assert.ok(disposition.authorityIdentity && disposition.rationale && disposition.reviewedAt);
     }
     for (const later of current.comparisons.filter((row) => !recordedIds.has(row.orderId))) {
+      if (await assertInstallmentLaterPeer(id, later, {
+        json, candidateIds: expectedIds, currentCandidateIds: payload.items.map((row) => row.issueId),
+      })) continue;
       if (registeredCuratedGuides.some((entry) => entry.id === later.orderId)) continue;
       if (assertXmenEraLaterPeer(id, later)) continue;
       const reviewed = allEvidence.get(later.orderId);

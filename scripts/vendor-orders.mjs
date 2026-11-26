@@ -26,6 +26,7 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createJsonFetcher } from './lib/fetch-json.mjs';
 import { lookupIssues } from './lib/lookup-issues.mjs';
+import { eventReadingOrders } from '../src/data/eventReadingOrders.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import { taggedViewer, appViewerFromUrl } from '../src/js/lib/marvelComicsAppUrl.js';
 import { parseCatalog } from '../src/js/lib/catalog.js';
@@ -47,6 +48,7 @@ import {
 import {
   buildChapterFamily,
   buildChildOverlapEvidence,
+  readingOrderSubjects,
   validateChapterLedger,
   validateStorylinesChildren, chapterFile,
 } from './lib/chapter-orders.mjs';
@@ -619,6 +621,9 @@ export function validateVendoredCatalog(catalog, payloadById) {
 // importing can never drift from the file they will actually import.
 function catalogEntry(order, payload) {
   const writers = catalogWriters(payload);
+  const characters = !order.characters?.length && Object.hasOwn(eventReadingOrders, order.id)
+    ? readingOrderSubjects(payload.items)
+    : order.characters ?? [];
   const { coverIssueId, cover } = catalogCover(order, payload);
   const {
     placeholders, empty, ownerConfirmed, ownerSupplemented, ownerGcdSupplemented,
@@ -652,7 +657,7 @@ function catalogEntry(order, payload) {
     // sees before importing must come from the file they will actually import. Orders that are
     // not divided into collected editions report 0, which the catalog renders as nothing.
     collections: Number.isInteger(payload.collections) ? payload.collections : 0,
-    characters: order.characters ?? [],
+    characters,
     keywords: order.keywords ?? [],
     group: order.group,
     groupName: order.groupName,

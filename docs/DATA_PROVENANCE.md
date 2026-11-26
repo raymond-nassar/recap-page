@@ -416,18 +416,18 @@ orders: **null means nobody granted anything for this file, not that the file is
 
 ### Reading orders, pinned
 
-Three hundred and fifty-five pinned reading-order payloads remain under
-[`src/data/`](../src/data): 350 active visible catalog files, one active noncatalog partition parent,
+There are 372 pinned reading-order payloads under
+[`src/data/`](../src/data): 366 active visible catalog files, two active internal parents,
 the retired No Way Home (18 originals) and withdrawn Marvel Multiverse (2 comics) payloads, and the
 two earlier X-Men Silver Age to Claremont orders (274 and 404 comics), which no longer appear in
-discovery but stay readable for saved lists and offline copies. The 351 active files hold
-33,823 issue records covering 20,631 distinct tracked identities. The visible files hold 33,336 of those records;
-the extra 487 are the retained Marvel Knights to Planet X parent whose ordinary children partition
-the same vector. Records use these fields:
+discovery but stay readable for saved lists and offline copies. The 368 active files hold
+35,894 issue records covering 21,040 distinct tracked identities. The visible files hold 34,504 of those records;
+the extra 1,390 come from the retained Marvel Knights to Planet X and Civil War to Secret Invasion
+parents, whose children partition the same vectors. Records use these fields:
 `issueId`, `title`,
 `number`, `url`, `seriesId`, `seriesName`, `onSale`, `mu`, `digitalId`, `pageCount`, a `cover`
-object of `path` and `ext`, and `creators` of `name` and `role`. Across the 351 active payloads, 28,941
-records carry a cover URL and 27,184 carry creator credits. The retired No Way Home payload and both
+object of `path` and `ext`, and `creators` of `name` and `role`. Across the 368 active payloads, 29,335
+records carry a cover URL and 27,529 carry creator credits. The retired No Way Home payload and both
 earlier X-Men payloads remain byte-exact; no retired payload contributes to active discovery or this
 active census.
 
@@ -1201,7 +1201,7 @@ authored paths with 10, 12 and 4 stops from the curated manifest at
 `src/data/curated-lists.json:11514-11565`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all four at
-`src/data/catalog.json:18570-18707`.
+`src/data/catalog.json:18762-18899`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -3111,12 +3111,12 @@ Hell's Angel remains in Marvel Ages, not Modern Timeline; its visible source cre
 [timeline decision](https://github.com/raymond-nassar/recap-page/issues/1543#issuecomment-7042912985). Original selection and approval records remain unchanged.
 
 The owner-guide contract requires a positive ID, exact matching owner-supplied Marvel URL, named
-confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:880-902`).
+confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:881-903`).
 The vendor excludes these entries from metadata lookup and passes an empty detail object to the
-item mapper (`scripts/vendor-orders.mjs:446-455`, `scripts/vendor-orders.mjs:838-846`).
+item mapper (`scripts/vendor-orders.mjs:448-457`, `scripts/vendor-orders.mjs:843-851`).
 Unless a row carries the external supplement described below, the published rows carry only their
 confirmed identity, issue ID, URL and refusal state; optional provider details and covers remain
-empty (`scripts/vendor-orders.mjs:474-519`). The ten One World Under Doom rows are of that kind.
+empty (`scripts/vendor-orders.mjs:476-521`). The ten One World Under Doom rows are of that kind.
 No comic image bytes are stored and no Unlimited availability is inferred.
 
 ### Owner-approved external supplement for owner-confirmed comics
@@ -3153,7 +3153,7 @@ The vendored item copies exactly those fields and adds `metadataSourceKind:
 owner-confirmed evidence kind, so the app still treats the comic as having no provider metadata and
 its availability stays unknown (constraints 6 and 7). The delivery contract holds every supplemented
 item to exactly what its mapping row records and every other owner-confirmed item to the old empty
-shape (`test/helpers/owner-delivery-contract.mjs:124-152`).
+shape (`test/helpers/owner-delivery-contract.mjs:127-155`).
 
 The app carries only the optional `identityEvidenceKind` marker in the existing normalized issue
 record so the reading view can distinguish an owner-confirmed identity from an ordinary missing
@@ -4335,3 +4335,12 @@ The 25 explicitly held Secret Wars comics still use Find and have no classic iss
 entry in either reading-link table. The hold reflects the approved reading choice, not a claim
 that the export lacks matching viewers. Eight explicitly identified reader records are separate
 from the 189 ordinary matches.
+
+The Secret Wars book view includes a non-counting reference under Future Imperfect to Secret Wars:
+Battleworld (2015) #4. The comic is counted once, at source position 147 and issue-order position 138.
+The link opens that existing position without changing saved progress.
+
+Civil War to Secret Invasion parts 8, 11, 12 and 13 reuse the verified cover addresses for provider
+issues 23067, 17338, 15886 and 21268, respectively, from already published ordinary reading orders.
+The offline vendor checked matching issue identities and exact addresses. No images were downloaded,
+and no other issue fields changed.

@@ -1919,8 +1919,8 @@
     "fp": "c8320ca66b9a1b3f",
     "head": "static func marvelComicsAppAddress(for url: URL) -> URL? {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|how-reading-content-reaches-the-browser|scripts/vendor-orders.mjs:937-1037|0": {
-    "anchor": "scripts/vendor-orders.mjs:937-1037",
+  "docs/ARCHITECTURE_REFERENCE.md|how-reading-content-reaches-the-browser|scripts/vendor-orders.mjs:942-1042|0": {
+    "anchor": "scripts/vendor-orders.mjs:942-1042",
     "fp": "233e483aa833e434",
     "head": "// Lists we did not rebuild still have to appear in the catalog, so their entries are derived"
   },
@@ -2189,8 +2189,8 @@
     "fp": "2691c5a6c7db0bcf",
     "head": "import { parseManifest } from '../src/js/lib/curated.js';"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|the-module-graph-drawn-as-ownership|scripts/vendor-orders.mjs:33|0": {
-    "anchor": "scripts/vendor-orders.mjs:33",
+  "docs/ARCHITECTURE_REFERENCE.md|the-module-graph-drawn-as-ownership|scripts/vendor-orders.mjs:34|0": {
+    "anchor": "scripts/vendor-orders.mjs:34",
     "fp": "2691c5a6c7db0bcf",
     "head": "import { parseManifest } from '../src/js/lib/curated.js';"
   },
@@ -5919,18 +5919,18 @@
     "fp": "3a6bffed9d7bfbb0",
     "head": "export function sortCatalog(lists) {"
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/current-reading-library.mjs:16-120|0": {
-    "anchor": "test/helpers/current-reading-library.mjs:16-120",
-    "fp": "c78f2430678b1cbe",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/current-reading-library.mjs:20-126|0": {
+    "anchor": "test/helpers/current-reading-library.mjs:20-126",
+    "fp": "1a6f087a49769dec",
     "head": "const { captureSha256, ...baseline } = JSON.parse(readFileSync("
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:289-316|0": {
-    "anchor": "test/helpers/owner-delivery-contract.mjs:289-316",
-    "fp": "2100318718f733b2",
-    "head": "async function assertRegisteredLaterPeer(id, later, { contracts, json }) {"
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:295-324|0": {
+    "anchor": "test/helpers/owner-delivery-contract.mjs:295-324",
+    "fp": "40c251c4ae5eb17d",
+    "head": "async function assertRegisteredLaterPeer(id, later, { contracts, json, candidateIds, currentCandidat"
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|integrate-serially-against-fresh-evidence|scripts/vendor-orders.mjs:714-735|0": {
-    "anchor": "scripts/vendor-orders.mjs:714-735",
+  "docs/BATCH_READING_LIST_DELIVERY.md|integrate-serially-against-fresh-evidence|scripts/vendor-orders.mjs:719-740|0": {
+    "anchor": "scripts/vendor-orders.mjs:719-740",
     "fp": "a134aada39ad4af0",
     "head": "if (metadataCacheDir && (catalogOnly || only.size === 0)) {"
   },
@@ -5984,28 +5984,28 @@
     "fp": "1894fdf77af94db4",
     "head": "'owner-confirmed': {"
   },
-  "docs/DATA_PROVENANCE.md|owner-approved-external-supplement-for-owner-con|test/helpers/owner-delivery-contract.mjs:124-152|0": {
-    "anchor": "test/helpers/owner-delivery-contract.mjs:124-152",
+  "docs/DATA_PROVENANCE.md|owner-approved-external-supplement-for-owner-con|test/helpers/owner-delivery-contract.mjs:127-155|0": {
+    "anchor": "test/helpers/owner-delivery-contract.mjs:127-155",
     "fp": "dbe332822758972a",
     "head": "if (row.identityEvidenceKind === 'owner-confirmed-identity') {"
   },
-  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/lib/owner-guide.mjs:880-902|0": {
-    "anchor": "scripts/lib/owner-guide.mjs:880-902",
+  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/lib/owner-guide.mjs:881-903|0": {
+    "anchor": "scripts/lib/owner-guide.mjs:881-903",
     "fp": "ceccab946c09b48f",
     "head": "function ownerIdentityParts(identity) {"
   },
-  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:446-455|0": {
-    "anchor": "scripts/vendor-orders.mjs:446-455",
+  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:448-457|0": {
+    "anchor": "scripts/vendor-orders.mjs:448-457",
     "fp": "77fdbd63627b9e30",
     "head": "export function providerIssueIdsFor(entries) {"
   },
-  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:474-519|0": {
-    "anchor": "scripts/vendor-orders.mjs:474-519",
+  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:476-521|0": {
+    "anchor": "scripts/vendor-orders.mjs:476-521",
     "fp": "18d898560df689e1",
     "head": "const ownerConfirmed = entry.identityEvidenceKind === 'owner-confirmed-identity';"
   },
-  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:838-846|0": {
-    "anchor": "scripts/vendor-orders.mjs:838-846",
+  "docs/DATA_PROVENANCE.md|owner-confirmed-comic-identities-without-provide|scripts/vendor-orders.mjs:843-851|0": {
+    "anchor": "scripts/vendor-orders.mjs:843-851",
     "fp": "5367a3cc2922eee9",
     "head": "const issueItems = entries.map((e) => {"
   },
@@ -6029,8 +6029,8 @@
     "fp": "ff9ba71742d8b8c0",
     "head": "\"chapterCount\": 78,"
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:18570-18707|0": {
-    "anchor": "src/data/catalog.json:18570-18707",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:18762-18899|0": {
+    "anchor": "src/data/catalog.json:18762-18899",
     "fp": "364a367730afd192",
     "head": "\"paths\": ["
   },

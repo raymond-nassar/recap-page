@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { sectionalGuideParts, sectionalPartName } from '../../src/js/lib/sectionalGuide.js';
+import { readingOrderSubjects } from './chapter-orders.mjs';
 
 export function sectionalPartFile(parentFile, number) {
   return parentFile.replace(/\.json$/u, `_part_${number}.json`);
@@ -47,7 +48,7 @@ export function buildSectionalFamily({ order, parentPayload, guide }) {
     return {
       order: {
         ...order, id, name: childName, description, out, catalog: true, timeline: null,
-        sectionKind: null, coverIssueId: null, expect: size,
+        sectionKind: null, coverIssueId: null, expect: size, characters: readingOrderSubjects(items),
       },
       payload: {
         id,

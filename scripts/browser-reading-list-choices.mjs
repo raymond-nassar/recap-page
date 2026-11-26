@@ -77,16 +77,18 @@ export const readingListChoices = {
 
     await page.goto(`${page.__origin}/#/catalog`, { waitUntil: 'load' });
     await page.waitForSelector('#catalog-results .catalog-card');
-    const firstCount = await page.$$eval('#catalog-results .catalog-card', (cards) => cards.length);
-    t.check('seven event choices have seven independent cards instead of three default choices', firstCount === 7, firstCount);
-    if (firstCount !== 7) return;
+    const first = await page.$$eval('#catalog-results .catalog-card',
+      (cards) => cards.map((card) => card.dataset.placement ?? card.dataset.story));
+    t.check('the timeline keeps the event variants distinct alongside the shared Secret Wars placement',
+      first.length === eligibleEvents.length + 1 && first.includes('placement:secret-wars-2015')
+      && eligibleEvents.every((id) => first.includes(`list:${id}`)), JSON.stringify(first));
 
     for (const [surface, expected] of [
       ['catalog', 7], ['genres', expectedGenres.size], ['spotlights', 2], ['age-event-era', 7], ['marvel-on-screen', 1],
     ]) {
       await page.goto(`${page.__origin}/#/${surface}${surface === 'genres' ? '?type=political' : ''}`, { waitUntil: 'load' });
       await page.waitForSelector(`#${surface}-results .catalog-card`);
-      const cards = await page.$$eval(`#${surface}-results .catalog-card`, (nodes) => nodes.map((card) => ({
+      const cards = await page.$$eval(`#${surface}-results .catalog-card:not([data-placement])`, (nodes) => nodes.map((card) => ({
         key: card.dataset.story,
         title: card.querySelector('.catalog-card-title').textContent.trim(),
         preview: card.querySelector('.catalog-card-title [data-act="preview"]')?.textContent.trim() ?? null,

@@ -1,4 +1,7 @@
 import test from 'node:test';
+import {
+  installmentIds, installmentPartIds, installmentSources, installmentVisibleIds,
+} from './helpers/modern-timeline-installment-history.mjs';
 import assert from 'node:assert/strict';
 import { mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
@@ -31,8 +34,11 @@ test("the events remain in Genres, with Hell's Angel outside Timeline, MCU Prep 
   const newcomerGuides = registeredCuratedGuides.filter((entry) => entry.surface === 'new-to-comics').length;
   const creatorGuides = registeredCuratedGuides.filter((entry) => entry.surface === 'creators').length;
   assert.deepEqual([currentReadingCensus.sources, currentReadingCensus.visible, currentReadingCensus.allOrders],
-    [224 + laterMcu + otherAdditions, 301 + laterMcu + otherAdditions, 302 + laterMcu + otherAdditions]);
-  assert.deepEqual([currentReadingCensus.mcu, currentReadingCensus.storylines], [19 + laterMcu, 50 + newcomerGuides + creatorGuides]);
+    [224 + laterMcu + otherAdditions + installmentSources.length,
+      301 + laterMcu + otherAdditions + installmentVisibleIds.length,
+      302 + laterMcu + otherAdditions + installmentIds.size]);
+  assert.deepEqual([currentReadingCensus.mcu, currentReadingCensus.storylines],
+    [19 + laterMcu, 50 + newcomerGuides + creatorGuides + installmentPartIds.length]);
   const catalog = parseCatalog(await json('src/data/catalog.json'));
   assert.equal(catalog.dropped, 0);
   const doomIndex = catalog.lists.findIndex((entry) => entry.id === 'one-world-under-doom');

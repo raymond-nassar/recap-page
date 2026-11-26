@@ -3,6 +3,7 @@ import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
+import { beforeFirstInstallmentManifest } from './helpers/first-installment-history.mjs';
 import {
   assertApprovedRelationshipReview, manifestEntryForMapping, mergePublishedWolverineCorrection,
 } from '../scripts/author-cbh-packet.mjs';
@@ -283,7 +284,8 @@ test('the Wolverine successor binds fresh reviews without changing the published
   assert.equal(approvalDigestFor(nextMapping.relationshipReview), correctionReview.approvalDigest);
   assert.equal(digestCanonicalJson(nextPacket.sourceGapResolutions), transitionLedgerDigest);
   assert.deepEqual(sourceCountsForPacket(nextPacket), wolverineSuccessorLedger.sourceCounts);
-  assert.deepEqual(manifest, JSON.parse(readPreSuccessorWolverinePublication('src/data/curated-lists.json')));
+  assert.deepEqual(beforeFirstInstallmentManifest(manifest),
+    JSON.parse(readPreSuccessorWolverinePublication('src/data/curated-lists.json')));
   assert.deepEqual(mergePublishedWolverineCorrection(manifest, manifestEntryForMapping(nextMapping),
     nextPacket.insertionAnchor), manifest);
 

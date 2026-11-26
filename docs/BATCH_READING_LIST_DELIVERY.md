@@ -133,11 +133,12 @@ a named release means that known complete set, not a new list assembled from arb
 ## Gate non-MCU regression compatibility early
 
 Before writing data, name the current roster, census and reciprocal relationship check owners in
-the actual delivery plan. `test/helpers/current-reading-library.mjs:16-120` retains the immutable
+the actual delivery plan. `test/helpers/current-reading-library.mjs:20-126` retains the immutable
 baseline, keeps owner deliveries distinct from local curated additions, and counts explicitly
 registered Modern Timeline events separately from MCU additions. Later owner-peer checks in
-`test/helpers/owner-delivery-contract.mjs:289-316` require registered contracts, current approval
-evidence and reciprocal dispositions. Local curated additions retain roster and issue-count
+`test/helpers/owner-delivery-contract.mjs:295-324` require registered contracts, current approval
+evidence and reciprocal dispositions. A derived bridge part uses its reviewed parent's authority.
+Local curated additions retain roster and issue-count
 registration without a frozen whole-library peer-approval digest. A new Reading Path changes every
 reconstructed review library that keeps today's paths, so the shared history helpers drop any path
 that names a list the reconstruction leaves out, the rule `libraryDigestExcludingOrders` already
@@ -307,7 +308,7 @@ if ($LASTEXITCODE -ne 0) { throw 'Selected-list vendoring failed; stop shared in
 
 The cache must contain genuine request-bound responses, not hand-built metadata projections;
 follow [the cache contract](MAINTAINING.md#add-a-curated-reading-order). Cache-only vending accepts
-exactly one source order (`scripts/vendor-orders.mjs:714-735`). Live `--only=id1,id2` can select
+exactly one source order (`scripts/vendor-orders.mjs:719-740`). Live `--only=id1,id2` can select
 multiple orders and share metadata requests, but is not a multi-ID offline mode. Do not refresh
 approved metadata silently. Prefer the serial path for varying providers and overlapping lists.
 

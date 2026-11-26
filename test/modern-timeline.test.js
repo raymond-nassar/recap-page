@@ -280,6 +280,14 @@ test('the shipped Modern Timeline carries all chapters into the Avengers era', (
   const chapters = selectedLists.filter(({ id }) => isModernTimelineChapterId(id));
   assert.equal(selectedLists.length, currentReadingCensus.modernTimeline);
   assert.equal(selectedStories.length, currentReadingCensus.modernTimelineStories);
+  assert.deepEqual(
+    selectedLists.filter(({ id }) =>
+      ['world-war-hulk', 'secret-wars-2015-event-tie-ins'].includes(id)).map(({ id, timeline }) => [id, timeline]),
+    [['world-war-hulk', 2007], ['secret-wars-2015-event-tie-ins', 2015]],
+  );
+  assert.equal(selectedLists.some(({ sectionalPart }) => sectionalPart), false);
+  assert.equal(catalog.sectionalGroups.length, 1);
+  assert.equal(catalog.sectionalGroups[0].options.length, 14);
   assert.deepEqual(selectedLists.slice(-5).map(({ id, timeline }) => [id, timeline]), [
     ['fall-house-x-rise-powers-x', 2024],
     ['captain-america-2025-our-secret-wars', 2025],

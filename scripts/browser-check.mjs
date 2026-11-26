@@ -6212,6 +6212,7 @@ const SCENARIOS = [
     async run(page, t) {
       const { currentReadingCensus } = await import('../test/helpers/current-reading-library.mjs');
       const timelineCount = currentReadingCensus.modernTimeline;
+      const cardCount = timelineCount + 1;
       const externalRequests = [];
       const browserErrors = [];
       page.on('console', (message) => {
@@ -6298,6 +6299,8 @@ const SCENARIOS = [
           featureFallbackDisplay: featureFallback ? getComputedStyle(featureFallback).display : '',
           oldPlainAction: Boolean(document.querySelector('#btn-modern-timeline-feature')),
           cards: cards.length,
+          bridgeChoosers: cards.filter((card) =>
+            card.dataset.placement === 'placement:civil-war-to-secret-invasion').length,
           doom: {
             count: doomCards.length,
             title: doomCard?.querySelector('.catalog-card-title')?.textContent.trim() ?? '',
@@ -6363,8 +6366,8 @@ const SCENARIOS = [
         && timeline.oldPlainAction === false
         && timeline.setupCards === 1,
         JSON.stringify(timeline));
-      t.check(`${timelineCount} selected lists render as distinct cards beginning with the owner chapters`,
-        timeline.cards === timelineCount
+      t.check('the timeline includes one bridge chooser and begins with the owner chapters',
+        timeline.cards === cardCount && timeline.bridgeChoosers === 1
         && timeline.doom.count === 1
         && timeline.doom.title === 'One World Under Doom'
         && timeline.doom.year === 2025
@@ -6553,7 +6556,7 @@ const SCENARIOS = [
         emptyMarkers: document.querySelectorAll('#catalog-results .timeline-year-marker.is-empty').length,
       }));
       await click(page, '#catalog-clear');
-      await page.waitForFunction((count) => document.querySelectorAll('#catalog-results .catalog-card').length === count, {}, timelineCount);
+      await page.waitForFunction((count) => document.querySelectorAll('#catalog-results .catalog-card').length === count, {}, cardCount);
       await page.$eval('#catalog-filters input:not([value="all"])', (input) => input.click());
       const filtered = await page.evaluate(() => ({
         featureVisible: Boolean(document.querySelector('#modern-timeline-feature')),
@@ -6570,7 +6573,7 @@ const SCENARIOS = [
         && filtered.emptyMarkers === 0,
         JSON.stringify({ searched, filtered }));
       await page.$eval('#catalog-filters input[value="all"]', (input) => input.click());
-      await page.waitForFunction((count) => document.querySelectorAll('#catalog-results .catalog-card').length === count, {}, timelineCount);
+      await page.waitForFunction((count) => document.querySelectorAll('#catalog-results .catalog-card').length === count, {}, cardCount);
 
       await page.setViewport({ width: 320, height: 900 });
       const doomNarrow = await page.evaluate(() => {
@@ -6715,7 +6718,7 @@ const SCENARIOS = [
         )),
         JSON.stringify(representativeResults));
       await click(page, '#catalog-clear');
-      await page.waitForFunction((count) => document.querySelectorAll('#catalog-results .catalog-card').length === count, {}, timelineCount);
+      await page.waitForFunction((count) => document.querySelectorAll('#catalog-results .catalog-card').length === count, {}, cardCount);
 
       const excluded = [
         ['spider-man-identity-crisis', 'Spider-Man: Identity Crisis'],
@@ -25793,7 +25796,7 @@ async function runLongCollectionNavigation(page, t) {
       id: card.dataset.story, links: [...card.querySelectorAll('a')].map((link) => ({ href: link.getAttribute('href'), key: link.dataset.key ?? null })),
     })));
     receipt('LC03', 'independent cards and exact chronology', expectedEvent, eventIds, {
-      cards43: eventIds.length === 43, fullOrder: isDeepStrictEqual(eventIds, expectedEvent),
+      cards44: eventIds.length === 44, fullOrder: isDeepStrictEqual(eventIds, expectedEvent),
       variantsExact: eventIds[9] === 'list:civil-war' && eventIds[10] === 'list:civil-war-essential' && eventIds[12] === 'list:civil-war-avengers',
       crossEra3: UX10_LONG.stops.filter((stop) => stop.year === 2004).every((stop) => eventIds.includes(`list:${stop.stepId}`)),
       linksAndActionKeysRetained: isDeepStrictEqual(linksBefore, linksAfter),
