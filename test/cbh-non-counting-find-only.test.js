@@ -1,11 +1,15 @@
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import test from 'node:test';
 import { buildMarkdown, selectedIssueIds } from '../scripts/author-cbh-packet.mjs';
 import {
   assertFindOnlySourcePositions, assertMappingMatchesPacketOccurrences, approvalDigestFor, mappingDigestFor,
-  packetDigestFor, sourceCountsForPacket, validateFrozenPacket,
+  digestCanonicalJson, packetDigestFor, sourceCountsForPacket, validateFrozenPacket,
 } from '../scripts/lib/cbh-inventory.mjs';
+import { loadReviewedVendorFields } from '../scripts/lib/reviewed-vendor-fields.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import { restoreFindOnlyEntries, vendorIssueItem } from '../scripts/vendor-orders.mjs';
 
@@ -156,4 +160,51 @@ test('Find-only restoration trusts only this order\'s approved mapping record', 
     change(edited);
     assert.throws(() => restoreFindOnlyEntries(mapping.id, parsed, edited), pattern);
   }
+});
+
+test('reviewed offline fields bind the source and every issue while leaving unavailable fields absent', async (t) => {
+  const { mapping } = await fixture();
+  mapping.id = 'secret-wars-2015-event-tie-ins';
+  mapping.mappingDigest = mappingDigestFor(mapping);
+  mapping.relationshipReview.mappingDigest = mapping.mappingDigest;
+  mapping.relationshipReview.approvalDigest = approvalDigestFor(mapping.relationshipReview);
+  const order = { id: mapping.id, sourceFile: 'test-fixture.md' };
+  const parsedOrder = restoreFindOnlyEntries(order.id, parseChecklist(buildMarkdown(mapping)), mapping);
+  const dir = await mkdtemp(join(tmpdir(), 'mrt-reviewed-fields-'));
+  t.after(() => rm(dir, { recursive: true, force: true }));
+  const file = join(dir, 'fields.json');
+  const context = { order, mapping, parsedOrder, loadResponses: () => assert.fail('Unexpected cache read') };
+  const value = '2015-03-04T00:00:00+0000';
+  const sourceSha256 = 'a'.repeat(64);
+  const rows = mapping.rows.map(({ sourcePosition, selectedIssueId: issueId }) => ({ sourcePosition, issueId }));
+  const input = {
+    version: 1, id: order.id, packetDigest: mapping.packetDigest, mappingDigest: mapping.mappingDigest, rows,
+  };
+  rows[2].facts = { onSaleDate: {
+    value, sourceSha256, fieldDigest: digestCanonicalJson([104, 'onSaleDate', value, sourceSha256]),
+  } };
+  async function load(candidate, expectedDigest) {
+    const bytes = JSON.stringify(candidate);
+    await writeFile(file, bytes);
+    const digest = expectedDigest ?? createHash('sha256').update(bytes).digest('hex');
+    return loadReviewedVendorFields({ file, digest }, context);
+  }
+  const { meta, refused } = await load(input);
+  assert.equal(refused.size, 0);
+  const item = vendorIssueItem(parsedOrder.entries[2], meta.get(104));
+  assert.equal(item.onSale, value);
+  assert.equal(item.issueId, 104);
+  assert.equal(item.url, null);
+  assert.equal(item.findOnly, true);
+  assert.equal(item.digitalId, null);
+  assert.equal(item.detailsRefused, undefined);
+  const wrongIssue = structuredClone(input);
+  wrongIssue.rows[0].issueId = 102;
+  await assert.rejects(load(wrongIssue), /checklist identity at source position 1/);
+  await assert.rejects(load(wrongIssue, createHash('sha256').update(JSON.stringify(input)).digest('hex')),
+    /approved file digest/);
+  const wrongSource = { ...input, packetDigest: 'b'.repeat(64) };
+  await assert.rejects(load(wrongSource), /source packet and mapping/);
+  rows[2].facts.onSaleDate.sourceSha256 = 'c'.repeat(64);
+  await assert.rejects(load(input), /invalid provenance or value for onSaleDate/);
 });

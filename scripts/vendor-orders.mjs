@@ -56,6 +56,7 @@ import {
   assertFindOnlySourcePositions, digestCanonicalJson, validateApprovalDigest, validateMappingDigest,
 } from './lib/cbh-inventory.mjs';
 import { findOnlyChecklistTitle } from './lib/cbh-checklist-title.mjs';
+import { loadReviewedVendorFields, parseReviewedVendorFields } from './lib/reviewed-vendor-fields.mjs';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const API = 'https://marvel.emreparker.com/v1';
 const MANIFEST = join(ROOT, 'src', 'data', 'curated-lists.json');
@@ -677,6 +678,10 @@ async function main() {
   const args = process.argv.slice(2);
   const only = parseOnly(args);
   const metadataCacheDir = parseMetadataCache(args);
+  const reviewedFields = parseReviewedVendorFields(args);
+  if (reviewedFields && (metadataCacheDir || only.size !== 1 || args.includes('--catalog-only'))) {
+    throw new Error('--reviewed-fields requires one explicit --only source and cannot share another metadata mode');
+  }
   const partitionLedgers = await loadPartitionLedgers(orders);
   const sectionalById = new Map((sectionalGuides ?? []).map((guide) => [guide.id, guide]));
   const generatedFiles = [...partitionLedgers].flatMap(([parentId, ledger]) => {
@@ -728,39 +733,45 @@ async function main() {
   if (metadataCacheDir && targets.some((order) => !order.sourceFile)) {
     throw new Error('--metadata-cache requires a local sourceFile and never fetches source pages');
   }
+  if (reviewedFields && (!targets[0]?.sourceFile || !only.has(targets[0].id))) {
+    throw new Error('--reviewed-fields requires its exact local source order and never fetches source pages');
+  }
   if (catalogOnly) console.log('Rebuilding catalog.json from the pinned order files; no issues are re-fetched.');
   else if (only.size) console.log(`Vendoring ${targets.length} of ${orders.length} source orders; the rest keep their pinned files.`);
 
   const parsed = [];
   for (const order of targets) {
     const md = await loadOrderText(order);
+    const mapping = await loadCbhMapping(order);
     const parsedOrder = restoreFindOnlyEntries(
       order.id,
       legacyIdentityChecked(order.id, parseChecklist(md, { legacyIdentityKeys: true })),
-      await loadCbhMapping(order),
+      mapping,
     );
     const { entries, unresolved } = parsedOrder;
     console.log(`${order.id}: ${entries.length} issues, ${unresolved.length} unresolved`);
-    parsed.push({ order, parsedOrder });
+    parsed.push({ order, parsedOrder, mapping });
   }
 
   const ids = providerIssueIdsFor(parsed.flatMap(({ parsedOrder }) => parsedOrder.entries));
   if (ids.length) {
-    console.log(metadataCacheDir
+    console.log(reviewedFields ? `Validating the reviewed offline fields for ${ids.length} unique issues...` : metadataCacheDir
       ? `Reading ${ids.length} unique issues from the metadata cache only...`
       : `Hydrating ${ids.length} unique issues (rate limited, expect a few minutes)...`);
   }
 
-  const { meta, refused } = metadataCacheDir
-    ? await loadCachedMetadata(ids, metadataCacheDir)
-    : await lookupIssues(ids, {
-      getJson,
-      url: (id) => `${API}/issues/${id}`,
-      onProgress: ({ done, total, id, refused: wasRefused }) => {
-        if (wasRefused) console.warn(`  ! issue ${id}: upstream holds no record of it (404)`);
-        if (done % 25 === 0) console.log(`  ${done}/${total}`);
-      },
-    });
+  const { meta, refused, expectedCovers } = reviewedFields
+    ? await loadReviewedVendorFields(reviewedFields, { ...parsed[0], root: ROOT, loadResponses: loadCachedMetadata })
+    : metadataCacheDir
+      ? await loadCachedMetadata(ids, metadataCacheDir)
+      : await lookupIssues(ids, {
+        getJson,
+        url: (id) => `${API}/issues/${id}`,
+        onProgress: ({ done, total, id, refused: wasRefused }) => {
+          if (wasRefused) console.warn(`  ! issue ${id}: upstream holds no record of it (404)`);
+          if (done % 25 === 0) console.log(`  ${done}/${total}`);
+        },
+      });
   if (metadataCacheDir) {
     for (const id of refused) console.warn(`  ! issue ${id}: upstream holds no record of it (404)`);
   }
@@ -833,6 +844,12 @@ async function main() {
         correction: dateCorrections.get(e.issueId),
         refused: refused.has(e.issueId),
       });
+      if (expectedCovers?.has(e.issueId)) {
+        const cover = expectedCovers.get(e.issueId);
+        if (cover.path !== item.cover?.path || cover.ext !== item.cover?.ext) {
+          throw new Error(`${order.id}: issue ${e.issueId} did not preserve the reviewed published cover`);
+        }
+      }
       if (item.digitalId == null) missingDigital += 1;
       if (!item.cover) missingCover += 1;
       return { at: e.index, item };

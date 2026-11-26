@@ -529,6 +529,25 @@ HTTP 404 this way. Missing records, unbound or corrupt responses, other HTTP err
 transport failures abort before any output changes. Retain genuine successful records and
 retry only missing requests under the existing vendoring rate limit.
 
+For the approved Civil War to Secret Invasion, World War Hulk, and Secret Wars (2015) event
+and tie-ins guides, reviewed facts can fill only the rows without a retained detail response:
+
+```text
+npm run vendor -- --only=<source-id> --reviewed-fields=<file> --reviewed-fields-sha256=<approved-sha256> --reviewed-response-cache=<directory>
+```
+
+Use the digest from the review, not a digest computed to accept an edited file. The version 1
+file binds the order ID, packet and mapping digests, and every exact checklist identity in
+order. A provider row may name a retained successful response by body SHA-256, or carry
+reviewed `seriesId`, `seriesName` and `onSaleDate` facts. Each fact carries `value`,
+`sourceSha256` and the canonical digest of `[issueId, field, value, sourceSha256]`.
+Only specify the response directory if the file names retained responses. A reviewed published
+cover names the Git commit, payload path, file SHA-256 and canonical cover digest. Vendoring
+checks the exact issue in that payload and the output cover. Viewer-only rows take no provider
+fields. Missing optional facts stay absent and do not imply a provider refusal. Find-only comics
+keep their saved identity and no issue address. This mode makes no requests and cannot be
+combined with the complete-cache mode.
+
 For a reviewed correction that replaces only exact gaps in an already-published Comic Book Herald
 order, use the bounded gap-delta projector rather than inventing cache responses for unchanged
 issues. It requires the mapping's approved relationship review and binds its report and approval
