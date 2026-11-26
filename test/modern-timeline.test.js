@@ -500,6 +500,7 @@ test('a family era draws as a named stop with no control, and the readings besid
     catalogPresentationSource.indexOf('for (const section of sections)'),
   );
   assert.match(eraBlock, /class: 'timeline-family-era'/);
+  assert.doesNotMatch(eraBlock, /era\.period|timeline-family-era-period/, 'periods stay in provenance, not visible copy');
   assert.doesNotMatch(eraBlock, /button|tabindex|catalog-card|href/, 'nothing in an era can be added, opened or focused');
   assert.match(styles, /\.timeline-family-era \{[^}]*dashed/);
 });

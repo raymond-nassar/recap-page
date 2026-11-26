@@ -586,7 +586,7 @@ test('following a path shows every stop in the path\'s own order, a stop the Tim
   h.view.setFollowedPath('avengers');
   await h.view.render('catalog');
   assert.equal(h.follow.wrap.hidden, false);
-  assert.equal(h.follow.name.textContent, 'Following Avengers path');
+  assert.equal(h.follow.name.textContent, 'Avengers path');
   assert.equal(h.follow.sections.hidden, true, 'a followed path has its own jump, not the sections');
   assert.equal(h.follow.description.textContent, 'Three stops.');
   assert.equal(h.follow.source.textContent, 'Source: Compiled for a test.');
@@ -655,7 +655,7 @@ test('Show full timeline lets the path and its narrowing go, and an address can 
   h.view.setFollowedPath('avengers');
   await h.view.render('catalog');
   assert.equal(h.view.followedPath(), 'avengers');
-  assert.equal(h.follow.name.textContent, 'Following Avengers path');
+  assert.equal(h.follow.name.textContent, 'Avengers path');
 
   const timelines = h.calls.timelines;
   await h.follow.whole.listeners.click();
@@ -666,6 +666,32 @@ test('Show full timeline lets the path and its narrowing go, and an address can 
   assert.deepEqual(h.stops(), []);
   assert.equal(h.follow.wrap.hidden, true);
   assert.equal(h.paints.at(-1)[2].progress, undefined, 'the whole timeline keeps its own count');
+});
+
+test('Clear filters reveals and focuses a followed path stop without leaving the path or changing progress', async () => {
+  const h = followHarness();
+  h.view.setFollowedPath('long');
+  const saved = savedState();
+  h.setState(saved);
+  const before = JSON.stringify(saved);
+  await h.view.render('catalog');
+  h.nodes.query.value = 'Event 1';
+  h.nodes.query.listeners.input();
+  await new Promise((resolve) => setImmediate(resolve));
+  const [, position, options] = h.paints.at(-1);
+  assert.equal(position.storyKey, 'list:essential');
+  assert.equal(options.visibleStoryKeys.has(position.storyKey), false);
+  assert.equal(options.showFullLabel, 'Clear filters');
+  h.nodes.results.querySelector = (selector) => selector.includes('[aria-current="step"]')
+    ? { focus: () => h.calls.focused.push('current-preview') } : null;
+  options.showFull();
+  await new Promise((resolve) => setImmediate(resolve));
+  assert.equal(h.nodes.query.value, '');
+  assert.equal(h.view.followedPath(), 'long');
+  assert.equal(h.calls.changes, 0, 'clearing filters does not request a route change');
+  assert.equal(h.paints.at(-1)[2].visibleStoryKeys.has('list:essential'), true);
+  assert.deepEqual(h.calls.focused, ['current-preview']);
+  assert.equal(JSON.stringify(saved), before);
 });
 
 test('a path that no longer resolves is let go and the address corrected, rather than drawn empty', async () => {

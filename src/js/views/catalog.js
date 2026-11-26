@@ -234,6 +234,7 @@ export function createCatalogView({
       message,
       narrowed: context.narrowed,
       showFull: context.narrowed ? () => void showFullTimeline() : null,
+      ...(context.follow ? { showFullLabel: 'Clear filters' } : {}),
       visibleStoryKeys: context.visibleStoryKeys,
       // A path's own progress, beside "You are here" on the card it marks (#897).
       ...(context.follow && position.kind === 'current'
@@ -335,7 +336,7 @@ export function createCatalogView({
     const nodes = elements.follow?.();
     if (!nodes) return;
     nodes.wrap.hidden = !followed;
-    nodes.name.textContent = followed ? `Following ${followed.name}` : '';
+    nodes.name.textContent = followed?.name ?? '';
     nodes.description.textContent = followed?.description ?? '';
     nodes.source.textContent = followed ? `Source: ${followed.sourceOrigin}` : '';
   }
@@ -364,8 +365,7 @@ export function createCatalogView({
       getTarget: (id) => (sectionTargets.some((target) => target.key === id)
         ? elements.shelf('catalog').results.querySelector(`#timeline-section-${id}`)
         : null),
-      choose: 'Choose a section to jump to.',
-      missing: 'That section is not shown with the current search or filters.',
+      choose: 'Choose a destination',
     })] : []));
     if (focused) box.querySelector('select')?.focus();
   }

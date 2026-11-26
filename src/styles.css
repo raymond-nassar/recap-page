@@ -1895,7 +1895,6 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
   border: var(--stroke-1) dashed var(--line-2); border-radius: var(--radius-md);
 }
 .timeline-family-era-name { margin: 0; font-size: var(--t-body); font-weight: 700; overflow-wrap: anywhere; }
-.timeline-family-era-period { margin: var(--space-1) 0 0; color: var(--muted); }
 @media (forced-colors: active) {
   .timeline-checkpoint { border-top-color: CanvasText; }
   .timeline-family-era { border-color: CanvasText; }

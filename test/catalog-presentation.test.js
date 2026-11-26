@@ -45,6 +45,24 @@ const list = {
 const controls = (card) => descendants(card)
   .filter((node) => node.tag === 'button' || (node.tag === 'a' && node.href));
 
+test('hidden-position recovery keeps the whole-timeline label and accepts the followed-path Clear filters label', () => {
+  for (const showFullLabel of [undefined, 'Clear filters']) {
+    const root = el('div');
+    root.querySelectorAll = () => [];
+    root.prepend = (node) => {
+      root.children.unshift(node);
+      node.after = (next) => root.children.push(next);
+    };
+    const reveal = () => {};
+    presentation.paintTimelinePosition(root, { kind: 'current', storyKey: 'list:hidden' }, {
+      showFull: reveal, showFullLabel, message: 'Hidden stop.',
+    });
+    const [button] = controls(root);
+    assert.equal(button.text, showFullLabel ?? 'Show full timeline');
+    assert.equal(button.onclick, reveal);
+  }
+});
+
 test('one 2007 bridge chooser previews and adds or opens individual parts, never their parent', () => {
   const first = { ...list, id: 'bridge-part-1', name: 'Bridge: Part 1', count: 18 };
   const second = { ...list, id: 'bridge-part-2', name: 'Bridge: Part 2', count: 20 };

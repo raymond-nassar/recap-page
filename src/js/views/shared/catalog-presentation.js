@@ -318,6 +318,7 @@ export function createCatalogPresentation({
     narrowed = false,
     progress = null,
     showFull = null,
+    showFullLabel = 'Show full timeline',
     visibleStoryKeys = new Set(),
   } = {}) {
     if (!root || !position) return;
@@ -347,7 +348,7 @@ export function createCatalogPresentation({
             type: 'button',
             class: 'btn btn-g timeline-position-show-full',
             dataset: { timelinePosition: 'show-full' },
-            text: 'Show full timeline',
+            text: showFullLabel,
             onclick: showFull,
           }));
         }
@@ -425,14 +426,12 @@ export function createCatalogPresentation({
       if (!into.has(at)) into.set(at, []);
       into.get(at).push(era);
     }
-    // A family era is a stop with nothing to add or open, so it is not a card: it names the era and
-    // its span in the source, and nothing it says reaches the readings beside it.
+    // A family era has nothing to add or open, and does not classify the readings beside it.
     const eraStop = (era) => el('div', {
       class: 'timeline-family-era',
       id: `${idPrefix}-family-era-${era.key}`,
     }, [
       el(cardLevel, { class: 'timeline-family-era-name', text: era.name }),
-      el('p', { class: 'timeline-family-era-period', text: era.period }),
     ]);
     let previousYear = null;
     for (const section of sections) {

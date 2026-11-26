@@ -1119,13 +1119,13 @@ or order information to place that gap.
 
 Filtering changes only the visible list keys. The view retains canonical stories and visible keys
 from the current successful render, derives position from live Store state, and rejects marker
-refresh while a newer catalog render is pending, at `src/js/views/catalog.js:217-274`. A hidden
+refresh while a newer catalog render is pending, at `src/js/views/catalog.js:217-275`. A hidden
 current story is named rather than replaced, full completion sits after the unfiltered spine, and
 filtered completion is stated before the narrowed results.
 
 The shared presentation contract removes the previous positional state and paints exactly one
 current label, hidden message, completion state or unavailable message at
-`src/js/views/shared/catalog-presentation.js:316-380`. Only the visible current list receives
+`src/js/views/shared/catalog-presentation.js:316-381`. Only the visible current list receives
 `aria-current="step"`. The controller injects live state and current-view knowledge at
 `src/js/main.js:4594-4640`, while the existing Store-driven render path calls the position-only
 refresh at `src/js/main.js:3581-3610`. That refresh leaves cards, controls, focus and scroll

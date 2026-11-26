@@ -130,7 +130,7 @@ test('following a path names it once and lets no stale catalog load repaint it',
   pending[0]({ ...actual, paths: [] });
   await first;
   assert.equal(h.view.followedPath(), 'modern-avengers', 'a stale load naming no paths lets nothing go');
-  assert.equal(h.follow.name.textContent, `Following ${pathOf('modern-avengers').name}`);
+  assert.equal(h.follow.name.textContent, pathOf('modern-avengers').name);
   assert.equal(h.follow.wrap.hidden, false);
   assert.equal(h.shelf.results.children, drawn, 'nothing is redrawn by the stale load');
 });
@@ -409,8 +409,8 @@ test('the whole timeline offers Jump to a section, and a jump moves focus to the
   assert.equal(jump('entry:secret-invasion'), 'Jumped to Secret Invasion (5 of 12).');
   assert.equal(jump('entry:dark-reign'), 'Jumped to Dark Reign (6 of 12).');
   assert.deepEqual(marked, ['secret-invasion', 'dark-reign'], 'the two 2008 periods land on different markers');
-  assert.equal(jump('entry:heroic-age'), 'That section is not shown with the current search or filters.');
-  assert.equal(jump(''), 'Choose a section to jump to.');
+  assert.equal(jump('entry:heroic-age'), 'That stop or Reading List is no longer available.');
+  assert.equal(jump(''), 'Choose a destination');
   assert.equal(h.view.followedPath(), null);
   assert.equal(JSON.stringify(h.state()), before);
 
