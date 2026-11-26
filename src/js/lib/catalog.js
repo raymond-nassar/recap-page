@@ -1164,7 +1164,9 @@ export function modernTimelineFeaturedList(lists) {
 // crossover that changes the wider Marvel Universe reads "Major event"; one inside a single family
 // is named for that family. Each badge belongs to the event's own card, named by any of its readings
 // or its placement, so the readings inside a card, a bridge or a tie-in never carry one. Ordinary
-// runs, eras and one-shot anthologies are not listed and carry nothing.
+// runs, eras and one-shot anthologies are not listed and carry nothing. A setting is not a family:
+// the cosmic sagas cross Nova, the Guardians, the Inhumans and others, so they wait unbadged for a
+// decision rather than claim one family they do not belong to.
 const MAJOR_EVENT = 'Major event';
 const FAMILY_EVENTS = Object.freeze({
   'X-Men event': [
@@ -1178,7 +1180,6 @@ const FAMILY_EVENTS = Object.freeze({
     'gang-war',
   ],
   'Venom event': ['minimum-carnage', 'venomverse', 'absolute-carnage'],
-  'Cosmic event': ['annihilation', 'annihilation-conquest', 'war-of-kings', 'realm-of-kings', 'thanos-imperative', 'last-annihilation'],
   'Hulk event': ['fall-of-the-hulks'],
   'Daredevil event': ['shadowland'],
   'Iron Man event': ['iron-man-2020'],
@@ -1186,9 +1187,9 @@ const FAMILY_EVENTS = Object.freeze({
 });
 const MAJOR_EVENTS = Object.freeze([
   'avengers-disassembled', 'house-of-m', 'civil-war', 'world-war-hulk', 'secret-invasion',
-  'siege-dark-reign-prelude', 'axis', 'placement:secret-wars-2015', 'infinity-countdown-wars',
-  'war-of-the-realms', 'king-in-black', 'heroes-reborn-2021', 'judgment-day', 'one-world-under-doom',
-  'avengers-armageddon',
+  'siege-dark-reign-prelude', 'chaos-war', 'axis', 'placement:secret-wars-2015', 'monsters-unleashed',
+  'infinity-countdown-wars', 'war-of-the-realms', 'king-in-black', 'heroes-reborn-2021', 'judgment-day',
+  'one-world-under-doom', 'avengers-armageddon',
 ]);
 const EVENT_BADGES = new Map([
   ...MAJOR_EVENTS.map((id) => [id, Object.freeze({ kind: 'major', label: MAJOR_EVENT })]),

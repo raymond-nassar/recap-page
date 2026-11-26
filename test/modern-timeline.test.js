@@ -481,6 +481,11 @@ test('an event carries its scale once, on its own card, and ordinary stops carry
   assert.deepEqual(badgeOf('siege-dark-reign-prelude'), { kind: 'major', label: 'Major event' });
   assert.deepEqual(badgeOf('x-of-swords'), { kind: 'family', label: 'X-Men event' });
   assert.deepEqual(badgeOf('spider-verse'), { kind: 'family', label: 'Spider-Man event' });
+  assert.deepEqual(badgeOf('chaos-war'), { kind: 'major', label: 'Major event' });
+  assert.deepEqual(badgeOf('monsters-unleashed'), { kind: 'major', label: 'Major event' });
+  for (const id of ['war-of-kings', 'realm-of-kings']) {
+    assert.equal(badgeOf(id), null, `${id} crosses several families, so a setting is not its family`);
+  }
   assert.equal(badgeOf('placement:civil-war-to-secret-invasion'), null, 'the bridge is a transition, not an event');
   assert.equal(badgeOf('marvel-knights-to-planet-x-01'), null, 'an ordinary run is not an event');
   const placement = whole.find((entry) => entry.key === 'placement:secret-wars-2015');
