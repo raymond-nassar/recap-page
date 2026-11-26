@@ -226,8 +226,13 @@ test('tie-in reader links keep the exact matched viewers and preserve every earl
     && !reviewed2025.has(issueId) && links.links.filter((link) => link.issueId === issueId).length === 1
     && links.links.some((link) => link.issueId === issueId && link.viewer === viewer
       && link.basis === 'exact' && link.source === 'continuity-guide-discord-2026-11-19')));
+  const fcbd = 52986;
+  assert.ok(!additions.has(fcbd) && !xmenEra.has(fcbd) && !reviewed2025.has(fcbd) && !wolverine18.has(fcbd));
+  assert.deepEqual(links.links.filter(({ issueId, viewer }) => issueId === fcbd || viewer === 12467), [{
+    issueId: fcbd, viewer: 12467, basis: 'exact', source: 'continuity-guide-discord-2026-11-19',
+  }]);
   const previous = links.links.filter(({ issueId }) => !additions.has(issueId) && !xmenEra.has(issueId)
-    && !reviewed2025.has(issueId) && !wolverine18.has(issueId));
+    && !reviewed2025.has(issueId) && !wolverine18.has(issueId) && issueId !== fcbd);
   assert.equal(previous.length, 17663);
   assert.equal(digest(previous), '0bec147ce327f7287cd5d6a02f6c303295a5f51c78da9f43a9a3be6e981d219f');
   const { unapprovedIssueIds, ...frozenMu } = mu;
@@ -235,9 +240,9 @@ test('tie-in reader links keep the exact matched viewers and preserve every earl
   // rather than replacing its digest with one that could hide an unrelated edit.
   assert.equal(new Set(mu.issueIds).size, mu.issueIds.length);
   assert.deepEqual(mu.issueIds, [...mu.issueIds].sort((a, b) => a - b));
-  assert.ok(mu.issueIds.every((issueId) => !reviewed2025.has(issueId)));
+  assert.ok(mu.issueIds.every((issueId) => !reviewed2025.has(issueId) && issueId !== fcbd));
   const previousMu = {
-    ...frozenMu, issueIds: [...mu.issueIds, ...reviewed2025.keys()].sort((a, b) => a - b),
+    ...frozenMu, issueIds: [...mu.issueIds, ...reviewed2025.keys(), fcbd].sort((a, b) => a - b),
   };
   assert.equal(digest(previousMu), '9fc9fe6d314b2786e16c6b6772e0104091efaa6defd59142b91f5521388e4e55');
   assert.deepEqual(unapprovedIssueIds, [
