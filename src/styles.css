@@ -1888,8 +1888,17 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
 .event-badge { display: inline-block; color: var(--text); font-weight: 600; white-space: normal; }
 .event-badge-major { border: var(--stroke-2) solid var(--text); }
 .event-badge-family { border-style: dashed; border-color: var(--line-2); font-weight: 500; }
+/* A family era is a stop in the grid with nothing to add, so it drops the card's surface and keeps
+   only a dashed edge: it reads as a waypoint between readings rather than a reading itself. */
+.timeline-family-era {
+  min-width: 0; align-self: start; padding: var(--space-3) var(--space-4);
+  border: var(--stroke-1) dashed var(--line-2); border-radius: var(--radius-md);
+}
+.timeline-family-era-name { margin: 0; font-size: var(--t-body); font-weight: 700; overflow-wrap: anywhere; }
+.timeline-family-era-period { margin: var(--space-1) 0 0; color: var(--muted); }
 @media (forced-colors: active) {
   .timeline-checkpoint { border-top-color: CanvasText; }
+  .timeline-family-era { border-color: CanvasText; }
   .event-badge-major { border: var(--stroke-2) solid CanvasText; }
   .event-badge-family { border: var(--stroke-1) dashed CanvasText; }
 }

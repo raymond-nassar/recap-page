@@ -13,6 +13,7 @@ import { validateApprovalDigest } from '../scripts/lib/cbh-inventory.mjs';
 
 import {
   MODERN_TIMELINE_CHECKPOINTS,
+  MODERN_TIMELINE_FAMILY_ERAS,
   MODERN_TIMELINE_FEATURED_ID,
   MODERN_TIMELINE_FEATURED_ROUTES,
   MODERN_TIMELINE_CHAPTER_COUNT,
@@ -32,6 +33,7 @@ import {
   isModernTimelineChapterId,
   shelfLists,
   timelineCheckpointTargets,
+  timelineFamilyEraStops,
   timelineDrawOrder,
 } from '../src/js/lib/catalog.js';
 
@@ -471,6 +473,35 @@ test('a search or filter moves a period\'s marker within it, or drops only that 
   assert.deepEqual(timelineCheckpointTargets(order, order, [
     checkpoints[0], { ...checkpoints[1], start: 'missing' }, checkpoints[2],
   ]).map((t) => [t.key, t.before]), [['one', 'a'], ['three', 'e']], 'a period missing its start is no dead jump');
+});
+
+test('the two family eras are stops in the whole timeline, never jumps, and claim no event around them', () => {
+  const whole = wholeTimeline();
+  const eras = timelineFamilyEraStops(whole);
+  assert.deepEqual(eras.map((era) => [era.name, era.year, era.after]), [
+    ['Reign of X', 2020, 'list:king-in-black'],
+    ['X-Men: Fall of X', 2023, null],
+  ], 'Reign of X follows King in Black as the source lists it, and Fall of X leads 2023 after Sins of Sinister');
+  const menu = new Set(MODERN_TIMELINE_CHECKPOINTS.flatMap((checkpoint) => [checkpoint.key, checkpoint.name]));
+  assert.ok(MODERN_TIMELINE_FAMILY_ERAS.every((era) => !menu.has(era.key) && !menu.has(era.name)),
+    'neither era is a jump destination');
+  const ids = new Set(catalog.lists.map((entry) => entry.id));
+  assert.ok(MODERN_TIMELINE_FAMILY_ERAS.every((era) => !ids.has(era.key)), 'neither era is a catalog id');
+  assert.equal(whole.find((entry) => readingIds(entry).includes('fall-house-x-rise-powers-x'))?.lists[0].name,
+    'Fall of the House of X & Rise of the Powers of X', 'the 2024 finale keeps its own name');
+  assert.deepEqual(timelineFamilyEraStops(whole, { narrowed: true }), [], 'a search or filter draws no era');
+  assert.deepEqual(timelineFamilyEraStops(whole.filter((entry) => !readingIds(entry).includes('king-in-black')))
+    .map((era) => era.key), ['fall-of-x'], 'an era whose source neighbour is gone is dropped, not guessed at');
+});
+
+test('a family era draws as a named stop with no control, and the readings beside it stay cards', () => {
+  const eraBlock = catalogPresentationSource.slice(
+    catalogPresentationSource.indexOf('const eraStop = (era) =>'),
+    catalogPresentationSource.indexOf('for (const section of sections)'),
+  );
+  assert.match(eraBlock, /class: 'timeline-family-era'/);
+  assert.doesNotMatch(eraBlock, /button|tabindex|catalog-card|href/, 'nothing in an era can be added, opened or focused');
+  assert.match(styles, /\.timeline-family-era \{[^}]*dashed/);
 });
 
 test('an event carries its scale once, on its own card, and ordinary stops carry nothing', () => {

@@ -1105,6 +1105,39 @@ export const MODERN_TIMELINE_CHECKPOINTS = Object.freeze([
 ]);
 const CHECKPOINTS_END = Object.freeze({ year: 2025, start: null });
 
+// The family eras Comic Book Herald lists among its Earth-616 events, each drawn as a stop in the
+// whole timeline rather than a jump (#1603). No guide exists for either, so each is a marker with
+// nothing to add, and `period` is the source's own span. Each sits in its `year`, after the story
+// the source lists it after or first in that year when that story falls in an earlier one, so it
+// never heads the events around it: the X-Men events and the 2024 finale keep their own cards.
+export const MODERN_TIMELINE_FAMILY_ERAS = Object.freeze([
+  Object.freeze({ key: 'reign-of-x', name: 'Reign of X', period: 'December 2020 to January 2021', year: 2020, after: 'king-in-black' }),
+  Object.freeze({ key: 'fall-of-x', name: 'X-Men: Fall of X', period: 'May 2023 to April 2024', year: 2023, after: 'sins-of-sinister' }),
+]);
+
+// Where each family era is drawn: `after` is the key of the story it follows in its year, or null
+// to lead the year. Only the whole timeline draws them. A search or filter lists readings, and an
+// era is not one, so a narrowed view draws none rather than one stranded between unrelated results.
+// An era whose source neighbour is missing from the catalog is dropped rather than guessed at.
+export function timelineFamilyEraStops(order, { narrowed = false, eras = MODERN_TIMELINE_FAMILY_ERAS } = {}) {
+  if (narrowed) return [];
+  const stories = Array.isArray(order) ? order : [];
+  const rankOf = new Map();
+  stories.forEach((story, rank) => {
+    for (const id of storyIds(story)) if (!rankOf.has(id)) rankOf.set(id, rank);
+  });
+  return eras.flatMap((era) => {
+    if (!rankOf.has(era.after)) return [];
+    const anchor = rankOf.get(era.after);
+    let after = null;
+    stories.forEach((story, rank) => {
+      if (rank <= anchor && storyYear(story) === era.year) after = story.key;
+    });
+    if (after === null && !stories.some((story) => storyYear(story) === era.year)) return [];
+    return [{ ...era, after }];
+  });
+}
+
 function storyIds(story) {
   return [story?.key, ...(Array.isArray(story?.lists) ? story.lists : []).map((list) => list?.id)]
     .filter((id) => typeof id === 'string');

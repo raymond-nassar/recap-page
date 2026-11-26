@@ -2059,13 +2059,13 @@
     "fp": "5a64a89ba9d4628f",
     "head": "const catalogView = createCatalogView({"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|modern-timeline-position-is-a-store-projection|src/js/views/catalog.js:216-273|0": {
-    "anchor": "src/js/views/catalog.js:216-273",
+  "docs/ARCHITECTURE_REFERENCE.md|modern-timeline-position-is-a-store-projection|src/js/views/catalog.js:217-274|0": {
+    "anchor": "src/js/views/catalog.js:217-274",
     "fp": "9c83c2c8e1c029dd",
     "head": "function paintTimelineContext(context, { announceChange = false } = {}) {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|modern-timeline-position-is-a-store-projection|src/js/views/catalog.js:35-77|0": {
-    "anchor": "src/js/views/catalog.js:35-77",
+  "docs/ARCHITECTURE_REFERENCE.md|modern-timeline-position-is-a-store-projection|src/js/views/catalog.js:36-78|0": {
+    "anchor": "src/js/views/catalog.js:36-78",
     "fp": "da02c5953a2ee9c2",
     "head": "// One index preserves listForCatalogId's first-listOrder answer without repeating its linear scan"
   },
@@ -2089,8 +2089,8 @@
     "fp": "ffcf7e8ddf1cdadb",
     "head": "return {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:1877-1930|0": {
-    "anchor": "src/js/lib/catalog.js:1877-1930",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:1910-1963|0": {
+    "anchor": "src/js/lib/catalog.js:1910-1963",
     "fp": "2993ccc8e75ae0bb",
     "head": "// The shelf placement map deliberately keeps only the first path that reaches a story. This model"
   },
@@ -2134,43 +2134,43 @@
     "fp": "2e75d57bd558e1f6",
     "head": "onFollowChange: () => syncHash({ push: true }),"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/views/catalog.js:104-116|0": {
-    "anchor": "src/js/views/catalog.js:104-116",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/views/catalog.js:105-117|0": {
+    "anchor": "src/js/views/catalog.js:105-117",
     "fp": "31db5df35eb23cd1",
     "head": "// A bundled path's stops as the stories the follow mode shows, in the path's order. Each leads with"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/views/catalog.js:405-429|0": {
-    "anchor": "src/js/views/catalog.js:405-429",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/views/catalog.js:406-430|0": {
+    "anchor": "src/js/views/catalog.js:406-430",
     "fp": "fcf3ae561a3e2b46",
     "head": "// The jump the path's own page had, moved with it (#897): to any stop by name, or to the next"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/views/catalog.js:431-442|0": {
-    "anchor": "src/js/views/catalog.js:431-442",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/views/catalog.js:432-443|0": {
+    "anchor": "src/js/views/catalog.js:432-443",
     "fp": "b43c3c1cfef221b1",
     "head": "// Back to a path from a stop opened or previewed on it returns focus to that stop's Open or Preview"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/views/catalog.js:444-447|0": {
-    "anchor": "src/js/views/catalog.js:444-447",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/views/catalog.js:445-448|0": {
+    "anchor": "src/js/views/catalog.js:445-448",
     "fp": "79a8f31c93434de4",
     "head": "async function render(key, { isCurrent: isRequestCurrent = () => true } = {}) {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/views/catalog.js:46-60|0": {
-    "anchor": "src/js/views/catalog.js:46-60",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/views/catalog.js:47-61|0": {
+    "anchor": "src/js/views/catalog.js:47-61",
     "fp": "19194659e851e7da",
     "head": "// The reading a stop is shown and counted by, and whether it is finished: its first saved reading,"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/views/catalog.js:490-504|0": {
-    "anchor": "src/js/views/catalog.js:490-504",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/views/catalog.js:491-505|0": {
+    "anchor": "src/js/views/catalog.js:491-505",
     "fp": "7dacc66641a02fed",
     "head": "// Following a bundled path narrows the Modern Timeline to that path's stops, every one of them"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/views/catalog.js:761-776|0": {
-    "anchor": "src/js/views/catalog.js:761-776",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/views/catalog.js:763-778|0": {
+    "anchor": "src/js/views/catalog.js:763-778",
     "fp": "fa5dc7703f994c80",
     "head": "follow?.whole?.addEventListener('click', async () => {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/views/catalog.js:80-102|0": {
-    "anchor": "src/js/views/catalog.js:80-102",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/views/catalog.js:81-103|0": {
+    "anchor": "src/js/views/catalog.js:81-103",
     "fp": "3261c3d6fcb283cd",
     "head": "// Where the reader is on one bundled path: its first unfinished stop, and how many of its stops are"
   },
@@ -6234,8 +6234,8 @@
     "fp": "55a4cabc45fcfd0d",
     "head": "webView.reload()"
   },
-  "docs/UX_FEEDBACK.md|feedback-signals#mcu-prep-labels|src/js/lib/catalog.js:1546|0": {
-    "anchor": "src/js/lib/catalog.js:1546",
+  "docs/UX_FEEDBACK.md|feedback-signals#mcu-prep-labels|src/js/lib/catalog.js:1579|0": {
+    "anchor": "src/js/lib/catalog.js:1579",
     "fp": "85dd498c3e412622",
     "head": "description: 'Comics to read alongside the Marvel movies and streaming series.',"
   },
@@ -6269,8 +6269,8 @@
     "fp": "55a4cabc45fcfd0d",
     "head": "webView.reload()"
   },
-  "docs/UX_IMPROVEMENT_PLAN.md|7-mcu-prep-labels|src/js/lib/catalog.js:1546|0": {
-    "anchor": "src/js/lib/catalog.js:1546",
+  "docs/UX_IMPROVEMENT_PLAN.md|7-mcu-prep-labels|src/js/lib/catalog.js:1579|0": {
+    "anchor": "src/js/lib/catalog.js:1579",
     "fp": "85dd498c3e412622",
     "head": "description: 'Comics to read alongside the Marvel movies and streaming series.',"
   },
@@ -6419,13 +6419,13 @@
     "fp": "ed4359c1c4354a5b",
     "head": "<form id=\"form-catalog-search\" class=\"stack\" role=\"search\">"
   },
-  "docs/UX_STUDY.md|sweep-result|src/js/views/catalog.js:743-795|0": {
-    "anchor": "src/js/views/catalog.js:743-795",
+  "docs/UX_STUDY.md|sweep-result|src/js/views/catalog.js:745-797|0": {
+    "anchor": "src/js/views/catalog.js:745-797",
     "fp": "5e7088ca767a81ab",
     "head": "function wire(key) {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:2606-2608|0": {
-    "anchor": "src/styles.css:2606-2608",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:2615-2617|0": {
+    "anchor": "src/styles.css:2615-2617",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -6449,8 +6449,8 @@
     "fp": "3cbc7d76b21e95fa",
     "head": "// Generated from src/data/hickman_full.json - real issues and real covers. The synopses this"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2606-2608|0": {
-    "anchor": "src/styles.css:2606-2608",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:2615-2617|0": {
+    "anchor": "src/styles.css:2615-2617",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -6509,8 +6509,8 @@
     "fp": "67a2685668e86539",
     "head": ".cb {"
   },
-  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:3072-3073|0": {
-    "anchor": "src/styles.css:3072-3073",
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:3081-3082|0": {
+    "anchor": "src/styles.css:3081-3082",
     "fp": "50a15115f9d51e98",
     "head": ".row { grid-template-columns: var(--target) 44px minmax(0, 1fr) auto; }"
   },
@@ -6579,8 +6579,8 @@
     "fp": "53b9bb8e0988cf2b",
     "head": "color-scheme: dark;"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2606-2608|0": {
-    "anchor": "src/styles.css:2606-2608",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:2615-2617|0": {
+    "anchor": "src/styles.css:2615-2617",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -6759,23 +6759,23 @@
     "fp": "955a5533014388f9",
     "head": ".btn-g { background: rgb(var(--tint-base) / 5.882%); color: var(--text); border-color: var(--line-2)"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2278-2280|0": {
-    "anchor": "src/styles.css:2278-2280",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2287-2289|0": {
+    "anchor": "src/styles.css:2287-2289",
     "fp": "bf510b9aee0c8441",
     "head": "background:"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2298-2300|0": {
-    "anchor": "src/styles.css:2298-2300",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2307-2309|0": {
+    "anchor": "src/styles.css:2307-2309",
     "fp": "5dbffdc9196107f3",
     "head": "background:"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2646|0": {
-    "anchor": "src/styles.css:2646",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2655|0": {
+    "anchor": "src/styles.css:2655",
     "fp": "3a5c838f7187d084",
     "head": "background: color-mix(in srgb, var(--warn) 12%, var(--panel));"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:2670|0": {
-    "anchor": "src/styles.css:2670",
+  "scripts/check-palette.mjs|preamble|src/styles.css:2679|0": {
+    "anchor": "src/styles.css:2679",
     "fp": "1eef54d530f1e5d5",
     "head": ".blocked .btn-g { border-color: var(--muted); }"
   },

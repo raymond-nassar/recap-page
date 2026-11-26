@@ -3183,6 +3183,23 @@ const SCENARIOS = [
         JSON.stringify(vertical.groups));
       t.check('each year label clears the circle beside it',
         vertical.clearances.every((gap) => gap >= 4), JSON.stringify(vertical.clearances));
+
+      // Family eras are stops in the whole timeline, never jump targets or addable cards (#1603).
+      const eras = await page.evaluate(() => ({
+        stops: [...document.querySelectorAll('.timeline-family-era')].map((era) => ({
+          id: era.id,
+          after: era.previousElementSibling?.dataset.story ?? null,
+          before: era.nextElementSibling?.dataset.story ?? null,
+          controls: era.querySelectorAll('button,a,input,select,[tabindex]').length,
+        })),
+        menu: [...document.querySelectorAll('#catalog-section-jump option')].map((o) => o.textContent),
+      }));
+      t.check('Reign of X and Fall of X stand in the timeline as inert stops outside the jump menu',
+        JSON.stringify(eras.stops) === JSON.stringify([
+          { id: 'timeline-family-era-reign-of-x', after: 'list:king-in-black', before: null, controls: 0 },
+          { id: 'timeline-family-era-fall-of-x', after: null, before: 'list:the-death-of-ms-marvel', controls: 0 },
+        ]) && !eras.menu.some((name) => /Reign of X|Fall of X/.test(name)),
+        JSON.stringify(eras));
       t.check('each populated year stays pinned beside its card group',
         vertical.sticky.every((position) => position === 'sticky'), JSON.stringify(vertical.sticky));
 
@@ -14434,7 +14451,7 @@ const SCENARIOS = [
       t.check('a followed path is named once beside one way back to the whole timeline, with no path selector',
         selector.selectors === 0
         && selector.named.join('|') === 'Following The Fixture Path'
-        && selector.whole === 'Show the whole timeline'
+        && selector.whole === 'Show full timeline'
         && selector.sections === true,
         JSON.stringify(selector));
 
@@ -14634,7 +14651,7 @@ const SCENARIOS = [
         focused: document.activeElement?.id || document.activeElement?.tagName,
         pushed: history.length,
       }));
-      t.check('Show the whole timeline restores its start sentence, comic count and saved-copy count',
+      t.check('Show full timeline restores its start sentence, comic count and saved-copy count',
         shelf.sentence === 'Start The Fixture Path with Browser Check Order.' && shelf.stops === 0
         && shelf.meta === '3 comics · Saved copy: 1 comic'         && shelf.follow === true && shelf.sections === false
                 && JSON.stringify(shelf.options) === '["entry:avengers-disassembled"]'

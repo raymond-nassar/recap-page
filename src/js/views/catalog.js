@@ -22,6 +22,7 @@ import {
   spotlightKindLabel,
   spotlightSortLabel,
   timelineCheckpointTargets,
+  timelineFamilyEraStops,
   timelineDrawOrder,
   visibleFirstStopGuides,
 } from '../lib/catalog.js';
@@ -694,6 +695,7 @@ export function createCatalogView({
         cardOptions: { surface: 'catalog', linkText },
         checkpoints: new Map(targets.map((target) => [target.before, target])),
         badgeFor: modernTimelineEventBadge,
+        familyEras: timelineFamilyEraStops(whole, { narrowed }),
       });
       paintSectionJump(targets);
     } else {

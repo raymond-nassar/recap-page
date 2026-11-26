@@ -414,8 +414,26 @@ export function createCatalogPresentation({
     cardOptions = {},
     checkpoints = null,
     badgeFor = null,
+    familyEras = [],
   }) {
     const flow = el('div', { class: 'timeline-flow' });
+    const erasAfter = new Map();
+    const erasLeading = new Map();
+    for (const era of Array.isArray(familyEras) ? familyEras : []) {
+      const into = era.after === null ? erasLeading : erasAfter;
+      const at = era.after === null ? era.year : era.after;
+      if (!into.has(at)) into.set(at, []);
+      into.get(at).push(era);
+    }
+    // A family era is a stop with nothing to add or open, so it is not a card: it names the era and
+    // its span in the source, and nothing it says reaches the readings beside it.
+    const eraStop = (era) => el('div', {
+      class: 'timeline-family-era',
+      id: `${idPrefix}-family-era-${era.key}`,
+    }, [
+      el(cardLevel, { class: 'timeline-family-era-name', text: era.name }),
+      el('p', { class: 'timeline-family-era-period', text: era.period }),
+    ]);
     let previousYear = null;
     for (const section of sections) {
       const byYear = new Map();
@@ -457,6 +475,10 @@ export function createCatalogPresentation({
         const yearId = `${idPrefix}-year-${year}`;
         const grids = [el('div', { class: 'catalog-grid timeline-year-cards' })];
         let gridFilled = false;
+        for (const era of erasLeading.get(year) ?? []) {
+          grids[0].append(eraStop(era));
+          gridFilled = true;
+        }
         for (const story of yearStories) {
           // A period that starts inside a year closes the grid and opens a new one under its own
           // heading, because the grid's equal row heights would stretch a spanning heading to a card.
@@ -477,6 +499,7 @@ export function createCatalogPresentation({
             level: cardLevel,
             badge: badgeFor?.(story) ?? null,
           }));
+          for (const era of erasAfter.get(story.key) ?? []) grids[grids.length - 1].append(eraStop(era));
         }
         yearList.append(el('section', {
           class: 'timeline-year-row',

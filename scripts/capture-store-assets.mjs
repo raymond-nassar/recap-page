@@ -51,7 +51,7 @@ export const SCREENSHOTS = [
     route: '#/catalog?path=modern-avengers',
     view: 'view-catalog',
     wait: '#catalog-results .path-stops .catalog-card',
-    text: ['Modern Timeline', 'Show the whole timeline', 'Stop 1 of 10', 'Essential Avengers'],
+    text: ['Modern Timeline', 'Show full timeline', 'Stop 1 of 10', 'Essential Avengers'],
     state: 'demo',
   },
   {

@@ -644,7 +644,7 @@ test('search and filters narrow within a long path and keep its numbering', asyn
   assert.equal(h.paints.at(-1)[2].narrowed, true);
 });
 
-test('Show the whole timeline lets the path and its narrowing go, and an address can still name another path', async () => {
+test('Show full timeline lets the path and its narrowing go, and an address can still name another path', async () => {
   const h = followHarness();
   h.view.setFollowedPath('long');
   await h.view.render('catalog');
