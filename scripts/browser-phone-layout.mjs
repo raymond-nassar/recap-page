@@ -1248,6 +1248,8 @@ function referenceFile(ref, path) {
 // before #1178, so the reference is that commit's stylesheets and action classes swapped into the same page.
 const MAIN_BEFORE_CARD = '4f6453e296ce15437c1ebd06be92ffef84f084ba';
 const PHONE_CARD = 'a595e4090783e9a56ab329a4b36a306f2737f1b4';
+// #1601: at 375 x 667 the old iOS line-height pushed Find 36.59px behind the bottom bar.
+const IOS_PHONE_CARD = '9886626b404145b1c283515bb4706d5737da8cfa';
 
 async function measureContinueCard(page) {
   await settle(page);
@@ -1342,7 +1344,7 @@ const wideCardProfiles = [
   { width: 844, height: 390, platform: 'ios', ref: MAIN_BEFORE_CARD },
   { width: 820, height: 1180, platform: 'android', ref: MAIN_BEFORE_CARD },
   { width: 844, height: 390, platform: 'android', ref: MAIN_BEFORE_CARD },
-  { width: 393, height: 852, platform: 'ios', ref: PHONE_CARD },
+  { width: 393, height: 852, platform: 'ios', ref: IOS_PHONE_CARD },
   { width: 360, height: 800, platform: 'android', ref: PHONE_CARD },
   // A short phone landscape keeps a595's side-by-side card and its Done bar, and so does split screen.
   { width: 592, height: 360, platform: 'android', ref: PHONE_CARD },
@@ -1364,7 +1366,7 @@ export const continueWideMatchesMain = {
       const then = await measureContinueCard(page);
       // The desktop gap above the card deliberately differs from main's, which moves the in-flow
       // confirmation by that gap, so the Done bar is compared only against the phone reference.
-      if (profile.ref !== PHONE_CARD) delete then.boxes['done-result'];
+      if (profile.ref === MAIN_BEFORE_CARD) delete then.boxes['done-result'];
       const drift = sameCard(now, then);
       checked(t, `${label}: Continue card geometry and action styling match ${profile.ref.slice(0, 8)}`,
         swaps.length > 0 && drift.length === 0, { swaps, drift });
