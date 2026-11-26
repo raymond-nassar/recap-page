@@ -5,9 +5,11 @@ import {
   addsIdentityConflict, guardIdentityImport, identityConflicts, reconcileIdentities, validateIdentityCorrections,
 } from '../src/js/lib/identityReconcile.js';
 import { addIssuesToList, createList, deleteList, duplicateList, exportBackup, normalizeIssue } from '../src/js/lib/model.js';
+import { appViewerFor } from '../src/js/lib/marvelComicsApp.js';
 import { taggedViewer, viewerKey } from '../src/js/lib/marvelComicsAppUrl.js';
+import { launchUrl } from '../src/js/reader.js';
 import { KEY, Store } from '../src/js/storage.js';
-import { createCompleteBackup, parseCompleteBackup } from '../src/js/lib/completeBackup.js';
+import { createCompleteBackup, parseCompleteBackup, prepareCompleteRestore } from '../src/js/lib/completeBackup.js';
 
 // Disposable data only. The Wolverine numbers are the adjudicated Cable & Deadpool #44 match from
 // #1601: the old guide key, its provider number and its Marvel Comics app viewer.
@@ -25,6 +27,42 @@ const corrections = [{
 const viewerFor = (id) => (id === PROVIDER ? VIEWER : null);
 const catalogIdsFor = (viewer) => (viewer === VIEWER ? [PROVIDER] : []);
 const options = { corrections, viewerFor, catalogIdsFor };
+
+const RUNAWAYS_FROM = -1200736424;
+const RUNAWAYS_VIEWER = '12618';
+const RUNAWAYS_KEY = viewerKey(RUNAWAYS_VIEWER);
+const RUNAWAYS_TITLE = 'Runaways (2015) #1';
+const WINTER_SOLDIER = 'winter-soldier-bucky-barnes-reading-order';
+const runawaysOptions = {
+  corrections: [{
+    catalogId: WINTER_SOLDIER, from: RUNAWAYS_FROM, to: RUNAWAYS_KEY,
+    appViewer: RUNAWAYS_VIEWER, title: RUNAWAYS_TITLE, legacyTitle: RUNAWAYS_TITLE,
+    evidence: 'disposable verified alias',
+  }],
+  viewerFor: () => null,
+  catalogIdsFor: () => [],
+};
+
+const FCBD_FIRST = -1103792078;
+const FCBD_SECOND = -1027689073;
+const FCBD_TARGET = 52986;
+const FCBD_VIEWER = '12467';
+const FCBD_GROUP = 'fcbd-2015-secret-wars-0';
+const FCBD_TITLE = 'Disposable confirmed FCBD comic';
+const FCBD_CORRECTIONS = [{
+  catalogId: WINTER_SOLDIER, from: FCBD_FIRST, to: FCBD_TARGET, appViewer: FCBD_VIEWER,
+  title: FCBD_TITLE, legacyTitle: 'Disposable Winter Soldier source label',
+  evidence: 'disposable reviewed same-edition evidence', sameEditionGroup: FCBD_GROUP,
+}, {
+  catalogId: 'namor-sub-mariner-reading-order', from: FCBD_SECOND, to: FCBD_TARGET, appViewer: FCBD_VIEWER,
+  title: FCBD_TITLE, legacyTitle: 'Disposable Namor source label',
+  evidence: 'disposable reviewed same-edition evidence', sameEditionGroup: FCBD_GROUP,
+}];
+const fcbdViewerFor = (id) => (id === FCBD_TARGET ? FCBD_VIEWER : null);
+const fcbdCatalogIdsFor = (viewer) => (viewer === FCBD_VIEWER ? [FCBD_TARGET] : []);
+const fcbdOptions = {
+  corrections: FCBD_CORRECTIONS, viewerFor: fcbdViewerFor, catalogIdsFor: fcbdCatalogIdsFor,
+};
 
 function list(name, catalogId, itemIds, extra = {}) {
   return { name, description: '', catalogId, itemIds, collectedIn: {}, deferredIssueIds: [], ...extra };
@@ -54,6 +92,55 @@ function oldLibrary({ withCustom = true } = {}) {
     notes: { [OLD]: 'Disposable note from the old Wolverine guide' },
     ratings: { [OLD]: 4.5 },
     overrides: { [OLD]: 'unavailable' },
+  };
+}
+
+function oldRunawaysLibrary({ destinationRecord = null, destinationHolder = false, withSourceProgress = true } = {}) {
+  const lists = Object.assign(Object.create(null), {
+    winter: list('Disposable Winter Soldier guide', WINTER_SOLDIER, [RUNAWAYS_FROM], {
+      collectedIn: { [RUNAWAYS_FROM]: 'Disposable collected edition' },
+      deferredIssueIds: [RUNAWAYS_FROM],
+    }),
+    catalog: list('Unrelated catalog comic', null, [12618]),
+  });
+  if (destinationHolder) lists.custom = list('Unrelated saved list', null, [RUNAWAYS_KEY]);
+  return {
+    schemaVersion: 4, app: 'recap-page', active: null,
+    listOrder: Object.keys(lists), lists,
+    issues: {
+      [RUNAWAYS_FROM]: issue(RUNAWAYS_FROM, RUNAWAYS_TITLE, { source: 'curated' }),
+      12618: issue(12618, 'Black Panther (1998) #49'),
+      ...(destinationRecord ? { [RUNAWAYS_KEY]: destinationRecord } : {}),
+    },
+    read: withSourceProgress ? { [RUNAWAYS_FROM]: 1700000000123 } : {},
+    notes: withSourceProgress ? { [RUNAWAYS_FROM]: 'Disposable Runaways note' } : {},
+    ratings: withSourceProgress ? { [RUNAWAYS_FROM]: 4.5 } : {},
+    overrides: withSourceProgress ? { [RUNAWAYS_FROM]: 'unavailable' } : {},
+  };
+}
+
+function oldFcbdLibrary({ secondHeld = true, secondHasState = true, equalValues = true } = {}) {
+  const lists = Object.assign(Object.create(null), {
+    winter: list('Disposable Winter Soldier guide', WINTER_SOLDIER, [FCBD_FIRST]),
+  });
+  if (secondHeld) {
+    lists.namor = list('Disposable Namor guide', 'namor-sub-mariner-reading-order', [FCBD_SECOND]);
+  }
+  const issues = { [FCBD_FIRST]: issue(FCBD_FIRST, 'Disposable Winter Soldier source label') };
+  const read = { [FCBD_FIRST]: 1700000000123 };
+  const notes = { [FCBD_FIRST]: 'Disposable saved note' };
+  const ratings = { [FCBD_FIRST]: 4 };
+  const overrides = { [FCBD_FIRST]: 'unavailable' };
+  if (secondHasState) {
+    issues[FCBD_SECOND] = issue(FCBD_SECOND, 'Disposable Namor source label');
+    read[FCBD_SECOND] = equalValues ? read[FCBD_FIRST] : 1700000000456;
+    notes[FCBD_SECOND] = equalValues ? notes[FCBD_FIRST] : 'Different disposable saved note';
+    ratings[FCBD_SECOND] = equalValues ? ratings[FCBD_FIRST] : 2;
+    overrides[FCBD_SECOND] = equalValues ? overrides[FCBD_FIRST] : 'available';
+  }
+  return {
+    schemaVersion: 4, app: 'recap-page', active: null,
+    listOrder: Object.keys(lists), lists, issues, read, notes, ratings, overrides,
   };
 }
 
@@ -223,9 +310,191 @@ test('a copied legacy source label blocks a duplicate corrected import before an
   assert.equal(guardIdentityImport(canonicalOnly, canonicalImport, options).conflict, false);
 });
 
+test('a verified old Runaways placeholder moves to the tagged viewer identity and launches directly', () => {
+  const before = oldRunawaysLibrary();
+  const after = reconcileIdentities(before, runawaysOptions);
+  const key = RUNAWAYS_KEY;
+  assert.notEqual(after, before);
+  assert.deepEqual(after.lists.winter.itemIds, [key]);
+  assert.deepEqual(after.lists.winter.collectedIn, { [key]: 'Disposable collected edition' });
+  assert.deepEqual(after.lists.winter.deferredIssueIds, [key]);
+  assert.equal(after.read[key], 1700000000123);
+  assert.equal(after.notes[key], 'Disposable Runaways note');
+  assert.equal(after.ratings[key], 4.5);
+  assert.equal(after.overrides[key], 'unavailable');
+  for (const field of ['read', 'notes', 'ratings', 'overrides']) assert.equal(Object.hasOwn(after[field], RUNAWAYS_FROM), false);
+  assert.deepEqual(after.issues[RUNAWAYS_FROM], before.issues[RUNAWAYS_FROM]);
+  assert.equal(after.issues[key].appViewer, RUNAWAYS_VIEWER);
+  assert.equal(taggedViewer(after.issues[key]), RUNAWAYS_VIEWER);
+  assert.equal(appViewerFor(after.issues[key]), RUNAWAYS_VIEWER);
+  assert.equal(after.lists.catalog.itemIds[0], 12618);
+  assert.equal(after.issues[12618].title, 'Black Panther (1998) #49');
+  assert.equal(reconcileIdentities(after, runawaysOptions), after);
+
+  const launch = new URL(launchUrl(after.issues[key], 'http://127.0.0.1:8787'));
+  assert.equal(launch.searchParams.get('a'), RUNAWAYS_VIEWER);
+  for (const legacy of ['d', 'i', 'm', 'u', 'p']) assert.equal(launch.searchParams.has(legacy), false);
+});
+
+test('an untagged record at the viewer-only destination blocks a legacy move and import', () => {
+  const unrelated = issue(RUNAWAYS_KEY, 'Unrelated negative comic', { source: 'manual' });
+  const orphan = oldRunawaysLibrary({ destinationRecord: unrelated, withSourceProgress: false });
+  assert.equal(reconcileIdentities(orphan, runawaysOptions), orphan, 'an orphan record is not safe to repurpose');
+
+  const before = oldRunawaysLibrary({ destinationRecord: unrelated, destinationHolder: true, withSourceProgress: false });
+  before.read[RUNAWAYS_KEY] = 1700000000999;
+  const refused = reconcileIdentities(before, runawaysOptions);
+  assert.equal(refused, before);
+  assert.equal(refused.lists.winter.itemIds[0], RUNAWAYS_FROM);
+  assert.equal(refused.lists.custom.itemIds[0], RUNAWAYS_KEY);
+  assert.deepEqual(refused.issues[RUNAWAYS_KEY], unrelated);
+  assert.equal(refused.read[RUNAWAYS_KEY], 1700000000999);
+  assert.equal(refused.read[RUNAWAYS_FROM], undefined);
+
+  const shell = createList(before, { id: 'runaways-copy', name: 'Runaways copy', catalogId: null });
+  const attempted = addIssuesToList(shell, 'runaways-copy', [{
+    issueId: RUNAWAYS_KEY, appViewer: RUNAWAYS_VIEWER, title: RUNAWAYS_TITLE,
+  }]);
+  assert.deepEqual(attempted.collisions, [RUNAWAYS_KEY]);
+  assert.equal(attempted.state, shell);
+  assert.deepEqual(before.lists.winter.itemIds, [RUNAWAYS_FROM]);
+  assert.deepEqual(before.issues[RUNAWAYS_KEY], unrelated);
+});
+
+test('a corrected Runaways import shares the verified tagged identity with old progress', () => {
+  const before = oldRunawaysLibrary();
+  const shell = createList(before, { id: 'runaways-copy', name: 'Runaways copy', catalogId: null });
+  const imported = addIssuesToList(shell, 'runaways-copy', [{
+    issueId: RUNAWAYS_KEY, appViewer: RUNAWAYS_VIEWER, title: RUNAWAYS_TITLE,
+  }]);
+  assert.equal(imported.collisions, undefined);
+  const guarded = guardIdentityImport(before, imported.state, runawaysOptions);
+  assert.equal(guarded.conflict, false);
+  assert.deepEqual(guarded.state.lists.winter.itemIds, [RUNAWAYS_KEY]);
+  assert.deepEqual(guarded.state.lists['runaways-copy'].itemIds, [RUNAWAYS_KEY]);
+  assert.equal(guarded.state.notes[RUNAWAYS_KEY], 'Disposable Runaways note');
+  assert.equal(guarded.state.issues[RUNAWAYS_KEY].appViewer, RUNAWAYS_VIEWER);
+  assert.equal(identityConflicts(guarded.state, runawaysOptions).size, 0);
+});
+
+test('old reader and complete backups reconcile Runaways through their restore paths', async () => {
+  const original = new Store({ storage: memoryStorage({ [KEY]: JSON.stringify(oldRunawaysLibrary()) }) });
+  original.load();
+  const reader = exportBackup(original.state);
+  const readerStorage = memoryStorage({});
+  const readerStore = new Store({ storage: readerStorage });
+  readerStore.load();
+  const restoredReader = readerStore.restore(JSON.stringify(reader));
+  assert.equal(restoredReader.ok, true, JSON.stringify(restoredReader));
+  assert.deepEqual(readerStore.state.lists.winter.itemIds, [RUNAWAYS_FROM]);
+  assert.deepEqual(readerStore.reconcileIdentities(runawaysOptions), { ok: true, changed: true });
+  assert.deepEqual(readerStore.state.lists.winter.itemIds, [RUNAWAYS_KEY]);
+  assert.equal(readerStore.state.issues[RUNAWAYS_KEY].appViewer, RUNAWAYS_VIEWER);
+
+  const completeReader = { ...reader };
+  delete completeReader.exportedAt;
+  const components = {
+    draft: null,
+    history: { format: 'recap-page-list-history', records: [], version: 1 },
+    reader: completeReader,
+    settings: { covers: true, filter: 'all', hideDescriptions: false, readingShortcut: true, sidebarCollapsed: null, theme: 'system' },
+  };
+  const { text } = await createCompleteBackup(components, { cryptoProvider: webcrypto });
+  const parsed = await parseCompleteBackup(text, { cryptoProvider: webcrypto });
+  const prepared = prepareCompleteRestore({
+    backup: parsed, storage: memoryStorage({}), isExclusive: () => true,
+  });
+  const restoredReaderValue = prepared.owners.find((owner) => owner.owner === 'reader').value;
+  const completeStorage = memoryStorage({ [KEY]: restoredReaderValue });
+  const store = new Store({ storage: completeStorage });
+  store.load();
+  assert.deepEqual(store.state.lists.winter.itemIds, [RUNAWAYS_FROM], 'the verified backup is not rewritten before application startup');
+  assert.deepEqual(store.reconcileIdentities(runawaysOptions), { ok: true, changed: true });
+  assert.deepEqual(store.state.lists.winter.itemIds, [RUNAWAYS_KEY]);
+  assert.equal(store.state.notes[RUNAWAYS_KEY], 'Disposable Runaways note');
+  assert.equal(store.state.issues[RUNAWAYS_KEY].appViewer, RUNAWAYS_VIEWER);
+  assert.equal(JSON.parse(completeStorage.values.get(KEY)).issues[RUNAWAYS_KEY].appViewer, RUNAWAYS_VIEWER);
+});
+
+test('a shared destination requires one coherent reviewed same-edition group', () => {
+  assert.equal(validateIdentityCorrections(FCBD_CORRECTIONS, { viewerFor: fcbdViewerFor }).ok, true);
+
+  const ungrouped = FCBD_CORRECTIONS.map((entry) => {
+    const copy = { ...entry };
+    delete copy.sameEditionGroup;
+    return copy;
+  });
+  assert.equal(validateIdentityCorrections(ungrouped, { viewerFor: fcbdViewerFor }).ok, false,
+    'a generic many-to-one correction remains invalid');
+  assert.equal(validateIdentityCorrections([FCBD_CORRECTIONS[0]], { viewerFor: fcbdViewerFor }).ok, false,
+    'a group with only one old identity is not a group');
+
+  const wrongTarget = FCBD_CORRECTIONS.map((entry) => ({ ...entry }));
+  wrongTarget[1].to = FCBD_TARGET + 1;
+  delete wrongTarget[1].appViewer;
+  assert.equal(validateIdentityCorrections(wrongTarget, { viewerFor: fcbdViewerFor }).ok, false,
+    'one same-edition group cannot point to different destinations');
+});
+
+test('one saved identity in a reviewed same-edition group can move to the shared comic', () => {
+  const before = oldFcbdLibrary({ secondHeld: false, secondHasState: false });
+  const shell = createList(before, { id: 'secret-wars-copy', name: 'Secret Wars copy', catalogId: null });
+  const imported = addIssuesToList(shell, 'secret-wars-copy', [{ issueId: FCBD_TARGET, title: FCBD_TITLE }]);
+  const guarded = guardIdentityImport(before, imported.state, fcbdOptions);
+
+  assert.equal(guarded.conflict, false);
+  assert.deepEqual(guarded.state.lists.winter.itemIds, [FCBD_TARGET]);
+  assert.deepEqual(guarded.state.lists['secret-wars-copy'].itemIds, [FCBD_TARGET]);
+  assert.equal(guarded.state.notes[FCBD_TARGET], 'Disposable saved note');
+  assert.equal(guarded.state.read[FCBD_TARGET], 1700000000123);
+  assert.equal(guarded.state.ratings[FCBD_TARGET], 4);
+  assert.equal(guarded.state.overrides[FCBD_TARGET], 'unavailable');
+});
+
+test('two saved identities in a same-edition group stay separate, including an orphaned record', () => {
+  for (const before of [
+    oldFcbdLibrary({ equalValues: true }),
+    oldFcbdLibrary({ secondHeld: false, secondHasState: true, equalValues: false }),
+  ]) {
+    const snapshot = JSON.stringify(before);
+    const after = reconcileIdentities(before, fcbdOptions);
+    assert.equal(after, before);
+    assert.equal(JSON.stringify(after), snapshot);
+  }
+});
+
+test('a same-edition conflict also keeps its tagged app identity separate', () => {
+  const before = oldFcbdLibrary({ equalValues: true });
+  const appId = viewerKey(FCBD_VIEWER);
+  before.issues[appId] = issue(appId, FCBD_TITLE, { appViewer: FCBD_VIEWER });
+  before.lists.app = list('Disposable app-saved comic', null, [appId]);
+  before.listOrder.push('app');
+  const snapshot = JSON.stringify(before);
+
+  const after = reconcileIdentities(before, fcbdOptions);
+  assert.equal(after, before);
+  assert.equal(JSON.stringify(after), snapshot);
+  assert.ok(identityConflicts(after, fcbdOptions).has(`${FCBD_FIRST}|${appId}`));
+  assert.ok(identityConflicts(after, fcbdOptions).has(`${FCBD_SECOND}|${appId}`));
+});
+
+test('an import cannot add a third checkmark to two saved same-edition identities', () => {
+  const before = oldFcbdLibrary({ equalValues: true });
+  const snapshot = JSON.stringify(before);
+  const shell = createList(before, { id: 'secret-wars-copy', name: 'Secret Wars copy', catalogId: null });
+  const imported = addIssuesToList(shell, 'secret-wars-copy', [{ issueId: FCBD_TARGET, title: FCBD_TITLE }]);
+  const guarded = guardIdentityImport(before, imported.state, fcbdOptions);
+
+  assert.equal(guarded.conflict, true);
+  assert.equal(guarded.state, before);
+  assert.equal(JSON.stringify(before), snapshot);
+  assert.equal(before.lists['secret-wars-copy'], undefined);
+});
+
 test('a correction table with any fault applies nothing', () => {
   assert.equal(validateIdentityCorrections(corrections, { viewerFor }).ok, true);
-  assert.equal(validateIdentityCorrections(corrections).ok, false, 'the bundled table does not pair this viewer yet');
+  assert.equal(validateIdentityCorrections(corrections, { viewerFor: () => null }).ok, false,
+    'a positive destination is refused when the supplied resolver does not pair its viewer');
   const missingLegacyTitle = { ...corrections[0] };
   delete missingLegacyTitle.legacyTitle;
   assert.equal(validateIdentityCorrections([missingLegacyTitle], { viewerFor }).ok, false);

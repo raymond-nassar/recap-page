@@ -3,7 +3,8 @@
 // src/js/lib/identityReconcile.js validates the whole table before using any of it and moves saved
 // progress only under the owner's one-to-one, no-conflict rule recorded on the Issue.
 //
-// Entry shape: { catalogId, from, to, appViewer?, title, evidence }. A negative `to` is a viewer-only
-// comic and must carry the appViewer its key was made from. Entries are added with their guide data
-// and its reading-order revision, never on their own.
+// Entry shape: { catalogId, from, to, appViewer?, title, legacyTitle, evidence, sameEditionGroup? }.
+// A negative `to` is a viewer-only comic and must carry the appViewer its key was made from.
+// Multiple old keys may share a target only inside one reviewed sameEditionGroup; saved state moves
+// only when at most one member key exists. Entries are added with their guide data and revision.
 export const identityCorrections = Object.freeze([]);

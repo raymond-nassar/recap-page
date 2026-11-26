@@ -272,6 +272,8 @@ test('comic details put Read before artwork and destination help without retired
   const help = disclosure(issue, 'reader-link-help');
   assert.match(help, /<summary id="reader-link-heading">Where Read opens<\/summary>/);
   assert.ok(help.includes('id="reader-link-summary"'));
+  const helpShell = html.match(/<details\b[^>]*id="reader-link-help"[^>]*>([\s\S]*?)<\/details>/)?.[1] ?? '';
+  assert.doesNotMatch(helpShell, /Marvel Unlimited reader links are no longer accepted/);
   for (const id of ['edit', 'revert', 'form', 'reportToggle', 'reportPanel', 'reportDisclosure']) {
     assert.ok(!help.includes(`id="reader-link-${id}"`), `${id} must not accept a retired reader link`);
   }

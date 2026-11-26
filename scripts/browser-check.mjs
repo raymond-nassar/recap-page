@@ -12432,8 +12432,8 @@ const SCENARIOS = [
         kept?.onSale === '2026-03-04' && kept?.pageCount === 32 && (kept?.creators ?? []).length === 2,
         JSON.stringify(kept));
       const unlinkedNote = await manualReport(page);
-      t.check('an unlinked wiki match keeps the previous Read explanation',
-        unlinkedNote.includes('Read uses the recorded comic reference. It does not mark the comic read.')
+      t.check('an unlinked wiki match avoids obsolete reader-reference guidance',
+        !unlinkedNote.includes('Read uses the recorded comic reference.')
           && !unlinkedNote.includes('Read opens this comic in the Marvel Comics app.'), unlinkedNote);
 
       // The point of taking the id at all. A hand entry on a synthetic negative id has no link to
@@ -12525,8 +12525,7 @@ const SCENARIOS = [
         JSON.stringify(endCross?.issues?.['129648']));
 
       for (const [url, id, note] of [
-        ['https://www.marvel.com/comics/issue/7/fixture', '7',
-          'Read uses the recorded comic reference. It does not mark the comic read.'],
+        ['https://www.marvel.com/comics/issue/7/fixture', '7', null],
         ['', '12459', 'Read opens this comic in the Marvel Comics app. It does not mark the comic read.'],
       ]) {
         await page.evaluate(() => {
@@ -12547,8 +12546,12 @@ const SCENARIOS = [
         );
         const report = await manualReport(page);
         const saved = await readState(page);
-        t.check(`the saved issue ${id} determines its Read explanation`,
-          Boolean(saved?.issues?.[id]) && report.includes(note) && !Object.hasOwn(saved?.read ?? {}, id), report);
+        const guidanceMatches = note
+          ? report.includes(note)
+          : !report.includes('Read uses the recorded comic reference.')
+            && !report.includes('Read opens this comic in the Marvel Comics app.');
+        t.check(`the saved issue ${id} determines its direct-link guidance`,
+          Boolean(saved?.issues?.[id]) && guidanceMatches && !Object.hasOwn(saved?.read ?? {}, id), report);
       }
     },
   },

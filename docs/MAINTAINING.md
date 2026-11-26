@@ -1952,16 +1952,21 @@ node --test test/marvel-comics-app-links.test.js
 ```
 
 The import verifies the file against the approved SHA-256 before matching. It uses the original
-series-title, issue-number and on-sale-year rules against the entire catalog, then selects only
-new catalog identities not already covered by viewer links or the frozen fallback approval and
-its exclusions. Earlier viewer links and fallback numbers are not revised. Repeated runs make
-no further changes unless the catalog or unresolved match changes.
+series-title, issue-number and on-sale-year rules against the entire catalog, then selects exact
+viewer matches for catalog identities that do not already have a viewer link. A verified viewer
+match supersedes any matching legacy number approval or exclusion: the source approval stays
+intact, but its generated number list omits that comic. Earlier viewer links are not revised, and
+the runtime reads only the verified viewer table, not the legacy number list
+(`scripts/marvel-comics-app-links.mjs:221-244`, `scripts/marvel-comics-app-links.mjs:343-419`,
+`src/js/lib/marvelComicsApp.js:8-24`). Repeated runs make no further changes unless the catalog
+or unresolved match changes.
 
 A unique exact match gets the export's viewer link. Ambiguous identities, conflicting numbers,
-year-shift matches and missing matches get no new app link. New unresolved identities are recorded
-as `unapprovedIssueIds` in the fallback input, not silently granted Marvel issue-number fallbacks.
-They retain the app's existing no-link behavior: Marvel Unlimited until December 7, 2026 where
-launchable, then the Marvel Comics website rather than a single-comic link.
+year-shift matches and missing matches get no new app link. A new unresolved identity outside the
+legacy approval is recorded as `unapprovedIssueIds`, not granted a number-based destination.
+Without a verified viewer link, the reading action opens the general Marvel Comics website, not a
+prefilled search or a guaranteed issue. No Marvel Unlimited destination or metadata lookup is used
+(`src/js/reader.js:70-77`, `src/open.js:105-111`).
 Comics already linked use their existing shared link. Missing app links alone never block publishing
 the resolved reading list; preserve the route's separate identity and metadata gap accounting.
 
