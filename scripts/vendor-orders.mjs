@@ -50,7 +50,10 @@ import {
   validateStorylinesChildren, chapterFile,
 } from './lib/chapter-orders.mjs';
 import { sourceCreditRevisions } from './lib/source-credit-revisions.mjs';
-import { digestCanonicalJson } from './lib/cbh-inventory.mjs';
+import {
+  assertFindOnlySourcePositions, digestCanonicalJson, validateApprovalDigest, validateMappingDigest,
+} from './lib/cbh-inventory.mjs';
+import { findOnlyChecklistTitle } from './lib/cbh-checklist-title.mjs';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const API = 'https://marvel.emreparker.com/v1';
 const MANIFEST = join(ROOT, 'src', 'data', 'curated-lists.json');
@@ -126,6 +129,66 @@ async function loadAllOwnerMappings() {
     mappings.push({ listId: name.slice(0, -'.json'.length), rows: mapping.rows ?? [] });
   }
   return mappings;
+}
+
+// A Find-only comic is authored as a plain checklist line because its source recorded no issue
+// address, so parsing alone sees an unresolved title. Its reviewed mapping still holds the exact
+// provider id, and that id is restored here before metadata lookup so the comic is hydrated and
+// saved under its real identity rather than a placeholder. Because the mapping alone names that
+// identity, it must be this order's approved mapping with an intact digest and a relationship
+// approval bound to that same digest and packet, and every listed row must match exactly one
+// URL-less line whose parsed title equals the authored one at its source occurrence.
+export function restoreFindOnlyEntries(orderId, parsedOrder, mapping) {
+  const findOnly = mapping ? assertFindOnlySourcePositions(mapping) : [];
+  if (findOnly.length === 0) return parsedOrder;
+  assertApprovedFindOnlyMapping(orderId, mapping);
+  const rows = new Map(mapping.rows.map((row) => [row.sourcePosition, row]));
+  const restored = [];
+  const remaining = [];
+  const listed = new Set(findOnly.map(String));
+  for (const entry of parsedOrder.unresolved) {
+    if (!listed.has(entry.sourceKey)) {
+      remaining.push(entry);
+      continue;
+    }
+    const row = rows.get(Number(entry.sourceKey));
+    if (entry.url != null || entry.title !== findOnlyChecklistTitle(row)
+      || restored.some((item) => item.sourceKey === entry.sourceKey)) {
+      throw new Error(`${orderId}: Find-only source occurrence ${entry.sourceKey} differs from its reviewed mapping`);
+    }
+    restored.push({
+      issueId: row.selectedIssueId, title: entry.title, url: null, read: entry.read,
+      index: entry.index, section: entry.section, sourceKey: entry.sourceKey,
+    });
+  }
+  const missing = findOnly.filter((position) => !restored.some((item) => item.sourceKey === String(position)));
+  if (missing.length) {
+    throw new Error(`${orderId}: Find-only source occurrences ${missing.join(', ')} are not plain checklist lines`);
+  }
+  return {
+    ...parsedOrder,
+    entries: [...parsedOrder.entries, ...restored].sort((a, b) => a.index - b.index),
+    unresolved: remaining,
+  };
+}
+
+function assertApprovedFindOnlyMapping(orderId, mapping) {
+  const review = mapping.relationshipReview;
+  if (mapping.id !== orderId || mapping.reviewStatus !== 'approved' || !review
+    || review.mappingDigest !== mapping.mappingDigest || review.packetDigest !== mapping.packetDigest) {
+    throw new Error(`${orderId}: Find-only rows need this order's approved mapping and relationship review`);
+  }
+  validateMappingDigest(mapping);
+  validateApprovalDigest(review, orderId);
+}
+
+async function loadCbhMapping(order) {
+  try {
+    return JSON.parse(await readFile(join(SCRIPT_DATA_DIR, 'cbh-mappings', `${order.id}.json`), 'utf8'));
+  } catch (error) {
+    if (error.code === 'ENOENT') return null;
+    throw error;
+  }
 }
 
 export async function loadDateCorrections(order, entries) {
@@ -636,7 +699,11 @@ async function main() {
   const parsed = [];
   for (const order of targets) {
     const md = await loadOrderText(order);
-    const parsedOrder = legacyIdentityChecked(order.id, parseChecklist(md, { legacyIdentityKeys: true }));
+    const parsedOrder = restoreFindOnlyEntries(
+      order.id,
+      legacyIdentityChecked(order.id, parseChecklist(md, { legacyIdentityKeys: true })),
+      await loadCbhMapping(order),
+    );
     const { entries, unresolved } = parsedOrder;
     console.log(`${order.id}: ${entries.length} issues, ${unresolved.length} unresolved`);
     parsed.push({ order, parsedOrder });

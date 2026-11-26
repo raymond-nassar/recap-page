@@ -114,6 +114,8 @@ export async function preparePublishedCbhGapDelta({
       && cleanText(resolution.previousSourceIssueReference) === cleanText(previous.title)
       && cleanText(slot.previousSourceIssueReference) === cleanText(previous.title),
     `Gap delta slot ${index} has no matching exact-issue transition`);
+    assert.ok(!(mapping.findOnlySourcePositions ?? []).includes(slot.sourcePosition),
+      `Gap delta slot ${index} is Find-only and has no recorded issue address`);
     lines.set(index, mappedIssueCheckbox(mapped));
     afterIds[index] = slot.issueId;
   }

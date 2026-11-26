@@ -7,6 +7,7 @@ import { isDeepStrictEqual } from 'node:util';
 import { parseManifest } from '../src/js/lib/curated.js';
 import { escapeLinkText } from '../src/js/lib/markdown.js';
 import {
+  assertFindOnlySourcePositions,
   assertMappingMatchesPacketOccurrences,
   canonicalJson,
   libraryDigestExcludingOrders,
@@ -25,6 +26,7 @@ import { loadLibrarySnapshot } from './report-order-overlap.mjs';
 import { preflightPublicationWrites, readPublicationInputs } from './check-publication.mjs';
 import { selectedUltimateRows, ultimateSelection } from './lib/ultimate-spider-man-selection.mjs';
 import { mappedTrackingId, serviceIdentityFor } from './lib/cbh-service-identity.mjs';
+import { checklistTitleForRow, findOnlyChecklistLine } from './lib/cbh-checklist-title.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const MAPPINGS_DIR = path.join(ROOT, 'scripts', 'data', 'cbh-mappings');
@@ -235,6 +237,7 @@ export function manifestEntryForMapping(mapping) {
 
 export function selectedIssueIds(mapping) {
   const rows = Array.isArray(mapping?.rows) ? mapping.rows : [];
+  const findOnly = new Set(assertFindOnlySourcePositions(mapping));
   return rows.map((row, index) => {
     assert(row?.resolutionStatus === 'exact', `${mapping.id} row ${index + 1} is not exact`);
     const service = serviceIdentityFor(row);
@@ -244,12 +247,16 @@ export function selectedIssueIds(mapping) {
       return String(mappedTrackingId(row));
     }
     assert(Number.isInteger(Number(row.selectedIssueId)), `${mapping.id} row ${index + 1} has no selected issue id`);
-    const issueUrlMatch = String(row.marvelIssueUrl).match(
-      /^https:\/\/www\.marvel\.com\/comics\/issue\/(\d+)(?:\/|$)/,
-    );
-    assert(issueUrlMatch, `${mapping.id} row ${index + 1} has no exact Marvel issue URL`);
-    assert(Number(issueUrlMatch[1]) === Number(row.selectedIssueId),
-      `${mapping.id} row ${index + 1} Marvel issue URL differs from selected issue id`);
+    if (findOnly.has(row.sourcePosition)) {
+      assert(row.marvelIssueUrl === null, `${mapping.id} row ${index + 1} is Find-only but records an issue URL`);
+    } else {
+      const issueUrlMatch = String(row.marvelIssueUrl).match(
+        /^https:\/\/www\.marvel\.com\/comics\/issue\/(\d+)(?:\/|$)/,
+      );
+      assert(issueUrlMatch, `${mapping.id} row ${index + 1} has no exact Marvel issue URL`);
+      assert(Number(issueUrlMatch[1]) === Number(row.selectedIssueId),
+        `${mapping.id} row ${index + 1} Marvel issue URL differs from selected issue id`);
+    }
     assert(typeof row.resolvedIssueTitle === 'string' && row.resolvedIssueTitle.trim(), `${mapping.id} row ${index + 1} has no resolved title`);
     const issueNumber = Object.hasOwn(row, 'metadataIssueNumber')
       ? row.metadataIssueNumber
@@ -260,27 +267,17 @@ export function selectedIssueIds(mapping) {
   });
 }
 
-function checklistTitleForRow(row) {
-  const title = row.resolvedIssueTitle.trim().replace(/[\u2013\u2014]/g, '-').replace(/\s+/g, ' ');
-  const selectedNumber = Object.hasOwn(row, 'metadataIssueNumber')
-    ? row.metadataIssueNumber
-    : row.issueNumber;
-  if (selectedNumber === null) return title;
-  const issueNumber = String(selectedNumber).trim();
-  const escapedNumber = issueNumber.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  return new RegExp(`#\\s*${escapedNumber}(?=\\s|$)`, 'i').test(title)
-    ? title
-    : `${title} #${issueNumber}`;
-}
-
-export function mappedIssueCheckbox(row) {
+export function mappedIssueCheckbox(row, { findOnly = false } = {}) {
+  if (findOnly) return findOnlyChecklistLine(row);
+  const annotation = `<!-- mrt:source-occurrence=${row.sourcePosition} -->`;
   const url = serviceIdentityFor(row)?.url ?? row.marvelIssueUrl;
-  return `- [ ] [${escapeLinkText(checklistTitleForRow(row))} <!-- mrt:source-occurrence=${row.sourcePosition} -->](${url})`;
+  return `- [ ] [${escapeLinkText(checklistTitleForRow(row))} ${annotation}](${url})`;
 }
 
 export function buildMarkdown(mapping) {
   const manifest = manifestEntryForMapping(mapping);
   selectedIssueIds(mapping);
+  const findOnly = new Set(assertFindOnlySourcePositions(mapping));
   const placeholderIdentityMode = mapping.placeholderIdentityMode ?? 'source-occurrence';
   assert(
     ['source-occurrence', 'legacy-source-position', 'title'].includes(placeholderIdentityMode),
@@ -333,7 +330,9 @@ export function buildMarkdown(mapping) {
         : [];
       currentGroup = sourceGroup;
       if (entry.kind === 'exact') {
-        return [...heading, mappedIssueCheckbox(entry.value)];
+        return [...heading, mappedIssueCheckbox(entry.value, {
+          findOnly: findOnly.has(entry.value.sourcePosition),
+        })];
       }
       const sourceKey = placeholderIdentityMode === 'source-occurrence'
         ? String(entry.value.sourcePosition)

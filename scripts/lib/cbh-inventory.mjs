@@ -92,6 +92,7 @@ const PACKET_FIELDS = new Set([
   'sourceOccurrenceCount',
   'canonicalSourcePositions',
   'repeatedSourceReferences',
+  'nonCountingSourceReferences',
   'sourceGaps',
   'sourceGapResolutions',
   'expectedCount',
@@ -118,6 +119,8 @@ const MAPPING_DIGEST_FIELDS = Object.freeze([
   'excludedSourceRows',
   'sourceOccurrenceCount',
   'repeatedSourceReferences',
+  'nonCountingSourceReferences',
+  'findOnlySourcePositions',
   'sourceGaps',
   'sourceGapResolutions',
   'proposedManifest',
@@ -399,6 +402,42 @@ function assertRepeatedSourceReference(reference, index, rows) {
   } else {
     assertNonEmptyString(String(reference.issueNumber), `${label} issueNumber`);
   }
+}
+
+// An owner-directed source mention that occupies a source position but is not a reading step,
+// such as Secret Wars (2015) pointing back at a Spider-Verse issue under a different title.
+// It is neither a repeat (its title differs from the canonical row), a gap nor an exclusion, so
+// recasting it as one would misstate the source; it only names the earlier provider identity.
+const NON_COUNTING_SOURCE_REFERENCE_FIELDS = Object.freeze([
+  'sourcePosition',
+  'sourceIssueReference',
+  'decisionId',
+  'canonicalSourcePosition',
+  'canonicalProviderIssueId',
+  'counted',
+]);
+
+function assertNonCountingSourceReference(reference, index) {
+  const label = `Non-counting source reference ${index + 1}`;
+  if (!isPlainObject(reference)) throw new Error(`${label} must be an object`);
+  const fields = Object.keys(reference);
+  const missing = NON_COUNTING_SOURCE_REFERENCE_FIELDS.filter((field) => !Object.hasOwn(reference, field));
+  if (missing.length > 0) throw new Error(`${label} is missing required fields: ${missing.join(', ')}`);
+  const unexpected = fields.filter((field) => !NON_COUNTING_SOURCE_REFERENCE_FIELDS.includes(field));
+  if (unexpected.length > 0) throw new Error(`${label} has unsupported fields: ${unexpected.join(', ')}`);
+  if (!Number.isInteger(reference.sourcePosition) || reference.sourcePosition < 1) {
+    throw new Error(`${label} sourcePosition must be a positive integer`);
+  }
+  assertNonEmptyString(reference.sourceIssueReference, `${label} sourceIssueReference`);
+  assertNonEmptyString(reference.decisionId, `${label} decisionId`);
+  if (!Number.isInteger(reference.canonicalSourcePosition) || reference.canonicalSourcePosition < 1
+    || reference.canonicalSourcePosition >= reference.sourcePosition) {
+    throw new Error(`${label} canonicalSourcePosition must name an earlier source position`);
+  }
+  if (!Number.isInteger(reference.canonicalProviderIssueId) || reference.canonicalProviderIssueId < 1) {
+    throw new Error(`${label} canonicalProviderIssueId must be a positive integer`);
+  }
+  if (reference.counted !== false) throw new Error(`${label} must record counted: false`);
 }
 
 function assertExcludedSourceRow(row, index) {
@@ -832,8 +871,10 @@ export function sourcePositionsForPacket(packet, {
   const hasExcludedRows = Object.hasOwn(packet ?? {}, 'excludedSourceRows');
   const hasSourceGaps = Object.hasOwn(packet ?? {}, 'sourceGaps');
   const hasSourceGapResolutions = Object.hasOwn(packet ?? {}, 'sourceGapResolutions');
+  const hasNonCountingReferences = Object.hasOwn(packet ?? {}, 'nonCountingSourceReferences');
   if (hasOccurrenceCount !== (
     hasRepeatedReferences || hasExcludedRows || hasSourceGaps || hasSourceGapResolutions
+    || hasNonCountingReferences
   )) {
     throw new Error(`${packetId} sourceOccurrenceCount and supplemental source rows must appear together`);
   }
@@ -841,18 +882,26 @@ export function sourcePositionsForPacket(packet, {
 
   const references = hasRepeatedReferences ? packet.repeatedSourceReferences : [];
   const excludedRows = hasExcludedRows ? packet.excludedSourceRows : [];
+  const nonCounting = hasNonCountingReferences ? packet.nonCountingSourceReferences : [];
   if (hasRepeatedReferences && (!Array.isArray(references) || references.length === 0)) {
     throw new Error(`${packetId} repeatedSourceReferences must be a non-empty array when present`);
   }
   if (hasExcludedRows && (!Array.isArray(excludedRows) || excludedRows.length === 0)) {
     throw new Error(`${packetId} excludedSourceRows must be a non-empty array when present`);
   }
+  if (hasNonCountingReferences && (!Array.isArray(nonCounting) || nonCounting.length === 0)) {
+    throw new Error(`${packetId} nonCountingSourceReferences must be a non-empty array when present`);
+  }
+  if (hasNonCountingReferences && !rowsDeclareSourcePositions) {
+    throw new Error(`${packetId} nonCountingSourceReferences require canonical source positions`);
+  }
   const gaps = hasSourceGaps ? packet.sourceGaps : [];
   if (hasSourceGaps && (!Array.isArray(gaps) || gaps.length === 0)) {
     throw new Error(`${packetId} sourceGaps must be a non-empty array when present`);
   }
   if (!Number.isInteger(packet.sourceOccurrenceCount)
-    || packet.sourceOccurrenceCount !== rows.length + references.length + excludedRows.length + gaps.length) {
+    || packet.sourceOccurrenceCount !== rows.length + references.length + excludedRows.length
+      + gaps.length + nonCounting.length) {
     throw new Error(`${packetId} sourceOccurrenceCount must equal exact rows plus supplemental source rows`);
   }
 
@@ -936,6 +985,21 @@ export function sourcePositionsForPacket(packet, {
     bySourcePosition.set(gap.sourcePosition, gap);
     gapsBySourcePosition.set(gap.sourcePosition, gap);
   }
+  let previousNonCountingPosition = 0;
+  for (const [index, reference] of nonCounting.entries()) {
+    assertNonCountingSourceReference(reference, index);
+    if (reference.sourcePosition <= previousNonCountingPosition) {
+      throw new Error(`${packetId} nonCountingSourceReferences must be in sourcePosition order`);
+    }
+    if (reference.sourcePosition > packet.sourceOccurrenceCount) {
+      throw new Error(`${packetId} non-counting source position ${reference.sourcePosition} is outside the source occurrence count`);
+    }
+    if (bySourcePosition.has(reference.sourcePosition)) {
+      throw new Error(`${packetId} source position ${reference.sourcePosition} is used more than once`);
+    }
+    bySourcePosition.set(reference.sourcePosition, reference);
+    previousNonCountingPosition = reference.sourcePosition;
+  }
 
   if (rowsDeclareSourcePositions) {
     const canonicalSourcePositions = [];
@@ -957,6 +1021,16 @@ export function sourcePositionsForPacket(packet, {
     }
     if (bySourcePosition.size !== packet.sourceOccurrenceCount) {
       throw new Error(`${packetId} source occurrence positions do not cover the source occurrence count`);
+    }
+    const rowsBySourcePosition = new Map(rows.map((row) => [row.sourcePosition, row]));
+    for (const reference of nonCounting) {
+      const canonical = rowsBySourcePosition.get(reference.canonicalSourcePosition);
+      const providerIds = [canonical?.candidateIssueId, canonical?.selectedIssueId]
+        .filter((value) => value != null);
+      if (!canonical || providerIds.length === 0
+        || providerIds.some((value) => Number(value) !== reference.canonicalProviderIssueId)) {
+        throw new Error(`${packetId} non-counting source position ${reference.sourcePosition} must name the provider identity of an earlier exact row`);
+      }
     }
     for (const reference of references) {
       const canonical = Object.hasOwn(reference, 'canonicalRow')
@@ -1033,6 +1107,9 @@ export function sourceCountsForPacket(packet) {
     includedIssueCount: packet.rows.length,
     sourceGapCount: packet.sourceGaps?.length ?? 0,
     repeatedSourceReferenceCount: packet.repeatedSourceReferences?.length ?? 0,
+    ...(Object.hasOwn(packet, 'nonCountingSourceReferences')
+      ? { nonCountingSourceReferenceCount: packet.nonCountingSourceReferences.length }
+      : {}),
     ...((packet.sourceGapResolutions?.length ?? 0) > 0
       ? { excludedSourceRowCount: packet.excludedSourceRows?.length ?? 0 }
       : {}),
@@ -1044,6 +1121,39 @@ function issueIdFromMarvelUrl(value) {
     /^https:\/\/www\.marvel\.com\/comics\/issue\/(\d+)(?:\/|$)/,
   );
   return match ? Number(match[1]) : null;
+}
+
+// A provider-exact comic whose source recorded no issue address keeps its positive provider id
+// and is read through Find rather than a constructed link. The list is explicit so that a row
+// which merely lost its address cannot silently become Find-only, and so that a Find-only row
+// cannot quietly acquire an address nobody recorded.
+export function assertFindOnlySourcePositions(mapping) {
+  const mappingId = String(mapping?.id ?? 'Candidate');
+  const rows = Array.isArray(mapping?.rows) ? mapping.rows : [];
+  const addressless = rows
+    .filter((row) => !serviceIdentityFor(row) && (row.marvelIssueUrl ?? null) === null)
+    .map((row) => row.sourcePosition);
+  if (!Object.hasOwn(mapping ?? {}, 'findOnlySourcePositions')) return [];
+  const listed = mapping.findOnlySourcePositions;
+  if (!Array.isArray(listed) || listed.length === 0
+    || listed.some((position, index) => !Number.isInteger(position) || position < 1
+      || (index > 0 && position <= listed[index - 1]))) {
+    throw new Error(`${mappingId} findOnlySourcePositions must be ascending unique positive source positions`);
+  }
+  if (canonicalJson(listed) !== canonicalJson(addressless)) {
+    throw new Error(`${mappingId} findOnlySourcePositions must name exactly the provider rows without a recorded issue address`);
+  }
+  for (const position of listed) {
+    const row = rows.find((candidate) => candidate.sourcePosition === position);
+    if (row.resolutionStatus !== 'exact'
+      || !Object.hasOwn(row, 'marvelIssueUrl')
+      || !Number.isInteger(row.selectedIssueId) || row.selectedIssueId < 1
+      || (Object.hasOwn(row, 'selectedIssueIds')
+        && canonicalJson(row.selectedIssueIds) !== canonicalJson([row.selectedIssueId]))) {
+      throw new Error(`${mappingId} Find-only source position ${position} must be exact with one positive provider issue id`);
+    }
+  }
+  return listed;
 }
 
 export function assertMappingMatchesPacketOccurrences(packet, mapping) {
@@ -1070,6 +1180,10 @@ export function assertMappingMatchesPacketOccurrences(packet, mapping) {
   }
   if (canonicalJson(packetExclusions) !== canonicalJson(mappingExclusions)) {
     throw new Error(`${packetId} mapping excluded source evidence differs from its frozen packet`);
+  }
+  if (canonicalJson(packet.nonCountingSourceReferences ?? null)
+    !== canonicalJson(mapping?.nonCountingSourceReferences ?? null)) {
+    throw new Error(`${packetId} mapping non-counting source references differ from its frozen packet`);
   }
   if (mapping?.approvedSourceCount !== expectedCount) {
     throw new Error(`${packetId} approvedSourceCount differs from its frozen source occurrence count`);
@@ -1104,6 +1218,13 @@ export function assertMappingMatchesPacketOccurrences(packet, mapping) {
       throw new Error(`${packetId} mapping row ${index + 1} must be exact with a concrete selected issue id`);
     }
   }
+  for (const reference of packet.nonCountingSourceReferences ?? []) {
+    const canonical = mappingRows.find((row) => row.sourcePosition === reference.canonicalSourcePosition);
+    if (Number(canonical?.selectedIssueId) !== reference.canonicalProviderIssueId) {
+      throw new Error(`${packetId} non-counting source position ${reference.sourcePosition} differs from its mapped canonical issue`);
+    }
+  }
+  assertFindOnlySourcePositions(mapping);
   for (const resolution of packet.sourceGapResolutions ?? []) {
     if (resolution.resolutionKind === 'canonical-repeat') {
       const canonicalPacket = packet.rows[resolution.canonicalRow - 1];
