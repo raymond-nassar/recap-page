@@ -560,6 +560,18 @@ Every vendor run, catalog-only included, also rewrites `src/data/rated-guide-ind
 same outputs, which the Library's Character guide filter reads. Commit it with the catalog; the
 unit suite fails if the two disagree.
 
+A reviewed sectional guide can use one local checklist with `catalog: false` and
+`sectionKind: "reading-blocks"`. Its manifest `sectionalGuides` entry pins the placement year,
+source steps, protected ranges, verified collections and each part's ordered comic IDs and
+description. The vendor checks the parent against those vectors, then regenerates the separately
+addable parts. Only the verified collection blocks become collected editions. The catalog
+shows one timeline chooser and lists the parts, never the whole parent as a list. A part is
+the app's presentation of the source and does not get its own upstream source section.
+
+For a Comic Book Herald sectional guide, pin the approved parent packet and mapping and compare
+every derived part against the reviewed library and actual peer mappings before authoring.
+A source approval for the parent does not replace the required relationship reviews.
+
 A generated child ID resolves to its partition parent, keeping the family together. Review all
 generated files as one batch. Do not hand-edit a child payload or the overlap matrix.
 

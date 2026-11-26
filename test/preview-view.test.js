@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 
 import { createPreviewView } from '../src/js/views/preview.js';
 import { createCatalogPresentation, PROJECT_HOME } from '../src/js/views/shared/catalog-presentation.js';
+import { SECTIONAL_GUIDE_COPY } from '../src/js/lib/sectionalGuide.js';
 
 function node(props = {}, children = []) {
   return {
@@ -10,6 +11,8 @@ function node(props = {}, children = []) {
     listeners: {},
     open: false,
     addEventListener(name, listener) { this.listeners[name] = listener; },
+    setAttribute(name, value) { this[name] = value; },
+    removeAttribute(name) { delete this[name]; },
     close() { this.open = false; },
     replaceChildren(...next) { this.children = next; },
     showModal() { this.open = true; },
@@ -24,6 +27,53 @@ const list = (id) => ({
   description: '',
   count: 1,
   depth: 'essential',
+});
+
+test('sectional Preview follows the exact part position and retains the current guide on failure', async (t) => {
+  const previous = globalThis.document;
+  globalThis.document = { activeElement: null, body: {} };
+  t.after(() => { if (previous) globalThis.document = previous; else delete globalThis.document; });
+  const nodes = Object.fromEntries([
+    'add', 'secondary', 'body', 'close', 'description', 'dialog', 'heading', 'meta', 'paths', 'source',
+  ].map((key) => [key, node()]));
+  const items = [{ issueId: 31, title: 'First' }, { issueId: 32, title: 'Second' }];
+  const calls = [];
+  nodes.body.querySelector = (selector) => ({ focus: () => calls.push(selector) });
+  const view = createPreviewView({
+    captureFocus: () => null, createIcon: () => null, el: element, elements: () => nodes,
+    getState: () => ({ lists: {}, listOrder: [] }), isInLibrary: () => null,
+    issueFocusAnchor: (item) => element('a', { text: item.title }),
+    loadOrder: async () => ({ items }),
+    onFollowSectional: (id, position) => { calls.push([id, position]); return false; },
+    onIssueLoadFailure: ({ error }) => { throw error; },
+    presentation: { attributionLine: () => null },
+    restoreFocus: () => {},
+  });
+  const part = {
+    ...list('bridge-part-2'), count: 2,
+    sectionalPart: {
+      issueIds: [31, 32],
+      steps: [
+        { kind: 'position', localPosition: 1 }, { kind: 'pause', copy: 'pauseReturn' },
+        { kind: 'position', localPosition: 2 },
+        { kind: 'return-point', title: 'Iron Man', catalogId: 'bridge-part-1', localPosition: 6 },
+      ],
+    },
+  };
+  await view.open(part, { position: 2 });
+  assert.deepEqual(calls, ['[data-sectional-position="2"] a']);
+  const [first, pause, second, resume] = nodes.body.children[0].children;
+  assert.equal(first.dataset.sectionalPosition, 1);
+  assert.equal(pause.text, SECTIONAL_GUIDE_COPY.pauseReturn);
+  assert.equal(second.dataset.sectionalPosition, 2);
+  const [returnLink, status] = resume.children;
+  assert.equal(returnLink.href, '#/preview/bridge-part-1?position=6');
+  await returnLink.onclick({ button: 0, currentTarget: returnLink, preventDefault() {} });
+  assert.deepEqual(calls.at(-1), ['bridge-part-1', 6]);
+  assert.equal(status.textContent, SECTIONAL_GUIDE_COPY.linkFailed);
+  assert.equal(nodes.dialog.open, true);
+  await view.open({ ...part, sectionalPart: { ...part.sectionalPart, issueIds: [32, 31] } });
+  assert.equal(nodes.body.children[0].text, SECTIONAL_GUIDE_COPY.linkFailed);
 });
 
 test('P04 Preview shows the mixed guide universe and its scope without changing the guide', async () => {

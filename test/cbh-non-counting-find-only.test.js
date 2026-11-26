@@ -120,10 +120,17 @@ test('a Find-only row is authored without a link and vendored under its provider
   assert.equal(restored.unresolved.length, 0);
   assert.deepEqual(restored.entries.map(({ issueId, sourceKey }) => [issueId, sourceKey]),
     [[101, '1'], [102, '2'], [104, '4']]);
-  const item = vendorIssueItem(restored.entries[2], {});
+  const item = vendorIssueItem(restored.entries[2], {
+    detailUrl: 'https://www.marvel.com/comics/issue/104', pageCount: 24,
+  });
   assert.equal(item.issueId, 104);
   assert.equal(item.url, null);
+  assert.equal(item.findOnly, true);
+  assert.equal(item.pageCount, 24);
   assert.equal(item.placeholder, undefined);
+  const linked = vendorIssueItem(restored.entries[0], {});
+  assert.equal(linked.url, 'https://www.marvel.com/comics/issue/101');
+  assert.equal(Object.hasOwn(linked, 'findOnly'), false);
 
   assert.equal(restoreFindOnlyEntries('legacy', parsed, null), parsed);
   // The real prefix shape: Secret Wars Journal (2015) #10 at the occurrence reviewed as #1.

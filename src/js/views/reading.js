@@ -44,6 +44,8 @@ import { hasTieInRatings } from '../lib/tieInRatings.js';
 import { createReadingOptions, readingChoices } from './shared/reading-options.js';
 import { booksLeaveOut } from '../lib/readingOrderChoices.js';
 import { legacyReadingOrder } from '../lib/legacyReadingOrders.js';
+import { sectionalReadingRows } from '../lib/sectionalGuide.js';
+import { sectionalStepRows } from './shared/sectional-reading.js';
 
 export const RING_CIRCUMFERENCE = 119.4; // 2πr for r=19, matching the SVG in index.html
 const UNDO_DELETE = 'undo-delete';
@@ -157,6 +159,7 @@ export function createReadingView({
   onCancelSynopsis,
   onExportMarkdown,
   onExportOrder,
+  onFollowSectional,
   onHydrate,
   onMarkAllRead = () => {},
   onStartSynopsis,
@@ -210,6 +213,7 @@ export function createReadingView({
   let aboutCatalogId = null;
   let aboutRequest = null;
   let aboutHasSource = false;
+  let aboutSectionalPart = null;
   let heroOptions = null;
 
   function ownList(id) {
@@ -270,6 +274,7 @@ export function createReadingView({
       aboutCatalogId = list?.catalogId ?? null;
       aboutRequest = null;
       aboutHasSource = false;
+      aboutSectionalPart = null;
       source.replaceChildren();
       // A catalog list waits for its entry, so a project button never flashes before an outside one.
       showVisit(list && (!list.catalogId || !loadCatalog) ? homeButton(el, createIcon) : null);
@@ -319,6 +324,10 @@ export function createReadingView({
       source.replaceChildren(...content);
       showVisit(visitButton(el, entry, createIcon));
       aboutHasSource = content.length > 0;
+      if (aboutSectionalPart !== (entry?.sectionalPart ?? null)) {
+        aboutSectionalPart = entry?.sectionalPart ?? null;
+        if (isCurrent()) renderRows();
+      }
       disclosure.hidden = !getState().lists[list.id]?.description && !aboutHasSource
         && !booksLeaveOut(getState().lists[list.id]).length;      // Retry asked for the source, so focus lands on the button that now leads to it.
       if (held) visit.querySelector('a').focus();
@@ -973,8 +982,25 @@ export function createReadingView({
         return;
       }
 
+      const sectional = items.length === all.length && aboutListId === id
+        && aboutCatalogId === list.catalogId ? sectionalReadingRows(aboutSectionalPart, all) : null;
+      const addSteps = (key, steps) => {
+        if (!steps?.length) return;
+        const cacheKey = `source-steps:${key}`;
+        const cached = rowCache.get(cacheKey);
+        if (cached?.key === aboutSectionalPart) {
+          desired.push(...cached.nodes);
+          return;
+        }
+        const nodes = sectionalStepRows(el, steps, {
+          className: 'row-group', heading: 'h3', guideId: list.catalogId, onFollow: onFollowSectional,
+        });
+        rowCache.set(cacheKey, { key: aboutSectionalPart, nodes });
+        desired.push(...nodes);
+      };
       let shownRun = -1;
       for (const item of items) {
+        if (sectional) addSteps(item.issueId, sectional.before.get(item.issueId));
         const runIndex = runOf.get(item.issueId);
         if (hasEditions && runIndex !== shownRun) {
           shownRun = runIndex;
@@ -1083,6 +1109,7 @@ export function createReadingView({
         rowCache.set(item.issueId, { key: rowKey, readerKey, catalogId: list.catalogId, node });
         desired.push(node);
       }
+      if (sectional) addSteps('after', sectional.after);
       if (items.length !== all.length) {
         desired.push(el('li', { class: 'rail-hint', text: `Showing ${items.length} of ${all.length}.` }));
       }

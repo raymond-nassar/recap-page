@@ -36,9 +36,7 @@ import { beforeUltimateIntroEntry, beforeUltimateIntroIssueIds } from './ultimat
 import {
   beforeAmazingSpiderManSupplementManifest, beforeAmazingSpiderManSupplementOrders,
 } from './amazing-spider-man-history.mjs';
-import {
-  beforeWolverineCorrectionOrders, wolverineLibraryAtReview,
-} from './wolverine-correction-history.mjs';
+import { wolverineLibraryAtReview } from './wolverine-correction-history.mjs';
 
 const hash = (value) => createHash('sha256').update(value).digest('hex');
 const libraryAtTieInApproval = (library, contract) => ({
@@ -268,8 +266,7 @@ export async function assertOwnerDeliveryContract(contract, {
   const currentComparisonOrders = withRetiredOrders(
     library.orders.filter((row) => recordedIds.has(row.orderId)), recordedIds,
   );
-  const comparisonOrders = wolverineLibrary.current ? currentComparisonOrders
-    : beforeWolverineCorrectionOrders(currentComparisonOrders);
+  const comparisonOrders = wolverineLibrary.projectOrders(currentComparisonOrders);
   assert.deepEqual(buildComparisonReport({
     candidateIds: expectedIds,
     orders: expandedReview ? comparisonOrders : beforeAmazingSpiderManSupplementOrders(comparisonOrders),

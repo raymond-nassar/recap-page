@@ -484,7 +484,8 @@ export function createCatalogView({
     // A placement points at readings that already have a home, so those count as no stop here. An
     // option that is itself a timeline event stays the stop it is: the card is drawn in its place
     // and carries its key, so the position and "X of N" still wait for it to be read.
-    const placements = key === 'catalog' && !followed ? modernTimelinePlacements(catalog.lists) : [];
+    const placements = key === 'catalog' && !followed
+      ? [...modernTimelinePlacements(catalog.lists), ...(catalog.sectionalGroups ?? [])] : [];
     const mine = followed
       ? followedStories.map((story) => defaultPath(story, owned))
       : key === 'catalog'
@@ -493,7 +494,7 @@ export function createCatalogView({
     const timelineStopIds = new Set(key === 'catalog' && !followed ? mine.map((list) => list.id) : []);
     const canonicalTimelineStories = key === 'catalog' ? followedStories ?? groupCatalog(mine) : null;
     nodes.results.replaceChildren();
-    if (!mine.length) {
+    if (!mine.length && !placements.length) {
       nodes.filters.hidden = true;
       nodes.search.hidden = true;
       if (nodes.links) nodes.links.hidden = true;

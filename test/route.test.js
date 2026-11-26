@@ -25,8 +25,7 @@ const lacks = (text, re, what) => assert.ok(!re.test(text), `expected not to fin
 test('main.js preserves synchronous route updates and animates only an arriving focused view', () => {
   const main = read('src/js/main.js');
   lacks(main, /startViewTransition|runViewTransition|showViewNow/, 'the deferred View Transitions wrapper');
-  has(main, /function showView\(next, \{ focus = true, push = false, at = null, capturePosition = true, aboutTraversal = false \} = \{\}\)/,
-    'the original synchronous route update');
+  has(main, /^function showView\(next,/m, 'a synchronous route update');
   has(main, /const shouldAnimateArrival = focus && next !== view;/, 'the changed destination and focus gate');
   has(main, /panel\.classList\.toggle\('view-entering', name === next && shouldAnimateArrival\)/,
     'the incoming-view class applied within the synchronous update');
@@ -136,6 +135,18 @@ test('guide book previews have bookmarkable catalog addresses without saved-list
   ]) assert.equal(parseRoute(hash), null, hash);
   for (const previewId of ['', '../read', 'Marvels', 'marvels?x']) {
     assert.equal(formatRoute({ view: 'new-to-comics', previewId }), '', previewId);
+  }
+});
+
+test('a sectional return address names exactly one positive local position', () => {
+  const id = 'bridge-part-1';
+  const address = `#/preview/${id}`;
+  const route = { view: 'new-to-comics', previewId: id, previewPosition: 22 };
+  assert.equal(formatRoute(route), `${address}?position=22`);
+  assert.deepEqual(parseRoute(formatRoute(route)), route);
+  for (const query of ['position=0', 'position=01', 'position=-1', 'position=1.5', 'position=9007199254740992',
+    'position=1&position=2', 'position=1&filter=pending', 'position=']) {
+    assert.equal(parseRoute(`${address}?${query}`), null, query);
   }
 });
 

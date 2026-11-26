@@ -17,6 +17,8 @@ import { gcdDetailsCredit, hasGcdDetails } from './shared/details-credit.js';
 import { tieInRatingCredit, tieInRatingLabels } from './shared/tie-in-ratings.js';
 import { hasTieInRatings } from '../lib/tieInRatings.js';
 import { offlineActionLabel, offlineStatusText } from './shared/offline-status.js';
+import { SECTIONAL_GUIDE_COPY, sectionalReadingRows } from '../lib/sectionalGuide.js';
+import { sectionalStepRows } from './shared/sectional-reading.js';
 
 const ADD_TEXT = '+ Add to library';
 const OPEN_TEXT = 'Open list';
@@ -36,6 +38,7 @@ export function createPreviewView({
   onAdd,
   onAddCopy,
   onClose,
+  onFollowSectional,
   onIssueLoadFailure,
   onOpen,
   presentation,
@@ -342,14 +345,20 @@ export function createPreviewView({
     }
   }
 
-  async function loadIssues(list) {
+  async function loadIssues(list, { position, preparedOrder } = {}) {
     const nodes = elements();
     nodes.body.replaceChildren(el('p', { class: 'rail-hint', text: 'Loading the comic list…' }));
     const token = {};
     loadToken = token;
     try {
-      const order = await loadOrder(list.file);
+      const order = preparedOrder ?? await loadOrder(list.file);
       if (loadToken !== token) return;
+      const sectional = sectionalReadingRows(list.sectionalPart, order.items);
+      if ((list.sectionalPart && !sectional)
+        || (position !== undefined && (!sectional || position > order.items.length))) {
+        nodes.body.replaceChildren(el('p', { class: 'rail-hint', role: 'status', text: SECTIONAL_GUIDE_COPY.linkFailed }));
+        return;
+      }
       const saved = isInLibrary(list.id);
       const savedIds = Array.isArray(saved?.itemIds) ? new Set(saved.itemIds.map(String)) : null;
       const missing = savedIds ? order.items.filter((item) => !savedIds.has(String(item.issueId))).length : 0;
@@ -367,13 +376,17 @@ export function createPreviewView({
       })] : [];
       let shown = null;
       const rows = [];
+      const addSteps = (steps = []) => rows.push(...sectionalStepRows(el, steps, {
+        className: 'preview-group', heading: 'h4', guideId: list.id, onFollow: onFollowSectional,
+      }));
       order.items.forEach((item, index) => {
+        if (sectional) addSteps(sectional.before.get(item.issueId));
         const edition = typeof item.collectedIn === 'string' ? item.collectedIn || null : null;
         if (edition !== shown) {
           shown = edition;
           rows.push(el('li', { class: 'preview-group' }, [el('h4', { text: edition || 'Individual comics' })]));
         }
-        rows.push(el('li', {}, [
+        rows.push(el('li', sectional ? { dataset: { sectionalPosition: index + 1 } } : {}, [
           el('span', { class: 'pn', text: String(index + 1) }),
           el('div', { class: 'preview-issue-info' }, [issueFocusAnchor(item, {
             context: { kind: 'order', id: list.id },
@@ -383,11 +396,15 @@ export function createPreviewView({
           }), tieInRatingLabels(el, list.id, item), collectedEditionLabels(el, list.id, item)]),
         ]));
       });
+      if (sectional) addSteps(sectional.after);
       const credit = order.items.some((item) => editionRelations(list.id, item).length)
         ? [collectedEditionCredit(el)] : [];
       if (hasGcdDetails(order.items)) credit.push(gcdDetailsCredit(el));
       if (hasTieInRatings(list.id, order.items)) credit.push(tieInRatingCredit(el));
       nodes.body.replaceChildren(...notice, ...credit, el('ol', { class: 'preview-list' }, rows));
+      if (sectional && position !== undefined) {
+        nodes.body.querySelector(`[data-sectional-position="${position}"] a`)?.focus();
+      }
     } catch (error) {
       if (loadToken !== token) return;
       await onIssueLoadFailure({
@@ -395,13 +412,13 @@ export function createPreviewView({
         list,
         isCurrent: () => loadToken === token,
         retry: () => {
-          if (loadToken === token) return loadIssues(list);
+          if (loadToken === token) return loadIssues(list, { position });
         },
       });
     }
   }
 
-  async function open(list) {
+  async function open(list, options) {
     invalidate();
     const state = getState();
     previewSession = {
@@ -420,7 +437,7 @@ export function createPreviewView({
     paint(list);
     nodes.dialog.showModal();
     void checkOffline(list, previewSession);
-    await loadIssues(list);
+    await loadIssues(list, options);
   }
 
   function wire() {

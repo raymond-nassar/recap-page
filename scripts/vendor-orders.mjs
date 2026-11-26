@@ -29,6 +29,7 @@ import { lookupIssues } from './lib/lookup-issues.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import { taggedViewer, appViewerFromUrl } from '../src/js/lib/marvelComicsAppUrl.js';
 import { parseCatalog } from '../src/js/lib/catalog.js';
+import { sectionalReadingRows } from '../src/js/lib/sectionalGuide.js';
 import { parseManifest } from '../src/js/lib/curated.js';
 import { parseIssueNumber, reconcileIssueTitleNumber } from './lib/issue-number.mjs';
 import { RateLimiter } from '../src/js/lib/limiter.js';
@@ -49,6 +50,7 @@ import {
   validateChapterLedger,
   validateStorylinesChildren, chapterFile,
 } from './lib/chapter-orders.mjs';
+import { buildSectionalFamily, sectionalPartFile } from './lib/sectional-orders.mjs';
 import { sourceCreditRevisions } from './lib/source-credit-revisions.mjs';
 import {
   assertFindOnlySourcePositions, digestCanonicalJson, validateApprovalDigest, validateMappingDigest,
@@ -64,12 +66,13 @@ const SCRIPT_DATA_DIR = join(ROOT, 'scripts', 'data');
 // A manifest that cannot be read in full is a maintainer error: vendoring the valid subset
 // would quietly ship a catalog missing a list nobody noticed was broken.
 async function loadOrders() {
-  const { entries, paths, errors } = parseManifest(JSON.parse(await readFile(MANIFEST, 'utf8')));
+  const raw = JSON.parse(await readFile(MANIFEST, 'utf8'));
+  const { entries, paths, errors } = parseManifest(raw);
   if (errors.length) {
     throw new Error(`curated-lists.json is not valid:\n  - ${errors.join('\n  - ')}`);
   }
   if (!entries.length) throw new Error('curated-lists.json defines no reading lists');
-  return { entries, paths };
+  return { entries, paths, sectionalGuides: raw.sectionalGuides };
 }
 
 // Vendoring hammers the metadata service harder than the app does, so use a stricter
@@ -157,7 +160,7 @@ export function restoreFindOnlyEntries(orderId, parsedOrder, mapping) {
       throw new Error(`${orderId}: Find-only source occurrence ${entry.sourceKey} differs from its reviewed mapping`);
     }
     restored.push({
-      issueId: row.selectedIssueId, title: entry.title, url: null, read: entry.read,
+      issueId: row.selectedIssueId, title: entry.title, url: null, findOnly: true, read: entry.read,
       index: entry.index, section: entry.section, sourceKey: entry.sourceKey,
     });
   }
@@ -479,7 +482,8 @@ export function vendorIssueItem(entry, detail, {
     issueId: entry.issueId,
     title: reconcileIssueTitleNumber(metadataTitle, metadataNumber, number),
     number,
-    url: detail.detailUrl ?? entry.url,
+    url: entry.findOnly === true ? null : (detail.detailUrl ?? entry.url),
+    ...(entry.findOnly === true ? { findOnly: true } : {}),
     seriesId: detail.seriesId ?? null,
     seriesName: detail.seriesName == null ? null : cleanText(detail.seriesName),
     onSale: correction ? `${correction.correctedDate}T00:00:00+0000`
@@ -590,6 +594,26 @@ export function catalogContains(payloadById) {
   return contains;
 }
 
+export function validateVendoredCatalog(catalog, payloadById) {
+  const checked = parseCatalog(catalog);
+  if (checked.dropped) throw new Error(`${checked.dropped} catalog entries are not valid; catalog.json not written`);
+  const ids = new Set(checked.lists.map(({ id }) => id));
+  for (const { lists } of checked.sectionalGroups ?? []) {
+    for (const list of lists) {
+      const payload = payloadById.get(list.id);
+      if (payload?.id !== list.id || !Array.isArray(payload.items)
+        || !sectionalReadingRows(list.sectionalPart, payload.items)) {
+        throw new Error(`${list.id} payload does not match its sectional source order; catalog.json not written`);
+      }
+      for (const step of list.sectionalPart.steps) {
+        if (step.kind === 'guide-link' && !ids.has(step.catalogId)) {
+          throw new Error(`${list.id} has no catalog destination for ${step.catalogId}; catalog.json not written`);
+        }
+      }
+    }
+  }
+}
+
 // Derived from the payload rather than restated, so the issue count a reader sees before
 // importing can never drift from the file they will actually import.
 function catalogEntry(order, payload) {
@@ -649,17 +673,28 @@ function catalogEntry(order, payload) {
 }
 
 async function main() {
-  const { entries: orders, paths } = await loadOrders();
+  const { entries: orders, paths, sectionalGuides } = await loadOrders();
   const args = process.argv.slice(2);
   const only = parseOnly(args);
   const metadataCacheDir = parseMetadataCache(args);
   const partitionLedgers = await loadPartitionLedgers(orders);
+  const sectionalById = new Map((sectionalGuides ?? []).map((guide) => [guide.id, guide]));
   const generatedFiles = [...partitionLedgers].flatMap(([parentId, ledger]) => {
     const parent = orders.find((order) => order.id === parentId);
     return ledger.chapters.map((_, index) => chapterFile(parent.out, index + 1));
   });
-  sourceCreditRevisions.validateOrders(orders, [...generatedFiles, 'catalog.json', RATED_GUIDE_INDEX_FILE]);
   const childParents = new Map();
+  for (const [id, guide] of sectionalById) {
+    const parent = orders.find((order) => order.id === id);
+    if (!Array.isArray(guide.parts) || !guide.parts.length) throw new Error(`${id} has no sectional parts`);
+    for (const [index] of guide.parts.entries()) {
+      childParents.set(`${id}-part-${index + 1}`, id);
+      generatedFiles.push(sectionalPartFile(parent.out, index + 1));
+    }
+  }
+  const allOrderFiles = [...orders.map((order) => order.out), ...generatedFiles];
+  if (new Set(allOrderFiles).size !== allOrderFiles.length) throw new Error('Vendor orders share an output file');
+  sourceCreditRevisions.validateOrders(orders, [...generatedFiles, 'catalog.json', RATED_GUIDE_INDEX_FILE]);
   for (const [parentId, ledger] of partitionLedgers) {
     for (const chapter of ledger.chapters) childParents.set(chapter.id, parentId);
   }
@@ -740,21 +775,23 @@ async function main() {
   const derivedPaths = new Set([join(DATA_DIR, RATED_GUIDE_INDEX_FILE)]);
   const addCatalogOutputs = (order, parsedOrder, payload, { writeChildren = true } = {}) => {
     const ledger = partitionLedgers.get(order.id);
-    if (!ledger) {
+    const sectional = sectionalById.get(order.id);
+    if (!ledger && !sectional) {
       catalogById.set(order.id, [catalogEntry(order, payload)]);
       payloadByCatalogId.set(order.id, payload);
       return;
     }
-    const family = buildChapterFamily({
+    const family = sectional ? null : buildChapterFamily({
       order,
       parsed: parsedOrder,
       parentPayload: payload,
       ledger,
       existingPathIds: paths.map((entry) => entry.id),
     });
-    families.set(order.id, family);
-    for (const child of family.children) {
-      if (writeChildren) {
+    if (family) families.set(order.id, family);
+    const children = family?.children ?? buildSectionalFamily({ order, parentPayload: payload, guide: sectional });
+    for (const child of children) {
+      if (writeChildren || sectional) {
         derivedPaths.add(join(DATA_DIR, child.order.out));
         outputs.push({
           path: join(DATA_DIR, child.order.out),
@@ -765,7 +802,7 @@ async function main() {
     }
     catalogById.set(
       order.id,
-      family.children.map((child) => catalogEntry(child.order, child.payload)),
+      children.map((child) => catalogEntry(child.order, child.payload)),
     );
   };
 
@@ -911,8 +948,15 @@ async function main() {
       ? [['contains', containsById.get(entry.id)], [key, value]]
       : [[key, value]])))
     : entry));
-  const checked = parseCatalog({ lists: catalog });
-  if (checked.dropped) throw new Error(`${checked.dropped} catalog entries are not valid; catalog.json not written`);
+  const catalogData = {
+    lists: catalog,
+    ...(sectionalGuides === undefined ? {} : {
+      sectionalGuides: sectionalGuides.map(({ id, name, year, layout, parts }) => ({
+        id, name, year, layout, parts: parts.map(({ first, last, issueIds }) => ({ first, last, issueIds })),
+      })),
+    }),
+  };
+  validateVendoredCatalog(catalogData, payloadByCatalogId);
   const outputGeneratedAt = catalogOnly
     ? catalog.reduce((latest, entry) => (
       entry.updatedAt && entry.updatedAt > latest ? entry.updatedAt : latest
@@ -932,7 +976,7 @@ async function main() {
     path: join(DATA_DIR, 'catalog.json'),
     content: `${JSON.stringify({
       generatedAt: outputGeneratedAt,
-      lists: catalog,
+      ...catalogData,
       paths: [...paths, ...generatedPaths],
     }, null, 2)}\n`,
   });

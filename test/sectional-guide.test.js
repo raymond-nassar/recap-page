@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  SECTIONAL_GUIDE_COPY, openLinkedGuide, sectionalGuideParts, sectionalGuideSteps, sectionalPartDescription,
-  sectionalPartName,
+  SECTIONAL_GUIDE_COPY, openLinkedGuide, sectionalCatalogGroups, sectionalGuideParts, sectionalGuideSteps,
+  sectionalPartDescription, sectionalPartName, sectionalReadingRows,
 } from '../src/js/lib/sectionalGuide.js';
 
 // Private authoring witness, not a shipped list: the coordinates the source owners pinned for the
@@ -30,6 +30,30 @@ const bridge = Object.freeze({
 });
 
 const layout = (change = {}) => ({ ...bridge, ...change });
+
+test('only the exact saved part order receives its source steps and cross-part return', () => {
+  const parts = bridgeParts.map(({ first, last }) => ({
+    first, last, issueIds: Array.from({ length: last - first + 1 }, (_, index) => 1000 + first + index),
+  }));
+  const lists = parts.map(({ issueIds }, index) => ({
+    id: `${bridge.guideId}-part-${index + 1}`, count: issueIds.length,
+    name: sectionalPartName('Civil War to Secret Invasion', index + 1),
+  }));
+  const group = { id: bridge.guideId, name: 'Civil War to Secret Invasion', year: 2007, layout: bridge, parts };
+  const [placement] = sectionalCatalogGroups([group], lists);
+  assert.deepEqual(placement.lists, lists);
+  assert.equal(placement.options.some(({ list }) => list.id === bridge.guideId), false);
+  assert.throws(() => sectionalCatalogGroups([group], lists.slice(0, -1)), /inconsistent part 14/);
+  const items = parts[6].issueIds.map((issueId) => ({ issueId }));
+  const seventh = placement.lists[6].sectionalPart;
+  assert.deepEqual(sectionalReadingRows(seventh, items).after
+    .filter(({ kind }) => kind === 'return-point')
+    .map(({ catalogId, localPosition }) => [catalogId, localPosition]), [
+    [`${bridge.guideId}-part-1`, 22], [`${bridge.guideId}-part-2`, 6], [`${bridge.guideId}-part-3`, 10],
+    [`${bridge.guideId}-part-3`, 31], [`${bridge.guideId}-part-6`, 9],
+  ]);
+  assert.equal(sectionalReadingRows(seventh, items.slice().reverse()), null);
+});
 
 test('the bridge keeps every source position once in order with its pauses, event link and return points', () => {
   const steps = sectionalGuideSteps(bridge);

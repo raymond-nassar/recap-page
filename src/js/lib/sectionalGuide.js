@@ -1,7 +1,6 @@
 // A sectional guide keeps a source's own order and adds pause notes, a link to an event guide and
-// return points that lead back into the same guide. It takes one guide's own positions, so a long
-// source page can be laid out as several smaller guides; no layout or catalog entry is wired here
-// until its boundaries are approved.
+// return points that lead back into the same guide. A long source page can be laid out as several
+// smaller guides without making a second copy of the source.
 
 // Owner-approved reader copy, 2026-11-24. Do not paraphrase.
 export const SECTIONAL_GUIDE_COPY = Object.freeze({
@@ -128,6 +127,10 @@ export function sectionalGuideParts(layout, parts, { protectedRanges = [] } = {}
   });
   if (expected !== layout.positionCount + 1) throw new Error('Parts must cover every source position once, in order');
   for (const range of protectedRanges) {
+    if (!Number.isInteger(range?.first) || !Number.isInteger(range?.last)
+      || range.first < 1 || range.last < range.first || range.last > layout.positionCount) {
+      throw new Error('Invalid sectional protected range');
+    }
     if (parts.some((part) => part.first > range.first && part.first <= range.last)) {
       throw new Error(`A part boundary would split ${range.label}`);
     }
@@ -151,6 +154,66 @@ export function sectionalGuideParts(layout, parts, { protectedRanges = [] } = {}
     }
   }
   return result;
+}
+
+export function sectionalCatalogGroups(groups, lists) {
+  if (groups === undefined) return [];
+  if (!Array.isArray(groups)) throw new Error('Invalid sectional guide catalog');
+  const byId = new Map(lists.map((list) => [list.id, list]));
+  const seen = new Set(byId.keys());
+  return groups.map(({ id, name, year, layout, parts }) => {
+    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id ?? '') || seen.has(id)
+      || typeof name !== 'string' || !name.trim() || !Number.isInteger(year) || year < 1939
+      || layout?.guideId !== id) {
+      throw new Error('Invalid sectional guide placement');
+    }
+    seen.add(id);
+    const derived = sectionalGuideParts(layout, parts);
+    const issues = new Set();
+    const options = derived.map(({ number, first, last, steps }) => {
+      const { issueIds } = parts[number - 1];
+      const list = byId.get(`${id}-part-${number}`);
+      if (!list || list.name !== sectionalPartName(name, number) || list.count !== last - first + 1
+        || !Array.isArray(issueIds) || issueIds.length !== list.count) {
+        throw new Error(`${id} has an incomplete or inconsistent part ${number}`);
+      }
+      for (const key of issueIds) {
+        if (!Number.isSafeInteger(key) || key === 0 || issues.has(key)) {
+          throw new Error(`${id} part ${number} has an invalid or repeated comic identity`);
+        }
+        issues.add(key);
+      }
+      list.sectionalPart = {
+        issueIds,
+        steps: steps.map((step) => step.kind === 'return-point'
+          ? { ...step, catalogId: `${id}-part-${step.part}` }
+          : step),
+      };
+      return { label: list.name, list, savedAs: [] };
+    });
+    return {
+      key: `placement:${id}`, name, year, placement: true, sectional: true,
+      options, lists: options.map(({ list }) => list),
+    };
+  });
+}
+
+// Only the exact source vector can carry its notes. A saved copy may have been rearranged or
+// shortened, in which case headings and return points must not move onto other comics.
+export function sectionalReadingRows(part, items) {
+  if (!part || items.length !== part.issueIds.length
+    || items.some((item, index) => item.issueId !== part.issueIds[index])) return null;
+  const before = new Map();
+  let pending = [];
+  for (const step of part.steps) {
+    if (step.kind !== 'position') {
+      pending.push(step);
+    } else if (pending.length) {
+      before.set(items[step.localPosition - 1].issueId, pending);
+      pending = [];
+    }
+  }
+  return { before, after: pending };
 }
 
 // Opening a linked guide never marks anything read and never leaves this guide on failure.

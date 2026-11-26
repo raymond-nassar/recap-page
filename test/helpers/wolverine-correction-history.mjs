@@ -105,15 +105,32 @@ export function beforeWolverineCorrectionOrders(orders) {
 }
 
 export function wolverineLibraryAtReview(manifest, orders, expectedDigest) {
-  const vectors = orders.map((order) => ({
-    id: order.id ?? order.orderId, issueIds: order.issueIds.map(String),
-  }));
-  const current = [manifest, descriptionRevisions.undoManifest(manifest)]
-    .some((value) => libraryDigestFor(value, vectors) === expectedDigest);
+  const matches = (projected) => {
+    const vectors = projected.map((order) => ({
+      id: order.id ?? order.orderId, issueIds: order.issueIds.map(String),
+    }));
+    return [manifest, descriptionRevisions.undoManifest(manifest)]
+      .some((value) => libraryDigestFor(value, vectors) === expectedDigest);
+  };
+  const current = (value) => value;
+  if (matches(orders)) return { manifest, orders, projectOrders: current };
+
+  // Armageddon saw the corrected series order but still saw the eighteen unresolved comics
+  // as placeholders. Only the exact reviewed digest may select that intermediate vector.
+  const beforeSuccessor = (value) => value.map((order) => {
+    if ((order.id ?? order.orderId) !== ledger.id) return order;
+    const { currentIds, successorIds } = correctionHistory();
+    const actual = JSON.stringify(order.issueIds.map(String));
+    if (actual !== JSON.stringify(successorIds)) return order;
+    return { ...order, issueIds: currentIds.map((id) =>
+      typeof order.issueIds[0] === 'string' ? id : Number(id)) };
+  });
+  const intermediate = beforeSuccessor(orders);
+  if (matches(intermediate)) return { manifest, orders: intermediate, projectOrders: beforeSuccessor };
   return {
-    manifest: current ? manifest : beforeWolverineCorrectionManifest(manifest),
-    orders: current ? orders : beforeWolverineCorrectionOrders(orders),
-    current,
+    manifest: beforeWolverineCorrectionManifest(manifest),
+    orders: beforeWolverineCorrectionOrders(orders),
+    projectOrders: beforeWolverineCorrectionOrders,
   };
 }
 

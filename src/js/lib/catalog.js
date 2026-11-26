@@ -10,6 +10,7 @@ import { coverAddress, normalizeCover } from './model.js';
 import { copyUniverseListFields, universeListProblems } from './universeSchema.js';
 import { universeDefinitions } from '../../data/universeCatalog.js';
 import { filterStoriesByLinks } from './libraryLinks.js';
+import { sectionalCatalogGroups } from './sectionalGuide.js';
 
 export const LIST_TYPES = ['event', 'character-run', 'creator-run', 'era', 'screen-companion'];
 export const READING_DEPTHS = ['essential', 'complete', 'partial', 'tie-ins', 'selected'];
@@ -338,7 +339,11 @@ export function parseCatalog(raw) {
   // Paths are passed through unvalidated because `pathPlacements` resolves them against the lists
   // that survived, and a path naming an entry this function just dropped is one it will skip. The
   // manifest is where a path is checked; by the time it is in the generated catalog it has been.
-  return { lists: sortCatalog(lists), paths: Array.isArray(raw?.paths) ? raw.paths : [], dropped };
+  const sectionalGroups = sectionalCatalogGroups(raw?.sectionalGuides, lists);
+  return {
+    lists: sortCatalog(lists), paths: Array.isArray(raw?.paths) ? raw.paths : [], dropped,
+    ...(sectionalGroups.length ? { sectionalGroups } : {}),
+  };
 }
 
 // These are the same two gaps import describes after the order is saved, shortened to fit beside
@@ -1007,6 +1012,7 @@ export function isModernTimelineChapterId(id) {
 }
 
 const isModernTimelineList = (list) => list?.type === 'event'
+  && !list.sectionalPart
   && list.id !== HELLS_ANGEL_ID
   && Number.isInteger(list.timeline)
   && (

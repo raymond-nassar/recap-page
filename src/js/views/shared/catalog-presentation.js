@@ -21,6 +21,7 @@ export function createCatalogPresentation({
   onAdd,
   onOpen,
   onPreview,
+  onFollowSectional,
   onUniverse,
   paintCoverUrl,
   resolver = universeResolver,
@@ -229,34 +230,47 @@ export function createCatalogPresentation({
   } = {}) {
     const reportTarget = report ?? `#${surface}-report`;
     const year = storyYear(story);
+    const options = el('ul', { class: 'placement-options' }, story.options.map((option) => {
+      const { list } = option;
+      const destination = story.sectional ? {
+        href: formatRoute({ view: 'new-to-comics', previewId: list.id }),
+        onclick: (event) => {
+          if (!isPlainNavigation(event)) return;
+          event.preventDefault();
+          onFollowSectional(list.id, event.currentTarget);
+        },
+      } : {
+        type: 'button', onclick: () => onPreview(savedReading(list, option.savedAs).list),
+      };
+      return el('li', { class: 'placement-option', dataset: { key: list.id } }, [
+        el('div', { class: 'placement-option-text' }, [
+          el(story.sectional ? 'a' : 'button', {
+            class: 'catalog-card-preview placement-option-title',
+            'aria-label': shownName([option.label], `Preview ${list.name}`),
+            dataset: {
+              key: `${story.key}:${list.id}`, act: 'preview', ...(story.sectional ? { sectionalOpener: '' } : {}),
+            },
+            ...destination,
+          }, el('span', { text: option.label })),
+          el('p', { class: 'catalog-card-meta', text: catalogMeta(list) }),
+          ...(story.sectional && list.description
+            ? [el('p', { class: 'catalog-card-desc', text: list.description })] : []),
+          ...(linkText ? [el('p', {
+            class: 'catalog-card-links', text: linkText({ ...story, lists: [list] }),
+          })] : []),
+        ]),
+        el('div', { class: 'catalog-card-actions' }, primaryButton(list, reportTarget, { savedAs: option.savedAs })),
+      ]);
+    }));
+    const chooser = story.sectional ? [el('details', {}, [
+      el('summary', {}, [el(level, { class: 'catalog-card-title', text: story.name })]),
+      options,
+    ])] : [el(level, { class: 'catalog-card-title', text: story.name }), options];
     return el('article', {
       class: 'catalog-card placement-card',
       dataset: { story: story.stopKey ?? story.key, placement: story.key, year: year ?? '' },
     }, [
-      el('div', { class: 'catalog-card-text' }, [
-        el(level, { class: 'catalog-card-title', text: story.name }),
-        el('ul', { class: 'placement-options' }, story.options.map((option) => el('li', {
-          class: 'placement-option',
-          dataset: { key: option.list.id },
-        }, [
-          el('div', { class: 'placement-option-text' }, [
-            el('button', {
-              class: 'catalog-card-preview placement-option-title',
-              type: 'button',
-              'aria-label': shownName([option.label], `Preview ${option.list.name}`),
-              dataset: { key: `${story.key}:${option.list.id}`, act: 'preview' },
-              onclick: () => onPreview(savedReading(option.list, option.savedAs).list),
-            }, el('span', { text: option.label })),
-            el('p', { class: 'catalog-card-meta', text: catalogMeta(option.list) }),
-            ...(linkText ? [el('p', {
-              class: 'catalog-card-links',
-              text: linkText({ ...story, lists: [option.list] }),
-            })] : []),
-          ]),
-          el('div', { class: 'catalog-card-actions' },
-            primaryButton(option.list, reportTarget, { savedAs: option.savedAs })),
-        ]))),
-      ]),
+      el('div', { class: 'catalog-card-text' }, chooser),
     ]);
   }
 
