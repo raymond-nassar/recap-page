@@ -859,10 +859,11 @@
           <section id="view-catalog" class="view" hidden aria-labelledby="catalog-h">
             <div class="head"><div class="head-left"><h1 id="catalog-h">Modern Timeline</h1></div></div>
             <div id="catalog-report" class="report"></div>
+            <div class="timeline-sections" id="catalog-sections" hidden></div>
             <div class="timeline-follow" id="catalog-follow" hidden>
-              <label for="catalog-path">Follow a path</label>
-              <select id="catalog-path"></select>
-              <details class="field-disclosure action-disclosure timeline-follow-about" id="catalog-path-about" hidden>
+              <p class="timeline-follow-name" id="catalog-path-name"></p>
+              <button type="button" class="btn btn-g" id="catalog-path-whole">Show full timeline</button>
+              <details class="field-disclosure action-disclosure timeline-follow-about" id="catalog-path-about">
                 <summary>About this path</summary>
                 <p id="catalog-path-description"></p>
                 <p class="rail-hint" id="catalog-path-source"></p>

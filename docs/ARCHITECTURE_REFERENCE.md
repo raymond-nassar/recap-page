@@ -9,7 +9,7 @@ source can be reviewed alongside the prose.
 ## The three entry points
 
 The desktop source has three pages at one origin, each loading one module: the tracker at
-`src/index.html:1769`, the reader launch tab at `src/open.html:24`, and the development-only fault
+`src/index.html:1770`, the reader launch tab at `src/open.html:24`, and the development-only fault
 harness at `src/dev-faults.html:137`.
 
 The tracker entry calls `boot()`, then wires optional installation and the Store app's question
@@ -1051,7 +1051,7 @@ architecture and must rewrite the relevant section rather than merely re-aim its
 Reading Paths add no second content or persistence model. Build-time authoring emits path
 descriptions and ordered Reading List ids into `catalog.json`; the browser treats the paths in that
 parsed generated catalog as the complete authority. `resolveReadingPaths()` resolves every path
-independently against the same catalog stories at `src/js/lib/catalog.js:1759-1812`, including paths
+independently against the same catalog stories at `src/js/lib/catalog.js:1910-1963`, including paths
 emitted from a partition ledger rather than declared in the ordinary curated manifest, at
 `scripts/lib/chapter-orders.mjs:406-416`.
 
@@ -1061,36 +1061,38 @@ The aggregate resolver keeps each path's own ordinal and neighbors, so a story s
 paths remains a separate stop in each sequence.
 
 Modern Timeline follows a path rather than a page of its own, since #897 retired the Reading paths
-page. Its follow control lists the resolved paths; choosing one narrows the Timeline to that path's
-stops in the path's own order, each led by the reading the path names, at
-`src/js/views/catalog.js:101-113`. The controller gives the catalog view the control's elements and
-its history effects rather than those concrete owners, at `src/js/main.js:4609-4615` and
-`src/js/main.js:4636-4637`. The followed id lives only in the validated `path` query of the
+page. Since #1603 the whole Timeline offers no path chooser: a path is followed by its address or by
+a return from one of its stops, and following one narrows the Timeline to that path's stops in the
+path's own order, each led by the reading the path names, at
+`src/js/views/catalog.js:105-117`. The controller gives the catalog view the control's elements and
+its history effects rather than those concrete owners, at `src/js/main.js:4609-4617` and
+`src/js/main.js:4638-4639`. The followed id lives only in the validated `path` query of the
 Timeline's hash route, not in saved reader state, at `src/js/lib/route.js:339-341`. The retired
 page's addresses parse to the Timeline following the path they name, with the first path as the
 page's own fallback, at `src/js/lib/route.js:395-401`.
 
 The catalog view owns the followed path with the rest of its narrowing, under the async generation
-that rejects stale or hidden continuations at `src/js/views/catalog.js:422-425`. It lets a path that
+that rejects stale or hidden continuations at `src/js/views/catalog.js:445-448`. It lets a path that
 no longer resolves go, follows the first path for a retired address naming none, and asks the
-controller to canonically replace that route at `src/js/views/catalog.js:466-480`. A deliberate
-choice instead asks the controller to push history, at `src/js/views/catalog.js:716-726`.
+controller to canonically replace that route at `src/js/views/catalog.js:491-505`. Choosing **Show
+the whole timeline** instead lets the path and its narrowing go and asks the controller to push
+history, at `src/js/views/catalog.js:763-778`.
 
 Progress is a projection of reader state and completion onto each stop, by the Timeline's own rule:
 a stop is finished when the saved copy it is counted by is marked completed or read in full, so
 unread or deferred comics never finish one. Each stop is counted and drawn by the imported list
 whose catalog id exactly matches the stop, then the first imported sibling in catalog order, then
-the reading the path names, at `src/js/views/catalog.js:43-57` and `src/js/views/catalog.js:77-99`. The
+the reading the path names, at `src/js/views/catalog.js:47-61` and `src/js/views/catalog.js:81-103`. The
 place and the path's own progress are repainted in place by the Timeline's position-only refresh,
-which every Store-driven render calls at `src/js/main.js:3592`, preserving the selector, the stops
+which every Store-driven render calls at `src/js/main.js:3592`, preserving the way back, the stops
 and their DOM identities.
 
 Each stop is the Timeline's own card, with its Preview and its Add or Open. A followed path keeps the
 retired page's jump, to any stop by name or to **Next unfinished stop**, which is the stop marked
-**You are here**, at `src/js/views/catalog.js:383-407`; a jump opens, saves and marks nothing.
+**You are here**, at `src/js/views/catalog.js:406-430`; a jump opens, saves and marks nothing.
 Opening or previewing a stop records the path and that control in the current history entry, after
 any selection has settled, while its source address is retained, at `src/js/main.js:4349-4368`. After Back renders that path,
-focus returns to the control and brings it into view at `src/js/views/catalog.js:409-420`; there is
+focus returns to the control and brings it into view at `src/js/views/catalog.js:432-443`; there is
 no scroll position in saved reading data. Shared history-entry positions yield to this explicit
 opener so the focused control remains in view.
 
@@ -1098,7 +1100,7 @@ Catalog shelves, Preview and generated publishing pages share one constructed pr
 contract for individually titled cards, exact-list inspection and source attribution.
 That internal module imports neither the controller nor another concrete view; the controller injects
 navigation, imports, Store effects and publishing-page orchestration at
-`src/js/main.js:4370-4733`.
+`src/js/main.js:4370-4735`.
 
 Closing an unchanged Preview leaves its source cards and focus intact. A changed library refreshes
 the source, including an Add that finishes after dismissal. Each refresh belongs to its specific
@@ -1109,7 +1111,7 @@ rendering and focus work.
 
 Modern Timeline stores no cursor. Its catalog view builds one first-match index from the saved
 Reading Lists' catalog identities, walks the canonical unfiltered story order and stops at the first
-representative list that is absent or neither explicitly completed nor wholly read, at `src/js/views/catalog.js:32-74`. Grouped
+representative list that is absent or neither explicitly completed nor wholly read, at `src/js/views/catalog.js:36-78`. Grouped
 stories retain their shallowest-owned representative for logical stop completion, but each
 alternative has its own card and the marker belongs to that specific list. A catalog with a
 dropped entry reports the position as unavailable because the parser no longer has enough identity
@@ -1117,15 +1119,15 @@ or order information to place that gap.
 
 Filtering changes only the visible list keys. The view retains canonical stories and visible keys
 from the current successful render, derives position from live Store state, and rejects marker
-refresh while a newer catalog render is pending, at `src/js/views/catalog.js:213-270`. A hidden
+refresh while a newer catalog render is pending, at `src/js/views/catalog.js:217-275`. A hidden
 current story is named rather than replaced, full completion sits after the unfiltered spine, and
 filtered completion is stated before the narrowed results.
 
 The shared presentation contract removes the previous positional state and paints exactly one
 current label, hidden message, completion state or unavailable message at
-`src/js/views/shared/catalog-presentation.js:303-367`. Only the visible current list receives
+`src/js/views/shared/catalog-presentation.js:316-381`. Only the visible current list receives
 `aria-current="step"`. The controller injects live state and current-view knowledge at
-`src/js/main.js:4594-4638`, while the existing Store-driven render path calls the position-only
+`src/js/main.js:4594-4640`, while the existing Store-driven render path calls the position-only
 refresh at `src/js/main.js:3581-3610`. That refresh leaves cards, controls, focus and scroll
 intact across same-tab and cross-tab state changes.
 

@@ -12,21 +12,29 @@ import { curatedLedgerDigestFor, curatedRelationshipReportDigestFor } from '../s
 import { validateApprovalDigest } from '../scripts/lib/cbh-inventory.mjs';
 
 import {
+  MODERN_TIMELINE_CHECKPOINTS,
+  MODERN_TIMELINE_FAMILY_ERAS,
   MODERN_TIMELINE_FEATURED_ID,
   MODERN_TIMELINE_FEATURED_ROUTES,
   MODERN_TIMELINE_CHAPTER_COUNT,
   MODERN_TIMELINE_CONTINUATION_YEAR,
   MODERN_TIMELINE_START_YEAR,
+  catalogEntries,
   eraSections,
   groupCatalog,
+  modernTimelineEventBadge,
   modernTimelineFeaturedList,
   modernTimelineFeaturedCard,
   modernTimelineLists,
+  modernTimelinePlacements,
   modernTimelineStories,
   parseCatalog,
   publishingCategoryStories,
   isModernTimelineChapterId,
   shelfLists,
+  timelineCheckpointTargets,
+  timelineFamilyEraStops,
+  timelineDrawOrder,
 } from '../src/js/lib/catalog.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -402,4 +410,122 @@ test('Modern Timeline position keeps visible semantics and joins the Store rende
   assert.match(renderAll, /catalogView\.refreshProgress\(\)/);
   assert.match(mainSource, /getState: \(\) => store\.state/);
   assert.match(mainSource, /isCurrent: \(key\) => view === key/);
+});
+
+// #1603. The whole timeline as the view draws it: every stop, Secret Wars (2015) as its one card, and
+// the 2007 bridge as its own chooser rather than fourteen loose parts.
+function wholeTimeline() {
+  const mine = modernTimelineLists(catalog.lists);
+  const stopIds = new Set(mine.map((entry) => entry.id));
+  const placements = [...modernTimelinePlacements(catalog.lists), ...(catalog.sectionalGroups ?? [])];
+  const placed = new Set(placements.flatMap((placement) => placement.options
+    .filter((option) => stopIds.has(option.list.id)).map((option) => option.list.id)));
+  return timelineDrawOrder(eraSections([
+    ...catalogEntries(mine).filter((entry) => !entry.lists.some((item) => placed.has(item.id))),
+    ...placements.map((placement) => ({ ...placement, lists: placement.options.map((option) => option.list) })),
+  ]));
+}
+const readingIds = (entry) => [entry.key, ...entry.lists.map((item) => item.id)];
+
+test('Jump to a section offers every CBH period in source order, each at its own stop on the timeline', () => {
+  const whole = wholeTimeline();
+  const targets = timelineCheckpointTargets(whole, whole);
+  assert.deepEqual(targets.map((target) => [target.name, target.year]), [
+    ['Marvel Knights to Planet X', 1998], ['Avengers Disassembled', 2004], ['Civil War', 2006],
+    ['The Initiative', 2007], ['Secret Invasion', 2008], ['Dark Reign', 2008], ['The Heroic Age', 2010],
+    ['Marvel NOW!', 2012], ['All-New, All-Different Marvel', 2016], ['Marvel NOW! 2.0', 2016],
+    ['Marvel Legacy', 2018], ['Fresh Start', 2018],
+  ]);
+  assert.equal(targets.length, MODERN_TIMELINE_CHECKPOINTS.length, 'every period start is on the timeline');
+  const rank = (key) => whole.findIndex((entry) => entry.key === key);
+  const ranks = targets.map((target) => rank(target.before));
+  assert.ok(ranks.every((value, index) => value >= 0 && (index === 0 || value > ranks[index - 1])),
+    'each marker is a distinct real stop, later than the one before it');
+  for (const target of targets) {
+    const entry = whole[rank(target.before)];
+    assert.ok(readingIds(entry).includes(target.start), `${target.name} starts at ${target.start}`);
+    assert.equal(Number(entry.year ?? entry.lists[0].timeline), target.year, `${target.name} is drawn in its year`);
+  }
+  const dark = targets.find((target) => target.key === 'dark-reign');
+  assert.ok(!readingIds(whole[rank(dark.before)]).includes('siege-dark-reign-prelude'), 'Siege is never called Dark Reign');
+  const initiative = targets.find((target) => target.key === 'the-initiative');
+  const bridge = rank('placement:civil-war-to-secret-invasion');
+  assert.ok(bridge > rank(initiative.before) && bridge < rank(targets.find((t) => t.key === 'secret-invasion').before),
+    'the 2007 bridge reads inside The Initiative');
+  const fresh = rank(targets.at(-1).before);
+  assert.ok(whole.slice(fresh).some((entry) => Number(entry.lists[0].timeline) >= 2025),
+    'the timeline carries on past Fresh Start');
+});
+
+test('a search or filter moves a period\'s marker within it, or drops only that period', () => {
+  const at = (key, year) => ({ key, year, lists: [{ id: key, timeline: year }] });
+  const order = [at('a', 2007), at('b', 2007), at('c', 2008), at('d', 2008), at('e', 2008), at('f', 2025)];
+  const checkpoints = [
+    { key: 'one', name: 'One', year: 2007, start: 'a' },
+    { key: 'two', name: 'Two', year: 2008, start: 'c' },
+    { key: 'three', name: 'Three', year: 2008, start: 'e' },
+  ];
+  const keys = (drawn) => timelineCheckpointTargets(order, drawn, checkpoints).map((t) => [t.key, t.before]);
+  assert.deepEqual(keys(order), [['one', 'a'], ['two', 'c'], ['three', 'e']]);
+  assert.deepEqual(keys([order[1], order[3], order[5]]), [['one', 'b'], ['two', 'd']],
+    'a marker moves to the next stop in its period, and an emptied period is left out');
+  assert.deepEqual(keys([order[5]]), [], 'a stop past the last period never takes its marker');
+  assert.deepEqual(timelineCheckpointTargets(order, order, [
+    checkpoints[0], { ...checkpoints[1], start: 'missing' }, checkpoints[2],
+  ]).map((t) => [t.key, t.before]), [['one', 'a'], ['three', 'e']], 'a period missing its start is no dead jump');
+});
+
+test('the two family eras are stops in the whole timeline, never jumps, and claim no event around them', () => {
+  const whole = wholeTimeline();
+  const eras = timelineFamilyEraStops(whole);
+  assert.deepEqual(eras.map((era) => [era.name, era.year, era.after]), [
+    ['Reign of X', 2020, 'list:king-in-black'],
+    ['X-Men: Fall of X', 2023, null],
+  ], 'Reign of X follows King in Black as the source lists it, and Fall of X leads 2023 after Sins of Sinister');
+  const menu = new Set(MODERN_TIMELINE_CHECKPOINTS.flatMap((checkpoint) => [checkpoint.key, checkpoint.name]));
+  assert.ok(MODERN_TIMELINE_FAMILY_ERAS.every((era) => !menu.has(era.key) && !menu.has(era.name)),
+    'neither era is a jump destination');
+  const ids = new Set(catalog.lists.map((entry) => entry.id));
+  assert.ok(MODERN_TIMELINE_FAMILY_ERAS.every((era) => !ids.has(era.key)), 'neither era is a catalog id');
+  assert.equal(whole.find((entry) => readingIds(entry).includes('fall-house-x-rise-powers-x'))?.lists[0].name,
+    'Fall of the House of X & Rise of the Powers of X', 'the 2024 finale keeps its own name');
+  assert.deepEqual(timelineFamilyEraStops(whole, { narrowed: true }), [], 'a search or filter draws no era');
+  assert.deepEqual(timelineFamilyEraStops(whole.filter((entry) => !readingIds(entry).includes('king-in-black')))
+    .map((era) => era.key), ['fall-of-x'], 'an era whose source neighbour is gone is dropped, not guessed at');
+});
+
+test('a family era draws as a named stop with no control, and the readings beside it stay cards', () => {
+  const eraBlock = catalogPresentationSource.slice(
+    catalogPresentationSource.indexOf('const eraStop = (era) =>'),
+    catalogPresentationSource.indexOf('for (const section of sections)'),
+  );
+  assert.match(eraBlock, /class: 'timeline-family-era'/);
+  assert.doesNotMatch(eraBlock, /era\.period|timeline-family-era-period/, 'periods stay in provenance, not visible copy');
+  assert.doesNotMatch(eraBlock, /button|tabindex|catalog-card|href/, 'nothing in an era can be added, opened or focused');
+  assert.match(styles, /\.timeline-family-era \{[^}]*dashed/);
+});
+
+test('an event carries its scale once, on its own card, and ordinary stops carry nothing', () => {
+  const whole = wholeTimeline();
+  const badgeOf = (id) => modernTimelineEventBadge(whole.find((entry) => readingIds(entry).includes(id)));
+  assert.deepEqual(badgeOf('civil-war'), { kind: 'major', label: 'Major event' });
+  assert.deepEqual(badgeOf('placement:secret-wars-2015'), { kind: 'major', label: 'Major event' });
+  assert.deepEqual(badgeOf('siege-dark-reign-prelude'), { kind: 'major', label: 'Major event' });
+  assert.deepEqual(badgeOf('x-of-swords'), { kind: 'family', label: 'X-Men event' });
+  assert.deepEqual(badgeOf('spider-verse'), { kind: 'family', label: 'Spider-Man event' });
+  assert.deepEqual(badgeOf('chaos-war'), { kind: 'major', label: 'Major event' });
+  assert.deepEqual(badgeOf('monsters-unleashed'), { kind: 'major', label: 'Major event' });
+  for (const id of ['war-of-kings', 'realm-of-kings']) {
+    assert.equal(badgeOf(id), null, `${id} crosses several families, so a setting is not its family`);
+  }
+  assert.equal(badgeOf('placement:civil-war-to-secret-invasion'), null, 'the bridge is a transition, not an event');
+  assert.equal(badgeOf('marvel-knights-to-planet-x-01'), null, 'an ordinary run is not an event');
+  const placement = whole.find((entry) => entry.key === 'placement:secret-wars-2015');
+  for (const option of placement.options) {
+    assert.equal(modernTimelineEventBadge({ key: `list:${option.list.id}`, lists: [option.list] }), null,
+      `${option.list.id} is a reading option, not the event`);
+  }
+  const labels = new Set(whole.map(modernTimelineEventBadge).filter(Boolean).map((badge) => badge.label));
+  assert.ok(!labels.has('Family event'));
+  assert.ok([...labels].every((label) => label === 'Major event' || / event$/.test(label)));
 });

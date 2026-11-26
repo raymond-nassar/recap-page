@@ -127,7 +127,7 @@ test('framed text never includes offscreen lines of a partly visible text node',
   assert.equal(result.includes('Visible title'), true);
   assert.equal(result.includes('only to your own OneDrive'), false);
   assert.deepEqual(SCREENSHOTS.find(({ file }) => file === '03-reading-paths.png').text,
-    ['Modern Timeline', 'Follow a path', 'Stop 1 of 10', 'Essential Avengers']);
+    ['Modern Timeline', 'Show full timeline', 'Stop 1 of 10', 'Essential Avengers']);
 });
 
 test('only the desktop and Play Home captures dismiss the December 7 notice before framing', async () => {

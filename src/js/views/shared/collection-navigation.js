@@ -1,5 +1,7 @@
 export function createCollectionNavigation({
   el, id, label, entries, isCurrent, getTarget, getNext,
+  choose = 'Choose a stop or Reading List to jump to.',
+  missing = 'That stop or Reading List is no longer available.',
 }) {
   const choices = new Map(entries.map((entry, index) => [`entry:${entry.id}`, { ...entry, index }]));
   const select = el('select', {
@@ -14,7 +16,7 @@ export function createCollectionNavigation({
     })),
   ]);
   const status = el('p', { id: `${id}-status`, role: 'status', class: 'rail-hint' });
-  const unavailable = () => { status.textContent = 'That stop or Reading List is no longer available.'; };
+  const unavailable = () => { status.textContent = missing; };
   return el('form', {
     class: 'collection-navigation',
     onsubmit: (event) => {
@@ -22,7 +24,7 @@ export function createCollectionNavigation({
       if (!isCurrent()) return;
       const value = select.value;
       if (!value) {
-        status.textContent = 'Choose a stop or Reading List to jump to.';
+        status.textContent = choose;
         return;
       }
       let entry;

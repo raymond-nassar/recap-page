@@ -479,6 +479,7 @@ function keptNode(tag, props = {}, children = []) {
     value: props.value ?? '',
     addEventListener(name, listener) { this.listeners[name] = listener; },
     append(...more) { this.children.push(...more); },
+    querySelector() { return null; },
     querySelectorAll() { return []; },
     replaceChildren(...next) { this.children = next; },
   };
@@ -508,8 +509,10 @@ function followHarness(catalog = followCatalog(['essential', 'event-6', 'event-1
   };
   const follow = {
     wrap: keptNode('div', { hidden: true }),
-    select: keptNode('select'),
-    about: keptNode('details', { hidden: true }),
+    sections: keptNode('div', { hidden: true }),
+    name: keptNode('p'),
+    whole: keptNode('button'),
+    about: keptNode('details'),
     description: keptNode('p'),
     source: keptNode('p'),
   };
@@ -576,17 +579,15 @@ function followHarness(catalog = followCatalog(['essential', 'event-6', 'event-1
 test('following a path shows every stop in the path\'s own order, a stop the Timeline never shows included', async () => {
   const h = followHarness();
   await h.view.render('catalog');
-  assert.equal(h.follow.wrap.hidden, false);
-  assert.deepEqual(h.follow.select.children.map((option) => [option.value, option.text]), [
-    ['', 'Whole timeline'], ['avengers', 'Avengers path (3 stops)'], ['long', 'Long path (14 stops)'],
-  ]);
+  assert.equal(h.follow.wrap.hidden, true, 'the whole timeline offers no path to choose (#1603)');
   assert.equal(h.calls.timelines, 1);
   assert.deepEqual(h.stops(), []);
 
   h.view.setFollowedPath('avengers');
   await h.view.render('catalog');
-  assert.equal(h.follow.select.value, 'avengers');
-  assert.equal(h.follow.about.hidden, false);
+  assert.equal(h.follow.wrap.hidden, false);
+  assert.equal(h.follow.name.textContent, 'Avengers path');
+  assert.equal(h.follow.sections.hidden, true, 'a followed path has its own jump, not the sections');
   assert.equal(h.follow.description.textContent, 'Three stops.');
   assert.equal(h.follow.source.textContent, 'Source: Compiled for a test.');
   assert.equal(h.calls.timelines, 1, 'a followed path is not drawn as era and year rows');
@@ -643,7 +644,7 @@ test('search and filters narrow within a long path and keep its numbering', asyn
   assert.equal(h.paints.at(-1)[2].narrowed, true);
 });
 
-test('choosing another path lets the old narrowing go, and choosing none restores the whole timeline', async () => {
+test('Show full timeline lets the path and its narrowing go, and an address can still name another path', async () => {
   const h = followHarness();
   h.view.setFollowedPath('long');
   await h.view.render('catalog');
@@ -651,24 +652,46 @@ test('choosing another path lets the old narrowing go, and choosing none restore
   h.nodes.query.listeners.input();
   await new Promise((resolve) => setImmediate(resolve));
 
-  h.follow.select.value = 'avengers';
-  h.follow.select.listeners.change();
-  await new Promise((resolve) => setImmediate(resolve));
+  h.view.setFollowedPath('avengers');
+  await h.view.render('catalog');
   assert.equal(h.view.followedPath(), 'avengers');
-  assert.equal(h.nodes.query.value, '');
-  assert.equal(h.calls.changes, 1, 'the address records the choice');
-  assert.equal(h.stops().length, 3);
+  assert.equal(h.follow.name.textContent, 'Avengers path');
 
   const timelines = h.calls.timelines;
-  h.follow.select.value = '';
-  h.follow.select.listeners.change();
-  await new Promise((resolve) => setImmediate(resolve));
+  await h.follow.whole.listeners.click();
   assert.equal(h.view.followedPath(), null);
-  assert.equal(h.calls.changes, 2);
+  assert.equal(h.nodes.query.value, '');
+  assert.equal(h.calls.changes, 1, 'the address records the whole timeline');
   assert.equal(h.calls.timelines, timelines + 1);
   assert.deepEqual(h.stops(), []);
-  assert.equal(h.follow.about.hidden, true);
+  assert.equal(h.follow.wrap.hidden, true);
   assert.equal(h.paints.at(-1)[2].progress, undefined, 'the whole timeline keeps its own count');
+});
+
+test('Clear filters reveals and focuses a followed path stop without leaving the path or changing progress', async () => {
+  const h = followHarness();
+  h.view.setFollowedPath('long');
+  const saved = savedState();
+  h.setState(saved);
+  const before = JSON.stringify(saved);
+  await h.view.render('catalog');
+  h.nodes.query.value = 'Event 1';
+  h.nodes.query.listeners.input();
+  await new Promise((resolve) => setImmediate(resolve));
+  const [, position, options] = h.paints.at(-1);
+  assert.equal(position.storyKey, 'list:essential');
+  assert.equal(options.visibleStoryKeys.has(position.storyKey), false);
+  assert.equal(options.showFullLabel, 'Clear filters');
+  h.nodes.results.querySelector = (selector) => selector.includes('[aria-current="step"]')
+    ? { focus: () => h.calls.focused.push('current-preview') } : null;
+  options.showFull();
+  await new Promise((resolve) => setImmediate(resolve));
+  assert.equal(h.nodes.query.value, '');
+  assert.equal(h.view.followedPath(), 'long');
+  assert.equal(h.calls.changes, 0, 'clearing filters does not request a route change');
+  assert.equal(h.paints.at(-1)[2].visibleStoryKeys.has('list:essential'), true);
+  assert.deepEqual(h.calls.focused, ['current-preview']);
+  assert.equal(JSON.stringify(saved), before);
 });
 
 test('a path that no longer resolves is let go and the address corrected, rather than drawn empty', async () => {
@@ -751,9 +774,8 @@ test('a followed path keeps its page\'s jump, to any stop or to the stop marked 
   assert.equal(jump.go('next-unfinished'), 'All displayed stops are complete.');
 
   const focused = h.calls.focused.length;
-  h.follow.select.value = 'long';
-  h.follow.select.listeners.change();
-  await settle();
+  h.view.setFollowedPath('long');
+  await h.view.render('catalog');
   jump.go('entry:event-6');
   assert.equal(h.calls.focused.length, focused, 'a jump left behind by another path moves nothing');
   assert.equal(jumpOf(h).options.length, 16, 'the new path has its own jump');

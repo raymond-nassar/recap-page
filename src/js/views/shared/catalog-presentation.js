@@ -173,6 +173,7 @@ export function createCatalogPresentation({
     titleId = null,
     linkText = null,
     previewHref = null,
+    badge = null,
   } = {}) {
     const reportTarget = report ?? `#${surface}-report`;
     const list = story.lists[0];
@@ -202,6 +203,7 @@ export function createCatalogPresentation({
         el('div', { class: 'ocard-art' }, [img, fallback]),
         el('div', { class: 'catalog-card-text' }, [
           el(level, { class: 'catalog-card-title' }, preview),
+          eventBadge(badge),
           desc ? el('p', { class: 'catalog-card-desc', text: desc }) : el('p', { class: 'catalog-card-desc', hidden: true }),
           el('p', {
             class: 'catalog-card-meta',
@@ -220,6 +222,15 @@ export function createCatalogPresentation({
     ]);
   }
 
+  // The event's own card carries its scale once, in words beside the title, so neither the outline
+  // nor its colour is the only signal. Readings, bridges and tie-ins inside it carry none.
+  function eventBadge(badge) {
+    if (!badge?.label) return null;
+    return el('p', { class: 'catalog-card-badges' }, [
+      el('span', { class: `badge event-badge event-badge-${badge.kind}`, text: badge.label }),
+    ]);
+  }
+
   // One timeline stop with several readings (owner decision, 2026-11-24): each reading keeps its own
   // Preview and its own Open or Add, so choosing one never adds or changes another. The heading is
   // plain text because no single list stands behind it.
@@ -228,6 +239,7 @@ export function createCatalogPresentation({
     report = null,
     level = 'h3',
     linkText = null,
+    badge = null,
   } = {}) {
     const reportTarget = report ?? `#${surface}-report`;
     const year = storyYear(story);
@@ -265,8 +277,9 @@ export function createCatalogPresentation({
     }));
     const chooser = story.sectional ? [el('details', {}, [
       el('summary', {}, [el(level, { class: 'catalog-card-title', text: story.name })]),
+      eventBadge(badge),
       options,
-    ])] : [el(level, { class: 'catalog-card-title', text: story.name }), options];
+    ])] : [el(level, { class: 'catalog-card-title', text: story.name }), eventBadge(badge), options];
     return el('article', {
       class: 'catalog-card placement-card',
       dataset: { story: story.stopKey ?? story.key, placement: story.key, year: year ?? '' },
@@ -305,6 +318,7 @@ export function createCatalogPresentation({
     narrowed = false,
     progress = null,
     showFull = null,
+    showFullLabel = 'Show full timeline',
     visibleStoryKeys = new Set(),
   } = {}) {
     if (!root || !position) return;
@@ -334,7 +348,7 @@ export function createCatalogPresentation({
             type: 'button',
             class: 'btn btn-g timeline-position-show-full',
             dataset: { timelinePosition: 'show-full' },
-            text: 'Show full timeline',
+            text: showFullLabel,
             onclick: showFull,
           }));
         }
@@ -399,8 +413,26 @@ export function createCatalogPresentation({
     cardLevel = 'h4',
     undatedCardLevel = 'h3',
     cardOptions = {},
+    checkpoints = null,
+    badgeFor = null,
+    familyEras = [],
   }) {
     const flow = el('div', { class: 'timeline-flow' });
+    const erasAfter = new Map();
+    const erasLeading = new Map();
+    for (const era of Array.isArray(familyEras) ? familyEras : []) {
+      const into = era.after === null ? erasLeading : erasAfter;
+      const at = era.after === null ? era.year : era.after;
+      if (!into.has(at)) into.set(at, []);
+      into.get(at).push(era);
+    }
+    // A family era has nothing to add or open, and does not classify the readings beside it.
+    const eraStop = (era) => el('div', {
+      class: 'timeline-family-era',
+      id: `${idPrefix}-family-era-${era.key}`,
+    }, [
+      el(cardLevel, { class: 'timeline-family-era-name', text: era.name }),
+    ]);
     let previousYear = null;
     for (const section of sections) {
       const byYear = new Map();
@@ -440,12 +472,33 @@ export function createCatalogPresentation({
           continue;
         }
         const yearId = `${idPrefix}-year-${year}`;
-        const grid = el('div', { class: 'catalog-grid timeline-year-cards' });
+        const grids = [el('div', { class: 'catalog-grid timeline-year-cards' })];
+        let gridFilled = false;
+        for (const era of erasLeading.get(year) ?? []) {
+          grids[0].append(eraStop(era));
+          gridFilled = true;
+        }
         for (const story of yearStories) {
-          grid.append((story.placement ? placementCard : catalogCard)(story, {
+          // A period that starts inside a year closes the grid and opens a new one under its own
+          // heading, because the grid's equal row heights would stretch a spanning heading to a card.
+          const checkpoint = checkpoints?.get(story.key);
+          if (checkpoint) {
+            const marker = el(cardLevel, {
+              id: `${idPrefix}-section-${checkpoint.key}`,
+              class: 'timeline-checkpoint',
+              tabindex: '-1',
+              text: checkpoint.name,
+            });
+            if (!gridFilled) grids.pop();
+            grids.push(marker, el('div', { class: 'catalog-grid timeline-year-cards' }));
+          }
+          gridFilled = true;
+          grids[grids.length - 1].append((story.placement ? placementCard : catalogCard)(story, {
             ...cardOptions,
             level: cardLevel,
+            badge: badgeFor?.(story) ?? null,
           }));
+          for (const era of erasAfter.get(story.key) ?? []) grids[grids.length - 1].append(eraStop(era));
         }
         yearList.append(el('section', {
           class: 'timeline-year-row',
@@ -454,7 +507,7 @@ export function createCatalogPresentation({
           el('div', { class: 'timeline-year-marker' }, [
             el(yearLevel, { id: yearId, class: 'timeline-year-label', text: `${year}` }),
           ]),
-          grid,
+          grids.length === 1 ? grids[0] : el('div', { class: 'timeline-year-body' }, grids),
         ]));
       }
       if (!years.length) {

@@ -4608,7 +4608,9 @@ const catalogView = createCatalogView({
     spotlightSorts: () => document.querySelectorAll('input[name="spotlights-sort"]'),
     follow: () => ({
       wrap: $('#catalog-follow'),
-      select: $('#catalog-path'),
+      sections: $('#catalog-sections'),
+      name: $('#catalog-path-name'),
+      whole: $('#catalog-path-whole'),
       about: $('#catalog-path-about'),
       description: $('#catalog-path-description'),
       source: $('#catalog-path-source'),

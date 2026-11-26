@@ -1083,9 +1083,160 @@ export function modernTimelinePlacements(lists) {
   });
 }
 
+// The periods "Jump to a section" offers, in Comic Book Herald's Earth-616 order (#1603). Each starts
+// at the first story the whole timeline draws for it, named by a reading id so a grouped story is
+// found by any of its readings, and `year` is the year that story is drawn in. Siege sits inside
+// Dark Reign and is never a start, so no jump calls it Dark Reign. The owner chose broad periods only
+// on 2026-11-25; family eras stay stops inside the timeline. Secret Wars (2015) closes Marvel NOW!,
+// and Fresh Start ends where the 2025 stops begin, so neither period's marker can reach past them.
+export const MODERN_TIMELINE_CHECKPOINTS = Object.freeze([
+  Object.freeze({ key: 'marvel-knights-to-planet-x', name: 'Marvel Knights to Planet X', year: 1998, start: 'marvel-knights-to-planet-x-01' }),
+  Object.freeze({ key: 'avengers-disassembled', name: 'Avengers Disassembled', year: 2004, start: 'avengers-disassembled' }),
+  Object.freeze({ key: 'civil-war', name: 'Civil War', year: 2006, start: 'civil-war' }),
+  Object.freeze({ key: 'the-initiative', name: 'The Initiative', year: 2007, start: 'silent-war' }),
+  Object.freeze({ key: 'secret-invasion', name: 'Secret Invasion', year: 2008, start: 'secret-invasion' }),
+  Object.freeze({ key: 'dark-reign', name: 'Dark Reign', year: 2008, start: 'x-men-manifest-destiny' }),
+  Object.freeze({ key: 'heroic-age', name: 'The Heroic Age', year: 2010, start: 'doomwar' }),
+  Object.freeze({ key: 'marvel-now', name: 'Marvel NOW!', year: 2012, start: 'minimum-carnage' }),
+  Object.freeze({ key: 'all-new-all-different', name: 'All-New, All-Different Marvel', year: 2016, start: 'apocalypse-wars' }),
+  Object.freeze({ key: 'marvel-now-2', name: 'Marvel NOW! 2.0', year: 2016, start: 'clone-conspiracy' }),
+  Object.freeze({ key: 'marvel-legacy', name: 'Marvel Legacy', year: 2018, start: 'infinity-countdown-wars' }),
+  Object.freeze({ key: 'fresh-start', name: 'Fresh Start', year: 2018, start: 'spider-geddon' }),
+]);
+const CHECKPOINTS_END = Object.freeze({ year: 2025, start: null });
+
+// The family eras Comic Book Herald lists among its Earth-616 events, each drawn as a stop in the
+// whole timeline rather than a jump (#1603). No guide exists for either, so each is a marker with
+// nothing to add, and `period` is the source's own span. Each sits in its `year`, after the story
+// the source lists it after or first in that year when that story falls in an earlier one, so it
+// never heads the events around it: the X-Men events and the 2024 finale keep their own cards.
+export const MODERN_TIMELINE_FAMILY_ERAS = Object.freeze([
+  Object.freeze({ key: 'reign-of-x', name: 'Reign of X', period: 'December 2020 to January 2021', year: 2020, after: 'king-in-black' }),
+  Object.freeze({ key: 'fall-of-x', name: 'X-Men: Fall of X', period: 'May 2023 to April 2024', year: 2023, after: 'sins-of-sinister' }),
+]);
+
+// Where each family era is drawn: `after` is the key of the story it follows in its year, or null
+// to lead the year. Only the whole timeline draws them. A search or filter lists readings, and an
+// era is not one, so a narrowed view draws none rather than one stranded between unrelated results.
+// An era whose source neighbour is missing from the catalog is dropped rather than guessed at.
+export function timelineFamilyEraStops(order, { narrowed = false, eras = MODERN_TIMELINE_FAMILY_ERAS } = {}) {
+  if (narrowed) return [];
+  const stories = Array.isArray(order) ? order : [];
+  const rankOf = new Map();
+  stories.forEach((story, rank) => {
+    for (const id of storyIds(story)) if (!rankOf.has(id)) rankOf.set(id, rank);
+  });
+  return eras.flatMap((era) => {
+    if (!rankOf.has(era.after)) return [];
+    const anchor = rankOf.get(era.after);
+    let after = null;
+    stories.forEach((story, rank) => {
+      if (rank <= anchor && storyYear(story) === era.year) after = story.key;
+    });
+    if (after === null && !stories.some((story) => storyYear(story) === era.year)) return [];
+    return [{ ...era, after }];
+  });
+}
+
+function storyIds(story) {
+  return [story?.key, ...(Array.isArray(story?.lists) ? story.lists : []).map((list) => list?.id)]
+    .filter((id) => typeof id === 'string');
+}
+
+// Where each period's marker goes in what is drawn: before the first drawn story that falls inside
+// the period on the whole timeline. `order` is the whole timeline in draw order and `drawn` the
+// stories on screen now, so a search or filter moves a marker to the next story still in its period
+// and drops a period with none left, rather than offering a jump to nothing. A period whose start is
+// missing from the catalog is dropped, and the one before it then ends at the first story of the
+// missing period's year, which can only end it early, never let it run into a later period.
+export function timelineCheckpointTargets(order, drawn, checkpoints = MODERN_TIMELINE_CHECKPOINTS) {
+  const rankOf = new Map();
+  (Array.isArray(order) ? order : []).forEach((story, rank) => {
+    for (const id of storyIds(story)) if (!rankOf.has(id)) rankOf.set(id, rank);
+  });
+  const years = (Array.isArray(order) ? order : []).map(storyYear);
+  const boundary = ({ start, year }) => {
+    if (rankOf.has(start)) return rankOf.get(start);
+    const at = years.findIndex((value) => value !== null && value >= year);
+    return at < 0 ? Infinity : at;
+  };
+  const shown = (Array.isArray(drawn) ? drawn : []).map((story) => ({
+    story,
+    rank: Math.min(...storyIds(story).map((id) => rankOf.get(id) ?? Infinity)),
+  }));
+  return checkpoints.flatMap((checkpoint, index) => {
+    if (!rankOf.has(checkpoint.start)) return [];
+    const from = rankOf.get(checkpoint.start);
+    const until = boundary(checkpoints[index + 1] ?? CHECKPOINTS_END);
+    const first = shown.find(({ rank }) => rank >= from && rank < until);
+    return first ? [{ ...checkpoint, before: first.story.key }] : [];
+  });
+}
+
+// The whole timeline in the order it is drawn: section by section, and by year inside each, keeping
+// each year's own order. The same walk as the renderer, so a rank here is a position on screen.
+export function timelineDrawOrder(sections) {
+  return (Array.isArray(sections) ? sections : []).flatMap((section) => {
+    const byYear = new Map();
+    for (const story of section.stories ?? []) {
+      const year = storyYear(story);
+      if (year === null) continue;
+      if (!byYear.has(year)) byYear.set(year, []);
+      byYear.get(year).push(story);
+    }
+    return [...byYear.keys()].sort((a, b) => a - b).flatMap((year) => byYear.get(year));
+  });
+}
+
 export function modernTimelineFeaturedList(lists) {
   return (Array.isArray(lists) ? lists : [])
     .find((list) => list?.id === MODERN_TIMELINE_FEATURED_ID) ?? null;
+}
+
+// Which timeline stops are events, and how far they reach (owner decision, 2026-11-25, #1603). A
+// crossover that changes the wider Marvel Universe reads "Major event"; one inside a single family
+// is named for that family. Each badge belongs to the event's own card, named by any of its readings
+// or its placement, so the readings inside a card, a bridge or a tie-in never carry one. Ordinary
+// runs, eras and one-shot anthologies are not listed and carry nothing. A setting is not a family:
+// the cosmic sagas cross Nova, the Guardians, the Inhumans and others, so they wait unbadged for a
+// decision rather than claim one family they do not belong to.
+const MAJOR_EVENT = 'Major event';
+const FAMILY_EVENTS = Object.freeze({
+  'X-Men event': [
+    'messiah-complex', 'messiah-war', 'x-men-utopia', 'necrosha', 'second-coming', 'x-men-curse-of-the-mutants',
+    'x-men-age-of-x', 'x-men-schism', 'x-termination', 'x-men-battle-of-the-atom',
+    'x-men-trial-of-jean-grey', 'apocalypse-wars', 'hunt-for-wolverine', 'x-men-extermination',
+    'age-of-x-man', 'x-of-swords', 'x-men-inferno', 'sins-of-sinister', 'fall-house-x-rise-powers-x',
+  ],
+  'Spider-Man event': [
+    'spider-man-the-other', 'spider-island', 'spider-verse', 'clone-conspiracy', 'spider-geddon',
+    'gang-war',
+  ],
+  'Venom event': ['minimum-carnage', 'venomverse', 'absolute-carnage'],
+  'Hulk event': ['fall-of-the-hulks'],
+  'Daredevil event': ['shadowland'],
+  'Iron Man event': ['iron-man-2020'],
+  'Fantastic Four event': ['reckoning-war'],
+});
+const MAJOR_EVENTS = Object.freeze([
+  'avengers-disassembled', 'house-of-m', 'civil-war', 'world-war-hulk', 'secret-invasion',
+  'siege-dark-reign-prelude', 'chaos-war', 'axis', 'placement:secret-wars-2015', 'monsters-unleashed',
+  'infinity-countdown-wars', 'war-of-the-realms', 'king-in-black', 'heroes-reborn-2021', 'judgment-day',
+  'one-world-under-doom', 'avengers-armageddon',
+]);
+const EVENT_BADGES = new Map([
+  ...MAJOR_EVENTS.map((id) => [id, Object.freeze({ kind: 'major', label: MAJOR_EVENT })]),
+  ...Object.entries(FAMILY_EVENTS).flatMap(([label, ids]) => (
+    ids.map((id) => [id, Object.freeze({ kind: 'family', label })]))),
+]);
+
+export function modernTimelineEventBadge(story) {
+  // A placement is its own card: the readings it offers are options, never the event.
+  const ids = story?.placement ? [story.key] : storyIds(story);
+  for (const id of ids) {
+    if (EVENT_BADGES.has(id)) return EVENT_BADGES.get(id);
+  }
+  return null;
 }
 
 export function modernTimelineFeaturedCard(lists, route) {

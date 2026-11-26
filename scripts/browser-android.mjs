@@ -1579,10 +1579,9 @@ async function storyTypesDropdowns(page, profile, label) {
   check(await page.evaluate((key) => localStorage.getItem(key), KEY) === before,
     `${label}: choosing, restoring and clearing filters preserve saved progress`);
   await route(page, 'catalog');
-  await page.waitForSelector('#catalog-path option[value]:not([value=""])');
-  const path = await page.$eval('#catalog-path', (node) => [...node.options].find((option) => option.value).value);
-  await page.select('#catalog-path', path);
-  await page.waitForSelector('#catalog-path-jump');
+  // #1603: the whole timeline's one select is Jump to a section, the same shared navigation select a
+  // followed path's stop jump uses.
+  await page.waitForSelector('#catalog-section-jump option[value]:not([value=""])');
   const selects = '#view-data select, .setting select, .timeline-follow select, .collection-navigation select, .rated-controls select, .story-type-choices select';
   const readColors = () => page.$$eval(selects, (nodes) => nodes.map((node) => {
     const style = getComputedStyle(node);
@@ -1590,7 +1589,7 @@ async function storyTypesDropdowns(page, profile, label) {
       adjustment: style.forcedColorAdjust };
   }));
   const expectedSelects = JSON.stringify([
-    'catalog-path', 'catalog-path-jump', 'genres-tone', 'genres-type', 'guide-start-favorite',
+    'catalog-section-jump', 'genres-tone', 'genres-type', 'guide-start-favorite',
     'opt-theme', 'rated-character', 'rated-min', 'rated-sort', 'universes-sort',
   ]);
   const measuredSelects = (colors) => JSON.stringify(colors.map(({ id }) => id).sort());

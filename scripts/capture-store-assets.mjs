@@ -45,12 +45,13 @@ export const SCREENSHOTS = [
     state: 'empty',
   },
   {
-    // #897 moved following a path onto Modern Timeline, so the path is shown there.
+    // #897 moved following a path onto Modern Timeline, so the path is shown there. #1603 retired its
+    // selector, so the way back to the whole timeline is the control the frame must show.
     file: '03-reading-paths.png',
     route: '#/catalog?path=modern-avengers',
     view: 'view-catalog',
     wait: '#catalog-results .path-stops .catalog-card',
-    text: ['Modern Timeline', 'Follow a path', 'Stop 1 of 10', 'Essential Avengers'],
+    text: ['Modern Timeline', 'Show full timeline', 'Stop 1 of 10', 'Essential Avengers'],
     state: 'demo',
   },
   {
