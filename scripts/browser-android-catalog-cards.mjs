@@ -6,9 +6,9 @@ import { join } from 'node:path';
 import { isDeepStrictEqual } from 'node:util';
 import { labelledName, labelWords, shownName } from '../src/js/lib/accname.js';
 import {
-  catalogCoverUrl, catalogEntryKey, defaultPath, filterBySpotlightKind, firstSentence, groupCatalog,
-  modernTimelineFeaturedCard, modernTimelineLists, parseCatalog, searchCatalog,
-  shelfLists, sortSpotlightStories, sourceLabel, sourceLink,
+  catalogCoverUrl, catalogEntries, catalogEntryKey, defaultPath, eraSections, filterBySpotlightKind, firstSentence, groupCatalog,
+  modernTimelineFeaturedCard, modernTimelineLists, modernTimelinePlacements, parseCatalog, searchCatalog,
+  shelfLists, sortSpotlightStories, sourceLabel, sourceLink, storyYear,
 } from '../src/js/lib/catalog.js';
 import { createEmptyState } from '../src/js/lib/model.js';
 import { KEY } from '../src/js/storage.js';
@@ -16,6 +16,97 @@ import { modernTimelinePosition } from '../src/js/views/catalog.js';
 import { ROOT, sourceIdentity } from './lib/release-identity.mjs';
 
 const AMAZING = 'amazing-spider-man-reading-order-modern-marvel-era';
+
+function timelineYearShape(catalog) {
+  const lists = modernTimelineLists(catalog.lists);
+  const placements = [...modernTimelinePlacements(catalog.lists), ...(catalog.sectionalGroups ?? [])]
+    .map((placement) => ({ ...placement, lists: placement.options.map((option) => option.list) }));
+  const placed = new Set(placements.flatMap((placement) => placement.lists.map((list) => list.id)));
+  const sections = eraSections([
+    ...catalogEntries(lists).filter((story) => !story.lists.some((list) => placed.has(list.id))),
+    ...placements,
+  ]);
+  const shape = [];
+  let previous = null;
+  for (const section of sections) {
+    if (!Number.isInteger(section.from) || !Number.isInteger(section.to)) continue;
+    if (previous !== null) {
+      for (let year = previous + 1; year < section.from; year++) shape.push({ year, empty: true, gap: true });
+    }
+    const populated = new Set(section.stories.map(storyYear));
+    for (let year = section.from; year <= section.to; year++) {
+      shape.push({ year, empty: !populated.has(year), gap: false });
+    }
+    previous = section.to;
+  }
+  return shape;
+}
+
+function measuredYearShape(nodes) {
+  return nodes.map((node) => ({ year: Number(node.year.match(/\d{4}/)?.[0]), empty: node.empty, gap: node.gap }));
+}
+
+async function syntheticEmptyYear(page, rawCatalog, primary, check, route) {
+  const fixture = {
+    ...rawCatalog,
+    lists: rawCatalog.lists.filter((list) => list.timeline !== 2000
+      && !(list.timeline >= 2012 && list.timeline <= 2014)),
+  };
+  const expected = timelineYearShape(parseCatalog(fixture));
+  assert.ok(expected.some((node) => node.year === 2000 && node.empty && !node.gap),
+    'Synthetic catalog must exercise an internal empty year through the real renderer');
+  assert.deepEqual(expected.filter((node) => node.gap).map((node) => node.year), [2012, 2013, 2014],
+    'Synthetic catalog must exercise the inter-era gap separately from an internal empty year');
+  const progress = await page.evaluate((key) => localStorage.getItem(key), KEY);
+  const textTokens = await page.evaluate(() => Object.fromEntries(
+    ['--t-caption', '--t-body', '--t-body-lg', '--t-subtitle', '--t-title', '--t-title-lg']
+      .map((name) => [name, document.documentElement.style.getPropertyValue(name)]),
+  ));
+  const script = await page.evaluateOnNewDocument((catalog) => {
+    const fetch = window.fetch;
+    window.fetch = async (...args) => {
+      const response = await fetch(...args);
+      return new URL(response.url).pathname.endsWith('/catalog.json')
+        ? new Response(JSON.stringify(catalog), { status: 200, headers: { 'Content-Type': 'application/json' } })
+        : response;
+    };
+  }, fixture);
+  try {
+    await page.reload({ waitUntil: 'networkidle0' });
+    await route(page, 'catalog');
+    await page.evaluate((tokens) => {
+      document.documentElement.dataset.theme = 'dark';
+      for (const [name, value] of Object.entries(tokens)) document.documentElement.style.setProperty(name, value);
+    }, textTokens);
+    await page.waitForSelector(primary);
+    await page.evaluate(() => document.fonts.ready);
+    const item = await geometry(page, primary);
+    check(item.android && item.body === 32 && item.theme === 'dark',
+      'M11: synthetic years use the same dark Android 200 percent text profile');
+    check(isDeepStrictEqual(measuredYearShape(item.nodes), expected),
+      'M11: synthetic catalog renders the exact populated, internal empty and inter-era gap years');
+    check(!item.overflow && item.nodes.every((node) => Math.abs(node.dot - node.rail) <= 2
+      && node.dotRight <= node.textLeft && (node.stemRight === null || node.stemRight < node.textLeft)),
+    'M11: synthetic normal, empty and gap markers align with the rail and clear text at 200 percent');
+    await page.evaluate(() => {
+      const marker = [...document.querySelectorAll('#catalog-results .timeline-era .timeline-year-marker.is-empty')]
+        .find((node) => node.querySelector('.visually-hidden')?.textContent === '2000, no Reading Lists');
+      if (!marker) throw new Error('Synthetic internal empty-year marker is missing');
+      marker.parentElement.dataset.syntheticEmptyYear = '2000';
+    });
+    const ax = await accessibleCard(page, '[data-synthetic-empty-year="2000"]');
+    check(ax.some((node) => node.role === 'StaticText' && node.name === '2000, no Reading Lists')
+      && !ax.some((node) => ['heading', 'button', 'link'].includes(node.role)),
+    'M11: synthetic empty year has its truthful accessible name and no reading action');
+    check(await page.evaluate((key) => localStorage.getItem(key), KEY) === progress,
+      'M11: synthetic empty-year layout does not write reading progress');
+  } finally {
+    await page.removeScriptToEvaluateOnNewDocument(script.identifier);
+    await page.reload({ waitUntil: 'networkidle0' });
+    await route(page, 'catalog');
+    await page.waitForSelector(primary);
+  }
+}
 export const catalogCardProfiles = [
   ...[320, 360, 412].map((width, index) => ({
     id: `M0${index + 1}`, width, height: width === 320 ? 740 : width === 360 ? 800 : 915,
@@ -878,8 +969,10 @@ export async function catalogCardReadability({
     }), `${prefix}: hidden description retains zero layout rectangles`);
   }
   if (profile.id === 'M11') {
-    check(evidence[0].nodes.some((node) => node.empty) && evidence[0].nodes.some((node) => node.gap),
-      `${prefix}: actual empty and inter-era gap year rows exercised`);
+    const expected = timelineYearShape(catalog);
+    check(isDeepStrictEqual(measuredYearShape(evidence[0].nodes), expected),
+      `${prefix}: actual populated, empty and inter-era gap years match the current catalog`);
+    evidence.push({ actualYearShape: expected });
   }
   await captureCard(page, primary, profile);
   if (['M14', 'M15'].includes(profile.id)) {
@@ -921,6 +1014,7 @@ export async function catalogCardReadability({
   }
   if (profile.id === 'M11' && !mutation) {
     await searchFieldReflow(page, profile, check, route);
+    await syntheticEmptyYear(page, rawCatalog, primary, check, route);
   }
   if (profile.id === 'M13' && !mutation) {
     await readingOptionInteractions(page, primary, catalog, check, click, route);
