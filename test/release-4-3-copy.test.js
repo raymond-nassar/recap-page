@@ -66,11 +66,13 @@ test('approved field extraction preserves trailing whitespace and blank lines', 
 // The shared Read sentence was revised again with the owner's approval on 19 November 2026.
 // The Android, iPhone and iPad Read wording for the Marvel Comics app was approved word for word on
 // 19 November 2026.
+// The replacement Read and Find disclosure was approved on #1601:
+// https://github.com/raymond-nassar/recap-page/issues/1601#issuecomment-7176342721
 test('the privacy policy preserves its approved wording', () => {
   const privacy = read('PRIVACY.md');
   assert.match(privacy, /It normally backs up no more than once every five\s+minutes\./);
   assert.match(privacy, /after a progress check confirms that\s+this device's data needs backing up\./);
-  assert.equal(digest(privacy), 'c2081ece23494aaf640c9bec367cba9a810155c48d4f4d471f6114b50263259f');
+  assert.equal(digest(privacy), 'a394cc6cbdf44ec18d6b83b417a664581c5d6783ba4410926445fcf571f03ad4');
 });
 
 test('the Microsoft Store packet fields are the approved text', () => {
