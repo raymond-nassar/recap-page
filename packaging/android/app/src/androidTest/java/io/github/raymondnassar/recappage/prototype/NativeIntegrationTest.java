@@ -619,6 +619,10 @@ public final class NativeIntegrationTest {
         assertNotNull("Main WebView remains attached", onMain(() -> web.getParent()));
         assertTrue("Loopback fixture server completed cleanly", server.failure == null);
         assertMarvelComicsHandoffs();
+        if (candidatePhase.isEmpty() && (activity.getApplicationInfo().flags
+                & android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE) != 0) {
+            assertPackagedGuideHandoffs();
+        }
         String[] providers = {
                 "https://www.hoopladigital.com/title/123456789",
                 "https://share.libbyapp.com/title/123456",
@@ -686,6 +690,102 @@ public final class NativeIntegrationTest {
                 .put("providerHandoffs", providers.length)
                 .put("popupOpenerNull", true).put("nativeEndpointUnchanged", true)
                 .put("popupBridgeAssetStatus", 403);
+    }
+
+    private void assertPackagedGuideHandoffs() throws Exception {
+        String checkmarks = "JSON.stringify(JSON.parse(localStorage.getItem('mrt.state.v2')).read)";
+        String before = text(web, checkmarks);
+        assertEquals("Combined coverage starts with the existing disposable checkmark",
+                "{\"900000001\":1750000000000}", before);
+        JSONObject packaged = (JSONObject) asyncJs(web, """
+                const parent='civil-war-to-secret-invasion';
+                const expected=Array.from({length:14},(_,index)=>`${parent}-part-${index+1}`);
+                const read=async file=>{
+                  const url=new URL('/data/'+file,location.origin);
+                  if(url.origin!==location.origin || !url.pathname.startsWith('/data/'))
+                    throw Error('Not a packaged catalog asset');
+                  const response=await fetch(url);
+                  if(!response.ok)throw Error(`${url.pathname}: ${response.status}`);
+                  return response.json();
+                };
+                const {lists}=await read('catalog.json');
+                const parts=lists.filter(({id})=>id.startsWith(`${parent}-part-`));
+                const events=['world-war-hulk','secret-wars-2015-event-tie-ins']
+                  .map(id=>lists.find(list=>list.id===id));
+                if(events.some(event=>!event))throw Error('Missing a packaged event');
+                const [hulk,sw,...orders]=await Promise.all([...events,...parts].map(({file})=>read(file)));
+                const findOnly=sw.items.find(({issueId})=>issueId===56003);
+                const runaways=sw.items.find(({issueId})=>issueId===-8000000000012618);
+                return {
+                  allParts:parts.length===expected.length && expected.every(id=>parts.some(list=>list.id===id))
+                    && new Set(parts.map(({file})=>file)).size===expected.length
+                    && parts.every(({count},index)=>count>0 && orders[index].items.length===count),
+                  noParent:!lists.some(({id})=>id===parent),
+                  hulkReady:hulk.items.length>0,
+                  findOnly:findOnly?.findOnly===true && findOnly.url===null && !!findOnly.title,
+                  findTitle:findOnly?.title,
+                  runaways:runaways?.title==='Runaways (2015) #1' && Number(runaways.appViewer)===12618
+                };
+                """);
+        assertTrue("The fourteen parts have distinct catalog entries and the parent is not addable",
+                packaged.getBoolean("allParts") && packaged.getBoolean("noParent"));
+        assertTrue("Both installed event payloads include the reviewed cases", packaged.getBoolean("hulkReady")
+                && packaged.getBoolean("findOnly") && packaged.getBoolean("runaways"));
+        route("catalog");
+        String placement = "#catalog-results [data-placement='placement:civil-war-to-secret-invasion']";
+        tap(web, placement + " summary");
+        assertEquals("All fourteen independent add actions are inside the expanded chooser", 14,
+                number(web, "document.querySelectorAll(" + quote(placement
+                        + " details[open] [data-act='import'][data-key^='civil-war-to-secret-invasion-part-']")
+                        + ").length"));
+        assertFalse("The chooser has no parent add action", truth(web,
+                "!!document.querySelector(\"#catalog-results [data-act='import'][data-key='civil-war-to-secret-invasion']\")"));
+        tap(web, placement + " [data-key='civil-war-to-secret-invasion-part-1'] [data-act='preview']");
+        String firstIssue = "#preview[open] .preview-issue-link";
+        waitFor("Part one loads its own issue links", WAIT_MS,
+                () -> truth(web, "!!document.querySelector(" + quote(firstIssue) + ")"));
+        String issueRoute = text(web, "document.querySelector(" + quote(firstIssue) + ").hash");
+        assertTrue("Part one links to a real issue in its own order",
+                issueRoute.startsWith("#/issue/") && issueRoute.endsWith("?order=civil-war-to-secret-invasion-part-1"));
+        tap(web, firstIssue);
+        waitFor("Inspect opens the selected part issue", WAIT_MS,
+                () -> truth(web, "location.hash===" + quote(issueRoute)
+                        + " && !!document.querySelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])')"));
+        assertEquals("Opening the part and its issue does not edit checkmarks", before, text(web, checkmarks));
+
+        String order = "?order=secret-wars-2015-event-tie-ins";
+        assertPackagedIssueHandoff("#/issue/56003" + order, packaged.getString("findTitle"), "Find on Marvel Comics",
+                "https://marvel.webtoon.com/", "com.android.chrome", true);
+        assertPackagedIssueHandoff("#/issue/-8000000000012618" + order, "Runaways (2015) #1", "Read",
+                "marvelcomicsapp://viewer?issueId=12618", "com.webtoon.marvelcomics", false);
+        assertEquals("Both real issue handoffs leave the seeded checkmarks untouched", before, text(web, checkmarks));
+        route("read");
+    }
+
+    private void assertPackagedIssueHandoff(String hash, String title, String label, String destination, String target,
+            boolean expectNoInfo) throws Exception {
+        evaluate(web, "location.hash=" + quote(hash));
+        String button = "#view-issue:not([hidden]) #btn-issue-read:not([hidden])";
+        waitFor("The installed issue offers " + label, WAIT_MS,
+                () -> truth(web, "location.hash===" + quote(hash)
+                        + " && document.querySelector('#issue-focus-h')?.textContent.trim()===" + quote(title)
+                        + " && document.querySelector(" + quote(button) + ")?.textContent.trim()===" + quote(label)));
+        if (expectNoInfo) {
+            assertTrue("Find-only details do not offer a made-up issue page", truth(web,
+                    "document.querySelector('#btn-issue-info').hidden"
+                            + " && !document.querySelector('#btn-issue-info').hasAttribute('href')"));
+        }
+        int earlier = Intents.getIntents().size();
+        tap(web, button);
+        waitFor("The issue dispatches its exact stubbed destination and closes the launcher", WAIT_MS,
+                () -> Intents.getIntents().stream().skip(earlier)
+                        .anyMatch(intent -> destination.equals(intent.getDataString())) && popupViews().isEmpty());
+        List<Intent> handoffs = Intents.getIntents().stream().skip(earlier)
+                .filter(intent -> Intent.ACTION_VIEW.equals(intent.getAction()))
+                .collect(java.util.stream.Collectors.toList());
+        assertEquals("The issue dispatches exactly one external view", 1, handoffs.size());
+        assertEquals(destination, handoffs.get(0).getDataString());
+        assertEquals(target, handoffs.get(0).getPackage());
     }
 
     // Read on a /viewer/ comic first asks the Marvel Comics app, by package, for its own reader address.

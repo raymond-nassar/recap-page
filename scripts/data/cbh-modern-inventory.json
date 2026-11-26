@@ -193,7 +193,7 @@
     "guideType": "bridge",
     "window": "Q2",
     "disposition": "grouped-variant",
-    "reason": "Shipped splits: Silent War and X-Men: Messiah Complex; the remaining bridge readings stay deferred",
+    "reason": "Silent War and X-Men: Messiah Complex keep their existing placements. The reviewed full source now also feeds a separate fourteen-part Modern Timeline chooser.",
     "sourceRetrievedAt": "2026-08-21",
     "overlapIds": [],
     "catalogIds": [
@@ -224,14 +224,14 @@
     "guideType": "event",
     "window": "Q2",
     "disposition": "new-order",
-    "reason": "Blocked: complete overlap found 2 shared issues with civil-war-avengers and 1 with the final Aftersmash peer, with no approved disposition",
-    "sourceRetrievedAt": "2026-08-21",
+    "reason": "The independently reviewed 39-comic source section supersedes the blocked assessment preserved at 72bcfc3f. The new review permits distinct-scope overlap with the actual comparison guides.",
+    "sourceRetrievedAt": "2026-11-24",
     "overlapIds": [
       "civil-war-avengers",
       "world-war-hulk-aftersmash"
     ],
     "catalogIds": [],
-    "deliveryStatus": "blocked"
+    "deliveryStatus": "ready"
   },
   {
     "position": 15,
@@ -649,7 +649,7 @@
     "guideType": "event",
     "window": "Q4",
     "disposition": "grouped-variant",
-    "reason": "Only the annotated 2015 event-and-tie-ins child is registered for preparation; the 1984, 1985 and other multi-era portions stay deferred, and its source boundary and Hickman overlaps still require independent review",
+    "reason": "The annotated 2015 event-and-tie-ins child has independent source and overlap review. The 1984, 1985 and other multi-era portions stay deferred. The existing Hickman guides retain their identities and placements.",
     "sourceRetrievedAt": "2026-08-20",
     "overlapIds": [],
     "catalogIds": [],
