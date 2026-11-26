@@ -11,18 +11,11 @@ import { matchExportCsv, parseExportCsv } from '../scripts/lib/marvel-comics-app
 import { appLinkFor, appViewerFor } from '../src/js/lib/marvelComicsApp.js';
 import { appLaunchUrl, appMuIssuesUrl, appViewerUrl, viewerNumber } from '../src/js/lib/marvelComicsAppUrl.js';
 import { marvelComicsAppMuIssueIds } from '../src/data/marvelComicsAppMuIssues.js';
+import { reviewed2025Pairs } from './helpers/reviewed-2025-viewer-links.mjs';
 
 // Rows written for this project in the shape of the offline match file; no site markup is used.
 const page = (slug) => `https://comicbookreadingorders.com/marvel/events/${slug}/`;
 const viewer = (n) => `https://www.marvelcomicsapp.com/viewer/${n}`;
-const reviewed2025Pairs = [
-  [121361, 24960], [121580, 24182], [121581, 24188], [121582, 24184],
-  [123208, 24868], [123209, 24869], [123210, 24871], [123360, 25168],
-  [123361, 25175], [123362, 25173], [123363, 25174], [123364, 25172],
-  [123365, 25177], [126711, 25490], [127115, 24924], [130145, 25178],
-  [130146, 36126], [130147, 36127], [130148, 36331], [130149, 36334],
-  [135945, 36953],
-];
 
 test('1601 reviewed 2025 comics use their direct viewer instead of the MU web route', () => {
   for (const [issueId, number] of reviewed2025Pairs) {

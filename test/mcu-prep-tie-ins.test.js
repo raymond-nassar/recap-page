@@ -16,6 +16,7 @@ import {
   tieInPayloadAtApproval, tieInRevisions,
 } from './helpers/mcu-tie-in-history.mjs';
 import { beforeIdentityJson } from './helpers/owner-identity-history.mjs';
+import { reviewed2025Pairs } from './helpers/reviewed-2025-viewer-links.mjs';
 
 const read = (file) => JSON.parse(readFileSync(new URL(`../src/data/${file}`, import.meta.url), 'utf8'));
 const digest = (ids) => createHash('sha256').update(JSON.stringify(ids)).digest('hex');
@@ -204,11 +205,29 @@ test('tie-in reader links keep the exact matched viewers and preserve every earl
   const xmenEra = new Map([[12363, 6891], [19872, 19401], [23510, 19719]]);
   assert.ok([...xmenEra].every(([issueId, viewer]) => !additions.has(issueId)
     && links.links.some((link) => link.issueId === issueId && link.viewer === viewer)));
-  const previous = links.links.filter(({ issueId }) => !additions.has(issueId) && !xmenEra.has(issueId));
+  const reviewed2025 = new Map(reviewed2025Pairs);
+  assert.equal(digest(reviewed2025Pairs), 'c37466b019ec7ee51a0612db07e74db0f3873a0c4eeabb10f47c06f3f2a883f5');
+  assert.ok([...reviewed2025.keys()].every((issueId) => !additions.has(issueId) && !xmenEra.has(issueId)));
+  assert.deepEqual(links.links.filter(({ issueId }) => reviewed2025.has(issueId)),
+    reviewed2025Pairs.map(([issueId, viewer]) => ({
+      issueId, viewer, basis: 'exact', source: 'continuity-guide-discord-2026-11-19',
+    })));
+  const reviewedViewers = new Set(reviewed2025.values());
+  assert.ok(links.links.every(({ issueId, viewer }) => reviewed2025.has(issueId) || !reviewedViewers.has(viewer)));
+  const previous = links.links.filter(({ issueId }) =>
+    !additions.has(issueId) && !xmenEra.has(issueId) && !reviewed2025.has(issueId));
   assert.equal(previous.length, 17663);
   assert.equal(digest(previous), '0bec147ce327f7287cd5d6a02f6c303295a5f51c78da9f43a9a3be6e981d219f');
   const { unapprovedIssueIds, ...frozenMu } = mu;
-  assert.equal(digest(frozenMu), '9fc9fe6d314b2786e16c6b6772e0104091efaa6defd59142b91f5521388e4e55');
+  // Only these reviewed comics moved from MU to direct viewers; reconstruct the earlier approval
+  // rather than replacing its digest with one that could hide an unrelated edit.
+  assert.equal(new Set(mu.issueIds).size, mu.issueIds.length);
+  assert.deepEqual(mu.issueIds, [...mu.issueIds].sort((a, b) => a - b));
+  assert.ok(mu.issueIds.every((issueId) => !reviewed2025.has(issueId)));
+  const previousMu = {
+    ...frozenMu, issueIds: [...mu.issueIds, ...reviewed2025.keys()].sort((a, b) => a - b),
+  };
+  assert.equal(digest(previousMu), '9fc9fe6d314b2786e16c6b6772e0104091efaa6defd59142b91f5521388e4e55');
   assert.deepEqual(unapprovedIssueIds, [
     17293, 42667, 42668, 51951, 51955, 55498, 55499, 60666, 60667, 62843, 101513, 101520, 129237,
   ]);
