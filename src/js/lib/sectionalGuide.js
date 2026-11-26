@@ -94,6 +94,65 @@ export function sectionalGuideSteps(layout) {
   return steps;
 }
 
+// Owner-approved part templates, 2026-11-25. "Part N" is our presentation of one source, not a
+// section the source defines.
+export const SECTIONAL_PART_LIMITS = Object.freeze({ min: 18, max: 75 });
+
+export function sectionalPartName(sourceTitle, number) {
+  if (!Number.isInteger(number) || number < 1) throw new Error('A part needs its number');
+  return `${sourceTitle}: Part ${number}`;
+}
+
+export function sectionalPartDescription(firstComic, lastComic) {
+  if (!firstComic || !lastComic) throw new Error('A part description needs its first and last comic');
+  return `Read from ${firstComic} through ${lastComic}.`;
+}
+
+// Splits one source's steps into separately addable parts without moving a step. Parts must cover
+// every position once, in order, within the approved size limits, and never cut a protected block
+// such as a collected edition or an original run. A return point keeps its source position and
+// gains the part it lands in, so the continue group after the event can lead back across parts.
+export function sectionalGuideParts(layout, parts, { protectedRanges = [] } = {}) {
+  const steps = sectionalGuideSteps(layout);
+  if (!Array.isArray(parts) || !parts.length) throw new Error('A split guide needs its parts');
+  let expected = 1;
+  parts.forEach((part, index) => {
+    if (part.first !== expected || !Number.isInteger(part.last) || part.last < part.first) {
+      throw new Error('Parts must cover every source position once, in order');
+    }
+    const size = part.last - part.first + 1;
+    if (size < SECTIONAL_PART_LIMITS.min || size > SECTIONAL_PART_LIMITS.max) {
+      throw new Error(`Part ${index + 1} must hold ${SECTIONAL_PART_LIMITS.min} to ${SECTIONAL_PART_LIMITS.max} comics`);
+    }
+    expected = part.last + 1;
+  });
+  if (expected !== layout.positionCount + 1) throw new Error('Parts must cover every source position once, in order');
+  for (const range of protectedRanges) {
+    if (parts.some((part) => part.first > range.first && part.first <= range.last)) {
+      throw new Error(`A part boundary would split ${range.label}`);
+    }
+  }
+
+  const partOf = (at) => parts.findIndex((part) => at >= part.first && at <= part.last) + 1;
+  const result = parts.map((part, index) => ({ number: index + 1, first: part.first, last: part.last, steps: [] }));
+  let anchor = 1;
+  for (const step of steps) {
+    if (step.kind === 'position') anchor = step.position;
+    // A marker precedes its position, so it belongs to that position's part.
+    const at = step.kind === 'marker' ? step.beforePosition : anchor;
+    const owner = result[partOf(at) - 1];
+    if (step.kind === 'position') {
+      owner.steps.push({ ...step, localPosition: step.position - owner.first + 1 });
+    } else if (step.kind === 'return-point') {
+      const target = result[partOf(step.position) - 1];
+      owner.steps.push({ ...step, part: target.number, localPosition: step.position - target.first + 1 });
+    } else {
+      owner.steps.push(step);
+    }
+  }
+  return result;
+}
+
 // Opening a linked guide never marks anything read and never leaves this guide on failure.
 export async function openLinkedGuide({ link, currentGuideId, open }) {
   let opened;

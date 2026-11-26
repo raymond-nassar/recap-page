@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  SECTIONAL_GUIDE_COPY, openLinkedGuide, sectionalGuideSteps,
+  SECTIONAL_GUIDE_COPY, openLinkedGuide, sectionalGuideParts, sectionalGuideSteps, sectionalPartDescription,
+  sectionalPartName,
 } from '../src/js/lib/sectionalGuide.js';
 
 // Private authoring witness, not a shipped list: the coordinates the source owners pinned for the
@@ -107,6 +108,54 @@ test('a smaller guide uses its own positions and needs no event or next link whe
   assert.deepEqual(plain.map((step) => step.position), Array.from({ length: 12 }, (_, index) => index + 1));
 });
 
+// The owner-approved split of that page into 14 parts of 18 to 75 comics, 2026-11-25. Each first
+// position starts a source run, so no run, collection or return group is cut.
+const bridgeParts = [
+  [1, 69], [70, 139], [140, 211], [212, 274], [275, 347], [348, 414], [415, 485],
+  [486, 503], [504, 573], [574, 639], [640, 714], [715, 760], [761, 835], [836, 903],
+].map(([first, last]) => ({ first, last }));
+
+test('a long source splits into addable parts without moving a step, and returns lead across parts', () => {
+  const parts = sectionalGuideParts(bridge, bridgeParts, {
+    protectedRanges: [{ first: 479, last: 484, label: 'Silent War' }],
+  });
+  assert.equal(parts.length, 14);
+  const unsplit = parts.flatMap((part) => part.steps).map(({ part: _part, localPosition: _local, ...step }) => step);
+  assert.deepEqual(unsplit, sectionalGuideSteps(bridge));
+  assert.deepEqual(parts.map((part) => part.steps.filter((step) => step.kind === 'position').length),
+    [69, 70, 72, 63, 73, 67, 71, 18, 70, 66, 75, 46, 75, 68]);
+
+  const seventh = parts[6].steps;
+  const eventAt = seventh.findIndex((step) => step.kind === 'guide-link');
+  assert.equal(seventh[eventAt - 1].position, 485);
+  assert.deepEqual(seventh.slice(eventAt + 1).map((step) => step.kind === 'return-point'
+    ? [step.part, step.localPosition, step.position] : step.copy), [
+    'continueHeading', [1, 22, 22], [2, 6, 75], [3, 10, 149], [3, 31, 170], [6, 9, 356],
+  ]);
+  assert.equal(parts[13].steps.at(-1).copy, 'openNext');
+  assert.equal(parts[8].steps[0].catalogId, 'messiah-complex');
+  assert.equal(parts[12].steps[0].catalogId, 'annihilation-conquest');
+  assert.equal(parts[1].steps[0].localPosition, 1);
+
+  assert.equal(sectionalPartName('Civil War to Secret Invasion', 7), 'Civil War to Secret Invasion: Part 7');
+  assert.equal(sectionalPartDescription('Wolverine #51', 'World War Hulk Prologue: World Breaker #1'),
+    'Read from Wolverine #51 through World War Hulk Prologue: World Breaker #1.');
+
+  const swap = (index, range) => bridgeParts.map((part, at) => (at === index ? range : part));
+  const cases = [
+    [swap(1, { first: 71, last: 139 }), /every source position once/],
+    [bridgeParts.slice(0, 13), /every source position once/],
+    [[{ first: 1, last: 17 }, ...swap(0, { first: 18, last: 69 })], /18 to 75 comics/],
+    [bridgeParts, null],
+    [swap(6, { first: 415, last: 481 }).map((part, at) => (at === 7 ? { first: 482, last: 503 } : part)), /split Silent War/],
+  ];
+  for (const [candidate, message] of cases) {
+    const run = () => sectionalGuideParts(bridge, candidate, { protectedRanges: [{ first: 479, last: 484, label: 'Silent War' }] });
+    if (message) assert.throws(run, message); else assert.doesNotThrow(run);
+  }
+  assert.throws(() => sectionalGuideParts(bridge, swap(10, { first: 640, last: 715 })
+    .map((part, at) => (at === 11 ? { first: 716, last: 760 } : part))), /18 to 75 comics/);
+});
 test('a linked guide that cannot open keeps this guide open and changes no reading state', async () => {
   const state = Object.freeze({ read: Object.freeze({ 5861: 1 }) });
   const before = JSON.stringify(state);
