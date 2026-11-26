@@ -11,10 +11,21 @@ import { matchExportCsv, parseExportCsv } from '../scripts/lib/marvel-comics-app
 import { appLinkFor, appViewerFor } from '../src/js/lib/marvelComicsApp.js';
 import { appLaunchUrl, appViewerUrl, viewerNumber } from '../src/js/lib/marvelComicsAppUrl.js';
 import { marvelComicsAppMuIssueIds } from '../src/data/marvelComicsAppMuIssues.js';
+import { reviewed2025Pairs } from './helpers/reviewed-2025-viewer-links.mjs';
 
 // Rows written for this project in the shape of the offline match file; no site markup is used.
 const page = (slug) => `https://comicbookreadingorders.com/marvel/events/${slug}/`;
 const viewer = (n) => `https://www.marvelcomicsapp.com/viewer/${n}`;
+
+test('1601 reviewed 2025 comics use their direct viewer instead of the MU web route', () => {
+  for (const [issueId, number] of reviewed2025Pairs) {
+    assert.equal(appLinkFor(issueId), viewer(number), `comic ${issueId}`);
+    assert.equal(appLinkFor(String(issueId)), viewer(number), `saved comic ${issueId}`);
+    assert.equal(marvelComicsAppMuIssueIds.includes(issueId), false);
+    assert.equal(appLaunchUrl(new URLSearchParams(`a=${number}&i=${issueId}`)), viewer(number));
+  }
+});
+
 const row = (issueId, status, links, extra = {}) => ({
   issueId, status, appLinks: links.map(viewer), pageUrl: page('fixture-event-reading-order'), ...extra,
 });
@@ -288,7 +299,7 @@ test('950 the bundled MU set is current and frozen to its approval record, but g
   assert.equal(readFileSync(MU_MODULE_PATH, 'utf8').replace(/\r\n/g, '\n'),
     buildMuModule(approval, catalogComics(), input.links));
   assert.deepEqual(marvelComicsAppMuIssueIds, approval.issueIds);
-  assert.equal(approval.issueIds.length, 1781);
+  assert.equal(approval.issueIds.length, 1760);
   assert.deepEqual(approval.excludedIssueIds, [11185]);
   assert.equal(appLinkFor(11185), null);
   // #1601: an MU-only comic is not a direct link any more, so it shows Find on Marvel Comics.
