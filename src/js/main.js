@@ -65,6 +65,7 @@ import { createListRevisions } from './views/list-revisions.js';
 import { createReadingOrderSwitch } from './views/reading-order-switch.js';
 import { isListRevisionVerificationPaused, saveListRevision } from './lib/listRevisionSave.js';
 import { SECTIONAL_GUIDE_COPY, sectionalReadingRows } from './lib/sectionalGuide.js';
+import { eventReadingLayout } from './views/shared/event-reading-order.js';
 import { switchReadingOrder } from './lib/listCorrection.js';
 import { createBulkReadView } from './views/bulk-read.js';
 import { createHomeView } from './views/home.js';
@@ -1482,7 +1483,8 @@ async function openSectionalDestination(id, position, anchor) {
   if (!current() || order.id !== id || !Array.isArray(order.items) || !order.items.length) return false;
   const sectional = sectionalReadingRows(list.sectionalPart, order.items);
   if ((list.sectionalPart && !sectional)
-    || (position !== undefined && (!sectional || position > order.items.length))) return false;
+    || (position !== undefined
+      && (!(sectional || eventReadingLayout(id, order.items)) || position > order.items.length))) return false;
   navigateToGuidePreview(id, { previewPosition: position, preparedOrder: order, sectionalOpener: anchor });
   return true;
 }

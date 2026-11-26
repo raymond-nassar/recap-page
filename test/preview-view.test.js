@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import { createPreviewView } from '../src/js/views/preview.js';
 import { createCatalogPresentation, PROJECT_HOME } from '../src/js/views/shared/catalog-presentation.js';
 import { SECTIONAL_GUIDE_COPY } from '../src/js/lib/sectionalGuide.js';
+import { eventReadingOrders } from '../src/data/eventReadingOrders.js';
 
 function node(props = {}, children = []) {
   return {
@@ -27,6 +28,50 @@ const list = (id) => ({
   description: '',
   count: 1,
   depth: 'essential',
+});
+
+test('event Preview uses distinct book placements and links to the exact issue position without saving', async (t) => {
+  const previous = globalThis.document;
+  globalThis.document = { activeElement: null, body: {} };
+  t.after(() => { if (previous) globalThis.document = previous; else delete globalThis.document; });
+  const nodes = Object.fromEntries([
+    'add', 'secondary', 'body', 'close', 'description', 'dialog', 'heading', 'meta', 'paths', 'source',
+  ].map((key) => [key, node()]));
+  const positions = [];
+  nodes.body.querySelector = (selector) => ({ focus: () => positions.push(selector) });
+  const id = 'world-war-hulk';
+  const { issueOrder } = eventReadingOrders[id];
+  const items = issueOrder.map((issueId) => ({ issueId, title: `Comic ${issueId}` }));
+  const initial = JSON.stringify(items);
+  const view = createPreviewView({
+    captureFocus: () => null, createIcon: () => null, el: element, elements: () => nodes,
+    getState: () => ({ lists: {}, listOrder: [] }), isInLibrary: () => null,
+    issueFocusAnchor: (item) => element('a', { text: item.title }),
+    loadOrder: async () => ({ id, items }),
+    onAdd: () => assert.fail('Presentation must not save'),
+    onIssueLoadFailure: ({ error }) => { throw error; },
+    presentation: { attributionLine: () => null }, restoreFocus: () => {},
+  });
+  await view.open({ ...list(id), count: items.length });
+  const controls = () => nodes.body.children.find((child) => child.class === 'order-choices');
+  const rows = () => nodes.body.children.find((child) => child.tag === 'ol').children;
+  assert.equal(controls().children[0]['aria-pressed'], 'true');
+  controls().children[1].onclick();
+  assert.equal(controls().children[1]['aria-pressed'], 'true');
+  assert.deepEqual(rows().filter((row) => row.dataset?.sectionalPosition)
+    .map((row) => row.dataset.sectionalPosition), [1, 6, 19, 22, 26, 36]);
+  const [, links] = rows().at(-1).children[0].children;
+  assert.equal(links.children.length, 33);
+  const link = links.children[0].children[0];
+  assert.equal(link.href, '#/preview/world-war-hulk?position=2');
+  link.onclick({ button: 0, ctrlKey: true, preventDefault: () => assert.fail('modified click intercepted') });
+  assert.equal(controls().children[1]['aria-pressed'], 'true');
+  let intercepted = false;
+  link.onclick({ button: 0, preventDefault: () => { intercepted = true; } });
+  assert.equal(intercepted, true);
+  assert.equal(controls().children[0]['aria-pressed'], 'true');
+  assert.equal(positions.at(-1), '[data-sectional-position="2"] a');
+  assert.equal(JSON.stringify(items), initial);
 });
 
 test('sectional Preview follows the exact part position and retains the current guide on failure', async (t) => {

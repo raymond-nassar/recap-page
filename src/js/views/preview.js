@@ -19,6 +19,7 @@ import { hasTieInRatings } from '../lib/tieInRatings.js';
 import { offlineActionLabel, offlineStatusText } from './shared/offline-status.js';
 import { SECTIONAL_GUIDE_COPY, sectionalReadingRows } from '../lib/sectionalGuide.js';
 import { sectionalStepRows } from './shared/sectional-reading.js';
+import { eventBookRows, eventOrderControls, eventReadingLayout } from './shared/event-reading-order.js';
 
 const ADD_TEXT = '+ Add to library';
 const OPEN_TEXT = 'Open list';
@@ -354,8 +355,9 @@ export function createPreviewView({
       const order = preparedOrder ?? await loadOrder(list.file);
       if (loadToken !== token) return;
       const sectional = sectionalReadingRows(list.sectionalPart, order.items);
+      const eventLayout = eventReadingLayout(list.id, order.items);
       if ((list.sectionalPart && !sectional)
-        || (position !== undefined && (!sectional || position > order.items.length))) {
+        || (position !== undefined && (!(sectional || eventLayout) || position > order.items.length))) {
         nodes.body.replaceChildren(el('p', { class: 'rail-hint', role: 'status', text: SECTIONAL_GUIDE_COPY.linkFailed }));
         return;
       }
@@ -374,37 +376,51 @@ export function createPreviewView({
           + 'ratings and availability choices, '
           + "but not the saved list's order, list note, deferred comics, customized editions, completion date or enjoyment choice.",
       })] : [];
-      let shown = null;
-      const rows = [];
-      const addSteps = (steps = []) => rows.push(...sectionalStepRows(el, steps, {
-        className: 'preview-group', heading: 'h4', guideId: list.id, onFollow: onFollowSectional,
-      }));
-      order.items.forEach((item, index) => {
-        if (sectional) addSteps(sectional.before.get(item.issueId));
-        const edition = typeof item.collectedIn === 'string' ? item.collectedIn || null : null;
-        if (edition !== shown) {
-          shown = edition;
-          rows.push(el('li', { class: 'preview-group' }, [el('h4', { text: edition || 'Individual comics' })]));
-        }
-        rows.push(el('li', sectional ? { dataset: { sectionalPosition: index + 1 } } : {}, [
-          el('span', { class: 'pn', text: String(index + 1) }),
-          el('div', { class: 'preview-issue-info' }, [issueFocusAnchor(item, {
-            context: { kind: 'order', id: list.id },
-            surface: 'preview',
-            className: 'preview-issue-link',
-            children: item.title || 'Untitled comic',
-          }), tieInRatingLabels(el, list.id, item), collectedEditionLabels(el, list.id, item)]),
-        ]));
-      });
-      if (sectional) addSteps(sectional.after);
+      const issueRow = (item, index) => el('li', sectional || eventLayout ? { dataset: { sectionalPosition: index } } : {}, [
+        el('span', { class: 'pn', text: String(index) }),
+        el('div', { class: 'preview-issue-info' }, [issueFocusAnchor(item, {
+          context: { kind: 'order', id: list.id },
+          surface: 'preview',
+          className: 'preview-issue-link',
+          children: item.title || 'Untitled comic',
+        }), tieInRatingLabels(el, list.id, item), collectedEditionLabels(el, list.id, item)]),
+      ]);
       const credit = order.items.some((item) => editionRelations(list.id, item).length)
         ? [collectedEditionCredit(el)] : [];
       if (hasGcdDetails(order.items)) credit.push(gcdDetailsCredit(el));
       if (hasTieInRatings(list.id, order.items)) credit.push(tieInRatingCredit(el));
-      nodes.body.replaceChildren(...notice, ...credit, el('ol', { class: 'preview-list' }, rows));
-      if (sectional && position !== undefined) {
-        nodes.body.querySelector(`[data-sectional-position="${position}"] a`)?.focus();
+      function show(mode, at, holdMode = false) {
+        if (loadToken !== token) return false;
+        let rows;
+        if (mode === 'book') {
+          rows = eventBookRows(el, eventLayout, order.items, {
+            catalogId: list.id, heading: 'h4', groupClass: 'preview-group', issueRow,
+            openPosition: (target) => show('issue', target),
+          });
+        } else {
+          rows = [];
+          let shown = null;
+          const addSteps = (steps = []) => rows.push(...sectionalStepRows(el, steps, {
+            className: 'preview-group', heading: 'h4', guideId: list.id, onFollow: onFollowSectional,
+          }));
+          order.items.forEach((item, index) => {
+            if (sectional) addSteps(sectional.before.get(item.issueId));
+            const edition = typeof item.collectedIn === 'string' ? item.collectedIn || null : null;
+            if (edition !== shown) {
+              shown = edition;
+              rows.push(el('li', { class: 'preview-group' }, [el('h4', { text: edition || 'Individual comics' })]));
+            }
+            rows.push(issueRow(item, index + 1));
+          });
+          if (sectional) addSteps(sectional.after);
+        }
+        const controls = eventLayout ? [eventOrderControls(el, mode, (chosen) => show(chosen, undefined, true))] : [];
+        nodes.body.replaceChildren(...notice, ...credit, ...controls, el('ol', { class: 'preview-list' }, rows));
+        if (at !== undefined) nodes.body.querySelector(`[data-sectional-position="${at}"] a`)?.focus();
+        else if (holdMode) nodes.body.querySelector(`[data-act="event-order"][data-key="${mode}"]`)?.focus();
+        return true;
       }
+      show('issue', position);
     } catch (error) {
       if (loadToken !== token) return;
       await onIssueLoadFailure({

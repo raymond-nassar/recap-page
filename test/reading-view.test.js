@@ -18,6 +18,7 @@ import {
 import { Store, KEY } from '../src/js/storage.js';
 import { DEFAULT_FILTER, READING_FILTERS } from '../src/js/lib/readingFilters.js';
 import { isLaunchable } from '../src/js/reader.js';
+import { eventReadingOrders } from '../src/data/eventReadingOrders.js';
 import { createCatalogPresentation, PROJECT_HOME } from '../src/js/views/shared/catalog-presentation.js';
 import {
   createReadingView,
@@ -67,6 +68,7 @@ function queryAll(root, selector) {
     if (selector === 'input[name="filter"]' && node.tag === 'input' && node.name === 'filter') found.push(node);
     if (selector === '[data-act="read"]' && node.dataset?.act === 'read') found.push(node);
     if (selector === '.rg-done' && node.classList?.contains('rg-done')) found.push(node);
+    if (selector === '.row-focus-title' && node.classList?.contains('row-focus-title')) found.push(node);
   });
   return found;
 }
@@ -253,6 +255,43 @@ function issue(issueId, title, extra = {}) {
     ...extra,
   };
 }
+
+test('saved event book view opens the exact linked comic without saving or changing progress', () => {
+  const catalogId = 'secret-wars-2015-event-tie-ins';
+  const { issueOrder, linked } = eventReadingOrders[catalogId];
+  const targetId = issueOrder[linked[0] - 1];
+  let state = createList(createEmptyState(), { id: 'event', name: 'Secret Wars', catalogId });
+  state = addIssuesToList(state, 'event', issueOrder.map((id) => issue(id, `Comic ${id}`)), {}).state;
+  state = setActive(markRead(state, targetId, true), 'event');
+  const h = harness({ state, settings: { covers: true, filter: 'unread' } });
+  try {
+    h.view.wire();
+    h.nodes.full.open = true;
+    h.view.render();
+    const find = (predicate) => {
+      let found;
+      walk(h.nodes.rows, (entry) => { if (!found && predicate(entry)) found = entry; });
+      return found;
+    };
+    const book = find((entry) => entry.dataset?.act === 'event-order' && entry.dataset.key === 'book');
+    assert.ok(book, 'exact saved issue order has a book presentation');
+    assert.equal(find((entry) => entry.dataset?.issueId === String(targetId)), undefined);
+    book.fire('click');
+    const links = [];
+    walk(h.nodes.rows, (entry) => { if (entry.dataset?.act === 'event-position') links.push(entry); });
+    assert.equal(links.length, 43);
+    assert.deepEqual(links.map((entry) => entry.dataset.key), linked);
+    links[0].fire('click', { button: 0, preventDefault() {} });
+    assert.equal(globalThis.document.activeElement.dataset.issueId, String(targetId));
+    assert.equal(h.state(), state);
+    assert.equal(h.calls.saveSettings, 0);
+    h.view.setFilter('read');
+    h.view.setFilter('unread');
+    assert.equal(find((entry) => entry.dataset?.issueId === String(targetId)), undefined);
+  } finally {
+    h.restore();
+  }
+});
 
 function seededState() {
   let state = createEmptyState();
