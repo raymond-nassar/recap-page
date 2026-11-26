@@ -1874,6 +1874,25 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
   border: var(--stroke-2) solid var(--line-2);
 }
 .timeline-year-cards { min-width: 0; }
+/* A year that a period starts inside holds one grid per period, each under the period's own heading
+   (#1603), so a heading never stretches to a card's row height. */
+.timeline-year-body { display: grid; gap: var(--space-5); min-width: 0; }
+.timeline-checkpoint {
+  margin: 0; padding-top: var(--space-3); border-top: var(--stroke-2) solid var(--line-2);
+  font-size: var(--t-body); font-weight: 700; scroll-margin-top: var(--space-8);
+}
+.timeline-year-body > .timeline-checkpoint:first-child { border-top: 0; padding-top: 0; }
+/* The words say how far an event reaches; the solid and dashed edges repeat it in shape, never in
+   colour alone, and stay distinct when forced colours replace the palette. */
+.catalog-card-badges { margin: var(--space-2) 0 0; }
+.event-badge { display: inline-block; color: var(--text); font-weight: 600; white-space: normal; }
+.event-badge-major { border: var(--stroke-2) solid var(--text); }
+.event-badge-family { border-style: dashed; border-color: var(--line-2); font-weight: 500; }
+@media (forced-colors: active) {
+  .timeline-checkpoint { border-top-color: CanvasText; }
+  .event-badge-major { border: var(--stroke-2) solid CanvasText; }
+  .event-badge-family { border: var(--stroke-1) dashed CanvasText; }
+}
 
 @media (max-width: 700px) {
   .timeline-flow { --timeline-axis: .75rem; }
@@ -2992,9 +3011,10 @@ body.nocovers :is(.fallback, .tf, .of).cover-fallback, :is(.fallback, .tf, .of).
    stop keeps its ordinal and progress in text so shape and colour are never the only explanation.
    The Modern Timeline draws a followed path this way (#897). */
 .timeline-follow { display: grid; gap: var(--space-3); max-width: 32rem; margin: var(--space-6) 0 var(--space-8); }
-.timeline-follow[hidden], .timeline-follow-about[hidden] { display: none; }
-.timeline-follow label { color: var(--muted); font-size: var(--t-caption); font-weight: 600; }
-.timeline-follow select { width: 100%; min-height: var(--target); }
+.timeline-follow[hidden], .timeline-follow-about[hidden], .timeline-sections[hidden] { display: none; }
+.timeline-follow-name { margin: 0; font-weight: 600; }
+.timeline-follow .btn { justify-self: start; min-height: var(--target); }
+.timeline-sections { max-width: 32rem; }
 /* The ratings filters sit in one row on a wide screen and stack on a narrow one. Each control keeps a
    visible label above it, the same caption treatment the Timeline's path picker uses, because a
    placeholder alone disappears the moment the reader starts typing. */

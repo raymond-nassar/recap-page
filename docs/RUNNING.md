@@ -138,10 +138,12 @@ Use Edge, Chrome, Firefox, or Safari, not an editor's preview panel. Preview pan
 the reader tab opened by **Read**.
 
 On first run, Home offers Browse and Add, and curated Reading Lists by story, by publication age
-and for young readers. The optional Setup guide appears on Modern Timeline, not Home. To read one
-connected story in order, choose it in **Follow a path** on Modern Timeline. Its stops are listed
-in the path's own order, with **You are here** and how many of them are complete. Search stays
-available even when live metadata has to wait.
+and for young readers. The optional Setup guide appears on Modern Timeline, not Home. To move
+through Modern Timeline by publishing period, choose a period in **Jump to a section**, such as
+Civil War or Marvel NOW!; focus moves to where that period starts, and nothing is added or marked
+read. A link that follows one connected story lists its stops in the path's own order, with
+**You are here** and how many of them are complete, and **Show the whole timeline** returns to
+every stop. Search stays available even when live metadata has to wait.
 
 ## Install it as a browser app
 

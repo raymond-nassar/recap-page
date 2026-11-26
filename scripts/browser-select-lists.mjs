@@ -110,7 +110,7 @@ export const selectLists = {
         t.check(`${label}: the page wears the ${combination.expected} colour scheme, which the native list follows`,
           scheme === combination.expected, scheme);
         t.check(`${label}: the dropdowns on Settings, Modern Timeline, MCU Prep, Genres and ratings are all measured`,
-          ['opt-theme', 'catalog-path', 'rated-min', 'rated-character', 'rated-sort', 'marvel-on-screen-sort', 'genres-type', 'genres-tone']
+          ['opt-theme', 'catalog-section-jump', 'rated-min', 'rated-character', 'rated-sort', 'marvel-on-screen-sort', 'genres-type', 'genres-tone']
             .every((id) => selects.has(id)) && selects.size >= 8, JSON.stringify([...selects]));
         t.check(`${label}: every option is painted on an opaque background, not the list's own canvas`,
           all.length > 0 && all.every((option) => option.alpha === 255),

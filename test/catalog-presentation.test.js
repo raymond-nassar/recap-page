@@ -8,6 +8,7 @@ function el(tag, props = {}, children = []) {
   return {
     tag,
     children: [].concat(children),
+    append(...more) { this.children.push(...more); },
     replaceChildren(...next) { this.children = next; },
     ...props,
   };
@@ -431,5 +432,41 @@ test('expanded MCU guides render the team credit without changing source links o
     const compact = descendants(renderedCard).find((node) => node.class === 'result-meta result-source');
     assert.equal(text(compact), `Source: ${href === herald ? 'Comic Book Herald' : 'Recap Page'}`, id);
     assert.equal(descendants(compact).find((node) => node.tag === 'a').href, href, id);
+  }
+});
+
+// #1603. A period that starts mid-year gets its own focusable marker between the year's cards, and
+// an event's badge is drawn once on its own card, never on the readings a placement offers.
+test('a section marker sits where its period starts, and an event badge only on the event\'s card', () => {
+  const shared = createCatalogPresentation({
+    el, hueOf: () => 0, isInLibrary: () => false, paintCoverUrl: () => {}, shortTitle: (value) => value,
+  });
+  const at = (id) => ({ key: `list:${id}`, lists: [{ ...list, id, name: id, timeline: 2008 }] });
+  const placement = {
+    key: 'placement:event', name: 'Event', year: 2008, placement: true,
+    options: ['one', 'two'].map((id) => ({ label: id, list: { ...list, id, name: id }, savedAs: [] })),
+  };
+  const box = el('div');
+  shared.renderTimelineSections(box, [{ key: 'era', name: 'Era', from: 2008, to: 2008, stories: [at('a'), placement, at('b')] }], {
+    showEmptyYears: false,
+    sectionBlurb: false,
+    checkpoints: new Map([['list:a', { key: 'first', name: 'First' }], ['list:b', { key: 'second', name: 'Second' }]]),
+    badgeFor: (story) => (story.key === 'placement:event' ? { kind: 'major', label: 'Major event' } : null),
+  });
+  const all = descendants(box);
+  const markers = all.filter((node) => node.class === 'timeline-checkpoint');
+  assert.deepEqual(markers.map((node) => [node.id, node.tabindex, node.text, node.tag]), [
+    ['timeline-section-first', '-1', 'First', 'h4'], ['timeline-section-second', '-1', 'Second', 'h4'],
+  ]);
+  const body = all.find((node) => node.class === 'timeline-year-body');
+  assert.deepEqual(body.children.map((node) => node.class), [
+    'timeline-checkpoint', 'catalog-grid timeline-year-cards', 'timeline-checkpoint', 'catalog-grid timeline-year-cards',
+  ], 'no empty grid is left before the first marker');
+  const badges = all.filter((node) => typeof node.class === 'string' && node.class.startsWith('badge event-badge'));
+  assert.deepEqual(badges.map((node) => [node.class, node.text]), [['badge event-badge event-badge-major', 'Major event']]);
+  const card = all.find((node) => node.dataset?.placement === 'placement:event');
+  assert.ok(descendants(card).includes(badges[0]), 'the badge is on the placement card');
+  for (const option of descendants(card).filter((node) => node.class === 'placement-option')) {
+    assert.ok(!descendants(option).includes(badges[0]), 'and on none of its readings');
   }
 });

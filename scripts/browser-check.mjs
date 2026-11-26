@@ -3152,6 +3152,12 @@ const SCENARIOS = [
           clearances: rows.map(clearance),
           groups: rows.map((row) => ({
             year: row.querySelector('.timeline-year-label')?.textContent.trim() ?? '',
+            // A period that starts inside a year splits it into one grid per period under its own
+            // heading (#1603), so equal heights are a contract of each grid rather than the year.
+            grids: [...row.querySelectorAll('.timeline-year-cards')].map((grid) => [...grid.querySelectorAll('.catalog-card')]
+              .map((card) => Math.round(card.getBoundingClientRect().height))),
+            splitHeaded: [...row.querySelectorAll('.timeline-year-cards')].slice(1)
+              .every((grid) => grid.previousElementSibling?.classList.contains('timeline-checkpoint')),
             cards: [...row.querySelectorAll('.catalog-card')].map((card) => card.dataset.year),
             heights: [...row.querySelectorAll('.catalog-card')]
               .map((card) => Math.round(card.getBoundingClientRect().height)),
@@ -3168,11 +3174,12 @@ const SCENARIOS = [
         vertical.groups.length > 0
         && vertical.groups.every((group) => group.cards.length > 0 && group.cards.every((year) => year === group.year)),
         JSON.stringify(vertical.groups));
-      t.check('cards within each year use one height and align their actions',
+      t.check('cards within each year grid use one height and align their actions',
         vertical.variedCopy && vertical.groups.every((group) => (
-          Math.max(...group.heights) - Math.min(...group.heights) <= 1
+          group.splitHeaded
+          && group.grids.every((heights) => Math.max(...heights) - Math.min(...heights) <= 1)
           && Math.max(...group.actionOffsets) <= 1
-        )),
+        )) && vertical.groups.some((group) => group.grids.length > 1),
         JSON.stringify(vertical.groups));
       t.check('each year label clears the circle beside it',
         vertical.clearances.every((gap) => gap >= 4), JSON.stringify(vertical.clearances));
@@ -8934,12 +8941,14 @@ const SCENARIOS = [
       const offer = await page.evaluate(() => ({
         sentence: document.querySelector('#catalog-results .shelf-orientation')?.textContent.trim() ?? null,
         follow: document.querySelector('#catalog-follow')?.hidden === false,
-        options: [...document.querySelectorAll('#catalog-path option')].map((option) => option.textContent.trim()),
+        selectors: document.querySelectorAll('#catalog-path').length,
       }));
       t.check('the Timeline still says where the path starts',
         offer.sentence === 'Start The Fixture Path with Browser Check Order.', JSON.stringify(offer));
-      t.check('and offers to follow it',
-        offer.follow && offer.options.includes('The Fixture Path (3 stops)'), JSON.stringify(offer));
+      // #1603 retired the Follow a path selector, so the whole timeline names no path and offers no
+      // second chooser beside Jump to a section.
+      t.check('and keeps no path selector beside the whole timeline',
+        !offer.follow && offer.selectors === 0, JSON.stringify(offer));
 
       await click(page, '#catalog-results [data-story="list:browser-check"] [data-act="preview"]');
       await page.waitForSelector('#preview[open]', { timeout: 15000 });
@@ -14145,7 +14154,7 @@ const SCENARIOS = [
       await page.waitForFunction(() => document.querySelector('#preview').open
         && document.activeElement?.classList.contains('preview-issue-link'));
       const returned = await page.evaluate(() => ({
-        path: document.querySelector('#catalog-path').value,
+        path: new URLSearchParams(location.hash.split('?')[1] ?? '').get('path'),
         choices: document.querySelectorAll('#preview-paths input').length,
         title: document.querySelector('#preview-h').textContent,
         add: document.querySelector('#preview-add button')?.dataset.key,
@@ -14350,11 +14359,11 @@ const SCENARIOS = [
       await open(page, '/?catalog=path-follow&path-delay=600#/catalog?path=bc-path');
       await page.waitForSelector('#view-catalog:not([hidden])');
       await page.evaluate(() => { location.hash = '#/catalog?path=spotlight-arrival'; });
-      await page.waitForFunction(() => document.querySelector('#catalog-path')?.value === 'spotlight-arrival'
+      await page.waitForFunction(() => document.querySelector('#catalog-path-name')?.textContent === 'Following The Spotlight Path'
         && document.querySelector('#catalog-results .path-stop'));
       const lateRoute = await page.evaluate(() => ({
         route: window.__pathRoute(),
-        selected: document.querySelector('#catalog-path')?.value,
+        selected: document.querySelector('#catalog-path-name')?.textContent === 'Following The Spotlight Path' ? 'spotlight-arrival' : null,
         titles: [...document.querySelectorAll('#catalog-results .path-stop .catalog-card-title')].map((node) => node.textContent.trim()),
       }));
       t.check('a late earlier catalog continuation cannot overwrite the newer path route',
@@ -14406,24 +14415,27 @@ const SCENARIOS = [
           && document.activeElement?.id === 'catalog-h', {}, expected);
         const arrived = await page.evaluate(() => ({
           visible: document.querySelector('.view:not([hidden])')?.id,
-          selected: document.querySelector('#catalog-path')?.value,
+          named: document.querySelector('#catalog-path-name')?.textContent,
         }));
+        const name = { 'bc-path': 'The Fixture Path', 'spotlight-arrival': 'The Spotlight Path' }[expected];
         t.check(`${address} opens Modern Timeline following its path, and says so in the address`,
-          arrived.visible === 'view-catalog' && arrived.selected === expected,
+          arrived.visible === 'view-catalog' && arrived.named === `Following ${name}`,
           JSON.stringify(arrived));
       }
 
-      const selector = await page.$eval('#catalog-path', (node) => ({
-        tag: node.tagName,
-        labels: [...node.labels].map((label) => label.textContent.trim()),
-        options: [...node.options].map((option) => option.value),
-        selected: [...node.selectedOptions].map((option) => option.value),
+      const selector = await page.evaluate(() => ({
+        selectors: document.querySelectorAll('#catalog-path').length,
+        named: [...document.querySelectorAll('#catalog-path-name')].map((node) => node.textContent),
+        whole: document.querySelector('#catalog-path-whole')?.textContent.trim(),
+        sections: document.querySelector('#catalog-sections')?.hidden,
       }));
-      t.check('one labelled native selector exposes every path, the whole timeline and one selected option',
-        selector.tag === 'SELECT'
-        && selector.labels.join('|') === 'Follow a path'
-        && selector.options.join('|') === '|bc-path|bc-age-path|spotlight-arrival'
-        && selector.selected.join('|') === 'bc-path',
+      // #1603: the path is chosen by its address or a stop's return, named once, and left by one
+      // button, with no selector offering other paths and no section jump competing with its own.
+      t.check('a followed path is named once beside one way back to the whole timeline, with no path selector',
+        selector.selectors === 0
+        && selector.named.join('|') === 'Following The Fixture Path'
+        && selector.whole === 'Show the whole timeline'
+        && selector.sections === true,
         JSON.stringify(selector));
 
       const firstPath = await page.evaluate(() => ({
@@ -14455,25 +14467,30 @@ const SCENARIOS = [
         jumped.focused === 'browser-check' && jumped.title && jumped.here === 'browser-check'
         && jumped.status === 'Jumped to Browser Check Order (1 of 3).', JSON.stringify(jumped));
 
-      await page.evaluate(() => { window.__pathSelector = document.querySelector('#catalog-path'); });
-      await page.focus('#catalog-path');
-      await page.keyboard.press('ArrowDown');
+      // Paths are no longer chosen on the page (#1603), so another path is followed by its address,
+      // keeping the list and filter the current address already carries.
+      const followPath = (id) => page.evaluate((value) => {
+        const [head, query = ''] = location.hash.split('?');
+        const params = new URLSearchParams(query);
+        params.set('path', value);
+        location.hash = `${head}?${params}`;
+      }, id);
+      await followPath('bc-age-path');
       await page.waitForFunction(() => window.__pathRoute().path === 'bc-age-path'
         && document.querySelector('#catalog-results [data-path-stop="x-men-spine"]'));
       const selectorChange = await page.evaluate(() => ({
-        same: window.__pathSelector === document.querySelector('#catalog-path'),
-        focused: document.activeElement === document.querySelector('#catalog-path'),
-        value: document.querySelector('#catalog-path')?.value,
+        named: document.querySelector('#catalog-path-name')?.textContent,
+        focused: document.activeElement?.id,
       }));
-      t.check('keyboard selection pushes one route while retaining selector identity and focus',
-        selectorChange.same && selectorChange.focused && selectorChange.value === 'bc-age-path',
+      t.check('an address naming another path follows it, names it and focuses the route heading',
+        selectorChange.named === 'Following Across Two Periods' && selectorChange.focused === 'catalog-h',
         JSON.stringify(selectorChange));
       const fallback = (await stops()).find(({ id }) => id === 'x-men-spine');
       t.check('the first saved sibling in catalog order is the stop when the named reading is not saved',
         fallback.title === 'X-Men Complete' && fallback.open === '#/read/fallback',
         JSON.stringify(fallback));
 
-      await page.keyboard.press('ArrowDown');
+      await followPath('spotlight-arrival');
       await page.waitForFunction(() => window.__pathRoute().path === 'spotlight-arrival'
         && document.querySelector('#catalog-results [data-path-stop="browser-check-off"]'));
       const overlap = await stops();
@@ -14485,24 +14502,26 @@ const SCENARIOS = [
       await page.evaluate(() => history.back());
       await page.waitForFunction(() => window.__pathRoute().path === 'bc-age-path'
         && document.activeElement?.id === 'catalog-h');
-      const back = await page.$eval('#catalog-path', (node) => node.value);
+      const back = await page.$eval('#catalog-path-name', (node) => node.textContent);
       await page.evaluate(() => history.forward());
       await page.waitForFunction(() => window.__pathRoute().path === 'spotlight-arrival'
         && document.activeElement?.id === 'catalog-h');
-      const forward = await page.$eval('#catalog-path', (node) => ({
-        value: node.value,
+      const forward = await page.$eval('#catalog-path-name', (node) => ({
+        value: node.textContent,
         filter: JSON.parse(localStorage.getItem('mrt.settings')).filter,
         addressed: new URLSearchParams(location.hash.split('?')[1] ?? '').get('filter') ?? 'all',
       }));
       // The retired page's address carried no reading filter and was exempt from it. The Timeline's
       // carries it as every view's does, so the stored filter is the one the address names.
       t.check('Back and Forward restore the followed path and focus the route heading',
-        back === 'bc-age-path' && forward.value === 'spotlight-arrival' && forward.filter === forward.addressed,
+        back === 'Following Across Two Periods' && forward.value === 'Following The Spotlight Path'
+        && forward.filter === forward.addressed,
         JSON.stringify({ back, forward }));
 
       const beforeReload = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
       await page.reload({ waitUntil: 'load' });
-      await page.waitForFunction(() => document.querySelector('#catalog-path')?.value === 'spotlight-arrival'
+      await page.waitForFunction(() => window.__pathRoute().path === 'spotlight-arrival'
+        && document.querySelector('#catalog-path-name')?.textContent === 'Following The Spotlight Path'
         && document.querySelector('#catalog-results .path-stop'));
       const reloaded = await page.evaluate(() => ({
         route: window.__pathRoute(),
@@ -14515,11 +14534,13 @@ const SCENARIOS = [
         && reloaded.state === beforeReload,
         JSON.stringify({ route: reloaded.route, stops: reloaded.stops, stateChanged: reloaded.state !== beforeReload }));
 
-      await page.select('#catalog-path', 'bc-path');
+      await followPath('bc-path');
       await page.waitForFunction(() => window.__pathRoute().path === 'bc-path'
         && document.querySelector('#catalog-results [data-path-stop="browser-check"]'));
+      // The followed path's own control outside the results is now its way back to the whole
+      // timeline, so that is the control a repaint must neither replace nor blur.
       await page.evaluate(() => {
-        const select = document.querySelector('#catalog-path');
+        const select = document.querySelector('#catalog-path-whole');
         window.__pathSelector = select;
         select.focus();
       });
@@ -14540,8 +14561,8 @@ const SCENARIOS = [
         }));
         await new Promise((resolve) => setTimeout(resolve, 100));
         window.__pathCleared = {
-          same: window.__pathSelector === document.querySelector('#catalog-path'),
-          focused: document.activeElement === document.querySelector('#catalog-path'),
+          same: window.__pathSelector === document.querySelector('#catalog-path-whole'),
+          focused: document.activeElement === document.querySelector('#catalog-path-whole'),
           progress: document.querySelector('#catalog-results .timeline-position-progress')?.textContent.trim(),
         };
         localStorage.setItem('mrt.state.v2', newValue);
@@ -14551,14 +14572,14 @@ const SCENARIOS = [
       });
       await new Promise((resolve) => setTimeout(resolve, 500));
       const repainted = await page.evaluate(() => ({
-        same: window.__pathSelector === document.querySelector('#catalog-path'),
-        focused: document.activeElement === document.querySelector('#catalog-path'),
+        same: window.__pathSelector === document.querySelector('#catalog-path-whole'),
+        focused: document.activeElement === document.querySelector('#catalog-path-whole'),
         route: window.__pathRoute(),
         here: document.querySelector('#catalog-results .timeline-position-current')?.closest('[data-path-stop]')?.dataset.pathStop,
         progress: document.querySelector('#catalog-results .timeline-position-progress')?.textContent.trim(),
         cleared: window.__pathCleared,
       }));
-      t.check('a state repaint moves the path\'s progress without replacing or blurring the selector',
+      t.check('a state repaint moves the path\'s progress without replacing or blurring the way back',
         repainted.same && repainted.focused
         && repainted.route.view === 'catalog' && repainted.route.path === 'bc-path'
         && repainted.cleared.same && repainted.cleared.focused
@@ -14585,18 +14606,19 @@ const SCENARIOS = [
 
       if (await page.evaluate(() => matchMedia('(forced-colors: active)').matches)) {
         const forced = await page.evaluate(() => ({
-          selectBorder: getComputedStyle(document.querySelector('#catalog-path')).borderTopWidth,
+          selectBorder: getComputedStyle(document.querySelector('#catalog-path-whole')).borderTopWidth,
           spine: getComputedStyle(document.querySelector('#catalog-results .path-stops')).borderLeftWidth,
           marker: getComputedStyle(document.querySelector('#catalog-results .path-stop-marker')).borderTopWidth,
           text: document.querySelector('#catalog-results .timeline-position-progress')?.textContent.trim(),
         }));
-        t.check('forced colors retain the bordered selector, the path line, its stop markers and visible progress',
+        t.check('forced colors retain the bordered way back, the path line, its stop markers and visible progress',
           forced.selectBorder !== '0px' && forced.spine !== '0px' && forced.marker !== '0px' && forced.text.length > 0,
           JSON.stringify(forced));
       }
 
       await page.setViewport({ width: 1280, height: 900 });
-      await page.select('#catalog-path', '');
+      const historyBefore = await page.evaluate(() => history.length);
+      await page.$eval('#catalog-path-whole', (button) => button.click());
       await page.waitForFunction(() => window.__pathRoute().view === 'catalog' && window.__pathRoute().path === null
         && document.querySelector('#catalog-results [data-story="list:browser-check"]')
         && document.querySelector('#catalog-results .shelf-orientation'));
@@ -14604,11 +14626,24 @@ const SCENARIOS = [
         sentence: document.querySelector('#catalog-results .shelf-orientation')?.textContent.trim(),
         meta: card.querySelector('.catalog-card-meta')?.textContent.replace(/\s+/g, ' ').trim(),
         stops: document.querySelectorAll('#catalog-results .path-stop').length,
+        follow: document.querySelector('#catalog-follow')?.hidden,
+        // The fixture catalog holds exactly one period start, Avengers Disassembled, so the section
+        // jump offers only that real destination and focus lands on it rather than on the heading.
+        sections: document.querySelector('#catalog-sections')?.hidden,
+        options: [...document.querySelectorAll('#catalog-section-jump option')].map((o) => o.value).filter(Boolean),
+        focused: document.activeElement?.id || document.activeElement?.tagName,
+        pushed: history.length,
       }));
-      t.check('choosing the whole timeline restores its start sentence, comic count and saved-copy count',
+      t.check('Show the whole timeline restores its start sentence, comic count and saved-copy count',
         shelf.sentence === 'Start The Fixture Path with Browser Check Order.' && shelf.stops === 0
-        && shelf.meta === '3 comics · Saved copy: 1 comic',
+        && shelf.meta === '3 comics · Saved copy: 1 comic'         && shelf.follow === true && shelf.sections === false
+                && JSON.stringify(shelf.options) === '["entry:avengers-disassembled"]'
+                && shelf.focused === 'catalog-section-jump' && shelf.pushed === historyBefore + 1,
         JSON.stringify(shelf));
+      await page.evaluate(() => history.back());
+      await page.waitForFunction(() => window.__pathRoute().path === 'bc-path'
+        && document.querySelector('#catalog-path-name')?.textContent === 'Following The Fixture Path');
+      t.check('Back from the whole timeline follows the path again', true);
     },
   },
   {
@@ -21952,15 +21987,16 @@ SCENARIOS.push(responsiveOwner({
       await open(page, '/#/data');
       await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
       const themeField = await fieldBox('#opt-theme');
-      // #897 moved the path picker from its own page onto Modern Timeline.
+      // #897 moved the path picker from its own page onto Modern Timeline, and #1603 replaced it with
+      // Jump to a section, the native select the whole timeline now carries.
       await open(page, '/?catalog=actual#/catalog');
-      await page.waitForSelector('#catalog-path option');
+      await page.waitForSelector('#catalog-section-jump option');
       await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
-      const pathField = await fieldBox('#catalog-path');
-      await page.focus('#catalog-path');
-      const selectedBefore = await page.$eval('#catalog-path', (node) => node.selectedIndex);
+      const pathField = await fieldBox('#catalog-section-jump');
+      await page.focus('#catalog-section-jump');
+      const selectedBefore = await page.$eval('#catalog-section-jump', (node) => node.selectedIndex);
       await page.keyboard.press('ArrowDown');
-      const selectedAfter = await page.$eval('#catalog-path', (node) => node.selectedIndex);
+      const selectedAfter = await page.$eval('#catalog-section-jump', (node) => node.selectedIndex);
       await page.keyboard.press('ArrowUp');
       await open(page, '/#/add-manual');
       await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
@@ -25607,7 +25643,7 @@ async function runLongCollectionNavigation(page, t) {
   const ageUrl = (key) => `/?catalog=actual#/age-${key}`;
   const pathReady = async (id = UX10_LONG.id, fixture = 'actual') => {
     await open(page, pathUrl(id, fixture));
-    await page.waitForFunction((expected) => document.querySelector('#catalog-path')?.value === expected
+    await page.waitForFunction((expected) => new URLSearchParams(location.hash.split('?')[1] ?? '').get('path') === expected
       && document.querySelector('#catalog-results [data-path-stop] .catalog-card')
       && document.querySelector('#catalog-path-navigation form'), {}, id);
     await settle();
@@ -25996,7 +26032,15 @@ async function runLongCollectionNavigation(page, t) {
     }, UX10_LONG.stops[77].stepId);
     receipt('LC08', 'detached target', 'unavailable/no fallback', disconnected, { unavailable: disconnected.text.includes('no longer available'), noFallback: disconnected.target === 'BUTTON' });
     await page.evaluate(() => { window.__ux10OldForm = document.querySelector('#catalog-path-navigation form'); });
-    await page.select('#catalog-path', UX10_MODERN.id);
+    // #1603 retired the path selector, so another path is followed by its address.
+    await page.evaluate((id) => {
+      const [head, query = ''] = location.hash.split('?');
+      const params = new URLSearchParams(query);
+      params.set('path', id);
+      location.hash = `${head}?${params}`;
+    }, UX10_MODERN.id);
+    await page.waitForFunction((id) => new URLSearchParams(location.hash.split('?')[1] ?? '').get('path') === id
+      && document.querySelector('#catalog-path-navigation form') !== window.__ux10OldForm, {}, UX10_MODERN.id);
     await settle();
     const stale = await page.evaluate(() => {
       const before = document.activeElement;
@@ -26023,14 +26067,16 @@ async function runLongCollectionNavigation(page, t) {
     await pathReady();
     const reloadBefore = await raw(); await page.reload({ waitUntil: 'load' });
     await page.waitForSelector('#catalog-results [data-path-stop] .catalog-card'); await settle();
-    receipt('LC09', 'path reload', UX10_LONG.id, await page.$eval('#catalog-path', (node) => node.value), {
-      pathRetained: await page.$eval('#catalog-path', (node) => node.value) === UX10_LONG.id,
+    const reloadedPath = routeOf((await raw()).hash).path;
+    receipt('LC09', 'path reload', UX10_LONG.id, reloadedPath, {
+      pathRetained: reloadedPath === UX10_LONG.id,
       hashRetained: isDeepStrictEqual(routeOf((await raw()).hash), routeOf(reloadBefore.hash)),
     });
     await ageReady('event-era'); await page.reload({ waitUntil: 'load' }); await page.waitForSelector('#age-event-era-results .catalog-card'); await settle();
     const ageBeforeNavigation = await raw();
     await page.evaluate(() => { location.hash = '#/catalog?path=modern-avengers'; });
-    await page.waitForFunction(() => document.querySelector('#catalog-path')?.value === 'modern-avengers'
+    await page.waitForFunction(() => document.querySelector('#catalog-path-name')?.textContent.startsWith('Following ')
+      && new URLSearchParams(location.hash.split('?')[1] ?? '').get('path') === 'modern-avengers'
       && document.querySelector('#catalog-results [data-path-stop] .catalog-card')); await settle();
     await page.evaluate(() => history.back());
     await page.waitForFunction(() => document.activeElement?.id === 'age-event-era-h'); await settle();

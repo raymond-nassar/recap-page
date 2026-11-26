@@ -56,7 +56,7 @@ const element = (tag, props = {}, children = []) => node({ tagName: tag.toUpperC
 
 function harness(catalog = actual, { state = { lists: {}, listOrder: [], read: {} }, isCompleted = () => false } = {}) {
   const shelf = { clear: node(), filters: node(), query: node(), results: node(), search: node() };
-  const follow = { wrap: node(), select: element('select'), about: node(), description: node(), source: node() };
+  const follow = { wrap: node(), sections: node(), name: node(), whole: node(), about: node(), description: node(), source: node() };
   const sections = [];
   const paints = [];
   const announced = [];

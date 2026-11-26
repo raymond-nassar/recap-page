@@ -12,21 +12,27 @@ import { curatedLedgerDigestFor, curatedRelationshipReportDigestFor } from '../s
 import { validateApprovalDigest } from '../scripts/lib/cbh-inventory.mjs';
 
 import {
+  MODERN_TIMELINE_CHECKPOINTS,
   MODERN_TIMELINE_FEATURED_ID,
   MODERN_TIMELINE_FEATURED_ROUTES,
   MODERN_TIMELINE_CHAPTER_COUNT,
   MODERN_TIMELINE_CONTINUATION_YEAR,
   MODERN_TIMELINE_START_YEAR,
+  catalogEntries,
   eraSections,
   groupCatalog,
+  modernTimelineEventBadge,
   modernTimelineFeaturedList,
   modernTimelineFeaturedCard,
   modernTimelineLists,
+  modernTimelinePlacements,
   modernTimelineStories,
   parseCatalog,
   publishingCategoryStories,
   isModernTimelineChapterId,
   shelfLists,
+  timelineCheckpointTargets,
+  timelineDrawOrder,
 } from '../src/js/lib/catalog.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -402,4 +408,87 @@ test('Modern Timeline position keeps visible semantics and joins the Store rende
   assert.match(renderAll, /catalogView\.refreshProgress\(\)/);
   assert.match(mainSource, /getState: \(\) => store\.state/);
   assert.match(mainSource, /isCurrent: \(key\) => view === key/);
+});
+
+// #1603. The whole timeline as the view draws it: every stop, Secret Wars (2015) as its one card, and
+// the 2007 bridge as its own chooser rather than fourteen loose parts.
+function wholeTimeline() {
+  const mine = modernTimelineLists(catalog.lists);
+  const stopIds = new Set(mine.map((entry) => entry.id));
+  const placements = [...modernTimelinePlacements(catalog.lists), ...(catalog.sectionalGroups ?? [])];
+  const placed = new Set(placements.flatMap((placement) => placement.options
+    .filter((option) => stopIds.has(option.list.id)).map((option) => option.list.id)));
+  return timelineDrawOrder(eraSections([
+    ...catalogEntries(mine).filter((entry) => !entry.lists.some((item) => placed.has(item.id))),
+    ...placements.map((placement) => ({ ...placement, lists: placement.options.map((option) => option.list) })),
+  ]));
+}
+const readingIds = (entry) => [entry.key, ...entry.lists.map((item) => item.id)];
+
+test('Jump to a section offers every CBH period in source order, each at its own stop on the timeline', () => {
+  const whole = wholeTimeline();
+  const targets = timelineCheckpointTargets(whole, whole);
+  assert.deepEqual(targets.map((target) => [target.name, target.year]), [
+    ['Marvel Knights to Planet X', 1998], ['Avengers Disassembled', 2004], ['Civil War', 2006],
+    ['The Initiative', 2007], ['Secret Invasion', 2008], ['Dark Reign', 2008], ['The Heroic Age', 2010],
+    ['Marvel NOW!', 2012], ['All-New, All-Different Marvel', 2016], ['Marvel NOW! 2.0', 2016],
+    ['Marvel Legacy', 2018], ['Fresh Start', 2018],
+  ]);
+  assert.equal(targets.length, MODERN_TIMELINE_CHECKPOINTS.length, 'every period start is on the timeline');
+  const rank = (key) => whole.findIndex((entry) => entry.key === key);
+  const ranks = targets.map((target) => rank(target.before));
+  assert.ok(ranks.every((value, index) => value >= 0 && (index === 0 || value > ranks[index - 1])),
+    'each marker is a distinct real stop, later than the one before it');
+  for (const target of targets) {
+    const entry = whole[rank(target.before)];
+    assert.ok(readingIds(entry).includes(target.start), `${target.name} starts at ${target.start}`);
+    assert.equal(Number(entry.year ?? entry.lists[0].timeline), target.year, `${target.name} is drawn in its year`);
+  }
+  const dark = targets.find((target) => target.key === 'dark-reign');
+  assert.ok(!readingIds(whole[rank(dark.before)]).includes('siege-dark-reign-prelude'), 'Siege is never called Dark Reign');
+  const initiative = targets.find((target) => target.key === 'the-initiative');
+  const bridge = rank('placement:civil-war-to-secret-invasion');
+  assert.ok(bridge > rank(initiative.before) && bridge < rank(targets.find((t) => t.key === 'secret-invasion').before),
+    'the 2007 bridge reads inside The Initiative');
+  const fresh = rank(targets.at(-1).before);
+  assert.ok(whole.slice(fresh).some((entry) => Number(entry.lists[0].timeline) >= 2025),
+    'the timeline carries on past Fresh Start');
+});
+
+test('a search or filter moves a period\'s marker within it, or drops only that period', () => {
+  const at = (key, year) => ({ key, year, lists: [{ id: key, timeline: year }] });
+  const order = [at('a', 2007), at('b', 2007), at('c', 2008), at('d', 2008), at('e', 2008), at('f', 2025)];
+  const checkpoints = [
+    { key: 'one', name: 'One', year: 2007, start: 'a' },
+    { key: 'two', name: 'Two', year: 2008, start: 'c' },
+    { key: 'three', name: 'Three', year: 2008, start: 'e' },
+  ];
+  const keys = (drawn) => timelineCheckpointTargets(order, drawn, checkpoints).map((t) => [t.key, t.before]);
+  assert.deepEqual(keys(order), [['one', 'a'], ['two', 'c'], ['three', 'e']]);
+  assert.deepEqual(keys([order[1], order[3], order[5]]), [['one', 'b'], ['two', 'd']],
+    'a marker moves to the next stop in its period, and an emptied period is left out');
+  assert.deepEqual(keys([order[5]]), [], 'a stop past the last period never takes its marker');
+  assert.deepEqual(timelineCheckpointTargets(order, order, [
+    checkpoints[0], { ...checkpoints[1], start: 'missing' }, checkpoints[2],
+  ]).map((t) => [t.key, t.before]), [['one', 'a'], ['three', 'e']], 'a period missing its start is no dead jump');
+});
+
+test('an event carries its scale once, on its own card, and ordinary stops carry nothing', () => {
+  const whole = wholeTimeline();
+  const badgeOf = (id) => modernTimelineEventBadge(whole.find((entry) => readingIds(entry).includes(id)));
+  assert.deepEqual(badgeOf('civil-war'), { kind: 'major', label: 'Major event' });
+  assert.deepEqual(badgeOf('placement:secret-wars-2015'), { kind: 'major', label: 'Major event' });
+  assert.deepEqual(badgeOf('siege-dark-reign-prelude'), { kind: 'major', label: 'Major event' });
+  assert.deepEqual(badgeOf('x-of-swords'), { kind: 'family', label: 'X-Men event' });
+  assert.deepEqual(badgeOf('spider-verse'), { kind: 'family', label: 'Spider-Man event' });
+  assert.equal(badgeOf('placement:civil-war-to-secret-invasion'), null, 'the bridge is a transition, not an event');
+  assert.equal(badgeOf('marvel-knights-to-planet-x-01'), null, 'an ordinary run is not an event');
+  const placement = whole.find((entry) => entry.key === 'placement:secret-wars-2015');
+  for (const option of placement.options) {
+    assert.equal(modernTimelineEventBadge({ key: `list:${option.list.id}`, lists: [option.list] }), null,
+      `${option.list.id} is a reading option, not the event`);
+  }
+  const labels = new Set(whole.map(modernTimelineEventBadge).filter(Boolean).map((badge) => badge.label));
+  assert.ok(!labels.has('Family event'));
+  assert.ok([...labels].every((label) => label === 'Major event' || / event$/.test(label)));
 });
