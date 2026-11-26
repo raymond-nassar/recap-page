@@ -123,6 +123,7 @@ const MAPPING_DIGEST_FIELDS = Object.freeze([
   'findOnlySourcePositions',
   'sourceGaps',
   'sourceGapResolutions',
+  'sectionalPart',
   'proposedManifest',
   'candidateMetadata',
   'rows',
