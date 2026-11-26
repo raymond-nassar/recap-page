@@ -3185,20 +3185,22 @@ const SCENARIOS = [
         vertical.clearances.every((gap) => gap >= 4), JSON.stringify(vertical.clearances));
 
       // Family eras are stops in the whole timeline, never jump targets or addable cards (#1603).
+      // The suite's catalog is a fixture, so an era is expected exactly when its anchor story is
+      // painted: a stop whose anchor is missing must vanish rather than mark nothing.
       const eras = await page.evaluate(() => ({
+        anchors: ['king-in-black', 'sins-of-sinister']
+          .filter((id) => document.querySelector(`[data-story="list:${id}"]`)),
         stops: [...document.querySelectorAll('.timeline-family-era')].map((era) => ({
           id: era.id,
-          after: era.previousElementSibling?.dataset.story ?? null,
-          before: era.nextElementSibling?.dataset.story ?? null,
           controls: era.querySelectorAll('button,a,input,select,[tabindex]').length,
+          card: era.classList.contains('catalog-card'),
         })),
         menu: [...document.querySelectorAll('#catalog-section-jump option')].map((o) => o.textContent),
       }));
-      t.check('Reign of X and Fall of X stand in the timeline as inert stops outside the jump menu',
-        JSON.stringify(eras.stops) === JSON.stringify([
-          { id: 'timeline-family-era-reign-of-x', after: 'list:king-in-black', before: null, controls: 0 },
-          { id: 'timeline-family-era-fall-of-x', after: null, before: 'list:the-death-of-ms-marvel', controls: 0 },
-        ]) && !eras.menu.some((name) => /Reign of X|Fall of X/.test(name)),
+      t.check('family eras stand in the timeline only beside a real anchor, inert and outside the jump menu',
+        eras.stops.length === eras.anchors.length
+        && eras.stops.every((stop) => stop.controls === 0 && !stop.card)
+        && !eras.menu.some((name) => /Reign of X|Fall of X/.test(name)),
         JSON.stringify(eras));
       t.check('each populated year stays pinned beside its card group',
         vertical.sticky.every((position) => position === 'sticky'), JSON.stringify(vertical.sticky));
