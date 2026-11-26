@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { isComicLauncherCall } from './lib/reader-launch-verdict.mjs';
 
 import { createEmptyState, createList, MAX_COLLECTION } from '../src/js/lib/model.js';
 import { expectedMcuTitles } from '../test/helpers/current-reading-library.mjs';
@@ -217,13 +218,9 @@ export const moonKnightActualData = {
       }
     });
     const opened = await page.evaluate(() => window.__opened);
-    t.check('both Read gestures synchronously request separate blank-target local launcher tabs',
-      opened.length === 2 && opened.every((entry) => entry.dispatching && entry.target === '_blank'
-        && entry.features.includes('noopener')
-        && new URL(entry.url).origin === page.__origin
-        && new URL(entry.url).pathname === '/open.html'
-        && new URL(entry.url).searchParams.get('i') === '49078'
-        && new URL(entry.url).searchParams.get('d') === '33482'),
+    const comic = prior.items.find((item) => item.issueId === 49078);
+    t.check('both reading gestures synchronously request separate blank-target local launcher tabs',
+      opened.length === 2 && opened.every((entry) => isComicLauncherCall(entry, page.__origin, comic)),
       JSON.stringify(opened));
     const launched = await stored(page);
     t.check('Read does not mark any comic complete',

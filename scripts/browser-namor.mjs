@@ -202,12 +202,12 @@ export const namorActualData = {
     const gapActions = await page.$$eval('#rows .row .rt', (nodes, ids) =>
       nodes.filter((node) => ids.includes(Number(node.dataset.issueId))).map((node) => ({
         issueId: Number(node.dataset.issueId),
-        openHidden: node.closest('.row')?.querySelector('.ract button[data-act="open"]')?.hidden,
+        action: node.closest('.row')?.querySelector('.ract button[data-act="open"]:not([hidden])')?.textContent.trim(),
         hasInfo: Boolean(node.closest('.row')?.querySelector('.ract a[data-act="info"]')),
       })), gapIds);
-    t.check('all eight unresolved Reading List rows lack reader and fabricated issue-page actions',
+    t.check('all eight unresolved Reading List rows offer Find on Marvel Comics but no fabricated issue page',
       JSON.stringify(gapActions.map((row) => row.issueId)) === JSON.stringify(gapIds)
-        && gapActions.every((row) => row.openHidden && !row.hasInfo),
+        && gapActions.every((row) => row.action === 'Find on Marvel Comics' && !row.hasInfo),
       JSON.stringify(gapActions));
     t.check('Reading List retains every source group',
       JSON.stringify(rendered.headings) === JSON.stringify(persistedGroups),

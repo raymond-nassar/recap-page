@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { isComicLauncherCall } from './lib/reader-launch-verdict.mjs';
 import { isDeepStrictEqual } from 'node:util';
 
 import {
@@ -191,11 +192,8 @@ export const deadpoolWolverineActualData = {
       });
       const opened = await page.evaluate(() => window.__opened);
       const readerIssue = payload.items[viewport.width === 1280 ? 0 : 1];
-      t.check(`${label} each Read action opens a separate launcher synchronously`,
-        opened.length === 2 && opened.every((entry) => entry.dispatching
-          && entry.target === '_blank' && entry.features === 'noopener'
-          && new URL(entry.url).origin === page.__origin
-          && new URL(entry.url).searchParams.get('d') === String(readerIssue.digitalId)),
+      t.check(`${label} each reading action opens a separate launcher synchronously`,
+        opened.length === 2 && opened.every((entry) => isComicLauncherCall(entry, page.__origin, readerIssue)),
         JSON.stringify(opened));
       if (viewport.width === 1280) {
         await click(page, '#rows [data-act="read"][data-key="10155"]');

@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 import { afterMcuEditorialEntry } from './lib/mcu-editorial.mjs';
 import { descriptionRevisions } from './lib/description-revisions.mjs';
 import { sourceCreditRevisions } from './lib/source-credit-revisions.mjs';
+import { isComicLauncherCall } from './lib/reader-launch-verdict.mjs';
 import { isDeepStrictEqual } from 'node:util';
 import {
   addIssuesToList, createEmptyState, createList, markRead, setDeferred, setIssueNote,
@@ -429,11 +430,8 @@ export function ownerGuideScenario(contract, { savedCopyOnly = false } = {}) {
       });
       const opened = await page.evaluate(() => window.__opened);
       t.check('owner-confirmed reader launch remains synchronous with separate tabs',
-        opened.length === 2 && opened.every((entry) => entry.dispatching && entry.target === '_blank'
-          && entry.features === 'noopener' && new URL(entry.url).origin === page.__origin
-          && (new URL(entry.url).searchParams.get('i') === String(nextOriginal.issueId)
-            || (nextOriginal.digitalId != null
-              && new URL(entry.url).searchParams.get('d') === String(nextOriginal.digitalId)))), JSON.stringify(opened));
+        opened.length === 2 && opened.every((entry) => isComicLauncherCall(entry, page.__origin, nextOriginal)),
+        JSON.stringify(opened));
       t.check('the owner journey stays isolated with no browser errors', errors.length === 0 && external.length === 0,
         JSON.stringify({ errors, external }));
     },
