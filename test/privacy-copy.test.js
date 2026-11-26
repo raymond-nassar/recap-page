@@ -216,8 +216,18 @@ test('release documents explain optional backup and retain the other request dis
     ['backups are not merged', /(?:the app never merges backups|backups are never merged)/i],
     ['background requests can reveal progress through their order', /background detail filling[^.]*\.[^.]*request order[^.]*reading progress/i],
   ];
+  const releasedReaderRequests = [
+    [
+      'opening a reader resolves a missing reader link',
+      /(?:otherwise the (?:new|launch)\s+tab|opening (?:an issue|a comic))[^.]*?(?:asks|may ask)[^.]*(?:metadata (?:API|service)|comics database)[^.]*(?:reader link|that link)|otherwise it looks up the missing link or opens the recorded comic details page/i,
+    ],
+    [
+      'reader launch distinguishes the retiring web reader and the general Marvel Comics website',
+      /Read[\s\S]{0,300}(?:Marvel Unlimited web reader|Marvel's web reader)[\s\S]{0,600}general Marvel Comics\s+website/i,
+    ],
+  ];
   for (const [where, text] of releaseDocuments()) {
-    for (const [what, said] of [...promises, ...REQUESTS]) {
+    for (const [what, said] of [...promises, ...REQUESTS, ...releasedReaderRequests]) {
       assert.match(text, said, `${where} must still say ${what}`);
     }
     assert.doesNotMatch(text, /GitHub[^.]*latest\s+(?:release|version)\s+number/i);

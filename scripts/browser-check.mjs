@@ -4768,15 +4768,14 @@ const SCENARIOS = [
       await page.waitForSelector(cardSelector, { timeout: 15000 });
       const card = await page.$eval(cardSelector, (node) => ({
         title: node.querySelector('.catalog-card-title')?.textContent.trim(),
-        text: node.textContent,
+        meta: node.querySelector('.catalog-card-meta')?.textContent.trim(),
         addName: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
         sourceName: node.querySelector('a[href*="comicbookherald.com"]')?.getAttribute('aria-label'),
         sourceHref: node.querySelector('a[href*="comicbookherald.com"]')?.href,
       }));
-      t.check('the Hope card exposes the exact count, gap disclosure, source, and add action',
+      t.check('the Hope card exposes the exact count, source, and add action without diagnostics',
         card.title === 'Hope Summers'
-        && card.text.includes('261 comics')
-        && card.text.includes('6 comics are listed by title only')
+        && card.meta === '261 comics'
         && card.addName === 'Add to library: Hope Summers'
         && card.sourceName === 'Source of Hope Summers: Comic Book Herald'
         && card.sourceHref === 'https://www.comicbookherald.com/hope-summers-reading-order/',
@@ -4932,14 +4931,13 @@ const SCENARIOS = [
       await page.waitForSelector(cardSelector, { timeout: 15000 });
       const card = await page.$eval(cardSelector, (node) => ({
         name: node.querySelector('.catalog-card-title')?.textContent.trim(),
-        text: node.textContent,
+        meta: node.querySelector('.catalog-card-meta')?.textContent.trim(),
         sourceHref: node.querySelector('a[href*="comicbookherald.com"]')?.href,
         addName: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
       }));
-      t.check('both Hawkeyes are discoverable with a 663-issue source credit and one visible gap',
+      t.check('both Hawkeyes are discoverable with an exact comic count and source credit',
         card.name === 'Hawkeye (Clint Barton and Kate Bishop)'
-        && card.text.includes('663 comics')
-        && card.text.includes('1 comic is listed by title only')
+        && card.meta === '663 comics'
         && card.sourceHref === 'https://www.comicbookherald.com/hawkeye-reading-order/'
         && card.addName === 'Add to library: Hawkeye (Clint Barton and Kate Bishop)',
         JSON.stringify(card));
@@ -5086,14 +5084,13 @@ const SCENARIOS = [
       await page.waitForSelector(cardSelector, { timeout: 15000 });
       const card = await page.$eval(cardSelector, (node) => ({
         name: node.querySelector('.catalog-card-title')?.textContent.trim(),
-        text: node.textContent,
+        meta: node.querySelector('.catalog-card-meta')?.textContent.trim(),
         sourceName: node.querySelector('a[href*="comicbookherald.com"]')?.getAttribute('aria-label'),
         sourceHref: node.querySelector('a[href*="comicbookherald.com"]')?.href,
         addName: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
       }));
-      t.check('Kamala is discoverable with the exact count, five-gap disclosure and source credit',
-        card.name === 'Ms. Marvel (Kamala Khan)' && card.text.includes('192 comics')
-        && card.text.includes('5 comics are listed by title only')
+      t.check('Kamala is discoverable with the exact comic count and source credit',
+        card.name === 'Ms. Marvel (Kamala Khan)' && card.meta === '192 comics'
         && card.sourceName === 'Source of Ms. Marvel (Kamala Khan): Comic Book Herald'
         && card.sourceHref === 'https://www.comicbookherald.com/ms-marvel-kamala-khan-reading-order/'
         && card.addName === 'Add to library: Ms. Marvel (Kamala Khan)', JSON.stringify(card));
@@ -5365,12 +5362,11 @@ const SCENARIOS = [
       await page.waitForSelector(cardSelector, { timeout: 15000 });
       const card = await page.$eval(cardSelector, (node) => ({
         name: node.querySelector('.catalog-card-title')?.textContent.trim(),
-        text: node.textContent,
+        meta: node.querySelector('.catalog-card-meta')?.textContent.trim(),
         source: node.querySelector('a[href*="comicbookherald.com"]')?.href,
       }));
-      t.check('Nova card credits the exact source, 371 issues and two visible metadata gaps',
-        card.name === 'Nova' && card.text.includes('371 comics')
-        && card.text.includes('2 comics are listed by title only')
+      t.check('Nova card gives the exact comic count and source credit',
+        card.name === 'Nova' && card.meta === '371 comics'
         && card.source === 'https://www.comicbookherald.com/nova-reading-order/',
         JSON.stringify(card));
       await click(page, `${cardSelector} [data-act="preview"]`);
@@ -5508,9 +5504,9 @@ const SCENARIOS = [
         sourceHref: node.querySelector('a[href*="comicbookherald.com"]')?.href,
         genre: node.closest('.story-type-results')?.querySelector('h2')?.textContent.trim(),
       }));
-      t.check('the Horror genre discovers one credited partial guide with three disclosed gaps',
+      t.check('the Horror genre discovers one credited partial guide with its exact comic count',
         card.name === 'Marvel Zombies' && card.genre === 'Horror'
-        && card.meta === '94 comics · 3 comics are listed by title only'
+        && card.meta === '94 comics'
         && card.addName === 'Add to library: Marvel Zombies'
         && card.sourceName === 'Source of Marvel Zombies: Comic Book Herald'
         && card.sourceHref === 'https://www.comicbookherald.com/marvel-zombies-reading-order/',
@@ -5660,14 +5656,13 @@ const SCENARIOS = [
       await page.waitForSelector(cardSelector, { timeout: 15000 });
       const card = await page.$eval(cardSelector, (node) => ({
         name: node.querySelector('.catalog-card-title')?.textContent.trim(),
-        text: node.textContent,
+        meta: node.querySelector('.catalog-card-meta')?.textContent.trim(),
         sourceName: node.querySelector('a[href*="comicbookherald.com"]')?.getAttribute('aria-label'),
         sourceHref: node.querySelector('a[href*="comicbookherald.com"]')?.href,
         addName: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
       }));
-      t.check('Silk is discoverable with 74 positions, seven gaps and Comic Book Herald credit',
-        card.name === 'Silk / Cindy Moon' && card.text.includes('74 comics')
-        && card.text.includes('7 comics are listed by title only')
+      t.check('Silk is discoverable with the exact comic count and Comic Book Herald credit',
+        card.name === 'Silk / Cindy Moon' && card.meta === '74 comics'
         && card.sourceName === 'Source of Silk / Cindy Moon: Comic Book Herald'
         && card.sourceHref === 'https://www.comicbookherald.com/silk-cindy-moon-reading-order/'
         && card.addName === 'Add to library: Silk / Cindy Moon', JSON.stringify(card));
@@ -5715,14 +5710,17 @@ const SCENARIOS = [
       t.check('the rendered Reading List retains the FCBD story qualification', renderedQualified);
       const gapActions = await page.$$eval('#rows .row', (nodes) => nodes
         .filter((node) => Number(node.querySelector('.rt')?.dataset.issueId) < 0)
-        .map((node) => ({
-          position: nodes.indexOf(node) + 1,
-          readHidden: node.querySelector('.ract button[data-act="open"]')?.hidden,
-          hasInfo: Boolean(node.querySelector('.ract a[data-act="info"]')),
-        })));
-      t.check('the seven unresolved digital originals offer neither Read nor Info actions',
+        .map((node) => {
+          const button = node.querySelector('.ract button[data-act="open"]:not([hidden])');
+          return {
+            position: nodes.indexOf(node) + 1,
+            action: button?.textContent.trim(),
+            hasInfo: Boolean(node.querySelector('.ract a[data-act="info"]')),
+          };
+        }));
+      t.check('the seven unresolved digital originals offer Find on Marvel Comics but no Info action',
         gapActions.map((row) => row.position).join(',') === '44,45,46,47,48,49,50'
-        && gapActions.every((row) => row.readHidden && !row.hasInfo), JSON.stringify(gapActions));
+        && gapActions.every((row) => row.action === 'Find on Marvel Comics' && !row.hasInfo), JSON.stringify(gapActions));
 
       await page.reload({ waitUntil: 'load' });
       await page.waitForFunction(() =>
@@ -6371,10 +6369,7 @@ const SCENARIOS = [
         && timeline.doom.title === 'One World Under Doom'
         && timeline.doom.year === 2025
         && timeline.doom.description.startsWith('Doctor Doom brings one world under his rule in 2025')
-        && timeline.doom.meta.startsWith('85 comics')
-        && timeline.doom.meta.includes(
-          '10 comics checked by hand, with no covers or details yet',
-        )
+        && timeline.doom.meta === '85 comics'
         && timeline.cardYears.at(-1) === 2026
         && timeline.chapterCards === 78
         && JSON.stringify(timeline.firstCards) === JSON.stringify([
@@ -8930,7 +8925,7 @@ const SCENARIOS = [
         JSON.stringify(rows.filter((r) => r.disclosures || r.otherLinks)));
       t.check('the first stop credits its source website by name alone',
         first?.source === 'Source: example.com', JSON.stringify(first?.source));
-      t.check('the compact card keeps the issue count and gap disclosure', first?.meta === '3 comics · 1 comic is listed by title only', JSON.stringify(first?.meta));
+      t.check('the compact card keeps the comic count without diagnostic notes', first?.meta === '3 comics', JSON.stringify(first?.meta));
       t.check('a dated order carries its year as the Timeline destination', first?.year === '2004', JSON.stringify(first?.year));
 
       const offer = await page.evaluate(() => ({
@@ -14591,9 +14586,9 @@ const SCENARIOS = [
         meta: card.querySelector('.catalog-card-meta')?.textContent.replace(/\s+/g, ' ').trim(),
         stops: document.querySelectorAll('#catalog-results .path-stop').length,
       }));
-      t.check('choosing the whole timeline restores its start sentence, issue counts and gap disclosure',
+      t.check('choosing the whole timeline restores its start sentence, comic count and saved-copy count',
         shelf.sentence === 'Start The Fixture Path with Browser Check Order.' && shelf.stops === 0
-        && shelf.meta === '3 comics · 1 comic is listed by title only · Saved copy: 1 comic',
+        && shelf.meta === '3 comics · Saved copy: 1 comic',
         JSON.stringify(shelf));
     },
   },
@@ -17408,7 +17403,8 @@ SCENARIOS.push({
     await page.waitForSelector('#shelf .tile-read:not([hidden])');
     const read = await page.$('#shelf .tile-read:not([hidden])');
     const name = (await page.accessibility.snapshot({ root: read, interestingOnly: false }))?.name ?? '';
-    t.check('Coming up Read retains its visible action in the computed name', /^Read\b/.test(name), name);
+    t.check('Coming up Find on Marvel Comics retains its visible action in the computed name',
+      /^Find on Marvel Comics: /.test(name), name);
     await click(page, '#shelf a[data-issue-id]');
     await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
     const tree = await page.accessibility.snapshot({ interestingOnly: false });
@@ -18105,17 +18101,16 @@ SCENARIOS.push({
   },
 });
 
-// UX-20 (#830): Read, Mark as read, Add note and Rate share one row at the top of the issue card's text
-// column, Read first, beside the cover when there is room and ahead of it when there is not. The saved
-// actions show only for a saved comic, and stay live when saved data is re-read into new objects,
-// which every boot does after the page paints and another tab's write does too.
+// UX-20 (#830): Reading commands stay at the top of the issue card's text column, with the launch
+// action first. The longer Find label can wrap the row sooner than Read. Saved actions show only
+// for a saved comic and stay live when boot or another tab replaces the in-memory objects.
 SCENARIOS.push({
   id: 'issue-action-row',
   title: 'comic details lead the text column with one action row whose saved actions stay live after saved data is re-read',
   async run(page, t) {
     const errors = [];
     page.on('pageerror', (error) => errors.push(error.message));
-    await page.setViewport({ width: 1280, height: 900 });
+    await page.setViewport({ width: 1366, height: 900 });
     await seedFixtureState(page);
     const [first, , last] = ORDER.items;
     // The last comic leaves saved data, so its details come from the bundled order alone.
@@ -18147,7 +18142,7 @@ SCENARIOS.push({
     });
     const wide = await measure();
     const commands = [wide.read, wide.mark, wide.note, wide.rate];
-    t.check('at 1280 pixels Read, Mark as read, Add note and Rate share one row, Read first',
+    t.check('when the text column fits all four actions, Find on Marvel Comics comes first on one row',
       commands.every(Boolean)
       && Math.max(...commands.map((box) => box.top)) < Math.min(...commands.map((box) => box.bottom))
       && commands.every((box, index) => index === 0 || box.left >= commands[index - 1].right), JSON.stringify(wide));
@@ -18156,13 +18151,22 @@ SCENARIOS.push({
       && Math.abs(wide.row.top - wide.art.top) <= 2 && wide.byline.top >= wide.row.bottom,
       JSON.stringify({ row: wide.row, art: wide.art, byline: wide.byline }));
 
+    await page.setViewport({ width: 1280, height: 900 });
+    const column = await measure();
+    t.check('at 1280 pixels the longer Find action stays first and all commands fit within the column',
+      column.overflow <= 1 && Boolean(column.row && column.read) && column.read.left === column.row.left
+      && [column.read, column.mark, column.note, column.rate].every((box) =>
+        box && box.left >= column.row.left && box.right <= column.row.right && box.bottom <= column.row.bottom)
+      && await page.$eval('#btn-issue-read', (button) => button.textContent.trim() === 'Find on Marvel Comics'),
+      JSON.stringify(column));
+
     await page.focus('#btn-issue-read');
     const order = [await page.evaluate(() => document.activeElement?.id)];
     for (let step = 0; step < 3; step += 1) {
       await page.keyboard.press('Tab');
       order.push(await page.evaluate(() => document.activeElement?.id));
     }
-    t.check('Tab moves from Read to Mark as read, Add note, then Rate',
+    t.check('Tab moves from Find on Marvel Comics to Mark as read, Add note, then Rate',
       JSON.stringify(order) === JSON.stringify(['btn-issue-read', 'btn-issue-mark-read', 'btn-issue-note', 'issue-rating-trigger']),
       JSON.stringify(order));
 
@@ -18195,7 +18199,7 @@ SCENARIOS.push({
 
     await page.setViewport({ width: 390, height: 844 });
     const narrow = await measure();
-    t.check('at 390 pixels Read spans the row and the other actions follow it, all ahead of the cover and inside the screen',
+    t.check('at 390 pixels Find on Marvel Comics spans the row and the other actions follow it, ahead of the cover',
       Boolean(narrow.read && narrow.mark && narrow.rate && narrow.row && narrow.art) && narrow.read.width >= narrow.row.width - 1
       && narrow.read.bottom <= narrow.mark.top && narrow.rate.bottom <= narrow.art.top && narrow.overflow <= 1, JSON.stringify(narrow));
 
@@ -18543,9 +18547,9 @@ SCENARIOS.push({
       });
       await node.dispose();
     }
-    t.check('every visible Coming up Read is named once, with no title or description repeating the name',
+    t.check('every visible Coming up reading action is named once, with no title or description repeating the name',
       buttons.length > 0 && buttons.every((button) => button.title === null && button.name === button.label
-        && button.name.startsWith('Read') && !(button.description && button.name.includes(button.description))),
+        && /^Find on Marvel Comics: /.test(button.name) && !(button.description && button.name.includes(button.description))),
       JSON.stringify(buttons));
   },
 });
@@ -19726,11 +19730,12 @@ SCENARIOS.push({
       });
       const opened = await page.evaluate(() => window.__opened);
       t.check(`${width}px: each Read opens a separate launcher synchronously without a lookup wait`,
-        opened.length === 2 && opened.every((call, index) => call.dispatching
-          && call.target === '_blank' && call.url.includes('/open.html?')
-          && call.features.includes('noopener')
-          && new URL(call.url, page.__origin).searchParams.get('d')
-            === String(payload.items[index + 1].digitalId)), JSON.stringify(opened));
+        opened.length === 2 && opened.every((call, index) => {
+          const { pathname, searchParams } = new URL(call.url, page.__origin);
+          return call.dispatching && call.target === '_blank' && pathname === '/open.html'
+            && call.features.includes('noopener') && searchParams.get('r') === 'comics'
+            && searchParams.get('a') === ['20649', '20650'][index] && !searchParams.has('d');
+        }), JSON.stringify(opened));
       const afterRead = await readState(page);
       t.check(`${width}px: launching readers does not mark either unread comic read or alter notes`,
         JSON.stringify(afterRead.read) === JSON.stringify(beforeRead.read)
@@ -21412,7 +21417,7 @@ SCENARIOS.push(responsiveOwner({
       fullWidth: hero.title.width >= hero.contentWidth - 2 && hero.prose.width >= hero.contentWidth - 2,
       ranges: hero.title.bounded && hero.prose.bounded,
       action: hero.actionWidth >= hero.contentWidth - 2 && hero.actionHeight >= 48,
-      actionIdentity: hero.actionHref === null && hero.actionLabel === 'Read',
+      actionIdentity: hero.actionHref === null && hero.actionLabel === 'Find on Marvel Comics',
       secondaryAndFacts: hero.actions.some((node) => node.id === 'btn-hero-info' && node.href === ORDER.items[0].url)
         && hero.facts.includes(ORDER.items[0].title),
     };
