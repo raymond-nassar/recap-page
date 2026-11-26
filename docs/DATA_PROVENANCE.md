@@ -426,8 +426,8 @@ the extra 487 are the retained Marvel Knights to Planet X parent whose ordinary 
 the same vector. Records use these fields:
 `issueId`, `title`,
 `number`, `url`, `seriesId`, `seriesName`, `onSale`, `mu`, `digitalId`, `pageCount`, a `cover`
-object of `path` and `ext`, and `creators` of `name` and `role`. Across the 351 active payloads, 28,923
-records carry a cover URL and 27,167 carry creator credits. The retired No Way Home payload and both
+object of `path` and `ext`, and `creators` of `name` and `role`. Across the 351 active payloads, 28,941
+records carry a cover URL and 27,184 carry creator credits. The retired No Way Home payload and both
 earlier X-Men payloads remain byte-exact; no retired payload contributes to active discovery or this
 active census.
 

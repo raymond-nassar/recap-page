@@ -131,7 +131,14 @@ export function beforeWolverineCorrectionCatalogEntry(entry) {
   const catalog = JSON.parse(show('src/data/catalog.json'));
   const baseline = catalog.lists.find(({ id }) => id === ledger.id);
   assert.ok([originalIds.length, currentIds.length].includes(entry.count));
-  return { ...entry, count: baseline.count, contains: baseline.contains, updatedAt: baseline.updatedAt };
+  // The identity successor turns its resolved placeholders into rows without moving the count, so
+  // the earlier reviews' digests still need the placeholder total from before it.
+  assert.ok([baseline.placeholderCount, baseline.placeholderCount - wolverineGapResolutions.length]
+    .includes(entry.placeholderCount));
+  return {
+    ...entry, count: baseline.count, contains: baseline.contains, updatedAt: baseline.updatedAt,
+    placeholderCount: baseline.placeholderCount,
+  };
 }
 
 export function beforeWolverineCorrectionChapterOverlaps(report) {
