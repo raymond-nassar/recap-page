@@ -334,10 +334,9 @@ export function serializeChecklist({ name, description, items, note, resetSectio
     const canonicalReaderUrl = readerIssueId(reference.digitalId) === Number(reference.issueId)
       ? readerUrl(reference.digitalId)
       : null;
-    const candidateUrl = canonicalAppViewerUrl
-      || canonicalReaderUrl
+    const candidateUrl = canonicalAppViewerUrl || (reference.findOnly === true ? null : canonicalReaderUrl
       || reference.url
-      || (reference.issueId > 0 ? `https://www.marvel.com/comics/issue/${reference.issueId}/` : null);
+      || (reference.issueId > 0 ? `https://www.marvel.com/comics/issue/${reference.issueId}/` : null));
     const url = includeLinks
       ? (literal ? candidateUrl?.replace(/\(/g, '%28').replace(/\)/g, '%29') : candidateUrl)
       : null;
@@ -398,6 +397,7 @@ function literalMarkdown(value, singleLine = false) {
 function projectIssueReference(item) {
   const appViewer = taggedViewer(item);
   if (appViewer) return { issueId: item.issueId, appViewer };
+  if (item.findOnly === true) return { issueId: item.issueId, findOnly: true };
 
   const digitalId = item.digitalId ?? digitalIdFromUrl(item.url);
   const readerOnly = item.issueId < 0 && readerIssueId(digitalId) !== null;

@@ -217,15 +217,15 @@ export function orderGapSentences(order) {
 export function normalizeIssue(input) {
   const issueId = Number(input?.issueId ?? input?.id);
   if (!Number.isInteger(issueId) || issueId === 0) return null;
-  const synthetic = issueId < 0;
+  const findOnly = issueId > 0 && input.findOnly === true;
   const refused = refusedOnArrival(input);
   const appViewer = taggedViewer({ issueId, appViewer: input.appViewer });
   return {
     issueId,
     title: String(input.title ?? `Issue ${issueId}`).slice(0, MAX_NAME),
     number: clampScalar(input.number ?? null),
-    // A synthetic id has no marvel.com page, so inventing one would produce a dead link.
-    url: clampUrl(input.url ?? input.detailUrl ?? (synthetic ? null : `https://www.marvel.com/comics/issue/${issueId}/`)),
+    // Neither a synthetic key nor a Find-only provider record can supply a guessed detail page.
+    url: findOnly ? null : clampUrl(input.url ?? input.detailUrl ?? (issueId < 0 ? null : `https://www.marvel.com/comics/issue/${issueId}/`)),
     seriesId: clampScalar(input.seriesId ?? null),
     seriesName: input.seriesName == null ? null : String(input.seriesName).slice(0, MAX_NAME),
     onSale: clampScalar(input.onSale ?? input.onSaleDate ?? null),
@@ -276,6 +276,7 @@ export function normalizeIssue(input) {
     // #1601: kept only when the record's own key is the one derived from it, so a hand-edited or
     // older record cannot claim a viewer by carrying a number. See taggedViewer.
     ...(appViewer ? { appViewer } : {}),
+    ...(findOnly ? { findOnly } : {}),
   };
 }
 
@@ -356,8 +357,15 @@ function coverBase(path) {
   return url.search || url.hash || !url.pathname.endsWith(CLEAN_FILE) ? path : path.slice(0, -CLEAN_FILE.length);
 }
 
+function asFindOnly(issue) {
+  return issue.findOnly === true && issue.url === null ? issue : { ...issue, findOnly: true, url: null };
+}
+
 export function mergeIssueMetadata(previous, issue) {
-  return previous ? { ...previous, ...stripNulls(issue), hydrated: issue.hydrated || previous.hydrated } : issue;
+  if (!previous) return issue;
+  const merged = { ...previous, ...stripNulls(issue), hydrated: issue.hydrated || previous.hydrated };
+  // An ordinary metadata refresh can carry an address synthesized from the same provider key.
+  return previous.findOnly === true || issue.findOnly === true ? asFindOnly(merged) : merged;
 }
 
 // #1601: a viewer key is an ordinary negative integer, and an older build or a hand-made list can
@@ -670,11 +678,10 @@ export function addIssuesToList(state, listId, inputs, { at = null, sort = false
       collisions.push(issue.issueId);
       continue;
     }
-    issues[issue.issueId] = preserveExisting && state.issues[issue.issueId]
-      ? state.issues[issue.issueId]
-      : prev
-        ? { ...prev, ...stripNulls(issue), hydrated: issue.hydrated || prev.hydrated }
-        : issue;
+    const held = preserveExisting && state.issues[issue.issueId];
+    issues[issue.issueId] = held
+      ? (prev.findOnly === true || issue.findOnly === true ? asFindOnly(held) : held)
+      : mergeIssueMetadata(prev, issue);
     incoming.push(issue.issueId);
     if (typeof input?.collectedIn === 'string' && input.collectedIn.trim()) {
       editions.set(issue.issueId, input.collectedIn.trim().slice(0, MAX_COLLECTION));

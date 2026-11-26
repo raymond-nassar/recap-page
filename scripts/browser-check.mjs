@@ -13091,6 +13091,22 @@ const SCENARIOS = [
       });
       t.check('issue focus stays usable at 320 pixels without horizontal clipping',
         narrow.overflow <= 1 && narrow.targets, JSON.stringify(narrow));
+
+      const fixture = { issueId: 56003, title: 'Find-only fixture #1', findOnly: true, url: null, source: 'curated' };
+      const blank = createList(createEmptyState(), { name: 'Find-only fixture' });
+      const disposable = addIssuesToList(blank, blank.active, [fixture]).state;
+      await page.evaluate((saved) => localStorage.setItem('mrt.state.v2', JSON.stringify(saved)), disposable);
+      await openFresh(page, `/#/issue/${fixture.issueId}?list=${disposable.active}`);
+      await page.waitForFunction((title) => document.querySelector('#issue-focus-h')?.textContent.trim() === title,
+        {}, fixture.title);
+      const actions = await page.evaluate(() => ({
+        find: document.querySelector('#btn-issue-read:not([hidden])')?.textContent.trim(),
+        infoHidden: document.querySelector('#btn-issue-info')?.hidden,
+        infoHref: document.querySelector('#btn-issue-info')?.getAttribute('href'),
+      }));
+      t.check('a reopened Find-only provider comic offers Find, not an invented issue page',
+        actions.find === 'Find on Marvel Comics' && actions.infoHidden && actions.infoHref === null,
+        JSON.stringify(actions));
       t.check('the issue-focus journeys produce no console or page errors',
         browserErrors.length === 0, browserErrors.join(' / '));
     },

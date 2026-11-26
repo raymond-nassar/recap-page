@@ -221,6 +221,10 @@ policy (`packaging/android/web/reader.js:47-58`). The iPhone and iPad app tries 
 app's own address for a validated `/viewer/` link before opening its web address
 (`packaging/ios/RecapPage/NavigationPolicy.swift:84-103`).
 
+Reviewed provider rows marked `findOnly` keep their issue key for reading progress but have no
+verified issue page. Saved lists and JSON backups keep that distinction. Details and Markdown
+exports do not manufacture a Marvel issue address from the key.
+
 The launch tab reads display settings without saving them and follows explicit or system theme.
 Missing or unreadable settings produce a local message, and a launch without a recognized
 destination stays on the launch page rather than redirecting to a guessed issue
@@ -277,7 +281,7 @@ sequenceDiagram
 
 **The transform is pure; the Store writes.** The shared read action at `src/js/views/reading.js:1317-1335` passes
 a function to the Store. That transform returns new state without side effects at
-`src/js/lib/model.js:805-807`. The write, result, and notification are handled together at
+`src/js/lib/model.js:812-814`. The write, result, and notification are handled together at
 `src/js/storage.js:796-823`.
 
 **The repaint is synchronous.** Before `update` returns, its callback has repainted the result.

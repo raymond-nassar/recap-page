@@ -27,9 +27,9 @@ export function readerUrl(digitalId) {
   return id ? `${READER_PREFIX}${id}` : null;
 }
 
-// The url field comes from third-party metadata, so it is only used when it
-// actually points at Marvel. Anything else falls back to the canonical page.
+// Use third-party URLs only when they point at Marvel; Find-only issues have no detail link.
 export function detailUrl(issue) {
+  if (issue?.findOnly === true) return null;
   const id = Number(issue?.issueId);
   const fallback = Number.isInteger(id) && id > 0
     ? `https://www.marvel.com/comics/issue/${id}/`
