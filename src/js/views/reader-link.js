@@ -1,17 +1,14 @@
-import { readerDestination } from '../lib/readerDestination.js';
-import { appLinkFor } from '../lib/marvelComicsApp.js';
+import { readerClosureNotice } from '../lib/readerDestination.js';
 
-export function createReaderLinkView({ elements, getState, links, onChange, focusFallback, now = () => new Date() }) {
+export function createReaderLinkView({ elements, getState, links, onChange, focusFallback }) {
   let issueId = null;
 
+  // #1601: without a verified link the control reads Find on Marvel Comics, so this reuses the
+  // owner's approved notice rather than describing a Read button the comic does not have.
   function refresh() {
     const nodes = elements();
     nodes.root.hidden = issueId === null;
-    nodes.summary.textContent = issueId !== null && appLinkFor(issueId)
-      ? 'Read opens this comic in the Marvel Comics app.'
-      : readerDestination(now()) === 'unlimited'
-        ? 'Read opens the Marvel Unlimited web reader when a reader link is recorded. Otherwise it looks up the link or opens the comic details page. Reading ends December 7, 2026.'
-        : 'Read opens the Marvel Comics website, not a single-comic link. Find the comic there.';
+    nodes.summary.textContent = readerClosureNotice();
   }
 
   function show(id) {

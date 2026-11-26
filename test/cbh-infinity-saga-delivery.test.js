@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
+import { installmentPartIds } from './helpers/modern-timeline-installment-history.mjs';
 
 import { assertApprovedRelationshipReview, buildMarkdown } from '../scripts/author-cbh-packet.mjs';
 import {
@@ -264,8 +265,8 @@ test('Infinity Saga pinned payload and catalog preserve historical Storylines me
   assert.equal(entry.emptyRecordCount, 11);
   assert.ok(!Object.hasOwn(entry, 'spotlightKind'));
   assert.equal(entry.source, ledger.sourceUrl);
-  assert.equal(catalog.lists.filter((row) => row.type === 'event').length, 203);
-  assert.equal(catalog.lists.filter((row) => row.type === 'era').length, 11);
+  assert.equal(catalog.lists.filter((row) => row.type === 'event').length, 205);
+  assert.equal(catalog.lists.filter((row) => row.type === 'era').length, 11 + installmentPartIds.length);
   assert.equal(catalog.lists.filter((row) => row.type === 'character-run').length, 88);
   const normalized = parseCatalog(catalog);
   const storylines = shelfStories(groupCatalog(normalized.lists), 'lines');

@@ -8,6 +8,7 @@
 
 import { compareIssues } from './sort.js';
 import { allowedCoverUrl } from './coverHost.js';
+import { taggedViewer } from './marvelComicsAppUrl.js';
 
 // Older schemas rebuild named fields and would silently discard ratings on their next save.
 export const SCHEMA_VERSION = 4;
@@ -132,11 +133,8 @@ function refusedOnArrival(input) {
 // A curated order can fall short of complete metadata in two unrelated ways, and a reader told
 // about only one of them is left to wonder about the other.
 //
-// A checklist line carrying no Marvel link at all is vendored as a placeholder: a negative id and
-// nothing else, so the app will not offer to open it. One legacy record kept the flag after gaining
-// real identity and launch metadata, so the flag alone cannot mean "unopenable". A line whose lookup
-// was refused upstream becomes a fully formed record with a positive id and every metadata field
-// empty. The two gaps look nothing alike to a reader, so they are counted apart and said apart.
+// Title-only placeholders and records with limited details are distinct gaps. The placeholder flag
+// alone is not enough to classify a record because older entries can retain it after gaining details.
 //
 // Counted from the items rather than read from the payload's own `placeholders` field. That field
 // counts raw flags without asking whether the item later gained metadata, and it carries no count
@@ -150,13 +148,13 @@ export function countOrderGaps(order) {
   let ownerGcdSupplemented = 0;
   for (const item of items) {
     const metadata = hasMetadata(item);
-    // Exclusive, because an unlinked placeholder holds no metadata either and would otherwise be
-    // reported twice. A metadata-bearing legacy flag is neither gap: the issue can be launched.
+    // Exclusive, because a title-only placeholder has no metadata either and would otherwise be
+    // reported twice. A metadata-bearing legacy flag is neither gap.
     if (item?.placeholder === true && !metadata) placeholders += 1;
     else if (item?.identityEvidenceKind === 'owner-confirmed-identity' && !metadata) {
       ownerConfirmed += 1;
-      // A subset of the count above, not a separate gap: the comic still has no provider record
-      // or Unlimited link, but it does show a cover and credits from the owner-approved sources.
+      // A subset of the count above, not a separate gap: the comic lacks the usual listing record,
+      // but it does show a cover and credits from the owner-approved sources.
       if (OWNER_SUPPLEMENT_KINDS.has(item.metadataSourceKind)) ownerSupplemented += 1;
       // A subset again, because these details carry a licence the reader has to be told about.
       if (item.metadataSourceKind === OWNER_GCD_SUPPLEMENT) ownerGcdSupplemented += 1;
@@ -173,10 +171,8 @@ export function countOrderGaps(order) {
   };
 }
 
-// Said in the order a reader meets them. The second sentence deliberately claims nothing about
-// whether the issue can be opened: those items carry a real, positive issue id, so the app does
-// open a tab for them and the lookup fails in the tab. Repeating "cannot be opened" here would be
-// a false promise of the same shape as the silence it replaces.
+// Said in the order a reader meets them. Limited details does not imply the comic cannot be opened:
+// those entries carry a real issue identity and can still have an app or website destination.
 //
 // The hand-checked comics get one lead sentence and then one short sentence per kind of detail, in
 // the plain wording the owner approved on 2026-11-16 (recorded on #1427): no source jargon, and the
@@ -188,10 +184,10 @@ export function orderGapSentences(order) {
   } = countOrderGaps(order);
   const out = [];
   if (placeholders) {
-    out.push(`${placeholders} of them ${placeholders === 1 ? 'has' : 'have'} no Marvel Unlimited link yet and cannot be opened.`);
+    out.push(`${placeholders} ${placeholders === 1 ? 'comic is' : 'comics are'} listed by title only.`);
   }
   if (empty) {
-    out.push(`${empty} of them came with no details at all, so ${empty === 1 ? 'it shows' : 'they show'} no cover and ${empty === 1 ? 'has' : 'have'} no Unlimited link.`);
+    out.push(`${empty} ${empty === 1 ? 'comic has' : 'comics have'} limited details.`);
   }
   if (ownerConfirmed) {
     out.push(ownerConfirmed === 1
@@ -221,14 +217,15 @@ export function orderGapSentences(order) {
 export function normalizeIssue(input) {
   const issueId = Number(input?.issueId ?? input?.id);
   if (!Number.isInteger(issueId) || issueId === 0) return null;
-  const synthetic = issueId < 0;
+  const findOnly = issueId > 0 && input.findOnly === true;
   const refused = refusedOnArrival(input);
+  const appViewer = taggedViewer({ issueId, appViewer: input.appViewer });
   return {
     issueId,
     title: String(input.title ?? `Issue ${issueId}`).slice(0, MAX_NAME),
     number: clampScalar(input.number ?? null),
-    // A synthetic id has no marvel.com page, so inventing one would produce a dead link.
-    url: clampUrl(input.url ?? input.detailUrl ?? (synthetic ? null : `https://www.marvel.com/comics/issue/${issueId}/`)),
+    // Neither a synthetic key nor a Find-only provider record can supply a guessed detail page.
+    url: findOnly ? null : clampUrl(input.url ?? input.detailUrl ?? (issueId < 0 ? null : `https://www.marvel.com/comics/issue/${issueId}/`)),
     seriesId: clampScalar(input.seriesId ?? null),
     seriesName: input.seriesName == null ? null : String(input.seriesName).slice(0, MAX_NAME),
     onSale: clampScalar(input.onSale ?? input.onSaleDate ?? null),
@@ -276,6 +273,10 @@ export function normalizeIssue(input) {
       && OWNER_SUPPLEMENT_KINDS.has(input.metadataSourceKind)
       ? { metadataSourceKind: input.metadataSourceKind }
       : {}),
+    // #1601: kept only when the record's own key is the one derived from it, so a hand-edited or
+    // older record cannot claim a viewer by carrying a number. See taggedViewer.
+    ...(appViewer ? { appViewer } : {}),
+    ...(findOnly ? { findOnly } : {}),
   };
 }
 
@@ -356,14 +357,31 @@ function coverBase(path) {
   return url.search || url.hash || !url.pathname.endsWith(CLEAN_FILE) ? path : path.slice(0, -CLEAN_FILE.length);
 }
 
+function asFindOnly(issue) {
+  return issue.findOnly === true && issue.url === null ? issue : { ...issue, findOnly: true, url: null };
+}
+
 export function mergeIssueMetadata(previous, issue) {
-  return previous ? { ...previous, ...stripNulls(issue), hydrated: issue.hydrated || previous.hydrated } : issue;
+  if (!previous) return issue;
+  const merged = { ...previous, ...stripNulls(issue), hydrated: issue.hydrated || previous.hydrated };
+  // An ordinary metadata refresh can carry an address synthesized from the same provider key.
+  return previous.findOnly === true || issue.findOnly === true ? asFindOnly(merged) : merged;
+}
+
+// #1601: a viewer key is an ordinary negative integer, and an older build or a hand-made list can
+// already hold that integer for an unrelated comic. Merging a viewer-tagged comic onto it, or an
+// untagged one onto a tagged comic, would hand one comic's checkmark and notes to another, so the
+// write is refused rather than repurposing the saved record.
+export function identityCollision(previous, issue) {
+  if (!previous || !issue || issue.issueId >= 0) return false;
+  return taggedViewer(previous) !== taggedViewer(issue);
 }
 
 export function upsertIssue(state, input) {
   const issue = normalizeIssue(input);
   if (!issue) return state;
   const prev = state.issues[issue.issueId];
+  if (identityCollision(prev, issue)) return state;
   const merged = mergeIssueMetadata(prev, issue);
   return { ...state, issues: { ...state.issues, [issue.issueId]: merged } };
 }
@@ -651,21 +669,27 @@ export function addIssuesToList(state, listId, inputs, { at = null, sort = false
   // below is the one upsertIssue performs, still against the running map so a repeat inside a single
   // import merges as it did, but the map and the state are each built once.
   const issues = { ...state.issues };
+  const collisions = [];
   for (const input of inputs) {
     const issue = normalizeIssue(input);
     if (!issue) continue;
     const prev = issues[issue.issueId];
-    issues[issue.issueId] = preserveExisting && state.issues[issue.issueId]
-      ? state.issues[issue.issueId]
-      : prev
-        ? { ...prev, ...stripNulls(issue), hydrated: issue.hydrated || prev.hydrated }
-        : issue;
+    if (identityCollision(prev, issue)) {
+      collisions.push(issue.issueId);
+      continue;
+    }
+    const held = preserveExisting && state.issues[issue.issueId];
+    issues[issue.issueId] = held
+      ? (prev.findOnly === true || issue.findOnly === true ? asFindOnly(held) : held)
+      : mergeIssueMetadata(prev, issue);
     incoming.push(issue.issueId);
     if (typeof input?.collectedIn === 'string' && input.collectedIn.trim()) {
       editions.set(issue.issueId, input.collectedIn.trim().slice(0, MAX_COLLECTION));
     }
   }
   next = { ...state, issues };
+  // The whole add is refused, so a list never holds some of an order and not the rest.
+  if (collisions.length) return { state, added: 0, skipped: 0, collisions };
 
   const ordered = sort
     ? [...incoming].sort((a, b) => compareIssues(next.issues[a], next.issues[b]))
@@ -1034,6 +1058,10 @@ export function synopsisOrder(state, listId, wanted, lookahead = 8) {
 
 // ---------------------------------------------------------------- persistence shape
 
+// Shape only. Identities are never changed here (#1601): a signed complete backup is verified by
+// running its reader data back through this and comparing the result byte for byte, so moving a
+// comic here would refuse every genuine backup saved before that move. identityReconcile.js runs on
+// a state already read or verified instead.
 export function migrate(raw) {
   if (!raw || typeof raw !== 'object') return createEmptyState();
   const version = Number(raw.schemaVersion ?? 1);

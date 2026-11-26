@@ -3,7 +3,20 @@ import assert from 'node:assert/strict';
 import {
   parseChecklist, parseTitleList, serializeChecklist, issueIdFromUrl, encodeLegacyIdentityKey,
   digitalIdFromUrl, readerIssueId, isSafeMarvelUrl, normalizeTitle, resolveUniqueExact, stripInlineMarkdown,
+  serializeReadingOrder,
 } from '../src/js/lib/markdown.js';
+import { appViewerUrl, viewerKey } from '../src/js/lib/marvelComicsAppUrl.js';
+
+const APP_VIEWER_CASES = [
+  { guide: 'bridge', position: 769, viewer: '21709', title: 'Captain America: The Chosen (2007) #1' },
+  { guide: 'bridge', position: 770, viewer: '21707', title: 'Captain America: The Chosen (2007) #2' },
+  { guide: 'bridge', position: 771, viewer: '21714', title: 'Captain America: The Chosen (2007) #3' },
+  { guide: 'bridge', position: 772, viewer: '21716', title: 'Captain America: The Chosen (2007) #4' },
+  { guide: 'bridge', position: 773, viewer: '21710', title: 'Captain America: The Chosen (2007) #5' },
+  { guide: 'bridge', position: 774, viewer: '21713', title: 'Captain America: The Chosen (2007) #6' },
+  { guide: 'secretWars', position: 79, viewer: '12618', title: 'Runaways (2015) #1' },
+  { guide: 'secretWars', position: 88, viewer: '12646', title: 'Korvac Saga (2015) #1' },
+];
 
 test('a legacy identity key never reaches a title and is exposed only to the vendor that asks for it', () => {
   const legacy = 'Web Of Venom: Ve\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a2Nam (2018) #1';
@@ -168,6 +181,65 @@ test('issueIdFromUrl accepts real shapes and rejects lookalikes', () => {
   assert.equal(issueIdFromUrl('https://www.marvel.com.evil.com/comics/issue/1/x'), null);
   assert.equal(issueIdFromUrl('not a url'), null);
   assert.equal(issueIdFromUrl(null), null);
+});
+
+test('canonical app viewer links keep a tagged identity through checklist export and import', () => {
+  const source = APP_VIEWER_CASES.map((item, index) => [
+    `> ${item.guide} source position ${item.position}`,
+    `- [${index % 2 === 0 ? 'x' : ' '}] [${item.title}](${appViewerUrl(item.viewer)})`,
+  ].join('\n')).join('\n');
+  const expected = APP_VIEWER_CASES.map((item, index) => [
+    viewerKey(item.viewer), item.viewer, item.title, index % 2 === 0, index, appViewerUrl(item.viewer),
+  ]);
+  const parsed = parseChecklist(source);
+  const row = (entry) => [
+    entry.issueId, entry.appViewer, entry.title, entry.read, entry.index, entry.url,
+  ];
+
+  assert.deepEqual(parsed.entries.map(row), expected);
+  assert.equal(parsed.unresolved.length, 0);
+  assert.deepEqual(parsed.sourcePositions.map(({ label, start, count }) => [label, start, count]),
+    APP_VIEWER_CASES.map((item, index) => [`${item.guide} source position ${item.position}`, index, 1]));
+
+  const checklist = serializeChecklist({
+    name: 'Viewer links',
+    items: parsed.entries.map((entry) => ({ ...entry, collectedIn: entry.section })),
+  }, { literal: true });
+  assert.deepEqual(parseChecklist(checklist).entries.map(row), expected);
+
+  const order = serializeReadingOrder({
+    name: 'Viewer links',
+    items: parsed.entries.map(({ issueId, appViewer, title }) => ({ issueId, appViewer, title })),
+  });
+  assert.deepEqual(parseChecklist(order).entries.map((entry) => [entry.issueId, entry.appViewer, entry.title]),
+    APP_VIEWER_CASES.map((item) => [viewerKey(item.viewer), item.viewer, item.title]));
+
+  const collision = parseChecklist([
+    '- [x] [Runaways (2015) #1](https://www.marvelcomicsapp.com/viewer/12618)',
+    '- [ ] [Black Panther (1998) #49](https://www.marvel.com/comics/issue/12618/black-panther)',
+  ].join('\n'));
+  assert.deepEqual(collision.entries.map(({ issueId, appViewer }) => [issueId, appViewer]),
+    [[viewerKey('12618'), '12618'], [12618, undefined]]);
+});
+
+test('only the exact canonical app viewer address supplies a viewer identity', () => {
+  const urls = [
+    'https://www.marvelcomicsapp.com/viewer/0',
+    'https://www.marvelcomicsapp.com/viewer/021709',
+    'https://www.marvelcomicsapp.com/viewer/21709/',
+    'https://www.marvelcomicsapp.com/viewer/21709?source=copy',
+    'https://www.marvelcomicsapp.com/viewer/21709#page=2',
+    'http://www.marvelcomicsapp.com/viewer/21709',
+    'https://marvelcomicsapp.com/viewer/21709',
+    'https://www.marvelcomicsapp.com.evil.example/viewer/21709',
+    'https://read.marvel.com/#/book/129648',
+    'https://marvel.webtoon.com/',
+  ];
+  const parsed = parseChecklist(urls.map((url, index) => `- [x] [Fixture ${index + 1}](${url})`).join('\n'));
+  assert.equal(parsed.entries.length, 0);
+  assert.deepEqual(parsed.unresolved.map(({ title, url, read }) => [title, url, read]),
+    urls.map((_, index) => [`Fixture ${index + 1}`, null, true]));
+  assert.equal(parseChecklist('- [x] Title only').unresolved[0].read, true);
 });
 
 test('digitalIdFromUrl reads the book id off a Marvel Unlimited reader address', () => {

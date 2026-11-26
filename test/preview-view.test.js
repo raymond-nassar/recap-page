@@ -2,7 +2,10 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 import { createPreviewView } from '../src/js/views/preview.js';
+import { eventBookRows } from '../src/js/views/shared/event-reading-order.js';
 import { createCatalogPresentation, PROJECT_HOME } from '../src/js/views/shared/catalog-presentation.js';
+import { SECTIONAL_GUIDE_COPY } from '../src/js/lib/sectionalGuide.js';
+import { eventReadingOrders } from '../src/data/eventReadingOrders.js';
 
 function node(props = {}, children = []) {
   return {
@@ -10,6 +13,8 @@ function node(props = {}, children = []) {
     listeners: {},
     open: false,
     addEventListener(name, listener) { this.listeners[name] = listener; },
+    setAttribute(name, value) { this[name] = value; },
+    removeAttribute(name) { delete this[name]; },
     close() { this.open = false; },
     replaceChildren(...next) { this.children = next; },
     showModal() { this.open = true; },
@@ -24,6 +29,126 @@ const list = (id) => ({
   description: '',
   count: 1,
   depth: 'essential',
+});
+
+test('event Preview uses distinct book placements and links to the exact issue position without saving', async (t) => {
+  const previous = globalThis.document;
+  globalThis.document = { activeElement: null, body: {} };
+  t.after(() => { if (previous) globalThis.document = previous; else delete globalThis.document; });
+  const nodes = Object.fromEntries([
+    'add', 'secondary', 'body', 'close', 'description', 'dialog', 'heading', 'meta', 'paths', 'source',
+  ].map((key) => [key, node()]));
+  const positions = [];
+  nodes.body.querySelector = (selector) => ({ focus: () => positions.push(selector) });
+  const id = 'world-war-hulk';
+  const { issueOrder } = eventReadingOrders[id];
+  const items = issueOrder.map((issueId) => ({ issueId, title: `Comic ${issueId}` }));
+  const initial = JSON.stringify(items);
+  const view = createPreviewView({
+    captureFocus: () => null, createIcon: () => null, el: element, elements: () => nodes,
+    getState: () => ({ lists: {}, listOrder: [] }), isInLibrary: () => null,
+    issueFocusAnchor: (item) => element('a', { text: item.title }),
+    loadOrder: async () => ({ id, items }),
+    onAdd: () => assert.fail('Presentation must not save'),
+    onIssueLoadFailure: ({ error }) => { throw error; },
+    presentation: { attributionLine: () => null }, restoreFocus: () => {},
+  });
+  await view.open({ ...list(id), count: items.length });
+  const controls = () => nodes.body.children.find((child) => child.class === 'order-choices');
+  const rows = () => nodes.body.children.find((child) => child.tag === 'ol').children;
+  assert.equal(controls().children[0]['aria-pressed'], 'true');
+  controls().children[1].onclick();
+  assert.equal(controls().children[1]['aria-pressed'], 'true');
+  assert.deepEqual(rows().filter((row) => row.dataset?.sectionalPosition)
+    .map((row) => row.dataset.sectionalPosition), [1, 6, 19, 22, 26, 36]);
+  const [, links] = rows().at(-1).children[0].children;
+  assert.equal(links.children.length, 33);
+  const link = links.children[0].children[0];
+  assert.equal(link.href, '#/preview/world-war-hulk?position=2');
+  link.onclick({ button: 0, ctrlKey: true, preventDefault: () => assert.fail('modified click intercepted') });
+  assert.equal(controls().children[1]['aria-pressed'], 'true');
+  let intercepted = false;
+  link.onclick({ button: 0, preventDefault: () => { intercepted = true; } });
+  assert.equal(intercepted, true);
+  assert.equal(controls().children[0]['aria-pressed'], 'true');
+  assert.equal(positions.at(-1), '[data-sectional-position="2"] a');
+  assert.equal(JSON.stringify(items), initial);
+});
+
+test('Future Imperfect cross-references Battleworld #4 without counting a second comic', () => {
+  const catalogId = 'secret-wars-2015-event-tie-ins';
+  const layout = eventReadingOrders[catalogId];
+  const title = 'Secret Wars: Battleworld (2015) #4';
+  const items = layout.issueOrder.map((issueId) => ({ issueId, title: issueId === 52489 ? title : `Comic ${issueId}` }));
+  const opened = [];
+  const rows = eventBookRows(element, layout, items, {
+    catalogId, heading: 'h3', groupClass: 'book-group',
+    issueRow: (item) => element('li', { issueId: item.issueId }),
+    openPosition: (position) => { opened.push(position); return true; },
+  });
+  const start = rows.findIndex((row) => row.children[0]?.text === 'Future Imperfect');
+  const end = rows.findIndex((row) => row.children[0]?.text === 'Spider-Man: Renew Your Vows');
+  assert.ok(start >= 0 && end > start);
+  const bookRows = rows.slice(start + 1, end);
+  assert.equal(bookRows.filter((row) => row.issueId).length, 5);
+  assert.equal(rows.filter((row) => row.issueId === 52489).length, 1);
+  assert.equal(rows.at(-1).children[0].children[1].children.length, 43);
+  const link = bookRows.find((row) => row.children.length)?.children[0];
+  assert.equal(link?.children[0], title);
+  assert.equal(link.href, '#/preview/secret-wars-2015-event-tie-ins?position=138');
+  link.onclick({ button: 0, ctrlKey: true, preventDefault: () => assert.fail('modified click intercepted') });
+  assert.deepEqual(opened, []);
+  let intercepted = false;
+  link.onclick({ button: 0, preventDefault: () => { intercepted = true; } });
+  assert.deepEqual(opened, [138]);
+  assert.equal(intercepted, true);
+});
+
+test('sectional Preview follows the exact part position and retains the current guide on failure', async (t) => {
+  const previous = globalThis.document;
+  globalThis.document = { activeElement: null, body: {} };
+  t.after(() => { if (previous) globalThis.document = previous; else delete globalThis.document; });
+  const nodes = Object.fromEntries([
+    'add', 'secondary', 'body', 'close', 'description', 'dialog', 'heading', 'meta', 'paths', 'source',
+  ].map((key) => [key, node()]));
+  const items = [{ issueId: 31, title: 'First' }, { issueId: 32, title: 'Second' }];
+  const calls = [];
+  nodes.body.querySelector = (selector) => ({ focus: () => calls.push(selector) });
+  const view = createPreviewView({
+    captureFocus: () => null, createIcon: () => null, el: element, elements: () => nodes,
+    getState: () => ({ lists: {}, listOrder: [] }), isInLibrary: () => null,
+    issueFocusAnchor: (item) => element('a', { text: item.title }),
+    loadOrder: async () => ({ items }),
+    onFollowSectional: (id, position) => { calls.push([id, position]); return false; },
+    onIssueLoadFailure: ({ error }) => { throw error; },
+    presentation: { attributionLine: () => null },
+    restoreFocus: () => {},
+  });
+  const part = {
+    ...list('bridge-part-2'), count: 2,
+    sectionalPart: {
+      issueIds: [31, 32],
+      steps: [
+        { kind: 'position', localPosition: 1 }, { kind: 'pause', copy: 'pauseReturn' },
+        { kind: 'position', localPosition: 2 },
+        { kind: 'return-point', title: 'Iron Man', catalogId: 'bridge-part-1', localPosition: 6 },
+      ],
+    },
+  };
+  await view.open(part, { position: 2 });
+  assert.deepEqual(calls, ['[data-sectional-position="2"] a']);
+  const [first, pause, second, resume] = nodes.body.children[0].children;
+  assert.equal(first.dataset.sectionalPosition, 1);
+  assert.equal(pause.text, SECTIONAL_GUIDE_COPY.pauseReturn);
+  assert.equal(second.dataset.sectionalPosition, 2);
+  const [returnLink, status] = resume.children;
+  assert.equal(returnLink.href, '#/preview/bridge-part-1?position=6');
+  await returnLink.onclick({ button: 0, currentTarget: returnLink, preventDefault() {} });
+  assert.deepEqual(calls.at(-1), ['bridge-part-1', 6]);
+  assert.equal(status.textContent, SECTIONAL_GUIDE_COPY.linkFailed);
+  assert.equal(nodes.dialog.open, true);
+  await view.open({ ...part, sectionalPart: { ...part.sectionalPart, issueIds: [32, 31] } });
+  assert.equal(nodes.body.children[0].text, SECTIONAL_GUIDE_COPY.linkFailed);
 });
 
 test('P04 Preview shows the mixed guide universe and its scope without changing the guide', async () => {

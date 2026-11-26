@@ -175,9 +175,9 @@ test('Miles Morales best-of classifies its relationships against the full curren
   assert.equal(report.candidateCount, 84);
   assert.equal(report.comparisonCount, catalog.lists.length - 1);
   assert.equal(report.comparisons.filter((entry) => entry.relationship === 'candidate-subset').length, 1);
-  assert.equal(report.comparisons.filter((entry) => entry.relationship === 'partial').length, 16);
+  assert.equal(report.comparisons.filter((entry) => entry.relationship === 'partial').length, 17);
   assert.equal(report.comparisons.filter((entry) => entry.relationship === 'none').length,
-    report.comparisonCount - 17);
+    report.comparisonCount - 18);
   assert.equal(report.comparisons.filter((entry) => entry.relationship === 'exact').length, 0);
   assert.equal(report.comparisons.filter((entry) => entry.relationship === 'existing-subset').length, 0);
   assert.deepEqual(report.comparisons.map((entry) => entry.orderId),
@@ -197,6 +197,7 @@ test('Miles Morales best-of classifies its relationships against the full curren
     ['jed-mackay-reading-list', 'partial'],
     ['miles-morales-spider-man-reading-order', 'candidate-subset'],
     ['namor-sub-mariner-reading-order', 'partial'],
+    ['secret-wars-2015-event-tie-ins', 'partial'],
     ['spider-gwen-reading-order', 'partial'],
     ['spider-man-2099-reading-order', 'partial'],
     ['spider-verse', 'partial'],

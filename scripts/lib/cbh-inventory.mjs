@@ -2,6 +2,7 @@ import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { normalizeTitle } from '../../src/js/lib/markdown.js';
 import { validateOwnerExternalSupplement } from './owner-external-supplement.mjs';
+import { serviceIdentityFor } from './cbh-service-identity.mjs';
 
 export const GUIDE_TYPES = Object.freeze([
   'event',
@@ -91,10 +92,12 @@ const PACKET_FIELDS = new Set([
   'sourceOccurrenceCount',
   'canonicalSourcePositions',
   'repeatedSourceReferences',
+  'nonCountingSourceReferences',
   'sourceGaps',
   'sourceGapResolutions',
   'expectedCount',
   'proposedManifest',
+  'sectionalGuide',
   'insertionAnchor',
   'sourceReview',
   'rows',
@@ -117,8 +120,11 @@ const MAPPING_DIGEST_FIELDS = Object.freeze([
   'excludedSourceRows',
   'sourceOccurrenceCount',
   'repeatedSourceReferences',
+  'nonCountingSourceReferences',
+  'findOnlySourcePositions',
   'sourceGaps',
   'sourceGapResolutions',
+  'sectionalPart',
   'proposedManifest',
   'candidateMetadata',
   'rows',
@@ -193,6 +199,7 @@ const SOURCE_GAP_RESOLUTION_FIELDS = new Set([
   'auditBasis',
   'evidenceSources',
   'identityEvidence',
+  'serviceIdentity',
   'evidenceDigest',
 ]);
 const SOURCE_GAP_RESOLUTION_REQUIRED_FIELDS = new Set([
@@ -313,9 +320,12 @@ function assertPacketRow(row, index) {
   if (row.metadataIssueNumber != null) {
     assertNonEmptyString(String(row.metadataIssueNumber), `${label} metadataIssueNumber`);
   }
+  serviceIdentityFor(row);
 }
 
 function packetRowIdentity(row) {
+  const service = serviceIdentityFor(row);
+  if (service) return `viewer:${service.appViewer}`;
   const issueNumber = String(row.metadataIssueNumber ?? row.issueNumber ?? '').trim();
   if (row.candidateIssueId != null) return `issue:${row.candidateIssueId}`;
   if (row.seriesId != null) return `series:${row.seriesId}#${issueNumber}`;
@@ -394,6 +404,42 @@ function assertRepeatedSourceReference(reference, index, rows) {
   } else {
     assertNonEmptyString(String(reference.issueNumber), `${label} issueNumber`);
   }
+}
+
+// An owner-directed source mention that occupies a source position but is not a reading step,
+// such as Secret Wars (2015) pointing back at a Spider-Verse issue under a different title.
+// It is neither a repeat (its title differs from the canonical row), a gap nor an exclusion, so
+// recasting it as one would misstate the source; it only names the earlier provider identity.
+const NON_COUNTING_SOURCE_REFERENCE_FIELDS = Object.freeze([
+  'sourcePosition',
+  'sourceIssueReference',
+  'decisionId',
+  'canonicalSourcePosition',
+  'canonicalProviderIssueId',
+  'counted',
+]);
+
+function assertNonCountingSourceReference(reference, index) {
+  const label = `Non-counting source reference ${index + 1}`;
+  if (!isPlainObject(reference)) throw new Error(`${label} must be an object`);
+  const fields = Object.keys(reference);
+  const missing = NON_COUNTING_SOURCE_REFERENCE_FIELDS.filter((field) => !Object.hasOwn(reference, field));
+  if (missing.length > 0) throw new Error(`${label} is missing required fields: ${missing.join(', ')}`);
+  const unexpected = fields.filter((field) => !NON_COUNTING_SOURCE_REFERENCE_FIELDS.includes(field));
+  if (unexpected.length > 0) throw new Error(`${label} has unsupported fields: ${unexpected.join(', ')}`);
+  if (!Number.isInteger(reference.sourcePosition) || reference.sourcePosition < 1) {
+    throw new Error(`${label} sourcePosition must be a positive integer`);
+  }
+  assertNonEmptyString(reference.sourceIssueReference, `${label} sourceIssueReference`);
+  assertNonEmptyString(reference.decisionId, `${label} decisionId`);
+  if (!Number.isInteger(reference.canonicalSourcePosition) || reference.canonicalSourcePosition < 1
+    || reference.canonicalSourcePosition >= reference.sourcePosition) {
+    throw new Error(`${label} canonicalSourcePosition must name an earlier source position`);
+  }
+  if (!Number.isInteger(reference.canonicalProviderIssueId) || reference.canonicalProviderIssueId < 1) {
+    throw new Error(`${label} canonicalProviderIssueId must be a positive integer`);
+  }
+  if (reference.counted !== false) throw new Error(`${label} must record counted: false`);
 }
 
 function assertExcludedSourceRow(row, index) {
@@ -527,6 +573,7 @@ function assertSourceGapResolution(
     'canonical-repeat',
     'canonical-gap-repeat',
     'exact-issue',
+    'exact-service-issue',
     'owner-confirmed-identity',
     'source-exclusion',
   ]);
@@ -551,6 +598,9 @@ function assertSourceGapResolution(
     throw new Error(`${label} checkedAt must be a YYYY-MM-DD date`);
   }
   assertEvidenceSources(resolution.evidenceSources, label);
+  if (resolution.resolutionKind !== 'exact-service-issue' && Object.hasOwn(resolution, 'serviceIdentity')) {
+    throw new Error(`${label} service identity requires an exact-service-issue resolution`);
+  }
   if (resolution.resolutionKind === 'canonical-repeat') {
     if (!Number.isInteger(resolution.canonicalRow)
       || resolution.canonicalRow < 1
@@ -625,6 +675,26 @@ function assertSourceGapResolution(
         String(resolution.resolvedIssueNumber ?? ''),
         `${label} resolvedIssueNumber`,
       );
+    }
+  } else if (resolution.resolutionKind === 'exact-service-issue') {
+    if (Object.hasOwn(resolution, 'selectedIssueId')
+      || Object.hasOwn(resolution, 'canonicalRow')
+      || Object.hasOwn(resolution, 'canonicalGapPosition')
+      || Object.hasOwn(resolution, 'identityEvidence')
+      || Object.hasOwn(resolution, 'exclusionReason')
+      || Object.hasOwn(resolution, 'decisionScope')) {
+      throw new Error(`${label} service identity contains unsupported disposition fields`);
+    }
+    const service = serviceIdentityFor({
+      serviceIdentity: resolution.serviceIdentity,
+      candidateIssueId: null,
+      seriesId: null,
+      normalizedSeriesTitle: resolution.resolvedNormalizedSeriesTitle,
+      seriesYear: resolution.resolvedSeriesYear,
+      issueNumber: resolution.resolvedIssueNumber,
+    });
+    if (!resolution.evidenceSources.some((source) => source.kind === 'service-viewer' && source.url === service.url)) {
+      throw new Error(`${label} service viewer is not in evidenceSources`);
     }
   } else if (resolution.resolutionKind === 'owner-confirmed-identity') {
     if (!Number.isInteger(resolution.selectedIssueId) || resolution.selectedIssueId < 1) {
@@ -803,8 +873,10 @@ export function sourcePositionsForPacket(packet, {
   const hasExcludedRows = Object.hasOwn(packet ?? {}, 'excludedSourceRows');
   const hasSourceGaps = Object.hasOwn(packet ?? {}, 'sourceGaps');
   const hasSourceGapResolutions = Object.hasOwn(packet ?? {}, 'sourceGapResolutions');
+  const hasNonCountingReferences = Object.hasOwn(packet ?? {}, 'nonCountingSourceReferences');
   if (hasOccurrenceCount !== (
     hasRepeatedReferences || hasExcludedRows || hasSourceGaps || hasSourceGapResolutions
+    || hasNonCountingReferences
   )) {
     throw new Error(`${packetId} sourceOccurrenceCount and supplemental source rows must appear together`);
   }
@@ -812,18 +884,26 @@ export function sourcePositionsForPacket(packet, {
 
   const references = hasRepeatedReferences ? packet.repeatedSourceReferences : [];
   const excludedRows = hasExcludedRows ? packet.excludedSourceRows : [];
+  const nonCounting = hasNonCountingReferences ? packet.nonCountingSourceReferences : [];
   if (hasRepeatedReferences && (!Array.isArray(references) || references.length === 0)) {
     throw new Error(`${packetId} repeatedSourceReferences must be a non-empty array when present`);
   }
   if (hasExcludedRows && (!Array.isArray(excludedRows) || excludedRows.length === 0)) {
     throw new Error(`${packetId} excludedSourceRows must be a non-empty array when present`);
   }
+  if (hasNonCountingReferences && (!Array.isArray(nonCounting) || nonCounting.length === 0)) {
+    throw new Error(`${packetId} nonCountingSourceReferences must be a non-empty array when present`);
+  }
+  if (hasNonCountingReferences && !rowsDeclareSourcePositions) {
+    throw new Error(`${packetId} nonCountingSourceReferences require canonical source positions`);
+  }
   const gaps = hasSourceGaps ? packet.sourceGaps : [];
   if (hasSourceGaps && (!Array.isArray(gaps) || gaps.length === 0)) {
     throw new Error(`${packetId} sourceGaps must be a non-empty array when present`);
   }
   if (!Number.isInteger(packet.sourceOccurrenceCount)
-    || packet.sourceOccurrenceCount !== rows.length + references.length + excludedRows.length + gaps.length) {
+    || packet.sourceOccurrenceCount !== rows.length + references.length + excludedRows.length
+      + gaps.length + nonCounting.length) {
     throw new Error(`${packetId} sourceOccurrenceCount must equal exact rows plus supplemental source rows`);
   }
 
@@ -907,6 +987,21 @@ export function sourcePositionsForPacket(packet, {
     bySourcePosition.set(gap.sourcePosition, gap);
     gapsBySourcePosition.set(gap.sourcePosition, gap);
   }
+  let previousNonCountingPosition = 0;
+  for (const [index, reference] of nonCounting.entries()) {
+    assertNonCountingSourceReference(reference, index);
+    if (reference.sourcePosition <= previousNonCountingPosition) {
+      throw new Error(`${packetId} nonCountingSourceReferences must be in sourcePosition order`);
+    }
+    if (reference.sourcePosition > packet.sourceOccurrenceCount) {
+      throw new Error(`${packetId} non-counting source position ${reference.sourcePosition} is outside the source occurrence count`);
+    }
+    if (bySourcePosition.has(reference.sourcePosition)) {
+      throw new Error(`${packetId} source position ${reference.sourcePosition} is used more than once`);
+    }
+    bySourcePosition.set(reference.sourcePosition, reference);
+    previousNonCountingPosition = reference.sourcePosition;
+  }
 
   if (rowsDeclareSourcePositions) {
     const canonicalSourcePositions = [];
@@ -928,6 +1023,16 @@ export function sourcePositionsForPacket(packet, {
     }
     if (bySourcePosition.size !== packet.sourceOccurrenceCount) {
       throw new Error(`${packetId} source occurrence positions do not cover the source occurrence count`);
+    }
+    const rowsBySourcePosition = new Map(rows.map((row) => [row.sourcePosition, row]));
+    for (const reference of nonCounting) {
+      const canonical = rowsBySourcePosition.get(reference.canonicalSourcePosition);
+      const providerIds = [canonical?.candidateIssueId, canonical?.selectedIssueId]
+        .filter((value) => value != null);
+      if (!canonical || providerIds.length === 0
+        || providerIds.some((value) => Number(value) !== reference.canonicalProviderIssueId)) {
+        throw new Error(`${packetId} non-counting source position ${reference.sourcePosition} must name the provider identity of an earlier exact row`);
+      }
     }
     for (const reference of references) {
       const canonical = Object.hasOwn(reference, 'canonicalRow')
@@ -1004,6 +1109,9 @@ export function sourceCountsForPacket(packet) {
     includedIssueCount: packet.rows.length,
     sourceGapCount: packet.sourceGaps?.length ?? 0,
     repeatedSourceReferenceCount: packet.repeatedSourceReferences?.length ?? 0,
+    ...(Object.hasOwn(packet, 'nonCountingSourceReferences')
+      ? { nonCountingSourceReferenceCount: packet.nonCountingSourceReferences.length }
+      : {}),
     ...((packet.sourceGapResolutions?.length ?? 0) > 0
       ? { excludedSourceRowCount: packet.excludedSourceRows?.length ?? 0 }
       : {}),
@@ -1015,6 +1123,39 @@ function issueIdFromMarvelUrl(value) {
     /^https:\/\/www\.marvel\.com\/comics\/issue\/(\d+)(?:\/|$)/,
   );
   return match ? Number(match[1]) : null;
+}
+
+// A provider-exact comic whose source recorded no issue address keeps its positive provider id
+// and is read through Find rather than a constructed link. The list is explicit so that a row
+// which merely lost its address cannot silently become Find-only, and so that a Find-only row
+// cannot quietly acquire an address nobody recorded.
+export function assertFindOnlySourcePositions(mapping) {
+  const mappingId = String(mapping?.id ?? 'Candidate');
+  const rows = Array.isArray(mapping?.rows) ? mapping.rows : [];
+  const addressless = rows
+    .filter((row) => !serviceIdentityFor(row) && (row.marvelIssueUrl ?? null) === null)
+    .map((row) => row.sourcePosition);
+  if (!Object.hasOwn(mapping ?? {}, 'findOnlySourcePositions')) return [];
+  const listed = mapping.findOnlySourcePositions;
+  if (!Array.isArray(listed) || listed.length === 0
+    || listed.some((position, index) => !Number.isInteger(position) || position < 1
+      || (index > 0 && position <= listed[index - 1]))) {
+    throw new Error(`${mappingId} findOnlySourcePositions must be ascending unique positive source positions`);
+  }
+  if (canonicalJson(listed) !== canonicalJson(addressless)) {
+    throw new Error(`${mappingId} findOnlySourcePositions must name exactly the provider rows without a recorded issue address`);
+  }
+  for (const position of listed) {
+    const row = rows.find((candidate) => candidate.sourcePosition === position);
+    if (row.resolutionStatus !== 'exact'
+      || !Object.hasOwn(row, 'marvelIssueUrl')
+      || !Number.isInteger(row.selectedIssueId) || row.selectedIssueId < 1
+      || (Object.hasOwn(row, 'selectedIssueIds')
+        && canonicalJson(row.selectedIssueIds) !== canonicalJson([row.selectedIssueId]))) {
+      throw new Error(`${mappingId} Find-only source position ${position} must be exact with one positive provider issue id`);
+    }
+  }
+  return listed;
 }
 
 export function assertMappingMatchesPacketOccurrences(packet, mapping) {
@@ -1042,6 +1183,10 @@ export function assertMappingMatchesPacketOccurrences(packet, mapping) {
   if (canonicalJson(packetExclusions) !== canonicalJson(mappingExclusions)) {
     throw new Error(`${packetId} mapping excluded source evidence differs from its frozen packet`);
   }
+  if (canonicalJson(packet.nonCountingSourceReferences ?? null)
+    !== canonicalJson(mapping?.nonCountingSourceReferences ?? null)) {
+    throw new Error(`${packetId} mapping non-counting source references differ from its frozen packet`);
+  }
   if (mapping?.approvedSourceCount !== expectedCount) {
     throw new Error(`${packetId} approvedSourceCount differs from its frozen source occurrence count`);
   }
@@ -1054,12 +1199,34 @@ export function assertMappingMatchesPacketOccurrences(packet, mapping) {
     if (row?.sourcePosition !== expectedPosition) {
       throw new Error(`${packetId} mapping row ${index + 1} sourcePosition differs from its frozen packet`);
     }
+    const service = serviceIdentityFor(row);
+    if (service) {
+      const frozenRow = packet.rows[index];
+      serviceIdentityFor(frozenRow);
+      if (row.resolutionStatus !== 'exact'
+        || canonicalJson(row.serviceIdentity) !== canonicalJson(frozenRow.serviceIdentity)
+        || ['sourceIssueReference', 'sourceRangeReference', 'normalizedSeriesTitle', 'seriesYear', 'issueNumber']
+          .some((field) => canonicalJson(row[field] ?? null) !== canonicalJson(frozenRow[field] ?? null))) {
+        throw new Error(`${packetId} service identity differs from its frozen packet row`);
+      }
+      continue;
+    }
+    if (Object.hasOwn(packet.rows[index], 'serviceIdentity')) {
+      throw new Error(`${packetId} service identity disappeared from its mapping`);
+    }
     if (row.resolutionStatus !== 'exact'
       || row.selectedIssueId == null
       || !Number.isInteger(Number(row.selectedIssueId))) {
       throw new Error(`${packetId} mapping row ${index + 1} must be exact with a concrete selected issue id`);
     }
   }
+  for (const reference of packet.nonCountingSourceReferences ?? []) {
+    const canonical = mappingRows.find((row) => row.sourcePosition === reference.canonicalSourcePosition);
+    if (Number(canonical?.selectedIssueId) !== reference.canonicalProviderIssueId) {
+      throw new Error(`${packetId} non-counting source position ${reference.sourcePosition} differs from its mapped canonical issue`);
+    }
+  }
+  assertFindOnlySourcePositions(mapping);
   for (const resolution of packet.sourceGapResolutions ?? []) {
     if (resolution.resolutionKind === 'canonical-repeat') {
       const canonicalPacket = packet.rows[resolution.canonicalRow - 1];
@@ -1140,6 +1307,17 @@ export function assertMappingMatchesPacketOccurrences(packet, mapping) {
         || String(candidate.issueNumber) !== String(resolution.resolvedIssueNumber)) {
         throw new Error(`${packetId} exact source gap resolution at position ${resolution.sourcePosition} has no matching candidate metadata`);
       }
+    } else if (resolution.resolutionKind === 'exact-service-issue') {
+      const row = mappingRows.find((entry) => entry.sourcePosition === resolution.sourcePosition);
+      if (!row || canonicalJson(row.serviceIdentity) !== canonicalJson(resolution.serviceIdentity)
+        || row.normalizedSeriesTitle !== resolution.resolvedNormalizedSeriesTitle
+        || row.seriesYear !== resolution.resolvedSeriesYear
+        || row.issueNumber !== resolution.resolvedIssueNumber
+        || row.sourceIssueReference !== resolution.previousSourceIssueReference
+        || (row.sourceRangeReference ?? null) !== (resolution.previousSourceRangeReference ?? null)) {
+        throw new Error(`${packetId} service resolution differs from its packet and mapping identity`);
+      }
+      serviceIdentityFor(row);
     } else if (resolution.resolutionKind === 'owner-confirmed-identity') {
       const index = mappingRows.findIndex((row) => row.sourcePosition === resolution.sourcePosition);
       const confirmedMapping = mappingRows[index];
@@ -1331,7 +1509,14 @@ export function assertGapTransition(previousPacket, proposedPacket, proposedMapp
       previousSeriesYear: previous.seriesYear,
       previousIssueNumber: String(previous.issueNumber),
     };
-    const evidenceBoundIdentityChange = ['exact-issue', 'owner-confirmed-identity']
+    const service = serviceIdentityFor(mappingRow);
+    const serviceResolution = service && resolution?.resolutionKind === 'exact-service-issue'
+      && canonicalJson(resolution.serviceIdentity) === canonicalJson(mappingRow.serviceIdentity)
+      && Object.entries(previousIdentity).every(([field, value]) => resolution[field] === value);
+    if (service && !serviceResolution) {
+      throw new Error(`Open source gap at position ${previous.sourcePosition} requires exact service resolution evidence`);
+    }
+    const evidenceBoundIdentityChange = serviceResolution || ['exact-issue', 'owner-confirmed-identity']
       .includes(resolution?.resolutionKind)
       && resolution.selectedIssueId === Number(mappingRow.selectedIssueId)
       && Object.entries(previousIdentity).every(([field, value]) => resolution[field] === value);
@@ -1506,6 +1691,7 @@ export function validatePacketProposal(packet, {
   provider = CBH_SOURCE_PROVIDER,
   enforceApprovedResolutionDigest = true,
   allowLegacySourceGapResolutions = false,
+  containedChildMappings = [],
 } = {}) {
   if (!isPlainObject(packet)) throw new Error('Frozen packet must be an object');
   const unexpected = Object.keys(packet).filter((field) => !PACKET_FIELDS.has(field));
@@ -1587,6 +1773,18 @@ export function validatePacketProposal(packet, {
     throw new Error(`${packet.id} expectedCount must equal its row count`);
   }
   assertManifestProposal(packet, provider);
+  if (Object.hasOwn(packet, 'sectionalGuide')) {
+    const guide = packet.sectionalGuide;
+    const entry = packet.proposedManifest;
+    if (provider.id !== CBH_SOURCE_PROVIDER.id || !isPlainObject(guide)
+      || guide.id !== packet.id || guide.name !== entry.name
+      || !Number.isInteger(guide.year) || guide.year !== entry.timeline
+      || entry.catalog !== false || entry.sectionKind !== 'reading-blocks'
+      || packet.sourceSection != null || guide.layout?.guideId !== packet.id
+      || guide.layout.positionCount !== packet.expectedCount) {
+      throw new Error(`${packet.id} has an inconsistent sectional guide and manifest proposal`);
+    }
+  }
   if (!isPlainObject(packet.insertionAnchor)
     || Object.keys(packet.insertionAnchor).length !== 1
     || typeof packet.insertionAnchor.beforeId !== 'string'
@@ -1616,11 +1814,17 @@ export function validatePacketProposal(packet, {
   if (catalogEntriesForPacket.length > 1) {
     throw new Error(`${packet.id} has duplicate catalog entries`);
   }
+  const containedChildren = containedChildSourceIds(packet, {
+    inventoryRecord,
+    catalogEntries,
+    childMappings: containedChildMappings,
+    allowLegacySourceGapResolutions,
+  });
   const existingRecords = catalogEntries
     .filter((entry) => entry.id !== packet.id)
     .map((entry) => ({
       id: entry.id,
-      url: entry.sourcePage,
+      url: containedChildren.has(entry.id) ? null : entry.sourcePage,
       sourceSection: entry.sourceSection,
       catalogIds: [entry.id],
     }));
@@ -1631,6 +1835,69 @@ export function validatePacketProposal(packet, {
     catalogIds: [packet.proposedManifest.id],
   }], existingRecords);
   return true;
+}
+
+// A whole-page guide may share its exact source address with a split already shipped from it
+// only when that split is provably one contiguous block of the guide itself. Silent War was
+// shipped as positions 479-484 of the Civil War to Secret Invasion page before the full page was
+// authored, and the source has no section to tell them apart. Any other shared address, or a
+// child whose comics are not exactly that block in source order, still fails as a duplicate.
+export function containedChildSourceIds(packet, {
+  inventoryRecord = null,
+  catalogEntries = [],
+  childMappings = [],
+  allowLegacySourceGapResolutions = false,
+} = {}) {
+  const contained = new Set();
+  if (!Array.isArray(childMappings) || childMappings.length === 0) return contained;
+  const label = `${packet.id} contained child source`;
+  if (!inventoryRecord || inventoryRecord.id !== packet.id || packet.inventoryId !== packet.id
+    || packet.sourceSection != null || Object.hasOwn(inventoryRecord, 'childSources')
+    || (inventoryRecord.url ?? inventoryRecord.sourceUrl) !== packet.sourceUrl) {
+    throw new Error(`${label} requires the packet to be its own whole-page inventory record`);
+  }
+  const positions = sourcePositionsForPacket(packet, { allowLegacySourceGapResolutions });
+  const ordered = packet.rows
+    .map((row, index) => ({ position: positions[index], issueId: row.candidateIssueId }))
+    .sort((left, right) => left.position - right.position);
+  for (const mapping of childMappings) {
+    const childId = mapping?.id;
+    if (typeof childId !== 'string' || childId === packet.id
+      || !inventoryRecord.catalogIds?.includes(childId)) {
+      throw new Error(`${label} ${childId} is not listed by inventory record ${packet.id}`);
+    }
+    if (contained.has(childId)) throw new Error(`${label} ${childId} is listed twice`);
+    if (mapping.inventoryId !== packet.id || mapping.sourceUrl !== packet.sourceUrl
+      || mapping.sourceSection != null || mapping.reviewStatus !== 'approved') {
+      throw new Error(`${label} ${childId} mapping is not an approved split of the same whole page`);
+    }
+    const entries = catalogEntries.filter((entry) => entry.id === childId);
+    if (entries.length !== 1 || entries[0].sourcePage !== packet.sourceUrl
+      || entries[0].sourceSection != null) {
+      throw new Error(`${label} ${childId} catalog entry does not name the same whole page`);
+    }
+    const rows = Array.isArray(mapping.rows) ? mapping.rows : [];
+    const childIds = rows.map((row) => row.selectedIssueId);
+    if (childIds.length === 0 || childIds.length !== mapping.approvedSourceCount
+      || childIds.length !== entries[0].expect
+      || rows.some((row) => !Number.isInteger(row.selectedIssueId)
+        || !Array.isArray(row.selectedIssueIds) || row.selectedIssueIds.length !== 1
+        || row.selectedIssueIds[0] !== row.selectedIssueId)) {
+      throw new Error(`${label} ${childId} mapping must select one exact comic per approved row`);
+    }
+    const start = ordered.findIndex((row) => row.issueId === childIds[0]);
+    const block = start < 0 ? [] : ordered.slice(start, start + childIds.length);
+    const matches = block.length === childIds.length
+      && block.every((row, index) => row.issueId === childIds[index]
+        && Number.isInteger(row.position)
+        && row.position === block[0].position + index)
+      && ordered.filter((row) => childIds.includes(row.issueId)).length === childIds.length;
+    if (!matches) {
+      throw new Error(`${label} ${childId} is not one contiguous block of ${packet.id} in source order`);
+    }
+    contained.add(childId);
+  }
+  return contained;
 }
 
 export function validateFrozenPacket(packet, options = {}) {

@@ -9,12 +9,23 @@ import {
 } from '../scripts/marvel-comics-app-links.mjs';
 import { matchExportCsv, parseExportCsv } from '../scripts/lib/marvel-comics-app-export.mjs';
 import { appLinkFor, appViewerFor } from '../src/js/lib/marvelComicsApp.js';
-import { appLaunchUrl, appMuIssuesUrl, appViewerUrl, viewerNumber } from '../src/js/lib/marvelComicsAppUrl.js';
+import { appLaunchUrl, appViewerUrl, viewerNumber } from '../src/js/lib/marvelComicsAppUrl.js';
 import { marvelComicsAppMuIssueIds } from '../src/data/marvelComicsAppMuIssues.js';
+import { reviewed2025Pairs } from './helpers/reviewed-2025-viewer-links.mjs';
 
 // Rows written for this project in the shape of the offline match file; no site markup is used.
 const page = (slug) => `https://comicbookreadingorders.com/marvel/events/${slug}/`;
 const viewer = (n) => `https://www.marvelcomicsapp.com/viewer/${n}`;
+
+test('1601 reviewed 2025 comics use their direct viewer instead of the MU web route', () => {
+  for (const [issueId, number] of reviewed2025Pairs) {
+    assert.equal(appLinkFor(issueId), viewer(number), `comic ${issueId}`);
+    assert.equal(appLinkFor(String(issueId)), viewer(number), `saved comic ${issueId}`);
+    assert.equal(marvelComicsAppMuIssueIds.includes(issueId), false);
+    assert.equal(appLaunchUrl(new URLSearchParams(`a=${number}&i=${issueId}`)), viewer(number));
+  }
+});
+
 const row = (issueId, status, links, extra = {}) => ({
   issueId, status, appLinks: links.map(viewer), pageUrl: page('fixture-event-reading-order'), ...extra,
 });
@@ -112,13 +123,13 @@ test('new catalog matcher reuses exact title, number and sale-year rules across 
   ]) assert.throws(() => parseExportCsv(bad), /export|Export/);
 });
 
-test('new catalog import preserves old links and frozen fallbacks while holding unmatched additions', () => {
+test('new catalog import gives verified viewer links precedence over frozen fallbacks', () => {
   const base = inputFrom({ rows: [row(1, 'exact', [101])] });
   const items = [
     { issueId: 1 }, { issueId: 2 }, { issueId: 3 }, { issueId: 4 }, { issueId: 5 }, { issueId: 6 },
   ];
   const mu = { status: 'owner-approved', asOf: '2026-11-18',
-    approvedGroups: ['unknown-unlimited'], excludedIssueIds: [3], issueIds: [2] };
+    approvedGroups: ['unknown-unlimited'], excludedIssueIds: [3], issueIds: [2, 6] };
   const rows = [
     exportRow(1, 'exact', [901]), exportRow(2, 'exact', [902]), exportRow(3, 'exact', [903]),
     exportRow(4, 'exact', [104]), exportRow(5, 'ambiguous', [105], { ambiguity: 'cover-year-shift' }),
@@ -126,16 +137,22 @@ test('new catalog import preserves old links and frozen fallbacks while holding 
   assert.throws(() => buildMuModule(mu, items, base.links), /do not match/);
   const result = importNewCatalog(base, mu, items, rows);
   assert.deepEqual(result.input.links, [base.links[0],
+    { issueId: 2, viewer: 902, basis: 'exact', source: EXPORT_SOURCE },
+    { issueId: 3, viewer: 903, basis: 'exact', source: EXPORT_SOURCE },
     { issueId: 4, viewer: 104, basis: 'exact', source: EXPORT_SOURCE }]);
-  assert.deepEqual(result.muInput, { ...mu, unapprovedIssueIds: [5, 6] });
-  assert.equal(result.added, 1);
-  assert.equal(result.unapproved, 2);
-  assert.doesNotThrow(() => buildMuModule(result.muInput, items, result.input.links));
+  assert.deepEqual(result.muInput, { ...mu, unapprovedIssueIds: [5] });
+  assert.equal(result.added, 3);
+  assert.equal(result.unapproved, 1);
+  const fallbackModule = buildMuModule(result.muInput, items, result.input.links);
+  assert.match(fallbackModule, /export const marvelComicsAppMuIssueIds = \[\s*6,\s*\];/,
+    'legacy fallback approval remains recorded except where a verified viewer link supersedes it');
   assert.deepEqual(importNewCatalog(result.input, result.muInput, items, rows),
     { ...result, added: 0 }, 'repeated runs preserve input bytes and do not broaden approval');
   const next = importNewCatalog(result.input, result.muInput, items, [...rows, exportRow(6, 'exact', [106])]);
   assert.equal(next.added, 1);
   assert.deepEqual(next.muInput.unapprovedIssueIds, [5], 'a held comic can later obtain an exact match');
+  assert.match(buildMuModule(next.muInput, items, next.input.links),
+    /export const marvelComicsAppMuIssueIds = \[\];/);
   assert.deepEqual(next.input.exportSelection, result.input.exportSelection, 'first import accounting is retained');
   assert.throws(() => importNewCatalog(base, mu, items, [exportRow(4, 'exact', [101])]), /used by two comics/);
   for (const pending of [[2], [3], [1], [999], [5, 5], [6, 5], ['5']]) {
@@ -144,12 +161,30 @@ test('new catalog import preserves old links and frozen fallbacks while holding 
   }
   assert.throws(() => buildMuModule({ ...result.muInput, issueIds: [] }, items, result.input.links), /do not match/);
   assert.deepEqual(base.links.map((link) => link.viewer), [101], 'original viewer links are not mutated');
-  assert.deepEqual(mu.issueIds, [2], 'fallback approval is not mutated');
+  assert.deepEqual(mu.issueIds, [2, 6], 'fallback approval is not mutated');
 });
 
 test('new catalog import refuses a different private export before matching', () => {
   assert.throws(() => verifiedExportRows(Buffer.from(csv([[101, 'Fixture (2020)', '1', '3/1/2020']])), []),
     /SHA-256 differs/);
+});
+
+test('new catalog import does not turn a Find-only comic into a direct or legacy link', () => {
+  const base = inputFrom({ rows: [row(1, 'exact', [101])] });
+  const items = [{ issueId: 1 }, { issueId: 2 }, { issueId: 3 }, { issueId: 4 }, { issueId: 2, findOnly: true }];
+  const mu = { status: 'owner-approved', asOf: '2026-11-18',
+    approvedGroups: ['unknown-unlimited'], issueIds: [] };
+  const rows = [exportRow(2, 'exact', [102]), exportRow(3, 'exact', [103]), exportRow(4, 'exact', [102])];
+  const result = importNewCatalog(base, mu, items, rows);
+  assert.deepEqual(result.input.links.map(({ issueId, viewer: number }) => [issueId, number]),
+    [[1, 101], [3, 103]], 'the held match still participates in collision detection');
+  assert.deepEqual(result.muInput.unapprovedIssueIds, [2, 4]);
+  const verifiedHold = rows.slice(0, 2);
+  assert.deepEqual(importNewCatalog(result.input, result.muInput, items, verifiedHold), { ...result, added: 0 });
+  const invalid = mergeExportInput(base, { source: EXPORT_SOURCE, rows: verifiedHold });
+  assert.throws(() => buildMuModule(result.muInput, items, invalid.links), /Find-only comic 2/);
+  assert.throws(() => buildMuModule({ ...mu, issueIds: [2], unapprovedIssueIds: [4] }, items, result.input.links),
+    /Find-only comic 2/);
 });
 
 test('private export merges exact selections without extending the year-shift approval', () => {
@@ -242,19 +277,16 @@ test('950 viewer numbers only ever rebuild the published link shape', () => {
   }
 });
 
-test('950 MU addresses use only a checked issue number and cannot change the comic in the launch query', () => {
-  const expected = 'https://www.marvelcomicsapp.com/mu/issues/10441';
-  assert.equal(appMuIssuesUrl(10441), expected);
-  assert.equal(appMuIssuesUrl('10441'), expected);
-  for (const value of [0, -5, '012', '1234567890', '12a', '', null, undefined, {}, '12/', '%31']) {
-    assert.equal(appMuIssuesUrl(value), null, String(value));
-  }
-  assert.equal(appLaunchUrl(new URLSearchParams('m=10441&i=10441')), expected);
-  assert.equal(appLaunchUrl(new URLSearchParams('a=18255&m=10441&i=10441')), viewer(18255));
-  for (const query of ['m=10441', 'm=10441&i=42', 'm=10441&m=10441&i=10441',
+test('1601 the launch builds no Marvel Unlimited address, whatever the query carries', () => {
+  // #950 used to turn a checked m number into a marvelcomicsapp.com/mu/issues address. That route is
+  // retired, so an m-only query launches nothing in the app and only a single a still opens a viewer.
+  for (const query of ['m=10441&i=10441', 'm=10441', 'm=10441&i=42', 'm=10441&m=10441&i=10441',
     'm=10441&i=10441&i=42', 'm=012&i=012', 'm=0&i=0']) {
     assert.equal(appLaunchUrl(new URLSearchParams(query)), null, query);
   }
+  assert.equal(appLaunchUrl(new URLSearchParams('a=18255&m=10441&i=10441')), viewer(18255));
+  assert.equal(appLaunchUrl(new URLSearchParams('a=18255&a=18255')), null, 'a repeated viewer is refused');
+  assert.equal(appLaunchUrl(new URLSearchParams('a=012')), null);
 });
 
 test('950 MU selection freezes only approved positive unlinked comics and refuses other inputs', () => {
@@ -285,18 +317,19 @@ test('950 MU selection freezes only approved positive unlinked comics and refuse
   assert.throws(() => buildMuModule({ ...approved, approvedGroups: ['unreviewed'] }, items, links), /group/);
 });
 
-test('950 the bundled MU set is current, frozen to its approval record and never replaces viewer links', () => {
+test('950 the bundled MU set is current and frozen to its approval record, but gives no comic a link', () => {
   const approval = JSON.parse(readFileSync(MU_INPUT_PATH, 'utf8'));
   const input = JSON.parse(readFileSync(INPUT_PATH, 'utf8'));
   assert.equal(readFileSync(MU_MODULE_PATH, 'utf8').replace(/\r\n/g, '\n'),
     buildMuModule(approval, catalogComics(), input.links));
   assert.deepEqual(marvelComicsAppMuIssueIds, approval.issueIds);
-  assert.equal(approval.issueIds.length, 1781);
   assert.deepEqual(approval.excludedIssueIds, [11185]);
   assert.equal(appLinkFor(11185), null);
+  // #1601: an MU-only comic is not a direct link any more, so it shows Find on Marvel Comics.
   for (const id of approval.issueIds) {
     assert.equal(appViewerFor(id), null);
-    assert.equal(appLinkFor(String(id)), appMuIssuesUrl(id));
+    assert.equal(appLinkFor(id), null);
+    assert.equal(appLinkFor(String(id)), null);
   }
   for (const link of input.links) assert.equal(appLinkFor(link.issueId), viewer(link.viewer));
   for (const id of [-1001, 999999999, '010441', undefined, {}]) assert.equal(appLinkFor(id), null);

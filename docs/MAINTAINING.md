@@ -529,6 +529,39 @@ HTTP 404 this way. Missing records, unbound or corrupt responses, other HTTP err
 transport failures abort before any output changes. Retain genuine successful records and
 retry only missing requests under the existing vendoring rate limit.
 
+For the approved Civil War to Secret Invasion, World War Hulk, and Secret Wars (2015) event
+and tie-ins guides, reviewed facts can fill only the rows without a retained detail response:
+
+```text
+npm run vendor -- --only=<source-id> --reviewed-fields=<file> --reviewed-fields-sha256=<approved-sha256> --reviewed-response-cache=<directory>
+```
+
+Use the digest from the review, not a digest computed to accept an edited file. The version 1
+file binds the order ID, packet and mapping digests, and every exact checklist identity in
+order. A provider row may name a retained successful response by body SHA-256, or carry
+reviewed `seriesId`, `seriesName` and `onSaleDate` facts. Each fact carries `value`,
+`sourceSha256` and the canonical digest of `[issueId, field, value, sourceSha256]`.
+Only specify the response directory if the file names retained responses. A reviewed published
+cover names the Git commit, payload path, file SHA-256 and canonical cover digest. Vendoring
+checks the exact issue in that payload and the output cover. Viewer-only rows take no provider
+fields. Missing optional facts stay absent and do not imply a provider refusal. Find-only comics
+keep their saved identity and no issue address. This mode makes no requests and cannot be
+combined with the complete-cache mode.
+
+For a reviewed correction that replaces only exact gaps in an already-published Comic Book Herald
+order, use the bounded gap-delta projector rather than inventing cache responses for unchanged
+issues. It requires the mapping's approved relationship review and binds its report and approval
+digests alongside the prior payload bytes, issue vector, checklist, mapping and transition ledger.
+It reads genuine request-bound detail records only for the replacement issues and uses the same
+issue-item transformation as normal vendoring. It fails on stale inputs, missing or mismatched
+detail records, or any changed checklist line or payload item outside the approved slots. This
+prepares a local candidate only; source, relationship and saved-progress reviews plus the normal
+publication gates still apply before any catalog output is activated.
+
+For the Wolverine correction, run the reviewed authoring check in a disposable copy. It requires
+the entire published manifest to stay unchanged, including the description and discovery tags.
+Use the bounded projector, not the full author output, for the delivered checklist.
+
 A local source can be a partition parent. Give it a `partitionFile`, set `catalog` to `false`,
 and keep the checked ledger under `scripts/data`. Before writing anything, the vendor validates
 source-position coverage, the pinned parent issue vector, child metadata, derived years, path order
@@ -545,6 +578,22 @@ npm run vendor -- --only=<parent-or-generated-child-id>
 Every vendor run, catalog-only included, also rewrites `src/data/rated-guide-index.json` from the
 same outputs, which the Library's Character guide filter reads. Commit it with the catalog; the
 unit suite fails if the two disagree.
+
+A reviewed sectional guide can use one local checklist with `catalog: false` and
+`sectionKind: "reading-blocks"`. Its manifest `sectionalGuides` entry pins the placement year,
+source steps, protected ranges, verified collections and each part's ordered comic IDs and
+description. The vendor checks the parent against those vectors, then regenerates the separately
+addable parts. Only the verified collection blocks become collected editions. The catalog
+shows one timeline chooser and lists the parts, never the whole parent as a list. A part is
+the app's presentation of the source and does not get its own upstream source section.
+
+For a Comic Book Herald sectional guide, pin the approved parent packet and mapping and compare
+every derived part against the reviewed library and actual peer mappings before authoring.
+A source approval for the parent does not replace the required relationship reviews.
+Put the complete `sectionalGuide` spec in the frozen parent packet so the source digest covers
+the layout, collections, copy and issue vectors. Give the author the exact derived part mappings
+as relationship peers. The author validates the hidden parent and the spec together, then
+replaces the manifest with both in one write.
 
 A generated child ID resolves to its partition parent, keeping the family together. Review all
 generated files as one batch. Do not hand-edit a child payload or the overlap matrix.
@@ -1860,7 +1909,7 @@ An ordinary local checklist may opt into `"sectionKind": "reading-blocks"` in th
 manifest. Its section labels still populate `collectedIn`, preserving the existing presentation
 and saved-data format, but named vendoring reports zero collected editions. Omitted values keep
 the ordinary collection-count behavior. The option is closed: unknown values, remote sources
-and partition parents are rejected.
+and chapter partition parents are rejected. Sectional guides use it as described above.
 
 The [Siege compilation](../src/data/orders/siege-dark-reign-prelude.md) uses this distinction for
 its Dark Reign prelude and event chapters. Maintain its exact selection and credited source
@@ -1952,16 +2001,26 @@ node --test test/marvel-comics-app-links.test.js
 ```
 
 The import verifies the file against the approved SHA-256 before matching. It uses the original
-series-title, issue-number and on-sale-year rules against the entire catalog, then selects only
-new catalog identities not already covered by viewer links or the frozen fallback approval and
-its exclusions. Earlier viewer links and fallback numbers are not revised. Repeated runs make
-no further changes unless the catalog or unresolved match changes.
+series-title, issue-number and on-sale-year rules against the entire catalog, then selects exact
+viewer matches for catalog identities that do not already have a viewer link. A verified viewer
+match supersedes any matching legacy number approval or exclusion: the source approval stays
+intact, but its generated number list omits that comic. Earlier viewer links are not revised, and
+the runtime reads only the verified viewer table, not the legacy number list
+(`scripts/marvel-comics-app-links.mjs:217-244`, `scripts/marvel-comics-app-links.mjs:370-429`,
+`src/js/lib/marvelComicsApp.js:8-24`). Repeated runs make no further changes unless the catalog
+or unresolved match changes.
+
+An explicitly marked Find-only comic still participates in matching and collision checks.
+Do not add it to either link table, even when the export has an exact match. The importer keeps
+this hold if any catalog appearance marks that comic Find-only; the table check rejects a link
+that would bypass the hold. A later exact match does not, by itself, lift the approved hold.
 
 A unique exact match gets the export's viewer link. Ambiguous identities, conflicting numbers,
-year-shift matches and missing matches get no new app link. New unresolved identities are recorded
-as `unapprovedIssueIds` in the fallback input, not silently granted Marvel issue-number fallbacks.
-They retain the app's existing no-link behavior: Marvel Unlimited until December 7, 2026 where
-launchable, then the Marvel Comics website rather than a single-comic link.
+year-shift matches and missing matches get no new app link. A new unresolved identity outside the
+legacy approval is recorded as `unapprovedIssueIds`, not granted a number-based destination.
+Without a verified viewer link, the reading action opens the general Marvel Comics website, not a
+prefilled search or a guaranteed issue. No Marvel Unlimited destination or metadata lookup is used
+(`src/js/reader.js:70-77`, `src/open.js:105-111`).
 Comics already linked use their existing shared link. Missing app links alone never block publishing
 the resolved reading list; preserve the route's separate identity and metadata gap accounting.
 

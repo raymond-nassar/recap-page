@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
+import { beforeFirstInstallmentManifest } from './helpers/first-installment-history.mjs';
 import { withRetiredComparisons } from './helpers/mcu-editorial-history.mjs';
 
 import { assertComparisonCoverage } from '../scripts/author-cbh-packet.mjs';
@@ -197,7 +198,9 @@ test('Shang-Chi MCU Prep retains historical comparisons and covers the complete 
     issueIds: historicalReadingChoiceIssueIds(row.id,
       issueIdsFromValue(await readJson(path.join('src', 'data', row.out ?? row.file)))),
   })));
-  const baselineManifest = { ...manifest, lists: entries, paths: pathsWithinLists(manifest.paths, entries) };
+  const baselineManifest = {
+    ...beforeFirstInstallmentManifest(manifest), lists: entries, paths: pathsWithinLists(manifest.paths, entries),
+  };
   const digest = libraryDigestFor(baselineManifest, orders);
   assert.equal(digest, report.libraryDigest);
   const actual = buildComparisonReport({ candidateIds: fixture.issueIds, orders });

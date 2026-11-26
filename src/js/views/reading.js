@@ -39,9 +39,14 @@ import {
   collectedEditionCredit, collectedEditionLabels,
 } from './shared/collected-editions.js';
 import { gcdDetailsCredit, hasGcdDetails } from './shared/details-credit.js';
+import { tieInRatingCredit, tieInRatingLabels } from './shared/tie-in-ratings.js';
+import { hasTieInRatings } from '../lib/tieInRatings.js';
 import { createReadingOptions, readingChoices } from './shared/reading-options.js';
 import { booksLeaveOut } from '../lib/readingOrderChoices.js';
 import { legacyReadingOrder } from '../lib/legacyReadingOrders.js';
+import { sectionalReadingRows } from '../lib/sectionalGuide.js';
+import { sectionalStepRows } from './shared/sectional-reading.js';
+import { eventBookRows, eventOrderControls, eventReadingLayout } from './shared/event-reading-order.js';
 
 export const RING_CIRCUMFERENCE = 119.4; // 2πr for r=19, matching the SVG in index.html
 const UNDO_DELETE = 'undo-delete';
@@ -155,6 +160,7 @@ export function createReadingView({
   onCancelSynopsis,
   onExportMarkdown,
   onExportOrder,
+  onFollowSectional,
   onHydrate,
   onMarkAllRead = () => {},
   onStartSynopsis,
@@ -164,7 +170,7 @@ export function createReadingView({
   preservingFocus,
   rateIssue = () => false,
   recordDirectProgressSave,
-  readerPresentation = (issue) => ({ launchable: !!issuePresentation(issue)?.launchable, temporary: false }),
+  readerPresentation = (issue) => ({ launchable: !!issuePresentation(issue)?.launchable }),
   renderSaveEducation,
   renderBulkRead = () => {},
   retireReaderHelp,
@@ -195,6 +201,8 @@ export function createReadingView({
   let lastRemoved = null;
   let rowCache = new Map();
   let rowCacheListId = null;
+  let eventMode = 'issue';
+  let eventFocusIssue = null;
   let rowsPending = false;
   // Opt-in and never saved, so opening a list always shows every comic (#1333, decisions 4 and 8).
   let linksOnly = false;
@@ -208,6 +216,7 @@ export function createReadingView({
   let aboutCatalogId = null;
   let aboutRequest = null;
   let aboutHasSource = false;
+  let aboutSectionalPart = null;
   let heroOptions = null;
 
   function ownList(id) {
@@ -268,6 +277,7 @@ export function createReadingView({
       aboutCatalogId = list?.catalogId ?? null;
       aboutRequest = null;
       aboutHasSource = false;
+      aboutSectionalPart = null;
       source.replaceChildren();
       // A catalog list waits for its entry, so a project button never flashes before an outside one.
       showVisit(list && (!list.catalogId || !loadCatalog) ? homeButton(el, createIcon) : null);
@@ -317,6 +327,10 @@ export function createReadingView({
       source.replaceChildren(...content);
       showVisit(visitButton(el, entry, createIcon));
       aboutHasSource = content.length > 0;
+      if (aboutSectionalPart !== (entry?.sectionalPart ?? null)) {
+        aboutSectionalPart = entry?.sectionalPart ?? null;
+        if (isCurrent()) renderRows();
+      }
       disclosure.hidden = !getState().lists[list.id]?.description && !aboutHasSource
         && !booksLeaveOut(getState().lists[list.id]).length;      // Retry asked for the source, so focus lands on the button that now leads to it.
       if (held) visit.querySelector('a').focus();
@@ -367,7 +381,7 @@ export function createReadingView({
     } else {
       $('#view-read > .head > .head-left').append(sub, visit, $('#reading-order'), description);
       $('#view-read > .head > .headright').append(ring);
-      $('#hero-reader-temporary').after(progress);
+      $('#hero-primary-actions').after(progress);
       $('#reading-body > .list-work').after(note);
       note.after(similarHint);
     }
@@ -383,6 +397,7 @@ export function createReadingView({
     const wanted = READING_FILTERS.some((candidate) => candidate.value === next) ? next : DEFAULT_FILTER;
     if (wanted === filter) return;
     filter = wanted;
+    eventFocusIssue = null;
     getSettings().filter = wanted;
     saveSettings();
     const radio = [...document.querySelectorAll('input[name="filter"]')].find((entry) => entry.value === wanted);
@@ -436,6 +451,7 @@ export function createReadingView({
     $('#reading-filters').append(linksToggle);
     linksInput.addEventListener('change', () => {
       linksOnly = linksInput.checked;
+      eventFocusIssue = null;
       linksHidden = 0;
       renderRows();
       // Rows vanish silently otherwise; the focused checkbox stays put, so only the count is spoken.
@@ -800,18 +816,15 @@ export function createReadingView({
   }
 
   function refreshHeroReader(issue = upNext(getState(), activeListId())) {
-    const reader = issue ? readerPresentation(issue, 'saved') : { launchable: false, temporary: false };
+    const reader = issue ? readerPresentation(issue, 'saved') : { launchable: false };
     const button = $('#btn-hero-read');
     button.hidden = !issue || isCompleted(getState(), activeListId()) || !reader.launchable;
-    const app = Boolean(issue && appLinkFor(issue.issueId));
+    const app = Boolean(issue && appLinkFor(issue));
     button.textContent = readerAction(new Date(), { app });
     button.setAttribute('aria-label', issue ? readerName(issue.title, new Date(), { app })
       : labelledName(readerAction(), ''));
     const catalogId = ownList(activeListId())?.catalogId ?? null;
     getHeroOptions().paint(issue, readingChoices(issue, catalogId, { launchable: !button.hidden, app }));
-    const temporary = $('#hero-reader-temporary');
-    temporary.hidden = button.hidden || !reader.temporary;
-    temporary.textContent = temporary.hidden ? '' : 'Using a temporary reader link.';
   }
 
   function refreshReader() {
@@ -844,7 +857,7 @@ export function createReadingView({
         const year = ymd(item.onSale).slice(0, 4);
         const label = [short, year].filter(Boolean).join(' ');
         const reader = readerPresentation(item, 'saved');
-        const app = Boolean(appLinkFor(item.issueId));
+        const app = Boolean(appLinkFor(item));
         const readName = readerName(label, new Date(), { app });
         const context = { kind: 'list', id };
 
@@ -861,9 +874,6 @@ export function createReadingView({
               ]),
             ],
           }),
-          ...(reader.temporary ? [el('span', {
-            class: 'lab', dataset: { readerTemporary: 'true' }, text: 'Temporary reader link',
-          })] : []),
           el('button', {
             type: 'button',
             class: 'tile-read',
@@ -883,7 +893,12 @@ export function createReadingView({
   function renderRows() {
     const id = activeListId();
     const rows = $('#rows');
-    if (id !== rowCacheListId) { rowCache = new Map(); rowCacheListId = id; }
+    if (id !== rowCacheListId) {
+      rowCache = new Map();
+      rowCacheListId = id;
+      eventMode = 'issue';
+      eventFocusIssue = null;
+    }
     const active = document.activeElement;
     const optionKey = rows.contains(active) && active?.dataset?.readingOption ? active.dataset.key : null;
 
@@ -894,8 +909,14 @@ export function createReadingView({
 
       const all = listItems(getState(), id);
       const empty = all.length === 0;
+      const eventLayout = eventReadingLayout(list.catalogId, all);
+      if (!eventLayout) {
+        eventMode = 'issue';
+        eventFocusIssue = null;
+      }
+      const bookMode = eventMode === 'book';
       $('#full').hidden = empty;
-      $('#reading-filters').hidden = empty;
+      $('#reading-filters').hidden = empty || bookMode;
       const unread = all.length - all.filter((item) => item.read).length;
       // The summary stays visible while the order is closed, so its count must be current even when
       // the expensive row build below is deferred.
@@ -914,6 +935,27 @@ export function createReadingView({
       if (!$('#full').open) { rowsPending = true; return; }
       rowsPending = false;
 
+      const chooseEventMode = (mode, position) => {
+        if (activeListId() !== id || !isCurrent()
+          || !eventReadingLayout(list.catalogId, listItems(getState(), id))) return false;
+        eventMode = mode;
+        eventFocusIssue = position === undefined ? null : eventLayout.issueOrder[position - 1];
+        renderRows();
+        if (eventFocusIssue !== null) {
+          rowCache.get(eventFocusIssue)?.node.querySelector('.row-focus-title')?.focus();
+        } else {
+          rows.querySelector(`[data-act="event-order"][data-key="${mode}"]`)?.focus();
+        }
+        return true;
+      };
+      if (eventLayout) {
+        const key = `event-order:${eventMode}`;
+        if (!rowCache.has(key)) {
+          const controls = eventOrderControls(el, eventMode, (mode) => chooseEventMode(mode));
+          rowCache.set(key, { node: el('li', { class: 'row-group' }, [controls]) });
+        }
+        desired.push(rowCache.get(key).node);
+      }
       const currentId = isCompleted(getState(), id) ? null : upNext(getState(), id)?.issueId ?? null;
       // Read the local day once so every row in this pass is judged against one cacheable value.
       const today = localDayString();
@@ -923,9 +965,12 @@ export function createReadingView({
         linksToggle.hidden = !linked.size;
         linksInput.checked = linksOnly;
       }
-      const items = all.filter((item) => matchesReadingFilter(filter, item)
-        && (!linksOnly || linked.has(item.issueId)));
-      writeOrderStrip($('#full'), all, filter, linksOnly ? items.length : null);
+      const bookItems = new Set(eventLayout?.linked);
+      const items = bookMode
+        ? all.filter((_, index) => !bookItems.has(index + 1))
+        : all.filter((item) => item.issueId === eventFocusIssue || (matchesReadingFilter(filter, item)
+          && (!linksOnly || linked.has(item.issueId))));
+      writeOrderStrip($('#full'), all, bookMode ? DEFAULT_FILTER : filter, !bookMode && linksOnly ? items.length : null);
       if (items.some((item) => editionRelations(list.catalogId, item).length)) {
         if (!rowCache.has('edition-credit')) {
           rowCache.set('edition-credit', { node: el('li', { class: 'edition-attribution' }, [collectedEditionCredit(el)]) });
@@ -938,7 +983,13 @@ export function createReadingView({
         }
         desired.push(rowCache.get('gcd-credit').node);
       }
-      const hiddenGaps = linksOnly ? all.filter((item) => !linked.has(item.issueId)).length : 0;
+      if (hasTieInRatings(list.catalogId, items)) {
+        if (!rowCache.has('rating-credit')) {
+          rowCache.set('rating-credit', { node: el('li', { class: 'edition-attribution' }, [tieInRatingCredit(el)]) });
+        }
+        desired.push(rowCache.get('rating-credit').node);
+      }
+      const hiddenGaps = !bookMode && linksOnly ? all.filter((item) => !linked.has(item.issueId)).length : 0;
       linksHidden = hiddenGaps;
       if (hiddenGaps) {
         // The gaps stay named while they are hidden, measured against the whole order (decision 4).
@@ -971,10 +1022,32 @@ export function createReadingView({
         return;
       }
 
+      const sectional = !bookMode && items.length === all.length && aboutListId === id
+        && aboutCatalogId === list.catalogId ? sectionalReadingRows(aboutSectionalPart, all) : null;
+      const addSteps = (key, steps) => {
+        if (!steps?.length) return;
+        const cacheKey = `source-steps:${key}`;
+        const cached = rowCache.get(cacheKey);
+        if (cached?.key === aboutSectionalPart) {
+          desired.push(...cached.nodes);
+          return;
+        }
+        const nodes = sectionalStepRows(el, steps, {
+          className: 'row-group', heading: 'h3', guideId: list.catalogId, onFollow: onFollowSectional,
+        });
+        rowCache.set(cacheKey, { key: aboutSectionalPart, nodes });
+        desired.push(...nodes);
+      };
       let shownRun = -1;
+      const eventRows = new Map();
+      const addIssueRow = (item, node) => {
+        if (bookMode) eventRows.set(item.issueId, node);
+        else desired.push(node);
+      };
       for (const item of items) {
+        if (sectional) addSteps(item.issueId, sectional.before.get(item.issueId));
         const runIndex = runOf.get(item.issueId);
-        if (hasEditions && runIndex !== shownRun) {
+        if (!bookMode && hasEditions && runIndex !== shownRun) {
           shownRun = runIndex;
           const run = runs[runIndex];
           const heading = sectionHeading(run, runIndex);
@@ -1001,7 +1074,7 @@ export function createReadingView({
         const readerKey = JSON.stringify(readerPresentation(item, 'saved'));
         const entry = rowCache.get(item.issueId);
         const cached = entry?.readerKey === readerKey && entry.catalogId === list.catalogId ? entry : null;
-        if (cached && cached.key === rowKey) { desired.push(cached.node); continue; }
+        if (cached && cached.key === rowKey) { addIssueRow(item, cached.node); continue; }
 
         const override = item.override;
         const av = availability(item, { override, today });
@@ -1056,6 +1129,7 @@ export function createReadingView({
               item.deferred ? el('span', { class: 'badge badge-unknown' }, item.read
                 ? 'Read; deferral kept if marked unread' : 'Deferred in this list') : null,
               item.seriesName ? el('span', { text: seriesOnly(item.seriesName) }) : null,
+              tieInRatingLabels(el, list.catalogId, item),
               el('span', { class: `badge availability-record ${badgeClass}` }, [
                 describe(item, { override, today }),
               ]),
@@ -1078,9 +1152,15 @@ export function createReadingView({
           issueRowActions(item, id, expanded, optionsExpanded),
         ]);
         rowCache.set(item.issueId, { key: rowKey, readerKey, catalogId: list.catalogId, node });
-        desired.push(node);
+        addIssueRow(item, node);
       }
-      if (items.length !== all.length) {
+      if (bookMode) desired.push(...eventBookRows(el, eventLayout, all, {
+        catalogId: list.catalogId, heading: 'h3', groupClass: 'row-group',
+        issueRow: (item) => eventRows.get(item.issueId),
+        openPosition: (position) => chooseEventMode('issue', position),
+      }));
+      if (sectional) addSteps('after', sectional.after);
+      if (!bookMode && items.length !== all.length) {
         desired.push(el('li', { class: 'rail-hint', text: `Showing ${items.length} of ${all.length}.` }));
       }
       commitRows(rows, desired);
@@ -1167,7 +1247,7 @@ export function createReadingView({
       text: 'More actions', dataset: { key: item.issueId, act: 'more' },
     });
     const reader = readerPresentation(item, 'saved');
-    const app = Boolean(appLinkFor(item.issueId));
+    const app = Boolean(appLinkFor(item));
     const choices = readingChoices(item, ownList(listId)?.catalogId ?? null, { launchable: reader.launchable, app });
     let options = null;
     let optionsRoot = null;
@@ -1213,9 +1293,6 @@ export function createReadingView({
           onclick: (e) => launch(item, e),
         }, readerAction(new Date(), { app })),
         optionsRoot,
-        ...(reader.temporary ? [el('span', {
-          class: 'rail-hint', dataset: { readerTemporary: 'true' }, text: 'Temporary reader link',
-        })] : []),
         detailUrl(item)
           ? el('a', {
             class: 'mini has-tooltip',

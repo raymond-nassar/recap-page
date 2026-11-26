@@ -10,6 +10,7 @@ import {
   validateMappingDigest,
 } from './lib/cbh-inventory.mjs';
 import { CBH_LATER_ORDER_IDS } from './lib/cbro-evidence.mjs';
+import { mappedTrackingId } from './lib/cbh-service-identity.mjs';
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const manifestPath = path.join(rootDir, 'src', 'data', 'curated-lists.json');
@@ -33,7 +34,7 @@ function validateMappingRows(rows, label) {
     }
 
     const status = row.resolutionStatus ?? row.status ?? null;
-    const selectedIssueId = normalizeIssueId(row.selectedIssueId ?? row.issueId ?? null);
+    const selectedIssueId = normalizeIssueId(mappedTrackingId(row) ?? row.issueId ?? null);
     if (status === 'approved-exception' || row.status === 'approved-exception') {
       throw new Error(`${label} row ${index + 1} uses an approved exception, which MRT-004 rejects`);
     }
@@ -122,7 +123,7 @@ export async function buildReportForMapping(mappingPath, peerPaths = [], options
   }
 
   const candidateIds = rows
-    .map((row) => normalizeIssueId(row.selectedIssueId ?? row.issueId ?? null))
+    .map((row) => normalizeIssueId(mappedTrackingId(row) ?? row.issueId ?? null))
     .filter((value) => value != null);
 
   if (candidateIds.length === 0) {
@@ -138,7 +139,7 @@ export async function buildReportForMapping(mappingPath, peerPaths = [], options
     const peerRows = Array.isArray(peer.rows) ? peer.rows : [];
     validateMappingRows(peerRows, `peer mapping ${path.basename(peerPath)}`);
     const ids = peerRows
-      .map((row) => normalizeIssueId(row.selectedIssueId ?? row.issueId ?? null))
+      .map((row) => normalizeIssueId(mappedTrackingId(row) ?? row.issueId ?? null))
       .filter((value) => value != null);
     if (ids.length === 0) {
       throw new Error(`Peer mapping ${path.basename(peerPath)} is empty or has no exact selected issue ids`);

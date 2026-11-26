@@ -176,7 +176,12 @@ test('temporary reader link drives current saved Read', () => {
     assert.equal(result.issue.digitalId, 22);
     assert.equal(result.issue.title, 'Updated base title');
     assert.equal(result.temporary, true);
-    assert.equal(new URL(launchUrl(result.issue, 'http://127.0.0.1:8787')).searchParams.get('d'), '22');
+    // #1601: the bound book id stays on the resolved comic but is inert; the launch carries no book
+    // reference and opens the website.
+    const launch = new URL(launchUrl(result.issue, 'http://127.0.0.1:8787'));
+    assert.equal(launch.searchParams.has('d'), false);
+    assert.equal(launch.searchParams.get('r'), 'comics');
+    assert.doesNotMatch(launch.href, /read\.marvel\.com|book/);
   }
   assert.equal(links.remove(updated, 7).changed, true);
   assert.equal(links.resolve(updated, stale, { source: 'saved' }).issue.digitalId, 33);
@@ -363,19 +368,22 @@ test('retired reader help preserves the existing replacement and uncertainty lif
   assert.equal(h.messages.length, 0, 'there is no hidden editing action or error');
 });
 
-test('pre-cutoff help names the ending date and distinguishes lookup from exact recorded links', () => {
+// #1601: the approved notice, byte for byte.
+const APPROVED_NOTICE = 'Read opens a comic directly in the Marvel Comics app. If there’s no direct link, use Find on Marvel Comics to open the website.';
+
+test('reader help before December 7 shows the approved notice, with no ending date or lookup wording', () => {
   const h = harness();
-  assert.doesNotMatch(h.nodes.summary.textContent, /until the page reloads or closes/);
+  assert.equal(h.nodes.summary.textContent, APPROVED_NOTICE);
   h.nodes.edit.fire('click');
-  assert.match(h.nodes.summary.textContent, /Reading ends December 7, 2026/);
+  assert.equal(h.nodes.summary.textContent, APPROVED_NOTICE);
   h.nodes.cancel.fire('click');
-  assert.doesNotMatch(h.nodes.summary.textContent, /until the page reloads or closes/);
   h.nodes.edit.fire('click');
   h.paste('https://read.marvel.com/#/book/22');
   h.nodes.form.fire('submit');
-  assert.match(h.nodes.summary.textContent, /Otherwise it looks up the link or opens the comic details page/);
+  assert.equal(h.nodes.summary.textContent, APPROVED_NOTICE, 'a pasted reader link changes nothing it says');
+  assert.doesNotMatch(h.nodes.summary.textContent, /December|looks up|details page|until the page reloads or closes/);
   h.nodes.revert.fire('click');
-  assert.doesNotMatch(h.nodes.summary.textContent, /until the page reloads or closes/);
+  assert.equal(h.nodes.summary.textContent, APPROVED_NOTICE);
 });
 
 test('reader help starts closed and has no temporary editor or report markup', () => {
@@ -426,19 +434,19 @@ test('leaving reader help restores focus rather than hiding the focused disclosu
   assert.equal(h.doc.activeElement, null);
 });
 
-test('post-cutoff reader help honestly names a general website with no single-comic link', () => {
+test('reader help after December 7 is the same approved notice and never names Marvel Unlimited', () => {
   const h = harness(new Date(2026, 11, 7));
   h.view.refresh();
-  assert.match(h.nodes.summary.textContent, /Marvel Comics website, not a single-comic link/);
-  assert.doesNotMatch(h.nodes.summary.textContent, /opens.*Unlimited web reader/);
+  assert.equal(h.nodes.summary.textContent, APPROVED_NOTICE);
+  assert.doesNotMatch(h.nodes.summary.textContent, /Unlimited/);
 });
 
-test('950 reader help names the Marvel Comics app for a linked comic on both sides of the cutoff', () => {
+test('950 reader help uses the approved notice for linked comics on either date', () => {
   for (const now of [new Date(2026, 11, 6, 23, 59), new Date(2026, 11, 7)]) {
     const h = harness(now);
     h.view.show(12459);
-    assert.equal(h.nodes.summary.textContent, 'Read opens this comic in the Marvel Comics app.');
+    assert.equal(h.nodes.summary.textContent, APPROVED_NOTICE);
     h.view.show(7);
-    assert.doesNotMatch(h.nodes.summary.textContent, /Marvel Comics app/);
+    assert.equal(h.nodes.summary.textContent, APPROVED_NOTICE);
   }
 });

@@ -1071,7 +1071,7 @@ test('the counts come from the items, not from the order payload that claims the
   assert.deepEqual(countOrderGaps(noItems), { placeholders: 0, empty: 0, ownerConfirmed: 0 });
 });
 
-test('both gaps are disclosed, and the second sentence does not repeat what the first one promises', () => {
+test('title-only and limited-detail gaps use the approved singular wording', () => {
   const order = {
     items: [
       { issueId: 1, seriesId: 10, digitalId: 100 },
@@ -1081,12 +1081,8 @@ test('both gaps are disclosed, and the second sentence does not repeat what the 
   };
   const said = orderGapSentences(order);
   assert.equal(said.length, 2);
-  assert.match(said[0], /^1 of them has no Marvel Unlimited link yet and cannot be opened\.$/);
-  assert.match(said[1], /^1 of them came with no details at all, so it shows no cover and has no Unlimited link\.$/);
-  // An item that came back empty carries a real, positive issue id, so the app does open a tab
-  // for it and the lookup fails there. Claiming it cannot be opened would be false in the
-  // opposite direction from the silence this replaces.
-  assert.ok(!said[1].includes('cannot be opened'));
+  assert.equal(said[0], '1 comic is listed by title only.');
+  assert.equal(said[1], '1 comic has limited details.');
 });
 
 test('owner-confirmed identity is distinct from missing metadata and makes no availability claim', () => {
@@ -1193,11 +1189,11 @@ test('the external supplement marker survives only as the closed value beside an
 test('a gap of one is not described in the plural', () => {
   const one = orderGapSentences({ items: [{ issueId: 1, seriesId: null, digitalId: null }] });
   assert.equal(one.length, 1);
-  assert.ok(one[0].startsWith('1 of them came with no details at all, so it shows'));
+  assert.equal(one[0], '1 comic has limited details.');
   const two = orderGapSentences({
     items: [{ issueId: 1, seriesId: null, digitalId: null }, { issueId: 2, seriesId: null, digitalId: null }],
   });
-  assert.ok(two[0].startsWith('2 of them came with no details at all, so they show'));
+  assert.equal(two[0], '2 comics have limited details.');
 });
 
 test('nebula keeps the 2014 guardians original at source position 39', () => {
@@ -1322,10 +1318,13 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // Spidey keeps the six Spidey: School's Out positions as distinct source-position placeholders.
   // The X-Men era replacement leaves the Core's own Power Pack pair and the owner-excluded X-Men
   // Annual (1970) #1 only in the retired payloads, which are no longer active.
-  assert.equal(claimed, 1130 + xmenEraPlaceholderDelta, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1130 + xmenEraPlaceholderDelta, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
-  assert.equal(empty, 221);
-  assert.equal(affected, 22);
+  // The Wolverine identity correction replaces 18 placeholders with exact provider records.
+  // Secret Wars adds two viewer-only comics and Civil War to Secret Invasion Part 13 adds
+  // the six Captain America: The Chosen comics. They have reader links, not provider details.
+  assert.equal(claimed, 1112 + xmenEraPlaceholderDelta, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1112 + xmenEraPlaceholderDelta, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
+  assert.equal(empty, 229);
+  assert.equal(affected, 24);
 });
 
 // Every check above passes with the import path reverted, because they all call the counter
@@ -1578,8 +1577,11 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // Avengers: Armageddon adds 24 owner-confirmed identities without provider details. Captain
   // America (2025) #6-16, The Will of Doom #1 and Ultimate Impact: Reborn #1 were already counted,
   // so the distinct refused total rises by eleven. The X-Men era replacement retires the same three
-  // placeholders counted above.
-  assert.equal(refused.length, 1424 + xmenEraPlaceholderDelta);
+  // placeholders counted above. The Wolverine identity correction retires 18 refused placeholders
+  // in favor of exact provider records that carry their details.
+  // Runaways and Korvac Saga #1 plus Captain America: The Chosen #1-6 add eight distinct
+  // tagged viewer identities without provider details, not unresolved comic identities.
+  assert.equal(refused.length, 1414 + xmenEraPlaceholderDelta);
   const infinity = JSON.parse(readFileSync(join(dataDir,
     'marvels_infinity_saga_gauntlet_wars_crusade_reading_order.json'), 'utf8'));
   assert.equal(infinity.items.filter((item) => item.detailsRefused && item.issueId > 0).length, 11);

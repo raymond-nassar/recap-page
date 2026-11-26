@@ -284,10 +284,6 @@ try {
   }]).state;
   state.active = listId;
   await page.evaluate((value) => localStorage.setItem('mrt.state.v2', JSON.stringify(value)), state);
-  await browser.defaultBrowserContext().setCookie({
-    name: 'pwa_test_session', value: 'synthetic-session-only', domain: 'read.marvel.com',
-    path: '/', secure: true, httpOnly: true, sameSite: 'Lax',
-  });
   check('worker fetches deployment generation one', await page.evaluate(async () => (await import('/pwa-generation.js')).default === 1));
   await cdp.send('PWA.install', { manifestId, installUrlOrBundleUrl: manifestId });
   installed = true;
@@ -377,13 +373,11 @@ try {
   await app.$eval('#btn-hero-read', (button) => button.click());
   const popup = await popupPromise;
   await prepare(popup);
-  await popup.waitForFunction(() => location.hostname === 'read.marvel.com', { timeout: 15000 });
-  check('standalone Read still opens a separate external reader target', popup !== app && popup.url().includes('/#/book/700001'));
-  check('external target uses the same profile session cookies', (await browser.defaultBrowserContext().cookies('https://read.marvel.com/'))
-    .some((cookie) => cookie.name === 'pwa_test_session' && cookie.value === 'synthetic-session-only'));
-  check('external reader navigation carries the synthetic signed-in cookie',
-    externalRequests.some((request) => request.url.startsWith('https://read.marvel.com/')
-      && request.cookie.includes('pwa_test_session=synthetic-session-only')));
+  await popup.waitForFunction(() => location.hostname === 'marvel.webtoon.com', { timeout: 15000 });
+  check('standalone Find opens the Marvel Comics website in a separate target',
+    popup !== app && popup.url() === 'https://marvel.webtoon.com/');
+  check('the website request is intercepted before leaving the test browser',
+    externalRequests.some((request) => request.url === 'https://marvel.webtoon.com/'));
   check('ordinary browser remains usable after installation', await page.evaluate(() => !matchMedia('(display-mode: standalone)').matches));
   check('browser app has no uncaught script errors', errors.length === 0);
   check('all external requests were intercepted without errors', interceptionErrors.length === 0);

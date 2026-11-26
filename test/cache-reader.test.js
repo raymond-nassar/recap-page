@@ -5,12 +5,12 @@ import {
 } from '../src/js/lib/cachePolicy.js';
 import { READER_PREFIX, readerUrl, detailUrl, launchUrl, isLaunchable, openIssue } from '../src/js/reader.js';
 import {
-  digitalIdFromUrl, parseChecklist, readerIssueId,
+  digitalIdFromUrl, parseChecklist, readerIssueId, serializeChecklist, serializeReadingOrder,
 } from '../src/js/lib/markdown.js';
 import { manualDetailUrl, stageChecklistEntry } from '../src/js/views/add.js';
 import {
   createEmptyState, addIssuesToList, createList, listItems, markRead,
-  pendingIssueIds, synopsisOrder,
+  pendingIssueIds, synopsisOrder, migrate, exportBackup, validateBackup, upsertIssue,
 } from '../src/js/lib/model.js';
 
 // ------------------------------------------------------------------ cache policy
@@ -121,21 +121,19 @@ test('the default budget is a real cap, not unlimited', () => {
 
 // ------------------------------------------------------------------ reader links
 
-test('Read snapshots the device-local December 7 cutoff synchronously before opening a fresh tab', () => {
+test('Read opens the Marvel Comics website synchronously in a fresh tab for a comic with only a book id, on any date', () => {
+  // Formerly split at December 7, 2026 into the Marvel Unlimited reader and the website. #1601
+  // removed that cutoff, so a stale or hostile clock argument can no longer choose a destination.
   const priorWindow = globalThis.window;
   const opened = [];
   globalThis.window = { open: (...args) => { opened.push(args); return null; } };
   try {
-    for (const [now, destination, target] of [
-      [new Date(2026, 11, 6, 23, 59, 59, 999), 'unlimited', 'reader'],
-      [new Date(2026, 11, 7, 0, 0, 0, 0), 'comics', 'comics'],
-      [new Date(2027, 0, 1), 'comics', 'comics'],
-    ]) {
-      // 52446 has no Marvel Comics app link, so Read follows the date switch (#950).
+    for (const now of [new Date(2026, 11, 6, 23, 59, 59, 999), new Date(2026, 11, 7), new Date(2027, 0, 1)]) {
+      // 52446 has no Marvel Comics app link.
       const result = openIssue({ issueId: 52446, digitalId: 38164 }, { origin: 'http://example.test', now });
-      assert.equal(result.target, target);
+      assert.equal(result.target, 'comics');
       const [url, frame, features] = opened.at(-1);
-      assert.equal(new URL(url).searchParams.get('r'), destination);
+      assert.equal(new URL(url).searchParams.get('r'), 'comics');
       assert.equal(frame, '_blank');
       assert.equal(features, 'noopener');
       assert.equal(result.ok, true, 'noopener null is not a blocked-popup observation');
@@ -147,18 +145,19 @@ test('Read snapshots the device-local December 7 cutoff synchronously before ope
   }
 });
 
-test('the cutoff reads local calendar parts, not UTC or network time, and retains legacy reference bytes', () => {
-  const localClock = (day) => ({
-    getFullYear: () => 2026, getMonth: () => 11, getDate: () => day,
-    toISOString: () => assert.fail('UTC must not choose the local cutoff'),
+test('the launch reads no clock and retains legacy reference bytes in the record without sending them', () => {
+  const clock = {
+    getFullYear: () => assert.fail('no cutoff is computed'), getMonth: () => assert.fail('no cutoff'),
+    getDate: () => assert.fail('no cutoff'), toISOString: () => assert.fail('no cutoff'),
     valueOf: () => assert.fail('No implicit instant comparison'),
-  });
-  for (const [day, expected] of [[6, 'unlimited'], [7, 'comics']]) {
-    const url = new URL(launchUrl({ issueId: -7, digitalId: 129648 }, 'http://example.test', { now: localClock(day) }));
-    assert.equal(url.searchParams.get('r'), expected);
-    assert.equal(url.searchParams.get('d'), '129648');
-    assert.equal(url.searchParams.has('i'), false);
-  }
+  };
+  const issue = { issueId: -7, digitalId: 129648 };
+  const before = JSON.stringify(issue);
+  const url = new URL(launchUrl(issue, 'http://example.test', { now: clock }));
+  assert.equal(url.searchParams.get('r'), 'comics');
+  assert.equal(url.searchParams.has('d'), false, 'a book id is inert');
+  assert.equal(url.searchParams.has('i'), false);
+  assert.equal(JSON.stringify(issue), before, 'the saved book id is untouched');
 });
 
 test('the reader URL is the hash form the live reader actually uses', () => {
@@ -189,6 +188,52 @@ test('the marvel.com detail page is the fallback when only an issueId is known',
   );
 });
 
+const findOnlyRow = { issueId: 56003, title: 'Find-only fixture #1', findOnly: true, url: null, source: 'curated' };
+
+test('a Find-only provider row keeps its key and checkmark without gaining a guessed URL', () => {
+  const legacy = { issueId: 52447, title: 'Existing fixture #1', url: null };
+  let state = createList(createEmptyState(), { name: 'Disposable guide' });
+  const listId = state.active;
+  state = addIssuesToList(state, listId, [findOnlyRow, legacy]).state;
+  state = markRead(state, findOnlyRow.issueId);
+  for (const saved of [state, migrate(JSON.parse(JSON.stringify(state))), validateBackup(exportBackup(state)).state]) {
+    const items = listItems(saved, listId);
+    const [row, ordinary] = items;
+    assert.equal(row.issueId, 56003);
+    assert.equal(row.findOnly, true);
+    assert.equal(row.url, null);
+    assert.equal(row.read, true);
+    assert.equal(detailUrl(row), null);
+    assert.equal(isLaunchable(row), true);
+    const { searchParams } = new URL(launchUrl(row, 'http://127.0.0.1:8787'));
+    assert.deepEqual([...searchParams], [['r', 'comics'], ['t', row.title]]);
+    assert.equal(detailUrl(ordinary), 'https://www.marvel.com/comics/issue/52447/');
+
+    const source = { name: 'Disposable guide', items };
+    assert.match(serializeChecklist(source), /^- \[x\] Find-only fixture #1$/m);
+    assert.match(serializeChecklist(source, { literal: true }), /^- \[x\] Find-only fixture #1$/m);
+    assert.match(serializeReadingOrder(source), /^- \[ \] Find-only fixture #1$/m);
+  }
+});
+
+test('Find-only records refuse guessed links during metadata merges, even if an old copy already has one', () => {
+  const old = { issueId: findOnlyRow.issueId, title: 'Existing fixture title', source: 'curated' };
+  let state = createList(createEmptyState(), { name: 'Disposable guide' });
+  const listId = state.active;
+  state = addIssuesToList(state, listId, [old]).state;
+  const oldIssue = state.issues[old.issueId];
+  assert.equal(oldIssue.url, 'https://www.marvel.com/comics/issue/56003/');
+  for (const preserveExisting of [false, true]) {
+    const revised = addIssuesToList(state, listId, [findOnlyRow], { preserveExisting }).state;
+    const issue = revised.issues[old.issueId];
+    assert.equal(issue.findOnly, true);
+    assert.equal(issue.url, null);
+    assert.equal(issue.title, preserveExisting ? old.title : findOnlyRow.title);
+    assert.equal(upsertIssue(revised, old).issues[old.issueId].url, null);
+  }
+  assert.equal(detailUrl({ ...findOnlyRow, url: oldIssue.url }), null);
+});
+
 test('an untrusted url from third-party metadata is not followed', () => {
   assert.equal(
     detailUrl({ issueId: 1, url: 'https://evil.example.com/x' }),
@@ -210,21 +255,21 @@ test('with neither a safe url nor an issueId there is no detail link', () => {
   assert.equal(detailUrl(null), null);
 });
 
-// The launch page does the digitalId lookup itself, so the app never has to retain a
-// window handle across an await, because testing on 2026-08-03 showed handles are unreliable.
-test('launchUrl stays same-origin and passes only the reference ids', () => {
-  const u = new URL(launchUrl({ issueId: 52447, digitalId: 38164, title: 'Secret Wars #1' }, 'http://127.0.0.1:8787'));
+// The app opens its own launch page synchronously, so it never has to retain a window handle across
+// an await, because testing on 2026-08-03 showed handles are unreliable. #1601: only the destination,
+// a verified viewer number and the title cross the query; book and issue ids no longer do.
+test('launchUrl stays same-origin and passes no Marvel Unlimited reference ids', () => {
+  const u = new URL(launchUrl({ issueId: 52446, digitalId: 38164, title: 'Secret Wars #1' }, 'http://127.0.0.1:8787'));
   assert.equal(u.origin, 'http://127.0.0.1:8787');
   assert.equal(u.pathname, '/open.html');
-  assert.equal(u.searchParams.get('d'), '38164');
-  assert.equal(u.searchParams.get('i'), '52447');
+  assert.deepEqual([...u.searchParams.keys()].sort(), ['r', 't']);
+  assert.equal(u.searchParams.get('r'), 'comics');
   assert.equal(u.searchParams.get('t'), 'Secret Wars #1');
 });
 
-test('launchUrl omits an unknown digitalId so the page knows to resolve it', () => {
-  const u = new URL(launchUrl({ issueId: 52447, digitalId: null }, 'http://127.0.0.1:8787'));
-  assert.equal(u.searchParams.get('d'), null);
-  assert.equal(u.searchParams.get('i'), '52447');
+test('launchUrl sends nothing for the launch page to resolve when a digitalId is unknown', () => {
+  const u = new URL(launchUrl({ issueId: 52446, digitalId: null }, 'http://127.0.0.1:8787'));
+  assert.deepEqual([...u.searchParams.keys()], ['r']);
 });
 
 test('a hostile title cannot escape the query string', () => {
@@ -244,23 +289,23 @@ test('an absurdly long title is truncated rather than blowing up the URL', () =>
 test('a non-numeric issueId is not passed through to the launcher', () => {
   const u = new URL(launchUrl({ issueId: '../../etc/passwd', digitalId: 5 }, 'http://127.0.0.1:8787'));
   assert.equal(u.searchParams.get('i'), null);
-  assert.equal(u.searchParams.get('d'), '5');
+  assert.equal(u.searchParams.get('d'), null);
+  assert.doesNotMatch(u.search, /passwd/);
 });
 
 test('launch references reject coercible, noncanonical and oversized values', () => {
   for (const bad of [true, false, [1], { valueOf: () => 1 }, '1e3', ' 1', '1 ', '01', 0,
     '0', -1, 1000000000000]) {
-    const digital = new URL(launchUrl({ issueId: 52447, digitalId: bad }, 'http://127.0.0.1:8787'));
-    assert.equal(digital.searchParams.has('d'), false, String(bad));
-    assert.equal(digital.searchParams.get('i'), '52447');
     const issue = { issueId: bad, digitalId: null };
     assert.equal(isLaunchable(issue), false, String(bad));
     const launch = new URL(launchUrl(issue, 'http://127.0.0.1:8787'));
-    assert.equal(launch.searchParams.has('i'), false, String(bad));
-    assert.equal(launch.searchParams.has('u'), false, String(bad));
+    assert.deepEqual([...launch.searchParams.keys()], ['r'], String(bad));
+    assert.equal(isLaunchable({ issueId: null, digitalId: bad }), false, String(bad));
   }
-  assert.equal(new URL(launchUrl({ issueId: '52447', digitalId: '38164' }, 'http://127.0.0.1:8787'))
-    .searchParams.get('d'), '38164');
+  // A canonical string id still counts as a reference for offering the control, but is not sent.
+  assert.equal(isLaunchable({ issueId: '52446', digitalId: '38164' }), true);
+  assert.deepEqual([...new URL(launchUrl({ issueId: '52446', digitalId: '38164' }, 'http://127.0.0.1:8787'))
+    .searchParams.keys()], ['r']);
 });
 
 test('an issue with neither id is not launchable', () => {
@@ -271,11 +316,48 @@ test('an issue with neither id is not launchable', () => {
   assert.equal(isLaunchable({ digitalId: 1 }), true);
 });
 
-// The whole point of reading the book id off the reader's address. An issue newer than the
-// metadata snapshot has no record upstream, so the synthetic id is all the app would otherwise
-// hold, and a synthetic id resolves to nothing. This walks the same three steps the hand-entry
-// form walks, because each one alone can silently drop the field.
-test('a hand-added issue keeps its pasted book id and launches at the reader', () => {
+test('a saved title-only manual comic can use Find without changing its checkmark', () => {
+  const issueId = -8;
+  let state = createList(createEmptyState(), { name: 'Manual comics' });
+  const listId = state.listOrder[0];
+  state = addIssuesToList(state, listId, [{
+    issueId,
+    title: 'A manually added comic #1',
+    source: 'manual',
+    hydrated: true,
+  }], {}).state;
+  state = markRead(state, issueId, true, 1234);
+
+  const stored = listItems(state, listId)[0];
+  const before = JSON.stringify(state);
+  assert.equal(stored.issueId, issueId);
+  assert.equal(stored.digitalId, null);
+  assert.equal(detailUrl(stored), null);
+  assert.equal(isLaunchable(stored), true);
+
+  const priorWindow = globalThis.window;
+  const opened = [];
+  globalThis.window = { open: (...args) => { opened.push(args); return null; } };
+  try {
+    const result = openIssue(stored, { origin: 'http://127.0.0.1:8787' });
+    assert.equal(result.ok, true);
+    assert.equal(result.target, 'comics');
+    const launch = new URL(opened[0][0]);
+    assert.equal(launch.origin, 'http://127.0.0.1:8787');
+    assert.deepEqual([...launch.searchParams.keys()].sort(), ['r', 't']);
+    assert.equal(launch.searchParams.get('r'), 'comics');
+    assert.equal(launch.searchParams.get('t'), stored.title);
+    assert.equal(listItems(state, listId)[0].read, true);
+    assert.equal(JSON.stringify(state), before, 'opening Find must not alter saved progress');
+  } finally {
+    if (priorWindow === undefined) delete globalThis.window;
+    else globalThis.window = priorWindow;
+  }
+});
+
+// The old book id remains round-trippable for saved data, but it no longer chooses the destination.
+// A title-only negative-id entry can still use the general website fallback.
+test('a hand-added issue keeps its pasted book id, which no longer launches the reader', () => {
   const digitalId = digitalIdFromUrl('https://read.marvel.com/#/book/129648');
   assert.equal(digitalId, 129648);
 
@@ -293,21 +375,26 @@ test('a hand-added issue keeps its pasted book id and launches at the reader', (
 
   const stored = state.issues[issueId];
   assert.equal(stored.digitalId, 129648, 'storage must not drop the one field that makes Read work');
-  assert.equal(isLaunchable(stored), true, 'a negative id alone is not launchable, so this proves the book id carried');
+  assert.equal(isLaunchable(stored), true, 'the saved title offers the website fallback');
   // Read reaches the reader, and Info offers nothing rather than offering the same place again
   // under a name that says marvel.com. Keeping the pasted address as the detail url is what makes
   // that happen, so the rule is exercised here rather than assumed.
   assert.equal(detailUrl(stored), null, 'a reader address must not be dressed up as a detail page');
+  // #1601: a saved reader address, from an older import, is never offered as the Info link.
+  assert.equal(detailUrl({ issueId, url: 'https://read.marvel.com/#/book/129648' }), null);
   assert.equal(
-    detailUrl({ issueId, url: 'https://read.marvel.com/#/book/129648' }),
-    'https://read.marvel.com/#/book/129648',
-    'and this is why: the detail check accepts a reader address, so the form must not store one',
+    detailUrl({ issueId: 52447, url: 'https://read.marvel.com/#/book/129648' }),
+    'https://www.marvel.com/comics/issue/52447/',
   );
 
   const u = new URL(launchUrl(stored, 'http://127.0.0.1:8787'));
-  assert.equal(u.searchParams.get('d'), '129648');
-  assert.equal(u.searchParams.get('i'), null, 'a synthetic id must not be sent to a lookup that cannot resolve it');
-  assert.equal(readerUrl(stored.digitalId), 'https://read.marvel.com/#/book/129648');
+  // #1601: the book id is still saved and still makes the control available, but it no longer
+  // launches Marvel Unlimited. Read opens the Marvel Comics website.
+  assert.equal(u.searchParams.get('r'), 'comics');
+  assert.equal(u.searchParams.get('d'), null, 'a saved book id is inert');
+  assert.equal(u.searchParams.get('i'), null, 'a synthetic id must not be sent anywhere');
+  assert.doesNotMatch(u.href, /read\.marvel\.com/);
+  assert.equal(stored.digitalId, 129648, 'and launching leaves the saved field as it was');
 });
 
 test('a saved legacy reader entry keeps its reserved identity and enters no provider queue', () => {
@@ -345,8 +432,9 @@ test('a saved legacy reader entry keeps its reserved identity and enters no prov
   assert.deepEqual(synopsisOrder(repeated.state, listId, () => true), []);
 
   const launch = new URL(launchUrl(stored, 'http://127.0.0.1:8787'));
-  assert.equal(launch.searchParams.get('d'), '129648');
-  assert.equal(launch.searchParams.get('i'), null);
+  assert.equal(stored.digitalId, 129648, 'the legacy book id stays saved');
+  assert.deepEqual([...launch.searchParams.keys()].sort(), ['r', 't']);
+  assert.equal(launch.searchParams.get('r'), 'comics', 'and Read opens the website rather than the old reader');
 });
 
 test('digital id presence alone does not classify a provider issue as reader-only', () => {

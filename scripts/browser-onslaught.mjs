@@ -184,11 +184,11 @@ export const onslaughtActualData = {
     const gapActions = await page.$$eval('#rows .row .rt', (nodes, ids) =>
       nodes.filter((node) => ids.includes(Number(node.dataset.issueId))).map((node) => ({
         issueId: Number(node.dataset.issueId),
-        openHidden: node.closest('.row')?.querySelector('.ract button[data-act="open"]')?.hidden,
+        action: node.closest('.row')?.querySelector('.ract button[data-act="open"]:not([hidden])')?.textContent.trim(),
         hasInfo: Boolean(node.closest('.row')?.querySelector('.ract a[data-act="info"]')),
       })), gapIds);
-    t.check('remaining unresolved originals have neither reader nor fabricated issue page',
-      gapActions.length === gapIds.length && gapActions.every((row) => row.openHidden && !row.hasInfo),
+    t.check('remaining unresolved originals offer Find on Marvel Comics but no fabricated issue page',
+      gapActions.length === gapIds.length && gapActions.every((row) => row.action === 'Find on Marvel Comics' && !row.hasInfo),
       JSON.stringify(gapActions));
 
     await page.reload({ waitUntil: 'load' });

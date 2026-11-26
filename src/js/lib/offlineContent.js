@@ -26,6 +26,7 @@ function shellPath(path) {
     || (/^\/data\/collectedEdition(?:Catalog|Evidence)\.js$/).test(path)
     || path === '/data/marvelComicsAppLinks.js'
     || path === '/data/marvelComicsAppMuIssues.js'
+    || path === '/data/identityCorrections.js'
     || path === '/data/universeCatalog.js';
 }
 

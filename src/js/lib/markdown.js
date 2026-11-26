@@ -3,6 +3,7 @@
 
 import { readerUrl } from '../reader.js';
 import { sourceLabel, sourceLink, sourceLicense } from './catalog.js';
+import { appViewerFromUrl, appViewerUrl, taggedViewer, viewerKey } from './marvelComicsAppUrl.js';
 
 const MARVEL_ISSUE_RE = /^https?:\/\/(?:www\.)?marvel\.com\/comics\/issue\/(\d+)(?:\/([^/?#]*))?/i;
 // Link text allows backslash escapes so a title containing "]" survives a
@@ -217,11 +218,19 @@ export function parseChecklist(text, { legacyReaderLinks = false, legacyIdentity
     if (!title) continue;
     const issueId = issueIdFromUrl(url);
     const digitalId = issueId == null ? digitalIdFromUrl(url) : null;
+    const appViewer = appViewerFromUrl(url);
     const at = index;
     index += 1;
     if (sourcePosition) sourcePosition.count += 1;
 
-    if (issueId != null) {
+    if (appViewer != null) {
+      entries.push({
+        issueId: viewerKey(appViewer), appViewer, title, url, read, index: at, section,
+        ...(identified.sourceKey ? { sourceKey: identified.sourceKey } : {}),
+        ...(identified.identityEvidenceKind ? { identityEvidenceKind: identified.identityEvidenceKind } : {}),
+        ...(identified.legacyIdentityKey != null ? { legacyIdentityKey: identified.legacyIdentityKey } : {}),
+      });
+    } else if (issueId != null) {
       entries.push({
         issueId, title, url: url, read, index: at, section,
         ...(identified.sourceKey ? { sourceKey: identified.sourceKey } : {}),
@@ -321,12 +330,13 @@ export function serializeChecklist({ name, description, items, note, resetSectio
     }
     const box = includeProgress ? (it.read ? '- [x]' : '- [ ]') : '-';
     const reference = literal ? projectIssueReference(it) : it;
+    const canonicalAppViewerUrl = appViewerUrl(taggedViewer(reference));
     const canonicalReaderUrl = readerIssueId(reference.digitalId) === Number(reference.issueId)
       ? readerUrl(reference.digitalId)
       : null;
-    const candidateUrl = canonicalReaderUrl
+    const candidateUrl = canonicalAppViewerUrl || (reference.findOnly === true ? null : canonicalReaderUrl
       || reference.url
-      || (reference.issueId > 0 ? `https://www.marvel.com/comics/issue/${reference.issueId}/` : null);
+      || (reference.issueId > 0 ? `https://www.marvel.com/comics/issue/${reference.issueId}/` : null));
     const url = includeLinks
       ? (literal ? candidateUrl?.replace(/\(/g, '%28').replace(/\)/g, '%29') : candidateUrl)
       : null;
@@ -385,6 +395,10 @@ function literalMarkdown(value, singleLine = false) {
 }
 
 function projectIssueReference(item) {
+  const appViewer = taggedViewer(item);
+  if (appViewer) return { issueId: item.issueId, appViewer };
+  if (item.findOnly === true) return { issueId: item.issueId, findOnly: true };
+
   const digitalId = item.digitalId ?? digitalIdFromUrl(item.url);
   const readerOnly = item.issueId < 0 && readerIssueId(digitalId) !== null;
   let url = isSafeMarvelUrl(item.url) ? item.url : null;

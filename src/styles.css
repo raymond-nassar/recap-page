@@ -200,6 +200,14 @@
   --red-fg-2: #ff9d9d;
   --teal: #3fcfbb;
   --amber: #eab654;
+  /* Comic Book Herald's three tie-in groups, as stoplight tints (owner, 2026-11-24). The words on
+     them are ordinary text; the tint and dot only repeat the group. */
+  --rating-favorite-bg: #253a2b;
+  --rating-favorite-dot: #84d765; --rating-favorite-line: #84d765;
+  --rating-average-bg: #40371f;
+  --rating-average-dot: #f4ce37; --rating-average-line: #f4ce37;
+  --rating-lower-bg: #45313a;
+  --rating-lower-dot: #ff9d9d; --rating-lower-line: #ff9d9d;
   --blue: #7fb3ff;
   /* The brand's decorative blue and red (#1208), the two colors the purple was mixed from. They decorate
      and never report: `--blue` stays the color of links, focus and the current place, and the status
@@ -234,7 +242,7 @@
   --cyan-line: 91 208 233;
   --jade-line: 78 208 182;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:850`; these pairs supply saturation and lightness where that local hue is
+     `src/js/main.js:853`; these pairs supply saturation and lightness where that local hue is
      consumed. Keeping the hue reference on the cover avoids resolving it before the cover exists. */
   --fallback-a: 42% 26%;
   --fallback-b: 38% 14%;
@@ -274,6 +282,12 @@
   --red-fg-2: #9c1c18;
   --teal: #12695f;
   --amber: #6d4e08;
+  --rating-favorite-bg: #e5f2df;
+  --rating-favorite-dot: #3b7b1f; --rating-favorite-line: #3b7b1f;
+  --rating-average-bg: #fff3bc;
+  --rating-average-dot: #f4ce37; --rating-average-line: #89701d;
+  --rating-lower-bg: #fce6e6;
+  --rating-lower-dot: #ed9898; --rating-lower-line: #aa645f;
   --blue: #17509c;
   --brand-blue: #1d4ed8;
   --brand-red: #c8102e;
@@ -323,6 +337,12 @@
     --red-fg-2: #9c1c18;
     --teal: #12695f;
     --amber: #6d4e08;
+    --rating-favorite-bg: #e5f2df;
+    --rating-favorite-dot: #3b7b1f; --rating-favorite-line: #3b7b1f;
+    --rating-average-bg: #fff3bc;
+    --rating-average-dot: #f4ce37; --rating-average-line: #89701d;
+    --rating-lower-bg: #fce6e6;
+    --rating-lower-dot: #ed9898; --rating-lower-line: #aa645f;
     --blue: #17509c;
     --brand-blue: #1d4ed8;
     --brand-red: #c8102e;
@@ -1940,6 +1960,19 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
   margin-top: auto; padding: 0 var(--space-5) var(--space-5);
 }
 .catalog-card-actions .btn { justify-content: center; min-height: var(--target); }
+/* One timeline card offering several existing readings of the same event. Each reading keeps the
+   card title's Preview cue and its own Add or Open, so a saved copy is continued from its row. */
+.placement-card .catalog-card-text { padding: var(--space-5) var(--space-5) 0; }
+.placement-options { margin: 0; padding: 0; list-style: none; }
+.placement-option { border-top: var(--stroke-1) solid var(--line); }
+.placement-option-text { padding: var(--space-3) 0 var(--space-2); }
+.placement-option .catalog-card-actions { padding: 0 0 var(--space-4); }
+.placement-option-title {
+  display: inline-block; max-width: 100%; padding: var(--space-1) 0; border: 0; background: none;
+  color: inherit; font: inherit; font-weight: 600; text-align: inherit; overflow-wrap: anywhere; cursor: pointer;
+  text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 3px;
+}
+.placement-option-title:hover { text-decoration-color: currentColor; }
 
 @media (max-width: 700px) {
   .timeline-position-current { align-items: flex-start; flex-direction: column; }
@@ -2443,6 +2476,21 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .collected-edition { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2); overflow-wrap: anywhere; }
 .collected-edition a { display: inline-flex; align-items: center; min-height: var(--target); }
 .edition-credit { font-size: var(--t-caption); color: var(--muted); overflow-wrap: anywhere; margin: var(--space-2) 0; }
+/* A tie-in's rating group and the guide's Optional advice sit beside its series name. Each keeps its
+   word, so the meaning survives with colors off; the tint never touches progress or availability. */
+.tie-in-labels { display: inline-flex; flex-wrap: wrap; gap: var(--space-2); }
+.rating-badge { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--text); }
+.rating-badge::before {
+  content: ""; flex: none; width: .6em; height: .6em; border-radius: var(--radius-pill);
+  background: var(--rating-dot); border: var(--stroke-1) solid var(--rating-line);
+}
+.rating-favorite { --rating-dot: var(--rating-favorite-dot); --rating-line: var(--rating-favorite-line); background: var(--rating-favorite-bg); border-color: var(--rating-favorite-line); }
+.rating-average { --rating-dot: var(--rating-average-dot); --rating-line: var(--rating-average-line); background: var(--rating-average-bg); border-color: var(--rating-average-line); }
+.rating-lower { --rating-dot: var(--rating-lower-dot); --rating-line: var(--rating-lower-line); background: var(--rating-lower-bg); border-color: var(--rating-lower-line); }
+.badge-optional { color: var(--text); border-style: dashed; border-color: var(--line-2); }
+@media (forced-colors: active) {
+  .rating-badge::before { display: none; }
+}
 .edition-attribution { list-style: none; }
 .preview-foot { display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; border-top: var(--stroke-1) solid var(--line); padding-top: var(--space-6); }
 .preview-foot .btn { min-height: var(--target); scroll-margin: var(--space-3); }

@@ -10,6 +10,7 @@ import { coverAddress, normalizeCover } from './model.js';
 import { copyUniverseListFields, universeListProblems } from './universeSchema.js';
 import { universeDefinitions } from '../../data/universeCatalog.js';
 import { filterStoriesByLinks } from './libraryLinks.js';
+import { sectionalCatalogGroups } from './sectionalGuide.js';
 
 export const LIST_TYPES = ['event', 'character-run', 'creator-run', 'era', 'screen-companion'];
 export const READING_DEPTHS = ['essential', 'complete', 'partial', 'tie-ins', 'selected'];
@@ -338,7 +339,11 @@ export function parseCatalog(raw) {
   // Paths are passed through unvalidated because `pathPlacements` resolves them against the lists
   // that survived, and a path naming an entry this function just dropped is one it will skip. The
   // manifest is where a path is checked; by the time it is in the generated catalog it has been.
-  return { lists: sortCatalog(lists), paths: Array.isArray(raw?.paths) ? raw.paths : [], dropped };
+  const sectionalGroups = sectionalCatalogGroups(raw?.sectionalGuides, lists);
+  return {
+    lists: sortCatalog(lists), paths: Array.isArray(raw?.paths) ? raw.paths : [], dropped,
+    ...(sectionalGroups.length ? { sectionalGroups } : {}),
+  };
 }
 
 // These are the same two gaps import describes after the order is saved, shortened to fit beside
@@ -348,15 +353,11 @@ export function catalogGapLabels(list) {
   const out = [];
   if (list?.placeholderCount > 0) {
     const count = list.placeholderCount;
-    out.push(
-      `${count} ${count === 1 ? 'comic has no Marvel Unlimited link' : 'comics have no Marvel Unlimited links'} yet and cannot be opened`,
-    );
+    out.push(`${count} ${count === 1 ? 'comic is' : 'comics are'} listed by title only`);
   }
   if (list?.emptyRecordCount > 0) {
     const count = list.emptyRecordCount;
-    out.push(
-      `${count} ${count === 1 ? 'comic has no details, cover, or Unlimited link' : 'comics have no details, covers, or Unlimited links'}`,
-    );
+    out.push(`${count} ${count === 1 ? 'comic has' : 'comics have'} limited details`);
   }
   // Plain wording approved by the owner on 2026-11-16, recorded on #1427. Each label counts the
   // hand-checked comics whose details came from one place, so the three always add up to the
@@ -1011,6 +1012,7 @@ export function isModernTimelineChapterId(id) {
 }
 
 const isModernTimelineList = (list) => list?.type === 'event'
+  && !list.sectionalPart
   && list.id !== HELLS_ANGEL_ID
   && Number.isInteger(list.timeline)
   && (
@@ -1031,6 +1033,54 @@ export function modernTimelineLists(lists) {
     for (const list of story.lists) selected.add(list);
   }
   return (Array.isArray(lists) ? lists : []).filter((list) => selected.has(list));
+}
+
+// The 2015 event-and-tie-ins reading, kept separate from the Hickman guide's two readings because
+// its contents differ from both of them rather than extending either.
+export const SECRET_WARS_2015_EVENT_ID = 'secret-wars-2015-event-tie-ins';
+
+// A timeline card for an event whose readings are dated elsewhere. The owner placed Secret Wars
+// (2015) at 2015 on 2026-11-24 and chose a card offering its readings rather than a new list: the
+// Hickman guide starts in 2012 and is a creator run, so the timeline never reached it. Readings are
+// named by id, never copied, so saved lists, the guide's own shelf and the path stop keep the
+// identities they already have. A saved MCU Prep copy of the fast track continues that option.
+export const MODERN_TIMELINE_PLACEMENTS = Object.freeze([
+  Object.freeze({
+    key: 'placement:secret-wars-2015',
+    name: 'Secret Wars (2015)',
+    year: 2015,
+    options: Object.freeze([
+      Object.freeze({ id: SECRET_WARS_2015_EVENT_ID, label: 'Event and tie-ins', savedAs: Object.freeze([]) }),
+      Object.freeze({ id: 'hickman-minimal', label: 'Fast track', savedAs: Object.freeze(['avengers-doomsday-secret-wars']) }),
+      Object.freeze({ id: 'hickman-full', label: 'Hickman saga', savedAs: Object.freeze([]) }),
+    ]),
+  }),
+]);
+
+// The placements whose readings this catalog holds, each option resolved to its list. An option
+// whose reading is absent is left out rather than shown as a dead choice, and a placement with no
+// reading left is not drawn at all.
+export function modernTimelinePlacements(lists) {
+  const byId = new Map((Array.isArray(lists) ? lists : [])
+    .filter((list) => typeof list?.id === 'string')
+    .map((list) => [list.id, list]));
+  return MODERN_TIMELINE_PLACEMENTS.flatMap((placement) => {
+    const options = placement.options
+      .filter((option) => byId.has(option.id))
+      .map((option) => ({
+        label: option.label,
+        list: byId.get(option.id),
+        savedAs: option.savedAs.map((id) => byId.get(id)).filter(Boolean),
+      }));
+    return options.length ? [{
+      key: placement.key,
+      name: placement.name,
+      year: placement.year,
+      placement: true,
+      options,
+      lists: options.map((option) => option.list),
+    }] : [];
+  });
 }
 
 export function modernTimelineFeaturedList(lists) {
@@ -1576,6 +1626,8 @@ export const CATALOG_ERAS = [
 // earliest is the same answer the year sort already gives it, because the sort is stable and the
 // readings of a story are adjacent.
 export function storyYear(story) {
+  // A placement states its own year, because its readings are dated where they begin.
+  if (story?.placement && Number.isInteger(story.year)) return story.year;
   const years = (Array.isArray(story?.lists) ? story.lists : [])
     .map((list) => list?.timeline)
     .filter((year) => Number.isInteger(year));

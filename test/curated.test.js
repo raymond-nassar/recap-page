@@ -1,4 +1,6 @@
 import test from 'node:test';
+import { readingOrderSubjects } from '../scripts/lib/chapter-orders.mjs';
+import { eventReadingOrders } from '../src/data/eventReadingOrders.js';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { parseManifest } from '../src/js/lib/curated.js';
@@ -450,13 +452,19 @@ test('the bundled manifest is valid and describes exactly the bundled catalog', 
   const visibleEntries = entries.filter((entry) => entry.catalog);
   const partitionParents = entries.filter((entry) => !entry.catalog);
   const generatedChildren = lists.filter((list) => /^marvel-knights-to-planet-x-\d{2}$/.test(list.id));
-  assert.equal(partitionParents.length, 1);
-  assert.equal(partitionParents[0].id, 'marvel-knights-to-planet-x');
-  assert.equal(lists.some((list) => list.id === partitionParents[0].id), false);
+  const sectionalChildren = lists.filter((list) => /^civil-war-to-secret-invasion-part-\d+$/.test(list.id));
+  assert.deepEqual(partitionParents.map(({ id }) => id).sort(),
+    ['civil-war-to-secret-invasion', 'marvel-knights-to-planet-x']);
+  for (const parent of partitionParents) {
+    assert.equal(lists.some((list) => list.id === parent.id), false);
+  }
   assert.equal(generatedChildren.length, 78);
+  assert.deepEqual(sectionalChildren.map(({ id }) => id),
+    Array.from({ length: 14 }, (_, index) => `civil-war-to-secret-invasion-part-${index + 1}`));
+  assert.equal(new Set([...generatedChildren, ...sectionalChildren].map(({ id }) => id)).size, 92);
   assert.deepEqual(
     visibleEntries.map((entry) => entry.id).sort(),
-    lists.filter((list) => !generatedChildren.includes(list)).map((list) => list.id).sort(),
+    lists.filter((list) => !generatedChildren.includes(list) && !sectionalChildren.includes(list)).map((list) => list.id).sort(),
   );
   for (const entry of visibleEntries) {
     const list = lists.find((l) => l.id === entry.id);
@@ -479,7 +487,10 @@ test('the bundled manifest is valid and describes exactly the bundled catalog', 
     assert.equal(historicalCredit.sourceSection ?? null, entry.sourceSection);
     assert.equal(historicalCredit.sourceOrigin, entry.sourceOrigin, `${entry.id} origin drifted from the manifest`);
     assert.equal(historicalCredit.sourceLicense, entry.sourceLicense);
-    assert.deepEqual(list.characters, entry.characters);
+    const characters = !entry.characters.length && Object.hasOwn(eventReadingOrders, entry.id)
+      ? readingOrderSubjects(JSON.parse(await readFile(new URL(`../src/data/${entry.out}`, import.meta.url), 'utf8')).items)
+      : entry.characters;
+    assert.deepEqual(list.characters, characters);
     assert.deepEqual(list.keywords, entry.keywords);
     assert.equal(list.group, entry.group, `${entry.id} group drifted from the manifest`);
     assert.equal(list.groupName, entry.groupName);

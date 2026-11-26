@@ -1,4 +1,5 @@
 import { currentReadingCensus, registeredCatalogAdditionIds } from './helpers/current-reading-library.mjs';
+import { wolverineGapResolutions } from './helpers/wolverine-correction-history.mjs';
 import { xmenEraPlaceholderDelta } from './helpers/xmen-era-history.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -143,16 +144,16 @@ test('gap counts are required nonnegative integers', () => {
 test('catalog gap labels omit zero and preserve singular and plural meanings', () => {
   assert.deepEqual(catalogGapLabels({ placeholderCount: 0, emptyRecordCount: 0 }), []);
   assert.deepEqual(catalogGapLabels({ placeholderCount: 1, emptyRecordCount: 0 }), [
-    '1 comic has no Marvel Unlimited link yet and cannot be opened',
+    '1 comic is listed by title only',
   ]);
   assert.deepEqual(catalogGapLabels({ placeholderCount: 2, emptyRecordCount: 0 }), [
-    '2 comics have no Marvel Unlimited links yet and cannot be opened',
+    '2 comics are listed by title only',
   ]);
   assert.deepEqual(catalogGapLabels({ placeholderCount: 0, emptyRecordCount: 1 }), [
-    '1 comic has no details, cover, or Unlimited link',
+    '1 comic has limited details',
   ]);
   assert.deepEqual(catalogGapLabels({ placeholderCount: 0, emptyRecordCount: 2 }), [
-    '2 comics have no details, covers, or Unlimited links',
+    '2 comics have limited details',
   ]);
   assert.deepEqual(catalogGapLabels({ ownerConfirmedIdentityCount: 1 }), [
     '1 comic checked by hand, with no cover or details yet',
@@ -187,8 +188,8 @@ test('catalog gap labels omit zero and preserve singular and plural meanings', (
   assert.equal(readGcd({ ownerSupplementedCount: 1, ownerGcdSupplementedCount: 2 }), 1,
     'never more Grand Comics Database comics than supplemented ones');
   assert.deepEqual(catalogGapLabels({ placeholderCount: 1, emptyRecordCount: 2 }), [
-    '1 comic has no Marvel Unlimited link yet and cannot be opened',
-    '2 comics have no details, covers, or Unlimited links',
+    '1 comic is listed by title only',
+    '2 comics have limited details',
   ]);
 });
 
@@ -305,11 +306,11 @@ test('the bundled catalog is valid and its counts match the vendored orders', as
     },
     {
       complete: currentReadingCensus.complete,
-      placeholders: 1130 + xmenEraPlaceholderDelta,
-      emptyRecords: 221,
+      placeholders: 1130 + xmenEraPlaceholderDelta - wolverineGapResolutions.length,
+      emptyRecords: 229,
       total: currentReadingCensus.totalItems,
       placeholderEntries: 29,
-      emptyEntries: 22,
+      emptyEntries: 24,
       bothEntries: 7,
     },
   );
@@ -1073,6 +1074,12 @@ test('the shipped catalog carries manifest timelines and generated partition yea
     manifest.lists.filter((list) => list.catalog !== false).map((list) => [list.id, list.timeline ?? null]),
   );
   for (const chapter of ledger.chapters) wanted.set(chapter.id, chapter.timelineYear);
+  const sectional = manifest.sectionalGuides.find(({ id }) => id === 'civil-war-to-secret-invasion');
+  assert.ok(sectional);
+  assert.equal(sectional.parts.length, 14);
+  for (let number = 1; number <= sectional.parts.length; number += 1) {
+    wanted.set(`${sectional.id}-part-${number}`, null);
+  }
   assert.equal(catalog.lists.length, wanted.size);
   for (const list of catalog.lists) {
     assert.equal(list.timeline, wanted.get(list.id), `${list.id} is not where its source contract puts it`);

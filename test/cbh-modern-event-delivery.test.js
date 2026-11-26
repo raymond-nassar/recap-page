@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { beforeFirstInstallmentManifest } from './helpers/first-installment-history.mjs';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
@@ -88,7 +89,7 @@ test('the signed comparisons cover the complete reviewed library and both mapped
   ));
   assert.deepEqual(orders.map((order) => order.orderId), contract.orderIds);
   const manifest = beforeWolverineCorrectionManifest(beforeTieInManifest({
-    ...library.manifest,
+    ...beforeFirstInstallmentManifest(library.manifest),
     lists: beforeXmenEraManifest(library.manifest).lists.filter((entry) => reviewedIds.has(entry.id)),
     paths: library.manifest.paths.filter((entry) => reviewedPathIds.has(entry.id)),
   }));

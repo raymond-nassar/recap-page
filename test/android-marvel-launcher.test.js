@@ -2,14 +2,12 @@ import test from 'node:test';
 import { readFileSync } from 'node:fs';
 import assert from 'node:assert/strict';
 import { createAndroidReader, digitalReference } from '../packaging/android/web/reader.js';
-import { issuePageUrl } from '../src/js/lib/issuePageUrl.js';
 import { launchDestination, MARVEL_COMICS_URL } from '../src/js/lib/readerDestination.js';
 import { appLaunchUrl } from '../src/js/lib/marvelComicsAppUrl.js';
 
-const response = (body, ok = true) => ({ ok, json: async () => body });
-const before = new Date(2026, 11, 6, 23, 59, 59, 999);
-const after = new Date(2026, 11, 7);
-const exactReader = 'https://read.marvel.com/#/book/38811';
+const comicsCaption = 'Find this comic on the Marvel Comics website. This is not a single-comic link. Reading progress has not changed.';
+// #1601: nothing on Android may reach Marvel Unlimited, its book links or the comic detail pages.
+const retired = /read\.marvel\.com|marvel\.com\/comics\/issue|marvelcomicsapp\.com\/mu\/|^marvelunlimited:/;
 
 function events(properties = {}) {
   const listeners = new Map();
@@ -25,96 +23,104 @@ function events(properties = {}) {
   };
 }
 
-function fixture(search = '?d=38811&i=52986', fetchImpl = async () => response({ digitalId: 38811 }),
-  readApiBase = () => 'https://metadata.example/v1', now = before, appUrlFor = undefined) {
-  const timers = new Map();
+// The launcher no longer takes a fetch or a metadata address, so the global fetch and the host's
+// timers are the only ways a lookup could still happen. Both are recorded rather than trusted.
+function fixture(search = '?d=38811&i=52986', appUrlFor = undefined) {
+  const timers = [];
   const host = events({
-    setTimeout(handler, milliseconds) {
-      const id = Symbol();
-      timers.set(id, { handler, milliseconds });
-      return id;
-    },
-    clearTimeout(id) { timers.delete(id); },
+    setTimeout(...args) { timers.push(args); return 0; },
+    clearTimeout() {},
   });
   const elements = Object.fromEntries(['heading', 'status', 'fallback']
     .map((name) => [name, events({ textContent: '', hidden: false, href: '' })]));
   const navigations = [];
   const requests = [];
-  const launch = createAndroidReader({
-    host, elements, readApiBase, validateIssuePageUrl: issuePageUrl,
-    destination: launchDestination(new URLSearchParams(search), now), comicsUrl: MARVEL_COMICS_URL,
-    location: { search, assign: (url) => navigations.push(url) },
-    fetchImpl: (...args) => { requests.push(args); return fetchImpl(...args); },
-    ...(appUrlFor ? { appUrlFor } : {}),
-  });
-  return { launch, host, elements, navigations, requests, timers };
-}
-
-function deferred() {
-  let resolve;
-  const promise = new Promise((done) => { resolve = done; });
-  return { promise, resolve };
+  const realFetch = globalThis.fetch;
+  globalThis.fetch = (...args) => { requests.push(args); return Promise.reject(new Error('no lookup')); };
+  let launch;
+  try {
+    launch = createAndroidReader({
+      host, elements, destination: launchDestination(new URLSearchParams(search)), comicsUrl: MARVEL_COMICS_URL,
+      location: { search, assign: (url) => navigations.push(url) },
+      ...(appUrlFor ? { appUrlFor } : {}),
+    });
+  } finally {
+    globalThis.fetch = realFetch;
+  }
+  const start = async () => {
+    globalThis.fetch = (...args) => { requests.push(args); return Promise.reject(new Error('no lookup')); };
+    try { await launch.start(); } finally { globalThis.fetch = realFetch; }
+  };
+  return { launch: { start }, host, elements, navigations, requests, timers };
 }
 
 test('Android accepts only canonical positive references and never dispatches invalid ones', async () => {
   for (const value of ['38811', 38811, '999999999999']) assert.equal(digitalReference(value), String(value));
   for (const value of [null, '', 0, -1, '01', ' 38811', '38811 ', '1e3', '12/3', '38811&other=1', '1000000000000', {}, []]) {
     assert.equal(digitalReference(value), null);
-    for (const now of [before, after]) {
-      const f = fixture(`?d=${encodeURIComponent(String(value))}`, () => assert.fail('Invalid reference cannot fetch'), undefined, now);
-      await f.launch.start();
-      assert.deepEqual(f.navigations, []);
-      assert.match(f.elements.status.textContent, /valid issue reference/);
-    }
-  }
-});
-
-test('Android uses the shared device-local cutoff for both known and unknown reader references', async () => {
-  for (const search of ['?d=38811', '?i=52986']) {
-    for (const now of [before, after]) {
-      const f = fixture(search, undefined, undefined, now);
-      await f.launch.start();
-      assert.deepEqual(f.navigations, [now === before ? exactReader : MARVEL_COMICS_URL]);
-      assert.equal(f.requests.length, now === before && search.includes('i=') ? 1 : 0);
-      assert.match(f.elements.status.textContent, now === before
-        ? /Reading ends December 7, 2026/ : /not a single-comic link/);
-      assert.equal(f.requests.some(([url]) => url.includes('bifrost')), false);
-      assert.equal(f.navigations.some((url) => url.startsWith('marvelunlimited:')), false);
-    }
-  }
-  const snapshot = fixture('?d=38811&r=unlimited', undefined, undefined, after);
-  await snapshot.launch.start();
-  assert.deepEqual(snapshot.navigations, [exactReader], 'a gesture-selected branch survives launcher initialization across midnight');
-  for (const suffix of ['&r=unknown', '&r=unlimited&r=comics']) {
-    const f = fixture(`?d=38811${suffix}`, undefined, undefined, after);
-    await f.launch.start();
-    assert.deepEqual(f.navigations, [MARVEL_COMICS_URL], 'malformed modes default to local time');
-  }
-});
-
-test('Android metadata HTTP, transport and JSON failures remain explicit with a browser fallback', async () => {
-  for (const fetchImpl of [
-    async () => response({}, false),
-    async () => { throw new Error('offline'); },
-    async () => ({ ok: true, json: async () => { throw new SyntaxError('invalid JSON'); } }),
-  ]) {
-    const f = fixture('?i=52986', fetchImpl);
+    const f = fixture(`?d=${encodeURIComponent(String(value))}`);
     await f.launch.start();
     assert.deepEqual(f.navigations, []);
-    assert.match(f.elements.status.textContent, /Could not look up/);
-    assert.equal(f.elements.fallback.href, 'https://www.marvel.com/comics/issue/52986/');
-    assert.equal(f.timers.size, 0);
+    assert.equal(f.requests.length, 0);
+    assert.match(f.elements.status.textContent, /valid issue reference/);
   }
 });
 
-test('Android known-ID launch opens the exact browser reader without Bifrost or app dispatch', async () => {
+test('Android opens the Marvel Comics website for book and issue references with no date cutoff and no Marvel Unlimited branch', async () => {
+  assert.equal(launchDestination(new URLSearchParams('r=unlimited')), 'comics');
+  assert.equal(launchDestination(new URLSearchParams('')), 'comics');
+  for (const destination of ['unlimited', undefined]) {
+    assert.throws(() => createAndroidReader({
+      host: events(), elements: { heading: events(), status: events(), fallback: events() },
+      location: { search: '' }, destination, comicsUrl: MARVEL_COMICS_URL,
+    }), /approved reader destination/);
+  }
+  // An old bookmark that still asks for Marvel Unlimited, or carries only a book or issue number,
+  // opens the website: the mode is no longer honoured, and malformed modes change nothing.
+  for (const search of ['?d=38811', '?i=52986', '?d=38811&i=52986', '?d=38811&r=unlimited', '?r=unlimited',
+    '?r=comics', '?d=38811&r=unknown', '?d=38811&r=unlimited&r=comics']) {
+    const f = fixture(search);
+    assert.equal(f.elements.fallback.href, MARVEL_COMICS_URL, search);
+    await f.launch.start();
+    assert.deepEqual(f.navigations, [MARVEL_COMICS_URL], search);
+    assert.equal(f.elements.heading.textContent, 'Opening Marvel Comics website');
+    assert.equal(f.elements.status.textContent, comicsCaption);
+    assert.doesNotMatch(f.elements.status.textContent, /December|Unlimited/);
+    assert.equal(f.requests.length, 0, search);
+    assert.equal(f.timers.length, 0, search);
+  }
+});
+
+test('Android makes no metadata request and sets no lookup timer for an issue without a book reference', async () => {
+  // Formerly the metadata lookup, its anonymous request options, its failure messages and its
+  // eight-second budget. Every one of those paths is gone, so an issue-only link goes straight to
+  // the website and a stored metadata address is never consulted.
+  const saved = globalThis.localStorage;
+  globalThis.localStorage = { getItem: () => assert.fail('Android Read reads no settings') };
+  try {
+    for (const search of ['?i=52986', '?i=52986&t=Hulk']) {
+      const f = fixture(search);
+      await f.launch.start();
+      assert.equal(f.requests.length, 0);
+      assert.equal(f.timers.length, 0);
+      assert.deepEqual(f.navigations, [MARVEL_COMICS_URL]);
+      assert.equal(f.elements.fallback.href, MARVEL_COMICS_URL);
+      assert.doesNotMatch(f.elements.status.textContent, /look up|lookup|timed out|metadata/i);
+    }
+  } finally {
+    if (saved === undefined) delete globalThis.localStorage;
+    else globalThis.localStorage = saved;
+  }
+});
+
+test('Android known-ID launch opens the website, not the browser reader, without Bifrost or app dispatch', async () => {
   const publicDrn = '03baf094-d1bf-4eb6-8533-0840ebc0d0b9';
-  const f = fixture(`?d=38811&i=52986&t=%3Cimg%3E&drn=${publicDrn}`, () => assert.fail('Known ID cannot fetch'),
-    () => assert.fail('Known ID needs no settings lookup'));
-  assert.equal(f.elements.fallback.href, exactReader);
-  assert.match(f.elements.heading.textContent, /<img>/);
+  const f = fixture(`?d=38811&i=52986&t=%3Cimg%3E&drn=${publicDrn}`);
+  assert.equal(f.elements.fallback.href, MARVEL_COMICS_URL);
+  assert.equal(f.elements.heading.textContent, 'Opening <img>', 'the title is text, never markup');
   await f.launch.start();
-  assert.deepEqual(f.navigations, [exactReader]);
+  assert.deepEqual(f.navigations, [MARVEL_COMICS_URL]);
+  assert.equal(f.navigations.some((url) => retired.test(url) || url.includes('bifrost')), false);
   assert.equal(f.requests.length, 0);
   f.host.emit('recap:reader-result', false);
   assert.match(f.elements.status.textContent, /browser was not opened/);
@@ -122,168 +128,94 @@ test('Android known-ID launch opens the exact browser reader without Bifrost or 
   f.host.emit('recap:reader-result', true);
   assert.match(f.elements.status.textContent, /progress has not changed/);
   assert.equal(f.requests.length, 0);
-  assert.equal(f.timers.size, 0);
 });
 
-test('Android missing digital ID uses only the configured anonymous metadata service before the cutoff', async () => {
-  const f = fixture('?i=52986', async (url, options) => {
-    assert.equal(url, 'https://metadata.example/v1/issues/52986');
-    assert.deepEqual(Object.keys(options).sort(), ['cache', 'credentials', 'headers', 'redirect', 'referrerPolicy', 'signal']);
-    assert.equal(options.credentials, 'omit');
-    assert.equal(options.cache, 'no-store');
-    assert.equal(options.referrerPolicy, 'no-referrer');
-    assert.equal(options.redirect, 'error');
-    return response({ digitalId: 38811 });
-  });
-  await f.launch.start();
-  assert.equal(f.requests.length, 1);
-  assert.deepEqual(f.navigations, [exactReader]);
-  assert.equal(f.elements.fallback.href, exactReader);
-});
-
-test('Android known-refused issue page keeps its exact slug without metadata lookup', async () => {
-  const page = 'https://www.marvel.com/comics/issue/129224/ultimate_endgame_2025_1';
-  const search = `?i=129224&u=${encodeURIComponent(page)}&p=1`;
-  const f = fixture(search, () => assert.fail('Known-refused page must not fetch'), () => assert.fail('No settings lookup'));
-  await f.launch.start();
-  assert.deepEqual(f.navigations, [page]);
-  assert.equal(f.requests.length, 0);
-  assert.equal(f.timers.size, 0);
-  assert.match(f.elements.status.textContent, /issue page/);
-  const direct = fixture(`?d=38811&${search.slice(1)}`);
-  await direct.launch.start();
-  assert.deepEqual(direct.navigations, [exactReader]);
-});
-
-test('Android rejects forged page parameters and looks up unknown references', async () => {
+test('Android ignores issue-page parameters, valid or forged, and opens the website instead', async () => {
+  // Formerly a known-refused page opened its exact slug and other page shapes fell back to a
+  // lookup. No marvel.com issue page is a Read destination any more, whatever the query claims.
   const page = 'https://www.marvel.com/comics/issue/129224/ultimate_endgame_2025_1';
   for (const search of [
+    `?i=129224&u=${encodeURIComponent(page)}&p=1`,
+    `?d=38811&i=129224&u=${encodeURIComponent(page)}&p=1`,
     `?i=129225&u=${encodeURIComponent(page)}&p=1`,
     `?i=129224&u=${encodeURIComponent('https://evil.example/comics/issue/129224/x')}&p=1`,
     `?i=129224&u=${encodeURIComponent(page)}&u=${encodeURIComponent(page)}&p=1`,
     `?i=129224&u=${encodeURIComponent(page)}&p=0`,
+    `?i=129224&u=${encodeURIComponent(page)}`,
   ]) {
-    const f = fixture(search, async () => response({}, false));
+    const f = fixture(search);
+    assert.equal(f.elements.fallback.href, MARVEL_COMICS_URL, search);
     await f.launch.start();
-    assert.equal(f.requests.length, 1, search);
-    assert.deepEqual(f.navigations, [], search);
-    const issueId = new URLSearchParams(search).get('i');
-    assert.equal(f.elements.fallback.href, search.includes('p=0') ? page
-      : `https://www.marvel.com/comics/issue/${issueId}/`);
+    assert.deepEqual(f.navigations, [MARVEL_COMICS_URL], search);
+    assert.equal(f.requests.length, 0, search);
   }
 });
 
-test('Android valid page without refusal retains its exact browser escape after unresolved lookup', async () => {
-  const page = 'https://www.marvel.com/comics/issue/129224/ultimate_endgame_2025_1';
-  for (const result of [response({}, false), response({ digitalId: null })]) {
-    const f = fixture(`?i=129224&u=${encodeURIComponent(page)}`, async () => result);
+test('Android invalid references remain on an informative fallback to the website', async () => {
+  for (const search of ['?d=0&i=-1&url=https://evil.example', '?u=https%3A%2F%2Fwww.marvel.com%2Fcomics%2Fissue%2F1%2Fx', '']) {
+    const f = fixture(search);
     await f.launch.start();
-    assert.equal(f.requests.length, 1);
-    assert.equal(f.elements.fallback.href, page);
+    assert.equal(f.elements.heading.textContent, 'Nothing to open');
+    assert.match(f.elements.status.textContent, /valid issue reference/);
+    assert.equal(f.requests.length, 0);
     assert.deepEqual(f.navigations, []);
-    assert.equal(f.timers.size, 0);
+    assert.equal(f.elements.fallback.href, MARVEL_COMICS_URL);
   }
 });
 
-test('Android invalid, unresolved and failed references remain on an informative fallback', async () => {
-  for (const entry of [
-    { search: '?d=0&i=-1&url=https://evil.example', expected: /valid issue reference/, calls: 0 },
-    { search: '?i=52986', api: () => null, expected: /metadata address/, calls: 0 },
-    { search: '?i=52986', body: {}, expected: /No digital reader link/, calls: 1 },
-    { search: '?i=52986', ok: false, expected: /Could not look up/, calls: 1 },
-  ]) {
-    const f = fixture(entry.search, async () => response(entry.body, entry.ok ?? true), entry.api);
-    await f.launch.start();
-    assert.match(f.elements.status.textContent, entry.expected);
-    assert.equal(f.requests.length, entry.calls);
-    assert.deepEqual(f.navigations, []);
-    assert.match(f.elements.fallback.href, /^https:\/\/(?:www\.marvel\.com|marvel\.webtoon\.com)\//);
-  }
-});
-
-test('Android lookup has one eight-second budget and reports timeout without handoff', async () => {
-  const f = fixture('?i=52986', (_url, { signal }) => new Promise((_resolve, reject) => {
-    signal.addEventListener('abort', () => reject(new Error('aborted')), { once: true });
-  }));
-  const finished = f.launch.start();
-  const timer = [...f.timers.values()][0];
-  assert.equal(f.timers.size, 1);
-  assert.equal(timer.milliseconds, 8000);
-  timer.handler();
-  await finished;
-  assert.match(f.elements.status.textContent, /timed out/);
-  assert.deepEqual(f.navigations, []);
-  assert.equal(f.timers.size, 0);
-});
-
-test('Android browser choice and teardown abort lookup and suppress late metadata dispatch', async () => {
+test('Android browser choice and teardown before start suppress the handoff', async () => {
   for (const action of ['browser', 'pagehide']) {
-    const late = deferred();
-    const f = fixture('?i=52986', () => late.promise);
-    const finished = f.launch.start();
-    if (action === 'browser') f.elements.fallback.emit('click');
-    else f.host.emit('pagehide');
-    late.resolve(response({ digitalId: 38811 }));
-    await finished;
-    assert.equal(f.requests[0][1].signal.aborted, true);
-    assert.equal(f.requests.length, 1);
-    assert.deepEqual(f.navigations, []);
-    assert.equal(f.timers.size, 0);
-  }
-});
-
-test('950 Android opens a Marvel Comics app link before and after the cutoff without a lookup', async () => {
-  const appLink = 'https://www.marvelcomicsapp.com/viewer/4879';
-  for (const now of [before, after]) {
-    for (const search of ['?a=4879&i=52986', '?a=4879&d=38811&i=52986']) {
-      const f = fixture(search, () => assert.fail('An app link cannot fetch'), () => assert.fail('no settings lookup'), now, appLaunchUrl);
-      assert.equal(f.elements.fallback.href, appLink);
+    for (const search of ['?i=52986', '?a=4879']) {
+      const f = fixture(search, appLaunchUrl);
+      if (action === 'browser') f.elements.fallback.emit('click');
+      else f.host.emit('pagehide');
       await f.launch.start();
-      assert.deepEqual(f.navigations, [appLink]);
-      assert.equal(f.elements.status.textContent, 'Taking you to this comic in the Marvel Comics app.');
+      assert.deepEqual(f.navigations, [], `${action} ${search}`);
       assert.equal(f.requests.length, 0);
     }
   }
-  for (const search of ['?a=0&d=38811', '?a=4879&a=5&d=38811', '?a=https%3A%2F%2Fevil.example&d=38811']) {
-    const f = fixture(search, () => assert.fail('no fetch'), undefined, before, appLaunchUrl);
-    await f.launch.start();
-    assert.deepEqual(f.navigations, [exactReader], search);
-  }
-  const bare = fixture('?a=4879', () => assert.fail('no fetch'), undefined, before, appLaunchUrl);
-  await bare.launch.start();
-  assert.deepEqual(bare.navigations, []);
-  const unwired = fixture('?a=4879&d=38811', () => assert.fail('no fetch'));
-  await unwired.launch.start();
-  assert.deepEqual(unwired.navigations, [exactReader]);
 });
 
-test('950 the Android launch page note names the app link and the lookup in plain words', () => {
-  const source = readFileSync(new URL('../packaging/android/web/launcher.js', import.meta.url), 'utf8');
-  assert.ok(source.includes("'For some comics, Read tries to open the Marvel Comics app. If it cannot open an app, Read opens your browser instead. Other comics open in your browser. "
-    + 'Before December 7, 2026, Read may look up the Marvel Unlimited link online for a comic without one. '
-    + 'From that date it opens the general Marvel Comics website without a lookup. '
-    + "Lists, notes and reading progress are not sent.'"));
-  assert.doesNotMatch(source, /Bifrost|metadata/);
-});
-
-test('950 Android MU addresses keep the same comic, bypass lookup and retain the viewer preference', async () => {
-  const expected = 'https://www.marvelcomicsapp.com/mu/issues/10441';
-  for (const now of [before, after]) {
-    const f = fixture('?m=10441&i=10441', () => assert.fail('no fetch'),
-      () => assert.fail('no settings lookup'), now, appLaunchUrl);
-    assert.equal(f.elements.fallback.href, expected);
+test('950 Android opens a Marvel Comics app link without a lookup, whatever else the link carries', async () => {
+  const appLink = 'https://www.marvelcomicsapp.com/viewer/4879';
+  for (const search of ['?a=4879&i=52986', '?a=4879&d=38811&i=52986', '?a=4879&r=unlimited', '?a=4879&r=comics']) {
+    const f = fixture(search, appLaunchUrl);
+    assert.equal(f.elements.fallback.href, appLink);
     await f.launch.start();
-    assert.deepEqual(f.navigations, [expected]);
+    assert.deepEqual(f.navigations, [appLink]);
+    assert.equal(f.elements.status.textContent, 'Taking you to this comic in the Marvel Comics app.');
     assert.equal(f.requests.length, 0);
-    assert.equal(f.timers.size, 0);
   }
-  for (const query of ['m=10442&i=10441', 'm=012&i=012', 'm=0&i=0', 'm=1234567890&i=1234567890',
-    'm=12%2F3&i=12%2F3', 'm=10441&m=10441&i=10441', 'm=10441&i=10441&i=42']) {
-    const f = fixture(`?${query}&d=38811`, () => assert.fail('no fetch'), undefined, before, appLaunchUrl);
+  for (const search of ['?a=0&d=38811', '?a=4879&a=5&d=38811', '?a=https%3A%2F%2Fevil.example&d=38811']) {
+    const f = fixture(search, appLaunchUrl);
     await f.launch.start();
-    assert.deepEqual(f.navigations, [exactReader], query);
+    assert.deepEqual(f.navigations, [MARVEL_COMICS_URL], search);
   }
-  const both = fixture('?a=4879&m=10441&i=10441', () => assert.fail('no fetch'), undefined, before, appLaunchUrl);
+  // #1601: a viewer number alone opens, since a viewer-only comic has nothing else to send.
+  const bare = fixture('?a=4879', appLaunchUrl);
+  await bare.launch.start();
+  assert.deepEqual(bare.navigations, [appLink]);
+  const unwired = fixture('?a=4879&d=38811');
+  await unwired.launch.start();
+  assert.deepEqual(unwired.navigations, [MARVEL_COMICS_URL]);
+});
+
+test('950 the Android launch page note names the app link and the browser, with no cutoff or lookup', () => {
+  const source = readFileSync(new URL('../packaging/android/web/launcher.js', import.meta.url), 'utf8');
+  assert.ok(source.includes("'Comic links can open in the Marvel Comics app or your browser. Find on Marvel Comics opens the website.'"));
+  assert.doesNotMatch(source, /Bifrost|metadata|December|Marvel Unlimited|look up|issuePageUrl|apiBase/);
+});
+
+test('950 Android retired Marvel Unlimited app addresses now open the website, while a viewer still wins', async () => {
+  for (const query of ['m=10441&i=10441', 'm=10441&i=10441&d=38811', 'm=10442&i=10441', 'm=10441&m=10441&i=10441']) {
+    const f = fixture(`?${query}`, appLaunchUrl);
+    assert.equal(f.elements.fallback.href, MARVEL_COMICS_URL, query);
+    await f.launch.start();
+    assert.deepEqual(f.navigations, [MARVEL_COMICS_URL], query);
+    assert.equal(f.navigations.some((url) => retired.test(url)), false);
+    assert.equal(f.requests.length, 0);
+  }
+  const both = fixture('?a=4879&m=10441&i=10441', appLaunchUrl);
   await both.launch.start();
   assert.deepEqual(both.navigations, ['https://www.marvelcomicsapp.com/viewer/4879']);
 });

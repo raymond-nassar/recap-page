@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
+import { beforeFirstInstallmentManifest } from './helpers/first-installment-history.mjs';
 import {
   assertApprovedRelationshipReview, buildMarkdown,
 } from '../scripts/author-cbh-packet.mjs';
@@ -214,7 +215,7 @@ test('Shang-Chi requires its renewed independent relationship approval against a
     issueIds: historicalReadingChoiceIssueIds(entry.id, issueIdsFromValue(await readJson(`src/data/${entry.out}`))).map(String),
   })));
   const peerDigest = libraryDigestFor({
-    ...manifest, lists: published, paths: pathsWithinLists(manifest.paths, published),
+    ...beforeFirstInstallmentManifest(manifest), lists: published, paths: pathsWithinLists(manifest.paths, published),
   }, orders);
   assert.equal(peerDigest, report.libraryDigest);
   const expectedOrderIds = published.map((entry) => entry.id);

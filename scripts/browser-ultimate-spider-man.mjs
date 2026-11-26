@@ -201,11 +201,11 @@ export const ultimateSpiderManActualData = {
         (group) => group.includes('Ultimate Universe story only'),
       ), finale: rendered.headings.at(-1) }));
     const renderedGap = await page.$eval(`#rows .row .rt[data-issue-id="${gapId}"]`, (node) => ({
-      readHidden: node.closest('.row')?.querySelector('.ract button[data-act="open"]')?.hidden,
+      action: node.closest('.row')?.querySelector('.ract button[data-act="open"]:not([hidden])')?.textContent.trim(),
       hasInfo: Boolean(node.closest('.row')?.querySelector('.ract a[data-act="info"]')),
     }));
-    t.check('the unresolved Super Special offers neither a reader nor a made-up issue page',
-      renderedGap.readHidden && !renderedGap.hasInfo, JSON.stringify(renderedGap));
+    t.check('the unresolved Super Special offers Find on Marvel Comics but no made-up issue page',
+      renderedGap.action === 'Find on Marvel Comics' && !renderedGap.hasInfo, JSON.stringify(renderedGap));
 
     await page.reload({ waitUntil: 'load' });
     await page.waitForFunction((title) =>

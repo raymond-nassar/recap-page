@@ -1,4 +1,4 @@
-import { compareListOrders, earlierPublishedOrders, matchesEarlierPublishedOrder, publishedRevisionItems, readingOrderArrangement } from '../lib/listCorrection.js';
+import { compareListOrders, earlierPublishedOrders, offersSafeRevision, publishedRevisionItems, readingOrderArrangement } from '../lib/listCorrection.js';
 import { currentReadingOrder, readingOrderChoiceFor } from '../lib/readingOrderChoices.js';
 import { legacyReadingOrder } from '../lib/legacyReadingOrders.js';
 import { labelledName } from '../lib/accname.js';
@@ -243,7 +243,7 @@ export function createListRevisions({ $, el, getState, activeListId, isCurrent, 
     }
     busy(Boolean(request));
     const offer = $('#list-revision-offer');
-    const hideOffer = !isCurrent() || !canSave() || !list || !matchesEarlierPublishedOrder(list);
+    const hideOffer = !isCurrent() || !canSave() || !list || !offersSafeRevision(list);
     if (hideOffer && isCurrent() && offer.contains(document.activeElement)) focusOptions();
     offer.hidden = hideOffer;
     renderOffline();

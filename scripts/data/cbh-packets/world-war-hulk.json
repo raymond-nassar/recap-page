@@ -1,0 +1,441 @@
+{
+  "schemaVersion": 1,
+  "id": "world-war-hulk",
+  "inventoryId": "world-war-hulk",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/world-war-hulk/",
+  "sourceSection": "The Official Marvel Digital Comics Unlimited Reading Order",
+  "sourceRetrievedAt": "2026-11-24",
+  "sourceProvider": "comic-book-herald",
+  "sourceContentSha256": "94f2036e0562e2b2ffd6533e9da8705ccbb515c48f74c82eb769b3c35a2bf9d3",
+  "sourceBoundary": "The exact 39 numbered issue references under \"The Official Marvel Digital Comics Unlimited Reading Order\", in displayed order.",
+  "excludedSourceReferences": [
+    "Introductory prose and Planet Hulk recommendation",
+    "Preceding nine-book trade timeline and contents notes",
+    "Next links to Hulk: Aftersmash or Secret Invasion and Tie-Ins after the checklist, not the Aftersmash #1 bullet at position 39",
+    "Page support and reader interactions"
+  ],
+  "canonicalSourcePositions": true,
+  "expectedCount": 39,
+  "proposedManifest": {
+    "id": "world-war-hulk",
+    "name": "World War Hulk",
+    "description": "The heroes who shot Hulk into space should have planned for the return trip. Now he's parked a ship full of gladiators over Manhattan, and he wants payback.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "coverIssueId": 15873,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/world-war-hulk/",
+    "sourceSection": "The Official Marvel Digital Comics Unlimited Reading Order",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "world_war_hulk.json",
+    "expect": 39,
+    "timeline": 2007,
+    "sourceFile": "world-war-hulk.md"
+  },
+  "insertionAnchor": {
+    "beforeId": "annihilation-conquest"
+  },
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Incredible Hulk #106",
+      "normalizedSeriesTitle": "Hulk",
+      "seriesYear": 1999,
+      "issueNumber": "106",
+      "seriesId": 465,
+      "candidateIssueId": 13426,
+      "manualSeriesSelectionApproved": true
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "World War Hulk Prologue: World Breaker #1",
+      "normalizedSeriesTitle": "World War Hulk Prologue: World Breaker",
+      "seriesYear": 2007,
+      "issueNumber": "1",
+      "seriesId": 2220,
+      "candidateIssueId": 13507,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "World War Hulk #1",
+      "normalizedSeriesTitle": "World War Hulk",
+      "seriesYear": 2007,
+      "issueNumber": "1",
+      "seriesId": 2400,
+      "candidateIssueId": 15873,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Ghost Rider #12",
+      "normalizedSeriesTitle": "Ghost Rider",
+      "seriesYear": 2006,
+      "issueNumber": "12",
+      "seriesId": 1104,
+      "candidateIssueId": 15850,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Iron Man: Director of S.H.I.E.L.D. #19",
+      "normalizedSeriesTitle": "The Invincible Iron Man",
+      "seriesYear": 2004,
+      "issueNumber": "19",
+      "seriesId": 835,
+      "candidateIssueId": 15825,
+      "manualSeriesSelectionApproved": true
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Incredible Hulk #107",
+      "normalizedSeriesTitle": "Hulk",
+      "seriesYear": 1999,
+      "issueNumber": "107",
+      "seriesId": 465,
+      "candidateIssueId": 15807,
+      "manualSeriesSelectionApproved": true
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "World War Hulk: Front Line #1",
+      "normalizedSeriesTitle": "World War Hulk: Front Line",
+      "seriesYear": 2007,
+      "issueNumber": "1",
+      "seriesId": 2407,
+      "candidateIssueId": 15879,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "World War Hulk: X-Men #1",
+      "normalizedSeriesTitle": "World War Hulk: X-Men",
+      "seriesYear": 2007,
+      "issueNumber": "1",
+      "seriesId": 2418,
+      "candidateIssueId": 15889,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Irredeemable Ant-Man #10",
+      "normalizedSeriesTitle": "The Irredeemable Ant-Man",
+      "seriesYear": 2006,
+      "issueNumber": "10",
+      "seriesId": 977,
+      "candidateIssueId": 15950,
+      "manualSeriesSelectionApproved": true
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "World War Hulk: Gamma Corps #1",
+      "normalizedSeriesTitle": "World War Hulk: Gamma Corps",
+      "seriesYear": 2007,
+      "issueNumber": "1",
+      "seriesId": 2538,
+      "candidateIssueId": 16006,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "World War Hulk #2",
+      "normalizedSeriesTitle": "World War Hulk",
+      "seriesYear": 2007,
+      "issueNumber": "2",
+      "seriesId": 2400,
+      "candidateIssueId": 15984,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "World War Hulk: Front Line #2",
+      "normalizedSeriesTitle": "World War Hulk: Front Line",
+      "seriesYear": 2007,
+      "issueNumber": "2",
+      "seriesId": 2407,
+      "candidateIssueId": 15988,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Avengers: The Initiative #4",
+      "normalizedSeriesTitle": "Avengers: The Initiative",
+      "seriesYear": 2007,
+      "issueNumber": "4",
+      "seriesId": 1945,
+      "candidateIssueId": 15976,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Ghost Rider #13",
+      "normalizedSeriesTitle": "Ghost Rider",
+      "seriesYear": 2006,
+      "issueNumber": "13",
+      "seriesId": 1104,
+      "candidateIssueId": 15960,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "World War Hulk: X-Men #2",
+      "normalizedSeriesTitle": "World War Hulk: X-Men",
+      "seriesYear": 2007,
+      "issueNumber": "2",
+      "seriesId": 2418,
+      "candidateIssueId": 15999,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "Heroes for Hire #11",
+      "normalizedSeriesTitle": "Heroes for Hire",
+      "seriesYear": 2006,
+      "issueNumber": "11",
+      "seriesId": 1121,
+      "candidateIssueId": 15853,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "Heroes for Hire #12",
+      "normalizedSeriesTitle": "Heroes for Hire",
+      "seriesYear": 2006,
+      "issueNumber": "12",
+      "seriesId": 1121,
+      "candidateIssueId": 15963,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Iron Man: Director of S.H.I.E.L.D. #20",
+      "normalizedSeriesTitle": "The Invincible Iron Man",
+      "seriesYear": 2004,
+      "issueNumber": "20",
+      "seriesId": 835,
+      "candidateIssueId": 15942,
+      "manualSeriesSelectionApproved": true
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "Incredible Hulk #108",
+      "normalizedSeriesTitle": "Hulk",
+      "seriesYear": 1999,
+      "issueNumber": "108",
+      "seriesId": 465,
+      "candidateIssueId": 15925,
+      "manualSeriesSelectionApproved": true
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "World War Hulk #3",
+      "normalizedSeriesTitle": "World War Hulk",
+      "seriesYear": 2007,
+      "issueNumber": "3",
+      "seriesId": 2400,
+      "candidateIssueId": 16168,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "World War Hulk: Front Line #3",
+      "normalizedSeriesTitle": "World War Hulk: Front Line",
+      "seriesYear": 2007,
+      "issueNumber": "3",
+      "seriesId": 2407,
+      "candidateIssueId": 16173,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "Incredible Hulk #109",
+      "normalizedSeriesTitle": "Hulk",
+      "seriesYear": 1999,
+      "issueNumber": "109",
+      "seriesId": 465,
+      "candidateIssueId": 16107,
+      "manualSeriesSelectionApproved": true
+    },
+    {
+      "sourcePosition": 23,
+      "sourceIssueReference": "World War Hulk: Gamma Corps #2",
+      "normalizedSeriesTitle": "World War Hulk: Gamma Corps",
+      "seriesYear": 2007,
+      "issueNumber": "2",
+      "seriesId": 2538,
+      "candidateIssueId": 16189,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 24,
+      "sourceIssueReference": "World War Hulk: X-Men #3",
+      "normalizedSeriesTitle": "World War Hulk: X-Men",
+      "seriesYear": 2007,
+      "issueNumber": "3",
+      "seriesId": 2418,
+      "candidateIssueId": 16183,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 25,
+      "sourceIssueReference": "Avengers: The Initiative #5",
+      "normalizedSeriesTitle": "Avengers: The Initiative",
+      "seriesYear": 2007,
+      "issueNumber": "5",
+      "seriesId": 1945,
+      "candidateIssueId": 16162,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 26,
+      "sourceIssueReference": "Incredible Hulk #110",
+      "normalizedSeriesTitle": "Hulk",
+      "seriesYear": 1999,
+      "issueNumber": "110",
+      "seriesId": 465,
+      "candidateIssueId": 16448,
+      "manualSeriesSelectionApproved": true
+    },
+    {
+      "sourcePosition": 27,
+      "sourceIssueReference": "Heroes for Hire #13",
+      "normalizedSeriesTitle": "Heroes for Hire",
+      "seriesYear": 2006,
+      "issueNumber": "13",
+      "seriesId": 1121,
+      "candidateIssueId": 16148,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 28,
+      "sourceIssueReference": "World War Hulk: Gamma Corps #3",
+      "normalizedSeriesTitle": "World War Hulk: Gamma Corps",
+      "seriesYear": 2007,
+      "issueNumber": "3",
+      "seriesId": 2538,
+      "candidateIssueId": 16596,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 29,
+      "sourceIssueReference": "World War Hulk #4",
+      "normalizedSeriesTitle": "World War Hulk",
+      "seriesYear": 2007,
+      "issueNumber": "4",
+      "seriesId": 2400,
+      "candidateIssueId": 16557,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 30,
+      "sourceIssueReference": "World War Hulk: Front Line #4",
+      "normalizedSeriesTitle": "World War Hulk: Front Line",
+      "seriesYear": 2007,
+      "issueNumber": "4",
+      "seriesId": 2407,
+      "candidateIssueId": 16174,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 31,
+      "sourceIssueReference": "World War Hulk: Front Line #5",
+      "normalizedSeriesTitle": "World War Hulk: Front Line",
+      "seriesYear": 2007,
+      "issueNumber": "5",
+      "seriesId": 2407,
+      "candidateIssueId": 16569,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 32,
+      "sourceIssueReference": "Punisher War Journal #12",
+      "normalizedSeriesTitle": "Punisher War Journal",
+      "seriesYear": 2006,
+      "issueNumber": "12",
+      "seriesId": 1112,
+      "candidateIssueId": 16514,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 33,
+      "sourceIssueReference": "Heroes for Hire #14",
+      "normalizedSeriesTitle": "Heroes for Hire",
+      "seriesYear": 2006,
+      "issueNumber": "14",
+      "seriesId": 1121,
+      "candidateIssueId": 16515,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 34,
+      "sourceIssueReference": "Heroes for Hire #15",
+      "normalizedSeriesTitle": "Heroes for Hire",
+      "seriesYear": 2006,
+      "issueNumber": "15",
+      "seriesId": 1121,
+      "candidateIssueId": 16516,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 35,
+      "sourceIssueReference": "World War Hulk: Gamma Corps #4",
+      "normalizedSeriesTitle": "World War Hulk: Gamma Corps",
+      "seriesYear": 2007,
+      "issueNumber": "4",
+      "seriesId": 2538,
+      "candidateIssueId": 16597,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 36,
+      "sourceIssueReference": "Incredible Hulk #111",
+      "normalizedSeriesTitle": "Hulk",
+      "seriesYear": 1999,
+      "issueNumber": "111",
+      "seriesId": 465,
+      "candidateIssueId": 16449,
+      "manualSeriesSelectionApproved": true
+    },
+    {
+      "sourcePosition": 37,
+      "sourceIssueReference": "World War Hulk #5",
+      "normalizedSeriesTitle": "World War Hulk",
+      "seriesYear": 2007,
+      "issueNumber": "5",
+      "seriesId": 2400,
+      "candidateIssueId": 16560,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 38,
+      "sourceIssueReference": "World War Hulk: Front Line #6",
+      "normalizedSeriesTitle": "World War Hulk: Front Line",
+      "seriesYear": 2007,
+      "issueNumber": "6",
+      "seriesId": 2407,
+      "candidateIssueId": 16570,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 39,
+      "sourceIssueReference": "World War Hulk: Aftersmash #1",
+      "normalizedSeriesTitle": "WORLD WAR HULK: AFTERSMASH 1",
+      "seriesYear": 2007,
+      "issueNumber": "1",
+      "seriesId": 3020,
+      "candidateIssueId": 17231,
+      "manualSeriesSelectionApproved": true
+    }
+  ],
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the source and mapping authors",
+    "reviewedAt": "2026-11-25T15:12:33-08:00",
+    "rationale": "The exact 39 numbered issues under the named Comic Book Herald heading match the retained source and original issue-by-issue mapping. The published trade references are a separate presentation: six W2 entries and 33 links to their issue-order positions, not a second invented chronology. The source includes Aftersmash #1 at position 39; the separate Aftersmash guide remains available. Later story references are not extra issues. The published art for World War Hulk #1 is attached to the actual third issue and the first issue date places the guide between Silent War and Annihilation Conquest. The current source scope is distinct from the short Civil War Avengers and Aftersmash intersections recorded in the original block."
+  },
+  "packetDigest": "03549d532a34cce540cc88f97f0af1ffd8ea4643cd1a6f86910d0f011109c689"
+}

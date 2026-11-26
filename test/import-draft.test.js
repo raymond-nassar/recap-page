@@ -4,7 +4,11 @@ import {
   DRAFT_FORMAT, DRAFT_VERSION, sourceOccurrences, validateImportDraft,
   importProjection, occurrenceIssue, pendingOutcome, listSignature,
 } from '../src/js/lib/importDraft.js';
-import { createEmptyState, createList, addIssuesToList, markRead, normalizeIssue, MAX_BACKUP_BYTES } from '../src/js/lib/model.js';
+import {
+  createEmptyState, createList, addIssuesToList, markRead, normalizeIssue, MAX_BACKUP_BYTES,
+  publishImportOccurrences,
+} from '../src/js/lib/model.js';
+import { appViewerUrl, viewerKey } from '../src/js/lib/marvelComicsAppUrl.js';
 
 function sample(rawText = '# Raw\r\n\r\nprose\r\n- [x] [One](https://www.marvel.com/comics/issue/1/)\r\n- [ ] Two\u00a0#2\r\n') {
   return {
@@ -74,6 +78,26 @@ test('a resolved annotated source saves a clean issue title without changing its
   const issue = occurrenceIssue(entry);
   assert.equal(issue.issueId, 7);
   assert.equal(issue.title, 'Repaired');
+});
+
+test('a pasted app viewer identity survives import projection and publication', () => {
+  const rawText = `- [x] [Runaways (2015) #1](${appViewerUrl('12618')})`;
+  const draft = sample(rawText);
+  const validated = validateImportDraft(JSON.stringify(draft));
+  const issue = occurrenceIssue(validated.occurrences[0]);
+  const state = publishImportOccurrences(
+    createEmptyState(),
+    { destination: { id: 'imported', name: 'Imported', created: 1, newList: true, prefix: [] }, occurrences: validated.occurrences },
+    [issue],
+    [0],
+    123,
+  ).state;
+
+  assert.equal(issue.issueId, viewerKey('12618'));
+  assert.equal(issue.appViewer, '12618');
+  assert.deepEqual(state.lists.imported.itemIds, [viewerKey('12618')]);
+  assert.equal(state.issues[viewerKey('12618')].appViewer, '12618');
+  assert.equal(state.read[viewerKey('12618')], 123);
 });
 
 test('pending outcome requires unchanged before token and never replays a completed marker after deliberate unread', () => {

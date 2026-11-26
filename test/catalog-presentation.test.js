@@ -44,6 +44,35 @@ const list = {
 const controls = (card) => descendants(card)
   .filter((node) => node.tag === 'button' || (node.tag === 'a' && node.href));
 
+test('one 2007 bridge chooser previews and adds or opens individual parts, never their parent', () => {
+  const first = { ...list, id: 'bridge-part-1', name: 'Bridge: Part 1', count: 18 };
+  const second = { ...list, id: 'bridge-part-2', name: 'Bridge: Part 2', count: 20 };
+  const calls = [];
+  const shared = createCatalogPresentation({
+    el, hueOf: () => 0, paintCoverUrl: () => {}, shortTitle: (value) => value,
+    isInLibrary: (id) => id === second.id ? { id: 'saved-part-2' } : null,
+    onAdd: (item) => calls.push(['add', item.id]),
+    onFollowSectional: (id) => calls.push(['preview', id]),
+    onOpen: (item, saved) => calls.push(['open', item.id, saved.id]),
+  });
+  const card = shared.placementCard({
+    key: 'placement:bridge', name: 'Bridge', year: 2007, placement: true, sectional: true,
+    options: [first, second].map((item) => ({ label: item.name, list: item, savedAs: [] })),
+  });
+  assert.equal(card.dataset.year, 2007);
+  assert.deepEqual(descendants(card).filter((node) => node.tag === 'summary').map(text), ['Bridge']);
+  const [previewFirst, add, previewSecond, open] = controls(card);
+  assert.equal(previewFirst.href, '#/preview/bridge-part-1');
+  assert.equal(previewSecond.href, '#/preview/bridge-part-2');
+  previewFirst.onclick({ button: 0, ctrlKey: true, preventDefault: () => assert.fail('native gesture intercepted') });
+  previewFirst.onclick({ button: 0, preventDefault() {} });
+  assert.equal(text(add), '+ Add to library');
+  add.onclick({ currentTarget: add });
+  assert.equal(open.href, '#/read/saved-part-2');
+  open.onclick({ button: 0, preventDefault() {} });
+  assert.deepEqual(calls, [['preview', first.id], ['add', first.id], ['open', second.id, 'saved-part-2']]);
+});
+
 test('P04 list links carry the same visible related-realities qualifier and preserve native navigation', () => {
   const navigated = [];
   const shared = createCatalogPresentation({
@@ -237,6 +266,28 @@ test('cards and search rows distinguish a saved copy with a different comic coun
     paintCoverUrl: () => {}, shortTitle: (title) => title,
   });
   assert.doesNotMatch(text(matching.catalogCard({ key: 'spider-man', lists: [list] })), /Saved copy:/);
+});
+
+test('cards and search rows show the comic count without developer gap notes', () => {
+  const gappy = {
+    ...list,
+    count: 157,
+    placeholderCount: 1,
+    emptyRecordCount: 2,
+    ownerConfirmedIdentityCount: 3,
+    ownerSupplementedCount: 2,
+    ownerGcdSupplementedCount: 1,
+  };
+  for (const surface of [
+    presentation.catalogCard({ key: 'spider-man', lists: [gappy] }),
+    presentation.catalogRow(gappy, { report: '#catalog-report' }),
+  ]) {
+    const meta = descendants(surface).find((node) =>
+      node.tag === 'p' && (node.class === 'catalog-card-meta' || node.class === 'result-meta'));
+    assert.equal(text(meta), '157 comics');
+  }
+  const card = presentation.catalogCard({ key: 'spider-man', lists: [gappy] });
+  assert.equal(text(descendants(card).find((node) => node.class === 'catalog-card-desc')), gappy.description);
 });
 
 test('a card has three keyboard stops with a linked source and two without one', () => {

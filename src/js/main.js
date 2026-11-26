@@ -31,7 +31,8 @@ import { RateLimiter } from './lib/limiter.js';
 import { Hydrator } from './hydrate.js';
 import { NO_SYNOPSIS, SessionSynopsis, SynopsisRunner } from './synopsis.js';
 import { openIssue as openIssueTab, detailUrl, isLaunchable } from './reader.js';
-import { readerClosureNotice } from './lib/readerDestination.js';
+import { readerAction, readerClosureNotice } from './lib/readerDestination.js';
+import { guardIdentityImport } from './lib/identityReconcile.js';
 import { createTemporaryReaderLinks } from './lib/temporaryReaderLink.js';
 import { createReaderLinkView } from './views/reader-link.js';
 import { APP_VERSION } from './lib/version.js';
@@ -63,6 +64,8 @@ import { createReadingView, synopsisFallback } from './views/reading.js';
 import { createListRevisions } from './views/list-revisions.js';
 import { createReadingOrderSwitch } from './views/reading-order-switch.js';
 import { isListRevisionVerificationPaused, saveListRevision } from './lib/listRevisionSave.js';
+import { SECTIONAL_GUIDE_COPY, sectionalReadingRows } from './lib/sectionalGuide.js';
+import { eventReadingLayout } from './views/shared/event-reading-order.js';
 import { switchReadingOrder } from './lib/listCorrection.js';
 import { createBulkReadView } from './views/bulk-read.js';
 import { createHomeView } from './views/home.js';
@@ -1443,8 +1446,9 @@ async function restoreSeriesOpener(destination) {
   else focusViewHeading(destination);
 }
 
-function navigateToGuidePreview(previewId) {
-  const href = formatRoute({ view: 'new-to-comics', previewId });
+function navigateToGuidePreview(previewId, { previewPosition, preparedOrder, sectionalOpener } = {}) {
+  const route = { view: 'new-to-comics', previewId, previewPosition };
+  const href = formatRoute(route);
   if (!href) return;
   navigationPosition.cancel();
   navigationPosition.capture();
@@ -1453,12 +1457,36 @@ function navigateToGuidePreview(previewId) {
     delete current.issueFocusOpener;
     delete current.universeOpener;
     delete current.seriesOpener;
-    history.replaceState({ ...current, guidePreviewOpener: previewId }, '', location.href);
+    delete current.sectionalGuideOpener;
+    delete current.guidePreviewOpener;
+    const opener = sectionalOpener
+      ? { sectionalGuideOpener: { key: sectionalOpener.dataset.key, view, to: href } }
+      : { guidePreviewOpener: previewId };
+    history.replaceState({ ...current, ...opener }, '', location.href);
     navigationPosition.push(href);
     history.replaceState({ ...history.state, guidePreviewParent: previewId }, '', location.href);
   }
   acknowledgedHash = location.hash;
-  applyRoute({ view: 'new-to-comics', previewId }, { focus: true });
+  applyRoute(route, { focus: true, preparedOrder });
+}
+
+async function openSectionalDestination(id, position, anchor) {
+  const hash = location.hash;
+  const token = routedPreviewToken;
+  const dialog = anchor.closest('dialog');
+  const current = () => anchor.isConnected && anchor.checkVisibility()
+    && (!dialog || dialog.open) && location.hash === hash && routedPreviewToken === token;
+  const catalog = await loadCatalog();
+  const list = catalog.lists.find((entry) => entry.id === id);
+  if (!list || !current()) return false;
+  const order = await loadBundledOrder(list.file);
+  if (!current() || order.id !== id || !Array.isArray(order.items) || !order.items.length) return false;
+  const sectional = sectionalReadingRows(list.sectionalPart, order.items);
+  if ((list.sectionalPart && !sectional)
+    || (position !== undefined
+      && (!(sectional || eventReadingLayout(id, order.items)) || position > order.items.length))) return false;
+  navigateToGuidePreview(id, { previewPosition: position, preparedOrder: order, sectionalOpener: anchor });
+  return true;
 }
 
 function issueFocusHref(issueId, context = null) {
@@ -1581,6 +1609,7 @@ let acknowledgedHash = null;
 let keptOpener = null;
 let navigationPosition;
 let routedPreviewId = null;
+let routedPreviewPosition;
 let routedPreviewToken = null;
 let routedPreviewReady = null;
 let routedPreviewInitialFocus = null;
@@ -1642,7 +1671,7 @@ function syncHash({ push = false } = {}) {
   const { shown, showFilter } = readingView.filterTraversalSnapshot({ push });
   const sort = view === 'spotlights' ? catalogView.sort() : null;
   const next = routedPreviewId && view === 'new-to-comics'
-    ? formatRoute({ view, previewId: routedPreviewId })
+    ? formatRoute({ view, previewId: routedPreviewId, previewPosition: routedPreviewPosition })
     : view === 'issue' && issueRoute
       ? formatRoute(issueRoute)
       : view === 'add-series' && routedSeriesRoute
@@ -1716,8 +1745,12 @@ function rememberAbout() {
 // during module evaluation, which left the hashchange listener unregistered. `Object.hasOwn` asks
 // the question the guard means. BL-068 has since given the map a null prototype, so this now holds
 // twice over, and it stays because it states the question rather than relying on the map's type.
-function applyRoute(route, { focus, filterIfAbsent, aboutTraversal = false }) {
+function applyRoute(route, { focus, filterIfAbsent, aboutTraversal = false, preparedOrder }) {
   const departedPreviewId = routedPreviewId;
+  const departedPreviewHref = departedPreviewId
+    ? formatRoute({ view: 'new-to-comics', previewId: departedPreviewId, previewPosition: routedPreviewPosition }) : null;
+  const sectionalOpener = history.state?.sectionalGuideOpener;
+  const restoreSectional = focus && sectionalOpener?.to === departedPreviewHref && sectionalOpener.view === route.view;
   applyingRoute = true;
   try {
     if (route.view !== 'add-series' || !route.seriesId) clearRoutedSeries();
@@ -1738,8 +1771,12 @@ function applyRoute(route, { focus, filterIfAbsent, aboutTraversal = false }) {
       readingView.endFilterRun({ commit: false });
       showView('new-to-comics', { focus });
       routedPreviewId = route.previewId;
+      routedPreviewPosition = route.previewPosition;
       routedPreviewToken = {};
-      routedPreviewReady = loadGuidePreview(route.previewId, routedPreviewToken);
+      routedPreviewReady = loadGuidePreview(route.previewId, routedPreviewToken, {
+        position: route.previewPosition, preparedOrder,
+      });
+      if (restoreSectional) void restoreSectionalOpener(sectionalOpener, routedPreviewReady, $('#preview'));
       if (focus) void restoreIssueFocusOpener('new-to-comics');
       if (focus) void restoreUniverseOpener('new-to-comics');
       return;
@@ -1813,7 +1850,7 @@ function applyRoute(route, { focus, filterIfAbsent, aboutTraversal = false }) {
       readingView.setFullOrderFromRoute(openFromRoute);
       if (openFromRoute && readingView.hasRowsPending()) readingView.renderRows();
     }
-    showView(route.view, { focus, at: route.at ?? null, aboutTraversal });
+    showView(route.view, { focus, at: route.at ?? null, aboutTraversal, sectionalOpener: restoreSectional ? sectionalOpener : null });
   } finally {
     applyingRoute = false;
   }
@@ -1830,7 +1867,9 @@ function applyRoute(route, { focus, filterIfAbsent, aboutTraversal = false }) {
 // Moving focus to the new view's heading is what makes the rail usable with a keyboard or a
 // screen reader. Without it, focus stays on the rail button and the view change is silent, so
 // the next Tab continues from the old position and nothing announces where you now are.
-function showView(next, { focus = true, push = false, at = null, capturePosition = true, aboutTraversal = false } = {}) {
+function showView(next, {
+  focus = true, push = false, at = null, capturePosition = true, aboutTraversal = false, sectionalOpener = null,
+} = {}) {
   if (push) {
     navigationPosition.cancel();
     if (capturePosition) navigationPosition.capture();
@@ -1839,6 +1878,7 @@ function showView(next, { focus = true, push = false, at = null, capturePosition
   if (next !== 'add-series') clearRoutedSeries();
   if (routedPreviewId) {
     routedPreviewId = null;
+    routedPreviewPosition = undefined;
     routedPreviewToken = null;
     routedPreviewReady = null;
     routedPreviewInitialFocus = null;
@@ -1901,7 +1941,7 @@ function showView(next, { focus = true, push = false, at = null, capturePosition
   else brand.removeAttribute('aria-current');
   renderRail();
   const shelf = CATALOG_SHELVES.find((s) => s.key === next);
-  if (shelf) void catalogView.render(shelf.key);
+  const shelfReady = shelf ? catalogView.render(shelf.key) : null;
   if (generatedCategoryByRoute.has(next)) renderPublishingCategory(next);
   if (next === 'home') homeView.render();
   if (next === 'new-to-comics') void startingPointView.render();
@@ -1947,6 +1987,10 @@ function showView(next, { focus = true, push = false, at = null, capturePosition
 
   if (!focus) return;
   focusViewHeading(next, arrivalHeading()?.id);
+  if (sectionalOpener) {
+    const ready = next === 'read' ? readingView.aboutReady() : shelfReady;
+    void restoreSectionalOpener(sectionalOpener, ready, $(`#view-${next}`));
+  }
 }
 
 function renderBreadcrumbs() {
@@ -2051,6 +2095,20 @@ function guidePreviewLink(previewId) {
     .find((candidate) => candidate.dataset.previewId === previewId && candidate.getAttribute('href') === href);
 }
 
+async function restoreSectionalOpener(opener, ready, root) {
+  const hash = location.hash;
+  const held = document.activeElement;
+  await ready;
+  if (view !== opener.view || location.hash !== hash || history.state?.sectionalGuideOpener?.key !== opener.key) return;
+  if (root?.id !== 'preview' && document.activeElement !== held) return;
+  const link = [...(root?.querySelectorAll('a[data-sectional-opener]') ?? [])]
+    .find((candidate) => candidate.dataset.key === opener.key);
+  if (!link || (root.id === 'preview' && !root.open)) return;
+  const disclosure = link.closest('details');
+  if (disclosure) disclosure.open = true;
+  if (link.checkVisibility()) link.focus();
+}
+
 function focusGuidePreviewOpener(previewId) {
   const link = guidePreviewLink(previewId);
   if (link?.isConnected) link.focus();
@@ -2065,6 +2123,7 @@ function leaveGuidePreview() {
     return;
   }
   routedPreviewId = null;
+  routedPreviewPosition = undefined;
   routedPreviewToken = null;
   routedPreviewReady = null;
   routedPreviewInitialFocus = null;
@@ -2074,7 +2133,7 @@ function leaveGuidePreview() {
   focusGuidePreviewOpener(previewId);
 }
 
-async function loadGuidePreview(previewId, token) {
+async function loadGuidePreview(previewId, token, options) {
   const current = () => routedPreviewToken === token && routedPreviewId === previewId
     && view === 'new-to-comics' && parseRoute(location.hash)?.previewId === previewId;
   const status = $('#guide-preview-status');
@@ -2089,7 +2148,7 @@ async function loadGuidePreview(previewId, token) {
     notify('#guide-preview-report', `The Reading List could not be loaded: ${error.message}. Your saved data is unchanged.`,
       'error', GUIDE_PREVIEW_NOTICE, {
         label: 'Try again',
-        onClick: () => { if (current()) routedPreviewReady = loadGuidePreview(previewId, token); },
+        onClick: () => { if (current()) routedPreviewReady = loadGuidePreview(previewId, token, options); },
       }, { label: 'Return to guide', onClick: leaveGuidePreview });
     return;
   }
@@ -2101,7 +2160,7 @@ async function loadGuidePreview(previewId, token) {
       'warn', GUIDE_PREVIEW_NOTICE, null, { label: 'Return to guide', onClick: leaveGuidePreview });
     return;
   }
-  const ready = previewView.open(list);
+  const ready = previewView.open(list, options);
   routedPreviewInitialFocus = document.activeElement;
   await ready;
 }
@@ -2239,7 +2298,8 @@ export function hydrationAnnouncement(status) {
 
 function readerPresentation(issue, source) {
   const resolved = temporaryReaderLinks.resolve(store.state, issue, { source });
-  return { launchable: resolved.ok && isLaunchable(resolved.issue), temporary: resolved.ok && resolved.temporary };
+  // #1601: Read no longer opens Marvel Unlimited, so a saved temporary link is kept but never used.
+  return { launchable: resolved.ok && isLaunchable(resolved.issue) };
 }
 
 // The hint was one paragraph above every view that the first Read revealed and nothing hid again, so
@@ -2251,17 +2311,13 @@ function retireReaderHelp() {
   document.getElementById('reader-handoff-help')?.remove();
 }
 
-// After the control's own button group, so nothing above the control moves. A row's Read sits in a
-// panel of other commands, so the hint follows Read itself and any temporary-link note it carries.
-// A Coming up tile is too narrow to hold a sentence, so its hint goes under the shelf.
+// After the control's own button group, so nothing above the control moves. A Coming up tile is
+// too narrow to hold a sentence, so the hint goes under the shelf.
 function readerHelpAnchor(control) {
   if (typeof control?.closest !== 'function') return null;
   const shelf = control.closest('.shelf');
   if (shelf) return shelf;
-  if (control.closest('.ract')) {
-    const note = control.nextElementSibling;
-    return note?.dataset?.readerTemporary ? note : control;
-  }
+  if (control.closest('.ract')) return control;
   return control.closest('.cta') ?? control;
 }
 
@@ -2284,23 +2340,11 @@ function openInReader(issue, event, source, control = event?.currentTarget, { ap
     return;
   }
   if (res.target === 'app') announce('Taking you to this comic in the Marvel Comics app.');
-  else announce(res.target === 'comics'
-    ? `Opening the Marvel Comics website to find ${issue.title}. This is not a single-comic link.`
-    : iosApp
-      ? res.target === 'reader'
-        ? `Opening ${issue.title} in Marvel Unlimited. Reading ends December 7, 2026.`
-        : res.target === 'page'
-          ? `Opening the Marvel comic page for ${issue.title}.`
-          : `Opening ${issue.title} and looking up its Unlimited link.`
-      : res.target === 'reader'
-        ? `Opening ${issue.title} in Marvel Unlimited in a new tab. Reading ends December 7, 2026.`
-        : res.target === 'page'
-          ? `Opening the Marvel comic page for ${issue.title} in a new tab.`
-          : `Opening ${issue.title} in a new tab and looking up its Unlimited link.`);
+  else announce(`Opening the Marvel Comics website to find ${issue.title}. This is not a single-comic link.`);
+  const action = readerAction(new Date(), { app: res.target === 'app' });
   showHelp(iosApp
-    ? 'If the comic does not open, choose Read again. Opening a comic does not mark it read.'
-    : "If no new tab appears, check your browser's popup controls for this site, "
-      + 'then choose Read again. Opening a comic does not mark it read.');
+    ? `If nothing opens, choose ${action} again.`
+    : `If nothing opens, allow pop-ups for this site and choose ${action} again.`);
 }
 
 // ------------------------------------------------------------------ synopsis fetching
@@ -2451,8 +2495,23 @@ async function importCurated(list, btn, {
     const res = await fetch(`./data/${file}`, { cache: 'no-cache' });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const order = await res.json();
+    if (list.sectionalPart && (order.id !== list.id || !Array.isArray(order.items)
+      || !sectionalReadingRows(list.sectionalPart, order.items))) {
+      notify(report, SECTIONAL_GUIDE_COPY.linkFailed, 'error', importKey);
+      return null;
+    }
 
     let added = 0;
+    // #1601: an order is added already moved to this release's identities, so a fresh copy and a
+    // library saved before the update hold one checkmark for one comic. A change that would leave
+    // two usable checkmarks for the same comic is refused whole, and nothing is written.
+    let conflict = false;
+    const settle = (before, after) => {
+      if (conflict) return before;
+      const guarded = guardIdentityImport(before, after);
+      if (guarded.conflict) conflict = true;
+      return guarded.state;
+    };
     const addCuratedIssues = (s, id) => {
       // No `hydrated: true` here. It was asserted over the whole file, which is right for the 688
       // items that carry metadata and a false statement about the 63 that carry none. normalizeIssue
@@ -2463,22 +2522,35 @@ async function importCurated(list, btn, {
       const r = addIssuesToList(s, id, order.items.map((i) => ({ ...i, source: 'curated' })), {
         preserveExisting: asCopy,
       });
+      if (r.collisions?.length) conflict = true;
       added = r.added;
       return r.state;
     };
-    const created = store.update((s) => {
-      const next = createList(s, {
-        name: asCopy ? copyName(s, order.name) : order.name, description: order.description, catalogId,
-      });
-      return asCopy ? addCuratedIssues(next, next.listOrder[next.listOrder.length - 1]) : next;
+    const shell = (s) => createList(s, {
+      name: asCopy ? copyName(s, order.name) : order.name, description: order.description, catalogId,
     });
+    const whole = (s) => {
+      const next = shell(s);
+      return addCuratedIssues(next, next.listOrder[next.listOrder.length - 1]);
+    };
+    const refuseConflict = () => {
+      notify(report, `${order.name} could not be saved, so nothing was imported.`, 'error', importKey);
+      return null;
+    };
+    // Checked on the whole order before the list record is written, because the two writes below
+    // would otherwise leave a list shell behind a refusal of its comics.
+    settle(store.state, whole(store.state));
+    if (conflict) return refuseConflict();
+    const created = store.update((s) => (asCopy ? settle(s, whole(s)) : shell(s)));
+    if (conflict) return refuseConflict();
     if (!store.lastUpdateOk) {
       notify(report, `${order.name} could not be saved, so nothing was imported.`, 'error', importKey);
       return null;
     }
     const listId = created.listOrder[created.listOrder.length - 1];
-    if (!asCopy) store.update((s) => addCuratedIssues(s, listId));
-    if (!asCopy && !store.lastUpdateOk) {
+    if (!asCopy) store.update((s) => settle(s, addCuratedIssues(s, listId)));
+    // A collision found only now still leaves the shell, which the cleanup below removes.
+    if (!asCopy && (conflict || !store.lastUpdateOk)) {
       // The list record is written before its issues, so a failure here leaves a shell claiming
       // the catalog entry with nothing in it. That is not merely untidy: it blocks the undo offer
       // for a deleted copy of the same order, and `undoDelete` would then discard the reader's
@@ -3671,6 +3743,12 @@ export function boot() {
     // A page that has to reload because another tab changed saved data writes nothing first.
     void completeRestore.settled.then(() => { if (!completeRestore.state.reloading) startRoute(); });
   } else startRoute();
+  // #1601: saved comics move to this release's identities once saving is open, before cloud backup
+  // compares anything. A restore that is about to reload the page writes nothing first.
+  void completeRestore.settled.then(() => {
+    const { phase, reloading } = completeRestore.state;
+    if ((phase === 'open' || phase === 'unavailable') && !reloading) store.reconcileIdentities();
+  });
   // The deferred journal read, after the first render, so a start with nothing pending never waits.
   void completeRestore.settled.then(() => completeRestore.inspect());
   // Cloud backup goes on only where this browser already agreed, once saving is open and the page is
@@ -3694,7 +3772,8 @@ export function boot() {
     if (route) {
       navigationPosition.beginRestore();
       applyRoute(route, { focus: true, filterIfAbsent: DEFAULT_FILTER, aboutTraversal });
-      if (history.state?.readingPosition && !history.state?.issueFocusOpener && !history.state?.pathStopOpener) navigationPosition.restore();
+      if (history.state?.readingPosition && !history.state?.issueFocusOpener && !history.state?.pathStopOpener
+        && !history.state?.sectionalGuideOpener) navigationPosition.restore();
       else navigationPosition.cancel();
     } else navigationPosition.cancel();
   });
@@ -3740,7 +3819,7 @@ export function boot() {
   if (settings.rejectedApiBase) {
     notify(
       '#app-report',
-      `The saved API URL ${settings.rejectedApiBase} is not usable. The tracker is using ${DEFAULT_BASE} for this session, and any issue without a stored Marvel Unlimited link will open on marvel.com rather than in the reader. Set a usable URL under Backup & settings: use https, or http against localhost.`,
+      'Recap Page is using the default address for comic details. You can change it in Backup & settings.',
       'warn',
       API_BASE_REJECTED,
     );
@@ -3946,6 +4025,7 @@ const readingView = createReadingView({
   onCancelSynopsis: () => synopsisRunner.cancel(),
   onExportMarkdown: exportMarkdown,
   onExportOrder: exportReadingOrder,
+  onFollowSectional: openSectionalDestination,
   onHydrate: (listId) => hydrator.start(listId),
   onMarkAllRead: () => bulkReadView.markAllRead(),
   onStartSynopsis: startSynopsisRun,
@@ -4288,6 +4368,7 @@ function rememberPathStop(list, act) {
 }
 
 const catalogPresentation = createCatalogPresentation({
+  onFollowSectional: (id, sectionalOpener) => navigateToGuidePreview(id, { sectionalOpener }),
   el,
   elements: { query: $ },
   hueOf,
@@ -4558,6 +4639,7 @@ const catalogView = createCatalogView({
 });
 
 const previewView = createPreviewView({
+  onFollowSectional: openSectionalDestination,
   captureFocus,
   el,
   elements: () => ({

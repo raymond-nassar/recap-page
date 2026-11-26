@@ -3,7 +3,6 @@ import { formatRoute, isPlainNavigation } from '../../lib/route.js';
 import { BROWSE_ONLY_UNIVERSE_ID, universeResolver } from '../../lib/universes.js';
 import {
   catalogCoverUrl,
-  catalogGapLabels,
   defaultPath,
   firstSentence,
   sourceLabel,
@@ -21,6 +20,7 @@ export function createCatalogPresentation({
   onAdd,
   onOpen,
   onPreview,
+  onFollowSectional,
   onUniverse,
   paintCoverUrl,
   resolver = universeResolver,
@@ -30,8 +30,21 @@ export function createCatalogPresentation({
     return defaultPath(story, (list) => isInLibrary(list.id));
   }
 
-  function primaryButton(list, reportTarget) {
-    const saved = isInLibrary(list.id);
+  // The reading a card stands for: the first of the list and its `savedAs` continuations that is
+  // saved, else the list itself. Preview and Open both take it, so a reading saved only under
+  // another name is previewed as that saved copy rather than offered for adding a second time.
+  function savedReading(list, savedAs = []) {
+    for (const candidate of [list, ...savedAs]) {
+      const saved = isInLibrary(candidate.id);
+      if (saved) return { list: candidate, saved };
+    }
+    return { list, saved: null };
+  }
+
+  // `savedAs` names other catalog lists whose saved copy continues this one, so a reading saved
+  // under another name opens that copy instead of offering a second one.
+  function primaryButton(list, reportTarget, { savedAs = [] } = {}) {
+    const { list: opens, saved } = savedReading(list, savedAs);
     if (saved) {
       const text = 'Open →';
       return el('a', {
@@ -42,7 +55,7 @@ export function createCatalogPresentation({
         onclick: (event) => {
           if (!isPlainNavigation(event)) return;
           event?.preventDefault();
-          onOpen(list, saved, reportTarget);
+          onOpen(opens, saved, reportTarget);
         },
       }, text);
     }
@@ -55,12 +68,14 @@ export function createCatalogPresentation({
     }, CATALOG_ADD);
   }
 
+  // Readers want the description and how many comics a guide covers. The gap and hand-check counts
+  // served only the guide's maintainer, so the owner asked for them off every card and search row
+  // (#1601); Preview still states them for a reader who opens a guide's details.
   function catalogMeta(list) {
     const saved = isInLibrary(list.id);
     const savedCount = Array.isArray(saved?.itemIds) ? saved.itemIds.length : null;
     return [
       `${list.count} comic${list.count === 1 ? '' : 's'}`,
-      ...catalogGapLabels(list),
       ...(savedCount != null && savedCount !== list.count
         ? [`Saved copy: ${savedCount} comic${savedCount === 1 ? '' : 's'}`] : []),
     ].join(' · ');
@@ -202,6 +217,61 @@ export function createCatalogPresentation({
         ]),
       ]),
       el('div', { class: 'catalog-card-actions' }, primaryButton(list, reportTarget)),
+    ]);
+  }
+
+  // One timeline stop with several readings (owner decision, 2026-11-24): each reading keeps its own
+  // Preview and its own Open or Add, so choosing one never adds or changes another. The heading is
+  // plain text because no single list stands behind it.
+  function placementCard(story, {
+    surface = 'catalog',
+    report = null,
+    level = 'h3',
+    linkText = null,
+  } = {}) {
+    const reportTarget = report ?? `#${surface}-report`;
+    const year = storyYear(story);
+    const options = el('ul', { class: 'placement-options' }, story.options.map((option) => {
+      const { list } = option;
+      const destination = story.sectional ? {
+        href: formatRoute({ view: 'new-to-comics', previewId: list.id }),
+        onclick: (event) => {
+          if (!isPlainNavigation(event)) return;
+          event.preventDefault();
+          onFollowSectional(list.id, event.currentTarget);
+        },
+      } : {
+        type: 'button', onclick: () => onPreview(savedReading(list, option.savedAs).list),
+      };
+      return el('li', { class: 'placement-option', dataset: { key: list.id } }, [
+        el('div', { class: 'placement-option-text' }, [
+          el(story.sectional ? 'a' : 'button', {
+            class: 'catalog-card-preview placement-option-title',
+            'aria-label': shownName([option.label], `Preview ${list.name}`),
+            dataset: {
+              key: `${story.key}:${list.id}`, act: 'preview', ...(story.sectional ? { sectionalOpener: '' } : {}),
+            },
+            ...destination,
+          }, el('span', { text: option.label })),
+          el('p', { class: 'catalog-card-meta', text: catalogMeta(list) }),
+          ...(story.sectional && list.description
+            ? [el('p', { class: 'catalog-card-desc', text: list.description })] : []),
+          ...(linkText ? [el('p', {
+            class: 'catalog-card-links', text: linkText({ ...story, lists: [list] }),
+          })] : []),
+        ]),
+        el('div', { class: 'catalog-card-actions' }, primaryButton(list, reportTarget, { savedAs: option.savedAs })),
+      ]);
+    }));
+    const chooser = story.sectional ? [el('details', {}, [
+      el('summary', {}, [el(level, { class: 'catalog-card-title', text: story.name })]),
+      options,
+    ])] : [el(level, { class: 'catalog-card-title', text: story.name }), options];
+    return el('article', {
+      class: 'catalog-card placement-card',
+      dataset: { story: story.stopKey ?? story.key, placement: story.key, year: year ?? '' },
+    }, [
+      el('div', { class: 'catalog-card-text' }, chooser),
     ]);
   }
 
@@ -372,7 +442,7 @@ export function createCatalogPresentation({
         const yearId = `${idPrefix}-year-${year}`;
         const grid = el('div', { class: 'catalog-grid timeline-year-cards' });
         for (const story of yearStories) {
-          grid.append(catalogCard(story, {
+          grid.append((story.placement ? placementCard : catalogCard)(story, {
             ...cardOptions,
             level: cardLevel,
           }));
@@ -466,6 +536,7 @@ export function createCatalogPresentation({
     ensureSetupGuideFeature,
     setSetupGuideVisibility,
     paintTimelinePosition,
+    placementCard,
     renderTimelineSections,
     resolver,
     issueUniverseLines,

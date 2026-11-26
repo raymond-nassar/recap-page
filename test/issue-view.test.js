@@ -162,8 +162,9 @@ test('comic availability stays intact in normal metadata instead of troubleshoot
     const state = { issues: { 42: saved }, lists: {}, read: {}, notes: {}, overrides: override ? { 42: override } : {} };
     const h = harness({ state });
     await h.view.render({ issueId: 42, context: null });
-    assert.equal(h.nodes.read.textContent, 'Read');
-    assert.equal(h.nodes.read.attributes['aria-label'], 'Read: Issue title in Marvel Unlimited (reading ends December 7, 2026)');
+    // #1601: issue 42 has no Marvel Comics app link, so Read offers the website on every date.
+    assert.equal(h.nodes.read.textContent, 'Find on Marvel Comics');
+    assert.equal(h.nodes.read.attributes['aria-label'], 'Find on Marvel Comics: Marvel Comics website to find Issue title (not a single-comic link)');
     assert.equal(h.nodes.facts.children.filter((item) => item.key === 'Marvel Unlimited record').length, 1);
     labels.push(h.nodes.facts.children.find((item) => item.key === 'Marvel Unlimited record').value);
   }
@@ -358,8 +359,8 @@ test('453 reader refresh preserves facts and disclosure and reports explicit res
   temporary = true;
   h.view.refreshReader();
   assert.equal(h.nodes.read.hidden, false);
-  assert.equal(h.nodes.read.textContent, 'Read');
-  assert.equal(h.nodes.read.attributes['aria-label'], 'Read: Issue title in Marvel Unlimited (reading ends December 7, 2026)');
+  assert.equal(h.nodes.read.textContent, 'Find on Marvel Comics');
+  assert.equal(h.nodes.read.attributes['aria-label'], 'Find on Marvel Comics: Marvel Comics website to find Issue title (not a single-comic link)');
   assert.equal(h.nodes.facts.children, facts);
   assert.equal(h.nodes.info.href, info);
   assert.equal(h.nodes.description.textContent, 'Synthetic held description');
@@ -745,30 +746,36 @@ function savedComic(issueId) {
   return { issues: { [issueId]: issue(issueId) }, read: {}, overrides: {}, notes: {}, lists: {} };
 }
 
-test('950 Reading options offers the app and Marvel Unlimited for a linked comic before December 7', async () => {
-  const h = harness({ state: savedComic(12459) });
+// #1601: the Marvel Unlimited choice is gone on every date, so the menu shows only when the app sits
+// beside another place to look. Issue 4216 has an app link and two collected-book library links.
+test('950 Reading options offers the app beside library links and never Marvel Unlimited', async () => {
+  const comic = { ...issue(4216), number: '1', seriesId: 1067 };
+  const state = {
+    issues: { 4216: comic }, read: {}, overrides: {}, notes: {},
+    lists: { sample: { name: 'Sample', catalogId: 'civil-war-avengers', itemIds: [4216] } },
+  };
+  const h = harness({ state });
   h.view.wire();
-  await h.view.render({ issueId: 12459 });
+  await h.view.render({ issueId: 4216, context: { kind: 'list', id: 'sample' } });
   assert.equal(h.nodes.read.textContent, 'Read');
   assert.equal(h.nodes.read.attributes['aria-label'], 'Read Issue title in the Marvel Comics app');
   assert.equal(h.nodes.readingOptions.hidden, false);
   assert.equal(h.nodes.readingOptionsList.hidden, true);
   assert.equal(h.nodes.readingOptionsToggle.attributes['aria-label'], 'Reading options for Issue title');
   const buttons = h.nodes.readingOptionsList.children.map((item) => item.children[0]);
-  assert.deepEqual(buttons.map((button) => [button.tag, button.text, button['aria-label']]), [
-    ['button', 'Marvel Comics app', 'Read Issue title in the Marvel Comics app'],
-    ['button', 'Marvel Unlimited, until December 7, 2026',
-      'Read Issue title in Marvel Unlimited, until December 7, 2026'],
+  assert.deepEqual(buttons.map((button) => [button.tag, button.text]), [
+    ['button', 'Marvel Comics app'],
+    ['a', 'Look for Civil War on Hoopla'],
+    ['a', 'Look for Civil War in Libby'],
   ]);
+  assert.equal(buttons.some((button) => /Unlimited|December/.test(`${button.text} ${button['aria-label']}`)), false);
 
   h.nodes.readingOptionsToggle.listeners.click();
   assert.equal(h.nodes.readingOptionsList.hidden, false);
   assert.equal(h.nodes.readingOptionsToggle.attributes['aria-expanded'], 'true');
-  const event = { currentTarget: buttons[1] };
-  buttons[1].onclick(event);
-  assert.deepEqual(h.calls.read, [[h.view.result().issue, event, 'saved', buttons[1], { app: false }]]);
-  buttons[0].onclick({ currentTarget: buttons[0] });
-  assert.deepEqual(h.calls.read[1].at(-1), { app: true });
+  const event = { currentTarget: buttons[0] };
+  buttons[0].onclick(event);
+  assert.deepEqual(h.calls.read, [[h.view.result().issue, event, 'saved', buttons[0], { app: true }]]);
 
   let prevented = false;
   h.nodes.readingOptions.listeners.keydown({ key: 'Escape', preventDefault() { prevented = true; } });
@@ -803,19 +810,23 @@ test('950 Reading options names the collected book in both library links', async
   ]);
 });
 
-test('950 Reading options stays hidden when there is only one place to read', async (t) => {
+test('950 Reading options stays hidden when there is only one place to read, before and after December 7', async (t) => {
   const unlinked = harness({ state: savedComic(42) });
   await unlinked.view.render({ issueId: 42 });
   assert.equal(unlinked.nodes.read.attributes['aria-label'],
-    'Read: Issue title in Marvel Unlimited (reading ends December 7, 2026)');
+    'Find on Marvel Comics: Marvel Comics website to find Issue title (not a single-comic link)');
   assert.equal(unlinked.nodes.readingOptions.hidden, true);
 
-  t.mock.timers.setTime(new Date(2026, 11, 8, 12).getTime());
-  const linked = harness({ state: savedComic(12459) });
-  await linked.view.render({ issueId: 12459 });
-  assert.equal(linked.nodes.read.attributes['aria-label'], 'Read Issue title in the Marvel Comics app');
-  assert.equal(linked.nodes.readingOptions.hidden, true);
-  assert.equal(linked.nodes.readingOptionsList.hidden, true);
+  // #1601: a linked comic used to gain a Marvel Unlimited choice before December 7. It no longer
+  // does on either side of that date, so the app is its one place to read and the menu stays shut.
+  for (const day of [new Date(2026, 10, 20, 12), new Date(2026, 11, 8, 12)]) {
+    t.mock.timers.setTime(day.getTime());
+    const linked = harness({ state: savedComic(12459) });
+    await linked.view.render({ issueId: 12459 });
+    assert.equal(linked.nodes.read.attributes['aria-label'], 'Read Issue title in the Marvel Comics app');
+    assert.equal(linked.nodes.readingOptions.hidden, true);
+    assert.equal(linked.nodes.readingOptionsList.hidden, true);
+  }
 });
 
 test('950 an unchanged options list follows a refreshed reference to the same comic', async () => {

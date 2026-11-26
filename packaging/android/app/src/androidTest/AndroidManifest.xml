@@ -25,7 +25,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="https" android:host="read.marvel.com" />
+                <data android:scheme="https" android:host="marvel.webtoon.com" />
             </intent-filter>
         </activity>
         <!-- Exported only in the test APK; the provider checks the caller's UID itself. -->

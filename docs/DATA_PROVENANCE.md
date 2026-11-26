@@ -416,18 +416,18 @@ orders: **null means nobody granted anything for this file, not that the file is
 
 ### Reading orders, pinned
 
-Three hundred and fifty-five pinned reading-order payloads remain under
-[`src/data/`](../src/data): 350 active visible catalog files, one active noncatalog partition parent,
+There are 372 pinned reading-order payloads under
+[`src/data/`](../src/data): 366 active visible catalog files, two active internal parents,
 the retired No Way Home (18 originals) and withdrawn Marvel Multiverse (2 comics) payloads, and the
 two earlier X-Men Silver Age to Claremont orders (274 and 404 comics), which no longer appear in
-discovery but stay readable for saved lists and offline copies. The 351 active files hold
-33,823 issue records covering 20,631 distinct tracked identities. The visible files hold 33,336 of those records;
-the extra 487 are the retained Marvel Knights to Planet X parent whose ordinary children partition
-the same vector. Records use these fields:
+discovery but stay readable for saved lists and offline copies. The 368 active files hold
+35,894 issue records covering 21,040 distinct tracked identities. The visible files hold 34,504 of those records;
+the extra 1,390 come from the retained Marvel Knights to Planet X and Civil War to Secret Invasion
+parents, whose children partition the same vectors. Records use these fields:
 `issueId`, `title`,
 `number`, `url`, `seriesId`, `seriesName`, `onSale`, `mu`, `digitalId`, `pageCount`, a `cover`
-object of `path` and `ext`, and `creators` of `name` and `role`. Across the 351 active payloads, 28,923
-records carry a cover URL and 27,167 carry creator credits. The retired No Way Home payload and both
+object of `path` and `ext`, and `creators` of `name` and `role`. Across the 368 active payloads, 29,335
+records carry a cover URL and 27,529 carry creator credits. The retired No Way Home payload and both
 earlier X-Men payloads remain byte-exact; no retired payload contributes to active discovery or this
 active census.
 
@@ -1027,7 +1027,7 @@ The first is that displaying a description and shipping a copy of one are differ
 those terms rather than two degrees of one act. Using Content inside an App is what the licence is
 for, on a condition the attribution page states plainly: "You must attribute Marvel as the source
 of data whenever you display any results from the Marvel Comics API". The app now names both the
-Marvel origin and its actual route in About at `src/index.html:1442-1446`. Redistributing Content outside an App, and sublicensing it onward, are the
+Marvel origin and its actual route in About at `src/index.html:1437-1441`. Redistributing Content outside an App, and sublicensing it onward, are the
 two things sections 4 and 5 name. An MIT grant is a sublicence to everyone who receives a copy, and
 offers them "sublicense, and/or sell".
 
@@ -1072,9 +1072,9 @@ app encounters that state rather than hypothetically. At removal, 606 carried a 
 id and 69 held neither. Neither metadata shape proves that a synopsis request has completed.
 The interface now distinguishes a summary that has not been loaded from a completed request with
 no synopsis and from prose held only in memory after explicit consent. The shared presentation
-reaches the interface in the reading hero at `src/js/views/reading.js:760` and the issue-details view at
+reaches the interface in the reading hero at `src/js/views/reading.js:776` and the issue-details view at
 `src/js/views/issue.js:108`. The function behind both already answers for the absence at
-`src/js/views/reading.js:109-120`, with a test asserting the sentence it returns. It is also reversible:
+`src/js/views/reading.js:114-125`, with a test asserting the sentence it returns. It is also reversible:
 the project this repository fetched from still serves the field,
 the contract check having run on 2026-08-15 with 33 of 33 assumptions holding, so the vendoring
 script can fetch it again if a review comes back permissive.
@@ -1198,10 +1198,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes four independent Reading Paths with 104 stops: three
 authored paths with 10, 12 and 4 stops from the curated manifest at
-`src/data/curated-lists.json:11461-11512`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:11514-11565`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all four at
-`src/data/catalog.json:17047-17184`.
+`src/data/catalog.json:18762-18899`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -3111,13 +3111,13 @@ Hell's Angel remains in Marvel Ages, not Modern Timeline; its visible source cre
 [timeline decision](https://github.com/raymond-nassar/recap-page/issues/1543#issuecomment-7042912985). Original selection and approval records remain unchanged.
 
 The owner-guide contract requires a positive ID, exact matching owner-supplied Marvel URL, named
-confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:880-902`).
-The vendor excludes these entries from metadata lookup and creates no provider projection
-(`scripts/vendor-orders.mjs:558-562`, `scripts/vendor-orders.mjs:641-642`, `scripts/vendor-orders.mjs:692-693`).
+confirming actor, confirmation date and linked repository comment (`scripts/lib/owner-guide.mjs:881-903`).
+The vendor excludes these entries from metadata lookup and passes an empty detail object to the
+item mapper (`scripts/vendor-orders.mjs:448-457`, `scripts/vendor-orders.mjs:843-851`).
 Unless a row carries the external supplement described below, the published rows carry only their
 confirmed identity, issue ID, URL and refusal state; optional provider details and covers remain
-empty. The ten One World Under Doom rows are of that kind. No comic image bytes are stored and no
-Unlimited availability is inferred.
+empty (`scripts/vendor-orders.mjs:476-521`). The ten One World Under Doom rows are of that kind.
+No comic image bytes are stored and no Unlimited availability is inferred.
 
 ### Owner-approved external supplement for owner-confirmed comics
 
@@ -3145,7 +3145,7 @@ URL and the wiki source is a pinned revision, and only when the cover is on the 
 Grand Comics Database source, approved on 2026-11-16 and described below, may supply only the
 on-sale date and credits, never alongside a wiki source, and only values equal to its pinned record
 (`scripts/lib/owner-external-supplement.mjs:47-123`). The inventory refuses a supplement anywhere
-else (`scripts/lib/cbh-inventory.mjs:1196-1202`).
+else (`scripts/lib/cbh-inventory.mjs:1374-1380`).
 
 The vendored item copies exactly those fields and adds `metadataSourceKind:
 "owner-external-supplement"`, a closed value recorded per comic. It still keeps `seriesId`,
@@ -3153,16 +3153,17 @@ The vendored item copies exactly those fields and adds `metadataSourceKind:
 owner-confirmed evidence kind, so the app still treats the comic as having no provider metadata and
 its availability stays unknown (constraints 6 and 7). The delivery contract holds every supplemented
 item to exactly what its mapping row records and every other owner-confirmed item to the old empty
-shape (`test/helpers/owner-delivery-contract.mjs:126-154`).
+shape (`test/helpers/owner-delivery-contract.mjs:127-155`).
 
 The app carries only the optional `identityEvidenceKind` marker in the existing normalized issue
 record so the reading view can distinguish an owner-confirmed identity from an ordinary missing
-provider record after import and reload (`src/js/lib/model.js:270-279`,
-`src/js/views/reading.js:66-69`, `src/js/views/reading.js:80-91`). It keeps `metadataSourceKind` the
+provider record after import and reload (`src/js/lib/model.js:267-269`,
+`src/js/views/reading.js:71-74`, `src/js/views/reading.js:85-96`). It keeps `metadataSourceKind` the
 same way, only as one of the closed values and only beside an owner-confirmed identity, so a
 supplemented comic's badge hint, gap sentence and catalog label credit marvel.com and whichever
 outside source supplied its details instead of claiming it has no cover. The actor, date, URL and confirmation
-comment stay in the repository evidence. These additive markers do not change saved-data version 4;
+comment stay in the repository evidence (`src/js/lib/model.js:271-278`). These additive markers do
+not change saved-data version 4;
 existing saves need no migration, and older builds may discard the markers without changing reading
 progress or issue identity.
 
@@ -4122,6 +4123,17 @@ ones that come from a website), not the individual issue links themselves." Abou
 Guide Discord server and Comic Book Reading Orders. Credits for curated lists that follow a website
 are unchanged. The later export's contributor is recorded separately below.
 
+**Current launch policy.** The release-wide transition in [Issue 1601](https://github.com/raymond-nassar/recap-page/issues/1601)
+supersedes the earlier date-based behavior recorded below. Only a verified Marvel Comics app
+viewer link opens a comic directly; without one, the reading action opens the general Marvel Comics
+website, not a prefilled search or a guaranteed issue. Old issue IDs and Marvel Unlimited reader
+references remain available for saved-data compatibility, but they no longer select a specific
+comic, trigger a lookup, or identify a viewer (`src/js/reader.js:70-77`, `src/open.js:105-111`,
+`packaging/android/web/reader.js:47-58`, `packaging/ios/RecapPage/NavigationPolicy.swift:84-103`).
+
+**Historical note.** The following launch paragraph is preserved verbatim from the earlier route
+decision. It describes the behavior at that time and is superseded by the current policy above.
+
 **Where Read goes.** A comic with a link opens in the Marvel Comics app, from today. A comic without
 one keeps what it did before: Marvel Unlimited until December 7, 2026, then the Marvel Comics website.
 On the comic's page, the list's current comic, and each row's More actions, Reading options offers
@@ -4283,3 +4295,52 @@ ledger are adaptations under the same share-alike license as those published rec
 original mapping retains each source address, and the reading list repeats the existing database
 and license notice. Twelve other comics reuse previously published non-database supplements;
 Avengers (2026) #1 has no published supplement and remains bare.
+
+## Reviewed 2025 Marvel Comics app links
+
+For [Issue #1601](https://github.com/raymond-nassar/recap-page/issues/1601), the reviewed
+increment selects 21 direct viewer links from the same owner-approved Continuity Guide Discord
+export credited above. These replace existing Marvel issue-number web routes, not comic identities:
+Captain America (2025) #5 through #16, Avengers Academy: Marvel's Voices Infinity Comic (2024)
+#43 through #45, Astonishing Avengers Infinity Comic (2025) #21 through #23, Red Hulk (2025)
+#10, One World Under Doom (2025) #9 and The Will of Doom (2025) #1.
+
+Offline adjudication used the complete series title including its start year and exact issue
+number, distinguishing Infinity Comics from print issues. Each selection has one export candidate
+and no viewer collision with the existing table. Recorded dates and earlier linked issues were
+compared where available. The six Infinity Comics have no recorded guide date or earlier shipped
+viewer control; their evidence is the unique complete identity and collision checks. Export dates
+were not copied into undated catalog records. The existing generator reproduces both modules
+from the committed link inputs without the private export or adjudication files.
+
+The 21-pair selection digest is
+`c37466b019ec7ee51a0612db07e74db0f3873a0c4eeabb10f47c06f3f2a883f5`.
+Independent adjudication has SHA-256
+`c5bdf59667f1a952090248383d5c57ef862fd23664d82ec2669f16e14ce06716`.
+Owner source positions remain distinct from displayed positions: One World Under Doom #9 is
+source position 84 and displayed position 83. All guide payloads, unrelated viewer links and
+unrelated fallback links stay unchanged. Saved data, availability states and native launch logic
+are unchanged. This is a bounded increment, not completion of the broader link sweep or proof
+of an installed Marvel Comics app handoff.
+
+## First Modern Timeline installment: comic reading links
+
+World War Hulk, Secret Wars (2015) and the Civil War to Secret Invasion parts add 189 ordinary
+direct viewer pairs from the same credited offline export. Independent review checked the series,
+issue number, dates and unique viewer for each pair. The SHA-256 of the sorted JSON array of
+`[issueId, viewer]` pairs is `9806b905fe4c769b52845adc9b872c8a040d314538931ca7a99948498590bd72`.
+Earlier direct links and the frozen Marvel Unlimited number list are unchanged.
+
+The 25 explicitly held Secret Wars comics still use Find and have no classic issue address or
+entry in either reading-link table. The hold reflects the approved reading choice, not a claim
+that the export lacks matching viewers. Eight explicitly identified reader records are separate
+from the 189 ordinary matches.
+
+The Secret Wars book view includes a non-counting reference under Future Imperfect to Secret Wars:
+Battleworld (2015) #4. The comic is counted once, at source position 147 and issue-order position 138.
+The link opens that existing position without changing saved progress.
+
+Civil War to Secret Invasion parts 8, 11, 12 and 13 reuse the verified cover addresses for provider
+issues 23067, 17338, 15886 and 21268, respectively, from already published ordinary reading orders.
+The offline vendor checked matching issue identities and exact addresses. No images were downloaded,
+and no other issue fields changed.

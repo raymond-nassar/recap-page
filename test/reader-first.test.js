@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
 import { runInNewContext } from 'node:vm';
+import { readerAction } from '../src/js/lib/readerDestination.js';
 
 const read = (path) => readFileSync(new URL(path, import.meta.url), 'utf8').replace(/\r\n/g, '\n');
 const html = read('../src/index.html');
@@ -74,15 +75,14 @@ function handoffPage() {
     appReport: node('div', { id: 'app-report', className: 'report' }),
     hero: node('div', { id: 'hero-primary-actions', className: 'cta' }, [controls.hero, node('button', { id: 'btn-hero-done' })]),
     shelf: node('ol', { id: 'shelf', className: 'shelf' }, [node('li', { className: 'tile' }, [controls.tile])]),
-    rowNote: node('span', { className: 'rail-hint', dataset: { readerTemporary: 'true' } }),
     continue: node('div', { className: 'cta' }, [controls.continue, node('a', { id: 'btn-chero-open' })]),
     issue: node('div', { className: 'cta' }, [controls.issue]),
   };
   root.append(
     groups.appReport,
-    node('div', { className: 'hero-body' }, [groups.hero, node('p', { id: 'hero-reader-temporary' })]),
+    node('div', { className: 'hero-body' }, [groups.hero]),
     node('section', { id: 'shelf-sec', className: 'sec' }, [groups.shelf]),
-    node('div', { className: 'ract' }, [controls.row, groups.rowNote, node('a', { dataset: { act: 'info' } })]),
+    node('div', { className: 'ract' }, [controls.row, node('a', { dataset: { act: 'info' } })]),
     node('div', { className: 'ract' }, [controls.plainRow, node('a', { dataset: { act: 'info' } })]),
     groups.continue,
     node('div', { className: 'issue-reading-controls' }, [groups.issue, node('p', { id: 'reader-link-temporary' })]),
@@ -108,13 +108,14 @@ test('shared reader handoff visibly distinguishes conditional intent and exact r
   const issue = { title: 'Browser Check (2026) #2' };
   const events = [];
   let outcome = { ok: true, issue };
-  let opened = { ok: true, target: 'reader', window: null };
+  let opened = { ok: true, target: 'comics', window: null };
   const state = { read: { 900002: false }, listOrder: ['fixture'] };
   const before = JSON.stringify(state);
   const context = {
     $: dom.$, el: dom.el, document: dom.document, iosApp: false,
     store: { state }, temporaryReaderLinks: { resolve: () => outcome },
     openIssueTab: () => { events.push('open'); return opened; },
+    readerAction,
     announce: (message) => events.push(message),
   };
   runInNewContext(`${source.slice(start, end)}\nthis.open = openInReader;\nthis.retire = retireReaderHelp;`, context);
@@ -128,9 +129,9 @@ test('shared reader handoff visibly distinguishes conditional intent and exact r
   const shown = () => [dom.hints().length, helper()?.textContent ?? null];
   const click = (control) => ({ currentTarget: control, preventDefault() {} });
   measure('initial helper hidden', true, helper() === null);
-  const copy = "If no new tab appears, check your browser's popup controls for this site, then choose Read again. Opening a comic does not mark it read.";
+  const copy = 'If nothing opens, allow pop-ups for this site and choose Find on Marvel Comics again.';
   for (const handle of [null, {}]) {
-    opened = { ok: true, target: 'reader', window: handle };
+    opened = { ok: true, target: 'comics', window: handle };
     context.open(issue, click(dom.controls.hero), 'synthetic');
     measure('valid visible conditional copy', [1, copy], shown());
   }
@@ -146,15 +147,14 @@ test('shared reader handoff visibly distinguishes conditional intent and exact r
   context.open(issue, click(dom.controls.issue), null);
   measure('source refusal visible', [1, 'The comic source is missing. Open its current details and try again.'], shown());
   measure('refusal beside the control that was refused', true, dom.groups.issue.nextElementSibling === helper());
-  opened = { ok: true, target: 'reader', window: null };
+  opened = { ok: true, target: 'comics', window: null };
   context.open(issue, click(dom.controls.issue), 'synthetic');
   measure('valid resets refusal', [1, copy], shown());
 
-  // Each Read retires the last hint and places one after its own control's group, so nothing above
-  // the control moves and no earlier hint survives somewhere else on the page.
+  // Each Read retires the last hint and places one by its own control, so no earlier hint survives.
   for (const [name, control, anchor] of [
     ['hero Read', dom.controls.hero, dom.groups.hero],
-    ['row Read after its temporary-link note', dom.controls.row, dom.groups.rowNote],
+    ['row Read', dom.controls.row, dom.controls.row],
     ['row Read', dom.controls.plainRow, dom.controls.plainRow],
     ['Coming up tile below the shelf', dom.controls.tile, dom.groups.shelf],
     ['Continue reading', dom.controls.continue, dom.groups.continue],
@@ -176,22 +176,36 @@ test('shared reader handoff visibly distinguishes conditional intent and exact r
   measure('retiring twice is harmless', 0, dom.hints().length);
 
   events.length = 0;
+  // #1601: no target announces Marvel Unlimited, an issue page, a lookup or the December 7 date. Only an
+  // app launch says so; every other target, including the retired ones, is announced as the website.
+  const website = `Opening the Marvel Comics website to find ${issue.title}. This is not a single-comic link.`;
   for (const [target, said] of [
-    ['reader', `Opening ${issue.title} in Marvel Unlimited in a new tab. Reading ends December 7, 2026.`],
-    ['page', `Opening the Marvel comic page for ${issue.title} in a new tab.`],
-    ['lookup', `Opening ${issue.title} in a new tab and looking up its Unlimited link.`],
+    ['app', 'Taking you to this comic in the Marvel Comics app.'],
+    ['comics', website],
+    ['reader', website],
+    ['page', website],
+    ['lookup', website],
   ]) {
     opened = { ok: true, target, window: null };
     context.open(issue, click(dom.controls.hero), 'saved');
-    measure(`${target} announcement unchanged`, ['open', said], events.splice(0));
+    measure(`${target} announcement`, ['open', said], events.splice(0));
   }
   context.iosApp = true;
-  opened = { ok: true, target: 'reader', window: null };
+  opened = { ok: true, target: 'comics', window: null };
   context.open(issue, click(dom.controls.hero), 'saved');
   measure('iOS reader sheet help avoids browser popup wording', [1,
-    'If the comic does not open, choose Read again. Opening a comic does not mark it read.'], shown());
-  measure('iOS reader announcement avoids browser tab wording',
-    ['open', `Opening ${issue.title} in Marvel Unlimited. Reading ends December 7, 2026.`], events.splice(0));
+    'If nothing opens, choose Find on Marvel Comics again.'], shown());
+  measure('iOS website announcement avoids browser tab wording', ['open', website], events.splice(0));
+  opened = { ok: true, target: 'app', window: null };
+  context.open(issue, click(dom.controls.hero), 'saved');
+  measure('iOS app retry names Read', [1, 'If nothing opens, choose Read again.'], shown());
+  opened = { ok: true, target: 'comics', window: null };
+  context.open(issue, click(dom.controls.hero), 'saved');
+  measure('iOS website retry names Find', [1, 'If nothing opens, choose Find on Marvel Comics again.'], shown());
+  context.iosApp = false;
+  opened = { ok: true, target: 'app', window: null };
+  context.open(issue, click(dom.controls.hero), 'saved');
+  measure('browser app retry names Read', [1, 'If nothing opens, allow pop-ups for this site and choose Read again.'], shown());
   measure('saved bytes unchanged', before, JSON.stringify(state));
   assert.ok(rows.every(Boolean), 'Every conditional/refusal branch must visibly retain its exact outcome');
 });
@@ -234,7 +248,7 @@ test('reading groups Read and Done together, with comic details and infrequent a
   assert.match(primary, /id="btn-hero-done"[^>]*>\s*Done\s*<\/button>/);
   assert.match(primary, /data-tooltip="Mark as read and continue\. Keyboard shortcut: D"/);
   assert.match(primary, /aria-keyshortcuts="d"/);
-  assert.match(reading, /id="hero-reader-temporary"[^>]*hidden/);
+  assert.doesNotMatch(reading, /hero-reader-temporary|Temporary reader link/i);
   assert.doesNotMatch(primary, /id="btn-hero-(inspect|defer|info)"/);
   assert.equal((primary.match(/\bbtn-lg\b/g) ?? []).length, 1);
   assert.match(reading, /id="btn-hero-inspect"[^>]*>\s*About this comic\s*</);
@@ -258,6 +272,8 @@ test('comic details put Read before artwork and destination help without retired
   const help = disclosure(issue, 'reader-link-help');
   assert.match(help, /<summary id="reader-link-heading">Where Read opens<\/summary>/);
   assert.ok(help.includes('id="reader-link-summary"'));
+  const helpShell = html.match(/<details\b[^>]*id="reader-link-help"[^>]*>([\s\S]*?)<\/details>/)?.[1] ?? '';
+  assert.doesNotMatch(helpShell, /Marvel Unlimited reader links are no longer accepted/);
   for (const id of ['edit', 'revert', 'form', 'reportToggle', 'reportPanel', 'reportDisclosure']) {
     assert.ok(!help.includes(`id="reader-link-${id}"`), `${id} must not accept a retired reader link`);
   }

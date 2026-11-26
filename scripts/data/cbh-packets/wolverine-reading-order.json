@@ -50,7 +50,7 @@
     },
     {
       "sourcePosition": 701,
-      "canonicalRow": 248,
+      "canonicalRow": 254,
       "sourceIssueReference": "X-Force (2008) #11",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "X-Force",
@@ -59,7 +59,7 @@
     },
     {
       "sourcePosition": 954,
-      "canonicalRow": 335,
+      "canonicalRow": 353,
       "sourceIssueReference": "18",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine & the X-Men",
@@ -68,7 +68,7 @@
     },
     {
       "sourcePosition": 1033,
-      "canonicalRow": 419,
+      "canonicalRow": 437,
       "sourceIssueReference": "Wolverine (2013) #6",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
@@ -7510,126 +7510,6 @@
       "evidenceDigest": "110bcdf94485f3e0144b2bea9b27f2d8dab176b29a8277f7f46144dc5bcd1a2d"
     },
     {
-      "sourcePosition": 601,
-      "sourceIssueReference": "Cable & Deadpool #44",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Cable & Deadpool",
-      "seriesYear": 0,
-      "issueNumber": "44",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "b33b792b300d5908d47608066786f8d69fb86ccb63da8ee9526d18642715a881"
-    },
-    {
-      "sourcePosition": 602,
-      "sourceIssueReference": "Wolverine: Origins #21",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine: Origins",
-      "seriesYear": 0,
-      "issueNumber": "21",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "c9e38ecd0733f09d8f60308b59be0f90109b779c89923f399760042bbbaec6e1"
-    },
-    {
-      "sourcePosition": 603,
-      "sourceIssueReference": "Wolverine: Origins #22",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine: Origins",
-      "seriesYear": 0,
-      "issueNumber": "22",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "3e9e7420ce9a9339918abcf28e8d9f6855c6a26fcb9bfcde6a5d56acc3e97565"
-    },
-    {
-      "sourcePosition": 604,
-      "sourceIssueReference": "Wolverine: Origins #23",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine: Origins",
-      "seriesYear": 0,
-      "issueNumber": "23",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "446707a6e1acbf6a58943f970d4a14095f4d14de8af8a551442bc3b30455070a"
-    },
-    {
-      "sourcePosition": 605,
-      "sourceIssueReference": "Wolverine: Origins #24",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine: Origins",
-      "seriesYear": 0,
-      "issueNumber": "24",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "dc2134f1001c58849e3f2cce4c46ec34e412993f0645a7d75bcc3aef82146001"
-    },
-    {
-      "sourcePosition": 606,
-      "sourceIssueReference": "Wolverine: Origins #25",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine: Origins",
-      "seriesYear": 0,
-      "issueNumber": "25",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "0d695f64e4cc9153a929b0a89642f3849c71df80ee5fa5511da70c928d26c162"
-    },
-    {
       "sourcePosition": 607,
       "sourceIssueReference": "Wolverine/Deadpool: The Decoy 1",
       "sourceRangeReference": null,
@@ -8228,246 +8108,6 @@
         }
       ],
       "evidenceDigest": "31f49d7ca6d8346cd156e924679a4419fc593e7b845ff094ce93b5a58c68e00f"
-    },
-    {
-      "sourcePosition": 667,
-      "sourceIssueReference": "Wolverine: Origins #16",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine: Origins",
-      "seriesYear": 0,
-      "issueNumber": "16",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "35004d626dbe03175744438c2a28e8bce195c861cd60ae4382298f8c508d3441"
-    },
-    {
-      "sourcePosition": 668,
-      "sourceIssueReference": "Wolverine: Origins #17",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine: Origins",
-      "seriesYear": 0,
-      "issueNumber": "17",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "5f0ead44726ee70bd19c94f85edc35d9f5937a29d44c5a3fffd1a9b61cb2a55d"
-    },
-    {
-      "sourcePosition": 669,
-      "sourceIssueReference": "Wolverine: Origins #18",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine: Origins",
-      "seriesYear": 0,
-      "issueNumber": "18",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "2cb785d6daaa773a32dabd7f792660ea11795b2585a2fa1e109956becb0274e0"
-    },
-    {
-      "sourcePosition": 670,
-      "sourceIssueReference": "Wolverine: Origins #19",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine: Origins",
-      "seriesYear": 0,
-      "issueNumber": "19",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "e0df0fe598ff8b4f54f5e77a9c67e2d88a69ad0e04a9512299544536f5091224"
-    },
-    {
-      "sourcePosition": 671,
-      "sourceIssueReference": "Wolverine: Origins #20",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine: Origins",
-      "seriesYear": 0,
-      "issueNumber": "20",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "94b97c210281db812fa31656833ea50c761e476a5f05de0cf0745accd8eb652c"
-    },
-    {
-      "sourcePosition": 677,
-      "sourceIssueReference": "Wolverine: Origins #26",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine: Origins",
-      "seriesYear": 0,
-      "issueNumber": "26",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "2101156f69195b57da51dbdcd54a14f3af8f00818cfd6278da89c53feb33d68c"
-    },
-    {
-      "sourcePosition": 678,
-      "sourceIssueReference": "Wolverine: Origins #27",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine: Origins",
-      "seriesYear": 0,
-      "issueNumber": "27",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "05980cfa5186e0e52760ae5ed1eb0bd63ca76729648c8ceb82bb8aba72056353"
-    },
-    {
-      "sourcePosition": 679,
-      "sourceIssueReference": "Wolverine: Origins #28",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine: Origins",
-      "seriesYear": 0,
-      "issueNumber": "28",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "827ea54f1c6bea25f155d8c7cb7113566722a98ad33e632e57f257fd2740c030"
-    },
-    {
-      "sourcePosition": 680,
-      "sourceIssueReference": "Wolverine: Origins #29",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine: Origins",
-      "seriesYear": 0,
-      "issueNumber": "29",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "efdf5eb8614ace153dd97725ac505701845cbf9734716b36879a0aebaf61a629"
-    },
-    {
-      "sourcePosition": 681,
-      "sourceIssueReference": "Wolverine: Origins #30",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine: Origins",
-      "seriesYear": 0,
-      "issueNumber": "30",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "6bfa858c628487df4824585aa01339cb6fb3823a9592cab1620ee9d5648855c4"
-    },
-    {
-      "sourcePosition": 682,
-      "sourceIssueReference": "Wolverine: Origins #31",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine: Origins",
-      "seriesYear": 0,
-      "issueNumber": "31",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "51d6c337d3e24e285e42e25f447bc2840a3f2de2d44f7c49a2f3a4c7371b904f"
-    },
-    {
-      "sourcePosition": 683,
-      "sourceIssueReference": "Wolverine: Origins #32",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine: Origins",
-      "seriesYear": 0,
-      "issueNumber": "32",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "435229843122a665ed8dc75d1cdc83ccc45806a3a6919dae63fd75dea9c6f87d"
     },
     {
       "sourcePosition": 684,
@@ -15530,7 +15170,7 @@
       "evidenceDigest": "e4283266022c9d74b957c4e16b89cdc015771113436f48c97c1ec1b89038b875"
     }
   ],
-  "expectedCount": 516,
+  "expectedCount": 534,
   "proposedManifest": {
     "id": "wolverine-reading-order",
     "name": "Wolverine",
@@ -15563,419 +15203,7 @@
     "coverIssueId": 8797
   },
   "insertionAnchor": {
-    "beforeId": "xmen-claremont"
-  },
-  "sourceReview": {
-    "authorityType": "stronger-model",
-    "authorityIdentity": "GitHub Copilot",
-    "rationale": "Verified the frozen 1,328-occurrence boundary, resolved exact identities supported by reviewed Marvel records, preserved provider-unavailable source identities as provenance, and recorded repeats and exclusions without substitution or boundary widening.",
-    "reviewedAt": "2026-08-26T19:13:50Z",
-    "metadataGapLedger": {
-      "settlementIssue": "https://github.com/raymond-nassar/recap-page/issues/262",
-      "settlementComment": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
-      "settledAt": "2026-09-06",
-      "disposition": "owner-reviewed-wolverine-metadata-settlement",
-      "providerAvailabilityStatement": "Owner search results report provider availability only; exact source identities remain controlling and no substitution is authorized.",
-      "classificationCounts": {
-        "exact": 15,
-        "repeat": 3,
-        "availabilityOnly": 27,
-        "sourceSemantic": 10,
-        "postBoundary": 5
-      },
-      "structuralCounts": {
-        "sourceOccurrenceCount": 1328,
-        "canonicalRowCount": 451,
-        "repeatedSourceReferenceCount": 71,
-        "excludedSourceRowCount": 50,
-        "retainedGapCount": 756,
-        "publishedItemCount": 1207
-      },
-      "retainedAvailabilityProvenanceCount": 25,
-      "explicitInfiniteExclusionCount": 2,
-      "settledReferenceDigest": "06a62b89d5be22d965bbc88300cfb46425af59a4836a4ee308bd9a45e004a921",
-      "settledReferences": [
-        {
-          "sourcePosition": 85,
-          "sourceIssueReference": "Wolverine/Nick Fury: The Scorpio Connection Graphic Novel",
-          "classification": "availability-only",
-          "representation": "retained-provenance"
-        },
-        {
-          "sourcePosition": 86,
-          "sourceIssueReference": "Wolverine: The Jungle Adventure",
-          "classification": "availability-only",
-          "representation": "retained-provenance"
-        },
-        {
-          "sourcePosition": 101,
-          "sourceIssueReference": "Wolverine: Bloodlust",
-          "classification": "availability-only",
-          "representation": "retained-provenance"
-        },
-        {
-          "sourcePosition": 102,
-          "sourceIssueReference": "Wolverine: Bloody Choices",
-          "classification": "availability-only",
-          "representation": "retained-provenance"
-        },
-        {
-          "sourcePosition": 132,
-          "sourceIssueReference": "Ghost Rider/Wolverine/Punisher: Hearts of Darkness",
-          "classification": "exact",
-          "representation": "exact-row",
-          "selectedIssueId": 108820
-        },
-        {
-          "sourcePosition": 135,
-          "sourceIssueReference": "Logan: Path Of The Warlord",
-          "classification": "availability-only",
-          "representation": "retained-provenance"
-        },
-        {
-          "sourcePosition": 136,
-          "sourceIssueReference": "Shadow Society",
-          "classification": "exact",
-          "representation": "exact-row",
-          "selectedIssueId": 62695
-        },
-        {
-          "sourcePosition": 145,
-          "sourceIssueReference": "Wolverine: Hunger",
-          "classification": "availability-only",
-          "representation": "retained-provenance"
-        },
-        {
-          "sourcePosition": 150,
-          "sourceIssueReference": "Wolverine/Cable",
-          "classification": "availability-only",
-          "representation": "retained-provenance"
-        },
-        {
-          "sourcePosition": 157,
-          "sourceIssueReference": "Wolverine: The Amazing Immortal Man & Other Bloody Tales",
-          "classification": "availability-only",
-          "representation": "retained-provenance"
-        },
-        {
-          "sourcePosition": 161,
-          "sourceIssueReference": "Spider-Man Vs. Wolverine",
-          "classification": "exact",
-          "representation": "exact-row",
-          "selectedIssueId": 41003
-        },
-        {
-          "sourcePosition": 212,
-          "sourceIssueReference": "Wolverine: Inner Fury",
-          "classification": "exact",
-          "representation": "exact-row",
-          "selectedIssueId": 88616
-        },
-        {
-          "sourcePosition": 213,
-          "sourceIssueReference": "Wolverine: Killing",
-          "classification": "availability-only",
-          "representation": "retained-provenance"
-        },
-        {
-          "sourcePosition": 214,
-          "sourceIssueReference": "Wolverine: Global Jeopardy",
-          "classification": "availability-only",
-          "representation": "retained-provenance"
-        },
-        {
-          "sourcePosition": 239,
-          "sourceIssueReference": "Wolverine: Evilution",
-          "classification": "availability-only",
-          "representation": "retained-provenance"
-        },
-        {
-          "sourcePosition": 240,
-          "sourceIssueReference": "Wolverine and Nick Fury: Scorpio Rising",
-          "classification": "exact",
-          "representation": "exact-row",
-          "selectedIssueId": 66659
-        },
-        {
-          "sourcePosition": 241,
-          "sourceIssueReference": "Ghost Rider/Wolverine/Punisher: The Dark Design",
-          "classification": "exact",
-          "representation": "exact-row",
-          "selectedIssueId": 62690
-        },
-        {
-          "sourcePosition": 260,
-          "sourceIssueReference": "Age of Apocalypse reading order",
-          "classification": "source-semantic",
-          "representation": "explicit-exclusion"
-        },
-        {
-          "sourcePosition": 261,
-          "sourceIssueReference": "Wolverine (vol. 2) #103-104 and the full Onslaught crossover",
-          "classification": "source-semantic",
-          "representation": "explicit-exclusion"
-        },
-        {
-          "sourcePosition": 277,
-          "sourceIssueReference": "Logan: Path of the Warlord",
-          "classification": "repeat",
-          "representation": "gap-repeat-exclusion",
-          "canonicalSourcePosition": 135
-        },
-        {
-          "sourcePosition": 278,
-          "sourceIssueReference": "Logan: Shadow Society",
-          "classification": "repeat",
-          "representation": "canonical-repeat",
-          "canonicalSourcePosition": 136
-        },
-        {
-          "sourcePosition": 279,
-          "sourceIssueReference": "Wolverine (vol. 2) #115-118 and related Operation Zero Tolerance tie-ins",
-          "classification": "source-semantic",
-          "representation": "explicit-exclusion"
-        },
-        {
-          "sourcePosition": 294,
-          "sourceIssueReference": "Wolverine: Black Rio",
-          "classification": "availability-only",
-          "representation": "retained-provenance"
-        },
-        {
-          "sourcePosition": 313,
-          "sourceIssueReference": "Wolveirne/Cable one-shot",
-          "classification": "repeat",
-          "representation": "gap-repeat-exclusion",
-          "canonicalSourcePosition": 150
-        },
-        {
-          "sourcePosition": 352,
-          "sourceIssueReference": "176",
-          "classification": "availability-only",
-          "representation": "retained-provenance"
-        },
-        {
-          "sourcePosition": 359,
-          "sourceIssueReference": "Weapon X: The Draft Ã¢â‚¬â€œ Sauron",
-          "classification": "availability-only",
-          "representation": "retained-provenance"
-        },
-        {
-          "sourcePosition": 360,
-          "sourceIssueReference": "Wild Child",
-          "classification": "availability-only",
-          "representation": "retained-provenance"
-        },
-        {
-          "sourcePosition": 361,
-          "sourceIssueReference": "Kane",
-          "classification": "availability-only",
-          "representation": "retained-provenance"
-        },
-        {
-          "sourcePosition": 362,
-          "sourceIssueReference": "Marrow",
-          "classification": "availability-only",
-          "representation": "retained-provenance"
-        },
-        {
-          "sourcePosition": 363,
-          "sourceIssueReference": "Agent Zero",
-          "classification": "availability-only",
-          "representation": "retained-provenance"
-        },
-        {
-          "sourcePosition": 534,
-          "sourceIssueReference": "Wolverine (vol. 3) #33-35 and related House of M tie-ins",
-          "classification": "source-semantic",
-          "representation": "explicit-exclusion"
-        },
-        {
-          "sourcePosition": 554,
-          "sourceIssueReference": "Wolverine: Origins #1-5 and DirectorÃ¢â‚¬â„¢s Cut",
-          "classification": "source-semantic",
-          "representation": "explicit-exclusion"
-        },
-        {
-          "sourcePosition": 560,
-          "sourceIssueReference": "49",
-          "classification": "availability-only",
-          "representation": "retained-provenance"
-        },
-        {
-          "sourcePosition": 612,
-          "sourceIssueReference": "X-Men: Messiah Complex One-Shot",
-          "classification": "exact",
-          "representation": "exact-row",
-          "selectedIssueId": 16600
-        },
-        {
-          "sourcePosition": 638,
-          "sourceIssueReference": "Wolverine: Chop Shop",
-          "classification": "availability-only",
-          "representation": "retained-provenance"
-        },
-        {
-          "sourcePosition": 639,
-          "sourceIssueReference": "Wolverine: Switchback",
-          "classification": "availability-only",
-          "representation": "retained-provenance"
-        },
-        {
-          "sourcePosition": 640,
-          "sourceIssueReference": "Wolverine Holiday Special: Flies to a Spider",
-          "classification": "availability-only",
-          "representation": "retained-provenance"
-        },
-        {
-          "sourcePosition": 641,
-          "sourceIssueReference": "Wolverine: Dead ManÃ¢â‚¬â„¢s Hand",
-          "classification": "availability-only",
-          "representation": "retained-provenance"
-        },
-        {
-          "sourcePosition": 666,
-          "sourceIssueReference": "All-New Wolverine Saga",
-          "classification": "availability-only",
-          "representation": "retained-provenance"
-        },
-        {
-          "sourcePosition": 687,
-          "sourceIssueReference": "X-Force/Cable: Messiah War",
-          "classification": "exact",
-          "representation": "exact-row",
-          "selectedIssueId": 27620
-        },
-        {
-          "sourcePosition": 694,
-          "sourceIssueReference": "X-Men: Future History Ã¢â‚¬â€œ The Messiah War Sourcebook",
-          "classification": "availability-only",
-          "representation": "retained-provenance"
-        },
-        {
-          "sourcePosition": 711,
-          "sourceIssueReference": "X Necrosha",
-          "classification": "exact",
-          "representation": "exact-row",
-          "selectedIssueId": 28103
-        },
-        {
-          "sourcePosition": 712,
-          "sourceIssueReference": "X Necrosha: The Gathering",
-          "classification": "exact",
-          "representation": "exact-row",
-          "selectedIssueId": 29945
-        },
-        {
-          "sourcePosition": 733,
-          "sourceIssueReference": "Second Coming: Prepare",
-          "classification": "exact",
-          "representation": "exact-row",
-          "selectedIssueId": 33554
-        },
-        {
-          "sourcePosition": 917,
-          "sourceIssueReference": "6",
-          "classification": "availability-only",
-          "representation": "explicit-exclusion"
-        },
-        {
-          "sourcePosition": 918,
-          "sourceIssueReference": "10",
-          "classification": "availability-only",
-          "representation": "explicit-exclusion"
-        },
-        {
-          "sourcePosition": 919,
-          "sourceIssueReference": "Material from Marvel Point One",
-          "classification": "source-semantic",
-          "representation": "explicit-exclusion"
-        },
-        {
-          "sourcePosition": 954,
-          "sourceIssueReference": "18",
-          "classification": "exact",
-          "representation": "canonical-repeat",
-          "selectedIssueId": 40087,
-          "canonicalSourcePosition": 819
-        },
-        {
-          "sourcePosition": 1100,
-          "sourceIssueReference": "Death of Wolverine: Deadpool and Captain America",
-          "classification": "exact",
-          "representation": "exact-row",
-          "selectedIssueId": 50983
-        },
-        {
-          "sourcePosition": 1101,
-          "sourceIssueReference": "Death of Wolverine: Life After Logan",
-          "classification": "exact",
-          "representation": "exact-row",
-          "selectedIssueId": 51050
-        },
-        {
-          "sourcePosition": 1222,
-          "sourceIssueReference": "Marvel Legacy Primer pages",
-          "classification": "source-semantic",
-          "representation": "explicit-exclusion"
-        },
-        {
-          "sourcePosition": 1223,
-          "sourceIssueReference": "FOOM Magazine (2017)",
-          "classification": "source-semantic",
-          "representation": "explicit-exclusion"
-        },
-        {
-          "sourcePosition": 1240,
-          "sourceIssueReference": "Deadpool Vs. Old Man Logan",
-          "classification": "source-semantic",
-          "representation": "explicit-exclusion"
-        },
-        {
-          "sourcePosition": 1276,
-          "sourceIssueReference": "Infinity Countdown Prime (2018)",
-          "classification": "exact",
-          "representation": "exact-row",
-          "selectedIssueId": 66283
-        },
-        {
-          "sourcePosition": 1282,
-          "sourceIssueReference": "Infinity Countdown: Adam Warlock (2018) #1 and Material from Free Comic Book Day 2018 (Amazing Spider-Man)",
-          "classification": "source-semantic",
-          "representation": "explicit-exclusion"
-        },
-        {
-          "sourcePosition": null,
-          "sourceIssueReference": "Savage Avengers (2019) #1-5 plus Material from Free Comic Book Day 2019 (Avengers)",
-          "classification": "post-boundary",
-          "representation": "ledger-only"
-        },
-        {
-          "sourcePosition": null,
-          "sourceIssueReference": "Wolverine: Black",
-          "classification": "post-boundary",
-          "representation": "ledger-only"
-        },
-        {
-          "sourcePosition": null,
-          "sourceIssueReference": "White",
-          "classification": "post-boundary",
-          "representation": "ledger-only"
-        },
-        {
-          "sourcePosition": null,
-          "sourceIssueReference": "Deadpool / Wolverine: Weapon X-Traction (one-shot)",
-          "classification": "post-boundary",
-          "representation": "ledger-only"
-        },
-        {
-          "sourcePosition": null,
-          "sourceIssueReference": "Logan: Black",
-          "classification": "post-boundary",
-          "representation": "ledger-only"
-        }
-      ]
-    }
+    "beforeId": "hope-summers-reading-order"
   },
   "rows": [
     {
@@ -18388,6 +17616,72 @@
       "selectionNote": null
     },
     {
+      "sourceIssueReference": "Cable & Deadpool #44",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Cable & Deadpool",
+      "seriesYear": 2004,
+      "issueNumber": "44",
+      "seriesId": 693,
+      "candidateIssueId": 16114,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Issue 16114 is the single provider series listing match for this frozen source position."
+    },
+    {
+      "sourceIssueReference": "Wolverine: Origins #21",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine Origins",
+      "seriesYear": 2006,
+      "issueNumber": "21",
+      "seriesId": 2375,
+      "candidateIssueId": 17619,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Issue 17619 is the single provider series listing match for this frozen source position."
+    },
+    {
+      "sourceIssueReference": "Wolverine: Origins #22",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine Origins",
+      "seriesYear": 2006,
+      "issueNumber": "22",
+      "seriesId": 2375,
+      "candidateIssueId": 20664,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Issue 20664 is the single provider series listing match for this frozen source position."
+    },
+    {
+      "sourceIssueReference": "Wolverine: Origins #23",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine Origins",
+      "seriesYear": 2006,
+      "issueNumber": "23",
+      "seriesId": 2375,
+      "candidateIssueId": 20859,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Issue 20859 is the single provider series listing match for this frozen source position."
+    },
+    {
+      "sourceIssueReference": "Wolverine: Origins #24",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine Origins",
+      "seriesYear": 2006,
+      "issueNumber": "24",
+      "seriesId": 2375,
+      "candidateIssueId": 20994,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Issue 20994 is the single provider series listing match for this frozen source position."
+    },
+    {
+      "sourceIssueReference": "Wolverine: Origins #25",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine Origins",
+      "seriesYear": 2006,
+      "issueNumber": "25",
+      "seriesId": 2375,
+      "candidateIssueId": 21206,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Issue 21206 is the single provider series listing match for this frozen source position."
+    },
+    {
       "sourceIssueReference": "Before the Fantastic Four: Ben Grimm & Logan (2000) #3",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Before the Fantastic Four: Ben Grimm & Logan",
@@ -18705,6 +17999,138 @@
       "candidateIssueId": 23125,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine: Origins #16",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine Origins",
+      "seriesYear": 2006,
+      "issueNumber": "16",
+      "seriesId": 2375,
+      "candidateIssueId": 16144,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Issue 16144 is the single provider series listing match for this frozen source position."
+    },
+    {
+      "sourceIssueReference": "Wolverine: Origins #17",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine Origins",
+      "seriesYear": 2006,
+      "issueNumber": "17",
+      "seriesId": 2375,
+      "candidateIssueId": 16507,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Issue 16507 is the single provider series listing match for this frozen source position."
+    },
+    {
+      "sourceIssueReference": "Wolverine: Origins #18",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine Origins",
+      "seriesYear": 2006,
+      "issueNumber": "18",
+      "seriesId": 2375,
+      "candidateIssueId": 16508,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Issue 16508 is the single provider series listing match for this frozen source position."
+    },
+    {
+      "sourceIssueReference": "Wolverine: Origins #19",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine Origins",
+      "seriesYear": 2006,
+      "issueNumber": "19",
+      "seriesId": 2375,
+      "candidateIssueId": 17243,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Issue 17243 is the single provider series listing match for this frozen source position."
+    },
+    {
+      "sourceIssueReference": "Wolverine: Origins #20",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine Origins",
+      "seriesYear": 2006,
+      "issueNumber": "20",
+      "seriesId": 2375,
+      "candidateIssueId": 17379,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Issue 17379 is the single provider series listing match for this frozen source position."
+    },
+    {
+      "sourceIssueReference": "Wolverine: Origins #26",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine Origins",
+      "seriesYear": 2006,
+      "issueNumber": "26",
+      "seriesId": 2375,
+      "candidateIssueId": 21350,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Issue 21350 is the single provider series listing match for this frozen source position."
+    },
+    {
+      "sourceIssueReference": "Wolverine: Origins #27",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine Origins",
+      "seriesYear": 2006,
+      "issueNumber": "27",
+      "seriesId": 2375,
+      "candidateIssueId": 21531,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Issue 21531 is the single provider series listing match for this frozen source position."
+    },
+    {
+      "sourceIssueReference": "Wolverine: Origins #28",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine Origins",
+      "seriesYear": 2006,
+      "issueNumber": "28",
+      "seriesId": 2375,
+      "candidateIssueId": 21962,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Issue 21962 is the single provider series listing match for this frozen source position."
+    },
+    {
+      "sourceIssueReference": "Wolverine: Origins #29",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine Origins",
+      "seriesYear": 2006,
+      "issueNumber": "29",
+      "seriesId": 2375,
+      "candidateIssueId": 22284,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Issue 22284 is the single provider series listing match for this frozen source position."
+    },
+    {
+      "sourceIssueReference": "Wolverine: Origins #30",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine Origins",
+      "seriesYear": 2006,
+      "issueNumber": "30",
+      "seriesId": 2375,
+      "candidateIssueId": 22492,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Issue 22492 is the single provider series listing match for this frozen source position."
+    },
+    {
+      "sourceIssueReference": "Wolverine: Origins #31",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine Origins",
+      "seriesYear": 2006,
+      "issueNumber": "31",
+      "seriesId": 2375,
+      "candidateIssueId": 22896,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Issue 22896 is the single provider series listing match for this frozen source position."
+    },
+    {
+      "sourceIssueReference": "Wolverine: Origins #32",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine Origins",
+      "seriesYear": 2006,
+      "issueNumber": "32",
+      "seriesId": 2375,
+      "candidateIssueId": 23103,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Issue 23103 is the single provider series listing match for this frozen source position."
     },
     {
       "sourceIssueReference": "X-Men Legacy (2008) #217",
@@ -21655,7 +21081,6 @@
       "selectionNote": null
     }
   ],
-  "packetDigest": "00e47fc9b54b7ac2a094510a8f5941cef722cce548dbb74913dfdd33ebd1d06a",
   "sourceGapResolutions": [
     {
       "sourcePosition": 132,
@@ -22011,6 +21436,174 @@
       "evidenceDigest": "be5f5bbbb2a970a6e3b89a5c53b73703941b77987fde28449d784c0b6d3d8adb"
     },
     {
+      "sourcePosition": 601,
+      "previousSourceIssueReference": "Cable & Deadpool #44",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Cable & Deadpool",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "44",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 16114,
+      "resolvedNormalizedSeriesTitle": "Cable & Deadpool",
+      "resolvedSeriesYear": 2004,
+      "resolvedIssueNumber": "44",
+      "checkedAt": "2026-11-24",
+      "auditBasis": "The complete provider series listing returns exactly one issue with this series run and issue number, its Marvel issue address carries the same issue id, and the preserved source comic names that series and issue number beside same-run neighbours.",
+      "evidenceSources": [
+        {
+          "kind": "github-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1594#issuecomment-7174964786",
+          "retrievedAt": "2026-11-25"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/693/issues?limit=200&offset=0",
+          "retrievedAt": "2026-11-24"
+        }
+      ],
+      "evidenceDigest": "e1f37f0c404ce59a0613f8265d3382164c3a97650611a4b65abc1296ffa44b57"
+    },
+    {
+      "sourcePosition": 602,
+      "previousSourceIssueReference": "Wolverine: Origins #21",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Wolverine: Origins",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "21",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 17619,
+      "resolvedNormalizedSeriesTitle": "Wolverine Origins",
+      "resolvedSeriesYear": 2006,
+      "resolvedIssueNumber": "21",
+      "checkedAt": "2026-11-24",
+      "auditBasis": "The complete provider series listing returns exactly one issue with this series run and issue number, its Marvel issue address carries the same issue id, and the preserved source comic names that series and issue number beside same-run neighbours.",
+      "evidenceSources": [
+        {
+          "kind": "github-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1594#issuecomment-7174964786",
+          "retrievedAt": "2026-11-25"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/2375/issues?limit=200&offset=0",
+          "retrievedAt": "2026-11-24"
+        }
+      ],
+      "evidenceDigest": "75ba752faed1752e8b7ab8dcb198d3a1b226b244de82cfd1f52cf28666387774"
+    },
+    {
+      "sourcePosition": 603,
+      "previousSourceIssueReference": "Wolverine: Origins #22",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Wolverine: Origins",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "22",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 20664,
+      "resolvedNormalizedSeriesTitle": "Wolverine Origins",
+      "resolvedSeriesYear": 2006,
+      "resolvedIssueNumber": "22",
+      "checkedAt": "2026-11-24",
+      "auditBasis": "The complete provider series listing returns exactly one issue with this series run and issue number, its Marvel issue address carries the same issue id, and the preserved source comic names that series and issue number beside same-run neighbours.",
+      "evidenceSources": [
+        {
+          "kind": "github-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1594#issuecomment-7174964786",
+          "retrievedAt": "2026-11-25"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/2375/issues?limit=200&offset=0",
+          "retrievedAt": "2026-11-24"
+        }
+      ],
+      "evidenceDigest": "dd693d532b727083327de4bcc9c2f70e6dfc904af3b18e26148d18bbd4913fe9"
+    },
+    {
+      "sourcePosition": 604,
+      "previousSourceIssueReference": "Wolverine: Origins #23",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Wolverine: Origins",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "23",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 20859,
+      "resolvedNormalizedSeriesTitle": "Wolverine Origins",
+      "resolvedSeriesYear": 2006,
+      "resolvedIssueNumber": "23",
+      "checkedAt": "2026-11-24",
+      "auditBasis": "The complete provider series listing returns exactly one issue with this series run and issue number, its Marvel issue address carries the same issue id, and the preserved source comic names that series and issue number beside same-run neighbours.",
+      "evidenceSources": [
+        {
+          "kind": "github-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1594#issuecomment-7174964786",
+          "retrievedAt": "2026-11-25"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/2375/issues?limit=200&offset=0",
+          "retrievedAt": "2026-11-24"
+        }
+      ],
+      "evidenceDigest": "ff4a3660bddc0da3cba1765a59eda6a03ca1136b313bf94bbe1f4451db5f810d"
+    },
+    {
+      "sourcePosition": 605,
+      "previousSourceIssueReference": "Wolverine: Origins #24",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Wolverine: Origins",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "24",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 20994,
+      "resolvedNormalizedSeriesTitle": "Wolverine Origins",
+      "resolvedSeriesYear": 2006,
+      "resolvedIssueNumber": "24",
+      "checkedAt": "2026-11-24",
+      "auditBasis": "The complete provider series listing returns exactly one issue with this series run and issue number, its Marvel issue address carries the same issue id, and the preserved source comic names that series and issue number beside same-run neighbours.",
+      "evidenceSources": [
+        {
+          "kind": "github-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1594#issuecomment-7174964786",
+          "retrievedAt": "2026-11-25"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/2375/issues?limit=200&offset=0",
+          "retrievedAt": "2026-11-24"
+        }
+      ],
+      "evidenceDigest": "2792158d24c532264addc5471d247210528786aa50840671e40a1c034c1b682b"
+    },
+    {
+      "sourcePosition": 606,
+      "previousSourceIssueReference": "Wolverine: Origins #25",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Wolverine: Origins",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "25",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 21206,
+      "resolvedNormalizedSeriesTitle": "Wolverine Origins",
+      "resolvedSeriesYear": 2006,
+      "resolvedIssueNumber": "25",
+      "checkedAt": "2026-11-24",
+      "auditBasis": "The complete provider series listing returns exactly one issue with this series run and issue number, its Marvel issue address carries the same issue id, and the preserved source comic names that series and issue number beside same-run neighbours.",
+      "evidenceSources": [
+        {
+          "kind": "github-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1594#issuecomment-7174964786",
+          "retrievedAt": "2026-11-25"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/2375/issues?limit=200&offset=0",
+          "retrievedAt": "2026-11-24"
+        }
+      ],
+      "evidenceDigest": "796cd24d9641d717df8547922494fffef5759a706897ebb9ebee16cd949826d3"
+    },
+    {
       "sourcePosition": 612,
       "previousSourceIssueReference": "X-Men: Messiah Complex One-Shot",
       "previousSourceRangeReference": null,
@@ -22037,6 +21630,342 @@
         }
       ],
       "evidenceDigest": "7deb6f68fe5ea41ddd561d1276c0e15df9f5c359f6fd28ce333dbad218ec38d7"
+    },
+    {
+      "sourcePosition": 667,
+      "previousSourceIssueReference": "Wolverine: Origins #16",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Wolverine: Origins",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "16",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 16144,
+      "resolvedNormalizedSeriesTitle": "Wolverine Origins",
+      "resolvedSeriesYear": 2006,
+      "resolvedIssueNumber": "16",
+      "checkedAt": "2026-11-24",
+      "auditBasis": "The complete provider series listing returns exactly one issue with this series run and issue number, its Marvel issue address carries the same issue id, and the preserved source comic names that series and issue number beside same-run neighbours.",
+      "evidenceSources": [
+        {
+          "kind": "github-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1594#issuecomment-7174964786",
+          "retrievedAt": "2026-11-25"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/2375/issues?limit=200&offset=0",
+          "retrievedAt": "2026-11-24"
+        }
+      ],
+      "evidenceDigest": "d4586a4c41e14627509b27384f4a44bf6de7fc5fd884614eaa34cb57095ab6c9"
+    },
+    {
+      "sourcePosition": 668,
+      "previousSourceIssueReference": "Wolverine: Origins #17",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Wolverine: Origins",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "17",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 16507,
+      "resolvedNormalizedSeriesTitle": "Wolverine Origins",
+      "resolvedSeriesYear": 2006,
+      "resolvedIssueNumber": "17",
+      "checkedAt": "2026-11-24",
+      "auditBasis": "The complete provider series listing returns exactly one issue with this series run and issue number, its Marvel issue address carries the same issue id, and the preserved source comic names that series and issue number beside same-run neighbours.",
+      "evidenceSources": [
+        {
+          "kind": "github-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1594#issuecomment-7174964786",
+          "retrievedAt": "2026-11-25"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/2375/issues?limit=200&offset=0",
+          "retrievedAt": "2026-11-24"
+        }
+      ],
+      "evidenceDigest": "2ca1af839e7a0974fa92acc9aa66b7b3e4f031f7c3100bc1b3cf9643f8ffff12"
+    },
+    {
+      "sourcePosition": 669,
+      "previousSourceIssueReference": "Wolverine: Origins #18",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Wolverine: Origins",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "18",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 16508,
+      "resolvedNormalizedSeriesTitle": "Wolverine Origins",
+      "resolvedSeriesYear": 2006,
+      "resolvedIssueNumber": "18",
+      "checkedAt": "2026-11-24",
+      "auditBasis": "The complete provider series listing returns exactly one issue with this series run and issue number, its Marvel issue address carries the same issue id, and the preserved source comic names that series and issue number beside same-run neighbours.",
+      "evidenceSources": [
+        {
+          "kind": "github-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1594#issuecomment-7174964786",
+          "retrievedAt": "2026-11-25"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/2375/issues?limit=200&offset=0",
+          "retrievedAt": "2026-11-24"
+        }
+      ],
+      "evidenceDigest": "7dcba15c2d7def1a7752a20787a74f91a703422292615fc14d0dd162ea4b779c"
+    },
+    {
+      "sourcePosition": 670,
+      "previousSourceIssueReference": "Wolverine: Origins #19",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Wolverine: Origins",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "19",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 17243,
+      "resolvedNormalizedSeriesTitle": "Wolverine Origins",
+      "resolvedSeriesYear": 2006,
+      "resolvedIssueNumber": "19",
+      "checkedAt": "2026-11-24",
+      "auditBasis": "The complete provider series listing returns exactly one issue with this series run and issue number, its Marvel issue address carries the same issue id, and the preserved source comic names that series and issue number beside same-run neighbours.",
+      "evidenceSources": [
+        {
+          "kind": "github-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1594#issuecomment-7174964786",
+          "retrievedAt": "2026-11-25"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/2375/issues?limit=200&offset=0",
+          "retrievedAt": "2026-11-24"
+        }
+      ],
+      "evidenceDigest": "23e867c9d673f22b76a9f76e279c57c7635bc5f4fd379d91fe00a1fd100720eb"
+    },
+    {
+      "sourcePosition": 671,
+      "previousSourceIssueReference": "Wolverine: Origins #20",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Wolverine: Origins",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "20",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 17379,
+      "resolvedNormalizedSeriesTitle": "Wolverine Origins",
+      "resolvedSeriesYear": 2006,
+      "resolvedIssueNumber": "20",
+      "checkedAt": "2026-11-24",
+      "auditBasis": "The complete provider series listing returns exactly one issue with this series run and issue number, its Marvel issue address carries the same issue id, and the preserved source comic names that series and issue number beside same-run neighbours.",
+      "evidenceSources": [
+        {
+          "kind": "github-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1594#issuecomment-7174964786",
+          "retrievedAt": "2026-11-25"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/2375/issues?limit=200&offset=0",
+          "retrievedAt": "2026-11-24"
+        }
+      ],
+      "evidenceDigest": "9f404300b6c6cc5d478a90189158fbc2c1bd17adc7dcd7ff1194b02e97553184"
+    },
+    {
+      "sourcePosition": 677,
+      "previousSourceIssueReference": "Wolverine: Origins #26",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Wolverine: Origins",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "26",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 21350,
+      "resolvedNormalizedSeriesTitle": "Wolverine Origins",
+      "resolvedSeriesYear": 2006,
+      "resolvedIssueNumber": "26",
+      "checkedAt": "2026-11-24",
+      "auditBasis": "The complete provider series listing returns exactly one issue with this series run and issue number, its Marvel issue address carries the same issue id, and the preserved source comic names that series and issue number beside same-run neighbours.",
+      "evidenceSources": [
+        {
+          "kind": "github-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1594#issuecomment-7174964786",
+          "retrievedAt": "2026-11-25"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/2375/issues?limit=200&offset=0",
+          "retrievedAt": "2026-11-24"
+        }
+      ],
+      "evidenceDigest": "de3f7a538e9aa0aa7ec8a99f854c6a55771713bf0aefdcb86abf1140eade9df5"
+    },
+    {
+      "sourcePosition": 678,
+      "previousSourceIssueReference": "Wolverine: Origins #27",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Wolverine: Origins",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "27",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 21531,
+      "resolvedNormalizedSeriesTitle": "Wolverine Origins",
+      "resolvedSeriesYear": 2006,
+      "resolvedIssueNumber": "27",
+      "checkedAt": "2026-11-24",
+      "auditBasis": "The complete provider series listing returns exactly one issue with this series run and issue number, its Marvel issue address carries the same issue id, and the preserved source comic names that series and issue number beside same-run neighbours.",
+      "evidenceSources": [
+        {
+          "kind": "github-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1594#issuecomment-7174964786",
+          "retrievedAt": "2026-11-25"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/2375/issues?limit=200&offset=0",
+          "retrievedAt": "2026-11-24"
+        }
+      ],
+      "evidenceDigest": "c77a5297741cbb64948467051633678c739447c6ced5a894a18c3f533c5ad9e3"
+    },
+    {
+      "sourcePosition": 679,
+      "previousSourceIssueReference": "Wolverine: Origins #28",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Wolverine: Origins",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "28",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 21962,
+      "resolvedNormalizedSeriesTitle": "Wolverine Origins",
+      "resolvedSeriesYear": 2006,
+      "resolvedIssueNumber": "28",
+      "checkedAt": "2026-11-24",
+      "auditBasis": "The complete provider series listing returns exactly one issue with this series run and issue number, its Marvel issue address carries the same issue id, and the preserved source comic names that series and issue number beside same-run neighbours.",
+      "evidenceSources": [
+        {
+          "kind": "github-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1594#issuecomment-7174964786",
+          "retrievedAt": "2026-11-25"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/2375/issues?limit=200&offset=0",
+          "retrievedAt": "2026-11-24"
+        }
+      ],
+      "evidenceDigest": "6398c7c1c6f462e8bb6bb2bce17fc90bcd409fdb17f9e4d95e06533afffb9127"
+    },
+    {
+      "sourcePosition": 680,
+      "previousSourceIssueReference": "Wolverine: Origins #29",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Wolverine: Origins",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "29",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 22284,
+      "resolvedNormalizedSeriesTitle": "Wolverine Origins",
+      "resolvedSeriesYear": 2006,
+      "resolvedIssueNumber": "29",
+      "checkedAt": "2026-11-24",
+      "auditBasis": "The complete provider series listing returns exactly one issue with this series run and issue number, its Marvel issue address carries the same issue id, and the preserved source comic names that series and issue number beside same-run neighbours.",
+      "evidenceSources": [
+        {
+          "kind": "github-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1594#issuecomment-7174964786",
+          "retrievedAt": "2026-11-25"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/2375/issues?limit=200&offset=0",
+          "retrievedAt": "2026-11-24"
+        }
+      ],
+      "evidenceDigest": "095319a329ff91c9dd85963e2187320399462fbb5b8b467a212c1af707dafbed"
+    },
+    {
+      "sourcePosition": 681,
+      "previousSourceIssueReference": "Wolverine: Origins #30",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Wolverine: Origins",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "30",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 22492,
+      "resolvedNormalizedSeriesTitle": "Wolverine Origins",
+      "resolvedSeriesYear": 2006,
+      "resolvedIssueNumber": "30",
+      "checkedAt": "2026-11-24",
+      "auditBasis": "The complete provider series listing returns exactly one issue with this series run and issue number, its Marvel issue address carries the same issue id, and the preserved source comic names that series and issue number beside same-run neighbours.",
+      "evidenceSources": [
+        {
+          "kind": "github-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1594#issuecomment-7174964786",
+          "retrievedAt": "2026-11-25"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/2375/issues?limit=200&offset=0",
+          "retrievedAt": "2026-11-24"
+        }
+      ],
+      "evidenceDigest": "7ba77a1d6b5bc521933a9e771382e864ce1459d30ea19ffe1dfd4cff21ebe8f0"
+    },
+    {
+      "sourcePosition": 682,
+      "previousSourceIssueReference": "Wolverine: Origins #31",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Wolverine: Origins",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "31",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 22896,
+      "resolvedNormalizedSeriesTitle": "Wolverine Origins",
+      "resolvedSeriesYear": 2006,
+      "resolvedIssueNumber": "31",
+      "checkedAt": "2026-11-24",
+      "auditBasis": "The complete provider series listing returns exactly one issue with this series run and issue number, its Marvel issue address carries the same issue id, and the preserved source comic names that series and issue number beside same-run neighbours.",
+      "evidenceSources": [
+        {
+          "kind": "github-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1594#issuecomment-7174964786",
+          "retrievedAt": "2026-11-25"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/2375/issues?limit=200&offset=0",
+          "retrievedAt": "2026-11-24"
+        }
+      ],
+      "evidenceDigest": "00a92df4bb56b55b4acc53dcc6d321b5e2a411abc9ff4f0413c7a68eca6dabac"
+    },
+    {
+      "sourcePosition": 683,
+      "previousSourceIssueReference": "Wolverine: Origins #32",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Wolverine: Origins",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "32",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 23103,
+      "resolvedNormalizedSeriesTitle": "Wolverine Origins",
+      "resolvedSeriesYear": 2006,
+      "resolvedIssueNumber": "32",
+      "checkedAt": "2026-11-24",
+      "auditBasis": "The complete provider series listing returns exactly one issue with this series run and issue number, its Marvel issue address carries the same issue id, and the preserved source comic names that series and issue number beside same-run neighbours.",
+      "evidenceSources": [
+        {
+          "kind": "github-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/1594#issuecomment-7174964786",
+          "retrievedAt": "2026-11-25"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/2375/issues?limit=200&offset=0",
+          "retrievedAt": "2026-11-24"
+        }
+      ],
+      "evidenceDigest": "df9059d76ae48b7a2ea1e019c9b1bf685ad1adf7ccb56205c46fc6117bd34e31"
     },
     {
       "sourcePosition": 687,
@@ -22236,7 +22165,7 @@
       "previousSeriesYear": 0,
       "previousIssueNumber": "unresolved",
       "resolutionKind": "canonical-repeat",
-      "canonicalRow": 335,
+      "canonicalRow": 353,
       "selectedIssueId": 40087,
       "resolvedNormalizedSeriesTitle": "Wolverine & the X-Men",
       "resolvedSeriesYear": 2011,
@@ -22255,7 +22184,7 @@
           "retrievedAt": "2026-09-06"
         }
       ],
-      "evidenceDigest": "5f27d95ed92f5c07563cbbfed03749827744fce4cfb2ada6ba2297b22ad53c13"
+      "evidenceDigest": "4039ccad418a8a879df5a31f9ea380c2749a2a7b2a0cc5f50577b7e53e2ab76f"
     },
     {
       "sourcePosition": 1100,
@@ -22445,5 +22374,418 @@
       ],
       "evidenceDigest": "58cdd0f6e52de0907fe32d9a13385cc3acda43ac3e1f468b2bf4f452b47cf769"
     }
-  ]
+  ],
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the mapping author",
+    "rationale": "Reviewed the renewed Wolverine source body against the previously adjudicated source and current published catalog. The only change in the source body is the insertion anchor: Hope Summers immediately follows Wolverine at slot 130 of 273; the former X-Men anchor no longer exists. Reauthoring here preserves the exact catalog order. All 1,328 source occurrences, 1,272 reading positions, the 18 one-to-one corrections, 29 earlier decisions and prior repeat targets are identical to the earlier independent review. Preserve the shipped Wolverine description and discovery tags using their published revisions, with no change to the reading or catalog order.",
+    "reviewedAt": "2026-11-25T14:54:13-08:00",
+    "metadataGapLedger": {
+      "settlementIssue": "https://github.com/raymond-nassar/recap-page/issues/262",
+      "settlementComment": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+      "settledAt": "2026-09-06",
+      "disposition": "owner-reviewed-wolverine-metadata-settlement",
+      "providerAvailabilityStatement": "Owner search results report provider availability only; exact source identities remain controlling and no substitution is authorized.",
+      "classificationCounts": {
+        "exact": 15,
+        "repeat": 3,
+        "availabilityOnly": 27,
+        "sourceSemantic": 10,
+        "postBoundary": 5
+      },
+      "structuralCounts": {
+        "sourceOccurrenceCount": 1328,
+        "canonicalRowCount": 451,
+        "repeatedSourceReferenceCount": 71,
+        "excludedSourceRowCount": 50,
+        "retainedGapCount": 756,
+        "publishedItemCount": 1207
+      },
+      "retainedAvailabilityProvenanceCount": 25,
+      "explicitInfiniteExclusionCount": 2,
+      "settledReferenceDigest": "06a62b89d5be22d965bbc88300cfb46425af59a4836a4ee308bd9a45e004a921",
+      "settledReferences": [
+        {
+          "sourcePosition": 85,
+          "sourceIssueReference": "Wolverine/Nick Fury: The Scorpio Connection Graphic Novel",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 86,
+          "sourceIssueReference": "Wolverine: The Jungle Adventure",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 101,
+          "sourceIssueReference": "Wolverine: Bloodlust",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 102,
+          "sourceIssueReference": "Wolverine: Bloody Choices",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 132,
+          "sourceIssueReference": "Ghost Rider/Wolverine/Punisher: Hearts of Darkness",
+          "classification": "exact",
+          "representation": "exact-row",
+          "selectedIssueId": 108820
+        },
+        {
+          "sourcePosition": 135,
+          "sourceIssueReference": "Logan: Path Of The Warlord",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 136,
+          "sourceIssueReference": "Shadow Society",
+          "classification": "exact",
+          "representation": "exact-row",
+          "selectedIssueId": 62695
+        },
+        {
+          "sourcePosition": 145,
+          "sourceIssueReference": "Wolverine: Hunger",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 150,
+          "sourceIssueReference": "Wolverine/Cable",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 157,
+          "sourceIssueReference": "Wolverine: The Amazing Immortal Man & Other Bloody Tales",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 161,
+          "sourceIssueReference": "Spider-Man Vs. Wolverine",
+          "classification": "exact",
+          "representation": "exact-row",
+          "selectedIssueId": 41003
+        },
+        {
+          "sourcePosition": 212,
+          "sourceIssueReference": "Wolverine: Inner Fury",
+          "classification": "exact",
+          "representation": "exact-row",
+          "selectedIssueId": 88616
+        },
+        {
+          "sourcePosition": 213,
+          "sourceIssueReference": "Wolverine: Killing",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 214,
+          "sourceIssueReference": "Wolverine: Global Jeopardy",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 239,
+          "sourceIssueReference": "Wolverine: Evilution",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 240,
+          "sourceIssueReference": "Wolverine and Nick Fury: Scorpio Rising",
+          "classification": "exact",
+          "representation": "exact-row",
+          "selectedIssueId": 66659
+        },
+        {
+          "sourcePosition": 241,
+          "sourceIssueReference": "Ghost Rider/Wolverine/Punisher: The Dark Design",
+          "classification": "exact",
+          "representation": "exact-row",
+          "selectedIssueId": 62690
+        },
+        {
+          "sourcePosition": 260,
+          "sourceIssueReference": "Age of Apocalypse reading order",
+          "classification": "source-semantic",
+          "representation": "explicit-exclusion"
+        },
+        {
+          "sourcePosition": 261,
+          "sourceIssueReference": "Wolverine (vol. 2) #103-104 and the full Onslaught crossover",
+          "classification": "source-semantic",
+          "representation": "explicit-exclusion"
+        },
+        {
+          "sourcePosition": 277,
+          "sourceIssueReference": "Logan: Path of the Warlord",
+          "classification": "repeat",
+          "representation": "gap-repeat-exclusion",
+          "canonicalSourcePosition": 135
+        },
+        {
+          "sourcePosition": 278,
+          "sourceIssueReference": "Logan: Shadow Society",
+          "classification": "repeat",
+          "representation": "canonical-repeat",
+          "canonicalSourcePosition": 136
+        },
+        {
+          "sourcePosition": 279,
+          "sourceIssueReference": "Wolverine (vol. 2) #115-118 and related Operation Zero Tolerance tie-ins",
+          "classification": "source-semantic",
+          "representation": "explicit-exclusion"
+        },
+        {
+          "sourcePosition": 294,
+          "sourceIssueReference": "Wolverine: Black Rio",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 313,
+          "sourceIssueReference": "Wolveirne/Cable one-shot",
+          "classification": "repeat",
+          "representation": "gap-repeat-exclusion",
+          "canonicalSourcePosition": 150
+        },
+        {
+          "sourcePosition": 352,
+          "sourceIssueReference": "176",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 359,
+          "sourceIssueReference": "Weapon X: The Draft Ã¢â‚¬â€œ Sauron",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 360,
+          "sourceIssueReference": "Wild Child",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 361,
+          "sourceIssueReference": "Kane",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 362,
+          "sourceIssueReference": "Marrow",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 363,
+          "sourceIssueReference": "Agent Zero",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 534,
+          "sourceIssueReference": "Wolverine (vol. 3) #33-35 and related House of M tie-ins",
+          "classification": "source-semantic",
+          "representation": "explicit-exclusion"
+        },
+        {
+          "sourcePosition": 554,
+          "sourceIssueReference": "Wolverine: Origins #1-5 and DirectorÃ¢â‚¬â„¢s Cut",
+          "classification": "source-semantic",
+          "representation": "explicit-exclusion"
+        },
+        {
+          "sourcePosition": 560,
+          "sourceIssueReference": "49",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 612,
+          "sourceIssueReference": "X-Men: Messiah Complex One-Shot",
+          "classification": "exact",
+          "representation": "exact-row",
+          "selectedIssueId": 16600
+        },
+        {
+          "sourcePosition": 638,
+          "sourceIssueReference": "Wolverine: Chop Shop",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 639,
+          "sourceIssueReference": "Wolverine: Switchback",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 640,
+          "sourceIssueReference": "Wolverine Holiday Special: Flies to a Spider",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 641,
+          "sourceIssueReference": "Wolverine: Dead ManÃ¢â‚¬â„¢s Hand",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 666,
+          "sourceIssueReference": "All-New Wolverine Saga",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 687,
+          "sourceIssueReference": "X-Force/Cable: Messiah War",
+          "classification": "exact",
+          "representation": "exact-row",
+          "selectedIssueId": 27620
+        },
+        {
+          "sourcePosition": 694,
+          "sourceIssueReference": "X-Men: Future History Ã¢â‚¬â€œ The Messiah War Sourcebook",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 711,
+          "sourceIssueReference": "X Necrosha",
+          "classification": "exact",
+          "representation": "exact-row",
+          "selectedIssueId": 28103
+        },
+        {
+          "sourcePosition": 712,
+          "sourceIssueReference": "X Necrosha: The Gathering",
+          "classification": "exact",
+          "representation": "exact-row",
+          "selectedIssueId": 29945
+        },
+        {
+          "sourcePosition": 733,
+          "sourceIssueReference": "Second Coming: Prepare",
+          "classification": "exact",
+          "representation": "exact-row",
+          "selectedIssueId": 33554
+        },
+        {
+          "sourcePosition": 917,
+          "sourceIssueReference": "6",
+          "classification": "availability-only",
+          "representation": "explicit-exclusion"
+        },
+        {
+          "sourcePosition": 918,
+          "sourceIssueReference": "10",
+          "classification": "availability-only",
+          "representation": "explicit-exclusion"
+        },
+        {
+          "sourcePosition": 919,
+          "sourceIssueReference": "Material from Marvel Point One",
+          "classification": "source-semantic",
+          "representation": "explicit-exclusion"
+        },
+        {
+          "sourcePosition": 954,
+          "sourceIssueReference": "18",
+          "classification": "exact",
+          "representation": "canonical-repeat",
+          "selectedIssueId": 40087,
+          "canonicalSourcePosition": 819
+        },
+        {
+          "sourcePosition": 1100,
+          "sourceIssueReference": "Death of Wolverine: Deadpool and Captain America",
+          "classification": "exact",
+          "representation": "exact-row",
+          "selectedIssueId": 50983
+        },
+        {
+          "sourcePosition": 1101,
+          "sourceIssueReference": "Death of Wolverine: Life After Logan",
+          "classification": "exact",
+          "representation": "exact-row",
+          "selectedIssueId": 51050
+        },
+        {
+          "sourcePosition": 1222,
+          "sourceIssueReference": "Marvel Legacy Primer pages",
+          "classification": "source-semantic",
+          "representation": "explicit-exclusion"
+        },
+        {
+          "sourcePosition": 1223,
+          "sourceIssueReference": "FOOM Magazine (2017)",
+          "classification": "source-semantic",
+          "representation": "explicit-exclusion"
+        },
+        {
+          "sourcePosition": 1240,
+          "sourceIssueReference": "Deadpool Vs. Old Man Logan",
+          "classification": "source-semantic",
+          "representation": "explicit-exclusion"
+        },
+        {
+          "sourcePosition": 1276,
+          "sourceIssueReference": "Infinity Countdown Prime (2018)",
+          "classification": "exact",
+          "representation": "exact-row",
+          "selectedIssueId": 66283
+        },
+        {
+          "sourcePosition": 1282,
+          "sourceIssueReference": "Infinity Countdown: Adam Warlock (2018) #1 and Material from Free Comic Book Day 2018 (Amazing Spider-Man)",
+          "classification": "source-semantic",
+          "representation": "explicit-exclusion"
+        },
+        {
+          "sourcePosition": null,
+          "sourceIssueReference": "Savage Avengers (2019) #1-5 plus Material from Free Comic Book Day 2019 (Avengers)",
+          "classification": "post-boundary",
+          "representation": "ledger-only"
+        },
+        {
+          "sourcePosition": null,
+          "sourceIssueReference": "Wolverine: Black",
+          "classification": "post-boundary",
+          "representation": "ledger-only"
+        },
+        {
+          "sourcePosition": null,
+          "sourceIssueReference": "White",
+          "classification": "post-boundary",
+          "representation": "ledger-only"
+        },
+        {
+          "sourcePosition": null,
+          "sourceIssueReference": "Deadpool / Wolverine: Weapon X-Traction (one-shot)",
+          "classification": "post-boundary",
+          "representation": "ledger-only"
+        },
+        {
+          "sourcePosition": null,
+          "sourceIssueReference": "Logan: Black",
+          "classification": "post-boundary",
+          "representation": "ledger-only"
+        }
+      ]
+    }
+  },
+  "packetDigest": "f6def57b9a37d764a27be9ba71b10c66e517c87b8c961b6dea8f682dea5d5104"
 }

@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
+import { beforeFirstInstallmentOrders } from './helpers/first-installment-history.mjs';
 import { buildComparisonReport } from '../scripts/lib/cbh-overlap.mjs';
 import {
   curatedLedgerDigestFor, curatedRelationshipReportDigestFor,
@@ -109,9 +110,9 @@ test('the batch keeps every visible and hidden peer in its factual relationship 
   const files = new Map(manifest.lists.map((entry) => [entry.id, entry.out]));
   for (const entry of catalog.lists) files.set(entry.id, entry.file);
   // Both reviews predate the X-Men era replacement, so they compared the guides it retired.
-  const orders = beforeXmenEraOrders(await Promise.all([...files].map(async ([orderId, file]) => ({
+  const orders = beforeFirstInstallmentOrders(beforeXmenEraOrders(await Promise.all([...files].map(async ([orderId, file]) => ({
     orderId, issueIds: (await readJson(`src/data/${file}`)).items,
-  }))));
+  })))));
   // The Captain America (2025) and Avengers: Armageddon Modern Timeline lists were registered after these reviews.
   const laterModernTimelineIds = ['captain-america-2025-our-secret-wars',
     'captain-america-2025-dooms-shadow', 'captain-america-2025-hells-angel', 'avengers-armageddon'];

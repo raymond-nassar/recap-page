@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
+import { beforeFirstInstallmentManifest } from './helpers/first-installment-history.mjs';
 
 import {
   assertApprovedRelationshipReview,
@@ -260,7 +261,7 @@ test('Hawkeye has a complete approved current-library relationship and shipped i
     issueIds: historicalReadingChoiceIssueIds(entry.id, issueIdsFromValue(await readJson(`src/data/${entry.out}`))),
   })));
   const libraryDigest = libraryDigestFor({
-    ...manifest, lists: existing, paths: pathsWithinLists(manifest.paths, existing),
+    ...beforeFirstInstallmentManifest(manifest), lists: existing, paths: pathsWithinLists(manifest.paths, existing),
   }, orders.map((order) => ({
     id: order.orderId,
     issueIds: order.issueIds.map(String),

@@ -282,7 +282,7 @@ function popupHandoffFindings(java, activity) {
     `only the closing helper may pass a handoff: ${threeArgumentTaps.join(' ')}`);
   const closingCalls = [...java.matchAll(/(?<!void )\btapClosingPopup\(([^;{]*)\);/g)].map((match) => match[1]);
   require(JSON.stringify(closingCalls) === JSON.stringify([
-    'popup, "#fallback", "https://read.marvel.com/#/book/900000099", defaultBrowser',
+    'popup, "#fallback", "https://marvel.webtoon.com/", defaultBrowser',
     'popup, "#fallback", escape, "com.android.chrome"',
   ]), `exactly the two browser fallbacks may close their popup: ${closingCalls.join(' | ')}`);
   require(!/\btap\(popup, "#fallback"\)/.test(java), 'a browser fallback still uses an ordinary tap');

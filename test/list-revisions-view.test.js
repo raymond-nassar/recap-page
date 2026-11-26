@@ -5,7 +5,14 @@ import { createListRevisions } from '../src/js/views/list-revisions.js';
 import { offlineStatusText } from '../src/js/views/shared/offline-status.js';
 import { READING_ORDER_REVISIONS } from '../src/js/lib/readingOrderRevisions.js';
 import { bookOrderOf, READING_ORDER_CHOICES } from '../src/js/lib/readingOrderChoices.js';
+import { reconcileIdentities } from '../src/js/lib/identityReconcile.js';
 import { firstReleasedWolverineIssueOrders } from './helpers/wolverine-correction-history.mjs';
+
+// Loading a save moves a linked list's corrected comics to their verified identities before any
+// offer is considered, so an earlier order is offered in the form a real load leaves it in.
+const loadedIds = (catalogId, itemIds) => reconcileIdentities({
+  issues: {}, lists: { saved: { id: 'saved', catalogId, itemIds: [...itemIds] } },
+}).lists.saved.itemIds;
 
 function fixture({ catalogId = null, itemIds = [1], ask = null, loadOrder = null, save = null, catalogEntries = null, offlineContent = null } = {}) {
   const nodes = new Map();
@@ -465,7 +472,7 @@ test('a personal list chooser offers only active catalog entries', async () => {
 test('the first released Wolverine order has the automatic review offer', () => {
   try {
     for (const itemIds of firstReleasedWolverineIssueOrders()) {
-      const f = fixture({ catalogId: 'wolverine-reading-order', itemIds });
+      const f = fixture({ catalogId: 'wolverine-reading-order', itemIds: loadedIds('wolverine-reading-order', itemIds) });
       assert.equal(f.get('list-revision-offer').hidden, false);
     }
   } finally {
@@ -602,12 +609,13 @@ test('a stale personal-list chooser is withdrawn when the list becomes linked', 
 test('an earlier-order offer is withdrawn when the list or route changes', () => {
   try {
     const record = READING_ORDER_REVISIONS[0];
-    const f = fixture({ catalogId: record.catalogId, itemIds: [...record.previousOrders[0]] });
+    const itemIds = loadedIds(record.catalogId, record.previousOrders[0]);
+    const f = fixture({ catalogId: record.catalogId, itemIds: [...itemIds] });
     assert.equal(f.get('list-revision-offer').hidden, false);
     f.state.lists.saved.itemIds.pop();
     f.view.render();
     assert.equal(f.get('list-revision-offer').hidden, true);
-    f.state.lists.saved.itemIds.push(record.previousOrders[0].at(-1));
+    f.state.lists.saved.itemIds.push(itemIds.at(-1));
     f.setVisible(false);
     f.view.render();
     assert.equal(f.get('list-revision-offer').hidden, true);
@@ -618,7 +626,11 @@ test('an earlier-order offer is withdrawn when the list or route changes', () =>
 
 test('an unlinked list matching one earlier order can review that order directly', async () => {
   try {
-    const record = READING_ORDER_REVISIONS[0];
+    // An unlinked copy of the earlier Wolverine order keeps comics that load could not move, so
+    // updating it would show two checkmarks for one comic and it is not offered.
+    const wolverine = READING_ORDER_REVISIONS.find(({ catalogId }) => catalogId === 'wolverine-reading-order');
+    assert.equal(fixture({ itemIds: loadedIds(null, wolverine.previousOrders[0]) }).get('list-revision-offer').hidden, true);
+    const record = READING_ORDER_REVISIONS.find(({ catalogId }) => catalogId !== 'wolverine-reading-order');
     const f = fixture({ itemIds: [...record.previousOrders[0]] });
     f.entry.id = record.catalogId;
     f.order.id = record.catalogId;
@@ -762,7 +774,7 @@ test('a saving pause withdraws the offer, controls and an open review before ano
     const record = READING_ORDER_REVISIONS[0];
     let aborted = false;
     const f = fixture({
-      catalogId: record.catalogId, itemIds: [...record.previousOrders[0]],
+      catalogId: record.catalogId, itemIds: loadedIds(record.catalogId, record.previousOrders[0]),
       ask: ({ signal }) => new Promise((resolve) => {
         signal.addEventListener('abort', () => { aborted = true; resolve(true); }, { once: true });
       }),
