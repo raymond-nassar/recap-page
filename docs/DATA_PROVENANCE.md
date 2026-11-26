@@ -1027,7 +1027,7 @@ The first is that displaying a description and shipping a copy of one are differ
 those terms rather than two degrees of one act. Using Content inside an App is what the licence is
 for, on a condition the attribution page states plainly: "You must attribute Marvel as the source
 of data whenever you display any results from the Marvel Comics API". The app now names both the
-Marvel origin and its actual route in About at `src/index.html:1442-1446`. Redistributing Content outside an App, and sublicensing it onward, are the
+Marvel origin and its actual route in About at `src/index.html:1437-1441`. Redistributing Content outside an App, and sublicensing it onward, are the
 two things sections 4 and 5 name. An MIT grant is a sublicence to everyone who receives a copy, and
 offers them "sublicense, and/or sell".
 
@@ -3157,12 +3157,13 @@ shape (`test/helpers/owner-delivery-contract.mjs:126-154`).
 
 The app carries only the optional `identityEvidenceKind` marker in the existing normalized issue
 record so the reading view can distinguish an owner-confirmed identity from an ordinary missing
-provider record after import and reload (`src/js/lib/model.js:270-279`,
-`src/js/views/reading.js:68-71`, `src/js/views/reading.js:82-93`). It keeps `metadataSourceKind` the
+provider record after import and reload (`src/js/lib/model.js:267-269`,
+`src/js/views/reading.js:70-73`, `src/js/views/reading.js:84-95`). It keeps `metadataSourceKind` the
 same way, only as one of the closed values and only beside an owner-confirmed identity, so a
 supplemented comic's badge hint, gap sentence and catalog label credit marvel.com and whichever
 outside source supplied its details instead of claiming it has no cover. The actor, date, URL and confirmation
-comment stay in the repository evidence. These additive markers do not change saved-data version 4;
+comment stay in the repository evidence (`src/js/lib/model.js:271-278`). These additive markers do
+not change saved-data version 4;
 existing saves need no migration, and older builds may discard the markers without changing reading
 progress or issue identity.
 
@@ -4121,6 +4122,17 @@ ones that come from a website), not the individual issue links themselves." Abou
 "Comic link credits" section in the owner's approved words, thanking werhsdnas of the Continuity
 Guide Discord server and Comic Book Reading Orders. Credits for curated lists that follow a website
 are unchanged. The later export's contributor is recorded separately below.
+
+**Current launch policy.** The release-wide transition in [Issue 1601](https://github.com/raymond-nassar/recap-page/issues/1601)
+supersedes the earlier date-based behavior recorded below. Only a verified Marvel Comics app
+viewer link opens a comic directly; without one, the reading action opens the general Marvel Comics
+website, not a prefilled search or a guaranteed issue. Old issue IDs and Marvel Unlimited reader
+references remain available for saved-data compatibility, but they no longer select a specific
+comic, trigger a lookup, or identify a viewer (`src/js/reader.js:70-77`, `src/open.js:105-111`,
+`packaging/android/web/reader.js:47-58`, `packaging/ios/RecapPage/NavigationPolicy.swift:84-103`).
+
+**Historical note.** The following launch paragraph is preserved verbatim from the earlier route
+decision. It describes the behavior at that time and is superseded by the current policy above.
 
 **Where Read goes.** A comic with a link opens in the Marvel Comics app, from today. A comic without
 one keeps what it did before: Marvel Unlimited until December 7, 2026, then the Marvel Comics website.

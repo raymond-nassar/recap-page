@@ -5,12 +5,12 @@ import {
 } from '../src/js/lib/cachePolicy.js';
 import { READER_PREFIX, readerUrl, detailUrl, launchUrl, isLaunchable, openIssue } from '../src/js/reader.js';
 import {
-  digitalIdFromUrl, parseChecklist, readerIssueId,
+  digitalIdFromUrl, parseChecklist, readerIssueId, serializeChecklist, serializeReadingOrder,
 } from '../src/js/lib/markdown.js';
 import { manualDetailUrl, stageChecklistEntry } from '../src/js/views/add.js';
 import {
   createEmptyState, addIssuesToList, createList, listItems, markRead,
-  pendingIssueIds, synopsisOrder,
+  pendingIssueIds, synopsisOrder, migrate, exportBackup, validateBackup, upsertIssue,
 } from '../src/js/lib/model.js';
 
 // ------------------------------------------------------------------ cache policy
@@ -186,6 +186,52 @@ test('the marvel.com detail page is the fallback when only an issueId is known',
     detailUrl({ issueId: 52447, url: 'https://www.marvel.com/comics/issue/52447/secret_wars' }),
     'https://www.marvel.com/comics/issue/52447/secret_wars',
   );
+});
+
+const findOnlyRow = { issueId: 56003, title: 'Find-only fixture #1', findOnly: true, url: null, source: 'curated' };
+
+test('a Find-only provider row keeps its key and checkmark without gaining a guessed URL', () => {
+  const legacy = { issueId: 52447, title: 'Existing fixture #1', url: null };
+  let state = createList(createEmptyState(), { name: 'Disposable guide' });
+  const listId = state.active;
+  state = addIssuesToList(state, listId, [findOnlyRow, legacy]).state;
+  state = markRead(state, findOnlyRow.issueId);
+  for (const saved of [state, migrate(JSON.parse(JSON.stringify(state))), validateBackup(exportBackup(state)).state]) {
+    const items = listItems(saved, listId);
+    const [row, ordinary] = items;
+    assert.equal(row.issueId, 56003);
+    assert.equal(row.findOnly, true);
+    assert.equal(row.url, null);
+    assert.equal(row.read, true);
+    assert.equal(detailUrl(row), null);
+    assert.equal(isLaunchable(row), true);
+    const { searchParams } = new URL(launchUrl(row, 'http://127.0.0.1:8787'));
+    assert.deepEqual([...searchParams], [['r', 'comics'], ['t', row.title]]);
+    assert.equal(detailUrl(ordinary), 'https://www.marvel.com/comics/issue/52447/');
+
+    const source = { name: 'Disposable guide', items };
+    assert.match(serializeChecklist(source), /^- \[x\] Find-only fixture #1$/m);
+    assert.match(serializeChecklist(source, { literal: true }), /^- \[x\] Find-only fixture #1$/m);
+    assert.match(serializeReadingOrder(source), /^- \[ \] Find-only fixture #1$/m);
+  }
+});
+
+test('Find-only records refuse guessed links during metadata merges, even if an old copy already has one', () => {
+  const old = { issueId: findOnlyRow.issueId, title: 'Existing fixture title', source: 'curated' };
+  let state = createList(createEmptyState(), { name: 'Disposable guide' });
+  const listId = state.active;
+  state = addIssuesToList(state, listId, [old]).state;
+  const oldIssue = state.issues[old.issueId];
+  assert.equal(oldIssue.url, 'https://www.marvel.com/comics/issue/56003/');
+  for (const preserveExisting of [false, true]) {
+    const revised = addIssuesToList(state, listId, [findOnlyRow], { preserveExisting }).state;
+    const issue = revised.issues[old.issueId];
+    assert.equal(issue.findOnly, true);
+    assert.equal(issue.url, null);
+    assert.equal(issue.title, preserveExisting ? old.title : findOnlyRow.title);
+    assert.equal(upsertIssue(revised, old).issues[old.issueId].url, null);
+  }
+  assert.equal(detailUrl({ ...findOnlyRow, url: oldIssue.url }), null);
 });
 
 test('an untrusted url from third-party metadata is not followed', () => {

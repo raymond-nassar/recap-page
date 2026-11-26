@@ -172,11 +172,11 @@ export async function checkAgeOfApocalypseActualData(page, t) {
   const gapActions = await page.$$eval('#rows .row .rt', (nodes, ids) =>
     nodes.filter((node) => ids.includes(Number(node.dataset.issueId))).map((node) => ({
       issueId: Number(node.dataset.issueId),
-      openHidden: node.closest('.row')?.querySelector('.ract button[data-act="open"]')?.hidden,
+      action: node.closest('.row')?.querySelector('.ract button[data-act="open"]:not([hidden])')?.textContent.trim(),
       hasInfo: !!node.closest('.row')?.querySelector('.ract a[data-act="info"]'),
     })), gaps.map((row) => row.issueId));
-  t.check(`all ${gaps.length} unresolved originals offer neither a reader nor a fabricated issue page`,
-    gapActions.length === gaps.length && gapActions.every((row) => row.openHidden && !row.hasInfo),
+  t.check(`all ${gaps.length} unresolved originals offer Find on Marvel Comics but no fabricated issue page`,
+    gapActions.length === gaps.length && gapActions.every((row) => row.action === 'Find on Marvel Comics' && !row.hasInfo),
     JSON.stringify(gapActions));
 
   await page.reload({ waitUntil: 'load' });

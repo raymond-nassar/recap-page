@@ -102,16 +102,14 @@ export const youngReadersActualData = {
       await page.waitForSelector(selector, { timeout: 15000 });
       const card = await page.$eval(selector, (node, url) => ({
         name: node.querySelector('.catalog-card-title')?.textContent.trim(),
-        text: node.textContent,
+        meta: node.querySelector('.catalog-card-meta')?.textContent.trim(),
         source: [...node.querySelectorAll('a')].find((link) => link.href === url)?.getAttribute('aria-label'),
         add: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
       }), GUIDE);
-      const gapLabel = guide.gaps === 1
-        ? '1 comic is listed by title only' : `${guide.gaps} comics are listed by title only`;
       t.check(`${guide.name} is found on Young readers with ${total} comics and Comic Book Herald credit`,
-        card.name === guide.name && card.text.includes(`${total} comics`)
-        && card.source === `Source of ${guide.name}: Comic Book Herald` && card.add === `Add to library: ${guide.name}`
-        && card.text.includes(gapLabel) === (guide.gaps > 0), JSON.stringify({ ...card, text: undefined }));
+        card.name === guide.name && card.meta === `${total} comics`
+        && card.source === `Source of ${guide.name}: Comic Book Herald` && card.add === `Add to library: ${guide.name}`,
+        JSON.stringify(card));
 
       await click(page, `${selector} [data-act="preview"]`);
       await page.waitForFunction((count) =>
@@ -142,11 +140,11 @@ export const youngReadersActualData = {
       const gapActions = await page.$$eval('#rows .row', (nodes) => nodes
         .filter((node) => Number(node.querySelector('.rt')?.dataset.issueId) < 0)
         .map((node) => ({
-          readHidden: node.querySelector('.ract button[data-act="open"]')?.hidden,
+          action: node.querySelector('.ract button[data-act="open"]:not([hidden])')?.textContent.trim(),
           hasInfo: Boolean(node.querySelector('.ract a[data-act="info"]')),
         })));
-      t.check(`${guide.name} gaps offer neither Read nor Info`, gapActions.length === guide.gaps
-        && gapActions.every((row) => row.readHidden && !row.hasInfo), JSON.stringify(gapActions));
+      t.check(`${guide.name} gaps offer Find on Marvel Comics but no Info action`, gapActions.length === guide.gaps
+        && gapActions.every((row) => row.action === 'Find on Marvel Comics' && !row.hasInfo), JSON.stringify(gapActions));
 
       await page.reload({ waitUntil: 'load' });
       await page.waitForFunction((name) =>

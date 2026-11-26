@@ -3,12 +3,14 @@
 // src/js/lib/identityReconcile.js validates the whole table before using any of it and moves saved
 // progress only under the owner's one-to-one, no-conflict rule recorded on the Issue.
 //
-// Entry shape: { catalogId, from, to, appViewer?, title, legacyTitle, evidence }. `title` is the
+// Entry shape: { catalogId, from, to, appViewer?, title, legacyTitle, evidence, sameEditionGroup? }.
+// `title` is the
 // comic's title in the corrected guide and `legacyTitle` the exact title the old guide saved under
 // `from`, so a backup holding the old record still matches the same comic. A negative `to`
 // is a viewer-only comic and must carry the appViewer its key was made from; a positive `to` that
-// names an appViewer must match the bundled table. Entries are added with their guide data and its
-// reading-order revision, never on their own.
+// names an appViewer must match the bundled table. Multiple old keys may share a target only inside
+// one reviewed sameEditionGroup; saved state moves only when at most one member key exists.
+// Entries are added with their guide data and reading-order revision.
 //
 // The 18 Wolverine entries come from the reviewed gap-to-issue transitions in
 // scripts/data/cbh-source-ledgers/wolverine-reading-order-identity-correction-v1/, adjudicated on

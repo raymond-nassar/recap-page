@@ -123,13 +123,13 @@ test('new catalog matcher reuses exact title, number and sale-year rules across 
   ]) assert.throws(() => parseExportCsv(bad), /export|Export/);
 });
 
-test('new catalog import preserves old links and frozen fallbacks while holding unmatched additions', () => {
+test('new catalog import gives verified viewer links precedence over frozen fallbacks', () => {
   const base = inputFrom({ rows: [row(1, 'exact', [101])] });
   const items = [
     { issueId: 1 }, { issueId: 2 }, { issueId: 3 }, { issueId: 4 }, { issueId: 5 }, { issueId: 6 },
   ];
   const mu = { status: 'owner-approved', asOf: '2026-11-18',
-    approvedGroups: ['unknown-unlimited'], excludedIssueIds: [3], issueIds: [2] };
+    approvedGroups: ['unknown-unlimited'], excludedIssueIds: [3], issueIds: [2, 6] };
   const rows = [
     exportRow(1, 'exact', [901]), exportRow(2, 'exact', [902]), exportRow(3, 'exact', [903]),
     exportRow(4, 'exact', [104]), exportRow(5, 'ambiguous', [105], { ambiguity: 'cover-year-shift' }),
@@ -137,16 +137,22 @@ test('new catalog import preserves old links and frozen fallbacks while holding 
   assert.throws(() => buildMuModule(mu, items, base.links), /do not match/);
   const result = importNewCatalog(base, mu, items, rows);
   assert.deepEqual(result.input.links, [base.links[0],
+    { issueId: 2, viewer: 902, basis: 'exact', source: EXPORT_SOURCE },
+    { issueId: 3, viewer: 903, basis: 'exact', source: EXPORT_SOURCE },
     { issueId: 4, viewer: 104, basis: 'exact', source: EXPORT_SOURCE }]);
-  assert.deepEqual(result.muInput, { ...mu, unapprovedIssueIds: [5, 6] });
-  assert.equal(result.added, 1);
-  assert.equal(result.unapproved, 2);
-  assert.doesNotThrow(() => buildMuModule(result.muInput, items, result.input.links));
+  assert.deepEqual(result.muInput, { ...mu, unapprovedIssueIds: [5] });
+  assert.equal(result.added, 3);
+  assert.equal(result.unapproved, 1);
+  const fallbackModule = buildMuModule(result.muInput, items, result.input.links);
+  assert.match(fallbackModule, /export const marvelComicsAppMuIssueIds = \[\s*6,\s*\];/,
+    'legacy fallback approval remains recorded except where a verified viewer link supersedes it');
   assert.deepEqual(importNewCatalog(result.input, result.muInput, items, rows),
     { ...result, added: 0 }, 'repeated runs preserve input bytes and do not broaden approval');
   const next = importNewCatalog(result.input, result.muInput, items, [...rows, exportRow(6, 'exact', [106])]);
   assert.equal(next.added, 1);
   assert.deepEqual(next.muInput.unapprovedIssueIds, [5], 'a held comic can later obtain an exact match');
+  assert.match(buildMuModule(next.muInput, items, next.input.links),
+    /export const marvelComicsAppMuIssueIds = \[\];/);
   assert.deepEqual(next.input.exportSelection, result.input.exportSelection, 'first import accounting is retained');
   assert.throws(() => importNewCatalog(base, mu, items, [exportRow(4, 'exact', [101])]), /used by two comics/);
   for (const pending of [[2], [3], [1], [999], [5, 5], [6, 5], ['5']]) {
@@ -155,7 +161,7 @@ test('new catalog import preserves old links and frozen fallbacks while holding 
   }
   assert.throws(() => buildMuModule({ ...result.muInput, issueIds: [] }, items, result.input.links), /do not match/);
   assert.deepEqual(base.links.map((link) => link.viewer), [101], 'original viewer links are not mutated');
-  assert.deepEqual(mu.issueIds, [2], 'fallback approval is not mutated');
+  assert.deepEqual(mu.issueIds, [2, 6], 'fallback approval is not mutated');
 });
 
 test('new catalog import refuses a different private export before matching', () => {
