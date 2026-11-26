@@ -225,7 +225,11 @@ test('a copied legacy source label blocks a duplicate corrected import before an
 
 test('a correction table with any fault applies nothing', () => {
   assert.equal(validateIdentityCorrections(corrections, { viewerFor }).ok, true);
-  assert.equal(validateIdentityCorrections(corrections).ok, false, 'the bundled table does not pair this viewer yet');
+  // The Wolverine correction now bundles this exact pair, so prove the refusal with a lookup that
+  // has no viewer for the provider rather than relying on the bundled table lacking it.
+  assert.equal(validateIdentityCorrections(corrections).ok, true, 'the bundled table pairs this viewer');
+  assert.equal(validateIdentityCorrections(corrections, { viewerFor: () => null }).ok, false);
+  assert.equal(validateIdentityCorrections(corrections, { viewerFor: () => '9351' }).ok, false);
   const missingLegacyTitle = { ...corrections[0] };
   delete missingLegacyTitle.legacyTitle;
   assert.equal(validateIdentityCorrections([missingLegacyTitle], { viewerFor }).ok, false);

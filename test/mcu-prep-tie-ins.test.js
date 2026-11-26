@@ -214,8 +214,20 @@ test('tie-in reader links keep the exact matched viewers and preserve every earl
     })));
   const reviewedViewers = new Set(reviewed2025.values());
   assert.ok(links.links.every(({ issueId, viewer }) => reviewed2025.has(issueId) || !reviewedViewers.has(viewer)));
-  const previous = links.links.filter(({ issueId }) =>
-    !additions.has(issueId) && !xmenEra.has(issueId) && !reviewed2025.has(issueId));
+  // Combined-branch correction: the Wolverine guide correction added these 18 reviewed viewers
+  // independently of the 2025 links. Written out rather than read from its ledger, so the frozen
+  // digest below still proves that no earlier link moved under either change.
+  const wolverine18 = new Map([
+    [16114, 9350], [16144, 21447], [16507, 21448], [16508, 21449], [17243, 21450], [17379, 21451],
+    [17619, 21452], [20664, 21456], [20859, 21454], [20994, 21455], [21206, 21453], [21350, 21459],
+    [21531, 21457], [21962, 21458], [22284, 21460], [22492, 21462], [22896, 21463], [23103, 21461],
+  ]);
+  assert.ok([...wolverine18].every(([issueId, viewer]) => !additions.has(issueId) && !xmenEra.has(issueId)
+    && !reviewed2025.has(issueId) && links.links.filter((link) => link.issueId === issueId).length === 1
+    && links.links.some((link) => link.issueId === issueId && link.viewer === viewer
+      && link.basis === 'exact' && link.source === 'continuity-guide-discord-2026-11-19')));
+  const previous = links.links.filter(({ issueId }) => !additions.has(issueId) && !xmenEra.has(issueId)
+    && !reviewed2025.has(issueId) && !wolverine18.has(issueId));
   assert.equal(previous.length, 17663);
   assert.equal(digest(previous), '0bec147ce327f7287cd5d6a02f6c303295a5f51c78da9f43a9a3be6e981d219f');
   const { unapprovedIssueIds, ...frozenMu } = mu;
