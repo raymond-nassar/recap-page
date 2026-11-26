@@ -4,12 +4,13 @@ import { webcrypto } from 'node:crypto';
 import {
   addsIdentityConflict, guardIdentityImport, identityConflicts, reconcileIdentities, validateIdentityCorrections,
 } from '../src/js/lib/identityReconcile.js';
-import { addIssuesToList, createList, deleteList, duplicateList, exportBackup, normalizeIssue } from '../src/js/lib/model.js';
+import { addIssuesToList, createList, deleteList, duplicateList, exportBackup, normalizeIssue, validateBackup } from '../src/js/lib/model.js';
 import { appViewerFor } from '../src/js/lib/marvelComicsApp.js';
 import { taggedViewer, viewerKey } from '../src/js/lib/marvelComicsAppUrl.js';
 import { launchUrl } from '../src/js/reader.js';
 import { KEY, Store } from '../src/js/storage.js';
 import { createCompleteBackup, parseCompleteBackup, prepareCompleteRestore } from '../src/js/lib/completeBackup.js';
+import { identityCorrections } from '../src/data/identityCorrections.js';
 
 // Disposable data only. The Wolverine numbers are the adjudicated Cable & Deadpool #44 match from
 // #1601: the old guide key, its provider number and its Marvel Comics app viewer.
@@ -143,6 +144,26 @@ function oldFcbdLibrary({ secondHeld = true, secondHasState = true, equalValues 
     listOrder: Object.keys(lists), lists, issues, read, notes, ratings, overrides,
   };
 }
+
+test('the bundled aliases move solitary FCBD or Runaways progress and hold both old FCBD copies', () => {
+  const registered = validateIdentityCorrections(identityCorrections);
+  assert.equal(registered.ok, true, registered.errors.join('\n'));
+  assert.equal(appViewerFor(FCBD_TARGET), FCBD_VIEWER);
+  const single = oldFcbdLibrary({ secondHeld: false, secondHasState: false });
+  single.issues[FCBD_FIRST] = issue(FCBD_FIRST, 'Secret Wars (2015) #0');
+  const moved = reconcileIdentities(single);
+  assert.deepEqual(moved.lists.winter.itemIds, [FCBD_TARGET]);
+  assert.equal(moved.notes[FCBD_TARGET], single.notes[FCBD_FIRST]);
+  const both = oldFcbdLibrary({ equalValues: false });
+  both.issues[FCBD_FIRST] = issue(FCBD_FIRST, 'Secret Wars (2015) #0');
+  both.issues[FCBD_SECOND] = issue(FCBD_SECOND, 'Secret Wars (2015) #0');
+  assert.equal(reconcileIdentities(both), both);
+  const runaways = oldRunawaysLibrary();
+  const tagged = reconcileIdentities(runaways);
+  assert.deepEqual(tagged.lists.winter.itemIds, [RUNAWAYS_KEY]);
+  assert.deepEqual(tagged.lists.catalog.itemIds, [12618]);
+  assert.equal(tagged.notes[RUNAWAYS_KEY], runaways.notes[RUNAWAYS_FROM]);
+});
 
 test('an untagged legacy integer in the viewer range never acquires a viewer', () => {
   const record = normalizeIssue({ issueId: -8000000000012618, title: 'Unrelated legacy comic' });
@@ -378,17 +399,16 @@ test('a corrected Runaways import shares the verified tagged identity with old p
 });
 
 test('old reader and complete backups reconcile Runaways through their restore paths', async () => {
-  const original = new Store({ storage: memoryStorage({ [KEY]: JSON.stringify(oldRunawaysLibrary()) }) });
-  original.load();
-  const reader = exportBackup(original.state);
+  const legacy = validateBackup(oldRunawaysLibrary());
+  assert.equal(legacy.ok, true, legacy.errors.join('\n'));
+  const reader = exportBackup(legacy.state);
   const readerStorage = memoryStorage({});
   const readerStore = new Store({ storage: readerStorage });
   readerStore.load();
   const restoredReader = readerStore.restore(JSON.stringify(reader));
   assert.equal(restoredReader.ok, true, JSON.stringify(restoredReader));
-  assert.deepEqual(readerStore.state.lists.winter.itemIds, [RUNAWAYS_FROM]);
-  assert.deepEqual(readerStore.reconcileIdentities(runawaysOptions), { ok: true, changed: true });
   assert.deepEqual(readerStore.state.lists.winter.itemIds, [RUNAWAYS_KEY]);
+  assert.equal(readerStore.state.notes[RUNAWAYS_KEY], 'Disposable Runaways note');
   assert.equal(readerStore.state.issues[RUNAWAYS_KEY].appViewer, RUNAWAYS_VIEWER);
 
   const completeReader = { ...reader };
@@ -409,7 +429,7 @@ test('old reader and complete backups reconcile Runaways through their restore p
   const store = new Store({ storage: completeStorage });
   store.load();
   assert.deepEqual(store.state.lists.winter.itemIds, [RUNAWAYS_FROM], 'the verified backup is not rewritten before application startup');
-  assert.deepEqual(store.reconcileIdentities(runawaysOptions), { ok: true, changed: true });
+  assert.deepEqual(store.reconcileIdentities(), { ok: true, changed: true });
   assert.deepEqual(store.state.lists.winter.itemIds, [RUNAWAYS_KEY]);
   assert.equal(store.state.notes[RUNAWAYS_KEY], 'Disposable Runaways note');
   assert.equal(store.state.issues[RUNAWAYS_KEY].appViewer, RUNAWAYS_VIEWER);

@@ -4,8 +4,7 @@
 // progress only under the owner's one-to-one, no-conflict rule recorded on the Issue.
 //
 // Entry shape: { catalogId, from, to, appViewer?, title, legacyTitle, evidence, sameEditionGroup? }.
-// `title` is the
-// comic's title in the corrected guide and `legacyTitle` the exact title the old guide saved under
+// `title` is the comic's title in the corrected guide and `legacyTitle` the exact title saved under
 // `from`, so a backup holding the old record still matches the same comic. A negative `to`
 // is a viewer-only comic and must carry the appViewer its key was made from; a positive `to` that
 // names an appViewer must match the bundled table. Multiple old keys may share a target only inside
@@ -34,4 +33,8 @@ export const identityCorrections = Object.freeze([
   {"catalogId":"wolverine-reading-order","from":-113460965,"to":22492,"appViewer":"21462","title":"Wolverine Origins (2006) #30","legacyTitle":"Wolverine: Origins #30","evidence":{"sourcePosition":681,"resolutionEvidenceDigest":"7ba77a1d6b5bc521933a9e771382e864ce1459d30ea19ffe1dfd4cff21ebe8f0","adjudicationSha256":"36351c474c26b6c3b28833cb21c1b3604ae1f0ab0a29de8ee821577fe21003a7"}},
   {"catalogId":"wolverine-reading-order","from":-130238584,"to":22896,"appViewer":"21463","title":"Wolverine Origins (2006) #31","legacyTitle":"Wolverine: Origins #31","evidence":{"sourcePosition":682,"resolutionEvidenceDigest":"00a92df4bb56b55b4acc53dcc6d321b5e2a411abc9ff4f0413c7a68eca6dabac","adjudicationSha256":"36351c474c26b6c3b28833cb21c1b3604ae1f0ab0a29de8ee821577fe21003a7"}},
   {"catalogId":"wolverine-reading-order","from":-147016203,"to":23103,"appViewer":"21461","title":"Wolverine Origins (2006) #32","legacyTitle":"Wolverine: Origins #32","evidence":{"sourcePosition":683,"resolutionEvidenceDigest":"df9059d76ae48b7a2ea1e019c9b1bf685ad1adf7ccb56205c46fc6117bd34e31","adjudicationSha256":"36351c474c26b6c3b28833cb21c1b3604ae1f0ab0a29de8ee821577fe21003a7"}},
+  // The Winter Soldier and Namor gaps below are outside the Wolverine correction ledger.
+  {"catalogId":"winter-soldier-bucky-barnes-reading-order","from":-1200736424,"to":-8000000000012618,"appViewer":"12618","title":"Runaways (2015) #1","legacyTitle":"Runaways (2015) #1","evidence":{"sourcePosition":405,"publishedGapDigest":"0736748470e7c37e8499198430c9d88082e517198fe8137785a7836a7c8ce34d","adjudicationSha256":"aa0bf19f612c4991c4a8a27a909f3eba9e872705fc50229ff5d22fc74494ec7d"}},
+  {"catalogId":"winter-soldier-bucky-barnes-reading-order","from":-1103792078,"to":52986,"appViewer":"12467","title":"FREE COMIC BOOK DAY 2015 0 (2015)","legacyTitle":"Secret Wars (2015) #0","evidence":{"sourcePosition":395,"publishedGapDigest":"c3447fec6a7bb17ec06c1d35f5f4b7a5b77e54d7b6ab61fbe814f0be16f09339","adjudicationSha256":"a380f502fefe8850eeb0228f047d0ce9d74153389b87080262607f38c8a7c9f7"},"sameEditionGroup":"fcbd-2015-secret-wars-0"},
+  {"catalogId":"namor-sub-mariner-reading-order","from":-1027689073,"to":52986,"appViewer":"12467","title":"FREE COMIC BOOK DAY 2015 0 (2015)","legacyTitle":"Secret Wars (2015) #0","evidence":{"sourcePosition":626,"publishedGapDigest":"5933473ce98130d7e618970731eb0ee4848ba2110e810c945a13c16dd457abdd","adjudicationSha256":"73381000502c74c94332406f17a40a3f3ee69a1ca855a763af8b27af243e75c9","addendumSha256":"e502074a9219b665e9f7e7aeaa02be35024b390f783f70c6f896d318ba05c3e5"},"sameEditionGroup":"fcbd-2015-secret-wars-0"},
 ]);

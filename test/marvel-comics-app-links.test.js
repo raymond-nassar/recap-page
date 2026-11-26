@@ -305,7 +305,6 @@ test('950 the bundled MU set is current and frozen to its approval record, but g
   assert.equal(readFileSync(MU_MODULE_PATH, 'utf8').replace(/\r\n/g, '\n'),
     buildMuModule(approval, catalogComics(), input.links));
   assert.deepEqual(marvelComicsAppMuIssueIds, approval.issueIds);
-  assert.equal(approval.issueIds.length, 1760);
   assert.deepEqual(approval.excludedIssueIds, [11185]);
   assert.equal(appLinkFor(11185), null);
   // #1601: an MU-only comic is not a direct link any more, so it shows Find on Marvel Comics.

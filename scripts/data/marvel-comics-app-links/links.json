@@ -2,9 +2,9 @@
   "source": "https://comicbookreadingorders.com/marvel/event-timeline/",
   "matchedAt": "2026-11-18T06:24:38.533Z",
   "counts": {
-    "exact": 17718,
+    "exact": 17719,
     "coverYearShift": 30,
-    "total": 17748,
+    "total": 17749,
     "leftOut": {
       "conflict": 0,
       "severalNumbers": 1,
@@ -12397,6 +12397,7 @@
     {"issueId":52913,"viewer":12235,"basis":"exact","source":"continuity-guide-discord-2026-11-19"},
     {"issueId":52923,"viewer":12249,"basis":"exact","source":"continuity-guide-discord-2026-11-19"},
     {"issueId":52936,"viewer":11963,"basis":"exact","source":"continuity-guide-discord-2026-11-19"},
+    {"issueId":52986,"viewer":12467,"basis":"exact","source":"continuity-guide-discord-2026-11-19"},
     {"issueId":52989,"viewer":11961,"basis":"exact","source":"continuity-guide-discord-2026-11-19"},
     {"issueId":52990,"viewer":11164,"basis":"exact","source":"continuity-guide-discord-2026-11-19"},
     {"issueId":52991,"viewer":11135,"basis":"exact","source":"continuity-guide-discord-2026-11-19"},
