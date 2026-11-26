@@ -4283,3 +4283,30 @@ ledger are adaptations under the same share-alike license as those published rec
 original mapping retains each source address, and the reading list repeats the existing database
 and license notice. Twelve other comics reuse previously published non-database supplements;
 Avengers (2026) #1 has no published supplement and remains bare.
+
+## Reviewed 2025 Marvel Comics app links
+
+For [Issue #1601](https://github.com/raymond-nassar/recap-page/issues/1601), the reviewed
+increment selects 21 direct viewer links from the same owner-approved Continuity Guide Discord
+export credited above. These replace existing Marvel issue-number web routes, not comic identities:
+Captain America (2025) #5 through #16, Avengers Academy: Marvel's Voices Infinity Comic (2024)
+#43 through #45, Astonishing Avengers Infinity Comic (2025) #21 through #23, Red Hulk (2025)
+#10, One World Under Doom (2025) #9 and The Will of Doom (2025) #1.
+
+Offline adjudication used the complete series title including its start year and exact issue
+number, distinguishing Infinity Comics from print issues. Each selection has one export candidate
+and no viewer collision with the existing table. Recorded dates and earlier linked issues were
+compared where available. The six Infinity Comics have no recorded guide date or earlier shipped
+viewer control; their evidence is the unique complete identity and collision checks. Export dates
+were not copied into undated catalog records. The existing generator reproduces both modules
+from the committed link inputs without the private export or adjudication files.
+
+The 21-pair selection digest is
+`c37466b019ec7ee51a0612db07e74db0f3873a0c4eeabb10f47c06f3f2a883f5`.
+Independent adjudication has SHA-256
+`c5bdf59667f1a952090248383d5c57ef862fd23664d82ec2669f16e14ce06716`.
+Owner source positions remain distinct from displayed positions: One World Under Doom #9 is
+source position 84 and displayed position 83. All guide payloads, unrelated viewer links and
+unrelated fallback links stay unchanged. Saved data, availability states and native launch logic
+are unchanged. This is a bounded increment, not completion of the broader link sweep or proof
+of an installed Marvel Comics app handoff.

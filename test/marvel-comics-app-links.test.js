@@ -15,6 +15,24 @@ import { marvelComicsAppMuIssueIds } from '../src/data/marvelComicsAppMuIssues.j
 // Rows written for this project in the shape of the offline match file; no site markup is used.
 const page = (slug) => `https://comicbookreadingorders.com/marvel/events/${slug}/`;
 const viewer = (n) => `https://www.marvelcomicsapp.com/viewer/${n}`;
+const reviewed2025Pairs = [
+  [121361, 24960], [121580, 24182], [121581, 24188], [121582, 24184],
+  [123208, 24868], [123209, 24869], [123210, 24871], [123360, 25168],
+  [123361, 25175], [123362, 25173], [123363, 25174], [123364, 25172],
+  [123365, 25177], [126711, 25490], [127115, 24924], [130145, 25178],
+  [130146, 36126], [130147, 36127], [130148, 36331], [130149, 36334],
+  [135945, 36953],
+];
+
+test('1601 reviewed 2025 comics use their direct viewer instead of the MU web route', () => {
+  for (const [issueId, number] of reviewed2025Pairs) {
+    assert.equal(appLinkFor(issueId), viewer(number), `comic ${issueId}`);
+    assert.equal(appLinkFor(String(issueId)), viewer(number), `saved comic ${issueId}`);
+    assert.equal(marvelComicsAppMuIssueIds.includes(issueId), false);
+    assert.equal(appLaunchUrl(new URLSearchParams(`a=${number}&i=${issueId}`)), viewer(number));
+  }
+});
+
 const row = (issueId, status, links, extra = {}) => ({
   issueId, status, appLinks: links.map(viewer), pageUrl: page('fixture-event-reading-order'), ...extra,
 });
@@ -291,7 +309,7 @@ test('950 the bundled MU set is current, frozen to its approval record and never
   assert.equal(readFileSync(MU_MODULE_PATH, 'utf8').replace(/\r\n/g, '\n'),
     buildMuModule(approval, catalogComics(), input.links));
   assert.deepEqual(marvelComicsAppMuIssueIds, approval.issueIds);
-  assert.equal(approval.issueIds.length, 1781);
+  assert.equal(approval.issueIds.length, 1760);
   assert.deepEqual(approval.excludedIssueIds, [11185]);
   assert.equal(appLinkFor(11185), null);
   for (const id of approval.issueIds) {
