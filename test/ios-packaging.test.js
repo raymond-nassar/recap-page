@@ -1880,7 +1880,7 @@ test('iOS hit-area text wrappers receive token-sized line boxes', () => {
 test('iOS Back, Continue and Preview inline controls retain token-sized native line boxes', () => {
   const overlay = read('packaging/ios/web/ios.css');
   assert.match(overlay, /:root \.app-back\.quiet,\s*:root #preview-secondary :is\(button, a\)\s*\{[^}]*min-width:\s*var\(--target\);[^}]*min-height:\s*var\(--target\);[^}]*line-height:\s*max\(var\(--target\), 1\.5em\);/s);
-  assert.match(overlay, /@media \(max-width: 620px\) \{\s*:root #chero-actions :is\(button, a\) \{[^}]*min-width:\s*var\(--target\);[^}]*min-height:\s*var\(--target\);[^}]*line-height:\s*max\(var\(--target\), 1\.5em\);/s,
+  assert.match(overlay, /@media \(max-width: 620px\) \{\s*:root #chero-actions > :is\(button, a\) \{[^}]*min-width:\s*var\(--target\);[^}]*min-height:\s*var\(--target\);[^}]*line-height:\s*max\(var\(--target\), 1\.5em\);/s,
     'the phone card\'s inline quiet actions are target-sized only where they are inline');
   assert.match(overlay, /:root \.app-back > \.gi\s*\{\s*display:\s*none;/);
   assert.match(overlay, /:root \.app-back-label\s*\{\s*display:\s*inline;/);

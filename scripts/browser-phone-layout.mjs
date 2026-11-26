@@ -381,21 +381,28 @@ export const phoneContinue = {
     await forProfiles(page, t, async (profile, theme) => {
       const label = `${profile.platform} ${profile.width} ${theme}`;
       const homeBand = await page.evaluate(() => {
-        const read = document.querySelector('#btn-chero-read').getBoundingClientRect();
+        const action = document.querySelector('#btn-chero-read');
+        const read = action.getBoundingClientRect();
+        const done = document.querySelector('#btn-chero-done').getBoundingClientRect();
         const head = document.querySelector('#view-home > .head').getBoundingClientRect();
         const notice = document.querySelector('#reader-closure-notice').getBoundingClientRect();
         const card = document.querySelector('#home-continue').getBoundingClientRect();
         const rail = document.querySelector('.rail-header').getBoundingClientRect();
         const noticeAfterCard = notice.top >= card.bottom;
-        return { readBottom: read.bottom, fold: rail.top > innerHeight / 2 ? rail.top : innerHeight,
+        return { action: action.textContent.trim(), readBottom: read.bottom, readHeight: read.height,
+          doneHeight: done.height, fold: rail.top > innerHeight / 2 ? rail.top : innerHeight,
           noticeVisible: notice.height > 0, noticeAfterCard,
           headGap: (noticeAfterCard ? card.top : notice.top) - head.bottom,
           noticeGap: noticeAfterCard ? notice.top - card.bottom : card.top - notice.bottom };
       });
       console.log(`PHONE-HOME-BAND ${JSON.stringify({ ...profile, theme, ...homeBand })}`);
       checked(t, `${label}: Home notices and Continue have token spacing`, homeBand.headGap >= 7 && homeBand.noticeGap >= 7, homeBand);
-      if (profile.platform !== 'desktop') checked(t, `${label}: Read clears the bar with the reading-link notice shown`,
-        homeBand.noticeVisible && homeBand.readBottom <= homeBand.fold, homeBand);
+      if (profile.platform !== 'desktop') {
+        const target = profile.platform === 'android' ? 48 : 44;
+        checked(t, `${label}: Find on Marvel Comics clears the bar with the reading-link notice shown`,
+          homeBand.action === 'Find on Marvel Comics' && homeBand.noticeVisible && homeBand.readBottom <= homeBand.fold
+          && homeBand.readHeight >= target && homeBand.doneHeight >= target, homeBand);
+      }
       await page.$eval('#home-continue', (node) => node.scrollIntoView({ block: 'center' }));
       const card = await page.evaluate((target) => {
         const root = document.querySelector('#home-continue').getBoundingClientRect();
