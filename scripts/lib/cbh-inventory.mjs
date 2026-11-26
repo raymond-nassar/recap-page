@@ -1568,6 +1568,7 @@ export function validatePacketProposal(packet, {
   provider = CBH_SOURCE_PROVIDER,
   enforceApprovedResolutionDigest = true,
   allowLegacySourceGapResolutions = false,
+  containedChildMappings = [],
 } = {}) {
   if (!isPlainObject(packet)) throw new Error('Frozen packet must be an object');
   const unexpected = Object.keys(packet).filter((field) => !PACKET_FIELDS.has(field));
@@ -1678,11 +1679,17 @@ export function validatePacketProposal(packet, {
   if (catalogEntriesForPacket.length > 1) {
     throw new Error(`${packet.id} has duplicate catalog entries`);
   }
+  const containedChildren = containedChildSourceIds(packet, {
+    inventoryRecord,
+    catalogEntries,
+    childMappings: containedChildMappings,
+    allowLegacySourceGapResolutions,
+  });
   const existingRecords = catalogEntries
     .filter((entry) => entry.id !== packet.id)
     .map((entry) => ({
       id: entry.id,
-      url: entry.sourcePage,
+      url: containedChildren.has(entry.id) ? null : entry.sourcePage,
       sourceSection: entry.sourceSection,
       catalogIds: [entry.id],
     }));
@@ -1693,6 +1700,69 @@ export function validatePacketProposal(packet, {
     catalogIds: [packet.proposedManifest.id],
   }], existingRecords);
   return true;
+}
+
+// A whole-page guide may share its exact source address with a split already shipped from it
+// only when that split is provably one contiguous block of the guide itself. Silent War was
+// shipped as positions 479-484 of the Civil War to Secret Invasion page before the full page was
+// authored, and the source has no section to tell them apart. Any other shared address, or a
+// child whose comics are not exactly that block in source order, still fails as a duplicate.
+export function containedChildSourceIds(packet, {
+  inventoryRecord = null,
+  catalogEntries = [],
+  childMappings = [],
+  allowLegacySourceGapResolutions = false,
+} = {}) {
+  const contained = new Set();
+  if (!Array.isArray(childMappings) || childMappings.length === 0) return contained;
+  const label = `${packet.id} contained child source`;
+  if (!inventoryRecord || inventoryRecord.id !== packet.id || packet.inventoryId !== packet.id
+    || packet.sourceSection != null || Object.hasOwn(inventoryRecord, 'childSources')
+    || (inventoryRecord.url ?? inventoryRecord.sourceUrl) !== packet.sourceUrl) {
+    throw new Error(`${label} requires the packet to be its own whole-page inventory record`);
+  }
+  const positions = sourcePositionsForPacket(packet, { allowLegacySourceGapResolutions });
+  const ordered = packet.rows
+    .map((row, index) => ({ position: positions[index], issueId: row.candidateIssueId }))
+    .sort((left, right) => left.position - right.position);
+  for (const mapping of childMappings) {
+    const childId = mapping?.id;
+    if (typeof childId !== 'string' || childId === packet.id
+      || !inventoryRecord.catalogIds?.includes(childId)) {
+      throw new Error(`${label} ${childId} is not listed by inventory record ${packet.id}`);
+    }
+    if (contained.has(childId)) throw new Error(`${label} ${childId} is listed twice`);
+    if (mapping.inventoryId !== packet.id || mapping.sourceUrl !== packet.sourceUrl
+      || mapping.sourceSection != null || mapping.reviewStatus !== 'approved') {
+      throw new Error(`${label} ${childId} mapping is not an approved split of the same whole page`);
+    }
+    const entries = catalogEntries.filter((entry) => entry.id === childId);
+    if (entries.length !== 1 || entries[0].sourcePage !== packet.sourceUrl
+      || entries[0].sourceSection != null) {
+      throw new Error(`${label} ${childId} catalog entry does not name the same whole page`);
+    }
+    const rows = Array.isArray(mapping.rows) ? mapping.rows : [];
+    const childIds = rows.map((row) => row.selectedIssueId);
+    if (childIds.length === 0 || childIds.length !== mapping.approvedSourceCount
+      || childIds.length !== entries[0].expect
+      || rows.some((row) => !Number.isInteger(row.selectedIssueId)
+        || !Array.isArray(row.selectedIssueIds) || row.selectedIssueIds.length !== 1
+        || row.selectedIssueIds[0] !== row.selectedIssueId)) {
+      throw new Error(`${label} ${childId} mapping must select one exact comic per approved row`);
+    }
+    const start = ordered.findIndex((row) => row.issueId === childIds[0]);
+    const block = start < 0 ? [] : ordered.slice(start, start + childIds.length);
+    const matches = block.length === childIds.length
+      && block.every((row, index) => row.issueId === childIds[index]
+        && Number.isInteger(row.position)
+        && row.position === block[0].position + index)
+      && ordered.filter((row) => childIds.includes(row.issueId)).length === childIds.length;
+    if (!matches) {
+      throw new Error(`${label} ${childId} is not one contiguous block of ${packet.id} in source order`);
+    }
+    contained.add(childId);
+  }
+  return contained;
 }
 
 export function validateFrozenPacket(packet, options = {}) {

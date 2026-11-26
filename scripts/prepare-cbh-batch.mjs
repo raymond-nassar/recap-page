@@ -2857,6 +2857,7 @@ export async function selectPreparationGuides(onlyIds, {
   inventoryPath = null,
   inventoryPaths = INVENTORY_PATHS,
   manifestPath = MANIFEST_PATH,
+  mappingsDir = OUTPUT_DIR,
 } = {}) {
   const requestedIds = onlyIds == null ? null : (Array.isArray(onlyIds) ? onlyIds : [...onlyIds]);
   const legacyById = new Map(GUIDES.map((guide) => [guide.id, guide]));
@@ -2939,10 +2940,21 @@ export async function selectPreparationGuides(onlyIds, {
     if (!inventoryRecord) {
       throw new Error(`${packet.id} names unknown inventory id ${packet.inventoryId}`);
     }
+    const containedChildMappings = [];
+    if (inventoryRecord.id === packet.id && packet.sourceSection == null) {
+      for (const childId of inventoryRecord.catalogIds ?? []) {
+        const child = catalogEntries.find((entry) => entry.id === childId);
+        if (childId === packet.id || child?.sourcePage !== packet.sourceUrl) continue;
+        const mapping = await readExistingMapping(path.join(mappingsDir, `${childId}.json`));
+        if (!mapping) throw new Error(`${packet.id} shares its source page with ${childId}, which has no mapping`);
+        containedChildMappings.push(mapping);
+      }
+    }
     validateFrozenPacket(packet, {
       expectedId: packet.id,
       inventoryRecord,
       catalogEntries,
+      containedChildMappings,
     });
     select({
       ...packet,
