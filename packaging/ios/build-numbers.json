@@ -145,7 +145,11 @@
       "productVersion": "5.0.0",
       "sourceRevision": "e335005ef19bed44de05e466b616f692c5a5e241",
       "sourceTree": "47dc316baf70657e5279306c21f34c2a565ecd8a",
-      "artifact": null
+      "artifact": {
+        "name": "RecapPage.ipa",
+        "bytes": 5057768,
+        "sha256": "96750931c11c5a5e14192d1fc2001883a301bec9f63f31f30a2a46d1293a0280"
+      }
     }
   ]
 }
