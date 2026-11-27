@@ -5,7 +5,7 @@ import { readOwnerGuideRegistry } from '../../scripts/lib/owner-guide-registry.m
 import { spiderManSelectionItemDelta } from './reading-choice-history.mjs';
 import { identityRevisions } from './owner-identity-history.mjs';
 import { amazingSpiderManSupplementDelta } from './amazing-spider-man-history.mjs';
-import { wolverineCorrectionItemDelta, wolverineGapResolutions } from './wolverine-correction-history.mjs';
+import { wolverineCorrectionItemDelta, wolverineGapResolutions, xgoldCorrections } from './wolverine-correction-history.mjs';
 import { thorCorrectionItemDelta } from './reading-list-correction-history.mjs';
 import { ultimateSelectionDelta, ultimateSelectionEmptyDelta } from '../../scripts/lib/ultimate-spider-man-selection.mjs';
 import { xmenFirstClassDelta } from './xmen-first-class-history.mjs';
@@ -42,7 +42,8 @@ assert.ok(Array.isArray(curatedGuideRegistry.guides));
 export const registeredCuratedGuides = curatedGuideRegistry.guides.map((entry) => {
   // A gap-tolerant guide keeps its open gaps in place as placeholders, which count toward the
   // payload's items but not toward its complete ones, so it states how many of its rows they are.
-  const keys = Object.keys(entry).sort();
+  const { emptyRecordCount = 0, ...guide } = entry;
+  const keys = Object.keys(guide).sort();
   assert.ok([
     'id,insertionAnchor,rowCount', 'id,insertionAnchor,placeholderRowCount,rowCount',
     'id,insertionAnchor,rowCount,surface', 'id,insertionAnchor,placeholderRowCount,rowCount,surface',
@@ -54,6 +55,8 @@ export const registeredCuratedGuides = curatedGuideRegistry.guides.map((entry) =
   assert.ok(!Object.hasOwn(entry, 'placeholderRowCount')
     || (Number.isInteger(entry.placeholderRowCount) && entry.placeholderRowCount > 0
       && entry.placeholderRowCount < entry.rowCount));
+  assert.ok(Number.isInteger(emptyRecordCount) && emptyRecordCount >= 0
+    && emptyRecordCount + (entry.placeholderRowCount ?? 0) < entry.rowCount);
   return entry;
 });
 assert.equal(new Set([...registeredOwnerContracts, ...registeredCuratedGuides]
@@ -86,6 +89,8 @@ const addedRows = registeredOwnerContracts.reduce((total, contract) => {
   + registeredCuratedGuides.reduce((total, guide) => total + guide.rowCount, 0);
 const addedPlaceholderRows = registeredCuratedGuides
   .reduce((total, guide) => total + (guide.placeholderRowCount ?? 0), 0);
+export const curatedEmptyRecords = registeredCuratedGuides.filter((entry) => entry.emptyRecordCount > 0);
+const addedEmptyRows = curatedEmptyRecords.reduce((total, guide) => total + guide.emptyRecordCount, 0);
 const mcuContracts = registeredOwnerAdditionContracts.filter((contract) => contract.surface === undefined);
 export const registeredEventContracts = registeredOwnerAdditionContracts
   .filter((contract) => contract.surface === 'modern-timeline');
@@ -110,12 +115,13 @@ export const currentReadingCensus = Object.freeze({
   storylines: 50 + curatedNewcomerCount + registeredCreatorGuides.length + installmentPartIds.length,
   modernTimeline: 148 + registeredEventContracts.length + curatedEventCount - 1 + 2,
   modernTimelineStories: 144 + registeredEventContracts.length + curatedEventCount - 1 + 2,
-  complete: baseline.payloadCounts.complete + addedRows - addedPlaceholderRows + spiderManSelectionItemDelta
+  complete: baseline.payloadCounts.complete + addedRows - addedPlaceholderRows - addedEmptyRows + spiderManSelectionItemDelta
     + amazingSpiderManSupplementDelta + wolverineCorrectionItemDelta + thorCorrectionItemDelta
     + ultimateSelectionDelta - ultimateSelectionEmptyDelta + xmenFirstClassDelta + ultimateIntroCorrectionDelta + tieInRows - 2
     + xmenEraItemDelta - xmenEraPlaceholderDelta + wolverineGapResolutions.length
     + identityRevisions.guides.filter((entry) => entry.placeholderReplacement)
       .reduce((total, entry) => total + entry.issueIds.length, 0) + installmentCompleteDelta,
+  emptyRecords: 229 + addedEmptyRows + xgoldCorrections.length,
   totalItems: baseline.payloadCounts.total + addedRows + spiderManSelectionItemDelta
     + amazingSpiderManSupplementDelta + wolverineCorrectionItemDelta + thorCorrectionItemDelta
     + ultimateSelectionDelta + xmenFirstClassDelta + ultimateIntroCorrectionDelta + tieInRows - 2 + xmenEraItemDelta

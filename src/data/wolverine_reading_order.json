@@ -5,11 +5,11 @@
   "source": "https://www.comicbookherald.com/wolverine-reading-order/",
   "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
   "sourceLicense": null,
-  "generatedAt": "2026-11-25T13:55:00.000Z",
+  "generatedAt": "2026-11-26T23:56:20.000Z",
   "apiBase": "https://marvel.emreparker.com/v1",
   "count": 1272,
   "collections": 0,
-  "placeholders": 738,
+  "placeholders": 736,
   "unresolved": [
     {
       "title": "Iron Fist #15",
@@ -4769,20 +4769,6 @@
       "url": null,
       "read": false,
       "index": 1165,
-      "section": null
-    },
-    {
-      "title": "X-Men Gold #7",
-      "url": null,
-      "read": false,
-      "index": 1166,
-      "section": null
-    },
-    {
-      "title": "X-Men Gold #8",
-      "url": null,
-      "read": false,
-      "index": 1167,
       "section": null
     },
     {
@@ -30862,10 +30848,11 @@
       "placeholder": true
     },
     {
-      "issueId": -1293566736,
-      "title": "X-Men Gold #7",
+      "issueId": -8000000000028965,
+      "appViewer": "28965",
+      "title": "X-Men Gold (2017) #7",
       "number": "7",
-      "url": null,
+      "url": "https://www.marvelcomicsapp.com/viewer/28965",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -30874,14 +30861,14 @@
       "cover": null,
       "description": null,
       "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "creators": []
     },
     {
-      "issueId": -1377454831,
-      "title": "X-Men Gold #8",
+      "issueId": -8000000000028960,
+      "appViewer": "28960",
+      "title": "X-Men Gold (2017) #8",
       "number": "8",
-      "url": null,
+      "url": "https://www.marvelcomicsapp.com/viewer/28960",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -30890,8 +30877,7 @@
       "cover": null,
       "description": null,
       "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "creators": []
     },
     {
       "issueId": 64290,

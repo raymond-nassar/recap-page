@@ -258,8 +258,18 @@ test('tie-in reader links keep the exact matched viewers and preserve every earl
   assert.ok(modernLinks.every(({ issueId, basis, source }) => !additions.has(issueId) && !xmenEra.has(issueId)
     && !reviewed2025.has(issueId) && !wolverine18.has(issueId) && issueId !== fcbd
     && basis === 'exact' && source === 'continuity-guide-discord-2026-11-19'));
+  const earlyTimelineIds = new Set([
+    55527, 55528, 55529, 55530, 55531, 55532, 55533, 55534, 55535, 56035, 56036, 56037, 56038,
+    56078, 56079, 56080, 56081, 56082, 56172, 56173, 56174, 56589, 56590, 56591, 56592, 56593,
+    57069, 57869, 57870, 57871, 58224, 58225, 58226, 59606, 59607, 59608, 59609, 59610, 59611,
+    59613, 59614, 59615, 60380, 60574, 64259, 64285,
+  ]);
+  const earlyLinks = links.links.filter(({ issueId }) => earlyTimelineIds.has(issueId));
+  assert.equal(earlyLinks.length, 46);
+  assert.equal(digest(earlyLinks), 'aa4a537b84c15d3bdc0629567f536d442cd25e1188f09d1d016314cd220ef73f');
   const previous = links.links.filter(({ issueId }) => !additions.has(issueId) && !xmenEra.has(issueId)
-    && !reviewed2025.has(issueId) && !wolverine18.has(issueId) && issueId !== fcbd && !modernTimeline189.has(issueId));
+    && !reviewed2025.has(issueId) && !wolverine18.has(issueId) && issueId !== fcbd
+    && !modernTimeline189.has(issueId) && !earlyTimelineIds.has(issueId));
   assert.equal(previous.length, 17663);
   assert.equal(digest(previous), '0bec147ce327f7287cd5d6a02f6c303295a5f51c78da9f43a9a3be6e981d219f');
   const { unapprovedIssueIds, ...frozenMu } = mu;
@@ -278,8 +288,10 @@ test('tie-in reader links keep the exact matched viewers and preserve every earl
   const installmentIds = new Set(installmentRows.map(({ issueId }) => issueId));
   const modernPending = unapprovedIssueIds.filter((id) => installmentIds.has(id));
   assert.equal(digest(modernPending), 'cc476d8503549aa3411db8603c92dba8a122ba5fa08c65a2ba1c017fa8499725');
+  assert.ok([55543, 57864, 57866, 57868, 57875].every((id) => !earlyTimelineIds.has(id) && !mu.issueIds.includes(id)));
   assert.deepEqual(unapprovedIssueIds.filter((id) => !installmentIds.has(id)), [
-    17293, 42667, 42668, 51951, 51955, 55498, 55499, 60666, 60667, 62843, 101513, 101520, 129237,
+    17293, 42667, 42668, 51951, 51955, 55498, 55499, 55543, 57864, 57866, 57868, 57875,
+    60666, 60667, 62843, 101513, 101520, 129237,
   ]);
   const held = installmentRows.filter(({ findOnly }) => findOnly === true);
   assert.deepEqual(held.map(({ issueId }) => issueId).sort((a, b) => a - b), [

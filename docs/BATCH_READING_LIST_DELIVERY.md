@@ -85,10 +85,14 @@ gap.
 
 For an ordinary addition, require genuine `event` classification and an integer `timeline` start
 year of at least 2004. Every variant in a story group must qualify. Hell's Angel is excluded from
-Modern Timeline by owner decision. These inclusion rules are in `src/js/lib/catalog.js:1002-1027`,
+Modern Timeline by owner decision. These inclusion rules are in `src/js/lib/catalog.js:1002-1033`,
 not a classification to assign just to make a list appear.
 The fixed `marvel-knights-to-planet-x-01` through `-78` opening chapters have their own earlier
 boundary; do not reuse their IDs or the featured setup entry as exemptions.
+
+The independently addable Road to Secret Empire guide retains its `era` classification and has
+a named 2017 selector exception, not a general admission rule for eras. Its ordinary unbadged
+card uses the same preview and add actions, before the separate Secret Empire event.
 
 Review chronology from source evidence, not merely the earliest publication date. Equal years
 retain manifest order (`src/js/lib/catalog.js:303-309`), so approve an intentional insertion anchor
@@ -133,7 +137,7 @@ a named release means that known complete set, not a new list assembled from arb
 ## Gate non-MCU regression compatibility early
 
 Before writing data, name the current roster, census and reciprocal relationship check owners in
-the actual delivery plan. `test/helpers/current-reading-library.mjs:20-126` retains the immutable
+the actual delivery plan. `test/helpers/current-reading-library.mjs:20-132` retains the immutable
 baseline, keeps owner deliveries distinct from local curated additions, and counts explicitly
 registered Modern Timeline events separately from MCU additions. Later owner-peer checks in
 `test/helpers/owner-delivery-contract.mjs:295-324` require registered contracts, current approval

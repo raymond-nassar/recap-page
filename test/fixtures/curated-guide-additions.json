@@ -171,6 +171,34 @@
       },
       "rowCount": 347,
       "surface": "creators"
+    },
+    {
+      "id": "avengers-standoff",
+      "insertionAnchor": { "beforeId": "apocalypse-wars" },
+      "rowCount": 26,
+      "emptyRecordCount": 3,
+      "surface": "modern-timeline"
+    },
+    {
+      "id": "civil-war-ii",
+      "insertionAnchor": { "beforeId": "clone-conspiracy" },
+      "rowCount": 154,
+      "emptyRecordCount": 11,
+      "surface": "modern-timeline"
+    },
+    {
+      "id": "secret-empire-event",
+      "insertionAnchor": { "beforeId": "venomverse" },
+      "rowCount": 85,
+      "emptyRecordCount": 19,
+      "surface": "modern-timeline"
+    },
+    {
+      "id": "road-to-secret-empire",
+      "insertionAnchor": { "beforeId": "secret-empire-event" },
+      "rowCount": 79,
+      "emptyRecordCount": 8,
+      "surface": "modern-timeline"
     }
   ]
 }

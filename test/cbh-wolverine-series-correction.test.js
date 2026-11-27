@@ -8,12 +8,13 @@ import {
   assertApprovedRelationshipReview, manifestEntryForMapping, mergePublishedWolverineCorrection,
 } from '../scripts/author-cbh-packet.mjs';
 import {
-  approvalDigestFor, digestCanonicalJson, mappingDigestFor, packetDigestFor, sourceCountsForPacket,
+  approvalDigestFor, assertGapTransition, digestCanonicalJson, mappingDigestFor, packetDigestFor, reportDigestFor, sourceCountsForPacket,
   sourcePositionsForPacket,
 } from '../scripts/lib/cbh-inventory.mjs';
+import { preparePublishedCbhGapDelta } from '../scripts/lib/cbh-gap-delta.mjs';
 import {
-  beforeWolverineCorrectionIssueIds, readPreSuccessorWolverinePublication, wolverineGapResolutions,
-  wolverineSeriesCorrectionReviewCommit, wolverineSuccessorLedger,
+  beforeWolverineCorrectionIssueIds, readPreSuccessorWolverinePublication, readPublishedWolverineSuccessor,
+  wolverineGapResolutions, wolverineSeriesCorrectionReviewCommit, wolverineSuccessorLedger, xgoldCorrections,
 } from './helpers/wolverine-correction-history.mjs';
 import {
   registeredLegacyIdentityKey, repairWolverineChecklist, repairWolverineTitles, wolverineTitleRepairs,
@@ -35,6 +36,8 @@ const priorPacket = JSON.parse(show(prior.files.packet));
 const priorMapping = JSON.parse(show(prior.files.mapping));
 const priorReport = JSON.parse(show(prior.files.report));
 const priorPayloadText = show(prior.files.payload).replace(/\r\n/g, '\n');
+const sha256 = (text) => createHash('sha256').update(text.replace(/\r\n/g, '\n')).digest('hex');
+const readSuccessorJson = (file) => JSON.parse(readPublishedWolverineSuccessor(file));
 
 // Every source position of a packet, keyed by position, as the reader sees it: a row with its
 // exact comic, a repeat pointing at one, an exclusion, or a gap.
@@ -216,16 +219,13 @@ test('historical replay rejects issue vectors outside the reviewed correction', 
   assert.throws(() => beforeWolverineCorrectionIssueIds(currentIds.slice(1)), /exact reviewed correction/);
 });
 
-test('the Wolverine successor resolves only the 18 reviewed slots and links each exact viewer', async () => {
+test('the published Wolverine successor resolves only the 18 reviewed slots and links each exact viewer', () => {
   const checklistFile = `src/data/orders/${id}.md`;
-  const [nextText, checklistText, nextSource] = await Promise.all([
-    readFile(prior.files.payload, 'utf8'),
-    readFile(checklistFile, 'utf8'),
-    readJson(prior.files.packet),
-  ]);
+  const nextText = readPublishedWolverineSuccessor(prior.files.payload);
+  const checklistText = readPublishedWolverineSuccessor(checklistFile);
+  const nextSource = readSuccessorJson(prior.files.packet);
   const next = JSON.parse(nextText);
   const expected = wolverineSuccessorLedger.correctedCandidate;
-  const sha256 = (text) => createHash('sha256').update(text.replace(/\r\n/g, '\n')).digest('hex');
   assert.equal(sha256(nextText), expected.payloadSha256);
   assert.equal(sha256(checklistText), expected.checklistSha256);
   const transitions = new Map(wolverineGapResolutions.map((entry) => [entry.index, entry]));
@@ -269,13 +269,15 @@ test('the Wolverine successor resolves only the 18 reviewed slots and links each
     JSON.parse(priorPayloadText).items.map(({ issueId }) => String(issueId)));
 });
 
-test('the Wolverine successor binds fresh reviews without changing the published manifest', async () => {
+test('the published Wolverine successor binds its own reviews without changing that manifest', () => {
   const completeFile = `scripts/data/cbh-overlaps/${id}-complete-catalog.json`;
   const dispositionFile = `scripts/data/cbh-source-ledgers/${id}-complete-catalog-dispositions.json`;
-  const [nextPacket, nextMapping, active, completeText, dispositionText, manifest] = await Promise.all([
-    readJson(prior.files.packet), readJson(prior.files.mapping), readJson(prior.files.report),
-    readFile(completeFile, 'utf8'), readFile(dispositionFile, 'utf8'), readJson('src/data/curated-lists.json'),
-  ]);
+  const nextPacket = readSuccessorJson(prior.files.packet);
+  const nextMapping = readSuccessorJson(prior.files.mapping);
+  const active = readSuccessorJson(prior.files.report);
+  const completeText = readPublishedWolverineSuccessor(completeFile);
+  const dispositionText = readPublishedWolverineSuccessor(dispositionFile);
+  const manifest = readSuccessorJson('src/data/curated-lists.json');
   const { correctionReview, transitionLedgerDigest, readerCatalog } = wolverineSuccessorLedger;
   assert.equal(packetDigestFor(nextPacket), correctionReview.packetDigest);
   assert.equal(mappingDigestFor(nextMapping), correctionReview.mappingDigest);
@@ -297,7 +299,78 @@ test('the Wolverine successor binds fresh reviews without changing the published
   assert.equal(completeBody.catalog.payloadPins.length, 349);
   assert.equal(digestCanonicalJson(dispositions), approvalDigest);
   assert.equal(dispositions.reportDigest, reportDigest);
-  const sha256 = (text) => createHash('sha256').update(text.replace(/\r\n/g, '\n')).digest('hex');
   assert.equal(sha256(completeText), readerCatalog.reportFileSha256);
   assert.equal(sha256(dispositionText), readerCatalog.dispositionFileSha256);
+});
+
+test('the separate Wolverine v2 plan reproduces the two-slot checklist and payload from the published v1 bytes', async () => {
+  const checklistFile = `src/data/orders/${id}.md`;
+  const { planDigest, ...plan } = await readJson(
+    `scripts/data/cbh-source-ledgers/${id}-identity-correction-v2/gap-delta-plan.json`,
+  );
+  assert.equal(planDigest, 'd63037b7f6f45097f51ae686840dde9b7cbb03acbc6a871ca263140ffa265d18');
+  assert.equal(plan.payloadSha256, wolverineSuccessorLedger.correctedCandidate.payloadSha256);
+  assert.equal(plan.checklistSha256, wolverineSuccessorLedger.correctedCandidate.checklistSha256);
+  assert.equal(plan.vectorDigest, wolverineSuccessorLedger.correctedCandidate.vectorDigest);
+  const [nextPacket, mapText, reportText, manifest, payloadText, checklistText] = await Promise.all([
+    readJson(prior.files.packet), readFile(prior.files.mapping, 'utf8'), readFile(prior.files.report, 'utf8'),
+    readJson('src/data/curated-lists.json'), readFile(prior.files.payload, 'utf8'), readFile(checklistFile, 'utf8'),
+  ]);
+  const nextMapping = JSON.parse(mapText);
+  const active = JSON.parse(reportText);
+  assert.equal(packetDigestFor(nextPacket), plan.packetDigest);
+  assert.equal(reportDigestFor(active), plan.relationshipReportDigest);
+  assert.equal(sha256(mapText), plan.approvedMappingFileSha256);
+  assert.equal(sha256(reportText), plan.authoringReportFileSha256);
+  assertGapTransition(readSuccessorJson(prior.files.packet), nextPacket, nextMapping);
+  const peerIds = Object.keys(active.peerDigests).sort();
+  assert.deepEqual(peerIds, [
+    'avengers-standoff', 'civil-war-ii', 'civil-war-to-secret-invasion', 'road-to-secret-empire',
+    'secret-empire-event', 'secret-wars-2015-event-tie-ins', 'world-war-hulk',
+  ]);
+  const peerMappings = await Promise.all(peerIds.map((peer) => readJson(`scripts/data/cbh-mappings/${peer}.json`)));
+  assert.doesNotThrow(() => assertApprovedRelationshipReview({
+    packet: nextPacket, mapping: nextMapping, report: active, currentLibraryDigest: active.libraryDigest, peerMappings,
+    expectedOrderIds: active.comparisons.map(({ orderId }) => orderId),
+  }));
+  assert.deepEqual(mergePublishedWolverineCorrection(manifest, manifestEntryForMapping(nextMapping),
+    nextPacket.insertionAnchor), manifest);
+  assert.deepEqual(manifest.lists.find((entry) => entry.id === id),
+    readSuccessorJson('src/data/curated-lists.json').lists.find((entry) => entry.id === id));
+  const projected = await preparePublishedCbhGapDelta({
+    payloadBytes: Buffer.from(readPublishedWolverineSuccessor(prior.files.payload).replace(/\r\n/g, '\n')),
+    checklistBytes: Buffer.from(readPublishedWolverineSuccessor(checklistFile).replace(/\r\n/g, '\n')),
+    mapping: nextMapping, plan, reviewedPlanDigest: planDigest, generatedAt: '2026-11-26T23:56:20.000Z',
+  });
+  assert.equal(sha256(payloadText), '92fc6d0a4d4f9fc0629dc0b031472185f8242daa8535a94e0001be7f6fe3dc66');
+  assert.equal(sha256(checklistText), '5bccf0198ef0d71c687bb494add60110d58ecc78306d3fb08c23306a214c3609');
+  assert.deepEqual(JSON.parse(payloadText), projected.payload);
+  assert.equal(checklistText.replace(/\r\n/g, '\n'), projected.checklist);
+});
+
+test('X-Men Gold #7 and #8 are the only change from the published Wolverine successor', async () => {
+  const checklistFile = `src/data/orders/${id}.md`;
+  const published = JSON.parse(readPublishedWolverineSuccessor(prior.files.payload));
+  const current = JSON.parse(await readFile(prior.files.payload, 'utf8'));
+  const slots = new Map(xgoldCorrections.map((row) => [row.evidence.payloadIndex, row]));
+  assert.equal(slots.size, 2);
+  assert.equal(current.items.length, published.items.length);
+  for (const [index, item] of published.items.entries()) {
+    const row = slots.get(index);
+    if (!row) {
+      assert.deepEqual(current.items[index], item, `Item ${index}`);
+      continue;
+    }
+    assert.equal(item.issueId, row.from);
+    assert.equal(item.placeholder, true);
+    assert.equal(current.items[index].issueId, row.to);
+    assert.notEqual(current.items[index].placeholder, true);
+    assert.equal(current.items[index].title, row.title);
+    assert.equal(current.items[index].appViewer, row.appViewer);
+  }
+  assert.equal(current.placeholders, published.placeholders - slots.size);
+  const beforeLines = readPublishedWolverineSuccessor(checklistFile).split(/\r?\n/);
+  const afterLines = (await readFile(checklistFile, 'utf8')).split(/\r?\n/);
+  assert.equal(afterLines.length, beforeLines.length);
+  assert.equal(afterLines.filter((line, index) => line !== beforeLines[index]).length, slots.size);
 });

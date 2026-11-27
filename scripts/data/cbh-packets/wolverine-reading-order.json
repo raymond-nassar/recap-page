@@ -14010,46 +14010,6 @@
       "evidenceDigest": "9c634811f053d56e7ca5fa5d46abcf0c65a070bd4d96d42f6a26f616321cd002"
     },
     {
-      "sourcePosition": 1206,
-      "sourceIssueReference": "X-Men Gold #7",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "X-Men Gold",
-      "seriesYear": 0,
-      "issueNumber": "7",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "8116db3b303589e1daf24668b5c17820dc8a073cb3f28e504594a345f544e1fb"
-    },
-    {
-      "sourcePosition": 1207,
-      "sourceIssueReference": "X-Men Gold #8",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "X-Men Gold",
-      "seriesYear": 0,
-      "issueNumber": "8",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "4d7336a5945683a7121f3bd7c87a84ad51b512a2c39c7ea8fd64e99f0cb2fad5"
-    },
-    {
       "sourcePosition": 1209,
       "sourceIssueReference": "X-Men Gold #10",
       "sourceRangeReference": null,
@@ -15170,7 +15130,7 @@
       "evidenceDigest": "e4283266022c9d74b957c4e16b89cdc015771113436f48c97c1ec1b89038b875"
     }
   ],
-  "expectedCount": 534,
+  "expectedCount": 536,
   "proposedManifest": {
     "id": "wolverine-reading-order",
     "name": "Wolverine",
@@ -20553,6 +20513,46 @@
       "selectionNote": null
     },
     {
+      "sourceIssueReference": "X-Men Gold #7",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men Gold",
+      "seriesYear": 2017,
+      "issueNumber": "7",
+      "seriesId": null,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "serviceIdentity": {
+        "appViewer": "28965",
+        "url": "https://www.marvelcomicsapp.com/viewer/28965",
+        "providerIssueId": null,
+        "normalizedSeriesTitle": "X-Men Gold",
+        "seriesYear": 2017,
+        "issueNumber": "7",
+        "evidenceSha256": "ce2c914c6d35f51859802efd7795cc9451296c365ef6097423726408f07b0612"
+      }
+    },
+    {
+      "sourceIssueReference": "X-Men Gold #8",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men Gold",
+      "seriesYear": 2017,
+      "issueNumber": "8",
+      "seriesId": null,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "serviceIdentity": {
+        "appViewer": "28960",
+        "url": "https://www.marvelcomicsapp.com/viewer/28960",
+        "providerIssueId": null,
+        "normalizedSeriesTitle": "X-Men Gold",
+        "seriesYear": 2017,
+        "issueNumber": "8",
+        "evidenceSha256": "ce2c914c6d35f51859802efd7795cc9451296c365ef6097423726408f07b0612"
+      }
+    },
+    {
       "sourceIssueReference": "X-Men: Gold (2017) #9",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "X-Men: Gold",
@@ -22243,6 +22243,78 @@
       "evidenceDigest": "fcdd101f3f47c5bb3bdf95c88e24fbe64619c5327895e6c033ff582c62c6c83d"
     },
     {
+      "sourcePosition": 1206,
+      "previousSourceIssueReference": "X-Men Gold #7",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "X-Men Gold",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "7",
+      "resolutionKind": "exact-service-issue",
+      "serviceIdentity": {
+        "appViewer": "28965",
+        "url": "https://www.marvelcomicsapp.com/viewer/28965",
+        "providerIssueId": null,
+        "normalizedSeriesTitle": "X-Men Gold",
+        "seriesYear": 2017,
+        "issueNumber": "7",
+        "evidenceSha256": "ce2c914c6d35f51859802efd7795cc9451296c365ef6097423726408f07b0612"
+      },
+      "resolvedNormalizedSeriesTitle": "X-Men Gold",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "7",
+      "checkedAt": "2026-11-26",
+      "auditBasis": "The retained independent service evidence corroborates X-Men Gold #7 in service run 3160 as the single exact issue in that run. It establishes 2017 as the series year, not a provider identity. The same source occurrence and published slot are retained. The viewer address was obtained from the export supplied to the project on 2026-11-19 and checked offline on 2026-11-26. The viewer page was not fetched.",
+      "evidenceSources": [
+        {
+          "kind": "github-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "service-viewer",
+          "url": "https://www.marvelcomicsapp.com/viewer/28965",
+          "retrievedAt": "2026-11-19"
+        }
+      ],
+      "evidenceDigest": "0d986abd1140435cc101722431b8f2053587a544cd4f66a7b3a711d3e7631e42"
+    },
+    {
+      "sourcePosition": 1207,
+      "previousSourceIssueReference": "X-Men Gold #8",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "X-Men Gold",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "8",
+      "resolutionKind": "exact-service-issue",
+      "serviceIdentity": {
+        "appViewer": "28960",
+        "url": "https://www.marvelcomicsapp.com/viewer/28960",
+        "providerIssueId": null,
+        "normalizedSeriesTitle": "X-Men Gold",
+        "seriesYear": 2017,
+        "issueNumber": "8",
+        "evidenceSha256": "ce2c914c6d35f51859802efd7795cc9451296c365ef6097423726408f07b0612"
+      },
+      "resolvedNormalizedSeriesTitle": "X-Men Gold",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "8",
+      "checkedAt": "2026-11-26",
+      "auditBasis": "The retained independent service evidence corroborates X-Men Gold #8 in service run 3160 as the single exact issue in that run. It establishes 2017 as the series year, not a provider identity. The same source occurrence and published slot are retained. The viewer address was obtained from the export supplied to the project on 2026-11-19 and checked offline on 2026-11-26. The viewer page was not fetched.",
+      "evidenceSources": [
+        {
+          "kind": "github-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "service-viewer",
+          "url": "https://www.marvelcomicsapp.com/viewer/28960",
+          "retrievedAt": "2026-11-19"
+        }
+      ],
+      "evidenceDigest": "decfcc941c27374ce714708383db8dc4e8a9bcf938dc30c1712bd974eddbea50"
+    },
+    {
       "sourcePosition": 1222,
       "previousSourceIssueReference": "Marvel Legacy Primer pages",
       "previousSourceRangeReference": null,
@@ -22377,9 +22449,9 @@
   ],
   "sourceReview": {
     "authorityType": "stronger-model",
-    "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the mapping author",
-    "rationale": "Reviewed the renewed Wolverine source body against the previously adjudicated source and current published catalog. The only change in the source body is the insertion anchor: Hope Summers immediately follows Wolverine at slot 130 of 273; the former X-Men anchor no longer exists. Reauthoring here preserves the exact catalog order. All 1,328 source occurrences, 1,272 reading positions, the 18 one-to-one corrections, 29 earlier decisions and prior repeat targets are identical to the earlier independent review. Preserve the shipped Wolverine description and discovery tags using their published revisions, with no change to the reading or catalog order.",
-    "reviewedAt": "2026-11-25T14:54:13-08:00",
+    "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central source reviewer; separate factual review by Copilot session 8630b45a, not human signoff",
+    "reviewedAt": "2026-11-26T08:28:43-08:00",
+    "rationale": "I reviewed the change from the published Wolverine source: only X-Men Gold #7 and #8 at positions 1206 and 1207 move from open gaps to exact service editions. Both come from the 2017 series, with viewers 28965 and 28960 and no provider binding. I corrected the two viewer evidence dates to the documented project receipt of the export, not the later offline review; neither page was fetched. All 1328 source occurrences, 1272 reading positions, 47 earlier resolutions, 19 repeat targets, 37 exclusions, manifest fields and chronology placement remain intact. The embedded September settlement is preserved as the historical record, not a new decision on those entries. This decision covers only the renewed source. It does not approve the pending mapping, peer relationships, projection plan, saved-data migration or publication.",
     "metadataGapLedger": {
       "settlementIssue": "https://github.com/raymond-nassar/recap-page/issues/262",
       "settlementComment": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
@@ -22787,5 +22859,5 @@
       ]
     }
   },
-  "packetDigest": "f6def57b9a37d764a27be9ba71b10c66e517c87b8c961b6dea8f682dea5d5104"
+  "packetDigest": "6abc33147a72b772a8a44ff3b27b36767180ae7445b95590c68457bcfe611c44"
 }

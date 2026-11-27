@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-26T02:22:33.795Z",
+  "generatedAt": "2026-11-27T01:52:28.222Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -722,6 +722,70 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-22T05:47:30.518Z"
+    },
+    {
+      "id": "road-to-secret-empire",
+      "file": "road_to_secret_empire.json",
+      "name": "Road to Secret Empire",
+      "description": "Sam Wilson carries Steve Rogers' shield into a country divided over whether it belongs to him. Then Steve puts the uniform back on, and there are two Captain Americas. From Pleasant Hill through Civil War II, the two men wear the same star while making very different choices about whom it should protect.",
+      "type": "era",
+      "depth": "selected",
+      "count": 79,
+      "placeholderCount": 0,
+      "emptyRecordCount": 8,
+      "collections": 0,
+      "characters": [
+        "Sam Wilson",
+        "Steve Rogers"
+      ],
+      "keywords": [],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2017,
+      "coverIssueId": 56549,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/561406b010486",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/secret-empire/",
+      "sourceSection": "The Road to Secret Empire",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-11-27T01:52:28.222Z"
+    },
+    {
+      "id": "secret-empire-event",
+      "file": "secret_empire_event.json",
+      "name": "Secret Empire",
+      "description": "Steve Rogers has spent a lifetime earning the country's trust, and now he's using it to put Hydra in power. With the Avengers scattered, the friends who once followed Captain America have to find a way to stand against him. Taking back the country and winning back its trust are two different fights.",
+      "type": "event",
+      "depth": "selected",
+      "count": 85,
+      "placeholderCount": 0,
+      "emptyRecordCount": 19,
+      "collections": 6,
+      "characters": [
+        "Steve Rogers",
+        "Avengers"
+      ],
+      "keywords": [],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2017,
+      "coverIssueId": 63296,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/20/5900ab4a19359",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/secret-empire/",
+      "sourceSection": "Issue by Issue Secret Empire Reading Order",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-11-27T01:52:22.889Z"
     },
     {
       "id": "venomverse",
@@ -6590,8 +6654,8 @@
         "marvel-knights-to-planet-x-73"
       ],
       "count": 1272,
-      "placeholderCount": 738,
-      "emptyRecordCount": 0,
+      "placeholderCount": 736,
+      "emptyRecordCount": 2,
       "collections": 0,
       "characters": [
         "Wolverine",
@@ -6617,7 +6681,7 @@
       "source": "https://www.comicbookherald.com/wolverine-reading-order/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-11-25T13:55:00.000Z"
+      "updatedAt": "2026-11-26T23:56:20.000Z"
     },
     {
       "id": "hope-summers-reading-order",
@@ -16262,6 +16326,38 @@
       "updatedAt": "2026-08-21T09:58:39.873Z"
     },
     {
+      "id": "avengers-standoff",
+      "file": "avengers_standoff.json",
+      "name": "Avengers: Standoff!",
+      "description": "Pleasant Hill looks like a town, not a prison. S.H.I.E.L.D. has given its supervillain inmates new names, new neighbors and no memory of their crimes. When those memories start coming back, Steve Rogers and Sam Wilson have a breakout on their hands. For the people who live there, getting out is only the beginning.",
+      "type": "event",
+      "depth": "complete",
+      "count": 26,
+      "placeholderCount": 0,
+      "emptyRecordCount": 3,
+      "collections": 3,
+      "characters": [
+        "Avengers",
+        "Steve Rogers",
+        "Sam Wilson"
+      ],
+      "keywords": [],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2016,
+      "coverIssueId": 56031,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/56d9b87a084c7",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/avengers-standoff-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-11-27T01:52:16.516Z"
+    },
+    {
       "id": "apocalypse-wars",
       "file": "apocalypse_wars.json",
       "name": "X-Men: Apocalypse Wars",
@@ -16302,6 +16398,43 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-21T09:58:39.875Z"
+    },
+    {
+      "id": "civil-war-ii",
+      "file": "civil_war_ii.json",
+      "name": "Civil War II",
+      "description": "A young Inhuman named Ulysses sees a disaster coming, and the heroes stop it. Carol Danvers wants to act on his next warning before anyone gets hurt. Tony Stark draws the line at treating a vision as proof. Then a vision points to one of their own.",
+      "type": "event",
+      "depth": "complete",
+      "count": 154,
+      "placeholderCount": 0,
+      "emptyRecordCount": 11,
+      "collections": 31,
+      "characters": [
+        "Captain Marvel",
+        "Iron Man",
+        "Ulysses Cain"
+      ],
+      "keywords": [
+        "Civil War II",
+        "Ulysses",
+        "2016 event"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2016,
+      "coverIssueId": 58676,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/40/5744a7ccdae25",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/civil-war-2/",
+      "sourceSection": "Civil War 2 Issue by Issue Reading Order",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-11-27T01:52:19.923Z"
     },
     {
       "id": "clone-conspiracy",

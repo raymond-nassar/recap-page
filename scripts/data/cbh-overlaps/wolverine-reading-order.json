@@ -1,23 +1,27 @@
 {
   "candidateId": "wolverine-reading-order",
-  "packetDigest": "f6def57b9a37d764a27be9ba71b10c66e517c87b8c961b6dea8f682dea5d5104",
-  "mappingDigest": "ba6fb1b43f72ae0a87cb3984b2a9f87e942a3eb7e36efd83f80549ab5f16b2c7",
-  "libraryDigest": "ab70d411b8fe48f69a02f7feedaa344e9cdc929b466b82e3639b6b123e7d8c55",
+  "packetDigest": "6abc33147a72b772a8a44ff3b27b36767180ae7445b95590c68457bcfe611c44",
+  "mappingDigest": "769ff069b645aa088a074d4468f6d6377f1eb83e14bc43b6b6cd7e2a8fc54071",
+  "libraryDigest": "951de1b0cca7db74e970a610a002be6a75aff5dbc16228b8cb48e26588b79902",
   "peerDigests": {
-    "civil-war-to-secret-invasion": "ddf90a801039a672f6eabf0b71be92b60db850d10fec32a3de5ee46bd24cc094",
-    "secret-wars-2015-event-tie-ins": "773b37594dc700baaed53ce05b0c0aa264489c9b457ec2c1c0379d4ec7718974",
-    "world-war-hulk": "cec2d70f86c1e789c336dc116615a36300a9590b9eea3baf3e23d692d9ec2885"
+    "avengers-standoff": "8f8e5165eb7e7ca16ac804399e5b1bbf90f4a7a9e17f323f3d92d9406ddc5f53",
+    "civil-war-ii": "8284c1e98edfde45c89d0ba65a69080a249a0be603456210a17381d85452d026",
+    "civil-war-to-secret-invasion": "ef221f18d9d0c19c5d1e4a6814d8920f024355ec0c273e69efec42b72be4c5ea",
+    "road-to-secret-empire": "45f584d9a0062a470d603e8d3f4287d59eed45f7392a7ef30f9e089e47ec7940",
+    "secret-empire-event": "1fa6c1516e58b27a80ea4ea5cdb371d57c3ccd446107239ebc3c303519fdf8a0",
+    "secret-wars-2015-event-tie-ins": "3cd5ab710ed392037ce8bfc0ba9f863f6be2948f56d34108f1daa4f06c5eaa7c",
+    "world-war-hulk": "f28eac245c516d7caed05a7147bdb834cf180925e6c195c48028ffa3337cddd6"
   },
   "sourceCounts": {
     "sourceOccurrenceCount": 1328,
     "sourceIdentityCount": 1272,
-    "includedIssueCount": 534,
-    "sourceGapCount": 738,
+    "includedIssueCount": 536,
+    "sourceGapCount": 736,
     "repeatedSourceReferenceCount": 19,
     "excludedSourceRowCount": 37
   },
-  "candidateCount": 534,
-  "comparisonCount": 275,
+  "candidateCount": 536,
+  "comparisonCount": 279,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -161,6 +165,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "avengers-standoff",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "axis",
       "sharedCount": 1,
       "sharedIds": [
@@ -295,6 +305,14 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "civil-war-ii",
+      "sharedCount": 1,
+      "sharedIds": [
+        "56442"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "civil-war-to-secret-invasion",
@@ -2090,6 +2108,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "road-to-secret-empire",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "rocket-raccoon-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
@@ -2130,6 +2154,15 @@
         "32583",
         "30673",
         "30674"
+      ],
+      "relationship": "partial"
+    },
+    {
+      "orderId": "secret-empire-event",
+      "sharedCount": 2,
+      "sharedIds": [
+        "-8000000000028965",
+        "-8000000000028960"
       ],
       "relationship": "partial"
     },
@@ -2856,5 +2889,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "a29dd13b653161ea63c88bbcd1567a27c812e148fded465bb104038ea0bb7c1a"
+  "reportDigest": "94463d3250286641dcea66fbdbf4d1db35cb8eefff6bfbff3abd6f958a144b1f"
 }

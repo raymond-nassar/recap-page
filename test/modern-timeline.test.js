@@ -325,7 +325,7 @@ test('the shipped Modern Timeline carries all chapters into the Avengers era', (
     ],
   );
   assert.ok(selectedLists.every(({ id, type, timeline }) => (
-    type === 'event'
+    (type === 'event' || (id === 'road-to-secret-empire' && type === 'era'))
     && (
       timeline >= MODERN_TIMELINE_CONTINUATION_YEAR
       || (isModernTimelineChapterId(id) && timeline >= MODERN_TIMELINE_START_YEAR)

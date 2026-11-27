@@ -1198,10 +1198,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes four independent Reading Paths with 104 stops: three
 authored paths with 10, 12 and 4 stops from the curated manifest at
-`src/data/curated-lists.json:11514-11565`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:11608-11659`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all four at
-`src/data/catalog.json:18762-18899`.
+`src/data/catalog.json:18895-19032`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -4344,3 +4344,38 @@ Civil War to Secret Invasion parts 8, 11, 12 and 13 reuse the verified cover add
 issues 23067, 17338, 15886 and 21268, respectively, from already published ordinary reading orders.
 The offline vendor checked matching issue identities and exact addresses. No images were downloaded,
 and no other issue fields changed.
+
+## Post-Secret Wars: Standoff through Secret Empire
+
+- **Avengers: Standoff!** follows the 26 individual issues in a supplied checklist transcription
+  received on 2026-11-26. The [Comic Book Herald page](https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/avengers-standoff-reading-order/)
+  is the supplied attribution, not a new page retrieval. The checklist keeps the prelude, main
+  event and epilogue in the supplied order.
+- **Civil War II** follows the 154 positions in the [Comic Book Herald issue checklist](https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/civil-war-2/)
+  retained on 2026-11-26, not the preceding trade timeline. The Daily Bugle preview is recorded
+  separately, not presented as a numbered reading.
+- **Secret Empire** follows the [Comic Book Herald event section](https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/secret-empire/)
+  retained on 2026-11-25. Of 89 positions, 85 are whole-issue readings. The split stories at
+  positions 31, 69 and 86 and the unnumbered collection reference at 89 are recorded but not
+  counted as whole issues. The 20 named book stops do not imply an order inside the books.
+- **Road to Secret Empire** follows a separate section of that same retained page. The packet
+  preserves the 16 stops, including a nested 17-step sequence at stop 12, and retains all
+  118 source addresses, repeats and holdbacks independently of its 79 distinct readings.
+  Only the 12 corroborated positions in stops 6 and 7 appear under their book titles. The other
+  67 individual readings keep their own links. Stops 5 and 10 keep just the book titles, with
+  no invented contents, giveaway, or extra checkmarks.
+
+The four packets and approved mappings preserve the source boundaries and edition decisions.
+Retained provider records and previously published records supply metadata and reusable cover
+addresses. Where no provider record supplies the identity, the exact viewer comes from the
+offline Marvel Comics export credited to werhsdnas of the Continuity Guide Discord. Civil War II
+has eight such identities, the event has 19, the Road has four, and Standoff has none. These are
+not placeholders or proof of a provider refusal. Conversely, an absent optional field stays
+absent rather than becoming a claim about availability. All four guides have zero unopenable
+placeholders. The same export supplies 46 separately verified viewer links for provider IDs;
+230 new identities have no verified viewer assignment from this link pass and get no invented link.
+
+The two X-Men Gold (2017) issues already referenced in the published Wolverine checklist now
+share their exact viewer identities with the event. Only those two Wolverine slots change. The
+eighteen corrections from its previous successor remain intact, and no new predecessor is needed
+because identity reconciliation brings a supported saved list onto the same issue keys.

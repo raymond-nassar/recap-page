@@ -1172,8 +1172,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] X-Men Gold #4
 - [ ] X-Men Gold #5
 - [ ] X-Men Gold #6
-- [ ] X-Men Gold #7
-- [ ] X-Men Gold #8
+- [ ] [X-Men Gold (2017) #7 <!-- mrt:source-occurrence=1206 -->](https://www.marvelcomicsapp.com/viewer/28965)
+- [ ] [X-Men Gold (2017) #8 <!-- mrt:source-occurrence=1207 -->](https://www.marvelcomicsapp.com/viewer/28960)
 - [ ] [X-Men: Gold (2017) #9 <!-- mrt:source-occurrence=1208 -->](https://www.marvel.com/comics/issue/64290/x-men_gold_2017_9)
 - [ ] X-Men Gold #10
 - [ ] X-Men Gold #11

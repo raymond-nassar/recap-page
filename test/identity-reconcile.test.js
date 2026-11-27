@@ -1,16 +1,21 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { webcrypto } from 'node:crypto';
+import { readFileSync } from 'node:fs';
 import {
   addsIdentityConflict, guardIdentityImport, identityConflicts, reconcileIdentities, validateIdentityCorrections,
 } from '../src/js/lib/identityReconcile.js';
-import { addIssuesToList, createList, deleteList, duplicateList, exportBackup, normalizeIssue, validateBackup } from '../src/js/lib/model.js';
+import {
+  addIssuesToList, createEmptyState, createList, deleteList, duplicateList, exportBackup, markRead, normalizeIssue,
+  setIssueNote, setIssueRating, setOverride, validateBackup,
+} from '../src/js/lib/model.js';
 import { appViewerFor } from '../src/js/lib/marvelComicsApp.js';
 import { taggedViewer, viewerKey } from '../src/js/lib/marvelComicsAppUrl.js';
 import { launchUrl } from '../src/js/reader.js';
 import { KEY, Store } from '../src/js/storage.js';
 import { createCompleteBackup, parseCompleteBackup, prepareCompleteRestore } from '../src/js/lib/completeBackup.js';
 import { identityCorrections } from '../src/data/identityCorrections.js';
+import { readPublishedWolverineSuccessor } from './helpers/wolverine-correction-history.mjs';
 
 // Disposable data only. The Wolverine numbers are the adjudicated Cable & Deadpool #44 match from
 // #1601: the old guide key, its provider number and its Marvel Comics app viewer.
@@ -540,6 +545,55 @@ function memoryStorage(initial, { failWrites = false } = {}) {
     removeItem: (key) => values.delete(key),
   };
 }
+
+test('the vendored Secret Empire and Wolverine orders share X-Men Gold progress through import and backup', () => {
+  const readOrder = (file) => JSON.parse(readFileSync(new URL(`../src/data/${file}`, import.meta.url), 'utf8'));
+  const event = readOrder('secret_empire_event.json');
+  const current = readOrder('wolverine_reading_order.json');
+  const published = JSON.parse(readPublishedWolverineSuccessor('src/data/wolverine_reading_order.json'));
+  const oldKeys = [-1293566736, -1377454831];
+  const keys = [viewerKey('28965'), viewerKey('28960')];
+  const vector = ({ items }) => items.map(({ issueId }) => issueId);
+  assert.deepEqual(vector(event).slice(26, 28), keys);
+  assert.deepEqual(vector(current).slice(1166, 1168), keys);
+  const add = (state, order) => addIssuesToList(
+    createList(state, { id: order.id, name: order.name, catalogId: order.id }), order.id, order.items,
+  ).state;
+  for (const [first, second, progressKeys] of [
+    [event, current, keys], [published, event, oldKeys],
+  ]) {
+    let before = add(createEmptyState(), first);
+    for (const [index, key] of progressKeys.entries()) {
+      before = markRead(before, key, true, 1700000000000 + index);
+      before = setIssueNote(before, key, `Kept note ${index}`);
+      before = setIssueRating(before, key, index + 3);
+      before = setOverride(before, key, 'unavailable');
+    }
+    const guarded = guardIdentityImport(before, add(before, second));
+    assert.equal(guarded.conflict, false, first.id);
+    const store = new Store({ storage: memoryStorage({}) });
+    store.load();
+    assert.equal(store.restore(JSON.stringify(exportBackup(guarded.state))).ok, true, first.id);
+    assert.deepEqual(store.state.lists[event.id].itemIds, vector(event));
+    assert.deepEqual(store.state.lists[current.id].itemIds, vector(current));
+    for (const [index, key] of keys.entries()) {
+      assert.equal(store.state.read[key], 1700000000000 + index);
+      assert.equal(store.state.notes[key], `Kept note ${index}`);
+      assert.equal(store.state.ratings[key], index + 3);
+      assert.equal(store.state.overrides[key], 'unavailable');
+      for (const map of ['read', 'notes', 'ratings', 'overrides']) {
+        assert.ok(!Object.hasOwn(store.state[map], oldKeys[index]), `${first.id} retained an old ${map} key`);
+      }
+    }
+  }
+  let conflict = add(add(createEmptyState(), published), event);
+  conflict = setIssueNote(conflict, oldKeys[0], 'Wolverine note');
+  conflict = setIssueNote(conflict, keys[0], 'Event note');
+  const protectedState = reconcileIdentities(conflict);
+  assert.deepEqual(protectedState.lists[current.id].itemIds.slice(1166, 1168), [oldKeys[0], keys[1]]);
+  assert.equal(protectedState.notes[oldKeys[0]], 'Wolverine note');
+  assert.equal(protectedState.notes[keys[0]], 'Event note');
+});
 
 test('the store moves a saved library once, and a repeated load moves nothing', () => {
   const storage = memoryStorage({ [KEY]: JSON.stringify(oldLibrary()) });

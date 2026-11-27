@@ -1021,8 +1021,14 @@ const isModernTimelineList = (list) => list?.type === 'event'
   );
 
 export function modernTimelineStories(stories) {
-  return shelfStories(stories, 'catalog').filter((story) => {
+  return (Array.isArray(stories) ? stories : []).filter((story) => {
     const lists = Array.isArray(story?.lists) ? story.lists : [];
+    // This independently addable guide precedes the event without becoming an event itself.
+    if (lists.length === 1 && lists[0].id === 'road-to-secret-empire') {
+      return shelfKey(story) === 'lines' && lists[0].type === 'era'
+        && lists[0].timeline === 2017 && !lists[0].sectionalPart;
+    }
+    if (shelfKey(story) !== 'catalog') return false;
     return lists.length > 0 && lists.every(isModernTimelineList);
   });
 }

@@ -2,7 +2,10 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createCatalogPresentation, PROJECT_HOME, sourceButton, visitButton } from '../src/js/views/shared/catalog-presentation.js';
-import { updatedLabel } from '../src/js/lib/catalog.js';
+import {
+  catalogEntries, eraSections, groupCatalog, modernTimelineEventBadge, modernTimelineLists,
+  parseCatalog, shelfKey, timelineCheckpointTargets, timelineDrawOrder, updatedLabel,
+} from '../src/js/lib/catalog.js';
 
 function el(tag, props = {}, children = []) {
   return {
@@ -44,6 +47,68 @@ const list = {
 
 const controls = (card) => descendants(card)
   .filter((node) => node.tag === 'button' || (node.tag === 'a' && node.href));
+
+test('Road remains an Era and draws one direct unbadged timeline stop before Secret Empire', () => {
+  const raw = JSON.parse(readFileSync(new URL('../src/data/catalog.json', import.meta.url), 'utf8'));
+  const road = raw.lists.find(({ id }) => id === 'road-to-secret-empire');
+  const event = raw.lists.find(({ id }) => id === 'secret-empire-event');
+  assert.ok(road && event, 'both published forms must exist separately');
+  const newIds = new Set(['avengers-standoff', 'civil-war-ii', road.id, event.id]);
+  const baseline = timelineDrawOrder(eraSections(catalogEntries(
+    modernTimelineLists(parseCatalog({ ...raw, lists: raw.lists.filter(({ id }) => !newIds.has(id)) }).lists),
+  )));
+  raw.lists.push({ ...road, id: 'unrelated-era', name: 'Unrelated era' });
+  const parsed = parseCatalog(raw);
+  assert.equal(parsed.dropped, 0);
+  const grouped = groupCatalog(parsed.lists);
+  const roadStory = grouped.find((story) => story.lists.some((entry) => entry.id === road.id));
+  assert.equal(roadStory.lists[0].type, 'era');
+  assert.equal(roadStory.lists[0].timeline, 2017);
+  assert.equal(shelfKey(roadStory), 'lines');
+  const sections = eraSections(catalogEntries(modernTimelineLists(parsed.lists)));
+  const order = timelineDrawOrder(sections);
+  const ids = order.flatMap((story) => story.lists.map((entry) => entry.id));
+  const roadAt = ids.indexOf(road.id);
+  assert.ok(roadAt >= 0, 'the Era guide must survive the real timeline selector');
+  assert.deepEqual(ids.slice(roadAt, roadAt + 3), [road.id, event.id, 'venomverse']);
+  assert.equal(ids.filter((id) => id === road.id).length, 1);
+  assert.ok(!ids.includes('unrelated-era'));
+  assert.deepEqual(timelineCheckpointTargets(order, order).map(({ key, start, before }) => ({ key, start, before })),
+    timelineCheckpointTargets(baseline, baseline).map(({ key, start, before }) => ({ key, start, before })));
+
+  for (const saved of [null, { id: 'saved-road', itemIds: [] }]) {
+    const calls = [];
+    const shared = createCatalogPresentation({
+      el, hueOf: () => 0, paintCoverUrl: () => {}, shortTitle: (title) => title,
+      isInLibrary: (id) => id === road.id ? saved : null,
+      onPreview: (entry) => calls.push(['preview', entry.id]),
+      onAdd: (entry) => calls.push(['add', entry.id]),
+      onOpen: (entry, own) => calls.push(['open', entry.id, own.id]),
+    });
+    const box = el('div');
+    shared.renderTimelineSections(box, sections, {
+      showEmptyYears: false, badgeFor: modernTimelineEventBadge,
+    });
+    const cards = descendants(box).filter((node) => node.class === 'catalog-card');
+    assert.deepEqual(cards.map((card) => card.dataset.story), order.map((story) => story.key));
+    const roadCards = cards.filter((card) => card.dataset.story === roadStory.key);
+    assert.equal(roadCards.length, 1);
+    const [card] = roadCards;
+    assert.equal(card.dataset.year, 2017);
+    assert.equal(descendants(card).some((node) => node.class?.includes('event-badge')), false);
+    assert.equal(descendants(card).some((node) => node.tag === 'summary'), false);
+    const [preview, action] = controls(card).filter((node) => node.dataset?.act);
+    assert.equal(preview.dataset.key, roadStory.key);
+    preview.onclick();
+    assert.equal(action.dataset.key, road.id);
+    action.onclick({ button: 0, currentTarget: action, preventDefault() {} });
+    assert.deepEqual(calls, [
+      ['preview', road.id],
+      saved ? ['open', road.id, saved.id] : ['add', road.id],
+    ]);
+    if (saved) assert.equal(action.href, '#/read/saved-road');
+  }
+});
 
 test('hidden-position recovery keeps the whole-timeline label and accepts the followed-path Clear filters label', () => {
   for (const showFullLabel of [undefined, 'Clear filters']) {

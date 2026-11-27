@@ -1,0 +1,4700 @@
+{
+  "id": "civil-war-ii",
+  "name": "Civil War II",
+  "description": "A young Inhuman named Ulysses sees a disaster coming, and the heroes stop it. Carol Danvers wants to act on his next warning before anyone gets hurt. Tony Stark draws the line at treating a vision as proof. Then a vision points to one of their own.",
+  "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/civil-war-2/",
+  "sourceSection": "Civil War 2 Issue by Issue Reading Order",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-11-27T01:52:19.923Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 154,
+  "collections": 31,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 55527,
+      "title": "Invincible Iron Man (2015) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/55527/invincible_iron_man_2015_6",
+      "seriesId": 20476,
+      "seriesName": "Invincible Iron Man (2015 - 2016)",
+      "onSale": "2016-02-03T00:00:00+0000",
+      "mu": "2016-08-01T00:00:00+0000",
+      "digitalId": 41068,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/c0/56a7bde31f20a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Invincible Iron Man #6-#11"
+    },
+    {
+      "issueId": 55528,
+      "title": "Invincible Iron Man (2015) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/55528/invincible_iron_man_2015_7",
+      "seriesId": 20476,
+      "seriesName": "Invincible Iron Man (2015 - 2016)",
+      "onSale": "2016-03-02T00:00:00+0000",
+      "mu": "2016-03-02T00:00:00+0000",
+      "digitalId": 41281,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/60/56d099472f629",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Deodato Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Invincible Iron Man #6-#11"
+    },
+    {
+      "issueId": 55529,
+      "title": "Invincible Iron Man (2015) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/55529/invincible_iron_man_2015_8",
+      "seriesId": 20476,
+      "seriesName": "Invincible Iron Man (2015 - 2016)",
+      "onSale": "2016-04-06T00:00:00+0000",
+      "mu": "2016-10-03T00:00:00+0000",
+      "digitalId": 41655,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/60/56febe1ad3bd9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Invincible Iron Man #6-#11"
+    },
+    {
+      "issueId": 55530,
+      "title": "Invincible Iron Man (2015) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/55530/invincible_iron_man_2015_9",
+      "seriesId": 20476,
+      "seriesName": "Invincible Iron Man (2015 - 2016)",
+      "onSale": "2016-05-04T00:00:00+0000",
+      "mu": "2016-11-07T00:00:00+0000",
+      "digitalId": 41522,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/572397a1d5a23",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Invincible Iron Man #6-#11"
+    },
+    {
+      "issueId": 55531,
+      "title": "Invincible Iron Man (2015) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/55531/invincible_iron_man_2015_10",
+      "seriesId": 20476,
+      "seriesName": "Invincible Iron Man (2015 - 2016)",
+      "onSale": "2016-06-01T00:00:00+0000",
+      "mu": "2016-12-05T00:00:00+0000",
+      "digitalId": 41746,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/5744b41f34dee",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Invincible Iron Man #6-#11"
+    },
+    {
+      "issueId": 55532,
+      "title": "Invincible Iron Man (2015) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/55532/invincible_iron_man_2015_11",
+      "seriesId": 20476,
+      "seriesName": "Invincible Iron Man (2015 - 2016)",
+      "onSale": "2016-07-06T00:00:00+0000",
+      "mu": "2017-01-09T00:00:00+0000",
+      "digitalId": 42049,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/03/5775225f31a08",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Invincible Iron Man #6-#11"
+    },
+    {
+      "issueId": 56439,
+      "title": "All-New Wolverine (2015) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/56439/all-new_wolverine_2015_8",
+      "seriesId": 20682,
+      "seriesName": "All-New Wolverine (2015 - 2018)",
+      "onSale": "2016-05-18T00:00:00+0000",
+      "mu": "2016-11-21T00:00:00+0000",
+      "digitalId": 41568,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/5727c5a8bf0c5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Bengal",
+          "role": "penciler"
+        },
+        {
+          "name": "Marcio Takara",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Taylor",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "All-New Wolverine #8-#9"
+    },
+    {
+      "issueId": 56440,
+      "title": "All-New Wolverine (2015) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/56440/all-new_wolverine_2015_9",
+      "seriesId": 20682,
+      "seriesName": "All-New Wolverine (2015 - 2018)",
+      "onSale": "2016-06-01T00:00:00+0000",
+      "mu": "2016-12-05T00:00:00+0000",
+      "digitalId": 41733,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/e0/573a22912dd32",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Bengal",
+          "role": "penciler"
+        },
+        {
+          "name": "Marcio Takara",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Taylor",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "All-New Wolverine #8-#9"
+    },
+    {
+      "issueId": 57261,
+      "title": "Ultimates (2015) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/57261/ultimates_2015_7",
+      "seriesId": 20890,
+      "seriesName": "Ultimates (2015 - 2016)",
+      "onSale": "2016-05-11T00:00:00+0000",
+      "mu": "2016-11-14T00:00:00+0000",
+      "digitalId": 41560,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/5727ae7b32592",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Al Ewing",
+          "role": "penciler"
+        },
+        {
+          "name": "Kenneth Rocafort",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "All-New Wolverine #8-#9"
+    },
+    {
+      "issueId": 59386,
+      "title": "Civil War II (2016)",
+      "number": "0",
+      "url": "https://www.marvel.com/comics/issue/59386/civil_war_ii_2016",
+      "seriesId": 21417,
+      "seriesName": "Civil War II (2016)",
+      "onSale": "2016-05-18T00:00:00+0000",
+      "mu": "2016-11-21T00:00:00+0000",
+      "digitalId": 41544,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/5728d5e57a5b2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "All-New Wolverine #8-#9"
+    },
+    {
+      "issueId": -8000000000028376,
+      "appViewer": "28376",
+      "title": "Civil War II: Ulysses Infinite Comic (2016) #1",
+      "number": "1",
+      "url": "https://www.marvelcomicsapp.com/viewer/28376",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Civil War II: Ulysses Infinite Comic #1-#6"
+    },
+    {
+      "issueId": -8000000000028378,
+      "appViewer": "28378",
+      "title": "Civil War II: Ulysses Infinite Comic (2016) #2",
+      "number": "2",
+      "url": "https://www.marvelcomicsapp.com/viewer/28378",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Civil War II: Ulysses Infinite Comic #1-#6"
+    },
+    {
+      "issueId": -8000000000028380,
+      "appViewer": "28380",
+      "title": "Civil War II: Ulysses Infinite Comic (2016) #3",
+      "number": "3",
+      "url": "https://www.marvelcomicsapp.com/viewer/28380",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Civil War II: Ulysses Infinite Comic #1-#6"
+    },
+    {
+      "issueId": -8000000000028379,
+      "appViewer": "28379",
+      "title": "Civil War II: Ulysses Infinite Comic (2016) #4",
+      "number": "4",
+      "url": "https://www.marvelcomicsapp.com/viewer/28379",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Civil War II: Ulysses Infinite Comic #1-#6"
+    },
+    {
+      "issueId": -8000000000028381,
+      "appViewer": "28381",
+      "title": "Civil War II: Ulysses Infinite Comic (2016) #5",
+      "number": "5",
+      "url": "https://www.marvelcomicsapp.com/viewer/28381",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Civil War II: Ulysses Infinite Comic #1-#6"
+    },
+    {
+      "issueId": -8000000000028384,
+      "appViewer": "28384",
+      "title": "Civil War II: Ulysses Infinite Comic (2016) #6",
+      "number": "6",
+      "url": "https://www.marvelcomicsapp.com/viewer/28384",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Civil War II: Ulysses Infinite Comic #1-#6"
+    },
+    {
+      "issueId": 56122,
+      "title": "Ms. Marvel (2015) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/56122/ms_marvel_2015_7",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2016-05-25T00:00:00+0000",
+      "mu": "2016-11-28T00:00:00+0000",
+      "digitalId": 41555,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/03/573635794c43c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adrian Alphona",
+          "role": "penciler"
+        },
+        {
+          "name": "David Lopez",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War II: Ulysses Infinite Comic #1-#6"
+    },
+    {
+      "issueId": 58676,
+      "title": "Civil War II (2016) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/58676/civil_war_ii_2016_1",
+      "seriesId": 21417,
+      "seriesName": "Civil War II (2016)",
+      "onSale": "2016-06-01T00:00:00+0000",
+      "mu": "2016-12-05T00:00:00+0000",
+      "digitalId": 41739,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/40/5744a7ccdae25",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War II: Ulysses Infinite Comic #1-#6"
+    },
+    {
+      "issueId": 56589,
+      "title": "Captain Marvel (2016) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/56589/captain_marvel_2016_6",
+      "seriesId": 20718,
+      "seriesName": "Captain Marvel (2016 - 2017)",
+      "onSale": "2016-06-29T00:00:00+0000",
+      "mu": "2017-01-02T00:00:00+0000",
+      "digitalId": 41785,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/00/57696a00e7287",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Ruth Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War II: Ulysses Infinite Comic #1-#6"
+    },
+    {
+      "issueId": 58711,
+      "title": "FREE COMIC BOOK DAY 2016 [CIVIL WAR II] 1 [BUNDLES OF 25] (2016) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/58711/free_comic_book_day_2016_civil_war_ii_1_bundles_of_25_2016_1",
+      "seriesId": 21425,
+      "seriesName": "FREE COMIC BOOK DAY 2016 [CIVIL WAR II] 1 [BUNDLES OF 25] (2016)",
+      "onSale": "2016-05-07T00:00:00+0000",
+      "mu": "2016-05-07T00:00:00+0000",
+      "digitalId": 41166,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/56d465416fdad",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alan Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War II: Ulysses Infinite Comic #1-#6"
+    },
+    {
+      "issueId": 57262,
+      "title": "Ultimates (2015) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/57262/ultimates_2015_8",
+      "seriesId": 20890,
+      "seriesName": "Ultimates (2015 - 2016)",
+      "onSale": "2016-06-22T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 41861,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/03/575b329c01147",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kenneth Rocafort",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War II: Ulysses Infinite Comic #1-#6"
+    },
+    {
+      "issueId": -8000000000028368,
+      "appViewer": "28368",
+      "title": "Civil War II: Gods of War (2016) #1",
+      "number": "1",
+      "url": "https://www.marvelcomicsapp.com/viewer/28368",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Civil War II: Ulysses Infinite Comic #1-#6"
+    },
+    {
+      "issueId": 59420,
+      "title": "New Avengers (2015) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/59420/new_avengers_2015_12",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-06-08T00:00:00+0000",
+      "mu": "2016-12-12T00:00:00+0000",
+      "digitalId": 41778,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/5750637f03f7b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War II: Ulysses Infinite Comic #1-#6"
+    },
+    {
+      "issueId": 56564,
+      "title": "Captain America: Sam Wilson (2015) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/56564/captain_america_sam_wilson_2015_10",
+      "seriesId": 20711,
+      "seriesName": "Captain America: Sam Wilson (2015 - 2017)",
+      "onSale": "2016-06-22T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 41791,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/10/575999b6e9c38",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Angel Unzueta Galarza",
+          "role": "penciler"
+        },
+        {
+          "name": "Daniel Acuna",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War II: Ulysses Infinite Comic #1-#6"
+    },
+    {
+      "issueId": 55700,
+      "title": "Spider-Man (2016) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/55700/spider-man_2016_6",
+      "seriesId": 20508,
+      "seriesName": "Spider-Man (2016 - 2018)",
+      "onSale": "2016-07-20T00:00:00+0000",
+      "mu": "2017-01-23T00:00:00+0000",
+      "digitalId": 42102,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/30/57869f6a1256d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War II: Ulysses Infinite Comic #1-#6"
+    },
+    {
+      "issueId": 57869,
+      "title": "Captain America: Steve Rogers (2016) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/57869/captain_america_steve_rogers_2016_4",
+      "seriesId": 21098,
+      "seriesName": "Captain America: Steve Rogers (2016 - 2017)",
+      "onSale": "2016-08-24T00:00:00+0000",
+      "mu": "2017-02-27T00:00:00+0000",
+      "digitalId": 42109,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/57b35f1fc5d07",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Aaron Kuder",
+          "role": "penciler"
+        },
+        {
+          "name": "Javier Pina",
+          "role": "penciler"
+        },
+        {
+          "name": "Miguel Angel Sepulveda",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War II: Ulysses Infinite Comic #1-#6"
+    },
+    {
+      "issueId": 59606,
+      "title": "Civil War II: Choosing Sides (2016) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/59606/civil_war_ii_choosing_sides_2016_1",
+      "seriesId": 21692,
+      "seriesName": "Civil War II: Choosing Sides (2016)",
+      "onSale": "2016-06-22T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 41793,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/03/57571f145a620",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Davidson",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Easton",
+          "role": "writer"
+        },
+        {
+          "name": "Declan Shalvey",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War II: Ulysses Infinite Comic #1-#6"
+    },
+    {
+      "issueId": 59607,
+      "title": "Civil War II: Choosing Sides (2016) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/59607/civil_war_ii_choosing_sides_2016_2",
+      "seriesId": 21692,
+      "seriesName": "Civil War II: Choosing Sides (2016)",
+      "onSale": "2016-07-13T00:00:00+0000",
+      "mu": "2017-01-16T00:00:00+0000",
+      "digitalId": 42068,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/10/577fb5d908164",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Chloe Bennet",
+          "role": "penciler"
+        },
+        {
+          "name": "Declan Shalvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Marco Rudy",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeremy Whitley",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War II: Ulysses Infinite Comic #1-#6"
+    },
+    {
+      "issueId": 56078,
+      "title": "Deadpool (2015) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/56078/deadpool_2015_14",
+      "seriesId": 20613,
+      "seriesName": "Deadpool (2015 - 2017)",
+      "onSale": "2016-06-15T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 41743,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/10/5820e93134143",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Hawthorne",
+          "role": "penciler"
+        },
+        {
+          "name": "Rafael Albuquerque",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool #14-#17"
+    },
+    {
+      "issueId": 56079,
+      "title": "Deadpool (2015) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/56079/deadpool_2015_15",
+      "seriesId": 20613,
+      "seriesName": "Deadpool (2015 - 2017)",
+      "onSale": "2016-07-13T00:00:00+0000",
+      "mu": "2017-01-16T00:00:00+0000",
+      "digitalId": 42072,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/577ebed790d0d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Hawthorne",
+          "role": "penciler"
+        },
+        {
+          "name": "Rafael Albuquerque",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool #14-#17"
+    },
+    {
+      "issueId": 56080,
+      "title": "Deadpool (2015) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/56080/deadpool_2015_16",
+      "seriesId": 20613,
+      "seriesName": "Deadpool (2015 - 2017)",
+      "onSale": "2016-08-03T00:00:00+0000",
+      "mu": "2017-02-06T00:00:00+0000",
+      "digitalId": 42112,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/e0/5796745a38213",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Hawthorne",
+          "role": "penciler"
+        },
+        {
+          "name": "Rafael Albuquerque",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool #14-#17"
+    },
+    {
+      "issueId": 56081,
+      "title": "Deadpool (2015) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/56081/deadpool_2015_17",
+      "seriesId": 20613,
+      "seriesName": "Deadpool (2015 - 2017)",
+      "onSale": "2016-08-24T00:00:00+0000",
+      "mu": "2017-02-27T00:00:00+0000",
+      "digitalId": 42312,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/57b360b126cd5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Hawthorne",
+          "role": "penciler"
+        },
+        {
+          "name": "Rafael Albuquerque",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool #14-#17"
+    },
+    {
+      "issueId": 57048,
+      "title": "Nova (2015) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/57048/nova_2015_8",
+      "seriesId": 20844,
+      "seriesName": "Nova (2015 - 2016)",
+      "onSale": "2016-06-15T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 41789,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/5751ccab5971e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "R.B. Silva",
+          "role": "penciler"
+        },
+        {
+          "name": "Sean Ryan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool #14-#17"
+    },
+    {
+      "issueId": 57955,
+      "title": "Power Man and Iron Fist (2016) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/57955/power_man_and_iron_fist_2016_6",
+      "seriesId": 21122,
+      "seriesName": "Power Man and Iron Fist (2016 - 2017)",
+      "onSale": "2016-07-13T00:00:00+0000",
+      "mu": "2017-01-16T00:00:00+0000",
+      "digitalId": 42081,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/5783bca7b2f93",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "F Flaviano",
+          "role": "penciler"
+        },
+        {
+          "name": "Sanford Greene",
+          "role": "penciler"
+        },
+        {
+          "name": "David Walker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool #14-#17"
+    },
+    {
+      "issueId": 57956,
+      "title": "Power Man and Iron Fist (2016) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/57956/power_man_and_iron_fist_2016_7",
+      "seriesId": 21122,
+      "seriesName": "Power Man and Iron Fist (2016 - 2017)",
+      "onSale": "2016-08-17T00:00:00+0000",
+      "mu": "2017-02-20T00:00:00+0000",
+      "digitalId": 42307,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/60/57a8cac7be06e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "F Flaviano",
+          "role": "penciler"
+        },
+        {
+          "name": "Sanford Greene",
+          "role": "penciler"
+        },
+        {
+          "name": "David Walker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool #14-#17"
+    },
+    {
+      "issueId": 57069,
+      "title": "Patsy Walker, a.K.a. Hellcat! (2015) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/57069/patsy_walker_aka_hellcat_2015_8",
+      "seriesId": 20845,
+      "seriesName": "Patsy Walker, a.K.a. Hellcat! (2015 - 2017)",
+      "onSale": "2016-07-20T00:00:00+0000",
+      "mu": "2017-01-23T00:00:00+0000",
+      "digitalId": 42101,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/c0/57869e7509ffb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brittney L. Williams",
+          "role": "penciler"
+        },
+        {
+          "name": "Kate Leth",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool #14-#17"
+    },
+    {
+      "issueId": 59602,
+      "title": "Civil War II: Amazing Spider-Man (2016) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/59602/civil_war_ii_amazing_spider-man_2016_1",
+      "seriesId": 21691,
+      "seriesName": "Civil War II: Amazing Spider-Man (2016 - 2017)",
+      "onSale": "2016-06-08T00:00:00+0000",
+      "mu": "2016-12-12T00:00:00+0000",
+      "digitalId": 41767,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/03/575047829d41c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Khary Randolph",
+          "role": "penciler"
+        },
+        {
+          "name": "Travel Foreman",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War II: Amazing Spider-Man #1-#4"
+    },
+    {
+      "issueId": 59603,
+      "title": "Civil War II: Amazing Spider-Man (2016) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/59603/civil_war_ii_amazing_spider-man_2016_2",
+      "seriesId": 21691,
+      "seriesName": "Civil War II: Amazing Spider-Man (2016 - 2017)",
+      "onSale": "2016-07-13T00:00:00+0000",
+      "mu": "2017-01-16T00:00:00+0000",
+      "digitalId": 42067,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/50/577e7535d716f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Travel Foreman",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War II: Amazing Spider-Man #1-#4"
+    },
+    {
+      "issueId": 59604,
+      "title": "Civil War II: Amazing Spider-Man (2016) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/59604/civil_war_ii_amazing_spider-man_2016_3",
+      "seriesId": 21691,
+      "seriesName": "Civil War II: Amazing Spider-Man (2016 - 2017)",
+      "onSale": "2016-08-17T00:00:00+0000",
+      "mu": "2017-02-20T00:00:00+0000",
+      "digitalId": 42259,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/57a36002738bf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Travel Foreman",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War II: Amazing Spider-Man #1-#4"
+    },
+    {
+      "issueId": 59605,
+      "title": "Civil War II: Amazing Spider-Man (2016) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/59605/civil_war_ii_amazing_spider-man_2016_4",
+      "seriesId": 21691,
+      "seriesName": "Civil War II: Amazing Spider-Man (2016 - 2017)",
+      "onSale": "2016-09-14T00:00:00+0000",
+      "mu": "2017-03-20T00:00:00+0000",
+      "digitalId": 42634,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/a0/57cf1d997885a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Travel Foreman",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War II: Amazing Spider-Man #1-#4"
+    },
+    {
+      "issueId": 56172,
+      "title": "Spider-Woman (2015) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/56172/spider-woman_2015_9",
+      "seriesId": 20618,
+      "seriesName": "Spider-Woman (2015 - 2017)",
+      "onSale": "2016-07-06T00:00:00+0000",
+      "mu": "2017-01-09T00:00:00+0000",
+      "digitalId": 42056,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/57753cc09b22b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Javier Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Dennis \"Hopeless\" Hallum",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War II: Amazing Spider-Man #1-#4"
+    },
+    {
+      "issueId": 56019,
+      "title": "A-Force (2016) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/56019/a-force_2016_8",
+      "seriesId": 20606,
+      "seriesName": "A-Force (2016)",
+      "onSale": "2016-08-10T00:00:00+0000",
+      "mu": "2017-02-13T00:00:00+0000",
+      "digitalId": 42277,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/57a359f4aafd0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Paulo Siqueira",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A-Force #8-#10"
+    },
+    {
+      "issueId": 56020,
+      "title": "A-Force (2016) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/56020/a-force_2016_9",
+      "seriesId": 20606,
+      "seriesName": "A-Force (2016)",
+      "onSale": "2016-09-14T00:00:00+0000",
+      "mu": "2017-03-20T00:00:00+0000",
+      "digitalId": 42590,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/a0/57c0acaf956ef",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Paulo Siqueira",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A-Force #8-#10"
+    },
+    {
+      "issueId": 56021,
+      "title": "A-Force (2016) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/56021/a-force_2016_10",
+      "seriesId": 20606,
+      "seriesName": "A-Force (2016)",
+      "onSale": "2016-10-19T00:00:00+0000",
+      "mu": "2017-04-24T00:00:00+0000",
+      "digitalId": 42907,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/e0/57fe46e6e87e8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Paulo Siqueira",
+          "role": "penciler"
+        },
+        {
+          "name": "Stephanie Hans",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A-Force #8-#10"
+    },
+    {
+      "issueId": 56123,
+      "title": "Ms. Marvel (2015) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/56123/ms_marvel_2015_8",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2016-06-22T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 41777,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/f0/575734ba21036",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adrian Alphona",
+          "role": "penciler"
+        },
+        {
+          "name": "Cameron Stewart",
+          "role": "penciler"
+        },
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A-Force #8-#10"
+    },
+    {
+      "issueId": 56441,
+      "title": "All-New Wolverine (2015) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/56441/all-new_wolverine_2015_10",
+      "seriesId": 20682,
+      "seriesName": "All-New Wolverine (2015 - 2018)",
+      "onSale": "2016-07-20T00:00:00+0000",
+      "mu": "2017-01-23T00:00:00+0000",
+      "digitalId": 42090,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/50/5785574ac2e79",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Bengal",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Taylor",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "All-New Wolverine #10-#12"
+    },
+    {
+      "issueId": 56442,
+      "title": "All-New Wolverine (2015) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/56442/all-new_wolverine_2015_11",
+      "seriesId": 20682,
+      "seriesName": "All-New Wolverine (2015 - 2018)",
+      "onSale": "2016-08-17T00:00:00+0000",
+      "mu": "2017-02-20T00:00:00+0000",
+      "digitalId": 42294,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/57a8b4f6af78a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Bengal",
+          "role": "penciler"
+        },
+        {
+          "name": "Ig Guara",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Taylor",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "All-New Wolverine #10-#12"
+    },
+    {
+      "issueId": 56443,
+      "title": "All-New Wolverine (2015) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/56443/all-new_wolverine_2015_12",
+      "seriesId": 20682,
+      "seriesName": "All-New Wolverine (2015 - 2018)",
+      "onSale": "2016-09-21T00:00:00+0000",
+      "mu": "2017-03-27T00:00:00+0000",
+      "digitalId": 42659,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/90/57d2c1c543a1a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Bengal",
+          "role": "penciler"
+        },
+        {
+          "name": "Ig Guara",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Taylor",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "All-New Wolverine #10-#12"
+    },
+    {
+      "issueId": 55543,
+      "title": "International Iron Man (2016) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/55543/international_iron_man_2016_4",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "All-New Wolverine #10-#12"
+    },
+    {
+      "issueId": 56089,
+      "title": "The Totally Awesome Hulk (2015) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/56089/the_totally_awesome_hulk_2015_7",
+      "seriesId": 20614,
+      "seriesName": "The Totally Awesome Hulk (2015 - 2017)",
+      "onSale": "2016-06-22T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 41834,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/20/575b3379d5438",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alan Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The Totally Awesome Hulk #7-#8"
+    },
+    {
+      "issueId": 56090,
+      "title": "The Totally Awesome Hulk (2015) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/56090/the_totally_awesome_hulk_2015_8",
+      "seriesId": 20614,
+      "seriesName": "The Totally Awesome Hulk (2015 - 2017)",
+      "onSale": "2016-07-06T00:00:00+0000",
+      "mu": "2017-01-09T00:00:00+0000",
+      "digitalId": 42062,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/00/577552e607c47",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alan Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The Totally Awesome Hulk #7-#8"
+    },
+    {
+      "issueId": 58679,
+      "title": "Civil War II (2016) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/58679/civil_war_ii_2016_2",
+      "seriesId": 21417,
+      "seriesName": "Civil War II (2016)",
+      "onSale": "2016-06-15T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 41740,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/10/5751a649498cb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The Totally Awesome Hulk #7-#8"
+    },
+    {
+      "issueId": 52869,
+      "title": "Uncanny Inhumans (2015) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/52869/uncanny_inhumans_2015_11",
+      "seriesId": 19780,
+      "seriesName": "Uncanny Inhumans (2015 - 2017)",
+      "onSale": "2016-06-29T00:00:00+0000",
+      "mu": "2017-01-02T00:00:00+0000",
+      "digitalId": 41820,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/576d46fdce247",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Carlos Pacheco",
+          "role": "penciler"
+        },
+        {
+          "name": "Charles Soule",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The Totally Awesome Hulk #7-#8"
+    },
+    {
+      "issueId": 56943,
+      "title": "Mosaic (2016) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/56943/mosaic_2016_6",
+      "seriesId": 20818,
+      "seriesName": "Mosaic (2016 - 2017)",
+      "onSale": "2017-03-08T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/80/58b87468a7c57",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "The Totally Awesome Hulk #7-#8"
+    },
+    {
+      "issueId": 52870,
+      "title": "Uncanny Inhumans (2015) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/52870/uncanny_inhumans_2015_12",
+      "seriesId": 19780,
+      "seriesName": "Uncanny Inhumans (2015 - 2017)",
+      "onSale": "2016-08-03T00:00:00+0000",
+      "mu": "2017-02-06T00:00:00+0000",
+      "digitalId": 42130,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/f0/57967bfaa184e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Carlos Pacheco",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Charles Soule",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Uncanny Inhumans #12-#14"
+    },
+    {
+      "issueId": 55806,
+      "title": "Uncanny Inhumans (2015) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/55806/uncanny_inhumans_2015_13",
+      "seriesId": 19780,
+      "seriesName": "Uncanny Inhumans (2015 - 2017)",
+      "onSale": "2016-09-14T00:00:00+0000",
+      "mu": "2017-03-20T00:00:00+0000",
+      "digitalId": 42348,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/a0/57c98508bd598",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Aaron Kim Jacinto",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Charles Soule",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Uncanny Inhumans #12-#14"
+    },
+    {
+      "issueId": 55807,
+      "title": "Uncanny Inhumans (2015) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/55807/uncanny_inhumans_2015_14",
+      "seriesId": 19780,
+      "seriesName": "Uncanny Inhumans (2015 - 2017)",
+      "onSale": "2016-10-19T00:00:00+0000",
+      "mu": "2017-04-24T00:00:00+0000",
+      "digitalId": 42708,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/57fe5835e0301",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Aaron Kim Jacinto",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Charles Soule",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Uncanny Inhumans #12-#14"
+    },
+    {
+      "issueId": 55533,
+      "title": "Invincible Iron Man (2015) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/55533/invincible_iron_man_2015_12",
+      "seriesId": 20476,
+      "seriesName": "Invincible Iron Man (2015 - 2016)",
+      "onSale": "2016-08-03T00:00:00+0000",
+      "mu": "2017-02-06T00:00:00+0000",
+      "digitalId": 42264,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/5796770af03ab",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Invincible Iron Man #12-#13"
+    },
+    {
+      "issueId": 55534,
+      "title": "Invincible Iron Man (2015) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/55534/invincible_iron_man_2015_13",
+      "seriesId": 20476,
+      "seriesName": "Invincible Iron Man (2015 - 2016)",
+      "onSale": "2016-09-07T00:00:00+0000",
+      "mu": "2017-03-13T00:00:00+0000",
+      "digitalId": 42595,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/90/57c595555909e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Invincible Iron Man #12-#13"
+    },
+    {
+      "issueId": 56035,
+      "title": "Agents of S.H.I.E.L.D. (2016) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/56035/agents_of_shield_2016_7",
+      "seriesId": 20607,
+      "seriesName": "Agents of S.H.I.E.L.D. (2016)",
+      "onSale": "2016-07-13T00:00:00+0000",
+      "mu": "2017-01-16T00:00:00+0000",
+      "digitalId": 42064,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/e0/577c21006a3e5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "German Peralta",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Norton",
+          "role": "penciler"
+        },
+        {
+          "name": "Marc Guggenheim",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Invincible Iron Man #12-#13"
+    },
+    {
+      "issueId": 59625,
+      "title": "Civil War II: X-Men (2016) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/59625/civil_war_ii_x-men_2016_1",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Invincible Iron Man #12-#13"
+    },
+    {
+      "issueId": 59626,
+      "title": "Civil War II: X-Men (2016) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/59626/civil_war_ii_x-men_2016_2",
+      "seriesId": 21696,
+      "seriesName": "Civil War II: X-Men (2016)",
+      "onSale": "2016-07-06T00:00:00+0000",
+      "mu": "2017-01-09T00:00:00+0000",
+      "digitalId": 42044,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/60/5774381d31145",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrea Broccardo",
+          "role": "penciler"
+        },
+        {
+          "name": "David Yardin",
+          "role": "penciler"
+        },
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War II: X-Men #2-#3"
+    },
+    {
+      "issueId": 59627,
+      "title": "Civil War II: X-Men (2016) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/59627/civil_war_ii_x-men_2016_3",
+      "seriesId": 21696,
+      "seriesName": "Civil War II: X-Men (2016)",
+      "onSale": "2016-08-17T00:00:00+0000",
+      "mu": "2017-02-20T00:00:00+0000",
+      "digitalId": 42300,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/10/57a8b8dcc59b7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrea Broccardo",
+          "role": "penciler"
+        },
+        {
+          "name": "David Yardin",
+          "role": "penciler"
+        },
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War II: X-Men #2-#3"
+    },
+    {
+      "issueId": 56565,
+      "title": "Captain America: Sam Wilson (2015) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/56565/captain_america_sam_wilson_2015_11",
+      "seriesId": 20711,
+      "seriesName": "Captain America: Sam Wilson (2015 - 2017)",
+      "onSale": "2016-07-06T00:00:00+0000",
+      "mu": "2017-01-09T00:00:00+0000",
+      "digitalId": 42041,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/57742c82e370c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Daniel Acuna",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain America: Sam Wilson #11-#13"
+    },
+    {
+      "issueId": 56566,
+      "title": "Captain America: Sam Wilson (2015) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/56566/captain_america_sam_wilson_2015_12",
+      "seriesId": 20711,
+      "seriesName": "Captain America: Sam Wilson (2015 - 2017)",
+      "onSale": "2016-08-17T00:00:00+0000",
+      "mu": "2017-02-20T00:00:00+0000",
+      "digitalId": 42296,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/57a8b58fb843a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Daniel Acuna",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain America: Sam Wilson #11-#13"
+    },
+    {
+      "issueId": 56567,
+      "title": "Captain America: Sam Wilson (2015) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/56567/captain_america_sam_wilson_2015_13",
+      "seriesId": 20711,
+      "seriesName": "Captain America: Sam Wilson (2015 - 2017)",
+      "onSale": "2016-09-28T00:00:00+0000",
+      "mu": "2017-04-03T00:00:00+0000",
+      "digitalId": 42688,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/80/57dc0d9b79f87",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Daniel Acuna",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain America: Sam Wilson #11-#13"
+    },
+    {
+      "issueId": 59621,
+      "title": "Civil War II: Kingpin (2016) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/59621/civil_war_ii_kingpin_2016_1",
+      "seriesId": 21695,
+      "seriesName": "Civil War II: Kingpin (2016)",
+      "onSale": "2016-07-06T00:00:00+0000",
+      "mu": "2017-01-09T00:00:00+0000",
+      "digitalId": 42043,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/03/577433de38010",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Aaron Kuder",
+          "role": "penciler"
+        },
+        {
+          "name": "Dalibor Talajic",
+          "role": "penciler"
+        },
+        {
+          "name": "Ricardo Lopez-Ortiz",
+          "role": "penciler"
+        },
+        {
+          "name": "Matthew Rosenberg",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War II: Kingpin #1-#4"
+    },
+    {
+      "issueId": 59622,
+      "title": "Civil War II: Kingpin (2016) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/59622/civil_war_ii_kingpin_2016_2",
+      "seriesId": 21695,
+      "seriesName": "Civil War II: Kingpin (2016)",
+      "onSale": "2016-08-03T00:00:00+0000",
+      "mu": "2017-02-06T00:00:00+0000",
+      "digitalId": 42260,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/00/579671fcdb5bf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Aaron Kuder",
+          "role": "penciler"
+        },
+        {
+          "name": "Ricardo Lopez-Ortiz",
+          "role": "penciler"
+        },
+        {
+          "name": "Matthew Rosenberg",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War II: Kingpin #1-#4"
+    },
+    {
+      "issueId": 59623,
+      "title": "Civil War II: Kingpin (2016) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/59623/civil_war_ii_kingpin_2016_3",
+      "seriesId": 21695,
+      "seriesName": "Civil War II: Kingpin (2016)",
+      "onSale": "2016-09-28T00:00:00+0000",
+      "mu": "2017-04-03T00:00:00+0000",
+      "digitalId": 42691,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/57dc0e7e252fb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Aaron Kuder",
+          "role": "penciler"
+        },
+        {
+          "name": "Hayden Sherman",
+          "role": "penciler"
+        },
+        {
+          "name": "Ricardo Lopez-Ortiz",
+          "role": "penciler"
+        },
+        {
+          "name": "Matthew Rosenberg",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War II: Kingpin #1-#4"
+    },
+    {
+      "issueId": 59624,
+      "title": "Civil War II: Kingpin (2016) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/59624/civil_war_ii_kingpin_2016_4",
+      "seriesId": 21695,
+      "seriesName": "Civil War II: Kingpin (2016)",
+      "onSale": "2016-10-19T00:00:00+0000",
+      "mu": "2017-04-24T00:00:00+0000",
+      "digitalId": 42916,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/57fe4be48aa86",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Aaron Kuder",
+          "role": "penciler"
+        },
+        {
+          "name": "Ricardo Lopez-Ortiz",
+          "role": "penciler"
+        },
+        {
+          "name": "Matthew Rosenberg",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War II: Kingpin #1-#4"
+    },
+    {
+      "issueId": 57105,
+      "title": "Scarlet Witch (2015) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/57105/scarlet_witch_2015_9",
+      "seriesId": 20854,
+      "seriesName": "Scarlet Witch (2015 - 2017)",
+      "onSale": "2016-08-10T00:00:00+0000",
+      "mu": "2017-02-13T00:00:00+0000",
+      "digitalId": 42270,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/70/57a2326bc104b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Aja",
+          "role": "penciler"
+        },
+        {
+          "name": "Joelle Jones",
+          "role": "penciler"
+        },
+        {
+          "name": "James Robinson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War II: Kingpin #1-#4"
+    },
+    {
+      "issueId": 59613,
+      "title": "Civil War II: Gods of War (2016) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/59613/civil_war_ii_gods_of_war_2016_2",
+      "seriesId": 21693,
+      "seriesName": "Civil War II: Gods of War (2016)",
+      "onSale": "2016-07-13T00:00:00+0000",
+      "mu": "2017-01-16T00:00:00+0000",
+      "digitalId": 42069,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/577fb423bac0f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Emilio Laiso",
+          "role": "penciler"
+        },
+        {
+          "name": "Jay Anacleto",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War II: Gods of War #2-#4"
+    },
+    {
+      "issueId": 59614,
+      "title": "Civil War II: Gods of War (2016) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/59614/civil_war_ii_gods_of_war_2016_3",
+      "seriesId": 21693,
+      "seriesName": "Civil War II: Gods of War (2016)",
+      "onSale": "2016-08-17T00:00:00+0000",
+      "mu": "2017-02-20T00:00:00+0000",
+      "digitalId": 42299,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/a0/57a8b8978a818",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Emilio Laiso",
+          "role": "penciler"
+        },
+        {
+          "name": "Jay Anacleto",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War II: Gods of War #2-#4"
+    },
+    {
+      "issueId": 59615,
+      "title": "Civil War II: Gods of War (2016) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/59615/civil_war_ii_gods_of_war_2016_4",
+      "seriesId": 21693,
+      "seriesName": "Civil War II: Gods of War (2016)",
+      "onSale": "2016-09-14T00:00:00+0000",
+      "mu": "2017-03-20T00:00:00+0000",
+      "digitalId": 42534,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/57c981041da36",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Emilio Laiso",
+          "role": "penciler"
+        },
+        {
+          "name": "Jay Anacleto",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War II: Gods of War #2-#4"
+    },
+    {
+      "issueId": 55701,
+      "title": "Spider-Man (2016) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/55701/spider-man_2016_7",
+      "seriesId": 20508,
+      "seriesName": "Spider-Man (2016 - 2018)",
+      "onSale": "2016-08-31T00:00:00+0000",
+      "mu": "2017-03-06T00:00:00+0000",
+      "digitalId": 42325,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/03/57b37361281d4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Nico Leon",
+          "role": "penciler"
+        },
+        {
+          "name": "Sara Pichelli",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War II: Gods of War #2-#4"
+    },
+    {
+      "issueId": 58680,
+      "title": "Civil War II (2016) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/58680/civil_war_ii_2016_3",
+      "seriesId": 21417,
+      "seriesName": "Civil War II (2016)",
+      "onSale": "2016-07-13T00:00:00+0000",
+      "mu": "2017-01-16T00:00:00+0000",
+      "digitalId": 42042,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/60/578699307ec43",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War II: Gods of War #2-#4"
+    },
+    {
+      "issueId": 55702,
+      "title": "Spider-Man (2016) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/55702/spider-man_2016_8",
+      "seriesId": 20508,
+      "seriesName": "Spider-Man (2016 - 2018)",
+      "onSale": "2016-09-14T00:00:00+0000",
+      "mu": "2017-03-20T00:00:00+0000",
+      "digitalId": 42646,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/57c983ca61622",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Nico Leon",
+          "role": "penciler"
+        },
+        {
+          "name": "Sara Pichelli",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War II: Gods of War #2-#4"
+    },
+    {
+      "issueId": 56225,
+      "title": "Uncanny Avengers (2015) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/56225/uncanny_avengers_2015_13",
+      "seriesId": 20621,
+      "seriesName": "Uncanny Avengers (2015 - 2017)",
+      "onSale": "2016-08-31T00:00:00+0000",
+      "mu": "2017-03-06T00:00:00+0000",
+      "digitalId": 42347,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/57c47a434a872",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War II: Gods of War #2-#4"
+    },
+    {
+      "issueId": 56173,
+      "title": "Spider-Woman (2015) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/56173/spider-woman_2015_10",
+      "seriesId": 20618,
+      "seriesName": "Spider-Woman (2015 - 2017)",
+      "onSale": "2016-08-17T00:00:00+0000",
+      "mu": "2017-02-20T00:00:00+0000",
+      "digitalId": 39771,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/57a8cca5c4064",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Javier Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Dennis \"Hopeless\" Hallum",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Spider-Woman #10-#11"
+    },
+    {
+      "issueId": 56174,
+      "title": "Spider-Woman (2015) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/56174/spider-woman_2015_11",
+      "seriesId": 20618,
+      "seriesName": "Spider-Woman (2015 - 2017)",
+      "onSale": "2016-09-28T00:00:00+0000",
+      "mu": "2017-04-03T00:00:00+0000",
+      "digitalId": 42702,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/57dc36d7a3267",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Javier Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Veronica Fish",
+          "role": "penciler"
+        },
+        {
+          "name": "Dennis \"Hopeless\" Hallum",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Spider-Woman #10-#11"
+    },
+    {
+      "issueId": 60134,
+      "title": "New Avengers (2015) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/60134/new_avengers_2015_13",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-07-13T00:00:00+0000",
+      "mu": "2017-01-16T00:00:00+0000",
+      "digitalId": 42079,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/70/577fbbe22fcc4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "New Avengers #13-#17"
+    },
+    {
+      "issueId": 60135,
+      "title": "New Avengers (2015) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/60135/new_avengers_2015_14",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-07-27T00:00:00+0000",
+      "mu": "2017-01-30T00:00:00+0000",
+      "digitalId": 42124,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/70/57927b85d76ce",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "New Avengers #13-#17"
+    },
+    {
+      "issueId": 60136,
+      "title": "New Avengers (2015) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/60136/new_avengers_2015_15",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-08-24T00:00:00+0000",
+      "mu": "2017-02-27T00:00:00+0000",
+      "digitalId": 42322,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/57b370850fca8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "New Avengers #13-#17"
+    },
+    {
+      "issueId": 60137,
+      "title": "New Avengers (2015) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/60137/new_avengers_2015_16",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-09-28T00:00:00+0000",
+      "mu": "2017-04-03T00:00:00+0000",
+      "digitalId": 42697,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/57dc35b1a40f4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "New Avengers #13-#17"
+    },
+    {
+      "issueId": 61035,
+      "title": "New Avengers (2015) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/61035/new_avengers_2015_17",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-10-26T00:00:00+0000",
+      "mu": "2017-05-01T00:00:00+0000",
+      "digitalId": 42832,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/d0/58014ed534302",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "New Avengers #13-#17"
+    },
+    {
+      "issueId": 59608,
+      "title": "Civil War II: Choosing Sides (2016) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/59608/civil_war_ii_choosing_sides_2016_3",
+      "seriesId": 21692,
+      "seriesName": "Civil War II: Choosing Sides (2016)",
+      "onSale": "2016-07-27T00:00:00+0000",
+      "mu": "2017-01-30T00:00:00+0000",
+      "digitalId": 42111,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/57912e4d31e0c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Declan Shalvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Chuck Brown",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War II: Choosing Sides #3-#5"
+    },
+    {
+      "issueId": 59609,
+      "title": "Civil War II: Choosing Sides (2016) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/59609/civil_war_ii_choosing_sides_2016_4",
+      "seriesId": 21692,
+      "seriesName": "Civil War II: Choosing Sides (2016)",
+      "onSale": "2016-08-17T00:00:00+0000",
+      "mu": "2017-02-20T00:00:00+0000",
+      "digitalId": 42298,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/f0/57a8b832b89af",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Chris Visions",
+          "role": "penciler"
+        },
+        {
+          "name": "Declan Shalvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Rosi Kampe",
+          "role": "penciler"
+        },
+        {
+          "name": "John Allison",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War II: Choosing Sides #3-#5"
+    },
+    {
+      "issueId": 59610,
+      "title": "Civil War II: Choosing Sides (2016) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/59610/civil_war_ii_choosing_sides_2016_5",
+      "seriesId": 21692,
+      "seriesName": "Civil War II: Choosing Sides (2016)",
+      "onSale": "2016-08-31T00:00:00+0000",
+      "mu": "2017-03-06T00:00:00+0000",
+      "digitalId": 42336,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/57bb66543a606",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Annapaola Martello",
+          "role": "penciler"
+        },
+        {
+          "name": "Cameron Stewart",
+          "role": "penciler"
+        },
+        {
+          "name": "Declan Shalvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Ramon Perez",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War II: Choosing Sides #3-#5"
+    },
+    {
+      "issueId": 57957,
+      "title": "Power Man and Iron Fist (2016) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/57957/power_man_and_iron_fist_2016_8",
+      "seriesId": 21122,
+      "seriesName": "Power Man and Iron Fist (2016 - 2017)",
+      "onSale": "2016-09-21T00:00:00+0000",
+      "mu": "2017-03-27T00:00:00+0000",
+      "digitalId": 42673,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/40/57d2c5ea83b1e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "F Flaviano",
+          "role": "penciler"
+        },
+        {
+          "name": "Sanford Greene",
+          "role": "penciler"
+        },
+        {
+          "name": "David Walker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Power Man and Iron Fist #8-#9"
+    },
+    {
+      "issueId": 57958,
+      "title": "Power Man and Iron Fist (2016) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/57958/power_man_and_iron_fist_2016_9",
+      "seriesId": 21122,
+      "seriesName": "Power Man and Iron Fist (2016 - 2017)",
+      "onSale": "2016-10-12T00:00:00+0000",
+      "mu": "2017-04-17T00:00:00+0000",
+      "digitalId": 42812,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/57f54eeeedebe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Flaviano",
+          "role": "penciler"
+        },
+        {
+          "name": "Sanford Greene",
+          "role": "penciler"
+        },
+        {
+          "name": "David Walker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Power Man and Iron Fist #8-#9"
+    },
+    {
+      "issueId": 56590,
+      "title": "Captain Marvel (2016) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/56590/captain_marvel_2016_7",
+      "seriesId": 20718,
+      "seriesName": "Captain Marvel (2016 - 2017)",
+      "onSale": "2016-07-27T00:00:00+0000",
+      "mu": "2017-01-30T00:00:00+0000",
+      "digitalId": 42094,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/57912a0d5960b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Marco Failla",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain Marvel #7-#8"
+    },
+    {
+      "issueId": 56591,
+      "title": "Captain Marvel (2016) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/56591/captain_marvel_2016_8",
+      "seriesId": 20718,
+      "seriesName": "Captain Marvel (2016 - 2017)",
+      "onSale": "2016-08-24T00:00:00+0000",
+      "mu": "2017-02-27T00:00:00+0000",
+      "digitalId": 42258,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/57a8b5d10a753",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Ruth Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain Marvel #7-#8"
+    },
+    {
+      "issueId": 56124,
+      "title": "Ms. Marvel (2015) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/56124/ms_marvel_2015_9",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2016-07-27T00:00:00+0000",
+      "mu": "2017-01-30T00:00:00+0000",
+      "digitalId": 42078,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/00/57927a698d8f7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adrian Alphona",
+          "role": "penciler"
+        },
+        {
+          "name": "Cameron Stewart",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Ms. Marvel #9-#10"
+    },
+    {
+      "issueId": 56125,
+      "title": "Ms. Marvel (2015) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/56125/ms_marvel_2015_10",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2016-08-31T00:00:00+0000",
+      "mu": "2017-03-06T00:00:00+0000",
+      "digitalId": 42285,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/57bb6a56d5d6d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adrian Alphona",
+          "role": "penciler"
+        },
+        {
+          "name": "Cameron Stewart",
+          "role": "penciler"
+        },
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ms. Marvel #9-#10"
+    },
+    {
+      "issueId": 57263,
+      "title": "Ultimates (2015) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/57263/ultimates_2015_9",
+      "seriesId": 20890,
+      "seriesName": "Ultimates (2015 - 2016)",
+      "onSale": "2016-07-20T00:00:00+0000",
+      "mu": "2017-01-23T00:00:00+0000",
+      "digitalId": 42085,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/03/578905c5306c3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kenneth Rocafort",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ms. Marvel #9-#10"
+    },
+    {
+      "issueId": 55474,
+      "title": "Guardians of the Galaxy (2015) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/55474/guardians_of_the_galaxy_2015_11",
+      "seriesId": 20465,
+      "seriesName": "Guardians of the Galaxy (2015 - 2017)",
+      "onSale": "2016-08-31T00:00:00+0000",
+      "mu": "2017-03-06T00:00:00+0000",
+      "digitalId": 42316,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/57bb671a016cd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Arthur Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ms. Marvel #9-#10"
+    },
+    {
+      "issueId": 57300,
+      "title": "Venom: Space Knight (2015) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/57300/venom_space_knight_2015_11",
+      "seriesId": 20896,
+      "seriesName": "Venom: Space Knight (2015 - 2016)",
+      "onSale": "2016-08-24T00:00:00+0000",
+      "mu": "2017-02-27T00:00:00+0000",
+      "digitalId": 42331,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/5734c70bc6c63",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gerardo Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Zach Howard",
+          "role": "penciler"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Venom: Space Knight #11-#12"
+    },
+    {
+      "issueId": 57301,
+      "title": "Venom: Space Knight (2015) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/57301/venom_space_knight_2015_12",
+      "seriesId": 20896,
+      "seriesName": "Venom: Space Knight (2015 - 2016)",
+      "onSale": "2016-09-21T00:00:00+0000",
+      "mu": "2017-03-27T00:00:00+0000",
+      "digitalId": 42678,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/04/57d9acff2b9f6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gerardo Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Zach Howard",
+          "role": "penciler"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Venom: Space Knight #11-#12"
+    },
+    {
+      "issueId": 57049,
+      "title": "Nova (2015) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/57049/nova_2015_9",
+      "seriesId": 20844,
+      "seriesName": "Nova (2015 - 2016)",
+      "onSale": "2016-07-20T00:00:00+0000",
+      "mu": "2017-01-23T00:00:00+0000",
+      "digitalId": 42100,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/10/57869e1e1237e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "R.B. Silva",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Venom: Space Knight #11-#12"
+    },
+    {
+      "issueId": 56126,
+      "title": "Ms. Marvel (2015) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/56126/ms_marvel_2015_11",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2016-09-28T00:00:00+0000",
+      "mu": "2017-04-03T00:00:00+0000",
+      "digitalId": 42643,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/70/57e57df73f74d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adrian Alphona",
+          "role": "penciler"
+        },
+        {
+          "name": "Cameron Stewart",
+          "role": "penciler"
+        },
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Venom: Space Knight #11-#12"
+    },
+    {
+      "issueId": 56592,
+      "title": "Captain Marvel (2016) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/56592/captain_marvel_2016_9",
+      "seriesId": 20718,
+      "seriesName": "Captain Marvel (2016 - 2017)",
+      "onSale": "2016-09-28T00:00:00+0000",
+      "mu": "2017-04-03T00:00:00+0000",
+      "digitalId": 42690,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/57dc0e3fc2179",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Thony Silas",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Ruth Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Venom: Space Knight #11-#12"
+    },
+    {
+      "issueId": 56036,
+      "title": "Agents of S.H.I.E.L.D. (2016) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/56036/agents_of_shield_2016_8",
+      "seriesId": 20607,
+      "seriesName": "Agents of S.H.I.E.L.D. (2016)",
+      "onSale": "2016-08-10T00:00:00+0000",
+      "mu": "2017-02-13T00:00:00+0000",
+      "digitalId": 42278,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/57a35a66087d2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "German Peralta",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Norton",
+          "role": "penciler"
+        },
+        {
+          "name": "Marc Guggenheim",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Agents of S.H.I.E.L.D. #8-#10"
+    },
+    {
+      "issueId": 56037,
+      "title": "Agents of S.H.I.E.L.D. (2016) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/56037/agents_of_shield_2016_9",
+      "seriesId": 20607,
+      "seriesName": "Agents of S.H.I.E.L.D. (2016)",
+      "onSale": "2016-09-21T00:00:00+0000",
+      "mu": "2017-03-27T00:00:00+0000",
+      "digitalId": 42658,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/57d2c16c5ced1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ario Anindito",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Norton",
+          "role": "penciler"
+        },
+        {
+          "name": "Marc Guggenheim",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Agents of S.H.I.E.L.D. #8-#10"
+    },
+    {
+      "issueId": 56038,
+      "title": "Agents of S.H.I.E.L.D. (2016) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/56038/agents_of_shield_2016_10",
+      "seriesId": 20607,
+      "seriesName": "Agents of S.H.I.E.L.D. (2016)",
+      "onSale": "2016-10-26T00:00:00+0000",
+      "mu": "2017-05-01T00:00:00+0000",
+      "digitalId": 42923,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/03/58010c18e9719",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ario Anindito",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Norton",
+          "role": "penciler"
+        },
+        {
+          "name": "Marc Guggenheim",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Agents of S.H.I.E.L.D. #8-#10"
+    },
+    {
+      "issueId": 55606,
+      "title": "Rocket Raccoon & Groot (2016) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/55606/rocket_raccoon_groot_2016_8",
+      "seriesId": 20493,
+      "seriesName": "Rocket Raccoon & Groot (2016)",
+      "onSale": "2016-08-31T00:00:00+0000",
+      "mu": "2017-03-06T00:00:00+0000",
+      "digitalId": 42343,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/57bb6e3893ecd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Lopez",
+          "role": "penciler"
+        },
+        {
+          "name": "Michael Walsh",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Kocher",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Rocket Raccoon and Groot #8-#10"
+    },
+    {
+      "issueId": 55607,
+      "title": "Rocket Raccoon & Groot (2016) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/55607/rocket_raccoon_groot_2016_9",
+      "seriesId": 20493,
+      "seriesName": "Rocket Raccoon & Groot (2016)",
+      "onSale": "2016-09-14T00:00:00+0000",
+      "mu": "2017-03-20T00:00:00+0000",
+      "digitalId": 42645,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/00/57c9837e3080e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Lopez",
+          "role": "penciler"
+        },
+        {
+          "name": "Michael Walsh",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Kocher",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Rocket Raccoon and Groot #8-#10"
+    },
+    {
+      "issueId": 55608,
+      "title": "Rocket Raccoon & Groot (2016) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/55608/rocket_raccoon_groot_2016_10",
+      "seriesId": 20493,
+      "seriesName": "Rocket Raccoon & Groot (2016)",
+      "onSale": "2016-09-28T00:00:00+0000",
+      "mu": "2017-04-03T00:00:00+0000",
+      "digitalId": 42701,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/57e581253e91f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Lopez",
+          "role": "penciler"
+        },
+        {
+          "name": "Michael Walsh",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Kocher",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Rocket Raccoon and Groot #8-#10"
+    },
+    {
+      "issueId": 55747,
+      "title": "Squadron Supreme (2015) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/55747/squadron_supreme_2015_9",
+      "seriesId": 20517,
+      "seriesName": "Squadron Supreme (2015 - 2017)",
+      "onSale": "2016-07-20T00:00:00+0000",
+      "mu": "2017-01-23T00:00:00+0000",
+      "digitalId": 42104,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/d0/578d100dbb6e0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Alex Garner",
+          "role": "penciler"
+        },
+        {
+          "name": "Leonardo Romero",
+          "role": "penciler"
+        },
+        {
+          "name": "James Robinson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Squadron Supreme #9-#12"
+    },
+    {
+      "issueId": 55748,
+      "title": "Squadron Supreme (2015) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/55748/squadron_supreme_2015_10",
+      "seriesId": 20517,
+      "seriesName": "Squadron Supreme (2015 - 2017)",
+      "onSale": "2016-08-03T00:00:00+0000",
+      "mu": "2017-02-06T00:00:00+0000",
+      "digitalId": 42274,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/00/57967b113853f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alex Garner",
+          "role": "penciler"
+        },
+        {
+          "name": "Leonard Kirk",
+          "role": "penciler"
+        },
+        {
+          "name": "James Robinson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Squadron Supreme #9-#12"
+    },
+    {
+      "issueId": 55749,
+      "title": "Squadron Supreme (2015) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/55749/squadron_supreme_2015_11",
+      "seriesId": 20517,
+      "seriesName": "Squadron Supreme (2015 - 2017)",
+      "onSale": "2016-09-07T00:00:00+0000",
+      "mu": "2017-03-13T00:00:00+0000",
+      "digitalId": 42603,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/10/57c599d3308d4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alex Garner",
+          "role": "penciler"
+        },
+        {
+          "name": "James Robinson",
+          "role": "writer"
+        },
+        {
+          "name": "Leonard Kirk",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Squadron Supreme #9-#12"
+    },
+    {
+      "issueId": 55750,
+      "title": "Squadron Supreme (2015) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/55750/squadron_supreme_2015_12",
+      "seriesId": 20517,
+      "seriesName": "Squadron Supreme (2015 - 2017)",
+      "onSale": "2016-10-05T00:00:00+0000",
+      "mu": "2017-04-10T00:00:00+0000",
+      "digitalId": 42802,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/57e59423e0d02",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alex Garner",
+          "role": "penciler"
+        },
+        {
+          "name": "Leonard Kirk",
+          "role": "penciler"
+        },
+        {
+          "name": "James Robinson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Squadron Supreme #9-#12"
+    },
+    {
+      "issueId": 58681,
+      "title": "Civil War II (2016) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/58681/civil_war_ii_2016_4",
+      "seriesId": 21417,
+      "seriesName": "Civil War II (2016)",
+      "onSale": "2016-07-27T00:00:00+0000",
+      "mu": "2017-01-30T00:00:00+0000",
+      "digitalId": 42096,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/57912c445aeae",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Squadron Supreme #9-#12"
+    },
+    {
+      "issueId": -8000000000028459,
+      "appViewer": "28459",
+      "title": "Civil War II: The Accused (2016) #1",
+      "number": "1",
+      "url": "https://www.marvelcomicsapp.com/viewer/28459",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Squadron Supreme #9-#12"
+    },
+    {
+      "issueId": 57264,
+      "title": "Ultimates (2015) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/57264/ultimates_2015_10",
+      "seriesId": 20890,
+      "seriesName": "Ultimates (2015 - 2016)",
+      "onSale": "2016-08-17T00:00:00+0000",
+      "mu": "2017-02-20T00:00:00+0000",
+      "digitalId": 42291,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/57a8cfa53fa84",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kenneth Rocafort",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ultimates #10-#11"
+    },
+    {
+      "issueId": 57265,
+      "title": "Ultimates (2015) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/57265/ultimates_2015_11",
+      "seriesId": 20890,
+      "seriesName": "Ultimates (2015 - 2016)",
+      "onSale": "2016-09-28T00:00:00+0000",
+      "mu": "2017-04-03T00:00:00+0000",
+      "digitalId": 42707,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/57dc38b281434",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Djibril Morissette-Phan",
+          "role": "penciler"
+        },
+        {
+          "name": "Kenneth Rocafort",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ultimates #10-#11"
+    },
+    {
+      "issueId": 56091,
+      "title": "The Totally Awesome Hulk (2015) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/56091/the_totally_awesome_hulk_2015_9",
+      "seriesId": 20614,
+      "seriesName": "The Totally Awesome Hulk (2015 - 2017)",
+      "onSale": "2016-07-27T00:00:00+0000",
+      "mu": "2017-01-30T00:00:00+0000",
+      "digitalId": 42127,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/57926b0fa4333",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Dodson",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The Totally Awesome Hulk #9-#12"
+    },
+    {
+      "issueId": 56092,
+      "title": "The Totally Awesome Hulk (2015) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/56092/the_totally_awesome_hulk_2015_10",
+      "seriesId": 20614,
+      "seriesName": "The Totally Awesome Hulk (2015 - 2017)",
+      "onSale": "2016-09-28T00:00:00+0000",
+      "mu": "2017-04-03T00:00:00+0000",
+      "digitalId": 42328,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/57e5841edda7d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mahmud Asrar",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Dodson",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The Totally Awesome Hulk #9-#12"
+    },
+    {
+      "issueId": 56093,
+      "title": "The Totally Awesome Hulk (2015) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/56093/the_totally_awesome_hulk_2015_11",
+      "seriesId": 20614,
+      "seriesName": "The Totally Awesome Hulk (2015 - 2017)",
+      "onSale": "2016-10-26T00:00:00+0000",
+      "mu": "2017-05-01T00:00:00+0000",
+      "digitalId": 42704,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/a0/580a471477445",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mahmud Asrar",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Dodson",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The Totally Awesome Hulk #9-#12"
+    },
+    {
+      "issueId": 56094,
+      "title": "The Totally Awesome Hulk (2015) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/56094/the_totally_awesome_hulk_2015_12",
+      "seriesId": 20614,
+      "seriesName": "The Totally Awesome Hulk (2015 - 2017)",
+      "onSale": "2016-11-30T00:00:00+0000",
+      "mu": "2017-06-05T00:00:00+0000",
+      "digitalId": 42838,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/582cbf4b72184",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Dodson",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The Totally Awesome Hulk #9-#12"
+    },
+    {
+      "issueId": 58224,
+      "title": "Mockingbird (2016) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/58224/mockingbird_2016_6",
+      "seriesId": 21245,
+      "seriesName": "Mockingbird (2016)",
+      "onSale": "2016-08-17T00:00:00+0000",
+      "mu": "2017-02-20T00:00:00+0000",
+      "digitalId": 42269,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/00/57a8c8e94bae5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joelle Jones",
+          "role": "penciler"
+        },
+        {
+          "name": "Kate Niemczyk",
+          "role": "penciler"
+        },
+        {
+          "name": "Chelsea Cain",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Mockingbird #6-#8"
+    },
+    {
+      "issueId": 58225,
+      "title": "Mockingbird (2016) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/58225/mockingbird_2016_7",
+      "seriesId": 21245,
+      "seriesName": "Mockingbird (2016)",
+      "onSale": "2016-09-14T00:00:00+0000",
+      "mu": "2017-03-20T00:00:00+0000",
+      "digitalId": 42642,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/57d9abae03597",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joelle Jones",
+          "role": "penciler"
+        },
+        {
+          "name": "Kate Niemczyk",
+          "role": "penciler"
+        },
+        {
+          "name": "Chelsea Cain",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Mockingbird #6-#8"
+    },
+    {
+      "issueId": 58226,
+      "title": "Mockingbird (2016) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/58226/mockingbird_2016_8",
+      "seriesId": 21245,
+      "seriesName": "Mockingbird (2016)",
+      "onSale": "2016-10-19T00:00:00+0000",
+      "mu": "2017-04-24T00:00:00+0000",
+      "digitalId": 42823,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/57fe4f5d655ac",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joelle Jones",
+          "role": "penciler"
+        },
+        {
+          "name": "Kate Niemczyk",
+          "role": "penciler"
+        },
+        {
+          "name": "Chelsea Cain",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Mockingbird #6-#8"
+    },
+    {
+      "issueId": 55366,
+      "title": "All-New, All-Different Avengers (2015) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/55366/all-new_all-different_avengers_2015_13",
+      "seriesId": 20443,
+      "seriesName": "All-New, All-Different Avengers (2015 - 2016)",
+      "onSale": "2016-08-10T00:00:00+0000",
+      "mu": "2017-02-13T00:00:00+0000",
+      "digitalId": 42257,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/57a35b78e468a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "All-New, All-Different Avengers #13-#15"
+    },
+    {
+      "issueId": 55367,
+      "title": "All-New, All-Different Avengers (2015) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/55367/all-new_all-different_avengers_2015_14",
+      "seriesId": 20443,
+      "seriesName": "All-New, All-Different Avengers (2015 - 2016)",
+      "onSale": "2016-09-07T00:00:00+0000",
+      "mu": "2017-03-13T00:00:00+0000",
+      "digitalId": 42591,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/57c0ae1725a4f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeremy Whitley",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "All-New, All-Different Avengers #13-#15"
+    },
+    {
+      "issueId": 55368,
+      "title": "All-New, All-Different Avengers (2015) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/55368/all-new_all-different_avengers_2015_15",
+      "seriesId": 20443,
+      "seriesName": "All-New, All-Different Avengers (2015 - 2016)",
+      "onSale": "2016-10-26T00:00:00+0000",
+      "mu": "2017-05-01T00:00:00+0000",
+      "digitalId": 42909,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/c0/57fe47eed97b9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "All-New, All-Different Avengers #13-#15"
+    },
+    {
+      "issueId": 55725,
+      "title": "Spider-Man 2099 (2015) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/55725/spider-man_2099_2015_13",
+      "seriesId": 20511,
+      "seriesName": "Spider-Man 2099 (2015 - 2017)",
+      "onSale": "2016-08-10T00:00:00+0000",
+      "mu": "2017-02-13T00:00:00+0000",
+      "digitalId": 42288,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/03/57a36771b8922",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "William Sliney",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Spider-Man 2099 #13-#16"
+    },
+    {
+      "issueId": 55726,
+      "title": "Spider-Man 2099 (2015) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/55726/spider-man_2099_2015_14",
+      "seriesId": 20511,
+      "seriesName": "Spider-Man 2099 (2015 - 2017)",
+      "onSale": "2016-08-31T00:00:00+0000",
+      "mu": "2017-03-06T00:00:00+0000",
+      "digitalId": 42344,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/57c0a4670eb99",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "William Sliney",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Spider-Man 2099 #13-#16"
+    },
+    {
+      "issueId": 55727,
+      "title": "Spider-Man 2099 (2015) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/55727/spider-man_2099_2015_15",
+      "seriesId": 20511,
+      "seriesName": "Spider-Man 2099 (2015 - 2017)",
+      "onSale": "2016-09-14T00:00:00+0000",
+      "mu": "2017-03-20T00:00:00+0000",
+      "digitalId": 42647,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/20/57c9842b5a856",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "William Sliney",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Spider-Man 2099 #13-#16"
+    },
+    {
+      "issueId": 55728,
+      "title": "Spider-Man 2099 (2015) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/55728/spider-man_2099_2015_16",
+      "seriesId": 20511,
+      "seriesName": "Spider-Man 2099 (2015 - 2017)",
+      "onSale": "2016-10-05T00:00:00+0000",
+      "mu": "2017-04-10T00:00:00+0000",
+      "digitalId": 42799,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/57e593820b2a2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "William Sliney",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Spider-Man 2099 #13-#16"
+    },
+    {
+      "issueId": 59628,
+      "title": "Civil War II: X-Men (2016) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/59628/civil_war_ii_x-men_2016_4",
+      "seriesId": 21696,
+      "seriesName": "Civil War II: X-Men (2016)",
+      "onSale": "2016-09-21T00:00:00+0000",
+      "mu": "2017-03-27T00:00:00+0000",
+      "digitalId": 42665,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/57d2c347826b4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrea Broccardo",
+          "role": "penciler"
+        },
+        {
+          "name": "David Yardin",
+          "role": "penciler"
+        },
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Spider-Man 2099 #13-#16"
+    },
+    {
+      "issueId": 59611,
+      "title": "Civil War II: Choosing Sides (2016) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/59611/civil_war_ii_choosing_sides_2016_6",
+      "seriesId": 21692,
+      "seriesName": "Civil War II: Choosing Sides (2016)",
+      "onSale": "2016-09-21T00:00:00+0000",
+      "mu": "2017-03-27T00:00:00+0000",
+      "digitalId": 42664,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/03/57d851618153e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alison Sampson",
+          "role": "penciler"
+        },
+        {
+          "name": "Cameron Stewart",
+          "role": "penciler"
+        },
+        {
+          "name": "Declan Shalvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Sana Takeda",
+          "role": "penciler"
+        },
+        {
+          "name": "Chelsea Cain",
+          "role": "writer"
+        },
+        {
+          "name": "Christina Strain",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Spider-Man 2099 #13-#16"
+    },
+    {
+      "issueId": 60380,
+      "title": "The Fallen (2016) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/60380/the_fallen_2016_1",
+      "seriesId": 22292,
+      "seriesName": "The Fallen (2016)",
+      "onSale": "2016-08-17T00:00:00+0000",
+      "mu": "2017-02-20T00:00:00+0000",
+      "digitalId": 42301,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/57ae178acf573",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Spider-Man 2099 #13-#16"
+    },
+    {
+      "issueId": 56226,
+      "title": "Uncanny Avengers (2015) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/56226/uncanny_avengers_2015_14",
+      "seriesId": 20621,
+      "seriesName": "Uncanny Avengers (2015 - 2017)",
+      "onSale": "2016-09-14T00:00:00+0000",
+      "mu": "2017-03-20T00:00:00+0000",
+      "digitalId": 42649,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/57d2ea45429a5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Spider-Man 2099 #13-#16"
+    },
+    {
+      "issueId": 56082,
+      "title": "Deadpool (2015) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/56082/deadpool_2015_18",
+      "seriesId": 20613,
+      "seriesName": "Deadpool (2015 - 2017)",
+      "onSale": "2016-09-14T00:00:00+0000",
+      "mu": "2017-03-20T00:00:00+0000",
+      "digitalId": 42635,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/b0/57c9819a47659",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Hawthorne",
+          "role": "penciler"
+        },
+        {
+          "name": "Rafael Albuquerque",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Spider-Man 2099 #13-#16"
+    },
+    {
+      "issueId": 58682,
+      "title": "Civil War II (2016) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/58682/civil_war_ii_2016_5",
+      "seriesId": 21417,
+      "seriesName": "Civil War II (2016)",
+      "onSale": "2016-09-21T00:00:00+0000",
+      "mu": "2017-03-27T00:00:00+0000",
+      "digitalId": 42297,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/57c994cd539aa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Spider-Man 2099 #13-#16"
+    },
+    {
+      "issueId": 57870,
+      "title": "Captain America: Steve Rogers (2016) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/57870/captain_america_steve_rogers_2016_5",
+      "seriesId": 21098,
+      "seriesName": "Captain America: Steve Rogers (2016 - 2017)",
+      "onSale": "2016-09-28T00:00:00+0000",
+      "mu": "2017-04-03T00:00:00+0000",
+      "digitalId": 42313,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/20/57dc0e06677f9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Javier Pina",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Renaud",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Spider-Man 2099 #13-#16"
+    },
+    {
+      "issueId": 58683,
+      "title": "Civil War II (2016) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/58683/civil_war_ii_2016_6",
+      "seriesId": 21417,
+      "seriesName": "Civil War II (2016)",
+      "onSale": "2016-10-26T00:00:00+0000",
+      "mu": "2017-05-01T00:00:00+0000",
+      "digitalId": 42663,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/580a89098acc0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Spider-Man 2099 #13-#16"
+    },
+    {
+      "issueId": 57240,
+      "title": "Thunderbolts (2016) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/57240/thunderbolts_2016_5",
+      "seriesId": 20884,
+      "seriesName": "Thunderbolts (2016 - 2017)",
+      "onSale": "2016-09-28T00:00:00+0000",
+      "mu": "2017-04-03T00:00:00+0000",
+      "digitalId": 42706,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/57dc38424ab71",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jon Malin",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Spider-Man 2099 #13-#16"
+    },
+    {
+      "issueId": 57871,
+      "title": "Captain America: Steve Rogers (2016) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/57871/captain_america_steve_rogers_2016_6",
+      "seriesId": 21098,
+      "seriesName": "Captain America: Steve Rogers (2016 - 2017)",
+      "onSale": "2016-10-26T00:00:00+0000",
+      "mu": "2017-05-01T00:00:00+0000",
+      "digitalId": 42689,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/58010c888eac6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Javier Pina",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Renaud",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Spider-Man 2099 #13-#16"
+    },
+    {
+      "issueId": 55475,
+      "title": "Guardians of the Galaxy (2015) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/55475/guardians_of_the_galaxy_2015_12",
+      "seriesId": 20465,
+      "seriesName": "Guardians of the Galaxy (2015 - 2017)",
+      "onSale": "2016-09-21T00:00:00+0000",
+      "mu": "2017-03-27T00:00:00+0000",
+      "digitalId": 42668,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/57d2c401492e7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Arthur Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy #12-#13"
+    },
+    {
+      "issueId": 55476,
+      "title": "Guardians of the Galaxy (2015) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/55476/guardians_of_the_galaxy_2015_13",
+      "seriesId": 20465,
+      "seriesName": "Guardians of the Galaxy (2015 - 2017)",
+      "onSale": "2016-10-26T00:00:00+0000",
+      "mu": "2017-05-01T00:00:00+0000",
+      "digitalId": 42929,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/03/58013e0498d43",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Arthur Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy #12-#13"
+    },
+    {
+      "issueId": 55703,
+      "title": "Spider-Man (2016) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/55703/spider-man_2016_9",
+      "seriesId": 20508,
+      "seriesName": "Spider-Man (2016 - 2018)",
+      "onSale": "2016-11-16T00:00:00+0000",
+      "mu": "2017-05-22T00:00:00+0000",
+      "digitalId": 42835,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/5825f68e1505b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Nico Leon",
+          "role": "penciler"
+        },
+        {
+          "name": "Sara Pichelli",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy #12-#13"
+    },
+    {
+      "issueId": 59847,
+      "title": "Civil War II (2016) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/59847/civil_war_ii_2016_7",
+      "seriesId": 21417,
+      "seriesName": "Civil War II (2016)",
+      "onSale": "2016-11-23T00:00:00+0000",
+      "mu": "2017-05-29T00:00:00+0000",
+      "digitalId": 42915,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/5820b7d373a63",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy #12-#13"
+    },
+    {
+      "issueId": 62349,
+      "title": "Civil War II (2016) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/62349/civil_war_ii_2016_8",
+      "seriesId": 21417,
+      "seriesName": "Civil War II (2016)",
+      "onSale": "2016-12-28T00:00:00+0000",
+      "mu": "2017-07-03T00:00:00+0000",
+      "digitalId": 43165,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/03/5859a3664823b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy #12-#13"
+    },
+    {
+      "issueId": 55535,
+      "title": "Invincible Iron Man (2015) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/55535/invincible_iron_man_2015_14",
+      "seriesId": 20476,
+      "seriesName": "Invincible Iron Man (2015 - 2016)",
+      "onSale": "2016-10-05T00:00:00+0000",
+      "mu": "2017-04-10T00:00:00+0000",
+      "digitalId": 42899,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/03/57e5873803a50",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dale Keown",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy #12-#13"
+    },
+    {
+      "issueId": 55704,
+      "title": "Spider-Man (2016) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/55704/spider-man_2016_10",
+      "seriesId": 20508,
+      "seriesName": "Spider-Man (2016 - 2018)",
+      "onSale": "2016-12-14T00:00:00+0000",
+      "mu": "2017-06-19T00:00:00+0000",
+      "digitalId": 43276,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/5845cff3050e1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Nico Leon",
+          "role": "penciler"
+        },
+        {
+          "name": "Sara Pichelli",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy #12-#13"
+    },
+    {
+      "issueId": 56227,
+      "title": "Uncanny Avengers (2015) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/56227/uncanny_avengers_2015_15",
+      "seriesId": 20621,
+      "seriesName": "Uncanny Avengers (2015 - 2017)",
+      "onSale": "2016-10-12T00:00:00+0000",
+      "mu": "2017-04-17T00:00:00+0000",
+      "digitalId": 42819,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/57f5518adda12",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Meghan Hetrick",
+          "role": "penciler"
+        },
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Uncanny Avengers #15-#17"
+    },
+    {
+      "issueId": 56228,
+      "title": "Uncanny Avengers (2015) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/56228/uncanny_avengers_2015_16",
+      "seriesId": 20621,
+      "seriesName": "Uncanny Avengers (2015 - 2017)",
+      "onSale": "2016-11-09T00:00:00+0000",
+      "mu": "2017-05-15T00:00:00+0000",
+      "digitalId": 43204,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/581cd8e501d4d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Uncanny Avengers #15-#17"
+    },
+    {
+      "issueId": 61094,
+      "title": "Uncanny Avengers (2015) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/61094/uncanny_avengers_2015_17",
+      "seriesId": 20621,
+      "seriesName": "Uncanny Avengers (2015 - 2017)",
+      "onSale": "2016-12-14T00:00:00+0000",
+      "mu": "2017-06-19T00:00:00+0000",
+      "digitalId": 43458,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/584b2df571def",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Uncanny Avengers #15-#17"
+    },
+    {
+      "issueId": 57266,
+      "title": "Ultimates (2015) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/57266/ultimates_2015_12",
+      "seriesId": 20890,
+      "seriesName": "Ultimates (2015 - 2016)",
+      "onSale": "2016-10-26T00:00:00+0000",
+      "mu": "2017-05-01T00:00:00+0000",
+      "digitalId": 42839,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/580a5920b2ff8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Christian Ward",
+          "role": "penciler"
+        },
+        {
+          "name": "Kenneth Rocafort",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Uncanny Avengers #15-#17"
+    },
+    {
+      "issueId": 56593,
+      "title": "Captain Marvel (2016) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/56593/captain_marvel_2016_10",
+      "seriesId": 20718,
+      "seriesName": "Captain Marvel (2016 - 2017)",
+      "onSale": "2016-11-23T00:00:00+0000",
+      "mu": "2017-05-29T00:00:00+0000",
+      "digitalId": 42913,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/60/58238e2502634",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Ruth Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Uncanny Avengers #15-#17"
+    },
+    {
+      "issueId": 61036,
+      "title": "New Avengers (2015) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/61036/new_avengers_2015_18",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-11-30T00:00:00+0000",
+      "mu": "2017-06-05T00:00:00+0000",
+      "digitalId": 43274,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/90/582c951505382",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Carlo Barberi",
+          "role": "penciler"
+        },
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Uncanny Avengers #15-#17"
+    },
+    {
+      "issueId": 57875,
+      "title": "Captain America: Steve Rogers (2016) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/57875/captain_america_steve_rogers_2016_10",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Uncanny Avengers #15-#17"
+    },
+    {
+      "issueId": 60574,
+      "title": "Civil War II: The Oath (2017) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/60574/civil_war_ii_the_oath_2017_1",
+      "seriesId": 22391,
+      "seriesName": "Civil War II: The Oath (2017)",
+      "onSale": "2017-01-25T00:00:00+0000",
+      "mu": "2017-07-31T00:00:00+0000",
+      "digitalId": 42924,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/5882511ce1be3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Jeff Dekal",
+          "role": "penciler"
+        },
+        {
+          "name": "Rod Reis",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Uncanny Avengers #15-#17"
+    }
+  ]
+}
