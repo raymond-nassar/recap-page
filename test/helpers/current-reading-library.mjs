@@ -104,6 +104,11 @@ export const registeredCreatorGuides = registeredCuratedGuides
   .filter((guide) => guide.surface === 'creators');
 export const registeredYoungReaderContracts = registeredOwnerAdditionContracts
   .filter((contract) => contract.surface === 'young-readers');
+// The retained Storylines projection keeps every era, so a timeline guide shipped as an era joins it.
+const catalogTypes = new Map(JSON.parse(readFileSync(new URL('../../src/data/catalog.json', import.meta.url), 'utf8'))
+  .lists.map((list) => [list.id, list.type]));
+export const registeredTimelineEraGuides = registeredCuratedGuides
+  .filter((guide) => guide.surface === 'modern-timeline' && catalogTypes.get(guide.id) === 'era');
 const rosterAdditionCount = registeredOwnerAdditionIds.length + registeredCuratedGuides.length;
 export const currentReadingCensus = Object.freeze({
   sources: baseline.sourceIds.length + rosterAdditionCount - 1 + installmentSources.length,
@@ -112,7 +117,8 @@ export const currentReadingCensus = Object.freeze({
   peers: new Set([...baseline.sourceIds, ...baseline.catalogIds]).size + rosterAdditionCount - 2 + installmentIds.size,
   mcu: baseline.mcuEntries.length + mcuContracts.length - 1,
   // Retained internal classification, not a browse screen; includes the four CBRO additions.
-  storylines: 50 + curatedNewcomerCount + registeredCreatorGuides.length + installmentPartIds.length,
+  storylines: 50 + curatedNewcomerCount + registeredCreatorGuides.length + registeredTimelineEraGuides.length
+    + installmentPartIds.length,
   modernTimeline: 148 + registeredEventContracts.length + curatedEventCount - 1 + 2,
   modernTimelineStories: 144 + registeredEventContracts.length + curatedEventCount - 1 + 2,
   complete: baseline.payloadCounts.complete + addedRows - addedPlaceholderRows - addedEmptyRows + spiderManSelectionItemDelta

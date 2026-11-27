@@ -416,18 +416,18 @@ orders: **null means nobody granted anything for this file, not that the file is
 
 ### Reading orders, pinned
 
-There are 372 pinned reading-order payloads under
-[`src/data/`](../src/data): 366 active visible catalog files, two active internal parents,
+There are 376 pinned reading-order payloads under
+[`src/data/`](../src/data): 370 active visible catalog files, two active internal parents,
 the retired No Way Home (18 originals) and withdrawn Marvel Multiverse (2 comics) payloads, and the
 two earlier X-Men Silver Age to Claremont orders (274 and 404 comics), which no longer appear in
-discovery but stay readable for saved lists and offline copies. The 368 active files hold
-35,894 issue records covering 21,040 distinct tracked identities. The visible files hold 34,504 of those records;
+discovery but stay readable for saved lists and offline copies. The 372 active files hold
+36,238 issue records covering 21,118 distinct tracked identities. The visible files hold 34,848 of those records;
 the extra 1,390 come from the retained Marvel Knights to Planet X and Civil War to Secret Invasion
 parents, whose children partition the same vectors. Records use these fields:
 `issueId`, `title`,
 `number`, `url`, `seriesId`, `seriesName`, `onSale`, `mu`, `digitalId`, `pageCount`, a `cover`
-object of `path` and `ext`, and `creators` of `name` and `role`. Across the 368 active payloads, 29,335
-records carry a cover URL and 27,529 carry creator credits. The retired No Way Home payload and both
+object of `path` and `ext`, and `creators` of `name` and `role`. Across the 372 active payloads, 29,624
+records carry a cover URL and 27,705 carry creator credits. The retired No Way Home payload and both
 earlier X-Men payloads remain byte-exact; no retired payload contributes to active discovery or this
 active census.
 
