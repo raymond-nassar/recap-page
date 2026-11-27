@@ -13,6 +13,53 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+## 5.0.0
+
+### What's new for readers
+
+- Choose Find a starting point on Home for a reading recommendation. If you're new and don't have a favorite character or team, you can preview two starter lists without adding either one.
+- Jump to a section of the Modern Timeline. Event badges distinguish wider Marvel crossovers from events within one family, and your bookmarked reading paths still work.
+- Read Secret Wars (2015) and World War Hulk by issue or by book. Follow Civil War to Secret Invasion in fourteen separately addable parts, with links to pause for World War Hulk and return to the larger story.
+- Follow Avengers: Standoff!, Civil War II, Secret Empire, Empyre and Blood Hunt. Add Road to Secret Empire on its own or open it from the event.
+- Use Read for a verified Marvel Comics link or Find on Marvel Comics to search when no direct link is offered. X-Men Gold issues 7 and 8 now share progress between Wolverine and Secret Empire.
+- On Home, Discover More cards move into two columns when larger text needs the room. The Universes and Creators sections have new heading banners.
+- Back up before upgrading if you might go back to 4.8.0. It cannot restore every complete backup made in 5.0.0.
+
+### Saved data and upgrading
+
+**Keep a complete backup made in 4.8.0 before upgrading.** Existing lists and backups can come
+forward. You do not need to reinstall the app or rebuild a list. If you might return to 4.8.0,
+keep that pre-upgrade file separately; do not replace it with a backup made afterward.
+
+Version 4.8.0 cannot restore a new complete backup that includes a comic identified only by its
+Marvel Comics reading link, or a comic saved as search-only. An older build can also lose those
+details when it saves reading data. Use 5.0.0 or later for those backups, and do not open your
+upgraded reading data in 4.8.0. Backups with neither kind of comic are not affected by this
+particular limit. The [earlier cloud-backup limits](#450) still apply.
+
+When a saved entry has one verified match, its read date, note, rating and availability choice can
+follow it to the matched comic. Conflicting records are left separate. In particular, the two
+older Free Comic Book Day entries are not combined. Updating an older guide preserves its extras
+and list-local order. Answers in Find a starting point reset on reload and do not enter a backup.
+
+### Release scope
+
+This is a major version because the previous app cannot read all saved data from this one, not
+because the reading-data schema or complete-backup file format changed. Reading data remains at
+schema 4, the complete backup remains format 1, and the app uses the same storage keys. Use a JSON
+backup to move your data; a plain-text checklist cannot preserve all reading details or invent a
+missing link.
+
+The Home and browsing changes come from #1593, #1598 and #1600. The first timeline guides and
+reader links are in #1602, section navigation in #1606, and the later and earlier event guides in
+#1608 and #1609. The two Secret Empire guides keep separate reading orders. In book view the Road
+places only comics verified for those volumes; other comics link to their individual positions.
+Reading-list cards retain their description, comic count and source credit.
+
+The Android browser-handoff test change in #1585 and the prior version's build records do not add
+reader features. This record prepares the shared app and Windows package version 5.0.0.0. Android
+and iOS build numbers, exact packages, and publication on each channel are separate decisions.
+
 ## 4.8.0
 
 ### What's new for readers
