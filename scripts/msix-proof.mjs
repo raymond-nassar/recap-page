@@ -827,6 +827,54 @@ async function removeCachedPaths(page, paths) {
 const STALE_OFFLINE_TEXT = 'The local app connection is not available';
 const STALE_CACHED_PATHS = Object.freeze(['/data/creators-index.json', '/data/series-index.json']);
 
+async function checkOnlineSearches(browser, origin = ORIGIN) {
+  // The worker can finish caching a successful index lookup after the page has shown its results.
+  // Keep those writes out of the profile that must demonstrate a genuinely uncached offline search.
+  const context = await browser.createBrowserContext();
+  try {
+    const page = await context.newPage();
+    await page.goto(`${origin}/#/add-creator`, { waitUntil: 'domcontentloaded' });
+    await searchName(page, 'creator', 'Hickman', 'Hickman');
+    await searchName(page, 'series', 'House of M', 'House of M');
+
+    const external = await context.newPage();
+    await external.setRequestInterception(true);
+    external.on('request', (request) => {
+      if (request.url().startsWith('https://marvel.emreparker.com/v1')) request.abort();
+      else request.continue();
+    });
+    await external.goto(`${origin}/#/home`, { waitUntil: 'domcontentloaded' });
+    await external.waitForFunction(
+      () => document.querySelector('#api-status')?.textContent
+        === 'API unreachable. Lists and progress still work',
+    );
+    await external.$eval('.ri[data-view="add"]', (button) => button.click());
+    await external.waitForFunction(() => !document.querySelector('#view-add').hidden);
+    await external.$eval('#search-q', (field) => {
+      field.value = 'Secret Wars';
+      field.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+    await external.$eval('#form-search', (form) => form.requestSubmit());
+    await external.waitForFunction(
+      () => document.querySelector('#search-results')?.textContent
+        .includes('Could not reach the metadata service'),
+    );
+  } finally {
+    await context.close();
+  }
+}
+
+async function assertColdSearchIndexes(page) {
+  const cached = await page.evaluate(async (paths) => {
+    const found = [];
+    for (const path of paths) {
+      if (await caches.match(new URL(path, location.origin))) found.push(path);
+    }
+    return found;
+  }, STALE_CACHED_PATHS);
+  if (cached.length) throw new Error(`Offline search fixture has an already-cached index: ${cached.join(', ')}`);
+}
+
 // #1303: once on x64 the stale page's creator search never showed the offline message, and the
 // timeout said nothing about why. Two explanations fit that one occurrence: the lookup was answered
 // after all, from a cache entry or a listener that came back, or it stayed pending past the wait.
@@ -1002,44 +1050,14 @@ async function certificationFunctionality(architecture, source) {
         ));
       }, {}, CATALOG_LIST_ID, CATALOG_ITEM_COUNT);
       await page.$eval('#preview-close', (button) => button.click());
-      await searchName(page, 'creator', 'Hickman', 'Hickman');
-      await searchName(page, 'series', 'House of M', 'House of M');
-
-      const external = await browser.newPage();
-      await external.setRequestInterception(true);
-      external.on('request', (request) => {
-        if (request.url().startsWith('https://marvel.emreparker.com/v1')) request.abort();
-        else request.continue();
-      });
-      await external.goto(`${ORIGIN}/#/home`, { waitUntil: 'domcontentloaded' });
-      await external.waitForFunction(
-        () => document.querySelector('#api-status')?.textContent
-          === 'API unreachable. Lists and progress still work',
-      );
-      await external.$eval('.ri[data-view="add"]', (button) => button.click());
-      await external.waitForFunction(() => !document.querySelector('#view-add').hidden);
-      await external.$eval('#search-q', (field) => {
-        field.value = 'Secret Wars';
-        field.dispatchEvent(new Event('input', { bubbles: true }));
-      });
-      await external.$eval('#form-search', (form) => form.requestSubmit());
-      await external.waitForFunction(
-        () => document.querySelector('#search-results')?.textContent
-          .includes('Could not reach the metadata service'),
-      );
-      await external.close();
-
-      await removeCachedPaths(page, [
-        '/data/creators-index.json',
-        '/data/series-index.json',
-        '/data/catalog.json',
-        '/data/house_of_m.json',
-      ]);
+      await checkOnlineSearches(browser);
       stopPids([serverProcess.ProcessId]);
       await waitFor(
         () => listenerPid() === null,
         'the deliberate server stop did not release the canonical port',
       );
+      await assertColdSearchIndexes(page);
+      await removeCachedPaths(page, ['/data/catalog.json', '/data/house_of_m.json']);
 
       await setRoute(page, CATALOG_ROUTE);
       await waitForCatalogCard(page, CATALOG_STORY_ID);
@@ -1057,6 +1075,7 @@ async function certificationFunctionality(architecture, source) {
       );
 
       const stalePage = await browser.newPage();
+      await stalePage.setCacheEnabled(false);
       await stalePage.goto(`${ORIGIN}/#/add-creator`, { waitUntil: 'domcontentloaded' });
       await stalePage.waitForSelector('#creator-q');
       await stalePage.$eval('#creator-q', (field) => { field.value = 'Hickman'; });
@@ -1452,7 +1471,7 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
 }
 
 export {
-  assertNoPreexistingPackage, cleanupPackage, generation, installPackage,
+  assertColdSearchIndexes, assertNoPreexistingPackage, checkOnlineSearches, cleanupPackage, generation, installPackage,
   formatProofError, listenerPid, packageInfo, packageProcesses, removePackage, retainPackageProcess,
   removeStagedLauncher, runInstalledScenario, selectListenerServer, stageInstalledLauncher,
   startInstalledLauncher, stopPids,
