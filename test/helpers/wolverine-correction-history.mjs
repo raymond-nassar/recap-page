@@ -8,6 +8,7 @@ import {
   digestCanonicalJson, libraryDigestFor, packetDigestFor, sourcePositionsForPacket,
 } from '../../scripts/lib/cbh-inventory.mjs';
 import { descriptionRevisions } from '../../scripts/lib/description-revisions.mjs';
+import { identityCorrections } from '../../src/data/identityCorrections.js';
 import {
   beforeUltimateSelectionEntry, beforeUltimateSelectionOrders,
   beforeUltimateSelectionPayloadText, beforeUltimateSelectionCatalogEntry,
@@ -23,10 +24,18 @@ const { planDigest, ...plan } = read(`${successorDir}/gap-delta-plan.json`);
 assert.equal(digestCanonicalJson(plan), planDigest);
 assert.equal(planDigest, wolverineSuccessorLedger.planDigest);
 export const wolverineGapResolutions = plan.replacements;
+export const xgoldCorrections = identityCorrections.filter((row) => row.catalogId === 'wolverine-reading-order'
+  && row.evidence?.payloadIndex !== undefined);
 export const wolverineSeriesCorrectionReviewCommit = '81103a52e66eed50ce5b7d52ca8f1b2121d1489f';
 const show = (file, commit = prior.commit) => execFileSync('git', ['show', `${commit}:${file}`], {
   cwd: root, encoding: 'utf8', maxBuffer: 64 << 20,
 });
+
+// The commit that published the eighteen-slot successor, before X-Men Gold #7 and #8 joined it.
+export const wolverineSuccessorPublicationCommit = '89360fc3e806b4071107ca1bd8e1bf9130cb7ac0';
+export function readPublishedWolverineSuccessor(file) {
+  return show(file, wolverineSuccessorPublicationCommit);
+}
 
 export function readPreSuccessorWolverinePublication(file) {
   return show(file, wolverineSuccessorLedger.priorPublication.commit);
@@ -74,8 +83,19 @@ function correctionHistory() {
     successorIds[index] = String(issueId);
   }
   assert.equal(digestCanonicalJson(successorIds.map(Number)), wolverineSuccessorLedger.correctedCandidate.vectorDigest);
-  history = { originalText, originalIds, currentIds, successorIds };
+  // Candidate B: only the two X-Men Gold placeholders may join their tagged viewer keys.
+  const xgoldIds = successorIds.slice();
+  for (const { from, to, evidence } of xgoldCorrections) {
+    assert.equal(xgoldIds[evidence.payloadIndex], String(from));
+    xgoldIds[evidence.payloadIndex] = String(to);
+  }
+  history = { originalText, originalIds, currentIds, successorIds, xgoldIds };
   return history;
+}
+
+// The order published at 89360fc3, with the eighteen corrections and both X-Men Gold placeholders.
+export function publishedBeforeXgoldIssueIds() {
+  return correctionHistory().successorIds.map(Number);
 }
 
 export function beforeWolverineCorrectionEntry(entry) {
@@ -91,9 +111,9 @@ export function beforeWolverineCorrectionManifest(manifest) {
 }
 
 export function beforeWolverineCorrectionIssueIds(ids) {
-  const { originalIds, currentIds, successorIds } = correctionHistory();
+  const { originalIds, currentIds, successorIds, xgoldIds } = correctionHistory();
   const actual = JSON.stringify(ids.map(String));
-  assert.ok([originalIds, currentIds, successorIds].some((order) => JSON.stringify(order) === actual),
+  assert.ok([originalIds, currentIds, successorIds, xgoldIds].some((order) => JSON.stringify(order) === actual),
     'Wolverine history accepts only the captured prior vector or the exact reviewed correction.');
   return [...originalIds];
 }
@@ -114,6 +134,17 @@ export function wolverineLibraryAtReview(manifest, orders, expectedDigest) {
   };
   const current = (value) => value;
   if (matches(orders)) return { manifest, orders, projectOrders: current };
+  // Reviews recorded before the X-Men Gold correction saw both comics as placeholders. Only the
+  // exact corrected vector maps back, and only a recorded digest can then select it.
+  const beforeXgold = (value) => value.map((order) => {
+    if ((order.id ?? order.orderId) !== ledger.id) return order;
+    const { successorIds, xgoldIds } = correctionHistory();
+    if (JSON.stringify(order.issueIds.map(String)) !== JSON.stringify(xgoldIds)) return order;
+    return { ...order, issueIds: successorIds.map((id) =>
+      typeof order.issueIds[0] === 'string' ? id : Number(id)) };
+  });
+  const published = beforeXgold(orders);
+  if (matches(published)) return { manifest, orders: published, projectOrders: beforeXgold };
 
   // Armageddon saw the corrected series order but still saw the eighteen unresolved comics
   // as placeholders. Only the exact reviewed digest may select that intermediate vector.
@@ -125,8 +156,9 @@ export function wolverineLibraryAtReview(manifest, orders, expectedDigest) {
     return { ...order, issueIds: currentIds.map((id) =>
       typeof order.issueIds[0] === 'string' ? id : Number(id)) };
   });
-  const intermediate = beforeSuccessor(orders);
-  if (matches(intermediate)) return { manifest, orders: intermediate, projectOrders: beforeSuccessor };
+  const intermediate = beforeSuccessor(published);
+  if (matches(intermediate)) return { manifest, orders: intermediate,
+    projectOrders: (value) => beforeSuccessor(beforeXgold(value)) };
   return {
     manifest: beforeWolverineCorrectionManifest(manifest),
     orders: beforeWolverineCorrectionOrders(orders),
@@ -150,11 +182,12 @@ export function beforeWolverineCorrectionCatalogEntry(entry) {
   assert.ok([originalIds.length, currentIds.length].includes(entry.count));
   // The identity successor turns its resolved placeholders into rows without moving the count, so
   // the earlier reviews' digests still need the placeholder total from before it.
-  assert.ok([baseline.placeholderCount, baseline.placeholderCount - wolverineGapResolutions.length]
-    .includes(entry.placeholderCount));
+  const resolved = wolverineGapResolutions.length;
+  assert.ok([baseline.placeholderCount, baseline.placeholderCount - resolved,
+    baseline.placeholderCount - resolved - xgoldCorrections.length].includes(entry.placeholderCount));
   return {
     ...entry, count: baseline.count, contains: baseline.contains, updatedAt: baseline.updatedAt,
-    placeholderCount: baseline.placeholderCount,
+    placeholderCount: baseline.placeholderCount, emptyRecordCount: baseline.emptyRecordCount,
   };
 }
 

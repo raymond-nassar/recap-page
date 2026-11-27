@@ -256,3 +256,10 @@ test('Empyre reviewed offline fields keep provider and service rows separate', (
 test('Blood Hunt reviewed offline fields require the same evidence for provider and viewer rows', (t) => (
   checkReviewedOfflineFields(t, 'blood-hunt')
 ));
+
+for (const id of ['secret-wars-2015-event-tie-ins', 'avengers-standoff',
+  'civil-war-ii', 'road-to-secret-empire', 'secret-empire-event']) {
+  test(`${id} reviewed offline fields bind the source and every issue without implying refusal`, (t) => (
+    checkReviewedOfflineFields(t, id)
+  ));
+}

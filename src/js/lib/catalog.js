@@ -1021,8 +1021,14 @@ const isModernTimelineList = (list) => list?.type === 'event'
   );
 
 export function modernTimelineStories(stories) {
-  return shelfStories(stories, 'catalog').filter((story) => {
+  return (Array.isArray(stories) ? stories : []).filter((story) => {
     const lists = Array.isArray(story?.lists) ? story.lists : [];
+    // This independently addable guide precedes the event without becoming an event itself.
+    if (lists.length === 1 && lists[0].id === 'road-to-secret-empire') {
+      return shelfKey(story) === 'lines' && lists[0].type === 'era'
+        && lists[0].timeline === 2017 && !lists[0].sectionalPart;
+    }
+    if (shelfKey(story) !== 'catalog') return false;
     return lists.length > 0 && lists.every(isModernTimelineList);
   });
 }
@@ -1222,7 +1228,8 @@ const MAJOR_EVENTS = Object.freeze([
   'avengers-disassembled', 'house-of-m', 'civil-war', 'world-war-hulk', 'secret-invasion',
   'siege-dark-reign-prelude', 'chaos-war', 'axis', 'placement:secret-wars-2015', 'monsters-unleashed',
   'infinity-countdown-wars', 'war-of-the-realms', 'empyre', 'king-in-black', 'heroes-reborn-2021',
-  'judgment-day', 'blood-hunt', 'one-world-under-doom', 'avengers-armageddon',
+  'judgment-day', 'blood-hunt', 'one-world-under-doom', 'avengers-armageddon', 'civil-war-ii',
+  'secret-empire-event',
 ]);
 const EVENT_BADGES = new Map([
   ...MAJOR_EVENTS.map((id) => [id, Object.freeze({ kind: 'major', label: MAJOR_EVENT })]),

@@ -1,9 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 
 import { createPreviewView } from '../src/js/views/preview.js';
 import { eventBookRows } from '../src/js/views/shared/event-reading-order.js';
 import { createCatalogPresentation, PROJECT_HOME } from '../src/js/views/shared/catalog-presentation.js';
+import { parseCatalog } from '../src/js/lib/catalog.js';
 import { SECTIONAL_GUIDE_COPY } from '../src/js/lib/sectionalGuide.js';
 import { eventReadingOrders } from '../src/data/eventReadingOrders.js';
 
@@ -102,6 +104,68 @@ test('Future Imperfect cross-references Battleworld #4 without counting a second
   link.onclick({ button: 0, preventDefault: () => { intercepted = true; } });
   assert.deepEqual(opened, [138]);
   assert.equal(intercepted, true);
+});
+
+test('Secret Empire Preview links to the separate Road and preserves both exact book layouts', async (t) => {
+  const previous = globalThis.document;
+  globalThis.document = { activeElement: null, body: {} };
+  t.after(() => { if (previous) globalThis.document = previous; else delete globalThis.document; });
+  const read = (file) => JSON.parse(readFileSync(new URL(`../src/data/${file}`, import.meta.url), 'utf8'));
+  const { lists } = parseCatalog(read('catalog.json'));
+  const event = lists.find(({ id }) => id === 'secret-empire-event');
+  const road = lists.find(({ id }) => id === 'road-to-secret-empire');
+  assert.ok(event && road);
+  const nodes = Object.fromEntries([
+    'add', 'secondary', 'body', 'close', 'description', 'dialog', 'heading', 'meta', 'paths', 'source',
+  ].map((key) => [key, node()]));
+  nodes.body.querySelector = () => null;
+  const follows = [];
+  const view = createPreviewView({
+    captureFocus: () => null, createIcon: () => null, el: element, elements: () => nodes,
+    getState: () => ({ lists: {}, listOrder: [] }), isInLibrary: () => null,
+    issueFocusAnchor: (item) => element('a', { text: item.title }),
+    loadOrder: async (file) => read(file),
+    onAdd: () => assert.fail('Preview navigation must not save'),
+    onFollowSectional: (id, position) => { follows.push([id, position]); return true; },
+    onIssueLoadFailure: ({ error }) => { throw error; },
+    presentation: { attributionLine: () => null }, restoreFocus: () => {},
+  });
+  function all({ children = [] }) {
+    return children.filter((child) => child && typeof child === 'object').flatMap((child) => [child, ...all(child)]);
+  }
+  await view.open(event);
+  const link = all(nodes.body).find(({ dataset }) => dataset?.act === 'guide-link');
+  assert.ok(link, 'the event must link to the separately addable Road');
+  assert.equal(link.href, '#/preview/road-to-secret-empire');
+  await link.onclick({ button: 0, ctrlKey: true, preventDefault: () => assert.fail('modified click intercepted') });
+  assert.deepEqual(follows, []);
+  await link.onclick({ button: 0, currentTarget: link, preventDefault() {} });
+  assert.deepEqual(follows, [[road.id, undefined]]);
+
+  for (const [entry, titleCount, positions, linkCount] of [
+    [event, 20, [], 85],
+    [road, 14, Array.from({ length: 12 }, (_, index) => 18 + index), 67],
+  ]) {
+    await view.open(entry);
+    const book = all(nodes.body).find(({ dataset }) => dataset?.act === 'event-order' && dataset.key === 'book');
+    assert.ok(book, 'real generated issue vector must enable the book view');
+    book.onclick();
+    const rows = nodes.body.children.find((child) => child.tag === 'ol').children;
+    const titles = rows.filter(({ class: className }) => className === 'preview-group rail-hint');
+    assert.equal(titles.length, titleCount);
+    assert.deepEqual(rows.flatMap(({ dataset }) => dataset?.sectionalPosition ?? []), positions);
+    const links = all({ children: rows }).filter(({ dataset }) => dataset?.act === 'event-position');
+    assert.equal(links.length, linkCount);
+    assert.deepEqual([...positions, ...links.map(({ dataset }) => dataset.key)].sort((a, b) => a - b),
+      Array.from({ length: entry.count }, (_, index) => index + 1));
+    if (entry === road) {
+      for (const title of ['All-New Captain America: Fear Him', 'Captain America: Steve Rogers Vol. 1: Hail Hydra']) {
+        const row = titles.find(({ text }) => text === title);
+        assert.ok(row);
+        assert.deepEqual(row.children, []);
+      }
+    }
+  }
 });
 
 test('sectional Preview follows the exact part position and retains the current guide on failure', async (t) => {

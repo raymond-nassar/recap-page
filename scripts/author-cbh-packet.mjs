@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { randomUUID } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import { mkdir, rename, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -50,6 +50,15 @@ const WOLVERINE_18_PEER_EVIDENCE_DIRECTORY = path.join(
   'wolverine-reading-order-identity-correction-v1',
   'peers',
 );
+const WOLVERINE_ID = 'wolverine-reading-order';
+const WOLVERINE_GAP_DELTA_PEER_IDS = Object.freeze([
+  ...WOLVERINE_18_PEER_IDS, 'avengers-standoff', 'civil-war-ii',
+  'road-to-secret-empire', 'secret-empire-event',
+]);
+const WOLVERINE_GAP_DELTA_PLAN = path.join(
+  'scripts', 'data', 'cbh-source-ledgers', 'wolverine-reading-order-identity-correction-v2', 'gap-delta-plan.json',
+);
+const SHA256 = /^[a-f0-9]{64}$/u;
 const TYPHOGRAPHIC_DASHES = /[\u2013\u2014]/g;
 const LEGACY_UNREGISTERED_PACKET = Object.freeze({
   id: 'modern-x-men-fast-track',
@@ -308,6 +317,25 @@ export function mappedIssueCheckbox(row, { findOnly = false } = {}) {
   return `- [ ] [${escapeLinkText(checklistTitleForRow(row))} ${annotation}](${url})`;
 }
 
+const EARLY_OFFLINE_ORDER_SECTIONS = {
+  'civil-war-ii': 'Civil War II issue-by-issue checklist',
+  'secret-empire-event': 'Secret Empire issue-by-issue checklist',
+  'road-to-secret-empire': 'Road to Secret Empire section',
+};
+
+function earlyOfflineOrderSource({ id, sourceUrl, sourceRetrievedAt }) {
+  if (id === 'avengers-standoff') {
+    return `The order follows the supplied checklist transcription attributed to [Comic Book Herald's Avengers: Standoff! guide](${sourceUrl}), received ${sourceRetrievedAt}, not a fresh page retrieval.`;
+  }
+  if (id === 'civil-war-ii') {
+    return `The order follows the retained [Comic Book Herald ${EARLY_OFFLINE_ORDER_SECTIONS[id]}](${sourceUrl}), retrieved ${sourceRetrievedAt}. 153 positions have retained page witnesses; position 20 uses the maintainer-supplied transcription "Free Comic Book Day Civil War II", with no printed issue number, between Captain Marvel #6 and Ultimates #8. Viewer 28308 was supplied separately, not as an article link. Provider edition 58711 remains the same; its edition number #1 is metadata, not a number printed in the supplied label.`;
+  }
+  if (Object.hasOwn(EARLY_OFFLINE_ORDER_SECTIONS, id)) {
+    return `The order follows the retained [Comic Book Herald ${EARLY_OFFLINE_ORDER_SECTIONS[id]}](${sourceUrl}), retrieved ${sourceRetrievedAt}.`;
+  }
+  return null;
+}
+
 export function buildMarkdown(mapping, options) {
   const manifest = manifestEntryForMapping(mapping, options);
   selectedIssueIds(mapping);
@@ -333,11 +361,11 @@ export function buildMarkdown(mapping, options) {
       rowsBySourcePosition.set(gap.sourcePosition, { kind: 'gap', value: gap });
     }
   }
-  const offlineOrderSource = mapping.id === 'blood-hunt'
+  const offlineOrderSource = earlyOfflineOrderSource(mapping) ?? (mapping.id === 'blood-hunt'
     ? `The order follows the supplied checklist transcription attributed to [Comic Book Herald's Blood Hunt guide](${mapping.sourceUrl}), received ${mapping.sourceRetrievedAt}, not a fresh page retrieval.`
     : mapping.id === 'empyre'
       ? `The order follows the retained [Comic Book Herald Empyre checklist](${mapping.sourceUrl}), retrieved ${mapping.sourceRetrievedAt}.`
-      : null;
+      : null);
   const trail = [
     `Generated for this project by scripts/author-cbh-packet.mjs from the reviewed and frozen ${mapping.id} issue mapping.`,
     ...(Object.hasOwn(mapping, 'sourceExpansion')
@@ -348,7 +376,7 @@ export function buildMarkdown(mapping, options) {
         offlineOrderSource ?? `The mapping transcribes only issue-bearing references from Comic Book Herald's exact guide, expands its ranges, and preserves its source order.`,
       ]),
     ...(repeatedCount === 0 ? [] : [
-      `The frozen source records ${mapping.sourceOccurrenceCount} issue occurrences, including ${repeatedCount} intentional ${repeatedCount === 1 ? 'repeat' : 'repeats'}; this checklist lists each ${omitGaps ? 'resolved' : 'distinct'} comic once at its first source occurrence.`,
+      `The frozen source records ${mapping.sourceOccurrenceCount} issue occurrences, including ${repeatedCount} intentional ${repeatedCount === 1 ? 'repeat' : 'repeats'}; this checklist lists each ${omitGaps ? 'resolved' : 'distinct'} comic once at its ${mapping.id === 'road-to-secret-empire' ? 'first eligible whole occurrence, not its earlier contextual mentions' : 'first source occurrence'}.`,
     ]),
     offlineOrderSource
       ? 'No source commentary or images are copied. Provider identities and available issue details use retained provider and published data. Service-only identities and viewer addresses use the offline export credited to werhsdnas of the Continuity Guide Discord.'
@@ -363,7 +391,7 @@ export function buildMarkdown(mapping, options) {
   const checklist = [...rowsBySourcePosition.entries()]
     .sort(([left], [right]) => left - right)
     .flatMap(([, entry]) => {
-      const sourceGroup = entry.value.sourceRangeReference ?? entry.value.sourceGroup ?? null;
+      const sourceGroup = mapping.id === 'road-to-secret-empire' ? null : (entry.value.sourceRangeReference ?? entry.value.sourceGroup ?? null);
       const heading = sourceGroup && sourceGroup !== currentGroup
         ? [`## ${escapeLinkText(sourceGroup
           .replace(/[\u2013\u2014]/g, '-')
@@ -584,6 +612,8 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
   payloadDir = path.dirname(MANIFEST_PATH),
   peerIds = [],
   wolverine18PeerEvidence = false,
+  wolverineGapDeltaDigest = null,
+  generatedAt,
   includeLater = false,
   publicationRoot = ROOT,
   inventoryPaths = [
@@ -603,6 +633,14 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
   if (wolverine18PeerEvidence) {
     assert(includeLater, 'Wolverine 18 peer evidence requires the approved --include-later scope');
   }
+  if (wolverineGapDeltaDigest !== null) {
+    assert(!wolverine18PeerEvidence, 'Wolverine correction routes cannot be combined');
+    assert(SHA256.test(wolverineGapDeltaDigest), 'Wolverine gap delta requires the reviewed plan SHA-256');
+    assert(includeLater && packetIds.length === 1 && packetIds[0] === WOLVERINE_ID,
+      'Wolverine gap delta requires --only=wolverine-reading-order and --include-later');
+    assert(isDeepStrictEqual([...peerIds].sort(), [...WOLVERINE_GAP_DELTA_PEER_IDS].sort()),
+      'Wolverine gap delta requires its exact approved successor peer set');
+  }
   const peerEvidencePaths = wolverine18PeerEvidence
     ? wolverine18PeerMappingPaths(peerIds, { packetIds, root: publicationRoot })
     : new Map();
@@ -616,6 +654,21 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
   const initialInputs = await readPublicationInputs({ root: publicationRoot, paths: initialPaths });
   const initialManifest = initialInputs.json(manifestFile);
   assert(parseManifest(initialManifest).errors.length === 0, 'The existing manifest is invalid before authoring');
+  const publishedWolverine = initialManifest.lists.find(({ id }) => id === WOLVERINE_ID);
+  if (publishedWolverine && packetIdSet.has(WOLVERINE_ID)) {
+    assert(wolverine18PeerEvidence || wolverineGapDeltaDigest !== null,
+      'Published Wolverine corrections require an explicit reviewed correction route');
+  }
+  let gapDeltaPaths;
+  if (wolverineGapDeltaDigest !== null) {
+    assert(publishedWolverine?.sourceFile && publishedWolverine.out,
+      'Wolverine gap delta requires the published checklist and payload');
+    gapDeltaPaths = {
+      plan: path.join(publicationRoot, WOLVERINE_GAP_DELTA_PLAN),
+      checklist: path.join(ordersDir, publishedWolverine.sourceFile),
+      payload: path.join(payloadDir, publishedWolverine.out),
+    };
+  }
   const hasFrozenPacket = packetIds.some((id) => (
     initialInputs.json(mappingPath(id)).packetDigest
   ));
@@ -634,6 +687,7 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
     root: publicationRoot,
     paths: [...new Set([
       ...initialPaths,
+      ...Object.values(gapDeltaPaths ?? {}),
       ...possibleContainedMappings,
       ...(hasFrozenPacket ? inventoryPaths : []),
       ...initialManifest.lists.map((entry) => path.join(payloadDir, entry.out || `${entry.id}.json`)),
@@ -669,6 +723,11 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
   const externalPeerMappings = await Promise.all(peerIds.map(async (id) => {
     const mapping = inputs.json(peerMappingPath(id));
     assert(mapping.id === id, `${id} external peer mapping id changed`);
+    if (gapDeltaPaths) {
+      const published = library.orderIssueIds.find((entry) => entry.id === id);
+      assert(!published || isDeepStrictEqual(published.issueIds, selectedIssueIds(mapping)),
+        `${id} published issue vector differs from the reviewed Wolverine successor peer`);
+    }
     return mapping;
   }));
   const mappings = await Promise.all(packetIds.map(async (id) => {
@@ -779,7 +838,7 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
     assert(!existingSourceFiles.has(entry.sourceFile), `${entry.id} duplicates a shipped source file`);
   }
 
-  const nextManifest = wolverine18PeerEvidence
+  const nextManifest = wolverine18PeerEvidence || gapDeltaPaths
     ? mergePublishedWolverineCorrection(current, entries[0], insertionAnchors[entries[0].id])
     : { ...current, lists: mergePacketEntries(existing, entries, insertionAnchors) };
   if (sectionalGuides.size) {
@@ -792,14 +851,44 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
   assert(parsed.errors.length === 0, `Authored manifest is invalid:\n${parsed.errors.join('\n')}`);
   assert(parsed.entries.length === existing.length + packetIds.length, 'Authored manifest lost an order');
 
-  const outputs = mappings.map(({ mapping }) => {
-    const entry = entries.find((candidate) => candidate.id === mapping.id);
-    return {
-      file: path.join(ordersDir, entry.sourceFile),
-      content: buildMarkdown(mapping, { sectional: sectionalGuides.has(mapping.id) }),
-    };
-  });
-  outputs.push({ file: manifestFile, content: `${JSON.stringify(nextManifest, null, 2)}\n` });
+  let outputs;
+  if (gapDeltaPaths) {
+    const { planDigest, ...plan } = inputs.json(gapDeltaPaths.plan);
+    const lfBytes = (file) => Buffer.from(inputs.contents.get(
+      path.relative(publicationRoot, file).split(path.sep).join('/'),
+    ).toString('utf8').replace(/\r\n/g, '\n'));
+    const sha256 = (file) => createHash('sha256').update(lfBytes(file)).digest('hex');
+    assert(plan.schemaVersion === 2 && plan.id === WOLVERINE_ID && planDigest === wolverineGapDeltaDigest,
+      'Wolverine gap delta requires its separately reviewed version 2 plan');
+    assert(isDeepStrictEqual(plan.replacements.map(({ sourcePosition }) => sourcePosition), [1206, 1207]),
+      'Wolverine gap delta must retain the two reviewed source slots');
+    assert(sha256(mappingPath(WOLVERINE_ID)) === plan.approvedMappingFileSha256,
+      'Wolverine gap delta approved mapping bytes differ from review');
+    assert(sha256(path.join(overlapsDir, `${WOLVERINE_ID}.json`)) === plan.authoringReportFileSha256,
+      'Wolverine gap delta author report bytes differ from review');
+    const { preparePublishedCbhGapDelta } = await import('./lib/cbh-gap-delta.mjs');
+    const { checklist, payload } = await preparePublishedCbhGapDelta({
+      payloadBytes: lfBytes(gapDeltaPaths.payload),
+      checklistBytes: lfBytes(gapDeltaPaths.checklist),
+      mapping: mappings[0].mapping,
+      plan,
+      reviewedPlanDigest: wolverineGapDeltaDigest,
+      generatedAt: generatedAt ?? new Date().toISOString(),
+    });
+    outputs = [
+      { file: gapDeltaPaths.checklist, content: checklist },
+      { file: gapDeltaPaths.payload, content: `${JSON.stringify(payload, null, 2)}\n` },
+    ];
+  } else {
+    outputs = mappings.map(({ mapping }) => {
+      const entry = entries.find((candidate) => candidate.id === mapping.id);
+      return {
+        file: path.join(ordersDir, entry.sourceFile),
+        content: buildMarkdown(mapping, { sectional: sectionalGuides.has(mapping.id) }),
+      };
+    });
+    outputs.push({ file: manifestFile, content: `${JSON.stringify(nextManifest, null, 2)}\n` });
+  }
   await preflightPublicationWrites({ root: publicationRoot, inputs, outputs });
   await mkdir(ordersDir, { recursive: true });
   for (const output of outputs) {
@@ -845,6 +934,15 @@ export function wolverine18PeerEvidenceFromArgs(args) {
   return evidenceArgs.length === 1;
 }
 
+export function wolverineGapDeltaDigestFromArgs(args) {
+  const flag = '--wolverine-gap-delta';
+  const deltaArgs = args.filter((arg) => arg === flag || arg.startsWith(`${flag}=`));
+  if (!deltaArgs.length) return null;
+  const digest = deltaArgs[0].slice(flag.length + 1);
+  if (deltaArgs.length !== 1 || !SHA256.test(digest)) throw new Error(`Use ${flag}=<reviewed-sha256> once`);
+  return digest;
+}
+
 export function wolverine18PeerMappingPaths(peerIds, {
   packetIds,
   root = ROOT,
@@ -869,6 +967,8 @@ export function includeLaterFromArgs(args) {
   const unknown = args.filter((arg) => (
     arg !== '--include-later'
     && arg !== '--wolverine-18-peer-evidence'
+    && arg !== '--wolverine-gap-delta'
+    && !arg.startsWith('--wolverine-gap-delta=')
     && !arg.startsWith('--only=')
     && !arg.startsWith('--peer=')
   ));
@@ -882,6 +982,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(thisFile))
   authorPacket(authorIdsFromArgs(args), {
     peerIds: peerIdsFromArgs(args),
     wolverine18PeerEvidence: wolverine18PeerEvidenceFromArgs(args),
+    wolverineGapDeltaDigest: wolverineGapDeltaDigestFromArgs(args),
     includeLater: includeLaterFromArgs(args),
   }).then((summary) => {
     console.log(`Authored ${summary.guides} guides with ${summary.rows} rows; manifest now has ${summary.manifestEntries} entries.`);

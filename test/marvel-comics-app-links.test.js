@@ -322,11 +322,16 @@ test('950 the bundled MU set is current and frozen to its approval record, but g
   const input = JSON.parse(readFileSync(INPUT_PATH, 'utf8'));
   assert.equal(readFileSync(MU_MODULE_PATH, 'utf8').replace(/\r\n/g, '\n'),
     buildMuModule(approval, catalogComics(), input.links));
-  assert.deepEqual(marvelComicsAppMuIssueIds, approval.issueIds);
+  // The approval record stays frozen; a number that later gains a verified viewer leaves the module
+  // and must open exactly that viewer instead.
+  const viewers = new Map(input.links.map((link) => [link.issueId, link.viewer]));
+  const superseded = approval.issueIds.filter((id) => viewers.has(id));
+  assert.deepEqual(marvelComicsAppMuIssueIds, approval.issueIds.filter((id) => !viewers.has(id)));
+  for (const id of superseded) assert.equal(appLinkFor(id), viewer(viewers.get(id)));
   assert.deepEqual(approval.excludedIssueIds, [11185]);
   assert.equal(appLinkFor(11185), null);
   // #1601: an MU-only comic is not a direct link any more, so it shows Find on Marvel Comics.
-  for (const id of approval.issueIds) {
+  for (const id of marvelComicsAppMuIssueIds) {
     assert.equal(appViewerFor(id), null);
     assert.equal(appLinkFor(id), null);
     assert.equal(appLinkFor(String(id)), null);

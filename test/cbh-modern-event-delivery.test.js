@@ -3,7 +3,7 @@ import { beforeFirstInstallmentManifest } from './helpers/first-installment-hist
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
-import { buildMarkdown, assertApprovedRelationshipReview } from '../scripts/author-cbh-packet.mjs';
+import { buildMarkdown, assertApprovedRelationshipReview, selectedIssueIds } from '../scripts/author-cbh-packet.mjs';
 import { buildComparisonReport } from '../scripts/lib/cbh-overlap.mjs';
 import {
   digestCanonicalJson, gapEvidenceDigestFor, libraryDigestFor, validateFrozenPacket,
@@ -12,6 +12,7 @@ import {
 import { loadCurrentOwnerLibrary } from '../scripts/lib/owner-current-library.mjs';
 import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
 import { buildReportForMapping } from '../scripts/report-order-overlap.mjs';
+import { selectPreparationGuides } from '../scripts/prepare-cbh-batch.mjs';
 import { firstSentence, modernTimelineLists, parseCatalog } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import {
@@ -35,6 +36,62 @@ async function guideEvidence(id) {
   ]);
   return { packet, mapping, report };
 }
+
+test('Civil War II distinguishes the supplied unnumbered FCBD label and viewer from retained page witnesses', async () => {
+  const { mapping } = await guideEvidence('civil-war-ii');
+  const generated = buildMarkdown(mapping);
+  assert.match(generated, /153 positions have retained page witnesses; position 20 uses the maintainer-supplied transcription "Free Comic Book Day Civil War II", with no printed issue number/);
+  assert.match(generated, /between Captain Marvel #6 and Ultimates #8/);
+  assert.match(generated, /Viewer 28308 was supplied separately, not as an article link/);
+  assert.match(generated, /Provider edition 58711 remains the same; its edition number #1 is metadata, not a number printed in the supplied label/);
+  const rows = parseChecklist(generated).entries;
+  assert.equal(Number(rows[19].issueId), 58711);
+  assert.equal(Number(rows[18].issueId), 56589);
+  assert.equal(Number(rows[20].issueId), 57262);
+});
+
+test('the four early Modern Timeline guides preserve the reviewed payloads and reciprocal peer overlaps', async () => {
+  const ids = ['avengers-standoff', 'civil-war-ii', 'road-to-secret-empire', 'secret-empire-event'];
+  const reviewedOccurrences = [26, 154, 99, 85];
+  const emptyCounts = [3, 11, 8, 19];
+  const all = [...ids, 'wolverine-reading-order'];
+  const evidence = new Map(await Promise.all(all.map(async (id) => [id, await guideEvidence(id)])));
+  const guides = await selectPreparationGuides(ids);
+  assert.deepEqual(guides.map(({ id, isFrozenPacket, approvedSourceCount }) =>
+    [id, isFrozenPacket, approvedSourceCount]), ids.map((id, index) => [id, true, reviewedOccurrences[index]]));
+  await assert.rejects(selectPreparationGuides(['secret-empire']), /multiple frozen packets/);
+
+  const { lists } = await readJson('src/data/catalog.json');
+  const vectors = new Map(await Promise.all(all.map(async (id) => {
+    const entry = lists.find((entry) => entry.id === id);
+    const payload = await readJson(`src/data/${entry.file}`);
+    return [id, payload.items.map(({ issueId }) => String(issueId))];
+  })));
+  for (const [index, id] of ids.entries()) {
+    const { packet, mapping, report } = evidence.get(id);
+    const peers = all.filter((peer) => peer !== id);
+    const list = lists.find((entry) => entry.id === id);
+    assert.equal(list.emptyRecordCount, emptyCounts[index]);
+    assert.equal(list.placeholderCount, 0);
+    assert.deepEqual(vectors.get(id), selectedIssueIds(mapping));
+    assert.deepEqual(Object.keys(report.peerDigests).sort(), peers.sort());
+    assertApprovedRelationshipReview({
+      packet, mapping, report, currentLibraryDigest: report.libraryDigest,
+      peerMappings: peers.map((peer) => evidence.get(peer).mapping),
+      expectedOrderIds: report.comparisons.map(({ orderId }) => orderId),
+    });
+    const checklist = await readFile(new URL(`../src/data/orders/${id}.md`, import.meta.url), 'utf8');
+    assert.equal(checklist.replace(/\r\n/g, '\n'), buildMarkdown(mapping));
+    for (const peer of peers) {
+      const forward = report.comparisons.find(({ orderId }) => orderId === peer);
+      const backward = evidence.get(peer).report.comparisons.find(({ orderId }) => orderId === id);
+      const peerSet = new Set(vectors.get(peer));
+      const shared = vectors.get(id).filter((issueId) => peerSet.has(issueId)).sort();
+      assert.deepEqual(forward.sharedIds.slice().sort(), shared, `${id} to ${peer}`);
+      assert.deepEqual(backward.sharedIds.slice().sort(), shared, `${peer} to ${id}`);
+    }
+  }
+});
 
 test('the owner-approved event packets preserve both ordered vectors and the open MODOK gap', async () => {
   const { contractDigest, ...unsigned } = contract;

@@ -511,6 +511,46 @@
       "coverIssueId": 60625
     },
     {
+      "id": "road-to-secret-empire",
+      "name": "Road to Secret Empire",
+      "timeline": 2017,
+      "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/secret-empire/",
+      "sourceSection": "The Road to Secret Empire",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "sourceFile": "road-to-secret-empire.md",
+      "out": "road_to_secret_empire.json",
+      "coverIssueId": 56549,
+      "expect": 79,
+      "description": "Sam Wilson carries Steve Rogers' shield into a country divided over whether it belongs to him. Then Steve puts the uniform back on, and there are two Captain Americas. From Pleasant Hill through Civil War II, the two men wear the same star while making very different choices about whom it should protect.",
+      "type": "era",
+      "depth": "selected",
+      "characters": [
+        "Sam Wilson",
+        "Steve Rogers"
+      ]
+    },
+    {
+      "id": "secret-empire-event",
+      "name": "Secret Empire",
+      "timeline": 2017,
+      "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/secret-empire/",
+      "sourceSection": "Issue by Issue Secret Empire Reading Order",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "sourceFile": "secret-empire-event.md",
+      "out": "secret_empire_event.json",
+      "expect": 85,
+      "coverIssueId": 63296,
+      "description": "Steve Rogers has spent a lifetime earning the country's trust, and now he's using it to put Hydra in power. With the Avengers scattered, the friends who once followed Captain America have to find a way to stand against him. Taking back the country and winning back its trust are two different fights.",
+      "type": "event",
+      "depth": "selected",
+      "characters": [
+        "Steve Rogers",
+        "Avengers"
+      ]
+    },
+    {
       "id": "venomverse",
       "name": "Venomverse",
       "description": "Venom joins allies from other realities to resist a threat hunting symbiote hosts. Edge of Venomverse leads in, followed by Venomverse: War Stories and Cullen Bunn's Venomverse.",
@@ -10463,6 +10503,30 @@
       "coverIssueId": 45808
     },
     {
+      "id": "avengers-standoff",
+      "name": "Avengers: Standoff!",
+      "description": "Pleasant Hill looks like a town, not a prison. S.H.I.E.L.D. has given its supervillain inmates new names, new neighbors and no memory of their crimes. When those memories start coming back, Steve Rogers and Sam Wilson have a breakout on their hands. For the people who live there, getting out is only the beginning.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "avengers-standoff.md",
+      "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/avengers-standoff-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "avengers_standoff.json",
+      "expect": 26,
+      "timeline": 2016,
+      "coverIssueId": 56031,
+      "characters": [
+        "Avengers",
+        "Steve Rogers",
+        "Sam Wilson"
+      ]
+    },
+    {
       "id": "apocalypse-wars",
       "name": "X-Men: Apocalypse Wars",
       "description": "A mission sends X-Men into the future, where their teammates must find them in a dangerous world. Jeff Lemire's Extraordinary X-Men rotates with Cullen Bunn's Uncanny X-Men and Dennis Hopeless's All-New X-Men.",
@@ -10492,6 +10556,36 @@
       "expect": 13,
       "timeline": 2016,
       "coverIssueId": 55440
+    },
+    {
+      "id": "civil-war-ii",
+      "name": "Civil War II",
+      "description": "A young Inhuman named Ulysses sees a disaster coming, and the heroes stop it. Carol Danvers wants to act on his next warning before anyone gets hurt. Tony Stark draws the line at treating a vision as proof. Then a vision points to one of their own.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "civil-war-ii.md",
+      "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/civil-war-2/",
+      "sourceSection": "Civil War 2 Issue by Issue Reading Order",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "civil_war_ii.json",
+      "characters": [
+        "Captain Marvel",
+        "Iron Man",
+        "Ulysses Cain"
+      ],
+      "keywords": [
+        "Civil War II",
+        "Ulysses",
+        "2016 event"
+      ],
+      "expect": 154,
+      "timeline": 2016,
+      "coverIssueId": 58676
     },
     {
       "id": "clone-conspiracy",

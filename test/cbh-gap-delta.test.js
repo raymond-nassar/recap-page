@@ -9,13 +9,14 @@ import {
 } from '../scripts/lib/cbh-inventory.mjs';
 import { preparePublishedCbhGapDelta } from '../scripts/lib/cbh-gap-delta.mjs';
 import { placeholderId } from '../scripts/lib/placeholder-id.mjs';
+import { viewerKey } from '../src/js/lib/marvelComicsAppUrl.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 
 const sha256 = (value) => createHash('sha256').update(value).digest('hex');
 const itemUrl = 'https://www.marvel.com/comics/issue/10/atomic_1';
 const serviceUrl = 'https://marvel.emreparker.com/v1/issues/10';
 
-async function fixture(t) {
+async function fixture(t, { serviceOnly = false } = {}) {
   const dir = await mkdtemp(path.join(os.tmpdir(), 'cbh-gap-delta-'));
   t.after(() => rm(dir, { recursive: true, force: true }));
   const metadataCache = path.join(dir, 'metadata-cache');
@@ -98,6 +99,23 @@ async function fixture(t) {
     }],
     proposedManifest: { out: 'atomic_order.json' },
   };
+  if (serviceOnly) {
+    const serviceIdentity = {
+      appViewer: '28965', url: 'https://www.marvelcomicsapp.com/viewer/28965',
+      providerIssueId: null, evidenceSha256: 'd'.repeat(64),
+      normalizedSeriesTitle: 'Atomic', seriesYear: 2020, issueNumber: '1',
+    };
+    mapping.rows[0] = {
+      sourcePosition: 1, sourceIssueReference: 'Atomic #1', resolutionStatus: 'exact',
+      resolvedIssueTitle: 'Atomic (2020) #1',
+      normalizedSeriesTitle: 'Atomic', seriesYear: 2020, issueNumber: '1',
+      candidateIssueId: null, seriesId: null, serviceIdentity,
+    };
+    mapping.sourceGapResolutions[0] = {
+      sourcePosition: 1, resolutionKind: 'exact-service-issue',
+      previousSourceIssueReference: 'Atomic #1', serviceIdentity,
+    };
+  }
   mapping.mappingDigest = mappingDigestFor(mapping);
   mapping.reviewStatus = 'approved';
   mapping.relationshipReview = {
@@ -130,11 +148,93 @@ async function fixture(t) {
       metadataBodySha256,
     }],
   };
+  if (serviceOnly) {
+    plan.replacements[0].issueId = viewerKey('28965');
+    plan.replacements[0].serviceIdentity = structuredClone(mapping.rows[0].serviceIdentity);
+    delete plan.replacements[0].metadataBodySha256;
+  }
   return {
     dir, metadataCache, payload, checklist, mapping, plan,
     planDigest: digestCanonicalJson(plan),
   };
 }
+
+function inputFor(f) {
+  return {
+    payloadBytes: Buffer.from(JSON.stringify(f.payload)),
+    checklistBytes: Buffer.from(f.checklist),
+    mapping: f.mapping, plan: f.plan, reviewedPlanDigest: f.planDigest,
+    metadataCacheDir: f.metadataCache, generatedAt: '2026-01-02T00:00:00.000Z',
+  };
+}
+
+function rebind(f) {
+  f.mapping.mappingDigest = mappingDigestFor(f.mapping);
+  f.mapping.relationshipReview.mappingDigest = f.mapping.mappingDigest;
+  f.mapping.relationshipReview.approvalDigest = approvalDigestFor(f.mapping.relationshipReview);
+  f.plan.mappingDigest = f.mapping.mappingDigest;
+  f.plan.relationshipApprovalDigest = f.mapping.relationshipReview.approvalDigest;
+  f.plan.transitionLedgerDigest = digestCanonicalJson(f.mapping.sourceGapResolutions);
+  f.planDigest = digestCanonicalJson(f.plan);
+}
+
+test('CBH gap delta projects an exact service gap without provider receipts and preserves other slots', async (t) => {
+  const f = await fixture(t, { serviceOnly: true });
+  f.plan.replacements[0].appViewer = '28965';
+  rebind(f);
+  const result = await preparePublishedCbhGapDelta({ ...inputFor(f), metadataCacheDir: undefined });
+  assert.equal(result.payload.items[0].issueId, viewerKey('28965'));
+  assert.equal(result.payload.items[0].appViewer, '28965');
+  assert.equal(result.payload.items[0].url, 'https://www.marvelcomicsapp.com/viewer/28965');
+  for (const field of ['seriesId', 'seriesName', 'onSale', 'digitalId', 'cover', 'pageCount']) {
+    assert.equal(result.payload.items[0][field], null, field);
+  }
+  assert.ok(!Object.hasOwn(result.payload.items[0], 'detailsRefused'));
+  assert.equal(result.payload.placeholders, 0);
+  assert.deepEqual(result.payload.unresolved, []);
+  assert.deepEqual(result.payload.items[1], f.payload.items[1]);
+  assert.equal(result.checklist.split('\n')[3], f.checklist.split('\n')[3]);
+  assert.match(result.checklist, /Atomic \(2020\) #1 <!-- mrt:source-occurrence=1 -->/);
+});
+
+test('CBH gap delta rejects mismatched service evidence, viewers, provider bindings and transition kinds', async (t) => {
+  for (const change of [
+    (f) => { f.plan.replacements[0].serviceIdentity.evidenceSha256 = 'e'.repeat(64); },
+    (f) => { f.plan.replacements[0].issueId = viewerKey('28960'); },
+    (f) => { f.mapping.sourceGapResolutions[0].serviceIdentity = {
+      ...f.mapping.sourceGapResolutions[0].serviceIdentity, evidenceSha256: 'e'.repeat(64),
+    }; },
+    (f) => { f.mapping.rows[0].serviceIdentity.providerIssueId = 10; },
+    (f) => { f.mapping.sourceGapResolutions[0].resolutionKind = 'exact-issue'; },
+    (f) => { f.plan.replacements[0].metadataBodySha256 = 'e'.repeat(64); },
+    (f) => { f.plan.replacements[0].metadataRecordFileSha256 = 'e'.repeat(64); },
+    (f) => { f.plan.replacements[0].appViewer = '9350'; },
+    (f) => { delete f.plan.replacements[0].serviceIdentity; },
+  ]) {
+    const f = await fixture(t, { serviceOnly: true });
+    change(f);
+    rebind(f);
+    await assert.rejects(() => preparePublishedCbhGapDelta(inputFor(f)),
+      /matching exact|provider binding|provider receipt|viewer differs/);
+  }
+});
+
+test('CBH gap delta service transitions retain old-slot, digest and relationship guards', async (t) => {
+  const f = await fixture(t, { serviceOnly: true });
+  f.plan.replacements[0].index = 1;
+  f.planDigest = digestCanonicalJson(f.plan);
+  await assert.rejects(() => preparePublishedCbhGapDelta(inputFor(f)), /reviewed placeholder/);
+  f.plan.replacements[0].index = 0;
+  f.planDigest = digestCanonicalJson(f.plan);
+  await assert.rejects(() => preparePublishedCbhGapDelta({
+    ...inputFor(f), reviewedPlanDigest: 'e'.repeat(64),
+  }), /plan differs from review/);
+  f.mapping.rows[1].selectedIssueId = 21;
+  rebind(f);
+  await assert.rejects(() => preparePublishedCbhGapDelta(inputFor(f)), /Mapping changes the issue at index 1/);
+  delete f.mapping.relationshipReview;
+  await assert.rejects(() => preparePublishedCbhGapDelta(inputFor(f)), /approved relationship review/);
+});
 
 test('CBH gap delta changes only reviewed slots and uses the vendor transformation', async (t) => {
   const f = await fixture(t);

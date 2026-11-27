@@ -9,6 +9,7 @@ import { checklistTitleForRow, findOnlyChecklistTitle } from './cbh-checklist-ti
 
 const ORDER_IDS = new Set([
   'civil-war-to-secret-invasion', 'secret-wars-2015-event-tie-ins', 'world-war-hulk',
+  'avengers-standoff', 'civil-war-ii', 'road-to-secret-empire', 'secret-empire-event',
   'empyre', 'blood-hunt',
 ]);
 const HASH = /^[a-f0-9]{64}$/u;

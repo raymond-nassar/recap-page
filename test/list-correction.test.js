@@ -15,7 +15,9 @@ import {
 import { READING_ORDER_REVISIONS } from '../src/js/lib/readingOrderRevisions.js';
 import { legacyReadingOrder } from '../src/js/lib/legacyReadingOrders.js';
 import { placeholderId } from '../scripts/lib/placeholder-id.mjs';
-import { beforeWolverineCorrectionIssueIds, firstReleasedWolverineIssueOrders } from './helpers/wolverine-correction-history.mjs';
+import {
+  beforeWolverineCorrectionIssueIds, firstReleasedWolverineIssueOrders, publishedBeforeXgoldIssueIds,
+} from './helpers/wolverine-correction-history.mjs';
 
 test('a list update comparison preserves the identity and order of each side', () => {
   const saved = [1, 7, 2, 9];
@@ -118,7 +120,9 @@ test('the Wolverine revision comparison uses identities, including reordered sha
   const revised = payload.items.map(({ issueId }) => issueId);
   const saved = beforeWolverineCorrectionIssueIds(revised).map(Number);
   const moves = wolverineMoves();
-  assert.equal(moves.length, 18);
+  // The eighteen reviewed provider corrections, then X-Men Gold #7 and #8 joining viewer keys.
+  assert.equal(moves.length, 20);
+  assert.deepEqual(moves.filter(({ to }) => to < -7e15).map(({ from, to }) => [from, to]), xgoldMoves);
   assert.ok(moves.every(({ from, to }) => saved.includes(from) && !saved.includes(to) && revised.includes(to)));
   const loaded = reconcileIdentities(earlierWolverineList(createEmptyState(), 'wolverine', saved, payload)).lists.wolverine;
   assert.deepEqual(loaded.itemIds, saved.map((id) => moves.find(({ from }) => from === id)?.to ?? id));
@@ -203,6 +207,60 @@ test('an earlier Wolverine list that load could not move is not offered the upda
   const alone = reconcileIdentities(earlierWolverineList(createEmptyState(), 'copy', saved, payload, null));
   assert.equal(offersSafeRevision(alone.lists.copy), false);
   assert.throws(() => applyListRevision(alone, 'copy', JSON.stringify(alone.lists.copy), payload.items), /not saved/);
+});
+
+const xgoldMoves = [[-1293566736, -8000000000028965], [-1377454831, -8000000000028960]];
+
+test('an earlier Wolverine list updates onto X-Men Gold #7 and #8 as viewer-only comics with their progress', () => {
+  const payload = wolverinePayload();
+  const items = new Map(payload.items.map((item, index) => [item.issueId, { item, index }]));
+  for (const [[, to], viewer, index] of [[xgoldMoves[0], '28965', 1166], [xgoldMoves[1], '28960', 1167]]) {
+    const { item, index: at } = items.get(to) ?? {};
+    assert.equal(at, index);
+    assert.equal(item.appViewer, viewer);
+    assert.equal(item.url, `https://www.marvelcomicsapp.com/viewer/${viewer}`);
+    assert.equal(item.placeholder, undefined);
+  }
+  const saved = beforeWolverineCorrectionIssueIds(payload.items.map(({ issueId }) => issueId)).map(Number);
+  let old = earlierWolverineList(createEmptyState(), 'wolverine', saved, payload);
+  old = markRead(old, xgoldMoves[0][0], true, 789);
+  old = setIssueNote(old, xgoldMoves[1][0], 'Gold eight');
+  old = createList(old, { id: 'mine', name: 'Unrelated' });
+  old = addIssuesToList(old, 'mine', [{ issueId: saved[0] }]).state;
+  const state = reconcileIdentities(old);
+  assert.deepEqual(state.lists.mine.itemIds, [saved[0]]);
+  assert.equal(state.read[xgoldMoves[0][1]], 789);
+  assert.equal(offersSafeRevision(state.lists.wolverine), true);
+  const updated = applyListRevision(state, 'wolverine', JSON.stringify(state.lists.wolverine), payload.items);
+  assert.deepEqual(updated.lists.wolverine.itemIds.filter((id) => items.has(id)), [...items.keys()]);
+  assert.ok(xgoldMoves.every(([from]) => !updated.lists.wolverine.itemIds.includes(from)));
+  assert.equal(updated.read[xgoldMoves[0][1]], 789);
+  assert.equal(updated.notes[xgoldMoves[1][1]], 'Gold eight');
+});
+
+test('the Wolverine order published before X-Men Gold #7 and #8 loads as current or, if held twice, is left alone', () => {
+  const payload = wolverinePayload();
+  const revised = payload.items.map(({ issueId }) => issueId);
+  const saved = publishedBeforeXgoldIssueIds();
+  assert.deepEqual(saved.filter((id, index) => id !== revised[index]), xgoldMoves.map(([from]) => from));
+  // Load alone brings it current. Registering it as an earlier order would make the current order
+  // match itself after the two corrections and offer every up-to-date list a needless update.
+  assert.equal(matchesEarlierPublishedOrder({ catalogId: payload.id, itemIds: saved }), false);
+  assert.equal(matchesEarlierPublishedOrder({ catalogId: payload.id, itemIds: revised }), false);
+  const old = markRead(earlierWolverineList(createEmptyState(), 'wolverine', saved, payload), xgoldMoves[0][0], true, 321);
+  const state = reconcileIdentities(old);
+  assert.deepEqual(state.lists.wolverine.itemIds, revised);
+  assert.equal(state.read[xgoldMoves[0][1]], 321);
+  assert.equal(offersSafeRevision(state.lists.wolverine), false);
+  // A personal copy holding the same placeholders keeps load from moving either list.
+  const held = reconcileIdentities(earlierWolverineList(old, 'copy', saved, payload, null));
+  for (const id of ['wolverine', 'copy']) {
+    assert.deepEqual(held.lists[id].itemIds, saved, id);
+    assert.equal(offersSafeRevision(held.lists[id]), false, id);
+    const before = JSON.stringify(held);
+    assert.throws(() => applyListRevision(held, id, JSON.stringify(held.lists[id]), payload.items), Error, id);
+    assert.equal(JSON.stringify(held), before, id);
+  }
 });
 
 const readJson = (path) => JSON.parse(readFileSync(new URL(path, import.meta.url)));

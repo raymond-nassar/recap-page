@@ -389,6 +389,11 @@ export function createPreviewView({
         ? [collectedEditionCredit(el)] : [];
       if (hasGcdDetails(order.items)) credit.push(gcdDetailsCredit(el));
       if (hasTieInRatings(list.id, order.items)) credit.push(tieInRatingCredit(el));
+      const related = list.id === 'secret-empire-event'
+        ? [el('ul', { class: 'preview-list' }, sectionalStepRows(el, [{
+          kind: 'guide-link', catalogId: 'road-to-secret-empire', title: 'Road to Secret Empire',
+        }], { className: 'preview-group', guideId: list.id, onFollow: onFollowSectional }))]
+        : [];
       function show(mode, at, holdMode = false) {
         if (loadToken !== token) return false;
         let rows;
@@ -415,7 +420,7 @@ export function createPreviewView({
           if (sectional) addSteps(sectional.after);
         }
         const controls = eventLayout ? [eventOrderControls(el, mode, (chosen) => show(chosen, undefined, true))] : [];
-        nodes.body.replaceChildren(...notice, ...credit, ...controls, el('ol', { class: 'preview-list' }, rows));
+        nodes.body.replaceChildren(...notice, ...credit, ...related, ...controls, el('ol', { class: 'preview-list' }, rows));
         if (at !== undefined) nodes.body.querySelector(`[data-sectional-position="${at}"] a`)?.focus();
         else if (holdMode) nodes.body.querySelector(`[data-act="event-order"][data-key="${mode}"]`)?.focus();
         return true;

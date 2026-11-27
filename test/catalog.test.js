@@ -1,5 +1,5 @@
 import { currentReadingCensus, registeredCatalogAdditionIds, registeredCuratedEmptyRecords } from './helpers/current-reading-library.mjs';
-import { wolverineGapResolutions } from './helpers/wolverine-correction-history.mjs';
+import { wolverineGapResolutions, xgoldCorrections } from './helpers/wolverine-correction-history.mjs';
 import { xmenEraPlaceholderDelta } from './helpers/xmen-era-history.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -306,12 +306,13 @@ test('the bundled catalog is valid and its counts match the vendored orders', as
     },
     {
       complete: currentReadingCensus.complete,
-      placeholders: 1130 + xmenEraPlaceholderDelta - wolverineGapResolutions.length,
-      emptyRecords: 229 + registeredCuratedEmptyRecords.rows,
+      placeholders: 1130 + xmenEraPlaceholderDelta - wolverineGapResolutions.length - xgoldCorrections.length,
+      emptyRecords: currentReadingCensus.emptyRecords,
       total: currentReadingCensus.totalItems,
       placeholderEntries: 29,
-      emptyEntries: 24 + registeredCuratedEmptyRecords.entries,
-      bothEntries: 7 + registeredCuratedEmptyRecords.bothEntries,
+      // The Wolverine X-Gold correction adds one entry with both kinds of gap.
+      emptyEntries: 25 + registeredCuratedEmptyRecords.entries,
+      bothEntries: 8 + registeredCuratedEmptyRecords.bothEntries,
     },
   );
 });
