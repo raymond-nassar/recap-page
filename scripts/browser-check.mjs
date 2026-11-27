@@ -2466,9 +2466,9 @@ const SCENARIOS = [
               const box = panel.getBoundingClientRect();
               const targets = [...document.querySelectorAll('#home-updates button, #home-updates summary')]
                 .filter((node) => node.getClientRects().length).map((node) => {
-                  const bounds = node.getBoundingClientRect();
-                  return { width: bounds.width, height: bounds.height };
-                });
+                const bounds = node.getBoundingClientRect();
+                return { width: bounds.width, height: bounds.height };
+              });
               return {
                 fits: box.left >= 0 && box.right <= innerWidth + 1 && box.height <= innerHeight * .7 + 1,
                 scroll: panel.scrollHeight > panel.clientHeight,
@@ -21593,19 +21593,19 @@ SCENARIOS.push(responsiveOwner({
       if (mode === 'doubled-text' && modeBuild.documentWidth !== modeBuild.clientWidth) {
         const overflow = await page.evaluate(() => [...document.querySelectorAll('#view-about *, .rail-header *, .app-footer *')]
           .filter((node) => node.checkVisibility()).flatMap((node) => {
-            const box = node.getBoundingClientRect();
-            const range = document.createRange();
-            range.selectNodeContents(node);
-            const rects = [...range.getClientRects()].filter((rect) => rect.width > 0
+          const box = node.getBoundingClientRect();
+          const range = document.createRange();
+          range.selectNodeContents(node);
+          const rects = [...range.getClientRects()].filter((rect) => rect.width > 0
               && (rect.right > innerWidth + 1 || rect.left < -1))
-              .slice(0, 8).map(({ left, right, top, bottom }) => ({ left, right, top, bottom }));
-            if (box.right <= innerWidth + 1 && box.left >= -1 && rects.length === 0) return [];
-            const style = getComputedStyle(node);
-            return [{ id: node.id, tag: node.tagName, class: node.className,
-              text: node.textContent.slice(0, 160), left: box.left, right: box.right, rects,
-              font: style.font, wrap: style.overflowWrap, whiteSpace: style.whiteSpace,
-              minWidth: style.minWidth }];
-          }).slice(0, 30));
+            .slice(0, 8).map(({ left, right, top, bottom }) => ({ left, right, top, bottom }));
+          if (box.right <= innerWidth + 1 && box.left >= -1 && rects.length === 0) return [];
+          const style = getComputedStyle(node);
+          return [{ id: node.id, tag: node.tagName, class: node.className,
+            text: node.textContent.slice(0, 160), left: box.left, right: box.right, rects,
+            font: style.font, wrap: style.overflowWrap, whiteSpace: style.whiteSpace,
+            minWidth: style.minWidth }];
+        }).slice(0, 30));
         console.log(`UX09-OVERFLOW ${JSON.stringify({ mode, width: modeBuild.documentWidth,
           viewport: modeBuild.clientWidth, overflow })}`);
       }

@@ -157,9 +157,9 @@ try {
         overflowElements: [...document.querySelectorAll('.view:not([hidden]) *')]
           .filter((node) => node.checkVisibility() && node.getBoundingClientRect().right > innerWidth + 1)
           .slice(0, 8).map((node) => ({
-            tag: node.tagName, id: node.id, class: node.className, text: node.textContent.slice(0, 80),
-            right: node.getBoundingClientRect().right,
-          })),
+          tag: node.tagName, id: node.id, class: node.className, text: node.textContent.slice(0, 80),
+          right: node.getBoundingClientRect().right,
+        })),
         controls: ids.map((id) => {
           const node = document.querySelector(id);
           const { x, y, width, height, bottom, right } = node.getBoundingClientRect();

@@ -220,9 +220,9 @@ export function beforeWolverineCorrectionChapterOverlaps(report) {
 function chapterOverlapSummary(baseline, generatedAt, pairs) {
   const existingLists = [...new Set(pairs.map(({ existingListId }) => existingListId))]
     .sort().map((id) => ({
-      id, sharedCount: pairs.filter(({ existingListId }) => existingListId === id)
-        .reduce((sum, { sharedCount }) => sum + sharedCount, 0),
-    }));
+    id, sharedCount: pairs.filter(({ existingListId }) => existingListId === id)
+      .reduce((sum, { sharedCount }) => sum + sharedCount, 0),
+  }));
   return {
     ...baseline,
     generatedAt,

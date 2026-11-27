@@ -325,10 +325,10 @@ test('archived owner No Way Home approval binds the actual packet, mapping and e
   // The retired X-Men pair returns to its slot with its own payload, so its recorded identities replay.
   const orders = withRetiredOrders(await Promise.all(beforeXmenEraCatalogLists(catalog.lists)
     .filter(({ id }) => reviewedIds.has(id)).map(async (peer) => ({
-      orderId: peer.id,
-      issueIds: historicalReadingChoiceIssueIds(peer.id,
-        (await readJson('src', 'data', peer.file)).items.map(({ issueId }) => String(issueId))),
-    }))), reviewedIds);
+    orderId: peer.id,
+    issueIds: historicalReadingChoiceIssueIds(peer.id,
+      (await readJson('src', 'data', peer.file)).items.map(({ issueId }) => String(issueId))),
+  }))), reviewedIds);
   assert.equal(orders.length, reviewedIds.size);
   for (const order of orders) {
     assert.equal(report.peerDigests[order.orderId], digestCanonicalJson(order.issueIds));
