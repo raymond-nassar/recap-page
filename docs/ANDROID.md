@@ -133,7 +133,7 @@ Marvel's service.
 
 ## Build and install
 
-The Java-only Android module uses `enableKotlin = false` to disable AGP 9.5.1's built-in Kotlin
+The Java-only Android module uses `enableKotlin = false` to disable AGP 9.5.2's built-in Kotlin
 integration at module level. Without it, AGP can add the Kotlin standard library even when
 compilation reports `NO-SOURCE`. Explicit instrumentation-test dependencies are unchanged;
 application DEX checks admit the exact approved Play services runtime class inventory and reject
@@ -170,7 +170,7 @@ From the repository root on Windows:
 On first use, the Windows wrapper restores its checksum-verified Gradle launcher locally.
 After a Gradle update it replaces the previous version's launcher the same way, keeping only a
 download whose checksum matches; a download that does not match is deleted and nothing is run.
-It downloads build tooling, not app data. On other hosts, use installed Gradle 9.9.1 or restore the
+It downloads build tooling, not app data. On other hosts, use installed Gradle 9.9.2 or restore the
 official wrapper JAR with the checksum recorded in `bootstrap-wrapper.ps1` before using `gradlew`.
 Builds prepare assets automatically. To prepare them without an Android SDK:
 

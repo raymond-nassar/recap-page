@@ -1381,8 +1381,8 @@ async function main() {
     // and the 4.2.0 candidate for 3000010 was signed and then refused here, consuming the code
     // (#934). test/android-packaging.test.js now ties these pins to the files the record is read
     // from, so a bump fails its own pull request instead.
-    requireValue(/^openjdk 17[.\s]/.test(tools.jdk) && tools.gradle === '9.9.1'
-      && tools.agp === '9.5.1' && tools.sdkBuildTools === '35.0.0', 'unexpected toolchain record');
+    requireValue(/^openjdk 17[.\s]/.test(tools.jdk) && tools.gradle === '9.9.2'
+      && tools.agp === '9.5.2' && tools.sdkBuildTools === '35.0.0', 'unexpected toolchain record');
     const attestation = {
       schemaVersion: 2, kind: receipt.input.mode === 'Candidate' ? 'qualified-candidate' : 'rehearsal-only',
       source: identity, workflow: { sha: receipt.context.workflowSha, path: receipt.invocation.path,

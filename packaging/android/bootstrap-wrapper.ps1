@@ -1,6 +1,6 @@
 $ErrorActionPreference = 'Stop'
 $wrapper = Join-Path (Join-Path (Join-Path $PSScriptRoot 'gradle') 'wrapper') 'gradle-wrapper.jar'
-$source = 'https://raw.githubusercontent.com/gradle/gradle/v9.9.1/gradle/wrapper/gradle-wrapper.jar'
+$source = 'https://raw.githubusercontent.com/gradle/gradle/v9.9.2/gradle/wrapper/gradle-wrapper.jar'
 $expected = '621008afc4f5d59357fcf06ffa644dd5aade5e091bdc363742710445f73cdaf8'
 
 # PowerShell 7 removes its own module path entries only from a Windows PowerShell it starts
@@ -32,7 +32,7 @@ if (-not $present -or (Get-Sha256 $wrapper) -ne $expected) {
             } else {
                 'Run the build again once the official download is reachable.'
             }
-            throw "The downloaded Gradle wrapper does not match the official Gradle 9.9.1 release, so it was deleted and nothing was run. $remedy"
+            throw "The downloaded Gradle wrapper does not match the official Gradle 9.9.2 release, so it was deleted and nothing was run. $remedy"
         }
         Move-Item -LiteralPath $download -Destination $wrapper -Force
     } finally {
@@ -41,6 +41,6 @@ if (-not $present -or (Get-Sha256 $wrapper) -ne $expected) {
 }
 
 if ((Get-Sha256 $wrapper) -ne $expected) {
-    throw "The Gradle wrapper at $wrapper does not match the official Gradle 9.9.1 release. Delete it, then run the build again."
+    throw "The Gradle wrapper at $wrapper does not match the official Gradle 9.9.2 release. Delete it, then run the build again."
 }
-Write-Output 'Gradle 9.9.1 wrapper verified.'
+Write-Output 'Gradle 9.9.2 wrapper verified.'
