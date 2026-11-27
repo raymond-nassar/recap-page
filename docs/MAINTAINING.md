@@ -529,8 +529,9 @@ HTTP 404 this way. Missing records, unbound or corrupt responses, other HTTP err
 transport failures abort before any output changes. Retain genuine successful records and
 retry only missing requests under the existing vendoring rate limit.
 
-For the approved Civil War to Secret Invasion, World War Hulk, and Secret Wars (2015) event
-and tie-ins guides, reviewed facts can fill only the rows without a retained detail response:
+For Civil War to Secret Invasion, World War Hulk, Secret Wars (2015) event and tie-ins,
+Avengers: Standoff!, Civil War II, Road to Secret Empire and Secret Empire, reviewed facts
+can fill only rows without a retained detail response and after source and relationship approval:
 
 ```text
 npm run vendor -- --only=<source-id> --reviewed-fields=<file> --reviewed-fields-sha256=<approved-sha256> --reviewed-response-cache=<directory>
@@ -552,15 +553,25 @@ For a reviewed correction that replaces only exact gaps in an already-published 
 order, use the bounded gap-delta projector rather than inventing cache responses for unchanged
 issues. It requires the mapping's approved relationship review and binds its report and approval
 digests alongside the prior payload bytes, issue vector, checklist, mapping and transition ledger.
-It reads genuine request-bound detail records only for the replacement issues and uses the same
-issue-item transformation as normal vendoring. It fails on stale inputs, missing or mismatched
-detail records, or any changed checklist line or payload item outside the approved slots. This
+Positive-provider replacements require genuine request-bound detail records. An `exact-service-issue`
+replacement instead binds the complete service identity and tagged viewer key, with no provider
+binding or detail receipt. Both use the normal vendor transformation. The projector fails
+on stale inputs, mismatched evidence or changes outside the approved slots. This
 prepares a local candidate only; source, relationship and saved-progress reviews plus the normal
 publication gates still apply before any catalog output is activated.
 
 For the Wolverine correction, run the reviewed authoring check in a disposable copy. It requires
 the entire published manifest to stay unchanged, including the description and discovery tags.
-Use the bounded projector, not the full author output, for the delivered checklist.
+The historical 18-slot authoring check still uses its historical peer inputs. For its two-slot
+successor, supply the separately reviewed version 2 gap-delta plan and the exact active peer
+mappings. This mode writes only the checklist and payload via the bounded projector:
+
+```text
+node scripts/author-cbh-packet.mjs --only=wolverine-reading-order --include-later --peer=avengers-standoff,civil-war-ii,civil-war-to-secret-invasion,road-to-secret-empire,secret-empire-event,secret-wars-2015-event-tie-ins,world-war-hulk --wolverine-gap-delta=<reviewed-plan-sha256>
+```
+
+The plan lives at `scripts/data/cbh-source-ledgers/wolverine-reading-order-identity-correction-v2/gap-delta-plan.json`.
+Do not use the full author or vendor output to replace this checklist or its payload.
 
 A local source can be a partition parent. Give it a `partitionFile`, set `catalog` to `false`,
 and keep the checked ledger under `scripts/data`. Before writing anything, the vendor validates

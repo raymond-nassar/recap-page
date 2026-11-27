@@ -162,9 +162,9 @@ test('Find-only restoration trusts only this order\'s approved mapping record', 
   }
 });
 
-test('reviewed offline fields bind the source and every issue while leaving unavailable fields absent', async (t) => {
+async function checkReviewedOfflineFields(t, id) {
   const { mapping } = await fixture();
-  mapping.id = 'secret-wars-2015-event-tie-ins';
+  mapping.id = id;
   mapping.mappingDigest = mappingDigestFor(mapping);
   mapping.relationshipReview.mappingDigest = mapping.mappingDigest;
   mapping.relationshipReview.approvalDigest = approvalDigestFor(mapping.relationshipReview);
@@ -183,11 +183,11 @@ test('reviewed offline fields bind the source and every issue while leaving unav
   rows[2].facts = { onSaleDate: {
     value, sourceSha256, fieldDigest: digestCanonicalJson([104, 'onSaleDate', value, sourceSha256]),
   } };
-  async function load(candidate, expectedDigest) {
+  async function load(candidate, expectedDigest, overrides = {}) {
     const bytes = JSON.stringify(candidate);
     await writeFile(file, bytes);
     const digest = expectedDigest ?? createHash('sha256').update(bytes).digest('hex');
-    return loadReviewedVendorFields({ file, digest }, context);
+    return loadReviewedVendorFields({ file, digest }, { ...context, ...overrides });
   }
   const { meta, refused } = await load(input);
   assert.equal(refused.size, 0);
@@ -198,6 +198,16 @@ test('reviewed offline fields bind the source and every issue while leaving unav
   assert.equal(item.findOnly, true);
   assert.equal(item.digitalId, null);
   assert.equal(item.detailsRefused, undefined);
+  await assert.rejects(load(input, undefined, {
+    mapping: { ...mapping, reviewStatus: 'pending-independent-review' },
+  }), /approved mapping and relationships/);
+  const unreviewed = { ...mapping };
+  delete unreviewed.relationshipReview;
+  await assert.rejects(load(input, undefined, { mapping: unreviewed }), /approved mapping and relationships/);
+  await assert.rejects(load({ ...input, rows: rows.slice(1) }), /must cover every exact checklist row/);
+  const unknown = { ...order, id: 'another-guide' };
+  await assert.rejects(load(input, undefined, { order: unknown, mapping: { ...mapping, id: unknown.id } }),
+    /eligible local checklist/);
   const wrongIssue = structuredClone(input);
   wrongIssue.rows[0].issueId = 102;
   await assert.rejects(load(wrongIssue), /checklist identity at source position 1/);
@@ -207,4 +217,11 @@ test('reviewed offline fields bind the source and every issue while leaving unav
   await assert.rejects(load(wrongSource), /source packet and mapping/);
   rows[2].facts.onSaleDate.sourceSha256 = 'c'.repeat(64);
   await assert.rejects(load(input), /invalid provenance or value for onSaleDate/);
-});
+}
+
+for (const id of ['secret-wars-2015-event-tie-ins', 'avengers-standoff',
+  'civil-war-ii', 'road-to-secret-empire', 'secret-empire-event']) {
+  test(`${id} reviewed offline fields bind the source and every issue without implying refusal`, (t) => (
+    checkReviewedOfflineFields(t, id)
+  ));
+}

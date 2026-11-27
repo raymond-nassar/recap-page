@@ -26,6 +26,7 @@ import {
   peerIdsFromArgs,
   wolverine18PeerEvidenceFromArgs,
   wolverine18PeerMappingPaths,
+  wolverineGapDeltaDigestFromArgs,
 } from '../scripts/author-cbh-packet.mjs';
 import {
   approvalDigestFor,
@@ -1544,6 +1545,23 @@ test('Wolverine reauthoring preserves the exact published manifest and rejects d
   assert.throws(() => mergePublishedWolverineCorrection(published, {
     ...entry, description: descriptionRevisions.afterEntry(entry).description,
   }, anchor), /published manifest preimage/i);
+});
+
+test('Wolverine gap delta rejects incomplete peer scope and cannot reuse the historical route', async () => {
+  const id = 'wolverine-reading-order';
+  const flag = `--wolverine-gap-delta=${'a'.repeat(64)}`;
+  const digest = wolverineGapDeltaDigestFromArgs([flag]);
+  assert.equal(includeLaterFromArgs([flag, '--include-later']), true);
+  assert.throws(() => wolverineGapDeltaDigestFromArgs([flag, flag]), /once/);
+  assert.throws(() => wolverineGapDeltaDigestFromArgs(['--wolverine-gap-delta']), /reviewed-sha256/);
+  await assert.rejects(authorPacket([id], {
+    wolverineGapDeltaDigest: digest, includeLater: true,
+    peerIds: ['civil-war-to-secret-invasion', 'world-war-hulk', 'secret-wars-2015-event-tie-ins'],
+  }), /exact approved successor peer set/);
+  await assert.rejects(authorPacket([id], {
+    wolverineGapDeltaDigest: digest, wolverine18PeerEvidence: true, includeLater: true,
+  }), /cannot be combined/);
+  await assert.rejects(authorPacket([id]), /explicit reviewed correction route/);
 });
 
 test('approved generic evidence stays current through named chronology insertion', () => {

@@ -9,6 +9,7 @@ import {
   digestCanonicalJson, validateApprovalDigest, validateMappingDigest,
 } from './cbh-inventory.mjs';
 import { placeholderId } from './placeholder-id.mjs';
+import { mappedTrackingId, serviceIdentityFor } from './cbh-service-identity.mjs';
 import { legacyIdentityChecked, legacyIdentityKeyFor } from './wolverine-title-repairs.mjs';
 
 const sha256 = (bytes) => createHash('sha256').update(bytes).digest('hex');
@@ -77,7 +78,6 @@ export async function preparePublishedCbhGapDelta({
   assert.equal(mapping.sourceProvider, 'comic-book-herald', 'Gap delta requires a CBH mapping');
   assert.equal(mapping.id, plan.id, 'Gap delta mapping names a different guide');
   assert.equal(new Date(generatedAt).toISOString(), generatedAt, 'Gap delta requires an exact generation timestamp');
-  assert.ok(metadataCacheDir, 'Gap delta requires genuine detail receipts');
 
   const published = JSON.parse(payloadBytes);
   assert.equal(published.id, plan.id, 'Published payload names a different guide');
@@ -107,13 +107,29 @@ export async function preparePublishedCbhGapDelta({
       && beforeIds[index] === slot.previousIssueId && slot.previousIssueId < 0,
     `Gap delta slot ${index} is not the reviewed placeholder`);
     const resolution = resolutions.get(slot.sourcePosition);
-    assert.ok(Number.isSafeInteger(slot.issueId) && slot.issueId > 0 && !beforeIds.includes(slot.issueId)
-      && mapped.sourcePosition === slot.sourcePosition && mapped.selectedIssueId === slot.issueId
-      && mapped.resolutionStatus === 'exact' && !mapped.identityEvidenceKind
-      && resolution?.resolutionKind === 'exact-issue' && resolution.selectedIssueId === slot.issueId
+    const service = serviceIdentityFor(mapped);
+    const exactTransition = service
+      ? resolution?.resolutionKind === 'exact-service-issue' && service.issueId === slot.issueId
+        && resolution.serviceIdentity && slot.serviceIdentity
+        && digestCanonicalJson(resolution.serviceIdentity) === digestCanonicalJson(mapped.serviceIdentity)
+        && digestCanonicalJson(slot.serviceIdentity) === digestCanonicalJson(mapped.serviceIdentity)
+      : !Object.hasOwn(slot, 'serviceIdentity') && slot.issueId > 0 && mapped.selectedIssueId === slot.issueId
+        && resolution?.resolutionKind === 'exact-issue' && resolution.selectedIssueId === slot.issueId;
+    assert.ok(Number.isSafeInteger(slot.issueId) && !beforeIds.includes(slot.issueId)
+      && mapped.sourcePosition === slot.sourcePosition
+      && mapped.resolutionStatus === 'exact' && !mapped.identityEvidenceKind && exactTransition
       && cleanText(resolution.previousSourceIssueReference) === cleanText(previous.title)
       && cleanText(slot.previousSourceIssueReference) === cleanText(previous.title),
-    `Gap delta slot ${index} has no matching exact-issue transition`);
+    `Gap delta slot ${index} has no matching exact-issue or exact-service-issue transition`);
+    if (service) {
+      assert.ok(!Object.hasOwn(slot, 'metadataBodySha256')
+        && !Object.hasOwn(slot, 'metadataRecordFileSha256'),
+      `Gap delta service slot ${index} cannot claim a provider receipt`);
+      if (Object.hasOwn(slot, 'appViewer')) {
+        assert.equal(slot.appViewer, service.appViewer,
+          `Gap delta service slot ${index} viewer differs from its reviewed service identity`);
+      }
+    }
     assert.ok(!(mapping.findOnlySourcePositions ?? []).includes(slot.sourcePosition),
       `Gap delta slot ${index} is Find-only and has no recorded issue address`);
     lines.set(index, mappedIssueCheckbox(mapped));
@@ -128,10 +144,10 @@ export async function preparePublishedCbhGapDelta({
   for (const [index, row] of afterRows.entries()) {
     const mapped = sourceRows[index];
     if (row.issueId !== undefined) {
-      assert.equal(row.issueId, mapped.selectedIssueId, `Mapping changes the issue at index ${index}`);
+      assert.equal(row.issueId, mappedTrackingId(mapped), `Mapping changes the issue at index ${index}`);
       assert.equal(row.sourceKey, String(mapped.sourcePosition), `Mapping moves the issue at index ${index}`);
     } else {
-      assert.equal(mapped.selectedIssueId, undefined, `Unapproved gap transition at index ${index}`);
+      assert.equal(mappedTrackingId(mapped), null, `Unapproved gap transition at index ${index}`);
     }
     if (!replacements.has(index)) {
       assert.deepEqual(row, beforeRows[index], `Gap delta changed the checklist outside its reviewed slots at ${index}`);
@@ -141,11 +157,19 @@ export async function preparePublishedCbhGapDelta({
     }
   }
 
-  const ids = plan.replacements.map((slot) => slot.issueId);
-  const { meta, records } = await loadCachedMetadata(ids, metadataCacheDir);
+  const ids = plan.replacements.filter((slot) => !serviceIdentityFor(sourceRows[slot.index]))
+    .map((slot) => slot.issueId);
+  if (ids.length) assert.ok(metadataCacheDir, 'Gap delta requires genuine detail receipts');
+  const { meta, records } = ids.length
+    ? await loadCachedMetadata(ids, metadataCacheDir)
+    : { meta: new Map(), records: new Map() };
   const dateCorrections = await loadDateCorrections({ id: plan.id }, after.entries);
   const items = published.items.slice();
   for (const [index, { issueId, metadataBodySha256 }] of replacements) {
+    if (serviceIdentityFor(sourceRows[index])) {
+      items[index] = vendorIssueItem(afterRows[index], {}, { orderId: plan.id });
+      continue;
+    }
     assert.ok(meta.has(issueId) && records.get(issueId).bodySha256 === metadataBodySha256,
       `Gap delta needs the reviewed successful detail receipt for issue ${issueId}`);
     items[index] = vendorIssueItem(afterRows[index], meta.get(issueId), {
