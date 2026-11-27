@@ -48,6 +48,33 @@ const list = {
 const controls = (card) => descendants(card)
   .filter((node) => node.tag === 'button' || (node.tag === 'a' && node.href));
 
+test('Civil War II and Secret Empire parent cards carry Major event while Road and Standoff remain unbadged', () => {
+  const raw = JSON.parse(readFileSync(new URL('../src/data/catalog.json', import.meta.url), 'utf8'));
+  const sections = eraSections(catalogEntries(modernTimelineLists(parseCatalog(raw).lists)));
+  const order = timelineDrawOrder(sections);
+  for (const saved of [false, true]) {
+    const shared = createCatalogPresentation({
+      el, hueOf: () => 0, paintCoverUrl: () => {}, shortTitle: (title) => title,
+      isInLibrary: (id) => saved ? { id: `saved-${id}`, itemIds: [] } : null,
+    });
+    const root = el('div');
+    shared.renderTimelineSections(root, sections, {
+      showEmptyYears: false, badgeFor: modernTimelineEventBadge,
+    });
+    const cards = descendants(root).filter((node) => node.class === 'catalog-card');
+    for (const id of ['civil-war-ii', 'secret-empire-event', 'road-to-secret-empire', 'avengers-standoff']) {
+      const story = order.find((entry) => entry.lists.some((list) => list.id === id));
+      assert.ok(story, `${id} must occur in the production timeline`);
+      const matching = cards.filter((card) => card.dataset.story === story.key);
+      assert.equal(matching.length, 1, `${id} has one parent card`);
+      const badges = descendants(matching[0]).filter((node) => node.class?.includes('event-badge'));
+      assert.deepEqual(badges.map((node) => [node.class, node.text]),
+        ['civil-war-ii', 'secret-empire-event'].includes(id)
+          ? [['badge event-badge event-badge-major', 'Major event']] : [], id);
+    }
+  }
+});
+
 test('Road remains an Era and draws one direct unbadged timeline stop before Secret Empire', () => {
   const raw = JSON.parse(readFileSync(new URL('../src/data/catalog.json', import.meta.url), 'utf8'));
   const road = raw.lists.find(({ id }) => id === 'road-to-secret-empire');

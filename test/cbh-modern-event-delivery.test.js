@@ -37,6 +37,19 @@ async function guideEvidence(id) {
   return { packet, mapping, report };
 }
 
+test('Civil War II distinguishes the supplied unnumbered FCBD label and viewer from retained page witnesses', async () => {
+  const { mapping } = await guideEvidence('civil-war-ii');
+  const generated = buildMarkdown(mapping);
+  assert.match(generated, /153 positions have retained page witnesses; position 20 uses the maintainer-supplied transcription "Free Comic Book Day Civil War II", with no printed issue number/);
+  assert.match(generated, /between Captain Marvel #6 and Ultimates #8/);
+  assert.match(generated, /Viewer 28308 was supplied separately, not as an article link/);
+  assert.match(generated, /Provider edition 58711 remains the same; its edition number #1 is metadata, not a number printed in the supplied label/);
+  const rows = parseChecklist(generated).entries;
+  assert.equal(Number(rows[19].issueId), 58711);
+  assert.equal(Number(rows[18].issueId), 56589);
+  assert.equal(Number(rows[20].issueId), 57262);
+});
+
 test('the four early Modern Timeline guides preserve the reviewed payloads and reciprocal peer overlaps', async () => {
   const ids = ['avengers-standoff', 'civil-war-ii', 'road-to-secret-empire', 'secret-empire-event'];
   const reviewedOccurrences = [26, 154, 99, 85];

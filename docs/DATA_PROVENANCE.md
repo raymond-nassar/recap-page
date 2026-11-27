@@ -4352,7 +4352,12 @@ and no other issue fields changed.
   is the supplied attribution, not a new page retrieval. The checklist keeps the prelude, main
   event and epilogue in the supplied order.
 - **Civil War II** follows the 154 positions in the [Comic Book Herald issue checklist](https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/civil-war-2/)
-  retained on 2026-11-26, not the preceding trade timeline. The Daily Bugle preview is recorded
+  retained on 2026-11-26, not the preceding trade timeline. There are 153 retained page witnesses
+  and one maintainer-supplied transcription: position 20, between Captain Marvel #6 and
+  Ultimates #8, is "Free Comic Book Day Civil War II", with no printed issue number.
+  Viewer 28308 was supplied separately, not as a link on the article. The retained provider
+  edition 58711 is unchanged; its #1 is edition metadata, not part of the supplied label.
+  The Daily Bugle preview is recorded
   separately, not presented as a numbered reading.
 - **Secret Empire** follows the [Comic Book Herald event section](https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/secret-empire/)
   retained on 2026-11-25. Of 89 positions, 85 are whole-issue readings. The split stories at
@@ -4372,8 +4377,9 @@ offline Marvel Comics export credited to werhsdnas of the Continuity Guide Disco
 has eight such identities, the event has 19, the Road has four, and Standoff has none. These are
 not placeholders or proof of a provider refusal. Conversely, an absent optional field stays
 absent rather than becoming a claim about availability. All four guides have zero unopenable
-placeholders. The same export supplies 46 separately verified viewer links for provider IDs;
-230 new identities have no verified viewer assignment from this link pass and get no invented link.
+placeholders. The same export supplies 46 separately verified viewer links for provider IDs.
+Five new provider identities have neither a verified viewer assignment nor an approved fallback
+and get no invented link. Prior unapproved keys and approved fallbacks are preserved.
 
 The two X-Men Gold (2017) issues already referenced in the published Wolverine checklist now
 share their exact viewer identities with the event. Only those two Wolverine slots change. The

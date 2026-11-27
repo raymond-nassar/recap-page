@@ -327,6 +327,9 @@ function earlyOfflineOrderSource({ id, sourceUrl, sourceRetrievedAt }) {
   if (id === 'avengers-standoff') {
     return `The order follows the supplied checklist transcription attributed to [Comic Book Herald's Avengers: Standoff! guide](${sourceUrl}), received ${sourceRetrievedAt}, not a fresh page retrieval.`;
   }
+  if (id === 'civil-war-ii') {
+    return `The order follows the retained [Comic Book Herald ${EARLY_OFFLINE_ORDER_SECTIONS[id]}](${sourceUrl}), retrieved ${sourceRetrievedAt}. 153 positions have retained page witnesses; position 20 uses the maintainer-supplied transcription "Free Comic Book Day Civil War II", with no printed issue number, between Captain Marvel #6 and Ultimates #8. Viewer 28308 was supplied separately, not as an article link. Provider edition 58711 remains the same; its edition number #1 is metadata, not a number printed in the supplied label.`;
+  }
   if (Object.hasOwn(EARLY_OFFLINE_ORDER_SECTIONS, id)) {
     return `The order follows the retained [Comic Book Herald ${EARLY_OFFLINE_ORDER_SECTIONS[id]}](${sourceUrl}), retrieved ${sourceRetrievedAt}.`;
   }

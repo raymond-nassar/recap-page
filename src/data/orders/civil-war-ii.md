@@ -1,7 +1,7 @@
 # Civil War II: Issue-by-Issue Reading Checklist
 
 Generated for this project by scripts/author-cbh-packet.mjs from the reviewed and frozen civil-war-ii issue mapping.
-The order follows the retained [Comic Book Herald Civil War II issue-by-issue checklist](https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/civil-war-2/), retrieved 2026-11-26.
+The order follows the retained [Comic Book Herald Civil War II issue-by-issue checklist](https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/civil-war-2/), retrieved 2026-11-26. 153 positions have retained page witnesses; position 20 uses the maintainer-supplied transcription "Free Comic Book Day Civil War II", with no printed issue number, between Captain Marvel #6 and Ultimates #8. Viewer 28308 was supplied separately, not as an article link. Provider edition 58711 remains the same; its edition number #1 is metadata, not a number printed in the supplied label.
 No source commentary or images are copied. Provider identities and available issue details use retained provider and published data. Service-only identities and viewer addresses use the offline export credited to werhsdnas of the Continuity Guide Discord.
 See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permission boundary and review method.
 
