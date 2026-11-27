@@ -5919,9 +5919,9 @@
     "fp": "3a6bffed9d7bfbb0",
     "head": "export function sortCatalog(lists) {"
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/current-reading-library.mjs:20-126|0": {
-    "anchor": "test/helpers/current-reading-library.mjs:20-126",
-    "fp": "1a6f087a49769dec",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/current-reading-library.mjs:20-136|0": {
+    "anchor": "test/helpers/current-reading-library.mjs:20-136",
+    "fp": "08f9eb93851d82d7",
     "head": "const { captureSha256, ...baseline } = JSON.parse(readFileSync("
   },
   "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:295-324|0": {
@@ -6029,13 +6029,13 @@
     "fp": "ff9ba71742d8b8c0",
     "head": "\"chapterCount\": 78,"
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:18762-18899|0": {
-    "anchor": "src/data/catalog.json:18762-18899",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:18834-18971|0": {
+    "anchor": "src/data/catalog.json:18834-18971",
     "fp": "364a367730afd192",
     "head": "\"paths\": ["
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:11514-11565|0": {
-    "anchor": "src/data/curated-lists.json:11514-11565",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:11567-11618|0": {
+    "anchor": "src/data/curated-lists.json:11567-11618",
     "fp": "3cd2da980c5c514b",
     "head": "\"paths\": ["
   },

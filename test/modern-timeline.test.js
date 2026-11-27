@@ -296,8 +296,11 @@ test('the shipped Modern Timeline carries all chapters into the Avengers era', (
   assert.equal(selectedLists.some(({ sectionalPart }) => sectionalPart), false);
   assert.equal(catalog.sectionalGroups.length, 1);
   assert.equal(catalog.sectionalGroups[0].options.length, 14);
-  assert.deepEqual(selectedLists.slice(-5).map(({ id, timeline }) => [id, timeline]), [
+  const timelineIds = selectedLists.map(({ id }) => id);
+  assert.equal(timelineIds[timelineIds.indexOf('empyre') + 1], 'x-of-swords', 'Empyre keeps its source place before X of Swords');
+  assert.deepEqual(selectedLists.slice(-6).map(({ id, timeline }) => [id, timeline]), [
     ['fall-house-x-rise-powers-x', 2024],
+    ['blood-hunt', 2024],
     ['captain-america-2025-our-secret-wars', 2025],
     ['one-world-under-doom', 2025],
     ['captain-america-2025-dooms-shadow', 2025],
@@ -515,6 +518,8 @@ test('an event carries its scale once, on its own card, and ordinary stops carry
   assert.deepEqual(badgeOf('spider-verse'), { kind: 'family', label: 'Spider-Man event' });
   assert.deepEqual(badgeOf('chaos-war'), { kind: 'major', label: 'Major event' });
   assert.deepEqual(badgeOf('monsters-unleashed'), { kind: 'major', label: 'Major event' });
+  assert.deepEqual(badgeOf('empyre'), { kind: 'major', label: 'Major event' });
+  assert.deepEqual(badgeOf('blood-hunt'), { kind: 'major', label: 'Major event' });
   for (const id of ['war-of-kings', 'realm-of-kings']) {
     assert.equal(badgeOf(id), null, `${id} crosses several families, so a setting is not its family`);
   }

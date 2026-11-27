@@ -41,6 +41,8 @@ import {
   sourcePositionsForPacket,
   validateBatchNoDuplicates,
   validateFrozenPacket,
+  validateInventory,
+  validateInventoryState,
   withoutDiscoveryTags,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
@@ -52,6 +54,7 @@ import {
 import { descriptionRevisions } from '../scripts/lib/description-revisions.mjs';
 import { deriveSectionalPartMappings } from '../scripts/lib/cbh-sectional-parts.mjs';
 import { buildReportForMapping } from '../scripts/report-order-overlap.mjs';
+import { selectPreparationGuides } from '../scripts/prepare-cbh-batch.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dataDir = path.join(root, 'src', 'data');
@@ -236,6 +239,114 @@ function genericMapping(packet, id = packet.id) {
   mapping.mappingDigest = mappingDigestFor(mapping);
   return mapping;
 }
+
+test('the approved Blood Hunt source stays on its supplemental registration and still fails closed', async (t) => {
+  const supplementalFile = path.join(root, 'scripts', 'data', 'cbh-supplemental-inventory.json');
+  const supplemental = await readJson(supplementalFile);
+  validateInventoryState(supplemental);
+  const [record] = supplemental;
+  assert.equal(supplemental.length, 1);
+  assert.equal(record.id, 'blood-hunt');
+  assert.equal(record.guideType, 'event');
+  assert.equal(record.deliveryStatus, 'ready');
+  assert.equal(record.url, 'https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-blood-hunt/');
+  const baseline = await readJson(path.join(root, 'scripts', 'data', 'cbh-modern-inventory.json'));
+  assert.deepEqual(validateInventory(baseline), {
+    event: 42, era: 14, 'sub-guide': 14, bridge: 10, 'fast-track': 3, commerce: 3,
+  });
+  assert.equal(baseline.length, 86);
+  assert.equal(baseline[83].id, 'blood-hunt-commerce');
+  assert.equal(baseline[83].guideType, 'commerce');
+  assert.equal(baseline[83].disposition, 'excluded');
+  assert.match(baseline[83].url, /^https:\/\/www\.amazon\.com\//);
+  assert.ok(!baseline.some((entry) => entry.id === record.id));
+
+  const tmp = await mkdtemp(path.join(tmpdir(), 'supplemental-cbh-'));
+  t.after(() => rm(tmp, { recursive: true, force: true }));
+  const options = {
+    publicationRoot: tmp, payloadDir: tmp, manifestFile: path.join(tmp, 'manifest.json'),
+    mappingsDir: path.join(tmp, 'mappings'), packetsDir: path.join(tmp, 'packets'),
+    overlapsDir: path.join(tmp, 'reports'), ordersDir: path.join(tmp, 'orders'),
+  };
+  const inventoryDir = path.join(tmp, 'scripts', 'data');
+  await Promise.all([
+    mkdir(inventoryDir, { recursive: true }),
+    ...['mappingsDir', 'packetsDir', 'overlapsDir'].map((key) => mkdir(options[key])),
+  ]);
+  const put = (file, value) => writeFile(file, JSON.stringify(value), 'utf8');
+  const inventories = [
+    'cbh-modern-inventory.json', 'cbh-character-inventory.json', 'cbh-ultimate-inventory.json',
+    'cbh-young-readers-inventory.json', 'cbh-mcu-companion-inventory.json', 'cbh-supplemental-inventory.json',
+  ];
+  await Promise.all(inventories.map(async (file) => writeFile(
+    path.join(inventoryDir, file), await readFile(path.join(root, 'scripts', 'data', file)),
+  )));
+
+  const packetFile = path.join(options.packetsDir, `${record.id}.json`);
+  const mappingFile = path.join(options.mappingsDir, `${record.id}.json`);
+  await Promise.all([
+    writeFile(packetFile, await readFile(path.join(root, 'scripts', 'data', 'cbh-packets', `${record.id}.json`))),
+    writeFile(mappingFile, await readFile(path.join(mappingsDir, `${record.id}.json`))),
+    put(options.manifestFile, { lists: [] }),
+  ]);
+  const report = await buildReportForMapping(mappingFile, [], {
+    manifestFile: options.manifestFile, payloadDir: options.payloadDir,
+  });
+  await put(path.join(options.overlapsDir, `${record.id}.json`), report);
+  const prepare = (extra = {}) => selectPreparationGuides([record.id], {
+    packetsDir: options.packetsDir, manifestPath: options.manifestFile, ...extra,
+  });
+  const author = (extra = {}) => authorPacket([record.id], { ...options, ...extra });
+  await t.test('named preparation selects the reviewed 55-entry packet from the supplemental inventory', async () => {
+    const [guide] = await selectPreparationGuides([record.id]);
+    assert.equal(guide.id, record.id);
+    assert.equal(guide.isFrozenPacket, true);
+    assert.equal(guide.approvedSourceCount, 55);
+  });
+  await t.test('the same packet with a pending mapping still cannot author', async () => {
+    const pendingDir = path.join(tmp, 'pending-mappings');
+    await mkdir(pendingDir);
+    const { relationshipReview, approvedManifest, ...approved } = await readJson(mappingFile);
+    assert.ok(relationshipReview && approvedManifest, 'The shipped mapping must carry its approval.');
+    await put(path.join(pendingDir, `${record.id}.json`), { ...approved, reviewStatus: 'pending-independent-review' });
+    await assert.rejects(author({ mappingsDir: pendingDir }), /blood-hunt is not approved/);
+  });
+  await t.test('both routes refuse the same reviewed packet when its registration is blocked', async () => {
+    const blockedFile = path.join(tmp, 'blocked.json');
+    await put(blockedFile, [{ ...record, deliveryStatus: 'blocked' }]);
+    const extra = { inventoryPaths: [blockedFile] };
+    const blocked = /blood-hunt inventory record is not eligible for preparation/;
+    await assert.rejects(prepare(extra), blocked);
+    await assert.rejects(author(extra), blocked);
+  });
+  await t.test('wrong source and duplicate identity fail closed in both routes', async () => {
+    const wrongFile = path.join(tmp, 'wrong-source.json');
+    await put(wrongFile, [{ ...record, url: baseline[83].url }]);
+    await assert.rejects(prepare({ inventoryPaths: [wrongFile] }), /source URL differs from inventory/);
+    await assert.rejects(author({ inventoryPaths: [wrongFile] }), /source URL differs from inventory/);
+    const duplicateFile = path.join(tmp, 'duplicate.json');
+    await put(duplicateFile, supplemental);
+    const inventoryPaths = [path.join(inventoryDir, 'cbh-supplemental-inventory.json'), duplicateFile];
+    await assert.rejects(prepare({ inventoryPaths }), /exists in multiple maintained inventories/);
+    await assert.rejects(author({ inventoryPaths }), /ambiguous inventory source identity/);
+  });
+  await t.test('legacy and other-program selections stay unchanged', async () => {
+    const legacy = await selectPreparationGuides(['minimum-carnage']);
+    assert.deepEqual(legacy.map((guide) => guide.id), ['minimum-carnage']);
+    assert.equal(legacy[0].isFrozenPacket, undefined);
+    const oldPaths = inventories.slice(0, 4).map((file) => path.join(root, 'scripts', 'data', file));
+    const legacyBatchGuard = /legacy batch includes registered child sources: realm-of-kings/;
+    await assert.rejects(selectPreparationGuides(null, { inventoryPaths: oldPaths }), legacyBatchGuard);
+    await assert.rejects(selectPreparationGuides(null), legacyBatchGuard);
+    const programPaths = oldPaths.slice(1);
+    const otherPrograms = await Promise.all(programPaths.map(readJson));
+    assert.ok(otherPrograms.flat().every((entry) => entry.id !== record.id));
+    await assert.rejects(prepare({ inventoryPaths: programPaths }), /unknown inventory id blood-hunt/);
+    await assert.rejects(author({
+      inventoryPaths: inventories.slice(1, 4).map((file) => path.join(inventoryDir, file)),
+    }), /unknown inventory record/);
+  });
+});
 
 test('sectional authoring installs one hidden parent and its bound spec, never independent source parts', async (t) => {
   const tmp = await mkdtemp(path.join(tmpdir(), 'sectional-author-'));
@@ -948,6 +1059,22 @@ test('the final Thanos artifacts conserve every source position and publish only
     assert.equal(markdown.includes(exclusion), false, `${exclusion} leaked into the published checklist`);
   }
 });
+
+for (const [id, orderSource] of [
+  ['empyre', /retained \[Comic Book Herald Empyre checklist\]\([^)]+\), retrieved 2026-08-22/],
+  ['blood-hunt', /supplied checklist transcription attributed to .*Comic Book Herald.*, received 2026-11-26, not a fresh page retrieval/],
+]) {
+  test(`${id} checklist trail distinguishes the order source from offline comic evidence`, async () => {
+    const mapping = await readJson(path.join(mappingsDir, `${id}.json`));
+    const markdown = buildMarkdown(mapping);
+    const checklist = await readFile(path.join(dataDir, 'orders', `${id}.md`), 'utf8');
+    assert.match(markdown, orderSource, id);
+    assert.ok(markdown.includes(`](${mapping.sourceUrl})`), id);
+    assert.match(markdown, /retained provider and published data/, id);
+    assert.match(markdown, /offline export credited to werhsdnas of the Continuity Guide Discord/, id);
+    assert.equal(markdown, checklist.replace(/\r\n/g, '\n'), id);
+  });
+}
 
 test('repeated source references stay explicit, canonical, fresh, and unique', () => {
   const evidence = genericEvidence({ withRepeat: true });

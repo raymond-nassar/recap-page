@@ -141,7 +141,7 @@ test('the current gateway offers three primary modes and five secondary gateways
   }
   assert.equal(categories.find(({ key }) => key === 'timeline').count, currentReadingCensus.modernTimeline);
   // The dated X-Men Silver Age guide joins Marvel Ages; the pair it replaced were undated.
-  assert.equal(categories.find(({ key }) => key === 'marvel-ages').count, 223);
+  assert.equal(categories.find(({ key }) => key === 'marvel-ages').count, 225);
   assert.equal(categories.find(({ key }) => key === 'marvel-on-screen').count, currentReadingCensus.mcu);
   assert.equal(categories.find(({ key }) => key === 'young-readers').count, 15);
 });

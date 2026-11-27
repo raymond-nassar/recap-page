@@ -1,4 +1,4 @@
-import { currentReadingCensus, registeredCatalogAdditionIds } from './helpers/current-reading-library.mjs';
+import { currentReadingCensus, registeredCatalogAdditionIds, registeredCuratedEmptyRecords } from './helpers/current-reading-library.mjs';
 import { wolverineGapResolutions } from './helpers/wolverine-correction-history.mjs';
 import { xmenEraPlaceholderDelta } from './helpers/xmen-era-history.mjs';
 import test from 'node:test';
@@ -307,11 +307,11 @@ test('the bundled catalog is valid and its counts match the vendored orders', as
     {
       complete: currentReadingCensus.complete,
       placeholders: 1130 + xmenEraPlaceholderDelta - wolverineGapResolutions.length,
-      emptyRecords: 229,
+      emptyRecords: 229 + registeredCuratedEmptyRecords.rows,
       total: currentReadingCensus.totalItems,
       placeholderEntries: 29,
-      emptyEntries: 24,
-      bothEntries: 7,
+      emptyEntries: 24 + registeredCuratedEmptyRecords.entries,
+      bothEntries: 7 + registeredCuratedEmptyRecords.bothEntries,
     },
   );
 });
@@ -599,6 +599,27 @@ test('an empty or whitespace query returns every list', () => {
 test('search and category filtering compose', () => {
   assert.deepEqual(ids(searchCatalog(filterByCategory(sample, 'event'), 'iron man')), ['civil-war']);
   assert.deepEqual(ids(searchCatalog(filterByCategory(sample, 'creator-run'), 'iron man')), []);
+});
+
+// The owner chose these exact names and no keywords for Blood Hunt. Dracula, Moon Knight and
+// Blade appear nowhere in its description, so only the character field can make them findable.
+const BLOOD_HUNT_NAMES = ['Avengers', 'Doctor Strange', 'Miles Morales', 'Dracula', 'Moon Knight', 'Blade'];
+
+async function productionLists() {
+  const url = new URL('../src/data/catalog.json', import.meta.url);
+  return parseCatalog(JSON.parse(await readFile(url, 'utf8'))).lists;
+}
+
+test('a search for each character the owner chose for Blood Hunt finds it', async () => {
+  const lists = await productionLists();
+  const missed = BLOOD_HUNT_NAMES.filter((name) => !ids(searchCatalog(lists, name)).includes('blood-hunt'));
+  assert.deepEqual(missed, []);
+});
+
+test('Blood Hunt carries exactly the owner\'s character names and no keywords', async () => {
+  const bloodHunt = (await productionLists()).find((list) => list.id === 'blood-hunt');
+  assert.deepEqual(bloodHunt.characters, BLOOD_HUNT_NAMES);
+  assert.deepEqual(bloodHunt.keywords, []);
 });
 
 test('characters and keywords are normalised, and rubbish entries are dropped', () => {

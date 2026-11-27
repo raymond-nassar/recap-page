@@ -11,11 +11,12 @@ import {
 } from '../scripts/lib/cbh-inventory.mjs';
 import { loadReviewedVendorFields } from '../scripts/lib/reviewed-vendor-fields.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
+import { viewerKey } from '../src/js/lib/marvelComicsAppUrl.js';
 import { restoreFindOnlyEntries, vendorIssueItem } from '../scripts/vendor-orders.mjs';
 
 // Synthetic shape of Secret Wars (2015) r3 in miniature: two linked rows, one owner-directed
 // non-counting reference back to the first, and one exact provider row the source gave no address.
-async function fixture() {
+async function fixture({ viewer = null } = {}) {
   const template = JSON.parse(await readFile('scripts/data/cbh-packets/thanos-reading-order.json', 'utf8'));
   const row = (sourcePosition, id, title, url) => ({
     ...template.rows[0], sourcePosition, candidateIssueId: id, resolutionStatus: 'exact',
@@ -27,15 +28,29 @@ async function fixture() {
     row(2, 102, 'Linked Two', 'https://www.marvel.com/comics/issue/102'),
     row(4, 104, 'Find Only (2015)', null),
   ];
+  if (viewer) {
+    rows.push({
+      sourcePosition: 5, sourceIssueReference: 'Service Only #1',
+      normalizedSeriesTitle: 'Service Only', seriesYear: 2015, issueNumber: '1',
+      seriesId: null, candidateIssueId: null, manualSeriesSelectionApproved: false,
+      resolutionStatus: 'exact', resolvedIssueTitle: 'Service Only (2015)', selectedIssueId: null,
+      serviceIdentity: {
+        appViewer: viewer, url: `https://www.marvelcomicsapp.com/viewer/${viewer}`,
+        providerIssueId: null, normalizedSeriesTitle: 'Service Only', seriesYear: 2015,
+        issueNumber: '1', evidenceSha256: 'a'.repeat(64),
+      },
+    });
+  }
   const reference = {
     sourcePosition: 3, sourceIssueReference: 'Another title for Linked One #1',
     decisionId: 'test-fixture-decision', canonicalSourcePosition: 1,
     canonicalProviderIssueId: 101, counted: false,
   };
   const packet = {
-    ...template, rows, expectedCount: 3, sourceOccurrenceCount: 4, canonicalSourcePositions: true,
+    ...template, rows, expectedCount: rows.length, sourceOccurrenceCount: rows.length + 1,
+    canonicalSourcePositions: true,
     nonCountingSourceReferences: [reference],
-    proposedManifest: { ...template.proposedManifest, expect: 3 },
+    proposedManifest: { ...template.proposedManifest, expect: rows.length },
   };
   for (const field of ['sourceGaps', 'sourceGapResolutions', 'repeatedSourceReferences',
     'excludedSourceRows']) {
@@ -43,8 +58,8 @@ async function fixture() {
   }
   packet.packetDigest = packetDigestFor(packet);
   const mapping = {
-    id: packet.id, packetDigest: packet.packetDigest, approvedSourceCount: 4,
-    sourceOccurrenceCount: 4, nonCountingSourceReferences: [structuredClone(reference)],
+    id: packet.id, packetDigest: packet.packetDigest, approvedSourceCount: packet.sourceOccurrenceCount,
+    sourceOccurrenceCount: packet.sourceOccurrenceCount, nonCountingSourceReferences: [structuredClone(reference)],
     findOnlySourcePositions: [4], rows: structuredClone(rows),
     sourceUrl: packet.sourceUrl, sourceSection: packet.sourceSection,
     proposedManifest: packet.proposedManifest, reviewStatus: 'approved',
@@ -162,9 +177,10 @@ test('Find-only restoration trusts only this order\'s approved mapping record', 
   }
 });
 
-test('reviewed offline fields bind the source and every issue while leaving unavailable fields absent', async (t) => {
-  const { mapping } = await fixture();
-  mapping.id = 'secret-wars-2015-event-tie-ins';
+async function checkReviewedOfflineFields(t, orderId) {
+  const viewer = '101';
+  const { mapping } = await fixture({ viewer });
+  mapping.id = orderId;
   mapping.mappingDigest = mappingDigestFor(mapping);
   mapping.relationshipReview.mappingDigest = mapping.mappingDigest;
   mapping.relationshipReview.approvalDigest = approvalDigestFor(mapping.relationshipReview);
@@ -176,18 +192,21 @@ test('reviewed offline fields bind the source and every issue while leaving unav
   const context = { order, mapping, parsedOrder, loadResponses: () => assert.fail('Unexpected cache read') };
   const value = '2015-03-04T00:00:00+0000';
   const sourceSha256 = 'a'.repeat(64);
-  const rows = mapping.rows.map(({ sourcePosition, selectedIssueId: issueId }) => ({ sourcePosition, issueId }));
+  const rows = mapping.rows.map(({ sourcePosition, selectedIssueId, serviceIdentity }) => (
+    serviceIdentity ? { sourcePosition, issueId: viewerKey(viewer), appViewer: viewer }
+      : { sourcePosition, issueId: selectedIssueId }
+  ));
   const input = {
     version: 1, id: order.id, packetDigest: mapping.packetDigest, mappingDigest: mapping.mappingDigest, rows,
   };
   rows[2].facts = { onSaleDate: {
     value, sourceSha256, fieldDigest: digestCanonicalJson([104, 'onSaleDate', value, sourceSha256]),
   } };
-  async function load(candidate, expectedDigest) {
+  async function load(candidate, expectedDigest, overrides = {}) {
     const bytes = JSON.stringify(candidate);
     await writeFile(file, bytes);
     const digest = expectedDigest ?? createHash('sha256').update(bytes).digest('hex');
-    return loadReviewedVendorFields({ file, digest }, context);
+    return loadReviewedVendorFields({ file, digest }, { ...context, ...overrides });
   }
   const { meta, refused } = await load(input);
   assert.equal(refused.size, 0);
@@ -198,6 +217,23 @@ test('reviewed offline fields bind the source and every issue while leaving unav
   assert.equal(item.findOnly, true);
   assert.equal(item.digitalId, null);
   assert.equal(item.detailsRefused, undefined);
+  assert.equal(meta.has(viewerKey(viewer)), false);
+  const pending = { ...mapping, reviewStatus: 'pending-independent-review' };
+  await assert.rejects(load(input, undefined, { mapping: pending }), /approved mapping and relationships/);
+  const noReview = { ...mapping };
+  delete noReview.relationshipReview;
+  await assert.rejects(load(input, undefined, { mapping: noReview }), /approved mapping and relationships/);
+  const missingRow = { ...input, rows: rows.slice(0, -1) };
+  await assert.rejects(load(missingRow), /must cover every exact checklist row/);
+  const other = { ...order, id: 'another-guide' };
+  await assert.rejects(load(input, undefined, { order: other, mapping: { ...mapping, id: other.id } }),
+    /eligible local checklist/);
+  const mixed = structuredClone(input);
+  mixed.rows[3].facts = rows[2].facts;
+  await assert.rejects(load(mixed), /service-only issue .* cannot receive provider fields/);
+  const wrongPosition = structuredClone(input);
+  wrongPosition.rows[3].sourcePosition = 3;
+  await assert.rejects(load(wrongPosition), /checklist identity at source position 5/);
   const wrongIssue = structuredClone(input);
   wrongIssue.rows[0].issueId = 102;
   await assert.rejects(load(wrongIssue), /checklist identity at source position 1/);
@@ -207,4 +243,16 @@ test('reviewed offline fields bind the source and every issue while leaving unav
   await assert.rejects(load(wrongSource), /source packet and mapping/);
   rows[2].facts.onSaleDate.sourceSha256 = 'c'.repeat(64);
   await assert.rejects(load(input), /invalid provenance or value for onSaleDate/);
-});
+}
+
+test('reviewed offline fields bind the source and every issue while leaving unavailable fields absent', (t) => (
+  checkReviewedOfflineFields(t, 'secret-wars-2015-event-tie-ins')
+));
+
+test('Empyre reviewed offline fields keep provider and service rows separate', (t) => (
+  checkReviewedOfflineFields(t, 'empyre')
+));
+
+test('Blood Hunt reviewed offline fields require the same evidence for provider and viewer rows', (t) => (
+  checkReviewedOfflineFields(t, 'blood-hunt')
+));

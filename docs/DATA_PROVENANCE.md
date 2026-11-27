@@ -416,18 +416,18 @@ orders: **null means nobody granted anything for this file, not that the file is
 
 ### Reading orders, pinned
 
-There are 372 pinned reading-order payloads under
-[`src/data/`](../src/data): 366 active visible catalog files, two active internal parents,
+There are 374 pinned reading-order payloads under
+[`src/data/`](../src/data): 368 active visible catalog files, two active internal parents,
 the retired No Way Home (18 originals) and withdrawn Marvel Multiverse (2 comics) payloads, and the
 two earlier X-Men Silver Age to Claremont orders (274 and 404 comics), which no longer appear in
-discovery but stay readable for saved lists and offline copies. The 368 active files hold
-35,894 issue records covering 21,040 distinct tracked identities. The visible files hold 34,504 of those records;
+discovery but stay readable for saved lists and offline copies. The 370 active files hold
+35,985 issue records covering 21,086 distinct tracked identities. The visible files hold 34,595 of those records;
 the extra 1,390 come from the retained Marvel Knights to Planet X and Civil War to Secret Invasion
 parents, whose children partition the same vectors. Records use these fields:
 `issueId`, `title`,
 `number`, `url`, `seriesId`, `seriesName`, `onSale`, `mu`, `digitalId`, `pageCount`, a `cover`
-object of `path` and `ext`, and `creators` of `name` and `role`. Across the 368 active payloads, 29,335
-records carry a cover URL and 27,529 carry creator credits. The retired No Way Home payload and both
+object of `path` and `ext`, and `creators` of `name` and `role`. Across the 370 active payloads, 29,368
+records carry a cover URL and 27,539 carry creator credits. The retired No Way Home payload and both
 earlier X-Men payloads remain byte-exact; no retired payload contributes to active discovery or this
 active census.
 
@@ -438,10 +438,12 @@ The key is `null` on every record, the vendoring script no longer writes it, and
 A further 41, 7,193 characters, were removed from the design mockups described below, which a
 first pass missed because it looked only at the files the catalog names.
 
-Of the visible records, 1,130 are unopenable placeholders for unresolved source positions and 221
-non-placeholder records carry neither a series ID nor a digital ID after an upstream refusal. Those
-1,351 gap positions affect 44 catalog entries: twenty-nine carry placeholders, twenty-two carry empty records, and
-seven carry both kinds. One legacy item retains a placeholder flag alongside real identity and launch
+Of the visible records, 1,109 are unopenable placeholders for unresolved source positions and 270
+non-placeholder records lack optional provider metadata. Of those sparse records, 221 explicitly
+record an upstream refusal, 37 have service-only viewer links, and 12 retain exact issue identities
+with absent optional fields but no recorded refusal. Those 1,379 gap positions affect 48 catalog
+entries: twenty-nine carry placeholders, twenty-six carry empty records, and seven carry both kinds.
+One legacy item retains a placeholder flag alongside real identity and launch
 metadata, so it belongs to neither gap category. Placeholder
 IDs are computed here by [`scripts/vendor-orders.mjs`](../scripts/vendor-orders.mjs) from the order
 and source identity and then negated, so none can be read as one of Marvel's. These records preserve
@@ -1198,10 +1200,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes four independent Reading Paths with 104 stops: three
 authored paths with 10, 12 and 4 stops from the curated manifest at
-`src/data/curated-lists.json:11514-11565`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:11567-11618`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all four at
-`src/data/catalog.json:18762-18899`.
+`src/data/catalog.json:18834-18971`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -4344,3 +4346,24 @@ Civil War to Secret Invasion parts 8, 11, 12 and 13 reuse the verified cover add
 issues 23067, 17338, 15886 and 21268, respectively, from already published ordinary reading orders.
 The offline vendor checked matching issue identities and exact addresses. No images were downloaded,
 and no other issue fields changed.
+
+## Empyre and Blood Hunt: checklist and comic sources
+
+Empyre preserves the 36 issue positions of the retained
+[Comic Book Herald Empyre checklist](https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/empyre-reading-order/),
+retrieved 2026-08-22. Blood Hunt preserves the 55 positions of a supplied transcription attributed to
+[Comic Book Herald's Blood Hunt guide](https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-blood-hunt/).
+The transcription was received on 2026-11-26, not fetched from the page that day.
+
+The checklists determine reading order, not service identity. The separate offline export credited
+to werhsdnas of the Continuity Guide Discord, received 2026-11-19 and checked offline for these
+guides on 2026-11-26, supplies reviewed service-only identities and viewer addresses. The export
+itself is not distributed. Provider identities and the available series, publication dates and
+cover addresses use retained provider or published records. No new API requests were made and no
+image bytes were downloaded. Service-only rows have a reader link but no provider metadata.
+Optional details without reviewed evidence remain unset; neither case records a provider refusal.
+
+Blood Hunt's Amazing Spider-Man (2022) #49 reuses the existing provider identity and viewer address,
+so its reading progress is shared with the published Spider-Man guide, not a second checkmark.
+The final Blood Hunt payload has 28 service-only comics; Empyre has one service-only comic and
+12 other comics with absent optional fields. Neither payload adds an explicit provider refusal.

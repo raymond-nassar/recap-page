@@ -1676,6 +1676,29 @@
       "coverIssueId": 111661
     },
     {
+      "id": "blood-hunt",
+      "name": "Blood Hunt",
+      "description": "A shroud of darkness cuts Earth off from the sun, and vampires step out of hiding to strike across the world. The Avengers are among their first targets. For Doctor Strange, Miles Morales and the people caught in the streets, there's no waiting for morning. Someone has to bring the daylight back.",
+      "type": "event",
+      "depth": "selected",
+      "sourceFile": "blood-hunt.md",
+      "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-blood-hunt/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "blood_hunt.json",
+      "expect": 55,
+      "timeline": 2024,
+      "coverIssueId": 113011,
+      "characters": [
+        "Avengers",
+        "Doctor Strange",
+        "Miles Morales",
+        "Dracula",
+        "Moon Knight",
+        "Blade"
+      ]
+    },
+    {
       "id": "captain-america-2025-our-secret-wars",
       "name": "Captain America (2025) Vol. 1: Our Secret Wars",
       "description": "Steve Rogers' first mission after waking from the ice, and his first encounter with Doctor Doom in Latveria.",
@@ -2377,6 +2400,36 @@
       ],
       "expect": 8,
       "timeline": 2008
+    },
+    {
+      "id": "empyre",
+      "name": "Empyre",
+      "description": "The Kree and the Skrulls have made peace, and their warships are headed for Earth together. Their new emperor is Teddy Altman, the young hero called Hulkling. The Fantastic Four hear his side of the story. On the Moon, the Avengers hear a very different account of why he's come.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "empyre.md",
+      "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/empyre-reading-order/",
+      "sourceSection": "Empyre Comic Book Checklist",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "empyre.json",
+      "characters": [
+        "Avengers",
+        "Fantastic Four",
+        "Hulkling"
+      ],
+      "keywords": [
+        "Empyre",
+        "Kree",
+        "Skrull"
+      ],
+      "expect": 36,
+      "timeline": 2020,
+      "coverIssueId": 82353
     },
     {
       "id": "x-of-swords",
