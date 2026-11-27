@@ -110,9 +110,8 @@ test('every shared year belongs to the later period and never to both', () => {
 test('the shipped dated catalog partitions once by age and once by Modern subperiod', () => {
   const dated = stories.filter((story) => storyYear(story) !== null);
   const modern = publishingCategoryStories(stories, 'modern');
-  // The X-Men Silver Age guide is dated 1963; the undated pair it replaced in discovery were not.
-  assert.equal(dated.length, 223);
-  assert.equal(modern.length, 197);
+  assert.equal(dated.length, 225);
+  assert.equal(modern.length, 199);
 
   for (const story of dated) {
     assert.equal(
@@ -139,8 +138,8 @@ test('the shipped dated catalog partitions once by age and once by Modern subper
       .reduce((sum, story) => sum + story.lists.length, 0),
     0,
   );
-  assert.equal(topLists, 223);
-  assert.equal(periodLists, 197);
+  assert.equal(topLists, 225);
+  assert.equal(periodLists, 199);
 });
 
 test('undated stories are not guessed into any publishing category', () => {
@@ -162,7 +161,7 @@ test('publishing categories cross canonical shelves without changing shelf owner
 test('only populated publishing categories are available and counts use Reading Lists', () => {
   const ages = availablePublishingCategories(stories);
   assert.deepEqual(ages.map(({ key }) => key), ['silver', 'bronze', 'copper', 'modern']);
-  assert.deepEqual(ages.map(({ count }) => count), [4, 11, 11, 197]);
+  assert.deepEqual(ages.map(({ count }) => count), [4, 11, 11, 199]);
 
   const periods = availablePublishingCategories(stories, 'modern');
   assert.deepEqual(
@@ -173,8 +172,8 @@ test('only populated publishing categories are available and counts use Reading 
       ['event-era', 44],
       ['marvel-now', 10],
       ['all-new-all-different', 9],
-      ['fresh-start', 13],
-      ['current', 21],
+      ['fresh-start', 14],
+      ['current', 22],
     ],
   );
   assert.equal(byKey.has('early-modern'), true);
@@ -183,7 +182,7 @@ test('only populated publishing categories are available and counts use Reading 
 
 test('the Marvel Ages gateway groups populated leaves without double-counting Modern', () => {
   const groups = publishingAgeGroups(stories);
-  assert.equal(groups.count, 223);
+  assert.equal(groups.count, 225);
   assert.equal(groups.stories.reduce(
     (total, story) => total + story.lists.length,
     0,
@@ -194,7 +193,7 @@ test('the Marvel Ages gateway groups populated leaves without double-counting Mo
   );
   assert.deepEqual(
     [groups.modern?.key, groups.modern?.count],
-    ['modern', 197],
+    ['modern', 199],
   );
   assert.deepEqual(
     groups.modernChildren.map(({ key, count }) => [key, count]),
@@ -204,8 +203,8 @@ test('the Marvel Ages gateway groups populated leaves without double-counting Mo
       ['event-era', 44],
       ['marvel-now', 10],
       ['all-new-all-different', 9],
-      ['fresh-start', 13],
-      ['current', 21],
+      ['fresh-start', 14],
+      ['current', 22],
     ],
   );
   assert.ok(!groups.earlier.some(({ key }) => key === 'golden'));

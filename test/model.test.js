@@ -1321,10 +1321,11 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // The Wolverine identity correction replaces 18 placeholders with exact provider records.
   // Secret Wars adds two viewer-only comics and Civil War to Secret Invasion Part 13 adds
   // the six Captain America: The Chosen comics. They have reader links, not provider details.
+  // Empyre adds 13 sparse records and Blood Hunt adds 28 service-only records, not provider refusals.
   assert.equal(claimed, 1112 + xmenEraPlaceholderDelta, 'the payload placeholder total moved; re-derive the figures in the record');
   assert.equal(placeholders, 1112 + xmenEraPlaceholderDelta, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
-  assert.equal(empty, 229);
-  assert.equal(affected, 24);
+  assert.equal(empty, 270);
+  assert.equal(affected, 26);
 });
 
 // Every check above passes with the import path reverted, because they all call the counter
@@ -1581,7 +1582,9 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // in favor of exact provider records that carry their details.
   // Runaways and Korvac Saga #1 plus Captain America: The Chosen #1-6 add eight distinct
   // tagged viewer identities without provider details, not unresolved comic identities.
-  assert.equal(refused.length, 1414 + xmenEraPlaceholderDelta);
+  // The 41 additional sparse Empyre and Blood Hunt records suppress futile lookups on import,
+  // without recording a provider refusal in either source payload.
+  assert.equal(refused.length, 1414 + xmenEraPlaceholderDelta + 41);
   const infinity = JSON.parse(readFileSync(join(dataDir,
     'marvels_infinity_saga_gauntlet_wars_crusade_reading_order.json'), 'utf8'));
   assert.equal(infinity.items.filter((item) => item.detailsRefused && item.issueId > 0).length, 11);

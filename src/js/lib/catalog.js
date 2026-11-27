@@ -1221,8 +1221,8 @@ const FAMILY_EVENTS = Object.freeze({
 const MAJOR_EVENTS = Object.freeze([
   'avengers-disassembled', 'house-of-m', 'civil-war', 'world-war-hulk', 'secret-invasion',
   'siege-dark-reign-prelude', 'chaos-war', 'axis', 'placement:secret-wars-2015', 'monsters-unleashed',
-  'infinity-countdown-wars', 'war-of-the-realms', 'king-in-black', 'heroes-reborn-2021', 'judgment-day',
-  'one-world-under-doom', 'avengers-armageddon',
+  'infinity-countdown-wars', 'war-of-the-realms', 'empyre', 'king-in-black', 'heroes-reborn-2021',
+  'judgment-day', 'blood-hunt', 'one-world-under-doom', 'avengers-armageddon',
 ]);
 const EVENT_BADGES = new Map([
   ...MAJOR_EVENTS.map((id) => [id, Object.freeze({ kind: 'major', label: MAJOR_EVENT })]),

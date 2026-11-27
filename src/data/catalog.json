@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-26T02:22:33.795Z",
+  "generatedAt": "2026-11-27T00:32:39.305Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2193,6 +2193,41 @@
       "updatedAt": "2026-08-22T09:26:45.416Z"
     },
     {
+      "id": "blood-hunt",
+      "file": "blood_hunt.json",
+      "name": "Blood Hunt",
+      "description": "A shroud of darkness cuts Earth off from the sun, and vampires step out of hiding to strike across the world. The Avengers are among their first targets. For Doctor Strange, Miles Morales and the people caught in the streets, there's no waiting for morning. Someone has to bring the daylight back.",
+      "type": "event",
+      "depth": "selected",
+      "count": 55,
+      "placeholderCount": 0,
+      "emptyRecordCount": 28,
+      "collections": 0,
+      "characters": [
+        "Avengers",
+        "Doctor Strange",
+        "Miles Morales",
+        "Dracula",
+        "Moon Knight",
+        "Blade"
+      ],
+      "keywords": [],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2024,
+      "coverIssueId": 113011,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/65d73a5d4c9b7",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-blood-hunt/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-11-27T00:32:39.305Z"
+    },
+    {
       "id": "captain-america-2025-our-secret-wars",
       "file": "captain_america_2025_our_secret_wars.json",
       "name": "Captain America (2025) Vol. 1: Our Secret Wars",
@@ -3086,6 +3121,43 @@
       "sourceOrigin": "Assembled from Marvel series metadata (publication order)",
       "sourceLicense": null,
       "updatedAt": "2026-08-08T03:24:47.197Z"
+    },
+    {
+      "id": "empyre",
+      "file": "empyre.json",
+      "name": "Empyre",
+      "description": "The Kree and the Skrulls have made peace, and their warships are headed for Earth together. Their new emperor is Teddy Altman, the young hero called Hulkling. The Fantastic Four hear his side of the story. On the Moon, the Avengers hear a very different account of why he's come.",
+      "type": "event",
+      "depth": "complete",
+      "count": 36,
+      "placeholderCount": 0,
+      "emptyRecordCount": 13,
+      "collections": 0,
+      "characters": [
+        "Avengers",
+        "Fantastic Four",
+        "Hulkling"
+      ],
+      "keywords": [
+        "Empyre",
+        "Kree",
+        "Skrull"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 2020,
+      "coverIssueId": 82353,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/90/5e7e69da4afb1",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/empyre-reading-order/",
+      "sourceSection": "Empyre Comic Book Checklist",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-11-27T00:32:37.339Z"
     },
     {
       "id": "x-of-swords",

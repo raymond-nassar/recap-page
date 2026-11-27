@@ -22,6 +22,7 @@ const OUTPUT_DIR = path.join(ROOT, 'scripts', 'data', 'cbh-mappings');
 const PACKETS_DIR = path.join(ROOT, 'scripts', 'data', 'cbh-packets');
 const INVENTORY_PATHS = Object.freeze([
   path.join(ROOT, 'scripts', 'data', 'cbh-modern-inventory.json'),
+  path.join(ROOT, 'scripts', 'data', 'cbh-supplemental-inventory.json'),
   path.join(ROOT, 'scripts', 'data', 'cbh-character-inventory.json'),
   path.join(ROOT, 'scripts', 'data', 'cbh-ultimate-inventory.json'),
   path.join(ROOT, 'scripts', 'data', 'cbh-young-readers-inventory.json'),

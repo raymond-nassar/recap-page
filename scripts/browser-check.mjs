@@ -25004,6 +25004,21 @@ SCENARIOS.push({
     await page.evaluate(() => {
       localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, readingShortcut: true }));
     });
+    // Keep Done on screen during the zoom. Install before boot: the mobile rail's resize handler
+    // can otherwise trigger a hint refresh while Done is still offscreen (#1105, #1414).
+    await page.evaluateOnNewDocument(() => {
+      const listeners = new AbortController();
+      const options = { capture: true, signal: listeners.signal };
+      const pan = () => {
+        const target = window.zoomTarget1105;
+        if (!target || visualViewport.scale === 1) return;
+        listeners.abort();
+        target.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+        window.zoomPanned1105 = true;
+      };
+      for (const type of ['pointerover', 'pointerout', 'pointermove', 'resize', 'scroll']) window.addEventListener(type, pan, options);
+      for (const type of ['resize', 'scroll']) visualViewport.addEventListener(type, pan, options);
+    });
     await open(page, '/?catalog=browser-check&tooltip-document=449#/read/fixture?full=1');
     const setupState = () => page.evaluate(() => {
       const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
@@ -25207,22 +25222,7 @@ SCENARIOS.push({
         return [...content];
       }, tipId);
       console.log(`  ${name} rendered meaningful content beneath long hint: ${JSON.stringify(occlusion)}`);
-      // The zoom takes Done out of view, and the hint's first refresh after it closes the hint for
-      // good, so pan Done back from a capturing listener that runs before that refresh. Panning in a
-      // later round trip raced it (#1105): Chromium raises a pointer move for the resting mouse once
-      // the zoom changes what lies beneath it, and when that came first the hint closed with Done at
-      // x 201 against a zoomed visible width of 195.
-      if (name === 'action') await page.$eval(selector, (node) => {
-        const sources = [[window, ['pointerover', 'pointerout', 'pointermove', 'resize', 'scroll']], [visualViewport, ['resize', 'scroll']]];
-        const listen = (method, pan) => sources.forEach(([target, types]) => types.forEach((type) => target[method](type, pan, true)));
-        const pan = () => {
-          if (visualViewport.scale === 1) return;
-          listen('removeEventListener', pan);
-          node.scrollIntoView({ block: 'nearest', inline: 'nearest' });
-          window.zoomPanned1105 = true;
-        };
-        listen('addEventListener', pan);
-      });
+      if (name === 'action') await page.$eval(selector, (node) => { window.zoomTarget1105 = node; });
       await client.send('Emulation.setPageScaleFactor', { pageScaleFactor: 2 });
       if (name === 'action') await page.waitForFunction(() => window.zoomPanned1105 === true, { timeout: 5000 });
       await settle();
@@ -25916,7 +25916,7 @@ async function runLongCollectionNavigation(page, t) {
 
     enter('LC04 reusable long leaves and small exclusion');
     for (const [key, count, last] of [
-      ['fresh-start', 13, 'king-in-black'], ['current', 21, 'avengers-armageddon'],
+      ['fresh-start', 14, 'king-in-black'], ['current', 22, 'avengers-armageddon'],
       ['early-modern', 18, 'operation-zero-tolerance'],
     ]) {
       await ageReady(key);

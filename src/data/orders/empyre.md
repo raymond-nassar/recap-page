@@ -1,0 +1,43 @@
+# Empyre: Issue-by-Issue Reading Checklist
+
+Generated for this project by scripts/author-cbh-packet.mjs from the reviewed and frozen empyre issue mapping.
+The order follows the retained [Comic Book Herald Empyre checklist](https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/empyre-reading-order/), retrieved 2026-08-22.
+No source commentary or images are copied. Provider identities and available issue details use retained provider and published data. Service-only identities and viewer addresses use the offline export credited to werhsdnas of the Continuity Guide Discord.
+See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permission boundary and review method.
+
+- [ ] [Road To Empyre: The Kree/Skrull War (2020) #1 <!-- mrt:source-occurrence=1 -->](https://www.marvel.com/comics/issue/85304/road_to_empyre_the_kreeskrull_war_2020_1)
+- [ ] [Empyre: Avengers (2020) #0 <!-- mrt:source-occurrence=2 -->](https://www.marvel.com/comics/issue/82353/empyre_avengers_2020)
+- [ ] [Empyre: Fantastic Four (2020) #0 <!-- mrt:source-occurrence=3 -->](https://www.marvel.com/comics/issue/82352/empyre_fantastic_four_2020)
+- [ ] [Lords of Empyre: Emperor Hulkling (2020) #1 <!-- mrt:source-occurrence=4 -->](https://www.marvel.com/comics/issue/88624/lords_of_empyre_emperor_hulkling_2020_1)
+- [ ] [Empyre (2020) #1 <!-- mrt:source-occurrence=5 -->](https://www.marvel.com/comics/issue/82360/empyre_2020_1)
+- [ ] [Fantastic Four (2018) #21 <!-- mrt:source-occurrence=6 -->](https://www.marvel.com/comics/issue/77321/fantastic_four_2018_21)
+- [ ] [Lords of Empyre: Swordsman (2020) #1 <!-- mrt:source-occurrence=7 -->](https://www.marvelcomicsapp.com/viewer/32665)
+- [ ] [Empyre (2020) #2 <!-- mrt:source-occurrence=8 -->](https://www.marvel.com/comics/issue/82361/empyre_2020_2)
+- [ ] [Empyre: X-Men (2020) #1 <!-- mrt:source-occurrence=9 -->](https://www.marvel.com/comics/issue/88646/empyre_x-men_2020_1)
+- [ ] [Empyre: X-Men (2020) #2 <!-- mrt:source-occurrence=10 -->](https://www.marvel.com/comics/issue/88647/empyre_x-men_2020_2)
+- [ ] [Empyre: X-Men (2020) #3 <!-- mrt:source-occurrence=11 -->](https://www.marvel.com/comics/issue/88648/empyre_x-men_2020_3)
+- [ ] [Empyre: X-Men (2020) #4 <!-- mrt:source-occurrence=12 -->](https://www.marvel.com/comics/issue/88649/empyre_x-men_2020_4)
+- [ ] [Empyre: Avengers (2020) #1 <!-- mrt:source-occurrence=13 -->](https://www.marvel.com/comics/issue/88625/empyre_avengers_2020_1)
+- [ ] [Empyre: Avengers (2020) #2 <!-- mrt:source-occurrence=14 -->](https://www.marvel.com/comics/issue/88626/empyre_avengers_2020_2)
+- [ ] [Lords of Empyre: Celestial Messiah (2020) #1 <!-- mrt:source-occurrence=15 -->](https://www.marvel.com/comics/issue/88667/lords_of_empyre_celestial_messiah_2020_1)
+- [ ] [Captain Marvel (2019) #18 <!-- mrt:source-occurrence=16 -->](https://www.marvel.com/comics/issue/86495/captain_marvel_2019_18)
+- [ ] [Captain Marvel (2019) #19 <!-- mrt:source-occurrence=17 -->](https://www.marvel.com/comics/issue/86496/captain_marvel_2019_19)
+- [ ] [Captain Marvel (2019) #20 <!-- mrt:source-occurrence=18 -->](https://www.marvel.com/comics/issue/86497/captain_marvel_2019_20)
+- [ ] [Empyre (2020) #3 <!-- mrt:source-occurrence=19 -->](https://www.marvel.com/comics/issue/82362/empyre_2020_3)
+- [ ] [Fantastic Four (2018) #22 <!-- mrt:source-occurrence=20 -->](https://www.marvel.com/comics/issue/77322/fantastic_four_2018_22)
+- [ ] [X-Men (2019) #10 <!-- mrt:source-occurrence=21 -->](https://www.marvel.com/comics/issue/79948/x-men_2019_10)
+- [ ] [Empyre: Savage Avengers (2020) #1 <!-- mrt:source-occurrence=22 -->](https://www.marvel.com/comics/issue/88631/empyre_savage_avengers_2020_1)
+- [ ] [Empyre: Captain America (2020) #1 <!-- mrt:source-occurrence=23 -->](https://www.marvel.com/comics/issue/88628/empyre_captain_america_2020_1)
+- [ ] [Empyre: Captain America (2020) #2 <!-- mrt:source-occurrence=24 -->](https://www.marvel.com/comics/issue/88629/empyre_captain_america_2020_2)
+- [ ] [Empyre: Captain America (2020) #3 <!-- mrt:source-occurrence=25 -->](https://www.marvel.com/comics/issue/88630/empyre_captain_america_2020_3)
+- [ ] [Empyre (2020) #4 <!-- mrt:source-occurrence=26 -->](https://www.marvel.com/comics/issue/82363/empyre_2020_4)
+- [ ] [Empyre: Avengers (2020) #3 <!-- mrt:source-occurrence=27 -->](https://www.marvel.com/comics/issue/88627/empyre_avengers_2020_3)
+- [ ] [Empyre (2020) #5 <!-- mrt:source-occurrence=28 -->](https://www.marvel.com/comics/issue/82364/empyre_2020_5)
+- [ ] [Fantastic Four (2018) #23 <!-- mrt:source-occurrence=29 -->](https://www.marvel.com/comics/issue/77323/fantastic_four_2018_23)
+- [ ] [Empyre (2020) #6 <!-- mrt:source-occurrence=30 -->](https://www.marvel.com/comics/issue/82365/empyre_2020_6)
+- [ ] [Guardians of the Galaxy (2020) #6 <!-- mrt:source-occurrence=31 -->](https://www.marvel.com/comics/issue/78688/guardians_of_the_galaxy_2020_6)
+- [ ] [Captain Marvel (2019) #21 <!-- mrt:source-occurrence=32 -->](https://www.marvel.com/comics/issue/87440/captain_marvel_2019_21)
+- [ ] [Empyre: Aftermath Avengers (2020) #1 <!-- mrt:source-occurrence=33 -->](https://www.marvel.com/comics/issue/82354/empyre_aftermath_avengers_2020_1)
+- [ ] [Empyre: Fallout Fantastic Four (2020) #1 <!-- mrt:source-occurrence=34 -->](https://www.marvel.com/comics/issue/90816/empyre_fallout_fantastic_four_2020_1)
+- [ ] [Immortal She-Hulk (2020) #1 <!-- mrt:source-occurrence=35 -->](https://www.marvel.com/comics/issue/78698/immortal_she-hulk_2020_1)
+- [ ] [Web Of Venom: Empyre's End (2020) #1 <!-- mrt:source-occurrence=36 -->](https://www.marvel.com/comics/issue/77220/web_of_venom_empyres_end_2020_1)
