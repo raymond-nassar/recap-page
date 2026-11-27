@@ -185,9 +185,9 @@ async function homeUpdatesCheck(page, label) {
       })(),
       targets: [...document.querySelectorAll('#home-updates button, #home-updates summary')]
         .filter((node) => node.getClientRects().length).map((node) => {
-          const box = node.getBoundingClientRect();
-          return { text: node.textContent.trim(), width: box.width, height: box.height };
-        }),
+        const box = node.getBoundingClientRect();
+        return { text: node.textContent.trim(), width: box.width, height: box.height };
+      }),
     }));
     check(JSON.stringify(all.features) === JSON.stringify(batch.features)
         && JSON.stringify(all.ids) === JSON.stringify(batch.listIds) && all.new,
@@ -410,10 +410,10 @@ async function spotlightSnapshot(page) {
       sheet?.open ? 'button, .fp > span' : '#android-spotlight-options, .spotlight-controls .fp > span, #spotlights-filters .fp > span',
     )])
       .filter(shown).map((node) => ({
-        text: node.textContent.trim(), box: box(node),
-        clipped: node.scrollWidth > node.clientWidth + 1,
-        align: getComputedStyle(node).textAlign,
-      }));
+      text: node.textContent.trim(), box: box(node),
+      clipped: node.scrollWidth > node.clientWidth + 1,
+      align: getComputedStyle(node).textAlign,
+    }));
     const values = (name) => [...document.querySelectorAll(`input[name="${name}"]`)]
       .map((node) => ({ value: node.value, checked: node.checked, visible: shown(node),
         label: node.nextElementSibling?.textContent.trim() }));

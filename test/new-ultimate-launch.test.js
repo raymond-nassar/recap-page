@@ -131,12 +131,12 @@ async function desktopLauncher(search, fetchImpl, { settings = null, readError =
   });
   const nodes = Object.fromEntries(['h', 'p', 'fallback', 'return', 'settings-status']
     .filter((key) => markup.includes(`id="${key}"`)).map((key) => {
-      const tags = [...markup.matchAll(new RegExp(`<[^>]+\\bid="${key}"[^>]*>`, 'g'))];
-      assert.equal(tags.length, 1, `The actual ${key} opening tag must be unique`);
-      const element = node();
-      element.href = tags[0][0].match(/\bhref="([^"]*)"/)?.[1] ?? '';
-      return [key, element];
-    }));
+    const tags = [...markup.matchAll(new RegExp(`<[^>]+\\bid="${key}"[^>]*>`, 'g'))];
+    assert.equal(tags.length, 1, `The actual ${key} opening tag must be unique`);
+    const element = node();
+    element.href = tags[0][0].match(/\bhref="([^"]*)"/)?.[1] ?? '';
+    return [key, element];
+  }));
   const root = node();
   const meta = node();
   // The launch page's theme-color tags as written in its markup (#834), so the real module rewrites

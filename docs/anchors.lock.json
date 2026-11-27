@@ -6796,7 +6796,7 @@
   },
   "SECURITY.md|about-the-app|package.json:64-68|0": {
     "anchor": "package.json:64-68",
-    "fp": "682214c508237f7c",
+    "fp": "be475bcbaf145a51",
     "head": "\"devDependencies\": {"
   },
   "SECURITY.md|in-scope|.github/workflows/ci.yml:38-39|0": {

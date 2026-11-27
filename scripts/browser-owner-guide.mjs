@@ -49,12 +49,12 @@ const widthReport = (page) => page.evaluate(() => {
     && !contained(node));
   const wide = past.filter((node) => !past.some((other) => other !== node && other.contains(node)))
     .slice(0, 5).map((node) => {
-      const box = node.getBoundingClientRect();
-      return {
-        element: `${node.tagName.toLowerCase()}${node.id ? `#${node.id}` : ''}${[...node.classList].map((name) => `.${name}`).join('')}`,
-        left: Math.round(box.left), right: Math.round(box.right), width: Math.round(box.width),
-      };
-    });
+    const box = node.getBoundingClientRect();
+    return {
+      element: `${node.tagName.toLowerCase()}${node.id ? `#${node.id}` : ''}${[...node.classList].map((name) => `.${name}`).join('')}`,
+      left: Math.round(box.left), right: Math.round(box.right), width: Math.round(box.width),
+    };
+  });
   return { scrollWidth: document.documentElement.scrollWidth, innerWidth, clientWidth: edge, wide };
 });
 
