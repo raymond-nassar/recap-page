@@ -1,0 +1,22 @@
+[
+  {
+    "position": 1,
+    "id": "blood-hunt",
+    "title": "Marvel's Blood Hunt (2024) Reading Order",
+    "url": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-blood-hunt/",
+    "guideType": "event",
+    "window": "Q7",
+    "disposition": "new-order",
+    "reason": "The 55 source positions, the full current library, the other event in this batch and the offline fields have been reviewed. The partial overlaps belong to different reading orders.",
+    "sourceRetrievedAt": "2026-11-26",
+    "overlapIds": [
+      "amazing-spider-man-reading-order-modern-marvel-era",
+      "fantastic-four-reading-order",
+      "jed-mackay-reading-list",
+      "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "venom-reading-order"
+    ],
+    "catalogIds": [],
+    "deliveryStatus": "ready"
+  }
+]

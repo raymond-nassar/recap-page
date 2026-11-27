@@ -46,7 +46,7 @@ test('every listed choice holds exactly its published comics in both orders', ()
     const firstSeen = [];
     for (const id of entry.issueOrder) if (!booked.has(id) && !firstSeen.includes(series.get(id))) firstSeen.push(series.get(id));
     const expected = firstSeen.flatMap((seriesId) => entry.issueOrder.filter((id) => !booked.has(id) && series.get(id) === seriesId));
-    assert.deepEqual(entry.unbooked, expected, entry.catalogId);
+    if (entry.bookSteps === undefined) assert.deepEqual(entry.unbooked, expected, entry.catalogId);
   }
 });
 
@@ -113,6 +113,89 @@ test('only a list that offers the switch names what the books leave out', () => 
   assert.equal(currentReadingOrder(single), null);
   assert.deepEqual(booksLeaveOut(single), []);
   assert.equal(readingOrderChoiceFor(null), null);
+});
+
+// The shipped comics with a declared book order that puts single comics before, between and after
+// books, the shape a source gives when it opens with a one-shot or ends with an epilogue.
+function steppedChoice() {
+  const { unbooked, ...rest } = choice;
+  const [opening, between, ...others] = unbooked;
+  const [first, ...laterBooks] = choice.books;
+  const bookSteps = [
+    { issueId: opening }, { book: first.name }, { issueId: between },
+    ...laterBooks.map(({ name }) => ({ book: name })), ...others.map((issueId) => ({ issueId })),
+  ];
+  return { ...rest, bookSteps };
+}
+
+test('a declared book order keeps single comics before, between and after books', () => {
+  const stepped = steppedChoice();
+  const order = bookOrderOf(stepped);
+  const [opening, between] = choice.unbooked;
+  assert.equal(order[0], opening);
+  assert.deepEqual(order.slice(1, 8), choice.books[0].issueIds);
+  assert.equal(order[8], between);
+  assert.equal(order.at(-1), choice.unbooked.at(-1));
+  assert.equal(order.at(-2), choice.unbooked.at(-2));
+
+  const state = readerState();
+  const arranged = readingOrderArrangement(state.lists.wotr, stepped, 'book');
+  assert.deepEqual(arranged.itemIds, order);
+  assert.equal(Object.hasOwn(arranged.collectedIn, opening), false);
+  assert.equal(arranged.collectedIn[choice.books[0].issueIds[0]], choice.books[0].name);
+  assert.equal(currentReadingOrder(arranged, stepped), 'book');
+  assert.deepEqual(readingOrderArrangement(arranged, stepped, 'issue'), state.lists.wotr);
+  // Book names still come from the books alone, so a declared order cannot relabel a single comic.
+  assert.deepEqual(bookNamesOf(stepped), bookNamesOf(choice));
+});
+
+test('a declared book order that would add, drop or repeat a comic or a book is refused', () => {
+  const stepped = steppedChoice();
+  const [first] = stepped.bookSteps;
+  const book = stepped.bookSteps[1];
+  const invalid = {
+    'both declarations': { ...stepped, unbooked: [] },
+    'a book placed twice': { ...stepped, bookSteps: [...stepped.bookSteps, book] },
+    'a book left out': { ...stepped, bookSteps: stepped.bookSteps.filter((step) => step !== book) },
+    'an unknown book': { ...stepped, bookSteps: [...stepped.bookSteps, { book: 'Not a book' }] },
+    'a comic placed twice': { ...stepped, bookSteps: [...stepped.bookSteps, first] },
+    'a comic left out': { ...stepped, bookSteps: stepped.bookSteps.slice(1) },
+    'a comic the list lacks': { ...stepped, bookSteps: [...stepped.bookSteps.slice(1), { issueId: 999001 }] },
+    'a booked comic placed alone': { ...stepped, bookSteps: [...stepped.bookSteps, { issueId: choice.books[0].issueIds[0] }] },
+    'a step that is both': { ...stepped, bookSteps: [{ ...first, book: book.book }, ...stepped.bookSteps.slice(1)] },
+    'a step that is neither': { ...stepped, bookSteps: [{}, ...stepped.bookSteps] },
+    'a book named twice': { ...stepped, books: [...stepped.books, stepped.books[0]] },
+    'a comic listed twice in the issue order': {
+      catalogId: 'repeat', issueOrder: [901, 901, 902], books: [{ name: 'Book', issueIds: [902] }],
+      bookSteps: [{ issueId: 901 }, { book: 'Book' }],
+    },
+  };
+  for (const [name, entry] of Object.entries(invalid)) assert.throws(() => bookOrderOf(entry), Error, name);
+});
+
+test('comics a source places only in its issue order stay apart from the book order, in issue order', async () => {
+  const { bookSectionsOf } = await import('../src/js/lib/readingOrderChoices.js');
+  assert.equal(typeof bookSectionsOf, 'function');
+  const stepped = steppedChoice();
+  const [opening, between] = choice.unbooked;
+  const kept = new Set([opening, between, ...choice.books.flatMap(({ issueIds }) => issueIds)]);
+  const issueOrderOnly = choice.issueOrder.filter((id) => !kept.has(id));
+  const split = { ...stepped, bookSteps: stepped.bookSteps.filter((step) => !Object.hasOwn(step, 'issueId') || kept.has(step.issueId)), issueOrderOnly };
+  const { placed, issueOrderOnly: unplaced } = bookSectionsOf(split);
+  assert.deepEqual(placed, bookOrderOf(steppedChoice()).filter((id) => kept.has(id)));
+  assert.deepEqual(unplaced, issueOrderOnly);
+  assert.deepEqual([...placed, ...unplaced].sort((a, b) => a - b), [...choice.issueOrder].sort((a, b) => a - b));
+  // No single saved order can say where those comics fall among the books, so none is offered.
+  assert.throws(() => bookOrderOf(split), /no single book order/);
+  assert.deepEqual(bookSectionsOf(choice), { placed: bookOrderOf(choice), issueOrderOnly: [] });
+  assert.deepEqual(bookSectionsOf({ ...split, issueOrderOnly: [], bookSteps: stepped.bookSteps }).issueOrderOnly, []);
+  const invalid = {
+    'out of issue order': { ...split, issueOrderOnly: [...issueOrderOnly].reverse() },
+    'also placed': { ...split, issueOrderOnly: [opening, ...issueOrderOnly] },
+    'left out': { ...split, issueOrderOnly: issueOrderOnly.slice(1) },
+    'without book steps': { ...choice, issueOrderOnly: [] },
+  };
+  for (const [name, entry] of Object.entries(invalid)) assert.throws(() => bookSectionsOf(entry), Error, name);
 });
 
 test('the book order moves a fresh reader to the event\'s first book', () => {

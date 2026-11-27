@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { webcrypto } from 'node:crypto';
+import { readFileSync } from 'node:fs';
 import { createNoticeDismissal, NOTICE_DISMISSAL_KEY, readerClosureNoticeId } from '../src/js/lib/noticeDismissal.js';
 import { readerClosureNotice } from '../src/js/lib/readerDestination.js';
 
@@ -21,13 +22,24 @@ function fixture(raw = null) {
   return { map, storage };
 }
 
-test('the app-link notices keep both phases with new dismissal identities', () => {
-  assert.equal(readerClosureNotice(BEFORE),
-    'Read now opens comics in the Marvel Comics app when we have a link. Marvel Unlimited ends December 7, 2026. Until then you can still choose it under Reading options.');
-  assert.equal(readerClosureNotice(AFTER),
-    'Marvel Unlimited has ended. Read opens the comic in the Marvel Comics app when we have a link, and the Marvel Comics website otherwise.');
-  assert.equal(readerClosureNoticeId(BEFORE), 'marvel-comics-app-unlimited');
-  assert.equal(readerClosureNoticeId(AFTER), 'marvel-comics-app-comics');
+// #1601: the approved notice, byte for byte, curly apostrophe included.
+const APPROVED = 'Read opens a comic directly in the Marvel Comics app. If there’s no direct link, use Find on Marvel Comics to open the website.';
+
+test('the approved notice has the approved dismiss control and no obsolete FAQ link', () => {
+  const html = readFileSync(new URL('../src/index.html', import.meta.url), 'utf8');
+  assert.match(html, /aria-label="Dismiss reading link notice" data-tooltip="Dismiss reading link notice"/);
+  assert.doesNotMatch(html, /reader-closure-faq|Marvel's FAQ/);
+});
+
+test('the app-link notice is the one approved text with one identity on both sides of December 7', () => {
+  assert.equal(readerClosureNotice(BEFORE), APPROVED);
+  assert.equal(readerClosureNotice(AFTER), APPROVED);
+  assert.equal(readerClosureNotice(), APPROVED);
+  assert.doesNotMatch(APPROVED, /Unlimited|December/);
+  assert.equal(readerClosureNoticeId(BEFORE), READER_CLOSURE_NOTICE);
+  assert.equal(readerClosureNoticeId(AFTER), READER_CLOSURE_NOTICE);
+  assert.notEqual(READER_CLOSURE_NOTICE, 'marvel-comics-app-unlimited');
+  assert.notEqual(READER_CLOSURE_NOTICE, 'marvel-comics-app-comics');
 });
 
 test('only an exact valid notice identity is dismissed on load', () => {
@@ -120,39 +132,42 @@ test('a dismissal of the earlier Marvel Unlimited notice does not hide the app-l
   }
 });
 
-test('each reader phase has its own notice identity', () => {
-  assert.equal(readerClosureNoticeId(BEFORE), 'marvel-comics-app-unlimited');
-  assert.equal(readerClosureNoticeId(AFTER), 'marvel-comics-app-comics');
+test('a dismissal of either earlier app-link notice does not hide the approved notice', () => {
+  // Before #1601 these identities named the Marvel Unlimited warning and its post-cutoff text, so
+  // dismissing either must not hide the new words.
+  for (const raw of ['marvel-comics-app-unlimited', 'marvel-comics-app-comics']) {
+    assert.equal(createNoticeDismissal(fixture(raw)).dismissed(), false, raw);
+  }
 });
 
-test('a dismissal before the cutoff does not hide the notice after it', () => {
+test('a dismissal no longer expires at the cutoff, open page or reload', () => {
   const h = fixture();
   let now = BEFORE;
   const seen = createNoticeDismissal({ ...h, notice: () => readerClosureNoticeId(now) });
   seen.dismiss();
   assert.equal(seen.dismissed(), true);
   now = AFTER;
-  assert.equal(seen.dismissed(), false, 'the page left open across the cutoff shows the new notice');
-  assert.equal(createNoticeDismissal({ ...h, notice: () => readerClosureNoticeId(AFTER) }).dismissed(), false,
-    'a reload after the cutoff shows the new notice');
+  assert.equal(seen.dismissed(), true, 'the page left open across December 7 keeps the dismissal');
+  assert.equal(createNoticeDismissal({ ...h, notice: () => readerClosureNoticeId(AFTER) }).dismissed(), true,
+    'a reload after December 7 keeps the dismissal');
 });
 
 test('a dismissal after the cutoff stays dismissed across reloads', () => {
   const h = fixture();
   const notice = () => readerClosureNoticeId(AFTER);
   createNoticeDismissal({ ...h, notice }).dismiss();
-  assert.equal(h.map.get(NOTICE_DISMISSAL_KEY), 'marvel-comics-app-comics');
+  assert.equal(h.map.get(NOTICE_DISMISSAL_KEY), READER_CLOSURE_NOTICE);
   assert.equal(createNoticeDismissal({ ...h, notice }).dismissed(), true);
-  for (const raw of ['marvel-unlimited-closure-v1', 'marvel-unlimited-closure-unlimited', 'marvel-unlimited-closure-comics', 'marvel-comics-app-unlimited']) {
+  for (const raw of ['marvel-unlimited-closure-v1', 'marvel-unlimited-closure-unlimited', 'marvel-unlimited-closure-comics', 'marvel-comics-app-unlimited', 'marvel-comics-app-comics']) {
     assert.equal(createNoticeDismissal({ ...fixture(raw), notice }).dismissed(), false, raw);
   }
 });
 
-test('a page-only dismissal before the cutoff does not hide the notice after it', () => {
+test('a page-only dismissal is not withdrawn at the cutoff', () => {
   let now = BEFORE;
   const seen = createNoticeDismissal({ storage: undefined, notice: () => readerClosureNoticeId(now) });
   seen.dismiss();
   assert.equal(seen.dismissed(), true);
   now = AFTER;
-  assert.equal(seen.dismissed(), false);
+  assert.equal(seen.dismissed(), true);
 });

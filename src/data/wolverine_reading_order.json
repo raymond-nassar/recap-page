@@ -5,11 +5,11 @@
   "source": "https://www.comicbookherald.com/wolverine-reading-order/",
   "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
   "sourceLicense": null,
-  "generatedAt": "2026-11-13T07:32:25.875Z",
+  "generatedAt": "2026-11-26T23:56:20.000Z",
   "apiBase": "https://marvel.emreparker.com/v1",
   "count": 1272,
   "collections": 0,
-  "placeholders": 756,
+  "placeholders": 736,
   "unresolved": [
     {
       "title": "Iron Fist #15",
@@ -2497,48 +2497,6 @@
       "section": null
     },
     {
-      "title": "Cable & Deadpool #44",
-      "url": null,
-      "read": false,
-      "index": 574,
-      "section": null
-    },
-    {
-      "title": "Wolverine: Origins #21",
-      "url": null,
-      "read": false,
-      "index": 575,
-      "section": null
-    },
-    {
-      "title": "Wolverine: Origins #22",
-      "url": null,
-      "read": false,
-      "index": 576,
-      "section": null
-    },
-    {
-      "title": "Wolverine: Origins #23",
-      "url": null,
-      "read": false,
-      "index": 577,
-      "section": null
-    },
-    {
-      "title": "Wolverine: Origins #24",
-      "url": null,
-      "read": false,
-      "index": 578,
-      "section": null
-    },
-    {
-      "title": "Wolverine: Origins #25",
-      "url": null,
-      "read": false,
-      "index": 579,
-      "section": null
-    },
-    {
       "title": "Wolverine/Deadpool: The Decoy 1",
       "url": null,
       "read": false,
@@ -2746,90 +2704,6 @@
       "url": null,
       "read": false,
       "index": 638,
-      "section": null
-    },
-    {
-      "title": "Wolverine: Origins #16",
-      "url": null,
-      "read": false,
-      "index": 639,
-      "section": null
-    },
-    {
-      "title": "Wolverine: Origins #17",
-      "url": null,
-      "read": false,
-      "index": 640,
-      "section": null
-    },
-    {
-      "title": "Wolverine: Origins #18",
-      "url": null,
-      "read": false,
-      "index": 641,
-      "section": null
-    },
-    {
-      "title": "Wolverine: Origins #19",
-      "url": null,
-      "read": false,
-      "index": 642,
-      "section": null
-    },
-    {
-      "title": "Wolverine: Origins #20",
-      "url": null,
-      "read": false,
-      "index": 643,
-      "section": null
-    },
-    {
-      "title": "Wolverine: Origins #26",
-      "url": null,
-      "read": false,
-      "index": 644,
-      "section": null
-    },
-    {
-      "title": "Wolverine: Origins #27",
-      "url": null,
-      "read": false,
-      "index": 645,
-      "section": null
-    },
-    {
-      "title": "Wolverine: Origins #28",
-      "url": null,
-      "read": false,
-      "index": 646,
-      "section": null
-    },
-    {
-      "title": "Wolverine: Origins #29",
-      "url": null,
-      "read": false,
-      "index": 647,
-      "section": null
-    },
-    {
-      "title": "Wolverine: Origins #30",
-      "url": null,
-      "read": false,
-      "index": 648,
-      "section": null
-    },
-    {
-      "title": "Wolverine: Origins #31",
-      "url": null,
-      "read": false,
-      "index": 649,
-      "section": null
-    },
-    {
-      "title": "Wolverine: Origins #32",
-      "url": null,
-      "read": false,
-      "index": 650,
       "section": null
     },
     {
@@ -4895,20 +4769,6 @@
       "url": null,
       "read": false,
       "index": 1165,
-      "section": null
-    },
-    {
-      "title": "X-Men Gold #7",
-      "url": null,
-      "read": false,
-      "index": 1166,
-      "section": null
-    },
-    {
-      "title": "X-Men Gold #8",
-      "url": null,
-      "read": false,
-      "index": 1167,
       "section": null
     },
     {
@@ -17585,100 +17445,198 @@
       ]
     },
     {
-      "issueId": -1224479109,
-      "title": "Cable & Deadpool #44",
+      "issueId": 16114,
+      "title": "Cable & Deadpool (2004) #44",
       "number": "44",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/16114/cable_deadpool_2004_44",
+      "seriesId": 693,
+      "seriesName": "Cable & Deadpool (2004 - 2008)",
+      "onSale": "2007-08-22T00:00:00+0000",
+      "mu": "2007-08-22T00:00:00+0000",
+      "digitalId": 8048,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/56e2d709d7004",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jeremy Freeman",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Skottie Young",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -197547741,
-      "title": "Wolverine: Origins #21",
+      "issueId": 17619,
+      "title": "Wolverine Origins (2006) #21",
       "number": "21",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/17619/wolverine_origins_2006_21",
+      "seriesId": 2375,
+      "seriesName": "Wolverine Origins (2006 - 2010)",
+      "onSale": "2008-01-16T00:00:00+0000",
+      "mu": "2008-01-16T00:00:00+0000",
+      "digitalId": 10324,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/58419d7c98a30",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Simone Bianchi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Dillon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Daniel Way",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -180770122,
-      "title": "Wolverine: Origins #22",
+      "issueId": 20664,
+      "title": "Wolverine Origins (2006) #22",
       "number": "22",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/20664/wolverine_origins_2006_22",
+      "seriesId": 2375,
+      "seriesName": "Wolverine Origins (2006 - 2010)",
+      "onSale": "2008-02-20T00:00:00+0000",
+      "mu": "2008-02-20T00:00:00+0000",
+      "digitalId": 11801,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/20/58419e66a3f92",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Steve Dillon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Simone Bianchi",
+          "role": "penciler"
+        },
+        {
+          "name": "Daniel Way",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -163992503,
-      "title": "Wolverine: Origins #23",
+      "issueId": 20859,
+      "title": "Wolverine Origins (2006) #23",
       "number": "23",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/20859/wolverine_origins_2006_23",
+      "seriesId": 2375,
+      "seriesName": "Wolverine Origins (2006 - 2010)",
+      "onSale": "2008-03-19T00:00:00+0000",
+      "mu": "2008-03-19T00:00:00+0000",
+      "digitalId": 11802,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/10/58419f349f621",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Steve Dillon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Simone Bianchi",
+          "role": "penciler"
+        },
+        {
+          "name": "Daniel Way",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -147214884,
-      "title": "Wolverine: Origins #24",
+      "issueId": 20994,
+      "title": "Wolverine Origins (2006) #24",
       "number": "24",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/20994/wolverine_origins_2006_24",
+      "seriesId": 2375,
+      "seriesName": "Wolverine Origins (2006 - 2010)",
+      "onSale": "2008-04-16T00:00:00+0000",
+      "mu": "2008-04-16T00:00:00+0000",
+      "digitalId": 11803,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/58419ffa25da5",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Steve Dillon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Simone Bianchi",
+          "role": "penciler"
+        },
+        {
+          "name": "Daniel Way",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -130437265,
-      "title": "Wolverine: Origins #25",
+      "issueId": 21206,
+      "title": "Wolverine Origins (2006) #25",
       "number": "25",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/21206/wolverine_origins_2006_25",
+      "seriesId": 2375,
+      "seriesName": "Wolverine Origins (2006 - 2010)",
+      "onSale": "2008-05-21T00:00:00+0000",
+      "mu": "2008-05-21T00:00:00+0000",
+      "digitalId": 11804,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/5841a0e96e5d4",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Steve Dillon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Simone Bianchi",
+          "role": "penciler"
+        },
+        {
+          "name": "Daniel Way",
+          "role": "writer"
+        }
+      ]
     },
     {
       "issueId": -321440749,
@@ -19088,196 +19046,383 @@
       "placeholder": true
     },
     {
-      "issueId": -1959293245,
-      "title": "Wolverine: Origins #16",
+      "issueId": 16144,
+      "title": "Wolverine Origins (2006) #16",
       "number": "16",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/16144/wolverine_origins_2006_16",
+      "seriesId": 2375,
+      "seriesName": "Wolverine Origins (2006 - 2010)",
+      "onSale": "2007-08-15T00:00:00+0000",
+      "mu": "2007-08-15T00:00:00+0000",
+      "digitalId": 8769,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/d0/5840506ca4800",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 64,
+      "creators": []
     },
     {
-      "issueId": -1976070864,
-      "title": "Wolverine: Origins #17",
+      "issueId": 16507,
+      "title": "Wolverine Origins (2006) #17",
       "number": "17",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/16507/wolverine_origins_2006_17",
+      "seriesId": 2375,
+      "seriesName": "Wolverine Origins (2006 - 2010)",
+      "onSale": "2007-09-19T00:00:00+0000",
+      "mu": "2007-09-19T00:00:00+0000",
+      "digitalId": 8770,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/03/58405188c384c",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Steve Dillon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler"
+        },
+        {
+          "name": "Daniel Way",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -2059958959,
-      "title": "Wolverine: Origins #18",
+      "issueId": 16508,
+      "title": "Wolverine Origins (2006) #18",
       "number": "18",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/16508/wolverine_origins_2006_18",
+      "seriesId": 2375,
+      "seriesName": "Wolverine Origins (2006 - 2010)",
+      "onSale": "2007-10-17T00:00:00+0000",
+      "mu": "2007-10-17T00:00:00+0000",
+      "digitalId": 8771,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/584052a4cff6e",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Steve Dillon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler"
+        },
+        {
+          "name": "Daniel Way",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -2076736578,
-      "title": "Wolverine: Origins #19",
+      "issueId": 17243,
+      "title": "Wolverine Origins (2006) #19",
       "number": "19",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/17243/wolverine_origins_2006_19",
+      "seriesId": 2375,
+      "seriesName": "Wolverine Origins (2006 - 2010)",
+      "onSale": "2007-11-21T00:00:00+0000",
+      "mu": "2007-11-21T00:00:00+0000",
+      "digitalId": 8772,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/51e07c8a92d2e",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Steve Dillon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler"
+        },
+        {
+          "name": "Daniel Way",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -214325360,
-      "title": "Wolverine: Origins #20",
+      "issueId": 17379,
+      "title": "Wolverine Origins (2006) #20",
       "number": "20",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/17379/wolverine_origins_2006_20",
+      "seriesId": 2375,
+      "seriesName": "Wolverine Origins (2006 - 2010)",
+      "onSale": "2007-12-19T00:00:00+0000",
+      "mu": "2007-12-19T00:00:00+0000",
+      "digitalId": 8773,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/584054b86eca8",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Steve Dillon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler"
+        },
+        {
+          "name": "Daniel Way",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -113659646,
-      "title": "Wolverine: Origins #26",
+      "issueId": 21350,
+      "title": "Wolverine Origins (2006) #26",
       "number": "26",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/21350/wolverine_origins_2006_26",
+      "seriesId": 2375,
+      "seriesName": "Wolverine Origins (2006 - 2010)",
+      "onSale": "2008-06-25T00:00:00+0000",
+      "mu": "2008-06-25T00:00:00+0000",
+      "digitalId": 11805,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5841a1d49dc6c",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stephen Segovia",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Daniel Way",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -96882027,
-      "title": "Wolverine: Origins #27",
+      "issueId": 21531,
+      "title": "Wolverine Origins (2006) #27",
       "number": "27",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/21531/wolverine_origins_2006_27",
+      "seriesId": 2375,
+      "seriesName": "Wolverine Origins (2006 - 2010)",
+      "onSale": "2008-07-30T00:00:00+0000",
+      "mu": "2008-07-30T00:00:00+0000",
+      "digitalId": 11806,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/80/5841a2f1ac04c",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stephen Segovia",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Daniel Way",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -80104408,
-      "title": "Wolverine: Origins #28",
+      "issueId": 21962,
+      "title": "Wolverine Origins (2006) #28",
       "number": "28",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/21962/wolverine_origins_2006_28",
+      "seriesId": 2375,
+      "seriesName": "Wolverine Origins (2006 - 2010)",
+      "onSale": "2008-09-24T00:00:00+0000",
+      "mu": "2008-09-24T00:00:00+0000",
+      "digitalId": 11807,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/5841a3c7b429a",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Deodato Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Richard Isanove",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Daniel Way",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -63326789,
-      "title": "Wolverine: Origins #29",
+      "issueId": 22284,
+      "title": "Wolverine Origins (2006) #29",
       "number": "29",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/22284/wolverine_origins_2006_29",
+      "seriesId": 2375,
+      "seriesName": "Wolverine Origins (2006 - 2010)",
+      "onSale": "2008-10-29T00:00:00+0000",
+      "mu": "2008-10-29T00:00:00+0000",
+      "digitalId": 11808,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/5841a4f94fab8",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Deodato Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Richard Isanove",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Daniel Way",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -113460965,
-      "title": "Wolverine: Origins #30",
+      "issueId": 22492,
+      "title": "Wolverine Origins (2006) #30",
       "number": "30",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/22492/wolverine_origins_2006_30",
+      "seriesId": 2375,
+      "seriesName": "Wolverine Origins (2006 - 2010)",
+      "onSale": "2008-11-26T00:00:00+0000",
+      "mu": "2008-11-26T00:00:00+0000",
+      "digitalId": 11809,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/5841a60df2f4c",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Deodato Jr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Richard Isanove",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Daniel Way",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -130238584,
-      "title": "Wolverine: Origins #31",
+      "issueId": 22896,
+      "title": "Wolverine Origins (2006) #31",
       "number": "31",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/22896/wolverine_origins_2006_31",
+      "seriesId": 2375,
+      "seriesName": "Wolverine Origins (2006 - 2010)",
+      "onSale": "2008-12-24T00:00:00+0000",
+      "mu": "2008-12-24T00:00:00+0000",
+      "digitalId": 11810,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/30/58459085dd068",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Michel Lacombe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Deodato Jr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Serge Lapointe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Yanick Paquette",
+          "role": "penciler"
+        },
+        {
+          "name": "Daniel Way",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -147016203,
-      "title": "Wolverine: Origins #32",
+      "issueId": 23103,
+      "title": "Wolverine Origins (2006) #32",
       "number": "32",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/23103/wolverine_origins_2006_32",
+      "seriesId": 2375,
+      "seriesName": "Wolverine Origins (2006 - 2010)",
+      "onSale": "2009-01-21T00:00:00+0000",
+      "mu": "2009-01-21T00:00:00+0000",
+      "digitalId": 13526,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/584591cb34d66",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Michel Lacombe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Serge Lapointe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Yanick Paquette",
+          "role": "penciler"
+        },
+        {
+          "name": "Daniel Way",
+          "role": "writer"
+        }
+      ]
     },
     {
       "issueId": -1583880385,
@@ -30703,10 +30848,11 @@
       "placeholder": true
     },
     {
-      "issueId": -1293566736,
-      "title": "X-Men Gold #7",
+      "issueId": -8000000000028965,
+      "appViewer": "28965",
+      "title": "X-Men Gold (2017) #7",
       "number": "7",
-      "url": null,
+      "url": "https://www.marvelcomicsapp.com/viewer/28965",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -30715,14 +30861,14 @@
       "cover": null,
       "description": null,
       "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "creators": []
     },
     {
-      "issueId": -1377454831,
-      "title": "X-Men Gold #8",
+      "issueId": -8000000000028960,
+      "appViewer": "28960",
+      "title": "X-Men Gold (2017) #8",
       "number": "8",
-      "url": null,
+      "url": "https://www.marvelcomicsapp.com/viewer/28960",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -30731,8 +30877,7 @@
       "cover": null,
       "description": null,
       "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "creators": []
     },
     {
       "issueId": 64290,

@@ -26,8 +26,11 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createJsonFetcher } from './lib/fetch-json.mjs';
 import { lookupIssues } from './lib/lookup-issues.mjs';
+import { eventReadingOrders } from '../src/data/eventReadingOrders.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
+import { taggedViewer, appViewerFromUrl } from '../src/js/lib/marvelComicsAppUrl.js';
 import { parseCatalog } from '../src/js/lib/catalog.js';
+import { sectionalReadingRows } from '../src/js/lib/sectionalGuide.js';
 import { parseManifest } from '../src/js/lib/curated.js';
 import { parseIssueNumber, reconcileIssueTitleNumber } from './lib/issue-number.mjs';
 import { RateLimiter } from '../src/js/lib/limiter.js';
@@ -45,11 +48,17 @@ import {
 import {
   buildChapterFamily,
   buildChildOverlapEvidence,
+  readingOrderSubjects,
   validateChapterLedger,
   validateStorylinesChildren, chapterFile,
 } from './lib/chapter-orders.mjs';
+import { buildSectionalFamily, sectionalPartFile } from './lib/sectional-orders.mjs';
 import { sourceCreditRevisions } from './lib/source-credit-revisions.mjs';
-import { digestCanonicalJson } from './lib/cbh-inventory.mjs';
+import {
+  assertFindOnlySourcePositions, digestCanonicalJson, validateApprovalDigest, validateMappingDigest,
+} from './lib/cbh-inventory.mjs';
+import { findOnlyChecklistTitle } from './lib/cbh-checklist-title.mjs';
+import { loadReviewedVendorFields, parseReviewedVendorFields } from './lib/reviewed-vendor-fields.mjs';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const API = 'https://marvel.emreparker.com/v1';
 const MANIFEST = join(ROOT, 'src', 'data', 'curated-lists.json');
@@ -60,12 +69,13 @@ const SCRIPT_DATA_DIR = join(ROOT, 'scripts', 'data');
 // A manifest that cannot be read in full is a maintainer error: vendoring the valid subset
 // would quietly ship a catalog missing a list nobody noticed was broken.
 async function loadOrders() {
-  const { entries, paths, errors } = parseManifest(JSON.parse(await readFile(MANIFEST, 'utf8')));
+  const raw = JSON.parse(await readFile(MANIFEST, 'utf8'));
+  const { entries, paths, errors } = parseManifest(raw);
   if (errors.length) {
     throw new Error(`curated-lists.json is not valid:\n  - ${errors.join('\n  - ')}`);
   }
   if (!entries.length) throw new Error('curated-lists.json defines no reading lists');
-  return { entries, paths };
+  return { entries, paths, sectionalGuides: raw.sectionalGuides };
 }
 
 // Vendoring hammers the metadata service harder than the app does, so use a stricter
@@ -127,7 +137,67 @@ async function loadAllOwnerMappings() {
   return mappings;
 }
 
-async function loadDateCorrections(order, entries) {
+// A Find-only comic is authored as a plain checklist line because its source recorded no issue
+// address, so parsing alone sees an unresolved title. Its reviewed mapping still holds the exact
+// provider id, and that id is restored here before metadata lookup so the comic is hydrated and
+// saved under its real identity rather than a placeholder. Because the mapping alone names that
+// identity, it must be this order's approved mapping with an intact digest and a relationship
+// approval bound to that same digest and packet, and every listed row must match exactly one
+// URL-less line whose parsed title equals the authored one at its source occurrence.
+export function restoreFindOnlyEntries(orderId, parsedOrder, mapping) {
+  const findOnly = mapping ? assertFindOnlySourcePositions(mapping) : [];
+  if (findOnly.length === 0) return parsedOrder;
+  assertApprovedFindOnlyMapping(orderId, mapping);
+  const rows = new Map(mapping.rows.map((row) => [row.sourcePosition, row]));
+  const restored = [];
+  const remaining = [];
+  const listed = new Set(findOnly.map(String));
+  for (const entry of parsedOrder.unresolved) {
+    if (!listed.has(entry.sourceKey)) {
+      remaining.push(entry);
+      continue;
+    }
+    const row = rows.get(Number(entry.sourceKey));
+    if (entry.url != null || entry.title !== findOnlyChecklistTitle(row)
+      || restored.some((item) => item.sourceKey === entry.sourceKey)) {
+      throw new Error(`${orderId}: Find-only source occurrence ${entry.sourceKey} differs from its reviewed mapping`);
+    }
+    restored.push({
+      issueId: row.selectedIssueId, title: entry.title, url: null, findOnly: true, read: entry.read,
+      index: entry.index, section: entry.section, sourceKey: entry.sourceKey,
+    });
+  }
+  const missing = findOnly.filter((position) => !restored.some((item) => item.sourceKey === String(position)));
+  if (missing.length) {
+    throw new Error(`${orderId}: Find-only source occurrences ${missing.join(', ')} are not plain checklist lines`);
+  }
+  return {
+    ...parsedOrder,
+    entries: [...parsedOrder.entries, ...restored].sort((a, b) => a.index - b.index),
+    unresolved: remaining,
+  };
+}
+
+function assertApprovedFindOnlyMapping(orderId, mapping) {
+  const review = mapping.relationshipReview;
+  if (mapping.id !== orderId || mapping.reviewStatus !== 'approved' || !review
+    || review.mappingDigest !== mapping.mappingDigest || review.packetDigest !== mapping.packetDigest) {
+    throw new Error(`${orderId}: Find-only rows need this order's approved mapping and relationship review`);
+  }
+  validateMappingDigest(mapping);
+  validateApprovalDigest(review, orderId);
+}
+
+async function loadCbhMapping(order) {
+  try {
+    return JSON.parse(await readFile(join(SCRIPT_DATA_DIR, 'cbh-mappings', `${order.id}.json`), 'utf8'));
+  } catch (error) {
+    if (error.code === 'ENOENT') return null;
+    throw error;
+  }
+}
+
+export async function loadDateCorrections(order, entries) {
   let ledger;
   try {
     ledger = JSON.parse(await readFile(join(SCRIPT_DATA_DIR, 'curated-source-ledgers', `${order.id}.json`), 'utf8'));
@@ -375,6 +445,93 @@ function coverBase(cover) {
   return { path: String(cover.path).replace(/^http:/, 'https:'), ext: cover.extension };
 }
 
+export function providerIssueIdsFor(entries) {
+  for (const entry of entries) {
+    if (entry.appViewer != null && (!taggedViewer(entry) || appViewerFromUrl(entry.url) !== entry.appViewer)) {
+      throw new Error('Service-only comic has conflicting identity or provider metadata');
+    }
+  }
+  return [...new Set(entries
+    .filter((entry) => entry.identityEvidenceKind !== 'owner-confirmed-identity' && !taggedViewer(entry))
+    .map((entry) => entry.issueId))];
+}
+
+export function vendorIssueItem(entry, detail, {
+  orderId, supplement, correction, refused = false,
+} = {}) {
+  const viewer = taggedViewer(entry);
+  if (entry.appViewer != null) {
+    if (!viewer || appViewerFromUrl(entry.url) !== viewer
+      || Object.keys(detail).length || supplement || correction || refused) {
+      throw new Error('Service-only comic has conflicting identity or provider metadata');
+    }
+    return {
+      issueId: entry.issueId, appViewer: viewer, title: cleanText(entry.title),
+      number: parseIssueNumber(entry.title), url: entry.url,
+      seriesId: null, seriesName: null, onSale: null, mu: null, digitalId: null,
+      cover: null, description: null, pageCount: null, creators: [],
+      ...(entry.section ? { collectedIn: cleanText(entry.section) } : {}),
+    };
+  }
+  const ownerConfirmed = entry.identityEvidenceKind === 'owner-confirmed-identity';
+  const metadataTitle = cleanText(detail.title ?? entry.title);
+  const metadataNumber = parseIssueNumber(metadataTitle);
+  const number = parseIssueNumber(entry.title) ?? metadataNumber;
+  if (correction && ![correction.providerDate, correction.correctedDate]
+    .includes(typeof detail.onSaleDate === 'string' ? detail.onSaleDate.slice(0, 10) : null)) {
+    throw new Error(`Unexpected provider date for ${orderId}, issue ${entry.issueId}`);
+  }
+  return {
+    issueId: entry.issueId,
+    title: reconcileIssueTitleNumber(metadataTitle, metadataNumber, number),
+    number,
+    url: entry.findOnly === true ? null : (detail.detailUrl ?? entry.url),
+    ...(entry.findOnly === true ? { findOnly: true } : {}),
+    seriesId: detail.seriesId ?? null,
+    seriesName: detail.seriesName == null ? null : cleanText(detail.seriesName),
+    onSale: correction ? `${correction.correctedDate}T00:00:00+0000`
+      : (supplement ? supplement.onSale : (detail.onSaleDate ?? null)),
+    mu: detail.unlimitedDate ?? null,
+    digitalId: detail.digitalId ?? null,
+    cover: supplement ? supplement.cover : coverBase(detail.cover),
+    // Not vendored, deliberately. This is the one copied field that is Marvel's own prose
+    // reproduced verbatim rather than a fact about a publication, which is why the provenance
+    // record names it as the field to look at hardest. Dropping it removed 151,840 characters
+    // across 798 of 1,473 records and cost one sentence on one screen: the field reached the
+    // interface through a single consumer, and `synopsisFallback` already answered for its
+    // absence for the 675 records that never had one. The lookup above still requests it, and
+    // `npm run contract` still asserts the service returns it, so this stays reversible by
+    // changing this one line back rather than by rebuilding anything.
+    description: null,
+    pageCount: supplement ? supplement.pageCount : (detail.pageCount ?? null),
+    creators: supplement ? supplement.creators.map((c) => ({ name: c.name, role: c.role })) : (Array.isArray(detail.creators)
+      ? detail.creators.filter((c) => /writer|penciler|artist/i.test(c.role ?? '')).map((c) => ({ name: c.name, role: c.role }))
+      : []),
+    // The one thing this run learned that the item cannot otherwise show. An issue the
+    // service answered 404 for is recorded here as refused, so the app is reading what the
+    // lookup was told instead of inferring it from every field being empty. Written only
+    // when it is true, so an order with nothing refused re-vendors with no per-item change
+    // at all. The file still differs, because generatedAt is a fresh wall clock on every
+    // run, so an empty diff is not the thing to check a run against.
+    ...(refused || ownerConfirmed ? { detailsRefused: true } : {}),
+    ...(ownerConfirmed ? { identityEvidenceKind: 'owner-confirmed-identity' } : {}),
+    // Which outside sources filled an owner-confirmed comic is recorded on the mapping row;
+    // the item carries only the closed kind, so the app can say truthfully where the cover
+    // and credits came from while every provider field stays null.
+    ...(supplement ? { metadataSourceKind: supplement.metadataSourceKind } : {}),
+    // The collected edition this issue belongs to, taken from the checklist's own
+    // sub-headings. It is the curator's grouping, not Marvel's: the metadata API carries
+    // no collection record for anything published after 2023, so there is nothing
+    // upstream to derive it from. Omitted entirely for an order with no sub-headings, so
+    // the orders that predate trade orders re-vendor to the same items they had before.
+    ...(entry.section ? { collectedIn: cleanText(entry.section) } : {}),
+  };
+}
+
+export function applyVendorPayloadRevisions(payload, output) {
+  return repairWolverineTitles(sourceCreditRevisions.apply(payload, output));
+}
+
 // The card art for a reading order. `coverIssueId` names the issue an order should be
 // recognised by; without one the first issue in reading order that has art stands in, which
 // is the issue a reader would open first anyway. Either way the image is Marvel's own
@@ -440,10 +597,33 @@ export function catalogContains(payloadById) {
   return contains;
 }
 
+export function validateVendoredCatalog(catalog, payloadById) {
+  const checked = parseCatalog(catalog);
+  if (checked.dropped) throw new Error(`${checked.dropped} catalog entries are not valid; catalog.json not written`);
+  const ids = new Set(checked.lists.map(({ id }) => id));
+  for (const { lists } of checked.sectionalGroups ?? []) {
+    for (const list of lists) {
+      const payload = payloadById.get(list.id);
+      if (payload?.id !== list.id || !Array.isArray(payload.items)
+        || !sectionalReadingRows(list.sectionalPart, payload.items)) {
+        throw new Error(`${list.id} payload does not match its sectional source order; catalog.json not written`);
+      }
+      for (const step of list.sectionalPart.steps) {
+        if (step.kind === 'guide-link' && !ids.has(step.catalogId)) {
+          throw new Error(`${list.id} has no catalog destination for ${step.catalogId}; catalog.json not written`);
+        }
+      }
+    }
+  }
+}
+
 // Derived from the payload rather than restated, so the issue count a reader sees before
 // importing can never drift from the file they will actually import.
 function catalogEntry(order, payload) {
   const writers = catalogWriters(payload);
+  const characters = !order.characters?.length && Object.hasOwn(eventReadingOrders, order.id)
+    ? readingOrderSubjects(payload.items)
+    : order.characters ?? [];
   const { coverIssueId, cover } = catalogCover(order, payload);
   const {
     placeholders, empty, ownerConfirmed, ownerSupplemented, ownerGcdSupplemented,
@@ -477,7 +657,7 @@ function catalogEntry(order, payload) {
     // sees before importing must come from the file they will actually import. Orders that are
     // not divided into collected editions report 0, which the catalog renders as nothing.
     collections: Number.isInteger(payload.collections) ? payload.collections : 0,
-    characters: order.characters ?? [],
+    characters,
     keywords: order.keywords ?? [],
     group: order.group,
     groupName: order.groupName,
@@ -499,17 +679,32 @@ function catalogEntry(order, payload) {
 }
 
 async function main() {
-  const { entries: orders, paths } = await loadOrders();
+  const { entries: orders, paths, sectionalGuides } = await loadOrders();
   const args = process.argv.slice(2);
   const only = parseOnly(args);
   const metadataCacheDir = parseMetadataCache(args);
+  const reviewedFields = parseReviewedVendorFields(args);
+  if (reviewedFields && (metadataCacheDir || only.size !== 1 || args.includes('--catalog-only'))) {
+    throw new Error('--reviewed-fields requires one explicit --only source and cannot share another metadata mode');
+  }
   const partitionLedgers = await loadPartitionLedgers(orders);
+  const sectionalById = new Map((sectionalGuides ?? []).map((guide) => [guide.id, guide]));
   const generatedFiles = [...partitionLedgers].flatMap(([parentId, ledger]) => {
     const parent = orders.find((order) => order.id === parentId);
     return ledger.chapters.map((_, index) => chapterFile(parent.out, index + 1));
   });
-  sourceCreditRevisions.validateOrders(orders, [...generatedFiles, 'catalog.json', RATED_GUIDE_INDEX_FILE]);
   const childParents = new Map();
+  for (const [id, guide] of sectionalById) {
+    const parent = orders.find((order) => order.id === id);
+    if (!Array.isArray(guide.parts) || !guide.parts.length) throw new Error(`${id} has no sectional parts`);
+    for (const [index] of guide.parts.entries()) {
+      childParents.set(`${id}-part-${index + 1}`, id);
+      generatedFiles.push(sectionalPartFile(parent.out, index + 1));
+    }
+  }
+  const allOrderFiles = [...orders.map((order) => order.out), ...generatedFiles];
+  if (new Set(allOrderFiles).size !== allOrderFiles.length) throw new Error('Vendor orders share an output file');
+  sourceCreditRevisions.validateOrders(orders, [...generatedFiles, 'catalog.json', RATED_GUIDE_INDEX_FILE]);
   for (const [parentId, ledger] of partitionLedgers) {
     for (const chapter of ledger.chapters) childParents.set(chapter.id, parentId);
   }
@@ -543,39 +738,45 @@ async function main() {
   if (metadataCacheDir && targets.some((order) => !order.sourceFile)) {
     throw new Error('--metadata-cache requires a local sourceFile and never fetches source pages');
   }
+  if (reviewedFields && (!targets[0]?.sourceFile || !only.has(targets[0].id))) {
+    throw new Error('--reviewed-fields requires its exact local source order and never fetches source pages');
+  }
   if (catalogOnly) console.log('Rebuilding catalog.json from the pinned order files; no issues are re-fetched.');
   else if (only.size) console.log(`Vendoring ${targets.length} of ${orders.length} source orders; the rest keep their pinned files.`);
 
   const parsed = [];
   for (const order of targets) {
     const md = await loadOrderText(order);
-    const parsedOrder = legacyIdentityChecked(order.id, parseChecklist(md, { legacyIdentityKeys: true }));
+    const mapping = await loadCbhMapping(order);
+    const parsedOrder = restoreFindOnlyEntries(
+      order.id,
+      legacyIdentityChecked(order.id, parseChecklist(md, { legacyIdentityKeys: true })),
+      mapping,
+    );
     const { entries, unresolved } = parsedOrder;
     console.log(`${order.id}: ${entries.length} issues, ${unresolved.length} unresolved`);
-    parsed.push({ order, parsedOrder });
+    parsed.push({ order, parsedOrder, mapping });
   }
 
-  const ids = [...new Set(parsed.flatMap(({ parsedOrder }) => (
-    parsedOrder.entries
-      .filter((entry) => entry.identityEvidenceKind !== 'owner-confirmed-identity')
-      .map((entry) => entry.issueId)
-  )))];
+  const ids = providerIssueIdsFor(parsed.flatMap(({ parsedOrder }) => parsedOrder.entries));
   if (ids.length) {
-    console.log(metadataCacheDir
+    console.log(reviewedFields ? `Validating the reviewed offline fields for ${ids.length} unique issues...` : metadataCacheDir
       ? `Reading ${ids.length} unique issues from the metadata cache only...`
       : `Hydrating ${ids.length} unique issues (rate limited, expect a few minutes)...`);
   }
 
-  const { meta, refused } = metadataCacheDir
-    ? await loadCachedMetadata(ids, metadataCacheDir)
-    : await lookupIssues(ids, {
-      getJson,
-      url: (id) => `${API}/issues/${id}`,
-      onProgress: ({ done, total, id, refused: wasRefused }) => {
-        if (wasRefused) console.warn(`  ! issue ${id}: upstream holds no record of it (404)`);
-        if (done % 25 === 0) console.log(`  ${done}/${total}`);
-      },
-    });
+  const { meta, refused, expectedCovers } = reviewedFields
+    ? await loadReviewedVendorFields(reviewedFields, { ...parsed[0], root: ROOT, loadResponses: loadCachedMetadata })
+    : metadataCacheDir
+      ? await loadCachedMetadata(ids, metadataCacheDir)
+      : await lookupIssues(ids, {
+        getJson,
+        url: (id) => `${API}/issues/${id}`,
+        onProgress: ({ done, total, id, refused: wasRefused }) => {
+          if (wasRefused) console.warn(`  ! issue ${id}: upstream holds no record of it (404)`);
+          if (done % 25 === 0) console.log(`  ${done}/${total}`);
+        },
+      });
   if (metadataCacheDir) {
     for (const id of refused) console.warn(`  ! issue ${id}: upstream holds no record of it (404)`);
   }
@@ -590,21 +791,23 @@ async function main() {
   const derivedPaths = new Set([join(DATA_DIR, RATED_GUIDE_INDEX_FILE)]);
   const addCatalogOutputs = (order, parsedOrder, payload, { writeChildren = true } = {}) => {
     const ledger = partitionLedgers.get(order.id);
-    if (!ledger) {
+    const sectional = sectionalById.get(order.id);
+    if (!ledger && !sectional) {
       catalogById.set(order.id, [catalogEntry(order, payload)]);
       payloadByCatalogId.set(order.id, payload);
       return;
     }
-    const family = buildChapterFamily({
+    const family = sectional ? null : buildChapterFamily({
       order,
       parsed: parsedOrder,
       parentPayload: payload,
       ledger,
       existingPathIds: paths.map((entry) => entry.id),
     });
-    families.set(order.id, family);
-    for (const child of family.children) {
-      if (writeChildren) {
+    if (family) families.set(order.id, family);
+    const children = family?.children ?? buildSectionalFamily({ order, parentPayload: payload, guide: sectional });
+    for (const child of children) {
+      if (writeChildren || sectional) {
         derivedPaths.add(join(DATA_DIR, child.order.out));
         outputs.push({
           path: join(DATA_DIR, child.order.out),
@@ -615,7 +818,7 @@ async function main() {
     }
     catalogById.set(
       order.id,
-      family.children.map((child) => catalogEntry(child.order, child.payload)),
+      children.map((child) => catalogEntry(child.order, child.payload)),
     );
   };
 
@@ -639,70 +842,22 @@ async function main() {
 
     const issueItems = entries.map((e) => {
       const ownerConfirmed = e.identityEvidenceKind === 'owner-confirmed-identity';
-      const d = ownerConfirmed ? {} : (meta.get(e.issueId) ?? {});
-      const supplement = ownerConfirmed ? supplementFor(e.issueId) : undefined;
-      if (d.digitalId == null) missingDigital += 1;
-      const cover = supplement ? supplement.cover : coverBase(d.cover);
-      if (!cover) missingCover += 1;
-      const metadataTitle = cleanText(d.title ?? e.title);
-      const metadataNumber = parseIssueNumber(metadataTitle);
-      const checklistNumber = parseIssueNumber(e.title);
-      const correction = dateCorrections.get(e.issueId);
-      if (correction && ![correction.providerDate, correction.correctedDate]
-        .includes(typeof d.onSaleDate === 'string' ? d.onSaleDate.slice(0, 10) : null)) {
-        throw new Error(`Unexpected provider date for ${order.id}, issue ${e.issueId}`);
+      const d = ownerConfirmed || taggedViewer(e) ? {} : (meta.get(e.issueId) ?? {});
+      const item = vendorIssueItem(e, d, {
+        orderId: order.id,
+        supplement: ownerConfirmed ? supplementFor(e.issueId) : undefined,
+        correction: dateCorrections.get(e.issueId),
+        refused: refused.has(e.issueId),
+      });
+      if (expectedCovers?.has(e.issueId)) {
+        const cover = expectedCovers.get(e.issueId);
+        if (cover.path !== item.cover?.path || cover.ext !== item.cover?.ext) {
+          throw new Error(`${order.id}: issue ${e.issueId} did not preserve the reviewed published cover`);
+        }
       }
-      return {
-        at: e.index,
-        item: {
-          issueId: e.issueId,
-          title: reconcileIssueTitleNumber(
-            metadataTitle,
-            metadataNumber,
-            checklistNumber ?? metadataNumber,
-          ),
-          number: checklistNumber ?? metadataNumber,
-          url: d.detailUrl ?? e.url,
-          seriesId: d.seriesId ?? null,
-          seriesName: d.seriesName == null ? null : cleanText(d.seriesName),
-          onSale: correction ? `${correction.correctedDate}T00:00:00+0000`
-            : (supplement ? supplement.onSale : (d.onSaleDate ?? null)),
-          mu: d.unlimitedDate ?? null,
-          digitalId: d.digitalId ?? null,
-          cover,
-          // Not vendored, deliberately. This is the one copied field that is Marvel's own prose
-          // reproduced verbatim rather than a fact about a publication, which is why the provenance
-          // record names it as the field to look at hardest. Dropping it removed 151,840 characters
-          // across 798 of 1,473 records and cost one sentence on one screen: the field reached the
-          // interface through a single consumer, and `synopsisFallback` already answered for its
-          // absence for the 675 records that never had one. The lookup above still requests it, and
-          // `npm run contract` still asserts the service returns it, so this stays reversible by
-          // changing this one line back rather than by rebuilding anything.
-          description: null,
-          pageCount: supplement ? supplement.pageCount : (d.pageCount ?? null),
-          creators: supplement ? supplement.creators.map((c) => ({ name: c.name, role: c.role })) : (Array.isArray(d.creators)
-            ? d.creators.filter((c) => /writer|penciler|artist/i.test(c.role ?? '')).map((c) => ({ name: c.name, role: c.role }))
-            : []),
-          // The one thing this run learned that the item cannot otherwise show. An issue the
-          // service answered 404 for is recorded here as refused, so the app is reading what the
-          // lookup was told instead of inferring it from every field being empty. Written only
-          // when it is true, so an order with nothing refused re-vendors with no per-item change
-          // at all. The file still differs, because generatedAt is a fresh wall clock on every
-          // run, so an empty diff is not the thing to check a run against.
-          ...(refused.has(e.issueId) || ownerConfirmed ? { detailsRefused: true } : {}),
-          ...(ownerConfirmed ? { identityEvidenceKind: 'owner-confirmed-identity' } : {}),
-          // Which outside sources filled an owner-confirmed comic is recorded on the mapping row;
-          // the item carries only the closed kind, so the app can say truthfully where the cover
-          // and credits came from while every provider field stays null.
-          ...(supplement ? { metadataSourceKind: supplement.metadataSourceKind } : {}),
-          // The collected edition this issue belongs to, taken from the checklist's own
-          // sub-headings. It is the curator's grouping, not Marvel's: the metadata API carries
-          // no collection record for anything published after 2023, so there is nothing
-          // upstream to derive it from. Omitted entirely for an order with no sub-headings, so
-          // the orders that predate trade orders re-vendor to the same items they had before.
-          ...(e.section ? { collectedIn: cleanText(e.section) } : {}),
-        },
-      };
+      if (item.digitalId == null) missingDigital += 1;
+      if (!item.cover) missingCover += 1;
+      return { at: e.index, item };
     });
 
     const placeholderItems = unresolved.map((u) => ({
@@ -751,7 +906,7 @@ async function main() {
       else console.warn(`  ! ${order.id}: issue ${entry.issueId} stays bare; ${entry.lenders.join(', ')} hold different details`);
     }
 
-    const payload = repairWolverineTitles(sourceCreditRevisions.apply({
+    const payload = applyVendorPayloadRevisions({
       id: order.id,
       name: order.name,
       description: order.description,
@@ -767,7 +922,7 @@ async function main() {
       placeholders: placeholderItems.length,
       unresolved,
       items,
-    }, order.out));
+    }, order.out);
 
     outputs.push({
       path: join(DATA_DIR, order.out),
@@ -815,8 +970,15 @@ async function main() {
       ? [['contains', containsById.get(entry.id)], [key, value]]
       : [[key, value]])))
     : entry));
-  const checked = parseCatalog({ lists: catalog });
-  if (checked.dropped) throw new Error(`${checked.dropped} catalog entries are not valid; catalog.json not written`);
+  const catalogData = {
+    lists: catalog,
+    ...(sectionalGuides === undefined ? {} : {
+      sectionalGuides: sectionalGuides.map(({ id, name, year, layout, parts }) => ({
+        id, name, year, layout, parts: parts.map(({ first, last, issueIds }) => ({ first, last, issueIds })),
+      })),
+    }),
+  };
+  validateVendoredCatalog(catalogData, payloadByCatalogId);
   const outputGeneratedAt = catalogOnly
     ? catalog.reduce((latest, entry) => (
       entry.updatedAt && entry.updatedAt > latest ? entry.updatedAt : latest
@@ -836,7 +998,7 @@ async function main() {
     path: join(DATA_DIR, 'catalog.json'),
     content: `${JSON.stringify({
       generatedAt: outputGeneratedAt,
-      lists: catalog,
+      ...catalogData,
       paths: [...paths, ...generatedPaths],
     }, null, 2)}\n`,
   });

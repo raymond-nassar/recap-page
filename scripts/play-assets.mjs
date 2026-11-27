@@ -10,9 +10,9 @@ export const ORIGIN = `http://${HOST}:${DEFAULT_PORT}`;
 export const FIXTURE_API = `${ORIGIN}/__play_preview_api__`;
 export const VIEWPORT = Object.freeze({ width: 360, height: 640, deviceScaleFactor: 3, isMobile: true, hasTouch: true });
 export const SCREENS = Object.freeze([
-  { file: 'dark-01-home.png', route: '#/home', view: 'view-home', theme: 'dark', state: 'empty', dismissNotice: true, text: ['Explore', 'New to Marvel Comics?', 'Modern Timeline'] },
+  { file: 'dark-01-home.png', route: '#/home', view: 'view-home', theme: 'dark', state: 'empty', dismissNotice: true, text: ['Explore', 'New to comics?', 'Modern Timeline'] },
   { file: 'dark-02-genres.png', route: '#/genres', view: 'view-genres', theme: 'dark', text: ['Browse Genres', 'Popular places to start'] },
-  { file: 'dark-03-modern-timeline.png', route: '#/catalog?path=modern-avengers', view: 'view-catalog', theme: 'dark', text: ['Modern Timeline', 'Follow a path', 'Jump to stop'] },
+  { file: 'dark-03-modern-timeline.png', route: '#/catalog?path=modern-avengers', view: 'view-catalog', theme: 'dark', text: ['Modern Timeline', 'Show full timeline', 'Jump to stop'] },
   { file: 'dark-04-reading-progress.png', route: '#/read/play-lantern', view: 'view-read', theme: 'dark', scroll: '#reading-overview', heading: '#hero-progress', text: ['3 of 8 read', 'Coming up'],
     alt: 'Dark Android reading progress for a fictional list, three of eight read, with the next comics coming up.' },
   { file: '01-library-preview.png', route: '#/library', view: 'view-library', text: ['Library', 'Fictional: Lantern Harbor', 'Fictional: Paper Moons'] },
@@ -129,7 +129,7 @@ export function shellPath(path) {
     || /^android\/(?:app|bridge|mobile-ui|cloud|cloudPort)\.js$/.test(path) || path === 'android/mobile.css'
     || /^icons\/icon(?:-(?:192|512)\.png|\.svg)$/.test(path) || path === 'icons/ui.svg' || ['icons/wordmark.svg', 'icons/wordmark-dark.svg'].includes(path)
     || path === 'brands/ms-symbollockup_mssymbol_19.svg' || path === 'brands/g-logo.png' || path === 'data/catalog.json'
-    || /^data\/(?:collectedEdition(?:Catalog|Evidence)|universeCatalog|marvelComicsAppLinks|marvelComicsAppMuIssues)\.js$/.test(path);
+    || /^data\/(?:collectedEdition(?:Catalog|Evidence)|eventReadingOrders|universeCatalog|marvelComicsAppLinks|marvelComicsAppMuIssues|identityCorrections)\.js$/.test(path);
 }
 
 export function previewResponse(url, method, assets) {

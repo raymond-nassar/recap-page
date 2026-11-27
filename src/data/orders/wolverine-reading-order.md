@@ -580,12 +580,12 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] 154-155
 - [ ] Deadpool (1997) 27
 - [ ] [Cable & Deadpool (2004) #43 <!-- mrt:source-occurrence=600 -->](https://www.marvel.com/comics/issue/15933/cable_deadpool_2004_43)
-- [ ] Cable & Deadpool #44
-- [ ] Wolverine: Origins #21
-- [ ] Wolverine: Origins #22
-- [ ] Wolverine: Origins #23
-- [ ] Wolverine: Origins #24
-- [ ] Wolverine: Origins #25
+- [ ] [Cable & Deadpool (2004) #44 <!-- mrt:source-occurrence=601 -->](https://www.marvel.com/comics/issue/16114/cable_deadpool_2004_44)
+- [ ] [Wolverine Origins (2006) #21 <!-- mrt:source-occurrence=602 -->](https://www.marvel.com/comics/issue/17619/wolverine_origins_2006_21)
+- [ ] [Wolverine Origins (2006) #22 <!-- mrt:source-occurrence=603 -->](https://www.marvel.com/comics/issue/20664/wolverine_origins_2006_22)
+- [ ] [Wolverine Origins (2006) #23 <!-- mrt:source-occurrence=604 -->](https://www.marvel.com/comics/issue/20859/wolverine_origins_2006_23)
+- [ ] [Wolverine Origins (2006) #24 <!-- mrt:source-occurrence=605 -->](https://www.marvel.com/comics/issue/20994/wolverine_origins_2006_24)
+- [ ] [Wolverine Origins (2006) #25 <!-- mrt:source-occurrence=606 -->](https://www.marvel.com/comics/issue/21206/wolverine_origins_2006_25)
 - [ ] Wolverine/Deadpool: The Decoy 1
 - [ ] Material From Wolverine Annual '95 <!-- mrt:legacy-identity-key=Material%20From%20Wolverine%20Annual%20%C3%83%C2%A2%C3%A2%E2%80%9A%C2%AC%C3%A2%E2%80%9E%C2%A295 -->
 - [ ] Logan #1
@@ -645,18 +645,18 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] Wolverine: Weapon X #16
 - [ ] Dark X-Men: The Beginning 3
 - [ ] All-New Wolverine Saga
-- [ ] Wolverine: Origins #16
-- [ ] Wolverine: Origins #17
-- [ ] Wolverine: Origins #18
-- [ ] Wolverine: Origins #19
-- [ ] Wolverine: Origins #20
-- [ ] Wolverine: Origins #26
-- [ ] Wolverine: Origins #27
-- [ ] Wolverine: Origins #28
-- [ ] Wolverine: Origins #29
-- [ ] Wolverine: Origins #30
-- [ ] Wolverine: Origins #31
-- [ ] Wolverine: Origins #32
+- [ ] [Wolverine Origins (2006) #16 <!-- mrt:source-occurrence=667 -->](https://www.marvel.com/comics/issue/16144/wolverine_origins_2006_16)
+- [ ] [Wolverine Origins (2006) #17 <!-- mrt:source-occurrence=668 -->](https://www.marvel.com/comics/issue/16507/wolverine_origins_2006_17)
+- [ ] [Wolverine Origins (2006) #18 <!-- mrt:source-occurrence=669 -->](https://www.marvel.com/comics/issue/16508/wolverine_origins_2006_18)
+- [ ] [Wolverine Origins (2006) #19 <!-- mrt:source-occurrence=670 -->](https://www.marvel.com/comics/issue/17243/wolverine_origins_2006_19)
+- [ ] [Wolverine Origins (2006) #20 <!-- mrt:source-occurrence=671 -->](https://www.marvel.com/comics/issue/17379/wolverine_origins_2006_20)
+- [ ] [Wolverine Origins (2006) #26 <!-- mrt:source-occurrence=677 -->](https://www.marvel.com/comics/issue/21350/wolverine_origins_2006_26)
+- [ ] [Wolverine Origins (2006) #27 <!-- mrt:source-occurrence=678 -->](https://www.marvel.com/comics/issue/21531/wolverine_origins_2006_27)
+- [ ] [Wolverine Origins (2006) #28 <!-- mrt:source-occurrence=679 -->](https://www.marvel.com/comics/issue/21962/wolverine_origins_2006_28)
+- [ ] [Wolverine Origins (2006) #29 <!-- mrt:source-occurrence=680 -->](https://www.marvel.com/comics/issue/22284/wolverine_origins_2006_29)
+- [ ] [Wolverine Origins (2006) #30 <!-- mrt:source-occurrence=681 -->](https://www.marvel.com/comics/issue/22492/wolverine_origins_2006_30)
+- [ ] [Wolverine Origins (2006) #31 <!-- mrt:source-occurrence=682 -->](https://www.marvel.com/comics/issue/22896/wolverine_origins_2006_31)
+- [ ] [Wolverine Origins (2006) #32 <!-- mrt:source-occurrence=683 -->](https://www.marvel.com/comics/issue/23103/wolverine_origins_2006_32)
 - [ ] X-Men: Original Sin #1
 - [ ] [X-Men Legacy (2008) #217 <!-- mrt:source-occurrence=685 -->](https://www.marvel.com/comics/issue/22254/x-men_legacy_2008_217)
 - [ ] [X-Men Legacy (2008) #218 <!-- mrt:source-occurrence=686 -->](https://www.marvel.com/comics/issue/22462/x-men_legacy_2008_218)
@@ -1172,8 +1172,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] X-Men Gold #4
 - [ ] X-Men Gold #5
 - [ ] X-Men Gold #6
-- [ ] X-Men Gold #7
-- [ ] X-Men Gold #8
+- [ ] [X-Men Gold (2017) #7 <!-- mrt:source-occurrence=1206 -->](https://www.marvelcomicsapp.com/viewer/28965)
+- [ ] [X-Men Gold (2017) #8 <!-- mrt:source-occurrence=1207 -->](https://www.marvelcomicsapp.com/viewer/28960)
 - [ ] [X-Men: Gold (2017) #9 <!-- mrt:source-occurrence=1208 -->](https://www.marvel.com/comics/issue/64290/x-men_gold_2017_9)
 - [ ] X-Men Gold #10
 - [ ] X-Men Gold #11

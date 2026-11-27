@@ -995,10 +995,10 @@ const MUTATIONS = [
   {
     id: 'catalog-gap-disclosure-off',
     breaks: 'catalog-gaps',
-    why: 'both catalog surfaces omit the generated gap disclosure',
-    rewriteMain: (source) => source.replace(
-      /^\s*\.\.\.catalogGapLabels\(list\),\r?\n/gm,
-      '',
+    why: 'Preview omits the generated gap disclosure',
+    rewriteCatalog: (source) => source.replace(
+      'export function catalogGapLabels(list) {',
+      'export function catalogGapLabels(list) {\n  if (list) return [];',
     ),
   },
   {
@@ -1859,16 +1859,16 @@ async function checkOfflineHomeUpdates(browser, origin, t) {
     await page.goto(`${origin}/#/home`, { waitUntil: 'load' });
     await page.waitForSelector('#home-cat-report .notice button', { timeout: 15000 });
     const offlineGuide = await page.evaluate(() => {
-      const link = document.querySelector('#home-categories a[href="#/new-to-comics"]');
+      const link = document.querySelector('#home-new-reader a[href="#/new-to-comics"]');
       return { visible: Boolean(link?.checkVisibility()), text: link?.textContent.trim() ?? null,
         catalogCards: document.querySelectorAll('#home-primary-paths .home-path').length };
     });
     const available = responses.get('/') === true && offlineGuide.visible
-      && offlineGuide.text === 'New to Marvel Comics?';
+      && offlineGuide.text === 'Find a starting point.';
     t.check('a worker-served shell exposes the guide with its catalog unavailable',
       available, JSON.stringify({ offlineGuide, responses: [...responses] }));
     if (available) {
-      await click(page, '#home-categories a[href="#/new-to-comics"]');
+      await click(page, '#home-new-reader a[href="#/new-to-comics"]');
       await page.waitForSelector('#view-new-to-comics:not([hidden])');
       await click(page, '#view-new-to-comics a[href="#/genres"]');
       await page.waitForSelector('#genres-report .notice button', { timeout: 15000 });
@@ -3152,6 +3152,12 @@ const SCENARIOS = [
           clearances: rows.map(clearance),
           groups: rows.map((row) => ({
             year: row.querySelector('.timeline-year-label')?.textContent.trim() ?? '',
+            // A period that starts inside a year splits it into one grid per period under its own
+            // heading (#1603), so equal heights are a contract of each grid rather than the year.
+            grids: [...row.querySelectorAll('.timeline-year-cards')].map((grid) => [...grid.querySelectorAll('.catalog-card')]
+              .map((card) => Math.round(card.getBoundingClientRect().height))),
+            splitHeaded: [...row.querySelectorAll('.timeline-year-cards')].slice(1)
+              .every((grid) => grid.previousElementSibling?.classList.contains('timeline-checkpoint')),
             cards: [...row.querySelectorAll('.catalog-card')].map((card) => card.dataset.year),
             heights: [...row.querySelectorAll('.catalog-card')]
               .map((card) => Math.round(card.getBoundingClientRect().height)),
@@ -3168,14 +3174,34 @@ const SCENARIOS = [
         vertical.groups.length > 0
         && vertical.groups.every((group) => group.cards.length > 0 && group.cards.every((year) => year === group.year)),
         JSON.stringify(vertical.groups));
-      t.check('cards within each year use one height and align their actions',
+      t.check('cards within each year grid use one height and align their actions',
         vertical.variedCopy && vertical.groups.every((group) => (
-          Math.max(...group.heights) - Math.min(...group.heights) <= 1
+          group.splitHeaded
+          && group.grids.every((heights) => Math.max(...heights) - Math.min(...heights) <= 1)
           && Math.max(...group.actionOffsets) <= 1
-        )),
+        )) && vertical.groups.some((group) => group.grids.length > 1),
         JSON.stringify(vertical.groups));
       t.check('each year label clears the circle beside it',
         vertical.clearances.every((gap) => gap >= 4), JSON.stringify(vertical.clearances));
+
+      // Family eras are stops in the whole timeline, never jump targets or addable cards (#1603).
+      // The suite's catalog is a fixture, so an era is expected exactly when its anchor story is
+      // painted: a stop whose anchor is missing must vanish rather than mark nothing.
+      const eras = await page.evaluate(() => ({
+        anchors: ['king-in-black', 'sins-of-sinister']
+          .filter((id) => document.querySelector(`[data-story="list:${id}"]`)),
+        stops: [...document.querySelectorAll('.timeline-family-era')].map((era) => ({
+          id: era.id,
+          controls: era.querySelectorAll('button,a,input,select,[tabindex]').length,
+          card: era.classList.contains('catalog-card'),
+        })),
+        menu: [...document.querySelectorAll('#catalog-section-jump option')].map((o) => o.textContent),
+      }));
+      t.check('family eras stand in the timeline only beside a real anchor, inert and outside the jump menu',
+        eras.stops.length === eras.anchors.length
+        && eras.stops.every((stop) => stop.controls === 0 && !stop.card)
+        && !eras.menu.some((name) => /Reign of X|Fall of X/.test(name)),
+        JSON.stringify(eras));
       t.check('each populated year stays pinned beside its card group',
         vertical.sticky.every((position) => position === 'sticky'), JSON.stringify(vertical.sticky));
 
@@ -3511,13 +3537,13 @@ const SCENARIOS = [
           t.check('reloading the guide retains the route without forcing heading focus',
             reloaded.visible && reloaded.focus !== 'new-to-comics-h'
               && parseRoute(reloaded.hash)?.view === 'new-to-comics', JSON.stringify(reloaded));
-          const card = await direct.$('#home-categories a[href="#/new-to-comics"]');
+          const card = await direct.$('#home-new-reader a[href="#/new-to-comics"]');
           t.check('the Home guide entry exists for a deliberate navigation', Boolean(card));
           if (card) {
             await card.dispose();
             await click(direct, '#view-new-to-comics .breadcrumb a');
             await direct.waitForSelector('#view-home:not([hidden])');
-            await direct.focus('#home-categories a[href="#/new-to-comics"]');
+            await direct.focus('#home-new-reader a[href="#/new-to-comics"]');
             await direct.keyboard.press('Enter');
             const arrived = await direct.evaluate(() => ({
               visible: document.querySelector('#view-new-to-comics')?.hidden === false,
@@ -3560,15 +3586,6 @@ const SCENARIOS = [
           && Boolean(document.querySelector('#view-new-to-comics a[href="#/genres"]')));
         t.check('the filtered Genres visit can reach the guide and its starter link', guideReady);
         if (guideReady) {
-          await click(starter, '[aria-labelledby="guide-app-h"] a[data-view="genres"]');
-          await starter.waitForSelector('#view-genres:not([hidden])');
-          const orientation = await starter.evaluate(() => ({
-            type: document.querySelector('#genres-type').value, tone: document.querySelector('#genres-tone').value,
-          }));
-          t.check('the orientation link retains Genres choices rather than acting as the starter reset',
-            orientation.type === 'espionage' && orientation.tone === 'dark', JSON.stringify(orientation));
-          await starter.goBack();
-          await starter.waitForSelector('#view-new-to-comics:not([hidden])');
           const nativeStarters = await starter.evaluate(() => {
             const link = document.querySelector('#view-new-to-comics a[href="#/genres"]');
             const results = ['ctrlKey', 'metaKey', 'shiftKey', 'altKey'].map((key) => {
@@ -3584,15 +3601,24 @@ const SCENARIOS = [
             link.dispatchEvent(event);
             return { results, middle };
           });
-          await click(starter, '[aria-labelledby="guide-app-h"] a[data-view="genres"]');
+          await starter.evaluate(() => { location.hash = '#/about'; });
+          await starter.waitForSelector('#view-about:not([hidden])');
+          await starter.focus('#view-about [aria-labelledby="guide-app-h"] a[data-view="genres"]');
+          await starter.keyboard.press('Enter');
           await starter.waitForSelector('#view-genres:not([hidden])');
           const retainedChoices = await starter.evaluate(() => ({
             type: document.querySelector('#genres-type').value, tone: document.querySelector('#genres-tone').value,
+            headingFocused: document.activeElement === document.querySelector('#view-genres h1'),
           }));
+          t.check('the About Genres link focuses the destination and retains both filters',
+            retainedChoices.headingFocused && retainedChoices.type === 'espionage' && retainedChoices.tone === 'dark',
+            JSON.stringify(retainedChoices));
           t.check('modified or middle activation of the starter link stays native without resetting filters',
             nativeStarters.results.every(Boolean) && nativeStarters.middle
               && retainedChoices.type === 'espionage' && retainedChoices.tone === 'dark',
             JSON.stringify({ ...nativeStarters, ...retainedChoices }));
+          await starter.goBack();
+          await starter.waitForSelector('#view-about:not([hidden])');
           await starter.goBack();
           await starter.waitForSelector('#view-new-to-comics:not([hidden])');
           const ids = [
@@ -3658,11 +3684,11 @@ const SCENARIOS = [
         await saved.waitForFunction(() => location.hash.includes('filter=unread'));
         const before = await saved.evaluate(() => localStorage.getItem('mrt.state.v2'));
         await click(saved, '.brand[data-view="home"]');
-        const card = await saved.$('#home-categories a[href="#/new-to-comics"]');
+        const card = await saved.$('#home-new-reader a[href="#/new-to-comics"]');
         t.check('the same-list reading fixture can reach the Home guide entry', Boolean(card));
         if (card) {
           await card.dispose();
-          await click(saved, '#home-categories a[href="#/new-to-comics"]');
+          await click(saved, '#home-new-reader a[href="#/new-to-comics"]');
           await saved.waitForSelector('#view-new-to-comics:not([hidden])');
           const entered = await saved.evaluate(() => ({ hash: location.hash,
             state: localStorage.getItem('mrt.state.v2'), settings: JSON.parse(localStorage.getItem('mrt.settings')) }));
@@ -4026,39 +4052,37 @@ const SCENARIOS = [
         await preparePage(guidePage, page.__origin, page.__mutation, 'home-category-gateway');
         const inspectGuide = async () => {
           const rendered = await guidePage.evaluate(() => {
-            const links = [...document.querySelectorAll('#home-categories a[href="#/new-to-comics"]')];
+            const links = [...document.querySelectorAll('#home-new-reader a[href="#/new-to-comics"]')];
             const link = links[0];
-            const headingRow = link?.closest('.sec-h');
-            const heading = headingRow?.querySelector('#home-cat-h');
+            const card = document.querySelector('#home-new-reader');
+            const heading = card?.querySelector('#home-new-reader-h');
             const headingBox = heading?.getBoundingClientRect();
             const linkBox = link?.getBoundingClientRect();
-            const rowBox = headingRow?.getBoundingClientRect();
+            const explore = document.querySelector('#home-categories');
             return { count: links.length, visible: Boolean(link?.checkVisibility()),
               text: link?.textContent.trim() ?? null, tag: link?.tagName ?? null,
-              className: link?.className ?? null,
               heading: heading?.textContent.trim() ?? null,
+              paragraphs: card?.querySelectorAll('p').length ?? 0,
               headingVisible: Boolean(heading?.checkVisibility() && !heading.closest('.visually-hidden')
                 && headingBox && headingBox.width > 1 && headingBox.height > 1),
-              headingWidth: headingBox?.width ?? 0, headingHeight: headingBox?.height ?? 0,
-              sameRow: Boolean(rowBox && linkBox && headingBox && Math.abs(linkBox.top - rowBox.top) < 1
-                && linkBox.right <= rowBox.right + 1 && headingBox.right <= linkBox.left + 1
-                && headingBox.bottom > linkBox.top && linkBox.bottom > headingBox.top),
-              linkWidth: linkBox?.width ?? 0, rowWidth: rowBox?.width ?? 0,
+              beforeExplore: Boolean(card && explore
+                && card.compareDocumentPosition(explore) & Node.DOCUMENT_POSITION_FOLLOWING),
+              otherEntries: document.querySelectorAll('#home-categories a[href="#/new-to-comics"]').length,
               linkHeight: linkBox?.height ?? 0,
               category: Boolean(link?.closest('#home-primary-paths, #home-more-paths')),
               icons: link?.querySelectorAll('svg').length ?? 0 };
           });
-          const node = await guidePage.$('#home-categories a[href="#/new-to-comics"]');
+          const node = await guidePage.$('#home-new-reader a[href="#/new-to-comics"]');
           const accessible = node ? await guidePage.accessibility.snapshot({ root: node }) : null;
           if (node) await node.dispose();
           return { ...rendered, name: accessible?.name ?? null };
         };
         const valid = (card) => card.count === 1 && card.visible && card.tag === 'A'
-          && card.text === 'New to Marvel Comics?' && card.name === card.text
-          && card.className === 'home-guide-link' && card.heading === 'Explore'
-          && card.headingVisible && card.sameRow && card.linkHeight >= 44
-          && card.linkWidth > 0 && card.linkWidth < card.rowWidth / 2
-          && !card.category && card.icons === 0;
+          && card.text === 'Find a starting point.' && card.name === card.text
+          && card.heading === 'New to comics?'
+          && card.paragraphs === 1
+          && card.headingVisible && card.beforeExplore && card.otherEntries === 0 && card.linkHeight >= 44
+          && !card.category && card.icons === 1;
         await open(guidePage, '/?local-catalog=pending#/home');
         await guidePage.waitForFunction(() => window.__mrtLocalPending.catalog.length === 1);
         const pending = await inspectGuide();
@@ -4077,7 +4101,7 @@ const SCENARIOS = [
         t.check('catalog retry restores category paths without duplicating the guide entry',
           valid(retried), JSON.stringify(retried));
         if (valid(retried)) {
-          const selector = '#home-categories a[href="#/new-to-comics"]';
+          const selector = '#home-new-reader a[href="#/new-to-comics"]';
           const press = [];
           const client = await guidePage.createCDPSession();
           try {
@@ -4111,13 +4135,13 @@ const SCENARIOS = [
             await guidePage.emulateMediaFeatures([]);
             await client.detach();
           }
-          t.check('the Home guide link gives held touch feedback without moving or activating',
+          t.check('the Home guide button gives held touch feedback without moving or activating',
             press.every(({ forced, before, held, cancelled }) => held.marked
               && (forced ? held.outline === 'solid' && held.width === '3px' && held.offset === '-3px'
                 : held.shadow.includes('inset') && held.shadow !== before.shadow)
               && held.tap === before.tap && held.box.every((value, i) => Math.abs(value - before.box[i]) < 0.5)
               && !cancelled.marked && cancelled.hash === before.hash), JSON.stringify(press));
-          await guidePage.focus('#home-categories a[href="#/new-to-comics"]');
+          await guidePage.focus('#home-new-reader a[href="#/new-to-comics"]');
           await guidePage.keyboard.press('Enter');
           t.check('the Home guide entry activates with the keyboard',
             await guidePage.evaluate(() => document.querySelector('#view-new-to-comics')?.hidden === false
@@ -4191,7 +4215,7 @@ const SCENARIOS = [
         JSON.stringify(context.sectionHeadings));
       t.check('the three current paths carry compact labels and content counts',
         JSON.stringify(context.paths) === JSON.stringify([
-          { key: 'timeline', label: 'Recommended start here', title: 'Modern Timeline', count: '14 Reading Lists' },
+          { key: 'timeline', label: 'Marvel Knights to Present Day', title: 'Modern Timeline', count: '14 Reading Lists' },
           { key: 'genres', label: 'Browse by genre and tone', title: 'Genres', count: '32 Reading Lists' },
           { key: 'character-spotlights', label: 'Browse heroes and teams', title: 'Character spotlights', count: '14 Reading Lists' },
         ]),
@@ -4770,15 +4794,14 @@ const SCENARIOS = [
       await page.waitForSelector(cardSelector, { timeout: 15000 });
       const card = await page.$eval(cardSelector, (node) => ({
         title: node.querySelector('.catalog-card-title')?.textContent.trim(),
-        text: node.textContent,
+        meta: node.querySelector('.catalog-card-meta')?.textContent.trim(),
         addName: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
         sourceName: node.querySelector('a[href*="comicbookherald.com"]')?.getAttribute('aria-label'),
         sourceHref: node.querySelector('a[href*="comicbookherald.com"]')?.href,
       }));
-      t.check('the Hope card exposes the exact count, gap disclosure, source, and add action',
+      t.check('the Hope card exposes the exact count, source, and add action without diagnostics',
         card.title === 'Hope Summers'
-        && card.text.includes('261 comics')
-        && card.text.includes('6 comics have no Marvel Unlimited links yet and cannot be opened')
+        && card.meta === '261 comics'
         && card.addName === 'Add to library: Hope Summers'
         && card.sourceName === 'Source of Hope Summers: Comic Book Herald'
         && card.sourceHref === 'https://www.comicbookherald.com/hope-summers-reading-order/',
@@ -4934,14 +4957,13 @@ const SCENARIOS = [
       await page.waitForSelector(cardSelector, { timeout: 15000 });
       const card = await page.$eval(cardSelector, (node) => ({
         name: node.querySelector('.catalog-card-title')?.textContent.trim(),
-        text: node.textContent,
+        meta: node.querySelector('.catalog-card-meta')?.textContent.trim(),
         sourceHref: node.querySelector('a[href*="comicbookherald.com"]')?.href,
         addName: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
       }));
-      t.check('both Hawkeyes are discoverable with a 663-issue source credit and one visible gap',
+      t.check('both Hawkeyes are discoverable with an exact comic count and source credit',
         card.name === 'Hawkeye (Clint Barton and Kate Bishop)'
-        && card.text.includes('663 comics')
-        && card.text.includes('1 comic has no Marvel Unlimited link yet and cannot be opened')
+        && card.meta === '663 comics'
         && card.sourceHref === 'https://www.comicbookherald.com/hawkeye-reading-order/'
         && card.addName === 'Add to library: Hawkeye (Clint Barton and Kate Bishop)',
         JSON.stringify(card));
@@ -5088,14 +5110,13 @@ const SCENARIOS = [
       await page.waitForSelector(cardSelector, { timeout: 15000 });
       const card = await page.$eval(cardSelector, (node) => ({
         name: node.querySelector('.catalog-card-title')?.textContent.trim(),
-        text: node.textContent,
+        meta: node.querySelector('.catalog-card-meta')?.textContent.trim(),
         sourceName: node.querySelector('a[href*="comicbookherald.com"]')?.getAttribute('aria-label'),
         sourceHref: node.querySelector('a[href*="comicbookherald.com"]')?.href,
         addName: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
       }));
-      t.check('Kamala is discoverable with the exact count, five-gap disclosure and source credit',
-        card.name === 'Ms. Marvel (Kamala Khan)' && card.text.includes('192 comics')
-        && card.text.includes('5 comics have no Marvel Unlimited links yet and cannot be opened')
+      t.check('Kamala is discoverable with the exact comic count and source credit',
+        card.name === 'Ms. Marvel (Kamala Khan)' && card.meta === '192 comics'
         && card.sourceName === 'Source of Ms. Marvel (Kamala Khan): Comic Book Herald'
         && card.sourceHref === 'https://www.comicbookherald.com/ms-marvel-kamala-khan-reading-order/'
         && card.addName === 'Add to library: Ms. Marvel (Kamala Khan)', JSON.stringify(card));
@@ -5223,7 +5244,7 @@ const SCENARIOS = [
       }));
       t.check('Laura Kinney discovers the credited 291-issue X-23 guide without gap disclosure',
         card.name === 'X-23 (Laura Kinney)' && card.text.includes('291 comics')
-        && !card.text.includes('comics have no Marvel Unlimited links yet')
+        && !card.text.includes('comics are listed by title only')
         && card.sourceName === 'Source of X-23 (Laura Kinney): Comic Book Herald'
         && card.sourceHref === 'https://www.comicbookherald.com/x-23-reading-order/'
         && card.addName === 'Add to library: X-23 (Laura Kinney)', JSON.stringify(card));
@@ -5367,12 +5388,11 @@ const SCENARIOS = [
       await page.waitForSelector(cardSelector, { timeout: 15000 });
       const card = await page.$eval(cardSelector, (node) => ({
         name: node.querySelector('.catalog-card-title')?.textContent.trim(),
-        text: node.textContent,
+        meta: node.querySelector('.catalog-card-meta')?.textContent.trim(),
         source: node.querySelector('a[href*="comicbookherald.com"]')?.href,
       }));
-      t.check('Nova card credits the exact source, 371 issues and two visible metadata gaps',
-        card.name === 'Nova' && card.text.includes('371 comics')
-        && card.text.includes('2 comics have no Marvel Unlimited links yet and cannot be opened')
+      t.check('Nova card gives the exact comic count and source credit',
+        card.name === 'Nova' && card.meta === '371 comics'
         && card.source === 'https://www.comicbookherald.com/nova-reading-order/',
         JSON.stringify(card));
       await click(page, `${cardSelector} [data-act="preview"]`);
@@ -5510,9 +5530,9 @@ const SCENARIOS = [
         sourceHref: node.querySelector('a[href*="comicbookherald.com"]')?.href,
         genre: node.closest('.story-type-results')?.querySelector('h2')?.textContent.trim(),
       }));
-      t.check('the Horror genre discovers one credited partial guide with three disclosed gaps',
+      t.check('the Horror genre discovers one credited partial guide with its exact comic count',
         card.name === 'Marvel Zombies' && card.genre === 'Horror'
-        && card.meta === '94 comics · 3 comics have no Marvel Unlimited links yet and cannot be opened'
+        && card.meta === '94 comics'
         && card.addName === 'Add to library: Marvel Zombies'
         && card.sourceName === 'Source of Marvel Zombies: Comic Book Herald'
         && card.sourceHref === 'https://www.comicbookherald.com/marvel-zombies-reading-order/',
@@ -5536,7 +5556,7 @@ const SCENARIOS = [
       t.check('Preview keeps five visible universe labels and the source and gap disclosure',
         sections.every((section) => preview.headings.some((heading) => heading.startsWith(section)))
         && preview.source.includes('Comic Book Herald')
-        && preview.meta.includes('3 comics have no Marvel Unlimited links yet'),
+        && preview.meta.includes('3 comics are listed by title only'),
         JSON.stringify({ headings: preview.headings, source: preview.source, meta: preview.meta }));
 
       await click(page, '#preview-add [data-act="main"]');
@@ -5662,14 +5682,13 @@ const SCENARIOS = [
       await page.waitForSelector(cardSelector, { timeout: 15000 });
       const card = await page.$eval(cardSelector, (node) => ({
         name: node.querySelector('.catalog-card-title')?.textContent.trim(),
-        text: node.textContent,
+        meta: node.querySelector('.catalog-card-meta')?.textContent.trim(),
         sourceName: node.querySelector('a[href*="comicbookherald.com"]')?.getAttribute('aria-label'),
         sourceHref: node.querySelector('a[href*="comicbookherald.com"]')?.href,
         addName: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
       }));
-      t.check('Silk is discoverable with 74 positions, seven gaps and Comic Book Herald credit',
-        card.name === 'Silk / Cindy Moon' && card.text.includes('74 comics')
-        && card.text.includes('7 comics have no Marvel Unlimited links yet and cannot be opened')
+      t.check('Silk is discoverable with the exact comic count and Comic Book Herald credit',
+        card.name === 'Silk / Cindy Moon' && card.meta === '74 comics'
         && card.sourceName === 'Source of Silk / Cindy Moon: Comic Book Herald'
         && card.sourceHref === 'https://www.comicbookherald.com/silk-cindy-moon-reading-order/'
         && card.addName === 'Add to library: Silk / Cindy Moon', JSON.stringify(card));
@@ -5717,14 +5736,17 @@ const SCENARIOS = [
       t.check('the rendered Reading List retains the FCBD story qualification', renderedQualified);
       const gapActions = await page.$$eval('#rows .row', (nodes) => nodes
         .filter((node) => Number(node.querySelector('.rt')?.dataset.issueId) < 0)
-        .map((node) => ({
-          position: nodes.indexOf(node) + 1,
-          readHidden: node.querySelector('.ract button[data-act="open"]')?.hidden,
-          hasInfo: Boolean(node.querySelector('.ract a[data-act="info"]')),
-        })));
-      t.check('the seven unresolved digital originals offer neither Read nor Info actions',
+        .map((node) => {
+          const button = node.querySelector('.ract button[data-act="open"]:not([hidden])');
+          return {
+            position: nodes.indexOf(node) + 1,
+            action: button?.textContent.trim(),
+            hasInfo: Boolean(node.querySelector('.ract a[data-act="info"]')),
+          };
+        }));
+      t.check('the seven unresolved digital originals offer Find on Marvel Comics but no Info action',
         gapActions.map((row) => row.position).join(',') === '44,45,46,47,48,49,50'
-        && gapActions.every((row) => row.readHidden && !row.hasInfo), JSON.stringify(gapActions));
+        && gapActions.every((row) => row.action === 'Find on Marvel Comics' && !row.hasInfo), JSON.stringify(gapActions));
 
       await page.reload({ waitUntil: 'load' });
       await page.waitForFunction(() =>
@@ -5811,6 +5833,166 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'home-starting-point',
+    title: 'the New to comics? card leads to one result per answer, kept only for the visit',
+    async run(page, t) {
+      await openFresh(page, '/?catalog=actual');
+      await page.waitForSelector('#home-new-reader a[href="#/new-to-comics"]', { timeout: 15000 });
+      const saved = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      const answers = () => page.evaluate(() => {
+        const visible = (id) => !document.getElementById(id).hidden;
+        const select = document.querySelector('#guide-start-favorite');
+        return {
+          familiarity: document.querySelector('input[name="guide-start-familiarity"]:checked')?.value ?? null,
+          favorite: select.value,
+          subject: select.selectedOptions[0]?.textContent.trim(),
+          starters: visible('guide-start-starters'),
+          timeline: visible('guide-start-timeline'),
+          match: visible('guide-start-match'),
+          optional: [...document.querySelectorAll('#guide-start-optional:not([hidden]) .catalog-card')]
+            .map((card) => card.querySelector('.catalog-card-preview').getAttribute('href')),
+          card: document.querySelector('#guide-start-match')?.textContent.replace(/\s+/g, ' ').trim() ?? '',
+          cards: document.querySelectorAll('#guide-start-match > *').length,
+        };
+      });
+
+      await page.focus('#home-new-reader a[href="#/new-to-comics"]');
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => location.hash === '#/new-to-comics'
+        && document.activeElement?.id === 'new-to-comics-h');
+      await page.waitForFunction(() => document.querySelectorAll('#guide-start-favorite option').length > 1);
+      t.check('the Home card opens the guide by keyboard with nothing preselected and the starter picks shown',
+        JSON.stringify(await answers()) === JSON.stringify({ familiarity: null, favorite: '', subject: 'No preference',
+          starters: true, timeline: false, match: false, optional: [], card: '', cards: 0 }), JSON.stringify(await answers()));
+
+      const familiarityRows = await page.$$eval('input[name="guide-start-familiarity"]', (inputs) =>
+        inputs.map((input) => input.closest('label').getBoundingClientRect().toJSON()));
+      t.check('the two experience answers each have their own row on desktop',
+        familiarityRows.length === 2 && familiarityRows[0].height > 0 && familiarityRows[1].height > 0
+          && familiarityRows[0].bottom < familiarityRows[1].top, JSON.stringify(familiarityRows));
+
+      await page.focus('input[name="guide-start-familiarity"][value="new"]');
+      await page.keyboard.press('Space');
+      const newReader = await answers();
+      t.check('a new reader with no preference gets both standard optional cards alongside the starter picks',
+        newReader.starters && !newReader.timeline && !newReader.match && isDeepStrictEqual(newReader.optional,
+          ['#/preview/history-of-the-marvel-universe-2019', '#/preview/marvels-1994']), JSON.stringify(newReader));
+      await page.keyboard.press('ArrowDown');
+      const experienced = await answers();
+      t.check('an experienced reader with no preference is offered Start the Modern Timeline alone',
+        experienced.familiarity === 'experienced' && experienced.timeline && !experienced.starters && !experienced.match
+          && experienced.optional.length === 0,
+        JSON.stringify(experienced));
+
+      const value = await page.$$eval('#guide-start-favorite option', (options) => options
+        .find((node) => node.textContent.trim() === 'Spider-Man (Peter Parker)')?.value ?? null);
+      const spider = { value, name: ACTUAL_CATALOG.lists.find((list) => list.id === value)?.name ?? null };
+      await page.select('#guide-start-favorite', spider.value);
+      const matched = await answers();
+      t.check('choosing the subject Spider-Man (Peter Parker) recommends one guide under that guide\'s own title',
+        !!spider.name && spider.name !== 'Spider-Man (Peter Parker)' && matched.subject === 'Spider-Man (Peter Parker)'
+        && matched.match && !matched.starters && !matched.timeline && matched.cards === 1
+        && matched.optional.length === 0 && matched.card.includes(spider.name), JSON.stringify({ spider, matched }));
+
+      await page.evaluate(() => history.back());
+      await page.waitForFunction(() => location.hash === '#/home' && document.activeElement?.id === 'home-h');
+      t.check('Back from the guide restores Home and heading focus', true);
+      await page.evaluate(() => history.forward());
+      await page.waitForFunction(() => location.hash === '#/new-to-comics'
+        && document.activeElement?.id === 'new-to-comics-h');
+      t.check('returning to the guide in the same visit keeps both answers and the result',
+        JSON.stringify(await answers()) === JSON.stringify(matched), JSON.stringify(await answers()));
+
+      const stored = await page.evaluate(() => ({
+        state: localStorage.getItem('mrt.state.v2'),
+        leaks: [...Object.keys(localStorage).map((key) => [key, localStorage.getItem(key)]),
+          ...Object.keys(sessionStorage).map((key) => [key, sessionStorage.getItem(key)])]
+          .filter(([key, value]) => /guide-start|familiarity|experienced/.test(key + value)).map(([key]) => key),
+        hash: location.hash,
+      }));
+      t.check('the answers reach no saved library, storage or address',
+        stored.state === saved && stored.leaks.length === 0 && stored.hash === '#/new-to-comics',
+        JSON.stringify({ ...stored, saved }));
+
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForFunction(() => document.querySelectorAll('#guide-start-favorite option').length > 1);
+      const reloaded = await answers();
+      t.check('a reload starts the questions again',
+        reloaded.familiarity === null && reloaded.favorite === '' && reloaded.starters && !reloaded.match
+          && reloaded.optional.length === 0,
+        JSON.stringify(reloaded));
+
+      const tab = await page.browserContext().newPage();
+      await preparePage(tab, page.__origin, page.__mutation);
+      await tab.setViewport({ width: 1280, height: 900 });
+      await open(tab, '/?catalog=actual#/new-to-comics');
+      await tab.waitForFunction(() => !document.querySelector('#view-new-to-comics').hidden
+        && document.querySelectorAll('#guide-start-favorite option').length > 1, { timeout: 15000 });
+      const fresh = await tab.evaluate(() => ({
+        heading: document.querySelector('#new-to-comics-h').textContent.trim(),
+        familiarity: document.querySelector('input[name="guide-start-familiarity"]:checked')?.value ?? null,
+        favorite: document.querySelector('#guide-start-favorite').value,
+        starters: !document.getElementById('guide-start-starters').hidden,
+        optional: !document.getElementById('guide-start-optional').hidden,
+      }));
+      await tab.close();
+      t.check('a new tab opened at the guide shows it with no earlier answers',
+        fresh.heading === 'New to comics?' && fresh.familiarity === null && fresh.favorite === '' && fresh.starters
+          && !fresh.optional,
+        JSON.stringify(fresh));
+
+      // The iPad audit read this button as a 144x19 link with a same-sized text child (#1600). Run the
+      // shipping iOS adaptation here so its DOM half and keyboard route are held; Apple's audit in CI
+      // remains the native proof.
+      const controller = readFileSync(new URL('../packaging/ios/RecapPage/WebViewController.swift', import.meta.url), 'utf8');
+      const adapter = controller.match(/private static let accessibleTargetScript = #"""([\s\S]*?)"""#/)?.[1];
+      if (!adapter) throw new Error('Missing iOS accessible target adaptation');
+      const styles = [
+        readFileSync(new URL('../packaging/android/web/mobile.css', import.meta.url), 'utf8'),
+        readFileSync(new URL('../packaging/ios/web/ios.css', import.meta.url), 'utf8'),
+      ];
+      const ios = await page.browserContext().newPage();
+      await preparePage(ios, page.__origin, page.__mutation);
+      await ios.setViewport({ width: 390, height: 844 });
+      await open(ios, '/?catalog=actual#/home');
+      await ios.waitForSelector('#home-new-reader a[href="#/new-to-comics"]', { visible: true, timeout: 15000 });
+      await ios.evaluate((sheets) => {
+        document.adoptedStyleSheets = [...document.adoptedStyleSheets, ...sheets.map((css) => {
+          const sheet = new CSSStyleSheet();
+          sheet.replaceSync(css);
+          return sheet;
+        })];
+      }, styles);
+      await ios.evaluate(adapter);
+      for (const scale of ['1', String(53 / 17)]) {
+        await ios.evaluate((value) => document.documentElement.style.setProperty('--ios-text-scale', value), scale);
+        const target = await ios.$eval('#home-new-reader a[href="#/new-to-comics"]', (link) => ({
+          adapted: link.dataset.iosAccessibleTarget === 'true',
+          name: link.getAttribute('aria-label'),
+          text: link.textContent.trim(),
+          hiddenChildren: link.children.length > 0 && [...link.childNodes].every((node) => node.nodeType === Node.ELEMENT_NODE
+            ? node.getAttribute('aria-hidden') === 'true' : !node.textContent.trim()),
+          width: link.getBoundingClientRect().width,
+          height: link.getBoundingClientRect().height,
+        }));
+        const handle = await ios.$('#home-new-reader a[href="#/new-to-comics"]');
+        const ax = await ios.accessibility.snapshot({ root: handle });
+        await handle.dispose();
+        t.check(`on iOS the guide button is one 44px link named by its words at ${scale === '1' ? 'default' : 'largest'} text`,
+          target.adapted && target.name === 'Find a starting point.' && target.text === 'Find a starting point.'
+            && target.hiddenChildren && target.width >= 44 && target.height >= 44
+            && ax?.role === 'link' && ax.name === target.name && !ax.children?.length,
+          JSON.stringify({ target, ax }));
+      }
+      await ios.focus('#home-new-reader a[href="#/new-to-comics"]');
+      await ios.keyboard.press('Enter');
+      await ios.waitForFunction(() => location.hash === '#/new-to-comics'
+        && document.activeElement?.id === 'new-to-comics-h');
+      t.check('on iOS the adapted guide button still opens the guide by keyboard', true);
+      await ios.close();
+    },
+  },
+  {
     id: 'home-first-run-wayfinding',
     title: 'empty Home makes the first useful reading path obvious',
     async run(page, t) {
@@ -5830,7 +6012,7 @@ const SCENARIOS = [
         recommendation: document.querySelector('#home-primary-paths [data-category="timeline"] .home-path-label')?.textContent.trim(),
       }));
       t.check('clean Home recommends Modern Timeline without redundant introduction or global Search',
-        !initial.intro && !initial.search && initial.recommendation === 'Recommended start here',
+        !initial.intro && !initial.search && initial.recommendation === 'Marvel Knights to Present Day',
         JSON.stringify(initial));
 
       await page.setViewport({ width: 390, height: 844 });
@@ -5839,7 +6021,7 @@ const SCENARIOS = [
       // reached the page by the time Search had been pressed, so the app was still in its desktop
       // layout ("Collapse sidebar", expanded) at 390 pixels. A phone starts narrow and keeps rendering.
       await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
-      await page.$eval('#home-primary-paths [data-category="timeline"]', (node) => node.scrollIntoView({ block: 'center' }));
+      await page.$eval('#home-primary-paths [data-category="timeline"]', (node) => node.scrollIntoView({ block: 'nearest' }));
       // The narrow bar reacts to scrolling, so the card is measured once the scroll has painted.
       await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
       const intermediate = await page.evaluate(() => {
@@ -5858,7 +6040,7 @@ const SCENARIOS = [
         };
       });
       t.check('at 390 pixels Modern Timeline and bottom-bar Search are visible without opening Navigation',
-        intermediate.browseName.includes('Recommended start here. Modern Timeline.')
+        intermediate.browseName.includes('Marvel Knights to Present Day. Modern Timeline.')
         && intermediate.addName === 'Search'
         && [intermediate.browse, intermediate.add].every((rect) => rect
           && rect.top >= 0 && rect.bottom <= 844 && rect.left >= 0 && rect.right <= 390
@@ -5924,7 +6106,7 @@ const SCENARIOS = [
         t.check(`${theme} first-run actions retain visible boundaries and names`,
           await page.$eval('#home-primary-paths [data-category="timeline"]', (button) => {
             const style = getComputedStyle(button);
-            return !button.hidden && button.textContent.includes('Recommended start here')
+            return !button.hidden && button.textContent.includes('Marvel Knights to Present Day')
               && style.borderStyle !== 'none' && style.borderWidth !== '0px';
           }));
       }
@@ -6021,7 +6203,7 @@ const SCENARIOS = [
         const categories = document.querySelector('#home-categories');
         return {
           firstRunHidden: !firstRun,
-          recommended: document.querySelector('#home-primary-paths [data-category="timeline"]')?.textContent.includes('Recommended start here'),
+          recommended: document.querySelector('#home-primary-paths [data-category="timeline"]')?.textContent.includes('Marvel Knights to Present Day'),
           continueHidden: continued.hidden,
           yoursHidden: yours.hidden,
           order: [continued, yours, categories].map((node) => Math.round(node.getBoundingClientRect().top)),
@@ -6056,6 +6238,7 @@ const SCENARIOS = [
     async run(page, t) {
       const { currentReadingCensus } = await import('../test/helpers/current-reading-library.mjs');
       const timelineCount = currentReadingCensus.modernTimeline;
+      const cardCount = timelineCount + 1;
       const externalRequests = [];
       const browserErrors = [];
       page.on('console', (message) => {
@@ -6142,6 +6325,8 @@ const SCENARIOS = [
           featureFallbackDisplay: featureFallback ? getComputedStyle(featureFallback).display : '',
           oldPlainAction: Boolean(document.querySelector('#btn-modern-timeline-feature')),
           cards: cards.length,
+          bridgeChoosers: cards.filter((card) =>
+            card.dataset.placement === 'placement:civil-war-to-secret-invasion').length,
           doom: {
             count: doomCards.length,
             title: doomCard?.querySelector('.catalog-card-title')?.textContent.trim() ?? '',
@@ -6207,16 +6392,13 @@ const SCENARIOS = [
         && timeline.oldPlainAction === false
         && timeline.setupCards === 1,
         JSON.stringify(timeline));
-      t.check(`${timelineCount} selected lists render as distinct cards beginning with the owner chapters`,
-        timeline.cards === timelineCount
+      t.check('the timeline includes one bridge chooser and begins with the owner chapters',
+        timeline.cards === cardCount && timeline.bridgeChoosers === 1
         && timeline.doom.count === 1
         && timeline.doom.title === 'One World Under Doom'
         && timeline.doom.year === 2025
         && timeline.doom.description.startsWith('Doctor Doom brings one world under his rule in 2025')
-        && timeline.doom.meta.startsWith('85 comics')
-        && timeline.doom.meta.includes(
-          '10 comics checked by hand, with no covers or details yet',
-        )
+        && timeline.doom.meta === '85 comics'
         && timeline.cardYears.at(-1) === 2026
         && timeline.chapterCards === 78
         && JSON.stringify(timeline.firstCards) === JSON.stringify([
@@ -6225,6 +6407,21 @@ const SCENARIOS = [
           { title: 'Marvel Boy to Early X-Men Setup', year: 2000 },
         ]),
         JSON.stringify({ cards: timeline.cards, firstCards: timeline.firstCards }));
+      const familyEras = await page.evaluate(() => ({
+        stops: [...document.querySelectorAll('.timeline-family-era')].map((era) => ({
+          name: era.textContent.trim(),
+          after: era.previousElementSibling?.dataset.story ?? null,
+          before: era.nextElementSibling?.dataset.story ?? null,
+          controls: era.querySelectorAll('button,a,input,select,[tabindex]').length,
+        })),
+        menu: [...document.querySelectorAll('#catalog-section-jump option')].map((option) => option.textContent),
+      }));
+      t.check('the real timeline names both family eras without dates, cards or jump options',
+        JSON.stringify(familyEras.stops) === JSON.stringify([
+          { name: 'Reign of X', after: 'list:king-in-black', before: null, controls: 0 },
+          { name: 'X-Men: Fall of X', after: null, before: 'list:the-death-of-ms-marvel', controls: 0 },
+        ]) && !familyEras.menu.some((name) => /Reign of X|Fall of X/.test(name)),
+        JSON.stringify(familyEras));
       t.check('the 2025 Doom event keeps its year among its Captain America peers without joining another surface',
         timeline.doom.count === 1
         && timeline.doom.title === 'One World Under Doom'
@@ -6400,7 +6597,7 @@ const SCENARIOS = [
         emptyMarkers: document.querySelectorAll('#catalog-results .timeline-year-marker.is-empty').length,
       }));
       await click(page, '#catalog-clear');
-      await page.waitForFunction((count) => document.querySelectorAll('#catalog-results .catalog-card').length === count, {}, timelineCount);
+      await page.waitForFunction((count) => document.querySelectorAll('#catalog-results .catalog-card').length === count, {}, cardCount);
       await page.$eval('#catalog-filters input:not([value="all"])', (input) => input.click());
       const filtered = await page.evaluate(() => ({
         featureVisible: Boolean(document.querySelector('#modern-timeline-feature')),
@@ -6417,7 +6614,7 @@ const SCENARIOS = [
         && filtered.emptyMarkers === 0,
         JSON.stringify({ searched, filtered }));
       await page.$eval('#catalog-filters input[value="all"]', (input) => input.click());
-      await page.waitForFunction((count) => document.querySelectorAll('#catalog-results .catalog-card').length === count, {}, timelineCount);
+      await page.waitForFunction((count) => document.querySelectorAll('#catalog-results .catalog-card').length === count, {}, cardCount);
 
       await page.setViewport({ width: 320, height: 900 });
       const doomNarrow = await page.evaluate(() => {
@@ -6562,7 +6759,7 @@ const SCENARIOS = [
         )),
         JSON.stringify(representativeResults));
       await click(page, '#catalog-clear');
-      await page.waitForFunction((count) => document.querySelectorAll('#catalog-results .catalog-card').length === count, {}, timelineCount);
+      await page.waitForFunction((count) => document.querySelectorAll('#catalog-results .catalog-card').length === count, {}, cardCount);
 
       const excluded = [
         ['spider-man-identity-crisis', 'Spider-Man: Identity Crisis'],
@@ -8534,7 +8731,7 @@ const SCENARIOS = [
   },
   {
     id: 'catalog-gaps',
-    title: 'independent catalog cards and Preview disclose their own guide gaps',
+    title: 'catalog cards show only the comic count while Preview discloses its own guide gaps',
     async run(page, t) {
       const cardMeta = (title) => page.$$eval(
         '#catalog-results .catalog-card',
@@ -8554,17 +8751,10 @@ const SCENARIOS = [
       const shortBefore = await cardMeta('Third Stop: The Short Way');
       const longBefore = await cardMeta('Third Stop: The Long Way');
       t.check(
-        'cards omit zero and use truthful singular and plural gap labels',
-        zero === '3 comics'
-          && one === '3 comics · 1 comic has no Marvel Unlimited link yet and cannot be opened'
-          && many === '3 comics · 2 comics have no details, covers, or Unlimited links',
-        JSON.stringify({ zero, one, many }),
-      );
-      t.check(
-        'each guide card shows its own essential or complete gap disclosure',
-        shortBefore === '3 comics · 1 comic has no Marvel Unlimited link yet and cannot be opened'
-          && longBefore === '3 comics · 2 comics have no details, covers, or Unlimited links',
-        JSON.stringify({ shortBefore, longBefore }),
+        'cards show the comic count with no developer gap notes',
+        zero === '3 comics' && one === '3 comics' && many === '3 comics'
+          && shortBefore === '3 comics' && longBefore === '3 comics',
+        JSON.stringify({ zero, one, many, shortBefore, longBefore }),
       );
 
       await click(page, '#catalog-results [data-story="list:browser-check-three-short"] [data-act="preview"]');
@@ -8575,14 +8765,14 @@ const SCENARIOS = [
       await click(page, '#catalog-results [data-story="list:browser-check-three-main"] [data-act="preview"]');
       await page.waitForFunction(() => (
         document.querySelector('#preview')?.open && document.querySelector('#preview-meta')?.textContent
-          .includes('2 comics have no details, covers, or Unlimited links')
+          .includes('2 comics have limited details')
       ));
       const previewAfter = await page.$eval('#preview-meta', (node) => node.textContent.trim());
       t.check(
         'each explicitly opened Preview shows its own singular or plural disclosure',
-        previewBefore.includes('1 comic has no Marvel Unlimited link yet and cannot be opened')
+        previewBefore.includes('1 comic is listed by title only')
           && !previewBefore.includes('no details')
-          && previewAfter.includes('2 comics have no details, covers, or Unlimited links')
+          && previewAfter.includes('2 comics have limited details')
           && !previewAfter.includes('cannot be opened'),
         JSON.stringify({ previewBefore, previewAfter }),
       );
@@ -8592,7 +8782,7 @@ const SCENARIOS = [
       const shortAfter = await cardMeta('Third Stop: The Short Way');
       const longAfter = await cardMeta('Third Stop: The Long Way');
       t.check(
-        'closing Preview cannot change the other guide card or its gap disclosure',
+        'closing Preview leaves both guide cards showing only their counts',
         shortAfter === shortBefore && longAfter === longBefore,
         JSON.stringify({ shortAfter, longAfter }),
       );
@@ -8615,8 +8805,8 @@ const SCENARIOS = [
         };
       });
       t.check(
-        'plural disclosure stays inside its card without horizontal overflow at narrow width',
-        narrow.text.includes('2 comics have no details, covers, or Unlimited links')
+        'the count stays inside its card without horizontal overflow at narrow width',
+        narrow.text === '3 comics'
           && narrow.inside && narrow.overflow <= 1,
         JSON.stringify(narrow),
       );
@@ -8779,18 +8969,20 @@ const SCENARIOS = [
         JSON.stringify(rows.filter((r) => r.disclosures || r.otherLinks)));
       t.check('the first stop credits its source website by name alone',
         first?.source === 'Source: example.com', JSON.stringify(first?.source));
-      t.check('the compact card keeps the issue count and gap disclosure', first?.meta === '3 comics · 1 comic has no Marvel Unlimited link yet and cannot be opened', JSON.stringify(first?.meta));
+      t.check('the compact card keeps the comic count without diagnostic notes', first?.meta === '3 comics', JSON.stringify(first?.meta));
       t.check('a dated order carries its year as the Timeline destination', first?.year === '2004', JSON.stringify(first?.year));
 
       const offer = await page.evaluate(() => ({
         sentence: document.querySelector('#catalog-results .shelf-orientation')?.textContent.trim() ?? null,
         follow: document.querySelector('#catalog-follow')?.hidden === false,
-        options: [...document.querySelectorAll('#catalog-path option')].map((option) => option.textContent.trim()),
+        selectors: document.querySelectorAll('#catalog-path').length,
       }));
       t.check('the Timeline still says where the path starts',
         offer.sentence === 'Start The Fixture Path with Browser Check Order.', JSON.stringify(offer));
-      t.check('and offers to follow it',
-        offer.follow && offer.options.includes('The Fixture Path (3 stops)'), JSON.stringify(offer));
+      // #1603 retired the Follow a path selector, so the whole timeline names no path and offers no
+      // second chooser beside Jump to a section.
+      t.check('and keeps no path selector beside the whole timeline',
+        !offer.follow && offer.selectors === 0, JSON.stringify(offer));
 
       await click(page, '#catalog-results [data-story="list:browser-check"] [data-act="preview"]');
       await page.waitForSelector('#preview[open]', { timeout: 15000 });
@@ -10215,28 +10407,31 @@ const SCENARIOS = [
         raw: localStorage.getItem('mrt.state.v2'),
       }));
       page.__ux11Step = 'after-known-dispatch';
-      const helpCopy = "If no new tab appears, check your browser's popup controls for this site, then choose Read again. Opening a comic does not mark it read.";
+      const helpCopy = 'If nothing opens, allow pop-ups for this site and choose Find on Marvel Comics again.';
       ux11Receipt(page, t, 'H03/H05/H06:conditional-help', { text: helpCopy, visible: true,
         focused: '900001', raw: beforeHandoff.raw }, feedback,
       { exactCopy: feedback.text === helpCopy, rendered: feedback.visible,
         focusRetained: feedback.focused === '900001', rawUnchanged: feedback.raw === beforeHandoff.raw });
       const native = opened.length === 1 ? new URL(opened[0].url, page.__origin) : null;
+      // #1601: a comic with no verified Marvel Comics app viewer opens the website, so the launch carries
+      // its destination and title and no Marvel Unlimited book or issue number, even when one is recorded.
+      const websiteOnly = (u) => u !== null && u.searchParams.get('r') === 'comics'
+        && ['d', 'i', 'a', 'u', 'p', 'm'].every((key) => !u.searchParams.has(key));
       ux11Receipt(page, t, 'H01:exact-native-intent', { origin: page.__origin, path: '/open.html',
-        d: '700001', i: '900001', target: '_blank', features: 'noopener' }, opened,
+        r: 'comics', t: 'Browser Check (2026) #1', target: '_blank', features: 'noopener' }, opened,
       { count: opened.length === 1, duringGesture: opened[0]?.dispatching === true,
         origin: native?.origin === page.__origin, path: native?.pathname === '/open.html',
-        digitalId: native?.searchParams.get('d') === '700001', issueId: native?.searchParams.get('i') === '900001',
+        websiteOnly: websiteOnly(native), title: native?.searchParams.get('t') === 'Browser Check (2026) #1',
         target: opened[0]?.target === '_blank', features: opened[0]?.features === 'noopener' });
       t.check('clicking Read opens exactly one tab', opened.length === 1, `${opened.length} call(s)`);
       t.check('and it opens during the click itself, with no await in between', opened[0]?.dispatching === true);
 
       const url = opened[0]?.url ?? '';
       t.check('the tab goes to our own launcher, not straight to Marvel', url.includes('/open.html?'), url);
-      t.check('carrying the reference we already hold', url.includes('d=700001'), url);
+      t.check('carrying the website destination rather than the recorded Unlimited book', websiteOnly(native), url);
       t.check('and opened without handing over a window reference', (opened[0]?.features ?? '').includes('noopener'), opened[0]?.features);
 
-      // The second issue has no digitalId, so the launcher has to resolve one. It must still open
-      // synchronously: waiting for the lookup is what loses the user activation.
+      // The second issue has no digitalId. It must still open synchronously, the same way.
       await page.evaluate(() => {
         window.__opened = [];
         const btn = document.querySelector('button.mini[data-act="open"][data-key="900002"]');
@@ -10246,17 +10441,15 @@ const SCENARIOS = [
       });
       const second = await page.evaluate(() => window.__opened);
       const secondUrl = second.length === 1 ? new URL(second[0].url, page.__origin) : null;
-      ux11Receipt(page, t, 'H02:lookup-native-intent', { i: '900002', d: null, target: '_blank', features: 'noopener' },
+      ux11Receipt(page, t, 'H02:website-native-intent', { r: 'comics', d: null, i: null, target: '_blank', features: 'noopener' },
         second, { count: second.length === 1, synchronous: second[0]?.dispatching === true,
-          issueId: secondUrl?.searchParams.get('i') === '900002', noBook: secondUrl !== null && !secondUrl.searchParams.has('d'),
+          websiteOnly: websiteOnly(secondUrl),
           target: second[0]?.target === '_blank', features: second[0]?.features === 'noopener' });
       t.check('an issue with no reference still opens a tab at once', second.length === 1 && second[0].dispatching === true, JSON.stringify(second));
       // Require the record before reading it. A bare negated substring reports this as satisfied
       // when nothing was opened at all, which is the one case it is meant to catch, and it reads
       // the parameter rather than the string so a title containing "d=" cannot decide it.
-      const asks = second.length === 1
-        && !new URL(second[0].url, page.__origin).searchParams.has('d');
-      t.check('and asks the launcher to resolve it', asks, JSON.stringify(second.map((o) => o.url)));
+      t.check('and asks the launcher for the website, not a lookup', websiteOnly(secondUrl), JSON.stringify(second.map((o) => o.url)));
 
       // #825: the hint used to be one paragraph above every view, so after one Read it stayed on
       // every screen until reload and pushed the page down as it appeared. It now goes after the
@@ -10302,11 +10495,11 @@ const SCENARIOS = [
       // Announcements raised within one 30ms tick are joined, and the two row Reads above are, so
       // theirs has to land before the hero's can be compared on its own.
       await page.waitForFunction(() => document.querySelector('#announcer')?.textContent
-        .endsWith('Opening Browser Check (2026) #2 in a new tab and looking up its Unlimited link.'), { timeout: 5000 });
+        .endsWith('Opening the Marvel Comics website to find Browser Check (2026) #2. This is not a single-comic link.'), { timeout: 5000 });
       placed('hero Read', await press('#btn-hero-read', '#hero-primary-actions'));
       await page.waitForFunction(() => document.querySelector('#announcer')?.textContent
-        === 'Opening Browser Check (2026) #1 in Marvel Unlimited in a new tab. Reading ends December 7, 2026.', { timeout: 5000 });
-      t.check('the spoken announcement includes the approved reading deadline', true);
+        === 'Opening the Marvel Comics website to find Browser Check (2026) #1. This is not a single-comic link.', { timeout: 5000 });
+      t.check('the spoken announcement says the website is not a single-comic link', true);
       await page.evaluate(() => document.querySelector('#btn-hero-done').click());
       await page.waitForFunction(() => document.querySelector('#hero-title')?.textContent === 'Browser Check (2026) #2');
       t.check('Done retires the hint', await hintCount() === 0);
@@ -12273,8 +12466,8 @@ const SCENARIOS = [
         kept?.onSale === '2026-03-04' && kept?.pageCount === 32 && (kept?.creators ?? []).length === 2,
         JSON.stringify(kept));
       const unlinkedNote = await manualReport(page);
-      t.check('an unlinked wiki match keeps the previous Read explanation',
-        unlinkedNote.includes('Read uses the recorded comic reference. It does not mark the comic read.')
+      t.check('an unlinked wiki match avoids obsolete reader-reference guidance',
+        !unlinkedNote.includes('Read uses the recorded comic reference.')
           && !unlinkedNote.includes('Read opens this comic in the Marvel Comics app.'), unlinkedNote);
 
       // The point of taking the id at all. A hand entry on a synthetic negative id has no link to
@@ -12366,8 +12559,7 @@ const SCENARIOS = [
         JSON.stringify(endCross?.issues?.['129648']));
 
       for (const [url, id, note] of [
-        ['https://www.marvel.com/comics/issue/7/fixture', '7',
-          'Read uses the recorded comic reference. It does not mark the comic read.'],
+        ['https://www.marvel.com/comics/issue/7/fixture', '7', null],
         ['', '12459', 'Read opens this comic in the Marvel Comics app. It does not mark the comic read.'],
       ]) {
         await page.evaluate(() => {
@@ -12388,8 +12580,12 @@ const SCENARIOS = [
         );
         const report = await manualReport(page);
         const saved = await readState(page);
-        t.check(`the saved issue ${id} determines its Read explanation`,
-          Boolean(saved?.issues?.[id]) && report.includes(note) && !Object.hasOwn(saved?.read ?? {}, id), report);
+        const guidanceMatches = note
+          ? report.includes(note)
+          : !report.includes('Read uses the recorded comic reference.')
+            && !report.includes('Read opens this comic in the Marvel Comics app.');
+        t.check(`the saved issue ${id} determines its direct-link guidance`,
+          Boolean(saved?.issues?.[id]) && guidanceMatches && !Object.hasOwn(saved?.read ?? {}, id), report);
       }
     },
   },
@@ -12941,6 +13137,22 @@ const SCENARIOS = [
       });
       t.check('issue focus stays usable at 320 pixels without horizontal clipping',
         narrow.overflow <= 1 && narrow.targets, JSON.stringify(narrow));
+
+      const fixture = { issueId: 56003, title: 'Find-only fixture #1', findOnly: true, url: null, source: 'curated' };
+      const blank = createList(createEmptyState(), { name: 'Find-only fixture' });
+      const disposable = addIssuesToList(blank, blank.active, [fixture]).state;
+      await page.evaluate((saved) => localStorage.setItem('mrt.state.v2', JSON.stringify(saved)), disposable);
+      await openFresh(page, `/#/issue/${fixture.issueId}?list=${disposable.active}`);
+      await page.waitForFunction((title) => document.querySelector('#issue-focus-h')?.textContent.trim() === title,
+        {}, fixture.title);
+      const actions = await page.evaluate(() => ({
+        find: document.querySelector('#btn-issue-read:not([hidden])')?.textContent.trim(),
+        infoHidden: document.querySelector('#btn-issue-info')?.hidden,
+        infoHref: document.querySelector('#btn-issue-info')?.getAttribute('href'),
+      }));
+      t.check('a reopened Find-only provider comic offers Find, not an invented issue page',
+        actions.find === 'Find on Marvel Comics' && actions.infoHidden && actions.infoHref === null,
+        JSON.stringify(actions));
       t.check('the issue-focus journeys produce no console or page errors',
         browserErrors.length === 0, browserErrors.join(' / '));
     },
@@ -13944,7 +14156,7 @@ const SCENARIOS = [
       }));
       t.check('an unowned single stop opens preview with its source and missing-link disclosure',
         single.title === 'Browser Check Order' && single.choices === 0
-        && single.meta.includes('1 comic has no Marvel Unlimited link')
+        && single.meta.includes('1 comic is listed by title only')
         && single.source.includes('Fixture section')
         && single.href === 'https://example.com/shared-page', JSON.stringify(single));
       await page.keyboard.press('Escape');
@@ -13963,7 +14175,7 @@ const SCENARIOS = [
       }));
       t.check('an unowned grouped stop directly previews its authored short guide and exact metadata',
         short.title === 'Third Stop: The Short Way'
-        && short.meta.includes('1 comic has no Marvel Unlimited link')
+        && short.meta.includes('1 comic is listed by title only')
         && short.source.includes('Essential fixture source')
         && short.choices === 0 && short.add === 'browser-check-three-short',
         JSON.stringify(short));
@@ -13976,7 +14188,7 @@ const SCENARIOS = [
       await page.waitForFunction(() => document.querySelector('#preview').open
         && document.activeElement?.classList.contains('preview-issue-link'));
       const returned = await page.evaluate(() => ({
-        path: document.querySelector('#catalog-path').value,
+        path: new URLSearchParams(location.hash.split('?')[1] ?? '').get('path'),
         choices: document.querySelectorAll('#preview-paths input').length,
         title: document.querySelector('#preview-h').textContent,
         add: document.querySelector('#preview-add button')?.dataset.key,
@@ -13985,7 +14197,7 @@ const SCENARIOS = [
       t.check('Back from preview comic details restores the followed path and exact authored guide without a chooser',
         returned.path === 'bc-path' && returned.choices === 0
         && returned.title === 'Third Stop: The Short Way' && returned.add === 'browser-check-three-short'
-        && returned.meta.includes('1 comic has no Marvel Unlimited link'), JSON.stringify(returned));
+        && returned.meta.includes('1 comic is listed by title only'), JSON.stringify(returned));
       await page.keyboard.press('Escape');
       await page.waitForFunction((selector) => !document.querySelector('#preview').open
         && document.activeElement === document.querySelector(selector), {}, last);
@@ -14181,11 +14393,11 @@ const SCENARIOS = [
       await open(page, '/?catalog=path-follow&path-delay=600#/catalog?path=bc-path');
       await page.waitForSelector('#view-catalog:not([hidden])');
       await page.evaluate(() => { location.hash = '#/catalog?path=spotlight-arrival'; });
-      await page.waitForFunction(() => document.querySelector('#catalog-path')?.value === 'spotlight-arrival'
+      await page.waitForFunction(() => document.querySelector('#catalog-path-name')?.textContent === 'The Spotlight Path'
         && document.querySelector('#catalog-results .path-stop'));
       const lateRoute = await page.evaluate(() => ({
         route: window.__pathRoute(),
-        selected: document.querySelector('#catalog-path')?.value,
+        selected: document.querySelector('#catalog-path-name')?.textContent === 'The Spotlight Path' ? 'spotlight-arrival' : null,
         titles: [...document.querySelectorAll('#catalog-results .path-stop .catalog-card-title')].map((node) => node.textContent.trim()),
       }));
       t.check('a late earlier catalog continuation cannot overwrite the newer path route',
@@ -14237,24 +14449,27 @@ const SCENARIOS = [
           && document.activeElement?.id === 'catalog-h', {}, expected);
         const arrived = await page.evaluate(() => ({
           visible: document.querySelector('.view:not([hidden])')?.id,
-          selected: document.querySelector('#catalog-path')?.value,
+          named: document.querySelector('#catalog-path-name')?.textContent,
         }));
+        const name = { 'bc-path': 'The Fixture Path', 'spotlight-arrival': 'The Spotlight Path' }[expected];
         t.check(`${address} opens Modern Timeline following its path, and says so in the address`,
-          arrived.visible === 'view-catalog' && arrived.selected === expected,
+          arrived.visible === 'view-catalog' && arrived.named === name,
           JSON.stringify(arrived));
       }
 
-      const selector = await page.$eval('#catalog-path', (node) => ({
-        tag: node.tagName,
-        labels: [...node.labels].map((label) => label.textContent.trim()),
-        options: [...node.options].map((option) => option.value),
-        selected: [...node.selectedOptions].map((option) => option.value),
+      const selector = await page.evaluate(() => ({
+        selectors: document.querySelectorAll('#catalog-path').length,
+        named: [...document.querySelectorAll('#catalog-path-name')].map((node) => node.textContent),
+        whole: document.querySelector('#catalog-path-whole')?.textContent.trim(),
+        sections: document.querySelector('#catalog-sections')?.hidden,
       }));
-      t.check('one labelled native selector exposes every path, the whole timeline and one selected option',
-        selector.tag === 'SELECT'
-        && selector.labels.join('|') === 'Follow a path'
-        && selector.options.join('|') === '|bc-path|bc-age-path|spotlight-arrival'
-        && selector.selected.join('|') === 'bc-path',
+      // #1603: the path is chosen by its address or a stop's return, named once, and left by one
+      // button, with no selector offering other paths and no section jump competing with its own.
+      t.check('a followed path is named once beside one way back to the whole timeline, with no path selector',
+        selector.selectors === 0
+        && selector.named.join('|') === 'The Fixture Path'
+        && selector.whole === 'Show full timeline'
+        && selector.sections === true,
         JSON.stringify(selector));
 
       const firstPath = await page.evaluate(() => ({
@@ -14286,25 +14501,30 @@ const SCENARIOS = [
         jumped.focused === 'browser-check' && jumped.title && jumped.here === 'browser-check'
         && jumped.status === 'Jumped to Browser Check Order (1 of 3).', JSON.stringify(jumped));
 
-      await page.evaluate(() => { window.__pathSelector = document.querySelector('#catalog-path'); });
-      await page.focus('#catalog-path');
-      await page.keyboard.press('ArrowDown');
+      // Paths are no longer chosen on the page (#1603), so another path is followed by its address,
+      // keeping the list and filter the current address already carries.
+      const followPath = (id) => page.evaluate((value) => {
+        const [head, query = ''] = location.hash.split('?');
+        const params = new URLSearchParams(query);
+        params.set('path', value);
+        location.hash = `${head}?${params}`;
+      }, id);
+      await followPath('bc-age-path');
       await page.waitForFunction(() => window.__pathRoute().path === 'bc-age-path'
         && document.querySelector('#catalog-results [data-path-stop="x-men-spine"]'));
       const selectorChange = await page.evaluate(() => ({
-        same: window.__pathSelector === document.querySelector('#catalog-path'),
-        focused: document.activeElement === document.querySelector('#catalog-path'),
-        value: document.querySelector('#catalog-path')?.value,
+        named: document.querySelector('#catalog-path-name')?.textContent,
+        focused: document.activeElement?.id,
       }));
-      t.check('keyboard selection pushes one route while retaining selector identity and focus',
-        selectorChange.same && selectorChange.focused && selectorChange.value === 'bc-age-path',
+      t.check('an address naming another path follows it, names it and focuses the route heading',
+        selectorChange.named === 'Across Two Periods' && selectorChange.focused === 'catalog-h',
         JSON.stringify(selectorChange));
       const fallback = (await stops()).find(({ id }) => id === 'x-men-spine');
       t.check('the first saved sibling in catalog order is the stop when the named reading is not saved',
         fallback.title === 'X-Men Complete' && fallback.open === '#/read/fallback',
         JSON.stringify(fallback));
 
-      await page.keyboard.press('ArrowDown');
+      await followPath('spotlight-arrival');
       await page.waitForFunction(() => window.__pathRoute().path === 'spotlight-arrival'
         && document.querySelector('#catalog-results [data-path-stop="browser-check-off"]'));
       const overlap = await stops();
@@ -14316,24 +14536,26 @@ const SCENARIOS = [
       await page.evaluate(() => history.back());
       await page.waitForFunction(() => window.__pathRoute().path === 'bc-age-path'
         && document.activeElement?.id === 'catalog-h');
-      const back = await page.$eval('#catalog-path', (node) => node.value);
+      const back = await page.$eval('#catalog-path-name', (node) => node.textContent);
       await page.evaluate(() => history.forward());
       await page.waitForFunction(() => window.__pathRoute().path === 'spotlight-arrival'
         && document.activeElement?.id === 'catalog-h');
-      const forward = await page.$eval('#catalog-path', (node) => ({
-        value: node.value,
+      const forward = await page.$eval('#catalog-path-name', (node) => ({
+        value: node.textContent,
         filter: JSON.parse(localStorage.getItem('mrt.settings')).filter,
         addressed: new URLSearchParams(location.hash.split('?')[1] ?? '').get('filter') ?? 'all',
       }));
       // The retired page's address carried no reading filter and was exempt from it. The Timeline's
       // carries it as every view's does, so the stored filter is the one the address names.
       t.check('Back and Forward restore the followed path and focus the route heading',
-        back === 'bc-age-path' && forward.value === 'spotlight-arrival' && forward.filter === forward.addressed,
+        back === 'Across Two Periods' && forward.value === 'The Spotlight Path'
+        && forward.filter === forward.addressed,
         JSON.stringify({ back, forward }));
 
       const beforeReload = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
       await page.reload({ waitUntil: 'load' });
-      await page.waitForFunction(() => document.querySelector('#catalog-path')?.value === 'spotlight-arrival'
+      await page.waitForFunction(() => window.__pathRoute().path === 'spotlight-arrival'
+        && document.querySelector('#catalog-path-name')?.textContent === 'The Spotlight Path'
         && document.querySelector('#catalog-results .path-stop'));
       const reloaded = await page.evaluate(() => ({
         route: window.__pathRoute(),
@@ -14346,11 +14568,13 @@ const SCENARIOS = [
         && reloaded.state === beforeReload,
         JSON.stringify({ route: reloaded.route, stops: reloaded.stops, stateChanged: reloaded.state !== beforeReload }));
 
-      await page.select('#catalog-path', 'bc-path');
+      await followPath('bc-path');
       await page.waitForFunction(() => window.__pathRoute().path === 'bc-path'
         && document.querySelector('#catalog-results [data-path-stop="browser-check"]'));
+      // The followed path's own control outside the results is now its way back to the whole
+      // timeline, so that is the control a repaint must neither replace nor blur.
       await page.evaluate(() => {
-        const select = document.querySelector('#catalog-path');
+        const select = document.querySelector('#catalog-path-whole');
         window.__pathSelector = select;
         select.focus();
       });
@@ -14371,8 +14595,8 @@ const SCENARIOS = [
         }));
         await new Promise((resolve) => setTimeout(resolve, 100));
         window.__pathCleared = {
-          same: window.__pathSelector === document.querySelector('#catalog-path'),
-          focused: document.activeElement === document.querySelector('#catalog-path'),
+          same: window.__pathSelector === document.querySelector('#catalog-path-whole'),
+          focused: document.activeElement === document.querySelector('#catalog-path-whole'),
           progress: document.querySelector('#catalog-results .timeline-position-progress')?.textContent.trim(),
         };
         localStorage.setItem('mrt.state.v2', newValue);
@@ -14382,14 +14606,14 @@ const SCENARIOS = [
       });
       await new Promise((resolve) => setTimeout(resolve, 500));
       const repainted = await page.evaluate(() => ({
-        same: window.__pathSelector === document.querySelector('#catalog-path'),
-        focused: document.activeElement === document.querySelector('#catalog-path'),
+        same: window.__pathSelector === document.querySelector('#catalog-path-whole'),
+        focused: document.activeElement === document.querySelector('#catalog-path-whole'),
         route: window.__pathRoute(),
         here: document.querySelector('#catalog-results .timeline-position-current')?.closest('[data-path-stop]')?.dataset.pathStop,
         progress: document.querySelector('#catalog-results .timeline-position-progress')?.textContent.trim(),
         cleared: window.__pathCleared,
       }));
-      t.check('a state repaint moves the path\'s progress without replacing or blurring the selector',
+      t.check('a state repaint moves the path\'s progress without replacing or blurring the way back',
         repainted.same && repainted.focused
         && repainted.route.view === 'catalog' && repainted.route.path === 'bc-path'
         && repainted.cleared.same && repainted.cleared.focused
@@ -14416,18 +14640,58 @@ const SCENARIOS = [
 
       if (await page.evaluate(() => matchMedia('(forced-colors: active)').matches)) {
         const forced = await page.evaluate(() => ({
-          selectBorder: getComputedStyle(document.querySelector('#catalog-path')).borderTopWidth,
+          selectBorder: getComputedStyle(document.querySelector('#catalog-path-whole')).borderTopWidth,
           spine: getComputedStyle(document.querySelector('#catalog-results .path-stops')).borderLeftWidth,
           marker: getComputedStyle(document.querySelector('#catalog-results .path-stop-marker')).borderTopWidth,
           text: document.querySelector('#catalog-results .timeline-position-progress')?.textContent.trim(),
         }));
-        t.check('forced colors retain the bordered selector, the path line, its stop markers and visible progress',
+        t.check('forced colors retain the bordered way back, the path line, its stop markers and visible progress',
           forced.selectBorder !== '0px' && forced.spine !== '0px' && forced.marker !== '0px' && forced.text.length > 0,
           JSON.stringify(forced));
       }
 
       await page.setViewport({ width: 1280, height: 900 });
-      await page.select('#catalog-path', '');
+      const beforeRecovery = await page.evaluate(() => ({
+        route: location.hash,
+        saved: localStorage.getItem('mrt.state.v2'),
+      }));
+      const hideCurrent = async () => {
+        await page.$eval('input[name="catalog-links-coverage"][value="every"]', (input) => input.click());
+        await page.waitForSelector('#catalog-results [data-timeline-position="hidden"]');
+        return page.evaluate(() => ({
+          whole: [...document.querySelectorAll('button')].filter((button) =>
+            button.getClientRects().length && button.textContent.trim() === 'Show full timeline').length,
+          reveal: document.querySelector('#catalog-results [data-timeline-position="show-full"]')?.textContent,
+          current: document.querySelector('#catalog-results [aria-current="step"]')?.dataset.story ?? null,
+          route: location.hash,
+          saved: localStorage.getItem('mrt.state.v2'),
+        }));
+      };
+      const hiddenCurrent = await hideCurrent();
+      t.check('a followed hidden stop has one way to leave the path and Clear filters to reveal it',
+        hiddenCurrent.whole === 1 && hiddenCurrent.reveal === 'Clear filters'
+        && hiddenCurrent.current === null && hiddenCurrent.route === beforeRecovery.route
+        && hiddenCurrent.saved === beforeRecovery.saved,
+        JSON.stringify({ ...hiddenCurrent, saved: undefined }));
+      await page.focus('#catalog-results [data-timeline-position="show-full"]');
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => document.activeElement?.closest('[aria-current="step"]')
+        ?.dataset.story === 'list:browser-check-two');
+      const clearedFilters = await page.evaluate(() => ({
+        route: location.hash,
+        saved: localStorage.getItem('mrt.state.v2'),
+        filter: document.querySelector('input[name="catalog-links-coverage"]:checked')?.value,
+        focus: document.activeElement?.classList.contains('catalog-card-preview'),
+        hidden: document.querySelector('#catalog-results [data-timeline-position="hidden"]') !== null,
+      }));
+      t.check('Clear filters keeps the path and saved progress, reveals its current stop and focuses Preview',
+        clearedFilters.route === beforeRecovery.route && clearedFilters.saved === beforeRecovery.saved
+        && clearedFilters.filter === 'off' && clearedFilters.focus && !clearedFilters.hidden,
+        JSON.stringify({ ...clearedFilters, saved: undefined }));
+      await hideCurrent();
+      const historyBefore = await page.evaluate(() => history.length);
+      await page.focus('#catalog-path-whole');
+      await page.keyboard.press('Enter');
       await page.waitForFunction(() => window.__pathRoute().view === 'catalog' && window.__pathRoute().path === null
         && document.querySelector('#catalog-results [data-story="list:browser-check"]')
         && document.querySelector('#catalog-results .shelf-orientation'));
@@ -14435,11 +14699,27 @@ const SCENARIOS = [
         sentence: document.querySelector('#catalog-results .shelf-orientation')?.textContent.trim(),
         meta: card.querySelector('.catalog-card-meta')?.textContent.replace(/\s+/g, ' ').trim(),
         stops: document.querySelectorAll('#catalog-results .path-stop').length,
+        follow: document.querySelector('#catalog-follow')?.hidden,
+        // The fixture catalog holds exactly one period start, Avengers Disassembled, so the section
+        // jump offers only that real destination and focus lands on it rather than on the heading.
+        sections: document.querySelector('#catalog-sections')?.hidden,
+        options: [...document.querySelectorAll('#catalog-section-jump option')].map((o) => o.value).filter(Boolean),
+        focused: document.activeElement?.id || document.activeElement?.tagName,
+        pushed: history.length,
+        saved: localStorage.getItem('mrt.state.v2'),
+        filter: document.querySelector('input[name="catalog-links-coverage"]:checked')?.value,
       }));
-      t.check('choosing the whole timeline restores its start sentence, issue counts and gap disclosure',
+      t.check('Show full timeline restores its start sentence, comic count and saved-copy count',
         shelf.sentence === 'Start The Fixture Path with Browser Check Order.' && shelf.stops === 0
-        && shelf.meta === '3 comics · 1 comic has no Marvel Unlimited link yet and cannot be opened · Saved copy: 1 comic',
-        JSON.stringify(shelf));
+        && shelf.meta === '3 comics · Saved copy: 1 comic'         && shelf.follow === true && shelf.sections === false
+                && JSON.stringify(shelf.options) === '["entry:avengers-disassembled"]'
+                && shelf.focused === 'catalog-section-jump' && shelf.pushed === historyBefore + 1
+                && shelf.saved === beforeRecovery.saved && shelf.filter === 'off',
+        JSON.stringify({ ...shelf, saved: undefined }));
+      await page.evaluate(() => history.back());
+      await page.waitForFunction(() => window.__pathRoute().path === 'bc-path'
+        && document.querySelector('#catalog-path-name')?.textContent === 'The Fixture Path');
+      t.check('Back from the whole timeline follows the path again', true);
     },
   },
   {
@@ -17253,7 +17533,8 @@ SCENARIOS.push({
     await page.waitForSelector('#shelf .tile-read:not([hidden])');
     const read = await page.$('#shelf .tile-read:not([hidden])');
     const name = (await page.accessibility.snapshot({ root: read, interestingOnly: false }))?.name ?? '';
-    t.check('Coming up Read retains its visible action in the computed name', /^Read\b/.test(name), name);
+    t.check('Coming up Find on Marvel Comics retains its visible action in the computed name',
+      /^Find on Marvel Comics: /.test(name), name);
     await click(page, '#shelf a[data-issue-id]');
     await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
     const tree = await page.accessibility.snapshot({ interestingOnly: false });
@@ -17950,17 +18231,16 @@ SCENARIOS.push({
   },
 });
 
-// UX-20 (#830): Read, Mark as read, Add note and Rate share one row at the top of the issue card's text
-// column, Read first, beside the cover when there is room and ahead of it when there is not. The saved
-// actions show only for a saved comic, and stay live when saved data is re-read into new objects,
-// which every boot does after the page paints and another tab's write does too.
+// UX-20 (#830): Reading commands stay at the top of the issue card's text column, with the launch
+// action first. The longer Find label can wrap the row sooner than Read. Saved actions show only
+// for a saved comic and stay live when boot or another tab replaces the in-memory objects.
 SCENARIOS.push({
   id: 'issue-action-row',
   title: 'comic details lead the text column with one action row whose saved actions stay live after saved data is re-read',
   async run(page, t) {
     const errors = [];
     page.on('pageerror', (error) => errors.push(error.message));
-    await page.setViewport({ width: 1280, height: 900 });
+    await page.setViewport({ width: 1366, height: 900 });
     await seedFixtureState(page);
     const [first, , last] = ORDER.items;
     // The last comic leaves saved data, so its details come from the bundled order alone.
@@ -17992,7 +18272,7 @@ SCENARIOS.push({
     });
     const wide = await measure();
     const commands = [wide.read, wide.mark, wide.note, wide.rate];
-    t.check('at 1280 pixels Read, Mark as read, Add note and Rate share one row, Read first',
+    t.check('when the text column fits all four actions, Find on Marvel Comics comes first on one row',
       commands.every(Boolean)
       && Math.max(...commands.map((box) => box.top)) < Math.min(...commands.map((box) => box.bottom))
       && commands.every((box, index) => index === 0 || box.left >= commands[index - 1].right), JSON.stringify(wide));
@@ -18001,13 +18281,22 @@ SCENARIOS.push({
       && Math.abs(wide.row.top - wide.art.top) <= 2 && wide.byline.top >= wide.row.bottom,
       JSON.stringify({ row: wide.row, art: wide.art, byline: wide.byline }));
 
+    await page.setViewport({ width: 1280, height: 900 });
+    const column = await measure();
+    t.check('at 1280 pixels the longer Find action stays first and all commands fit within the column',
+      column.overflow <= 1 && Boolean(column.row && column.read) && column.read.left === column.row.left
+      && [column.read, column.mark, column.note, column.rate].every((box) =>
+        box && box.left >= column.row.left && box.right <= column.row.right && box.bottom <= column.row.bottom)
+      && await page.$eval('#btn-issue-read', (button) => button.textContent.trim() === 'Find on Marvel Comics'),
+      JSON.stringify(column));
+
     await page.focus('#btn-issue-read');
     const order = [await page.evaluate(() => document.activeElement?.id)];
     for (let step = 0; step < 3; step += 1) {
       await page.keyboard.press('Tab');
       order.push(await page.evaluate(() => document.activeElement?.id));
     }
-    t.check('Tab moves from Read to Mark as read, Add note, then Rate',
+    t.check('Tab moves from Find on Marvel Comics to Mark as read, Add note, then Rate',
       JSON.stringify(order) === JSON.stringify(['btn-issue-read', 'btn-issue-mark-read', 'btn-issue-note', 'issue-rating-trigger']),
       JSON.stringify(order));
 
@@ -18040,7 +18329,7 @@ SCENARIOS.push({
 
     await page.setViewport({ width: 390, height: 844 });
     const narrow = await measure();
-    t.check('at 390 pixels Read spans the row and the other actions follow it, all ahead of the cover and inside the screen',
+    t.check('at 390 pixels Find on Marvel Comics spans the row and the other actions follow it, ahead of the cover',
       Boolean(narrow.read && narrow.mark && narrow.rate && narrow.row && narrow.art) && narrow.read.width >= narrow.row.width - 1
       && narrow.read.bottom <= narrow.mark.top && narrow.rate.bottom <= narrow.art.top && narrow.overflow <= 1, JSON.stringify(narrow));
 
@@ -18388,9 +18677,9 @@ SCENARIOS.push({
       });
       await node.dispose();
     }
-    t.check('every visible Coming up Read is named once, with no title or description repeating the name',
+    t.check('every visible Coming up reading action is named once, with no title or description repeating the name',
       buttons.length > 0 && buttons.every((button) => button.title === null && button.name === button.label
-        && button.name.startsWith('Read') && !(button.description && button.name.includes(button.description))),
+        && /^Find on Marvel Comics: /.test(button.name) && !(button.description && button.name.includes(button.description))),
       JSON.stringify(buttons));
   },
 });
@@ -18528,6 +18817,12 @@ SCENARIOS.push({
     try {
       const copy = await copyContext.newPage();
       copy.__denyExternal = true;
+      const videoRequests = [];
+      copy.on('request', (request) => {
+        if (/^https:\/\/(?:www\.)?youtube\.com\/|^https:\/\/i\.ytimg\.com\//.test(request.url())) {
+          videoRequests.push(request.url());
+        }
+      });
       await preparePage(copy, page.__origin, page.__mutation, 'semantic-destinations');
       await open(copy, '/#/new-to-comics');
       const panel = await copy.$('#view-new-to-comics:not([hidden])');
@@ -18544,15 +18839,14 @@ SCENARIOS.push({
             links: [...guide.querySelectorAll('a[href^="https:"]')].map((link) => ({
               href: link.getAttribute('href'), text: link.textContent.trim(), target: link.target,
               rel: link.rel, optional: /optional/i.test(link.closest('section')?.textContent ?? ''),
+              itemText: link.closest('li')?.textContent.replace(/\s+/g, ' ').trim(),
             })),
-            books: [...guide.querySelectorAll('[data-preview-id]')].map((link) => ({
-              id: link.dataset.previewId, href: link.getAttribute('href'), text: link.textContent.trim(),
-            })),
-            orientation: [...guide.querySelectorAll('[aria-labelledby="guide-app-h"] li a')].map((link) => ({
-              view: link.dataset.view, href: link.getAttribute('href'), text: link.textContent.trim(),
-              linksInBullet: link.closest('li').querySelectorAll('a').length,
-            })),
-            credit: guide.textContent.includes('r/Marvel wiki'),
+            hasOrientation: Boolean(guide.querySelector('[aria-labelledby="guide-app-h"]')),
+            guideCredit: guide.textContent.includes('Basics adapted from the r/Marvel wiki.'),
+            aboutCredit: document.querySelector('#view-about')?.textContent.includes('Basics adapted from the r/Marvel wiki.'),
+            videoMedia: [...guide.querySelectorAll('img, iframe, video')]
+              .filter((node) => /youtube|ytimg/i.test(node.src || node.getAttribute('src') || ''))
+              .map((node) => node.getAttribute('src')),
           };
         });
         const expected = [
@@ -18563,6 +18857,7 @@ SCENARIOS.push({
           'https://www.reddit.com/r/Marvel/wiki/faq#wiki_starter_recommendations',
           'https://www.reddit.com/r/Marvel/wiki/faq/#wiki_events.2Fcrossovers',
           'https://www.youtube.com/watch?v=FYnkpCfKuDw',
+          'https://www.youtube.com/watch?v=XnBG7-4-k00',
         ];
         console.log(`GUIDE_COPY ${JSON.stringify({ basics: content.basics, whole: content.whole })}`);
         t.check('guide basics and complete reader-facing copy meet their word targets',
@@ -18572,25 +18867,20 @@ SCENARIOS.push({
         t.check('each guide bullet list keeps its markers inside the card',
           indents.every((indent) => indent >= 16), JSON.stringify(indents));
         t.check('guide external links have the expected destinations, names and safe attributes',
-          content.credit && content.links.length === expected.length
+          content.links.length === expected.length
             && expected.every((href) => content.links.some((link) => link.href === href))
             && content.links.every((link) => link.text && link.target === '_blank'
               && link.rel.split(/\s+/).includes('noopener') && link.rel.split(/\s+/).includes('noreferrer'))
-            && content.books.length === 2,
+            && content.links.some((link) => link.href === 'https://www.youtube.com/watch?v=XnBG7-4-k00'
+              && link.text === 'Where To Start With Marvel Comics Right Now! (2025!)'
+              && link.itemText === 'Where To Start With Marvel Comics Right Now! (2025!), a video by Comic Book Herald'),
           JSON.stringify(content.links));
-        t.check('both optional books have their exact bookmarkable preview addresses',
-          JSON.stringify(content.books) === JSON.stringify([
-            { id: 'history-of-the-marvel-universe-2019', href: '#/preview/history-of-the-marvel-universe-2019',
-              text: 'History of the Marvel Universe (2019)' },
-            { id: 'marvels-1994', href: '#/preview/marvels-1994', text: 'Marvels (1994)' },
-          ]), JSON.stringify(content.books));
-        const pages = ['home', 'catalog', 'genres', 'spotlights', 'marvel-on-screen', 'marvel-ages',
-          'young-readers', 'universes', 'creators', 'library', 'add', 'data', 'about'];
-        t.check('the concise orientation links every named page to its own route',
-          JSON.stringify(content.orientation.map(({ view }) => view)) === JSON.stringify(pages)
-            && content.orientation.every(({ view, href, text, linksInBullet }) =>
-              href === `#/${view}` && text && linksInBullet === 1),
-          JSON.stringify(content.orientation));
+        t.check('the basics attribution is in About, not the guide',
+          !content.guideCredit && content.aboutCredit, JSON.stringify(content));
+        t.check('the video link loads no YouTube media or requests on page load',
+          content.videoMedia.length === 0 && videoRequests.length === 0,
+          JSON.stringify({ media: content.videoMedia, requests: videoRequests }));
+        t.check('the starting-point guide no longer repeats the app orientation', !content.hasOrientation);
         const selector = '#view-new-to-comics a[href^="https://www.reddit.com/"]';
         const actual = await copy.$(selector);
         t.check('a representative actual external guide anchor exists for activation', Boolean(actual));
@@ -18616,6 +18906,36 @@ SCENARIOS.push({
           if (openedPage) await openedPage.close();
         }
       }
+      await copy.setViewport({ width: 360, height: 800, isMobile: true, hasTouch: true });
+      await open(copy, '/#/about');
+      await copy.waitForSelector('#view-about:not([hidden])');
+      const orientation = await copy.evaluate(() => {
+        const card = document.querySelector('#view-about [aria-labelledby="guide-app-h"]');
+        const list = card?.querySelector('ul');
+        const attribution = [...document.querySelectorAll('#view-about p')]
+          .find((paragraph) => paragraph.textContent.trim() === 'Basics adapted from the r/Marvel wiki.');
+        return {
+          title: card?.querySelector('h2')?.textContent,
+          visible: card?.checkVisibility(),
+          attribution: attribution?.checkVisibility() ?? false,
+          fits: document.documentElement.scrollWidth <= innerWidth,
+          indent: list ? Number.parseFloat(getComputedStyle(list).paddingInlineStart) : 0,
+          links: [...(list?.querySelectorAll('li a') ?? [])].map((link) => ({
+            view: link.dataset.view, href: link.getAttribute('href'), text: link.textContent.trim(),
+            linksInBullet: link.closest('li').querySelectorAll('a').length,
+          })),
+        };
+      });
+      const pages = ['home', 'catalog', 'genres', 'spotlights', 'marvel-on-screen', 'marvel-ages',
+        'young-readers', 'universes', 'creators', 'library', 'add', 'data'];
+      t.check('About shows the orientation card at phone width with a separate native link per destination',
+        orientation.title === 'Getting around Recap Page' && orientation.visible && orientation.fits && orientation.indent >= 16
+          && JSON.stringify(orientation.links.map(({ view }) => view)) === JSON.stringify(pages)
+          && orientation.links.every(({ view, href, text, linksInBullet }) => href === `#/${view}` && text && linksInBullet === 1),
+        JSON.stringify(orientation));
+      t.check('About shows the relocated guide attribution at phone width',
+        orientation.attribution && videoRequests.length === 0,
+        JSON.stringify({ attribution: orientation.attribution, videoRequests }));
     } finally {
       await copyContext.close();
     }
@@ -18647,7 +18967,22 @@ SCENARIOS.push({
           raw: localStorage.getItem('mrt.state.v2'),
           filter: JSON.parse(localStorage.getItem('mrt.settings')).filter,
         }));
+        await bookPage.focus('input[name="guide-start-familiarity"][value="new"]');
+        await bookPage.keyboard.press('Space');
         const selector = `[data-preview-id="${expectedBooks[0].id}"]`;
+        await bookPage.waitForSelector(`#guide-start-optional .catalog-card ${selector}`);
+        const books = await bookPage.$$eval('#guide-start-optional .catalog-card', (cards) =>
+          cards.map((card) => {
+            const link = card.querySelector('a.catalog-card-preview');
+            return { id: link.dataset.previewId, href: link.getAttribute('href'), text: link.textContent.trim(),
+              add: card.querySelector('.catalog-card-actions [data-act="import"]')?.dataset.key };
+          }));
+        t.check('both optional books use standard cards with their exact bookmarkable preview addresses and explicit Add',
+          isDeepStrictEqual(books, [
+            { id: 'history-of-the-marvel-universe-2019', href: '#/preview/history-of-the-marvel-universe-2019',
+              text: 'History of the Marvel Universe (2019)', add: 'history-of-the-marvel-universe-2019' },
+            { id: 'marvels-1994', href: '#/preview/marvels-1994', text: 'Marvels (1994)', add: 'marvels-1994' },
+          ]), JSON.stringify(books));
         const native = await bookPage.$eval(selector, (link) => {
           const modifiers = ['ctrlKey', 'metaKey', 'shiftKey', 'altKey'].map((key) => {
             const event = new MouseEvent('click', { bubbles: true, cancelable: true, button: 0, [key]: true });
@@ -18729,7 +19064,12 @@ SCENARIOS.push({
         });
         await t.step('close-saved-preview', async () => {
           await click(bookPage, '#preview-close');
-          await bookPage.waitForSelector('#view-new-to-comics:not([hidden])');
+          await bookPage.waitForFunction(() => location.hash.startsWith('#/new-to-comics')
+            && !document.querySelector('#preview').open);
+          const openLink = await bookPage.$eval('#guide-start-optional .catalog-card-actions a[data-act="open"]',
+            (node) => node.getAttribute('href'));
+          t.check('the saved optional card now offers Open for the same saved copy',
+            parseRoute(openLink)?.listId === imported.list.id, openLink);
         });
         await t.step('open-second-preview', async () => {
           await click(bookPage, `[data-preview-id="${expectedBooks[1].id}"]`);
@@ -18861,27 +19201,35 @@ SCENARIOS.push({
         const guide = await fault.evaluate(() => ({
           length: history.length, saved: localStorage.getItem('mrt.state.v2'),
         }));
-        await click(fault, `#view-new-to-comics [data-preview-id="${id}"]`);
+        await fault.focus('input[name="guide-start-familiarity"][value="new"]');
+        await fault.keyboard.press('Space');
         if (mode === 'pending') {
-          await fault.waitForFunction(() => window.__mrtLocalPending.catalog.length > 0
-            && !document.querySelector('#guide-preview-status').hidden);
+          await fault.waitForFunction(() => window.__mrtLocalPending.catalog.length > 0);
         } else {
-          await fault.waitForSelector('#guide-preview-report .notice button');
-          await fault.evaluate(() => { window.__mrtLocalModes.catalog = 'ready'; });
+          await fault.waitForSelector('#guide-start-report .notice button');
         }
-        const first = await fault.evaluate(() => ({
-          length: history.length, depth: history.state.readingPosition.depth,
-        }));
-        await click(fault, `#view-new-to-comics [data-preview-id="${id}"]`);
-        const repeated = await fault.evaluate(() => ({
-          length: history.length, depth: history.state.readingPosition.depth,
-          parent: history.state.guidePreviewParent, hash: location.hash,
-        }));
-        t.check(`repeating a ${mode} book preview retains exactly one history entry`,
-          first.length === guide.length + 1 && repeated.length === first.length
-            && repeated.depth === first.depth && repeated.parent === id && repeated.hash === `#/preview/${id}`,
-          JSON.stringify({ guide, first, repeated }));
-        if (mode === 'pending') await fault.evaluate(() => window.__mrtSettleLocalRequest('catalog'));
+        t.check(`a ${mode} catalog keeps starter picks available without showing unresolved book cards`,
+          await fault.evaluate(() => !document.getElementById('guide-start-starters').hidden
+            && document.getElementById('guide-start-optional').hidden));
+        if (mode === 'pending') {
+          await fault.evaluate(() => window.__mrtSettleLocalRequest('catalog'));
+        } else {
+          await fault.evaluate(() => { window.__mrtLocalModes.catalog = 'ready'; });
+          await click(fault, '#guide-start-report .notice button');
+        }
+        const selector = `#guide-start-optional [data-preview-id="${id}"]`;
+        await fault.waitForSelector(selector);
+        const repeated = await fault.evaluate((target) => {
+          document.querySelector(target).click();
+          const first = { length: history.length, depth: history.state.readingPosition.depth };
+          document.querySelector(target).click();
+          return { first, length: history.length, depth: history.state.readingPosition.depth,
+            parent: history.state.guidePreviewParent, hash: location.hash };
+        }, selector);
+        t.check(`repeating a book preview after ${mode} catalog recovery retains exactly one history entry`,
+          repeated.first.length === guide.length + 1 && repeated.length === repeated.first.length
+            && repeated.depth === repeated.first.depth && repeated.parent === id && repeated.hash === `#/preview/${id}`,
+          JSON.stringify({ guide, repeated }));
         await fault.waitForSelector('#preview[open] .preview-issue-link');
         await click(fault, '#preview-close');
         await fault.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
@@ -19153,20 +19501,20 @@ SCENARIOS.push({
         reference: icon.querySelector('use')?.getAttribute('href'),
       };
     }));
-    t.check('all 23 static controls retain their meaningful names', JSON.stringify(inventory.filter((i) => !i.gateway).map((i) => i.name))
+    t.check('all 24 static controls retain their meaningful names', JSON.stringify(inventory.filter((i) => !i.gateway).map((i) => i.name))
       === JSON.stringify([
-        'Collapse sidebar', 'Library', 'Search', 'Backup & settings', 'About this app',
+        'Collapse sidebar', 'Library', 'Search', 'Backup & settings', 'About this app', 'Find a starting point.',
         'Enjoyed', 'Did not enjoy',
         'Everything read', 'Progress by series', 'Added by hand', 'Your ratings', 'Modern Timeline', 'Marvel Ages', 'Look up comics',
         'Reading guides', 'Characters', 'Series', 'Creators', 'Genres', 'Marvel Ages', 'Universes',
         'Find a series', 'Find a creator',
       ]), JSON.stringify(inventory));
-    t.check('all 39 static and generated SVGs are decorative and cannot become keyboard stops',
-      inventory.length === 39 && inventory.every((i) => i.tag === 'svg' && i.decorative));
+    t.check('all 40 static and generated SVGs are decorative and cannot become keyboard stops',
+      inventory.length === 40 && inventory.every((i) => i.tag === 'svg' && i.decorative));
     t.check('the one gateway preserves eight labelled category destinations and their icon/arrow pairs',
       await page.evaluate(() => [...document.querySelectorAll('[data-primary-paths], [data-secondary-paths]')]
         .flatMap((root) => [...root.querySelectorAll('a.home-path')])
-        .filter((button) => button.getAttribute('aria-label')?.includes('Recommended start here')
+        .filter((button) => button.getAttribute('aria-label')?.includes('Marvel Knights to Present Day')
           || button.getAttribute('aria-label')?.includes('Browse')
           || button.getAttribute('aria-label')?.includes('Movies and streaming')
           || button.getAttribute('aria-label')?.includes('Publication history')
@@ -19512,11 +19860,12 @@ SCENARIOS.push({
       });
       const opened = await page.evaluate(() => window.__opened);
       t.check(`${width}px: each Read opens a separate launcher synchronously without a lookup wait`,
-        opened.length === 2 && opened.every((call, index) => call.dispatching
-          && call.target === '_blank' && call.url.includes('/open.html?')
-          && call.features.includes('noopener')
-          && new URL(call.url, page.__origin).searchParams.get('d')
-            === String(payload.items[index + 1].digitalId)), JSON.stringify(opened));
+        opened.length === 2 && opened.every((call, index) => {
+          const { pathname, searchParams } = new URL(call.url, page.__origin);
+          return call.dispatching && call.target === '_blank' && pathname === '/open.html'
+            && call.features.includes('noopener') && searchParams.get('r') === 'comics'
+            && searchParams.get('a') === ['20649', '20650'][index] && !searchParams.has('d');
+        }), JSON.stringify(opened));
       const afterRead = await readState(page);
       t.check(`${width}px: launching readers does not mark either unread comic read or alter notes`,
         JSON.stringify(afterRead.read) === JSON.stringify(beforeRead.read)
@@ -20596,7 +20945,7 @@ SCENARIOS.push(
       await page.waitForSelector('#home-primary-paths [data-category="timeline"]');
       const first = await page.evaluate(() => {
         const browse = document.querySelector('#home-primary-paths [data-category="timeline"]');
-        return { href: browse?.getAttribute('href'), recommended: browse?.textContent.includes('Recommended start here'),
+        return { href: browse?.getAttribute('href'), recommended: browse?.textContent.includes('Marvel Knights to Present Day'),
           search: !!document.querySelector('#view-home [data-view="add"], #btn-home-add') };
       });
       t.check('first-run Home recommends the actual Timeline and leaves global Search to the bottom bar',
@@ -21045,46 +21394,40 @@ SCENARIOS.push(responsiveOwner({
               forced: matchMedia('(forced-colors: active)').matches,
               overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
               homeEntry: (() => {
-                const link = document.querySelector('#home-categories a.home-guide-link[href="#/new-to-comics"]');
+                const link = document.querySelector('#home-new-reader a[href="#/new-to-comics"]');
                 const box = link?.getBoundingClientRect();
-                const headingRow = link?.closest('.sec-h');
-                const row = headingRow?.getBoundingClientRect();
-                const heading = headingRow?.querySelector('#home-cat-h');
+                const heading = document.querySelector('#home-new-reader-h');
                 const headingBox = heading?.getBoundingClientRect();
-                if (!link || !heading || !box || !row || !headingBox) return false;
+                if (!link || !heading || !box || !headingBox) return false;
                 // Lines a text run occupies, and whether any single word was split across lines.
                 const lineTops = (node, start = 0, end = node.length) => {
                   const range = document.createRange();
                   range.setStart(node, start); range.setEnd(node, end);
                   return new Set([...range.getClientRects()].filter((r) => r.width > 0).map((r) => Math.round(r.top))).size;
                 };
+                // The label shares the link with an arrow icon, so its text spans several nodes:
+                // measure each word inside the text node that actually holds it.
                 const wordsWhole = (el) => {
-                  const node = el.firstChild;
-                  let at = 0;
-                  return el.textContent.split(' ').every((word) => {
-                    const ok = !word || lineTops(node, at, at + word.length) === 1;
-                    at += word.length + 1;
-                    return ok;
-                  });
+                  const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+                  const words = [];
+                  for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+                    for (const match of node.data.matchAll(/\S+/g)) {
+                      words.push({ word: match[0], lines: lineTops(node, match.index, match.index + match[0].length) });
+                    }
+                  }
+                  return words.length > 0
+                    && words.map(({ word }) => word).join(' ') === el.textContent.trim().split(/\s+/).join(' ')
+                    && words.every(({ lines }) => lines === 1);
                 };
-                const saved = link.getAttribute('style');
-                link.style.whiteSpace = 'nowrap'; link.style.maxWidth = 'none';
-                const natural = link.getBoundingClientRect().width;
-                if (saved === null) link.removeAttribute('style'); else link.setAttribute('style', saved);
-                const gap = parseFloat(getComputedStyle(headingRow).columnGap) || 0;
-                const besideFits = headingBox.width + gap + natural <= row.width + 0.5;
-                const beside = headingBox.bottom > box.top && box.bottom > headingBox.top && headingBox.right <= box.left + 1;
-                const below = box.top >= headingBox.bottom - 1 && box.left >= row.left - 1;
                 return Boolean(link.checkVisibility() && heading.checkVisibility()
                   && !heading.closest('.visually-hidden')
                   && headingBox.width > 1 && headingBox.height > 1 && heading.scrollWidth <= heading.clientWidth + 1
                   && lineTops(heading.firstChild) === 1
-                  && (besideFits ? beside : below)
-                  && (natural > row.width + 0.5 || lineTops(link.firstChild) === 1)
+                  && box.top >= headingBox.bottom - 1
                   && wordsWhole(link)
                   && box.width > 0 && box.height >= 44
                   && box.left >= 0 && box.right <= innerWidth
-                  && heading.textContent.trim() === 'Explore');
+                  && heading.textContent.trim() === 'New to comics?');
               })(),
             })));
           }
@@ -21107,7 +21450,7 @@ SCENARIOS.push(responsiveOwner({
               forced: matchMedia('(forced-colors: active)').matches,
               overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
               heading: document.querySelector('#new-to-comics-h')?.checkVisibility() ?? false,
-              links: [...document.querySelectorAll('#view-new-to-comics a')].every((link) => {
+              links: [...document.querySelectorAll('#view-new-to-comics a')].filter((link) => !link.closest('[hidden]')).every((link) => {
                 const box = link.getBoundingClientRect();
                 return link.checkVisibility() && box.width > 0 && box.height > 0
                   && box.left >= 0 && box.right <= innerWidth;
@@ -21122,7 +21465,7 @@ SCENARIOS.push(responsiveOwner({
         overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth }));
       await cdp.send('Emulation.setPageScaleFactor', { pageScaleFactor: 1 });
       await cdp.detach();
-      t.check('Home guide entry stays whole beside Explore when both fit, else below it, with a comfortable target across themes and widths',
+      t.check('Home guide button sits whole below its heading with a comfortable target across themes and widths',
         homeMeasurements.every((entry) => entry.homeEntry && !entry.overflow), JSON.stringify(homeMeasurements));
       t.check('guide content remains visible without overflow across themes, forced colors and reduced motion',
         guideMeasurements.every((entry) => entry.heading && entry.links && !entry.overflow), JSON.stringify(guideMeasurements));
@@ -21204,7 +21547,7 @@ SCENARIOS.push(responsiveOwner({
       fullWidth: hero.title.width >= hero.contentWidth - 2 && hero.prose.width >= hero.contentWidth - 2,
       ranges: hero.title.bounded && hero.prose.bounded,
       action: hero.actionWidth >= hero.contentWidth - 2 && hero.actionHeight >= 48,
-      actionIdentity: hero.actionHref === null && hero.actionLabel === 'Read',
+      actionIdentity: hero.actionHref === null && hero.actionLabel === 'Find on Marvel Comics',
       secondaryAndFacts: hero.actions.some((node) => node.id === 'btn-hero-info' && node.href === ORDER.items[0].url)
         && hero.facts.includes(ORDER.items[0].title),
     };
@@ -21720,15 +22063,16 @@ SCENARIOS.push(responsiveOwner({
       await open(page, '/#/data');
       await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
       const themeField = await fieldBox('#opt-theme');
-      // #897 moved the path picker from its own page onto Modern Timeline.
+      // #897 moved the path picker from its own page onto Modern Timeline, and #1603 replaced it with
+      // Jump to a section, the native select the whole timeline now carries.
       await open(page, '/?catalog=actual#/catalog');
-      await page.waitForSelector('#catalog-path option');
+      await page.waitForSelector('#catalog-section-jump option');
       await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
-      const pathField = await fieldBox('#catalog-path');
-      await page.focus('#catalog-path');
-      const selectedBefore = await page.$eval('#catalog-path', (node) => node.selectedIndex);
+      const pathField = await fieldBox('#catalog-section-jump');
+      await page.focus('#catalog-section-jump');
+      const selectedBefore = await page.$eval('#catalog-section-jump', (node) => node.selectedIndex);
       await page.keyboard.press('ArrowDown');
-      const selectedAfter = await page.$eval('#catalog-path', (node) => node.selectedIndex);
+      const selectedAfter = await page.$eval('#catalog-section-jump', (node) => node.selectedIndex);
       await page.keyboard.press('ArrowUp');
       await open(page, '/#/add-manual');
       await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
@@ -24660,6 +25004,21 @@ SCENARIOS.push({
     await page.evaluate(() => {
       localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, readingShortcut: true }));
     });
+    // Keep Done on screen during the zoom. Install before boot: the mobile rail's resize handler
+    // can otherwise trigger a hint refresh while Done is still offscreen (#1105, #1414).
+    await page.evaluateOnNewDocument(() => {
+      const listeners = new AbortController();
+      const options = { capture: true, signal: listeners.signal };
+      const pan = () => {
+        const target = window.zoomTarget1105;
+        if (!target || visualViewport.scale === 1) return;
+        listeners.abort();
+        target.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+        window.zoomPanned1105 = true;
+      };
+      for (const type of ['pointerover', 'pointerout', 'pointermove', 'resize', 'scroll']) window.addEventListener(type, pan, options);
+      for (const type of ['resize', 'scroll']) visualViewport.addEventListener(type, pan, options);
+    });
     await open(page, '/?catalog=browser-check&tooltip-document=449#/read/fixture?full=1');
     const setupState = () => page.evaluate(() => {
       const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
@@ -24863,22 +25222,7 @@ SCENARIOS.push({
         return [...content];
       }, tipId);
       console.log(`  ${name} rendered meaningful content beneath long hint: ${JSON.stringify(occlusion)}`);
-      // The zoom takes Done out of view, and the hint's first refresh after it closes the hint for
-      // good, so pan Done back from a capturing listener that runs before that refresh. Panning in a
-      // later round trip raced it (#1105): Chromium raises a pointer move for the resting mouse once
-      // the zoom changes what lies beneath it, and when that came first the hint closed with Done at
-      // x 201 against a zoomed visible width of 195.
-      if (name === 'action') await page.$eval(selector, (node) => {
-        const sources = [[window, ['pointerover', 'pointerout', 'pointermove', 'resize', 'scroll']], [visualViewport, ['resize', 'scroll']]];
-        const listen = (method, pan) => sources.forEach(([target, types]) => types.forEach((type) => target[method](type, pan, true)));
-        const pan = () => {
-          if (visualViewport.scale === 1) return;
-          listen('removeEventListener', pan);
-          node.scrollIntoView({ block: 'nearest', inline: 'nearest' });
-          window.zoomPanned1105 = true;
-        };
-        listen('addEventListener', pan);
-      });
+      if (name === 'action') await page.$eval(selector, (node) => { window.zoomTarget1105 = node; });
       await client.send('Emulation.setPageScaleFactor', { pageScaleFactor: 2 });
       if (name === 'action') await page.waitForFunction(() => window.zoomPanned1105 === true, { timeout: 5000 });
       await settle();
@@ -25035,7 +25379,7 @@ const selectionBar = await import('./browser-selection-bar.mjs');
 SCENARIOS.push(selectionBar.selectionBar);
 MUTATIONS.push(...selectionBar.selectionBarMutations);
 const categoryAccents = await import('./browser-category-accents.mjs');
-SCENARIOS.push(categoryAccents.eraAccents, categoryAccents.categoryWashContrast);
+SCENARIOS.push(categoryAccents.eraAccents, categoryAccents.categoryWashContrast, categoryAccents.categoryPageHeaders);
 MUTATIONS.push(...categoryAccents.categoryAccentMutations);
 const themeColor = await import('./browser-theme-color.mjs');
 SCENARIOS.push(themeColor.themeColor);
@@ -25375,7 +25719,7 @@ async function runLongCollectionNavigation(page, t) {
   const ageUrl = (key) => `/?catalog=actual#/age-${key}`;
   const pathReady = async (id = UX10_LONG.id, fixture = 'actual') => {
     await open(page, pathUrl(id, fixture));
-    await page.waitForFunction((expected) => document.querySelector('#catalog-path')?.value === expected
+    await page.waitForFunction((expected) => new URLSearchParams(location.hash.split('?')[1] ?? '').get('path') === expected
       && document.querySelector('#catalog-results [data-path-stop] .catalog-card')
       && document.querySelector('#catalog-path-navigation form'), {}, id);
     await settle();
@@ -25564,7 +25908,7 @@ async function runLongCollectionNavigation(page, t) {
       id: card.dataset.story, links: [...card.querySelectorAll('a')].map((link) => ({ href: link.getAttribute('href'), key: link.dataset.key ?? null })),
     })));
     receipt('LC03', 'independent cards and exact chronology', expectedEvent, eventIds, {
-      cards43: eventIds.length === 43, fullOrder: isDeepStrictEqual(eventIds, expectedEvent),
+      cards44: eventIds.length === 44, fullOrder: isDeepStrictEqual(eventIds, expectedEvent),
       variantsExact: eventIds[9] === 'list:civil-war' && eventIds[10] === 'list:civil-war-essential' && eventIds[12] === 'list:civil-war-avengers',
       crossEra3: UX10_LONG.stops.filter((stop) => stop.year === 2004).every((stop) => eventIds.includes(`list:${stop.stepId}`)),
       linksAndActionKeysRetained: isDeepStrictEqual(linksBefore, linksAfter),
@@ -25572,7 +25916,7 @@ async function runLongCollectionNavigation(page, t) {
 
     enter('LC04 reusable long leaves and small exclusion');
     for (const [key, count, last] of [
-      ['fresh-start', 13, 'king-in-black'], ['current', 21, 'avengers-armageddon'],
+      ['fresh-start', 14, 'king-in-black'], ['current', 22, 'avengers-armageddon'],
       ['early-modern', 18, 'operation-zero-tolerance'],
     ]) {
       await ageReady(key);
@@ -25764,7 +26108,15 @@ async function runLongCollectionNavigation(page, t) {
     }, UX10_LONG.stops[77].stepId);
     receipt('LC08', 'detached target', 'unavailable/no fallback', disconnected, { unavailable: disconnected.text.includes('no longer available'), noFallback: disconnected.target === 'BUTTON' });
     await page.evaluate(() => { window.__ux10OldForm = document.querySelector('#catalog-path-navigation form'); });
-    await page.select('#catalog-path', UX10_MODERN.id);
+    // #1603 retired the path selector, so another path is followed by its address.
+    await page.evaluate((id) => {
+      const [head, query = ''] = location.hash.split('?');
+      const params = new URLSearchParams(query);
+      params.set('path', id);
+      location.hash = `${head}?${params}`;
+    }, UX10_MODERN.id);
+    await page.waitForFunction((id) => new URLSearchParams(location.hash.split('?')[1] ?? '').get('path') === id
+      && document.querySelector('#catalog-path-navigation form') !== window.__ux10OldForm, {}, UX10_MODERN.id);
     await settle();
     const stale = await page.evaluate(() => {
       const before = document.activeElement;
@@ -25791,14 +26143,16 @@ async function runLongCollectionNavigation(page, t) {
     await pathReady();
     const reloadBefore = await raw(); await page.reload({ waitUntil: 'load' });
     await page.waitForSelector('#catalog-results [data-path-stop] .catalog-card'); await settle();
-    receipt('LC09', 'path reload', UX10_LONG.id, await page.$eval('#catalog-path', (node) => node.value), {
-      pathRetained: await page.$eval('#catalog-path', (node) => node.value) === UX10_LONG.id,
+    const reloadedPath = routeOf((await raw()).hash).path;
+    receipt('LC09', 'path reload', UX10_LONG.id, reloadedPath, {
+      pathRetained: reloadedPath === UX10_LONG.id,
       hashRetained: isDeepStrictEqual(routeOf((await raw()).hash), routeOf(reloadBefore.hash)),
     });
     await ageReady('event-era'); await page.reload({ waitUntil: 'load' }); await page.waitForSelector('#age-event-era-results .catalog-card'); await settle();
     const ageBeforeNavigation = await raw();
     await page.evaluate(() => { location.hash = '#/catalog?path=modern-avengers'; });
-    await page.waitForFunction(() => document.querySelector('#catalog-path')?.value === 'modern-avengers'
+    await page.waitForFunction(() => Boolean(document.querySelector('#catalog-path-name')?.textContent)
+      && new URLSearchParams(location.hash.split('?')[1] ?? '').get('path') === 'modern-avengers'
       && document.querySelector('#catalog-results [data-path-stop] .catalog-card')); await settle();
     await page.evaluate(() => history.back());
     await page.waitForFunction(() => document.activeElement?.id === 'age-event-era-h'); await settle();
@@ -26039,50 +26393,23 @@ async function ux11Preload(page, fixture) {
       const record = { delay, at: now(), fired: null, cleared: false };
       const id = realTimeout(() => { record.fired = now(); fn(...args); }, delay);
       clock.set(id, record);
-      if ([8000, 1400].includes(delay)) state.timers.push(record);
+      // #1601: the launcher holds no lookup deadline or fallback delay any more, so any timer it
+      // starts is recorded and the rows expect none.
+      state.timers.push(record);
       return id;
     };
     window.clearTimeout = (id) => {
       if (clock.has(id)) clock.get(id).cleared = true;
       realClear(id);
     };
-    // #854: settled-clock compared the time Node saw the fallback request with this page's clock, and
-    // those are two clocks. In the full run that failed L12 and L13, Node's clock put four of the five
-    // fallback requests before this page's own record of the timer firing that sent them. One clock is
-    // not exact either: it is clamped to 100 microseconds, and measured in Edge 155, 22 of 3,000 timers
-    // appeared to fire 0.1 ms before their delay. So the not-early bounds ask the page which came first.
-    // A timer never runs before its delay, so a navigation or abort that begins once its timer has fired
-    // is not early at any resolution, and every early one begins before it. That is stricter than timing:
-    // a navigation another timer started after the delay would fail too, and the launcher has no such path.
-    const timerFired = (delay) => state.timers.some((timer) => timer.delay === delay && timer.fired !== null);
     window.navigation?.addEventListener('navigate', (event) => {
-      state.navigations.push({ url: event.destination.url, at: now(), afterFallback: timerFired(1400) });
+      state.navigations.push({ url: event.destination.url, at: now() });
     });
     window.fetch = (input, init) => {
       const url = new URL(typeof input === 'string' ? input : input.url, location.href);
       if (url.origin === location.origin) return originalFetch(input, init);
-      if (url.href !== (f.expectedLookup ?? 'https://marvel.emreparker.com/v1/issues/900002')) {
-        throw new Error(`Unexpected synthetic metadata request ${url.href}`);
-      }
-      state.calls.push({ url: url.href, cache: init?.cache, accept: init?.headers?.accept,
-        signal: init?.signal instanceof AbortSignal, at: now() });
-      return new Promise((resolve, reject) => {
-        const finish = () => {
-          state.settled = now();
-          if (f.mode === 'network') reject(new TypeError('Synthetic offline'));
-          else if (f.mode === 'json') resolve({ ok: true, json: async () => { throw new SyntaxError('Synthetic JSON'); } });
-          else resolve(new Response(JSON.stringify({ digitalId: f.mode === 'missing' ? null : 700002 }),
-            { status: f.mode === 'http' ? 503 : 200, headers: { 'content-type': 'application/json' } }));
-        };
-        state.release = finish;
-        init.signal.addEventListener('abort', () => {
-          state.aborted = now();
-          state.abortedAfterDeadline = timerFired(8000);
-          state.settled = state.aborted;
-          reject(new DOMException('Synthetic deadline', 'AbortError'));
-        }, { once: true });
-        if (!['hold', 'timeout'].includes(f.mode)) finish();
-      });
+      state.calls.push({ url: url.href, cache: init?.cache, accept: init?.headers?.accept, at: now() });
+      return Promise.reject(new TypeError('Synthetic: the launcher makes no metadata request'));
     };
     window.__ux11Tap = (url) => {
       const node = (id) => document.getElementById(id);
@@ -26101,49 +26428,41 @@ async function ux11Preload(page, fixture) {
 }
 
 const UX11_TITLES = {
-  pending: 'Looking up reader link', resolved: 'Opening Marvel Unlimited web reader',
-  comics: 'Opening Marvel Comics website',
-  page: 'Opening Marvel comic page', 'no-reader-link': 'No direct reader link',
-  'lookup-error': 'Reader lookup failed', timeout: 'Reader lookup timed out',
-  'lookup-unavailable': 'Reader lookup unavailable', 'missing-reference': 'Nothing to open',
+  app: 'Opening the Marvel Comics app', comics: 'Opening Marvel Comics website',
+  'missing-reference': 'Nothing to open',
 };
 const UX11_CAPTIONS = {
-  pending: 'Looking up the Marvel Unlimited link for this comic. Reading ends December 7, 2026.',
-  resolved: 'Opening the recorded reader link. Reading ends December 7, 2026. Reading progress has not changed.',
+  app: 'Taking you to this comic in the Marvel Comics app.',
   comics: 'Find this comic on the Marvel Comics website. This is not a single-comic link. Reading progress has not changed.',
-  page: 'Opening the Marvel comic page. Reading progress has not changed.',
-  'no-reader-link': 'No direct reader link is recorded. Opening the Marvel comic page instead.',
-  'lookup-error': 'The metadata lookup failed. Opening the Marvel comic page instead.',
-  timeout: 'The metadata lookup timed out. Opening the Marvel comic page instead.',
-  'lookup-unavailable': 'Saved lookup settings could not be used. Opening the Marvel comic page instead.',
   'missing-reference': 'This link was missing an issue reference.',
 };
 
 async function runReaderLauncherFeedback(page, t) {
   page.__ux11Owner = 'reader-launcher-feedback';
   const slug = 'https://www.marvel.com/comics/issue/900002/browser_check_2';
-  const canonical = 'https://www.marvel.com/comics/issue/900002/';
-  const book = 'https://read.marvel.com/#/book/700002';
+  const viewer = 'https://www.marvelcomicsapp.com/viewer/18255';
+  const website = 'https://marvel.webtoon.com/';
+  // #1601: the launcher opens the Marvel Comics app for a viewer link and the website otherwise, with
+  // no lookup. Older bookmarks still carry a book, an issue, a page or an Unlimited destination, and
+  // each of those now lands on the website rather than on anything Marvel Unlimited served.
   const fixtures = [
-    { id: 'L06', query: 'd=700001&i=900001&t=Browser%20Check%20%282026%29%20%232', state: 'resolved',
-      intended: 'https://read.marvel.com/#/book/700001' },
+    { id: 'L06', query: 'a=18255&r=comics&t=Browser%20Check%20%282026%29%20%232', state: 'app',
+      heading: 'Opening Browser Check (2026) #2...', intended: viewer },
     { id: 'L01', theme: 'light', system: 'dark' }, { id: 'L02', theme: 'dark' },
     { id: 'L03', theme: 'system' }, { id: 'L04', theme: 'system', system: 'dark' },
     { id: 'L05', theme: 'unexpected' },
-    { id: 'L07', query: `i=900002&u=${encodeURIComponent(slug)}&p=1`, state: 'page', intended: slug },
-    { id: 'L08', mode: 'hold', state: 'resolved', intended: book },
-    { id: 'L09', mode: 'missing', state: 'no-reader-link', intended: slug },
-    { id: 'L10', mode: 'http', state: 'lookup-error', intended: slug },
-    { id: 'L11', mode: 'network', query: 'i=900002', state: 'lookup-error', intended: canonical },
-    { id: 'L12', mode: 'json', state: 'lookup-error', intended: slug },
-    { id: 'L13', mode: 'timeout', query: 'i=900002', state: 'timeout', intended: canonical },
-    { id: 'L14', state: 'lookup-unavailable', intended: slug, apiBase: 'ftp://127.0.0.1/v1' },
-    { id: 'L15', mode: 'hold', state: 'resolved', intended: book, reduce: true },
-    { id: 'L16', readDenied: true, theme: 'system', state: 'lookup-unavailable', intended: slug },
-    { id: 'L17', theme: 'unexpected', mode: 'hold', state: 'resolved', intended: book,
-      apiBase: 'https://ux11-api.invalid/v1', expectedLookup: 'https://ux11-api.invalid/v1/issues/900002' },
-    { id: 'L18', query: 'd=700001&r=comics', state: 'comics', intended: 'https://marvel.webtoon.com/' },
-    { id: 'L19', query: 'i=900002&r=comics', state: 'comics', intended: 'https://marvel.webtoon.com/' },
+    { id: 'L07', query: `i=900002&u=${encodeURIComponent(slug)}&p=1&r=unlimited`, state: 'comics', intended: website },
+    { id: 'L08', query: 'd=700002&i=900002&r=unlimited', state: 'comics', intended: website },
+    { id: 'L09', query: 'i=900002', state: 'comics', intended: website },
+    { id: 'L10', query: 'a=018255&r=comics', state: 'comics', intended: website },
+    { id: 'L11', query: 'a=18255&a=18256&r=comics', state: 'comics', intended: website },
+    { id: 'L14', query: 'i=900002&r=comics', state: 'comics', intended: website, apiBase: 'ftp://127.0.0.1/v1' },
+    { id: 'L15', query: 'a=18255&r=comics', state: 'app', intended: viewer, reduce: true },
+    { id: 'L16', query: 'a=18255&r=comics', readDenied: true, theme: 'system', state: 'app', intended: viewer },
+    { id: 'L17', query: 'i=900002&r=comics', theme: 'unexpected', state: 'comics', intended: website,
+      apiBase: 'https://ux11-api.invalid/v1' },
+    { id: 'L18', query: 'd=700001&r=comics', state: 'comics', intended: website },
+    { id: 'L19', query: 'i=900002&r=comics', state: 'comics', intended: website },
   ];
   const rawState = {};
   let useTap = false;
@@ -26169,8 +26488,7 @@ async function runReaderLauncherFeedback(page, t) {
     Object.assign(rawState, await page.evaluate(() => ({ raw: localStorage.getItem('mrt.state.v2'),
       selected: localStorage.getItem('mrt.selectedList') })));
     for (const f of fixtures) {
-      const baseQuery = f.query ?? (f.intended ? `i=900002&u=${encodeURIComponent(slug)}` : '');
-      const query = baseQuery.includes('r=comics') ? baseQuery : `${baseQuery}&r=unlimited`;
+      const query = f.query ?? '';
       const nonce = `${f.id}-${Date.now()}`;
       const expectedUrl = `${page.__origin}/open.html?${query}`;
       page.__ux11Visit = { ...f, nonce, network: f.intended ? f.intended.split('#')[0] : null,
@@ -26189,8 +26507,8 @@ async function runReaderLauncherFeedback(page, t) {
       let snapshot = await loadVisit();
       if (!snapshot.oldNodes || snapshot.nonce !== nonce) throw new Error(`${f.id}: original launcher fixture failed`);
       if (f.id === 'L06') {
-        await page.waitForFunction(() => document.getElementById('fallback')?.href === 'https://read.marvel.com/#/book/700001',
-          { timeout: 2000 });
+        await page.waitForFunction((href) => document.getElementById('fallback')?.href === href,
+          { timeout: 2000 }, f.intended);
         snapshot = await ux11Snapshot(page);
         if (snapshot.url !== expectedUrl || !snapshot.oldNodes) {
           console.error(`UX11-RETENTION-FAIL ${JSON.stringify({ expectedUrl, snapshot, requests: page.__ux11Visit.requests })}`);
@@ -26211,40 +26529,17 @@ async function runReaderLauncherFeedback(page, t) {
       }
       page.__ux11Step = `${f.id}:post-setup`;
       const measurePresentation = (actual, state) => ux11Receipt(page, t, `${f.id}:presentation`,
-        { state, title: `${UX11_TITLES[state]} - Recap Page`, caption: UX11_CAPTIONS[state],
-          animation: state === 'pending' && !f.reduce ? 'pulse' : 'none',
+        { state, title: `${UX11_TITLES[state]} - Recap Page`, heading: f.heading ?? UX11_TITLES[state],
+          caption: UX11_CAPTIONS[state], animation: 'none',
           main: { count: 1, label: 'h', contains: true }, status: ['status', 'polite', 'true'] }, actual,
         { state: actual.state === state, title: actual.title === `${UX11_TITLES[state]} - Recap Page`,
-          caption: actual.caption === UX11_CAPTIONS[state],
-          animation: state === 'pending' && !f.reduce ? actual.animation !== 'none' : actual.animation === 'none',
+          heading: actual.heading === (f.heading ?? UX11_TITLES[state]),
+          caption: actual.caption === UX11_CAPTIONS[state], animation: actual.animation === 'none',
           mainCount: actual.main.count === 1, mainName: actual.main.label === 'h', mainContains: actual.main.contains,
           statusRole: actual.status[0] === 'status', live: actual.status[1] === 'polite', atomic: actual.status[2] === 'true' });
-      if (['hold', 'timeout'].includes(f.mode)) {
-        await page.waitForFunction(() => window.__ux11.calls.length === 1, { timeout: 2000 });
-        snapshot = await ux11Snapshot(page);
-        measurePresentation(snapshot, 'pending');
-        const expectedLookup = f.expectedLookup ?? 'https://marvel.emreparker.com/v1/issues/900002';
-        ux11Receipt(page, t, `${f.id}:pending-request`, { url: expectedLookup,
-          accept: 'application/json', cache: 'no-store', delay: 8000, fallback: f.query === 'i=900002' ? canonical : slug },
-        snapshot, { count: snapshot.fixture.calls.length === 1,
-          exactUrl: snapshot.fixture.calls[0].url === expectedLookup,
-          accept: snapshot.fixture.calls[0].accept === 'application/json', cache: snapshot.fixture.calls[0].cache === 'no-store',
-          signal: snapshot.fixture.calls[0].signal, abortDelay: snapshot.fixture.timers[0]?.delay === 8000,
-          fallback: snapshot.fallback.href === (f.query === 'i=900002' ? canonical : slug),
-          noEarlyNativeIntent: page.__ux11Visit.requests.length === 0 });
-        if (f.mode === 'hold') {
-          if (f.id === 'L15') {
-            await page.focus('#fallback');
-            await page.keyboard.press('Tab');
-            await page.keyboard.down('Shift');
-            try { await page.keyboard.press('Tab'); } finally { await page.keyboard.up('Shift'); }
-          }
-          await page.evaluate(() => window.__ux11.release());
-        }
-      }
       if (f.intended) {
         page.__ux11Step = `${f.id}:native-settlement`;
-        const deadline = f.mode === 'timeout' ? 12000 : 2500;
+        const deadline = 2500;
         const start = Date.now();
         while (!page.__ux11Visit.requests.length && Date.now() - start < deadline) {
           await new Promise((resolve) => setTimeout(resolve, 20));
@@ -26277,28 +26572,9 @@ async function runReaderLauncherFeedback(page, t) {
           navigation: requests[0]?.navigation === true, nonce: requests[0]?.nonce === nonce,
           count: requests.length === 1, accepted: requests.every((r) => r.accepted),
           opener: snapshot.openerNull, rawBytes: snapshot.raw === rawState.raw });
-        if (f.mode) {
-          const timers = snapshot.fixture.timers;
-          const fallbackTimer = timers.find((timer) => timer.delay === 1400);
-          const abort = timers.find((timer) => timer.delay === 8000);
-          // Every bound reads the page's own records, and the two not-early ones its order rather than
-          // its clock (#854, see ux11Preload). The first navigation is the one timed, so an early one
-          // cannot hide behind a later correct one.
-          const navigation = snapshot.fixture.navigations[0];
-          ux11Receipt(page, t, `${f.id}:settled-clock`, { abort: 8000, fallback: ['hold'].includes(f.mode) ? null : 1400 },
-            { timers, fixture: snapshot.fixture, requests }, {
-              clearedAbort: abort?.cleared === true,
-              fallbackPolicy: f.mode === 'hold' ? !fallbackTimer : fallbackTimer?.delay === 1400,
-              notEarly: !fallbackTimer || navigation?.afterFallback === true,
-              boundedDelay: !fallbackTimer || (navigation !== undefined && navigation.at <= fallbackTimer.at + 2000),
-              realAbort: f.mode !== 'timeout' || snapshot.fixture.abortedAfterDeadline === true,
-              boundedAbort: f.mode !== 'timeout' || snapshot.fixture.aborted <= abort.at + 10000,
-              retainedFocus: f.id !== 'L15' || snapshot.focus === 'fallback',
-            });
-        } else {
-          ux11Receipt(page, t, `${f.id}:skip-lookup`, { calls: 0, timers: 0 }, snapshot.fixture,
-            { noFetch: snapshot.fixture.calls.length === 0, noTimers: snapshot.fixture.timers.length === 0 });
-        }
+        ux11Receipt(page, t, `${f.id}:skip-lookup`, { calls: 0, timers: 0, fallback: f.intended }, snapshot.fixture,
+          { noFetch: snapshot.fixture.calls.length === 0, noTimers: snapshot.fixture.timers.length === 0,
+            retainedFallback: snapshot.fallback.href === f.intended && snapshot.fallback.visible });
         await new Promise((resolve) => setTimeout(resolve, 2000));
         ux11Receipt(page, t, `${f.id}:no-duplicate`, 1, page.__ux11Visit.requests,
           { one: page.__ux11Visit.requests.length === 1 });
@@ -26376,10 +26652,9 @@ MUTATIONS.push(
       "const chosenTheme = 'dark';", 'launcher-force-dark') },
   { id: 'launcher-terminal-pending', title: 'missing reference still looks pending', breaks: 'reader-launcher-feedback',
     rewriteOpen: (source) => ux11Splice(source, "present('missing-reference');", "present('pending');", 'launcher-terminal-pending') },
-  { id: 'launcher-early-fallback', breaks: 'reader-launcher-feedback',
-    why: 'the fallback page opens as soon as the lookup ends, while the 1400 ms timer still stands (#854)',
-    rewriteOpen: (source) => ux11Splice(source, 'setTimeout(() => go(page), 1400);',
-      'setTimeout(() => {}, 1400); go(page);', 'launcher-early-fallback') },
+  { id: 'launcher-viewer-ignored', breaks: 'reader-launcher-feedback',
+    why: 'a verified viewer link opens the website instead of the Marvel Comics app (#1601)',
+    rewriteOpen: (source) => ux11Splice(source, 'if (appUrl) {', 'if (false) {', 'launcher-viewer-ignored') },
 );
 
 SCENARIOS.push({

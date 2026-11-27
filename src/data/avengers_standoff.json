@@ -1,0 +1,527 @@
+{
+  "id": "avengers-standoff",
+  "name": "Avengers: Standoff!",
+  "description": "Pleasant Hill looks like a town, not a prison. S.H.I.E.L.D. has given its supervillain inmates new names, new neighbors and no memory of their crimes. When those memories start coming back, Steve Rogers and Sam Wilson have a breakout on their hands. For the people who live there, getting out is only the beginning.",
+  "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/avengers-standoff-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-11-27T01:52:16.516Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 26,
+  "collections": 3,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 58403,
+      "title": "Avengers Standoff: Welcome to Pleasant Hill (2016) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/58403/avengers_standoff_welcome_to_pleasant_hill_2016_1",
+      "seriesId": 21284,
+      "seriesName": "Avengers Standoff: Welcome to Pleasant Hill (2016)",
+      "onSale": "2016-02-17T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Prelude"
+    },
+    {
+      "issueId": 57833,
+      "title": "Avengers Standoff: Assault on Pleasant Hill Alpha (2016) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/57833/avengers_standoff_assault_on_pleasant_hill_alpha_2016_1",
+      "seriesId": 21064,
+      "seriesName": "Avengers Standoff: Assault on Pleasant Hill Alpha (2016)",
+      "onSale": "2016-03-02T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Avengers: Standoff!"
+    },
+    {
+      "issueId": 56031,
+      "title": "Agents of S.H.I.E.L.D. (2016) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/56031/agents_of_shield_2016_3",
+      "seriesId": 20607,
+      "seriesName": "Agents of S.H.I.E.L.D. (2016)",
+      "onSale": "2016-03-09T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/56d9b87a084c7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Avengers: Standoff!"
+    },
+    {
+      "issueId": 58372,
+      "title": "New Avengers (2015) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/58372/new_avengers_2015_8",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-03-23T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/50/56e70cd4d9687",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Avengers: Standoff!"
+    },
+    {
+      "issueId": 56219,
+      "title": "Uncanny Avengers (2015) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/56219/uncanny_avengers_2015_7",
+      "seriesId": 20621,
+      "seriesName": "Uncanny Avengers (2015 - 2017)",
+      "onSale": "2016-03-09T00:00:00+0000",
+      "mu": "2016-03-09T00:00:00+0000",
+      "digitalId": 41373,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/56d9b7c53952a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Guillermo Ortego",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: Standoff!"
+    },
+    {
+      "issueId": 55360,
+      "title": "All-New, All-Different Avengers (2015) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/55360/all-new_all-different_avengers_2015_7",
+      "seriesId": 20443,
+      "seriesName": "All-New, All-Different Avengers (2015 - 2016)",
+      "onSale": "2016-03-23T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/56e7074c31b84",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Avengers: Standoff!"
+    },
+    {
+      "issueId": 57839,
+      "title": "Howling Commandos of S.H.I.E.L.D. (2015) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/57839/howling_commandos_of_shield_2015_6",
+      "seriesId": 20815,
+      "seriesName": "Howling Commandos of S.H.I.E.L.D. (2015 - 2016)",
+      "onSale": "2016-03-23T00:00:00+0000",
+      "mu": "2016-09-19T00:00:00+0000",
+      "digitalId": 41454,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/40/56e7094097d9b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brent Schoonover",
+          "role": "penciler"
+        },
+        {
+          "name": "Frank Barbiere",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: Standoff!"
+    },
+    {
+      "issueId": 56561,
+      "title": "Captain America: Sam Wilson (2015) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/56561/captain_america_sam_wilson_2015_7",
+      "seriesId": 20711,
+      "seriesName": "Captain America: Sam Wilson (2015 - 2017)",
+      "onSale": "2016-03-30T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Avengers: Standoff!"
+    },
+    {
+      "issueId": 56220,
+      "title": "Uncanny Avengers (2015) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/56220/uncanny_avengers_2015_8",
+      "seriesId": 20621,
+      "seriesName": "Uncanny Avengers (2015 - 2017)",
+      "onSale": "2016-04-06T00:00:00+0000",
+      "mu": "2016-10-03T00:00:00+0000",
+      "digitalId": 41665,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/56fed4e92c325",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers: Standoff!"
+    },
+    {
+      "issueId": 58373,
+      "title": "New Avengers (2015) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/58373/new_avengers_2015_9",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-04-06T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/60/56fec3bc36fda",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Avengers: Standoff!"
+    },
+    {
+      "issueId": 55856,
+      "title": "Illuminati (2015) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/55856/illuminati_2015_6",
+      "seriesId": 20552,
+      "seriesName": "Illuminati (2015 - 2016)",
+      "onSale": "2016-04-13T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Avengers: Standoff!"
+    },
+    {
+      "issueId": 56032,
+      "title": "Agents of S.H.I.E.L.D. (2016) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/56032/agents_of_shield_2016_4",
+      "seriesId": 20607,
+      "seriesName": "Agents of S.H.I.E.L.D. (2016)",
+      "onSale": "2016-04-13T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/5706abfb4a429",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Avengers: Standoff!"
+    },
+    {
+      "issueId": 55361,
+      "title": "All-New, All-Different Avengers (2015) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/55361/all-new_all-different_avengers_2015_8",
+      "seriesId": 20443,
+      "seriesName": "All-New, All-Different Avengers (2015 - 2016)",
+      "onSale": "2016-04-13T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/f0/56faef1477c92",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Avengers: Standoff!"
+    },
+    {
+      "issueId": 58374,
+      "title": "New Avengers (2015) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/58374/new_avengers_2015_10",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-04-20T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/570e7bf06781e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Avengers: Standoff!"
+    },
+    {
+      "issueId": 56562,
+      "title": "Captain America: Sam Wilson (2015) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/56562/captain_america_sam_wilson_2015_8",
+      "seriesId": 20711,
+      "seriesName": "Captain America: Sam Wilson (2015 - 2017)",
+      "onSale": "2016-04-20T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Avengers: Standoff!"
+    },
+    {
+      "issueId": 57861,
+      "title": "Avengers Standoff: Assault on Pleasant Hill Omega (2016) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/57861/avengers_standoff_assault_on_pleasant_hill_omega_2016_1",
+      "seriesId": 21095,
+      "seriesName": "Avengers Standoff: Assault on Pleasant Hill Omega (2016)",
+      "onSale": "2016-04-27T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Avengers: Standoff!"
+    },
+    {
+      "issueId": 59419,
+      "title": "New Avengers (2015) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/59419/new_avengers_2015_11",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-05-04T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/03/571e7b3366175",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Epilogue"
+    },
+    {
+      "issueId": 57233,
+      "title": "Thunderbolts (2016) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/57233/thunderbolts_2016_1",
+      "seriesId": 20884,
+      "seriesName": "Thunderbolts (2016 - 2017)",
+      "onSale": "2016-05-04T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/00/571f8306278fd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Epilogue"
+    },
+    {
+      "issueId": 57236,
+      "title": "Thunderbolts (2016) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/57236/thunderbolts_2016_2",
+      "seriesId": 20884,
+      "seriesName": "Thunderbolts (2016 - 2017)",
+      "onSale": "2016-06-08T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/20/575071b238234",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Epilogue"
+    },
+    {
+      "issueId": 57238,
+      "title": "Thunderbolts (2016) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/57238/thunderbolts_2016_3",
+      "seriesId": 20884,
+      "seriesName": "Thunderbolts (2016 - 2017)",
+      "onSale": "2016-07-20T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/50/578906147fc93",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Epilogue"
+    },
+    {
+      "issueId": 57239,
+      "title": "Thunderbolts (2016) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/57239/thunderbolts_2016_4",
+      "seriesId": 20884,
+      "seriesName": "Thunderbolts (2016 - 2017)",
+      "onSale": "2016-08-31T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/f0/57bc9c0c8b022",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Epilogue"
+    },
+    {
+      "issueId": 57240,
+      "title": "Thunderbolts (2016) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/57240/thunderbolts_2016_5",
+      "seriesId": 20884,
+      "seriesName": "Thunderbolts (2016 - 2017)",
+      "onSale": "2016-09-28T00:00:00+0000",
+      "mu": "2017-04-03T00:00:00+0000",
+      "digitalId": 42706,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/57dc38424ab71",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jon Malin",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Epilogue"
+    },
+    {
+      "issueId": 57241,
+      "title": "Thunderbolts (2016) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/57241/thunderbolts_2016_6",
+      "seriesId": 20884,
+      "seriesName": "Thunderbolts (2016 - 2017)",
+      "onSale": "2016-10-12T00:00:00+0000",
+      "mu": null,
+      "digitalId": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/57f5514ec2942",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Epilogue"
+    },
+    {
+      "issueId": 57864,
+      "title": "Captain America: Steve Rogers (2016) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/57864/captain_america_steve_rogers_2016_1",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Epilogue"
+    },
+    {
+      "issueId": 57866,
+      "title": "Captain America: Steve Rogers (2016) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/57866/captain_america_steve_rogers_2016_2",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Epilogue"
+    },
+    {
+      "issueId": 57868,
+      "title": "Captain America: Steve Rogers (2016) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/57868/captain_america_steve_rogers_2016_3",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Epilogue"
+    }
+  ]
+}

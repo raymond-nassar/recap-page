@@ -141,7 +141,7 @@ test('the current gateway offers three primary modes and five secondary gateways
   }
   assert.equal(categories.find(({ key }) => key === 'timeline').count, currentReadingCensus.modernTimeline);
   // The dated X-Men Silver Age guide joins Marvel Ages; the pair it replaced were undated.
-  assert.equal(categories.find(({ key }) => key === 'marvel-ages').count, 221);
+  assert.equal(categories.find(({ key }) => key === 'marvel-ages').count, 229);
   assert.equal(categories.find(({ key }) => key === 'marvel-on-screen').count, currentReadingCensus.mcu);
   assert.equal(categories.find(({ key }) => key === 'young-readers').count, 15);
 });
@@ -258,7 +258,7 @@ test('Home is a category gateway rather than another copy of the catalog', () =>
 });
 
 test('Home recommends its existing Timeline destination without an introduction or Search shortcut', () => {
-  assert.match(homeSource, /category\.key === 'timeline' \? 'Recommended start here' : category\.label/);
+  assert.match(homeSource, /category\.key === 'timeline' \? 'Marvel Knights to Present Day' : category\.label/);
   assert.doesNotMatch(homeSource, /home-first-run|btn-home-add|Where do you want to start/);
 });
 

@@ -271,7 +271,7 @@ function validateSourceAndParent(order, parsed, parentPayload, ledger) {
   assert(parentPayload.items.every((item) => hasMetadata(item)), `${order.id} parent payload has incomplete issue metadata`);
 }
 
-function chapterSubjects(items) {
+export function readingOrderSubjects(items) {
   return [...new Set(items.map((item) => (
     String(item.seriesName ?? item.title ?? '')
       .replace(/\s+\(\d{4}(?:\s*-\s*\d{4})?\).*$/, '')
@@ -351,7 +351,7 @@ export function buildChapterFamily({
         sourceSection: null,
         sourceOrigin,
         sourceLicense: null,
-        characters: chapterSubjects(items),
+        characters: readingOrderSubjects(items),
         keywords: ['Marvel Knights', 'Planet X'],
         group: null,
         groupName: null,

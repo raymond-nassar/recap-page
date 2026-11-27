@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { afterMcuEditorialEntry } from './lib/mcu-editorial.mjs';
+import { isComicLauncherCall } from './lib/reader-launch-verdict.mjs';
 import { isDeepStrictEqual } from 'node:util';
 import {
   addIssuesToList, createEmptyState, createList, markRead, setDeferred, setIssueNote,
@@ -212,9 +213,7 @@ export const braveNewWorldActualData = {
     });
     const opened = await page.evaluate(() => window.__opened);
     t.check('The next unread whole5815 opens separate synchronous launchers, never a per-story target',
-      opened.length === 2 && opened.every((entry) => entry.dispatching && entry.target === '_blank'
-        && entry.features === 'noopener' && new URL(entry.url).origin === page.__origin
-        && new URL(entry.url).searchParams.get('d') === String(payload.items[6].digitalId)),
+      opened.length === 2 && opened.every((entry) => isComicLauncherCall(entry, page.__origin, payload.items[6])),
       JSON.stringify(opened));
     t.check('Brave New World uses only the isolated origin and reports no browser error',
       external.length === 0 && errors.length === 0, JSON.stringify({ external, errors }));

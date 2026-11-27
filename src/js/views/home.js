@@ -38,7 +38,7 @@ export function createHomeView({
   onReviewDeferred,
   paintCover,
   paintCoverUrl,
-  readerPresentation = (issue) => ({ launchable: isLaunchable(issue), temporary: false }),
+  readerPresentation = (issue) => ({ launchable: isLaunchable(issue) }),
   renderSavedLists,
   seriesOnly,
   shortTitle,
@@ -94,13 +94,13 @@ export function createHomeView({
 
     if (issue) {
       const reader = readerPresentation(issue, 'saved');
-      nodes.continueNext.textContent = `Next: ${issue.title}${reader.temporary ? ' (temporary reader link)' : ''}`;
+      nodes.continueNext.textContent = `Next: ${issue.title}`;
       paintCover(nodes.continueImage, nodes.continueFallback, issue, 'portrait_incredible');
       nodes.continueSeries.textContent = seriesOnly(issue.seriesName);
       nodes.continueNumber.textContent = issue.number ? `#${issue.number}` : '';
       nodes.continueRead.hidden = false;
       nodes.continueRead.disabled = !reader.launchable;
-      const app = Boolean(appLinkFor(issue.issueId));
+      const app = Boolean(appLinkFor(issue));
       nodes.continueRead.textContent = readerAction(new Date(), { app });
       nodes.continueRead.setAttribute('aria-label', readerName(issue.title, new Date(), { app }));
       // Marking a comic read needs no reader link, so Done stays usable when Read cannot launch.
@@ -139,7 +139,7 @@ export function createHomeView({
   }
 
   function categoryTile(category) {
-    const label = category.key === 'timeline' ? 'Recommended start here' : category.label;
+    const label = category.key === 'timeline' ? 'Marvel Knights to Present Day' : category.label;
     const count = `${category.count} ${category.count === 1
       ? (category.singular ?? 'Reading List')
       : (category.plural ?? 'Reading Lists')}`;

@@ -3,7 +3,7 @@ import { createHash } from 'node:crypto';
 import { mkdir, readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { assertApprovedRelationshipReview, mergePacketEntries } from '../author-cbh-packet.mjs';
+import { assertApprovedRelationshipReview, mergePacketEntries, selectedIssueIds } from '../author-cbh-packet.mjs';
 import {
   preflightPublication, preflightPublicationWrites, readPublicationInputs, requireCleanPreflight,
 } from '../check-publication.mjs';
@@ -19,6 +19,7 @@ import {
   withPublishedDiscoveryTags,
 } from './cbh-inventory.mjs';
 import { resolveRow } from './cbh-resolution.mjs';
+import { deriveSectionalPartMappings } from './cbh-sectional-parts.mjs';
 import { buildComparisonReport, issueIdsFromValue } from './cbh-overlap.mjs';
 import { buildCurrentOwnerOverlap, loadCurrentOwnerLibrary } from './owner-current-library.mjs';
 import { OWNER_YOUNG_READERS_PROVIDER, ownerGuideProvider, readOwnerGuideRegistry } from './owner-guide-registry.mjs';
@@ -1020,7 +1021,7 @@ const RECIPROCAL_RELATIONSHIP = Object.freeze({
 // approved review compared it with the whole library, this guide included. That review is the
 // reciprocal authority, so it is accepted only when every digest binding it still holds and its
 // approved relationship with this guide is the exact inverse of the one observed now.
-function assertLaterCbhReciprocal(current, entry, { mapping, report }) {
+function approvedCbhComparison({ mapping, report }, orderId, label = 'this earlier guide') {
   validateMappingDigest(mapping);
   validateReportDigest(report);
   validateApprovalDigest(mapping.relationshipReview, mapping.id);
@@ -1030,15 +1031,59 @@ function assertLaterCbhReciprocal(current, entry, { mapping, report }) {
   assert.equal(review.reportDigest, report.reportDigest);
   assert.equal(review.mappingDigest, mapping.mappingDigest);
   assert.equal(report.mappingDigest, mapping.mappingDigest);
-  const reciprocal = report.comparisons.find(({ orderId }) => orderId === current.candidateId);
-  const authority = review.dispositions.find(({ orderId }) => orderId === current.candidateId);
-  assert.ok(reciprocal && authority, 'Later Comic Book Herald authority must include this earlier guide.');
+  const reciprocal = report.comparisons.find((comparison) => comparison.orderId === orderId);
+  const authority = review.dispositions.find((disposition) => disposition.orderId === orderId);
+  assert.ok(reciprocal && authority, `Later Comic Book Herald authority must include ${label}.`);
   assert.equal(authority.decision, 'approved');
   assert.ok(['human', 'stronger-model'].includes(authority.authorityType));
   assert.equal(authority.relationship, reciprocal.relationship);
+  return { reciprocal, authority };
+}
+
+function assertLaterCbhReciprocal(current, entry, later) {
+  const { reciprocal } = approvedCbhComparison(later, current.candidateId);
   assert.equal(entry.relationship, RECIPROCAL_RELATIONSHIP[reciprocal.relationship]);
   assert.equal(reciprocal.sharedCount, entry.sharedCount);
   assert.deepEqual([...reciprocal.sharedIds].sort(), [...entry.sharedIds].sort());
+}
+
+// A sectional part has no packet or review of its own: it is a fixed range of one signed parent
+// source, published as its own addable list. Its reciprocal authority is therefore the parent's,
+// accepted only when the part re-derives byte for byte from that parent, its published comics are
+// exactly its derived rows, the parent's approved review names both this guide and the part, and the
+// overlap observed now is the parent's approved overlap restricted to the part. The part's own
+// pending status is never read as an approval.
+function assertLaterCbhSectionalReciprocal(current, entry, { mapping: part, sectional }) {
+  const { parent, report, packet, guide, visiblePartIds, payloadIds } = sectional;
+  validateMappingDigest(part);
+  assert.equal(part.sectionalPart?.parentId, parent.id, `${part.id} names a different sectional parent.`);
+  assert.equal(guide.id, parent.id);
+  assert.equal(canonicalJson(guide), canonicalJson(packet.sectionalGuide),
+    'The published sectional guide differs from its signed parent packet.');
+  const { reciprocal: parentReciprocal } = approvedCbhComparison({ mapping: parent, report }, current.candidateId);
+  const derived = deriveSectionalPartMappings({
+    packet, mapping: parent, layout: guide.layout, parts: guide.parts, protectedRanges: guide.protectedRanges,
+  }).map(({ mapping }) => mapping);
+  assert.deepEqual([...visiblePartIds].sort(), derived.map(({ id }) => id).sort(),
+    `${parent.id} must publish exactly its derived parts.`);
+  const match = derived.find(({ id }) => id === part.id);
+  assert.ok(match, `${part.id} is not a derived part of ${parent.id}.`);
+  assert.equal(canonicalJson(part), canonicalJson(match), `${part.id} is not the exact derived range of its signed parent.`);
+  const keys = selectedIssueIds(part).map(String);
+  assert.deepEqual(payloadIds.map(String), keys, `${part.id} publishes comics other than its derived rows.`);
+  const { reciprocal: partComparison, authority: partAuthority } = approvedCbhComparison({ mapping: parent, report }, part.id, `its part ${part.id}`);
+  assert.equal(partComparison.relationship, 'existing-subset');
+  assert.deepEqual([...partComparison.sharedIds].map(String), keys);
+  assert.deepEqual([...partAuthority.sharedIds].map(String), keys);
+  const keySet = new Set(keys);
+  const shared = parentReciprocal.sharedIds.map(String).filter((id) => keySet.has(id));
+  assert.equal(entry.sharedCount, shared.length);
+  assert.deepEqual([...entry.sharedIds].map(String).sort(), [...shared].sort());
+  const coversPart = shared.length === keys.length;
+  const coversCurrent = shared.length === current.candidateCount;
+  const expected = coversPart && coversCurrent ? 'exact'
+    : coversPart ? 'existing-subset' : coversCurrent ? 'candidate-subset' : 'partial';
+  assert.equal(entry.relationship, expected);
 }
 
 export function curatedLedgerDigestFor(ledger) {
@@ -1137,7 +1182,8 @@ export function assertRelationshipReportExtension(
       continue;
     }
     if (laterCbh) {
-      assertLaterCbhReciprocal(current, entry, laterCbh);
+      if (laterCbh.sectional) assertLaterCbhSectionalReciprocal(current, entry, laterCbh);
+      else assertLaterCbhReciprocal(current, entry, laterCbh);
       continue;
     }
     const { contract, mapping, report } = later;
@@ -1206,6 +1252,21 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
       const report = path.join(root, 'scripts', 'data', 'cbh-overlaps', `${id}.json`);
       return await exists(mapping) && await exists(report) ? { id, mapping, report } : null;
     }))).filter(Boolean);
+  // Sectional parts are visible lists outside the manifest roster, so they are found through the
+  // later parent that defines them and carry that parent's packet rather than a report of their own.
+  const laterCbhParents = new Set(laterCbhPaths.map(({ id }) => id));
+  const laterCbhPartPaths = (currentLibrary.manifest.sectionalGuides ?? [])
+    .filter(({ id }) => laterCbhParents.has(id))
+    .flatMap((guide) => currentLibrary.descriptors
+      .filter(({ id, visible }) => visible && id.startsWith(`${guide.id}-part-`)
+        && !previousOrderIds.has(id) && !ownerRegisteredIds.has(id))
+      .map(({ id, file }) => ({
+        id,
+        parentId: guide.id,
+        mapping: path.join(root, 'scripts', 'data', 'cbh-mappings', `${id}.json`),
+        packet: path.join(root, 'scripts', 'data', 'cbh-packets', `${guide.id}.json`),
+        payload: path.join(root, 'src', 'data', file),
+      })));
   const laterCuratedPaths = (await Promise.all(currentLibrary.manifest.lists
     .filter(({ id }) => !previousOrderIds.has(id) && !ownerRegisteredIds.has(id))
     .map(async ({ id }) => {
@@ -1225,6 +1286,7 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
     ...(request.id === THUNDERBOLTS_MISMATCH.guideId ? [thunderboltsSourcePath] : []),
     ...laterGuidePaths.flatMap(({ contract, mapping, report }) => [contract, mapping, report]),
     ...laterCbhPaths.flatMap(({ mapping, report }) => [mapping, report]),
+    ...[...new Set(laterCbhPartPaths.flatMap(({ mapping, packet }) => [mapping, packet]))],
     ...laterCuratedPaths.map(({ ledger }) => ledger),
     ...(retirementForPaths ? [retirementFile, ...retiredPayloadPaths] : []),
     ...currentLibrary.descriptors.map((entry) => path.join(root, 'src', 'data', entry.file)),
@@ -1289,9 +1351,23 @@ async function buildOwnerGuideIdentityUpdate(request, { root = ROOT } = {}) {
   assertRelationshipReportExtension(previousReport, verifiedReport, laterGuidePaths.map((entry) => ({
     registeredId: entry.id,
     contract: inputs.json(entry.contract), mapping: inputs.json(entry.mapping), report: inputs.json(entry.report),
-  })), laterCbhPaths.map((entry) => ({
+  })), [...laterCbhPaths.map((entry) => ({
     registeredId: entry.id, mapping: inputs.json(entry.mapping), report: inputs.json(entry.report),
-  })), laterCuratedPaths.map((entry) => ({
+  })), ...laterCbhPartPaths.map((entry) => {
+    const parentPaths = laterCbhPaths.find(({ id }) => id === entry.parentId);
+    return {
+      registeredId: entry.id,
+      mapping: inputs.json(entry.mapping),
+      sectional: {
+        parent: inputs.json(parentPaths.mapping),
+        report: inputs.json(parentPaths.report),
+        packet: inputs.json(entry.packet),
+        guide: manifest.sectionalGuides.find(({ id }) => id === entry.parentId),
+        visiblePartIds: catalog.lists.map(({ id }) => id).filter((id) => id.startsWith(`${entry.parentId}-part-`)),
+        payloadIds: issueIdsFromValue(inputs.json(entry.payload)),
+      },
+    };
+  })], laterCuratedPaths.map((entry) => ({
     registeredId: entry.id, ledger: inputs.json(entry.ledger),
   })), retirementForPaths ? retiredOrderComparisons(
     inputs.json(retirementFile), inputs, root, manifest, mapping.rows.map((row) => row.selectedIssueId),

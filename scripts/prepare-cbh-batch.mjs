@@ -5,6 +5,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createJsonFetcher } from './lib/fetch-json.mjs';
 import { resolveMapping } from './resolve-cbh-order.mjs';
+import { mappedTrackingId, serviceIdentityFor } from './lib/cbh-service-identity.mjs';
 import { normalizeTitle } from '../src/js/lib/markdown.js';
 import {
   mappingDigestFor,
@@ -21,6 +22,7 @@ const OUTPUT_DIR = path.join(ROOT, 'scripts', 'data', 'cbh-mappings');
 const PACKETS_DIR = path.join(ROOT, 'scripts', 'data', 'cbh-packets');
 const INVENTORY_PATHS = Object.freeze([
   path.join(ROOT, 'scripts', 'data', 'cbh-modern-inventory.json'),
+  path.join(ROOT, 'scripts', 'data', 'cbh-supplemental-inventory.json'),
   path.join(ROOT, 'scripts', 'data', 'cbh-character-inventory.json'),
   path.join(ROOT, 'scripts', 'data', 'cbh-ultimate-inventory.json'),
   path.join(ROOT, 'scripts', 'data', 'cbh-young-readers-inventory.json'),
@@ -2800,6 +2802,21 @@ export function shouldPreserveApprovedMapping(existingMapping, {
   );
 }
 
+export function prepareServiceMappingRow(sourceRow, sourcePosition) {
+  const service = serviceIdentityFor(sourceRow);
+  if (!service) return null;
+  const { normalizedSeriesTitle, seriesYear } = sourceRow;
+  const suffix = ` (${seriesYear})`;
+  return {
+    ...sourceRow,
+    sourcePosition,
+    resolutionStatus: 'exact',
+    candidateIssueIds: [],
+    selectedIssueId: null,
+    resolvedIssueTitle: normalizedSeriesTitle.endsWith(suffix) ? normalizedSeriesTitle : normalizedSeriesTitle + suffix,
+  };
+}
+
 async function readExistingMapping(outputPath) {
   try {
     return JSON.parse(await readFile(outputPath, 'utf8'));
@@ -2841,6 +2858,7 @@ export async function selectPreparationGuides(onlyIds, {
   inventoryPath = null,
   inventoryPaths = INVENTORY_PATHS,
   manifestPath = MANIFEST_PATH,
+  mappingsDir = OUTPUT_DIR,
 } = {}) {
   const requestedIds = onlyIds == null ? null : (Array.isArray(onlyIds) ? onlyIds : [...onlyIds]);
   const legacyById = new Map(GUIDES.map((guide) => [guide.id, guide]));
@@ -2923,10 +2941,21 @@ export async function selectPreparationGuides(onlyIds, {
     if (!inventoryRecord) {
       throw new Error(`${packet.id} names unknown inventory id ${packet.inventoryId}`);
     }
+    const containedChildMappings = [];
+    if (inventoryRecord.id === packet.id && packet.sourceSection == null) {
+      for (const childId of inventoryRecord.catalogIds ?? []) {
+        const child = catalogEntries.find((entry) => entry.id === childId);
+        if (childId === packet.id || child?.sourcePage !== packet.sourceUrl) continue;
+        const mapping = await readExistingMapping(path.join(mappingsDir, `${childId}.json`));
+        if (!mapping) throw new Error(`${packet.id} shares its source page with ${childId}, which has no mapping`);
+        containedChildMappings.push(mapping);
+      }
+    }
     validateFrozenPacket(packet, {
       expectedId: packet.id,
       inventoryRecord,
       catalogEntries,
+      containedChildMappings,
     });
     select({
       ...packet,
@@ -3013,6 +3042,8 @@ async function main() {
       ? sourcePositionsForPacket(guide)
       : guide.rows.map((_, index) => index + 1);
     const rows = guide.rows.map((sourceRow, index) => {
+      const serviceRow = prepareServiceMappingRow(sourceRow, sourcePositions[index]);
+      if (serviceRow) return serviceRow;
       const series = Object.values(SERIES).find((entry) =>
         entry.id === sourceRow.seriesId && entry.title === sourceRow.normalizedSeriesTitle);
       const body = sourceRow.seriesId == null ? null : seriesById.get(sourceRow.seriesId);
@@ -3128,6 +3159,9 @@ async function main() {
       ...(Object.hasOwn(guide, 'sourceExpansion')
         ? { sourceExpansion: guide.sourceExpansion }
         : {}),
+      ...(guide.sourceGapResolutions?.some((resolution) => resolution.resolutionKind === 'exact-service-issue')
+        ? { sourceGapResolutions: guide.sourceGapResolutions }
+        : {}),
       sourceRetrievalStatus: guide.sourceUnavailable ? guide.sourceError : 'retrieved',
       approvedSourceCount: guide.sourceUnavailable
         ? null
@@ -3161,13 +3195,17 @@ async function main() {
       if (hasResolutionBlocker) {
         throw new Error(`${guide.id} cannot preserve approval because its refreshed mapping is blocked`);
       }
-      const existingIds = existingMapping.rows.map((row) => String(row.selectedIssueId));
-      const refreshedIds = digestedMapping.rows.map((row) => String(row.selectedIssueId));
+      const existingIds = existingMapping.rows.map((row) => String(mappedTrackingId(row)));
+      const refreshedIds = digestedMapping.rows.map((row) => String(mappedTrackingId(row)));
       if (existingIds.join('|') !== refreshedIds.join('|')) {
         throw new Error(`${guide.id} cannot preserve approval because its issue sequence changed`);
       }
       if (JSON.stringify(existingMapping.approvedManifest) !== JSON.stringify(digestedMapping.proposedManifest)) {
         throw new Error(`${guide.id} cannot preserve approval because its manifest fields changed`);
+      }
+      if ([...existingMapping.rows, ...digestedMapping.rows].some((row) => Object.hasOwn(row, 'serviceIdentity'))
+        && digestedMapping.mappingDigest !== existingMapping.mappingDigest) {
+        throw new Error(`${guide.id} cannot preserve approval because its service mapping evidence changed`);
       }
       outputMapping = {
         ...digestedMapping,

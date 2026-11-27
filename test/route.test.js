@@ -25,8 +25,7 @@ const lacks = (text, re, what) => assert.ok(!re.test(text), `expected not to fin
 test('main.js preserves synchronous route updates and animates only an arriving focused view', () => {
   const main = read('src/js/main.js');
   lacks(main, /startViewTransition|runViewTransition|showViewNow/, 'the deferred View Transitions wrapper');
-  has(main, /function showView\(next, \{ focus = true, push = false, at = null, capturePosition = true, aboutTraversal = false \} = \{\}\)/,
-    'the original synchronous route update');
+  has(main, /^function showView\(next,/m, 'a synchronous route update');
   has(main, /const shouldAnimateArrival = focus && next !== view;/, 'the changed destination and focus gate');
   has(main, /panel\.classList\.toggle\('view-entering', name === next && shouldAnimateArrival\)/,
     'the incoming-view class applied within the synchronous update');
@@ -139,6 +138,18 @@ test('guide book previews have bookmarkable catalog addresses without saved-list
   }
 });
 
+test('a sectional return address names exactly one positive local position', () => {
+  const id = 'bridge-part-1';
+  const address = `#/preview/${id}`;
+  const route = { view: 'new-to-comics', previewId: id, previewPosition: 22 };
+  assert.equal(formatRoute(route), `${address}?position=22`);
+  assert.deepEqual(parseRoute(formatRoute(route)), route);
+  for (const query of ['position=0', 'position=01', 'position=-1', 'position=1.5', 'position=9007199254740992',
+    'position=1&position=2', 'position=1&filter=pending', 'position=']) {
+    assert.equal(parseRoute(`${address}?${query}`), null, query);
+  }
+});
+
 test('new-to-comics has a named static panel and a native Genres destination', () => {
   const html = read('src/index.html');
   const start = html.indexOf('<section id="view-new-to-comics"');
@@ -151,26 +162,23 @@ test('new-to-comics has a named static panel and a native Genres destination', (
   has(guide, /<a\b[^>]*href="#\/genres"[^>]*>[^<]+<\/a>/, 'native Genres starter destination');
 });
 
-test('guide links its optional books and every named app page to real destinations', () => {
+test('About explains how to get around and links to the other app pages', () => {
   const html = read('src/index.html');
   const start = html.indexOf('<section id="view-new-to-comics"');
   const guide = html.slice(start, html.indexOf('<!-- ---------------------------------------- reading view -->', start));
-  for (const [id, label] of [
-    ['history-of-the-marvel-universe-2019', 'History of the Marvel Universe (2019)'],
-    ['marvels-1994', 'Marvels (1994)'],
-  ]) {
-    assert.ok(guide.includes(`href="#/preview/${id}" data-preview-id="${id}">${label}</a>`),
-      `${label} must link to its exact catalog preview`);
-  }
-  const orientation = guide.slice(guide.indexOf('aria-labelledby="guide-app-h"'), guide.indexOf('</section>',
-    guide.indexOf('aria-labelledby="guide-app-h"')));
+  const aboutStart = html.indexOf('<section id="view-about"');
+  const about = html.slice(aboutStart, html.indexOf('<section id="view-completed"', aboutStart));
+  assert.match(about, /<h2 id="guide-app-h">Getting around Recap Page<\/h2>/, 'About has the Getting around card');
+  assert.doesNotMatch(guide, /Getting around Recap Page/, 'the guide no longer repeats the card');
+  const sectionStart = about.indexOf('aria-labelledby="guide-app-h"');
+  const orientation = about.slice(sectionStart, about.indexOf('</section>', sectionStart));
   assert.match(orientation, /<ul>[\s\S]*<li>/, 'app orientation is a short list');
   const pages = [
     ['home', 'Home'], ['catalog', 'Modern Timeline'], ['genres', 'Genres'],
     ['spotlights', 'Character spotlights'], ['marvel-on-screen', 'MCU Prep'],
     ['marvel-ages', 'Marvel Ages'], ['young-readers', 'Young readers'],
     ['universes', 'Universes'], ['creators', 'Creators'],
-    ['library', 'Library'], ['add', 'Search'], ['data', 'Backup &amp; settings'], ['about', 'About'],
+    ['library', 'Library'], ['add', 'Search'], ['data', 'Backup &amp; settings'],
   ];
   const bullets = [...orientation.matchAll(/<li>([\s\S]*?)<\/li>/g)].map(([, text]) => text);
   assert.equal(bullets.length, pages.length + 1, 'each page has its own bullet plus the reading explanation');
@@ -184,7 +192,7 @@ test('guide links its optional books and every named app page to real destinatio
     'Save a list. Read opens Marvel outside the app; Done records progress. The app does not contain comics.');
 });
 
-test('new-to-comics credits its sources and gives every external link a safe separate target', () => {
+test('new-to-comics links its sources safely and credits the basics in About', () => {
   const html = read('src/index.html');
   const start = html.indexOf('<section id="view-new-to-comics"');
   assert.notEqual(start, -1, 'guide exists before its external links are inspected');
@@ -198,6 +206,7 @@ test('new-to-comics credits its sources and gives every external link a safe sep
     'https://www.reddit.com/r/Marvel/wiki/faq#wiki_starter_recommendations',
     'https://www.reddit.com/r/Marvel/wiki/faq/#wiki_events.2Fcrossovers',
     'https://www.youtube.com/watch?v=FYnkpCfKuDw',
+    'https://www.youtube.com/watch?v=XnBG7-4-k00',
   ];
   for (const href of expected) {
     const link = links.find(({ attrs }) => attrs.includes(`href="${href}"`));
@@ -205,13 +214,15 @@ test('new-to-comics credits its sources and gives every external link a safe sep
     assert.match(link.attrs, /target="_blank"/, `${link.label} opens separately`);
     assert.match(link.attrs, /rel="noopener noreferrer"/, `${link.label} disowns its opener`);
   }
-  assert.match(guide, /r\/Marvel wiki/, 'the guide credits the r/Marvel wiki');
-  const credit = guide.indexOf('<p>Basics adapted from the r/Marvel wiki.</p>');
-  assert.ok(credit > 0 && guide.indexOf('Comics &amp; Graphic Novels in Libby</a>') > 0
-    && guide.indexOf('Comics &amp; Graphic Novels in Libby</a>') < credit,
-  'the new resources precede the wiki attribution');
-  assert.ok(guide.indexOf('Introduction to comics</a>') > credit,
-    'the original resources follow the wiki attribution');
+  assert.ok(guide.includes(
+    '<li><a href="https://www.youtube.com/watch?v=XnBG7-4-k00" target="_blank" rel="noopener noreferrer">Where To Start With Marvel Comics Right Now! (2025!)</a>, a video by Comic Book Herald</li>',
+  ), 'the requested video keeps its approved title and byline');
+  assert.doesNotMatch(guide, /Basics adapted from the r\/Marvel wiki/,
+    'the guide no longer carries its attribution');
+  const aboutStart = html.indexOf('<section id="view-about"');
+  const about = html.slice(aboutStart, html.indexOf('<section id="view-completed"', aboutStart));
+  assert.ok(about.includes('<p class="rail-hint">Basics adapted from the r/Marvel wiki.</p>'),
+    'About carries the original attribution');
   assert.match(guide, /optional/i, 'the suggested books are optional');
 });
 

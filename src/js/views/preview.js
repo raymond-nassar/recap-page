@@ -14,7 +14,12 @@ import {
   collectedEditionCredit, collectedEditionLabels,
 } from './shared/collected-editions.js';
 import { gcdDetailsCredit, hasGcdDetails } from './shared/details-credit.js';
+import { tieInRatingCredit, tieInRatingLabels } from './shared/tie-in-ratings.js';
+import { hasTieInRatings } from '../lib/tieInRatings.js';
 import { offlineActionLabel, offlineStatusText } from './shared/offline-status.js';
+import { SECTIONAL_GUIDE_COPY, sectionalReadingRows } from '../lib/sectionalGuide.js';
+import { sectionalStepRows } from './shared/sectional-reading.js';
+import { eventBookRows, eventOrderControls, eventReadingLayout } from './shared/event-reading-order.js';
 
 const ADD_TEXT = '+ Add to library';
 const OPEN_TEXT = 'Open list';
@@ -34,6 +39,7 @@ export function createPreviewView({
   onAdd,
   onAddCopy,
   onClose,
+  onFollowSectional,
   onIssueLoadFailure,
   onOpen,
   presentation,
@@ -340,14 +346,21 @@ export function createPreviewView({
     }
   }
 
-  async function loadIssues(list) {
+  async function loadIssues(list, { position, preparedOrder } = {}) {
     const nodes = elements();
     nodes.body.replaceChildren(el('p', { class: 'rail-hint', text: 'Loading the comic list…' }));
     const token = {};
     loadToken = token;
     try {
-      const order = await loadOrder(list.file);
+      const order = preparedOrder ?? await loadOrder(list.file);
       if (loadToken !== token) return;
+      const sectional = sectionalReadingRows(list.sectionalPart, order.items);
+      const eventLayout = eventReadingLayout(list.id, order.items);
+      if ((list.sectionalPart && !sectional)
+        || (position !== undefined && (!(sectional || eventLayout) || position > order.items.length))) {
+        nodes.body.replaceChildren(el('p', { class: 'rail-hint', role: 'status', text: SECTIONAL_GUIDE_COPY.linkFailed }));
+        return;
+      }
       const saved = isInLibrary(list.id);
       const savedIds = Array.isArray(saved?.itemIds) ? new Set(saved.itemIds.map(String)) : null;
       const missing = savedIds ? order.items.filter((item) => !savedIds.has(String(item.issueId))).length : 0;
@@ -363,28 +376,56 @@ export function createPreviewView({
           + 'ratings and availability choices, '
           + "but not the saved list's order, list note, deferred comics, customized editions, completion date or enjoyment choice.",
       })] : [];
-      let shown = null;
-      const rows = [];
-      order.items.forEach((item, index) => {
-        const edition = typeof item.collectedIn === 'string' ? item.collectedIn || null : null;
-        if (edition !== shown) {
-          shown = edition;
-          rows.push(el('li', { class: 'preview-group' }, [el('h4', { text: edition || 'Individual comics' })]));
-        }
-        rows.push(el('li', {}, [
-          el('span', { class: 'pn', text: String(index + 1) }),
-          el('div', { class: 'preview-issue-info' }, [issueFocusAnchor(item, {
-            context: { kind: 'order', id: list.id },
-            surface: 'preview',
-            className: 'preview-issue-link',
-            children: item.title || 'Untitled comic',
-          }), collectedEditionLabels(el, list.id, item)]),
-        ]));
-      });
+      const issueRow = (item, index) => el('li', sectional || eventLayout ? { dataset: { sectionalPosition: index } } : {}, [
+        el('span', { class: 'pn', text: String(index) }),
+        el('div', { class: 'preview-issue-info' }, [issueFocusAnchor(item, {
+          context: { kind: 'order', id: list.id },
+          surface: 'preview',
+          className: 'preview-issue-link',
+          children: item.title || 'Untitled comic',
+        }), tieInRatingLabels(el, list.id, item), collectedEditionLabels(el, list.id, item)]),
+      ]);
       const credit = order.items.some((item) => editionRelations(list.id, item).length)
         ? [collectedEditionCredit(el)] : [];
       if (hasGcdDetails(order.items)) credit.push(gcdDetailsCredit(el));
-      nodes.body.replaceChildren(...notice, ...credit, el('ol', { class: 'preview-list' }, rows));
+      if (hasTieInRatings(list.id, order.items)) credit.push(tieInRatingCredit(el));
+      const related = list.id === 'secret-empire-event'
+        ? [el('ul', { class: 'preview-list' }, sectionalStepRows(el, [{
+          kind: 'guide-link', catalogId: 'road-to-secret-empire', title: 'Road to Secret Empire',
+        }], { className: 'preview-group', guideId: list.id, onFollow: onFollowSectional }))]
+        : [];
+      function show(mode, at, holdMode = false) {
+        if (loadToken !== token) return false;
+        let rows;
+        if (mode === 'book') {
+          rows = eventBookRows(el, eventLayout, order.items, {
+            catalogId: list.id, heading: 'h4', groupClass: 'preview-group', issueRow,
+            openPosition: (target) => show('issue', target),
+          });
+        } else {
+          rows = [];
+          let shown = null;
+          const addSteps = (steps = []) => rows.push(...sectionalStepRows(el, steps, {
+            className: 'preview-group', heading: 'h4', guideId: list.id, onFollow: onFollowSectional,
+          }));
+          order.items.forEach((item, index) => {
+            if (sectional) addSteps(sectional.before.get(item.issueId));
+            const edition = typeof item.collectedIn === 'string' ? item.collectedIn || null : null;
+            if (edition !== shown) {
+              shown = edition;
+              rows.push(el('li', { class: 'preview-group' }, [el('h4', { text: edition || 'Individual comics' })]));
+            }
+            rows.push(issueRow(item, index + 1));
+          });
+          if (sectional) addSteps(sectional.after);
+        }
+        const controls = eventLayout ? [eventOrderControls(el, mode, (chosen) => show(chosen, undefined, true))] : [];
+        nodes.body.replaceChildren(...notice, ...credit, ...related, ...controls, el('ol', { class: 'preview-list' }, rows));
+        if (at !== undefined) nodes.body.querySelector(`[data-sectional-position="${at}"] a`)?.focus();
+        else if (holdMode) nodes.body.querySelector(`[data-act="event-order"][data-key="${mode}"]`)?.focus();
+        return true;
+      }
+      show('issue', position);
     } catch (error) {
       if (loadToken !== token) return;
       await onIssueLoadFailure({
@@ -392,13 +433,13 @@ export function createPreviewView({
         list,
         isCurrent: () => loadToken === token,
         retry: () => {
-          if (loadToken === token) return loadIssues(list);
+          if (loadToken === token) return loadIssues(list, { position });
         },
       });
     }
   }
 
-  async function open(list) {
+  async function open(list, options) {
     invalidate();
     const state = getState();
     previewSession = {
@@ -417,7 +458,7 @@ export function createPreviewView({
     paint(list);
     nodes.dialog.showModal();
     void checkOffline(list, previewSession);
-    await loadIssues(list);
+    await loadIssues(list, options);
   }
 
   function wire() {

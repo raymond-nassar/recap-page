@@ -10,8 +10,10 @@ import {
   filterByFacet,
   filterBySpotlightKind,
   groupCatalog,
+  modernTimelineEventBadge,
   modernTimelineFeaturedCard,
   modernTimelineLists,
+  modernTimelinePlacements,
   pathPlacements,
   resolveReadingPaths,
   searchCatalog,
@@ -19,6 +21,9 @@ import {
   sortSpotlightStories,
   spotlightKindLabel,
   spotlightSortLabel,
+  timelineCheckpointTargets,
+  timelineFamilyEraStops,
+  timelineDrawOrder,
   visibleFirstStopGuides,
 } from '../lib/catalog.js';
 import { completionState, listForCatalogId, listProgress } from '../lib/model.js';
@@ -229,6 +234,7 @@ export function createCatalogView({
       message,
       narrowed: context.narrowed,
       showFull: context.narrowed ? () => void showFullTimeline() : null,
+      ...(context.follow ? { showFullLabel: 'Clear filters' } : {}),
       visibleStoryKeys: context.visibleStoryKeys,
       // A path's own progress, beside "You are here" on the card it marks (#897).
       ...(context.follow && position.kind === 'current'
@@ -323,27 +329,45 @@ export function createCatalogView({
     for (const radio of elements.spotlightSorts()) radio.checked = radio.value === checked;
   }
 
-  // The choice of path, and what the chosen one is, kept outside the results so a search typed into
-  // a long path does not close "About this path" with every keystroke.
-  function paintFollowControl(paths, followed) {
+  // The path an address follows, and the way back to the whole timeline, kept outside the results so
+  // a search typed into a long path does not close "About this path" with every keystroke. Paths are
+  // no longer chosen here (#1603): an address that names one, or a stop's return, still follows it.
+  function paintFollowControl(followed) {
     const nodes = elements.follow?.();
     if (!nodes) return;
-    nodes.wrap.hidden = paths.length === 0;
-    const signature = paths.map((path) => `${path.id}:${path.stops.length}`).join('|');
-    if (nodes.select.dataset.paths !== signature) {
-      nodes.select.replaceChildren(
-        el('option', { value: '', text: 'Whole timeline' }),
-        ...paths.map((path) => el('option', {
-          value: path.id,
-          text: `${path.name} (${path.stops.length} stops)`,
-        })),
-      );
-      nodes.select.dataset.paths = signature;
-    }
-    nodes.select.value = followed?.id ?? '';
-    nodes.about.hidden = !followed;
+    nodes.wrap.hidden = !followed;
+    nodes.name.textContent = followed?.name ?? '';
     nodes.description.textContent = followed?.description ?? '';
     nodes.source.textContent = followed ? `Source: ${followed.sourceOrigin}` : '';
+  }
+
+  // "Jump to a section" (#1603): a period of the whole timeline, by the marker drawn where it starts.
+  // A jump moves focus and nothing else, so the address, the saved progress and the narrowing stay
+  // as they were. The form is kept while its periods are unchanged, so a search typed beside it does
+  // not reset the choice, and is rebuilt with focus kept on it when a narrowing drops or adds one.
+  let sectionTargets = [];
+  function paintSectionJump(targets) {
+    sectionTargets = targets;
+    const box = elements.follow?.()?.sections;
+    if (!box) return;
+    box.hidden = targets.length === 0;
+    const signature = targets.map((target) => target.key).join('|');
+    if (box.dataset.sections === signature) return;
+    box.dataset.sections = signature;
+    const active = box.ownerDocument?.activeElement ?? null;
+    const focused = Boolean(active && box.contains?.(active));
+    box.replaceChildren(...(targets.length ? [createCollectionNavigation({
+      el,
+      id: 'catalog-section-jump',
+      label: 'Jump to a section',
+      entries: targets.map(({ key, name }) => ({ id: key, name })),
+      isCurrent: () => isCurrent('catalog') && sectionTargets.length > 0,
+      getTarget: (id) => (sectionTargets.some((target) => target.key === id)
+        ? elements.shelf('catalog').results.querySelector(`#timeline-section-${id}`)
+        : null),
+      choose: 'Choose a destination',
+    })] : []));
+    if (focused) box.querySelector('select')?.focus();
   }
 
   // One numbered list in the path's order rather than era and year rows: a path is read in its own
@@ -426,6 +450,7 @@ export function createCatalogView({
       timelineContext = null;
       timelinePendingGeneration = generation;
       timelinePositionSignature = null;
+      sectionTargets = [];
     }
     const shelf = CATALOG_SHELVES.find((candidate) => candidate.key === key);
     const state = stateByShelf.get(key);
@@ -446,6 +471,7 @@ export function createCatalogView({
       if (key === 'catalog') {
         timelineContext = null;
         timelinePendingGeneration = null;
+        paintSectionJump([]);
       }
       nodes.results.replaceChildren();
       nodes.filters.hidden = true;
@@ -477,22 +503,32 @@ export function createCatalogView({
       state.path = followed?.id ?? null;
       onFollowCanonical();
     }
-    if (key === 'catalog') paintFollowControl(paths, followed);
+    if (key === 'catalog') {
+      paintFollowControl(followed);
+      if (followed) paintSectionJump([]);
+    }
     const followedStories = followed ? followedPathStories(followed) : null;
     const owned = (list) => Boolean(listForCatalogId(getState(), list.id));
+    // A placement points at readings that already have a home, so those count as no stop here. An
+    // option that is itself a timeline event stays the stop it is: the card is drawn in its place
+    // and carries its key, so the position and "X of N" still wait for it to be read.
+    const placements = key === 'catalog' && !followed
+      ? [...modernTimelinePlacements(catalog.lists), ...(catalog.sectionalGroups ?? [])] : [];
     const mine = followed
       ? followedStories.map((story) => defaultPath(story, owned))
       : key === 'catalog'
         ? modernTimelineLists(catalog.lists)
         : shelfLists(catalog.lists, key);
+    const timelineStopIds = new Set(key === 'catalog' && !followed ? mine.map((list) => list.id) : []);
     const canonicalTimelineStories = key === 'catalog' ? followedStories ?? groupCatalog(mine) : null;
     nodes.results.replaceChildren();
-    if (!mine.length) {
+    if (!mine.length && !placements.length) {
       nodes.filters.hidden = true;
       nodes.search.hidden = true;
       if (nodes.links) nodes.links.hidden = true;
       nodes.results.append(el('p', { class: 'rail-hint', text: shelf.empty }));
       if (key === 'catalog') {
+        paintSectionJump([]);
         commitTimelineContext({
           dropped: catalog.dropped,
           follow: followed,
@@ -534,15 +570,38 @@ export function createCatalogView({
     const links = linkFilter ? linkFilter.current(key) : { ...DEFAULT_LINK_FILTER };
     const linking = links.coverage !== 'off';
     const linkCount = (list) => storyCoverage([list], links.provider);
-    const searched = searchCatalog(filterByFacet(inSpotlight, state.facet), state.query);
-    const shown = linking ? searched.filter((list) => coverageMatches(linkCount(list), links.coverage)) : searched;
+    const narrow = (lists) => {
+      const searched = searchCatalog(filterByFacet(lists, state.facet), state.query);
+      return linking ? searched.filter((list) => coverageMatches(linkCount(list), links.coverage)) : searched;
+    };
+    const shown = narrow(inSpotlight);
+    // A reading stays on its placement when the reader's narrowing would keep the list itself, or
+    // when the search names the placement or the reading as the card shows them.
+    const placed = placements.map((placement) => ({
+      ...placement,
+      options: placement.options.filter((option) => narrow([{
+        ...option.list,
+        keywords: [...(option.list.keywords ?? []), placement.name, option.label],
+      }]).length),
+    })).filter((placement) => placement.options.length)
+      .map((placement) => {
+        const stop = placement.options.find((option) => timelineStopIds.has(option.list.id))?.list;
+        return {
+          ...placement,
+          lists: placement.options.map((option) => option.list),
+          ...(stop ? { stopKey: catalogEntryKey(stop) } : {}),
+        };
+      });
+    const placedStopIds = new Set(placed.flatMap((placement) => placement.options
+      .filter((option) => timelineStopIds.has(option.list.id))
+      .map((option) => option.list.id)));
     const linkWhere = linkNarrowing(links);
     const narrowed = state.facet !== 'all' || Boolean(state.query) || linking;
     const linkText = linking ? (story) => coverageText(linkCount(story.lists[0]), links.provider) : null;
     const sortSentence = key === 'spotlights'
       ? ` Sorted by ${spotlightSortLabel(state.sort).toLowerCase()}.`
       : '';
-    if (!shown.length) {
+    if (!shown.length && !placed.length) {
       const where = narrowingLabel(key, mine, state);
       const message = linking
         ? followed
@@ -558,6 +617,7 @@ export function createCatalogView({
             ? `No Reading Lists match “${state.query}”${where}.`
             : `No Reading Lists${where || ' in that category'}.`;
       nodes.results.append(el('p', { class: 'rail-hint', text: message }));
+      if (key === 'catalog') paintSectionJump([]);
       // An empty result's way out is the "Show all" button in the filter summary just above it
       // (decision 10); a second copy here would give two controls of one name.
       const position = key === 'catalog'
@@ -575,14 +635,18 @@ export function createCatalogView({
       return;
     }
 
-    const stories = key === 'spotlights'
-      ? sortSpotlightStories(catalogEntries(shown), state.sort)
-      : catalogEntries(shown);
+    const entries = catalogEntries(shown)
+      .filter((story) => !story.lists.some((list) => placedStopIds.has(list.id)));
+    const listed = key === 'spotlights'
+      ? sortSpotlightStories(entries, state.sort)
+      : entries;
+    const stories = [...listed, ...placed];
+    const shownLists = listed.length + placed.reduce((sum, placement) => sum + placement.options.length, 0);
     // Paths live on Modern Timeline since #897, so only it says where one starts. Elsewhere the
     // sentence named a path the page offers no way to follow (UX-14, #830).
     const firstStops = followed || key !== 'catalog'
       ? []
-      : visibleFirstStopGuides(stories, pathPlacements(catalog.paths, catalog.lists), presentation.chosenPath);
+      : visibleFirstStopGuides(listed, pathPlacements(catalog.paths, catalog.lists), presentation.chosenPath);
     if (firstStops.length) {
       const startsByPath = new Map();
       for (const { guide, placement } of firstStops) {
@@ -610,6 +674,16 @@ export function createCatalogView({
         ? pathJump(followed, followedStories, () => current() && state.path === followed.id)
         : null, linkText);
     } else if (key === 'catalog') {
+      // The whole timeline, unnarrowed, fixes where each period starts and ends, so a search or
+      // filter can only move a marker within its own period or drop it.
+      const wholeStopIds = new Set(placements.flatMap((placement) => placement.options
+        .filter((option) => timelineStopIds.has(option.list.id))
+        .map((option) => option.list.id)));
+      const whole = timelineDrawOrder(eraSections([
+        ...catalogEntries(mine).filter((story) => !story.lists.some((list) => wholeStopIds.has(list.id))),
+        ...placements.map((placement) => ({ ...placement, lists: placement.options.map((option) => option.list) })),
+      ]));
+      const targets = timelineCheckpointTargets(whole, timelineDrawOrder(sections));
       presentation.renderTimelineSections(nodes.results, sections, {
         idPrefix: 'timeline',
         showEmptyYears: !narrowed,
@@ -619,7 +693,11 @@ export function createCatalogView({
         cardLevel: 'h4',
         undatedCardLevel: 'h3',
         cardOptions: { surface: 'catalog', linkText },
+        checkpoints: new Map(targets.map((target) => [target.before, target])),
+        badgeFor: modernTimelineEventBadge,
+        familyEras: timelineFamilyEraStops(whole, { narrowed }),
       });
+      paintSectionJump(targets);
     } else {
       for (const section of sections) {
         if (grouped) nodes.results.append(presentation.shelfSectionHead(section, { blurb: false }));
@@ -643,7 +721,10 @@ export function createCatalogView({
         narrowed,
         root: nodes.results,
         stories: canonicalTimelineStories,
-        visibleStories: stories,
+        visibleStories: [
+          ...listed,
+          ...placed.filter((placement) => placement.stopKey).map((placement) => ({ key: placement.stopKey })),
+        ],
       })
       : null;
     if (cards && opener) restoreStopOpener(opener, followed, cards);
@@ -653,7 +734,7 @@ export function createCatalogView({
       const total = followed?.stops.length;
       const lead = followed
         ? `${shelf.heading} follows ${followed.name}: ${stories.length === total ? `${total} stops` : `${stories.length} of ${total} stops`}${match}${where}${linkWhere}.`
-        : `${shelf.heading} shows ${stories.length} ${stories.length === 1 ? 'Reading List' : 'Reading Lists'}${match}${where}${linkWhere}.`;
+        : `${shelf.heading} shows ${shownLists} ${shownLists === 1 ? 'Reading List' : 'Reading Lists'}${match}${where}${linkWhere}.`;
       announceResult(
         `${lead}${sortSentence}${position?.message ? ` ${position.message}` : ''}`,
         key,
@@ -676,16 +757,24 @@ export function createCatalogView({
       void render(key);
     });
     const follow = key === 'catalog' ? elements.follow?.() : null;
-    // Focus stays on the choice, and the narrowed result is announced as the other narrowing is. A
-    // search or filter chosen for the last path is let go, since it was not chosen for these stops.
-    follow?.select.addEventListener('change', () => {
-      state.path = follow.select.value || null;
+    // Back to the whole timeline from a path an address followed. A search or filter chosen for the
+    // path is let go with it, since it was not chosen for the timeline, and focus lands on the jump
+    // that replaced the path so the button pressed is not lost with the panel it sat in.
+    follow?.whole?.addEventListener('click', async () => {
+      state.path = null;
       state.facet = 'all';
       state.query = '';
       nodes.query.value = '';
       nodes.clear.hidden = true;
-      void render(key);
+      linkFilter?.reset(key, { silent: true });
+      const drawn = render(key);
       onFollowChange();
+      await drawn;
+      if (!isCurrent(key) || state.path) return;
+      const select = follow.sections?.querySelector('select');
+      const heading = follow.wrap.closest?.('section')?.querySelector('h1');
+      if (!select) heading?.setAttribute('tabindex', '-1');
+      (select ?? heading)?.focus();
     });
     if (nodes.links) {
       linkFilter?.mount(key, nodes.links, { onChange: () => void render(key) });

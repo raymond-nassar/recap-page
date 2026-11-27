@@ -17,6 +17,8 @@ import {
 } from '../src/js/lib/model.js';
 import { Store, KEY } from '../src/js/storage.js';
 import { DEFAULT_FILTER, READING_FILTERS } from '../src/js/lib/readingFilters.js';
+import { isLaunchable } from '../src/js/reader.js';
+import { eventReadingOrders } from '../src/data/eventReadingOrders.js';
 import { createCatalogPresentation, PROJECT_HOME } from '../src/js/views/shared/catalog-presentation.js';
 import {
   createReadingView,
@@ -66,6 +68,7 @@ function queryAll(root, selector) {
     if (selector === 'input[name="filter"]' && node.tag === 'input' && node.name === 'filter') found.push(node);
     if (selector === '[data-act="read"]' && node.dataset?.act === 'read') found.push(node);
     if (selector === '.rg-done' && node.classList?.contains('rg-done')) found.push(node);
+    if (selector === '.row-focus-title' && node.classList?.contains('row-focus-title')) found.push(node);
   });
   return found;
 }
@@ -253,6 +256,49 @@ function issue(issueId, title, extra = {}) {
   };
 }
 
+test('saved event book view opens the exact linked comic without saving or changing progress', () => {
+  const catalogId = 'secret-wars-2015-event-tie-ins';
+  const { issueOrder, linked } = eventReadingOrders[catalogId];
+  const targetId = issueOrder[linked[0] - 1];
+  let state = createList(createEmptyState(), { id: 'event', name: 'Secret Wars', catalogId });
+  state = addIssuesToList(state, 'event', issueOrder.map((id) => issue(id, `Comic ${id}`)), {}).state;
+  state = setActive(markRead(state, targetId, true), 'event');
+  const h = harness({ state, settings: { covers: true, filter: 'unread' } });
+  try {
+    h.view.wire();
+    h.nodes.full.open = true;
+    h.view.render();
+    const find = (predicate) => {
+      let found;
+      walk(h.nodes.rows, (entry) => { if (!found && predicate(entry)) found = entry; });
+      return found;
+    };
+    const book = find((entry) => entry.dataset?.act === 'event-order' && entry.dataset.key === 'book');
+    assert.ok(book, 'exact saved issue order has a book presentation');
+    assert.equal(find((entry) => entry.dataset?.issueId === String(targetId)), undefined);
+    book.fire('click');
+    const positions = [];
+    walk(h.nodes.rows, (entry) => { if (entry.dataset?.act === 'event-position') positions.push(entry); });
+    const [reference, ...links] = positions;
+    assert.equal(reference.dataset.key, 138);
+    assert.equal(links.length, 43);
+    assert.deepEqual(links.map((entry) => entry.dataset.key), linked);
+    links[0].fire('click', { button: 0, preventDefault() {} });
+    assert.equal(globalThis.document.activeElement.dataset.issueId, String(targetId));
+    find((entry) => entry.dataset?.act === 'event-order' && entry.dataset.key === 'book').fire('click');
+    find((entry) => entry.dataset?.act === 'event-position' && entry.dataset.key === 138)
+      .fire('click', { button: 0, preventDefault() {} });
+    assert.equal(globalThis.document.activeElement.dataset.issueId, '52489');
+    assert.equal(h.state(), state);
+    assert.equal(h.calls.saveSettings, 0);
+    h.view.setFilter('read');
+    h.view.setFilter('unread');
+    assert.equal(find((entry) => entry.dataset?.issueId === String(targetId)), undefined);
+  } finally {
+    h.restore();
+  }
+});
+
 function seededState() {
   let state = createEmptyState();
   state = createList(state, { id: 'list-a', name: 'List A', description: 'First list', catalogId: 'cat-a' });
@@ -351,7 +397,6 @@ function harness(overrides = {}) {
     heroReadingOptions: node({ id: 'hero-reading-options', hidden: true }),
     btnHeroReadingOptions: node({ id: 'btn-hero-reading-options', tag: 'button', text: 'Reading options' }),
     heroReadingOptionsList: node({ id: 'hero-reading-options-list', tag: 'ul', hidden: true }),
-    heroReaderTemporary: node({ id: 'hero-reader-temporary', hidden: true }),
     // #876: the hero's progress row, kept from assistive technology because the ring reads it out.
     heroProgress: node({ id: 'hero-progress', 'aria-hidden': 'true' }),
     heroProgressCount: node({ id: 'hero-progress-count', tag: 'p' }),
@@ -426,7 +471,6 @@ function harness(overrides = {}) {
     ['#hero-reading-options', nodes.heroReadingOptions],
     ['#btn-hero-reading-options', nodes.btnHeroReadingOptions],
     ['#hero-reading-options-list', nodes.heroReadingOptionsList],
-    ['#hero-reader-temporary', nodes.heroReaderTemporary],
     ['#btn-hero-inspect', nodes.btnHeroInspect],
     ['#btn-hero-done', nodes.btnHeroDone],
     ['#reading-body', nodes.readingBody],
@@ -481,8 +525,7 @@ function harness(overrides = {}) {
   nodes.heroTooltipGroup = node({ id: 'hero-tooltip-group' }, [nodes.btnHeroRead, nodes.btnHeroDone]);
   nodes.heroPrimaryActions = node({ id: 'hero-primary-actions' }, [nodes.heroTooltipGroup, nodes.heroReadingOptions]);
   nodes.heroProgress.append(nodes.heroProgressCount, node({ class: 'glance-bar' }, [nodes.heroProgressFill]));
-  nodes.heroBody = node({ class: 'hero-body' }, [nodes.heroPrimaryActions,
-    nodes.heroReaderTemporary, nodes.heroProgress, nodes.heroFacts]);
+  nodes.heroBody = node({ class: 'hero-body' }, [nodes.heroPrimaryActions, nodes.heroProgress, nodes.heroFacts]);
   nodes.hero.append(nodes.heroBody);
   nodes.orderDescSummary = node({ tag: 'summary', text: 'About this order' });
   nodes.orderDesc.append(nodes.orderDescSummary, nodes.orderDescText, nodes.orderBookNote);
@@ -1123,18 +1166,16 @@ test('950 hero and row options share the approved choices and launch without cha
     assert.equal(h.nodes.btnHeroReadingOptions.getAttribute('aria-label'), 'Reading options for Civil War fixture');
     const heroChoices = h.nodes.heroReadingOptionsList.childNodes.map((item) => item.childNodes[0]);
     assert.deepEqual(heroChoices.map((choice) => choice.textContent), [
-      'Marvel Comics app', 'Marvel Unlimited, until December 7, 2026',
-      'Look for Civil War on Hoopla', 'Look for Civil War in Libby',
+      'Marvel Comics app', 'Look for Civil War on Hoopla', 'Look for Civil War in Libby',
     ]);
-    assert.deepEqual(heroChoices.slice(2).map((choice) => [choice.href, choice.target, choice.rel]), [
+    assert.deepEqual(heroChoices.slice(1).map((choice) => [choice.href, choice.target, choice.rel]), [
       ['https://www.hoopladigital.com/title/12003677', '_blank', 'noopener noreferrer'],
       ['https://share.libbyapp.com/title/4455520', '_blank', 'noopener noreferrer'],
     ]);
     h.nodes.btnHeroReadingOptions.fire('click');
     heroChoices[0].fire('click', { currentTarget: heroChoices[0] });
-    heroChoices[1].fire('click', { currentTarget: heroChoices[1] });
     assert.deepEqual(h.calls.launch.map((call) => [call[0].issueId, call[2], call[4]]), [
-      [4216, 'saved', { app: true }], [4216, 'saved', { app: false }],
+      [4216, 'saved', { app: true }],
     ]);
 
     const rowToggle = rowAction(4216, 'more');
@@ -1148,8 +1189,8 @@ test('950 hero and row options share the approved choices and launch without cha
     optionsToggle.fire('click');
     const rowChoices = rowOptions.childNodes[1].childNodes.map((entry) => entry.childNodes[0]);
     assert.deepEqual(rowChoices.map((choice) => choice.textContent), heroChoices.map((choice) => choice.textContent));
-    rowChoices[1].fire('click', { currentTarget: rowChoices[1] });
-    assert.deepEqual(h.calls.launch.at(-1).slice(2), ['saved', rowChoices[1], { app: false }]);
+    rowChoices[0].fire('click', { currentTarget: rowChoices[0] });
+    assert.deepEqual(h.calls.launch.at(-1).slice(2), ['saved', rowChoices[0], { app: true }]);
     let prevented = false;
     let stopped = false;
     rowChoices[0].focus();
@@ -1168,7 +1209,7 @@ test('950 hero and row options share the approved choices and launch without cha
     h.view.renderRows();
     assert.equal(rowAction(4216, 'more').getAttribute('aria-expanded'), 'true');
     assert.equal(rowAction(4216, 'reading-options').getAttribute('aria-expanded'), 'true');
-    assert.ok(rowAction(12459, 'reading-options'));
+    assert.equal(rowAction(12459, 'reading-options'), undefined);
     assert.equal(rowAction(42, 'reading-options'), undefined);
     assert.equal(find(h.nodes.shelf, (entry) => entry.classList?.contains('reading-options')), undefined);
     assert.equal(find(h.nodes.homeContinue, (entry) => entry.classList?.contains('reading-options')), undefined);
@@ -1178,13 +1219,14 @@ test('950 hero and row options share the approved choices and launch without cha
   } finally { h.restore(); }
 });
 
-test('950 hero and row options refresh across the cutoff and follow their list context', (t) => {
+test('950 hero options stay current across the former cutoff and follow their list context', () => {
   const comic = issue(4216, 'Civil War fixture', { number: '1', seriesId: 1067 });
   let state = createList(createEmptyState(), { id: 'curated', name: 'Curated', catalogId: 'civil-war-avengers' });
   state = addIssuesToList(state, 'curated', [comic]).state;
   state = createList(state, { id: 'custom', name: 'Custom' });
   state = addIssuesToList(state, 'custom', [comic]).state;
   state = setActive(state, 'curated');
+  let restoreDate = installDate('2026-12-06T23:59:59.999');
   const h = harness({ state });
   const rowOptions = () => {
     let found;
@@ -1195,26 +1237,40 @@ test('950 hero and row options refresh across the cutoff and follow their list c
     h.view.wire();
     h.view.render();
     h.nodes.btnHeroReadingOptions.fire('click');
-    const unlimited = h.nodes.heroReadingOptionsList.childNodes[1].childNodes[0];
-    unlimited.focus();
-    t.mock.timers.setTime(new Date(2026, 11, 7, 12).getTime());
-    h.view.refreshReader();
-    assert.equal(h.nodes.heroReadingOptions.hidden, false);
-    assert.deepEqual(h.nodes.heroReadingOptionsList.childNodes.map((entry) => entry.childNodes[0].textContent), [
+    const labels = () => h.nodes.heroReadingOptionsList.childNodes
+      .map((entry) => entry.childNodes[0].textContent);
+    const appChoice = h.nodes.heroReadingOptionsList.childNodes
+      .find((entry) => entry.childNodes[0].textContent === 'Marvel Comics app')
+      .childNodes[0];
+    appChoice.focus();
+    assert.deepEqual(labels(), [
       'Marvel Comics app', 'Look for Civil War on Hoopla', 'Look for Civil War in Libby',
     ]);
-    assert.equal(globalThis.document.activeElement, h.nodes.btnHeroReadingOptions);
-    unlimited.fire('click', { currentTarget: unlimited });
-    assert.equal(h.calls.launch.length, 0);
+    assert.ok(Object.is(globalThis.document.activeElement, appChoice), 'focus stays on the app choice');
     assert.ok(rowOptions());
+
+    restoreDate();
+    restoreDate = installDate('2026-12-07T00:00:00');
+    h.view.render();
+    assert.deepEqual(labels(), [
+      'Marvel Comics app', 'Look for Civil War on Hoopla', 'Look for Civil War in Libby',
+    ]);
+    assert.ok(Object.is(globalThis.document.activeElement, appChoice), 'focus stays on the app choice after refresh');
+    appChoice.fire('click', { currentTarget: appChoice });
+    assert.deepEqual(h.calls.launch.map((call) => call[4]), [{ app: true }]);
 
     h.setActive('custom');
     h.view.render();
     assert.equal(h.nodes.heroReadingOptions.hidden, true);
     assert.equal(h.nodes.heroReadingOptionsList.hidden, true);
     assert.equal(globalThis.document.activeElement, h.nodes.btnHeroRead);
+    appChoice.fire('click', { currentTarget: appChoice });
+    assert.equal(h.calls.launch.length, 1, 'an option from the prior list cannot launch in a new list context');
     assert.equal(rowOptions(), undefined);
-  } finally { h.restore(); }
+  } finally {
+    restoreDate();
+    h.restore();
+  }
 });
 
 test('950 hero options follow the next comic and an obsolete choice cannot launch after completion', () => {
@@ -1522,9 +1578,9 @@ test('#1241 the reading card hides its facts list for a comic with none and show
   }
 });
 
-test('453 reader presentation invalidates memoized buttons without changing stored rows', () => {
-  let temporary = false;
-  const h = harness({ readerPresentation: () => ({ launchable: temporary, temporary }) });
+test('453 legacy temporary-link flags do not add captions or change stored rows', () => {
+  let launchable = false;
+  const h = harness({ readerPresentation: () => ({ launchable, temporary: launchable }) });
   try {
     h.view.wire();
     h.view.render();
@@ -1532,13 +1588,11 @@ test('453 reader presentation invalidates memoized buttons without changing stor
     const oldRows = [...h.nodes.rows.childNodes];
     const oldDescription = h.nodes.heroDesc.textContent;
     assert.equal(h.nodes.btnHeroRead.hidden, true);
-    temporary = true;
+    launchable = true;
     h.view.refreshReader();
     assert.equal(h.nodes.btnHeroRead.hidden, false);
-    assert.equal(h.nodes.btnHeroRead.textContent, 'Read');
-    assert.match(h.nodes.btnHeroRead.attributes['aria-label'], /^Read: .* in Marvel Unlimited \(reading ends December 7, 2026\)$/);
-    assert.equal(h.nodes.heroReaderTemporary.hidden, false);
-    assert.equal(h.nodes.heroReaderTemporary.textContent, 'Using a temporary reader link.');
+    assert.equal(h.nodes.btnHeroRead.textContent, 'Find on Marvel Comics');
+    assert.match(h.nodes.btnHeroRead.attributes['aria-label'], /^Find on Marvel Comics: Marvel Comics website to find .* \(not a single-comic link\)$/);
     assert.notDeepEqual(h.nodes.rows.childNodes, oldRows, 'effective presentation participates in cache key');
     const actions = [];
     walk(h.nodes.rows, (entry) => { if (entry.dataset?.act === 'open') actions.push(entry); });
@@ -1546,8 +1600,8 @@ test('453 reader presentation invalidates memoized buttons without changing stor
     for (const action of actions) {
       assert.equal(action.hidden, false);
       // This double keeps append() text in childNodes instead of aggregating textContent.
-      assert.equal(action.textContent || action.childNodes.join(''), 'Read');
-      assert.match(action.attributes['aria-label'], /reading ends December 7, 2026/);
+      assert.equal(action.textContent || action.childNodes.join(''), 'Find on Marvel Comics');
+      assert.match(action.attributes['aria-label'], /Marvel Comics website to find .* \(not a single-comic link\)$/);
       action.fire('click', {});
       assert.equal(h.calls.launch.at(-1)[2], 'saved');
     }
@@ -1555,17 +1609,58 @@ test('453 reader presentation invalidates memoized buttons without changing stor
     for (const container of [h.nodes.rows, h.nodes.shelf]) {
       walk(container, (entry) => {
         if (entry.dataset?.readerTemporary) notices.push(entry);
-        if (entry.dataset?.act === 'open') assert.equal(entry.textContent || entry.childNodes.join(''), 'Read');
+        if (entry.dataset?.act === 'open') {
+          assert.equal(entry.textContent || entry.childNodes.join(''), 'Find on Marvel Comics');
+        }
       });
     }
-    assert.ok(notices.length);
-    assert.ok(notices.every((entry) => entry.textContent === 'Temporary reader link'));
-    temporary = false;
+    assert.equal(notices.length, 0);
+    launchable = false;
     h.view.refreshReader();
-    assert.equal(h.nodes.heroReaderTemporary.hidden, true);
-    assert.equal(h.nodes.heroReaderTemporary.textContent, '');
     assert.equal(h.nodes.heroDesc.textContent, oldDescription);
     assert.equal(JSON.stringify(h.state()), state);
+  } finally {
+    h.restore();
+  }
+});
+
+test('a saved title-only manual comic has a website action and keeps its checkmark', () => {
+  const issueId = -8;
+  let state = createList(createEmptyState(), { name: 'Manual comics' });
+  const listId = state.listOrder[0];
+  state = addIssuesToList(state, listId, [{
+    issueId,
+    title: 'A manually added comic #1',
+    source: 'manual',
+    hydrated: true,
+  }], {}).state;
+  state = markRead(state, issueId, true, 1234);
+  const before = JSON.stringify(state);
+
+  const h = harness({
+    state,
+    readerPresentation: (issue) => ({ launchable: isLaunchable(issue), temporary: false }),
+  });
+  try {
+    h.view.wire();
+    h.view.render();
+    let action;
+    let checkmark;
+    walk(h.nodes.rows, (entry) => {
+      if (entry.dataset?.act === 'open') action = entry;
+      if (entry.dataset?.act === 'read') checkmark = entry;
+    });
+
+    assert.ok(action);
+    assert.equal(action.hidden, false);
+    assert.equal(action.textContent || action.childNodes.join(''), 'Find on Marvel Comics');
+    assert.match(action.attributes['aria-label'], /^Find on Marvel Comics:/);
+    assert.equal(checkmark.attributes['aria-pressed'], 'true');
+    action.fire('click', { preventDefault() {} });
+    assert.equal(h.calls.launch.length, 1);
+    assert.equal(h.calls.launch[0][0].issueId, issueId);
+    assert.equal(h.state().read[issueId], 1234);
+    assert.equal(JSON.stringify(h.state()), before);
   } finally {
     h.restore();
   }
@@ -1583,9 +1678,10 @@ test('wire and render build reading controls and call launch inside the same ges
     assert.equal(h.nodes.listNote.textContent, 'List note');
     assert.equal(h.nodes.btnListNote.textContent, 'Edit note');
     assert.equal(h.nodes.heroTitle.textContent, 'Issue Two');
-    assert.equal(h.nodes.btnHeroRead.textContent, 'Read');
-    assert.equal(h.nodes.btnHeroRead.attributes['aria-label'], 'Read: Issue Two in Marvel Unlimited (reading ends December 7, 2026)');
-    assert.equal(h.nodes.heroReaderTemporary.hidden, true);
+    assert.equal(h.nodes.btnHeroRead.textContent, 'Find on Marvel Comics');
+    assert.equal(h.nodes.btnHeroRead.attributes['aria-label'],
+      'Find on Marvel Comics: Marvel Comics website to find Issue Two (not a single-comic link)');
+    assert.equal(h.nodes.heroReadingOptions.hidden, true);
     assert.equal(h.nodes.readingFilters.querySelectorAll('input[name="filter"]').length, READING_FILTERS.length);
     assert.equal(typeof h.nodes.btnHeroRead.listeners.click[0], 'function');
 

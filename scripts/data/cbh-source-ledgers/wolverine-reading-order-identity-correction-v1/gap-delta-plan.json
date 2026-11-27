@@ -1,0 +1,202 @@
+{
+  "schemaVersion": 1,
+  "status": "candidate-pending-compatibility-review",
+  "id": "wolverine-reading-order",
+  "sourceApprovalBodyDigest": "5678379a66bc89520830ae335a7a88b4426f3ac1fb8473de9d2de0fa317dca79",
+  "transitionLedgerDigest": "b561aa30f9f46b4a0609953eccdd1cb8af95ab9e50190bd1b7a545d807775b17",
+  "packetDigest": "f6def57b9a37d764a27be9ba71b10c66e517c87b8c961b6dea8f682dea5d5104",
+  "mappingDigest": "ba6fb1b43f72ae0a87cb3984b2a9f87e942a3eb7e36efd83f80549ab5f16b2c7",
+  "approvedMappingFileSha256": "5143fcb190cace017ee8624d89e15b1a17ac6d4f9d67895155f3bcd0739a8714",
+  "authoringReportFileSha256": "0155052cebc54d6381a42571819842bf37f290f8c588152ff121498c6dd43756",
+  "completeCatalogReportFileSha256": "97b4fdb9d1bf1c774829028b08504129809f8fa7ff01855497c158aa578defd6",
+  "relationshipDispositionsFileSha256": "8f8408248a5208f4699d0571381bdbea62b5f4a37e716aa5415ab8b5fb098702",
+  "relationshipReportDigest": "a29dd13b653161ea63c88bbcd1567a27c812e148fded465bb104038ea0bb7c1a",
+  "relationshipApprovalDigest": "f92e4939dcff92c8220b1e4782e3466c16c624530ea581aeee55152d7691b57d",
+  "payloadSha256": "f9c139897cbf6cebd1113d776a2a7a70af1beebf03d9a1e50ad37bad080f7077",
+  "checklistSha256": "1334b3616731955c1689d71afb97375e944658813d7d9f1f2a58fe5ad18c7b77",
+  "vectorDigest": "8f6c7b711726a099e4f0f937e4a5f840e5fc7467b28e8896d5a8f37a9990cf59",
+  "mergedCacheIndexSha256": "d095f0af6f754ff00de2e613b62f80e92e3856f707de8064e9555ad75cac0a5f",
+  "replacements": [
+    {
+      "index": 574,
+      "sourcePosition": 601,
+      "previousSourceIssueReference": "Cable & Deadpool #44",
+      "previousIssueId": -1224479109,
+      "issueId": 16114,
+      "appViewer": "9350",
+      "metadataBodySha256": "0915470d36556b8728b4e42b40a0a588661d71d5740d2b209b2afba4fd551983",
+      "metadataRecordFileSha256": "6ee48c3d73f76b3f1e98113062728c6a4c9c7f9629a31aab5ff84a17d5fc813b"
+    },
+    {
+      "index": 575,
+      "sourcePosition": 602,
+      "previousSourceIssueReference": "Wolverine: Origins #21",
+      "previousIssueId": -197547741,
+      "issueId": 17619,
+      "appViewer": "21452",
+      "metadataBodySha256": "517cb21d60eca505021fc51347ae452ff12c17b7b2b31e2715001a752426df62",
+      "metadataRecordFileSha256": "eb05b1ece057a4fe7d29270aa6aa16e9b2b6c947443b9d87ca44709db346b980"
+    },
+    {
+      "index": 576,
+      "sourcePosition": 603,
+      "previousSourceIssueReference": "Wolverine: Origins #22",
+      "previousIssueId": -180770122,
+      "issueId": 20664,
+      "appViewer": "21456",
+      "metadataBodySha256": "0b6ed1d229bc8f23f7849836630cc71c6ab4279f7538b0772b463eefc12a4ff3",
+      "metadataRecordFileSha256": "5d33c27c65cdb595b290bf729e64a10e7e20bff222e84be2fddadab66607b51f"
+    },
+    {
+      "index": 577,
+      "sourcePosition": 604,
+      "previousSourceIssueReference": "Wolverine: Origins #23",
+      "previousIssueId": -163992503,
+      "issueId": 20859,
+      "appViewer": "21454",
+      "metadataBodySha256": "4bf1256ac8eb2363102604ae7520a8fa808cb6846ca4f3d7857e61c840f4c34b",
+      "metadataRecordFileSha256": "ccc9a964bcaf3bba212ac362c1a36d89aacc0723e2a95bc57791ebe6584e4b05"
+    },
+    {
+      "index": 578,
+      "sourcePosition": 605,
+      "previousSourceIssueReference": "Wolverine: Origins #24",
+      "previousIssueId": -147214884,
+      "issueId": 20994,
+      "appViewer": "21455",
+      "metadataBodySha256": "0289a431a56f15c3083252b7cedfc87ed9f15d55dd171abf563aa5df4157c560",
+      "metadataRecordFileSha256": "d4d213f9befeda49d082adb465779bf097eca72a9d24d3ebbc155e655cb7123c"
+    },
+    {
+      "index": 579,
+      "sourcePosition": 606,
+      "previousSourceIssueReference": "Wolverine: Origins #25",
+      "previousIssueId": -130437265,
+      "issueId": 21206,
+      "appViewer": "21453",
+      "metadataBodySha256": "3e6d7db971a70999402e1ccb19b8641174143ff83fbdf0f1ff81734db3202fa7",
+      "metadataRecordFileSha256": "e62d5b6d3c42b4f79d95f9b3a2308ceb8c2463d3591f3f3c5a71f984413c907b"
+    },
+    {
+      "index": 639,
+      "sourcePosition": 667,
+      "previousSourceIssueReference": "Wolverine: Origins #16",
+      "previousIssueId": -1959293245,
+      "issueId": 16144,
+      "appViewer": "21447",
+      "metadataBodySha256": "f705c79793315fbc4e717e84a5ac7c4d88199bc63b23e845a07d568e9dda2ecc",
+      "metadataRecordFileSha256": "25e9178f713121cd93d2a1c186081e19609576396a990445f982a495865a4a0e"
+    },
+    {
+      "index": 640,
+      "sourcePosition": 668,
+      "previousSourceIssueReference": "Wolverine: Origins #17",
+      "previousIssueId": -1976070864,
+      "issueId": 16507,
+      "appViewer": "21448",
+      "metadataBodySha256": "5971ed0bebe2deea072992e3cd34f0077613b2dfe01985eab9f73de365a8a9df",
+      "metadataRecordFileSha256": "692b23b4fb06d6b3b0e09a60be8f0ab72f784328603688be2fa864bb95f9db04"
+    },
+    {
+      "index": 641,
+      "sourcePosition": 669,
+      "previousSourceIssueReference": "Wolverine: Origins #18",
+      "previousIssueId": -2059958959,
+      "issueId": 16508,
+      "appViewer": "21449",
+      "metadataBodySha256": "9d625f7991d2745a7f60a93edfe88f1eb4ece2b63934a43ee02ca6186751db03",
+      "metadataRecordFileSha256": "1f5a77154ea1110920b5a3b4396ff78c0105b37d4ffbd295d14a214bb8e23e3f"
+    },
+    {
+      "index": 642,
+      "sourcePosition": 670,
+      "previousSourceIssueReference": "Wolverine: Origins #19",
+      "previousIssueId": -2076736578,
+      "issueId": 17243,
+      "appViewer": "21450",
+      "metadataBodySha256": "3ce7ed8ae78d892658b47a1f28f4988f3400b075b465501e672a0a1a78b7e941",
+      "metadataRecordFileSha256": "3ba5dfde8a52340f187b952a5e9b6302f054ad81ccf94a7e192806372772ffac"
+    },
+    {
+      "index": 643,
+      "sourcePosition": 671,
+      "previousSourceIssueReference": "Wolverine: Origins #20",
+      "previousIssueId": -214325360,
+      "issueId": 17379,
+      "appViewer": "21451",
+      "metadataBodySha256": "7f035934d031b1c77fdbe7e56f84463beee95a5b13b60f46f3f76eb5f66720ed",
+      "metadataRecordFileSha256": "26c39b65676b4a02840e5d10f517e8275644994179fb512842f7fc29df1f9c31"
+    },
+    {
+      "index": 644,
+      "sourcePosition": 677,
+      "previousSourceIssueReference": "Wolverine: Origins #26",
+      "previousIssueId": -113659646,
+      "issueId": 21350,
+      "appViewer": "21459",
+      "metadataBodySha256": "50723049986568a2fbaefef07a7ae917d965110b640962392109780d879c09e4",
+      "metadataRecordFileSha256": "d9e145cbe367ed120a3c51173ef52346561122dad7fd9faf3ed8f8d90b35216d"
+    },
+    {
+      "index": 645,
+      "sourcePosition": 678,
+      "previousSourceIssueReference": "Wolverine: Origins #27",
+      "previousIssueId": -96882027,
+      "issueId": 21531,
+      "appViewer": "21457",
+      "metadataBodySha256": "5e2d70aa484eb870f881413622f2a03b3b6475f35fa6c3eba34102a803c37d10",
+      "metadataRecordFileSha256": "68326f4a29e0d961ef75d656d3df4f3ad362209ba1d01536e74a033282c1c1eb"
+    },
+    {
+      "index": 646,
+      "sourcePosition": 679,
+      "previousSourceIssueReference": "Wolverine: Origins #28",
+      "previousIssueId": -80104408,
+      "issueId": 21962,
+      "appViewer": "21458",
+      "metadataBodySha256": "28e2ede04483cb3af75aa258ee4127046d1249eb2e9fd37c37df86421c4539ed",
+      "metadataRecordFileSha256": "a66b8d4c40f75ac6c4989cd60f4b39082358beb376cd020343805a999360e904"
+    },
+    {
+      "index": 647,
+      "sourcePosition": 680,
+      "previousSourceIssueReference": "Wolverine: Origins #29",
+      "previousIssueId": -63326789,
+      "issueId": 22284,
+      "appViewer": "21460",
+      "metadataBodySha256": "c936a667a38febff56008a48752cebba496b82456b46601c115439853c730d12",
+      "metadataRecordFileSha256": "a58e552e23c8f85d042e7719d15bad17152dc2260c3d23c19863cde37205868d"
+    },
+    {
+      "index": 648,
+      "sourcePosition": 681,
+      "previousSourceIssueReference": "Wolverine: Origins #30",
+      "previousIssueId": -113460965,
+      "issueId": 22492,
+      "appViewer": "21462",
+      "metadataBodySha256": "b94ebcd375784f07a24371d1c5ed4364c399858997dbb64396e2d6188f3f9bab",
+      "metadataRecordFileSha256": "14b0623bfb7e47fcdbe9b3d50ed9099a1cbb3f66814bf9350a21c01fa495be95"
+    },
+    {
+      "index": 649,
+      "sourcePosition": 682,
+      "previousSourceIssueReference": "Wolverine: Origins #31",
+      "previousIssueId": -130238584,
+      "issueId": 22896,
+      "appViewer": "21463",
+      "metadataBodySha256": "cc19af05a85a3f9083cb4e60ac9feb2d03a32dea401b6a33c11cb0438950136a",
+      "metadataRecordFileSha256": "f076524e72703bd4adeab026e4ba25a03fff09e3583e1919a8c19fb013cc8cab"
+    },
+    {
+      "index": 650,
+      "sourcePosition": 683,
+      "previousSourceIssueReference": "Wolverine: Origins #32",
+      "previousIssueId": -147016203,
+      "issueId": 23103,
+      "appViewer": "21461",
+      "metadataBodySha256": "50cab0753aa6ddfbc1ed39d2771f58e48b3aef690b56f0975d45c93905c3586d",
+      "metadataRecordFileSha256": "7ec830790e87ed15c2e4bcf545f5ec8deb891361c25f0d208f84d59964c61f95"
+    }
+  ],
+  "planDigest": "3ab9f70ea426749cb2ce6ce541902211c49011434ccd14183e029948f4100363"
+}

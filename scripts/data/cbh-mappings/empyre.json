@@ -1,7 +1,6 @@
 {
   "id": "empyre",
   "inventoryId": "empyre",
-  "packetDigest": "2998a1124223c10ba23400c452c3fdbd0f6b29bf030c3841659bc01bcf34bddc",
   "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/empyre-reading-order/",
   "sourceSection": "Empyre Comic Book Checklist",
   "sourceRetrievedAt": "2026-08-22",
@@ -13,11 +12,11 @@
     "Previously: Absolute Carnage",
     "Next: King in Black"
   ],
-  "reviewStatus": "pending-independent-review",
+  "reviewStatus": "approved",
   "proposedManifest": {
     "id": "empyre",
     "name": "Empyre",
-    "description": "The Kree and Skrull alliance brings a cosmic war to the Avengers and Fantastic Four.",
+    "description": "The Kree and the Skrulls have made peace, and their warships are headed for Earth together. Their new emperor is Teddy Altman, the young hero called Hulkling. The Fantastic Four hear his side of the story. On the Moon, the Avengers hear a very different account of why he's come.",
     "type": "event",
     "depth": "complete",
     "beginner": false,
@@ -547,14 +546,18 @@
       "seriesId": 30126,
       "candidateIssueId": 85304,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         85304
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 85304,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/85304/road_to_empyre_the_kreeskrull_war_2020_1",
       "resolvedIssueTitle": "Road To Empyre: The Kree/Skrull War (2020) #1",
-      "note": "Marvel series 30126 (Road To Empyre: The Kree/Skrull War (2020)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 30126 (Road To Empyre: The Kree/Skrull War (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        85304
+      ]
     },
     {
       "sourcePosition": 2,
@@ -566,14 +569,18 @@
       "seriesId": 29275,
       "candidateIssueId": 82353,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         82353
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 82353,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/82353/empyre_avengers_2020",
       "resolvedIssueTitle": "Empyre: Avengers (2020)",
-      "note": "Marvel series 29275 (Empyre: Avengers (2020)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 29275 (Empyre: Avengers (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        82353
+      ]
     },
     {
       "sourcePosition": 3,
@@ -585,14 +592,18 @@
       "seriesId": 29274,
       "candidateIssueId": 82352,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         82352
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 82352,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/82352/empyre_fantastic_four_2020",
       "resolvedIssueTitle": "Empyre: Fantastic Four (2020)",
-      "note": "Marvel series 29274 (Empyre: Fantastic Four (2020)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 29274 (Empyre: Fantastic Four (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        82352
+      ]
     },
     {
       "sourcePosition": 4,
@@ -604,14 +615,18 @@
       "seriesId": 30518,
       "candidateIssueId": 88624,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         88624
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 88624,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/88624/lords_of_empyre_emperor_hulkling_2020_1",
       "resolvedIssueTitle": "Lords of Empyre: Emperor Hulkling (2020) #1",
-      "note": "Marvel series 30518 (Lords of Empyre: Emperor Hulkling (2020)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 30518 (Lords of Empyre: Emperor Hulkling (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        88624
+      ]
     },
     {
       "sourcePosition": 5,
@@ -623,14 +638,18 @@
       "seriesId": 29281,
       "candidateIssueId": 82360,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         82360
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 82360,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/82360/empyre_2020_1",
       "resolvedIssueTitle": "Empyre (2020) #1",
-      "note": "Marvel series 29281 (Empyre (2020)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 29281 (Empyre (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        82360
+      ]
     },
     {
       "sourcePosition": 6,
@@ -642,14 +661,18 @@
       "seriesId": 24554,
       "candidateIssueId": 77321,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         77321
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 77321,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/77321/fantastic_four_2018_21",
       "resolvedIssueTitle": "Fantastic Four (2018) #21",
-      "note": "Marvel series 24554 (Fantastic Four (2018 - Present)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 24554 (Fantastic Four (2018 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77321
+      ]
     },
     {
       "sourcePosition": 7,
@@ -661,12 +684,23 @@
       "seriesId": null,
       "candidateIssueId": null,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": "unmatched",
+      "resolutionStatus": "exact",
       "candidateIssueIds": [],
       "selectedIssueId": null,
       "marvelIssueUrl": null,
-      "resolvedIssueTitle": null,
-      "note": "No repository metadata series was found for Lords of Empyre: Swordsman; the row remains unmatched. Marvel issue 88682 exists on Marvel.com but is absent from the configured metadata API, so the row cannot be vendored."
+      "resolvedIssueTitle": "Lords of Empyre: Swordsman (2020)",
+      "note": "Independent service identity review concurs; packet and relationship review are still pending. Marvel.com comic 88682 exists but was absent from the configured metadata API reply. That number is historical provenance only, never a provider binding, viewer number or tracking key. The independently reviewed service-only viewer is 32665.",
+      "status": "exact",
+      "selectedIssueIds": [],
+      "serviceIdentity": {
+        "appViewer": "32665",
+        "url": "https://www.marvelcomicsapp.com/viewer/32665",
+        "providerIssueId": null,
+        "normalizedSeriesTitle": "Lords of Empyre: Swordsman",
+        "seriesYear": 2020,
+        "issueNumber": "1",
+        "evidenceSha256": "11f4babfd3c4bc4b61bed12a96411bcc96952870a692ea1a643d192216cffc83"
+      }
     },
     {
       "sourcePosition": 8,
@@ -678,14 +712,18 @@
       "seriesId": 29281,
       "candidateIssueId": 82361,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         82361
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 82361,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/82361/empyre_2020_2",
       "resolvedIssueTitle": "Empyre (2020) #2",
-      "note": "Marvel series 29281 (Empyre (2020)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 29281 (Empyre (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        82361
+      ]
     },
     {
       "sourcePosition": 9,
@@ -697,14 +735,18 @@
       "seriesId": 30527,
       "candidateIssueId": 88646,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         88646
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 88646,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/88646/empyre_x-men_2020_1",
       "resolvedIssueTitle": "Empyre: X-Men (2020) #1",
-      "note": "Marvel series 30527 (Empyre: X-Men (2020)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 30527 (Empyre: X-Men (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        88646
+      ]
     },
     {
       "sourcePosition": 10,
@@ -716,14 +758,18 @@
       "seriesId": 30527,
       "candidateIssueId": 88647,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         88647
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 88647,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/88647/empyre_x-men_2020_2",
       "resolvedIssueTitle": "Empyre: X-Men (2020) #2",
-      "note": "Marvel series 30527 (Empyre: X-Men (2020)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 30527 (Empyre: X-Men (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        88647
+      ]
     },
     {
       "sourcePosition": 11,
@@ -735,14 +781,18 @@
       "seriesId": 30527,
       "candidateIssueId": 88648,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         88648
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 88648,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/88648/empyre_x-men_2020_3",
       "resolvedIssueTitle": "Empyre: X-Men (2020) #3",
-      "note": "Marvel series 30527 (Empyre: X-Men (2020)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 30527 (Empyre: X-Men (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        88648
+      ]
     },
     {
       "sourcePosition": 12,
@@ -754,14 +804,18 @@
       "seriesId": 30527,
       "candidateIssueId": 88649,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         88649
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 88649,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/88649/empyre_x-men_2020_4",
       "resolvedIssueTitle": "Empyre: X-Men (2020) #4",
-      "note": "Marvel series 30527 (Empyre: X-Men (2020)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 30527 (Empyre: X-Men (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        88649
+      ]
     },
     {
       "sourcePosition": 13,
@@ -773,14 +827,18 @@
       "seriesId": 30519,
       "candidateIssueId": 88625,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         88625
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 88625,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/88625/empyre_avengers_2020_1",
       "resolvedIssueTitle": "Empyre: Avengers (2020) #1",
-      "note": "Marvel series 30519 (Empyre: Avengers (2020)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 30519 (Empyre: Avengers (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        88625
+      ]
     },
     {
       "sourcePosition": 14,
@@ -792,14 +850,18 @@
       "seriesId": 30519,
       "candidateIssueId": 88626,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         88626
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 88626,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/88626/empyre_avengers_2020_2",
       "resolvedIssueTitle": "Empyre: Avengers (2020) #2",
-      "note": "Marvel series 30519 (Empyre: Avengers (2020)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 30519 (Empyre: Avengers (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        88626
+      ]
     },
     {
       "sourcePosition": 15,
@@ -811,14 +873,18 @@
       "seriesId": 30529,
       "candidateIssueId": 88667,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         88667
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 88667,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/88667/lords_of_empyre_celestial_messiah_2020_1",
       "resolvedIssueTitle": "Lords of Empyre: Celestial Messiah (2020) #1",
-      "note": "Marvel series 30529 (Lords of Empyre: Celestial Messiah (2020)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 30529 (Lords of Empyre: Celestial Messiah (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        88667
+      ]
     },
     {
       "sourcePosition": 16,
@@ -830,14 +896,18 @@
       "seriesId": 26673,
       "candidateIssueId": 86495,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         86495
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 86495,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/86495/captain_marvel_2019_18",
       "resolvedIssueTitle": "Captain Marvel (2019) #18",
-      "note": "Marvel series 26673 (Captain Marvel (2019 - 2023)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 26673 (Captain Marvel (2019 - 2023)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        86495
+      ]
     },
     {
       "sourcePosition": 17,
@@ -849,14 +919,18 @@
       "seriesId": 26673,
       "candidateIssueId": 86496,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         86496
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 86496,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/86496/captain_marvel_2019_19",
       "resolvedIssueTitle": "Captain Marvel (2019) #19",
-      "note": "Marvel series 26673 (Captain Marvel (2019 - 2023)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 26673 (Captain Marvel (2019 - 2023)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        86496
+      ]
     },
     {
       "sourcePosition": 18,
@@ -868,14 +942,18 @@
       "seriesId": 26673,
       "candidateIssueId": 86497,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         86497
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 86497,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/86497/captain_marvel_2019_20",
       "resolvedIssueTitle": "Captain Marvel (2019) #20",
-      "note": "Marvel series 26673 (Captain Marvel (2019 - 2023)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 26673 (Captain Marvel (2019 - 2023)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        86497
+      ]
     },
     {
       "sourcePosition": 19,
@@ -887,14 +965,18 @@
       "seriesId": 29281,
       "candidateIssueId": 82362,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         82362
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 82362,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/82362/empyre_2020_3",
       "resolvedIssueTitle": "Empyre (2020) #3",
-      "note": "Marvel series 29281 (Empyre (2020)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 29281 (Empyre (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        82362
+      ]
     },
     {
       "sourcePosition": 20,
@@ -906,14 +988,18 @@
       "seriesId": 24554,
       "candidateIssueId": 77322,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         77322
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 77322,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/77322/fantastic_four_2018_22",
       "resolvedIssueTitle": "Fantastic Four (2018) #22",
-      "note": "Marvel series 24554 (Fantastic Four (2018 - Present)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 24554 (Fantastic Four (2018 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77322
+      ]
     },
     {
       "sourcePosition": 21,
@@ -925,14 +1011,18 @@
       "seriesId": 27567,
       "candidateIssueId": 79948,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         79948
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 79948,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/79948/x-men_2019_10",
       "resolvedIssueTitle": "X-Men (2019) #10",
-      "note": "Marvel series 27567 (X-Men (2019 - 2021)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 27567 (X-Men (2019 - 2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        79948
+      ]
     },
     {
       "sourcePosition": 22,
@@ -944,14 +1034,18 @@
       "seriesId": 30521,
       "candidateIssueId": 88631,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         88631
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 88631,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/88631/empyre_savage_avengers_2020_1",
       "resolvedIssueTitle": "Empyre: Savage Avengers (2020) #1",
-      "note": "Marvel series 30521 (Empyre: Savage Avengers (2020)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 30521 (Empyre: Savage Avengers (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        88631
+      ]
     },
     {
       "sourcePosition": 23,
@@ -963,14 +1057,18 @@
       "seriesId": 30520,
       "candidateIssueId": 88628,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         88628
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 88628,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/88628/empyre_captain_america_2020_1",
       "resolvedIssueTitle": "Empyre: Captain America (2020) #1",
-      "note": "Marvel series 30520 (Empyre: Captain America (2020)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 30520 (Empyre: Captain America (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        88628
+      ]
     },
     {
       "sourcePosition": 24,
@@ -982,14 +1080,18 @@
       "seriesId": 30520,
       "candidateIssueId": 88629,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         88629
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 88629,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/88629/empyre_captain_america_2020_2",
       "resolvedIssueTitle": "Empyre: Captain America (2020) #2",
-      "note": "Marvel series 30520 (Empyre: Captain America (2020)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 30520 (Empyre: Captain America (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        88629
+      ]
     },
     {
       "sourcePosition": 25,
@@ -1001,14 +1103,18 @@
       "seriesId": 30520,
       "candidateIssueId": 88630,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         88630
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 88630,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/88630/empyre_captain_america_2020_3",
       "resolvedIssueTitle": "Empyre: Captain America (2020) #3",
-      "note": "Marvel series 30520 (Empyre: Captain America (2020)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 30520 (Empyre: Captain America (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        88630
+      ]
     },
     {
       "sourcePosition": 26,
@@ -1020,14 +1126,18 @@
       "seriesId": 29281,
       "candidateIssueId": 82363,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         82363
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 82363,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/82363/empyre_2020_4",
       "resolvedIssueTitle": "Empyre (2020) #4",
-      "note": "Marvel series 29281 (Empyre (2020)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 29281 (Empyre (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        82363
+      ]
     },
     {
       "sourcePosition": 27,
@@ -1039,14 +1149,18 @@
       "seriesId": 30519,
       "candidateIssueId": 88627,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         88627
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 88627,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/88627/empyre_avengers_2020_3",
       "resolvedIssueTitle": "Empyre: Avengers (2020) #3",
-      "note": "Marvel series 30519 (Empyre: Avengers (2020)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 30519 (Empyre: Avengers (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        88627
+      ]
     },
     {
       "sourcePosition": 28,
@@ -1058,14 +1172,18 @@
       "seriesId": 29281,
       "candidateIssueId": 82364,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         82364
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 82364,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/82364/empyre_2020_5",
       "resolvedIssueTitle": "Empyre (2020) #5",
-      "note": "Marvel series 29281 (Empyre (2020)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 29281 (Empyre (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        82364
+      ]
     },
     {
       "sourcePosition": 29,
@@ -1077,14 +1195,18 @@
       "seriesId": 24554,
       "candidateIssueId": 77323,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         77323
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 77323,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/77323/fantastic_four_2018_23",
       "resolvedIssueTitle": "Fantastic Four (2018) #23",
-      "note": "Marvel series 24554 (Fantastic Four (2018 - Present)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 24554 (Fantastic Four (2018 - Present)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77323
+      ]
     },
     {
       "sourcePosition": 30,
@@ -1096,14 +1218,18 @@
       "seriesId": 29281,
       "candidateIssueId": 82365,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         82365
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 82365,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/82365/empyre_2020_6",
       "resolvedIssueTitle": "Empyre (2020) #6",
-      "note": "Marvel series 29281 (Empyre (2020)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 29281 (Empyre (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        82365
+      ]
     },
     {
       "sourcePosition": 31,
@@ -1115,14 +1241,18 @@
       "seriesId": 28042,
       "candidateIssueId": 78688,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         78688
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 78688,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/78688/guardians_of_the_galaxy_2020_6",
       "resolvedIssueTitle": "Guardians of the Galaxy (2020) #6",
-      "note": "Marvel series 28042 (Guardians of the Galaxy (2020 - 2021)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 28042 (Guardians of the Galaxy (2020 - 2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        78688
+      ]
     },
     {
       "sourcePosition": 32,
@@ -1134,14 +1264,18 @@
       "seriesId": 26673,
       "candidateIssueId": 87440,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         87440
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 87440,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/87440/captain_marvel_2019_21",
       "resolvedIssueTitle": "Captain Marvel (2019) #21",
-      "note": "Marvel series 26673 (Captain Marvel (2019 - 2023)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 26673 (Captain Marvel (2019 - 2023)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        87440
+      ]
     },
     {
       "sourcePosition": 33,
@@ -1153,14 +1287,18 @@
       "seriesId": 29276,
       "candidateIssueId": 82354,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         82354
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 82354,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/82354/empyre_aftermath_avengers_2020_1",
       "resolvedIssueTitle": "Empyre: Aftermath Avengers (2020) #1",
-      "note": "Marvel series 29276 (Empyre: Aftermath Avengers (2020)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 29276 (Empyre: Aftermath Avengers (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        82354
+      ]
     },
     {
       "sourcePosition": 34,
@@ -1172,14 +1310,18 @@
       "seriesId": 31223,
       "candidateIssueId": 90816,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         90816
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 90816,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/90816/empyre_fallout_fantastic_four_2020_1",
       "resolvedIssueTitle": "Empyre: Fallout Fantastic Four (2020) #1",
-      "note": "Marvel series 31223 (Empyre: Fallout Fantastic Four  (2020)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 31223 (Empyre: Fallout Fantastic Four  (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        90816
+      ]
     },
     {
       "sourcePosition": 35,
@@ -1191,14 +1333,18 @@
       "seriesId": 28046,
       "candidateIssueId": 78698,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         78698
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 78698,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/78698/immortal_she-hulk_2020_1",
       "resolvedIssueTitle": "Immortal She-Hulk (2020) #1",
-      "note": "Marvel series 28046 (Immortal She-Hulk (2020)) is the reviewed metadata series for this source reference."
+      "note": "Marvel series 28046 (Immortal She-Hulk (2020)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        78698
+      ]
     },
     {
       "sourcePosition": 36,
@@ -1210,15 +1356,3164 @@
       "seriesId": 27668,
       "candidateIssueId": 77220,
       "manualSeriesSelectionApproved": false,
-      "resolutionStatus": null,
+      "resolutionStatus": "exact",
       "candidateIssueIds": [
         77220
       ],
-      "selectedIssueId": null,
+      "selectedIssueId": 77220,
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/77220/web_of_venom_empyres_end_2020_1",
       "resolvedIssueTitle": "Web Of Venom: Empyre's End (2020) #1",
-      "note": "Marvel series 27668 (Web Of Venom: Empyre's End (2020)) is the reviewed metadata series for this source reference. The source omits the issue number; the checklist item resolves to the one-shot issue #1."
+      "note": "Marvel series 27668 (Web Of Venom: Empyre's End (2020)) is the reviewed metadata series for this source reference. The source omits the issue number; the checklist item resolves to the one-shot issue #1.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77220
+      ]
     }
   ],
-  "mappingDigest": "e1d980cab2a057f86fb3377b8d87a09f9695a6c5b3c0d4b779c1467fb1369603"
+  "mappingDigest": "c24cc9ee838fd8dcd4cd75d8fb90c41f921cd366a8a1ad8d2573fbb5706231ed",
+  "packetDigest": "833c146d03281c3a5f6aca86d8af6fb0c747a1cffb522ac17b71c7887649f8e3",
+  "approvedManifest": {
+    "id": "empyre",
+    "name": "Empyre",
+    "description": "The Kree and the Skrulls have made peace, and their warships are headed for Earth together. Their new emperor is Teddy Altman, the young hero called Hulkling. The Fantastic Four hear his side of the story. On the Moon, the Avengers hear a very different account of why he's come.",
+    "type": "event",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "empyre.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/empyre-reading-order/",
+    "sourceSection": "Empyre Comic Book Checklist",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "empyre.json",
+    "characters": [
+      "Avengers",
+      "Fantastic Four",
+      "Hulkling"
+    ],
+    "keywords": [
+      "Empyre",
+      "Kree",
+      "Skrull"
+    ],
+    "expect": 36,
+    "timeline": 2020,
+    "coverIssueId": 82353
+  },
+  "packetReview": "Central approval of the actual resolved sequence, same-key Spider-Man use, and all bound current peer decisions. Not publication or a claim of human review.",
+  "relationshipReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the content writer",
+    "reviewedAt": "2026-11-26T16:27:10-08:00",
+    "rationale": "I reviewed both actual source vectors, their real opposite peer and all current author and reader orders. The registered Spider-Man identity adds exactly one existing shared key and no new guide overlap or subset. New decisions bind these corrected inputs, the retained 200 response, and the unchanged source sequences.",
+    "factualReview": {
+      "changedRowReview": "89b00eac818654e140f5a297a4219aee9c8cab582d115e23523ac9088eee5fd0",
+      "originalIdentityFinding": "835bcb5b0e9cd504fd3f6796934be20416056e952abfa208e7b178fe08428b1c",
+      "coverage": {
+        "author": "8b9eea491c280b8e5574b5251ce77dd7aa66ccb0a402331defb1443da45407f2",
+        "visible": "ab5f6d08fd0c1d528dc603640c681a9a3f3836970cc51ca3c9d4c3603868d51c",
+        "union": "2df5b4d97c8fa210daa2dc12bf4c75c7f3382e9b0687e164c69d2a0ba3d6991e"
+      }
+    },
+    "packetDigest": "833c146d03281c3a5f6aca86d8af6fb0c747a1cffb522ac17b71c7887649f8e3",
+    "mappingDigest": "c24cc9ee838fd8dcd4cd75d8fb90c41f921cd366a8a1ad8d2573fbb5706231ed",
+    "reportDigest": "66db3a2d45f7b971eec27c838a5b386a922318ae640793b58b80b7c6f6c423c1",
+    "libraryDigest": "c2aa8b9702c8a5fcd9aae658c24be9423ce1a72eec1a680ddf50e4c1640aeb8c",
+    "peerDigests": {
+      "blood-hunt": "0ecd54a2eb77b72cf776a384d354691761e495aeed61d8c7050b2d713630227a"
+    },
+    "dispositions": [
+      {
+        "orderId": "abomination-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "absolute-carnage",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "adam-warlock-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "agatha-harkness-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "age-of-x-man",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "agents-of-atlas-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "al-ewing-reading-list",
+        "sharedCount": 1,
+        "sharedIds": [
+          "78688"
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the content writer",
+        "rationale": "Al Ewing Reading List follows a writer's work across a different selection of comics. Empyre follows the event in its source order. Keep the shared issue in both sequences with the same tracking identities. Neither sequence contains the other."
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "annihilation",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "ant-man-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "atlantis-attacks",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "avengers-armageddon",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "avengers-defenders-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "avengers-doomsday-secret-wars",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "axis",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "best-ultron-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "black-panther-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "blood-and-thunder",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "blood-hunt",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "bloodties",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "captain-america-2025-dooms-shadow",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "captain-america-2025-hells-angel",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "captain-america-2025-our-secret-wars",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "captain-america-reading-order-modern-marvel-era",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "captain-marvel-ms-marvel-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "chaos-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "childs-play",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "chip-zdarsky-reading-list",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "civil-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "civil-war-essential",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "civil-war-to-secret-invasion",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "contest-of-champions",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "contest-of-chaos",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "damnation",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "dan-slott-reading-list",
+        "sharedCount": 5,
+        "sharedIds": [
+          "82352",
+          "77321",
+          "77322",
+          "77323",
+          "90816"
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the content writer",
+        "rationale": "Dan Slott Reading List follows a writer's work across a different selection of comics. Empyre follows the event in its source order. Keep the 5 shared issues in both sequences with the same tracking identities. Neither sequence contains the other."
+      },
+      {
+        "orderId": "daredevil-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "dark-phoenix-saga",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "dark-web",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "days-of-future-past",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "days-of-future-present",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "dead-mans-hand",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "deadpool-best-of",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "devils-reign",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "doctor-octopus-otto-octavius-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "doctor-strange-multiverse-of-madness",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "doctor-strange-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "donny-cates-marvel-universe-reading-order-2017",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "doomwar",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "eighth-day",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "emma-frost-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "essential-avengers",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "evolutionary-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "falcon-sam-wilson-captain-america-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "fall-house-x-rise-powers-x",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "fall-of-the-hulks",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "fall-of-the-mutants",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "fantastic-four-and-power-pack",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "fantastic-four-reading-order",
+        "sharedCount": 11,
+        "sharedIds": [
+          "82352",
+          "82360",
+          "77321",
+          "82361",
+          "82362",
+          "77322",
+          "82363",
+          "82364",
+          "77323",
+          "82365",
+          "90816"
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the content writer",
+        "rationale": "Fantastic Four follows a character or team across a different selection of comics. Empyre follows the event in its source order. Keep the 11 shared issues in both sequences with the same tracking identities. Neither sequence contains the other."
+      },
+      {
+        "orderId": "fatal-attractions",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "franklin-richards-one-shots",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "gang-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "generations",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "groot-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "guardians-of-the-galaxy-reading-order",
+        "sharedCount": 1,
+        "sharedIds": [
+          "78688"
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the content writer",
+        "rationale": "Guardians of the Galaxy follows a character or team across a different selection of comics. Empyre follows the event in its source order. Keep the shared issue in both sequences with the same tracking identities. Neither sequence contains the other."
+      },
+      {
+        "orderId": "hawkeye-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "hickman-full",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "hickman-minimal",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "hickman-x-men",
+        "sharedCount": 3,
+        "sharedIds": [
+          "88646",
+          "88649",
+          "79948"
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the content writer",
+        "rationale": "Jonathan Hickman's X-Men follows a writer's work across a different selection of comics. Empyre follows the event in its source order. Keep the 3 shared issues in both sequences with the same tracking identities. Neither sequence contains the other."
+      },
+      {
+        "orderId": "history-of-the-marvel-universe-2019",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "hope-summers-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "house-of-m",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "hunt-for-xavier",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "inferno",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "infinite-destinies",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "inhumans-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "iron-fist-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "iron-man-2020",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "iron-man-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "jed-mackay-reading-list",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "judgment-day",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "king-in-black",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "kravens-last-hunt",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "kree-skrull-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "last-annihilation",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "loki-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "magneto-reading-order",
+        "sharedCount": 1,
+        "sharedIds": [
+          "79948"
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the content writer",
+        "rationale": "Magneto follows a character or team across a different selection of comics. Empyre follows the event in its source order. Keep the shared issue in both sequences with the same tracking identities. Neither sequence contains the other."
+      },
+      {
+        "orderId": "magneto-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "marvel-1602",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "marvel-2099",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "marvel-action-avengers",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "marvel-action-black-panther",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "marvel-action-captain-marvel",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "marvel-action-spider-man",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "marvel-adventures-the-avengers",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "marvel-rising",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "marvel-super-hero-adventures",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "marvel-super-heroes-secret-wars",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "marvel-universe-guardians-of-the-galaxy-infinite-comic",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "marvel-what-if",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "marvel-zombies-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "marvels-1994",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "marvels-best-phoenix-comics",
+        "sharedCount": 1,
+        "sharedIds": [
+          "79948"
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the content writer",
+        "rationale": "Phoenix follows a character or team across a different selection of comics. Empyre follows the event in its source order. Keep the shared issue in both sequences with the same tracking identities. Neither sequence contains the other."
+      },
+      {
+        "orderId": "marvels-infinity-saga-gauntlet-wars-crusade-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "maximum-security",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mc2",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mcu-prep-agatha-all-along",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mcu-prep-ant-man-2015",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mcu-prep-avengers-age-of-ultron-2015",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mcu-prep-avengers-infinity-war-endgame",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mcu-prep-black-panther-2018",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mcu-prep-captain-america-brave-new-world",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mcu-prep-captain-america-civil-war-2016",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mcu-prep-captain-america-the-first-avenger-2011",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mcu-prep-captain-america-the-winter-soldier-2014",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mcu-prep-captain-marvel-2019",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mcu-prep-daredevil-born-again",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mcu-prep-deadpool-and-wolverine",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mcu-prep-doctor-strange-2016",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mcu-prep-eternals",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mcu-prep-fantastic-four-first-steps",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mcu-prep-guardians-of-the-galaxy",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mcu-prep-iron-man-2-2010",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mcu-prep-iron-man-2008",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mcu-prep-iron-man-3-2013",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mcu-prep-moon-knight",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mcu-prep-ms-marvel",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mcu-prep-shang-chi-and-the-legend-of-the-ten-rings",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mcu-prep-she-hulk",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mcu-prep-spider-man-brand-new-day",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mcu-prep-the-avengers-2012",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mcu-prep-the-incredible-hulk-2008",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mcu-prep-thor-2011",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mcu-prep-thor-ragnarok-2017",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mcu-prep-thor-the-dark-world-2013",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mcu-prep-thunderbolts",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mcu-prep-visionquest",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mephisto-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "messiah-complex",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "messiah-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "midnight-massacre",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "miles-morales-best-of",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "miles-morales-spider-man-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "minimum-carnage",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "modern-x-men-fast-track",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "moon-girl-and-devil-dinosaur",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "moon-knight-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "ms-marvel-kamala-khan-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "muir-island-saga",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mutant-massacre",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "mys-tech-wars",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "namor-sub-mariner-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "nebula-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "necrosha",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "nick-fury-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "nightcrawler-best-of",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "nova-reading-order",
+        "sharedCount": 1,
+        "sharedIds": [
+          "78688"
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the content writer",
+        "rationale": "Nova follows a character or team across a different selection of comics. Empyre follows the event in its source order. Keep the shared issue in both sequences with the same tracking identities. Neither sequence contains the other."
+      },
+      {
+        "orderId": "one-world-under-doom",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "operation-galactic-storm",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "operation-zero-tolerance",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "original-clone-saga",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "phalanx-covenant",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "phalanx-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "phoenix-saga",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "planet-hulk",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "power-pack-pack-attack-and-team-ups",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "professor-x-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "punisher-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
+        "sharedCount": 1,
+        "sharedIds": [
+          "78698"
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the content writer",
+        "rationale": "Hulk (and She-Hulk, Red Hulk) follows a character or team across a different selection of comics. Empyre follows the event in its source order. Keep the shared issue in both sequences with the same tracking identities. Neither sequence contains the other."
+      },
+      {
+        "orderId": "realm-of-kings",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "reckoning-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "reed-richards-and-sue-storms-wedding",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "revolutionary-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "rise-of-the-midnight-sons",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "rocket-raccoon-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "runaways-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "second-clone-saga",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "second-coming",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "secret-invasion",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "secret-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "secret-wars-2015-event-tie-ins",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "secret-wars-ii",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "setup-to-modern-timeline",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "shadow-king-reading-order",
+        "sharedCount": 1,
+        "sharedIds": [
+          "88647"
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the content writer",
+        "rationale": "Shadow King follows a character or team across a different selection of comics. Empyre follows the event in its source order. Keep the shared issue in both sequences with the same tracking identities. Neither sequence contains the other."
+      },
+      {
+        "orderId": "shadowland",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "shang-chi-master-of-kung-fu-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "siege-dark-reign-prelude",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "silent-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "silk-cindy-moon-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "silver-surfer-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "spider-geddon",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "spider-gwen-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "spider-island",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "spider-man-2099-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "spider-man-far-from-home",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "spider-man-identity-crisis",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "spider-man-no-way-home",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "spider-verse",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "spidey",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "star-lord-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "thanos-imperative",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "thanos-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "thanos-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "the-death-of-ms-marvel",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "the-defenders-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "the-night-gwen-stacy-died",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "the-unbeatable-squirrel-girl",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "the-vision-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "thor-best-of",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "thor-the-mighty-avenger",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "thunderbolts-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "time-and-time-again",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "ultimate-marvel-intro",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "ultimate-spider-man-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "venom-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "venomverse",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "wandavision",
+        "sharedCount": 2,
+        "sharedIds": [
+          "88646",
+          "88649"
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the content writer",
+        "rationale": "WandaVision follows a screen adaptation across a different selection of comics. Empyre follows the event in its source order. Keep the 2 shared issues in both sequences with the same tracking identities. Neither sequence contains the other."
+      },
+      {
+        "orderId": "war-of-kings",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "white-tiger-ava-ayala",
+        "sharedCount": 1,
+        "sharedIds": [
+          "82354"
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the content writer",
+        "rationale": "White Tiger: Ava Ayala follows a character or team across a different selection of comics. Empyre follows the event in its source order. Keep the shared issue in both sequences with the same tracking identities. Neither sequence contains the other."
+      },
+      {
+        "orderId": "winter-soldier-bucky-barnes-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "wolverine-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "world-war-hulk",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "wraith-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "x-23-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "x-cutioners-song",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "x-force-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "x-men-extermination",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "x-men-inferno",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "x-men-schism",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "x-men-utopia",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "x-of-swords",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "x-termination",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "x-tinction-agenda",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "xmen-claremont-era",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "xmen-silver-age",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      },
+      {
+        "orderId": "young-avengers-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-26T16:27:10-08:00",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy",
+        "rationale": "The exact current issue vectors have no identity in common."
+      }
+    ],
+    "approvalDigest": "135ecb00dfa2d2afe966b3ef4a25c1bb3d37c66230c21f0be0c65034ff3c5249"
+  }
 }

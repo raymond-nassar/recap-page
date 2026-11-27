@@ -53,7 +53,7 @@ function harness(pathId = 'marvel-knights-to-planet-x') {
   const focused = [];
   const paints = [];
   const shelf = { clear: node(), filters: node(), query: node(), results: node(), search: node() };
-  const follow = { wrap: node(), select: element('select'), about: node(), description: node(), source: node() };
+  const follow = { wrap: node(), sections: node(), name: node(), whole: node(), about: node(), description: node(), source: node() };
   const view = createCatalogView({
     announce: () => {},
     clearLoadNotice: () => {},
@@ -118,7 +118,7 @@ function harness(pathId = 'marvel-knights-to-planet-x') {
   };
 }
 
-test('following a path keeps one path selector and lets no stale catalog load repaint it', async () => {
+test('following a path names it once and lets no stale catalog load repaint it', async () => {
   const h = harness('modern-avengers');
   const pending = [];
   h.setLoader(() => new Promise((resolve) => pending.push(resolve)));
@@ -126,17 +126,13 @@ test('following a path keeps one path selector and lets no stale catalog load re
   const second = h.view.render('catalog');
   pending[1](actual);
   await second;
-  const options = h.follow.select.children;
   const drawn = h.shelf.results.children;
   pending[0]({ ...actual, paths: [] });
   await first;
   assert.equal(h.view.followedPath(), 'modern-avengers', 'a stale load naming no paths lets nothing go');
-  assert.equal(h.follow.select.value, 'modern-avengers');
+  assert.equal(h.follow.name.textContent, pathOf('modern-avengers').name);
+  assert.equal(h.follow.wrap.hidden, false);
   assert.equal(h.shelf.results.children, drawn, 'nothing is redrawn by the stale load');
-  h.setLoader(() => Promise.resolve(actual));
-  await h.view.render('catalog');
-  assert.equal(h.follow.select.children, options, 'the same paths keep the same options');
-  assert.deepEqual(options.map((option) => option.value), ['', ...actualPaths.map((path) => path.id)]);
 });
 
 test('a stop is counted by its exact copy, else a saved sibling, and deferred unread never finishes it', () => {
@@ -368,9 +364,8 @@ test('UX10 U05: stale, disconnected and invalid jump choices never fall back or 
   h.cards()[77].title.isConnected = true;
   h.setActive(false); h.submit(`entry:${id}`); h.setActive(true);
   assert.equal(h.focused.length, 0);
-  h.follow.select.value = 'modern-avengers';
-  h.follow.select.listeners.change();
-  await new Promise((resolve) => setImmediate(resolve));
+  h.view.setFollowedPath('modern-avengers');
+  await h.view.render('catalog');
   h.submit(`entry:${id}`, old);
   assert.equal(h.focused.length, 0, 'the jump of the path left behind moves nothing');
   const latest = h.form();
@@ -383,4 +378,47 @@ test('UX10 U05: stale, disconnected and invalid jump choices never fall back or 
   await loading;
   h.submit(`entry:${pathOf('modern-avengers').stops[9].stepId}`);
   assert.deepEqual(h.focused, [pathOf('modern-avengers').stops[9].stepId]);
+});
+
+// #1603. The whole timeline replaces the path selector with Jump to a section. A jump focuses the
+// period's own marker and changes nothing else: no path is followed, the address is not rewritten
+// and saved progress is untouched. A followed path hides it, since that path has its own jump.
+test('the whole timeline offers Jump to a section, and a jump moves focus to the period\'s marker only', async () => {
+  const h = harness();
+  h.view.setFollowedPath(null);
+  await h.view.render('catalog');
+  const [form] = h.follow.sections.children;
+  assert.equal(h.follow.sections.hidden, false);
+  assert.equal(h.follow.wrap.hidden, true, 'no path is named while the whole timeline is shown');
+  const select = form.children.find((child) => child.tagName === 'SELECT');
+  const status = form.children.find((child) => child.role === 'status');
+  assert.deepEqual(select.children.filter((option) => option.value).map((option) => option.value.slice(6)), [
+    'marvel-knights-to-planet-x', 'avengers-disassembled', 'civil-war', 'the-initiative', 'secret-invasion',
+    'dark-reign', 'heroic-age', 'marvel-now', 'all-new-all-different', 'marvel-now-2', 'marvel-legacy', 'fresh-start',
+  ]);
+  const marked = [];
+  const marker = (name) => node({ focus() { marked.push(name); } });
+  const drawn = { '#timeline-section-dark-reign': marker('dark-reign'), '#timeline-section-secret-invasion': marker('secret-invasion') };
+  h.shelf.results.querySelector = (selector) => drawn[selector] ?? null;
+  const before = JSON.stringify(h.state());
+  const jump = (value) => {
+    select.value = value;
+    form.onsubmit({ preventDefault() {} });
+    return status.textContent;
+  };
+  assert.equal(jump('entry:secret-invasion'), 'Jumped to Secret Invasion (5 of 12).');
+  assert.equal(jump('entry:dark-reign'), 'Jumped to Dark Reign (6 of 12).');
+  assert.deepEqual(marked, ['secret-invasion', 'dark-reign'], 'the two 2008 periods land on different markers');
+  assert.equal(jump('entry:heroic-age'), 'That stop or Reading List is no longer available.');
+  assert.equal(jump(''), 'Choose a destination');
+  assert.equal(h.view.followedPath(), null);
+  assert.equal(JSON.stringify(h.state()), before);
+
+  h.view.setFollowedPath('modern-avengers');
+  await h.view.render('catalog');
+  assert.equal(h.follow.sections.hidden, true);
+  assert.equal(h.follow.wrap.hidden, false);
+  h.setActive(false);
+  jump('entry:dark-reign');
+  assert.deepEqual(marked, ['secret-invasion', 'dark-reign'], 'a jump left behind moves nothing');
 });

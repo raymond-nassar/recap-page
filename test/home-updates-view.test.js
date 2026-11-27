@@ -75,15 +75,15 @@ test('iOS projects platform-specific highlights without changing the generated s
   const text = walk(h.nodes.content).map((item) => item.textContent).join(' ');
   const features = walk(h.nodes.content).find((item) => item.dataset.homeUpdatesSection === 'features');
   const rendered = walk(features).filter((item) => item.tag === 'li').map((item) => item.textContent);
-  assert.deepEqual(rendered, sourceFeatures, 'all 4.8.0 highlights apply on iPhone and iPad');
-  assert.match(text, /Read tries the Marvel Comics app first for many comics/);
-  assert.match(text, /official tie-in comics at the end of 15 MCU Prep guides/);
+  assert.deepEqual(rendered, sourceFeatures, 'all current highlights apply on iPhone and iPad');
+  assert.match(text, /Find a starting point on Home/);
+  assert.match(text, /Back up before upgrading if you might go back to 4\.8\.0/);
   assert.doesNotMatch(text, /\b(?:Android|Windows|Edge|Google(?: Drive| Play)?|Microsoft Store)\b/);
   assert.deepEqual(homeUpdatesContent.batch.features, sourceFeatures);
   const web = harness({ content: homeUpdatesContent });
   web.view.wire();
   const webText = walk(web.nodes.content).map((item) => item.textContent).join(' ');
-  assert.match(webText, /Read tries the Marvel Comics app first for many comics/);
+  assert.match(webText, /Back up before upgrading if you might go back to 4\.8\.0/);
 });
 
 test('iOS retains the historical iCloud and Windows release-copy projections', () => {

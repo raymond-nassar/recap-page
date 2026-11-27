@@ -811,7 +811,7 @@ test('iOS About states private app storage, device backups and what the requests
   assert.match(requestDetails, /What leaves this device, request by request/);
   assert.match(prose(requestDetails), /What leaves this device is the ordinary business/);
   const requestText = prose(requestDetails);
-  const readSentence = 'When a comic has a Marvel Comics app link, pressing Read opens that link in the Marvel Comics app or in your browser.';
+  const readSentence = 'Read opens a comic directly in the Marvel Comics app. If there’s no direct link, use Find on Marvel Comics to open the website.';
   assert.equal(requestText.split(readSentence).length - 1, 1, 'the approved Read sentence appears exactly once');
   assert.doesNotMatch(requestText.replace(readSentence, ''), /Android|OneDrive|Microsoft|browser|cloud backup/i);
   const hasSplitWordComment = (html) => {
@@ -1873,14 +1873,14 @@ test('iOS hit-area text wrappers receive token-sized line boxes', () => {
   const overlay = read('packaging/ios/web/ios.css');
   const launcher = read('packaging/ios/web/launcher.css');
   assert.match(overlay, /:root \.skip-link\s*\{[^}]*line-height:\s*var\(--target\);[^}]*padding-block:\s*0;/s);
-  assert.match(overlay, /:root #reader-closure-faq\s*\{[^}]*display:\s*inline-block;[^}]*min-height:\s*var\(--target\);[^}]*line-height:\s*var\(--target\);/s);
+  assert.doesNotMatch(overlay, /reader-closure-faq/);
   assert.match(launcher, /#fallback,\s*#return\s*\{[^}]*line-height:\s*var\(--target-touch,\s*48px\);[^}]*padding-block:\s*0;/s);
 });
 
 test('iOS Back, Continue and Preview inline controls retain token-sized native line boxes', () => {
   const overlay = read('packaging/ios/web/ios.css');
   assert.match(overlay, /:root \.app-back\.quiet,\s*:root #preview-secondary :is\(button, a\)\s*\{[^}]*min-width:\s*var\(--target\);[^}]*min-height:\s*var\(--target\);[^}]*line-height:\s*max\(var\(--target\), 1\.5em\);/s);
-  assert.match(overlay, /@media \(max-width: 620px\) \{\s*:root #chero-actions :is\(button, a\) \{[^}]*min-width:\s*var\(--target\);[^}]*min-height:\s*var\(--target\);[^}]*line-height:\s*max\(var\(--target\), 1\.5em\);/s,
+  assert.match(overlay, /@media \(max-width: 620px\) \{\s*:root #chero-actions > :is\(button, a\) \{[^}]*min-width:\s*var\(--target\);[^}]*min-height:\s*var\(--target\);[^}]*line-height:\s*max\(var\(--target\), 1\.5em\);/s,
     'the phone card\'s inline quiet actions are target-sized only where they are inline');
   assert.match(overlay, /:root \.app-back > \.gi\s*\{\s*display:\s*none;/);
   assert.match(overlay, /:root \.app-back-label\s*\{\s*display:\s*inline;/);
@@ -2040,9 +2040,11 @@ test('iOS web controls expose one accessible target without changing visible lay
   assert.match(tests, /NSPredicate\(format: "label BEGINSWITH\[c\] %@", "What's new"\)/);
   assert.match(tests, /XCTAssertGreaterThanOrEqual\(updatesToggle\.frame\.height,\s*44/);
   assert.match(tests, /func testFirstRunHomeLinksHaveNativeTargetsAtDefaultAndLargestTextSizes/);
+  assert.match(tests, /func testHomeStartingPointLinkIsOneNativeTargetAtDefaultAndLargestTextSizes/);
   assert.match(tests, /let displacement = frame\.midY - usableFrame\.midY/);
   assert.match(tests, /press\(forDuration: 0\.1, thenDragTo: end\)/);
-  for (const selector of ['#sidebar-nav a.ri[data-view=', '#btn-chero-open', '.app-footer > a[data-view=', '.home-guide-link', '#reader-closure-faq']) {
+  for (const selector of ['#sidebar-nav a.ri[data-view=', '#btn-chero-open', '.app-footer > a[data-view=', '.home-guide-link',
+    '#home-new-reader a[href="#/new-to-comics"]']) {
     assert.ok(controller.includes(selector), `reviewed parent control ${selector}`);
   }
 });
@@ -2613,42 +2615,6 @@ test('the Read child is guarded before its launcher can navigate', () => {
   assert.match(sheet, /policy\.decideLauncher\(/);
   assert.match(sheet, /case \.openExternally:[\s\S]*return \.cancel/);
   assert.match(sheet, /WebViewFactory\.configure\(webView\)/);
-});
-
-test('the failed Read UI test retries only an unregistered native tap', () => {
-  const source = launchTests.split('func testFailedReadLookupShowsFallbackBeforeHandingItOff() throws {')[1]
-    ?.split('func testCreditLinkLeavesTheAppAndKeepsTheAboutPageOpen()')[0];
-  assert.ok(source);
-  assert.match(source, /await document\.fonts\.ready;[\s\S]*requestAnimationFrame\(\(\) => requestAnimationFrame\(resolve\)\)/);
-  assert.match(source, /document\.readyState === 'complete'[\s\S]*document\.elementFromPoint\([\s\S]*=== read/);
-  assert.match(source, /let ready = try probeResult\(of: app\)[\s\S]*ready\["readControlReady"\] as\? Bool, true/);
-  const zeroGuard = source.split('func assertNotLaunched(')[1]?.split('_ = try handOffRecord')[0];
-  for (const field of ['launches', 'presentations']) {
-    assert.ok(zeroGuard?.includes(`XCTAssertEqual(try XCTUnwrap(value["${field}"] as? Int), 0)`), field);
-  }
-  assert.match(zeroGuard, /XCTAssertEqual\(try XCTUnwrap\(value\["handoffs"\] as\? \[String\]\), \[\]\)/);
-  assert.match(zeroGuard, /XCTAssertFalse\(app\.buttons\["ios-read-sheet-close"\]\.exists/);
-  assert.match(source, /hittable == true[\s\S]*object: read\)\], timeout: 30\)[\s\S]*read\.tap\(\)/);
-  assert.match(source, /return count > 0/);
-  assert.match(source, /let firstLaunch = XCTWaiter\.wait\([\s\S]*object: recorder\)\], timeout: 10\)/);
-  assert.match(source, /if firstLaunch == \.timedOut \{[\s\S]*try record\("read-failed-lookup-first-tap"[\s\S]*try assertNotLaunched\(unlaunched\)[\s\S]*object: read\)\], timeout: 30\)[\s\S]*try assertNotLaunched\(snapshot\(\)\)[\s\S]*read\.tap\(\);?\s*\} else \{/);
-  assert.equal(source.match(/read\.tap\(\)/g)?.length, 2, 'at most one native retry is permitted');
-  assert.doesNotMatch(source, /while |for .* in |\.click\(\)/);
-  assert.match(source, /let opened = try handOffRecord\(of: app, launches: 1, handoffs: 0\)[\s\S]*opened\["launches"\] as\? Int, 1[\s\S]*"Reader lookup failed"\]\.waitForExistence\(timeout: 90\)/);
-});
-
-test('the failed Read UI test proves fallback precedes its only hand-off', () => {
-  const source = launchTests.split('func testFailedReadLookupShowsFallbackBeforeHandingItOff() throws {')[1]
-    ?.split('func testCreditLinkLeavesTheAppAndKeepsTheAboutPageOpen()')[0];
-  assert.ok(source);
-  assert.match(source, /"Reader lookup failed"\]\.waitForExistence\(timeout: 90\)[\s\S]*"Continue manually"\][\s\S]*let beforeHandOff = try handOffRecord\(of: app, launches: 1, handoffs: 0, presentations: 1\)/);
-  for (const field of ['launches', 'presentations']) {
-    assert.ok(source.includes(`XCTAssertEqual(beforeHandOff["${field}"] as? Int, 1)`), field);
-    assert.ok(source.includes(`XCTAssertEqual(result["${field}"] as? Int, 1`), field);
-  }
-  assert.match(source, /XCTAssertEqual\(try XCTUnwrap\(beforeHandOff\["handoffs"\] as\? \[String\]\), \[\],[\s\S]*followFallback\.tap\(\)/);
-  assert.match(source, /let result = try handOffRecord\(of: app, launches: 1, handoffs: 1, presentations: 1\)/);
-  assert.match(source, /XCTAssertEqual\(urls\.count, 1\)/);
 });
 
 test('iOS cancellation, failure, malformed replies and teardown never confirm an export', async () => {

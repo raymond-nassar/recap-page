@@ -196,13 +196,16 @@ test('owner Daredevil frozen approvals remain valid across the complete current 
     ['mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', 'mcu-prep-moon-knight',
       'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-spider-man-brand-new-day', 'mcu-prep-she-hulk', 'mcu-prep-ms-marvel', 'mcu-prep-captain-america-brave-new-world', 'mcu-prep-deadpool-and-wolverine', 'avengers-doomsday-secret-wars']);
   assert.deepEqual(manifest.lists.filter((entry) => entry.catalog === false)
-    .map((entry) => entry.id), retained.map((entry) => entry.id));
+    .map((entry) => entry.id).sort(), ['civil-war-to-secret-invasion', ...retained.map((entry) => entry.id)]);
   const laterOrders = await Promise.all(later.map(async (entry) => ({
     orderId: entry.id,
     issueIds: issueIdsFromValue(await json(`src/data/${entry.file}`)),
   })));
   const current = buildComparisonReport({ candidateIds: expectedIds,
-    orders: [...currentReviewedOrders, ...laterOrders].filter((row) => row.orderId !== 'marvel-multiverse' && !retiredXmenIds.includes(row.orderId)) });
+    orders: [...currentReviewedOrders, ...laterOrders, {
+      orderId: 'civil-war-to-secret-invasion',
+      issueIds: issueIdsFromValue(await json('src/data/civil_war_to_secret_invasion.json')),
+    }].filter((row) => row.orderId !== 'marvel-multiverse' && !retiredXmenIds.includes(row.orderId)) });
   assert.equal(current.comparisonCount, currentReadingCensus.peers);
   const activePeerIds = [...new Set([...manifest.lists, ...catalog.lists].map((entry) => entry.id))]
     .filter((peerId) => peerId !== id).sort();

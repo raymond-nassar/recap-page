@@ -2,11 +2,14 @@
 // synchronously, so Read can choose the app link inside the click without awaiting anything before
 // window.open (constraint 7). A link says where a comic can be opened; it never says the comic is
 // available, and nothing here touches the availability record (constraint 6).
+//
+// #1601: only a viewer address is a direct link. The old Marvel Unlimited issue route is no longer
+// offered, so a comic that only had one now shows Find on Marvel Comics.
 import { marvelComicsAppLinkPairs } from '../../data/marvelComicsAppLinks.js';
-import { marvelComicsAppMuIssueIds } from '../../data/marvelComicsAppMuIssues.js';
-import { appMuIssuesUrl, appViewerUrl, viewerNumber } from './marvelComicsAppUrl.js';
+import { appViewerUrl, taggedViewer, viewerNumber } from './marvelComicsAppUrl.js';
 
 let table = null;
+let reverse = null;
 
 function links() {
   if (!table) table = new Map(marvelComicsAppLinkPairs);
@@ -14,18 +17,37 @@ function links() {
 }
 
 // Keyed by the comic, not the list, so a comic saved before this table existed finds its link too.
-export function appViewerFor(issueId) {
-  if (typeof issueId !== 'number' && typeof issueId !== 'string') return null;
-  if (!/^[1-9][0-9]{0,11}$/.test(String(issueId))) return null;
-  const n = links().get(Number(issueId));
+// Takes the saved comic itself where one is to hand, because a viewer-only comic is recognized by
+// its own record and never by its number (#1601); a bare number is only ever an old catalog number.
+export function appViewerFor(issue) {
+  if (issue && typeof issue === 'object') return taggedViewer(issue) ?? appViewerFor(issue.issueId);
+  if (typeof issue !== 'number' && typeof issue !== 'string') return null;
+  if (!/^[1-9][0-9]{0,11}$/.test(String(issue))) return null;
+  const n = links().get(Number(issue));
   return n === undefined ? null : viewerNumber(n);
 }
 
-const muIssues = new Set(marvelComicsAppMuIssueIds);
+export function appLinkFor(issue) {
+  const viewer = appViewerFor(issue);
+  return viewer ? appViewerUrl(viewer) : null;
+}
 
-export function appLinkFor(issueId) {
-  const viewer = appViewerFor(issueId);
-  if (viewer) return appViewerUrl(viewer);
-  const url = appMuIssuesUrl(issueId);
-  return url && muIssues.has(Number(issueId)) ? url : null;
+// Every old catalog number the bundled table joins to this viewer. More than one means the join
+// cannot say which comic was meant, so callers treat anything but exactly one as no match.
+export function catalogIdsForViewer(viewer, pairs = marvelComicsAppLinkPairs) {
+  const n = viewerNumber(viewer);
+  if (!n) return [];
+  if (pairs !== marvelComicsAppLinkPairs) {
+    return pairs.filter(([, v]) => viewerNumber(v) === n).map(([c]) => Number(c));
+  }
+  if (!reverse) {
+    reverse = new Map();
+    for (const [c, v] of marvelComicsAppLinkPairs) {
+      const key = viewerNumber(v);
+      if (!key) continue;
+      if (!reverse.has(key)) reverse.set(key, []);
+      reverse.get(key).push(Number(c));
+    }
+  }
+  return reverse.get(n) ?? [];
 }

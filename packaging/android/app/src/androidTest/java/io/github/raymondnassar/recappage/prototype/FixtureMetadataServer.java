@@ -7,7 +7,6 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -18,8 +17,7 @@ final class FixtureMetadataServer implements AutoCloseable {
     private final ServerSocket listener;
     private final ExecutorService clients = Executors.newCachedThreadPool();
     private final Thread acceptor;
-    final CountDownLatch lookupStarted = new CountDownLatch(1);
-    final CountDownLatch releaseLookup = new CountDownLatch(1);
+    // Read no longer looks anything up (#1601), so every issue request is counted and refused.
     final AtomicInteger issueRequests = new AtomicInteger();
     volatile IOException failure;
     private volatile boolean closed;
@@ -56,17 +54,10 @@ final class FixtureMetadataServer implements AutoCloseable {
                 // Consume headers without recording anything sent by the WebView.
             }
             String path = parts[1].split("\\?", 2)[0];
-            boolean issue = path.equals("/v1/issues/900000002");
             String body;
             String status = "200 OK";
-            if (issue) {
-                issueRequests.incrementAndGet();
-                lookupStarted.countDown();
-                if (!releaseLookup.await(7, TimeUnit.SECONDS)) {
-                    throw new IOException("Popup observation did not release its synthetic lookup");
-                }
-                body = "{\"id\":900000002,\"digitalId\":900000099,\"title\":\"Native fixture #2\"}";
-            } else if (path.equals("/v1/health")) {
+            if (path.startsWith("/v1/issues/")) issueRequests.incrementAndGet();
+            if (path.equals("/v1/health")) {
                 body = "{\"status\":\"ok\",\"issue_count\":2}";
             } else {
                 status = "404 Not Found";
@@ -83,15 +74,12 @@ final class FixtureMetadataServer implements AutoCloseable {
             socket.getOutputStream().flush();
         } catch (IOException error) {
             if (!closed) failure = error;
-        } catch (InterruptedException error) {
-            Thread.currentThread().interrupt();
         }
     }
 
     @Override
     public void close() throws IOException {
         closed = true;
-        releaseLookup.countDown();
         listener.close();
         clients.shutdownNow();
         try {

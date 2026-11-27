@@ -381,21 +381,28 @@ export const phoneContinue = {
     await forProfiles(page, t, async (profile, theme) => {
       const label = `${profile.platform} ${profile.width} ${theme}`;
       const homeBand = await page.evaluate(() => {
-        const read = document.querySelector('#btn-chero-read').getBoundingClientRect();
+        const action = document.querySelector('#btn-chero-read');
+        const read = action.getBoundingClientRect();
+        const done = document.querySelector('#btn-chero-done').getBoundingClientRect();
         const head = document.querySelector('#view-home > .head').getBoundingClientRect();
         const notice = document.querySelector('#reader-closure-notice').getBoundingClientRect();
         const card = document.querySelector('#home-continue').getBoundingClientRect();
         const rail = document.querySelector('.rail-header').getBoundingClientRect();
         const noticeAfterCard = notice.top >= card.bottom;
-        return { readBottom: read.bottom, fold: rail.top > innerHeight / 2 ? rail.top : innerHeight,
+        return { action: action.textContent.trim(), readBottom: read.bottom, readHeight: read.height,
+          doneHeight: done.height, fold: rail.top > innerHeight / 2 ? rail.top : innerHeight,
           noticeVisible: notice.height > 0, noticeAfterCard,
           headGap: (noticeAfterCard ? card.top : notice.top) - head.bottom,
           noticeGap: noticeAfterCard ? notice.top - card.bottom : card.top - notice.bottom };
       });
       console.log(`PHONE-HOME-BAND ${JSON.stringify({ ...profile, theme, ...homeBand })}`);
       checked(t, `${label}: Home notices and Continue have token spacing`, homeBand.headGap >= 7 && homeBand.noticeGap >= 7, homeBand);
-      if (profile.platform !== 'desktop') checked(t, `${label}: Read clears the bar with the Marvel Unlimited notice shown`,
-        homeBand.noticeVisible && homeBand.readBottom <= homeBand.fold, homeBand);
+      if (profile.platform !== 'desktop') {
+        const target = profile.platform === 'android' ? 48 : 44;
+        checked(t, `${label}: Find on Marvel Comics clears the bar with the reading-link notice shown`,
+          homeBand.action === 'Find on Marvel Comics' && homeBand.noticeVisible && homeBand.readBottom <= homeBand.fold
+          && homeBand.readHeight >= target && homeBand.doneHeight >= target, homeBand);
+      }
       await page.$eval('#home-continue', (node) => node.scrollIntoView({ block: 'center' }));
       const card = await page.evaluate((target) => {
         const root = document.querySelector('#home-continue').getBoundingClientRect();
@@ -1241,6 +1248,8 @@ function referenceFile(ref, path) {
 // before #1178, so the reference is that commit's stylesheets and action classes swapped into the same page.
 const MAIN_BEFORE_CARD = '4f6453e296ce15437c1ebd06be92ffef84f084ba';
 const PHONE_CARD = 'a595e4090783e9a56ab329a4b36a306f2737f1b4';
+// #1601: at 375 x 667 the old iOS line-height pushed Find 36.59px behind the bottom bar.
+const IOS_PHONE_CARD = '9886626b404145b1c283515bb4706d5737da8cfa';
 
 async function measureContinueCard(page) {
   await settle(page);
@@ -1335,7 +1344,7 @@ const wideCardProfiles = [
   { width: 844, height: 390, platform: 'ios', ref: MAIN_BEFORE_CARD },
   { width: 820, height: 1180, platform: 'android', ref: MAIN_BEFORE_CARD },
   { width: 844, height: 390, platform: 'android', ref: MAIN_BEFORE_CARD },
-  { width: 393, height: 852, platform: 'ios', ref: PHONE_CARD },
+  { width: 393, height: 852, platform: 'ios', ref: IOS_PHONE_CARD },
   { width: 360, height: 800, platform: 'android', ref: PHONE_CARD },
   // A short phone landscape keeps a595's side-by-side card and its Done bar, and so does split screen.
   { width: 592, height: 360, platform: 'android', ref: PHONE_CARD },
@@ -1357,7 +1366,7 @@ export const continueWideMatchesMain = {
       const then = await measureContinueCard(page);
       // The desktop gap above the card deliberately differs from main's, which moves the in-flow
       // confirmation by that gap, so the Done bar is compared only against the phone reference.
-      if (profile.ref !== PHONE_CARD) delete then.boxes['done-result'];
+      if (profile.ref === MAIN_BEFORE_CARD) delete then.boxes['done-result'];
       const drift = sameCard(now, then);
       checked(t, `${label}: Continue card geometry and action styling match ${profile.ref.slice(0, 8)}`,
         swaps.length > 0 && drift.length === 0, { swaps, drift });
@@ -1372,13 +1381,13 @@ const guidePillProfiles = [
   { width: 320, height: 640, platform: 'android' },
 ];
 
-// The pill sits whole beside Explore when both fit at natural widths, else whole on its own line,
-// and only a row too narrow for the whole label may break it, between words. The heading is never
-// squeezed or split, and the page never widens.
+// The New to comics? card's button sits below its heading, whole on one line whenever the card is
+// wide enough. The heading has the card's full width, so at the largest text it may wrap between
+// words at 320 to 393 pixels, but it is never clipped or split mid-word, and the page never widens.
 function guideLayout() {
-  const link = document.querySelector('#home-categories .home-guide-link');
-  const row = link.closest('.sec-h');
-  const heading = row.querySelector('#home-cat-h');
+  const link = document.querySelector('#home-new-reader a[href="#/new-to-comics"]');
+  const heading = document.querySelector('#home-new-reader-h');
+  const card = link.closest('.card');
   const lines = (node, start = 0, end = node.length) => {
     const range = document.createRange();
     range.setStart(node, start); range.setEnd(node, end);
@@ -1390,50 +1399,82 @@ function guideLayout() {
   if (saved === null) link.removeAttribute('style'); else link.setAttribute('style', saved);
   const box = link.getBoundingClientRect();
   const head = heading.getBoundingClientRect();
-  const rowBox = row.getBoundingClientRect();
-  const gap = parseFloat(getComputedStyle(row).columnGap) || 0;
-  const besideFits = head.width + gap + natural <= rowBox.width + 0.5;
-  const beside = head.bottom > box.top && box.bottom > head.top && head.right <= box.left + 1;
+  const cardBox = card.getBoundingClientRect();
   const below = box.top >= head.bottom - 1;
-  const wholeFits = natural <= rowBox.width + 0.5;
-  return { natural: Math.round(natural), row: Math.round(rowBox.width), heading: Math.round(head.width), besideFits, beside, below,
-    pillLines: lines(link.firstChild), headingLines: lines(heading.firstChild),
+  const wholeFits = natural <= link.parentElement.clientWidth + 0.5;
+  const text = heading.firstChild;
+  const headingWordSplit = [...text.data.matchAll(/\S+/g)].some((word) => lines(text, word.index, word.index + word[0].length) > 1);
+  return { natural: Math.round(natural), card: Math.round(cardBox.width), heading: Math.round(head.width), below,
+    buttonLines: lines(link.firstChild), headingLines: lines(text), headingWordSplit,
     headingClipped: heading.scrollWidth > heading.clientWidth + 1,
     overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
-    ok: (besideFits ? beside : below) && (!wholeFits || lines(link.firstChild) === 1)
-      && lines(heading.firstChild) === 1 && heading.scrollWidth <= heading.clientWidth + 1
+    ok: below && (!wholeFits || lines(link.firstChild) === 1)
+      && !headingWordSplit && heading.scrollWidth <= heading.clientWidth + 1
       && document.documentElement.scrollWidth <= document.documentElement.clientWidth };
 }
 
-async function guidePillContrast(page, hover) {
-  await page.$eval('#home-categories .home-guide-link', (node) => node.scrollIntoView({ block: 'center' }));
-  const box = await page.$eval('#home-categories .home-guide-link', (node) => {
+const guideButton = '#home-new-reader a[href="#/new-to-comics"]';
+
+async function paintedPixel(page, x, y) {
+  const scroll = await page.evaluate(() => ({ x: scrollX, y: scrollY }));
+  const shot = decodePng(await page.screenshot({ clip: { x: Math.round(x) + scroll.x, y: Math.round(y) + scroll.y, width: 1, height: 1 } }));
+  return shot.pixel(0, 0);
+}
+
+// Each mode is a state a reader can put the button in: at rest, under the pointer, and reached by Tab.
+// Focus is reached by a real Tab from a throwaway stop just before the button, so the ring measured is
+// the one :focus-visible paints for keyboard users. The ring is sampled in the gap-plus-half-width band
+// below the button and compared with the same pixel unfocused, which is what it has to stand out from.
+async function guidePillContrast(page, mode) {
+  await page.$eval(guideButton, (node) => node.scrollIntoView({ block: 'center' }));
+  const box = await page.$eval(guideButton, (node) => {
     const rect = node.getBoundingClientRect();
     const range = document.createRange();
     range.selectNodeContents(node);
     const text = [...range.getClientRects()].find((part) => part.width && part.height);
-    return { left: rect.left, top: rect.top, width: rect.width, height: rect.height, textLeft: text.left, textTop: text.top };
+    const css = getComputedStyle(document.documentElement);
+    const ring = parseFloat(css.getPropertyValue('--focus-offset')) + parseFloat(css.getPropertyValue('--focus-width')) / 2;
+    return { left: rect.left, top: rect.top, width: rect.width, height: rect.height, textLeft: text.left, textTop: text.top, ring };
   });
-  await page.mouse.move(hover ? box.left + box.width / 2 : 0, hover ? box.top + box.height / 2 : 0);
+  const ringPoint = { x: box.left + box.width / 2, y: box.top + box.height + box.ring };
+  const unfocusedRing = mode === 'focus' ? await paintedPixel(page, ringPoint.x, ringPoint.y) : null;
+  await page.mouse.move(mode === 'hover' ? box.left + box.width / 2 : 0, mode === 'hover' ? box.top + box.height / 2 : 0);
+  let focus = null;
+  if (mode === 'focus') {
+    await page.$eval(guideButton, (node) => {
+      const stop = document.createElement('button');
+      stop.id = 'guide-focus-stop';
+      stop.style.cssText = 'position: fixed; left: 0; top: 0; width: 1px; height: 1px; opacity: 0;';
+      node.before(stop);
+      stop.focus();
+    });
+    await page.keyboard.press('Tab');
+    focus = await page.$eval(guideButton, (node) => ({ active: document.activeElement === node,
+      visible: node.matches(':focus-visible'), outline: getComputedStyle(node).outlineStyle }));
+  }
   await settle(page);
-  const colour = await page.$eval('#home-categories .home-guide-link', (node) => getComputedStyle(node).color);
-  const clip = { x: Math.round(box.textLeft) - 3, y: Math.round(box.textTop) + 1, width: 1, height: 1 };
-  const shot = decodePng(await page.screenshot({ clip: { ...clip, x: clip.x + await page.evaluate(() => scrollX), y: clip.y + await page.evaluate(() => scrollY) } }));
-  const background = shot.pixel(0, 0);
+  const colour = await page.$eval(guideButton, (node) => getComputedStyle(node).color);
+  const background = await paintedPixel(page, box.textLeft - 3, box.textTop + 1);
   const text = colour.match(/\d+/g).slice(0, 3).map(Number);
+  const row = { mode, text, background, ratio: Math.round(ratio(text, background) * 100) / 100 };
+  if (mode === 'focus') {
+    const ring = await paintedPixel(page, ringPoint.x, ringPoint.y);
+    Object.assign(row, { focus, ring, unfocusedRing, ringRatio: Math.round(ratio(ring, unfocusedRing) * 100) / 100 });
+    await page.evaluate(() => { document.activeElement?.blur(); document.getElementById('guide-focus-stop')?.remove(); });
+  }
   await page.mouse.move(0, 0);
-  return { hover, text, background, ratio: Math.round(ratio(text, background) * 100) / 100 };
+  return row;
 }
 
 export const guideLinkPill = {
   id: 'guide-link-pill',
-  title: 'The New to Marvel Comics? link is an accent pill that stays readable, sized and unwrapped mid-word',
+  title: 'The New to comics? button stays readable, sized and unwrapped mid-word, and the Library guide link stays a pill',
   async run(page, t, selected) {
     const androidOnly = selected?.every((profile) => profile.platform === 'android');
     const chosen = androidOnly ? guidePillProfiles.filter((profile) => profile.platform === 'android') : guidePillProfiles;
     await forProfiles(page, t, async (profile, theme) => {
       const label = `${profile.platform} ${profile.width} ${theme}`;
-      await page.$eval('#home-categories > .sec-h', (node) => node.scrollIntoView({ block: 'center' }));
+      await page.$eval('#home-new-reader', (node) => node.scrollIntoView({ block: 'center' }));
       await settle(page);
       await capture(page, profile, theme, 'guide-link');
       const style = await page.evaluate(() => {
@@ -1452,21 +1493,37 @@ export const guideLinkPill = {
         });
       });
       const target = profile.platform === 'android' ? 48 : 44;
-      checked(t, `${label}: Home and empty Library guide links are accent-tint pills without underline`,
-        style.length === 2 && style.some((link) => link.id === 'library-empty')
+      const button = await page.$eval('#home-new-reader a[href="#/new-to-comics"]', (node) => node.getBoundingClientRect().height);
+      checked(t, `${label}: the New to comics? button is target-sized`, button >= target, { button, target });
+      const cue = await page.$eval(guideButton, (node) => {
+        const icon = node.querySelector('svg[aria-hidden="true"]');
+        const bounds = icon?.getBoundingClientRect();
+        return { href: icon?.querySelector('use')?.getAttribute('href'),
+          width: bounds?.width, right: bounds?.right, inside: node.getBoundingClientRect().right };
+      });
+      checked(t, `${label}: the guide button includes a visible forward arrow inside the same link`,
+        cue.href?.endsWith('#arrow-right') && cue.width > 0 && cue.right <= cue.inside, cue);
+      checked(t, `${label}: the empty Library guide link is an accent-tint pill without underline`,
+        style.length === 1 && style[0].id === 'library-empty'
         && style.every((link) => link.background === link.want.background && link.color === link.want.color
           && link.border === link.want.border && link.borderWidth === '1px' && link.radius >= 999 && link.underline === 'none')
         && style.filter((link) => link.rendered).every((link) => link.height >= target), style);
-      const contrast = [await guidePillContrast(page, false)];
-      if (profile.platform === 'desktop') contrast.push(await guidePillContrast(page, true));
+      const contrast = [await guidePillContrast(page, 'rest')];
+      if (profile.platform === 'desktop') contrast.push(await guidePillContrast(page, 'hover'), await guidePillContrast(page, 'focus'));
       console.log(`GUIDE-PILL-CONTRAST ${JSON.stringify({ ...profile, theme, contrast })}`);
-      checked(t, `${label}: painted guide pill text contrast is at least 4.5:1`, contrast.every((row) => row.ratio >= 4.5), contrast);
+      checked(t, `${label}: painted guide button text contrast is at least 4.5:1 at rest${profile.platform === 'desktop' ? ', under the pointer and on keyboard focus' : ''}`,
+        contrast.every((row) => row.ratio >= 4.5), contrast);
+      if (profile.platform === 'desktop') {
+        const focused = contrast.find((row) => row.mode === 'focus');
+        checked(t, `${label}: Tab reaches the guide button with a painted focus ring at least 3:1 against the card`,
+          focused.focus.active && focused.focus.visible && focused.focus.outline !== 'none' && focused.ringRatio >= 3, focused);
+      }
       const layout = await page.evaluate(guideLayout);
-      checked(t, `${label}: the guide pill stays whole beside Explore when both fit, else on its own line, and the heading is never squeezed`,
+      checked(t, `${label}: the guide button sits whole below its heading and the heading is never squeezed`,
         layout.ok, layout);
       await largeText(page, profile);
       const large = await page.evaluate(() => {
-        const node = document.querySelector('#home-categories .home-guide-link');
+        const node = document.querySelector('#home-new-reader a[href="#/new-to-comics"]');
         const words = [];
         const walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT);
         for (let text = walker.nextNode(); text; text = walker.nextNode()) {
@@ -1480,11 +1537,11 @@ export const guideLinkPill = {
         return { words, overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
           clipped: node.scrollWidth > node.clientWidth + 1 };
       });
-      checked(t, `${label}: at the largest text the guide pill splits no word and does not widen the page`,
+      checked(t, `${label}: at the largest text the guide button splits no word and does not widen the page`,
         large.words.length > 0 && large.words.every((word) => word.lines === 1) && !large.overflow && !large.clipped, large);
       const largeLayout = await page.evaluate(guideLayout);
-      checked(t, `${label}: at the largest text the guide pill and Explore follow the same placement rule`, largeLayout.ok, largeLayout);
-      await page.$eval('#home-categories > .sec-h', (node) => node.scrollIntoView({ block: 'center' }));
+      checked(t, `${label}: at the largest text the guide button follows the same placement rule`, largeLayout.ok, largeLayout);
+      await page.$eval('#home-new-reader', (node) => node.scrollIntoView({ block: 'center' }));
       await settle(page);
       await capture(page, profile, theme, 'guide-link-largest');
     }, chosen);

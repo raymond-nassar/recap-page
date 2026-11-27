@@ -1,4 +1,5 @@
 import { readFileSync } from 'node:fs';
+import { isComicLauncherCall } from './lib/reader-launch-verdict.mjs';
 import { importedNoWayHomeFixture } from '../test/helpers/owner-no-way-home-import.mjs';
 
 const readJson = (url) => JSON.parse(readFileSync(url, 'utf8'));
@@ -190,13 +191,8 @@ export const ownerNoWayHomeActualData = {
     t.check('fresh original import remains readable in its exact 17-comic order',
       same((await rendered(page, 'reading')).rows, legacyExpected));
     const originalOpened = await launch(page, legacy.items[0].issueId);
-    const originalDestination = new URL(originalOpened[0]?.url ?? '', page.__origin);
-    t.check('the original guide retains synchronous independent new-tab Read',
-      originalOpened.length === 1 && originalOpened[0].dispatching && originalOpened[0].target === '_blank'
-        && originalOpened[0].features.includes('noopener') && originalDestination.origin === page.__origin
-        && originalDestination.pathname === '/open.html'
-        && originalDestination.searchParams.get('i') === String(legacy.items[0].issueId)
-        && originalDestination.searchParams.get('d') === String(legacy.items[0].digitalId),
+    t.check('the original guide retains a synchronous new-tab reading action',
+      originalOpened.length === 1 && isComicLauncherCall(originalOpened[0], page.__origin, legacy.items[0]),
       JSON.stringify(originalOpened));
     const fixture = importedNoWayHomeFixture({ owner: payload, legacy });
     await page.evaluate((keys) => {
@@ -238,13 +234,8 @@ export const ownerNoWayHomeActualData = {
         JSON.stringify({ active: preserved.active, writes: preserved.writes, keyCount: Object.keys(preserved.keys).length }));
       if (width === 1280) {
         const opened = await launch(page, payload.items[0].issueId);
-        const destination = new URL(opened[0]?.url ?? '', page.__origin);
-        t.check('the retired saved copy retains synchronous independent new-tab Read and its exact digital identity',
-          opened.length === 1 && opened[0].dispatching && opened[0].target === '_blank'
-            && opened[0].features.includes('noopener') && destination.origin === page.__origin
-            && destination.pathname === '/open.html'
-            && destination.searchParams.get('i') === String(payload.items[0].issueId)
-            && destination.searchParams.get('d') === String(payload.items[0].digitalId),
+        t.check('the retired saved copy launches synchronously without reviving a retired reader link',
+          opened.length === 1 && isComicLauncherCall(opened[0], page.__origin, payload.items[0]),
           JSON.stringify(opened));
       }
     }

@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "id": "wolverine-reading-order",
+  "status": "catalog-candidate-pending-runtime-compatibility",
+  "correctionEvidence": "https://github.com/raymond-nassar/recap-page/issues/1594#issuecomment-7174964786",
+  "priorPublication": {
+    "commit": "04d9088f7a5ed88adde8dae484885846afe89a84",
+    "packetDigest": "00e47fc9b54b7ac2a094510a8f5941cef722cce548dbb74913dfdd33ebd1d06a",
+    "payloadSha256": "b43d7a86eb40b38a2e0e574b43205cc9f2b44aa77def924b5a0a4acfd419f4e7",
+    "checklistSha256": "16cc3722fb9b2a27968811708c6d0b8edebe641b7e1b7484135ddc72c25dfa44",
+    "vectorDigest": "8f6c7b711726a099e4f0f937e4a5f840e5fc7467b28e8896d5a8f37a9990cf59"
+  },
+  "reviewReceiptSha256": "7aae3ce0529bd5d9373edfd0bc1b23ad49f1734cba836142c20934f77993df6d",
+  "sourceReviewReceiptSha256": "1349253c49e6f3ef74cc16605a322b03058d8560f44aaa557f3cdf219bdb81e3",
+  "correctionReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the mapping author",
+    "reviewedAt": "2026-11-25T14:54:13-08:00",
+    "rationale": "Approved only the eighteen one-to-one Wolverine issue transitions bound by the reviewed ledger. Preserve the prior 29 decisions and their identity targets, the original nonchronological source placement, unrelated placeholder repairs, and historical published vectors. This approval does not waive the separate conflict-free saved-data and release gates.",
+    "packetDigest": "f6def57b9a37d764a27be9ba71b10c66e517c87b8c961b6dea8f682dea5d5104",
+    "mappingDigest": "ba6fb1b43f72ae0a87cb3984b2a9f87e942a3eb7e36efd83f80549ab5f16b2c7",
+    "reportDigest": "a29dd13b653161ea63c88bbcd1567a27c812e148fded465bb104038ea0bb7c1a",
+    "approvalDigest": "f92e4939dcff92c8220b1e4782e3466c16c624530ea581aeee55152d7691b57d"
+  },
+  "sourceCounts": {
+    "sourceOccurrenceCount": 1328,
+    "sourceIdentityCount": 1272,
+    "includedIssueCount": 534,
+    "sourceGapCount": 738,
+    "repeatedSourceReferenceCount": 19,
+    "excludedSourceRowCount": 37
+  },
+  "planDigest": "3ab9f70ea426749cb2ce6ce541902211c49011434ccd14183e029948f4100363",
+  "transitionLedgerDigest": "b561aa30f9f46b4a0609953eccdd1cb8af95ab9e50190bd1b7a545d807775b17",
+  "readerCatalog": {
+    "comparisonCount": 352,
+    "reportDigest": "1f0d4ccf48fcdce198f40e4423b43fb4e37cb2d00f3bd2890a2958ee6edad3c6",
+    "reportFileSha256": "97b4fdb9d1bf1c774829028b08504129809f8fa7ff01855497c158aa578defd6",
+    "dispositionFileSha256": "8f8408248a5208f4699d0571381bdbea62b5f4a37e716aa5415ab8b5fb098702"
+  },
+  "correctedCandidate": {
+    "payloadSha256": "d08101e18823c7f1dee1ae27f9f6c09ca5250bbf1bcf9f7fe2249e2b6b14de02",
+    "checklistSha256": "45fe8a9f816533392ecaecf866e44bc9f14d7b83831f3dc3b7a6cfc1e941a51c",
+    "vectorDigest": "ef0ccc02b0bfa8a9bd64b36d2806f2fb9ab15dc7f53cd179b57b6659d2798c88",
+    "manifestIdVectorDigest": "ad8f43ebcc2714e11fabef4573c83f50c0e2aabb5908ac127ba76befa2eef259"
+  }
+}

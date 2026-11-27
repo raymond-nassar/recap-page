@@ -183,7 +183,7 @@
               </details>
             </div>
 
-            <p id="reader-closure-notice" class="notice notice-warn"><span id="reader-closure-text">Read now opens comics in the Marvel Comics app when we have a link. Marvel Unlimited ends December 7, 2026. Until then you can still choose it under Reading options.</span> <a id="reader-closure-faq" href="https://help.marvel.com/article/marvel-whats-happening-to-marvel-unlimited" target="_blank" rel="noopener noreferrer">Marvel's FAQ</a><button id="reader-closure-dismiss" type="button" class="btn btn-g btn-icon notice-dismiss has-tooltip" aria-label="Dismiss the Marvel Unlimited notice" data-tooltip="Dismiss the Marvel Unlimited notice"><span aria-hidden="true">&times;</span></button></p>
+            <p id="reader-closure-notice" class="notice notice-warn"><span id="reader-closure-text">Read opens a comic directly in the Marvel Comics app. If there’s no direct link, use Find on Marvel Comics to open the website.</span> <button id="reader-closure-dismiss" type="button" class="btn btn-g btn-icon notice-dismiss has-tooltip" aria-label="Dismiss reading link notice" data-tooltip="Dismiss reading link notice"><span aria-hidden="true">&times;</span></button></p>
 
             <!-- #1412: Windows readers in Edge or Chrome are invited once to open Recap Page in its own
                  window; Firefox, Brave and Opera readers are told how. install.js decides which, if either, shows. -->
@@ -247,10 +247,18 @@
               <ul class="yours" id="home-yours-list"></ul>
             </section>
 
+            <section class="sec" id="home-new-reader" aria-labelledby="home-new-reader-h">
+              <div class="card card-static guide-copy">
+                <h2 id="home-new-reader-h">New to comics?</h2>
+                <p><a href="#/new-to-comics" class="btn primary btn-lg" data-view="new-to-comics">Find a starting point.
+                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#arrow-right"/></svg>
+                </a></p>
+              </div>
+            </section>
+
             <section class="sec home-categories" id="home-categories" data-category-gateway aria-labelledby="home-cat-h">
               <div class="sec-h">
                 <h2 id="home-cat-h">Explore</h2>
-                <a href="#/new-to-comics" class="home-guide-link" data-view="new-to-comics">New to Marvel Comics?</a>
               </div>
               <div id="home-cat-report" class="report"></div>
               <p class="rail-hint" id="home-paths-status" data-paths-status role="status">Loading ways to read…</p>
@@ -279,31 +287,35 @@
             </section>
             <section class="card card-static guide-copy" aria-labelledby="guide-start-h">
               <h2 id="guide-start-h">Find a starting point</h2>
-              <p><a href="#/genres" class="btn primary" data-view="genres" data-guide-starters>Explore the ten starter picks</a></p>
-              <p>Optional: <a href="#/preview/history-of-the-marvel-universe-2019" data-preview-id="history-of-the-marvel-universe-2019">History of the Marvel Universe (2019)</a> surveys Marvel's history. <a href="#/preview/marvels-1994" data-preview-id="marvels-1994">Marvels (1994)</a> sees that world through a photographer's eyes.</p>
+              <fieldset class="filters guide-familiarity">
+                <legend class="filter-legend">How familiar are you with Marvel comics?</legend>
+                <label class="fp">
+                  <input type="radio" name="guide-start-familiarity" value="new" />
+                  <span>I’m new</span>
+                </label>
+                <label class="fp">
+                  <input type="radio" name="guide-start-familiarity" value="experienced" />
+                  <span>I’ve read Marvel comics before</span>
+                </label>
+              </fieldset>
+              <div class="story-type-choices">
+                <div class="story-type-group">
+                  <label for="guide-start-favorite" class="story-type-label">Who would you like to read about?</label>
+                  <select id="guide-start-favorite"><option value="">No preference</option></select>
+                </div>
+              </div>
+              <div id="guide-start-result">
+                <p id="guide-start-starters"><a href="#/genres" class="btn primary" data-view="genres" data-guide-starters>Explore the ten starter picks</a></p>
+                <p id="guide-start-timeline" hidden><a href="#/catalog" class="btn primary" data-view="catalog">Start the Modern Timeline</a></p>
+                <div id="guide-start-match" class="catalog-grid publishing-grid" hidden></div>
+                <div id="guide-start-optional" hidden>
+                  <p>Optional:</p>
+                  <div id="guide-start-optional-cards" class="catalog-grid publishing-grid"></div>
+                </div>
+              </div>
+              <div id="guide-start-report" class="report"></div>
               <p id="guide-preview-status" role="status" aria-live="polite" hidden>Loading the Reading List...</p>
               <div id="guide-preview-report" class="report"></div>
-            </section>
-            <section class="card card-static guide-copy" aria-labelledby="guide-app-h">
-              <h2 id="guide-app-h">Getting around Recap Page</h2>
-              <div>
-                <ul>
-                  <li><a href="#/home" data-view="home">Home</a>: resume reading and explore.</li>
-                  <li><a href="#/catalog" data-view="catalog">Modern Timeline</a>: follow modern stories.</li>
-                  <li><a href="#/genres" data-view="genres">Genres</a>: browse by genre or tone.</li>
-                  <li><a href="#/spotlights" data-view="spotlights">Character spotlights</a>: find people and teams.</li>
-                  <li><a href="#/marvel-on-screen" data-view="marvel-on-screen">MCU Prep</a>: explore comics behind movies and shows.</li>
-                  <li><a href="#/marvel-ages" data-view="marvel-ages">Marvel Ages</a>: browse by publishing period.</li>
-                  <li><a href="#/young-readers" data-view="young-readers">Young readers</a>: find stories for younger readers.</li>
-                  <li><a href="#/universes" data-view="universes">Universes</a>: browse realities.</li>
-                  <li><a href="#/creators" data-view="creators">Creators</a>: browse by creator.</li>
-                  <li><a href="#/library" data-view="library">Library</a>: see saved lists and progress.</li>
-                  <li><a href="#/add" data-view="add">Search</a>: find or add comics.</li>
-                  <li><a href="#/data" data-view="data">Backup &amp; settings</a>: manage your data and preferences.</li>
-                  <li><a href="#/about" data-view="about">About</a>: see credits and privacy.</li>
-                  <li>Save a list. Read opens Marvel outside the app; Done records progress. The app does not contain comics.</li>
-                </ul>
-              </div>
             </section>
             <section class="card card-static guide-copy" aria-labelledby="guide-more-h">
               <h2 id="guide-more-h">Learn more</h2>
@@ -313,12 +325,12 @@
                   <li><a href="https://www.hoopladigital.com/search?kindId=10&amp;publisherName=Marvel" target="_blank" rel="noopener noreferrer">Search Marvel on hoopla</a></li>
                   <li><a href="https://resources.overdrive.com/library/libby-features/comics-graphic-novels/" target="_blank" rel="noopener noreferrer">Comics &amp; Graphic Novels in Libby</a></li>
                 </ul>
-                <p>Basics adapted from the r/Marvel wiki.</p>
                 <ul>
                   <li><a href="https://www.reddit.com/r/Marvel/wiki/faq/#wiki_introduction_to_comics" target="_blank" rel="noopener noreferrer">Introduction to comics</a></li>
                   <li><a href="https://www.reddit.com/r/Marvel/wiki/faq#wiki_starter_recommendations" target="_blank" rel="noopener noreferrer">Starter recommendations</a></li>
                   <li><a href="https://www.reddit.com/r/Marvel/wiki/faq/#wiki_events.2Fcrossovers" target="_blank" rel="noopener noreferrer">Events and crossovers</a></li>
                   <li><a href="https://www.youtube.com/watch?v=FYnkpCfKuDw" target="_blank" rel="noopener noreferrer">How to Get Into Comic Books</a>, a video by Patrick Willems</li>
+                  <li><a href="https://www.youtube.com/watch?v=XnBG7-4-k00" target="_blank" rel="noopener noreferrer">Where To Start With Marvel Comics Right Now! (2025!)</a>, a video by Comic Book Herald</li>
                 </ul>
               </div>
             </section>
@@ -415,7 +427,6 @@
                         <ul class="reading-options-list" id="hero-reading-options-list" hidden></ul>
                       </div>
                     </div>
-                    <p id="hero-reader-temporary" class="rail-hint" hidden></p>
                     <!-- The ring reads progress once. This visual row moves with it on a phone. -->
                     <div class="glance" id="hero-progress" aria-hidden="true">
                       <p class="glance-count" id="hero-progress-count"></p>
@@ -627,7 +638,6 @@
                       <summary id="reader-link-heading">Where Read opens</summary>
                       <div class="stack">
                         <p id="reader-link-summary" class="rail-hint"></p>
-                        <p class="rail-hint">Marvel Unlimited reader links are no longer accepted. Saved comics and JSON backups keep their recorded references.</p>
                       </div>
                     </details>
                   </section>
@@ -849,10 +859,11 @@
           <section id="view-catalog" class="view" hidden aria-labelledby="catalog-h">
             <div class="head"><div class="head-left"><h1 id="catalog-h">Modern Timeline</h1></div></div>
             <div id="catalog-report" class="report"></div>
+            <div class="timeline-sections" id="catalog-sections" hidden></div>
             <div class="timeline-follow" id="catalog-follow" hidden>
-              <label for="catalog-path">Follow a path</label>
-              <select id="catalog-path"></select>
-              <details class="field-disclosure action-disclosure timeline-follow-about" id="catalog-path-about" hidden>
+              <p class="timeline-follow-name" id="catalog-path-name"></p>
+              <button type="button" class="btn btn-g" id="catalog-path-whole">Show full timeline</button>
+              <details class="field-disclosure action-disclosure timeline-follow-about" id="catalog-path-about">
                 <summary>About this path</summary>
                 <p id="catalog-path-description"></p>
                 <p class="rail-hint" id="catalog-path-source"></p>
@@ -1413,11 +1424,8 @@
               <h3>Metadata and links only</h3>
               <p class="rail-hint">
                 No comic content is stored, copied, proxied, or served. The app tracks which comics you
-                have read and links out to Marvel's own services. Reading in Marvel Unlimited ends
-                December 7, 2026. When a comic has a Marvel Comics app link, Read opens that link
-                                in the Marvel Comics app or in your browser. For other comics, before that date Read uses the web reader when
-                a link is recorded, with your own subscription. From that date, Read opens the
-                general Marvel Comics website for those comics, not a single-comic link.
+                have read and links out to Marvel's own services. Read opens a comic directly in the
+                Marvel Comics app. If there’s no direct link, use Find on Marvel Comics to open the website.
                 Access is determined by Marvel, not this tracker.
                 Availability badges are historical Marvel Unlimited records, not proof of access
                 to Marvel Comics. Cover images load directly from Marvel's own servers,
@@ -1443,6 +1451,7 @@
                 <a href="https://comicbookreadingorders.com/" target="_blank" rel="noopener noreferrer">Comic Book Reading Orders</a> for the guides used to compile many bundled Reading Lists. Every externally guided list names and links to the exact source it follows.
                 Reading Lists assembled in this project come from Marvel series metadata or are compiled by hand.
               </p>
+              <p class="rail-hint">Basics adapted from the r/Marvel wiki.</p>
 
               <h3 id="about-comic-link-credits">Comic link credits</h3>
               <p class="rail-hint">
@@ -1496,16 +1505,8 @@
                   comics are on screen; switching cover art off stops them being requested at all.
                   Those are the only servers a cover is ever asked of: an address the metadata API
                   reports on any other host is refused before anything is fetched.
-                  When a comic has a Marvel Comics app link, pressing Read opens that link in the Marvel Comics app or in your browser.
-                  For a comic without one, before December 7, 2026, pressing Read opens Marvel's web reader
-                  when its direct reader link is known. With a matching comic-page link but a refused reader-ID lookup,
-                  Read opens the exact Marvel comic page directly. Otherwise the launch tab asks
-                  the metadata API for a missing reader link and opens the web reader if found,
-                  or the comic page if not. From the start of December 7 on your device's local
-                  clock, Read opens the general Marvel Comics website for a comic without an app link,
-                  with no reader-link lookup.
-                  Android uses your installed browser, not the Marvel Unlimited app, on both sides
-                  of that date.
+                  Read opens a comic directly in the Marvel Comics app. If there’s no direct link, use Find on Marvel Comics to open the website.
+                  Opening a comic or the website does not send your lists, notes or reading progress to Marvel.
                   Adding a comic by hand sends the words in the title box to the Marvel Fandom wiki
                   only when you press the lookup button; the wiki sees that title, but no picture is fetched.
                   These requests include no part of your lists, progress, or notes.
@@ -1529,6 +1530,26 @@
               </p>
               <p><button id="about-whats-new" class="btn btn-g" type="button" hidden>What's new</button></p>
             </div>
+            <section class="card card-static guide-copy" aria-labelledby="guide-app-h">
+              <h2 id="guide-app-h">Getting around Recap Page</h2>
+              <div>
+                <ul>
+                  <li><a href="#/home" data-view="home">Home</a>: resume reading and explore.</li>
+                  <li><a href="#/catalog" data-view="catalog">Modern Timeline</a>: follow modern stories.</li>
+                  <li><a href="#/genres" data-view="genres">Genres</a>: browse by genre or tone.</li>
+                  <li><a href="#/spotlights" data-view="spotlights">Character spotlights</a>: find people and teams.</li>
+                  <li><a href="#/marvel-on-screen" data-view="marvel-on-screen">MCU Prep</a>: explore comics behind movies and shows.</li>
+                  <li><a href="#/marvel-ages" data-view="marvel-ages">Marvel Ages</a>: browse by publishing period.</li>
+                  <li><a href="#/young-readers" data-view="young-readers">Young readers</a>: find stories for younger readers.</li>
+                  <li><a href="#/universes" data-view="universes">Universes</a>: browse realities.</li>
+                  <li><a href="#/creators" data-view="creators">Creators</a>: browse by creator.</li>
+                  <li><a href="#/library" data-view="library">Library</a>: see saved lists and progress.</li>
+                  <li><a href="#/add" data-view="add">Search</a>: find or add comics.</li>
+                  <li><a href="#/data" data-view="data">Backup &amp; settings</a>: manage your data and preferences.</li>
+                  <li>Save a list. Read opens Marvel outside the app; Done records progress. The app does not contain comics.</li>
+                </ul>
+              </div>
+            </section>
           </section>
           <section id="view-completed" class="view view-wide" hidden aria-labelledby="completed-h">
             <div class="head"><div class="head-left"><h1 id="completed-h">Completed lists</h1><p id="completed-count" class="sub">Completed Reading Lists and the ones you enjoyed.</p></div></div>

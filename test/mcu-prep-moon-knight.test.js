@@ -1,5 +1,8 @@
 import { beforeXmenEraCatalogLists, beforeXmenEraOrders } from './helpers/xmen-era-history.mjs';
 import test from 'node:test';
+import {
+  installmentSources, installmentVisibleIds,
+} from './helpers/modern-timeline-installment-history.mjs';
 import { mcuEditorial } from '../scripts/lib/mcu-editorial.mjs';
 import { legacyOwnerPeers, registeredCatalogAdditionIds } from './helpers/current-reading-library.mjs';
 import assert from 'node:assert/strict';
@@ -297,6 +300,7 @@ test('Moon Knight preserves human-approved snapshots and checks the complete cur
         .map((entry) => entry.id),
       currentOrders: beforeXmenEraOrders(library.orders).filter((order) => order.orderId !== id),
       count: 203,
+      publicationDelta: installmentSources.length - installmentVisibleIds.length,
     },
     {
       report: visibleReport, review: mapping.visibleRelationshipReview,
@@ -304,6 +308,7 @@ test('Moon Knight preserves human-approved snapshots and checks the complete cur
       expectedOrderIds: legacyOwnerPeers(recordedVisible).filter((entry) => !laterIds.includes(entry.id)).map((entry) => entry.id),
       currentOrders: visibleOrders,
       count: 280,
+      publicationDelta: 0,
     },
   ];
   for (const evidence of projections) {
@@ -328,7 +333,8 @@ test('Moon Knight preserves human-approved snapshots and checks the complete cur
     const current = buildComparisonReport({
       candidateIds: expectedIssueIds, orders: evidence.currentOrders,
     });
-    assert.equal(current.comparisonCount, evidence.count + laterIds.length + registeredCatalogAdditionIds.length - 1);
+    assert.equal(current.comparisonCount,
+      evidence.count + laterIds.length + registeredCatalogAdditionIds.length - 1 + evidence.publicationDelta);
     assert.deepEqual(legacyOwnerPeers(current.comparisons), [
       ...evidence.report.comparisons.filter((row) => row.orderId !== archived.id),
       ...laterIds.map((orderId) => ({

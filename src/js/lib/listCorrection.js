@@ -1,3 +1,5 @@
+import { identityCorrections } from '../../data/identityCorrections.js';
+import { addsIdentityConflict, validateIdentityCorrections } from './identityReconcile.js';
 import { addIssuesToList, exportBackup, MAX_BACKUP_BYTES, MAX_ISSUES, validateBackup } from './model.js';
 import { READING_ORDER_REVISIONS } from './readingOrderRevisions.js';
 import { bookNamesOf, currentReadingOrder, orderIdsFor, readingOrderChoiceFor } from './readingOrderChoices.js';
@@ -16,6 +18,29 @@ function checkedOrder(ids, label) {
   return found;
 }
 
+// #1601 moves a guide's corrected comics to their new identities when the library loads, so a copy of
+// the guide saved in an earlier order no longer holds that order's exact numbers. The stored orders
+// stay as they were published; a copy of the guide also matches the same order with that guide's
+// validated corrections applied, position for position. A list that is not a copy of the guide is
+// never moved, so it keeps the exact rule, and a partly moved list matches neither form.
+let correctionsByCatalog = null;
+
+function correctionsFor(catalogId) {
+  if (!correctionsByCatalog) {
+    correctionsByCatalog = new Map();
+    for (const { from, to, catalogs } of validateIdentityCorrections(identityCorrections).byFrom.values()) {
+      for (const id of catalogs) {
+        if (!correctionsByCatalog.has(id)) correctionsByCatalog.set(id, new Map());
+        correctionsByCatalog.get(id).set(from, to);
+      }
+    }
+  }
+  return correctionsByCatalog.get(catalogId) ?? null;
+}
+
+const sameOrder = (previous, itemIds, map = null) => previous.length === itemIds.length
+  && previous.every((id, index) => (map?.get(id) ?? id) === itemIds[index]);
+
 export function earlierPublishedOrders(list) {
   if (!list) return [];
   try {
@@ -23,13 +48,26 @@ export function earlierPublishedOrders(list) {
   } catch {
     return [];
   }
-  return READING_ORDER_REVISIONS.filter((record) => (!list.catalogId || record.catalogId === list.catalogId)
-    && record.previousOrders.some((previous) => previous.length === list.itemIds.length
-      && previous.every((id, index) => id === list.itemIds[index])));
+  return READING_ORDER_REVISIONS.filter((record) => {
+    if (list.catalogId && record.catalogId !== list.catalogId) return false;
+    const corrections = list.catalogId ? correctionsFor(record.catalogId) : null;
+    return record.previousOrders.some((previous) => sameOrder(previous, list.itemIds)
+      || (corrections && sameOrder(previous, list.itemIds, corrections)));
+  });
 }
 
 export function matchesEarlierPublishedOrder(list) {
   return earlierPublishedOrders(list).length > 0;
+}
+
+// The update is offered only to a list that holds none of the identities its guide's corrections
+// move. One that still does was not moved on load, because another list or a conflicting record
+// holds the same comic, and the published order would add the corrected comic beside it.
+export function offersSafeRevision(list) {
+  return earlierPublishedOrders(list).some(({ catalogId }) => {
+    const corrections = correctionsFor(catalogId);
+    return !corrections || !list.itemIds.some((id) => corrections.has(id));
+  });
 }
 
 export function publishedRevisionItems(entry, order) {
@@ -180,5 +218,11 @@ export function applyListRevision(state, listId, expectedList, items) {
     const target = currentReadingOrder(list, choice) === 'book' ? 'book' : 'issue';
     lists[listId].collectedIn = bookLabels(merged.collectedIn, order, choice, target);
   }
-  return checkedCandidate({ ...added.state, lists });
+  // The manual check reaches any list, so the refusal is here as well as in the offer: an update that
+  // would leave two usable checkmarks for one comic is refused before anything is written.
+  const candidate = { ...added.state, lists };
+  if (addsIdentityConflict(state, candidate)) {
+    throw Object.assign(new Error('The update was not saved. Your list is unchanged.'), { reason: 'identity-conflict' });
+  }
+  return checkedCandidate(candidate);
 }

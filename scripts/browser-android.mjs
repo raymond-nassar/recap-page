@@ -16,6 +16,7 @@ import { SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE } from '../src/js/lib/saveEduc
 import { issuePresentation } from '../src/js/lib/issueFocus.js';
 import { linkedReadingOptions, manualLinkFeedback } from './browser-marvel-interim.mjs';
 import { appLinkFor } from '../src/js/lib/marvelComicsApp.js';
+import { editionRelations } from '../src/js/lib/collectedEditions.js';
 import { homeUpdatesContent } from '../src/js/lib/homeUpdatesContent.js';
 import { HOME_UPDATES_SEEN_KEY } from '../src/js/lib/homeUpdatesSeen.js';
 import { availableHomeCategories, catalogEntries, groupCatalog, HOME_CATEGORIES, publishingAgeGroups } from '../src/js/lib/catalog.js';
@@ -325,6 +326,30 @@ async function universesCheck(page, label) {
   check(JSON.stringify(primary.links) === JSON.stringify(['#/catalog', '#/marvel-ages']) && primary.sections,
     `${label}: Marvel Universe contains the two approved browsing destinations, not fragments`);
   await fit('universe');
+  // Universes and Creators wear their Home card's color as a top bar over a soft wash, as every
+  // other Home category page does, in both themes and at the phone's own width.
+  const original = await page.evaluate(() => document.documentElement.getAttribute('data-theme'));
+  for (const name of ['dark', 'light']) {
+    await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, name);
+    for (const view of ['universes', 'creators']) {
+      await route(page, 'home');
+      const channel = await page.$eval(`#view-home .home-path[data-category="${view}"]`, (card) =>
+        getComputedStyle(card).getPropertyValue('--home-path-line').trim().split(/\s+/).join(', '));
+      await route(page, view);
+      const head = await page.$eval(`#view-${view} > .head`, (node) => ({
+        edge: getComputedStyle(node, '::before').backgroundColor,
+        wash: getComputedStyle(node).backgroundImage,
+        title: getComputedStyle(node.querySelector('h1')).color === getComputedStyle(document.body).color,
+        overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
+      }));
+      check(channel && head.edge === `rgb(${channel})` && head.wash.includes(`rgba(${channel}, 0.13)`) && head.title
+        && !head.overflow, `${label} ${name} ${view}: header wears its Home card's color ${JSON.stringify({ channel, ...head })}`);
+    }
+  }
+  await page.evaluate((value) => {
+    if (value === null) document.documentElement.removeAttribute('data-theme');
+    else document.documentElement.dataset.theme = value;
+  }, original);
   check(JSON.stringify(await saved()) === JSON.stringify(before),
     `${label}: Universe discovery leaves every saved-data byte unchanged`);
 }
@@ -1480,6 +1505,12 @@ async function storyTypesDropdowns(page, profile, label) {
   check(guideReady, `${label}: filtered Genres reaches the guide and its starter link`);
   if (guideReady) {
     const savedBefore = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+    const rows = await page.$$eval('input[name="guide-start-familiarity"]', (inputs) =>
+      inputs.map((input) => input.closest('label').getBoundingClientRect().toJSON()));
+    check(rows.length === 2 && rows[0].height > 0 && rows[1].height > 0 && rows[0].bottom < rows[1].top,
+      `${label}: both experience answers have their own row`);
+    await click(page, 'label:has(input[name="guide-start-familiarity"][value="new"])');
+    await page.waitForSelector('#guide-start-optional .catalog-card-preview');
     for (const [id, ids] of [
       ['history-of-the-marvel-universe-2019', [75119, 75120, 75121, 75122, 75123, 75124]],
       ['marvels-1994', [10280, 10281, 10282, 10283]],
@@ -1548,10 +1579,9 @@ async function storyTypesDropdowns(page, profile, label) {
   check(await page.evaluate((key) => localStorage.getItem(key), KEY) === before,
     `${label}: choosing, restoring and clearing filters preserve saved progress`);
   await route(page, 'catalog');
-  await page.waitForSelector('#catalog-path option[value]:not([value=""])');
-  const path = await page.$eval('#catalog-path', (node) => [...node.options].find((option) => option.value).value);
-  await page.select('#catalog-path', path);
-  await page.waitForSelector('#catalog-path-jump');
+  // #1603: the whole timeline's one select is Jump to a section, the same shared navigation select a
+  // followed path's stop jump uses.
+  await page.waitForSelector('#catalog-section-jump option[value]:not([value=""])');
   const selects = '#view-data select, .setting select, .timeline-follow select, .collection-navigation select, .rated-controls select, .story-type-choices select';
   const readColors = () => page.$$eval(selects, (nodes) => nodes.map((node) => {
     const style = getComputedStyle(node);
@@ -1559,7 +1589,7 @@ async function storyTypesDropdowns(page, profile, label) {
       adjustment: style.forcedColorAdjust };
   }));
   const expectedSelects = JSON.stringify([
-    'catalog-path', 'catalog-path-jump', 'genres-tone', 'genres-type',
+    'catalog-section-jump', 'genres-tone', 'genres-type', 'guide-start-favorite',
     'opt-theme', 'rated-character', 'rated-min', 'rated-sort', 'universes-sort',
   ]);
   const measuredSelects = (colors) => JSON.stringify(colors.map(({ id }) => id).sort());
@@ -1724,6 +1754,9 @@ async function categoryLabelReadability(page, label, viewport) {
   const categories = availableHomeCategories(catalogEntries(catalog.lists), HOME_CATEGORIES);
   assert.equal(categories.length, HOME_CATEGORIES.length, 'Bundled fixture must expose every Home category');
   const scale = viewport.textScale || 1;
+  // Measured in Edge at 1280px, the 964px Discover More container keeps five across up to 150% text,
+  // which needs 947px, and falls back to two columns at 200%, which needs 1241px (#1565).
+  const fiveAcross = viewport.width === 1280 && scale <= 1.5;
   for (const view of ['home']) {
     await route(page, view);
     await page.waitForFunction((id, count) => document.querySelectorAll(`#view-${id} .home-path`).length === count,
@@ -1803,14 +1836,18 @@ async function categoryLabelReadability(page, label, viewport) {
       const category = categories[index];
       const count = `${category.count} ${category.count === 1
         ? (category.singular ?? 'Reading List') : (category.plural ?? 'Reading Lists')}`;
-      const categoryLabel = category.key === 'timeline' ? 'Recommended start here' : category.label;
+      const categoryLabel = category.key === 'timeline' ? 'Marvel Knights to Present Day' : category.label;
       check(card.key === category.key && card.name === `${categoryLabel}. ${category.heading}. ${count}.`
         && JSON.stringify(card.parts.map((part) => part.text.trim())) === JSON.stringify([categoryLabel, category.heading, count]),
       `${label} ${view}: ${category.key}: exact wording, order and accessible name`);
       const caption = (viewport.desktop ? 12 : 14) * scale;
       // Since #1181 the primary title's floor is the subtitle token, so it grows with the reader's text
-      // as the caption does; only the desktop's 1.8rem cap at normal text sits above that floor.
-      const title = category.tier === 'secondary' ? 28 * scale : Math.max(20 * scale, viewport.desktop ? 28.8 : 0);
+      // as the caption does; only the desktop's 1.8rem cap at normal text sits above that floor, and
+      // its 2.4vw middle term wins only between the two, as at 1280px with 150% text (30.72px).
+      // Since #1535 the five Discover More cards across a desktop row take the subtitle size; once
+      // text is too large for five they fall back to two columns (#1565) and keep the full title size.
+      const title = category.tier === 'secondary' ? (fiveAcross ? 20 : 28) * scale
+        : Math.min(Math.max(20 * scale, viewport.width * 0.024), Math.max(28 * scale, 28.8));
       check(card.parts[0].font === caption && Math.abs(card.parts[1].font - title) < 0.01
         && card.parts[2].font === caption && card.parts.every((part) => part.family === card.parts[0].family),
       `${label} ${view}: ${category.key}: existing computed type sizes ${JSON.stringify(card.parts)}`);
@@ -1845,8 +1882,8 @@ async function categoryLabelReadability(page, label, viewport) {
         rows.set(top, (rows.get(top) ?? 0) + 1);
       }
       const counts = [...rows.values()];
-      // Equal rows alone would accept a fall from four across to two by two, so pin each measured layout.
-      const expected = viewport.width === 1280 && scale === 1 ? [4] : [2, 2];
+      // Equal rows alone would accept a fall from five across to two by two, so pin each measured layout.
+      const expected = fiveAcross ? [5] : [2, 2, 1];
       check(JSON.stringify(counts) === JSON.stringify(expected),
         `${label} ${view}: Discover More rows ${JSON.stringify(counts)} match ${JSON.stringify(expected)}`);
       console.log(`HOME_ROWS ${label}: ${JSON.stringify(counts)}`);
@@ -2226,9 +2263,11 @@ async function readingEvidence(page, profile, id = profile.id) {
     `${id}: measured text/control containment ${JSON.stringify({ clipped: result.clipped, overlaps: result.overlaps })}`);
   // Reading List options moved below the card in #1250; the comic's six controls remain inside it.
   // M05 loads a summary, which before #1061 also brought a Hide button.
-  // Before December 7 a comic with an app link also offers Marvel Unlimited, so the hero adds its
-  // Reading options disclosure; every comic of this list gained a link with the MU-number route.
-  const heroOptions = appLinkFor(readingIssue.issueId) && Date.now() < new Date(2026, 11, 7).getTime()
+  // #1601: Reading options need two places, so an app link alone adds no disclosure; only a
+  // verified library book beside it, counted here as the product counts it, brings one.
+  const libraryLinks = editionRelations(state.lists[READING_LIST].catalogId ?? null, state.issues[readingIssue.issueId])
+    .reduce((count, edition) => count + edition.links.length, 0);
+  const heroOptions = (appLinkFor(readingIssue.issueId) ? 1 : 0) + libraryLinks >= 2
     ? ['#btn-hero-reading-options'] : [];
   check(JSON.stringify(result.controls.map(({ selector }) => selector)) === JSON.stringify([
     '#btn-hero-read', '#btn-hero-done', ...heroOptions, '#btn-hero-inspect', '#hero-more-actions > summary',
@@ -3222,49 +3261,36 @@ async function focusedActionHiddenBeforeMediaCallback(page, label) {
 async function mobileLayout(page, label, narrow) {
   await page.waitForSelector('#home-primary-paths [data-category="timeline"]');
   const guideEntry = await page.evaluate(() => {
-    const link = document.querySelector('#home-categories a[href="#/new-to-comics"]');
+    const link = document.querySelector('#home-new-reader a[href="#/new-to-comics"]');
     if (!link) return null;
     const box = link.getBoundingClientRect();
-    const row = link.closest('.sec-h');
-    const rowBox = row?.getBoundingClientRect();
-    const heading = row?.querySelector('#home-cat-h');
+    const heading = document.querySelector('#home-new-reader-h');
     const headingBox = heading?.getBoundingClientRect();
     const lines = (node) => {
       const range = document.createRange();
       range.selectNodeContents(node);
       return new Set([...range.getClientRects()].filter((r) => r.width > 0).map((r) => Math.round(r.top))).size;
     };
-    // The owner chose the pill's natural one-line width over a half-row cap, which split its
-    // label on a 393 px iPhone (91edc66f). It sits beside Explore only when both fit.
-    const saved = link.getAttribute('style');
-    link.style.whiteSpace = 'nowrap'; link.style.maxWidth = 'none';
-    const natural = link.getBoundingClientRect().width;
-    if (saved === null) link.removeAttribute('style'); else link.setAttribute('style', saved);
-    const gap = row ? parseFloat(getComputedStyle(row).columnGap) || 0 : 0;
     return { text: link.textContent.trim(), visible: link.checkVisibility(),
-      width: box.width, height: box.height, rowWidth: rowBox?.width ?? 0, natural,
+      width: box.width, height: box.height,
       heading: heading?.textContent.trim() ?? null,
       headingVisible: Boolean(heading?.checkVisibility() && !heading.closest('.visually-hidden')
         && headingBox && headingBox.width > 1 && headingBox.height > 1),
       headingWhole: Boolean(heading && lines(heading) === 1 && heading.scrollWidth <= heading.clientWidth + 1),
-      besideFits: Boolean(headingBox && rowBox && headingBox.width + gap + natural <= rowBox.width + 0.5),
-      beside: Boolean(headingBox && headingBox.right <= box.left + 1
-        && headingBox.bottom > box.top && box.bottom > headingBox.top),
       below: Boolean(headingBox && box.top >= headingBox.bottom - 1),
-      pillLines: lines(link),
+      beforeExplore: Boolean(document.querySelector('#home-new-reader + #home-categories')),
       left: box.left, right: box.right,
       viewportWidth: innerWidth,
       overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth };
   });
-  const guideUsable = guideEntry?.visible && guideEntry.text === 'New to Marvel Comics?'
-    && guideEntry.heading === 'Explore' && guideEntry.headingVisible && guideEntry.headingWhole
-    && (guideEntry.besideFits ? guideEntry.beside : guideEntry.below)
-    && (guideEntry.natural > guideEntry.rowWidth + 0.5 || guideEntry.pillLines === 1)
+  const guideUsable = guideEntry?.visible && guideEntry.text === 'Find a starting point.'
+    && guideEntry.heading === 'New to comics?' && guideEntry.headingVisible && guideEntry.headingWhole
+    && guideEntry.below && guideEntry.beforeExplore
     && guideEntry.width > 0 && guideEntry.height >= 44
     && guideEntry.left >= 0 && guideEntry.right <= guideEntry.viewportWidth && !guideEntry.overflow;
-  check(guideUsable, `${label}: guide link stays whole beside Explore when both fit, else on its own line, and is usable ${JSON.stringify(guideEntry)}`);
+  check(guideUsable, `${label}: the New to comics? card sits before Explore with its button usable ${JSON.stringify(guideEntry)}`);
   if (guideUsable) {
-    await click(page, '#home-categories a[href="#/new-to-comics"]');
+    await click(page, '#home-new-reader a[href="#/new-to-comics"]');
     await page.waitForSelector('#view-new-to-comics:not([hidden])');
     const guide = await page.evaluate(() => ({
       focus: document.activeElement?.id,
@@ -3277,7 +3303,7 @@ async function mobileLayout(page, label, narrow) {
     await page.waitForSelector('#home-primary-paths [data-category="timeline"]');
   }
   const home = await page.$eval('#view-home', (region) => ({
-    recommended: region.querySelector('[data-category="timeline"]')?.textContent.includes('Recommended start here'),
+    recommended: region.querySelector('[data-category="timeline"]')?.textContent.includes('Marvel Knights to Present Day'),
     intro: !!region.querySelector('#home-first-run'),
     search: !!region.querySelector('[data-view="add"], #btn-home-add'),
   }));
@@ -3512,7 +3538,18 @@ async function mobileLayout(page, label, narrow) {
       name: control.textContent.trim(),
       card: [card.left, card.right, card.bottom], control: [box.left, box.right, box.top, box.height],
       gap: parseFloat(getComputedStyle(row).columnGap), background: style.backgroundColor,
-      border: style.borderColor, colour: style.color, dim: getComputedStyle(document.querySelector('#hero-by')).color,
+      border: style.borderColor, colour: style.color,
+      // Since #1535 the control wears the ghost button's outline and tint at rest, so it reads as a
+      // button; the expected colors come from the same tokens, resolved by a probe in this theme.
+      ...(() => {
+        const probe = document.createElement('span');
+        probe.style.cssText = 'background: rgb(var(--tint-base) / 5.882%); border: 1px solid var(--line-2); color: var(--text)';
+        group.append(probe);
+        const token = getComputedStyle(probe);
+        const resting = { tint: token.backgroundColor, line: token.borderTopColor, text: token.color };
+        probe.remove();
+        return resting;
+      })(),
     };
   }, narrow);
   check(placement.outsideHero && placement.placed,
@@ -3522,9 +3559,10 @@ async function mobileLayout(page, label, narrow) {
   check(Math.abs(placement.control[0] - placement.card[0]) <= 1
     && Math.abs(placement.control[1] - placement.card[1]) <= 1
     && placement.control[2] - placement.card[2] > placement.gap && placement.control[3] >= 48
-    && placement.background === 'rgba(0, 0, 0, 0)' && placement.border === 'rgba(0, 0, 0, 0)'
-    && placement.colour === placement.dim,
-  `${label}: the quieter Reading List options group aligns with the card's edges and has a larger gap ${JSON.stringify(placement)}`);
+    && placement.background === placement.tint && placement.border === placement.line
+    && placement.colour === placement.text && placement.border !== 'rgba(0, 0, 0, 0)'
+    && !/^rgba\(.*, 0\)$/.test(placement.background),
+  `${label}: the Reading List options button aligns with the card's edges, has a larger gap and shows its outline at rest ${JSON.stringify(placement)}`);
   if (!narrow) {
     check(!await trigger.isVisible() && await page.$eval('#btn-rename-list', (node) => !!node.getClientRects().length),
       `${label}: wide list actions remain inline`);
@@ -3561,10 +3599,16 @@ async function mobileLayout(page, label, narrow) {
     const completeRule = node.querySelector('#btn-complete-list')?.nextElementSibling;
     return {
       names: buttons.map((button) => button.textContent.trim()),
-      expected: ['#btn-complete-list', '#btn-rename-list', '#btn-list-note', '#btn-duplicate-list', '#btn-mark-all-read', '#btn-export-md',
+      expected: ['#btn-complete-list', '#btn-rename-list', '#btn-list-note', '#btn-duplicate-list', '#list-revision-check',
+        '#list-offline-action', '#btn-mark-all-read', '#btn-export-md',
         '#btn-export-order', '#btn-hydrate', '#btn-synopsis', '#btn-delete-list']
-        .map((selector) => node.querySelector(selector)).filter((button) => button && !button.hidden)
-        .map((button) => button.textContent.trim()),
+        // #1400's Compare always shows, so its absence must fail rather than drop out of the list.
+        .map((selector) => {
+          const button = node.querySelector(selector);
+          return selector === '#list-revision-check' && (!button || button.hidden) ? `missing ${selector}` : button;
+        })
+        .filter((button) => typeof button === 'string' || (button && !button.hidden))
+        .map((button) => typeof button === 'string' ? button : button.textContent.trim()),
       summaries: [...node.querySelectorAll('summary')].filter(shown).map((summary) => summary.textContent.trim()),
       closed: [...node.querySelectorAll('details')].filter((details) => !details.open).map((details) => details.id),
       small: buttons.filter((button) => button.getBoundingClientRect().height < 47.5).map((button) => button.id),
@@ -4288,7 +4332,7 @@ async function homeContinueCheck(page, label, viewport) {
   const cardAt = tree.findIndex((node) => node.role === 'heading' && node.name === cardName);
   const noticeAt = tree.findIndex((node) => node.name === notice.text);
   check(cardAt >= 0 && noticeAt >= 0 && (viewport.desktop ? noticeAt < cardAt : cardAt < noticeAt)
-    && notice.className === 'notice notice-warn' && notice.text.startsWith('Read now opens comics'),
+    && notice.className === 'notice notice-warn' && notice.text === 'Read opens a comic directly in the Marvel Comics app. If there\u2019s no direct link, use Find on Marvel Comics to open the website.',
   `${name}: the accessibility tree reads ${viewport.desktop ? 'the closure notice, then Continue reading' : 'Continue reading, then the closure notice'} ${JSON.stringify({ cardAt, noticeAt, ...notice })}`);
   // #998: a word in the list's name longer than the line overflowed the heading and widened the page,
   // "presentation" to a 479px scroll width in a 317px heading at iOS's largest text in Edge. The
@@ -4779,7 +4823,9 @@ async function readingActionWrapCheck(page) {
       for (const [name, value] of tokens) root.style.setProperty(name, value);
       root.dataset.iosLargestText = largest ? 'true' : 'false';
     }, profile);
-    for (const [day, expected] of [[6, 'Read'], [7, 'Find on Marvel Comics']]) {
+    // #1601: this comic has no app link, so the longer website action shows on both sides of the
+    // old December 7, 2026 date; the date no longer changes the label.
+    for (const [day, expected] of [[6, 'Find on Marvel Comics'], [7, 'Find on Marvel Comics']]) {
       await page.evaluate((date) => {
         window.__actionWrapClock = new Date(2026, 11, date, 12).getTime();
         window.dispatchEvent(new Event('focus'));
@@ -4826,7 +4872,7 @@ async function readingActionWrapCheck(page) {
         && (measured.stacked || (done.box.left >= read.box.right - 0.5 && Math.abs(done.box.top - read.box.top) < 0.5))
         && !measured.overflow,
       `${profile.name} ${expected}: every action word stays whole and inside a reachable button ${JSON.stringify(measured)}`);
-      if ((day === 7 && profile.stackLong) || profile.largest) {
+      if (profile.stackLong || profile.largest) {
         check(measured.stacked, `${profile.name} ${expected}: the action row stacks rather than splitting a word ${JSON.stringify(measured)}`);
       }
       console.log(`CHECKED ${profile.name} ${expected}: ${JSON.stringify(measured)}`);
@@ -5640,6 +5686,7 @@ try {
     { width: 800, height: 360 },
     { width: 800, height: 360, textScale: 2 },
     { width: 1280, height: 900, desktop: true },
+    { width: 1280, height: 900, desktop: true, textScale: 1.5 },
     { width: 1280, height: 900, desktop: true, textScale: 2 },
   ];
   if (universesOnly) viewports = [
@@ -6040,7 +6087,7 @@ try {
       const sharedCopy = await page.evaluate(() => {
         const footer = document.querySelector('.app-footer');
         return {
-          recommendation: !!document.querySelector('#view-home [data-category="timeline"]')?.textContent.includes('Recommended start here'),
+          recommendation: !!document.querySelector('#view-home [data-category="timeline"]')?.textContent.includes('Marvel Knights to Present Day'),
           // Home's start actions and the footer About became native hash links so browser
           // navigation gestures work, so both are found as links; buttons are still collected
           // so an extra start action of either kind is reported.
@@ -6229,11 +6276,14 @@ try {
     }
     if (launcherOnly) {
       const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      // #1601: only a verified app viewer leaves for one comic; every other reference, an old
+      // Marvel Unlimited bookmark included, opens the website without a metadata lookup.
       for (const [mode, query, expected, lookups] of [
-        ['before-known', 'd=38811&r=unlimited', 'https://read.marvel.com/#/book/38811', 0],
-        ['before-lookup', 'i=52986&r=unlimited', 'https://read.marvel.com/#/book/38811', 1],
-        ['after-known', 'd=38811&r=comics', 'https://marvel.webtoon.com/', 0],
-        ['after-unknown', 'i=52986&r=comics', 'https://marvel.webtoon.com/', 0],
+        ['app', 'a=18255&r=comics', 'https://www.marvelcomicsapp.com/viewer/18255', 0],
+        ['legacy-known', 'd=38811&r=unlimited', 'https://marvel.webtoon.com/', 0],
+        ['legacy-lookup', 'i=52986&r=unlimited', 'https://marvel.webtoon.com/', 0],
+        ['known', 'd=38811&r=comics', 'https://marvel.webtoon.com/', 0],
+        ['unknown', 'i=52986&r=comics', 'https://marvel.webtoon.com/', 0],
       ]) {
         browserIntents.length = 0;
         metadataLookups = 0;
@@ -6244,29 +6294,29 @@ try {
         await handoff;
         check(new URL(page.url()).pathname === '/open.html', `${label} ${mode}: intercepted handoff retains launcher for observation`);
         check(await page.$eval('#fallback', (node, url) => node.href === url
-          && node.textContent === 'Open in browser' && node.getBoundingClientRect().height >= 48, expected),
+          && node.textContent === 'Continue manually' && node.getBoundingClientRect().height >= 48, expected),
         `${label} ${mode}: intended full browser URL and accessible fallback are exact`);
         check(browserIntents.length === 1 && browserIntents[0] === expected,
           `${label} ${mode}: one intercepted browser navigation preserves the destination ${JSON.stringify(browserIntents)}`);
         check(metadataLookups === lookups, `${label} ${mode}: metadata lookups ${metadataLookups}, expected ${lookups}`);
         // The shared launch page has offered "Back to Recap Page" since d6a995d1. It is a same-origin
-        // route to Home, not a Marvel Unlimited action, so it is allowed only in exactly that form.
+        // route to Home, not a comic destination, so it is allowed only in exactly that form.
         const links = await page.$$eval('a', (nodes) => nodes.filter((node) => node.getClientRects().length)
           .map((node) => ({ id: node.id, href: node.href, target: node.target })));
         check(links.every((link) => link.id === 'fallback'
           || (link.id === 'return' && link.href === `${origin}/#/home` && !link.target)),
-        `${label} ${mode}: no Marvel Unlimited app action ${JSON.stringify(links)}`);
+        `${label} ${mode}: no extra comic destination ${JSON.stringify(links)}`);
         check(await page.$eval('#h', (node, pre) => (pre ? node.textContent.includes('<img>')
-          : node.textContent === 'Opening Marvel Comics website') && !node.querySelector('img'), mode.startsWith('before')),
+          : node.textContent === 'Opening Marvel Comics website') && !node.querySelector('img'), mode === 'app'),
         `${label} ${mode}: title remains text, not markup`);
         check(await page.evaluate(() => window.opener === null && !document.querySelector('#android-report')),
           `${label} ${mode}: isolated launcher disowns opener and has no main app bridge`);
         check(await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === before,
           `${label} ${mode}: no progress or schema write`);
       }
-      check(appLookups === 0, `${label}: no Bifrost requests on either side of the cutoff`);
+      check(appLookups === 0, `${label}: no Bifrost requests for any launch`);
       check(errors.length === 0, `${label}: no uncaught launcher errors`);
-      console.log(`CHECKED ${label}: browser-only launcher cutoff/fallback/identity/privacy DOM`);
+      console.log(`CHECKED ${label}: browser-only launcher app/website/fallback/identity/privacy DOM`);
       await context.close();
       continue;
     }

@@ -1,4 +1,5 @@
 import { normalizeTitle, resolveUniqueExact } from '../../src/js/lib/markdown.js';
+import { mappedTrackingId, serviceIdentityFor } from './cbh-service-identity.mjs';
 
 function toIssueId(candidate) {
   if (candidate == null) return null;
@@ -65,6 +66,12 @@ export function exactMatchesForRow(row, candidates) {
 }
 
 export function resolveRow(row, candidates = []) {
+  if (serviceIdentityFor(row)) {
+    return {
+      status: 'exact', resolutionStatus: 'exact', selectedIssueId: null,
+      candidateIssueIds: [], selectedIssueIds: [], serviceIdentity: row.serviceIdentity,
+    };
+  }
   const list = Array.isArray(candidates) ? candidates.filter(candidateHasExactMetadata) : [];
   if (row?.resolutionStatus === 'approved-exception') {
     return {
@@ -118,7 +125,10 @@ export function resolveRow(row, candidates = []) {
 export function validateResolvedMapping(rows) {
   const seen = new Set();
   for (const row of rows) {
-    const selectedIssueId = row.selectedIssueId ?? null;
+    if (serviceIdentityFor(row) && row.resolutionStatus !== 'exact') {
+      throw new Error('Service identity requires an exact resolution');
+    }
+    const selectedIssueId = mappedTrackingId(row);
     if (selectedIssueId != null) {
       const key = String(selectedIssueId);
       if (seen.has(key)) {
@@ -141,7 +151,7 @@ export function validateResolvedMapping(rows) {
     if (row.resolutionStatus !== 'exact') {
       throw new Error(`Unknown resolution status: ${row.resolutionStatus}`);
     }
-    if (row.selectedIssueId == null) {
+    if (mappedTrackingId(row) == null) {
       throw new Error('Exact resolution without a selected issue id');
     }
   }

@@ -169,7 +169,7 @@ final class NavigationPolicyTests: XCTestCase {
         XCTAssertEqual(results, [false], "A failed web link still reports a failure")
         attempts = []
         results = []
-        let other = try url("https://www.marvelcomicsapp.com/mu/issues/10441")
+        let other = try url("https://marvel.webtoon.com/")
         NavigationPolicy.openPreferringApp(other, appAddress: nil, open: { target, done in
             attempts.append(target.absoluteString)
             done(true)

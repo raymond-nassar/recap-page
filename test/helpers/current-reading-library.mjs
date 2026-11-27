@@ -5,13 +5,17 @@ import { readOwnerGuideRegistry } from '../../scripts/lib/owner-guide-registry.m
 import { spiderManSelectionItemDelta } from './reading-choice-history.mjs';
 import { identityRevisions } from './owner-identity-history.mjs';
 import { amazingSpiderManSupplementDelta } from './amazing-spider-man-history.mjs';
-import { wolverineCorrectionItemDelta } from './wolverine-correction-history.mjs';
+import { wolverineCorrectionItemDelta, wolverineGapResolutions, xgoldCorrections } from './wolverine-correction-history.mjs';
 import { thorCorrectionItemDelta } from './reading-list-correction-history.mjs';
 import { ultimateSelectionDelta, ultimateSelectionEmptyDelta } from '../../scripts/lib/ultimate-spider-man-selection.mjs';
 import { xmenFirstClassDelta } from './xmen-first-class-history.mjs';
 import { ultimateIntroCorrectionDelta } from './ultimate-marvel-intro-history.mjs';
 import { tieInRevisions } from './mcu-tie-in-history.mjs';
 import { xmenEraItemDelta, xmenEraPlaceholderDelta, xmenEraReplacements } from './xmen-era-history.mjs';
+import {
+  assertInstallmentVisibleRoster, installmentCompleteDelta, installmentIds, installmentItemDelta, installmentParentId,
+  installmentPartIds, installmentSources, installmentVisibleIds,
+} from './modern-timeline-installment-history.mjs';
 
 const { captureSha256, ...baseline } = JSON.parse(readFileSync(
   new URL('../fixtures/reading-library-baseline.json', import.meta.url), 'utf8',
@@ -38,11 +42,11 @@ assert.ok(Array.isArray(curatedGuideRegistry.guides));
 export const registeredCuratedGuides = curatedGuideRegistry.guides.map((entry) => {
   // A gap-tolerant guide keeps its open gaps in place as placeholders, which count toward the
   // payload's items but not toward its complete ones, so it states how many of its rows they are.
-  const keys = Object.keys(entry).sort();
-  assert.ok([
-    'id,insertionAnchor,rowCount', 'id,insertionAnchor,placeholderRowCount,rowCount',
-    'id,insertionAnchor,rowCount,surface', 'id,insertionAnchor,placeholderRowCount,rowCount,surface',
-  ].includes(keys.join(',')));
+  // A row whose optional listing fields are absent is counted the same way, as a limited record.
+  const keys = Object.keys(entry);
+  assert.ok(['id', 'insertionAnchor', 'rowCount'].every((key) => keys.includes(key))
+    && keys.every((key) => ['id', 'insertionAnchor', 'rowCount', 'placeholderRowCount', 'emptyRecordCount', 'surface']
+      .includes(key)));
   assert.ok(!Object.hasOwn(entry, 'surface') || ['modern-timeline', 'new-to-comics', 'creators'].includes(entry.surface),
     'A curated addition may explicitly join Modern Timeline, the newcomer guide or Creators.');
   assert.ok(typeof entry.id === 'string' && entry.id);
@@ -50,6 +54,9 @@ export const registeredCuratedGuides = curatedGuideRegistry.guides.map((entry) =
   assert.ok(!Object.hasOwn(entry, 'placeholderRowCount')
     || (Number.isInteger(entry.placeholderRowCount) && entry.placeholderRowCount > 0
       && entry.placeholderRowCount < entry.rowCount));
+  assert.ok(!Object.hasOwn(entry, 'emptyRecordCount')
+    || (Number.isInteger(entry.emptyRecordCount) && entry.emptyRecordCount > 0
+      && entry.emptyRecordCount + (entry.placeholderRowCount ?? 0) < entry.rowCount));
   return entry;
 });
 assert.equal(new Set([...registeredOwnerContracts, ...registeredCuratedGuides]
@@ -73,6 +80,7 @@ export const registeredOwnerAdditionContracts = registeredOwnerContracts
 export const registeredCatalogAdditionIds = [
   ...registeredOwnerAdditionIds,
   ...registeredCuratedGuides.map(({ id }) => id),
+  ...installmentVisibleIds,
 ];
 const addedRows = registeredOwnerContracts.reduce((total, contract) => {
   const registration = registrations.find((entry) => entry.id === contract.id);
@@ -81,6 +89,12 @@ const addedRows = registeredOwnerContracts.reduce((total, contract) => {
   + registeredCuratedGuides.reduce((total, guide) => total + guide.rowCount, 0);
 const addedPlaceholderRows = registeredCuratedGuides
   .reduce((total, guide) => total + (guide.placeholderRowCount ?? 0), 0);
+const limitedGuides = registeredCuratedGuides.filter((guide) => Object.hasOwn(guide, 'emptyRecordCount'));
+export const registeredCuratedEmptyRecords = Object.freeze({
+  rows: limitedGuides.reduce((total, guide) => total + guide.emptyRecordCount, 0),
+  entries: limitedGuides.length,
+  bothEntries: limitedGuides.filter((guide) => Object.hasOwn(guide, 'placeholderRowCount')).length,
+});
 const mcuContracts = registeredOwnerAdditionContracts.filter((contract) => contract.surface === undefined);
 export const registeredEventContracts = registeredOwnerAdditionContracts
   .filter((contract) => contract.surface === 'modern-timeline');
@@ -94,41 +108,56 @@ export const registeredCreatorGuides = registeredCuratedGuides
   .filter((guide) => guide.surface === 'creators');
 export const registeredYoungReaderContracts = registeredOwnerAdditionContracts
   .filter((contract) => contract.surface === 'young-readers');
+// The retained Storylines projection keeps every era, so a timeline guide shipped as an era joins it.
+const catalogTypes = new Map(JSON.parse(readFileSync(new URL('../../src/data/catalog.json', import.meta.url), 'utf8'))
+  .lists.map((list) => [list.id, list.type]));
+export const registeredTimelineEraGuides = registeredCuratedGuides
+  .filter((guide) => guide.surface === 'modern-timeline' && catalogTypes.get(guide.id) === 'era');
 const rosterAdditionCount = registeredOwnerAdditionIds.length + registeredCuratedGuides.length;
 export const currentReadingCensus = Object.freeze({
-  sources: baseline.sourceIds.length + rosterAdditionCount - 1,
-  visible: baseline.catalogIds.length + rosterAdditionCount - 1,
-  allOrders: new Set([...baseline.sourceIds, ...baseline.catalogIds]).size + rosterAdditionCount - 1,
-  peers: new Set([...baseline.sourceIds, ...baseline.catalogIds]).size + rosterAdditionCount - 2,
+  sources: baseline.sourceIds.length + rosterAdditionCount - 1 + installmentSources.length,
+  visible: baseline.catalogIds.length + rosterAdditionCount - 1 + installmentVisibleIds.length,
+  allOrders: new Set([...baseline.sourceIds, ...baseline.catalogIds]).size + rosterAdditionCount - 1 + installmentIds.size,
+  peers: new Set([...baseline.sourceIds, ...baseline.catalogIds]).size + rosterAdditionCount - 2 + installmentIds.size,
   mcu: baseline.mcuEntries.length + mcuContracts.length - 1,
   // Retained internal classification, not a browse screen; includes the four CBRO additions.
-  storylines: 50 + curatedNewcomerCount + registeredCreatorGuides.length,
-  modernTimeline: 148 + registeredEventContracts.length + curatedEventCount - 1,
-  modernTimelineStories: 144 + registeredEventContracts.length + curatedEventCount - 1,
-  complete: baseline.payloadCounts.complete + addedRows - addedPlaceholderRows + spiderManSelectionItemDelta
+  storylines: 50 + curatedNewcomerCount + registeredCreatorGuides.length + registeredTimelineEraGuides.length
+    + installmentPartIds.length,
+  modernTimeline: 148 + registeredEventContracts.length + curatedEventCount - 1 + 2,
+  modernTimelineStories: 144 + registeredEventContracts.length + curatedEventCount - 1 + 2,
+  complete: baseline.payloadCounts.complete + addedRows - addedPlaceholderRows - registeredCuratedEmptyRecords.rows
+    + spiderManSelectionItemDelta
     + amazingSpiderManSupplementDelta + wolverineCorrectionItemDelta + thorCorrectionItemDelta
     + ultimateSelectionDelta - ultimateSelectionEmptyDelta + xmenFirstClassDelta + ultimateIntroCorrectionDelta + tieInRows - 2
-    + xmenEraItemDelta - xmenEraPlaceholderDelta
+    + xmenEraItemDelta - xmenEraPlaceholderDelta + wolverineGapResolutions.length
     + identityRevisions.guides.filter((entry) => entry.placeholderReplacement)
-      .reduce((total, entry) => total + entry.issueIds.length, 0),
+      .reduce((total, entry) => total + entry.issueIds.length, 0) + installmentCompleteDelta,
+  emptyRecords: 229 + registeredCuratedEmptyRecords.rows + xgoldCorrections.length,
   totalItems: baseline.payloadCounts.total + addedRows + spiderManSelectionItemDelta
     + amazingSpiderManSupplementDelta + wolverineCorrectionItemDelta + thorCorrectionItemDelta
-    + ultimateSelectionDelta + xmenFirstClassDelta + ultimateIntroCorrectionDelta + tieInRows - 2 + xmenEraItemDelta,
+    + ultimateSelectionDelta + xmenFirstClassDelta + ultimateIntroCorrectionDelta + tieInRows - 2 + xmenEraItemDelta
+    + installmentItemDelta,
   // The X-Men era guides replace the retired pair in discovery, but both retired payloads stay on
   // disk for saved lists, so each replacement adds an item file.
-  itemFiles: 297 + rosterAdditionCount + xmenEraReplacements.size,
+  itemFiles: 297 + rosterAdditionCount + xmenEraReplacements.size + installmentIds.size,
 });
 
 function expectedRosters(contracts, curatedGuides = registeredCuratedGuides) {
   const expectedSources = baseline.sourceIds.filter((id) => id !== 'marvel-multiverse')
     .map((id) => xmenEraReplacements.get(id) ?? id);
+  for (const entry of installmentSources) {
+    const at = expectedSources.indexOf(entry.insertionAnchor.beforeId);
+    assert.ok(at >= 0, 'The installment source requires its original insertion neighborhood.');
+    expectedSources.splice(at, 0, entry.id);
+  }
   for (const contract of [...contracts, ...curatedGuides]) {
     if (baselineOwnerIds.has(contract.id)) continue;
     const at = expectedSources.indexOf(contract.insertionAnchor?.beforeId);
     assert.ok(at >= 0, 'Registered source insertion needs its approved anchor.');
     expectedSources.splice(at, 0, contract.id);
   }
-  const expectedVisible = expectedSources.flatMap((id) => baseline.families[id] ?? [id]);
+  const expectedVisible = expectedSources.flatMap((id) =>
+    id === installmentParentId ? installmentPartIds : baseline.families[id] ?? [id]);
   return { expectedSources, expectedVisible };
 }
 
@@ -142,10 +171,11 @@ export function assertCurrentReadingRoster(
     'Current source roster must contain every baseline source and every registered owner addition exactly once.');
   assert.deepEqual(catalog.lists.map(({ id }) => id), expectedVisible,
     'Current visible roster must retain generated children and omit hidden parents.');
+  assertInstallmentVisibleRoster(catalog);
 }
 
 // The X-Men era replacements are later additions in the retired pair's slot, not legacy peers.
-const laterAdditionIds = new Set([...registeredCatalogAdditionIds, ...xmenEraReplacements.values()]);
+const laterAdditionIds = new Set([...registeredCatalogAdditionIds, ...installmentIds, ...xmenEraReplacements.values()]);
 
 export function legacyOwnerPeers(entries) {
   return entries.filter((entry) => !laterAdditionIds.has(

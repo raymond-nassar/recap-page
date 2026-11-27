@@ -423,10 +423,21 @@ test('Thunderbolts preserves frozen approval and rechecks the complete current v
   }
   assert.deepEqual(currentOrders.filter((entry) => laterIds.includes(entry.orderId))
     .map((entry) => entry.orderId), [...laterIds].sort((left, right) => left.localeCompare(right)));
+  // Later guides carry these partial relationships in their own approved reports; they do not join
+  // the frozen Thunderbolts approval.
+  const laterGuidePartials = await Promise.all(['avengers-standoff', 'civil-war-ii', 'road-to-secret-empire']
+    .map(async (guide) => {
+      const row = (await readJson(`scripts/data/cbh-overlaps/${guide}.json`)).comparisons
+        .find((entry) => entry.orderId === id);
+      assert.equal(row.relationship, 'partial');
+      assert.deepEqual(current.comparisons.find((entry) => entry.orderId === guide).sharedIds, row.sharedIds);
+      return [guide, row.sharedCount];
+    }));
   const expectedCurrentPartialPeers = [
     ...expectedPartialPeers,
     ['jed-mackay-reading-list', 1],
     ['mcu-prep-captain-america-the-winter-soldier-2014', 13],
+    ...laterGuidePartials,
   ].sort(([left], [right]) => left.localeCompare(right));
   assert.deepEqual(current.comparisons.filter((entry) => entry.relationship === 'partial')
     .map((entry) => [entry.orderId, entry.sharedCount]), expectedCurrentPartialPeers);

@@ -1198,7 +1198,7 @@ export function createAddView({
         `Added “${title}”.`,
         appLinkFor(issueId)
           ? 'Read opens this comic in the Marvel Comics app. It does not mark the comic read.'
-          : wikiId ? 'Read uses the recorded comic reference. It does not mark the comic read.' : null,
+          : null,
         filled ? `Filled from the wiki: ${filled}.` : null,
         digitalId
           ? 'Availability still shows as unknown, because that is a separate field the metadata snapshot would have supplied.'

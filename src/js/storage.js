@@ -13,6 +13,7 @@ import {
   validateImportDraft, importProjection, pendingOutcome,
 } from './lib/importDraft.js';
 import { isIosApp } from './lib/platform.js';
+import { reconcileIdentities } from './lib/identityReconcile.js';
 
 export const KEY = 'mrt.state.v2';
 export const IMPORT_DRAFT_KEY = 'mrt.import.draft.v1';
@@ -821,6 +822,29 @@ export class Store {
     return next;
   }
 
+  // #1601: moves saved comics to this release's identities, once, after the data has been read.
+  // Never part of load(), which other stores call to re-read after their own verified writes. A
+  // failed write leaves the saved data exactly as it was and is reported through the same failure
+  // state an ordinary save uses, so storage that cannot be written is never hidden. A comic held
+  // back because its records disagree is not a failure: reconcileIdentities leaves it unchanged.
+  reconcileIdentities(options) {
+    if (this.blocked) return { ok: true, changed: false };
+    const before = this.state;
+    const next = reconcileIdentities(before, options);
+    if (next === before) return { ok: true, changed: false };
+    if (!this.persist(next)) {
+      if (this.conflicted) this.load();
+      this.lastUpdateOk = false;
+      this.onChange(this.state, this.lastError);
+      return { ok: false, changed: false };
+    }
+    this.lastError = null;
+    this.lastUpdateOk = true;
+    this.state = next;
+    this.onChange(next, this.lastError);
+    return { ok: true, changed: true };
+  }
+
   // Whether the shared key holds a value this tab did not put there. Asked without a parse, for the
   // same reason persist() compares without one, and answering "no" when the read itself throws: a
   // storage that cannot be read is not evidence of another tab, and every writer below refuses in
@@ -989,8 +1013,11 @@ export class Store {
   }
 
   restore(rawJson, { expected, recovering = false } = {}) {
-    const { ok, errors, state } = this.inspectBackup(rawJson);
-    if (!ok) return { ok: false, changed: false, invalid: true, errors };
+    const checked = this.inspectBackup(rawJson);
+    if (!checked.ok) return { ok: false, changed: false, invalid: true, errors: checked.errors };
+    // Validated as it was saved, then moved to this release's identities before it is written, so
+    // a backup from before #1601 restores to the same single checkmarks the reader's data now has.
+    const state = reconcileIdentities(checked.state);
     if (expected) {
       const current = this.captureRestore();
       if (!current.ok) return { ok: false, changed: false, errors: current.errors };

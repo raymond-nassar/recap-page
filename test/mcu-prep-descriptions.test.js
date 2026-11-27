@@ -12,6 +12,7 @@ import { sourceCreditRevisions } from '../scripts/lib/source-credit-revisions.mj
 import { refreshMcuDescriptions } from '../scripts/refresh-mcu-descriptions.mjs';
 import { parseCatalog } from '../src/js/lib/catalog.js';
 import { firstSentence } from '../src/js/lib/catalog.js';
+import { beforeFirstInstallmentManifest } from './helpers/first-installment-history.mjs';
 import { beforeUltimateIntroEntry } from './helpers/ultimate-marvel-intro-history.mjs';
 import { beforeTieInPayload } from './helpers/mcu-tie-in-history.mjs';
 import {
@@ -132,9 +133,11 @@ test('MCU description history inverts only exact current copy and preserves ever
     }
   }
   const reconstructed = historicalMcuDescriptionManifest(manifest);
+  const beforeInstallment = beforeFirstInstallmentManifest(manifest);
   assert.deepEqual(reconstructed.lists.map((row) => row.id),
-    beforeMcuEditorialManifest(manifest, { restoreWithdrawal: true }).lists.map((row) => row.id));
+    beforeMcuEditorialManifest(beforeInstallment, { restoreWithdrawal: true }).lists.map((row) => row.id));
   assert.deepEqual(reconstructed.paths, manifest.paths);
+  assert.deepEqual(reconstructed.sectionalGuides, beforeInstallment.sectionalGuides);
   assert.ok(reconstructed.lists.some((row) => row.id === 'avengers-doomsday-secret-wars'));
   for (const entry of manifest.lists.filter((row) => !expectedIds.includes(row.id))) {
     assert.deepEqual(historicalMcuDescriptionEntry(entry),

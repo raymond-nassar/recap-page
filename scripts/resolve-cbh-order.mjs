@@ -2,6 +2,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { resolveRow, validateResolvedMapping } from './lib/cbh-resolution.mjs';
+import { serviceIdentityFor } from './lib/cbh-service-identity.mjs';
 
 function issueIdOf(candidate) {
   if (!candidate || typeof candidate !== 'object') return null;
@@ -51,6 +52,9 @@ export async function resolveMapping(mapping, { metadataLookup } = {}) {
 
   const lookup = buildCandidateMetadataLookup(mapping, metadataLookup);
   const resolvedRows = mapping.rows.map((row) => {
+    if (serviceIdentityFor(row)) {
+      return { ...row, ...resolveRow(row) };
+    }
     const issueIds = Array.isArray(row.candidateIssueIds) ? row.candidateIssueIds.map(String) : [];
     const candidates = issueIds
       .map((issueId) => lookup(issueId, row))

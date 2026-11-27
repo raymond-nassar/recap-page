@@ -16,7 +16,7 @@
   "proposedManifest": {
     "id": "empyre",
     "name": "Empyre",
-    "description": "The Kree and Skrull alliance brings a cosmic war to the Avengers and Fantastic Four.",
+    "description": "The Kree and the Skrulls have made peace, and their warships are headed for Earth together. Their new emperor is Teddy Altman, the young hero called Hulkling. The Fantastic Four hear his side of the story. On the Moon, the Avengers hear a very different account of why he's come.",
     "type": "event",
     "depth": "complete",
     "beginner": false,
@@ -44,13 +44,7 @@
     "coverIssueId": 82353
   },
   "insertionAnchor": {
-    "beforeId": "king-in-black"
-  },
-  "sourceReview": {
-    "authorityType": "stronger-model",
-    "authorityIdentity": "GPT-5.6 Sol",
-    "rationale": "The visible checklist, its 36 issue boundary including the prelude issue, exclusions, exact source identities, and catalog insertion point were reviewed against the source and current catalog.",
-    "reviewedAt": "2026-08-22T13:20:00Z"
+    "beforeId": "x-of-swords"
   },
   "rows": [
     {
@@ -128,7 +122,16 @@
       "seriesId": null,
       "candidateIssueId": null,
       "manualSeriesSelectionApproved": false,
-      "selectionNote": "Marvel issue 88682 exists on Marvel.com but is absent from the configured metadata API, so the row cannot be vendored."
+      "selectionNote": "Historical lookup record, retained: Marvel issue 88682 exists on Marvel.com but is absent from the configured metadata API, so the row could not be vendored as a provider issue. Proposed service-only identity: Marvel Comics app viewer 32665 (service series 7209, Lords Of Empyre: Swordsman (2020) #1, 8/19/2020), with no provider binding. 88682 is not a viewer number, not a provider mapping, and not evidence that the service lacks this comic.",
+      "serviceIdentity": {
+        "appViewer": "32665",
+        "url": "https://www.marvelcomicsapp.com/viewer/32665",
+        "providerIssueId": null,
+        "normalizedSeriesTitle": "Lords of Empyre: Swordsman",
+        "seriesYear": 2020,
+        "issueNumber": "1",
+        "evidenceSha256": "11f4babfd3c4bc4b61bed12a96411bcc96952870a692ea1a643d192216cffc83"
+      }
     },
     {
       "sourceIssueReference": "Empyre #2",
@@ -450,5 +453,11 @@
       "selectionNote": "The source omits the issue number; the checklist item resolves to the one-shot issue #1."
     }
   ],
-  "packetDigest": "2998a1124223c10ba23400c452c3fdbd0f6b29bf030c3841659bc01bcf34bddc"
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central source reviewer separate from the product integrator; not human review",
+    "reviewedAt": "2026-11-26T11:43:41-08:00",
+    "rationale": "I checked this editorial successor against the previously reviewed packet 3b788a4bac190aa6c4918dbaab1a8b050595f27edb613f3135cb4b18288efff5. Only the card description changes outside the review and its digest. The maintainer delegated original story-focused introductions for the current post-Secret Wars guides. The source references, identities, counts, exclusions, repeats, cover and chronology remain unchanged. No prior mapping, field or peer approval is conferred on the new digest. I also checked the final opening sentence against the compact-card renderer: it now states the conflict before the first sentence break. The edition, sources, and all source accounting are the same."
+  },
+  "packetDigest": "833c146d03281c3a5f6aca86d8af6fb0c747a1cffb522ac17b71c7887649f8e3"
 }

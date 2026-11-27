@@ -65,7 +65,7 @@ function httpsUrl(v) {
   }
 }
 
-function checkEntry(raw, index, seen) {
+function checkEntry(raw, index, seen, sectionalIds) {
   const errors = [];
   const at = (msg) => errors.push(`entry ${index}: ${msg}`);
 
@@ -80,6 +80,8 @@ function checkEntry(raw, index, seen) {
   const sourceFile = safeOrderFile(raw.sourceFile);
   const sourceSection = str(raw.sourceSection);
   const partitionFile = safeFile(raw.partitionFile);
+  const sectional = sectionalIds.has(id);
+  const parent = partitionFile || sectional;
 
   if (!id) at('has no id');
   else if (seen.has(id)) at(`duplicate id "${id}"`);
@@ -100,7 +102,7 @@ function checkEntry(raw, index, seen) {
   }
   if (Object.hasOwn(raw, 'sectionKind')
     && (raw.sectionKind !== 'reading-blocks' || !sourceFile || partitionFile)) {
-    at('sectionKind must be reading-blocks on an ordinary local checklist when present');
+    at('sectionKind must be reading-blocks on a local checklist without a chapter partition');
   }
   if (raw.partitionFile != null && !partitionFile) {
     at('partitionFile must be a plain *.json name when present');
@@ -108,11 +110,14 @@ function checkEntry(raw, index, seen) {
   if (raw.catalog != null && typeof raw.catalog !== 'boolean') {
     at('catalog must be true or false when present');
   }
-  if (partitionFile && raw.catalog !== false) {
+  if (sectional && (partitionFile || sourceSection || raw.sectionKind !== 'reading-blocks')) {
+    at('a sectional parent needs reading blocks, not a chapter partition or an upstream source section');
+  }
+  if (parent && raw.catalog !== false) {
     at('a partition parent must declare catalog: false');
-  } else if (partitionFile && !sourceFile) {
+  } else if (parent && !sourceFile) {
     at('a partition parent must use a local sourceFile');
-  } else if (raw.catalog === false && !partitionFile) {
+  } else if (raw.catalog === false && !parent) {
     at('catalog: false is only valid on a partition parent');
   }
   if (Object.hasOwn(raw, 'storylines') && (partitionFile || typeof raw.storylines !== 'boolean')) {
@@ -345,9 +350,23 @@ export function parseManifest(raw) {
 
   const entries = [];
   const errors = [];
+  const sectionalIds = new Set();
+  if (raw.sectionalGuides !== undefined) {
+    if (!Array.isArray(raw.sectionalGuides)) {
+      errors.push('manifest "sectionalGuides" is not an array');
+    } else {
+      for (const guide of raw.sectionalGuides) {
+        if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(guide?.id ?? '') || sectionalIds.has(guide.id)) {
+          errors.push('invalid or repeated sectional guide id');
+        } else {
+          sectionalIds.add(guide.id);
+        }
+      }
+    }
+  }
   const seen = new Set();
   list.forEach((item, i) => {
-    const { entry, errors: bad } = checkEntry(item, i, seen);
+    const { entry, errors: bad } = checkEntry(item, i, seen, sectionalIds);
     if (entry) {
       seen.add(entry.id);
       entries.push(entry);
@@ -355,6 +374,9 @@ export function parseManifest(raw) {
       errors.push(...bad);
     }
   });
+  for (const id of sectionalIds) {
+    if (!seen.has(id)) errors.push(`sectional guide "${id}" has no valid parent`);
+  }
 
   const groups = new Map();
   for (const entry of entries.filter((item) => item.group)) {

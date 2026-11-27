@@ -19,7 +19,7 @@ Establish the release intent before choosing a procedure:
 
 Use `docs/RELEASING.md` for shared release decisions, platform/version separation, and coordinated
 release policy. `docs/RELEASING.md:7-31` Use `docs/MAINTAINING.md` for the general release-cutting
-checklist. `docs/MAINTAINING.md:1072-1078`
+checklist. `docs/MAINTAINING.md:1132-1138`
 
 ## Route platform-specific work
 
@@ -27,7 +27,7 @@ Do not turn these routes into one universal command sequence:
 
 | Platform or channel | Authoritative route |
 |---|---|
-| Android build allocation or candidate | [Android release contract](../../../docs/RELEASING.md#android-allocation-and-exact-artifact-contract) and [Android candidate procedure](../../../docs/ANDROID.md#protected-app-bundle-candidates). `docs/RELEASING.md:35-60`; `docs/ANDROID.md:249-256` |
+| Android build allocation or candidate | [Android release contract](../../../docs/RELEASING.md#android-allocation-and-exact-artifact-contract) and [Android candidate procedure](../../../docs/ANDROID.md#protected-app-bundle-candidates). `docs/RELEASING.md:35-60`; `docs/ANDROID.md:250-257` |
 | Google Play testing or promotion | [Protected Google Play publication](../../../docs/GOOGLE_PLAY_PUBLISHING.md). `docs/RELEASING.md:206-216`; `docs/GOOGLE_PLAY_PUBLISHING.md:1-20` `docs/GOOGLE_PLAY_PUBLISHING.md:244-342` |
 | iOS build allocation, TestFlight export, or upload | [iOS release contract](../../../docs/RELEASING.md#ios-allocation-and-exact-artifact-contract) and [TestFlight procedure](../../../docs/IOS.md#signing-and-internal-testflight). `docs/RELEASING.md:274-301`; `docs/IOS.md:480-489` `docs/IOS.md:521-553` |
 | Windows portable or MSIX proof | [Windows package proof](../../../docs/MICROSOFT_STORE.md#build-controlled-proof-packages). `docs/MICROSOFT_STORE.md:281-340` |

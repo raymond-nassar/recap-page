@@ -16,6 +16,7 @@ import {
   tieInPayloadAtApproval, tieInRevisions,
 } from './helpers/mcu-tie-in-history.mjs';
 import { beforeIdentityJson } from './helpers/owner-identity-history.mjs';
+import { reviewed2025Pairs } from './helpers/reviewed-2025-viewer-links.mjs';
 
 const read = (file) => JSON.parse(readFileSync(new URL(`../src/data/${file}`, import.meta.url), 'utf8'));
 const digest = (ids) => createHash('sha256').update(JSON.stringify(ids)).digest('hex');
@@ -204,14 +205,112 @@ test('tie-in reader links keep the exact matched viewers and preserve every earl
   const xmenEra = new Map([[12363, 6891], [19872, 19401], [23510, 19719]]);
   assert.ok([...xmenEra].every(([issueId, viewer]) => !additions.has(issueId)
     && links.links.some((link) => link.issueId === issueId && link.viewer === viewer)));
-  const previous = links.links.filter(({ issueId }) => !additions.has(issueId) && !xmenEra.has(issueId));
+  const reviewed2025 = new Map(reviewed2025Pairs);
+  assert.equal(digest(reviewed2025Pairs), 'c37466b019ec7ee51a0612db07e74db0f3873a0c4eeabb10f47c06f3f2a883f5');
+  assert.ok([...reviewed2025.keys()].every((issueId) => !additions.has(issueId) && !xmenEra.has(issueId)));
+  assert.deepEqual(links.links.filter(({ issueId }) => reviewed2025.has(issueId)),
+    reviewed2025Pairs.map(([issueId, viewer]) => ({
+      issueId, viewer, basis: 'exact', source: 'continuity-guide-discord-2026-11-19',
+    })));
+  const reviewedViewers = new Set(reviewed2025.values());
+  assert.ok(links.links.every(({ issueId, viewer }) => reviewed2025.has(issueId) || !reviewedViewers.has(viewer)));
+  // Combined-branch correction: the Wolverine guide correction added these 18 reviewed viewers
+  // independently of the 2025 links. Written out rather than read from its ledger, so the frozen
+  // digest below still proves that no earlier link moved under either change.
+  const wolverine18 = new Map([
+    [16114, 9350], [16144, 21447], [16507, 21448], [16508, 21449], [17243, 21450], [17379, 21451],
+    [17619, 21452], [20664, 21456], [20859, 21454], [20994, 21455], [21206, 21453], [21350, 21459],
+    [21531, 21457], [21962, 21458], [22284, 21460], [22492, 21462], [22896, 21463], [23103, 21461],
+  ]);
+  assert.ok([...wolverine18].every(([issueId, viewer]) => !additions.has(issueId) && !xmenEra.has(issueId)
+    && !reviewed2025.has(issueId) && links.links.filter((link) => link.issueId === issueId).length === 1
+    && links.links.some((link) => link.issueId === issueId && link.viewer === viewer
+      && link.basis === 'exact' && link.source === 'continuity-guide-discord-2026-11-19')));
+  const fcbd = 52986;
+  assert.ok(!additions.has(fcbd) && !xmenEra.has(fcbd) && !reviewed2025.has(fcbd) && !wolverine18.has(fcbd));
+  assert.deepEqual(links.links.filter(({ issueId, viewer }) => issueId === fcbd || viewer === 12467), [{
+    issueId: fcbd, viewer: 12467, basis: 'exact', source: 'continuity-guide-discord-2026-11-19',
+  }]);
+  const modernTimeline189 = new Set([
+    5242, 5544, 5666, 5804, 5967, 6002, 6030, 6111, 6129, 6192, 6267,
+    6290, 6340, 13431, 13433, 13475, 15813, 15814, 15854, 15879, 15889, 15931,
+    15964, 15988, 15999, 16006, 16149, 16173, 16174, 16183, 16189, 16569, 16570,
+    16596, 16597, 17653, 20665, 20698, 20860, 20890, 20995, 21022, 21023, 21207,
+    21237, 21351, 21379, 21532, 21556, 21731, 21751, 21752, 21963, 21987, 22286,
+    22311, 22312, 22493, 22516, 22898, 22923, 22924, 23104, 23121, 23599, 23615,
+    23760, 23958, 24158, 25289, 25290, 25291, 25292, 25293, 25294, 51198, 51199,
+    51200, 51201, 51208, 51211, 51212, 51213, 51214, 51538, 51539, 51573, 51574,
+    51575, 51576, 51579, 51580, 51712, 51714, 51715, 51716, 51802, 51803, 51804,
+    51808, 51810, 51811, 51812, 51835, 51837, 51838, 51839, 51840, 51935, 51936,
+    51937, 51938, 51939, 51947, 51948, 51949, 51950, 51961, 51971, 51972, 51973,
+    51974, 51975, 51994, 51996, 51997, 51998, 51999, 52055, 52056, 52057, 52058,
+    52059, 52072, 52074, 52075, 52076, 52240, 52241, 52242, 52243, 52303, 52307,
+    52308, 52309, 52327, 52328, 52329, 52330, 52333, 52335, 52336, 52337, 52338,
+    52486, 52487, 52488, 52489, 52575, 52578, 52579, 52580, 52593, 52595, 52596,
+    52597, 52824, 52825, 52826, 52827, 52891, 52892, 52893, 52894, 52968, 52971,
+    52972, 52973, 52974, 53702, 53704, 53705, 53706, 54775, 54777, 54778, 55847,
+    56004, 57531,
+  ]);
+  const modernLinks = links.links.filter(({ issueId }) => modernTimeline189.has(issueId));
+  assert.equal(modernLinks.length, 189);
+  assert.equal(digest(modernLinks.map(({ issueId, viewer }) => [issueId, viewer])),
+    '9806b905fe4c769b52845adc9b872c8a040d314538931ca7a99948498590bd72');
+  assert.ok(modernLinks.every(({ issueId, basis, source }) => !additions.has(issueId) && !xmenEra.has(issueId)
+    && !reviewed2025.has(issueId) && !wolverine18.has(issueId) && issueId !== fcbd
+    && basis === 'exact' && source === 'continuity-guide-discord-2026-11-19'));
+  const earlyTimelineIds = new Set([
+    55527, 55528, 55529, 55530, 55531, 55532, 55533, 55534, 55535, 56035, 56036, 56037, 56038,
+    56078, 56079, 56080, 56081, 56082, 56172, 56173, 56174, 56589, 56590, 56591, 56592, 56593,
+    57069, 57869, 57870, 57871, 58224, 58225, 58226, 59606, 59607, 59608, 59609, 59610, 59611,
+    59613, 59614, 59615, 60380, 60574, 64259, 64285,
+  ]);
+  const earlyLinks = links.links.filter(({ issueId }) => earlyTimelineIds.has(issueId));
+  assert.equal(earlyLinks.length, 46);
+  assert.equal(digest(earlyLinks), 'aa4a537b84c15d3bdc0629567f536d442cd25e1188f09d1d016314cd220ef73f');
+  const empyreViewers = new Map([[82353, 32598], [88625, 32628], [88626, 32630], [88627, 32631], [88648, 32637]]);
+  const empyreLinks = links.links.filter(({ issueId }) => empyreViewers.has(issueId));
+  assert.deepEqual(empyreLinks, [...empyreViewers].map(([issueId, viewer]) => ({
+    issueId, viewer, basis: 'exact', source: 'continuity-guide-discord-2026-11-19',
+  })));
+  const previous = links.links.filter(({ issueId }) => !additions.has(issueId) && !xmenEra.has(issueId)
+    && !reviewed2025.has(issueId) && !wolverine18.has(issueId) && issueId !== fcbd
+    && !modernTimeline189.has(issueId) && !earlyTimelineIds.has(issueId) && !empyreViewers.has(issueId));
   assert.equal(previous.length, 17663);
   assert.equal(digest(previous), '0bec147ce327f7287cd5d6a02f6c303295a5f51c78da9f43a9a3be6e981d219f');
   const { unapprovedIssueIds, ...frozenMu } = mu;
-  assert.equal(digest(frozenMu), '9fc9fe6d314b2786e16c6b6772e0104091efaa6defd59142b91f5521388e4e55');
-  assert.deepEqual(unapprovedIssueIds, [
-    17293, 42667, 42668, 51951, 51955, 55498, 55499, 60666, 60667, 62843, 101513, 101520, 129237,
+  // Only these reviewed comics moved from MU to direct viewers; reconstruct the earlier approval
+  // rather than replacing its digest with one that could hide an unrelated edit.
+  assert.equal(new Set(mu.issueIds).size, mu.issueIds.length);
+  assert.deepEqual(mu.issueIds, [...mu.issueIds].sort((a, b) => a - b));
+  assert.ok(mu.issueIds.every((issueId) => !reviewed2025.has(issueId) && issueId !== fcbd));
+  const previousMu = {
+    ...frozenMu, issueIds: [...mu.issueIds, ...reviewed2025.keys(), fcbd].sort((a, b) => a - b),
+  };
+  assert.equal(digest(previousMu), '9fc9fe6d314b2786e16c6b6772e0104091efaa6defd59142b91f5521388e4e55');
+  const installmentRows = read('catalog.json').lists.filter(({ id }) =>
+    id === 'world-war-hulk' || id === 'secret-wars-2015-event-tie-ins' || /^civil-war-to-secret-invasion-part-\d+$/.test(id))
+    .flatMap(({ file }) => read(file).items);
+  const installmentIds = new Set(installmentRows.map(({ issueId }) => issueId));
+  const modernPending = unapprovedIssueIds.filter((id) => installmentIds.has(id));
+  assert.equal(digest(modernPending), 'cc476d8503549aa3411db8603c92dba8a122ba5fa08c65a2ba1c017fa8499725');
+  assert.ok([55543, 57864, 57866, 57868, 57875].every((id) => !earlyTimelineIds.has(id) && !mu.issueIds.includes(id)));
+  const empyrePending = new Set([
+    77220, 85304, 86495, 86496, 86497, 87440, 88624, 88628, 88629, 88630, 88631, 88667,
   ]);
+  const empyreIds = new Set(read('empyre.json').items.map(({ issueId }) => issueId));
+  assert.deepEqual(unapprovedIssueIds.filter((id) => empyreIds.has(id)), [...empyrePending]);
+  assert.ok([...empyrePending].every((id) => !mu.issueIds.includes(id) && !empyreViewers.has(id)));
+  assert.deepEqual(unapprovedIssueIds.filter((id) => !installmentIds.has(id) && !empyrePending.has(id)), [
+    17293, 42667, 42668, 51951, 51955, 55498, 55499, 55543, 57864, 57866, 57868, 57875,
+    60666, 60667, 62843, 101513, 101520, 129237,
+  ]);
+  const held = installmentRows.filter(({ findOnly }) => findOnly === true);
+  assert.deepEqual(held.map(({ issueId }) => issueId).sort((a, b) => a - b), [
+    51403, 51405, 51406, 51407, 51408, 51855, 51856, 51857, 51858, 52466, 52467, 52964, 52965,
+    52966, 52967, 52977, 52978, 52979, 52980, 53633, 53634, 53635, 56003, 56306, 56326,
+  ]);
+  const linked = new Set([...links.links.map(({ issueId }) => issueId), ...mu.issueIds]);
+  assert.ok(held.every(({ issueId, url }) => url === null && !linked.has(issueId) && modernPending.includes(issueId)));
   for (const id of [42667, 42668, 60666, 60667]) {
     assert.ok(!links.links.some(({ issueId }) => issueId === id));
     assert.ok(!mu.issueIds.includes(id));

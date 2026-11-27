@@ -200,6 +200,14 @@
   --red-fg-2: #ff9d9d;
   --teal: #3fcfbb;
   --amber: #eab654;
+  /* Comic Book Herald's three tie-in groups, as stoplight tints (owner, 2026-11-24). The words on
+     them are ordinary text; the tint and dot only repeat the group. */
+  --rating-favorite-bg: #253a2b;
+  --rating-favorite-dot: #84d765; --rating-favorite-line: #84d765;
+  --rating-average-bg: #40371f;
+  --rating-average-dot: #f4ce37; --rating-average-line: #f4ce37;
+  --rating-lower-bg: #45313a;
+  --rating-lower-dot: #ff9d9d; --rating-lower-line: #ff9d9d;
   --blue: #7fb3ff;
   /* The brand's decorative blue and red (#1208), the two colors the purple was mixed from. They decorate
      and never report: `--blue` stays the color of links, focus and the current place, and the status
@@ -234,7 +242,7 @@
   --cyan-line: 91 208 233;
   --jade-line: 78 208 182;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:849`; these pairs supply saturation and lightness where that local hue is
+     `src/js/main.js:853`; these pairs supply saturation and lightness where that local hue is
      consumed. Keeping the hue reference on the cover avoids resolving it before the cover exists. */
   --fallback-a: 42% 26%;
   --fallback-b: 38% 14%;
@@ -274,6 +282,12 @@
   --red-fg-2: #9c1c18;
   --teal: #12695f;
   --amber: #6d4e08;
+  --rating-favorite-bg: #e5f2df;
+  --rating-favorite-dot: #3b7b1f; --rating-favorite-line: #3b7b1f;
+  --rating-average-bg: #fff3bc;
+  --rating-average-dot: #f4ce37; --rating-average-line: #89701d;
+  --rating-lower-bg: #fce6e6;
+  --rating-lower-dot: #ed9898; --rating-lower-line: #aa645f;
   --blue: #17509c;
   --brand-blue: #1d4ed8;
   --brand-red: #c8102e;
@@ -323,6 +337,12 @@
     --red-fg-2: #9c1c18;
     --teal: #12695f;
     --amber: #6d4e08;
+    --rating-favorite-bg: #e5f2df;
+    --rating-favorite-dot: #3b7b1f; --rating-favorite-line: #3b7b1f;
+    --rating-average-bg: #fff3bc;
+    --rating-average-dot: #f4ce37; --rating-average-line: #89701d;
+    --rating-lower-bg: #fce6e6;
+    --rating-lower-dot: #ed9898; --rating-lower-line: #aa645f;
     --blue: #17509c;
     --brand-blue: #1d4ed8;
     --brand-red: #c8102e;
@@ -1854,6 +1874,33 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
   border: var(--stroke-2) solid var(--line-2);
 }
 .timeline-year-cards { min-width: 0; }
+/* A year that a period starts inside holds one grid per period, each under the period's own heading
+   (#1603), so a heading never stretches to a card's row height. */
+.timeline-year-body { display: grid; gap: var(--space-5); min-width: 0; }
+.timeline-checkpoint {
+  margin: 0; padding-top: var(--space-3); border-top: var(--stroke-2) solid var(--line-2);
+  font-size: var(--t-body); font-weight: 700; scroll-margin-top: var(--space-8);
+}
+.timeline-year-body > .timeline-checkpoint:first-child { border-top: 0; padding-top: 0; }
+/* The words say how far an event reaches; the solid and dashed edges repeat it in shape, never in
+   colour alone, and stay distinct when forced colours replace the palette. */
+.catalog-card-badges { margin: var(--space-2) 0 0; }
+.event-badge { display: inline-block; color: var(--text); font-weight: 600; white-space: normal; }
+.event-badge-major { border: var(--stroke-2) solid var(--text); }
+.event-badge-family { border-style: dashed; border-color: var(--line-2); font-weight: 500; }
+/* A family era is a stop in the grid with nothing to add, so it drops the card's surface and keeps
+   only a dashed edge: it reads as a waypoint between readings rather than a reading itself. */
+.timeline-family-era {
+  min-width: 0; align-self: start; padding: var(--space-3) var(--space-4);
+  border: var(--stroke-1) dashed var(--line-2); border-radius: var(--radius-md);
+}
+.timeline-family-era-name { margin: 0; font-size: var(--t-body); font-weight: 700; overflow-wrap: anywhere; }
+@media (forced-colors: active) {
+  .timeline-checkpoint { border-top-color: CanvasText; }
+  .timeline-family-era { border-color: CanvasText; }
+  .event-badge-major { border: var(--stroke-2) solid CanvasText; }
+  .event-badge-family { border: var(--stroke-1) dashed CanvasText; }
+}
 
 @media (max-width: 700px) {
   .timeline-flow { --timeline-axis: .75rem; }
@@ -1940,6 +1987,19 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: var(--radius-c
   margin-top: auto; padding: 0 var(--space-5) var(--space-5);
 }
 .catalog-card-actions .btn { justify-content: center; min-height: var(--target); }
+/* One timeline card offering several existing readings of the same event. Each reading keeps the
+   card title's Preview cue and its own Add or Open, so a saved copy is continued from its row. */
+.placement-card .catalog-card-text { padding: var(--space-5) var(--space-5) 0; }
+.placement-options { margin: 0; padding: 0; list-style: none; }
+.placement-option { border-top: var(--stroke-1) solid var(--line); }
+.placement-option-text { padding: var(--space-3) 0 var(--space-2); }
+.placement-option .catalog-card-actions { padding: 0 0 var(--space-4); }
+.placement-option-title {
+  display: inline-block; max-width: 100%; padding: var(--space-1) 0; border: 0; background: none;
+  color: inherit; font: inherit; font-weight: 600; text-align: inherit; overflow-wrap: anywhere; cursor: pointer;
+  text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 3px;
+}
+.placement-option-title:hover { text-decoration-color: currentColor; }
 
 @media (max-width: 700px) {
   .timeline-position-current { align-items: flex-start; flex-direction: column; }
@@ -2198,6 +2258,15 @@ body.nocovers .chero .art img, .chero .art img[hidden] { display: none; }
 @media (forced-colors: active) {
   .home-guide-link { border-color: LinkText; color: LinkText; background: Canvas; }
 }
+#home-new-reader .btn { max-inline-size: 100%; }
+#home-new-reader .btn .gi {
+  box-sizing: content-box; padding-inline-start: var(--space-4);
+  border-inline-start: var(--stroke-1) solid currentColor;
+}
+/* Darken only the fill: the shared brightness filter also changes the label and arrow. */
+#home-new-reader .btn:hover { background: color-mix(in srgb, var(--accent) 90%, black); filter: none; }
+.guide-familiarity { flex-direction: column; align-items: flex-start; }
+.guide-familiarity .filter-legend { float: none; margin-block-end: var(--space-3); }
 .home-paths {
   list-style: none; margin: var(--space-5) 0 0; padding: 0;
   display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6);
@@ -2434,6 +2503,21 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .collected-edition { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2); overflow-wrap: anywhere; }
 .collected-edition a { display: inline-flex; align-items: center; min-height: var(--target); }
 .edition-credit { font-size: var(--t-caption); color: var(--muted); overflow-wrap: anywhere; margin: var(--space-2) 0; }
+/* A tie-in's rating group and the guide's Optional advice sit beside its series name. Each keeps its
+   word, so the meaning survives with colors off; the tint never touches progress or availability. */
+.tie-in-labels { display: inline-flex; flex-wrap: wrap; gap: var(--space-2); }
+.rating-badge { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--text); }
+.rating-badge::before {
+  content: ""; flex: none; width: .6em; height: .6em; border-radius: var(--radius-pill);
+  background: var(--rating-dot); border: var(--stroke-1) solid var(--rating-line);
+}
+.rating-favorite { --rating-dot: var(--rating-favorite-dot); --rating-line: var(--rating-favorite-line); background: var(--rating-favorite-bg); border-color: var(--rating-favorite-line); }
+.rating-average { --rating-dot: var(--rating-average-dot); --rating-line: var(--rating-average-line); background: var(--rating-average-bg); border-color: var(--rating-average-line); }
+.rating-lower { --rating-dot: var(--rating-lower-dot); --rating-line: var(--rating-lower-line); background: var(--rating-lower-bg); border-color: var(--rating-lower-line); }
+.badge-optional { color: var(--text); border-style: dashed; border-color: var(--line-2); }
+@media (forced-colors: active) {
+  .rating-badge::before { display: none; }
+}
 .edition-attribution { list-style: none; }
 .preview-foot { display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; border-top: var(--stroke-1) solid var(--line); padding-top: var(--space-6); }
 .preview-foot .btn { min-height: var(--target); scroll-margin: var(--space-3); }
@@ -2935,9 +3019,10 @@ body.nocovers :is(.fallback, .tf, .of).cover-fallback, :is(.fallback, .tf, .of).
    stop keeps its ordinal and progress in text so shape and colour are never the only explanation.
    The Modern Timeline draws a followed path this way (#897). */
 .timeline-follow { display: grid; gap: var(--space-3); max-width: 32rem; margin: var(--space-6) 0 var(--space-8); }
-.timeline-follow[hidden], .timeline-follow-about[hidden] { display: none; }
-.timeline-follow label { color: var(--muted); font-size: var(--t-caption); font-weight: 600; }
-.timeline-follow select { width: 100%; min-height: var(--target); }
+.timeline-follow[hidden], .timeline-follow-about[hidden], .timeline-sections[hidden] { display: none; }
+.timeline-follow-name { margin: 0; font-weight: 600; }
+.timeline-follow .btn { justify-self: start; min-height: var(--target); }
+.timeline-sections { max-width: 32rem; }
 /* The ratings filters sit in one row on a wide screen and stack on a narrow one. Each control keeps a
    visible label above it, the same caption treatment the Timeline's path picker uses, because a
    placeholder alone disappears the moment the reader starts typing. */
@@ -3232,14 +3317,16 @@ select, input[type="search"], input[type="text"], input[type="url"] {
 #view-marvel-on-screen { --page-line: var(--azure-line); }
 #view-marvel-ages { --page-line: var(--magenta-line); }
 #view-young-readers { --page-line: var(--green-line); }
-:is(#view-catalog, #view-genres, #view-spotlights, #view-marvel-on-screen, #view-marvel-ages, #view-young-readers) > .head {
+#view-universes { --page-line: var(--copper-line); }
+#view-creators { --page-line: var(--cyan-line); }
+:is(#view-catalog, #view-genres, #view-spotlights, #view-marvel-on-screen, #view-marvel-ages, #view-young-readers, #view-universes, #view-creators) > .head {
   position: relative; padding: var(--space-6) var(--space-6) var(--space-5); border-radius: var(--radius-feature);
   /* Bleeds into the page gutter, never narrower than this padding, so the title keeps the left
      edge every other view's heading starts at (UX-21). */
   margin-inline: calc(-1 * var(--space-6));
   background: linear-gradient(145deg, rgb(var(--page-line) / 13%), transparent 10rem);
 }
-:is(#view-catalog, #view-genres, #view-spotlights, #view-marvel-on-screen, #view-marvel-ages, #view-young-readers) > .head::before {
+:is(#view-catalog, #view-genres, #view-spotlights, #view-marvel-on-screen, #view-marvel-ages, #view-young-readers, #view-universes, #view-creators) > .head::before {
   content: ""; position: absolute; inset: 0 0 auto; height: 4px;
   border-radius: var(--radius-feature) var(--radius-feature) 0 0; background: rgb(var(--page-line));
 }
@@ -3273,8 +3360,8 @@ select, input[type="search"], input[type="text"], input[type="url"] {
   #view-data .setgroup > h2, #view-about .card-static h3 { border-inline-start-color: CanvasText; }
   .empty-state { border-color: CanvasText; }
   .empty-state .empty-glyph { color: CanvasText; }
-  :is(#view-catalog, #view-genres, #view-spotlights, #view-marvel-on-screen, #view-marvel-ages, #view-young-readers) > .head { background: none; }
-  :is(#view-catalog, #view-genres, #view-spotlights, #view-marvel-on-screen, #view-marvel-ages, #view-young-readers) > .head::before { background: CanvasText; }
+  :is(#view-catalog, #view-genres, #view-spotlights, #view-marvel-on-screen, #view-marvel-ages, #view-young-readers, #view-universes, #view-creators) > .head { background: none; }
+  :is(#view-catalog, #view-genres, #view-spotlights, #view-marvel-on-screen, #view-marvel-ages, #view-young-readers, #view-universes, #view-creators) > .head::before { background: CanvasText; }
   /* The full selector, because a shorter one loses to the band's own rule and leaves its gradient,
      which forced colors compute to none. */
   #list-wrap-up:has(#list-wrap-up-cheer:not([hidden])):not(:has(#list-completion-status:not([hidden])))::before { background: CanvasText; }
@@ -3286,8 +3373,11 @@ select, input[type="search"], input[type="text"], input[type="url"] {
 @container home-discovery (min-width: max(29rem, calc(40ch + 1rem))) {
   #home-secondary-paths { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+/* Five across needs about 15.6ch a card, plus the four 1rem gaps (#1565). Measured in Edge at 1280px,
+   the widest whole word needs 15.0ch of card at 200% text and 15.4ch at 150%. At 50ch, 200% text kept
+   five 180px cards and clipped "Publication", which needs 226px, so larger text now falls back to two. */
 @media (min-width: 1024px) {
-  @container home-discovery (min-width: max(44rem, calc(50ch + 4rem))) {
+  @container home-discovery (min-width: max(44rem, calc(78ch + 4rem))) {
     #home-secondary-paths { grid-template-columns: repeat(5, minmax(0, 1fr)); }
     #home-secondary-paths .home-path { padding: var(--space-4); column-gap: var(--space-4); }
     #home-secondary-paths .home-path-title { font-size: var(--t-subtitle); }

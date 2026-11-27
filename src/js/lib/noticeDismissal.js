@@ -1,19 +1,19 @@
-import { readerDestination } from './readerDestination.js';
-
 export const NOTICE_DISMISSAL_KEY = 'mrt.readerClosure.dismissed.v1';
 
-// The notice says something materially different once reading in Marvel Unlimited has ended, so
-// each phase is its own identity: dismissing the warning before December 7 must not hide the
-// later explanation of why Read now opens the Marvel Comics website. The Marvel Comics app links
-// (#950) changed both texts, so their identities changed too: a reader who dismissed the earlier
-// warning sees the new one once.
+// Each notice text owns its identity, so dismissing an earlier text never hides a later one. #1601
+// replaced both Marvel Unlimited phase texts with one approved text that no longer depends on the
+// date, and gave it an identity neither phase ever stored: the earlier post-cutoff identity named
+// different words, so reusing it would hide the new text from anyone who had dismissed those.
+const APP_VIEWER_NOTICE_ID = 'marvel-comics-app-viewer';
+
+// The date parameter is kept so callers written for the phased notice still resolve one identity.
+// eslint-disable-next-line no-unused-vars
 export function readerClosureNoticeId(now = new Date()) {
-  return `marvel-comics-app-${readerDestination(now)}`;
+  return APP_VIEWER_NOTICE_ID;
 }
 
 // An acknowledgement belongs to this device, like Home updates seen state, not to portable
-// settings. The identity is read on every check, so a page left open across the cutoff shows the
-// new notice without a reload.
+// settings.
 export function createNoticeDismissal({ storage, notice = () => readerClosureNoticeId() } = {}) {
   const current = typeof notice === 'function' ? notice : () => notice;
   let dismissedThisPage = null;

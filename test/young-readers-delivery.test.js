@@ -9,6 +9,7 @@ import { readOwnerGuideRegistry } from '../scripts/lib/owner-guide-registry.mjs'
 import { beforeXmenEraManifest, beforeXmenEraOrders } from './helpers/xmen-era-history.mjs';
 import { beforeTieInManifest, beforeTieInOrders } from './helpers/mcu-tie-in-history.mjs';
 import { loadLibrarySnapshot } from '../scripts/report-order-overlap.mjs';
+import { beforeFirstInstallmentManifest } from './helpers/first-installment-history.mjs';
 import { parseCatalog } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import {
@@ -145,8 +146,8 @@ test('the Comic Book Herald inventory, packets and relationship approvals stay c
   assert.deepEqual(inventory.map((record) => [record.id, record.url, record.sourceSection, record.deliveryStatus]),
     lists.filter((entry) => entry.source === 'comic-book-herald')
       .map((entry) => [entry.id, GUIDE, entry.section, 'shipped']));
-  const manifest = await readJson('src/data/curated-lists.json');
-  const library = await loadLibrarySnapshot();
+  const manifest = beforeFirstInstallmentManifest(await readJson('src/data/curated-lists.json'));
+  const library = await loadLibrarySnapshot({ manifest });
   // The approvals were given before the owner lists existed, so the reviewed library is today's
   // without any of the fifteen, or any curated guide registered after them.
   const registry = await readJson('test/fixtures/curated-guide-additions.json');

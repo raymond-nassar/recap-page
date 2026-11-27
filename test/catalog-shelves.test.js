@@ -36,6 +36,7 @@ import {
 } from '../src/js/lib/catalog.js';
 import { mcuPrepSections } from '../src/js/lib/mcuPrep.js';
 import { VIEWS, parseRoute } from '../src/js/lib/route.js';
+import { isOptionalGuideList } from '../src/js/views/starting-point.js';
 import {
   currentReadingCensus, registeredCreatorGuides, registeredCuratedGuides,
 } from './helpers/current-reading-library.mjs';
@@ -278,6 +279,24 @@ test('every bundled Reading List remains reachable without the retired Storyline
   const reachable = new Set();
   const timeline = new Set(enabled('catalog') ? modernTimelineLists(catalog.lists).map(({ id }) => id) : []);
   if (enabled('catalog')) timeline.add(modernTimelineFeaturedList(catalog.lists)?.id);
+  assert.equal(catalog.sectionalGroups.length, 1);
+  const [sectional] = catalog.sectionalGroups;
+  assert.equal(sectional.key, 'placement:civil-war-to-secret-invasion');
+  assert.equal(sectional.placement, true);
+  assert.equal(sectional.sectional, true);
+  assert.equal(sectional.year, 2007);
+  const partIds = Array.from({ length: 14 }, (_, index) => `civil-war-to-secret-invasion-part-${index + 1}`);
+  assert.deepEqual(sectional.options.map(({ list }) => list.id), partIds);
+  assert.equal(new Set(partIds).size, 14);
+  assert.equal(catalog.lists.some(({ id }) => id === 'civil-war-to-secret-invasion'), false,
+    'the visible chooser is not an addable parent list');
+  assert.equal(timeline.has('civil-war-to-secret-invasion'), false);
+  for (const { list } of sectional.options) {
+    assert.equal(list, catalog.lists.find(({ id }) => id === list.id));
+    assert.ok(list.sectionalPart);
+    assert.equal(timeline.has(list.id), false, 'a child is offered on the chooser, not as a separate stop');
+    if (enabled('catalog')) timeline.add(list.id);
+  }
   const genres = new Set();
   if (enabled('genres')) {
     for (const { key } of storyTypeFacets(entries).types) {
@@ -306,11 +325,8 @@ test('every bundled Reading List remains reachable without the retired Storyline
     const start = markup.indexOf('<section id="view-new-to-comics"');
     const end = markup.indexOf('<!-- ---------------------------------------- reading view -->', start);
     assert.ok(start >= 0 && end > start, 'The newcomer guide has a visible route and bounded markup.');
-    const links = [...markup.slice(start, end).matchAll(/<a\s+href="([^"]+)"\s+data-preview-id="([^"]+)"/g)];
     for (const { id } of newcomerGuides) {
-      const link = links.find(([, , previewId]) => previewId === id);
-      assert.ok(link, `${id} has no newcomer guide link`);
-      assert.deepEqual(parseRoute(link[1]), { view: 'new-to-comics', previewId: id });
+      assert.ok(isOptionalGuideList(id), `${id} has no newcomer guide card`);
       assert.ok(catalog.lists.some((list) => list.id === id), `${id} has no catalog entry`);
       reachable.add(id);
     }
@@ -438,7 +454,7 @@ test('the timeline spine derives its ends and preserves internal empty years', (
     years.filter(({ count }) => count === 0).map(({ year }) => year),
     [
       1966, 1967, 1968, 1969, 1970, 1972, 1974, 1975, 1977, 1978, 1979,
-      1983, 1995, 2015,
+      1983, 1995,
     ],
   );
 });

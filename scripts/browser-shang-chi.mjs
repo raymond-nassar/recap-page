@@ -190,11 +190,11 @@ export const shangChiActualData = {
     const gapActions = await page.$$eval('#rows .row .rt', (nodes, ids) =>
       nodes.filter((node) => ids.includes(Number(node.dataset.issueId))).map((node) => ({
         issueId: Number(node.dataset.issueId),
-        openHidden: node.closest('.row')?.querySelector('.ract button[data-act="open"]')?.hidden,
+        action: node.closest('.row')?.querySelector('.ract button[data-act="open"]:not([hidden])')?.textContent.trim(),
         hasInfo: Boolean(node.closest('.row')?.querySelector('.ract a[data-act="info"]')),
       })), gaps.map((row) => row.issueId));
-    t.check('all eight unresolved originals offer neither a reader nor a fabricated issue page',
-      gapActions.length === 8 && gapActions.every((row) => row.openHidden && !row.hasInfo),
+    t.check('all eight unresolved originals offer Find on Marvel Comics but no fabricated issue page',
+      gapActions.length === 8 && gapActions.every((row) => row.action === 'Find on Marvel Comics' && !row.hasInfo),
       JSON.stringify(gapActions));
 
     await page.reload({ waitUntil: 'load' });
