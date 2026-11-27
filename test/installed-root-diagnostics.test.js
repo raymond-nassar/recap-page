@@ -4,7 +4,7 @@ import { mkdtempSync, writeFileSync, rmSync, readFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { runInNewContext } from 'node:vm';
-import { waitForSettledRoots, waitForStaleOffline } from '../scripts/msix-proof.mjs';
+import { assertColdSearchIndexes, waitForSettledRoots, waitForStaleOffline } from '../scripts/msix-proof.mjs';
 
 test('installed lifecycle diagnostics retain exact count acceptance and the existing deadline', async (t) => {
   const root = mkdtempSync(join(tmpdir(), 'recap-root-counts-'));
@@ -163,6 +163,23 @@ test('proof DPI context is configured before COM initialization', () => {
   const native = readFileSync(new URL('../test/native/StartupTests.cpp', import.meta.url), 'utf8');
   const startup = native.slice(native.indexOf('int wmain('));
   assert.ok(startup.indexOf('SetThreadDpiAwarenessContext') < startup.indexOf('CoInitializeEx'));
+});
+
+test('the stopped-server proof refuses a cached creator or series index but permits a cached shell', async () => {
+  const cached = new Set(['/index.html']);
+  const page = {
+    evaluate: (read, paths) => runInNewContext(`(${read})(paths)`, {
+      paths, URL, location: { origin: 'http://127.0.0.1:8787' },
+      caches: { match: async (url) => cached.has(url.pathname) ? {} : undefined },
+    }),
+  };
+  await assertColdSearchIndexes(page);
+  for (const name of ['creators', 'series']) {
+    const path = `/data/${name}-index.json`;
+    cached.add(path);
+    await assert.rejects(assertColdSearchIndexes(page), (error) => error.message.includes(path));
+    cached.delete(path);
+  }
 });
 
 test('a stale offline wait timeout records the page state and rethrows the same error', async (t) => {
