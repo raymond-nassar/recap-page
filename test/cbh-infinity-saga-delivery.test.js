@@ -265,7 +265,7 @@ test('Infinity Saga pinned payload and catalog preserve historical Storylines me
   assert.equal(entry.emptyRecordCount, 11);
   assert.ok(!Object.hasOwn(entry, 'spotlightKind'));
   assert.equal(entry.source, ledger.sourceUrl);
-  assert.equal(catalog.lists.filter((row) => row.type === 'event').length, 208);
+  assert.equal(catalog.lists.filter((row) => row.type === 'event').length, 210);
   assert.equal(catalog.lists.filter((row) => row.type === 'era').length, 12 + installmentPartIds.length);
   assert.equal(catalog.lists.filter((row) => row.type === 'character-run').length, 88);
   const normalized = parseCatalog(catalog);

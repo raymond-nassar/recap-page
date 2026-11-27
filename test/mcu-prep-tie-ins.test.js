@@ -267,9 +267,14 @@ test('tie-in reader links keep the exact matched viewers and preserve every earl
   const earlyLinks = links.links.filter(({ issueId }) => earlyTimelineIds.has(issueId));
   assert.equal(earlyLinks.length, 46);
   assert.equal(digest(earlyLinks), 'aa4a537b84c15d3bdc0629567f536d442cd25e1188f09d1d016314cd220ef73f');
+  const empyreViewers = new Map([[82353, 32598], [88625, 32628], [88626, 32630], [88627, 32631], [88648, 32637]]);
+  const empyreLinks = links.links.filter(({ issueId }) => empyreViewers.has(issueId));
+  assert.deepEqual(empyreLinks, [...empyreViewers].map(([issueId, viewer]) => ({
+    issueId, viewer, basis: 'exact', source: 'continuity-guide-discord-2026-11-19',
+  })));
   const previous = links.links.filter(({ issueId }) => !additions.has(issueId) && !xmenEra.has(issueId)
     && !reviewed2025.has(issueId) && !wolverine18.has(issueId) && issueId !== fcbd
-    && !modernTimeline189.has(issueId) && !earlyTimelineIds.has(issueId));
+    && !modernTimeline189.has(issueId) && !earlyTimelineIds.has(issueId) && !empyreViewers.has(issueId));
   assert.equal(previous.length, 17663);
   assert.equal(digest(previous), '0bec147ce327f7287cd5d6a02f6c303295a5f51c78da9f43a9a3be6e981d219f');
   const { unapprovedIssueIds, ...frozenMu } = mu;
@@ -289,7 +294,13 @@ test('tie-in reader links keep the exact matched viewers and preserve every earl
   const modernPending = unapprovedIssueIds.filter((id) => installmentIds.has(id));
   assert.equal(digest(modernPending), 'cc476d8503549aa3411db8603c92dba8a122ba5fa08c65a2ba1c017fa8499725');
   assert.ok([55543, 57864, 57866, 57868, 57875].every((id) => !earlyTimelineIds.has(id) && !mu.issueIds.includes(id)));
-  assert.deepEqual(unapprovedIssueIds.filter((id) => !installmentIds.has(id)), [
+  const empyrePending = new Set([
+    77220, 85304, 86495, 86496, 86497, 87440, 88624, 88628, 88629, 88630, 88631, 88667,
+  ]);
+  const empyreIds = new Set(read('empyre.json').items.map(({ issueId }) => issueId));
+  assert.deepEqual(unapprovedIssueIds.filter((id) => empyreIds.has(id)), [...empyrePending]);
+  assert.ok([...empyrePending].every((id) => !mu.issueIds.includes(id) && !empyreViewers.has(id)));
+  assert.deepEqual(unapprovedIssueIds.filter((id) => !installmentIds.has(id) && !empyrePending.has(id)), [
     17293, 42667, 42668, 51951, 51955, 55498, 55499, 55543, 57864, 57866, 57868, 57875,
     60666, 60667, 62843, 101513, 101520, 129237,
   ]);

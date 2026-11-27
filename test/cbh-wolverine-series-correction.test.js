@@ -4,6 +4,7 @@ import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 import { beforeFirstInstallmentManifest } from './helpers/first-installment-history.mjs';
+import { beforeLaterModernTimelineManifest } from './helpers/later-modern-timeline-history.mjs';
 import {
   assertApprovedRelationshipReview, manifestEntryForMapping, mergePublishedWolverineCorrection,
 } from '../scripts/author-cbh-packet.mjs';
@@ -286,7 +287,7 @@ test('the published Wolverine successor binds its own reviews without changing t
   assert.equal(approvalDigestFor(nextMapping.relationshipReview), correctionReview.approvalDigest);
   assert.equal(digestCanonicalJson(nextPacket.sourceGapResolutions), transitionLedgerDigest);
   assert.deepEqual(sourceCountsForPacket(nextPacket), wolverineSuccessorLedger.sourceCounts);
-  assert.deepEqual(beforeFirstInstallmentManifest(manifest),
+  assert.deepEqual(beforeFirstInstallmentManifest(beforeLaterModernTimelineManifest(manifest)),
     JSON.parse(readPreSuccessorWolverinePublication('src/data/curated-lists.json')));
   assert.deepEqual(mergePublishedWolverineCorrection(manifest, manifestEntryForMapping(nextMapping),
     nextPacket.insertionAnchor), manifest);
@@ -308,7 +309,7 @@ test('the separate Wolverine v2 plan reproduces the two-slot checklist and paylo
   const { planDigest, ...plan } = await readJson(
     `scripts/data/cbh-source-ledgers/${id}-identity-correction-v2/gap-delta-plan.json`,
   );
-  assert.equal(planDigest, 'd63037b7f6f45097f51ae686840dde9b7cbb03acbc6a871ca263140ffa265d18');
+  assert.equal(planDigest, 'b9d86151c377769dcd663f9c0866cc69cbf3b768b93187ae0247292c665f8d61');
   assert.equal(plan.payloadSha256, wolverineSuccessorLedger.correctedCandidate.payloadSha256);
   assert.equal(plan.checklistSha256, wolverineSuccessorLedger.correctedCandidate.checklistSha256);
   assert.equal(plan.vectorDigest, wolverineSuccessorLedger.correctedCandidate.vectorDigest);

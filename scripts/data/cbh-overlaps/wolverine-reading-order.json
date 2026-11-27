@@ -2,7 +2,7 @@
   "candidateId": "wolverine-reading-order",
   "packetDigest": "6abc33147a72b772a8a44ff3b27b36767180ae7445b95590c68457bcfe611c44",
   "mappingDigest": "769ff069b645aa088a074d4468f6d6377f1eb83e14bc43b6b6cd7e2a8fc54071",
-  "libraryDigest": "951de1b0cca7db74e970a610a002be6a75aff5dbc16228b8cb48e26588b79902",
+  "libraryDigest": "f5f7caf674935dfe8cc466cdc1190f8acb9bab88d2be4d4839db743c620f9415",
   "peerDigests": {
     "avengers-standoff": "8f8e5165eb7e7ca16ac804399e5b1bbf90f4a7a9e17f323f3d92d9406ddc5f53",
     "civil-war-ii": "8284c1e98edfde45c89d0ba65a69080a249a0be603456210a17381d85452d026",
@@ -21,7 +21,7 @@
     "excludedSourceRowCount": 37
   },
   "candidateCount": 536,
-  "comparisonCount": 279,
+  "comparisonCount": 281,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -213,6 +213,12 @@
     },
     {
       "orderId": "blood-and-thunder",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "blood-hunt",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -633,6 +639,12 @@
         "55451"
       ],
       "relationship": "partial"
+    },
+    {
+      "orderId": "empyre",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
     },
     {
       "orderId": "essential-avengers",
@@ -2889,5 +2901,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "94463d3250286641dcea66fbdbf4d1db35cb8eefff6bfbff3abd6f958a144b1f"
+  "reportDigest": "9997431c1f31e9ff51cde066209c90c27746d33579413e16059afeaab3f159dd"
 }

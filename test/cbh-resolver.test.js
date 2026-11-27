@@ -11,13 +11,58 @@ import {
   shouldPreserveApprovedMapping,
 } from '../scripts/prepare-cbh-batch.mjs';
 import {
+  assertMappingMatchesPacketOccurrences,
+  validateMappingDigest,
   packetDigestFor,
   validateFrozenPacket,
   validateInventoryState,
 } from '../scripts/lib/cbh-inventory.mjs';
-import { resolveMapping } from '../scripts/resolve-cbh-order.mjs';
+import { mappedTrackingId } from '../scripts/lib/cbh-service-identity.mjs';
+import { buildCandidateMetadataLookup, resolveMapping } from '../scripts/resolve-cbh-order.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+
+test('Empyre resolves Swordsman without a provider binding and keeps it through approval', async () => {
+  const mapping = JSON.parse(readFileSync(path.join(root, 'scripts', 'data', 'cbh-mappings', 'empyre.json'), 'utf8'));
+  const packet = JSON.parse(readFileSync(path.join(root, 'scripts', 'data', 'cbh-packets', 'empyre.json'), 'utf8'));
+  validateFrozenPacket(packet, { expectedId: 'empyre' });
+  assert.equal(mapping.packetDigest, packet.packetDigest);
+  validateMappingDigest(mapping);
+  assertMappingMatchesPacketOccurrences(packet, mapping);
+  assert.deepEqual(mapping.rows.map((entry) => entry.sourcePosition), Array.from({ length: 36 }, (_, index) => index + 1));
+  assert.ok(mapping.rows.every((entry) => entry.resolutionStatus === 'exact'));
+  assert.deepEqual(packet.insertionAnchor, { beforeId: 'x-of-swords' });
+  assert.ok(packet.excludedSourceReferences.includes('Next: King in Black'));
+
+  const [swordsman, ...otherServiceRows] = mapping.rows.filter((entry) => entry.serviceIdentity);
+  assert.equal(otherServiceRows.length, 0);
+  assert.deepEqual([swordsman.sourcePosition, swordsman.sourceIssueReference], [7, 'Lords of Empyre: Swordsman #1']);
+  assert.equal(swordsman.serviceIdentity.appViewer, '32665');
+  assert.equal(swordsman.serviceIdentity.providerIssueId, null);
+  assert.equal(swordsman.candidateIssueId, null);
+  assert.equal(swordsman.selectedIssueId, null);
+  assert.deepEqual(swordsman.candidateIssueIds, []);
+  assert.equal(mappedTrackingId(swordsman), -8000000000032665);
+  assert.match(swordsman.note, /88682.*historical provenance only/);
+
+  const lookup = buildCandidateMetadataLookup(mapping);
+  const selected = mapping.rows.filter((entry) => !entry.serviceIdentity);
+  assert.equal(selected.length, 35);
+  for (const entry of selected) {
+    const settled = resolveRow(entry, entry.candidateIssueIds.map((id) => lookup(id)));
+    assert.equal(settled.resolutionStatus, 'exact');
+    assert.equal(String(entry.selectedIssueId), settled.selectedIssueId);
+    assert.deepEqual(entry.selectedIssueIds, [entry.selectedIssueId]);
+  }
+  validateResolvedMapping(mapping.rows);
+  assert.equal(mapping.reviewStatus, 'approved');
+  assert.equal(mapping.relationshipReview.mappingDigest, mapping.mappingDigest);
+  const resolved = await resolveMapping(mapping);
+  const keys = resolved.rows.map(mappedTrackingId);
+  assert.deepEqual(keys, mapping.rows.map(mappedTrackingId));
+  assert.equal(new Set(keys).size, 36);
+  assert.ok(!keys.includes(88682));
+});
 
 function frozenPacket(overrides = {}) {
   const id = overrides.id ?? 'future-event';

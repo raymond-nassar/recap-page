@@ -361,16 +361,24 @@ export function buildMarkdown(mapping, options) {
       rowsBySourcePosition.set(gap.sourcePosition, { kind: 'gap', value: gap });
     }
   }
-  const earlySource = earlyOfflineOrderSource(mapping);
+  const offlineOrderSource = earlyOfflineOrderSource(mapping) ?? (mapping.id === 'blood-hunt'
+    ? `The order follows the supplied checklist transcription attributed to [Comic Book Herald's Blood Hunt guide](${mapping.sourceUrl}), received ${mapping.sourceRetrievedAt}, not a fresh page retrieval.`
+    : mapping.id === 'empyre'
+      ? `The order follows the retained [Comic Book Herald Empyre checklist](${mapping.sourceUrl}), retrieved ${mapping.sourceRetrievedAt}.`
+      : null);
   const trail = [
     `Generated for this project by scripts/author-cbh-packet.mjs from the reviewed and frozen ${mapping.id} issue mapping.`,
-    earlySource ?? (Object.hasOwn(mapping, 'sourceExpansion')
-      ? `Comic Book Herald presents collected editions rather than a complete issue sequence. The anthology expansion follows the numbered [${escapeLinkText(mapping.sourceExpansion.name, true)}](${mapping.sourceExpansion.url}) index, retrieved ${mapping.sourceExpansion.retrievedAt}; its order is not verified as the physical order in the book.`
-      : `The mapping transcribes only issue-bearing references from Comic Book Herald's exact guide, expands its ranges, and preserves its source order.`),
+    ...(Object.hasOwn(mapping, 'sourceExpansion')
+      ? [
+        `Comic Book Herald presents collected editions rather than a complete issue sequence. The anthology expansion follows the numbered [${escapeLinkText(mapping.sourceExpansion.name, true)}](${mapping.sourceExpansion.url}) index, retrieved ${mapping.sourceExpansion.retrievedAt}; its order is not verified as the physical order in the book.`,
+      ]
+      : [
+        offlineOrderSource ?? `The mapping transcribes only issue-bearing references from Comic Book Herald's exact guide, expands its ranges, and preserves its source order.`,
+      ]),
     ...(repeatedCount === 0 ? [] : [
       `The frozen source records ${mapping.sourceOccurrenceCount} issue occurrences, including ${repeatedCount} intentional ${repeatedCount === 1 ? 'repeat' : 'repeats'}; this checklist lists each ${omitGaps ? 'resolved' : 'distinct'} comic once at its ${mapping.id === 'road-to-secret-empire' ? 'first eligible whole occurrence, not its earlier contextual mentions' : 'first source occurrence'}.`,
     ]),
-    earlySource
+    offlineOrderSource
       ? 'No source commentary or images are copied. Provider identities and available issue details use retained provider and published data. Service-only identities and viewer addresses use the offline export credited to werhsdnas of the Continuity Guide Discord.'
       : 'No source commentary or images are copied. Issue identities, titles, and exact links come from Marvel metadata or reviewed official Marvel issue pages after the packet resolution and overlap gates passed.',
     'See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permission boundary and review method.',
@@ -609,7 +617,7 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
   includeLater = false,
   publicationRoot = ROOT,
   inventoryPaths = [
-    'cbh-modern-inventory.json',
+    'cbh-modern-inventory.json', 'cbh-supplemental-inventory.json',
     'cbh-character-inventory.json',
     'cbh-ultimate-inventory.json',
     'cbh-young-readers-inventory.json',

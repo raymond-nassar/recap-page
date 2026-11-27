@@ -147,6 +147,35 @@ test('1601 saved progress for a viewer-only comic survives load and backup, one 
   assert.equal(appViewerFor(fromBackup.issues[key]), '21714');
 });
 
+test('Blood Hunt shares the existing Amazing Spider-Man #49 progress and reader link', () => {
+  const read = (file) => JSON.parse(readFileSync(new URL(`../src/data/${file}`, import.meta.url), 'utf8'));
+  const published = read('amazing_spider_man_reading_order_modern_marvel_era.json').items[2066];
+  const bloodHunt = read('blood_hunt.json').items[9];
+  assert.equal(bloodHunt.issueId, 109636);
+  assert.equal(bloodHunt.issueId, published.issueId);
+  assert.equal(bloodHunt.seriesId, 32866);
+  assert.equal(bloodHunt.seriesId, published.seriesId);
+  assert.equal(String(bloodHunt.onSale).slice(0, 10), '2024-05-08');
+  assert.equal(String(bloodHunt.onSale).slice(0, 10), String(published.onSale).slice(0, 10));
+  assert.equal(appLinkFor(bloodHunt), viewerUrl(35682));
+  assert.equal(taggedViewer(bloodHunt), null);
+
+  for (const [first, second] of [[published, bloodHunt], [bloodHunt, published]]) {
+    let state = createList(createEmptyState(), { id: 'first', name: 'First import' });
+    state = addIssuesToList(state, 'first', [first]).state;
+    state = markRead(state, first.issueId, true, 1);
+    state = setIssueNote(state, first.issueId, 'Shared reading note');
+    state = createList(state, { id: 'second', name: 'Second import' });
+    state = addIssuesToList(state, 'second', [second]).state;
+    const backup = validateBackup(JSON.parse(JSON.stringify(exportBackup(state))));
+    const restored = backup.state ?? backup;
+    assert.deepEqual(restored.lists.first.itemIds, [published.issueId]);
+    assert.deepEqual(restored.lists.second.itemIds, [published.issueId]);
+    assert.equal(isRead(restored, second.issueId), true);
+    assert.equal(restored.notes[published.issueId], 'Shared reading note');
+  }
+});
+
 test('1601 no shipped guide gives a comic with an old number a second viewer-only checkmark', () => {
   const owned = new Set(marvelComicsAppLinkPairs.map(([, viewer]) => String(viewer)));
   const dir = new URL('../src/data/', import.meta.url);

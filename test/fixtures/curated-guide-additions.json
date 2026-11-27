@@ -173,6 +173,24 @@
       "surface": "creators"
     },
     {
+      "id": "empyre",
+      "insertionAnchor": {
+        "beforeId": "x-of-swords"
+      },
+      "rowCount": 36,
+      "emptyRecordCount": 13,
+      "surface": "modern-timeline"
+    },
+    {
+      "id": "blood-hunt",
+      "insertionAnchor": {
+        "beforeId": "captain-america-2025-our-secret-wars"
+      },
+      "rowCount": 55,
+      "emptyRecordCount": 28,
+      "surface": "modern-timeline"
+    },
+    {
       "id": "avengers-standoff",
       "insertionAnchor": { "beforeId": "apocalypse-wars" },
       "rowCount": 26,

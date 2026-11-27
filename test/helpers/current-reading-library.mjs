@@ -42,12 +42,11 @@ assert.ok(Array.isArray(curatedGuideRegistry.guides));
 export const registeredCuratedGuides = curatedGuideRegistry.guides.map((entry) => {
   // A gap-tolerant guide keeps its open gaps in place as placeholders, which count toward the
   // payload's items but not toward its complete ones, so it states how many of its rows they are.
-  const { emptyRecordCount = 0, ...guide } = entry;
-  const keys = Object.keys(guide).sort();
-  assert.ok([
-    'id,insertionAnchor,rowCount', 'id,insertionAnchor,placeholderRowCount,rowCount',
-    'id,insertionAnchor,rowCount,surface', 'id,insertionAnchor,placeholderRowCount,rowCount,surface',
-  ].includes(keys.join(',')));
+  // A row whose optional listing fields are absent is counted the same way, as a limited record.
+  const keys = Object.keys(entry);
+  assert.ok(['id', 'insertionAnchor', 'rowCount'].every((key) => keys.includes(key))
+    && keys.every((key) => ['id', 'insertionAnchor', 'rowCount', 'placeholderRowCount', 'emptyRecordCount', 'surface']
+      .includes(key)));
   assert.ok(!Object.hasOwn(entry, 'surface') || ['modern-timeline', 'new-to-comics', 'creators'].includes(entry.surface),
     'A curated addition may explicitly join Modern Timeline, the newcomer guide or Creators.');
   assert.ok(typeof entry.id === 'string' && entry.id);
@@ -55,8 +54,9 @@ export const registeredCuratedGuides = curatedGuideRegistry.guides.map((entry) =
   assert.ok(!Object.hasOwn(entry, 'placeholderRowCount')
     || (Number.isInteger(entry.placeholderRowCount) && entry.placeholderRowCount > 0
       && entry.placeholderRowCount < entry.rowCount));
-  assert.ok(Number.isInteger(emptyRecordCount) && emptyRecordCount >= 0
-    && emptyRecordCount + (entry.placeholderRowCount ?? 0) < entry.rowCount);
+  assert.ok(!Object.hasOwn(entry, 'emptyRecordCount')
+    || (Number.isInteger(entry.emptyRecordCount) && entry.emptyRecordCount > 0
+      && entry.emptyRecordCount + (entry.placeholderRowCount ?? 0) < entry.rowCount));
   return entry;
 });
 assert.equal(new Set([...registeredOwnerContracts, ...registeredCuratedGuides]
@@ -89,8 +89,12 @@ const addedRows = registeredOwnerContracts.reduce((total, contract) => {
   + registeredCuratedGuides.reduce((total, guide) => total + guide.rowCount, 0);
 const addedPlaceholderRows = registeredCuratedGuides
   .reduce((total, guide) => total + (guide.placeholderRowCount ?? 0), 0);
-export const curatedEmptyRecords = registeredCuratedGuides.filter((entry) => entry.emptyRecordCount > 0);
-const addedEmptyRows = curatedEmptyRecords.reduce((total, guide) => total + guide.emptyRecordCount, 0);
+const limitedGuides = registeredCuratedGuides.filter((guide) => Object.hasOwn(guide, 'emptyRecordCount'));
+export const registeredCuratedEmptyRecords = Object.freeze({
+  rows: limitedGuides.reduce((total, guide) => total + guide.emptyRecordCount, 0),
+  entries: limitedGuides.length,
+  bothEntries: limitedGuides.filter((guide) => Object.hasOwn(guide, 'placeholderRowCount')).length,
+});
 const mcuContracts = registeredOwnerAdditionContracts.filter((contract) => contract.surface === undefined);
 export const registeredEventContracts = registeredOwnerAdditionContracts
   .filter((contract) => contract.surface === 'modern-timeline');
@@ -121,13 +125,14 @@ export const currentReadingCensus = Object.freeze({
     + installmentPartIds.length,
   modernTimeline: 148 + registeredEventContracts.length + curatedEventCount - 1 + 2,
   modernTimelineStories: 144 + registeredEventContracts.length + curatedEventCount - 1 + 2,
-  complete: baseline.payloadCounts.complete + addedRows - addedPlaceholderRows - addedEmptyRows + spiderManSelectionItemDelta
+  complete: baseline.payloadCounts.complete + addedRows - addedPlaceholderRows - registeredCuratedEmptyRecords.rows
+    + spiderManSelectionItemDelta
     + amazingSpiderManSupplementDelta + wolverineCorrectionItemDelta + thorCorrectionItemDelta
     + ultimateSelectionDelta - ultimateSelectionEmptyDelta + xmenFirstClassDelta + ultimateIntroCorrectionDelta + tieInRows - 2
     + xmenEraItemDelta - xmenEraPlaceholderDelta + wolverineGapResolutions.length
     + identityRevisions.guides.filter((entry) => entry.placeholderReplacement)
       .reduce((total, entry) => total + entry.issueIds.length, 0) + installmentCompleteDelta,
-  emptyRecords: 229 + addedEmptyRows + xgoldCorrections.length,
+  emptyRecords: 229 + registeredCuratedEmptyRecords.rows + xgoldCorrections.length,
   totalItems: baseline.payloadCounts.total + addedRows + spiderManSelectionItemDelta
     + amazingSpiderManSupplementDelta + wolverineCorrectionItemDelta + thorCorrectionItemDelta
     + ultimateSelectionDelta + xmenFirstClassDelta + ultimateIntroCorrectionDelta + tieInRows - 2 + xmenEraItemDelta

@@ -36963,12 +36963,12 @@
   "relationshipReview": {
     "authorityType": "stronger-model",
     "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer",
-    "reviewedAt": "2026-11-26T15:56:20-08:00",
-    "rationale": "I evaluated the five real pending mappings, the published library and its matching visible and union reports. Shared or contained sources retain their own order and share only exact identities. This is approval of these relationships on this base, not human acceptance or proof of saved-data migration.",
+    "reviewedAt": "2026-11-27T02:45:50.294Z",
+    "rationale": "I reviewed the complete source, visible and combined rosters after Empyre and Blood Hunt were published. Neither adds a shared identity. All previous dispositions have the same editions, relationship and shared identities on this library. The two Wolverine replacements still share only the intended progress with Secret Empire.",
     "packetDigest": "6abc33147a72b772a8a44ff3b27b36767180ae7445b95590c68457bcfe611c44",
     "mappingDigest": "769ff069b645aa088a074d4468f6d6377f1eb83e14bc43b6b6cd7e2a8fc54071",
-    "reportDigest": "94463d3250286641dcea66fbdbf4d1db35cb8eefff6bfbff3abd6f958a144b1f",
-    "libraryDigest": "951de1b0cca7db74e970a610a002be6a75aff5dbc16228b8cb48e26588b79902",
+    "reportDigest": "9997431c1f31e9ff51cde066209c90c27746d33579413e16059afeaab3f159dd",
+    "libraryDigest": "f5f7caf674935dfe8cc466cdc1190f8acb9bab88d2be4d4839db743c620f9415",
     "peerDigests": {
       "avengers-standoff": "8f8e5165eb7e7ca16ac804399e5b1bbf90f4a7a9e17f323f3d92d9406ddc5f53",
       "civil-war-ii": "8284c1e98edfde45c89d0ba65a69080a249a0be603456210a17381d85452d026",
@@ -36979,12 +36979,12 @@
       "world-war-hulk": "f28eac245c516d7caed05a7147bdb834cf180925e6c195c48028ffa3337cddd6"
     },
     "factualReview": {
-      "independentReviewSha256": "23cb97909838d13b1c733a71076b816efda8ea50e06c341ec8fedc07efc00412",
-      "sourceReportReceipt": "03e3137bc810e0f5f10fecfaa79d4f3a7f29541d0205f8b39958d7ab3f851838",
+      "independentReviewSha256": "9579254e080229edf283c4fed31d68dffd19fa1244702b8c1b4b052b0ec363a5",
+      "sourceReportReceipt": "3a557eb0d6387c4e1256220249022c0f311790b2ae67afbc1938d230531b3106",
       "coverage": {
-        "author": "40a97c87a7f7831b7f17d34f03af71f9f1e89ab30b21ca5b67422e24ab04ea85",
-        "visible": "7e6e8f0a65a9e873d388e0f6dc28c89d60e31ed238ecaa47f397d22d7f7762b6",
-        "union": "4b4fb95a0e2ff4395c0a59d5bb5b9b7d1842706e5697893fb2be5bb7facb0b23"
+        "author": "976739eb7cb1229a8847c9b570b213880bc6adb2b7c9412be5b26b0e91bd0566",
+        "visible": "8fbf6ed521049778f62692ee8f071a6f14232b2661eff0d2ffe79f82b14f5ce9",
+        "union": "7bfe694ad51f87efcd85cb80c2608e124dc5b18ec0f1985841bab39722224ec7"
       }
     },
     "dispositions": [
@@ -36994,7 +36994,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37005,7 +37005,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37016,7 +37016,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37027,7 +37027,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37038,7 +37038,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37049,7 +37049,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37060,7 +37060,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37071,7 +37071,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37086,7 +37086,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Amazing Spider-Man are distinct reading sequences. The 3 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -37097,7 +37097,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37108,7 +37108,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37136,7 +37136,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Ant-Man are distinct reading sequences. The 16 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -37153,7 +37153,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and X-Men: Apocalypse Wars are distinct reading sequences. The 5 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -37164,7 +37164,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37175,7 +37175,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37186,7 +37186,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37197,7 +37197,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37208,7 +37208,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37219,7 +37219,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37230,7 +37230,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37243,7 +37243,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Avengers & X-Men: Axis are distinct reading sequences. The 1 shared identity keeps its proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -37256,7 +37256,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Ultron are distinct reading sequences. The 1 shared identity keeps its proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -37267,7 +37267,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37291,7 +37291,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Black Widow are distinct reading sequences. The 12 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -37302,8 +37302,19 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy"
+      },
+      {
+        "orderId": "blood-hunt",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
+        "rationale": "The two source orders share no tracking identity.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
       },
@@ -37313,7 +37324,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37324,7 +37335,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37335,7 +37346,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37346,7 +37357,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37357,7 +37368,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37368,7 +37379,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37382,7 +37393,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Captain Marvel / Ms. Marvel are distinct reading sequences. The 2 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -37393,7 +37404,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37404,7 +37415,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37415,7 +37426,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37426,7 +37437,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37445,7 +37456,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Civil War: Avengers and Aftermath Reading Order are distinct reading sequences. The 7 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -37456,7 +37467,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37469,7 +37480,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Civil War II are distinct reading sequences. The 1 shared identity keeps its proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -37521,7 +37532,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Civil War to Secret Invasion are distinct reading sequences. The 40 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -37532,7 +37543,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37543,7 +37554,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37554,7 +37565,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37565,7 +37576,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37576,7 +37587,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37593,7 +37604,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Daredevil are distinct reading sequences. The 5 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -37604,7 +37615,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37615,7 +37626,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37626,7 +37637,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37637,7 +37648,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37648,7 +37659,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37659,7 +37670,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37673,7 +37684,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and The Best Deadpool Comics To Start With! are distinct reading sequences. The 2 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -37684,7 +37695,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37695,7 +37706,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37706,7 +37717,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37717,7 +37728,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37728,7 +37739,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37748,7 +37759,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Doctor Strange are distinct reading sequences. The 8 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -37759,7 +37770,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37770,7 +37781,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37781,7 +37792,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37909,10 +37920,21 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Emma Frost are distinct reading sequences. The 116 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
+      },
+      {
+        "orderId": "empyre",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
+        "rationale": "The two source orders share no tracking identity.",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy"
       },
       {
         "orderId": "essential-avengers",
@@ -37920,7 +37942,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37931,7 +37953,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37952,7 +37974,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Falcon / Sam Wilson / Captain America are distinct reading sequences. The 9 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -37963,7 +37985,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37974,7 +37996,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -37989,7 +38011,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Fall of the Mutants are distinct reading sequences. The 3 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -38000,7 +38022,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38013,7 +38035,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Fantastic Four are distinct reading sequences. The 1 shared identity keeps its proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -38031,7 +38053,7 @@
         ],
         "relationship": "existing-subset",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "All 6 comics in Fatal Attractions were already present in the published Wolverine guide before either replacement. Retain this shorter independent selection and its issue order; neither corrected slot creates this containment.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -38042,7 +38064,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38053,7 +38075,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38073,7 +38095,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Marvel Generations are distinct reading sequences. The 8 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -38084,7 +38106,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38102,7 +38124,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Guardians of the Galaxy are distinct reading sequences. The 6 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -38131,7 +38153,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Hawkeye (Clint Barton and Kate Bishop) are distinct reading sequences. The 17 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -38142,7 +38164,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38164,7 +38186,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and The Heroic Age: An Avengers Reading List are distinct reading sequences. The 10 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -38175,7 +38197,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38186,7 +38208,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38199,7 +38221,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Jonathan Hickman's X-Men are distinct reading sequences. The 1 shared identity keeps its proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -38210,7 +38232,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38269,7 +38291,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Hope Summers are distinct reading sequences. The 47 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -38289,7 +38311,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and House of M: Main Series and Branded Tie-Ins are distinct reading sequences. The 8 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -38309,7 +38331,7 @@
         ],
         "relationship": "existing-subset",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "All 8 comics in House of M: Main Series Only were already present in the published Wolverine guide before either replacement. Retain this shorter independent selection and its issue order; neither corrected slot creates this containment.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -38345,7 +38367,7 @@
         ],
         "relationship": "existing-subset",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "All 24 comics in Hunt for Wolverine were already present in the published Wolverine guide before either replacement. Retain this shorter independent selection and its issue order; neither corrected slot creates this containment.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -38356,7 +38378,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38367,7 +38389,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38378,7 +38400,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38396,7 +38418,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Infinity Countdown and Infinity Wars are distinct reading sequences. The 6 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -38407,7 +38429,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38432,7 +38454,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Inhumans vs. X-Men are distinct reading sequences. The 13 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -38450,7 +38472,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Iron Fist are distinct reading sequences. The 6 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -38461,7 +38483,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38488,7 +38510,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Iron Man are distinct reading sequences. The 15 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -38499,7 +38521,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38510,7 +38532,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38521,7 +38543,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38532,7 +38554,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38543,7 +38565,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38554,7 +38576,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38574,7 +38596,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Loki are distinct reading sequences. The 8 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -38699,7 +38721,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Magneto are distinct reading sequences. The 113 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -38710,7 +38732,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38721,7 +38743,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38732,7 +38754,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38743,7 +38765,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38754,7 +38776,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38765,7 +38787,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38776,7 +38798,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38787,7 +38809,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38798,7 +38820,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38862,7 +38884,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Marvel Knights to Planet X are distinct reading sequences. The 52 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -38873,7 +38895,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38884,7 +38906,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38895,7 +38917,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38906,7 +38928,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38917,7 +38939,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38930,7 +38952,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Marvel Zombies are distinct reading sequences. The 1 shared identity keeps its proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -38941,7 +38963,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38964,7 +38986,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Phoenix are distinct reading sequences. The 11 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -38975,7 +38997,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38986,7 +39008,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -38997,7 +39019,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39008,7 +39030,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39019,7 +39041,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39041,7 +39063,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and MCU Prep: Avengers: Age of Ultron (2015) are distinct reading sequences. The 10 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -39052,7 +39074,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39063,7 +39085,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39074,7 +39096,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39085,7 +39107,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39096,7 +39118,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39107,7 +39129,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39118,7 +39140,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39129,7 +39151,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39151,7 +39173,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and MCU Prep: Deadpool & Wolverine are distinct reading sequences. The 10 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -39162,7 +39184,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39173,7 +39195,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39184,7 +39206,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39195,7 +39217,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39206,7 +39228,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39217,7 +39239,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39228,7 +39250,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39239,7 +39261,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39250,7 +39272,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39261,7 +39283,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39272,7 +39294,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39283,7 +39305,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39294,7 +39316,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39305,7 +39327,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39316,7 +39338,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39327,7 +39349,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39338,7 +39360,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39349,7 +39371,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39360,7 +39382,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39377,7 +39399,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Mephisto are distinct reading sequences. The 5 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -39400,7 +39422,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and X-Men: Messiah Complex are distinct reading sequences. The 11 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -39419,7 +39441,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and X-Men: Messiah War are distinct reading sequences. The 7 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -39430,7 +39452,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39441,7 +39463,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39454,7 +39476,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Spider-Man: Miles Morales are distinct reading sequences. The 1 shared identity keeps its proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -39465,7 +39487,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39613,7 +39635,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Modern X-Men Fast Track are distinct reading sequences. The 136 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -39624,7 +39646,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39635,7 +39657,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39646,7 +39668,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39657,7 +39679,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39668,7 +39690,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39679,7 +39701,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39690,7 +39712,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39719,7 +39741,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Namor (Sub-Mariner) are distinct reading sequences. The 17 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -39730,7 +39752,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39750,7 +39772,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and X-Men: Necrosha are distinct reading sequences. The 8 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -39761,7 +39783,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39772,7 +39794,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39786,7 +39808,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Nick Fury and S.H.I.E.L.D. are distinct reading sequences. The 2 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -39814,7 +39836,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Best Nightcrawler Comics Reading List are distinct reading sequences. The 16 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -39825,7 +39847,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39836,7 +39858,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39847,7 +39869,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39858,7 +39880,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39869,7 +39891,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39883,7 +39905,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Phalanx Covenant are distinct reading sequences. The 2 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -39897,7 +39919,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Phalanx are distinct reading sequences. The 2 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -39917,7 +39939,7 @@
         ],
         "relationship": "existing-subset",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "All 8 comics in Phoenix Saga were already present in the published Wolverine guide before either replacement. Retain this shorter independent selection and its issue order; neither corrected slot creates this containment.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -39928,7 +39950,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39939,7 +39961,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39950,7 +39972,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -39973,7 +39995,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Professor X (Charles Xavier) are distinct reading sequences. The 11 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -39987,7 +40009,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Punisher are distinct reading sequences. The 2 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -40002,7 +40024,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Hulk (and She-Hulk, Red Hulk) are distinct reading sequences. The 3 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -40013,7 +40035,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40024,7 +40046,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40035,7 +40057,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40046,7 +40068,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40057,7 +40079,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40068,7 +40090,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40079,7 +40101,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40090,7 +40112,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40101,7 +40123,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40112,7 +40134,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40137,7 +40159,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and X-Men: Second Coming are distinct reading sequences. The 13 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -40151,7 +40173,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Both sequences contain the same two X-Men Gold editions; the event positions and the two existing Wolverine slots have exact service witnesses. Keep each occurrence in its source order with the same tracking identity. Installing shared progress is separately gated by the two-slot compatibility proof.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -40162,7 +40184,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40173,7 +40195,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40184,7 +40206,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40197,7 +40219,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Secret Wars (2015): Event and tie-ins are distinct reading sequences. The 1 shared identity keeps its proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -40210,7 +40232,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Secret Wars II are distinct reading sequences. The 1 shared identity keeps its proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -40221,7 +40243,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40239,7 +40261,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Shadow King are distinct reading sequences. The 6 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -40250,7 +40272,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40263,7 +40285,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Shang-Chi / Master of Kung Fu are distinct reading sequences. The 1 shared identity keeps its proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -40274,7 +40296,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40285,7 +40307,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40296,7 +40318,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40314,7 +40336,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Silver Surfer are distinct reading sequences. The 6 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -40325,7 +40347,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40336,7 +40358,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40347,7 +40369,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40358,7 +40380,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40369,7 +40391,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40380,7 +40402,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40391,7 +40413,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40402,7 +40424,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40413,7 +40435,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40424,7 +40446,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40435,7 +40457,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40446,7 +40468,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40457,7 +40479,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40468,7 +40490,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40479,7 +40501,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40490,7 +40512,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40533,7 +40555,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Apocalypse / X-Men: Age of Apocalypse are distinct reading sequences. The 31 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -40546,7 +40568,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and X-Men: Onslaught are distinct reading sequences. The 1 shared identity keeps its proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -40557,7 +40579,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40568,7 +40590,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40579,7 +40601,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40590,7 +40612,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40613,7 +40635,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Vision are distinct reading sequences. The 11 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -40624,7 +40646,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40635,7 +40657,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40646,7 +40668,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40657,7 +40679,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40668,7 +40690,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40679,7 +40701,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40697,7 +40719,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Venom are distinct reading sequences. The 6 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -40708,7 +40730,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40719,7 +40741,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40730,7 +40752,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40741,7 +40763,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40758,7 +40780,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and White Tiger: Ava Ayala are distinct reading sequences. The 5 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -40778,7 +40800,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Bucky Barnes / Winter Soldier are distinct reading sequences. The 8 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -40799,7 +40821,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Wolverine Goes to Hell are distinct reading sequences. The 9 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -40810,7 +40832,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40821,7 +40843,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40832,7 +40854,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40868,7 +40890,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and X-23 (Laura Kinney) are distinct reading sequences. The 24 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -40882,7 +40904,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and X-Cutioner's Song are distinct reading sequences. The 2 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -40961,7 +40983,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and X-Force are distinct reading sequences. The 67 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -40972,7 +40994,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -40988,7 +41010,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and X-Men: Battle of the Atom are distinct reading sequences. The 4 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -40999,7 +41021,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -41023,7 +41045,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and X-Men: Divided We Stand are distinct reading sequences. The 12 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -41040,7 +41062,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and X-Men: Extermination are distinct reading sequences. The 5 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -41051,7 +41073,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -41067,7 +41089,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and X-Men: Manifest Destiny are distinct reading sequences. The 4 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -41078,7 +41100,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -41098,7 +41120,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and X-Men: Regenesis are distinct reading sequences. The 8 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -41109,7 +41131,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -41120,7 +41142,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -41131,7 +41153,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -41142,7 +41164,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -41153,7 +41175,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -41164,7 +41186,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -41212,7 +41234,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and X-Men: Claremont Reading Order are distinct reading sequences. The 36 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -41230,7 +41252,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and X-Men: Silver Age Reading Order are distinct reading sequences. The 6 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -41243,7 +41265,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Wolverine and Young Avengers are distinct reading sequences. The 1 shared identity keeps its proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -41257,6 +41279,6 @@
       "repeatedSourceReferenceCount": 19,
       "excludedSourceRowCount": 37
     },
-    "approvalDigest": "c153fb7ca6d41f0266c244961028a83d60fa836fd623570225bcb050e2b5207f"
+    "approvalDigest": "04a640442f7cd76f1a831113d84304d3f86d4597d68015b34ddd70e1547ae615"
   }
 }

@@ -2089,8 +2089,8 @@
     "fp": "ffcf7e8ddf1cdadb",
     "head": "return {"
   },
-  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:1916-1969|0": {
-    "anchor": "src/js/lib/catalog.js:1916-1969",
+  "docs/ARCHITECTURE_REFERENCE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:1917-1970|0": {
+    "anchor": "src/js/lib/catalog.js:1917-1970",
     "fp": "2993ccc8e75ae0bb",
     "head": "// The shelf placement map deliberately keeps only the first path that reaches a story. This model"
   },
@@ -5919,9 +5919,9 @@
     "fp": "3a6bffed9d7bfbb0",
     "head": "export function sortCatalog(lists) {"
   },
-  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/current-reading-library.mjs:20-138|0": {
-    "anchor": "test/helpers/current-reading-library.mjs:20-138",
-    "fp": "fbf6db433ddf2d5a",
+  "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/current-reading-library.mjs:20-143|0": {
+    "anchor": "test/helpers/current-reading-library.mjs:20-143",
+    "fp": "59f4084f4c466d6c",
     "head": "const { captureSha256, ...baseline } = JSON.parse(readFileSync("
   },
   "docs/BATCH_READING_LIST_DELIVERY.md|gate-non-mcu-regression-compatibility-early|test/helpers/owner-delivery-contract.mjs:295-324|0": {
@@ -6029,13 +6029,13 @@
     "fp": "ff9ba71742d8b8c0",
     "head": "\"chapterCount\": 78,"
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:18895-19032|0": {
-    "anchor": "src/data/catalog.json:18895-19032",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:18967-19104|0": {
+    "anchor": "src/data/catalog.json:18967-19104",
     "fp": "364a367730afd192",
     "head": "\"paths\": ["
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:11608-11659|0": {
-    "anchor": "src/data/curated-lists.json:11608-11659",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:11661-11712|0": {
+    "anchor": "src/data/curated-lists.json:11661-11712",
     "fp": "3cd2da980c5c514b",
     "head": "\"paths\": ["
   },
@@ -6234,8 +6234,8 @@
     "fp": "55a4cabc45fcfd0d",
     "head": "webView.reload()"
   },
-  "docs/UX_FEEDBACK.md|feedback-signals#mcu-prep-labels|src/js/lib/catalog.js:1585|0": {
-    "anchor": "src/js/lib/catalog.js:1585",
+  "docs/UX_FEEDBACK.md|feedback-signals#mcu-prep-labels|src/js/lib/catalog.js:1586|0": {
+    "anchor": "src/js/lib/catalog.js:1586",
     "fp": "85dd498c3e412622",
     "head": "description: 'Comics to read alongside the Marvel movies and streaming series.',"
   },
@@ -6269,8 +6269,8 @@
     "fp": "55a4cabc45fcfd0d",
     "head": "webView.reload()"
   },
-  "docs/UX_IMPROVEMENT_PLAN.md|7-mcu-prep-labels|src/js/lib/catalog.js:1585|0": {
-    "anchor": "src/js/lib/catalog.js:1585",
+  "docs/UX_IMPROVEMENT_PLAN.md|7-mcu-prep-labels|src/js/lib/catalog.js:1586|0": {
+    "anchor": "src/js/lib/catalog.js:1586",
     "fp": "85dd498c3e412622",
     "head": "description: 'Comics to read alongside the Marvel movies and streaming series.',"
   },

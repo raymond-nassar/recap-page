@@ -5691,12 +5691,12 @@
   "relationshipReview": {
     "authorityType": "stronger-model",
     "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer",
-    "reviewedAt": "2026-11-26T15:56:20-08:00",
-    "rationale": "I evaluated the five real pending mappings, the published library and its matching visible and union reports. Shared or contained sources retain their own order and share only exact identities. This is approval of these relationships on this base, not human acceptance or proof of saved-data migration.",
+    "reviewedAt": "2026-11-27T02:45:50.294Z",
+    "rationale": "I reviewed the complete source, visible and combined rosters after Empyre and Blood Hunt were published. Neither adds a shared identity. All previous dispositions have the same editions, relationship and shared identities on this library. The two Wolverine replacements still share only the intended progress with Secret Empire.",
     "packetDigest": "506f7d28e6c2897fa39501ba11fcf8468a5fbc9d7f78823620863aace4a3ae64",
     "mappingDigest": "8284c1e98edfde45c89d0ba65a69080a249a0be603456210a17381d85452d026",
-    "reportDigest": "d286304a3438f03f4ca6b27d11385ebd880796d9d88abbd5fc664a58a7c6527d",
-    "libraryDigest": "778e533ca9f0bee88090c88250a84d0aab66a74940fb422514e59691c52a8c28",
+    "reportDigest": "2f07e2c5f4ee60893e5a7552929d68e29c8049ba56d18830d55cffc88e761c71",
+    "libraryDigest": "76d300a39c66aa57225cd008369ecb1f789b4ec53718d620848a9a662b0d64c5",
     "peerDigests": {
       "avengers-standoff": "8f8e5165eb7e7ca16ac804399e5b1bbf90f4a7a9e17f323f3d92d9406ddc5f53",
       "road-to-secret-empire": "45f584d9a0062a470d603e8d3f4287d59eed45f7392a7ef30f9e089e47ec7940",
@@ -5704,12 +5704,12 @@
       "wolverine-reading-order": "769ff069b645aa088a074d4468f6d6377f1eb83e14bc43b6b6cd7e2a8fc54071"
     },
     "factualReview": {
-      "independentReviewSha256": "23cb97909838d13b1c733a71076b816efda8ea50e06c341ec8fedc07efc00412",
-      "sourceReportReceipt": "03e3137bc810e0f5f10fecfaa79d4f3a7f29541d0205f8b39958d7ab3f851838",
+      "independentReviewSha256": "9579254e080229edf283c4fed31d68dffd19fa1244702b8c1b4b052b0ec363a5",
+      "sourceReportReceipt": "3a557eb0d6387c4e1256220249022c0f311790b2ae67afbc1938d230531b3106",
       "coverage": {
-        "author": "0ca07250336bd964247206db20d58e5b8b954a053a604b44272d8fa290b54a32",
-        "visible": "7bb1f9a981e706beb978039656a003a9aff0200f752c42cb0b35f39189160fd6",
-        "union": "f90808a863893c9fc19476e51dd24a028505341787a221c233288ec3948bc1a7"
+        "author": "c2dad145a22ea73d0fffeed25dfa47e99ef3edbf492a2ef71d57db2b04ed7db8",
+        "visible": "3b33383ca650e22c9ea84380d9d1c93dfd0b3d32e57fc0221c0c245bbefc38e6",
+        "union": "e1e51d038571f106abbbd7d15ce26df3ed059b1b051815b5ca42b140fe93bc21"
       }
     },
     "dispositions": [
@@ -5719,7 +5719,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -5730,7 +5730,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -5741,7 +5741,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -5752,7 +5752,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -5763,7 +5763,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -5774,7 +5774,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -5799,7 +5799,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Civil War II and Al Ewing Reading List are distinct reading sequences. The 13 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -5814,7 +5814,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Civil War II and All-New, All-Different Avengers are distinct reading sequences. The 3 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -5830,7 +5830,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Civil War II and Amazing Spider-Man are distinct reading sequences. The 4 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -5841,7 +5841,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -5852,7 +5852,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -5863,7 +5863,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -5874,7 +5874,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -5885,7 +5885,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -5896,7 +5896,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -5907,7 +5907,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -5918,7 +5918,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -5929,7 +5929,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -5940,7 +5940,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -5953,7 +5953,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The standalone event and lead-in sources overlap in 1 comics without containing each other. Preserve the Civil War II sequence and the separately addable Avengers: Standoff! sequence. Do not create secondary tracking IDs or co-author intersecting lists.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -5964,7 +5964,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -5975,7 +5975,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -5993,7 +5993,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Civil War II and Black Panther are distinct reading sequences. The 6 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -6004,7 +6004,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6015,8 +6015,19 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy"
+      },
+      {
+        "orderId": "blood-hunt",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
+        "rationale": "The two source orders share no tracking identity.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
       },
@@ -6026,7 +6037,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6037,7 +6048,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6048,7 +6059,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6059,7 +6070,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6070,7 +6081,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6081,7 +6092,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6092,7 +6103,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6103,7 +6114,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6114,7 +6125,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6125,7 +6136,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6136,7 +6147,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6147,7 +6158,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6158,7 +6169,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6169,7 +6180,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6180,7 +6191,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6191,7 +6202,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6202,7 +6213,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6213,7 +6224,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6224,7 +6235,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6240,7 +6251,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Civil War II and Daredevil are distinct reading sequences. The 4 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -6251,7 +6262,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6262,7 +6273,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6273,7 +6284,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6284,7 +6295,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6295,7 +6306,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6306,7 +6317,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6317,7 +6328,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6328,7 +6339,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6339,7 +6350,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6350,7 +6361,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6361,7 +6372,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6372,7 +6383,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6383,7 +6394,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6394,7 +6405,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6405,7 +6416,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6416,7 +6427,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6427,8 +6438,19 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
+        "authorityType": "policy",
+        "authorityIdentity": "CBH no-overlap policy"
+      },
+      {
+        "orderId": "empyre",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
+        "rationale": "The two source orders share no tracking identity.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
       },
@@ -6438,7 +6460,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6449,7 +6471,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6468,7 +6490,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Civil War II and Falcon / Sam Wilson / Captain America are distinct reading sequences. The 7 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -6479,7 +6501,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6490,7 +6512,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6501,7 +6523,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6512,7 +6534,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6532,7 +6554,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Civil War II and Fantastic Four are distinct reading sequences. The 8 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -6543,7 +6565,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6554,7 +6576,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6565,7 +6587,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6576,7 +6598,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6591,7 +6613,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Civil War II and Groot are distinct reading sequences. The 3 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -6606,7 +6628,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Civil War II and Guardians of the Galaxy are distinct reading sequences. The 3 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -6633,7 +6655,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Civil War II and Hawkeye (Clint Barton and Kate Bishop) are distinct reading sequences. The 15 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -6644,7 +6666,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6655,7 +6677,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6666,7 +6688,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6677,7 +6699,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6688,7 +6710,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6699,7 +6721,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6710,7 +6732,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6721,7 +6743,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6732,7 +6754,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6743,7 +6765,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6754,7 +6776,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6765,7 +6787,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6776,7 +6798,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6787,7 +6809,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6804,7 +6826,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Civil War II and Inhumans are distinct reading sequences. The 5 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -6815,7 +6837,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6831,7 +6853,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Civil War II and Iron Fist are distinct reading sequences. The 4 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -6842,7 +6864,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6853,7 +6875,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6864,7 +6886,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6875,7 +6897,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6886,7 +6908,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6897,7 +6919,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6908,7 +6930,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6919,7 +6941,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6930,7 +6952,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6946,7 +6968,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Civil War II and Magneto are distinct reading sequences. The 4 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -6957,7 +6979,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6968,7 +6990,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6979,7 +7001,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -6990,7 +7012,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7001,7 +7023,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7012,7 +7034,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7023,7 +7045,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7034,7 +7056,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7045,7 +7067,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7056,7 +7078,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7067,7 +7089,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7078,7 +7100,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7089,7 +7111,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7100,7 +7122,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7111,7 +7133,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7122,7 +7144,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7133,7 +7155,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7144,7 +7166,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7155,7 +7177,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7166,7 +7188,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7177,7 +7199,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7188,7 +7210,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7199,7 +7221,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7210,7 +7232,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7221,7 +7243,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7232,7 +7254,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7243,7 +7265,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7254,7 +7276,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7265,7 +7287,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7276,7 +7298,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7287,7 +7309,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7298,7 +7320,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7309,7 +7331,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7320,7 +7342,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7331,7 +7353,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7342,7 +7364,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7353,7 +7375,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7364,7 +7386,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7375,7 +7397,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7386,7 +7408,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7397,7 +7419,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7408,7 +7430,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7419,7 +7441,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7430,7 +7452,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7441,7 +7463,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7452,7 +7474,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7463,7 +7485,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7474,7 +7496,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7485,7 +7507,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7496,7 +7518,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7509,7 +7531,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Civil War II and MCU Prep: Thunderbolts* are distinct reading sequences. The 1 shared identity keeps its proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -7520,7 +7542,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7531,7 +7553,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7542,7 +7564,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7553,7 +7575,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7564,7 +7586,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7575,7 +7597,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7605,7 +7627,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Civil War II and Spider-Man: Miles Morales are distinct reading sequences. The 18 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -7616,7 +7638,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7627,7 +7649,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7638,7 +7660,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7649,7 +7671,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7660,7 +7682,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7680,7 +7702,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Civil War II and Ms. Marvel (Kamala Khan) are distinct reading sequences. The 8 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -7691,7 +7713,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7702,7 +7724,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7713,7 +7735,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7729,7 +7751,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Civil War II and Namor (Sub-Mariner) are distinct reading sequences. The 4 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -7740,7 +7762,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7751,7 +7773,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7762,7 +7784,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7773,7 +7795,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7784,7 +7806,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7795,7 +7817,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7812,7 +7834,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Civil War II and Nova are distinct reading sequences. The 5 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -7823,7 +7845,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7834,7 +7856,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7845,7 +7867,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7856,7 +7878,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7867,7 +7889,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7878,7 +7900,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7889,7 +7911,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7900,7 +7922,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7911,7 +7933,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7922,7 +7944,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7933,7 +7955,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7944,7 +7966,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7962,7 +7984,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Civil War II and Hulk (and She-Hulk, Red Hulk) are distinct reading sequences. The 6 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -7973,7 +7995,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7984,7 +8006,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -7995,7 +8017,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8006,7 +8028,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8017,7 +8039,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8056,7 +8078,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The standalone event and lead-in sources overlap in 27 comics without containing each other. Preserve the Civil War II sequence and the separately addable Road to Secret Empire sequence. Do not create secondary tracking IDs or co-author intersecting lists.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -8067,7 +8089,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8078,7 +8100,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8091,7 +8113,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Civil War II and The Best of the Scarlet Witch are distinct reading sequences. The 1 shared identity keeps its proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -8102,7 +8124,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8113,7 +8135,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8124,7 +8146,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8135,7 +8157,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8146,7 +8168,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8157,7 +8179,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8168,7 +8190,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8179,7 +8201,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8190,7 +8212,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8201,7 +8223,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8212,7 +8234,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8223,7 +8245,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8234,7 +8256,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8245,7 +8267,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8256,7 +8278,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8267,7 +8289,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8278,7 +8300,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8289,7 +8311,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8300,7 +8322,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8311,7 +8333,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8327,7 +8349,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Civil War II and Spider-Man 2099 are distinct reading sequences. The 4 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -8338,7 +8360,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8349,7 +8371,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8360,7 +8382,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8371,7 +8393,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8382,7 +8404,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8393,7 +8415,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8404,7 +8426,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8415,7 +8437,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8426,7 +8448,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8437,7 +8459,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8448,7 +8470,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8459,7 +8481,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8470,7 +8492,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8481,7 +8503,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8492,7 +8514,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8503,7 +8525,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8514,7 +8536,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8525,7 +8547,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8536,7 +8558,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8547,7 +8569,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8560,7 +8582,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Civil War II and Thunderbolts are distinct reading sequences. The 1 shared identity keeps its proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -8571,7 +8593,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8582,7 +8604,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8599,7 +8621,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Civil War II and Ultimate Spider-Man are distinct reading sequences. The 5 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -8613,7 +8635,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Civil War II and Venom are distinct reading sequences. The 2 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -8624,7 +8646,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8635,7 +8657,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8646,7 +8668,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8657,7 +8679,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8675,7 +8697,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Civil War II and White Tiger: Ava Ayala are distinct reading sequences. The 6 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -8688,7 +8710,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Civil War II and Bucky Barnes / Winter Soldier are distinct reading sequences. The 1 shared identity keeps its proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -8699,7 +8721,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8712,7 +8734,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Civil War II and Wolverine are distinct reading sequences. The 1 shared identity keeps its proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -8723,7 +8745,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8734,7 +8756,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8745,7 +8767,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8762,7 +8784,7 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Civil War II and X-23 (Laura Kinney) are distinct reading sequences. The 5 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
@@ -8773,7 +8795,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8784,7 +8806,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8795,7 +8817,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8806,7 +8828,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8817,7 +8839,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8828,7 +8850,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8839,7 +8861,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8850,7 +8872,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8861,7 +8883,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8872,7 +8894,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8883,7 +8905,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8894,7 +8916,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8905,7 +8927,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8916,7 +8938,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8927,7 +8949,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8938,7 +8960,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8949,7 +8971,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8960,7 +8982,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8971,7 +8993,7 @@
         "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "The compared source and current reading list have no tracking identity in common.",
         "authorityType": "policy",
         "authorityIdentity": "CBH no-overlap policy"
@@ -8990,12 +9012,12 @@
         ],
         "relationship": "partial",
         "decision": "approved",
-        "reviewedAt": "2026-11-26T15:56:20-08:00",
+        "reviewedAt": "2026-11-27T02:45:50.294Z",
         "rationale": "Civil War II and Young Avengers are distinct reading sequences. The 7 shared identities keep their proper positions in both rather than merging or shortening the lists. Neither selection contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot (GPT-6.2 Astra), central reviewer independent of the product writer"
       }
     ],
-    "approvalDigest": "51a5e415c422e5f5650dfe2c03376cd261c33542ac3b074c0377ccbeada028b5"
+    "approvalDigest": "db70e09887a91100916695e2b908fb4c1a3aa531fa510f19bfee4eb7efcb103f"
   }
 }

@@ -530,8 +530,8 @@ transport failures abort before any output changes. Retain genuine successful re
 retry only missing requests under the existing vendoring rate limit.
 
 For Civil War to Secret Invasion, World War Hulk, Secret Wars (2015) event and tie-ins,
-Avengers: Standoff!, Civil War II, Road to Secret Empire and Secret Empire, reviewed facts
-can fill only rows without a retained detail response and after source and relationship approval:
+Avengers: Standoff!, Civil War II, Road to Secret Empire, Secret Empire, Empyre and Blood Hunt,
+use reviewed facts only for rows without a retained response and after source and relationship approval:
 
 ```text
 npm run vendor -- --only=<source-id> --reviewed-fields=<file> --reviewed-fields-sha256=<approved-sha256> --reviewed-response-cache=<directory>
@@ -704,10 +704,10 @@ team guide identities live in `scripts/data/cbh-character-inventory.json`. Origi
 Universe intake identities live in `scripts/data/cbh-ultimate-inventory.json`; that inventory keeps
 the Earth-1610 boundary separate from the post-Secret-Wars and 2023 continuity guides. The sections
 of the kids' guide live in `scripts/data/cbh-young-readers-inventory.json`, one `sub-guide` record
-per recommended section. Named
-preparation locates the packet's stable id in exactly one maintained inventory, then applies the
-same packet, mapping, relationship, approval, authoring, and freshness checks. Do not merge their
-queue counts or treat a character disposition as a modern continuity result.
+per recommended section. Additional event sources such as Blood Hunt use `scripts/data/cbh-supplemental-inventory.json`.
+Named preparation and authoring locate each stable id in exactly one maintained inventory and apply
+the same packet, mapping, relationship, approval, authoring and freshness checks. Keep queue counts
+separate; supplemental registration grants no source approval or eligibility.
 
 Creator guides already present in the character intake retain their identity and position but use
 `guideType: creator-run`, not a character classification. The Donny Cates guide is the maintained

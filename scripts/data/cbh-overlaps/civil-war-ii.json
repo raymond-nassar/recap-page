@@ -2,7 +2,7 @@
   "candidateId": "civil-war-ii",
   "packetDigest": "506f7d28e6c2897fa39501ba11fcf8468a5fbc9d7f78823620863aace4a3ae64",
   "mappingDigest": "8284c1e98edfde45c89d0ba65a69080a249a0be603456210a17381d85452d026",
-  "libraryDigest": "778e533ca9f0bee88090c88250a84d0aab66a74940fb422514e59691c52a8c28",
+  "libraryDigest": "76d300a39c66aa57225cd008369ecb1f789b4ec53718d620848a9a662b0d64c5",
   "peerDigests": {
     "avengers-standoff": "8f8e5165eb7e7ca16ac804399e5b1bbf90f4a7a9e17f323f3d92d9406ddc5f53",
     "road-to-secret-empire": "45f584d9a0062a470d603e8d3f4287d59eed45f7392a7ef30f9e089e47ec7940",
@@ -10,7 +10,7 @@
     "wolverine-reading-order": "769ff069b645aa088a074d4468f6d6377f1eb83e14bc43b6b6cd7e2a8fc54071"
   },
   "candidateCount": 154,
-  "comparisonCount": 279,
+  "comparisonCount": 281,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -190,6 +190,12 @@
     },
     {
       "orderId": "blood-and-thunder",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "blood-hunt",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -417,6 +423,12 @@
     },
     {
       "orderId": "emma-frost-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "empyre",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -1900,5 +1912,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "d286304a3438f03f4ca6b27d11385ebd880796d9d88abbd5fc664a58a7c6527d"
+  "reportDigest": "2f07e2c5f4ee60893e5a7552929d68e29c8049ba56d18830d55cffc88e761c71"
 }

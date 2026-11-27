@@ -50,7 +50,7 @@ import {
 } from '../src/js/lib/model.js';
 import { catalogCoverUrl } from '../src/js/lib/catalog.js';
 import { xmenEraPlaceholderDelta } from './helpers/xmen-era-history.mjs';
-import { curatedEmptyRecords, currentReadingCensus } from './helpers/current-reading-library.mjs';
+import { currentReadingCensus, registeredCuratedEmptyRecords } from './helpers/current-reading-library.mjs';
 import { xgoldCorrections } from './helpers/wolverine-correction-history.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -1323,13 +1323,14 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // The Wolverine identity correction replaces 18 placeholders with exact provider records.
   // Secret Wars adds two viewer-only comics and Civil War to Secret Invasion Part 13 adds
   // the six Captain America: The Chosen comics. They have reader links, not provider details.
-  // Wolverine's two X-Men Gold rows become viewer-only. The four early Modern Timeline guides
-  // have 41 more exact records without optional launch metadata, not 41 new placeholders.
+  // Wolverine's two X-Men Gold rows become viewer-only. The four early Modern Timeline guides,
+  // Empyre and Blood Hunt add exact sparse or service-only records, not new placeholders or
+  // provider refusals.
   const expectedPlaceholders = 1112 + xmenEraPlaceholderDelta - xgoldCorrections.length;
   assert.equal(claimed, expectedPlaceholders, 'the payload placeholder total moved; re-derive the figures in the record');
   assert.equal(placeholders, expectedPlaceholders, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
   assert.equal(empty, currentReadingCensus.emptyRecords);
-  assert.equal(affected, 25 + curatedEmptyRecords.length);
+  assert.equal(affected, 25 + registeredCuratedEmptyRecords.entries);
 });
 
 // Every check above passes with the import path reverted, because they all call the counter
@@ -1588,7 +1589,9 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // tagged viewer identities without provider details, not unresolved comic identities.
   // The early guides add 36 distinct detail-ineligible records after merging shared comics:
   // 31 service-only identities and five provider IDs. Two retired Wolverine keys disappear.
-  assert.equal(refused.length, 1414 + xmenEraPlaceholderDelta + 36 - xgoldCorrections.length);
+  // The 41 additional sparse Empyre and Blood Hunt records suppress futile lookups on import,
+  // without recording a provider refusal in either source payload.
+  assert.equal(refused.length, 1414 + xmenEraPlaceholderDelta + 36 + 41 - xgoldCorrections.length);
   const infinity = JSON.parse(readFileSync(join(dataDir,
     'marvels_infinity_saga_gauntlet_wars_crusade_reading_order.json'), 'utf8'));
   assert.equal(infinity.items.filter((item) => item.detailsRefused && item.issueId > 0).length, 11);

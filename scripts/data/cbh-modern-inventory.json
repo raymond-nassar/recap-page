@@ -1154,11 +1154,24 @@
     "guideType": "event",
     "window": "Q6",
     "disposition": "new-order",
-    "reason": "Blocked: the exact 36-row source includes Lords of Empyre: Swordsman #1, Marvel issue 88682, which is absent from the configured metadata API; route to the central metadata owner",
+    "reason": "The 36 source positions, the full current library, the other event in this batch and the offline fields have been reviewed. The partial overlaps belong to different reading orders.",
     "sourceRetrievedAt": "2026-08-22",
-    "overlapIds": [],
+    "overlapIds": [
+      "al-ewing-reading-list",
+      "dan-slott-reading-list",
+      "fantastic-four-reading-order",
+      "guardians-of-the-galaxy-reading-order",
+      "hickman-x-men",
+      "magneto-reading-order",
+      "marvels-best-phoenix-comics",
+      "nova-reading-order",
+      "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "shadow-king-reading-order",
+      "wandavision",
+      "white-tiger-ava-ayala"
+    ],
     "catalogIds": [],
-    "deliveryStatus": "blocked"
+    "deliveryStatus": "ready"
   },
   {
     "position": 68,
